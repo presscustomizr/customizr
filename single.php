@@ -12,6 +12,7 @@
     if ( czr_fn_has('main_slider') ) {
       czr_fn_render_template('modules/slider/slider', 'main_slider');
     }
+
     if( czr_fn_has( 'main_posts_slider' ) ) {
       czr_fn_render_template('modules/slider/slider', 'main_posts_slider');
     }
@@ -19,20 +20,13 @@
   ?>
 
   <?php do_action('__before_main_wrapper'); ?>
-    <?php /* thumbnail in single post */
-      if ( czr_fn_has('post_thumbnail') && '__before_main_wrapper' == czr_fn_get_single_thumbnail_position() ) { czr_fn_render_template('content/singles/thumbnail_single', 'post_thumbnail'); }
-    ?>
-    <div id="main-wrapper" class="container">
-
-      <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
+    <div id="main-wrapper" class="section">
 
       <?php do_action('__before_main_container'); ?>
-      <?php
-      /* FEATURED PAGES */
-      if ( czr_fn_has( 'featured_pages' ) )
-        czr_fn_render_template('modules/featured-pages/featured_pages', 'featured_pages');
-      ?>
+
       <div class="container" role="main">
+
+        <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
 
         <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
@@ -50,23 +44,47 @@
                     }//endwhile;
                   }//endif;
                 ?>
-                <?php
-                  if ( czr_fn_has('comments') ) czr_fn_render_template('content/comments/comments');
-                  if ( czr_fn_has('post_navigation_singular') ) czr_fn_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
-                ?>
               </div>
-
               <?php
+
                 if ( czr_fn_has('left_sidebar') ) {
                   czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
                 }
+
               ?>
               <?php
+
                 if ( czr_fn_has('right_sidebar') ) {
                   czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
                 }
+
               ?>
         </div>
+
+      <?php if ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) : ?>
+        <div class="row post-info">
+          <div class="col-md-12">
+          <?php
+            if ( czr_fn_has('single_author_info') )
+               czr_fn_render_template('content/authors/author_info', 'single_author_info');
+
+            if ( czr_fn_has('single_related_posts') )
+              czr_fn_render_template('content/authors/related_posts', 'related_posts') ?>
+          </div>
+        </div>
+      <?php endif ?>
+
+      <?php if ( czr_fn_has('comments') ) : ?>
+        <div class="row">
+          <div class="col-xs-12">
+            <?php czr_fn_render_template('content/comments/comments'); ?>
+          </div>
+        </div>
+      <?php endif;
+        if ( czr_fn_has('post_navigation_singular') ) czr_fn_render_template('content/singles/post_navigation_singular', 'post_navigation_singular');
+
+      ?>
+
       </div><!-- .container -->
 
       <?php do_action('__after_main_container'); ?>

@@ -23,7 +23,7 @@ $_options = array(
     'tc_comment_show_info' => true,
 
     'tc_sidebar_global_layout' => 'l',
-    'tc_sidebar_post_layout'   => 'f',
+    'tc_sidebar_post_layout'   => 'l',
     'tc_front_layout'          => 'f',
 
     'tc_post_list_thumb_position' => 'left',

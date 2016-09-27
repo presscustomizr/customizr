@@ -184,23 +184,44 @@ article .sections-wrapper { position: relative; display: inline-block; width: 10
 }
 
 /* Breadcrumb fixes */
+/*
+Fix paddings here:
+.page-breadcrumbs {
+  position: relative;
+  padding: 1.875em 0;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em; }
+  .page-breadcrumbs div[class^="col-"] {
+    padding: 0; }
+*/
+
+@media ( max-width: 991px ) {
+  .czr-hot-crumble.page-breadcrumbs div[class^="col-"] {
+    padding: 0 15px;
+  }
+}
+@media ( min-width: 992px ) {
+  .czr-hot-crumble.page-breadcrumbs div[class^="col-"] {
+    padding: 0;
+  }
+}
 .page-breadcrumbs .breadcrumb {
   background: transparent;
 }
 
-.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-end,
-.tc-hot-crumble.container .page-breadcrumbs .breadcrumb a {
+.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-end,
+.czr-hot-crumble.page-breadcrumbs div .breadcrumb a {
   background: #fff;
   padding: 6px;
   float: left;
   margin-left: 2.5em;
 }
 
-.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-begin {
+.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-begin {
   margin-left: 0;
   padding-left: 0;
 }
-.tc-hot-crumble.container .page-breadcrumbs .breadcrumb .trail-end {
+.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-end {
   font-weight: 400;
   float: right;
 }
@@ -589,6 +610,7 @@ form .czr-focus.in-focus > label {
       -ms-transform: translateY(-110%);
           transform: translateY(-110%);
   color: #B4B4B4;
+  z-index: 2;
 }
 /* Patch the search label */
 /*
@@ -611,11 +633,12 @@ form .czr-focus.in-focus > label {
   height: 2em;
   text-align: center;
 }
-.search-form__container /*.in-focus*/ .icn-close {
+.search-form__container .icn-close {
   -webkit-transform: translateY(-110%);
   -moz-transform: translateY(-110%);
   -ms-transform: translateY(-110%);
   transform: translateY(-110%);
+  cursor: pointer;
 }
 .search-form__container .in-focus .icn-close {
   -webkit-transform: translateY(110%);
@@ -623,7 +646,9 @@ form .czr-focus.in-focus > label {
   -ms-transform: translateY(110%);
   transform: translateY(110%);
 }
-
+.search-form__container .form-control {
+  padding-right: 2em;
+}
 /* Comment list */
 .col-avatar {
   float: left
