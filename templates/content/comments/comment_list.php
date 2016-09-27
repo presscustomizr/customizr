@@ -7,13 +7,21 @@
  */
 ?>
 <?php global $wp_query; ?>
+<h2 id="czr-comments-title" class="comments-title" <?php czr_fn_echo('element_attributes') ?>><?php /* Comments list title */
+  comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
+?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
 
 <ul class="nav nav-pills">
-  <?php if ( ! empty ( $wp_query->comments_by_type['comment'] ) ) : ?>
-    <li class="nav-item"><a href="#commentlist-container" class="nav-link active" data-toggle="pill" role="tab"><?php echo count($wp_query->comments_by_type['comment']) ?>&nbsp<?php _e( 'comments', 'customizr' ) ?></a></li>
+  <?php if ( ! empty ( $wp_query->comments_by_type['comment'] ) ) :
+    $comments_number = count($wp_query->comments_by_type['comment']);
+  ?>
+  <!-- WITH COMMENTS PAGINATION THE COMMENT/PINGBACK COUNT IS WRONG AS IS COUNTS JUST THE NUMBER OF ELEMENTS OF THE CURRENT (PAEG) QUERY -->
+    <li class="nav-item"><a href="#commentlist-container" class="nav-link active" data-toggle="pill" role="tab"><?php echo $comments_number ?>&nbsp<?php echo _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ?></a></li>
   <?php endif ?>
-  <?php if ( ! empty ( $wp_query->comments_by_type['pings'] ) ) : ?>
-    <li class="nav-item"><a href="#pinglist-container" class="nav-link" data-toggle="pill" role="tab"><?php echo count($wp_query->comments_by_type['pings']) ?>&nbsp<?php _e( 'pingbacks', 'customizr' ) ?></a></li>
+  <?php if ( ! empty ( $wp_query->comments_by_type['pings'] ) ) :
+    $pings_number = count($wp_query->comments_by_type['pings']);
+  ?>
+    <li class="nav-item"><a href="#pinglist-container" class="nav-link" data-toggle="pill" role="tab"><?php echo $pings_number ?>&nbsp<?php echo _n( 'pingback' , 'pingbacks' , $pings_number, 'customizr' ) ?></a></li>
   <?php endif ?>
 </ul>
 <div id="comments" class="tab-content">
@@ -23,7 +31,7 @@
         <?php
 
         /* Comments list */
-        wp_list_comments( array( 'type' => 'comment', 'callback' => czr_fn_get( 'czr_comments_callback' ) ) );
+        wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'comment' ) ) );
 
         ?>
       </ol>
@@ -37,7 +45,7 @@
         <?php
 
         /* Pings list */
-        wp_list_comments( array( 'type' => 'pings', 'callback' => czr_fn_get( 'czr_comments_callback' ) ) );
+        wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'pings' ) ) );
 
         ?>
       </ol>
