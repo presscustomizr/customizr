@@ -14,18 +14,17 @@
       </figure>
     </div>
     <div class="comment-body" role="complementary">
-      <header class="comment-metas">
-        <div clas="comment-metas-top">
+      <header class="comment-meta">
+        <div clas="comment-meta-top">
           <div class="comment-author vcard">
             <?php comment_author_link() ?>
             <?php if ( czr_fn_get('is_current_post_author') ): ?>
               <span class="small"><?php _e( 'Post author' , 'customizr' ) ?></span>
             <?php endif; ?>
           </div>
-          <time class="comment-date comment-meta commentmetadata" datetime="<?php comment_time() ?>">
-            <span>
-              <?php comment_date();?>,
-            </span> <a class="comment-time" href="<?php comment_link() ?>"><?php comment_time() ?> </a></time>
+          <time class="comment-date comment-metadata" datetime="<?php comment_time() ?>">
+            <span><?php comment_date();?>,</span>
+            <a class="comment-time comment-link" href="<?php comment_link() ?>"><?php comment_time() ?></a>
           </time>
         </div>
         <?php if ( czr_fn_get( 'has_edit_button' ) ) : ?>

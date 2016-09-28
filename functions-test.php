@@ -16,7 +16,7 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate
+    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -45,7 +45,10 @@ $_options = array(
 
     'tc_posts_slider_number'   => '5',
 
-    'tc_show_author_info'      => true
+    'tc_show_author_info'      => true,
+
+    //to add
+    'tc_related_posts'         => true
 );
 
 

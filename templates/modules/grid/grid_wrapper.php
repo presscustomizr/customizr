@@ -12,7 +12,7 @@
 if ( czr_fn_get( 'is_loop_start' ) ) :
 
 ?>
-<div class="row  grid-container__classic" <?php czr_fn_echo('element_attributes') ?>>
+<div class="row grid-container__classic" <?php czr_fn_echo('element_attributes') ?>>
 <?php
 
 endif;
