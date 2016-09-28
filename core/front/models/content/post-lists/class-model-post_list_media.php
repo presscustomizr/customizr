@@ -1,6 +1,7 @@
 <?php
 class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   public $has_post_media;
+  public $only_thumb;
   public $icon_type;
   public $media_content;
   public $original_thumb_url;
@@ -8,6 +9,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_late_properties() {
     $post_format           = get_post_format();
+    $only_thumb            = czr_fn_get( 'only_thumb' );
     $has_post_media        = czr_fn_get( 'has_post_media' );
     $is_full_image         = czr_fn_get( 'is_full_image' );
     $element_class         = czr_fn_get( 'czr_media_col' );
@@ -23,6 +25,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     $this -> czr_fn_update( array(
       'element_class'      =>  $element_class,
       'has_post_media'     =>  $has_post_media,
+      'only_thumb'         =>  $only_thumb,
       'icon_type'          =>  isset( $icon_type ) ? $icon_type : false,
       'original_thumb_url' =>  false,
       'is_full_image'      =>  $is_full_image
@@ -33,7 +36,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   function czr_fn_get_media_content() {
     /* Todo: treat case with no media -> show wanrning for admins only */
     /* TEMPORARY: HARD CODED */
-    $post_format = get_post_format();
+    $post_format = $this -> only_thumb ? '' : get_post_format();
 
     switch ( $post_format ) {
       case 'video':

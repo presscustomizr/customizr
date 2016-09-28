@@ -853,6 +853,9 @@ replace:
 }
 
 /* Avoid wrapping the title on a new line */
+section.post-related-articles header {
+  overflow: hidden;
+}
 .square-grid__mini .grid-post .entry-header .entry-title {
   white-space: nowrap;
 }
@@ -872,7 +875,7 @@ replace:
 }
 
 /*
-replace:;
+replace:
 .square-grid__mini .tc-grid-post .tc-content {
     max-width: 50%;
     padding: 2em;
@@ -881,14 +884,71 @@ replace:;
     height: 277.5px;
 }
 */
-.grid.square-grid__mini article {
-  background: #f7f8f9;
-  overflow: hidden;
-}
 .square-grid__mini .tc-grid-post.grid-post .tc-content {
   max-width: 50%; /* can be removed */
-  padding: 2em;
+  padding: 0; /* can be removed */
   display: block; /* can be removed */
   background: transparent; /* can be removed */
-  height: auto;
+  height: 0; /*can be removed */
+  padding-bottom: 50%;
+}
+.entry-content__wrapper {
+  position: absolute;
+  left: 2em;
+  right: 2em;
+  top: 2em;
+  bottom: 2em;
+  overflow: hidden;
+}
+/*
+replace:
+section.post-related-articles .grid .tc-grid-post {
+    background: #f7f8f9;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+*/
+section.post-related-articles .grid .tc-grid-post {
+  background: #f7f8f9;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  vertical-align: middle;
+}
+
+
+/*
+* Extend this to all post formats
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+    font-size: 0.83333em;
+}
+
+.square-grid__mini .format-standard .entry-header .entry-title::after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 2.5em;
+    height: 2px;
+    background: #202020;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+*/
+.square-grid__mini .entry-header .entry-meta {
+  font-size: 0.83333em;
+}
+.square-grid__mini .entry-header .entry-title::after {
+  content: "";
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 2.5em;
+  height: 2px;
+  background: #202020;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
