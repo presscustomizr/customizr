@@ -17,7 +17,7 @@ var czrapp = czrapp || {};
     */
     centerImages : function() {
       //POST CLASSIC GRID IMAGES
-      $('.tc-grid-figure').centerImages( {
+      $('.tc-grid-figure, .square-grid__mini .entry-image__container ').centerImages( {
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : false, //true
@@ -68,7 +68,11 @@ var czrapp = czrapp || {};
       * but clicking on an another a.expand-img the image speficied in the
       * dynamically added a.expang-img href is added to the gallery
       */
-
+      $( '.square-grid__mini' ).magnificPopup({
+        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+        type: 'image'
+        // other options
+      });
       $( '[class*="grid-container__"]' ).magnificPopup({
         delegate: 'a.expand-img:not(.gallery)', // child items selector, by clicking on it popup will open
         type: 'image'
@@ -98,11 +102,24 @@ var czrapp = czrapp || {};
         }).magnificPopup('open');
       });
     },
+
+
+
     /*
     * flickity slider:
     */
     czr_slider : function() {
-      /* Test only !!!!!! */
+      /* Test only RELATED POSTS !!!!!! */
+      $('.square-grid__mini').flickity({
+          prevNextButtons: false,
+          pageDots: false,
+          groupCells: true,
+          imagesLoaded: true,
+          cellSelector: '.post',
+          cellAlign: 'left'
+      });
+
+      /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
       $('[class*="grid-container__"] .format-gallery .carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
@@ -111,7 +128,7 @@ var czrapp = czrapp || {};
           cellSelector: '.carousel-cell'
       });
 
-      /* Test only !!!!!! */
+      /* Test only !!!!!! MAIN SLIDER */
       $('.czr-carousel .carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
@@ -123,12 +140,14 @@ var czrapp = czrapp || {};
 
       /* Handle custom nav */
       // previous
-      czrapp.$_body.on( 'click', '.slider-prev', function() {
+      czrapp.$_body.on( 'click', '.slider-prev', function(evt) {
+        evt.preventDefault();
         var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
         $flickity_instance.flickity('previous');
       });
       // next
-      czrapp.$_body.on( 'click', '.slider-next', function() {
+      czrapp.$_body.on( 'click', '.slider-next', function(evt) {
+        evt.preventDefault();
         var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
         $flickity_instance.flickity('next');
       });

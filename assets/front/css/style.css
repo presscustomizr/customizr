@@ -113,7 +113,7 @@ body {
 blockquote p {
   font-family: "Poppins", sans-serif; }
 
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.83333em; }
 
 .demi-small {
@@ -2871,15 +2871,15 @@ WP classes
   height: 277.5px; }
 .square-grid__mini .grid-item {
   margin-left: 0; }
-.square-grid__mini .format-standard .entry-header h2 {
+.square-grid__mini .format-standard .entry-header .entry-title {
   position: relative; }
-.square-grid__mini .format-standard .entry-header h2::after {
+.square-grid__mini .format-standard .entry-header .entry-title::after {
   content: "";
   position: absolute;
   top: 45px;
   left: 0;
   width: 2.5em;
-  height: 3px;
+  height: 2px;
   background: #202020;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease; }
@@ -3231,14 +3231,47 @@ section[class^="post-"] {
 
 section.post-related-articles {
   margin-top: 0; }
-  section.post-related-articles h3 {
-    text-align: center;
-    font-weight: 600; }
+  section.post-related-articles header {
+    *zoom: 1; }
+    section.post-related-articles header:before, section.post-related-articles header:after {
+      content: "";
+      display: table; }
+    section.post-related-articles header:after {
+      clear: both; }
+    section.post-related-articles header h2 {
+      float: left;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 2.5em; }
+    section.post-related-articles header ul {
+      float: right;
+      margin-top: 5em; }
+      section.post-related-articles header ul li {
+        width: 3em;
+        height: 3em;
+        line-height: 3em;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        border: 2px solid #f7f8f9; }
+        section.post-related-articles header ul li:hover {
+          background: #202020;
+          border-color: #202020; }
+        section.post-related-articles header ul li:hover a, section.post-related-articles header ul li a:hover {
+          color: #fff;
+          -webkit-transition: all 0.2s, 0.3s ease;
+          transition: all 0.2s, 0.3s ease; }
+        section.post-related-articles header ul li a {
+          color: #202020; }
+  section.post-related-articles .grid {
+    margin-top: 1.25em; }
   section.post-related-articles .grid .tc-grid-post {
     background: #f7f8f9;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
+    section.post-related-articles .grid .tc-grid-post h3 {
+      font-weight: 600; }
 
 .post-pagination a {
   color: #B4B4B4; }

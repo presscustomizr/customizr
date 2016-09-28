@@ -32,6 +32,7 @@
   position: relative;
   z-index: 12;
 }
+.grid img,
 img.wp-post-image,
 img.post-thumbnail {
   width: 100%;
@@ -99,7 +100,7 @@ body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
 article .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
 
 /* Alternate and Masonry special formats patch*/
-.format-video .sections-wrapper .video-container, .format-audio .sections-wrapper .audio-container { line-height: 0;}
+.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
 .article-container .post-action { left: auto; }
 [class*=grid-container__] .format-gallery .tc-thumbnail, [class*=grid-container__] .format-image .tc-thumbnail { max-height: 600px;}
 
@@ -669,7 +670,7 @@ replace:
     font-size: 0.83333em;
 }
 */
-.comment-metas time {
+.comment-metadata.comment-date {
   float: right;
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
@@ -686,7 +687,7 @@ replace:;
 }
 */
 
-.comment-time {
+.comment-link {
   color: #202020;
   font-weight: 500;
 }
@@ -824,3 +825,70 @@ To remove:
     color: #202020; }
 ;
 */
+
+/*
+* Related posts
+*/
+/*
+section.post-related-articles header ul li a {
+    color: #202020;
+}*/
+section.post-related-articles header ul li a {
+  display: block;
+}
+
+/*
+replace:
+.square-grid__mini .col-xs-12 {
+    padding: 0;
+}
+*/
+.square-grid__mini section {
+  padding: 0;
+}
+.square-grid__mini section.entry-image__container {
+  padding-bottom: 50%;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Avoid wrapping the title on a new line */
+.square-grid__mini .grid-post .entry-header .entry-title {
+  white-space: nowrap;
+}
+
+
+.row.grid.square-grid__mini {
+  height: 0;
+  padding-bottom: 50%; /* Only 1 item shown */
+  overflow: hidden;
+}
+@media ( min-width: 768px ) {
+  .row.grid.square-grid__mini {
+    height: 0;
+    padding-bottom: 25%; /* 2 items shown */
+    overflow: hidden;
+  }
+}
+
+/*
+replace:;
+.square-grid__mini .tc-grid-post .tc-content {
+    max-width: 50%;
+    padding: 2em;
+    display: inline-block;
+    background: #f7f8f9;
+    height: 277.5px;
+}
+*/
+.grid.square-grid__mini article {
+  background: #f7f8f9;
+  overflow: hidden;
+}
+.square-grid__mini .tc-grid-post.grid-post .tc-content {
+  max-width: 50%; /* can be removed */
+  padding: 2em;
+  display: block; /* can be removed */
+  background: transparent; /* can be removed */
+  height: auto;
+}

@@ -62,14 +62,14 @@
         </div>
 
       <?php if ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) : ?>
-        <div class="row post-info">
+        <div class="row single-post-info">
           <div class="col-md-12">
           <?php
             if ( czr_fn_has('single_author_info') )
                czr_fn_render_template('content/authors/author_info', 'single_author_info');
 
-            if ( czr_fn_has('single_related_posts') )
-              czr_fn_render_template('content/authors/related_posts', 'related_posts') ?>
+            if ( czr_fn_has('related_posts') )
+              czr_fn_render_template('modules/related-posts/related_posts_wrapper', 'related_posts_wrapper') ?>
           </div>
         </div>
       <?php endif ?>

@@ -8,7 +8,6 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $is_full_image;
   public  $has_header_format_icon;
 
-
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
@@ -87,13 +86,13 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     $content_class          = 'get_the_content' == $content_cb ? array( 'entry-content' ) : array( 'entry-summary' );
 
 
-    $this -> czr_fn_update( compact( 
-      'element_class', 
-      'content_class', 
-      'content_cb', 
-      'content', 
-      'is_loop_start', 
-      'is_loop_end', 
+    $this -> czr_fn_update( compact(
+      'element_class',
+      'content_class',
+      'content_cb',
+      'content',
+      'is_loop_start',
+      'is_loop_end',
       'is_full_image',
       'has_header_format_icon'
     ) );
