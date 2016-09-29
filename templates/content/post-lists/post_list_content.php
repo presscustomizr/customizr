@@ -22,6 +22,7 @@
             'after'         => '</div></div>',
             'link_before'   => '<span>',
             'link_after'    => '</span>',
+            'echo'          => false
             )
           )
         ) );

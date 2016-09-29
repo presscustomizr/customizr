@@ -32,11 +32,18 @@
   position: relative;
   z-index: 12;
 }
-.grid img,
+/*.grid img,
 img.wp-post-image,
 img.post-thumbnail {
   width: 100%;
   height: auto;
+}*/
+img {
+    max-width: 100%;
+    height: auto;
+}
+.tc-thumbnail img {
+  width: 100%;
 }
 
 /* JS IMAGE CENTERING */
@@ -853,11 +860,8 @@ replace:
 }
 
 /* Avoid wrapping the title on a new line */
-section.post-related-articles header {
-  overflow: hidden;
-}
 .square-grid__mini .grid-post .entry-header .entry-title {
-  white-space: nowrap;
+  text-align: left;
 }
 
 
@@ -892,7 +896,7 @@ replace:
   height: 0; /*can be removed */
   padding-bottom: 50%;
 }
-.entry-content__wrapper {
+.square-grid__mini .entry-content__wrapper {
   position: absolute;
   left: 2em;
   right: 2em;
@@ -951,4 +955,29 @@ section.post-related-articles .grid .tc-grid-post {
   background: #202020;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+/* main margins */
+#main-wrapper .column-content-wrapper {
+  padding-top: 5em;
+}
+#main-wrapper .czr-hot-crumble + .column-content-wrapper {
+  padding-top: 0;
+}
+
+/* header secondary menu font-size fix
+replace
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+  font-size: 0.83333em; }
+
+  .secondary-navbar__wrapper li
+*/
+.secondary-navbar__wrapper ul li{
+  font-size: 1em;
+}
+.secondary-navbar__wrapper {
+  font-size: 0.83333em;
+}
+.secondary-navbar__wrapper .dropdown > .dropdown-menu {
+  font-size: 0.8em;
 }
