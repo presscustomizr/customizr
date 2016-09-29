@@ -27,14 +27,12 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     * hook : nav_menu_link_attributed
     */
     function czr_fn_process_menu_links( $atts, $item, $args, $depth ) {
-      if ( ! (' CZR_cl_nav_walker' == get_class( $args->walker) ) )
+      if (  'CZR_cl_nav_walker' != get_class( (object)$args->walker ) )
         return $atts;
 
-      //$atts[ 'class' ] = 'nav-link';
+      $atts[ 'class' ] = 'nav-link';
       if ( $item->is_dropdown ) {
-        if ( apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
-          $atts[ 'href' ]   = '';
-        } else {
+        if ( ! apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
           if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
             $atts[ 'href' ]          = '#';
             $atts[ 'data-toggle' ]   = "dropdown";
@@ -43,7 +41,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
             $atts[ 'aria-expanded' ] = "false";
           }
         }
-      }    
+      }
       return $atts;
     }
 
@@ -157,6 +155,11 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
     * hook : page_css_class
     */
     function czr_fn_add_bootstrap_classes($classes, $page = null, $depth = 0, $args = array() ) {
+
+      /* Scope the changes only to Customizr fallback page menu!! */
+      if ( ! ( isset( $args['fallback_cb'] ) && isset( $args['fallback_cb'][1] ) && 'czr_fn_page_menu' == $args['fallback_cb'][1] ) )
+        return $classes;
+
       if ( ! is_array($classes) )
         return $classes;
 
@@ -186,7 +189,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
 
       if ( ! in_array( 'menu-item' , $classes ) )
         $classes[] = 'menu-item';
-      
+
       if ( ! empty( array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) ) )
           && ! in_array( 'active' , $classes ) )
         $classes[] = 'active';
@@ -201,10 +204,12 @@ if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
 
 
     function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
-      $item_html = '';
+
       //since the &$output is passed by reference, it will modify the value on the fly based on the parent method treatment
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
+
+      $item_html = str_replace( '<a', '<a class="nav-link"', $item_html);
 
       if ( $args['has_children'] ) {
 

@@ -63,7 +63,7 @@
 
       <?php if ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) : ?>
         <div class="row single-post-info">
-          <div class="col-md-12">
+          <div class="col-xs-12">
           <?php
             if ( czr_fn_has('single_author_info') )
                czr_fn_render_template('content/authors/author_info', 'single_author_info');

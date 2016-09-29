@@ -46,6 +46,9 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
       array( 'model_class' => 'header/logo', 'id' => 'logo' ),
       array( 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky'), 'id' => 'sticky_logo' ),
 
+      //secondary menu registered here because of the extending
+      array( 'id' => 'secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+
       //here because it acts on the header class
       array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
     );
@@ -74,13 +77,13 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
     }
     return $_css;
   }
-  
+
 
   function czr_fn_body_class( $_classes/*array*/ ) {
     //STICKY HEADER
     if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
       array_push( $_classes, 'tc-sticky-header', 'sticky-disabled', 'navbar-sticky-' . esc_attr( czr_fn_get_opt( 'tc_sticky_header_type' ) ) );
-    
+
       /* WHICH OPTIONS SHOULD BE KEPT HERE ???? */
       //STICKY TRANSPARENT ON SCROLL
       if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_transparent_on_scroll' ) ) )

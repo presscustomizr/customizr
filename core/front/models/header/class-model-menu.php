@@ -112,6 +112,7 @@ class CZR_cl_menu_model_class extends CZR_cl_Model {
       else
         $text = $args['show_home'];
       $class = '';
+
       if ( is_front_page() && !is_paged() )
         $class = 'class="current_page_item"';
       $menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
