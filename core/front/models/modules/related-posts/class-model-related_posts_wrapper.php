@@ -1,8 +1,8 @@
 <?php
 class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
   public  $has_post_media;
-  public  $czr_media_col;
-  public  $czr_content_col;
+  public  $media_col;
+  public  $content_col;
 
   function czr_fn_setup_late_properties() {
 
@@ -10,8 +10,8 @@ class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
 
     $this -> czr_fn_update( array(
       'has_post_media'  => true,
-      'czr_media_col'   => array( 'col-xs-6' ),
-      'czr_content_col' => array( 'col-xs-6' ),
+      'media_col'   => array( 'col-xs-6' ),
+      'content_col' => array( 'col-xs-6' ),
       'query'           => $this -> czr_fn_get_relate_post_query()
     ) );
   }

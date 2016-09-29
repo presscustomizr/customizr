@@ -6,14 +6,18 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   public $media_content;
   public $original_thumb_url;
   public $is_full_image;
+  public $inner_wrapper_class;
 
   function czr_fn_setup_late_properties() {
     $post_format           = get_post_format();
     $only_thumb            = czr_fn_get( 'only_thumb' );
     $has_post_media        = czr_fn_get( 'has_post_media' );
     $is_full_image         = czr_fn_get( 'is_full_image' );
-    $element_class         = czr_fn_get( 'czr_media_col' );
+    $element_class         = czr_fn_get( 'media_col' );
+
     $element_class         = $element_class ? $element_class : array();
+
+    $inner_wrapper_class   = czr_fn_get( 'media_inner_wrapper_class' );
 
     if ( ! $has_post_media && czr_fn_get( 'has_format_icon_media' ) && ! $is_full_image ) {
       $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'article';
@@ -23,12 +27,13 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       array_push( $element_class, 'czr-carousel' );
 
     $this -> czr_fn_update( array(
-      'element_class'      =>  $element_class,
-      'has_post_media'     =>  $has_post_media,
-      'only_thumb'         =>  $only_thumb,
-      'icon_type'          =>  isset( $icon_type ) ? $icon_type : false,
-      'original_thumb_url' =>  false,
-      'is_full_image'      =>  $is_full_image
+      'element_class'       =>  $element_class,
+      'has_post_media'      =>  $has_post_media,
+      'only_thumb'          =>  $only_thumb,
+      'icon_type'           =>  isset( $icon_type ) ? $icon_type : false,
+      'original_thumb_url'  =>  false,
+      'is_full_image'       =>  $is_full_image,
+      'inner_wrapper_class' =>  $inner_wrapper_class
     ));
   }
 

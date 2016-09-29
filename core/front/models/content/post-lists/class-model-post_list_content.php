@@ -74,7 +74,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
   function czr_fn_setup_late_properties() {
     $content                = '';
-    $element_class          = czr_fn_get( 'czr_content_col' );
+    $element_class          = czr_fn_get( 'content_col' );
     $is_loop_start          = czr_fn_get( 'is_loop_start' );
     $is_loop_end            = czr_fn_get( 'is_loop_end' );
     $is_full_image          = czr_fn_get( 'is_full_image' );
