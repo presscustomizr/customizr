@@ -7,10 +7,10 @@
 /*.parallax-mirror,*/
 /* #tc-page-wrap { transition: right, left 300ms ease-in; left: 0 ; } */
 /*.open .parallax-mirror,*/
-.open #tc-page-wrap {
+/*.open #tc-page-wrap {
   left: -300px !important;
   overflow: hidden;
-}
+}*/
 
 /*
 * In desktops when resizing below the "collapsing mobil menu" treshold
@@ -980,4 +980,20 @@ replace
 }
 .secondary-navbar__wrapper .dropdown > .dropdown-menu {
   font-size: 0.8em;
+}
+
+/*
+Remove this
+
+section[class^="post-"] .row {
+    margin: 5em 0 2.5em 0;
+}
+*/
+article section[class^="post-"] .row {
+  margin: 5em -15px 2.5em -15px;
+}
+/* Use this instead */
+.single .post-footer .entry-meta {
+  margin-top: 5em;
+  margin-bottom: 5em;
 }

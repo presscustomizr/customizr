@@ -8,7 +8,7 @@
  */
 ?>
 <section class="tc-content entry-content__holder <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?> >
-  <div class="entry-content__wrapper">
+  <div class="entry-content__wrapper <?php czr_fn_echo('inner_wrapper_class') ?>">
     <?php do_action( 'before_post_list_entry_content' ) ?>
 
     <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/post_list_header') ?>

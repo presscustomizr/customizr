@@ -51,8 +51,10 @@
                     czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
                   }elseif ( czr_fn_has('post_list_masonry') ) {
                     czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_masonry');
-                  }elseif ( czr_fn_has('post_list_full') ){
-                    czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_full');
+                  }elseif ( czr_fn_has('post_list_plain') ) {
+                    czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
+                  }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
+                    czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
                   }
                   else {
                     czr_fn_render_template('content/singles/page_content', 'page');
