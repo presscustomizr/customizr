@@ -26,7 +26,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
     //thumb
     $thumb_properties       = $this -> czr_fn_get_thumb_properties( $section_cols );
     $has_thumb              = isset( $thumb_properties[ 'has_thumb' ] ) ? $thumb_properties[ 'has_thumb' ] : false;
-    $thumb_img              = isset( $thumb_properties[ 'thumb_img' ] ) ? $thumb_properties[ 'thumb_img' ] : ''; 
+    $thumb_img              = isset( $thumb_properties[ 'thumb_img' ] ) ? $thumb_properties[ 'thumb_img' ] : '';
 
     //figure class
     $figure_class           = $this -> czr_fn_get_the_figure_class( $has_thumb, $section_cols );
@@ -51,8 +51,8 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
           'title',
           'has_title_in_caption',
           'has_fade_expt',
-          'has_edit_in_caption' 
-        ) 
+          'has_edit_in_caption'
+        )
     ) );
   }
 
@@ -145,7 +145,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * @return array
   */
   function czr_fn_set_grid_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') );
+    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') ) && in_array( get_post_format(), array( 'link', 'quote' ) );
     $icon_attributes     = '';
     if ( CZR() -> czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',

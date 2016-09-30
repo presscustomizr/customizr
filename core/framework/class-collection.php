@@ -104,7 +104,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       $model = $this -> czr_fn_instantiate_model($model);
 
       //Silent aborting for those models which "decided" in their constructor they're not allowed to be registered
-      if ( $this -> czr_fn_has_registered_deletion( $model -> id ) )
+      if ( isset( $model -> id ) && $this -> czr_fn_has_registered_deletion( $model -> id ) )
         return;
 
       //abort if the model has not been instantiated

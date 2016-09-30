@@ -4,13 +4,7 @@ class CZR_cl_comment_model_class extends CZR_cl_Model {
 
   //bools
   public $is_current_post_author;
-  public $has_edit_button;
   public $is_awaiting_moderation;
-
-  function czr_fn_extend_params( $model = array() ) {
-    $model[ 'has_edit_button' ]         = ! CZR() -> czr_fn_is_customizing();
-    return $model;
-  }
 
 
   /**

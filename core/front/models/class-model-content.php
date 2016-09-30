@@ -5,8 +5,16 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
     $children = array(
       //registered here as they act on the body class
       array(
+        //registered here also because we access to its properties from other templates
+        //which as of now is only possibile with already registered models
         'model_class' => 'content/post-metas/post_metas',
         'id' => 'post_metas',
+      ),
+      array(
+        //registered here also because we access to its properties from other templates
+        //which as of now is only possibile with already registered models
+        'model_class' => 'content/post-lists/post_list_content',
+        'id' => 'post_list_content',
       ),
       array(
         'model_class' => 'content/post-lists/post_list_wrapper',
@@ -41,7 +49,7 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
         'id'          => 'post_list_grid',
         'model_class' => 'modules/grid/grid_wrapper',
       ),
-      /* END GRID */      
+      /* END GRID */
 
 
     );

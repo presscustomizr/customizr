@@ -80,7 +80,7 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
           if ( method_exists( $this, 'czr_fn_body_class' ) )
             add_filter( 'body_class', array( $this, 'czr_fn_body_class' ) );
 
-          //maybe add style (have to see if we have to put this just before the view is rendered)
+          //maybe add style
           $this -> czr_fn_maybe_add_style();
 
           //Allow models to filter other view's model before rendering

@@ -2,22 +2,7 @@
 class CZR_cl_trackpingback_model_class extends CZR_cl_Model {
 
   //bools
-  public $has_edit_button;
-  public $ping_number;
-
-
-  /**
-  * @override
-  * fired before the model properties are parsed
-  *
-  * return model params array()
-  */
-  function czr_fn_extend_params( $model = array() ) {
-    $model[ 'has_edit_button' ]         = ! CZR() -> czr_fn_is_customizing();
-    $model[ 'ping_number' ]             = 0;
-
-    return $model;
-  }
+  public $ping_number = 0;
 
   /*
   * Prepare template for comments

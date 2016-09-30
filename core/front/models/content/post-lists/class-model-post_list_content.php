@@ -1,7 +1,7 @@
 <?php
 class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $content_cb;
-  private $content;
+  public  $content;
   public  $content_class;
   public  $is_loop_start;
   public  $is_loop_end;
@@ -9,10 +9,14 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $has_header_format_icon;
 
   function __construct( $model = array() ) {
-    //Fires the parent constructor
+    /*
+    * Actually this should be done when the model (this) id has been set (which is not necessarily the $model
+    (param) id.....
+    */
+    add_action( "__before_{$model['id']}_content_retrieve", array( $this, 'setup_text_hooks') );
+    add_action( "__after_{$model['id']}_content_retrieve", array( $this, 'reset_text_hooks') );
+
     parent::__construct( $model );
-    add_action( "__before_{$this -> id }_content_retrieve", array( $this, 'setup_text_hooks') );
-    add_action( "__after_{$this -> id }_content_retrieve", array( $this, 'reset_text_hooks') );
   }
 
   function setup_text_hooks() {
@@ -26,19 +30,22 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
-  function czr_fn_get_post_list_content( $more  = null, $link_pages = null ) {
+  function czr_fn_get_the_post_list_content( $more  = null, $link_pages = null ) {
+    $content                = czr_fn_get( 'content' );
+    $show_full_content      = czr_fn_get( 'show_full_content' );
+    $content_cb             = $this -> get_content_cb( $show_full_content ? 'get_the_content' : 'get_the_excerpt' );
 
     do_action( "__before_{$this -> id }_content_retrieve" );
 
-    if ( $this -> content )
-      $to_return = $this -> content;
-    elseif ( 'get_the_excerpt' == $this -> content_cb )
+    if ( $content )
+      $to_return = $content;
+    elseif ( 'get_the_excerpt' == $content_cb )
       $to_return = apply_filters( 'the_excerpt', get_the_excerpt() );
-    elseif ( 'get_the_content' == $this -> content_cb )
+    elseif ( 'get_the_content' == $content_cb )
       //filter the content
       $to_return = '<p>'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</p>';
     else
-      $to_return = call_user_func( $this -> content_cb );
+      $to_return = call_user_func( $content_cb );
 
     do_action( "__after_{$this -> id }_content_retrieve" );
 
@@ -73,7 +80,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
 
   function czr_fn_setup_late_properties() {
-    $content                = '';
+
     $element_class          = czr_fn_get( 'content_col' );
     $is_loop_start          = czr_fn_get( 'is_loop_start' );
     $is_loop_end            = czr_fn_get( 'is_loop_end' );
@@ -85,12 +92,9 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     $content_cb             = $this -> get_content_cb( $show_full_content ? 'get_the_content' : 'get_the_excerpt' );
     $content_class          = 'get_the_content' == $content_cb ? array( 'entry-content' ) : array( 'entry-summary' );
 
-
     $this -> czr_fn_update( compact(
       'element_class',
       'content_class',
-      'content_cb',
-      'content',
       'is_loop_start',
       'is_loop_end',
       'is_full_image',
@@ -104,6 +108,11 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     switch( $post_format ) {
       case 'status' :
       case 'aside'  : return 'get_the_content';
+
+      case 'gallery':
+      case 'video'  :
+      case 'image'  :
+      case 'audio'  : return 'get_the_excerpt';
 
       case 'link'   : return array( $this, 'get_the_post_link' );
       case 'quote'  : return array( $this, 'get_the_post_quote' );
