@@ -56,7 +56,6 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
                 $content = 'https://vimeo.com/176587685';
                 $class   = 'vimeo';
               break;
-
             default :
               $content = '';
               $class   = '';

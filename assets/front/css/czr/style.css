@@ -665,24 +665,11 @@ form .czr-focus.in-focus > label {
   display: inline-block;
 }
 /*
-replace:
+remove:??
 .comment-meta time {
     float: right;
-};
-.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tags li a, .tagcloud li a, .post-tags li a, .sidebar .tagcloud li a, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
-    font-family: "Roboto", sans-serif;
-    letter-spacing: 1px;
 }
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
-    font-size: 0.83333em;
-}
-*/
-.comment-metadata.comment-date {
-  float: right;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 1px;
-  font-size: 0.83333em;
-}
+
 /*
 *
 replace:;
@@ -996,4 +983,162 @@ article section[class^="post-"] .row {
 .single .post-footer .entry-meta {
   margin-top: 5em;
   margin-bottom: 5em;
+}
+/*
+Remove
+
+.post-list-plain .post.style-01 .post-info {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+.article-container .post-list-plain .post .post-info {
+    float: right;
+    text-align: right;
+}
+.post-list-plain .post .post-info {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+
+  .post-list-plain .post .author-info {
+    float: left;
+    width: 50%;
+    }
+*/
+  .article-container .post-list-plain .post.style-01 .post-info {
+    float: initial; /* set with the bs columns parent*/
+    text-align: right; /*keep*/
+    width: auto;
+  }
+
+  .article-container .post-list-plain .post.style-01 .author-info {
+    float: initial;
+    width: auto;
+  }
+  .post-list-plain .post.format-video .tc-thumbnail .entry-media__wrapper {
+    height: 100%;
+  }
+  /*
+  replace
+
+
+    .post-list-plain .post .entry-meta .category__link {
+    display: block;
+    letter-spacing: 3px;
+    line-height: 3em;
+    clear: both;
+    width: auto;
+    position: relative; }
+    .post-list-plain .post .entry-meta .category__link:not(:last-of-type)::after {
+      content: none; }
+    .post-list-plain .post .entry-meta .category__link span {
+      position: relative;
+      width: auto; }
+    @media (min-width: 48em) {
+      .post-list-plain .post .entry-meta .category__link {
+        text-align: right;
+        margin: 0; }
+        .post-list-plain .post .entry-meta .category__link span::before {
+          content: "";
+          position: absolute;
+          top: calc(50% + 2px);
+          width: 2.5em;
+          height: 2px;
+          background: #202020;
+          left: -3em;
+          -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease; } }
+    .post-list-plain .post .entry-meta .category__link:hover span::before {
+      width: 0.625em; }
+    @media (max-width: 48em) {
+      .post-list-plain .post .entry-meta .category__link {
+        width: auto;
+        display: inline-block;
+        text-align: left; }
+        .post-list-plain .post .entry-meta .category__link:not(:first-of-type) {
+          margin-left: 1.25em; }
+        .post-list-plain .post .entry-meta .category__link span::before {
+          content: none; }
+        .post-list-plain .post .entry-meta .category__link span {
+          position: relative; }
+        .post-list-plain .post .entry-meta .category__link:not(:last-of-type) span::after {
+          content: "/";
+          position: absolute;
+          left: 100%;
+          margin: 0 6px; } }
+
+  */
+
+    .post-list-plain .post .entry-meta .tax__link {
+    display: block;
+    letter-spacing: 3px;
+    line-height: 3em;
+    clear: both;
+    width: auto;
+    position: relative; }
+    .post-list-plain .post .entry-meta .tax__link:not(:last-of-type)::after {
+      content: none; }
+    .post-list-plain .post .entry-meta .tax__link span {
+      position: relative;
+      width: auto; }
+    @media (min-width: 48em) {
+      .post-list-plain .post .entry-meta .tax__link {
+        text-align: right;
+        margin: 0; }
+        .post-list-plain .post .entry-meta .tax__link span::before {
+          content: "";
+          position: absolute;
+          top: calc(50% + 2px);
+          width: 2.5em;
+          height: 2px;
+          background: #202020;
+          left: -3em;
+          -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease; } }
+    .post-list-plain .post .entry-meta .tax__link:hover span::before {
+      width: 0.625em; }
+    @media (max-width: 48em) {
+      .post-list-plain .post .entry-meta .tax__link {
+        width: auto;
+        display: inline-block;
+        text-align: left; }
+        .post-list-plain .post .entry-meta .tax__link:not(:first-of-type) {
+          margin-left: 1.25em; }
+        .post-list-plain .post .entry-meta .tax__link span::before {
+          content: none; }
+        .post-list-plain .post .entry-meta .tax__link span {
+          position: relative; }
+        .post-list-plain .post .entry-meta .tax__link:not(:last-of-type) span::after {
+          content: "/";
+          position: absolute;
+          left: 100%;
+          margin: 0 6px; } }
+
+/*
+remove the entry meta thing for post list plains -> use small class css
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
+*/
+
+/*
+replace
+
+.post-list-plain .post .entry-footer {
+  clear: both;
+  border-top: 1px solid #eceeef;
+  padding: 2.5em 2.5em 0 2.5em;
+}
+
+*/
+
+.article-container .post-list-plain .post .entry-footer {
+    padding: 2.5em 0 0 0;
+}
+/*
+Replace
+*/
+.entry-content,
+.entry-summary {
+    color: #777;
 }

@@ -25,7 +25,7 @@
   ?>
 
   <?php do_action('__before_main_wrapper'); ?>
-    <div id="main-wrapper" class="section">
+    <div id="main-wrapper" class="section bg">
 
       <?php do_action('__before_main_container'); ?>
 
@@ -44,19 +44,21 @@
                 while ( have_posts() ) {
                   the_post();
 
-                  if ( czr_fn_has('post_list_grid') ) {
-                    czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
-                  }
-                  elseif ( czr_fn_has('post_list') ){
-                    czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
-                  }elseif ( czr_fn_has('post_list_masonry') ) {
-                    czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_masonry');
-                  }elseif ( czr_fn_has('post_list_plain') ) {
-                    czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
-                  }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                    czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
-                  }
-                  else {
+                  if ( czr_fn_is_list_of_posts() ) {
+                    if ( czr_fn_has('post_list_grid') ) {
+                      czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
+                    }
+                    elseif ( czr_fn_has('post_list') ){
+                      czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
+                    }elseif ( czr_fn_has('post_list_masonry') ) {
+                      czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_masonry');
+                    }elseif ( czr_fn_has('post_list_plain') ) {
+                      czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
+                    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
+                      czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
+                    }
+
+                  } else {
                     czr_fn_render_template('content/singles/page_content', 'page');
                   }
                 }//endwhile;

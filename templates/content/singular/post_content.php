@@ -30,7 +30,9 @@
         <div class="entry-meta row">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
           <div class="post-tags pull-md-left col-md-8">
-            <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
+            <ul class="tags">
+              <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
+            </ul>
           </div>
           <?php endif; ?>
           <div class="post-share pull-md-right col-md-4">

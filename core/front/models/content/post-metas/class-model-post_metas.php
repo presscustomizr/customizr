@@ -7,10 +7,10 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   function __construct( $model = array() ) {
     //Fires the parent constructor
     parent::__construct( $model );
-        
+
     //Since we use only one instance for every post in a post list reset the cache at each loop cycle
     add_action( 'the_post', array( $this, 'czr_fn_reset_cache' ) );
-  
+
   }
 
 
@@ -96,13 +96,17 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     return $this -> czr_fn_get_meta_date( 'update', $format );
   }
 
-  /* @override */
-  /*protected function czr_fn_get_term_css_class( $_is_hierarchical ) {
-    $_classes         =  array( 'btn' , 'btn-mini' );
+
+  protected function czr_fn_get_term_css_class( $_is_hierarchical ) {
+    $_classes = array();
+
     if ( $_is_hierarchical )
-      array_push( $_classes , 'btn-tag' );
+      array_push( $_classes , 'tax__link' );
+    else
+      array_push( $_classes , 'tag__link' );
+
     return $_classes;
-  }*/
+  }
 
   /**
   * Helper
@@ -177,16 +181,15 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   private function czr_fn_meta_term_view( $term ) {
     $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
 
-    $_classes      = array();
-    //czr_fn_stringify_array( apply_filters( 'czr_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
+    $_classes      = czr_fn_stringify_array( apply_filters( 'czr_meta_tax_class', $this -> czr_fn_get_term_css_class( $_is_hierarchical ), $_is_hierarchical, $term ) );
 
-    
+
     // (Rocco's PR Comment) : following to this https://wordpress.org/support/topic/empty-articles-when-upgrading-to-customizr-version-332
     // I found that at least wp 3.6.1  get_term_link($term->term_id, $term->taxonomy) returns a WP_Error
     // Looking at the codex, looks like we can just use get_term_link($term), when $term is a term object.
     // Just this change avoids the issue with 3.6.1, but I thought should be better make a check anyway on the return type of that function.
     $_term_link    = is_wp_error( get_term_link( $term ) ) ? '' : get_term_link( $term );
-    $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> %4$s </a>' :  '<span %1$s> %4$s </span>';
+    $_to_return    = $_term_link ? '<a %1$s href="%2$s" title="%3$s"> <span>%4$s</span> </a>' :  '<span %1$s> %4$s </span>';
     $_to_return    = $_is_hierarchical ? $_to_return : '<li>' . $_to_return . '</li>';
     return apply_filters( 'czr_meta_term_view' , sprintf($_to_return,
         $_classes ? 'class="'. $_classes .'"' : '',

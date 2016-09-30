@@ -27,8 +27,8 @@
             <a class="comment-time comment-link" href="<?php comment_link() ?>"><?php comment_time() ?></a>
           </time>
         </div>
-        <?php if ( czr_fn_get( 'has_edit_button' ) ) : ?>
-          <a class="comment-edit-link btn btn-edit" href="<?php echo esc_url( get_edit_comment_link( $comment ) ); ?>"><i class="icn-edit"></i><?php _e('Edit comment', 'customizr') ?></a>
+        <?php if ( ! CZR() -> czr_fn_is_customizing() && get_edit_comment_link() ) : ?>
+          <a class="comment-edit-link btn btn-edit" href="<?php echo esc_url( get_edit_comment_link() ); ?>"><i class="icn-edit"></i><?php _e('Edit comment', 'customizr') ?></a>
         <?php endif; ?>
       </header>
       <div class="comment-content"><?php comment_text() ?></div>
