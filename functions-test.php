@@ -17,13 +17,13 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'plain', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'plain_excerpt', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
     'tc_comment_show_info' => true,
 
-    'tc_sidebar_global_layout' => 'l',
+    'tc_sidebar_global_layout' => 'b',
     'tc_sidebar_post_layout'   => 'l',
     'tc_front_layout'          => 'f',
 
@@ -170,75 +170,6 @@ function footer_widget_area_defaults( $defaults ){
     ));
 }
 
-//add_action('__before_main_container', 'parallax');
-function parallax(){
-  if ( ! is_home() )
-    return;
-?>
-          <div class="container-fluid section">
-             <div class="section-slider parallax-wrapper">
-                <div class="parallax filter">
-                    <div class="image parallax-item" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg')" >
-                      <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
-                    </div>
-
-                    <div class="container">
-                        <div class="content">
-                            <div class="slider-text">
-                                <h2 class="display-1 thick">Customizr</h2>
-                                <h3>Image Parallax</h3>
-                                 <a href="#" target="_blank" class="btn btn-fill btn-skin">
-                                    Download FREE
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-              </div>
-               <div class="section-slider parallax-wrapper">
-                <div class="parallax filter">
-                  <div class="parallax-item">
-                    <div class="image" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_02.jpg')" >
-                      <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
-                    </div>
-
-                    <div class="container">
-                        <div class="content">
-                            <div class="slider-text">
-                                <h2 class="display-1 thick">Customizr</h2>
-                                <h3>Whole Block Parallax: Image and Text</h3>
-                                 <a href="#" target="_blank" class="btn btn-fill btn-skin">
-                                    Download FREE
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="section-slider parallax-wrapper">
-                <div class="parallax filter">
-                    <div class="image parallax-item" style="background-image: url('http://new.presscustomizr.com/assets/img/slider/slider_02.jpg')" >
-                      <!--img src="http://new.presscustomizr.com/assets/img/slider/slider_05.jpeg"-->
-                    </div>
-
-                    <div class="container">
-                        <div class="content">
-                            <div class="slider-text parallax-item" data-parallax-ratio="1">
-                                <h2 class="display-1 thick">Customizr</h2>
-                                <h3> Image and Text separated Parallax at different ratios</h3>
-                                 <a href="#" target="_blank" class="btn btn-fill btn-skin">
-                                    Download FREE
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-          </div>
-<?php
-};
 
 add_filter( 'czr_show_media', function( $bool){
   /* Test */

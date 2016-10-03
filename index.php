@@ -49,9 +49,9 @@
                       czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
                     }
                     elseif ( czr_fn_has('post_list') ){
-                      czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list');
+                      czr_fn_render_template('content/post-lists/post_list_alternate', 'post_list');
                     }elseif ( czr_fn_has('post_list_masonry') ) {
-                      czr_fn_render_template('content/post-lists/post_list_wrapper', 'post_list_masonry');
+                      czr_fn_render_template('content/post-lists/post_list_masonry', 'post_list_masonry');
                     }elseif ( czr_fn_has('post_list_plain') ) {
                       czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
                     }elseif ( czr_fn_has('post_list_plain_excerpt') ) {

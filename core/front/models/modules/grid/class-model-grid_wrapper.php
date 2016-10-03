@@ -1,5 +1,6 @@
 <?php
 class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
+
   public $is_first_of_row;
   public $is_last_of_row;
 
@@ -51,9 +52,6 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   //inside the loop but before rendering set some properties
   function czr_fn_setup_late_properties() {
     //parent::czr_fn_setup_late_properties();
-    $post_class = $this -> czr_fn_get_the_grid_post_class();
-    $this -> czr_fn_set_property( 'article_selectors', czr_fn_get_the_post_list_article_selectors( $post_class ) );
-
     $element_wrapper        = $this -> czr_fn_get_element_wrapper_properties();
 
     //check if the current post is the expanded one
@@ -64,7 +62,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
     $grid_item              = array(
         'section_cols' => $section_row_wrapper['section_cols'],
-        'is_expanded'  => $is_expanded
+        'is_expanded'  => $is_expanded,
     );
 
     $this -> czr_fn_update( array_merge( $element_wrapper, $section_row_wrapper, compact( 'grid_item') ) );
@@ -144,22 +142,6 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   }
 
 
-
-  /**
-  * Returns the classes for the post div.
-  *
-  * @package Customizr
-  * @since 3.0.10
-  */
-  function czr_fn_get_the_grid_post_class() {
-    return sprintf( '%1$s tc-grid col-xs-12 col-md-%2$s',
-      apply_filters( 'czr_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
-      is_numeric( $this -> czr_fn_get_grid_section_cols() ) ? 12 / $this -> czr_fn_get_grid_section_cols() : 6
-    );
-  }
-
-
-
   /******************************
   VARIOUS HELPERS
   *******************************/
@@ -205,7 +187,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   function czr_fn_set_grid_cols( $_col_nb, $_current_layout ) {
     /* TO FIX and extend considering that we can set different col widths for different
     * viewports, also we could find a way, I'm pretty sure, to avoid the use of the row wrapper
-    * putting some element (or with :before :after pseudo-elements) which we can control with 
+    * putting some element (or with :before :after pseudo-elements) which we can control with
     * CSS classes, e.g.
     * <hr class="col-sm-12 md-hidden"> after a certain grid-item given a certain layout
     */

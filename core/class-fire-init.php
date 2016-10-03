@@ -348,7 +348,8 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_cpt_in_lists' ));
 
           //Add the context
-          add_filter ( 'tc_body_class'         , array( $this,  'czr_fn_set_post_list_context_class') );
+          add_filter ( 'body_class'            , 'czr_fn_set_post_list_context_class' );
+
       }
 
 

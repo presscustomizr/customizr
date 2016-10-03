@@ -3,12 +3,7 @@
 *
 * TODO: treat case post format image with no text and post format gallery
 */
-class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
-  public $element_class = array( 'grid-container__masonry', 'grid' );
-  public $place_1 = 'media';
-  public $place_2 = 'content';
-  public $sections_wrapper_class = array('grid-post');
-
+class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
   public $article_selectors;
 
   public $has_post_media;
@@ -34,17 +29,9 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $global_sidebar_layout                 = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
 
-    switch ( $global_sidebar_layout ) {
-      case 'b': $_class = 'narrow';
-                break;
-      case 'f': $_class = '';
-                break;
-      default : $_class = 'semi-narrow';                
-    }
-    
-    $model[ 'element_class']       = array_merge( $this -> element_class, array($_class) );
+    $model[ 'element_class']       = czr_fn_get_in_content_width_class();
     $model[ 'post_class' ]         = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this -> post_class );
     $model[ 'has_narrow_layout' ]  = 'b' == $global_sidebar_layout;
 
@@ -99,19 +86,6 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
 
 
 
-  /**
-  * hook : body_class
-  * @return  array of classes
-  *
-  * @package Customizr
-  * @since Customizr 3.3.2
-  */
-  function czr_fn_body_class( $_class ) {
-    array_push( $_class , 'czr-post-list-context');
-    return $_class;
-  }
-
-
   /* Following are here to allow to apply a filter on each loop ..
   *  but we can think about move them in another place if we decide
   *  the users MUST act only modifying models/templates
@@ -136,5 +110,5 @@ class CZR_cl_post_list_masonry_wrapper_model_class extends CZR_cl_Model {
           0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) )
     );
   }
-  
+
 }

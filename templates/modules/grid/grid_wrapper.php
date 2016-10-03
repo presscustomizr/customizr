@@ -27,13 +27,9 @@ endif;
   <section class="row grid grid-cols-<?php czr_fn_echo( 'section_cols' ) ?> <?php czr_fn_echo( 'element_class' ) ?>">
   <?php
 
-  endif
+  endif;
 
-   ?>
-    <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-      <?php if ( czr_fn_has( 'grid_item' ) ) czr_fn_render_template( 'modules/grid/grid_item', 'grid_item' ); ?>
-    </article>
-  <?php
+    if ( czr_fn_has( 'grid_item' ) ) czr_fn_render_template( 'modules/grid/grid_item', 'grid_item' );
 
   /* close the row if the displayed item is the last of row */
   if ( czr_fn_get( 'is_last_of_row' ) ) :
