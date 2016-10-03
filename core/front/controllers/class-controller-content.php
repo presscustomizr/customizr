@@ -44,9 +44,9 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     * The post list with full content will be, in the future, a new type of post list
     * before 4.0 this option was 'tc_post_list_length'
     */
-    function czr_fn_display_view_post_list_full() {      
+    function czr_fn_display_view_post_list_full() {
       return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) ||
-          'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) 
+          'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) )
         );
     }
 
@@ -56,6 +56,14 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
 
     function czr_fn_display_view_post_list_masonry() {
       return apply_filters( 'czr_display_view_post_list_masonry', czr_fn_is_list_of_posts() && 'masonry' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+    }
+
+    function czr_fn_display_view_post_list_plain() {
+      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+    }
+
+    function czr_fn_display_view_post_list_plain_excerpt() {
+      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain_excerpt' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_posts_list_title() {

@@ -4,12 +4,11 @@
 * TODO: treat case post format image with no text and post format gallery
 */
 class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
-  public $element_class         = array( 'grid-container__full' );
-  public $entry_title_class     = array( 'col-md-7', 'offset-md-4', 'col-xs-12'); //TODO: will depend on the layout too!
-  public $entry_header_class    = array( 'row' );
+
+  public $entry_header_inner_class = array( 'col-md-7', 'offset-md-4', 'col-xs-12'); //TODO: will depend on the layout too!
+  public $entry_header_class       = array( 'row' );
 
   public $article_selectors;
-  public $sections_wrapper_class;
 
   public $has_post_media;
 
@@ -19,17 +18,54 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
   public $content_col = ''; //will be not set for gallery and image with no text
 
   public $media_inner_wrapper_class = ''; //will be not set for gallery and image with no text
-  public $content_inner_col = array('col-md-7', 'offset-md-1', 'col-xs-12'); //depends on whether or not we display metas aside -> TODO
+  public $content_inner_col = array('col-md-7', 'offset-md-1', 'col-xs-12'); //should depend on whether or not we display metas aside -> TODO
 
   public $is_loop_start;
   public $is_loop_end;
-
 
   public $show_full_content = true;
 
   public $content_class = 'entry-content'; //might be entry-summary for special posts..
 
-  private static $post_class    = array( 'row', 'style-01'/*temporary*/ );
+  public $post_class    = array( 'row', 'style-01'/*temporary*/ );
+
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
+  * return model params array()
+  */
+  function czr_fn_extend_params( $model = array() ) {
+    $model[ 'element_class']            = array_merge( $this -> element_class, czr_fn_get_in_content_width_class() );
+
+    //TEMP:
+    if ( 'post_list_plain_excerpt' == $model['id'] ) {
+      $model[ 'post_class' ]            = array_merge( $this -> post_class, array('short') );
+      $model[ 'show_full_content' ]     = false;
+      /* TODO BETTER */
+      add_action( "__before_{$model['id']}", array( $this, 'setup_excerpt_hooks'), 999 );
+      add_action( "__after_{$model['id']}", array( $this, 'reset_excerpt_hooks'), 999 );
+    }
+
+    return $model;
+  }
+
+  function setup_excerpt_hooks() {
+    if ( $this -> is_loop_start )
+      add_filter( 'excerpt_more'        , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
+  }
+
+  function reset_excerpt_hooks() {
+    if ( $this -> is_loop_end )
+      remove_filter( 'excerpt_more'     , array( $this , 'czr_fn_set_excerpt_length') , 99999999 );
+  }
+
+
+  // Replaces the excerpt "Read More" text by a button link
+  function czr_fn_set_excerpt_more($more) {
+    return '<div class="readmore-holder"><a class="moretag btn btn-more" href="'. esc_url( get_permalink() ) . '"><span>' . __('Read more', 'customizr' ) .'<span></a></div>';
+  }
+
 
   function czr_fn_setup_children() {
 
@@ -69,13 +105,13 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
             ( 'image' == $_current_post_format && ! $_has_excerpt  ) );
 
     $this -> czr_fn_update( array(
-      'has_post_media'         => $has_post_media,
-      'article_selectors'      => czr_fn_get_the_post_list_article_selectors( array_filter(self::$post_class) ),
-      'is_loop_start'          => 0 == $wp_query -> current_post,
-      'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
-      'entry_title_class'      => $this -> entry_title_class,
-      'entry_header_class'     => $this -> entry_header_class,
-      'is_full_image'          => $is_full_image
+      'has_post_media'           => $has_post_media,
+      'article_selectors'        => czr_fn_get_the_post_list_article_selectors( array_filter( $this -> post_class) ),
+      'is_loop_start'            => 0 == $wp_query -> current_post,
+      'is_loop_end'              => $wp_query -> current_post == $wp_query -> post_count -1,
+      'entry_header_inner_class' => $this -> entry_header_inner_class,
+      'entry_header_class'       => $this -> entry_header_class,
+      'is_full_image'            => $is_full_image
     ) );
 
   }

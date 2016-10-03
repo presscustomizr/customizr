@@ -129,6 +129,27 @@ function czr_fn_get_global_layout() {
   return apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
 }
 
+/**
+* This function returns the CSS class to apply to content's element based on the layout
+* @return array
+*
+*
+* @package Customizr
+* @since Customizr 4.0
+*/
+function czr_fn_get_in_content_width_class() {
+  $global_sidebar_layout                 = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+
+  switch ( $global_sidebar_layout ) {
+    case 'b': $_class = 'narrow';
+              break;
+    case 'f': $_class = '';
+              break;
+    default : $_class = 'semi-narrow';
+  }
+
+  return apply_filters( 'czr_in_content_width_class' , array( $_class ) );
+}
 
 /**
 * This function returns the layout (sidebar(s), or full width) to apply to a context
@@ -758,5 +779,5 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
                 'logo_type'          => trim($logo_type_sep,'_')
       );
 
-    return array();  
+    return array();
 }

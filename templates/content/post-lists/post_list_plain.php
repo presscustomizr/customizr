@@ -18,11 +18,13 @@
       <section class="tc-content entry-content__holder">
         <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/headings/post_list_header-no_metas', 'post_list_header') ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
-          <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
+          <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
+
             <div class="entry-meta col-md-3 col-xs-12 small caps">
-              <?php czr_fn_echo( 'cat_list', 'post_metas' ) ?>
+              <?php echo $cat ?>
             </div>
-          <?php endif; ?>
+
+          <?php  endif; ?>
           <div class="tc-content-inner <?php czr_fn_echo('content_inner_col') ?> <?php czr_fn_echo( 'content_class' ) ?>">
             <?php
               czr_fn_echo( 'the_post_list_content', 'post_list_content', array(
@@ -37,15 +39,15 @@
                 )
               ) );
             ?>
-            <div class="entry-meta row">
-              <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-              <div class="post-tags pull-md-left col-md-6">
+            <div class="entry-meta">
+              <?php if ( czr_fn_has('post_metas') && $tag = czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
+              <div class="post-tags">
                 <ul class="tags">
-                  <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
+                  <?php echo $tag ?>
                 </ul>
               </div>
               <?php endif; ?>
-              <div class="post-share pull-md-right">
+              <div class="post-share">
                 <!-- fake need to have social links somewhere -->
                 <ul class="socials">
                   <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>

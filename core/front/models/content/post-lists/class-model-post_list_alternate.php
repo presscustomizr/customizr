@@ -1,11 +1,5 @@
 <?php
-/*
-*
-* TODO: treat case post format image with no text and post format gallery
-*/
-class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
-  public $element_class         = array( 'grid-container__alternate' );
-
+class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   public $article_selectors;
   public $sections_wrapper_class;
 
@@ -51,15 +45,7 @@ class CZR_cl_post_list_wrapper_model_class extends CZR_cl_Model {
   function czr_fn_extend_params( $model = array() ) {
     $global_sidebar_layout                 = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
 
-    switch ( $global_sidebar_layout ) {
-      case 'b': $_class = 'narrow';
-                break;
-      case 'f': $_class = '';
-                break;
-      default : $_class = 'semi-narrow';
-    }
-
-    $model[ 'element_class']          = array_merge( $this -> element_class, array($_class) );
+    $model[ 'element_class']          = czr_fn_get_in_content_width_class();
     $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
     $model[ 'post_list_layout' ]      = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
     $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];

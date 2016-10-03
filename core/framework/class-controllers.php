@@ -20,7 +20,8 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
             'content' => array(
               'post_list',
               'post_list_masonry',
-              'post_list_full',
+              'post_list_plain',
+              'post_list_plain_excerpt',
               'right_sidebar',
               'left_sidebar',
               'single_author_info',

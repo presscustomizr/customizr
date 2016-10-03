@@ -15,6 +15,9 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   public  $has_title_in_caption;
   public  $has_fade_expt;
 
+  public  $section_cols;
+
+
   function czr_fn_setup_late_properties() {
     $grid                   = czr_fn_get( 'grid_item' );
     if ( empty( $grid ) )
@@ -51,7 +54,8 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
           'title',
           'has_title_in_caption',
           'has_fade_expt',
-          'has_edit_in_caption'
+          'has_edit_in_caption',
+          'section_cols'
         )
     ) );
   }
@@ -154,15 +158,20 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
     return compact( 'icon_enabled', 'icon_attributes' );
   }
 
+  function czr_fn_get_article_selectors() {
+    $post_class = sprintf( '%1$s tc-grid col-xs-12 col-md-%2$s',
+      apply_filters( 'czr_grid_add_expanded_class', czr_fn_get('is_expanded') ) ? 'expanded' : '',
+      is_numeric( czr_fn_get('section_cols') ) ? 12 / czr_fn_get('section_cols') : 6
+    );
 
+    return czr_fn_get_the_post_list_article_selectors( $post_class );
+  }
 
   /**** HELPER ****/
 
   /**
   * @return  boolean
   */
-
-
   /*
   * get the thumb size name to use according to the grid element width
   */

@@ -16,7 +16,7 @@
 */
 function czr_fn_set_post_list_context_class( $_class ) {
     if ( czr_fn_is_list_of_posts() )
-      array_push( $_class , 'tc-post-list-context');
+      array_push( $_class , 'czr-post-list-context');
     return $_class;
 }
 

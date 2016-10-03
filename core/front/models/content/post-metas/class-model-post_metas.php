@@ -1,6 +1,6 @@
 <?php
 class CZR_cl_post_metas_model_class extends CZR_cl_Model {
-  protected $_cache = array();
+  //protected $_cache = array();
 
   public    $type   = 'post_metas';
 
@@ -9,7 +9,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     parent::__construct( $model );
 
     //Since we use only one instance for every post in a post list reset the cache at each loop cycle
-    add_action( 'the_post', array( $this, 'czr_fn_reset_cache' ) );
+    //add_action( 'the_post', array( $this, 'czr_fn_reset_cache' ) );
 
   }
 
@@ -38,12 +38,12 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   }
 
   /* PUBLIC GETTERS */
-  public function czr_fn_get_cat_list( $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', array(), $sep ) : '';
+  public function czr_fn_get_cat_list( $limit = false, $sep = '' ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', $limit, $sep ) : '';
   }
 
-  public function czr_fn_get_tag_list( $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', array(), $sep ) : '';
+  public function czr_fn_get_tag_list( $limit = false, $sep = '' ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
   }
 
   public function czr_fn_get_author() {
@@ -67,21 +67,21 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   /* END PUBLIC GETTERS */
 
   /* HELPERS */
-  protected function czr_fn_get_meta( $meta, $param = array(), $separator = '' ) {
-    if ( ! isset( $this -> _cache[ $meta ] ) ) {
-      $param = is_array( $param ) ? $param : array( $param );
-      $this -> _cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $param ), $separator );
-    }
+  protected function czr_fn_get_meta( $meta, $params, $separator = '' ) {
+    //if ( ! isset( $this -> _cache[ $meta ] ) ) {
+    $params = is_array( $args ) ? $args : array( $params );
+    $this -> _cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
+    //}
     return $this -> _cache[ $meta ];
   }
 
 
-  private function czr_fn_meta_generate_categories() {
-    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = true );
+  private function czr_fn_meta_generate_categories( $limit = false ) {
+    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = true, $limit );
   }
 
-  private function czr_fn_meta_generate_tags() {
-    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = false );
+  private function czr_fn_meta_generate_tags( $limit = false ) {
+    return $this -> czr_fn_meta_generate_tax_list( $hierarchical = false, $limit );
   }
 
   private function czr_fn_meta_generate_author() {
@@ -160,8 +160,8 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @package Customizr
   * @since Customizr 3.0
   */
-  private function czr_fn_meta_generate_tax_list( $hierarchical ) {
-    $post_terms = $this -> czr_fn_get_term_of_tax_type( $hierarchical );
+  private function czr_fn_meta_generate_tax_list( $hierarchical, $limit = false ) {
+    $post_terms = $this -> czr_fn_get_term_of_tax_type( $hierarchical, $limit );
     if ( ! $post_terms )
       return;
     $_terms_html_array  = array_map( array( $this , 'czr_fn_meta_term_view' ), $post_terms );
@@ -210,7 +210,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   * @since Customizr 3.1.20
   *
   */
-  private function czr_fn_get_term_of_tax_type( $hierarchical = true ) {
+  private function czr_fn_get_term_of_tax_type( $hierarchical = true, $limit = false ) {
     //var declaration
     $post_type              = get_post_type( czr_fn_get_id() );
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
@@ -254,6 +254,10 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
         next($_current_tax_terms);
       }
     }
+
+    if ( ! empty($_tax_type_terms_list) && $limit > 0 )
+      $_tax_type_terms_list = array_slice( $_tax_type_terms_list, 0, $limit );
+
     return empty($_tax_type_terms_list) ? false : apply_filters( "czr_tax_meta_list" , $_tax_type_terms_list , $hierarchical );
   }
 

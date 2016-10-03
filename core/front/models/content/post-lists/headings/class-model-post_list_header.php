@@ -1,7 +1,7 @@
 <?php
 class CZR_cl_post_list_header_model_class extends CZR_cl_Model {
   public $has_header_format_icon;
-  public $entry_title_class;
+  public $entry_header_inner_class;
 
   function czr_fn_setup_late_properties() {
     $element_class = czr_fn_get('entry_header_class');
@@ -12,7 +12,7 @@ class CZR_cl_post_list_header_model_class extends CZR_cl_Model {
     $this -> czr_fn_update( array(
       'has_header_format_icon' => czr_fn_get( 'has_header_format_icon' ),
       'element_class'          => $element_class,
-      'entry_title_class'      => czr_fn_get( 'entry_title_class' )
+      'entry_header_inner_class'      => czr_fn_get( 'entry_header_inner_class' )
     ) );
   }
 }
