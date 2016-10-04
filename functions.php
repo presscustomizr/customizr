@@ -23,7 +23,7 @@
 
 /**
 * This is where Customizr starts. This file defines and loads the theme's components :
-* => Constants : CUSTOMIZR_VER, TC_BASE, TC_BASE_CHILD, TC_BASE_URL, TC_BASE_URL_CHILD, THEMENAME, TC_WEBSITE
+* => Constants : CUSTOMIZR_VER, TC_BASE, TC_BASE_CHILD, TC_BASE_URL, TC_BASE_URL_CHILD, THEMENAME, CZR_WEBSITE
 * => Default filtered values : images sizes, skins, featured pages, social networks, widgets, post list layout
 * => Text Domain
 * => Theme supports : editor style, automatic-feed-links, post formats, navigation menu, post-thumbnails, retina support
@@ -31,7 +31,7 @@
 * => Default filtered options for the customizer
 * => Customizr theme's hooks API : front end components are rendered with action and filter hooks
 *
-* The method TC__::tc__() loads the php files and instantiates all theme's classes.
+* The method CZR__::tc__() loads the php files and instantiates all theme's classes.
 * All classes files (except the class__.php file which loads the other) are named with the following convention : class-[group]-[class_name].php
 *
 * The theme is entirely built on an extensible filter and action hooks API, which makes customizations easy and safe, without ever needing to modify the core structure.

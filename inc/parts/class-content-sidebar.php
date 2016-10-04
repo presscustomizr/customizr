@@ -1,9 +1,9 @@
 <?php
 /**
 * Sidebar actions
-* The default widgets areas are defined as properties of the TC_utils class in class-fire-utils.php
-* TC_utils::$inst -> sidebar_widgets for left and right sidebars
-* TC_utils::$inst -> footer_widgets for the footer
+* The default widgets areas are defined as properties of the CZR_utils class in class-fire-utils.php
+* CZR_utils::$inst -> sidebar_widgets for left and right sidebars
+* CZR_utils::$inst -> footer_widgets for the footer
 * The widget area are then fired in class-fire-widgets.php
 * You can modify those default widgets with 3 filters : tc_default_widgets, tc_footer_widgets, tc_sidebar_widgets
 *
@@ -15,8 +15,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_sidebar' ) ) :
-  class TC_sidebar {
+if ( ! class_exists( 'CZR_sidebar' ) ) :
+  class CZR_sidebar {
       static $instance;
       function __construct () {
         self::$instance =& $this;
@@ -65,7 +65,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         if ( tc__f( '__is_home_empty') )
           return;
         //gets current screen layout
-        $screen_layout        = TC_utils::tc_get_layout( TC_utils::tc_id() , 'sidebar'  );
+        $screen_layout        = CZR_utils::tc_get_layout( CZR_utils::tc_id() , 'sidebar'  );
 		    // GY: add relative right and left for LTR/RTL sites
         $rel_left             = is_rtl() ? 'right' : 'left';
         $rel_right            = is_rtl() ? 'left' : 'right';
@@ -81,7 +81,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
           return;
 
         //gets the global layout settings
-        $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+        $global_layout        = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
         $sidebar_layout       = $global_layout[$screen_layout];
 
         //defines the sidebar wrapper class
@@ -122,7 +122,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       * @since Customizr 3.3
       */
       private function tc_display_sidebar_placeholder( $position ) {
-        if ( ! TC_placeholders::tc_is_widget_placeholder_enabled( 'sidebar' ) )
+        if ( ! CZR_placeholders::tc_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
         <aside class="tc-placeholder-wrap tc-widget-placeholder">
@@ -137,7 +137,7 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
 
             printf('<p><strong>%1$s</strong></p>',
               sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', TC_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::tc_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -175,10 +175,10 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
         //when do we display these blocks ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks set.
-        $_nothing_to_render = ( 0 == esc_attr( TC_utils::$inst->tc_opt( $option) ) ) || ! tc__f( '__get_socials' );
-        if ( ! TC___::$instance -> tc_is_customizing() && $_nothing_to_render )
+        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( $option) ) ) || ! tc__f( '__get_socials' );
+        if ( ! CZR___::$instance -> tc_is_customizing() && $_nothing_to_render )
             return;
-        $_title = esc_attr( TC_utils::$inst->tc_opt( 'tc_social_in_sidebar_title') );
+        $_title = esc_attr( CZR_utils::$inst->tc_opt( 'tc_social_in_sidebar_title') );
         $html = sprintf('<aside class="%1$s" %2$s>%3$s%4$s</aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
             $_nothing_to_render ? 'style="display:none"' : '',
@@ -201,8 +201,8 @@ if ( ! class_exists( 'TC_sidebar' ) ) :
       function tc_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( TC_utils::$inst->tc_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( TC_utils::$inst->tc_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == esc_attr( CZR_utils::$inst->tc_opt('tc_show_sidebar_widget_icon' ) ) )
+          return ( 0 == esc_attr( CZR_utils::$inst->tc_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }

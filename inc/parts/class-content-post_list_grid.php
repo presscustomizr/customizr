@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_post_list_grid' ) ) :
-    class TC_post_list_grid {
+if ( ! class_exists( 'CZR_post_list_grid' ) ) :
+    class CZR_post_list_grid {
         static $instance;
         private $expanded_sticky;
         private $post_id;
@@ -50,7 +50,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
 
-          $this -> post_id = TC_utils::tc_id();
+          $this -> post_id = CZR_utils::tc_id();
 
           do_action( '__post_list_grid' );
           //Disable icon titles
@@ -81,8 +81,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__before_article_container'  , array( $this, 'tc_grid_prepare_expand_sticky' ) );
 
           // THUMBNAILS
-          remove_filter( 'post_class'               , array( TC_post_list::$instance , 'tc_add_thumb_shape_name'));
-          remove_filter( 'tc_thumb_size_name'       , array( TC_post_thumbnails::$instance, 'tc_set_thumb_size') );
+          remove_filter( 'post_class'               , array( CZR_post_list::$instance , 'tc_add_thumb_shape_name'));
+          remove_filter( 'tc_thumb_size_name'       , array( CZR_post_thumbnails::$instance, 'tc_set_thumb_size') );
           add_filter( 'tc_thumb_size_name'          , array( $this, 'tc_set_thumb_size_name') );
           add_filter( 'tc_thumb_size'               , array( $this, 'tc_set_thumb_size') );
 
@@ -98,11 +98,11 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_filter( 'tc_article_container_class'  , array( $this, 'tc_grid_container_set_classes' ) );
 
           //COMMENT BUBBLE
-          remove_filter( 'tc_the_title'             , array( TC_comments::$instance, 'tc_display_comment_bubble' ) , 1 );
+          remove_filter( 'tc_the_title'             , array( CZR_comments::$instance, 'tc_display_comment_bubble' ) , 1 );
           add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'tc_grid_display_comment_bubble' ) );
 
           //POST METAS
-          remove_filter( 'tc_meta_utility_text'     , array( TC_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
+          remove_filter( 'tc_meta_utility_text'     , array( CZR_post_metas::$instance , 'tc_add_link_to_post_after_metas'), 20 );
 
           //TITLE LENGTH
           add_filter( 'tc_title_text'               , array( $this, 'tc_grid_set_title_length' ) );
@@ -119,10 +119,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
 
-          remove_action( '__loop'                   , array( TC_post_list::$instance, 'tc_prepare_section_view') );
+          remove_action( '__loop'                   , array( CZR_post_list::$instance, 'tc_prepare_section_view') );
           add_action( '__loop'                      , array( $this, 'tc_grid_prepare_single_post') );
 
-          if ( TC_headings::$instance -> tc_is_edit_enabled() && apply_filters( 'tc_grid_render_expanded_edit_link', true ) )
+          if ( CZR_headings::$instance -> tc_is_edit_enabled() && apply_filters( 'tc_grid_render_expanded_edit_link', true ) )
             add_filter( 'tc_grid_get_single_post_html' , array( $this, 'tc_grid_render_expanded_edit_link' ), 50 );
         }
 
@@ -172,7 +172,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             return;
 
           // get the filtered post list layout
-          $_layout   = apply_filters( 'tc_post_list_layout', TC_init::$instance -> post_list_layout );
+          $_layout   = apply_filters( 'tc_post_list_layout', CZR_init::$instance -> post_list_layout );
 
           // SET HOOKS FOR POST TITLES AND METAS
           // Default condition : must be a non sticky post
@@ -181,7 +181,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
               if ( $_layout['show_thumb_first'] )
                   $hook_prefix = '__after';
 
-              add_action( "{$hook_prefix}_grid_single_post",  array( TC_headings::$instance, 'tc_render_headings_view' ) );
+              add_action( "{$hook_prefix}_grid_single_post",  array( CZR_headings::$instance, 'tc_render_headings_view' ) );
           }
 
           // THUMBNAIL : cache the post format icon first
@@ -189,7 +189,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_thumb_html = '';
           if ( $this -> tc_grid_show_thumb() ) {
             //return an array( $tc_thumb(image object), $tc_thumb_width(string), $tc_thumb_height(string) )
-            $_thumb_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model();
+            $_thumb_model = CZR_post_thumbnails::$instance -> tc_get_thumbnail_model();
             if ( isset($_thumb_model['tc_thumb']) )
               $_thumb_html  = $_thumb_model['tc_thumb'];
           }
@@ -307,7 +307,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return string
         */
         function tc_grid_set_title_length( $_title ) {
-          $_max = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_num_words') );
+          $_max = esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_num_words') );
           $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
           $_max = $_max <= 0 ? 1 : $_max;
 
@@ -425,7 +425,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_set_thumb_size(){
           $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc_grid_full_size' : 'tc_grid_size';
-          return TC_init::$instance -> $thumb;
+          return CZR_init::$instance -> $thumb;
         }
 
 
@@ -436,9 +436,9 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         function tc_grid_container_set_classes( $_classes ) {
           array_push( $_classes, 'tc-post-list-grid' );
-          if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
+          if ( esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
             array_push( $_classes, 'tc-grid-shadow' );
-          if ( esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
+          if ( esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_bottom_border') ) )
             array_push( $_classes, 'tc-grid-border' );
           return $_classes;
         }
@@ -468,7 +468,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * inside loop
         */
         function tc_grid_display_comment_bubble( $_html ) {
-          return TC_comments::$instance -> tc_display_comment_bubble() . $_html;
+          return CZR_comments::$instance -> tc_display_comment_bubble() . $_html;
         }
 
 
@@ -495,7 +495,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return  bool
         * hook : tc_edit_in_title
         * @since Customizr 3.4.18
-        */       
+        */
         function tc_grid_disable_edit_in_title_expanded( $_bool ){
           return $this -> tc_force_current_post_expansion() ? false : $_bool;
         }
@@ -505,10 +505,10 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * Append the edit link to the expanded post figcaption
         * hook : tc_grid_get_single_post_html
         * @since Customizr 3.4.18
-        */    
+        */
         function tc_grid_render_expanded_edit_link( $_html ) {
           if ( $this -> tc_force_current_post_expansion() )
-            $_html .= TC_headings::$instance -> tc_render_edit_link_view( $_echo = false );
+            $_html .= CZR_headings::$instance -> tc_render_edit_link_view( $_echo = false );
           return $_html;
         }
 
@@ -545,8 +545,8 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return modified html string
         */
         function tc_set_grid_icon_visibility( $_html ) {
-          $_icon_enabled = (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_icons') );
-          if ( TC___::$instance -> tc_is_customizing() )
+          $_icon_enabled = (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_icons') );
+          if ( CZR___::$instance -> tc_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
                 $_icon_enabled ? 'inline-block' : 'none',
                 $_html
@@ -637,7 +637,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
             isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
             $_col_nb,
             $_col_media_matrix,
-            TC_utils::tc_get_layout( $this -> post_id , 'class' )
+            CZR_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
@@ -776,7 +776,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
           $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
           $_ratio = $this -> tc_get_grid_font_ratios( $_size , $_wot );
           //body font size
-          $_bs = esc_attr( TC_utils::$inst->tc_opt( 'tc_body_font_size') );
+          $_bs = esc_attr( CZR_utils::$inst->tc_opt( 'tc_body_font_size') );
           $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
 
           return sprintf( 'font-size:%spx;line-height:%spx;' ,
@@ -797,7 +797,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         */
         private function tc_get_grid_column_height( $_cols_nb = '3' ) {
           $_h               = $this -> tc_grid_get_thumb_height();
-          $_current_layout  = TC_utils::tc_get_layout( $this -> post_id , 'sidebar' );
+          $_current_layout  = CZR_utils::tc_get_layout( $this -> post_id , 'sidebar' );
           $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
           $_key             = 3;//default value == full
           if ( in_array( $_current_layout, $_layouts ) )
@@ -849,7 +849,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return (number) customizer user defined height for the grid thumbnails
         */
         private function tc_grid_get_thumb_height() {
-          $_opt = esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
+          $_opt = esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
 
@@ -868,14 +868,14 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
                   $wp_query->is_posts_page ) )
               return false;
 
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_expand_featured') ) );
 
           if ( ! $this -> expanded_sticky ) {
             $_sticky_posts = get_option('sticky_posts');
             // get last published sticky post
             if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
               $_where = implode(',', $_sticky_posts );
-              $this -> expanded_sticky = $wpdb->get_var( 
+              $this -> expanded_sticky = $wpdb->get_var(
                      "
                      SELECT ID
                      FROM $wpdb->posts
@@ -909,15 +909,15 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return bool
         */
         public function tc_is_grid_enabled() {
-          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
         private function tc_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
-            esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_columns') ),
-            TC_utils::tc_get_layout( $this -> post_id , 'class' )
+            esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_columns') ),
+            CZR_utils::tc_get_layout( $this -> post_id , 'class' )
           );
         }
 
@@ -934,7 +934,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         /* returns the type of post list we're in if any, an empty string otherwise */
         private function tc_get_grid_context() {
           global $wp_query;
-            
+
           if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
                   $wp_query->is_posts_page )
               return 'blog';
@@ -950,7 +950,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
          * and the post list we're in */
         private function tc_is_grid_context_matching() {
           $_type = $this -> tc_get_grid_context();
-          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( TC_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
+          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 
@@ -959,7 +959,7 @@ if ( ! class_exists( 'TC_post_list_grid' ) ) :
         * @return  boolean
         */
         private function tc_grid_show_thumb() {
-          return TC_post_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( TC_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
+          return CZR_post_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
         }
   }//end of class
 endif;

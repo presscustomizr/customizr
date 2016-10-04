@@ -32,8 +32,8 @@ endif;
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC___' ) ) :
-  class TC___ {
+if ( ! class_exists( 'CZR___' ) ) :
+  class CZR___ {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     public $tc_core;
@@ -78,8 +78,8 @@ if ( ! class_exists( 'TC___' ) ) :
       if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
       //THEMENAME contains the Name of the currently loaded theme
       if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
-      //TC_WEBSITE is the home website of Customizr
-      if( ! defined( 'TC_WEBSITE' ) )         define( 'TC_WEBSITE' , $tc_base_data['authoruri'] );
+      //CZR_WEBSITE is the home website of Customizr
+      if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
@@ -174,10 +174,10 @@ if ( ! class_exists( 'TC___' ) ) :
               require_once ( TC_BASE . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           }
 
-          $classname = 'TC_' . $path_suffix[1];
+          $classname = 'CZR_' . $path_suffix[1];
           if( ! isset( $instances[ $classname ] ) )  {
             //check if the classname can be instantiated here
-            if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
+            if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
               continue;
             //instantiates
             $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
@@ -379,4 +379,4 @@ if ( ! class_exists( 'TC___' ) ) :
 endif;
 
 //Creates a new instance
-new TC___;
+new CZR___;

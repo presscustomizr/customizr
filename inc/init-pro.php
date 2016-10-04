@@ -12,8 +12,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_init_pro' ) ) :
-  class TC_init_pro {
+if ( ! class_exists( 'CZR_init_pro' ) ) :
+  class CZR_init_pro {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     public $_pro_classes;
@@ -56,7 +56,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 
         $_args = isset( $params[1] ) ? $params[1] : null;
         //instantiates only for the following classes, the other are instantiated in their respective files.
-        if ( 'TC_activation_key' == $name || 'TC_theme_check_updates' == $name )
+        if ( 'CZR_activation_key' == $name || 'CZR_theme_check_updates' == $name )
             new $name( $_args );
       }
     }
@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
     * @since  Customizr 3.3+
     */
     function tc_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && TC___::$instance -> tc_is_customizing() ) ) {
+      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
           unset($_to_load['TC_activation_key']);
           unset($_to_load['TC_theme_updater']);
           unset($_to_load['TC_theme_check_updates']);
@@ -84,5 +84,5 @@ if ( ! class_exists( 'TC_init_pro' ) ) :
 endif;
 
 //may be load pro
-if ( TC___::tc_is_pro() )
-  new TC_init_pro(TC___::$theme_name );
+if ( CZR___::tc_is_pro() )
+  new CZR_init_pro(CZR___::$theme_name );

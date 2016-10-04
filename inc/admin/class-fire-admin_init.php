@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_admin_init' ) ) :
-  class TC_admin_init {
+if ( ! class_exists( 'CZR_admin_init' ) ) :
+  class CZR_admin_init {
     static $instance;
     function __construct () {
       self::$instance =& $this;
@@ -58,10 +58,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+      if ( ! class_exists( 'CZR_post_thumbnails' ) )
+        CZR___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
 
-      TC_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
+      CZR_post_thumbnails::$instance -> tc_set_thumb_info( $post_id );
     }
 
     /*
@@ -73,18 +73,18 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     function tc_refresh_posts_slider( $post_id, $post = array() ) {
       // no need to build up/refresh the transient it we don't use the posts slider
       // since we always delete the transient when entering the preview.
-      if ( 'tc_posts_slider' != TC_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
+      if ( 'tc_posts_slider' != CZR_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
         return;
 
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'TC_post_thumbnails' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
-      if ( ! class_exists( 'TC_slider' ) )
-        TC___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), true );
+      if ( ! class_exists( 'CZR_post_thumbnails' ) )
+        CZR___::$instance -> tc__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+      if ( ! class_exists( 'CZR_slider' ) )
+        CZR___::$instance -> tc__( array('content' => array( array('inc/parts', 'slider') ) ), true );
 
-      TC_slider::$instance -> tc_cache_posts_slider();
+      CZR_slider::$instance -> tc_cache_posts_slider();
     }
 
 
@@ -107,15 +107,15 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
 
     function tc_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
        //home/blog posts category picker
-       $_option = TC_utils::$inst -> tc_opt( $option_name, $option_group, $use_default = false );
+       $_option = CZR_utils::$inst -> tc_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
          //update the option
-         TC_utils::$inst -> tc_set_option( $option_name, array_diff( $_option, (array)$term ) );
+         CZR_utils::$inst -> tc_set_option( $option_name, array_diff( $_option, (array)$term ) );
 
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
-         TC_utils::$inst -> tc_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(TC_utils::$inst, 'tc_category_id_exists' ) ) );
+         CZR_utils::$inst -> tc_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_utils::$inst, 'tc_category_id_exists' ) ) );
        }*/
     }
 
@@ -127,8 +127,8 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * @since Customizr 3.2.10
     */
     function tc_maybe_add_gfonts_to_editor() {
-      $_font_pair         = esc_attr( TC_utils::$inst->tc_opt('tc_fonts') );
-      $_all_font_pairs    = TC_init::$instance -> font_pairs;
+      $_font_pair         = esc_attr( CZR_utils::$inst->tc_opt('tc_fonts') );
+      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
         return;
       //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         str_replace(
           ',',
           '%2C',
-          sprintf( '//fonts.googleapis.com/css?family=%s', TC_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
+          sprintf( '//fonts.googleapis.com/css?family=%s', CZR_utils::$inst -> tc_get_font( 'single' , $_font_pair ) )
         )
       );
     }
@@ -214,7 +214,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     function tc_add_editor_style() {
       $_stylesheets = array(
           TC_BASE_URL.'inc/admin/css/editor-style.css',
-          TC_init::$instance -> tc_get_style_src() , get_stylesheet_uri()
+          CZR_init::$instance -> tc_get_style_src() , get_stylesheet_uri()
       );
 
       if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> tc_maybe_add_gfonts_to_editor() ) )
@@ -242,14 +242,14 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         return $init;
 
       //some plugins fire tiny mce editor in the customizer
-      //in this case, the TC_resource class has to be loaded
-      if ( ! class_exists('TC_resources') )
-        TC___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), true );
+      //in this case, the CZR_resource class has to be loaded
+      if ( ! class_exists('CZR_resources') )
+        CZR___::$instance -> tc__( array('fire' => array( array('inc' , 'resources') ) ), true );
 
       //fonts
-      $_css = TC_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
+      $_css = CZR_resources::$instance -> tc_write_fonts_inline_css( '', 'mce-content-body');
       //icons
-      $_css .= TC_resources::$instance -> tc_get_inline_font_icons_css();
+      $_css .= CZR_resources::$instance -> tc_get_inline_font_icons_css();
       $init['content_style'] =  trim(preg_replace('/\s+/', ' ', $_css ) );
 
       return $init;
@@ -269,8 +269,8 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     * hook : admin_notices
     */
     function tc_may_be_display_update_notice() {
-      $opt_name                   = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice_values  = TC_utils::$inst -> tc_opt($opt_name);
+      $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $last_update_notice_values  = CZR_utils::$inst -> tc_opt($opt_name);
       $show_new_notice = false;
 
       if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
@@ -278,9 +278,9 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
         // 1) initialize it => set it to the current Customizr version, displayed 0 times.
         // 2) update in db
         $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-        TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
+        CZR_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
         //already user of the theme ?
-        if ( TC_utils::$inst->tc_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+        if ( CZR_utils::$inst->tc_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
           $show_new_notice = true;
       }
 
@@ -297,13 +297,13 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
           (int) $_db_displayed_count++;
           $last_update_notice_values["display_count"] = $_db_displayed_count;
           //updates the option val with the new count
-          TC_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
+          CZR_utils::$inst->tc_set_option( $opt_name, $last_update_notice_values );
         }
         //CASE 2 : displayed 5 times => automatic dismiss
         else {
           //reset option value with new version and counter to 0
           $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-          TC_utils::$inst->tc_set_option( $opt_name, $new_val );
+          CZR_utils::$inst->tc_set_option( $opt_name, $new_val );
         }//end else
       }//end if
 
@@ -318,7 +318,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
               'tc_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
-                "customizr-pro" == TC___::$theme_name ? 'Customizr Pro' : 'Customizr',
+                "customizr-pro" == CZR___::$theme_name ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
               )
@@ -329,7 +329,7 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
               'tc_update_notice',
               sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
-                TC_WEBSITE . "category/customizr-releases/",
+                CZR_WEBSITE . "category/customizr-releases/",
                 __( "Read the latest release notes" , "customizr" ),
                 esc_url('demo.presscustomizr.com'),
                 __( "Visit the demo", "customizr" )
@@ -357,10 +357,10 @@ if ( ! class_exists( 'TC_admin_init' ) ) :
     */
     function tc_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = "customizr-pro" == TC___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-      TC_utils::$inst->tc_set_option( $opt_name, $new_val );
+      CZR_utils::$inst->tc_set_option( $opt_name, $new_val );
       wp_die();
     }
 

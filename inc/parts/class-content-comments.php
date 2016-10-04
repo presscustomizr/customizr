@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_comments' ) ) :
-  class TC_comments {
+if ( ! class_exists( 'CZR_comments' ) ) :
+  class CZR_comments {
       static $instance;
       function __construct () {
         self::$instance =& $this;
@@ -153,7 +153,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
             <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
-                <?php if ( ! TC___::$instance -> tc_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
+                <?php if ( ! CZR___::$instance -> tc_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
             </p>
           </article>
         <?php
@@ -195,7 +195,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                             get_comment_author_link(),
                             // If current post author is also comment author, make it known visually.
                             ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author' , 'customizr' ) . '</span>' : '' ,
-                            ! TC___::$instance -> tc_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
+                            ! CZR___::$instance -> tc_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
                         ),
                         sprintf( '<a class="comment-date" href="%1$s"><time datetime="%2$s">%3$s</time></a>' ,
                             esc_url( get_comment_link( $comment->comment_ID ) ),
@@ -310,7 +310,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @since Customizr 3.3+
     */
     function tc_set_comment_list_display() {
-      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) );
+      return (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_comment_list' ) );
     }
 
 
@@ -347,7 +347,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title'),
         sprintf( '%1$s %2$s' , get_comments_number(), __( 'Comment(s) on' , 'customizr' ) ),
         is_null($_title) ? esc_attr( strip_tags( $post -> post_title ) ) : esc_attr( strip_tags( $_title ) ),
-        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ) : ''
+        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ) : ''
       );
     }
 
@@ -380,13 +380,13 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @since Customizr 3.3.2
     */
     function tc_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
+      if ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
-      if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
-        $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
+      if ( 'skin' != esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
+        $_custom_bubble_color = esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
         $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
@@ -398,7 +398,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         ";
       }
 
-      if ( 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) )
+      if ( 'default' == esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) )
         return $_css;
 
       $_css .= "
@@ -468,9 +468,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
         //3) check global user options for pages and posts
         if ( is_page() )
-          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
         else
-          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
       } else
         $_bool = false;
 
@@ -498,10 +498,10 @@ if ( ! class_exists( 'TC_comments' ) ) :
     private function tc_is_bubble_enabled() {
       $_bool_arr = array(
         in_the_loop(),
-        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ),
+        (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ),
         $this -> tc_are_comments_enabled(),
         get_comments_number() != 0,
-        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) ),
+        (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_comment_list' ) ),
         (bool) apply_filters( 'tc_comments_in_title', true ),
         in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) )
       );

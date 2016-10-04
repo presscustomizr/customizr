@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_meta_boxes' ) ) :
-  class TC_meta_boxes {
+if ( ! class_exists( 'CZR_meta_boxes' ) ) :
+  class CZR_meta_boxes {
       static $instance;
       function __construct () {
           self::$instance =& $this;
@@ -125,13 +125,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //Generates layouts select list array
             $layouts              = array();
-            $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+            $global_layout        = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
             foreach ( $global_layout as $key => $value ) {
               $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_global_layout') );
+            $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +146,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -261,7 +261,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
           }else
-            $sliders                   = array();  
+            $sliders                   = array();
 
           //post slider fields setup
           $post_slider_id            = 'post_slider_field';
@@ -283,9 +283,9 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //sliders field
           $slider_id                 = 'slider_field';
 
-          if( $post_slider_check_value == true ): 
+          if( $post_slider_check_value == true ):
               $selectable_sliders    = apply_filters( 'tc_post_selectable_sliders', $sliders );
-              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ): 
+              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
 
           ?>
               <div class="meta-box-item-title">
@@ -313,7 +313,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                       printf( '<option value="%1$s" %2$s> %3$s</option>',
                           esc_attr( $id ),
                           selected( $current_post_slider, esc_attr( $id ), $echo = false ),
-                          $label  
+                          $label
                       );
                     }
                   ?>
@@ -358,10 +358,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         </div>
                       </div>
                     <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null); ?>
-                <?php else: //there are no slides 
+                <?php else: //there are no slides
                   do_action( '__no_slides', $postid, $current_post_slider );
                 ?>
-              <?php endif; //slides? ?>      
+              <?php endif; //slides? ?>
             <?php else://if no slider created yet and no slider of posts addon?>
 
                  <div class="meta-box-item-content">

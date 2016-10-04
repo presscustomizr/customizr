@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_featured_pages' ) ) :
-  class TC_featured_pages {
+if ( ! class_exists( 'CZR_featured_pages' ) ) :
+  class CZR_featured_pages {
     static $instance;
     function __construct () {
         self::$instance =& $this;
@@ -30,10 +30,10 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
     * @since v3.4+
     */
     function tc_maybe_display_dismiss_notice() {
-      if ( ! TC_placeholders::tc_is_fp_notice_on() )
+      if ( ! CZR_placeholders::tc_is_fp_notice_on() )
         return;
 
-      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_utils::tc_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
 
       ?>
       <div class="tc-placeholder-wrap tc-fp-notice">
@@ -71,7 +71,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       $tc_show_featured_pages_img     = $this -> tc_show_featured_pages_img();
 
   		//gets the featured pages array and sets the fp layout
-  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
       $fp_nb                          = count($fp_ids);
       $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
 
@@ -146,7 +146,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
       * @todo better area definition : dynamic
       */
       function tc_fp_single_display( $fp_single_id,$show_img) {
-        $_skin_color                        = TC_utils::$inst -> tc_get_skin_color();
+        $_skin_color                        = CZR_utils::$inst -> tc_get_skin_color();
         $fp_holder_img                      = apply_filters (
           'tc_fp_holder_img' ,
           sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:270px;height:250px;"/>',
@@ -157,17 +157,17 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         $featured_page_id                   = 0;
 
         //if fps are not set
-        if ( null == TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
+        if ( null == CZR_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) || ! CZR_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id ) ) {
             //admin link if user logged in
             $featured_page_link             = '';
             $customizr_link                 = '';
-            if ( ! TC___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+            if ( ! CZR___::$instance -> tc_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
               $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+                CZR_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
-              $featured_page_link          = apply_filters( 'tc_fp_link_url', TC_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+              $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::tc_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
             }
 
             //rendering
@@ -187,7 +187,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
         }
 
         else {
-            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( CZR_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
 
             $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
@@ -196,14 +196,14 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
             $edit_enabled                   = false;
             //when are we displaying the edit link?
             //never display when customizing
-            if ( ! TC___::$instance -> tc_is_customizing() ) {
+            if ( ! CZR___::$instance -> tc_is_customizing() ) {
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
             }
-            
+
             $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
-            $featured_text                  = apply_filters( 'tc_fp_text', TC_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+            $featured_text                  = apply_filters( 'tc_fp_text', CZR_utils::$inst->tc_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
             $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
             //get the page/post object
@@ -268,9 +268,9 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
               echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
               //button block
-              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( TC_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( CZR_utils::$inst->tc_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-              if ( $tc_fp_button_text || TC___::$instance -> tc_is_customizing() ){
+              if ( $tc_fp_button_text || CZR___::$instance -> tc_is_customizing() ){
                 $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                 $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                 $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
@@ -300,7 +300,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
     function tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
       //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
-      $_fp_img_model = TC_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
+      $_fp_img_model = CZR_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
 
       //finally we define a default holder if no thumbnail found or page is protected
       if ( isset( $_fp_img_model["tc_thumb"]) && ! empty( $_fp_img_model["tc_thumb"] ) && ! post_password_required( $featured_page_id ) )
@@ -314,7 +314,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
 
     function tc_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages 	      = esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
 
       return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && tc__f('__is_home') );
     }
@@ -322,7 +322,7 @@ if ( ! class_exists( 'TC_featured_pages' ) ) :
 
     function tc_show_featured_pages_img() {
       //gets  display img option
-      return apply_filters( 'tc_show_featured_pages_img', esc_attr( TC_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
+      return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
     }
 
   }//end of class

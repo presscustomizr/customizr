@@ -10,8 +10,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_plugins_compat' ) ) :
-  class TC_plugins_compat {
+if ( ! class_exists( 'CZR_plugins_compat' ) ) :
+  class CZR_plugins_compat {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     //credits @Srdjan
@@ -307,7 +307,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           add_filter( $filter, 'tc_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? TC_slider::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_slider::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -317,8 +317,8 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
 
-          $_post['title'] = $_post['title'] ? TC_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
-          $_post['text']  = $_post['text'] ? TC_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
+          $_post['title'] = $_post['title'] ? CZR_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? CZR_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -343,13 +343,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         // grab theme options
         $tc_options = tc__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = TC_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
+        $tc_settings_map = CZR_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
-        $polylang_group = 'customizr-pro' == TC___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+        $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
-        $tc_translatable_raw_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_raw_options = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
         $tc_pll_options              = array();
 
         //build array if option => array( label (gettext-ed), option )
@@ -379,7 +379,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
         //strings translation
         //get the options to translate
-        $tc_translatable_options = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_options = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
           add_filter("tc_opt_$tc_translatable_option", 'pll__');
@@ -466,7 +466,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
-          $options_to_translate = TC_plugins_compat::$instance -> tc_get_string_options_to_translate();
+          $options_to_translate = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
 
           $option_name_assoc = apply_filters( 'tc_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
@@ -517,7 +517,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
               $slide_language = apply_filters( 'wpml_element_language_code',
                             null, array('element_id' => $attachment_id,
                                 'element_type' => 'attachment') );
-              if ( TC_plugins_compat::$instance->current_language != $slide_language ) {
+              if ( CZR_plugins_compat::$instance->current_language != $slide_language ) {
                 // Replace with translated slide
                 $translated_slide_id = apply_filters( 'wpml_object_id',
                                 $attachment_id, 'attachment', false );
@@ -561,10 +561,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function pre_update_option_filter( $options ) {
         if ( isset( $options['tc_sliders'] ) ) {
             // Force default language
-            $current_language = TC_plugins_compat::$instance->current_language;
-            TC_plugins_compat::$instance->current_language = TC_plugins_compat::$instance->default_language;
+            $current_language = CZR_plugins_compat::$instance->current_language;
+            CZR_plugins_compat::$instance->current_language = CZR_plugins_compat::$instance->default_language;
             $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
-            TC_plugins_compat::$instance->current_language = $current_language;
+            CZR_plugins_compat::$instance->current_language = $current_language;
         }
         return $options;
       }
@@ -595,7 +595,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( TC___::$instance -> tc_is_customize_left_panel() )
+        if ( CZR___::$instance -> tc_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'tc_wpml_customizer_options_transpose' );
         function tc_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
@@ -845,10 +845,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_sensei_wrappers() {
         switch ( current_filter() ) {
-          case 'sensei_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'sensei_before_main_content': CZR_plugins_compat::$instance -> tc_mainwrapper_start();
                                              break;
 
-          case 'sensei_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'sensei_after_main_content' : CZR_plugins_compat::$instance -> tc_mainwrapper_end();
                                              break;
         }//end of switch on hook
       }//end of nested function
@@ -893,10 +893,10 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
       function tc_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content': TC_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'woocommerce_before_main_content': CZR_plugins_compat::$instance -> tc_mainwrapper_start();
                                                   break;
 
-          case 'woocommerce_after_main_content' : TC_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'woocommerce_after_main_content' : CZR_plugins_compat::$instance -> tc_mainwrapper_end();
                                                   break;
         }//end of switch on hook
       }//end of nested function
@@ -952,7 +952,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function tc_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -988,13 +988,13 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //narrow the tagline
       add_filter( 'tc_tagline_class', 'tc_woocommerce_force_tagline_width', 100 );
       function tc_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
+        return 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
       }
 
       // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
       add_filter( 'woocommerce_add_to_cart_fragments', 'tc_woocommerce_add_to_cart_fragment' );
       function tc_woocommerce_add_to_cart_fragment( $fragments ) {
-        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
+        if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
           $_cart_count = WC()->cart->get_cart_contents_count();
           $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
         }
@@ -1004,7 +1004,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //print the cart menu in the header
       add_action( '__navbar', 'tc_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function tc_woocommerce_header_cart() {
-        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
           return;
 
         $_main_item_class = '';
@@ -1039,15 +1039,15 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //add woommerce header cart classes to the header (sticky enabled)
       add_filter( 'tc_header_classes'   , 'tc_woocommerce_set_header_classes');
       function tc_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          $_classes[]          = ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+        if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
+          $_classes[]          = ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
         return $_classes;
       }
 
       //add woocommerce header cart CSS
       add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
       function tc_woocommerce_header_cart_css( $_css ) {
-        if ( 1 != esc_attr( TC_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
 
         /* The only real decision I took here is the following:
@@ -1055,7 +1055,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         * so that as it grows it won't break on a new line. This is quite an hack to
         * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
         */
-        $_header_layout      = esc_attr( TC_utils::$inst->tc_opt( 'tc_header_layout') );
+        $_header_layout      = esc_attr( CZR_utils::$inst->tc_opt( 'tc_header_layout') );
         $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
         $_wc_t_align         = 'left';
 
@@ -1159,7 +1159,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
       function tc_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( TC_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();
@@ -1256,7 +1256,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
 
-              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::tc_get_layout( CZR_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
                 <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
       <?php
@@ -1328,7 +1328,7 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
         'tc_social_in_sidebar_title',
       );
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
-        $fp_areas = TC_init::$instance -> fp_ids;
+        $fp_areas = CZR_init::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
 

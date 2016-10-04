@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_post_navigation' ) ) :
-  class TC_post_navigation {
+if ( ! class_exists( 'CZR_post_navigation' ) ) :
+  class CZR_post_navigation {
       static  $instance;
 
       function __construct () {
@@ -40,7 +40,7 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
         $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
         $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
 
-        $_is_customizing           = TC___::$instance -> tc_is_customizing() ;
+        $_is_customizing           = CZR___::$instance -> tc_is_customizing() ;
 
         if ( $_is_customizing ){
           if ( ! $_post_nav_enabled )
@@ -227,14 +227,14 @@ if ( ! class_exists( 'TC_post_navigation' ) ) :
       * @return bool
       */
       function tc_is_post_navigation_context_enabled( $_context ) {
-        return $_context && 1 == esc_attr( TC_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
+        return $_context && 1 == esc_attr( CZR_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
       function tc_is_post_navigation_enabled(){
-        return 1 == esc_attr( TC_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
+        return 1 == esc_attr( CZR_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
       }
 
   }//end of class

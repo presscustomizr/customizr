@@ -17,7 +17,7 @@
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
 
-                <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout( TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+                <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::tc_get_layout( CZR_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
                     <?php do_action ('__before_loop');##hooks the heading of the list of post : archive, search... ?>
 

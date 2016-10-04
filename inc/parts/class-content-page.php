@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_page' ) ) :
-  class TC_page {
+if ( ! class_exists( 'CZR_page' ) ) :
+  class CZR_page {
     static $instance;
     function __construct () {
       self::$instance =& $this;
@@ -20,7 +20,7 @@ if ( ! class_exists( 'TC_page' ) ) :
     }
 
 
-        
+
     /***************************
     * PAGE HOOKS SETUP
     ****************************/
@@ -87,10 +87,10 @@ if ( ! class_exists( 'TC_page' ) ) :
     * @since Customizr 3.4+
     */
     function tc_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+      if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && CZR_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return TC_placeholders::tc_get_smartload_help_block() . $the_content;
+      return CZR_placeholders::tc_get_smartload_help_block() . $the_content;
     }
 
 
@@ -105,8 +105,8 @@ if ( ! class_exists( 'TC_page' ) ) :
     * @since Customizr 3.4+
     */
     function tc_page_display_controller() {
-      $tc_show_page_content = 'page' == tc__f('__post_type') 
-          && is_singular() 
+      $tc_show_page_content = 'page' == tc__f('__post_type')
+          && is_singular()
           && ! tc__f( '__is_home_empty');
 
       return apply_filters( 'tc_show_page_content', $tc_show_page_content );

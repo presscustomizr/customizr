@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_headings' ) ) :
-  class TC_headings {
+if ( ! class_exists( 'CZR_headings' ) ) :
+  class CZR_headings {
       static $instance;
       function __construct () {
         self::$instance =& $this;
@@ -143,7 +143,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.9
       */
       function tc_post_formats_heading( $_html ) {
-        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', TC_init::$instance -> post_formats_with_no_heading ) ) )
+        if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', CZR_init::$instance -> post_formats_with_no_heading ) ) )
           return;
         return $_html;
       }
@@ -220,8 +220,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       public function tc_is_edit_enabled() {
         //never display when customizing
-        if ( TC___::$instance -> tc_is_customizing() )
-          return false; 
+        if ( CZR___::$instance -> tc_is_customizing() )
+          return false;
         //when are we displaying the edit link?
         $edit_enabled = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
         return ( (is_user_logged_in()) && 0 !== get_the_ID() && current_user_can('edit_post' , get_the_ID() ) && ! is_page() ) ? true : $edit_enabled;
@@ -255,13 +255,13 @@ if ( ! class_exists( 'TC_headings' ) ) :
       */
       function tc_set_post_page_icon( $_bool ) {
           if ( is_page() )
-            $_bool = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
           if ( is_single() && ! is_page() )
-            $_bool = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
           if ( ! is_single() )
-            $_bool = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
           //last condition
-          return ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
+          return ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
       }
 
 
@@ -274,9 +274,9 @@ if ( ! class_exists( 'TC_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function tc_set_archive_icon( $_class ) {
-          $_class = ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
+          $_class = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
           //last condition
-          return 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
+          return 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
       }
 
 
@@ -471,7 +471,7 @@ if ( ! class_exists( 'TC_headings' ) ) :
               return $html;
 
           //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
-          if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+          if ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
               return $html;
 
           //php version check for DateTime
@@ -480,11 +480,11 @@ if ( ! class_exists( 'TC_headings' ) ) :
             return $html;
 
           //get the user defined interval in days
-          $_interval = esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_interval' ) );
+          $_interval = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_metas_update_notice_interval' ) );
           $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
           //Check if the last update is less than n days old. (replace n by your own value)
-          $has_recent_update = ( TC_utils::$inst -> tc_post_has_update( true ) && TC_utils::$inst -> tc_post_has_update( 'in_days') < $_interval ) ? true : false;
+          $has_recent_update = ( CZR_utils::$inst -> tc_post_has_update( true ) && CZR_utils::$inst -> tc_post_has_update( 'in_days') < $_interval ) ? true : false;
 
           if ( ! $has_recent_update )
               return $html;
@@ -494,8 +494,8 @@ if ( ! class_exists( 'TC_headings' ) ) :
               'tc_update_notice_in_title',
               sprintf('%1$s &nbsp; <span class="tc-update-notice label %3$s">%2$s</span>',
                   $html,
-                  esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_text' ) ),
-                  esc_attr( TC_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) )
+                  esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_metas_update_notice_text' ) ),
+                  esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_metas_update_notice_format' ) )
               )
           );
       }
@@ -510,19 +510,19 @@ if ( ! class_exists( 'TC_headings' ) ) :
       function tc_set_archive_custom_title( $_title ) {
         switch ( current_filter() ) {
           case 'tc_category_archive_title' :
-            return esc_attr( TC_utils::$inst->tc_opt( 'tc_cat_title' ) );
+            return esc_attr( CZR_utils::$inst->tc_opt( 'tc_cat_title' ) );
           break;
 
           case 'tc_tag_archive_title' :
-            return esc_attr( TC_utils::$inst->tc_opt( 'tc_tag_title' ) );
+            return esc_attr( CZR_utils::$inst->tc_opt( 'tc_tag_title' ) );
           break;
 
           case 'tc_search_results_title' :
-            return esc_attr( TC_utils::$inst->tc_opt( 'tc_search_title' ) );
+            return esc_attr( CZR_utils::$inst->tc_opt( 'tc_search_title' ) );
           break;
 
           case 'tc_author_archive_title' :
-            return esc_attr( TC_utils::$inst->tc_opt( 'tc_author_title' ) );
+            return esc_attr( CZR_utils::$inst->tc_opt( 'tc_author_title' ) );
           break;
         }
         return $_title;

@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_no_results' ) ) :
-  class TC_no_results {
+if ( ! class_exists( 'CZR_no_results' ) ) :
+  class CZR_no_results {
       static $instance;
       function __construct () {
           self::$instance =& $this;
@@ -30,7 +30,7 @@ if ( ! class_exists( 'TC_no_results' ) ) :
           if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
               return;
 
-          $content_no_results    = apply_filters( 'tc_no_results', TC_init::$instance -> content_no_results );
+          $content_no_results    = apply_filters( 'tc_no_results', CZR_init::$instance -> content_no_results );
 
           echo apply_filters( 'tc_no_result_content',
               sprintf('<div class="%1$s"><div class="entry-content %2$s">%3$s</div>%4$s</div>',

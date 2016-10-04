@@ -12,8 +12,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_placeholders' ) ) :
-  class TC_placeholders {
+if ( ! class_exists( 'CZR_placeholders' ) ) :
+  class CZR_placeholders {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     function __construct () {
@@ -150,17 +150,17 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_thumbnail_help_on() {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         'disabled' == get_transient("tc_thumbnail_help"),
-        'hide' != TC_utils::$inst->tc_opt('tc_single_post_thumb_location'),
+        'hide' != CZR_utils::$inst->tc_opt('tc_single_post_thumb_location'),
         ! is_admin() && ! is_single(),
         ! self::$instance -> tc_is_front_help_enabled()
       );
@@ -208,7 +208,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p>',
               __( "Did you know you can easily speed up your page load by deferring the loading of the non visible images?", "customizr" ),
               sprintf( __("%s and check the option 'Load images on scroll' under 'Website Performances' section.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', TC_utils::tc_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::tc_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) ), __( "Jump to the customizer now", "customizr") )
               )
           );
           printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
@@ -280,7 +280,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       if ( $min_img_num ) {
@@ -289,11 +289,11 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       }
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
-        1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_img_smart_load' ) ),
+        1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_img_smart_load' ) ),
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! self::$instance -> tc_is_front_help_enabled(),
         'disabled' == get_transient("tc_img_smartload_help"),
@@ -381,17 +381,17 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_sidenav_help_on() {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        TC_utils::$inst->tc_has_location_menu('main'),// => if the "main" location has a menu assigned
-        'navbar' == TC_utils::$inst->tc_opt('tc_menu_style'),
+        CZR_utils::$inst->tc_has_location_menu('main'),// => if the "main" location has a menu assigned
+        'navbar' == CZR_utils::$inst->tc_opt('tc_menu_style'),
         'disabled' == get_transient("tc_sidenav_help"),
         ! self::$instance -> tc_is_front_help_enabled()
       );
@@ -477,17 +477,17 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_second_menu_placeholder_on() {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
       //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
-      if ( 'navbar' == TC_utils::$inst->tc_opt('tc_menu_style') )
+      if ( 'navbar' == CZR_utils::$inst->tc_opt('tc_menu_style') )
         return false;
       //don't display if second menu is enabled : tc_display_second_menu
-      if ( (bool)TC_utils::$inst->tc_opt('tc_display_second_menu') )
+      if ( (bool)CZR_utils::$inst->tc_opt('tc_display_second_menu') )
         return false;
 
       return apply_filters(
@@ -567,17 +567,17 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_main_menu_notice_on() {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        'navbar' != TC_utils::$inst->tc_opt('tc_menu_style'),
-        (bool)TC_utils::$inst->tc_opt('tc_display_second_menu'),
+        'navbar' != CZR_utils::$inst->tc_opt('tc_menu_style'),
+        (bool)CZR_utils::$inst->tc_opt('tc_display_second_menu'),
         'disabled' == get_transient("tc_main_menu_notice"),
         ! self::$instance -> tc_is_front_help_enabled()
       );
@@ -612,7 +612,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       check_ajax_referer( 'tc-slider-notice-nonce', 'sliderNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_slider':
-          TC_utils::$inst -> tc_set_option( 'tc_front_slider' , 0 );
+          CZR_utils::$inst -> tc_set_option( 'tc_front_slider' , 0 );
         break;
 
         case 'remove_notice':
@@ -687,17 +687,17 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_slider_notice_on( $_position = null ) {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
-        'demo' != TC_utils::$inst->tc_opt('tc_front_slider'),
+        ! is_admin() && ! CZR_utils::$inst-> tc_is_home(),
+        'demo' != CZR_utils::$inst->tc_opt('tc_front_slider'),
         'disabled' == get_transient("tc_slider_notice"),
         ! self::$instance -> tc_is_front_help_enabled()
       );
@@ -733,7 +733,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
       check_ajax_referer( 'tc-fp-notice-nonce', 'fpNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_fp':
-          TC_utils::$inst -> tc_set_option( 'tc_show_featured_pages' , 0 );
+          CZR_utils::$inst -> tc_set_option( 'tc_show_featured_pages' , 0 );
         break;
 
         case 'remove_notice':
@@ -808,21 +808,21 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_fp_notice_on( $_position = null ) {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! TC_utils::$inst-> tc_is_home(),
-        ! (bool)TC_utils::$inst->tc_opt('tc_show_featured_pages'),
+        ! is_admin() && ! CZR_utils::$inst-> tc_is_home(),
+        ! (bool)CZR_utils::$inst->tc_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> tc_is_one_fp_set(),
-        TC___::tc_is_pro(),
-        TC_plugins_compat::$instance->tc_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php'),
+        CZR___::tc_is_pro(),
+        CZR_plugins_compat::$instance->tc_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php'),
         ! self::$instance -> tc_is_front_help_enabled()
       );
 
@@ -841,11 +841,11 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     function tc_is_one_fp_set() {
       $_fp_sets = array();
-      $fp_ids = apply_filters( 'tc_featured_pages_ids' , TC_init::$instance -> fp_ids);
+      $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
       if ( ! is_array($fp_ids) )
         return;
       foreach ($fp_ids as $fp_single_id ) {
-        $_fp_sets[] = (bool)TC_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );
+        $_fp_sets[] = (bool)CZR_utils::$inst->tc_opt( 'tc_featured_page_'.$fp_single_id );
       }
       //returns true if at least one fp has been set.
       return (bool)array_sum($_fp_sets);
@@ -929,11 +929,11 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     */
     static function tc_is_widget_placeholder_enabled( $_position = null ) {
       //never display when customizing
-      if ( TC___::$instance -> tc_is_customizing() )
+      if ( CZR___::$instance -> tc_is_customizing() )
         return;
 
       //always display in DEV mode
-      if ( defined('TC_DEV') && true === TC_DEV )
+      if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
 
       $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer') ) : array($_position);
@@ -958,7 +958,7 @@ if ( ! class_exists( 'TC_placeholders' ) ) :
     * User option to enabe/disable all notices. Enabled by default.
     */
     function tc_is_front_help_enabled(){
-      return apply_filters( 'tc_is_front_help_enabled' , (bool)TC_utils::$inst->tc_opt('tc_display_front_help') );
+      return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->tc_opt('tc_display_front_help') );
     }
 
   }//end of class
