@@ -6,13 +6,13 @@
 * By convention in Customizr, filter hooks are used as follow :
 * 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
 * 2) declared with apply_filters in methods to make the code extensible for developers
-* 3) accessed with tc__f() to return values (while front end content is handled with action hooks)
+* 3) accessed with czr__f() to return values (while front end content is handled with action hooks)
 *
 * Used everywhere in Customizr. Can pass up to five variables to the filter callback.
 *
 * @since Customizr 3.0
 */
-if( ! function_exists( 'tc__f' ) ) :
+if( ! function_exists( 'czr__f' ) ) :
     function czr__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
     }

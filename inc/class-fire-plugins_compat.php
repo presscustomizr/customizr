@@ -628,19 +628,19 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         if ( function_exists( 'icl_t') ) {
           /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/
           //define our icl_t wrapper for options filtered with tc_opt_{$option}
-          if ( ! function_exists( 'tc_wpml_t_opt' ) ) {
+          if ( ! function_exists( 'czr_wpml_t_opt' ) ) {
             function czr_wpml_t_opt( $string ) {
               return tc_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
             }
           }
           //special function for the post slider button text pre trim filter
-          if ( ! function_exists( 'tc_wpml_t_ps_button_text' ) ) {
+          if ( ! function_exists( 'czr_wpml_t_ps_button_text' ) ) {
             function czr_wpml_t_ps_button_text( $string ) {
               return tc_wpml_t( $string, 'tc_posts_slider_button_text' );
             }
           }
           //define our icl_t wrapper
-          if ( ! function_exists( 'tc_wpml_t' ) ) {
+          if ( ! function_exists( 'czr_wpml_t' ) ) {
             function czr_wpml_t( $string, $opt ) {
               $tc_wpml_options_names = tc_wpml_get_options_names_config();
               return icl_t( TC_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
@@ -721,7 +721,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /*
       * Are we in the Events list context?
       */
-      if ( ! ( function_exists( 'tc_is_tec_events_list' ) ) ) {
+      if ( ! ( function_exists( 'czr_is_tec_events_list' ) ) ) {
         function czr_is_tec_events_list() {
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_post_type_archive();
         }
@@ -729,7 +729,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /*
       * Are we in single Event context?
       */
-      if ( ! ( function_exists( 'tc_is_tec_single_event' ) ) ) {
+      if ( ! ( function_exists( 'czr_is_tec_single_event' ) ) ) {
         function czr_is_tec_single_event() {
           return function_exists( 'tribe_is_event_query' ) && tribe_is_event_query() && is_single();
         }
@@ -1184,7 +1184,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_set_disqus_compat() {
-      if ( ! function_exists( 'tc_disqus_comments_enabled' ) ) {
+      if ( ! function_exists( 'czr_disqus_comments_enabled' ) ) {
         function czr_disqus_comments_enabled() {
           return function_exists( 'dsq_is_installed' ) && function_exists( 'dsq_can_replace' )
                  && dsq_is_installed() && dsq_can_replace();
