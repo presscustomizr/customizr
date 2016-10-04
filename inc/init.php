@@ -1,6 +1,6 @@
 <?php
 /**
-* The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
+* The czr__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
 * It is shorter than the original apply_filters() and only used on already defined filters.
 *
 * By convention in Customizr, filter hooks are used as follow :
@@ -133,7 +133,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       );//end of filter
 
       //check the context
-      if ( $this -> tc_is_pro() )
+      if ( $this -> czr_is_pro() )
         require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
 
       self::$tc_option_group = 'tc_theme_options';
@@ -142,7 +142,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       add_filter( 'tc_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
 
       //theme class groups instanciation
-      $this -> tc__();
+      $this -> czr__();
     }//end of __construct()
 
 
@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       foreach ( $_to_load as $group => $files ) {
         foreach ($files as $path_suffix ) {
           //checks if a child theme is used and if the required file has to be overriden
-          if ( $this -> tc_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
+          if ( $this -> czr_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
               require_once ( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           }
           else {
@@ -202,7 +202,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     function czr_set_files_to_load( $_to_load ) {
       $_to_load = empty($_to_load) ? $this -> tc_core : $_to_load;
       //Not customizing
-      //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
+      //1) IS NOT CUSTOMIZING : czr_is_customize_left_panel() || czr_is_customize_preview_frame() || czr_doing_customizer_ajax()
       //---1.1) IS ADMIN
       //-------1.1.a) Doing AJAX
       //-------1.1.b) Not Doing AJAX
@@ -210,33 +210,33 @@ if ( ! class_exists( 'CZR___' ) ) :
       //2) IS CUSTOMIZING
       //---2.1) IS LEFT PANEL => customizer controls
       //---2.2) IS RIGHT PANEL => preview
-      if ( ! $this -> tc_is_customizing() )
+      if ( ! $this -> czr_is_customizing() )
         {
           if ( is_admin() ) {
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
             if ( defined( 'DOING_AJAX' ) )
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+              $_to_load = $this -> czr_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
             else
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+              $_to_load = $this -> czr_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
           }
           else
             //Skips all admin classes
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
+            $_to_load = $this -> czr_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
         }
       //Customizing
       else
         {
           //left panel => skip all front end classes
-          if ( $this -> tc_is_customize_left_panel() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_is_customize_left_panel() ) {
+            $_to_load = $this -> czr_unset_core_classes(
               $_to_load,
               array( 'header' , 'content' , 'footer' ),
               array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
             );
           }
-          if ( $this -> tc_is_customize_preview_frame() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_is_customize_preview_frame() ) {
+            $_to_load = $this -> czr_unset_core_classes(
               $_to_load,
               array(),
               array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
@@ -326,9 +326,9 @@ if ( ! class_exists( 'CZR___' ) ) :
     function czr_is_customizing() {
       //checks if is customizing : two contexts, admin and front (preview frame)
       return in_array( 1, array(
-        $this -> tc_is_customize_left_panel(),
-        $this -> tc_is_customize_preview_frame(),
-        $this -> tc_doing_customizer_ajax()
+        $this -> czr_is_customize_left_panel(),
+        $this -> czr_is_customize_preview_frame(),
+        $this -> czr_doing_customizer_ajax()
       ) );
     }
 

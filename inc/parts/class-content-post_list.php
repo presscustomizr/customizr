@@ -73,7 +73,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_post_list_hooks() {
-    if ( ! $this -> tc_post_list_controller() )
+    if ( ! $this -> czr_post_list_controller() )
       return;
     //displays the article with filtered layout : content + thumbnail
     add_action ( '__loop'               , array( $this , 'tc_prepare_section_view') );
@@ -112,15 +112,15 @@ class CZR_post_list {
   */
   function czr_prepare_section_view() {
     global $post;
-    if ( ! isset( $post ) || empty( $post ) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_post_list_controller() , $post ) )
+    if ( ! isset( $post ) || empty( $post ) || ! apply_filters( 'tc_show_post_in_post_list', $this -> czr_post_list_controller() , $post ) )
       return;
 
     //get the filtered post list layout
     $_layout        = apply_filters( 'tc_post_list_layout', CZR_init::$instance -> post_list_layout );
-    $_content_model = $this -> tc_get_content_model( $_layout );
-    $_thumb_model   = $this -> tc_show_thumb() ? CZR_post_thumbnails::$instance -> tc_get_thumbnail_model() : array();
+    $_content_model = $this -> czr_get_content_model( $_layout );
+    $_thumb_model   = $this -> czr_show_thumb() ? CZR_post_thumbnails::$instance -> czr_get_thumbnail_model() : array();
 
-    $this -> tc_render_section_view( $_layout, $_content_model, $_thumb_model );
+    $this -> czr_render_section_view( $_layout, $_content_model, $_thumb_model );
   }
 
 
@@ -133,14 +133,14 @@ class CZR_post_list {
   */
   private function czr_get_content_model($_layout) {
     $_content      = '';
-    if ( $this -> tc_show_excerpt() )
+    if ( $this -> czr_show_excerpt() )
       $_content = apply_filters( 'the_excerpt', get_the_excerpt() );
     else
       $_content = apply_filters( 'tc_the_content', get_the_content() );
 
     //what is determining the layout ? if no thumbnail then full width + filter's conditions
-    $_layout_class = $this -> tc_show_thumb() ? $_layout['content'] : 'span12';
-    $_layout_class = implode( " " , apply_filters( 'tc_post_list_content_class', array($_layout_class) , $this -> tc_show_thumb() , $_layout ) );
+    $_layout_class = $this -> czr_show_thumb() ? $_layout['content'] : 'span12';
+    $_layout_class = implode( " " , apply_filters( 'tc_post_list_content_class', array($_layout_class) , $this -> czr_show_thumb() , $_layout ) );
 
     //display an icon for div if there is no title
     $_icon_class    = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? apply_filters( 'tc_post_list_content_icon', 'format-icon' ) :'';
@@ -160,7 +160,7 @@ class CZR_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -177,9 +177,9 @@ class CZR_post_list {
     //4) filter's conditions
     return apply_filters( 'tc_show_thumb', array_product(
         array(
-          $this -> tc_show_excerpt(),
-          CZR_post_thumbnails::$instance -> tc_has_thumb(),
-          0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) )
+          $this -> czr_show_excerpt(),
+          CZR_post_thumbnails::$instance -> czr_has_thumb(),
+          0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_show_thumb' ) )
         )
       )
     );
@@ -200,21 +200,21 @@ class CZR_post_list {
     //Renders the filtered layout for content + thumbnail
     if ( isset($_layout['alternate']) && $_layout['alternate'] ) {
       if ( 0 == $wp_query->current_post % 2 ) {
-        $this -> tc_render_content_view( $_content_model ) ;
-        CZR_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+        $this -> czr_render_content_view( $_content_model ) ;
+        CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model , $_layout['thumb'] );
       }
       else {
-        CZR_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
-        $this -> tc_render_content_view( $_content_model );
+        CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+        $this -> czr_render_content_view( $_content_model );
       }
     }
     else if ( isset($_layout['show_thumb_first']) && ! $_layout['show_thumb_first'] ) {
-        $this -> tc_render_content_view( $_content_model );
-        CZR_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+        $this -> czr_render_content_view( $_content_model );
+        CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model , $_layout['thumb'] );
     }
     else {
-      CZR_post_thumbnails::$instance -> tc_render_thumb_view( $_thumb_model , $_layout['thumb'] );
-      $this -> tc_render_content_view( $_content_model );
+      CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model , $_layout['thumb'] );
+      $this -> czr_render_content_view( $_content_model );
     }
 
     //renders the hr separator after each article
@@ -285,13 +285,13 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-    $_shape = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_shape') );
 
     //1) check if shape is rounded, squared on rectangular
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $thumb_wrapper;
 
-    $_position = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_position = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_position' ) );
     return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
           get_permalink( get_the_ID() ),
           esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
@@ -327,7 +327,7 @@ class CZR_post_list {
       ! is_singular()
       && ! is_404()
       && 0 != $wp_query -> post_count
-      && ! tc__f( '__is_home_empty')
+      && ! czr__f( '__is_home_empty')
     );
   }
 
@@ -408,7 +408,7 @@ class CZR_post_list {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = CZR_utils::$inst -> tc_opt('tc_blog_restrict_by_cat');
+     $cats = CZR_utils::$inst -> czr_opt('tc_blog_restrict_by_cat');
      $cats = array_filter( $cats, array( CZR_utils::$inst , 'tc_category_id_exists' ) );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
@@ -424,7 +424,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_add_thumb_shape_name( $_classes ) {
-    return array_merge( $_classes , array(esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') ) ) );
+    return array_merge( $_classes , array(esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_shape') ) ) );
   }
 
 
@@ -435,7 +435,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -447,9 +447,9 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_post_list_layout( $_layout ) {
-    $_position                  = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_alternate' ) )
+    $_layout['alternate']        = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_alternate' ) )
                                    || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
@@ -465,7 +465,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_content_class( $_classes ) {
-    $_position                  = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_position' ) );
     return array_merge( $_classes , array( "thumb-position-{$_position}") );
   }
 
@@ -484,7 +484,7 @@ class CZR_post_list {
     //note : handled with javascript if tc_center_img option enabled
     $_bool = array_product(
       array(
-        ! esc_attr( CZR_utils::$inst->tc_opt( 'tc_center_img') ),
+        ! esc_attr( CZR_utils::$inst->czr_opt( 'tc_center_img') ),
         false != $image,
         ! empty($image),
         isset($_filtered_thumb_size['width']),
@@ -496,7 +496,7 @@ class CZR_post_list {
 
     $_width     = $_filtered_thumb_size['width'];
     $_height    = $_filtered_thumb_size['height'];
-    $_shape     = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
+    $_shape     = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_shape') );
     $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
     if ( ! is_single() && ! $_is_rectangular )
       return $_style;
@@ -513,9 +513,9 @@ class CZR_post_list {
   * @since Customizr 3.2.6
   */
   function czr_write_thumbnail_inline_css( $_css ) {
-    if ( ! $this -> tc_post_list_controller() )
+    if ( ! $this -> czr_post_list_controller() )
       return $_css;
-    $_list_thumb_height     = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
 
     return sprintf("%s\n%s",
@@ -535,11 +535,11 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_set_thumb_size( $_default_size ) {
-    $_shape = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_shape') );
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $_default_size;
 
-    $_position                  = esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 
@@ -568,10 +568,10 @@ class CZR_post_list {
   * @since Customizr 3.4+
   */
   function czr_maybe_display_img_smartload_help( $the_content ) {
-    if ( ! ( $this -> tc_post_list_controller() && CZR_placeholders::tc_is_img_smartload_help_on( $text = '', $min_img_num = 0 ) ) )
+    if ( ! ( $this -> czr_post_list_controller() && CZR_placeholders::czr_is_img_smartload_help_on( $text = '', $min_img_num = 0 ) ) )
       return;
 
-    CZR_placeholders::tc_get_smartload_help_block( $echo = true );
+    CZR_placeholders::czr_get_smartload_help_block( $echo = true );
   }
 
 }//end of class

@@ -65,14 +65,14 @@ class CZR_breadcrumb {
 
 
     function czr_set_breadcrumb_display_in_context( $_bool ) {
-    	if ( tc__f('__is_home') )
-	  		return 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+    	if ( czr__f('__is_home') )
+	  		return 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
 	  	else {
-		  	if ( is_page() && 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+		  	if ( is_page() && 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_breadcrumb_in_pages' ) ) )
 		  		return false;
-		  	if ( is_single() && 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+		  	if ( is_single() && 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
 		  		return false;
-		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
 		  		return false;
 		}
 		return $_bool;
@@ -85,13 +85,13 @@ class CZR_breadcrumb {
     * @since Customizr 1.0
     */
     function czr_breadcrumb_display() {
-	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_breadcrumb') ) ) )
+	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_breadcrumb') ) ) )
 	      return;
 
 	  	if ( ! apply_filters( 'tc_show_breadcrumb_in_context' , true ) )
 	      return;
 
-	  	if ( tc__f('__is_home')  && 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_breadcrumb_home' ) ) )
+	  	if ( czr__f('__is_home')  && 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_breadcrumb_home' ) ) )
 	  		return;
 
 	  	//set the args properties
@@ -101,7 +101,7 @@ class CZR_breadcrumb {
 	  			'tc_breadcrumb_display' ,
 				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
 					apply_filters( 'tc_breadcrumb_class', 'span12' ),
-					$this -> tc_breadcrumb_trail( $this -> args )
+					$this -> czr_breadcrumb_trail( $this -> args )
 				)
 	  	);
     }
@@ -145,7 +145,7 @@ class CZR_breadcrumb {
 		$breadcrumb = '';
 
 		/* Get the trail items. */
-		$trail = apply_filters( 'tc_breadcrumb_trail' , $this -> tc_breadcrumb_trail_get_items( $args ) );
+		$trail = apply_filters( 'tc_breadcrumb_trail' , $this -> czr_breadcrumb_trail_get_items( $args ) );
 
 		/* Connect the breadcrumb trail if there are items in the trail. */
 		if ( !empty( $trail ) && is_array( $trail ) ) {
@@ -221,11 +221,11 @@ class CZR_breadcrumb {
 
 		/* If bbPress is installed and we're on a bbPress page. */
 		if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_bbpress_items() );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_bbpress_items() );
 		}
 		/* If WooCommerce is installed and we're on a WooCommerce page. */
         elseif ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_woocommerce_items() );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_woocommerce_items() );
 		}
 		/* If viewing the front page of the site. */
 		elseif ( is_front_page() ) {
@@ -255,7 +255,7 @@ class CZR_breadcrumb {
 		elseif ( is_home() ) {
 			$home_page = get_page( get_queried_object_id() );
 
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $home_page->post_parent, '' ) );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $home_page->post_parent, '' ) );
 
 			if ( is_paged() )
 				$trail[]  = '<a href="' . get_permalink( $home_page->ID ) . '" title="' . esc_attr( strip_tags( get_the_title( $home_page->ID ) ) ). '">' . get_the_title( $home_page->ID ) . '</a>';
@@ -283,12 +283,12 @@ class CZR_breadcrumb {
 
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) && !$page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 				else if ( $page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Map the permalink structure tags to actual links. */
-				/*$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_map_rewrite_tags( $post_id, get_option( 'permalink_structure' ), $args ) );*/
+				/*$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_map_rewrite_tags( $post_id, get_option( 'permalink_structure' ), $args ) );*/
 			}
 
 			/* If viewing a singular 'attachment'. */
@@ -311,10 +311,10 @@ class CZR_breadcrumb {
 
 						/* If there's a path, check for parents. */
 						if ( !empty( $path ) )
-							$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+							$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 
 						/* Map the post (parent) permalink structure tags to actual links. */
-						$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_map_rewrite_tags( $post->post_parent, get_option( 'permalink_structure' ), $args ) );
+						$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_map_rewrite_tags( $post->post_parent, get_option( 'permalink_structure' ), $args ) );
 					}
 
 					/* Custom post types. */
@@ -332,7 +332,7 @@ class CZR_breadcrumb {
 
 						/* If there's a path, check for parents. */
 						if ( !empty( $path ) )
-							$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+							$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 
 						/* If there's an archive page, add it to the trail. */
 						if ( !empty( $parent_post_type_object->has_archive ) ) {
@@ -359,7 +359,7 @@ class CZR_breadcrumb {
 
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 
 				/* If there's an archive page, add it to the trail. */
 				if ( !empty( $post_type_object->has_archive ) ) {
@@ -373,16 +373,16 @@ class CZR_breadcrumb {
 
 			/* If the post type path returns nothing and there is a parent, get its parents. */
 			if ( ( empty( $path ) && 0 !== $parent ) || ( 'attachment' == $post_type ) )
-				$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $parent, '' ) );
+				$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $parent, '' ) );
 
 			/* Or, if the post type is hierarchical and there's a parent, get its parents. */
 			elseif ( 0 !== $parent && is_post_type_hierarchical( $post_type ) )
-				$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $parent, '' ) );
+				$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $parent, '' ) );
 
 			/* Display terms for specific post type taxonomy if requested. */
 			if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
 				//If post has parent, then don't add the taxonomy trail part
-				$trail 	= ( 1 < count($this -> tc_breadcrumb_trail_get_parents($post_id) ) ) ? $trail : $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
+				$trail 	= ( 1 < count($this -> czr_breadcrumb_trail_get_parents($post_id) ) ) ? $trail : $this -> czr_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
 
 			/* End with the post title. */
 			$post_title = single_post_title( '' , false );
@@ -417,9 +417,9 @@ class CZR_breadcrumb {
 
 				/* Get parent pages by path if they exist. */
 				if ( $path && ! $page_for_posts)
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 				else if ( $page_for_posts && ( is_category() || is_tag() ) )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Add post type archive if its 'has_archive' matches the taxonomy rewrite 'slug'. */
 				if ( $taxonomy->rewrite['slug'] ) {
@@ -453,7 +453,7 @@ class CZR_breadcrumb {
 
 				/* If the taxonomy is hierarchical, list its parent terms. */
 				if ( is_taxonomy_hierarchical( $term->taxonomy ) && $term->parent )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_term_parents( $term->parent, $term->taxonomy ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_term_parents( $term->parent, $term->taxonomy ) );
 
 				/* Add the term name to the trail end. */
 				if ( is_paged() )
@@ -478,7 +478,7 @@ class CZR_breadcrumb {
 
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 
 				/* Add the post type [plural] name to the trail end. */
 				if ( is_paged() )
@@ -503,9 +503,9 @@ class CZR_breadcrumb {
 
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) && !$page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 				else if ( $page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* Add the author's display name to the trail end. */
 				if ( is_paged() )
@@ -519,9 +519,9 @@ class CZR_breadcrumb {
 
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) && !$page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 				else if ( $page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				if ( get_query_var( 'minute' ) && get_query_var( 'hour' ) )
 					$trail[] = get_the_time( __( 'g:i a' , 'customizr' ) );
@@ -537,13 +537,13 @@ class CZR_breadcrumb {
 			elseif ( is_date() ) {
 				/* If there's a path, check for parents. */
 				if ( !empty( $path ) && !$page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $path ) );
 				else if ( $page_for_posts )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $page_for_posts , $path ) );
 
 				/* If $front has been set, check for parent pages. */
 				if ( $wp_rewrite->front )
-					$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( '' , $wp_rewrite->front ) );
+					$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( '' , $wp_rewrite->front ) );
 
 				if ( is_day() ) {
 					$trail[] = '<a href="' . get_year_link( get_the_time( 'Y' ) ) . '" title="' . get_the_time( esc_attr__( 'Y' , 'customizr' ) ) . '">' . get_the_time( __( 'Y' , 'customizr' ) ) . '</a>';
@@ -660,7 +660,7 @@ class CZR_breadcrumb {
 			$topic_id = get_queried_object_id();
 
 			/* Get the parent items for the topic, which would be its forum (and possibly forum grandparents). */
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( bbp_get_topic_forum_id( $topic_id ) ) );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( bbp_get_topic_forum_id( $topic_id ) ) );
 
 			/* If viewing a split, merge, or edit topic page, show the link back to the topic.  Else, display topic title. */
 			if ( bbp_is_topic_split() || bbp_is_topic_merge() || bbp_is_topic_edit() )
@@ -688,7 +688,7 @@ class CZR_breadcrumb {
 			$reply_id = get_queried_object_id();
 
 			/* Get the parent items for the reply, which should be its topic. */
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( bbp_get_reply_topic_id( $reply_id ) ) );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( bbp_get_reply_topic_id( $reply_id ) ) );
 
 			/* If viewing a reply edit page, link back to the reply. Else, display the reply title. */
 			if ( bbp_is_reply_edit() ) {
@@ -710,7 +710,7 @@ class CZR_breadcrumb {
 
 			/* If the forum has a parent forum, get its parent(s). */
 			if ( 0 !== $forum_parent_id)
-				$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_parents( $forum_parent_id ) );
+				$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_parents( $forum_parent_id ) );
 
 			/* Add the forum title to the end of the trail. */
 			$trail[] = bbp_get_forum_title( $forum_id );
@@ -838,7 +838,7 @@ class CZR_breadcrumb {
 				/* If using the %category% tag, add a link to the first category archive to match permalinks. */
 				/*elseif ( '%category%' == $tag && isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] ) {
 
-					$trail 	= $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
+					$trail 	= $this -> czr_add_first_term_from_hierarchical_taxinomy( $trail , $post_id );
 				}*/
 			}
 		}
@@ -942,7 +942,7 @@ class CZR_breadcrumb {
 		$args				= $this -> args;
 
 		/*if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
-			$trail 	= $this -> tc_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
+			$trail 	= $this -> czr_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
 
 		foreach (array_reverse($parents) as $key => $value)
 			$trail[] = $value;
@@ -1029,7 +1029,7 @@ class CZR_breadcrumb {
 
 		// If the taxonomy term has a parent, add the hierarchy to the trail.
 		if ( 0 !== $first_term -> parent )
-			$trail = array_merge( $trail, $this -> tc_breadcrumb_trail_get_term_parents( $first_term -> parent , $first_hierarchical_tax -> name ) );
+			$trail = array_merge( $trail, $this -> czr_breadcrumb_trail_get_term_parents( $first_term -> parent , $first_hierarchical_tax -> name ) );
 
 		//Add the taxonomy term archive link to the trail.
 		$trail[] = '<a href="' . get_term_link( $first_term,  $first_hierarchical_tax -> name ) . '" title="' . esc_attr( $first_term->name ) . '">' . $first_term->name . '</a>';

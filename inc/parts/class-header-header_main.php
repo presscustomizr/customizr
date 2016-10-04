@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
   	  }
 
       //add a 100% wide container just after the sticky header to reset margin top
-      if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_header' ) ) || CZR___::$instance -> tc_is_customizing() )
+      if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_header' ) ) || CZR___::$instance -> czr_is_customizing() )
         add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
 
     }
@@ -153,7 +153,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       if ( function_exists('has_site_icon') && has_site_icon() )
         return;
 
-      $_fav_option  			= esc_attr( CZR_utils::$inst->tc_opt( 'tc_fav_upload') );
+      $_fav_option  			= esc_attr( CZR_utils::$inst->czr_opt( 'tc_fav_upload') );
      	if ( ! $_fav_option || is_null($_fav_option) )
      		return;
 
@@ -164,7 +164,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
      		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
      		$_fav_src 			= $_attachment_data[0];
      	} else { //old treatment
-     		$_saved_path 		= esc_url ( CZR_utils::$inst->tc_opt( 'tc_fav_upload') );
+     		$_saved_path 		= esc_url ( CZR_utils::$inst->czr_opt( 'tc_fav_upload') );
      		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
        	$upload_dir 		= wp_upload_dir();
        	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
@@ -206,7 +206,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       $logo_classes 			= array( 'brand', 'span3');
       foreach ( $logos_type as $logo_type ){
           // check if we have to print the sticky logo
-          if ( '_sticky_' == $logo_type && ! $this -> tc_use_sticky_logo() )
+          if ( '_sticky_' == $logo_type && ! $this -> czr_use_sticky_logo() )
               continue;
 
           //check if the logo is a path or is numeric
@@ -215,7 +215,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
           $_width 				= false;
           $_height 				= false;
           $_attachement_id 		= false;
-          $_logo_option  			= esc_attr( CZR_utils::$inst->tc_opt( "tc{$logo_type}logo_upload") );
+          $_logo_option  			= esc_attr( CZR_utils::$inst->czr_opt( "tc{$logo_type}logo_upload") );
           //check if option is an attachement id or a path (for backward compatibility)
           if ( is_numeric($_logo_option) ) {
               $_attachement_id 	= $_logo_option;
@@ -226,15 +226,15 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
           } else { //old treatment
               //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
               $upload_dir 			= wp_upload_dir();
-              $_saved_path 			= esc_url ( CZR_utils::$inst->tc_opt( "tc{$logo_type}logo_upload") );
+              $_saved_path 			= esc_url ( CZR_utils::$inst->czr_opt( "tc{$logo_type}logo_upload") );
               $_logo_src 				= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
           }
 
           //hook + makes ssl compliant
           $_logo_src    			= apply_filters( "tc{$logo_type}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
 
-          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( CZR_utils::$inst->tc_opt( 'tc_logo_resize') ) : '';
-          $filetype 				= CZR_utils::$inst -> tc_check_filetype ($_logo_src);
+          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( CZR_utils::$inst->czr_opt( 'tc_logo_resize') ) : '';
+          $filetype 				= CZR_utils::$inst -> czr_check_filetype ($_logo_src);
           if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
               $_args 		= array(
                       'logo_src' 				=> $_logo_src,
@@ -244,14 +244,14 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
                       'logo_height' 			=> $_height,
                       'logo_type'             => trim($logo_type,'_')
               );
-              $logos_img[] = $this -> tc_logo_img_view($_args);
+              $logos_img[] = $this -> czr_logo_img_view($_args);
           }
       }//end foreach
       //render
       if ( count($logos_img) == 0 )
-          $this -> tc_title_view($logo_classes);
+          $this -> czr_title_view($logo_classes);
       else
-          $this -> tc_logo_view( array (
+          $this -> czr_logo_view( array (
             'logo_class'   => $logo_classes,
             // normal logo first
             'logos_img'    => array_reverse($logos_img)
@@ -313,7 +313,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
                                 apply_filters( 'tc_logo_max_width', 250 ),
                                 apply_filters( 'tc_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_utils::$inst->tc_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
+        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_utils::$inst->czr_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
         $logo_type,
         $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
       );
@@ -440,8 +440,8 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_social_in_header') ) ) || ! tc__f( '__get_socials' );
-        if ( ! CZR___::$instance -> tc_is_customizing() && $_nothing_to_render )
+        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_social_in_header') ) ) || ! czr__f( '__get_socials' );
+        if ( ! CZR___::$instance -> czr_is_customizing() && $_nothing_to_render )
         	return;
 
         //class added if not resp
@@ -450,7 +450,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
         $html = sprintf('<div class="social-block %1$s" %3$s>%2$s</div>',
         		$social_header_block_class,
-        		tc__f( '__get_socials' ),
+        		czr__f( '__get_socials' ),
         		$_nothing_to_render ? 'style="display:none"' : ''
         );
 
@@ -518,7 +518,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
 		function czr_write_header_inline_css( $_css ) {
       //TOP BORDER
-			if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_top_border') ) ) {
+			if ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_top_border') ) ) {
   			$_css = sprintf("%s\n%s",
   				$_css,
   				"header.tc-header {border-top: none;}\n"
@@ -526,7 +526,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 	    }
 
       //STICKY HEADER
-	    if ( 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') ) || CZR___::$instance -> tc_is_customizing() ) {
+	    if ( 0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_shrink_title_logo') ) || CZR___::$instance -> czr_is_customizing() ) {
 	    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 	    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -543,7 +543,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			}
 
       //STICKY LOGO
-      if ( $this -> tc_use_sticky_logo() ) {
+      if ( $this -> czr_use_sticky_logo() ) {
         $_css = sprintf( "%s\n%s",
             $_css,
             ".site-logo img.sticky {
@@ -559,8 +559,8 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       }
 
 			//HEADER Z-INDEX
-	    if ( 100 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_z_index') ) ) {
-	    	$_custom_z_index 	= esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_z_index') );
+	    if ( 100 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_z_index') ) ) {
+	    	$_custom_z_index 	= esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_z_index') );
 		    $_css = sprintf("%s\n%s",
   		      $_css,
   		      ".tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
@@ -582,10 +582,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
     function czr_add_body_classes($_classes) {
       //STICKY HEADER
-    	if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
+    	if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_header' ) ) ) {
      		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
      		//STICKY TRANSPARENT ON SCROLL
-       	if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_transparent_on_scroll' ) ) )
+       	if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_transparent_on_scroll' ) ) )
        		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
        	else
        		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
@@ -595,11 +595,11 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
      	}
 
       //No navbar box
-      if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_display_boxed_navbar') ) )
+      if ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_display_boxed_navbar') ) )
           $_classes = array_merge( $_classes , array('no-navbar' ) );
 
       //SKIN CLASS
-      $_skin = sprintf( 'skin-%s' , basename( CZR_init::$instance -> tc_get_style_src() ) );
+      $_skin = sprintf( 'skin-%s' , basename( CZR_init::$instance -> czr_get_style_src() ) );
       array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
       return $_classes;
@@ -619,12 +619,12 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_show_tagline 			= 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_show_tagline') );
-      $_show_title_logo 		= 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') );
-      $_use_sticky_logo 		= $this -> tc_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			  = 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_show_menu') );
-			$_header_layout 		= "logo-" . esc_attr( CZR_utils::$inst->tc_opt( 'tc_header_layout' ) );
+			$_show_tagline 			= 0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_show_tagline') );
+      $_show_title_logo 		= 0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_show_title_logo') );
+      $_use_sticky_logo 		= $this -> czr_use_sticky_logo();
+			$_shrink_title_logo 	= 0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_shrink_title_logo') );
+			$_show_menu 			  = 0 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_show_menu') );
+			$_header_layout 		= "logo-" . esc_attr( CZR_utils::$inst->czr_opt( 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
         $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
@@ -645,10 +645,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @since Customizr 3.2.9
     */
     function czr_use_sticky_logo(){
-        if ( ! esc_attr( CZR_utils::$inst->tc_opt( "tc_sticky_logo_upload") ) )
+        if ( ! esc_attr( CZR_utils::$inst->czr_opt( "tc_sticky_logo_upload") ) )
             return false;
-        if ( ! ( esc_attr( CZR_utils::$inst->tc_opt( "tc_sticky_header") ) &&
-                     esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_show_title_logo') )
+        if ( ! ( esc_attr( CZR_utils::$inst->czr_opt( "tc_sticky_header") ) &&
+                     esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_show_title_logo') )
                )
         )
             return false;
@@ -664,10 +664,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
    	*/
 		function czr_set_tagline_visibility($html) {
 			//if customizing just hide it
-			if ( CZR___::$instance -> tc_is_customizing() && 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_tagline') ) )
+			if ( CZR___::$instance -> czr_is_customizing() && 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_tagline') ) )
 				return str_replace('site-description"', 'site-description" style="display:none"', $html);
 			//live context, don't paint it at all
-			if ( ! CZR___::$instance -> tc_is_customizing() && 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_tagline') ) )
+			if ( ! CZR___::$instance -> czr_is_customizing() && 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_tagline') ) )
 				return '';
 			return $html;
 		}
@@ -684,7 +684,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_layout = esc_attr( CZR_utils::$inst->tc_opt( 'tc_header_layout') );
+			$_layout = esc_attr( CZR_utils::$inst->czr_opt( 'tc_header_layout') );
 			switch ($_layout) {
 				case 'left':
 					$_classes = array('brand', 'span3' , 'pull-left');

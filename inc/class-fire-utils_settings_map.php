@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'skins_sec' ,
                                 'type'      =>  'select' ,
-                                'choices'    =>  $this -> tc_build_skin_list(),
+                                'choices'    =>  $this -> czr_build_skin_list(),
                                 'transport'   =>  'postMessage',
                                 'notice'    => __( 'Disabled if the random option is on.' , 'customizr' )
               ),
@@ -231,18 +231,18 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fonts_option_map( $get_default = null ) {
       return array(
               'tc_fonts'      => array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'CZR_controls',
                                 'section'       => 'fonts_sec',
                                 'type'          => 'select' ,
-                                'choices'       => CZR_utils::$inst -> tc_get_font( 'list' , 'name' ),
+                                'choices'       => CZR_utils::$inst -> czr_get_font( 'list' , 'name' ),
                                 'priority'      => 10,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
               ),
               'tc_body_font_size'      => array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
                                 'sanitize_callback' => array( $this , 'tc_sanitize_number' ),
                                 'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
                                 'control'       =>  'CZR_controls',
@@ -331,7 +331,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_page_title_icon'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'       => 'CZR_controls' ,
                                 'label'         => __( "Display a page icon next to the page title" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -340,7 +340,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_post_title_icon'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                 'control'     => 'CZR_controls' ,
                                 'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -359,7 +359,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_show_post_list_title_icon'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
                                 'control'     => 'CZR_controls' ,
                                 'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
                                 'section'       => 'titles_icons_sec' ,
@@ -614,7 +614,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_display_boxed_navbar'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                 'control'       => 'CZR_controls' ,
                                 'label'         => __( "Display menu in a box" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
@@ -730,7 +730,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'notice'        => __( "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header." , 'customizr' ),
               ),
               'tc_menu_style'  =>  array(
-                              'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
+                              'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
                               'control'       => 'CZR_controls' ,
                               'title'         => __( 'Main menu design' , 'customizr'),
                               'label'         => __( 'Select a design : side menu (vertical) or regular (horizontal)' , 'customizr' ),
@@ -761,7 +761,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
               ),
               'tc_menu_position'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                                 'control'       => 'CZR_controls' ,
                                 'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
                                 'section'       => 'nav' ,
@@ -801,7 +801,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
               'tc_menu_type'  => array(
-                                'default'   =>  CZR_utils::$inst -> tc_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
+                                'default'   =>  CZR_utils::$inst -> czr_user_started_before_version( '3.1.0' , '1.0.0' ) ? 'click' : 'hover',
                                 'control'   =>  'CZR_controls' ,
                                 'label'     =>  __( 'Select a submenu expansion option' , 'customizr' ),
                                 'section'   =>  'nav' ,
@@ -962,7 +962,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'control'     => 'CZR_controls' ,
                                 'type'        => 'select' ,
-                                'choices'     => $this -> tc_layout_choices(),
+                                'choices'     => $this -> czr_layout_choices(),
                                 'priority'    => 2,
               ),
 
@@ -975,7 +975,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'frontpage_sec' ,
                                 'type'        => 'select' ,
                                 //!important
-                                'choices'     => ( true == $get_default ) ? null : $this -> tc_slider_choices(),
+                                'choices'     => ( true == $get_default ) ? null : $this -> czr_slider_choices(),
                                 'priority'    => 20
               ),
               //posts slider
@@ -1153,7 +1153,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                               'label'         => __( 'Choose the global default layout' , 'customizr' ),
                               'section'     => 'post_layout_sec' ,
                               'type'          => 'select' ,
-                              'choices'     => $this -> tc_layout_choices(),
+                              'choices'     => $this -> czr_layout_choices(),
                               'notice'      => __( 'Note : the home page layout has to be set in the home page section' , 'customizr' ),
                               'priority'      => 10
                ),
@@ -1175,7 +1175,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                               'label'       => __( 'Choose the posts default layout' , 'customizr' ),
                               'section'     => 'post_layout_sec' ,
                               'type'        => 'select' ,
-                              'choices'   => $this -> tc_layout_choices(),
+                              'choices'   => $this -> czr_layout_choices(),
                               'priority'      => 30
               ),
 
@@ -1212,7 +1212,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'label'       => __( 'Choose the pages default layout' , 'customizr' ),
                                 'section'     => 'post_layout_sec' ,
                                 'type'        => 'select' ,
-                                'choices'   => $this -> tc_layout_choices(),
+                                'choices'   => $this -> czr_layout_choices(),
                                 'priority'       => 40,
                                 'notice'    => sprintf('<br/> %s<br/>%s',
                                     sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
@@ -1375,7 +1375,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               ),
 
               'tc_post_list_grid'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid',
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid',
                                 'control'       => 'CZR_controls' ,
                                 'title'         => __( 'Post List Design' , 'customizr' ),
                                 'label'         => __( 'Select a Layout' , "customizr" ),
@@ -1608,7 +1608,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_post_metas_design'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
                                 'control'     => 'CZR_controls' ,
                                 'title'         => __( 'Metas Design' , 'customizr' ),
                                 'label'         => __( "Select a design for the post metas" , "customizr" ),
@@ -1708,7 +1708,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               ),
 
               'tc_post_metas_update_notice_in_title'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
                                 'control'       => 'CZR_controls',
                                 'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                 'label'         => __( "Display a recent update notice" , "customizr" ),
@@ -1888,7 +1888,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               ),
 
               'tc_comment_bubble_color_type' => array(
-                                'default'     => CZR_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
+                                'default'     => CZR_utils::$inst -> czr_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
                                 'control'     => 'CZR_controls',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -1900,7 +1900,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => CZR_utils::$inst -> tc_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_utils::$inst -> tc_get_skin_color(),
+                                'default'     => CZR_utils::$inst -> czr_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_utils::$inst -> czr_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
@@ -2067,7 +2067,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'transport'   => 'postMessage'
               ),
               'tc_sticky_footer'  =>  array(
-                                'default'       => CZR_utils::$inst -> tc_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
+                                'default'       => CZR_utils::$inst -> czr_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
                                 'control'       => 'CZR_controls' ,
                                 'label'         => __( "Stick the footer to the bottom of the page", "customizr" ),
                                 'section'       => 'footer_global_sec' ,
@@ -2290,7 +2290,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       //=> because once the preview is ready, a postMessage is sent to the panel frame to refresh the sections and panels
       //Do nothing if WP version under 4.2
       global $wp_version;
-      if ( CZR___::$instance -> tc_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
+      if ( CZR___::$instance -> czr_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
         return $_sections;
 
       //when user access the theme switcher from the admin bar
@@ -2767,8 +2767,8 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * @updated Customizr 3.0.15
     */
     private function czr_build_skin_list() {
-        $parent_skins   = $this -> tc_get_skins(TC_BASE .'inc/assets/css');
-        $child_skins    = ( CZR___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> tc_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
+        $parent_skins   = $this -> czr_get_skins(TC_BASE .'inc/assets/css');
+        $child_skins    = ( CZR___::$instance -> czr_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css') ) ? $this -> czr_get_skins(TC_BASE_CHILD .'inc/assets/css') : array();
         $skin_list      = array_merge( $parent_skins , $child_skins );
 
       return apply_filters( 'tc_skin_list', $skin_list );

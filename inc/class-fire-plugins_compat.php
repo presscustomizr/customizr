@@ -65,67 +65,67 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     function czr_plugins_compatibility() {
       /* JETPACK */
       //adds compatibilty with the jetpack image carousel and photon
-      if ( current_theme_supports( 'jetpack' ) && $this -> tc_is_plugin_active('jetpack/jetpack.php') )
-        $this -> tc_set_jetpack_compat();
+      if ( current_theme_supports( 'jetpack' ) && $this -> czr_is_plugin_active('jetpack/jetpack.php') )
+        $this -> czr_set_jetpack_compat();
 
       /* BBPRESS */
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
-      if ( current_theme_supports( 'bbpress' ) && $this -> tc_is_plugin_active('bbpress/bbpress.php') )
-        $this -> tc_set_bbpress_compat();
+      if ( current_theme_supports( 'bbpress' ) && $this -> czr_is_plugin_active('bbpress/bbpress.php') )
+        $this -> czr_set_bbpress_compat();
 
       /* BUDDYPRESS */
       //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
       // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
-      if ( current_theme_supports( 'buddy-press' ) && $this -> tc_is_plugin_active('buddypress/bp-loader.php') )
-        $this -> tc_set_buddypress_compat();
+      if ( current_theme_supports( 'buddy-press' ) && $this -> czr_is_plugin_active('buddypress/bp-loader.php') )
+        $this -> czr_set_buddypress_compat();
 
       /*
       * QTranslatex
       * Credits : @acub, http://websiter.ro
       */
-      if ( current_theme_supports( 'qtranslate-x' ) && $this -> tc_is_plugin_active('qtranslate-x/qtranslate.php') )
-        $this -> tc_set_qtranslatex_compat();
+      if ( current_theme_supports( 'qtranslate-x' ) && $this -> czr_is_plugin_active('qtranslate-x/qtranslate.php') )
+        $this -> czr_set_qtranslatex_compat();
 
       /*
       * Polylang
       * Credits : Rocco Aliberti
       */
-      if ( current_theme_supports( 'polylang' ) && $this -> tc_is_plugin_active('polylang/polylang.php') )
-        $this -> tc_set_polylang_compat();
+      if ( current_theme_supports( 'polylang' ) && $this -> czr_is_plugin_active('polylang/polylang.php') )
+        $this -> czr_set_polylang_compat();
 
       /*
       * WPML
       */
-      if ( current_theme_supports( 'wpml' ) && $this -> tc_is_plugin_active('sitepress-multilingual-cms/sitepress.php') )
-        $this -> tc_set_wpml_compat();
+      if ( current_theme_supports( 'wpml' ) && $this -> czr_is_plugin_active('sitepress-multilingual-cms/sitepress.php') )
+        $this -> czr_set_wpml_compat();
 
       /* The Events Calendar */
-      if ( current_theme_supports( 'the-events-calendar' ) && $this -> tc_is_plugin_active('the-events-calendar/the-events-calendar.php') )
-        $this -> tc_set_the_events_calendar_compat();
+      if ( current_theme_supports( 'the-events-calendar' ) && $this -> czr_is_plugin_active('the-events-calendar/the-events-calendar.php') )
+        $this -> czr_set_the_events_calendar_compat();
 
       /* Optimize Press */
-      if ( current_theme_supports( 'optimize-press' ) && $this -> tc_is_plugin_active('optimizePressPlugin/optimizepress.php') )
-        $this -> tc_set_optimizepress_compat();
+      if ( current_theme_supports( 'optimize-press' ) && $this -> czr_is_plugin_active('optimizePressPlugin/optimizepress.php') )
+        $this -> czr_set_optimizepress_compat();
 
       /* Woocommerce */
-      if ( current_theme_supports( 'woocommerce' ) && $this -> tc_is_plugin_active('woocommerce/woocommerce.php') )
-        $this -> tc_set_woocomerce_compat();
+      if ( current_theme_supports( 'woocommerce' ) && $this -> czr_is_plugin_active('woocommerce/woocommerce.php') )
+        $this -> czr_set_woocomerce_compat();
 
       /* Sensei woocommerce addon */
-      if ( current_theme_supports( 'sensei') && $this -> tc_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
-        $this -> tc_set_sensei_compat();
+      if ( current_theme_supports( 'sensei') && $this -> czr_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+        $this -> czr_set_sensei_compat();
 
       /* Visual Composer */
-      if ( current_theme_supports( 'visual-composer') && $this -> tc_is_plugin_active('js_composer/js_composer.php') )
-        $this -> tc_set_vc_compat();
+      if ( current_theme_supports( 'visual-composer') && $this -> czr_is_plugin_active('js_composer/js_composer.php') )
+        $this -> czr_set_vc_compat();
 
       /* Disqus Comment System */
-      if ( current_theme_supports( 'disqus') && $this -> tc_is_plugin_active('disqus-comment-system/disqus.php') )
-        $this -> tc_set_disqus_compat();
+      if ( current_theme_supports( 'disqus') && $this -> czr_is_plugin_active('disqus-comment-system/disqus.php') )
+        $this -> czr_set_disqus_compat();
 
       /* Ultimate Responsive Image Slider  */
-      if ( current_theme_supports( 'uris' ) && $this -> tc_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
-        $this -> tc_set_uris_compat();
+      if ( current_theme_supports( 'uris' ) && $this -> czr_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
+        $this -> czr_set_uris_compat();
     }//end of plugin compatibility function
 
 
@@ -307,7 +307,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           add_filter( $filter, 'tc_apply_qtranslate' );
 
         //translate button text
-        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_slider::$instance -> tc_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
+        $pre_slides['common']['button_text'] = $pre_slides['common']['button_text'] ? CZR_slider::$instance -> czr_get_post_slide_button_text( $pre_slides['common']['button_text'] ) : '';
 
         //translate title and excerpt if needed
         $_posts = &$pre_slides['posts'];
@@ -317,8 +317,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           $_p = get_post( $ID );
           if ( ! $_p ) continue;
 
-          $_post['title'] = $_post['title'] ? CZR_slider::$instance -> tc_get_post_slide_title($_p, $ID) : '';
-          $_post['text']  = $_post['text'] ? CZR_slider::$instance -> tc_get_post_slide_excerpt($_p, $ID) : '';
+          $_post['title'] = $_post['title'] ? CZR_slider::$instance -> czr_get_post_slide_title($_p, $ID) : '';
+          $_post['text']  = $_post['text'] ? CZR_slider::$instance -> czr_get_post_slide_excerpt($_p, $ID) : '';
         }
         return $pre_slides;
       }
@@ -341,15 +341,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_pll_strings_setup() {
         // grab theme options
-        $tc_options = tc__f('__options');
+        $tc_options = czr__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = CZR_utils_settings_map::$instance -> tc_get_customizer_map( $get_default = true );
+        $tc_settings_map = CZR_utils_settings_map::$instance -> czr_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
-        $tc_translatable_raw_options = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_raw_options = CZR_plugins_compat::$instance -> czr_get_string_options_to_translate();
         $tc_pll_options              = array();
 
         //build array if option => array( label (gettext-ed), option )
@@ -379,7 +379,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
         //strings translation
         //get the options to translate
-        $tc_translatable_options = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
+        $tc_translatable_options = CZR_plugins_compat::$instance -> czr_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
           add_filter("tc_opt_$tc_translatable_option", 'pll__');
@@ -466,7 +466,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
-          $options_to_translate = CZR_plugins_compat::$instance -> tc_get_string_options_to_translate();
+          $options_to_translate = CZR_plugins_compat::$instance -> czr_get_string_options_to_translate();
 
           $option_name_assoc = apply_filters( 'tc_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
@@ -574,11 +574,11 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_wpml_admin_setup() {
         // If wpml-string-translation is active perform admin pages translation
         if ( function_exists( 'icl_register_string' ) ) {
-          $tc_wpml_option_name = tc_wpml_get_options_names_config();
+          $tc_wpml_option_name = czr_wpml_get_options_names_config();
           $tc_wpml_options     = array_keys($tc_wpml_option_name);
 
           // grab theme options
-          $tc_options = tc__f('__options');
+          $tc_options = czr__f('__options');
 
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
@@ -595,7 +595,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( CZR___::$instance -> tc_is_customize_left_panel() )
+        if ( CZR___::$instance -> czr_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'tc_wpml_customizer_options_transpose' );
         function czr_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
@@ -606,7 +606,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           foreach ( $options_to_transpose as $type => $option_to_transpose )
             foreach ( $option_to_transpose as $option )
               if ( isset( $options[$option] ) )
-                $options[$option] = tc_wpml_object_id( $options[$option], $type);
+                $options[$option] = czr_wpml_object_id( $options[$option], $type);
           return $options;
         }
 
@@ -630,26 +630,26 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           //define our icl_t wrapper for options filtered with tc_opt_{$option}
           if ( ! function_exists( 'czr_wpml_t_opt' ) ) {
             function czr_wpml_t_opt( $string ) {
-              return tc_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
+              return czr_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
             }
           }
           //special function for the post slider button text pre trim filter
           if ( ! function_exists( 'czr_wpml_t_ps_button_text' ) ) {
             function czr_wpml_t_ps_button_text( $string ) {
-              return tc_wpml_t( $string, 'tc_posts_slider_button_text' );
+              return czr_wpml_t( $string, 'tc_posts_slider_button_text' );
             }
           }
           //define our icl_t wrapper
           if ( ! function_exists( 'czr_wpml_t' ) ) {
             function czr_wpml_t( $string, $opt ) {
-              $tc_wpml_options_names = tc_wpml_get_options_names_config();
+              $tc_wpml_options_names = czr_wpml_get_options_names_config();
               return icl_t( TC_WPML_CONTEXT, $tc_wpml_options_names[$opt], $string );
             }
           }
           /*** End TC - WPML bind ***/
 
           //get the options to translate
-          $tc_wpml_options = array_keys( tc_wpml_get_options_names_config() );
+          $tc_wpml_options = array_keys( czr_wpml_get_options_names_config() );
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
@@ -663,7 +663,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         // Featured pages ids "translation"
         add_filter( 'tc_fp_id', 'tc_wpml_page_id', 20 );
         function czr_wpml_page_id( $fp_page_id ) {
-          return tc_wpml_object_id( $fp_page_id, 'page');
+          return czr_wpml_object_id( $fp_page_id, 'page');
         }
 
         /*B) Tax */
@@ -676,7 +676,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         function czr_wpml_translate_cat( $cat_ids ){
           if ( ! ( is_array( $cat_ids ) && ! empty( $cat_ids ) ) )
             return $cat_ids;
-          return array_unique( tc_wpml_object_id( $cat_ids, 'category' ) );
+          return array_unique( czr_wpml_object_id( $cat_ids, 'category' ) );
         }
         //Translate category ids for the filtered posts in home/blog
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'tc_wpml_translate_cat');
@@ -737,14 +737,14 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'tc_tec_disable_tax_archive_title');
       function czr_tec_disable_tax_archive_title( $bool ) {
-        return tc_is_tec_events_list() ? false : $bool;
+        return czr_is_tec_events_list() ? false : $bool;
       }
 
       // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
       add_filter( 'tc_post_list_controller', 'tc_tec_disable_post_list');
       add_filter( 'tc_is_grid_enabled', 'tc_tec_disable_post_list');
       function czr_tec_disable_post_list( $bool ) {
-        return tc_is_tec_events_list() ? false : $bool;
+        return czr_is_tec_events_list() ? false : $bool;
       }
 
       // Now we have to display a post or page content
@@ -753,9 +753,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         //2 cases:
         //1 - in events lists - we force showing single post content
         //2 - in single events we have to prevent showing both page and post content
-        if ( tc_is_tec_events_list() )
+        if ( czr_is_tec_events_list() )
           return true;
-        else if( tc_is_tec_single_event() )
+        else if( czr_is_tec_single_event() )
           return false;
         return $bool;
       }
@@ -766,7 +766,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // What we do here is unhooking their callback before the breadcrumb is built and re-hook it after it has been displayed
       add_action( 'wp_head', 'tc_tec_allow_display_breadcrumb_in_month_view');
       function czr_tec_allow_display_breadcrumb_in_month_view() {
-        if ( ! ( tc_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) )
+        if ( ! ( czr_is_tec_events_list() && function_exists( 'tribe_is_month' ) && tribe_is_month() ) )
           return;
 
         add_filter( 'tc_breadcrumb_trail_args', 'tc_tec_unhook_empty_post_type_archive_title');
@@ -783,7 +783,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //disables post navigation in single tec pages
       add_filter( 'tc_show_post_navigation', 'tc_tec_disable_post_navigation' );
       function czr_tec_disable_post_navigation($bool) {
-        return ( tc_is_tec_single_event() ) ? false : $bool;
+        return ( czr_is_tec_single_event() ) ? false : $bool;
       }
     }//end the-events-calendar compat
 
@@ -845,10 +845,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_sensei_wrappers() {
         switch ( current_filter() ) {
-          case 'sensei_before_main_content': CZR_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'sensei_before_main_content': CZR_plugins_compat::$instance -> czr_mainwrapper_start();
                                              break;
 
-          case 'sensei_after_main_content' : CZR_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'sensei_after_main_content' : CZR_plugins_compat::$instance -> czr_mainwrapper_end();
                                              break;
         }//end of switch on hook
       }//end of nested function
@@ -893,10 +893,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content': CZR_plugins_compat::$instance -> tc_mainwrapper_start();
+          case 'woocommerce_before_main_content': CZR_plugins_compat::$instance -> czr_mainwrapper_start();
                                                   break;
 
-          case 'woocommerce_after_main_content' : CZR_plugins_compat::$instance -> tc_mainwrapper_end();
+          case 'woocommerce_after_main_content' : CZR_plugins_compat::$instance -> czr_mainwrapper_end();
                                                   break;
         }//end of switch on hook
       }//end of nested function
@@ -952,7 +952,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_woocommerce_disable_link_scroll' );
       function czr_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_utils::$inst->czr_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -988,13 +988,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //narrow the tagline
       add_filter( 'tc_tagline_class', 'tc_woocommerce_force_tagline_width', 100 );
       function czr_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
+        return 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
       }
 
       // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
       add_filter( 'woocommerce_add_to_cart_fragments', 'tc_woocommerce_add_to_cart_fragment' );
       function czr_woocommerce_add_to_cart_fragment( $fragments ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) ) {
+        if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) ) {
           $_cart_count = WC()->cart->get_cart_contents_count();
           $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
         }
@@ -1004,13 +1004,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //print the cart menu in the header
       add_action( '__navbar', 'tc_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function czr_woocommerce_header_cart() {
-        if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) )
           return;
 
         $_main_item_class = '';
         $_cart_count      = WC()->cart->get_cart_contents_count();
         //highlight the cart icon when in the Cart or Ceckout page
-        if ( tc_wc_is_checkout_cart() ) {
+        if ( czr_wc_is_checkout_cart() ) {
           $_main_item_class = 'current-menu-item';
         }
 
@@ -1023,7 +1023,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             </a>
             <?php
             ?>
-            <?php if ( ! tc_wc_is_checkout_cart() ) : //do not display the dropdown in the cart or checkout page ?>
+            <?php if ( ! czr_wc_is_checkout_cart() ) : //do not display the dropdown in the cart or checkout page ?>
               <ul class="dropdown-menu">
                <li>
                  <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
@@ -1039,15 +1039,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //add woommerce header cart classes to the header (sticky enabled)
       add_filter( 'tc_header_classes'   , 'tc_woocommerce_set_header_classes');
       function czr_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
-          $_classes[]          = ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+        if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) )
+          $_classes[]          = ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
         return $_classes;
       }
 
       //add woocommerce header cart CSS
       add_filter('tc_user_options_style', 'tc_woocommerce_header_cart_css');
       function czr_woocommerce_header_cart_css( $_css ) {
-        if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
 
         /* The only real decision I took here is the following:
@@ -1055,7 +1055,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         * so that as it grows it won't break on a new line. This is quite an hack to
         * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
         */
-        $_header_layout      = esc_attr( CZR_utils::$inst->tc_opt( 'tc_header_layout') );
+        $_header_layout      = esc_attr( CZR_utils::$inst->czr_opt( 'tc_header_layout') );
         $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
         $_wc_t_align         = 'left';
 
@@ -1159,7 +1159,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'tc_anchor_smoothscroll_excl', 'tc_vc_disable_link_scroll' );
       function czr_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_utils::$inst->tc_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( CZR_utils::$inst->czr_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();
@@ -1193,13 +1193,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //replace the default comment link anchor with a more descriptive disqus anchor
       add_filter( 'tc_bubble_comment_anchor', 'tc_disqus_bubble_comment_anchor' );
       function czr_disqus_bubble_comment_anchor( $anchor ) {
-        return tc_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
+        return czr_disqus_comments_enabled() ? '#tc-disqus-comments' : $anchor;
       }
       //wrap disqus comments template in a convenient div
       add_action( 'tc_before_comments_template' , 'tc_disqus_comments_wrapper' );
       add_action( 'tc_after_comments_template'  , 'tc_disqus_comments_wrapper' );
       function czr_disqus_comments_wrapper() {
-        if ( ! tc_disqus_comments_enabled() )
+        if ( ! czr_disqus_comments_enabled() )
           return;
 
         switch ( current_filter() ) {
@@ -1256,7 +1256,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
 
-              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::tc_get_layout( CZR_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::czr_get_layout( CZR_utils::czr_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
                 <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
       <?php
@@ -1292,7 +1292,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @return bool True, if in the active plugins list. False, not in the list.
     */
     function czr_is_plugin_active( $plugin ) {
-      return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || $this -> tc_is_plugin_active_for_network( $plugin );
+      return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || $this -> czr_is_plugin_active_for_network( $plugin );
     }
 
 

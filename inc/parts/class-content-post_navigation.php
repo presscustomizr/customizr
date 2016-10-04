@@ -36,11 +36,11 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       function czr_set_visibility_options(){
 
         $_nav_classes              = array('navigation');
-        $_context                  = $this -> tc_get_context();
-        $_post_nav_enabled         = $this -> tc_is_post_navigation_enabled();
-        $_post_nav_context_enabled = $this -> tc_is_post_navigation_context_enabled( $_context );
+        $_context                  = $this -> czr_get_context();
+        $_post_nav_enabled         = $this -> czr_is_post_navigation_enabled();
+        $_post_nav_context_enabled = $this -> czr_is_post_navigation_context_enabled( $_context );
 
-        $_is_customizing           = CZR___::$instance -> tc_is_customizing() ;
+        $_is_customizing           = CZR___::$instance -> czr_is_customizing() ;
 
         if ( $_is_customizing ){
           if ( ! $_post_nav_enabled )
@@ -66,7 +66,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
        */
       function czr_post_nav() {
 
-        list( $post_navigation_bool, $post_nav_class, $_context) = $this -> tc_set_visibility_options();
+        list( $post_navigation_bool, $post_nav_class, $_context) = $this -> czr_set_visibility_options();
 
         if( ! $post_navigation_bool )
           return;
@@ -215,7 +215,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
           return 'single'; // exclude attachments
         if ( is_home() && 'posts' == get_option('show_on_front') )
           return 'home';
-        if ( !is_404() && !tc__f( '__is_home_empty') )
+        if ( !is_404() && !czr__f( '__is_home_empty') )
           return 'archive';
 
         return false;
@@ -227,14 +227,14 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @return bool
       */
       function czr_is_post_navigation_context_enabled( $_context ) {
-        return $_context && 1 == esc_attr( CZR_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
+        return $_context && 1 == esc_attr( CZR_utils::$inst -> czr_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
       function czr_is_post_navigation_enabled(){
-        return 1 == esc_attr( CZR_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
+        return 1 == esc_attr( CZR_utils::$inst -> czr_opt( 'tc_show_post_navigation' ) ) ;
       }
 
   }//end of class

@@ -122,7 +122,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
     					<?php endif; ?>
     					<label>
     						<span class="customize-control-title"><?php echo $this->label; ?></span>
-    						<?php $this -> tc_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2' : '' ) ?>
+    						<?php $this -> czr_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2' : '' ) ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="tc-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -248,7 +248,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
       printf('<select %1$s class="%2$s">%3$s</select>',
         call_user_func( array( $this, 'get'.'_'.'link' ) ),
         $class,
-        $this -> tc_get_select_options()
+        $this -> czr_get_select_options()
       );
     }
 
@@ -275,7 +275,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
         case 'tc_theme_options[tc_skin]':
           $_data_hex  = '';
-          $_color_map = CZR_utils::$inst -> tc_get_skin_color( 'all' );
+          $_color_map = CZR_utils::$inst -> czr_get_skin_color( 'all' );
           //Get the color map array structured as follow
           // array(
           //       'blue.css'        =>  array( '#08c', '#005580' ),
@@ -400,7 +400,7 @@ if ( ! class_exists( 'CZR_Customize_Multipicker_Control' ) ) :
       if ( ! $this -> type ) return;
       do_action( '__before_setting_control' , $this -> id );
 
-      $dropdown = $this -> tc_get_dropdown_multipicker();
+      $dropdown = $this -> czr_get_dropdown_multipicker();
 
       if ( empty( $dropdown ) ) return;
 

@@ -52,7 +52,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
                         $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
                         //did we activate the fancy box in customizer?
-                        $tc_fancybox = esc_attr( CZR_utils::$inst->tc_opt( 'tc_fancybox' ) );
+                        $tc_fancybox = esc_attr( CZR_utils::$inst->czr_opt( 'tc_fancybox' ) );
 
                         ?>
 

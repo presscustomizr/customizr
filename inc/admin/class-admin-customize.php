@@ -179,10 +179,10 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 		* @since Customizr 3.0
 		*/
 		function czr_customize_register( $wp_customize) {
-			return $this -> tc_customize_factory (
+			return $this -> czr_customize_factory (
         $wp_customize,
-        $this -> tc_customize_arguments(),
-        CZR_utils_settings_map::$instance -> tc_get_customizer_map()
+        $this -> czr_customize_arguments(),
+        CZR_utils_settings_map::$instance -> czr_get_customizer_map()
       );
 		}
 
@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_utils::$inst -> tc_is_customizr_option( $key ) )
+          if ( CZR_utils::$inst -> czr_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$tc_option_group}[{$key}]" : $key;
 
@@ -391,7 +391,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 //can be hacked to override the preview params when a custom skin is used
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => CZR_utils::$inst -> tc_get_font( 'list' ),
+                'fontPairs'       => CZR_utils::$inst -> czr_get_font( 'list' ),
                 'fontSelectors'   => CZR_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
@@ -464,8 +464,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 	        	'AjaxUrl'       => admin_url( 'admin-ajax.php' ),
 	        	'TCNonce' 			=> wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'     => CZR___::$theme_name,
-            'HideDonate'    => $this -> tc_get_hide_donate_status(),
-            'ShowCTA'       => ( true == CZR_utils::$inst->tc_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+            'HideDonate'    => $this -> czr_get_hide_donate_status(),
+            'ShowCTA'       => ( true == CZR_utils::$inst->czr_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
@@ -492,7 +492,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       $_user_started_customize = false !== $_options || ! empty( $_options );
 
       //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || CZR_utils::$inst->tc_opt('tc_hide_donate');
+      return ! $_user_started_customize || ! $_is_customizr_active || CZR_utils::$inst->czr_opt('tc_hide_donate');
     }
 
 

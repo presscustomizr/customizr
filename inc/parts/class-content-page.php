@@ -46,7 +46,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
      * @since Customizr 3.0
      */
     function czr_page_content() {
-      if ( ! $this -> tc_page_display_controller() )
+      if ( ! $this -> czr_page_display_controller() )
         return;
 
       ob_start();
@@ -87,10 +87,10 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.4+
     */
     function czr_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && CZR_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+      if ( ! ( $this -> czr_page_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return CZR_placeholders::tc_get_smartload_help_block() . $the_content;
+      return CZR_placeholders::czr_get_smartload_help_block() . $the_content;
     }
 
 
@@ -105,9 +105,9 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.4+
     */
     function czr_page_display_controller() {
-      $tc_show_page_content = 'page' == tc__f('__post_type')
+      $tc_show_page_content = 'page' == czr__f('__post_type')
           && is_singular()
-          && ! tc__f( '__is_home_empty');
+          && ! czr__f( '__is_home_empty');
 
       return apply_filters( 'tc_show_page_content', $tc_show_page_content );
     }

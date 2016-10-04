@@ -4,7 +4,7 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to tc_comment_callback()
+ * handled by a callback to czr_comment_callback()
  *
  * @package Customizr
  * @since Customizr 1.0

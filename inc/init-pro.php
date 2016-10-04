@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
         //load
-        $this -> tc_pro_load();
+        $this -> czr_pro_load();
     }//end of __construct()
 
 
@@ -71,7 +71,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     * @since  Customizr 3.3+
     */
     function czr_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
+      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> czr_is_customizing() ) ) {
           unset($_to_load['TC_activation_key']);
           unset($_to_load['TC_theme_updater']);
           unset($_to_load['TC_theme_check_updates']);
@@ -84,5 +84,5 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
 endif;
 
 //may be load pro
-if ( CZR___::tc_is_pro() )
+if ( CZR___::czr_is_pro() )
   new CZR_init_pro(CZR___::$theme_name );

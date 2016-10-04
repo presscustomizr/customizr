@@ -131,7 +131,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_global_layout') );
+            $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +146,16 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( CZR_utils::$inst->tc_opt('tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( CZR_utils::$inst->czr_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -1300,7 +1300,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                 }//end foreach
                 //attachments
                 if( $tc_post_type == 'attachment' )
-                  $this -> tc_slide_save( $post_ID );
+                  $this -> czr_slide_save( $post_ID );
 
                 do_action( "__after_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
             }//function
@@ -1336,16 +1336,16 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
         $tc_post_id         = $_POST['tc_post_id'];
 
         //save $_POST var in DB
-        $this -> tc_slider_ajax_save( $tc_post_id);
+        $this -> czr_slider_ajax_save( $tc_post_id);
 
         //check if we are in the post or attachment screen and select the appropriate rendering
         //we use the post_slider var defined in tc_ajax_slider.js
         if ( isset( $_POST['tc_post_type'])) {
           if( $_POST['tc_post_type'] == 'post' ) {
-            $this -> tc_get_post_slider_infos( $tc_post_id );
+            $this -> czr_get_post_slider_infos( $tc_post_id );
           }
           else {
-            $this -> tc_get_attachment_slider_infos( $tc_post_id );
+            $this -> czr_get_attachment_slider_infos( $tc_post_id );
           }
         }
         //echo $_POST['slider_id'];
@@ -1454,7 +1454,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
   ----------------------------------------------------------------
   */
       function czr_attachment_filter( $form_fields, $post = null) {
-          $this -> tc_attachment_slider_box ( $post);
+          $this -> czr_attachment_slider_box ( $post);
            return $form_fields;
       }
 
@@ -1463,7 +1463,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
           if ( isset( $_POST['tc_post_id']))
            $postid = $_POST['tc_post_id'];
 
-          $this -> tc_slide_save( $postid );
+          $this -> czr_slide_save( $postid );
 
           return $post;
       }
