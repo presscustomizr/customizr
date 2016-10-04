@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_404' ) ) :
        * @package Customizr
        * @since Customizr 3.0
        */
-      function tc_404_content() {
+      function czr_404_content() {
           if ( !is_404() )
               return;
 

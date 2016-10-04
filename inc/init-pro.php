@@ -40,7 +40,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     * @return void()
     *
     */
-    private function tc_pro_load() {
+    private function czr_pro_load() {
       $_classes = apply_filters( 'tc_get_files_to_load_pro' , $this -> _pro_classes );
 
       //loads and instantiates the activation / updates classes
@@ -70,7 +70,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     * @return boolean
     * @since  Customizr 3.3+
     */
-    function tc_set_files_to_load_pro($_to_load) {
+    function czr_set_files_to_load_pro($_to_load) {
       if ( ! is_admin() || ( is_admin() && CZR___::$instance -> tc_is_customizing() ) ) {
           unset($_to_load['TC_activation_key']);
           unset($_to_load['TC_theme_updater']);

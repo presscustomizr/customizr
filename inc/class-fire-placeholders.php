@@ -30,7 +30,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * hook : init => because we need to fire this function before the admin_ajax.php call
     * @since v3.4+
     */
-    function tc_placeholders_ajax_setup() {
+    function czr_placeholders_ajax_setup() {
       if ( ! $this -> tc_is_front_help_enabled() )
         return;
       add_action( 'wp_ajax_dismiss_thumbnail_help'    , array( $this, 'tc_dismiss_thumbnail_help' ) );
@@ -52,7 +52,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * hook : wp => because we need to access some conditional tags like is_home when checking if the placeholder / notice are enabled
     * @since v3.4+
     */
-    function tc_placeholders_write_ajax_js_in_footer() {
+    function czr_placeholders_write_ajax_js_in_footer() {
       if ( ! $this -> tc_is_front_help_enabled() )
         return;
       if ( $this -> tc_is_thumbnail_help_on() )
@@ -91,7 +91,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_dismiss_thumbnail_help() {
+    function czr_dismiss_thumbnail_help() {
       check_ajax_referer( 'tc-thumbnail-help-nonce', 'thumbnailNonce' );
       set_transient( 'tc_thumbnail_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
@@ -105,7 +105,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_thumbnail_help_js() {
+    function czr_write_thumbnail_help_js() {
       ?>
       <script type="text/javascript" id="thumbnail-help">
         ( function( $ ) {
@@ -148,7 +148,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    static function tc_is_thumbnail_help_on() {
+    static function czr_is_thumbnail_help_on() {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -185,7 +185,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_dismiss_img_smartload_help() {
+    function czr_dismiss_img_smartload_help() {
       check_ajax_referer( 'tc-img-smartload-help-nonce', 'imgSmartLoadNonce' );
       set_transient( 'tc_img_smartload_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
@@ -197,7 +197,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    static function tc_get_smartload_help_block( $echo = false ) {
+    static function czr_get_smartload_help_block( $echo = false ) {
       //prepare js printing in the footer
       add_filter( 'tc_write_img_smartload_help_js', '__return_true' );
 
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_maybe_write_img_sarmtload_help_js() {
+    function czr_maybe_write_img_sarmtload_help_js() {
       if ( ! apply_filters( 'tc_write_img_smartload_help_js', false ) ) return;
       ?>
       <script type="text/javascript" id="img-smartload-help">
@@ -278,7 +278,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.4+
     */
-    static function tc_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
+    static function czr_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -322,7 +322,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_dismiss_sidenav_help() {
+    function czr_dismiss_sidenav_help() {
       check_ajax_referer( 'tc-sidenav-help-nonce', 'sideNavNonce' );
       set_transient( 'tc_sidenav_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
@@ -336,7 +336,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_sidenav_help_js() {
+    function czr_write_sidenav_help_js() {
       ?>
       <script type="text/javascript" id="sidenav-help">
         ( function( $ ) {
@@ -379,7 +379,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    static function tc_is_sidenav_help_on() {
+    static function czr_is_sidenav_help_on() {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -418,7 +418,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_dismiss_second_menu_notice() {
+    function czr_dismiss_second_menu_notice() {
       check_ajax_referer( 'tc-second-menu-placeholder-nonce', 'secondMenuNonce' );
       set_transient( 'tc_second_menu_placehold', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
@@ -432,7 +432,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_second_menu_placeholder_js() {
+    function czr_write_second_menu_placeholder_js() {
       ?>
       <script type="text/javascript" id="second-menu-placeholder">
         ( function( $ ) {
@@ -475,7 +475,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    static function tc_is_second_menu_placeholder_on() {
+    static function czr_is_second_menu_placeholder_on() {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -508,7 +508,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_dismiss_main_menu_notice() {
+    function czr_dismiss_main_menu_notice() {
       check_ajax_referer( 'tc-main-menu-notice-nonce', 'mainMenuNonce' );
       set_transient( 'tc_main_menu_notice', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
@@ -522,7 +522,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_main_menu_notice_js() {
+    function czr_write_main_menu_notice_js() {
       ?>
       <script type="text/javascript" id="main-menu-placeholder">
         ( function( $ ) {
@@ -565,7 +565,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    static function tc_is_main_menu_notice_on() {
+    static function czr_is_main_menu_notice_on() {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -603,7 +603,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_slider_notice_ajax_actions() {
+    function czr_slider_notice_ajax_actions() {
       if ( isset( $_POST['remove_action'] ) )
         $_remove_action = esc_attr( $_POST['remove_action'] );
       else
@@ -633,7 +633,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_slider_notice_js() {
+    function czr_write_slider_notice_js() {
       ?>
       <script type="text/javascript" id="slider-notice-actions">
         ( function( $ ) {
@@ -685,7 +685,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.4+
     */
-    static function tc_is_slider_notice_on( $_position = null ) {
+    static function czr_is_slider_notice_on( $_position = null ) {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -724,7 +724,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_fp_notice_ajax_actions() {
+    function czr_fp_notice_ajax_actions() {
       if ( isset( $_POST['remove_action'] ) )
         $_remove_action = esc_attr( $_POST['remove_action'] );
       else
@@ -754,7 +754,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_write_fp_notice_js() {
+    function czr_write_fp_notice_js() {
       ?>
       <script type="text/javascript" id="fp-notice-actions">
         ( function( $ ) {
@@ -806,7 +806,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.4+
     */
-    static function tc_is_fp_notice_on( $_position = null ) {
+    static function czr_is_fp_notice_on( $_position = null ) {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -839,7 +839,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return bool
     * @since v3.4+
     */
-    function tc_is_one_fp_set() {
+    function czr_is_one_fp_set() {
       $_fp_sets = array();
       $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
       if ( ! is_array($fp_ids) )
@@ -863,7 +863,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_widget_placeholder_script() {
+    function czr_widget_placeholder_script() {
       ?>
       <script type="text/javascript" id="widget-placeholders">
         var tc_dismiss_widget_notice = function( _position, $_el ) {
@@ -910,7 +910,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_dismiss_widget_notice() {
+    function czr_dismiss_widget_notice() {
       check_ajax_referer( 'tc-widget-placeholder-nonce', 'WidgetNonce' );
       if ( isset( $_POST['position'] ) )
         $_pos = esc_attr( $_POST['position'] );
@@ -927,7 +927,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    static function tc_is_widget_placeholder_enabled( $_position = null ) {
+    static function czr_is_widget_placeholder_enabled( $_position = null ) {
       //never display when customizing
       if ( CZR___::$instance -> tc_is_customizing() )
         return;
@@ -947,7 +947,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @return  bool
     * @since Customizr 3.3+
     */
-    function tc_check_widget_placeholder_transient( $_position ){
+    function czr_check_widget_placeholder_transient( $_position ){
       return 'disabled' != get_transient("tc_widget_placehold_{$_position}");
     }
 
@@ -957,7 +957,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * @since Customizr 3.4+
     * User option to enabe/disable all notices. Enabled by default.
     */
-    function tc_is_front_help_enabled(){
+    function czr_is_front_help_enabled(){
       return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->tc_opt('tc_display_front_help') );
     }
 

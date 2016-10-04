@@ -46,7 +46,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * hook : wp
         */
-        function tc_set_grid_hooks(){
+        function czr_set_grid_hooks(){
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> tc_is_grid_enabled() ) )
               return;
 
@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : __before_article_container
         * before loop
         */
-        function tc_set_grid_before_loop_hooks(){
+        function czr_set_grid_before_loop_hooks(){
           // LAYOUT
           add_filter( 'tc_post_list_layout'         , array( $this, 'tc_grid_set_content_layout') );
           add_filter( 'tc_post_list_selectors'      , array( $this, 'tc_grid_set_article_selectors') );
@@ -114,7 +114,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * actions and filters inside loop
         * @return  void
         */
-        function tc_set_grid_loop_hooks() {
+        function czr_set_grid_loop_hooks() {
           add_action( '__before_article'            , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
           add_action( '__after_article'             , array( $this, 'tc_print_article_sep' ), 0 );
           add_action( '__after_article'             , array( $this, 'tc_print_row_fluid_section_wrapper' ), 1 );
@@ -135,7 +135,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : __before_article
         * Wrap articles in a grid section
         */
-        function tc_print_row_fluid_section_wrapper(){
+        function czr_print_row_fluid_section_wrapper(){
           global $wp_query;
           $current_post   = $wp_query -> current_post;
           $start_post     = $this -> expanded_sticky ? 1 : 0;
@@ -166,7 +166,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return the figcation content parts as an array of html strings
         * inside loop
         */
-        function tc_grid_prepare_single_post() {
+        function czr_grid_prepare_single_post() {
           global $post;
           if ( ! isset($post) || empty($post) || ! apply_filters( 'tc_show_post_in_post_list', $this -> tc_is_grid_context_matching() , $post ) )
             return;
@@ -224,7 +224,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return html string
         *
         */
-        private function tc_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html ) {
+        private function czr_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html ) {
           ob_start();
             do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
 
@@ -247,7 +247,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /**
         * hook : __grid_single_post_content
         */
-        function tc_grid_display_post_link(){
+        function czr_grid_display_post_link(){
           if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
           printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2$s"></a>',
@@ -260,7 +260,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /**
         * hook : __grid_single_post_content
         */
-        function tc_grid_display_fade_excerpt(){
+        function czr_grid_display_fade_excerpt(){
           if ( ! apply_filters( 'tc_grid_fade_excerpt' , ! $this -> tc_force_current_post_expansion() ) )
             return;
           printf( '<span class="tc-grid-fade_expt"></span>' );
@@ -271,7 +271,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * hook : __grid_single_post_content
         */
-        function tc_grid_display_figcaption_content() {
+        function czr_grid_display_figcaption_content() {
           ?>
               <div class="entry-summary">
                 <?php
@@ -291,7 +291,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : __after_article (declared in index.php)
         * print a separator after each article => revealed in responsive mode
         */
-        function tc_print_article_sep() {
+        function czr_print_article_sep() {
           //renders the hr separator after each article
           echo apply_filters( 'tc_grid_single_post_sep', '<hr class="featurette-divider '.current_filter().'">' );
         }
@@ -306,7 +306,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * Limits the length of the post titles in grids to a custom number of characters
         * @return string
         */
-        function tc_grid_set_title_length( $_title ) {
+        function czr_grid_set_title_length( $_title ) {
           $_max = esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_num_words') );
           $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
           $_max = $_max <= 0 ? 1 : $_max;
@@ -328,7 +328,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : pre_get_posts
         * exclude the first sticky post
         */
-        function tc_maybe_excl_first_sticky( $query ){
+        function czr_maybe_excl_first_sticky( $query ){
           if ( $this -> tc_is_grid_enabled() && $this -> tc_is_sticky_expanded( $query ) )
             $query->set('post__not_in', array( $this -> expanded_sticky ) );
         }
@@ -339,7 +339,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * force content + thumb layout : Force the title to be displayed always on bottom
         * @param current layout array()
         */
-        function tc_grid_set_content_layout( $_layout ){
+        function czr_grid_set_content_layout( $_layout ){
           $_layout['show_thumb_first'] = true;
           $_layout['content']          = 'tc-grid-excerpt';
           $_layout['thumb']            = 'span12 tc-grid-post-container';
@@ -355,7 +355,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @param $_col_nb = string possible values : 1, 2, 3, 4
         * @param $_current_layout string of layout class like span4
         */
-        function tc_set_grid_section_cols( $_col_nb, $_current_layout ) {
+        function czr_set_grid_section_cols( $_col_nb, $_current_layout ) {
           $_map = apply_filters(
             'tc_grid_col_layout_map',
             array(
@@ -386,7 +386,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * Apply proper class to articles selectors to control articles width
         * hook : tc_post_list_selectors
         */
-        function tc_grid_set_article_selectors($selectors){
+        function czr_grid_set_article_selectors($selectors){
           $_class = sprintf( '%1$s tc-grid span%2$s',
             apply_filters( 'tc_grid_add_expanded_class', $this -> tc_force_current_post_expansion() ) ? 'expanded' : '',
             is_numeric( $this -> tc_get_grid_section_cols() ) ? 12 / $this -> tc_get_grid_section_cols() : 6
@@ -398,7 +398,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * hook : __before_article_container
         */
-        function tc_grid_prepare_expand_sticky(){
+        function czr_grid_prepare_expand_sticky(){
           global $wp_query;
           if ( ! ( $this -> tc_is_sticky_expanded() &&
                  $wp_query -> query_vars[ 'paged' ] == 0 ) ){
@@ -415,7 +415,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * hook : tc_thumb_size_name
         */
-        function tc_set_thumb_size_name(){
+        function czr_set_thumb_size_name(){
           return ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc-grid-full' : 'tc-grid';
         }
 
@@ -423,7 +423,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * hook : tc_thumb_size
         */
-        function tc_set_thumb_size(){
+        function czr_set_thumb_size(){
           $thumb = ( $this -> tc_get_grid_section_cols() == '1' ) ? 'tc_grid_full_size' : 'tc_grid_size';
           return CZR_init::$instance -> $thumb;
         }
@@ -434,7 +434,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * inside loop
         * add custom classes to the grid .article-container element
         */
-        function tc_grid_container_set_classes( $_classes ) {
+        function czr_grid_container_set_classes( $_classes ) {
           array_push( $_classes, 'tc-post-list-grid' );
           if ( esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_shadow') ) )
             array_push( $_classes, 'tc-grid-shadow' );
@@ -448,7 +448,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return the figcation content as a string
         * inside loop
         */
-        private function tc_grid_get_single_post_html( $post_list_content_class ) {
+        private function czr_grid_get_single_post_html( $post_list_content_class ) {
           global $post;
           ob_start();
             ?>
@@ -467,7 +467,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return the comment_bubble as a string
         * inside loop
         */
-        function tc_grid_display_comment_bubble( $_html ) {
+        function czr_grid_display_comment_bubble( $_html ) {
           return CZR_comments::$instance -> tc_display_comment_bubble() . $_html;
         }
 
@@ -478,7 +478,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return  html string
         * hook : tc_grid_display_figcaption_content
         */
-        function tc_grid_set_expanded_post_title( $_html ){
+        function czr_grid_set_expanded_post_title( $_html ){
           if ( ! $this -> tc_force_current_post_expansion() )
               return $_html;
           global $post;
@@ -496,7 +496,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc_edit_in_title
         * @since Customizr 3.4.18
         */
-        function tc_grid_disable_edit_in_title_expanded( $_bool ){
+        function czr_grid_disable_edit_in_title_expanded( $_bool ){
           return $this -> tc_force_current_post_expansion() ? false : $_bool;
         }
 
@@ -506,7 +506,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc_grid_get_single_post_html
         * @since Customizr 3.4.18
         */
-        function tc_grid_render_expanded_edit_link( $_html ) {
+        function czr_grid_render_expanded_edit_link( $_html ) {
           if ( $this -> tc_force_current_post_expansion() )
             $_html .= CZR_headings::$instance -> tc_render_edit_link_view( $_echo = false );
           return $_html;
@@ -518,7 +518,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc_user_options_style
         * @since Customizr 3.2.18
         */
-        function tc_grid_write_inline_css( $_css ){
+        function czr_grid_write_inline_css( $_css ){
           if ( ! $this -> tc_is_grid_enabled() )
             return $_css;
 
@@ -544,7 +544,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc-grid-thumb-html
         * @return modified html string
         */
-        function tc_set_grid_icon_visibility( $_html ) {
+        function czr_set_grid_icon_visibility( $_html ) {
           $_icon_enabled = (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_icons') );
           if ( CZR___::$instance -> tc_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
@@ -569,7 +569,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return css media query string
         * Returns the paragraph and title media queries for a given layout
         */
-        private function tc_get_grid_font_css( $_col_nb = '3' ) {
+        private function czr_get_grid_font_css( $_col_nb = '3' ) {
           $_media_queries     = $this -> tc_get_grid_media_queries();//returns the simple array of media queries
           $_grid_font_sizes = $this -> tc_get_grid_font_sizes( $_col_nb );//return the array of sizes (ordered by @media queries) for a given column layout
           $_col_rules         = array();
@@ -594,7 +594,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /**
         * @return simple array of media queries
         */
-        private function tc_get_grid_media_queries() {
+        private function czr_get_grid_media_queries() {
           return apply_filters( 'tc_grid_media_queries' ,  array(
               '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 980px)', '(max-width: 979px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 480px)'
             )
@@ -611,7 +611,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * Note : When all sizes are requested (default case), the returned array can be filtered with the current layout param
         * Size array must have the same length of the media query array
         */
-        private function tc_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
+        private function czr_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
           $_col_media_matrix = apply_filters( 'tc_grid_font_matrix' , array(
               //=> matrix col nb / media queries
               //            1200 | 1199-980 | 979-768 | 767   | 480
@@ -652,7 +652,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @param  $_current_layout string. Ex : 'span9'
         * @return array()
         */
-        function tc_set_layout_font_size( $_sizes, $_col_nb, $_col_media_matrix, $_current_layout ) {
+        function czr_set_layout_font_size( $_sizes, $_col_nb, $_col_media_matrix, $_current_layout ) {
           //max possible font size key in the col_media_queries matrix for a given sidebar layout
           $_map = apply_filters(
             'tc_layout_font_size_map',
@@ -688,7 +688,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @param selector type string
         * returns ratio of size / body size for a given selector type ( headings or paragraphs )
         */
-        private function tc_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
+        private function czr_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
           $_ratios =  apply_filters( 'tc_get_grid_font_ratios' , array(
               'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
               'xxl' => array( 'h' => 1.86, 'p' => 1 ),
@@ -714,7 +714,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * 1) there's a sticky post
         * 2) user layout is one column
         */
-        private function tc_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
+        private function czr_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
           $_css = '';
           //Add one column font rules if there's a sticky post
           if ( $this -> tc_is_sticky_expanded() || '1' == $_col_nb ) {
@@ -743,7 +743,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * 1) there's a sticky post
         * 2) user layout is one column
         */
-        private function tc_grid_get_figure_css( $_col_nb = '3' ) {
+        private function czr_grid_get_figure_css( $_col_nb = '3' ) {
           $_height = $this -> tc_get_grid_column_height( $_col_nb );
           $_cols_class      = sprintf( 'grid-cols-%s' , $_col_nb );
           $_css = '';
@@ -772,7 +772,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @param selector type string
         * returns the font-size and line-height css rules
         */
-        private function tc_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
+        private function czr_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
           $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
           $_ratio = $this -> tc_get_grid_font_ratios( $_size , $_wot );
           //body font size
@@ -795,7 +795,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return string
         *
         */
-        private function tc_get_grid_column_height( $_cols_nb = '3' ) {
+        private function czr_get_grid_column_height( $_cols_nb = '3' ) {
           $_h               = $this -> tc_grid_get_thumb_height();
           $_current_layout  = CZR_utils::tc_get_layout( $this -> post_id , 'sidebar' );
           $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
@@ -835,7 +835,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return string
         *
         */
-        private function tc_set_max_col_height( $_heights ,$_h ) {
+        private function czr_set_max_col_height( $_heights ,$_h ) {
           $_return = array();
           foreach ($_heights as $_value) {
             $_return[] = $_value >= $_h ? $_h : $_value;
@@ -848,7 +848,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /**
         * @return (number) customizer user defined height for the grid thumbnails
         */
-        private function tc_grid_get_thumb_height() {
+        private function czr_grid_get_thumb_height() {
           $_opt = esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
@@ -858,7 +858,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return bool
         * check if we have to expand the first sticky post
         */
-        private function tc_is_sticky_expanded( $query = null ){
+        private function czr_is_sticky_expanded( $query = null ){
           global $wp_query, $wpdb;
           $query = ( $query ) ? $query : $wp_query;
 
@@ -899,7 +899,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return bool
         * returns if the current post is the expanded one
         */
-        private function tc_force_current_post_expansion(){
+        private function czr_force_current_post_expansion(){
           global $wp_query;
           return ( $this -> expanded_sticky && 0 == $wp_query -> current_post );
         }
@@ -908,13 +908,13 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /*
         * @return bool
         */
-        public function tc_is_grid_enabled() {
+        public function czr_is_grid_enabled() {
           return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_grid') ) && $this -> tc_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
-        private function tc_get_grid_cols() {
+        private function czr_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
             esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_columns') ),
             CZR_utils::tc_get_layout( $this -> post_id , 'class' )
@@ -923,7 +923,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
 
         /* returns articles wrapper section columns */
-        private function tc_get_grid_section_cols() {
+        private function czr_get_grid_section_cols() {
           return apply_filters( 'tc_grid_section_cols',
             $this -> tc_force_current_post_expansion() ? '1' : $this -> tc_get_grid_cols()
           );
@@ -932,7 +932,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
 
         /* returns the type of post list we're in if any, an empty string otherwise */
-        private function tc_get_grid_context() {
+        private function czr_get_grid_context() {
           global $wp_query;
 
           if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
@@ -948,7 +948,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
         /* performs the match between the option where to use post list grid
          * and the post list we're in */
-        private function tc_is_grid_context_matching() {
+        private function czr_is_grid_context_matching() {
           $_type = $this -> tc_get_grid_context();
           $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( CZR_utils::$inst->tc_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
@@ -958,7 +958,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         /**
         * @return  boolean
         */
-        private function tc_grid_show_thumb() {
+        private function czr_grid_show_thumb() {
           return CZR_post_thumbnails::$instance -> tc_has_thumb() && 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_list_show_thumb' ) );
         }
   }//end of class

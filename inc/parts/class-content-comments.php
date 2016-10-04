@@ -37,7 +37,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       * @package Customizr
       * @since Customizr 3.3.2
       */
-      function tc_comments_set_hooks() {
+      function czr_comments_set_hooks() {
         //Maybe fires the comment's template
         add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
 
@@ -70,7 +70,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       * @package Customizr
       * @since Customizr 3.0.10
      */
-      function tc_comments() {
+      function czr_comments() {
         if ( ! $this -> tc_are_comments_enabled() )
           return;
         do_action('tc_before_comments_template');
@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         * @package Customizr
         * @since Customizr 3.0
        */
-        function tc_comment_title() {
+        function czr_comment_title() {
           if ( 1 == get_comments_number() ) {
             $_title = __( 'One thought on', 'customizr' );
           } else {
@@ -111,7 +111,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         * @package Customizr
         * @since Customizr 3.0
        */
-        function tc_comment_list() {
+        function czr_comment_list() {
           $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' ) );
           ob_start();
             ?>
@@ -136,7 +136,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         * @package Customizr
         * @since Customizr 1.0
         */
-       function tc_comment_callback( $comment, $args, $depth ) {
+       function czr_comment_callback( $comment, $args, $depth ) {
 
         $GLOBALS['comment'] = $comment;
         //get user defined max comment depth
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.0
    */
-    function tc_comment_navigation () {
+    function czr_comment_navigation () {
       if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through
 
         ob_start();
@@ -280,7 +280,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function tc_comment_close() {
+    function czr_comment_close() {
       /* If there are no comments and comments are closed, let's leave a note.
        * But we only want the note on posts and pages that had comments in the first place.
        */
@@ -309,7 +309,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_set_comment_list_display() {
+    function czr_set_comment_list_display() {
       return (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_comment_list' ) );
     }
 
@@ -321,7 +321,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_set_comment_title($_defaults) {
+    function czr_set_comment_title($_defaults) {
       $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
       return $_defaults;
     }
@@ -335,7 +335,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function tc_display_comment_bubble( $_title = null ) {
+    function czr_display_comment_bubble( $_title = null ) {
       if ( ! $this -> tc_is_bubble_enabled() )
         return $_title;
 
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function tc_custom_bubble_comment( $_html , $_opt ) {
+    function czr_custom_bubble_comment( $_html , $_opt ) {
       return sprintf('%4$s<span class="tc-comment-bubble %1$s">%2$s %3$s</span>',
         'default' == $_opt ? "default-bubble" : $_opt,
         get_comments_number(),
@@ -379,7 +379,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    function tc_comment_bubble_inline_css( $_css ) {
+    function czr_comment_bubble_inline_css( $_css ) {
       if ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
@@ -456,7 +456,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_are_comments_enabled() {
+    private function czr_are_comments_enabled() {
       global $post;
       // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
       if ( isset( $post ) ) {
@@ -495,7 +495,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_is_bubble_enabled() {
+    private function czr_is_bubble_enabled() {
       $_bool_arr = array(
         in_the_loop(),
         (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ),

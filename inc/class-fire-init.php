@@ -392,7 +392,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 3.1.23
       */
-      function tc_set_user_defined_settings() {
+      function czr_set_user_defined_settings() {
         $_options = get_option('tc_theme_options');
         //add "rectangular" image size
         if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
@@ -442,7 +442,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       *
       */
-      function tc_set_slider_img_height( $_default_size ) {
+      function czr_set_slider_img_height( $_default_size ) {
         $_options = get_option('tc_theme_options');
 
         $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
@@ -458,7 +458,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.1.12
       *
       */
-      function tc_set_grid_img_height( $_default_size ) {
+      function czr_set_grid_img_height( $_default_size ) {
         $_options = get_option('tc_theme_options');
 
         $_default_size['height'] =  esc_attr( $_options['tc_grid_thumb_height'] ) ;
@@ -475,7 +475,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
        * @since Customizr 1.0
        */
 
-      function tc_customizr_setup() {
+      function czr_customizr_setup() {
         /* Set default content width for post images and media. */
         global $content_width;
         if (! isset( $content_width ) )
@@ -531,7 +531,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       /*
       * hook : after_setup_theme
       */
-      function tc_register_menus() {
+      function czr_register_menus() {
         /* This theme uses wp_nav_menu() in one location. */
         register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
         register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
@@ -546,7 +546,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 3.0.15
       */
-      function tc_get_style_src( $_wot = 'skin' ) {
+      function czr_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( CZR_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
         $_sheet    = $this -> tc_maybe_use_min_style( $_sheet );
 
@@ -584,7 +584,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 3.4.19
       */
-      function tc_maybe_use_min_style( $_sheet ) {
+      function czr_maybe_use_min_style( $_sheet ) {
         if ( esc_attr( CZR_utils::$inst->tc_opt( 'tc_minified_skin' ) ) )
           $_sheet = ( defined('CZR_NOT_MINIFIED_CSS') && true === CZR_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
         return $_sheet;
@@ -598,7 +598,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 3.1.19
       */
-      function tc_custom_mtypes( $mimes ) {
+      function czr_custom_mtypes( $mimes ) {
         if (! apply_filters( 'tc_add_svg_mime_type' , true ) )
           return $mimes;
 
@@ -617,7 +617,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
      * @since Customizr 3.0.15
      * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
-      function tc_add_retina_support( $metadata, $attachment_id ) {
+      function czr_add_retina_support( $metadata, $attachment_id ) {
         //checks if retina is enabled in options
         if ( 0 == CZR_utils::$inst->tc_opt( 'tc_retina_support' ) )
           return $metadata;
@@ -650,7 +650,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.0.15
       * @credits http://wp.tutsplus.com/author/chrisbavota/
       */
-      function tc_create_retina_images( $file, $width, $height, $crop = false , $_is_intermediate = true) {
+      function czr_create_retina_images( $file, $width, $height, $crop = false , $_is_intermediate = true) {
           $resized_file = wp_get_image_editor( $file );
           if ( is_wp_error( $resized_file ) )
             return false;
@@ -686,7 +686,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
      * @since Customizr 3.0.15
      * @credits http://wp.tutsplus.com/author/chrisbavota/
      */
-      function tc_clean_retina_images( $attachment_id ) {
+      function czr_clean_retina_images( $attachment_id ) {
         $meta = wp_get_attachment_metadata( $attachment_id );
         if ( !isset( $meta['file']) )
           return;
@@ -712,7 +712,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_add_help_button() {
+      function czr_add_help_button() {
          if ( current_user_can( 'edit_theme_options' ) ) {
            global $wp_admin_bar;
            $wp_admin_bar->add_menu( array(
@@ -736,7 +736,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_set_body_classes( $_classes ) {
+      function czr_set_body_classes( $_classes ) {
         if ( 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_link_hover_effect' ) ) )
           array_push( $_classes, 'tc-fade-hover-links' );
         if ( CZR___::$instance -> tc_is_customizing() )

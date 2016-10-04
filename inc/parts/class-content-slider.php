@@ -44,7 +44,7 @@ class CZR_slider {
   * Set slider hooks
   * @return  void
   */
-  function tc_set_slider_hooks() {
+  function czr_set_slider_hooks() {
     //get slides model
     //extract $slider_name_id, $slides, $layout_class, $img_size
     extract( $this -> tc_get_slider_model() );
@@ -85,7 +85,7 @@ class CZR_slider {
   * @since Customizr 3.0.15
   *
   */
-  private function tc_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size ) {
+  private function czr_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size ) {
     //check if slider enabled for this attachment and go to next slide if not
     $slider_checked         = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
     if ( ! isset( $slider_checked) || $slider_checked != 1 )
@@ -180,7 +180,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_single_post_slide_pre_model( $_post , $img_size, $args ){
+  function czr_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
 
     //attachment image
@@ -208,7 +208,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_single_post_slide_model( $slider_name_id, $_loop_index , $_post_slide , $common, $img_size ){
+  function czr_get_single_post_slide_model( $slider_name_id, $_loop_index , $_post_slide , $common, $img_size ){
     extract( $_post_slide );
     extract( $common );
 
@@ -264,7 +264,7 @@ class CZR_slider {
   * @since Customizr 3.0.15
   *
   */
-  private function tc_get_the_slides( $slider_name_id, $img_size ) {
+  private function czr_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
       return apply_filters( 'tc_default_slides', CZR_init::$instance -> default_slides );
@@ -338,7 +338,7 @@ class CZR_slider {
   * mostly with qtranslate (polylang will force us, most likely if I don't find any
   * other suitable solution, to not use the transient).
   */
-  private function tc_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
+  private function czr_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
 
     $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
     $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
@@ -400,7 +400,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_get_pre_posts_slides( $args ){
+  private function czr_get_pre_posts_slides( $args ){
 
     $defaults       = array(
       'img_size'            => null,
@@ -508,7 +508,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  private function tc_get_slider_model() {
+  private function czr_get_slider_model() {
     //Do we have a slider to display in this context ?
     if ( ! $this -> tc_is_slider_possible() )
       return array();
@@ -552,7 +552,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_query_posts_slider( $args = array() ) {
+  private function czr_query_posts_slider( $args = array() ) {
     global $wpdb;
 
     $defaults       = array(
@@ -629,7 +629,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
+  private function czr_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
     return apply_filters( 'tc_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
         $this -> tc_get_posts_have_thumbnail_sql( $_columns, $_pt_where ),
         $this -> tc_get_posts_have_attachment_sql( $_columns, $_pa_where )
@@ -644,7 +644,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
+  private function czr_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
     global $wpdb;
     return apply_filters( 'tc_get_posts_have_thumbnail_sql', "
         SELECT $_columns
@@ -662,7 +662,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  private function tc_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
+  private function czr_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
     global $wpdb;
     return apply_filters( 'tc_get_posts_have_attachment_sql', "
         SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
@@ -685,7 +685,7 @@ class CZR_slider {
   * @since Customizr 1.0
   *
   */
-  function tc_slider_display() {
+  function czr_slider_display() {
     //get slides model
     //extract $slider_name_id, $slides, $layout_class, $img_size
     extract( $this -> tc_get_slider_model() );
@@ -736,7 +736,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_render_single_slide_view( $_view_model ) {
+  function czr_render_single_slide_view( $_view_model ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
 
@@ -762,7 +762,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_render_slider_loader_view( $slider_name_id ) {
+  function czr_render_slider_loader_view( $slider_name_id ) {
     if ( ! $this -> tc_is_slider_loader_active( $slider_name_id ) )
       return;
 
@@ -795,7 +795,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_render_slide_background_view( $_view_model ) {
+  function czr_render_slide_background_view( $_view_model ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
     ?>
@@ -822,7 +822,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_link_whole_slide( $slide_background, $link_url, $id, $slider_name_id, $data ) {
+  function czr_link_whole_slide( $slide_background, $link_url, $id, $slider_name_id, $data ) {
     if ( isset( $data['link_whole_slide'] )  && $data['link_whole_slide'] && $link_url )
       $slide_background = sprintf('<a href="%1$s" class="tc-slide-link" target="%2$s" title="%3$s">%4$s</a>',
                                 $link_url,
@@ -841,7 +841,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_render_slide_caption_view( $_view_model ) {
+  function czr_render_slide_caption_view( $_view_model ) {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
     //filters the data before (=> used for demo for example )
@@ -898,7 +898,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  function tc_render_slide_edit_link_view( $_view_model ) {
+  function czr_render_slide_edit_link_view( $_view_model ) {
     //never display when customizing
     if ( CZR___::$instance -> tc_is_customizing() )
       return;
@@ -933,7 +933,7 @@ class CZR_slider {
   * @since v3.4.9
   */
 
-  function tc_render_slider_edit_link_view( $slides, $slider_name_id ) {
+  function czr_render_slider_edit_link_view( $slides, $slider_name_id ) {
     //never display when customizing
     if ( CZR___::$instance -> tc_is_customizing() )
       return;
@@ -976,7 +976,7 @@ class CZR_slider {
   * @since v3.2.0
   *
   */
-  function tc_slider_control_view( $_slides ) {
+  function czr_slider_control_view( $_slides ) {
     if ( count( $_slides ) <= 1 )
       return;
 
@@ -1009,7 +1009,7 @@ class CZR_slider {
   * hook : __after_carousel_inner
   * @since v3.4+
   */
-  function tc_maybe_display_dismiss_notice() {
+  function czr_maybe_display_dismiss_notice() {
     if ( ! CZR_placeholders::tc_is_slider_notice_on() )
       return;
     $_customizer_lnk = CZR_utils::tc_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
@@ -1039,7 +1039,7 @@ class CZR_slider {
   *******************************/
   //hook : wp
   //introduced in v3.4.23
-  function tc_maybe_setup_parallax() {
+  function czr_maybe_setup_parallax() {
     if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_slider_parallax') ) )
       return;
     add_filter('tc_slider_layout_class'     , array( $this, 'tc_add_parallax_wrapper_class' ) );
@@ -1049,7 +1049,7 @@ class CZR_slider {
 
 
   //hook : wp_head
-  function tc_add_parallax_slider_script() {
+  function czr_add_parallax_slider_script() {
     ?>
       <script type="text/javascript" id="do-parallax-sliders">
         jQuery( function($){
@@ -1060,13 +1060,13 @@ class CZR_slider {
   }
 
   //hook : tc_carousel_inner_classes
-  function tc_add_parallax_item_class ( $classes ) {
+  function czr_add_parallax_item_class ( $classes ) {
     array_push($classes, 'czr-parallax-slider' );
     return $classes;
   }
 
   //hook : tc_slider_layout_class
-  function tc_add_parallax_wrapper_class( $classes ) {
+  function czr_add_parallax_wrapper_class( $classes ) {
     array_push($classes, 'parallax-wrapper' );
     return $classes;
   }
@@ -1087,7 +1087,7 @@ class CZR_slider {
   * @since Customizr 3.3.+
   *
   */
-  function tc_set_demo_slide_data( $data, $slider_name_id, $id ) {
+  function czr_set_demo_slide_data( $data, $slider_name_id, $id ) {
     if ( 'demo' != $slider_name_id || ! is_user_logged_in() )
       return $data;
 
@@ -1119,7 +1119,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   *
   */
-  private function tc_is_slider_possible() {
+  private function czr_is_slider_possible() {
     //gets the front slider if any
     $tc_front_slider              = esc_attr(CZR_utils::$inst->tc_opt( 'tc_front_slider' ) );
     //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
@@ -1136,7 +1136,7 @@ class CZR_slider {
   * @package Customizr
   * @since Customizr 3.4.9
   */
-  function tc_slider_exists( $slider ){
+  function czr_slider_exists( $slider ){
     //if the slider not longer exists or exists but is empty, return false
     return ! ( !isset($slider) || !is_array($slider) || empty($slider) );
   }
@@ -1148,7 +1148,7 @@ class CZR_slider {
   * @return  string
   *
   */
-  private function tc_get_current_slider($queried_id) {
+  private function czr_get_current_slider($queried_id) {
     //gets the current slider id
     $_home_slider     = CZR_utils::$inst->tc_opt( 'tc_front_slider' );
     $slider_name_id   = ( tc__f('__is_home') && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
@@ -1162,7 +1162,7 @@ class CZR_slider {
   * @return  number
   *
   */
-  private function tc_get_real_id() {
+  private function czr_get_real_id() {
     global $wp_query;
     $queried_id                   = get_queried_object_id();
     return apply_filters( 'tc_slider_get_real_id', ( ! tc__f('__is_home') && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
@@ -1175,7 +1175,7 @@ class CZR_slider {
   * @return  boolean
   *
   */
-  private function tc_is_slider_active( $queried_id ) {
+  private function czr_is_slider_active( $queried_id ) {
     //is the slider set to on for the queried id?
     if ( tc__f('__is_home') && CZR_utils::$inst->tc_opt( 'tc_front_slider' ) )
       return apply_filters( 'tc_slider_active_status', true , $queried_id );
@@ -1193,7 +1193,7 @@ class CZR_slider {
   * @return  boolean
   *
   */
-  private function tc_is_slider_loader_active( $slider_name_id ) {
+  private function czr_is_slider_loader_active( $slider_name_id ) {
     //The slider loader must be printed when
     //a) we have to render the demo slider
     //b) display slider loading option is enabled (can be filtered)
@@ -1210,7 +1210,7 @@ class CZR_slider {
   * @package Customizr
   * @since Customizr 3.3+
   */
-  function tc_set_demo_slider_height( $_h ) {
+  function czr_set_demo_slider_height( $_h ) {
     //this custom demo height is applied when :
     //1) current slider is demo
     if ( 'demo' != $this -> tc_get_current_slider( $this -> tc_get_real_id() ) )
@@ -1236,7 +1236,7 @@ class CZR_slider {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  function tc_write_slider_inline_css( $_css ) {
+  function czr_write_slider_inline_css( $_css ) {
     //custom css for the slider loader
     if ( $this -> tc_is_slider_loader_active( $this -> tc_get_current_slider( $this -> tc_get_real_id() ) ) ) {
 
@@ -1338,7 +1338,7 @@ class CZR_slider {
   * @since Customizr 3.2.0
   *
   */
-  function tc_set_slider_wrapper_class($_classes) {
+  function czr_set_slider_wrapper_class($_classes) {
     if ( ! is_array($_classes) || 500 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_slider_default_height') ) )
       return $_classes;
 
@@ -1353,7 +1353,7 @@ class CZR_slider {
   * @package Customizr
   * @since Customizr 3.3+
   */
-  function tc_set_inner_class( $_classes ) {
+  function czr_set_inner_class( $_classes ) {
     if( ! (bool) esc_attr( CZR_utils::$inst->tc_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
       return $_classes;
     array_push( $_classes, 'center-slides-enabled' );
@@ -1367,7 +1367,7 @@ class CZR_slider {
   * @package Customizr
   * @since Customizr 3.4.9
   */
-  function tc_cache_posts_slider( $args = array() ) {
+  function czr_cache_posts_slider( $args = array() ) {
     $defaults = array (
       //use the home slider_width
       'img_size'        => 1 == CZR_utils::$inst->tc_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
@@ -1390,7 +1390,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_post_slide_title( $_post, $ID ) {
+  function czr_get_post_slide_title( $_post, $ID ) {
     $title_length   = apply_filters('tc_post_slide_title_length', 80, $ID );
     $more           = apply_filters('tc_post_slide_more', '...', $ID );
     return $this -> tc_get_post_title( $_post, $title_length, $more );
@@ -1407,7 +1407,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_post_slide_excerpt( $_post, $ID ) {
+  function czr_get_post_slide_excerpt( $_post, $ID ) {
     $excerpt_length  = apply_filters( 'tc_post_slide_text_length', 80, $ID );
     $more            = apply_filters( 'tc_post_slide_more', '...', $ID );
     return $this -> tc_get_post_excerpt( $_post, $excerpt_length, $more );
@@ -1423,7 +1423,7 @@ class CZR_slider {
   * @since Customizr 3.4.9
   *
   */
-  function tc_get_post_slide_button_text( $button_text ) {
+  function czr_get_post_slide_button_text( $button_text ) {
     $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
     $more                = apply_filters( 'tc_post_slide_more', '...');
     $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );
@@ -1444,7 +1444,7 @@ class CZR_slider {
   *
   */
   // move this into CZR_utils?
-  function tc_get_post_title( $_post, $default_title_length, $more ) {
+  function czr_get_post_title( $_post, $default_title_length, $more ) {
     $title = $_post->post_title;
     if ( ! empty( $_post->post_password ) ) {
       $protected_title_format = apply_filters( 'protected_title_format', __( 'Protected: %s', 'customizr' ), $_post);
@@ -1470,7 +1470,7 @@ class CZR_slider {
   *
   */
   // move this into CZR_utils?
-  function tc_get_post_excerpt( $_post, $default_text_length, $more ) {
+  function czr_get_post_excerpt( $_post, $default_text_length, $more ) {
     if ( ! empty( $_post->post_password) )
       return __( 'There is no excerpt because this is a protected post.', 'customizr' );
 
@@ -1504,7 +1504,7 @@ class CZR_slider {
   *
   */
   // move this into CZR_utils?
-  function tc_trim_text( $text, $text_length, $more ) {
+  function czr_trim_text( $text, $text_length, $more ) {
     if ( ! $text )
       return '';
 

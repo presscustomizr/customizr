@@ -244,7 +244,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
 
 
-    private function tc_print_select_control($class) {
+    private function czr_print_select_control($class) {
       printf('<select %1$s class="%2$s">%3$s</select>',
         call_user_func( array( $this, 'get'.'_'.'link' ) ),
         $class,
@@ -253,7 +253,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
     }
 
 
-    private function tc_get_select_options() {
+    private function czr_get_select_options() {
       $_options_html = '';
       switch ( $this -> id ) {
         case 'tc_theme_options[tc_fonts]':
@@ -423,14 +423,14 @@ if ( ! class_exists( 'CZR_Customize_Multipicker_Control' ) ) :
     }
 
     //to define in the extended classes
-    abstract public function tc_get_dropdown_multipicker();
+    abstract public function czr_get_dropdown_multipicker();
   }//end class
 endif;
 
 if ( ! class_exists( 'CZR_Customize_Multipicker_Categories_Control' ) ) :
   class CZR_Customize_Multipicker_Categories_Control extends CZR_Customize_Multipicker_Control {
 
-    public function tc_get_dropdown_multipicker() {
+    public function czr_get_dropdown_multipicker() {
       $cats_dropdown = wp_dropdown_categories(
           array(
               'name'               => '_customize-'.$this->type,

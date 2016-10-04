@@ -43,7 +43,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.2.6
 		*/
-    function tc_set_header_hooks() {
+    function czr_set_header_hooks() {
     	//html > head actions
       add_action ( '__before_body'	  , array( $this , 'tc_head_display' ));
 
@@ -90,7 +90,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_set_header_options() {
+    function czr_set_header_options() {
       //Set some body classes
       add_filter( 'body_class'               , array( $this , 'tc_add_body_classes') );
       //Set header classes from options
@@ -112,7 +112,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0
 		*/
-		function tc_head_display() {
+		function czr_head_display() {
 			ob_start();
 				?>
 				<head>
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function tc_favicon_display() {
+    function czr_favicon_display() {
      	//is there a WP favicon set ?
       //if yes then let WP do the job
       if ( function_exists('has_site_icon') && has_site_icon() )
@@ -198,7 +198,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.2.3
 		*/
-		function tc_prepare_logo_title_display() {
+		function czr_prepare_logo_title_display() {
       $logos_type = array( '_sticky_', '_');
       $logos_img  = array();
 
@@ -268,7 +268,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.2.3
 		*/
-		function tc_title_view( $logo_classes ) {
+		function czr_title_view( $logo_classes ) {
 			ob_start();
 			?>
       <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', array_merge($logo_classes , array('pull-left') ) ) ) ?> ">
@@ -301,7 +301,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_logo_img_view( $_args ){
+    function czr_logo_img_view( $_args ){
       //Extracts $args : logo_src, logo_resize, logo_attachment_id, logo_width, logo_height, logo_type
       extract($_args);
       $_html = sprintf( '<img src="%1$s" alt="%2$s" %3$s %4$s %5$s %6$s class="%7$s %8$s"/>',
@@ -329,7 +329,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    function tc_logo_view( $_args ) {
+    function czr_logo_view( $_args ) {
         //Exctracts $args : $logo_class, $logos_img (array of <img>)
         extract($_args);
         ob_start();
@@ -364,7 +364,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0.10
 		*/
-		function tc_navbar_display() {
+		function czr_navbar_display() {
 			$_navbar_classes = implode( " ", apply_filters( 'tc_navbar_wrapper_class', array('navbar-wrapper', 'clearfix', 'span9') ) );
 			ob_start();
 			do_action( '__before_navbar' );
@@ -408,7 +408,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
   	* @package Customizr
   	* @since Customizr 3.2.0
   	*/
-  	function tc_new_menu_view() {
+  	function czr_new_menu_view() {
     	$_navbar_classes = implode( " ", apply_filters( 'tc_navbar_wrapper_class', array('navbar-wrapper', 'clearfix', 'span9') ) );
     	do_action( '__before_navbar' );
       	?>
@@ -436,7 +436,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0.10
 		*/
-    function tc_social_in_header($resp = null) {
+    function czr_social_in_header($resp = null) {
         //when do we display this block ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
@@ -466,7 +466,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0
 		*/
-		function tc_tagline_display() {
+		function czr_tagline_display() {
 			if ( '__header' == current_filter() ) { //when hooked on  __header
 
 				$html = sprintf('<div class="container outside"><%1$s class="site-description">%2$s</%1$s></div>',
@@ -494,7 +494,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_reset_margin_top_after_sticky_header() {
+    function czr_reset_margin_top_after_sticky_header() {
       echo apply_filters(
         'tc_reset_margin_top_after_sticky_header',
         sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
@@ -516,7 +516,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-		function tc_write_header_inline_css( $_css ) {
+		function czr_write_header_inline_css( $_css ) {
       //TOP BORDER
 			if ( 1 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_top_border') ) ) {
   			$_css = sprintf("%s\n%s",
@@ -580,7 +580,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_add_body_classes($_classes) {
+    function czr_add_body_classes($_classes) {
       //STICKY HEADER
     	if ( 1 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_sticky_header' ) ) ) {
      		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
@@ -614,7 +614,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
    	* @package Customizr
    	* @since Customizr 3.2.0
    	*/
-		function tc_set_header_classes( $_classes ) {
+		function czr_set_header_classes( $_classes ) {
 			//backward compatibility (was not handled has an array in previous versions)
 			if ( ! is_array($_classes) )
 				return $_classes;
@@ -644,7 +644,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function tc_use_sticky_logo(){
+    function czr_use_sticky_logo(){
         if ( ! esc_attr( CZR_utils::$inst->tc_opt( "tc_sticky_logo_upload") ) )
             return false;
         if ( ! ( esc_attr( CZR_utils::$inst->tc_opt( "tc_sticky_header") ) &&
@@ -662,7 +662,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
    	* @package Customizr
    	* @since Customizr 3.2.0
    	*/
-		function tc_set_tagline_visibility($html) {
+		function czr_set_tagline_visibility($html) {
 			//if customizing just hide it
 			if ( CZR___::$instance -> tc_is_customizing() && 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_tagline') ) )
 				return str_replace('site-description"', 'site-description" style="display:none"', $html);
@@ -679,7 +679,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
    	* @package Customizr
    	* @since Customizr 3.2.0
    	*/
-		function tc_set_logo_title_layout( $_classes ) {
+		function czr_set_logo_title_layout( $_classes ) {
 			//backward compatibility (was not handled has an array in previous versions)
 			if ( ! is_array($_classes) )
 				return $_classes;

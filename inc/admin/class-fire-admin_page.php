@@ -37,7 +37,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
    * @package Customizr
    * @since Customizr 1.1
    */
-    function tc_add_welcome_page() {
+    function czr_add_welcome_page() {
         $_name = __( 'About Customizr' , 'customizr' );
         $_name = CZR___::tc_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
 
@@ -57,7 +57,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
      * @package Customizr
      * @since Customizr 3.0.4
      */
-      function tc_welcome_panel() {
+      function czr_welcome_panel() {
 
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
@@ -243,7 +243,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
    * @package Customizr
    * @since Customizr 3.0.5
    */
-    function tc_extract_changelog() {
+    function czr_extract_changelog() {
       if( ! file_exists(TC_BASE."readme.txt") ) {
         return;
       }
@@ -297,7 +297,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
     * Inspired by Easy Digital Download plugin by Pippin Williamson
     * @since 3.2.1
     */
-    function tc_config_infos() {
+    function czr_config_infos() {
       global $wpdb;
 
       ?>
@@ -387,7 +387,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
        *
        * @since 3.2.2
        */
-      function tc_let_to_num( $v ) {
+      function czr_let_to_num( $v ) {
         $l   = substr( $v, -1 );
         $ret = substr( $v, 0, -1 );
 
@@ -411,7 +411,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
     * fix the absolute positioning of the wp footer admin link in the welcome pages
     * @return void
     */
-    function tc_fix_wp_footer_link_style() {
+    function czr_fix_wp_footer_link_style() {
       /* if ( is_array(get_current_screen()) )
         array_walk_recursive(get_current_screen(), function(&$v) { $v = htmlspecialchars($v); }); */
       $screen = get_current_screen();

@@ -33,7 +33,7 @@ class CZR_post_thumbnails {
     * @package Customizr
     * @since Customizr 1.0
     */
-    function tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null ) {
+    function czr_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null ) {
       if ( ! $this -> tc_has_thumb( $_post_id, $_custom_thumb_id ) )
         return array();
 
@@ -118,7 +118,7 @@ class CZR_post_thumbnails {
     * inside loop
     * @return array( "_thumb_id" , "_thumb_type" )
     */
-    private function tc_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
+    private function czr_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
       $_post_id     = is_null($_post_id) ? get_the_ID() : $_post_id;
       $_meta_thumb  = get_post_meta( $_post_id , 'tc-thumb-fld', true );
       //get_post_meta( $post_id, $key, $single );
@@ -144,7 +144,7 @@ class CZR_post_thumbnails {
     /*
     * @return bool
     */
-    public function tc_has_thumb( $_post_id = null , $_thumb_id = null ) {
+    public function czr_has_thumb( $_post_id = null , $_thumb_id = null ) {
       $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
       //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
       extract( $this -> tc_get_thumb_info( $_post_id, $_thumb_id ) );
@@ -158,7 +158,7 @@ class CZR_post_thumbnails {
     * @param post_id and (bool) return
     * @return void or array( "_thumb_id" , "_thumb_type" )
     */
-    public function tc_set_thumb_info( $post_id = null , $_thumb_id = null, $_return = false ) {
+    public function czr_set_thumb_info( $post_id = null , $_thumb_id = null, $_return = false ) {
       $post_id      = is_null($post_id) ? get_the_ID() : $post_id;
       $_thumb_type  = 'none';
 
@@ -192,7 +192,7 @@ class CZR_post_thumbnails {
     }//end of fn
 
 
-    private function tc_get_id_from_attachment( $post_id ) {
+    private function czr_get_id_from_attachment( $post_id ) {
       //define a filtrable boolean to set if attached images can be used as thumbnails
       //1) must be a non single post context
       //2) user option should be checked in customizer
@@ -239,7 +239,7 @@ class CZR_post_thumbnails {
     * @package Customizr
     * @since Customizr 3.0.10
     */
-    function tc_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = true ) {
+    function czr_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = true ) {
       if ( empty( $_thumb_model ) )
         return;
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
@@ -288,7 +288,7 @@ class CZR_post_thumbnails {
     * @package Customizr
     * @since Customizr 3.4.16
     */
-    function tc_remove_srcset_attr( $attr ) {
+    function czr_remove_srcset_attr( $attr ) {
       if ( isset( $attr[ 'srcset' ] ) ) {
         unset( $attr['srcset'] );
         //to ensure a "local" removal we have to remove this filter callback, so it won't hurt
@@ -310,7 +310,7 @@ class CZR_post_thumbnails {
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function tc_change_thumb_inline_css( $_style, $image, $_filtered_thumb_size) {
+    function czr_change_thumb_inline_css( $_style, $image, $_filtered_thumb_size) {
       //conditions :
       //note : handled with javascript if tc_center_img option enabled
       $_bool = array_product(

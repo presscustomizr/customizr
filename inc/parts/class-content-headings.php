@@ -36,7 +36,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_set_archives_heading_hooks() {
+      function czr_set_archives_heading_hooks() {
         //is there anything to render in the current context
         //by default don't display the Customizr title in feeds
         if ( apply_filters('tc_display_customizr_headings',  ! $this -> tc_archive_title_and_class_callback() || is_feed() ) )
@@ -63,7 +63,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_set_post_page_heading_hooks() {
+      function czr_set_post_page_heading_hooks() {
 
         //by default don't display the Customizr title of the front page and in feeds
         if ( apply_filters('tc_display_customizr_headings', ( is_front_page() && 'page' == get_option( 'show_on_front' ) ) ) || is_feed() )
@@ -108,7 +108,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.1.0
       */
-      function tc_render_headings_view() {
+      function czr_render_headings_view() {
         $_heading_type = in_the_loop() ? 'content' : 'archive';
         ob_start();
         ?>
@@ -142,7 +142,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.9
       */
-      function tc_post_formats_heading( $_html ) {
+      function czr_post_formats_heading( $_html ) {
         if( in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', CZR_init::$instance -> post_formats_with_no_heading ) ) )
           return;
         return $_html;
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_post_page_title_callback( $_content = null , $_heading_type = null ) {
+      function czr_post_page_title_callback( $_content = null , $_heading_type = null ) {
         $_title = apply_filters( 'tc_title_text', get_the_title() );
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
@@ -172,7 +172,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_content_heading_title( $_title ) {
+      function czr_content_heading_title( $_title ) {
         //Must be in the loop
         if ( ! in_the_loop() )
           return $_title;
@@ -196,7 +196,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_add_edit_link_after_title( $_title ) {
+      function czr_add_edit_link_after_title( $_title ) {
         //Must be in the loop
         if ( ! in_the_loop() )
           return $_title;
@@ -218,7 +218,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.3+
       */
-      public function tc_is_edit_enabled() {
+      public function czr_is_edit_enabled() {
         //never display when customizing
         if ( CZR___::$instance -> tc_is_customizing() )
           return false;
@@ -235,7 +235,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.3+
       */
-      function tc_render_edit_link_view( $_echo = true ) {
+      function czr_render_edit_link_view( $_echo = true ) {
         $_view = sprintf('<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="%1$s" title="%2$s">%2$s</a></span>',
           get_edit_post_link(),
           __( 'Edit' , 'customizr' )
@@ -253,7 +253,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_set_post_page_icon( $_bool ) {
+      function czr_set_post_page_icon( $_bool ) {
           if ( is_page() )
             $_bool = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
           if ( is_single() && ! is_page() )
@@ -273,7 +273,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_set_archive_icon( $_class ) {
+      function czr_set_archive_icon( $_class ) {
           $_class = ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
           //last condition
           return 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
@@ -290,7 +290,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
+      function czr_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
         //declares variables to return
         $content          = false;
         $_header_class    = false;
@@ -446,7 +446,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function tc_set_headings_options() {
+      function czr_set_headings_options() {
         //by default don't display the Customizr title in feeds
         if ( apply_filters('tc_display_customizr_headings',  is_feed() ) )
           return;
@@ -465,7 +465,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_add_update_notice_in_title($html) {
+      function czr_add_update_notice_in_title($html) {
           //First checks if we are in the loop and we are not displaying a page
           if ( ! in_the_loop() || is_page() )
               return $html;
@@ -507,7 +507,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @return string of user defined title
       * @since Customizr 3.3+
       */
-      function tc_set_archive_custom_title( $_title ) {
+      function czr_set_archive_custom_title( $_title ) {
         switch ( current_filter() ) {
           case 'tc_category_archive_title' :
             return esc_attr( CZR_utils::$inst->tc_opt( 'tc_cat_title' ) );

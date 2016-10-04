@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function tc_widgets_factory() {
+    function czr_widgets_factory() {
       //default Customizr filtered args
       $default                  = apply_filters( 'tc_default_widget_args' ,
                                 array(

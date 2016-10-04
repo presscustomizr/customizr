@@ -37,7 +37,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.0
         */
-        function tc_set_visibility_options() {
+        function czr_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
           if ( 0 == esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_metas' ) ) ) {
             if ( CZR___::$instance -> tc_is_customizing() )
@@ -98,7 +98,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        private function tc_show_post_metas() {
+        private function czr_show_post_metas() {
           global $post;
           //when do we display the metas ?
           //1) default is : not on home page, 404, search page
@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         /***********************
         * DESIGN HOOK SETUP
         ***********************/
-        function tc_set_design_options() {
+        function czr_set_design_options() {
           if ( 'buttons' == esc_attr( CZR_utils::$inst->tc_opt( 'tc_post_metas_design' ) ) )
             return;
 
@@ -142,7 +142,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.2
         */
-        function tc_set_post_metas_hooks() {
+        function czr_set_post_metas_hooks() {
           if ( ! $this -> tc_show_post_metas() )
             return;
           global $post;
@@ -171,7 +171,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        private function tc_build_post_post_metas_model() {
+        private function czr_build_post_post_metas_model() {
           $cat_list   = $this -> tc_meta_generate_tax_list( true );
           $tag_list   = $this -> tc_meta_generate_tax_list( false );
           $pub_date   = $this -> tc_get_meta_date( 'publication' );
@@ -194,7 +194,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.3.2
         */
-        private function tc_build_attachment_post_metas_model() {
+        private function czr_build_attachment_post_metas_model() {
           global $post;
           $metadata       = wp_get_attachment_metadata();
           $_html = sprintf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
@@ -218,7 +218,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.3.2
         */
-        private function tc_render_metas_view( $_model ) {
+        private function czr_render_metas_view( $_model ) {
           if ( empty($_model) )
             return;
           //extract $_html , $_args
@@ -247,7 +247,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        function tc_set_post_metas_elements( $_default , $_args = array() ) {
+        function czr_set_post_metas_elements( $_default , $_args = array() ) {
             $_show_cats         = 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> tc_meta_generate_tax_list( true );
             $_show_tags         = 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> tc_meta_generate_tax_list( false );
             $_show_pub_date     = 0 != esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_post_metas_publication_date' ) );
@@ -337,7 +337,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.0
         */
-        public function tc_meta_generate_tax_list( $hierarchical ) {
+        public function czr_meta_generate_tax_list( $hierarchical ) {
           $post_terms = $this -> tc_get_term_of_tax_type( $hierarchical );
           if ( ! $post_terms )
             return;
@@ -355,7 +355,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.3.2
         */
-        private function tc_meta_term_view( $term ) {
+        private function czr_meta_term_view( $term ) {
           $_classes         =  array( 'btn' , 'btn-mini' );
           $_is_hierarchical  =  is_taxonomy_hierarchical( $term -> taxonomy );
           if ( $_is_hierarchical ) //<= check if hierarchical (category) or not (tag)
@@ -391,7 +391,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.1.20
         *
         */
-        public function tc_get_term_of_tax_type( $hierarchical = true ) {
+        public function czr_get_term_of_tax_type( $hierarchical = true ) {
           //var declaration
           $post_type              = get_post_type( CZR_utils::tc_id() );
           $tax_list               = get_object_taxonomies( $post_type, 'object' );
@@ -459,7 +459,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.3+
         *
         */
-        public function tc_is_tax_authorized( $_tax_object , $post_type ) {
+        public function czr_is_tax_authorized( $_tax_object , $post_type ) {
           $_in_exclude_list = in_array(
             $_tax_object['name'],
             apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_utils::tc_id() ) )
@@ -477,7 +477,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        public function tc_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+        public function czr_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
             if ( 'short' == $_format )
               $_format = 'j M, Y';
 
@@ -504,7 +504,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.6
         */
-        private function tc_get_meta_author() {
+        private function czr_get_meta_author() {
             return apply_filters(
                 'tc_author_meta',
                 sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
@@ -523,7 +523,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.9
         */
-        function tc_add_link_to_post_after_metas( $_metas_html ) {
+        function czr_add_link_to_post_after_metas( $_metas_html ) {
 
           if ( apply_filters( 'tc_show_link_after_post_metas' , true )
             && in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', CZR_init::$instance -> post_formats_with_no_heading ) )
@@ -544,7 +544,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.0
         */
-        function tc_hide_all_post_metas( $_classes ) {
+        function czr_hide_all_post_metas( $_classes ) {
           return array_merge($_classes , array('hide-all-post-metas') );
         }
 
@@ -555,7 +555,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @package Customizr
         * @since Customizr 3.2.0
         */
-        function tc_hide_post_metas( $_classes ) {
+        function czr_hide_post_metas( $_classes ) {
           return array_merge($_classes , array('hide-post-metas') );
         }
 
@@ -564,7 +564,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * hook : tc_meta_terms_glue
         * @return  string
         */
-        public function tc_set_term_meta_glue() {
+        public function czr_set_term_meta_glue() {
           return ' / ';
         }
 
@@ -573,7 +573,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * hook : tc_post_tax_metas_html
         * @return  string
         */
-        function tc_set_tax_metas( $_html , $_tax = array() ) {
+        function czr_set_tax_metas( $_html , $_tax = array() ) {
           if ( empty($_tax) )
             return $_html;
           //extract "_show_cats" , "_show_tags" , "cat_list", "tag_list"
@@ -588,7 +588,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * hook : tc_post_date_metas_html
         * @return  string
         */
-        function tc_set_date_metas( $_html, $_pubdate = '' ) {
+        function czr_set_date_metas( $_html, $_pubdate = '' ) {
           if ( empty($_pubdate))
             return $_html;
           return CZR_post_metas::$instance -> tc_get_meta_date( 'publication' , 'short' );
@@ -598,7 +598,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * hook : tc_post_author_metas_html
         * @return  string
         */
-        function tc_set_author_metas( $_html , $_auth = '' ) {
+        function czr_set_author_metas( $_html , $_auth = '' ) {
           if ( empty($_auth) )
             return $_html;
 
@@ -609,7 +609,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * hook : tc_set_metas_content
         * @return  string
         */
-        function tc_set_metas( $_html, $_parts = array() ) {
+        function czr_set_metas( $_html, $_parts = array() ) {
           if ( empty($_parts) )
             return $_html;
           //extract $_tax_text , $_date_text, $_author_text, $_update_text
@@ -620,6 +620,6 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
 endif;
 
 //the only purpose of this function is to use the_tags() wp function in the theme...
-function tc_get_the_tags() {
+function czr_get_the_tags() {
     return the_tags();
 }

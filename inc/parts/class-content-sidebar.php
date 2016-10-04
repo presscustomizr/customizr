@@ -33,7 +33,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       *
       * @since Customizr 3.3+
       */
-      function tc_set_sidebar_hooks() {
+      function czr_set_sidebar_hooks() {
         //displays left sidebar
     		add_action ( '__before_article_container'  , array( $this , 'tc_sidebar_display' ) );
     		add_action ( '__before_left_sidebar'       , array( $this , 'tc_social_in_sidebar' ) );
@@ -60,7 +60,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_sidebar_display() {
+      function czr_sidebar_display() {
         //first check if home and no content option is choosen
         if ( tc__f( '__is_home_empty') )
           return;
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @param : string position left or right
       * @since Customizr 3.3
       */
-      private function tc_display_sidebar_placeholder( $position ) {
+      private function czr_display_sidebar_placeholder( $position ) {
         if ( ! CZR_placeholders::tc_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
@@ -168,7 +168,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function tc_social_in_sidebar() {
+      function czr_social_in_sidebar() {
         //get option from current hook
         $option               = ( false != strpos(current_filter(), 'left') ) ? 'tc_social_in_left-sidebar' : 'tc_social_in_right-sidebar';
 
@@ -198,7 +198,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function tc_set_sidebar_wrapper_widget_class($_original_classes) {
+      function czr_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
         if ( 1 == esc_attr( CZR_utils::$inst->tc_opt('tc_show_sidebar_widget_icon' ) ) )

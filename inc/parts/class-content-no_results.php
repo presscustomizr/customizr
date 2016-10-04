@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_no_results' ) ) :
        * @package Customizr
        * @since Customizr 3.0
        */
-      function tc_no_result_content() {
+      function czr_no_result_content() {
           global $wp_query;
           if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
               return;

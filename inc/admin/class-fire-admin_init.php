@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    function tc_refresh_thumbnail( $post_id, $post ) {
+    function czr_refresh_thumbnail( $post_id, $post ) {
       // If this is just a revision, don't send the email.
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
@@ -70,7 +70,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.4.9
     */
-    function tc_refresh_posts_slider( $post_id, $post = array() ) {
+    function czr_refresh_posts_slider( $post_id, $post = array() ) {
       // no need to build up/refresh the transient it we don't use the posts slider
       // since we always delete the transient when entering the preview.
       if ( 'tc_posts_slider' != CZR_utils::$inst->tc_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
@@ -94,7 +94,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.4.10
     */
-    function tc_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
+    function czr_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
       switch ( $taxonomy ) {
 
         //delete categories based options
@@ -105,7 +105,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     }
 
 
-    function tc_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
+    function czr_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
        //home/blog posts category picker
        $_option = CZR_utils::$inst -> tc_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
@@ -126,7 +126,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @package Customizr
     * @since Customizr 3.2.10
     */
-    function tc_maybe_add_gfonts_to_editor() {
+    function czr_maybe_add_gfonts_to_editor() {
       $_font_pair         = esc_attr( CZR_utils::$inst->tc_opt('tc_fonts') );
       $_all_font_pairs    = CZR_init::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
@@ -148,7 +148,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
    * @package Customizr
    * @since Customizr 3.0.4
    */
-    function tc_admin_style() {
+    function czr_admin_style() {
       wp_enqueue_style(
         'tc-admincss',
         sprintf('%1$sinc/admin/css/tc_admin%2$s.css' , TC_BASE_URL, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
@@ -164,7 +164,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
    * @package Customizr
    * @since Customizr 3.0.5
    */
-    function tc_extract_changelog() {
+    function czr_extract_changelog() {
 
       if( ! file_exists(TC_BASE."readme.txt") ) {
         return;
@@ -211,7 +211,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @since Customizr 3.2.11
     *
     */
-    function tc_add_editor_style() {
+    function czr_add_editor_style() {
       $_stylesheets = array(
           TC_BASE_URL.'inc/admin/css/editor-style.css',
           CZR_init::$instance -> tc_get_style_src() , get_stylesheet_uri()
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @since Customizr 3.2.11
     *
     */
-    function tc_user_defined_tinymce_css( $init ) {
+    function czr_user_defined_tinymce_css( $init ) {
       if ( ! apply_filters( 'tc_add_custom_fonts_to_editor' , true ) )
         return $init;
 
@@ -268,7 +268,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     /**
     * hook : admin_notices
     */
-    function tc_may_be_display_update_notice() {
+    function czr_may_be_display_update_notice() {
       $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = CZR_utils::$inst -> tc_opt($opt_name);
       $show_new_notice = false;
@@ -355,7 +355,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * hook : wp_ajax_dismiss_customizr_update_notice
     * => sets the last_update_notice to the current Customizr version when user click on dismiss notice link
     */
-    function tc_dismiss_update_notice_action() {
+    function czr_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
       $opt_name = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
@@ -369,7 +369,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     /**
     * hook : admin_footer
     */
-    function tc_write_ajax_dismis_script() {
+    function czr_write_ajax_dismis_script() {
       ?>
       <script type="text/javascript" id="tc-dismiss-update-notice">
         ( function($){

@@ -30,7 +30,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        * @since Customizr 3.3.21
        *
        */
-      function tc_add_gallery_class( $_classes ){
+      function czr_add_gallery_class( $_classes ){
         if (  $this -> tc_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( CZR_utils::$inst -> tc_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
         return $_classes;
@@ -45,7 +45,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        * @since Customizr 3.0.5
        *
        */
-      function tc_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
+      function czr_modify_attachment_link( $markup, $id, $size, $permalink, $icon, $text ) {
 
         if ( ! $this -> tc_is_gallery_enabled() )
           return $markup;
@@ -84,7 +84,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
       /*
        * HELPERS
        */
-      function tc_is_gallery_enabled(){
+      function czr_is_gallery_enabled(){
         return apply_filters('tc_enable_gallery', esc_attr( CZR_utils::$inst -> tc_opt('tc_enable_gallery') ) );
       }
   }//end of class

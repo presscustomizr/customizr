@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
          * @package Customizr
          * @since Customizr 3.0
          */
-        function tc_attachment_content() {
+        function czr_attachment_content() {
             //check conditional tags
             global $post;
             if ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() )

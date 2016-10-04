@@ -33,7 +33,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @package Customizr
       * @since Customizr 3.3.22
       */
-      function tc_set_visibility_options(){
+      function czr_set_visibility_options(){
 
         $_nav_classes              = array('navigation');
         $_context                  = $this -> tc_get_context();
@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
        * @package Customizr
        * @since Customizr 3.0
        */
-      function tc_post_nav() {
+      function czr_post_nav() {
 
         list( $post_navigation_bool, $post_nav_class, $_context) = $this -> tc_set_visibility_options();
 
@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @return string or bool
       *
       */
-      function tc_get_context(){
+      function czr_get_context(){
         if ( is_page() )
           return 'page';
         if ( is_single() && ! is_attachment() )
@@ -226,14 +226,14 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @param (string or bool) the context
       * @return bool
       */
-      function tc_is_post_navigation_context_enabled( $_context ) {
+      function czr_is_post_navigation_context_enabled( $_context ) {
         return $_context && 1 == esc_attr( CZR_utils::$inst -> tc_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
-      function tc_is_post_navigation_enabled(){
+      function czr_is_post_navigation_enabled(){
         return 1 == esc_attr( CZR_utils::$inst -> tc_opt( 'tc_show_post_navigation' ) ) ;
       }
 

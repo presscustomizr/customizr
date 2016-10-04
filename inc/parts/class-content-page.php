@@ -30,7 +30,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_set_page_hooks() {
+    function czr_set_page_hooks() {
       //add page content and footer to the __loop
       add_action( '__loop'           , array( $this , 'tc_page_content' ) );
       //page help blocks
@@ -45,7 +45,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
      * @package Customizr
      * @since Customizr 3.0
      */
-    function tc_page_content() {
+    function czr_page_content() {
       if ( ! $this -> tc_page_display_controller() )
         return;
 
@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * hook : the_content
     * @since Customizr 3.4+
     */
-    function tc_maybe_display_img_smartload_help( $the_content ) {
+    function czr_maybe_display_img_smartload_help( $the_content ) {
       if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && CZR_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
@@ -104,7 +104,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_page_display_controller() {
+    function czr_page_display_controller() {
       $tc_show_page_content = 'page' == tc__f('__post_type')
           && is_singular()
           && ! tc__f( '__is_home_empty');

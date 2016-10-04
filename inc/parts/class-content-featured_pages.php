@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     * hook : __after_fp
     * @since v3.4+
     */
-    function tc_maybe_display_dismiss_notice() {
+    function czr_maybe_display_dismiss_notice() {
       if ( ! CZR_placeholders::tc_is_fp_notice_on() )
         return;
 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
   	* @package Customizr
   	* @since Customizr 3.0
   	*/
-    function tc_fp_block_display() {
+    function czr_fp_block_display() {
       if ( ! $this -> tc_show_featured_pages()  )
         return;
 
@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       * @param area are defined in featured-pages templates,show_img is a customizer option
       * @todo better area definition : dynamic
       */
-      function tc_fp_single_display( $fp_single_id,$show_img) {
+      function czr_fp_single_display( $fp_single_id,$show_img) {
         $_skin_color                        = CZR_utils::$inst -> tc_get_skin_color();
         $fp_holder_img                      = apply_filters (
           'tc_fp_holder_img' ,
@@ -297,7 +297,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     /******************************
     * HELPERS
     *******************************/
-    function tc_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
+    function czr_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
       //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       //tc_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
       $_fp_img_model = CZR_post_thumbnails::$instance -> tc_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
@@ -312,7 +312,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     }
 
 
-    function tc_show_featured_pages() {
+    function czr_show_featured_pages() {
       //gets display fp option
       $tc_show_featured_pages 	      = esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_featured_pages' ) );
 
@@ -320,7 +320,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     }
 
 
-    function tc_show_featured_pages_img() {
+    function czr_show_featured_pages_img() {
       //gets  display img option
       return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_utils::$inst->tc_opt( 'tc_show_featured_pages_img' ) ) );
     }

@@ -23,7 +23,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
     /**
     * hook : nav_menu_css_class
     */
-    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) {
+    function czr_add_bootstrap_classes($classes, $item, $args, $depth ) {
       //cast $classes into array
       $classes = (array)$classes;
       //check if $item is a dropdown ( a parent )
@@ -109,7 +109,7 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
     /**
     * hook : page_css_class
     */
-    function tc_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
+    function czr_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
       if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
         if ( 0 === $depth) {
           $css_class[] = 'dropdown';
