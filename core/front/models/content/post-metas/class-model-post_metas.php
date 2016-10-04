@@ -67,9 +67,9 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
   /* END PUBLIC GETTERS */
 
   /* HELPERS */
-  protected function czr_fn_get_meta( $meta, $params, $separator = '' ) {
+  protected function czr_fn_get_meta( $meta, $params = array(), $separator = '' ) {
     //if ( ! isset( $this -> _cache[ $meta ] ) ) {
-    $params = is_array( $args ) ? $args : array( $params );
+    $params = is_array( $params ) ? $params : array( $params );
     $this -> _cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
     //}
     return $this -> _cache[ $meta ];

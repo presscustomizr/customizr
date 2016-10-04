@@ -36,7 +36,7 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'element_class']            = array_merge( $this -> element_class, czr_fn_get_in_content_width_class() );
+    $model[ 'element_class']            = czr_fn_get_in_content_width_class();
 
     //TEMP:
     if ( 'post_list_plain_excerpt' == $model['id'] ) {
