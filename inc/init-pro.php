@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
           'PC_pro_bundle'              => array('/addons/bundle/pc-pro-bundle.php')
         );
         //set files to load according to the context : admin / front / customize
-        add_filter( 'tc_get_files_to_load_pro' , array( $this , 'tc_set_files_to_load_pro' ) );
+        add_filter( 'tc_get_files_to_load_pro' , array( $this , 'czr_set_files_to_load_pro' ) );
         //load
         $this -> czr_pro_load();
     }//end of __construct()

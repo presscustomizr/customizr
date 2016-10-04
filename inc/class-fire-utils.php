@@ -28,33 +28,33 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         self::$instance =& $this;
 
         //init properties
-        add_action( 'after_setup_theme'       , array( $this , 'tc_init_properties') );
+        add_action( 'after_setup_theme'       , array( $this , 'czr_init_properties') );
 
         //Various WP filters for
         //content
         //thumbnails => parses image if smartload enabled
         //title
-        add_action( 'wp_head'                 , array( $this , 'tc_wp_filters') );
+        add_action( 'wp_head'                 , array( $this , 'czr_wp_filters') );
 
         //get all options
-        add_filter( '__options'               , array( $this , 'tc_get_theme_options' ), 10, 1);
+        add_filter( '__options'               , array( $this , 'czr_get_theme_options' ), 10, 1);
         //get single option
-        add_filter( '__get_option'            , array( $this , 'tc_opt' ), 10, 2 );//deprecated
+        add_filter( '__get_option'            , array( $this , 'czr_opt' ), 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                    , array( $this , 'tc_id' ));//deprecated
-        add_filter( '__screen_layout'         , array( $this , 'tc_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'               , array( $this , 'tc_is_home' ) );
-        add_filter( '__is_home_empty'         , array( $this , 'tc_is_home_empty' ) );
-        add_filter( '__post_type'             , array( $this , 'tc_get_post_type' ) );
-        add_filter( '__is_no_results'         , array( $this , 'tc_is_no_results') );
-        add_filter( '__article_selectors'     , array( $this , 'tc_article_selectors' ) );
+        add_filter( '__ID'                    , array( $this , 'czr_id' ));//deprecated
+        add_filter( '__screen_layout'         , array( $this , 'czr_get_layout' ) , 10 , 2 );//deprecated
+        add_filter( '__is_home'               , array( $this , 'czr_is_home' ) );
+        add_filter( '__is_home_empty'         , array( $this , 'czr_is_home_empty' ) );
+        add_filter( '__post_type'             , array( $this , 'czr_get_post_type' ) );
+        add_filter( '__is_no_results'         , array( $this , 'czr_is_no_results') );
+        add_filter( '__article_selectors'     , array( $this , 'czr_article_selectors' ) );
 
         //social networks
-        add_filter( '__get_socials'           , array( $this , 'tc_get_social_networks' ) );
+        add_filter( '__get_socials'           , array( $this , 'czr_get_social_networks' ) );
 
         //refresh the theme options right after the _preview_filter when previewing
-        add_action( 'customize_preview_init'  , array( $this , 'tc_customize_refresh_db_opt' ) );
+        add_action( 'customize_preview_init'  , array( $this , 'czr_customize_refresh_db_opt' ) );
       }
 
       /***************************
@@ -97,12 +97,12 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @since Customizr 3.3.0
       */
       function czr_wp_filters() {
-        add_filter( 'the_content'                         , array( $this , 'tc_fancybox_content_filter' ) );
+        add_filter( 'the_content'                         , array( $this , 'czr_fancybox_content_filter' ) );
         if ( esc_attr( CZR_utils::$inst->czr_opt( 'tc_img_smart_load' ) ) ) {
-          add_filter( 'the_content'                       , array( $this , 'tc_parse_imgs' ), PHP_INT_MAX );
-          add_filter( 'tc_thumb_html'                     , array( $this , 'tc_parse_imgs' ) );
+          add_filter( 'the_content'                       , array( $this , 'czr_parse_imgs' ), PHP_INT_MAX );
+          add_filter( 'tc_thumb_html'                     , array( $this , 'czr_parse_imgs' ) );
         }
-        add_filter( 'wp_title'                            , array( $this , 'tc_wp_title' ), 10, 2 );
+        add_filter( 'wp_title'                            , array( $this , 'czr_wp_title' ), 10, 2 );
       }
 
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
           return $_html;
 
-        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
+        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'czr_regex_callback' ) , $_html);
       }
 
 
@@ -179,7 +179,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
-        return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
+        return apply_filters( 'czr_get_skin_color' , $_to_return , $_what );
       }
 
 
@@ -196,7 +196,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_is_customizr_option( $option_key ) {
         $_is_tc_option = in_array( substr( $option_key, 0, 3 ), $this -> tc_options_prefixes );
-        return apply_filters( 'tc_is_customizr_option', $_is_tc_option , $option_key );
+        return apply_filters( 'czr_is_customizr_option', $_is_tc_option , $option_key );
       }
 
 
@@ -500,7 +500,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
         $r_content = preg_replace( $pattern, $replacement, $content);
         $content = $r_content ? $r_content : $content;
-        return apply_filters( 'tc_fancybox_content_filter', $content );
+        return apply_filters( 'czr_fancybox_content_filter', $content );
       }
 
 
@@ -659,7 +659,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         // 404
         $selectors                  = is_404() ? apply_filters( 'tc_404_selectors' , 'id="post-0" class="post error404 no-results not-found row-fluid"' ) : $selectors;
 
-        echo apply_filters( 'tc_article_selectors', $selectors );
+        echo apply_filters( 'czr_article_selectors', $selectors );
 
       }//end of function
 
@@ -688,7 +688,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
               if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
               $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
               $link = 'email' == $type ? 'mailto:' : '';
-              $link .=  call_user_func( array( CZR_utils_settings_map::$instance, 'tc_sanitize_'.$type ), $__options[$key] );
+              $link .=  call_user_func( array( CZR_utils_settings_map::$instance, 'czr_sanitize_'.$type ), $__options[$key] );
               //there is one exception : rss feed has no target _blank and special icon title
               $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
                   apply_filters( 'tc_social_link_class',
@@ -803,7 +803,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         'current'   => date('Y-m-d g:i:s')
       );
       //ALL dates must be valid
-      if ( 1 != array_product( array_map( array($this , 'tc_is_date_valid') , $dates_to_check ) ) )
+      if ( 1 != array_product( array_map( array($this , 'czr_is_date_valid') , $dates_to_check ) ) )
         return false;
 
       //Import variables into the current symbol table
@@ -957,7 +957,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
     */
     function czr_get_ctx_excluded_options() {
       return apply_filters(
-        'tc_get_ctx_excluded_options',
+        'czr_get_ctx_excluded_options',
         array(
           'defaults',
           'tc_sliders',

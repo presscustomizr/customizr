@@ -17,11 +17,11 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       function __construct () {
         self::$instance =& $this;
         //set actions and filters for posts and page headings
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_post_page_heading_hooks') );
+        add_action( 'template_redirect'                            , array( $this , 'czr_set_post_page_heading_hooks') );
         //set actions and filters for archives headings
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_archives_heading_hooks') );
+        add_action( 'template_redirect'                            , array( $this , 'czr_set_archives_heading_hooks') );
         //Set headings user options
-        add_action( 'template_redirect'                            , array( $this , 'tc_set_headings_options') );
+        add_action( 'template_redirect'                            , array( $this , 'czr_set_headings_options') );
       }
 
 
@@ -43,12 +43,12 @@ if ( ! class_exists( 'CZR_headings' ) ) :
           return;
 
         //Headings for archives, authors, search, 404
-        add_action ( '__before_loop'                  , array( $this , 'tc_render_headings_view' ) );
+        add_action ( '__before_loop'                  , array( $this , 'czr_render_headings_view' ) );
         //Set archive icon with customizer options (since 3.2.0)
-        add_filter ( 'tc_archive_icon'                , array( $this , 'tc_set_archive_icon' ) );
+        add_filter ( 'tc_archive_icon'                , array( $this , 'czr_set_archive_icon' ) );
 
-        add_filter( 'tc_archive_header_class'         , array( $this , 'tc_archive_title_and_class_callback'), 10, 2 );
-        add_filter( 'tc_headings_archive_html'        , array( $this , 'tc_archive_title_and_class_callback'), 10, 1 );
+        add_filter( 'tc_archive_header_class'         , array( $this , 'czr_archive_title_and_class_callback'), 10, 2 );
+        add_filter( 'tc_headings_archive_html'        , array( $this , 'czr_archive_title_and_class_callback'), 10, 1 );
         global $wp_query;
         if ( czr__f('__is_home') )
           add_filter( 'tc_archive_headings_separator' , '__return_false' );
@@ -70,20 +70,20 @@ if ( ! class_exists( 'CZR_headings' ) ) :
           return;
 
         //Set single post/page icon with customizer options (since 3.2.0)
-        add_filter ( 'tc_content_title_icon'    , array( $this , 'tc_set_post_page_icon' ) );
+        add_filter ( 'tc_content_title_icon'    , array( $this , 'czr_set_post_page_icon' ) );
         //Prepare the headings for post, page, attachment
-        add_action ( '__before_content'         , array( $this , 'tc_render_headings_view' ) );
+        add_action ( '__before_content'         , array( $this , 'czr_render_headings_view' ) );
         //Populate heading with default content
-        add_filter ( 'tc_headings_content_html' , array( $this , 'tc_post_page_title_callback'), 10, 2 );
+        add_filter ( 'tc_headings_content_html' , array( $this , 'czr_post_page_title_callback'), 10, 2 );
         //Create the Customizr title
-        add_filter( 'tc_the_title'              , array( $this , 'tc_content_heading_title' ) , 0 );
+        add_filter( 'tc_the_title'              , array( $this , 'czr_content_heading_title' ) , 0 );
         //Add edit link
-        add_filter( 'tc_the_title'              , array( $this , 'tc_add_edit_link_after_title' ), 2 );
+        add_filter( 'tc_the_title'              , array( $this , 'czr_add_edit_link_after_title' ), 2 );
         //Set user defined archive titles
-        add_filter( 'tc_category_archive_title' , array( $this , 'tc_set_archive_custom_title' ) );
-        add_filter( 'tc_tag_archive_title'      , array( $this , 'tc_set_archive_custom_title' ) );
-        add_filter( 'tc_search_results_title'   , array( $this , 'tc_set_archive_custom_title' ) );
-        add_filter( 'tc_author_archive_title'   , array( $this , 'tc_set_archive_custom_title' ) );
+        add_filter( 'tc_category_archive_title' , array( $this , 'czr_set_archive_custom_title' ) );
+        add_filter( 'tc_tag_archive_title'      , array( $this , 'czr_set_archive_custom_title' ) );
+        add_filter( 'tc_search_results_title'   , array( $this , 'czr_set_archive_custom_title' ) );
+        add_filter( 'tc_author_archive_title'   , array( $this , 'czr_set_archive_custom_title' ) );
 
 
         //SOME DEFAULT OPTIONS
@@ -92,7 +92,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
           add_filter( 'tc_content_headings_separator' , '__return_false' );
 
         //No headings for some post formats
-        add_filter( 'tc_headings_content_html'  , array( $this, 'tc_post_formats_heading') , 100 );
+        add_filter( 'tc_headings_content_html'  , array( $this, 'czr_post_formats_heading') , 100 );
 
       }
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_render_headings_view', $html );
+        echo apply_filters( 'czr_render_headings_view', $html );
       }//end of function
 
 
@@ -452,7 +452,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
           return;
 
         //Add update status next to the title (@since 3.2.6)
-        add_filter( 'tc_the_title'                  , array( $this , 'tc_add_update_notice_in_title'), 20);
+        add_filter( 'tc_the_title'                  , array( $this , 'czr_add_update_notice_in_title'), 20);
       }
 
 

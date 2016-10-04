@@ -17,9 +17,9 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
       function __construct () {
         self::$instance =& $this;
 
-        add_filter ( 'tc_article_container_class' , array( $this, 'tc_add_gallery_class' ), 20 );
+        add_filter ( 'tc_article_container_class' , array( $this, 'czr_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
-        add_filter ( 'wp_get_attachment_link'     , array( $this, 'tc_modify_attachment_link') , 20, 6 );
+        add_filter ( 'wp_get_attachment_link'     , array( $this, 'czr_modify_attachment_link') , 20, 6 );
       }
 
       /**

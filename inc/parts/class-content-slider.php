@@ -20,17 +20,17 @@ class CZR_slider {
 
   function __construct () {
     self::$instance =& $this;
-    add_action( 'wp'                       , array( $this, 'tc_maybe_setup_parallax' ) );
-    add_action( 'template_redirect'        , array( $this, 'tc_set_slider_hooks' ) );
+    add_action( 'wp'                       , array( $this, 'czr_maybe_setup_parallax' ) );
+    add_action( 'template_redirect'        , array( $this, 'czr_set_slider_hooks' ) );
     //set user customizer options. @since v3.2.0
-    add_filter( 'tc_slider_layout_class'   , array( $this , 'tc_set_slider_wrapper_class' ) );
+    add_filter( 'tc_slider_layout_class'   , array( $this , 'czr_set_slider_wrapper_class' ) );
     //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
     //fired on hook : wp_enqueue_scripts
     //Set thumbnail specific design based on user options
     //Set user defined height
-    add_filter( 'tc_user_options_style'    , array( $this , 'tc_write_slider_inline_css' ) );
+    add_filter( 'tc_user_options_style'    , array( $this , 'czr_write_slider_inline_css' ) );
     //tc_slider_height is fired in CZR_slider::czr_write_slider_inline_css()
-    add_filter( 'tc_slider_height'         , array( $this, 'tc_set_demo_slider_height') );
+    add_filter( 'tc_slider_height'         , array( $this, 'czr_set_demo_slider_height') );
   }//end of construct
 
 
@@ -52,26 +52,26 @@ class CZR_slider {
     if ( ! isset($slides) || ! $slides )
       return;
 
-    add_action( '__after_header'            , array( $this , 'tc_slider_display' ) );
-    add_action( '__after_carousel_inner'    , array( $this , 'tc_slider_control_view' ) );
+    add_action( '__after_header'            , array( $this , 'czr_slider_display' ) );
+    add_action( '__after_carousel_inner'    , array( $this , 'czr_slider_control_view' ) );
 
     //adds the center-slides-enabled css class
-    add_filter( 'tc_carousel_inner_classes' , array( $this, 'tc_set_inner_class') );
+    add_filter( 'tc_carousel_inner_classes' , array( $this, 'czr_set_inner_class') );
 
     //adds infos in the caption data of the demo slider
-    add_filter( 'tc_slide_caption_data'     , array( $this, 'tc_set_demo_slide_data'), 10, 3 );
+    add_filter( 'tc_slide_caption_data'     , array( $this, 'czr_set_demo_slide_data'), 10, 3 );
 
     //wrap the slide into a link
-    add_filter( 'tc_slide_background'       , array( $this, 'tc_link_whole_slide'), 5, 5 );
+    add_filter( 'tc_slide_background'       , array( $this, 'czr_link_whole_slide'), 5, 5 );
 
     //display a notice for first time users
     if ( 'demo' == $slider_name_id ) {
       //display a notice for first time users
-      add_action( '__after_carousel_inner'   , array( $this, 'tc_maybe_display_dismiss_notice') );
+      add_action( '__after_carousel_inner'   , array( $this, 'czr_maybe_display_dismiss_notice') );
     }
 
     //display an edit deep link to the Slider section in the Customize or post/page
-    add_action( '__after_carousel_inner'    , array( $this, 'tc_render_slider_edit_link_view'), 10, 2 );
+    add_action( '__after_carousel_inner'    , array( $this, 'czr_render_slider_edit_link_view'), 10, 2 );
   }
 
   /******************************
@@ -145,7 +145,7 @@ class CZR_slider {
         //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
         //to avoid this we filter the attributes getting rid of the srcset if any.
         //Basically this trick, even if ugly, will avoid the srcset attr computation
-        add_filter( 'wp_get_attachment_image_attributes', array( CZR_post_thumbnails::$instance, 'tc_remove_srcset_attr' ) );
+        add_filter( 'wp_get_attachment_image_attributes', array( CZR_post_thumbnails::$instance, 'czr_remove_srcset_attr' ) );
       }
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
 
@@ -441,7 +441,7 @@ class CZR_slider {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'tc_parse_imgs') );
+      remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_parse_imgs') );
 
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
@@ -466,7 +466,7 @@ class CZR_slider {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', array(CZR_utils::$instance, 'tc_parse_imgs') );
+      add_filter('tc_thumb_html', array(CZR_utils::$instance, 'czr_parse_imgs') );
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
     /* end tc_thumb reset filters */
@@ -616,7 +616,7 @@ class CZR_slider {
     $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
 
     $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
+    return apply_filters( 'czr_query_posts_slider', $_posts, $args );
   }
 
 
@@ -630,7 +630,7 @@ class CZR_slider {
   *
   */
   private function czr_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
-    return apply_filters( 'tc_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
+    return apply_filters( 'czr_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
         $this -> czr_get_posts_have_thumbnail_sql( $_columns, $_pt_where ),
         $this -> czr_get_posts_have_attachment_sql( $_columns, $_pa_where )
     ));
@@ -646,7 +646,7 @@ class CZR_slider {
   */
   private function czr_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'tc_get_posts_have_thumbnail_sql', "
+    return apply_filters( 'czr_get_posts_have_thumbnail_sql', "
         SELECT $_columns
         FROM $wpdb->posts AS posts INNER JOIN $wpdb->postmeta AS metas
         ON posts.ID=metas.post_id
@@ -664,7 +664,7 @@ class CZR_slider {
   */
   private function czr_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'tc_get_posts_have_attachment_sql', "
+    return apply_filters( 'czr_get_posts_have_attachment_sql', "
         SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
         WHERE $_where
     ");
@@ -722,7 +722,7 @@ class CZR_slider {
     <?php
     $html = ob_get_contents();
     if ($html) ob_end_clean();
-    echo apply_filters( 'tc_slider_display', $html, $slider_name_id );
+    echo apply_filters( 'czr_slider_display', $html, $slider_name_id );
   }
 
 
@@ -998,7 +998,7 @@ class CZR_slider {
         self::$rendered_sliders
       )
     );
-    echo apply_filters( 'tc_slider_control_view', $_html );
+    echo apply_filters( 'czr_slider_control_view', $_html );
   }
 
 
@@ -1042,9 +1042,9 @@ class CZR_slider {
   function czr_maybe_setup_parallax() {
     if ( 1 != esc_attr( CZR_utils::$inst->czr_opt( 'tc_slider_parallax') ) )
       return;
-    add_filter('tc_slider_layout_class'     , array( $this, 'tc_add_parallax_wrapper_class' ) );
-    add_filter('tc_carousel_inner_classes'  , array( $this, 'tc_add_parallax_item_class' ) );
-    add_action('wp_head'                    , array( $this, 'tc_add_parallax_slider_script' ) );
+    add_filter('tc_slider_layout_class'     , array( $this, 'czr_add_parallax_wrapper_class' ) );
+    add_filter('tc_carousel_inner_classes'  , array( $this, 'czr_add_parallax_item_class' ) );
+    add_action('wp_head'                    , array( $this, 'czr_add_parallax_slider_script' ) );
   }
 
 
@@ -1225,7 +1225,7 @@ class CZR_slider {
       if ( false !== (bool) esc_attr( CZR_utils::$inst->czr_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
-    return apply_filters( 'tc_set_demo_slider_height' , 750 );
+    return apply_filters( 'czr_set_demo_slider_height' , 750 );
   }
 
 

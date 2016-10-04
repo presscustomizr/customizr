@@ -17,11 +17,11 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         function __construct () {
           self::$instance =& $this;
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'template_redirect'                            , array( $this , 'tc_set_visibility_options' ) , 10 );
+          add_action( 'template_redirect'                            , array( $this , 'czr_set_visibility_options' ) , 10 );
            //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( 'template_redirect'                            , array( $this , 'tc_set_design_options' ) , 20 );
+          add_action( 'template_redirect'                            , array( $this , 'czr_set_design_options' ) , 20 );
           //Show / hide metas based on customizer user options (@since 3.2.0)
-          add_action( '__after_content_title'         , array( $this , 'tc_set_post_metas_hooks' ), 20 );
+          add_action( '__after_content_title'         , array( $this , 'czr_set_post_metas_hooks' ), 20 );
 
         }
 
@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
           if ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_post_metas' ) ) ) {
             if ( CZR___::$instance -> czr_is_customizing() )
-              add_filter( 'body_class' , array( $this , 'tc_hide_all_post_metas') );
+              add_filter( 'body_class' , array( $this , 'czr_hide_all_post_metas') );
             else{
               add_filter( 'tc_show_post_metas' , '__return_false' );
               return;
@@ -54,7 +54,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               }
 
               if ( CZR___::$instance -> czr_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                  add_filter( 'body_class' , array( $this , 'czr_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
               else
@@ -68,7 +68,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               }
 
               if ( CZR___::$instance -> czr_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                  add_filter( 'body_class' , array( $this , 'czr_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
               else
@@ -81,7 +81,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
                   return;
               }
               if ( CZR___::$instance -> czr_is_customizing() ) {
-                  add_filter( 'body_class' , array( $this , 'tc_hide_post_metas') );
+                  add_filter( 'body_class' , array( $this , 'czr_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
               else
@@ -121,13 +121,13 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           if ( 'buttons' == esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_metas_design' ) ) )
             return;
 
-          add_filter( 'tc_meta_terms_glue'           , array( $this, 'tc_set_term_meta_glue' ) );
+          add_filter( 'tc_meta_terms_glue'           , array( $this, 'czr_set_term_meta_glue' ) );
           add_filter( 'tc_meta_tax_class'            , '__return_empty_array' );
 
-          add_filter( 'tc_post_tax_metas_html'       , array( $this, 'tc_set_tax_metas' ), 10, 2 );
-          add_filter( 'tc_post_date_metas_html'      , array( $this, 'tc_set_date_metas' ), 10, 2 );
-          add_filter( 'tc_post_author_metas_html'    , array( $this, 'tc_set_author_metas' ), 10 , 2 );
-          add_filter( 'tc_set_metas_content'         , array( $this, 'tc_set_metas' ), 10, 2 );
+          add_filter( 'tc_post_tax_metas_html'       , array( $this, 'czr_set_tax_metas' ), 10, 2 );
+          add_filter( 'tc_post_date_metas_html'      , array( $this, 'czr_set_date_metas' ), 10, 2 );
+          add_filter( 'tc_post_author_metas_html'    , array( $this, 'czr_set_author_metas' ), 10 , 2 );
+          add_filter( 'tc_set_metas_content'         , array( $this, 'czr_set_metas' ), 10, 2 );
         }
 
 
@@ -154,9 +154,9 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           } else {
             $_model = $this -> czr_build_post_post_metas_model();
             //Set metas content based on customizer user options (@since 3.2.6)
-            add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_set_post_metas_elements'), 10 , 2 );
+            add_filter( 'tc_meta_utility_text'      , array( $this , 'czr_set_post_metas_elements'), 10 , 2 );
             //filter metas content with default theme settings
-            add_filter( 'tc_meta_utility_text'      , array( $this , 'tc_add_link_to_post_after_metas'), 20 );
+            add_filter( 'tc_meta_utility_text'      , array( $this , 'czr_add_link_to_post_after_metas'), 20 );
           }
 
           //RENDER VIEW
@@ -342,8 +342,8 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           if ( ! $post_terms )
             return;
 
-          $_terms_html_array  = array_map( array( $this , 'tc_meta_term_view' ), $post_terms );
-          return apply_filters( 'tc_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
+          $_terms_html_array  = array_map( array( $this , 'czr_meta_term_view' ), $post_terms );
+          return apply_filters( 'czr_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
         }
 
 
@@ -371,7 +371,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
 
           $_to_return    = $_term_link ? '<a class="%1$s" href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
 
-          return apply_filters( 'tc_meta_term_view' , sprintf($_to_return,
+          return apply_filters( 'czr_meta_term_view' , sprintf($_to_return,
               $_classes,
               $_term_link,
               esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $term -> name ) ),
@@ -528,7 +528,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           if ( apply_filters( 'tc_show_link_after_post_metas' , true )
             && in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', CZR_init::$instance -> post_formats_with_no_heading ) )
             && ! is_singular() ) {
-            return apply_filters('tc_add_link_to_post_after_metas',
+            return apply_filters('czr_add_link_to_post_after_metas',
               sprintf('%1$s | <a href="%2$s" title="%3$s">%3$s &raquo;</a>', $_metas_html, get_permalink(), __('Open' , 'customizr') )
             );
           }

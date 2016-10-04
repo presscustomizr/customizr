@@ -17,13 +17,13 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       function __construct () {
         self::$instance =& $this;
         //wp hook => wp_query is built
-        add_action ( 'wp'                     , array( $this , 'tc_comments_set_hooks' ) );
+        add_action ( 'wp'                     , array( $this , 'czr_comments_set_hooks' ) );
 
         //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
         //fired on hook : wp_enqueue_scripts
         //Set thumbnail specific design based on user options
         //Set user defined various inline stylings
-        add_filter( 'tc_user_options_style'   , array( $this , 'tc_comment_bubble_inline_css' ) );
+        add_filter( 'tc_user_options_style'   , array( $this , 'czr_comment_bubble_inline_css' ) );
       }
 
 
@@ -39,23 +39,23 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       */
       function czr_comments_set_hooks() {
         //Maybe fires the comment's template
-        add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
+        add_action ( '__after_loop'           , array( $this , 'czr_comments' ), 10 );
 
         //Apply a filter on the comment list ( comment list user defined option )
         //the filter tc_display_comment_list is fired in the comments.php template
-        add_filter( 'tc_display_comment_list' , array( $this , 'tc_set_comment_list_display' ) );
+        add_filter( 'tc_display_comment_list' , array( $this , 'czr_set_comment_list_display' ) );
 
         //Add actions in the comment's template
-        add_action ( '__comment'              , array( $this , 'tc_comment_title' ), 10 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_list' ), 20 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_navigation' ), 30 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_close' ), 40 );
-        add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
+        add_action ( '__comment'              , array( $this , 'czr_comment_title' ), 10 );
+        add_action ( '__comment'              , array( $this , 'czr_comment_list' ), 20 );
+        add_action ( '__comment'              , array( $this , 'czr_comment_navigation' ), 30 );
+        add_action ( '__comment'              , array( $this , 'czr_comment_close' ), 40 );
+        add_filter ( 'comment_form_defaults'  , array( $this , 'czr_set_comment_title') );
 
         //Add comment bubble
-        add_filter( 'tc_the_title'            , array( $this , 'tc_display_comment_bubble' ), 1 );
+        add_filter( 'tc_the_title'            , array( $this , 'czr_display_comment_bubble' ), 1 );
         //Custom Bubble comment since 3.2.6
-        add_filter( 'tc_bubble_comment'       , array( $this , 'tc_custom_bubble_comment'), 10, 2 );
+        add_filter( 'tc_bubble_comment'       , array( $this , 'czr_custom_bubble_comment'), 10, 2 );
       }
 
 
@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
             $_title = sprintf( '%1$s %2$s', number_format_i18n( get_comments_number(), 'customizr' ) , __( 'thoughts on', 'customizr' ) );
           }
 
-          echo apply_filters( 'tc_comment_title' ,
+          echo apply_filters( 'czr_comment_title' ,
                 sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s &ldquo;%2$s&rdquo;</h2>' ,
                   $_title,
                   '<span>' . get_the_title() . '</span>'
@@ -112,7 +112,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         * @since Customizr 3.0
        */
         function czr_comment_list() {
-          $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' ) );
+          $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'czr_comment_callback' ) , 'style' => 'ul' ) );
           ob_start();
             ?>
               <ul class="commentlist">
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
             <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          echo apply_filters( 'tc_comment_list' , $html );
+          echo apply_filters( 'czr_comment_list' , $html );
         }
 
 
@@ -222,7 +222,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
 
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'tc_comment_callback' , $html, $comment, $args, $depth, $max_comments_depth );
+        echo apply_filters( 'czr_comment_callback' , $html, $comment, $args, $depth, $max_comments_depth );
       }
 
 
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
 
         $html = ob_get_contents();
         ob_end_clean();
-        echo apply_filters( 'tc_comment_navigation' , $html );
+        echo apply_filters( 'czr_comment_navigation' , $html );
 
       endif; // check for comment navigation
 
@@ -285,7 +285,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
        * But we only want the note on posts and pages that had comments in the first place.
        */
       if ( ! comments_open() && get_comments_number() ) :
-        echo apply_filters( 'tc_comment_close' ,
+        echo apply_filters( 'czr_comment_close' ,
           sprintf('<p class="nocomments">%1$s</p>',
             __( 'Comments are closed.' , 'customizr' )
           )
@@ -474,7 +474,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       } else
         $_bool = false;
 
-      return apply_filters( 'tc_are_comments_enabled', $_bool );
+      return apply_filters( 'czr_are_comments_enabled', $_bool );
     }
 
 

@@ -17,10 +17,10 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     function __construct () {
       self::$instance =& $this;
       //All footer hooks setup
-      add_action( 'wp_head'                   , array( $this , 'tc_footer_hook_setup') );
+      add_action( 'wp_head'                   , array( $this , 'czr_footer_hook_setup') );
 
       // Sticky footer style
-      add_filter( 'tc_user_options_style' , array( $this , 'tc_write_sticky_footer_inline_css' ) );
+      add_filter( 'tc_user_options_style' , array( $this , 'czr_write_sticky_footer_inline_css' ) );
     }
 
 
@@ -38,10 +38,10 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     */
     function czr_footer_hook_setup() {
       //add sticky_footer body class
-      add_filter ( 'body_class' , array( $this, 'tc_add_sticky_footer_body_class' ) );
+      add_filter ( 'body_class' , array( $this, 'czr_add_sticky_footer_body_class' ) );
 
       //print the sticky_footer push div
-      add_action ( '__after_main_container' , array( $this, 'tc_sticky_footer_push'), 100 );
+      add_action ( '__after_main_container' , array( $this, 'czr_sticky_footer_push'), 100 );
 
       //html > footer actions
       add_action ( '__after_main_wrapper'   , 'get_footer');
@@ -51,18 +51,18 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         return;
 
       //footer actions
-      add_action ( '__footer'         , array( $this , 'tc_widgets_footer' ), 10 );
-      add_action ( '__footer'         , array( $this , 'tc_colophon_display' ), 20 );
+      add_action ( '__footer'         , array( $this , 'czr_widgets_footer' ), 10 );
+      add_action ( '__footer'         , array( $this , 'czr_colophon_display' ), 20 );
 
       //colophon actions => some priorities are rtl dependants
-      add_action ( '__colophon'       , array( $this , 'tc_colophon_left_block' ), 10 );
-      add_action ( '__colophon'       , array( $this , 'tc_colophon_center_block' ), 20 );
-      add_action ( '__colophon'       , array( $this , 'tc_colophon_right_block' ), 30 );
+      add_action ( '__colophon'       , array( $this , 'czr_colophon_left_block' ), 10 );
+      add_action ( '__colophon'       , array( $this , 'czr_colophon_center_block' ), 20 );
+      add_action ( '__colophon'       , array( $this , 'czr_colophon_right_block' ), 30 );
 
       //since v3.2.0, Show back to top from the Customizer option panel
-      add_action ( '__after_footer'       , array( $this , 'tc_render_back_to_top') );
+      add_action ( '__after_footer'       , array( $this , 'czr_render_back_to_top') );
       //since v3.2.0, set no widget icons from the Customizer option panel
-      add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'tc_set_widget_wrapper_class') );
+      add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'czr_set_widget_wrapper_class') );
     }
 
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 			<?php
 			$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'tc_widgets_footer', $html , $footer_widgets );
+	        echo apply_filters( 'czr_widgets_footer', $html , $footer_widgets );
 		}//end of function
 
 
@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 	    	<?php
 	    	$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'tc_colophon_display', $html );
+	        echo apply_filters( 'czr_colophon_display', $html );
 	    }
 
 
@@ -212,7 +212,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 	    	$_nothing_to_render = $_nothing_to_render && ! CZR___::$instance -> czr_is_customizing();
 
 	      	echo apply_filters(
-	      		'tc_colophon_left_block',
+	      		'czr_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			implode( ' ', apply_filters( 'tc_colophon_left_block_class', array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) ),
 	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
@@ -265,7 +265,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         return;
 
     	echo apply_filters(
-    		'tc_colophon_right_block',
+    		'czr_colophon_right_block',
     		sprintf('<div class="%1$s"><p class="%3$s"><a class="back-to-top" href="#">%2$s</a></p></div>',
     			implode( ' ', apply_filters( 'tc_colophon_right_block_class', array( 'span3', 'backtop' ) ) ),
                 __( 'Back to top' , 'customizr' ),

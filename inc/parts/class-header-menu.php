@@ -17,7 +17,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     function __construct () {
       self::$instance =& $this;
       //Set menu customizer options (since 3.2.0)
-      add_action( 'wp'             , array( $this, 'tc_set_menu_hooks') );
+      add_action( 'wp'             , array( $this, 'czr_set_menu_hooks') );
     }
 
 
@@ -34,36 +34,36 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       if ( (bool) CZR_utils::$inst->czr_opt('tc_hide_all_menus') )
         return;
       //VARIOUS USER OPTIONS
-      add_filter( 'body_class'                    , array( $this , 'tc_add_body_classes') );
+      add_filter( 'body_class'                    , array( $this , 'czr_add_body_classes') );
       //Set header css classes based on user options
-      add_filter( 'tc_header_classes'             , array( $this , 'tc_set_header_classes') );
-      add_filter( 'tc_social_header_block_class'  , array( $this, 'tc_set_social_header_class') );
+      add_filter( 'tc_header_classes'             , array( $this , 'czr_set_header_classes') );
+      add_filter( 'tc_social_header_block_class'  , array( $this, 'czr_set_social_header_class') );
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
-      add_filter( 'tc_user_options_style'         , array( $this , 'tc_menu_item_style_first_letter_css') );
+      add_filter( 'tc_user_options_style'         , array( $this , 'czr_menu_item_style_first_letter_css') );
       //set second menu specific style including @media rules
-      add_filter( 'tc_user_options_style'         , array( $this , 'tc_add_second_menu_inline_style') );
+      add_filter( 'tc_user_options_style'         , array( $this , 'czr_add_second_menu_inline_style') );
 
       //SIDE MENU HOOKS SINCE v3.3+
       if ( $this -> czr_is_sidenav_enabled() ){
-        add_action( 'wp_head'                     , array( $this , 'tc_set_sidenav_hooks') );
-        add_filter( 'tc_user_options_style'       , array( $this , 'tc_set_sidenav_style') );
+        add_action( 'wp_head'                     , array( $this , 'czr_set_sidenav_hooks') );
+        add_filter( 'tc_user_options_style'       , array( $this , 'czr_set_sidenav_style') );
       } else {
         // add main menu notice
-        add_action( '__navbar'                    , array( $this, 'tc_maybe_display_main_menu_notice'), 50 );
+        add_action( '__navbar'                    , array( $this, 'czr_maybe_display_main_menu_notice'), 50 );
       }
       //this adds css classes to the navbar-wrapper :
       //1) to the main menu if regular (sidenav not enabled)
       //2) to the secondary menu if enabled
       if ( ! $this -> czr_is_sidenav_enabled() || CZR_utils::$inst->czr_is_secondary_menu_enabled() ) {
-        add_filter( 'tc_navbar_wrapper_class'     , array( $this, 'tc_set_menu_style_options'), 0 );
+        add_filter( 'tc_navbar_wrapper_class'     , array( $this, 'czr_set_menu_style_options'), 0 );
       }
 
       //body > header > navbar action ordered by priority
-      add_action ( '__navbar'                     , array( $this , 'tc_menu_display' ), 30 );
+      add_action ( '__navbar'                     , array( $this , 'czr_menu_display' ), 30 );
       //adds class
-      add_filter ( 'wp_page_menu'                 , array( $this , 'tc_add_menuclass' ));
+      add_filter ( 'wp_page_menu'                 , array( $this , 'czr_add_menuclass' ));
     }
 
 
@@ -77,19 +77,19 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return void
     */
     function czr_set_sidenav_hooks() {
-      add_filter( 'body_class'              , array( $this, 'tc_sidenav_body_class') );
+      add_filter( 'body_class'              , array( $this, 'czr_sidenav_body_class') );
 
       // disable dropdown on click
-      add_filter( 'tc_menu_open_on_click'   , array( $this, 'tc_disable_dropdown_on_click'), 10, 3 );
+      add_filter( 'tc_menu_open_on_click'   , array( $this, 'czr_disable_dropdown_on_click'), 10, 3 );
 
       // add side menu before the page wrapper
-      add_action( '__before_page_wrapper'   , array( $this, 'tc_sidenav_display'), 0 );
+      add_action( '__before_page_wrapper'   , array( $this, 'czr_sidenav_display'), 0 );
       // add side menu help block
-      add_action( '__sidenav'               , array( $this, 'tc_maybe_display_sidenav_help') );
+      add_action( '__sidenav'               , array( $this, 'czr_maybe_display_sidenav_help') );
       // add menu button to the sidebar
-      add_action( '__sidenav'               , array( $this, 'tc_sidenav_toggle_button_display'), 5 );
+      add_action( '__sidenav'               , array( $this, 'czr_sidenav_toggle_button_display'), 5 );
       // add menu
-      add_action( '__sidenav'               , array( $this, 'tc_sidenav_display_menu_customizer'), 10 );
+      add_action( '__sidenav'               , array( $this, 'czr_sidenav_display_menu_customizer'), 10 );
     }
 
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       $html = ob_get_contents();
       ob_end_clean();
 
-      echo apply_filters( 'tc_menu_display', $html );
+      echo apply_filters( 'czr_menu_display', $html );
     }
 
 
@@ -270,7 +270,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         <?php
       $_sidenav = ob_get_contents();
       ob_end_clean();
-      echo apply_filters( 'tc_sidenav_display', $_sidenav );
+      echo apply_filters( 'czr_sidenav_display', $_sidenav );
     }
 
 
@@ -325,7 +325,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
           array(
             'theme_location'  => $_location,
             'menu_class'      => implode(' ', apply_filters( "tc_{$type}_menu_class", $menu_class ) ),
-            'fallback_cb'     => array( $this, 'tc_page_menu' ),
+            'fallback_cb'     => array( $this, 'czr_page_menu' ),
             //if no menu is set to the required location, fallsback to tc_page_menu
             //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
             'walker'          => ! CZR_utils::$inst -> czr_has_location_menu($_location) ? '' : new CZR_nav_walker($_location),
@@ -490,7 +490,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_add_menuclass( $ulclass) {
       $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
-      return apply_filters( 'tc_add_menuclass', $html );
+      return apply_filters( 'czr_add_menuclass', $html );
     }
 
 
@@ -703,7 +703,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_sidenav_body_class( $_classes ){
       $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_utils::$inst->czr_opt( 'tc_menu_position') ) );
-      array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
+      array_push( $_classes, apply_filters( 'czr_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;
     }
@@ -731,7 +731,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_is_sidenav_enabled() {
-      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_opt( 'tc_menu_style' ) ) );
+      return apply_filters( 'czr_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_opt( 'tc_menu_style' ) ) );
     }
 
 
@@ -739,7 +739,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_is_second_menu_enabled() {
-      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_opt( 'tc_display_second_menu' ) ) );
+      return apply_filters( 'czr_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_opt( 'tc_display_second_menu' ) ) );
     }
 
 

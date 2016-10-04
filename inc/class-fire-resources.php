@@ -20,22 +20,22 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
 	    function __construct () {
 	        self::$instance =& $this;
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'tc_enqueue_gfonts' ) , 0 );
-	        add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_styles' ) );
-          add_action( 'wp_enqueue_scripts'						, array( $this , 'tc_enqueue_front_scripts' ) );
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_enqueue_gfonts' ) , 0 );
+	        add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_enqueue_front_styles' ) );
+          add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_enqueue_front_scripts' ) );
           //Custom Stylesheets
           //Write font icon
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
+          add_filter('tc_user_options_style'          , array( $this , 'czr_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
 	        //Custom CSS
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_fonts_inline_css') );
-          add_filter('tc_user_options_style'          , array( $this , 'tc_write_dropcap_inline_css') );
+          add_filter('tc_user_options_style'          , array( $this , 'czr_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
+          add_filter('tc_user_options_style'          , array( $this , 'czr_write_fonts_inline_css') );
+          add_filter('tc_user_options_style'          , array( $this , 'czr_write_dropcap_inline_css') );
 
           /* See: https://github.com/presscustomizr/customizr/issues/605 */
-          add_filter('tc_user_options_style'          , array( $this , 'tc_apply_media_upload_front_patch' ) );
+          add_filter('tc_user_options_style'          , array( $this , 'czr_apply_media_upload_front_patch' ) );
 
           //set random skin
-          add_filter ('tc_opt_tc_skin'                , array( $this, 'tc_set_random_skin' ) );
+          add_filter ('tc_opt_tc_skin'                , array( $this, 'czr_set_random_skin' ) );
 
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> czr_get_script_map();
@@ -160,7 +160,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         )
       );//end of scripts map
 
-      return apply_filters('tc_get_script_map' , $_map, $_handles );
+      return apply_filters('czr_get_script_map' , $_map, $_handles );
     }
 
 
@@ -380,7 +380,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
-      return apply_filters( 'tc_write_custom_css',
+      return apply_filters( 'czr_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
         CZR_utils::$inst->czr_opt( 'tc_custom_css')
@@ -558,7 +558,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         return $_skin;
 
       //allow custom skins to be taken in account
-      $_skins = apply_filters( 'tc_get_skin_color', CZR_init::$instance -> skin_color_map, 'all' );
+      $_skins = apply_filters( 'czr_get_skin_color', CZR_init::$instance -> skin_color_map, 'all' );
 
       //allow users to filter the list of skins they want to randomize
       $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );
@@ -662,7 +662,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
     * @since v3.3+
     */
     function czr_load_concatenated_front_scripts() {
-      return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+      return apply_filters( 'czr_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
     }
 
     /**

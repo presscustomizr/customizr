@@ -19,16 +19,16 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       //Set header hooks
       //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook
       //(see https://github.com/presscustomizr/customizr/issues/395)
-      add_action ( 'wp'                    , array( $this , 'tc_set_header_hooks' ) );
+      add_action ( 'wp'                    , array( $this , 'czr_set_header_hooks' ) );
 
       //Set header options
-      add_action ( 'wp'                    , array( $this , 'tc_set_header_options' ) );
+      add_action ( 'wp'                    , array( $this , 'czr_set_header_options' ) );
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       //Set thumbnail specific design based on user options
       //Set top border style option
-      add_filter( 'tc_user_options_style'  , array( $this , 'tc_write_header_inline_css') );
+      add_filter( 'tc_user_options_style'  , array( $this , 'czr_write_header_inline_css') );
     }
 
 
@@ -45,10 +45,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		*/
     function czr_set_header_hooks() {
     	//html > head actions
-      add_action ( '__before_body'	  , array( $this , 'tc_head_display' ));
+      add_action ( '__before_body'	  , array( $this , 'czr_head_display' ));
 
       //The WP favicon (introduced in WP 4.3) will be used in priority
-      add_action ( 'wp_head'     		  , array( $this , 'tc_favicon_display' ));
+      add_action ( 'wp_head'     		  , array( $this , 'czr_favicon_display' ));
 
       //html > header actions
       add_action ( '__before_main_wrapper'	, 'get_header');
@@ -57,27 +57,27 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       if ( ! apply_filters( 'tc_display_header', true ) )
         return;
 
-      add_action ( '__header' 				, array( $this , 'tc_prepare_logo_title_display' ) , 10 );
-      add_action ( '__header' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
-      add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
+      add_action ( '__header' 				, array( $this , 'czr_prepare_logo_title_display' ) , 10 );
+      add_action ( '__header' 				, array( $this , 'czr_tagline_display' ) , 20, 1 );
+      add_action ( '__header' 				, array( $this , 'czr_navbar_display' ) , 30 );
 
       //New menu view (since 3.2.0)
-      add_filter ( 'tc_navbar_display', array( $this , 'tc_new_menu_view'), 10, 2);
+      add_filter ( 'czr_navbar_display', array( $this , 'czr_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
   	  // GY : switch order for RTL sites
   	  if (is_rtl()) {
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 20, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 10, 1 );
+        add_action ( '__navbar' 				, array( $this , 'czr_social_in_header' ) , 20, 2 );
+        add_action ( '__navbar' 				, array( $this , 'czr_tagline_display' ) , 10, 1 );
   	  }
   	  else {
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+        add_action ( '__navbar' 				, array( $this , 'czr_social_in_header' ) , 10, 2 );
+        add_action ( '__navbar' 				, array( $this , 'czr_tagline_display' ) , 20, 1 );
   	  }
 
       //add a 100% wide container just after the sticky header to reset margin top
       if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_sticky_header' ) ) || CZR___::$instance -> czr_is_customizing() )
-        add_action( '__after_header'              , array( $this, 'tc_reset_margin_top_after_sticky_header'), 0 );
+        add_action( '__after_header'              , array( $this, 'czr_reset_margin_top_after_sticky_header'), 0 );
 
     }
 
@@ -92,13 +92,13 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
     function czr_set_header_options() {
       //Set some body classes
-      add_filter( 'body_class'               , array( $this , 'tc_add_body_classes') );
+      add_filter( 'body_class'               , array( $this , 'czr_add_body_classes') );
       //Set header classes from options
-      add_filter( 'tc_header_classes'        , array( $this , 'tc_set_header_classes') );
+      add_filter( 'tc_header_classes'        , array( $this , 'czr_set_header_classes') );
       //Set tagline visibility with a customizer option (since 3.2.0)
-      add_filter( 'tc_tagline_display'       , array( $this , 'tc_set_tagline_visibility') );
+      add_filter( 'czr_tagline_display'       , array( $this , 'czr_set_tagline_visibility') );
       //Set logo layout with a customizer option (since 3.2.0)
-      add_filter( 'tc_logo_class'            , array( $this , 'tc_set_logo_title_layout') );
+      add_filter( 'tc_logo_class'            , array( $this , 'czr_set_logo_title_layout') );
     }
 
 
@@ -134,7 +134,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				<?php
 			$html = ob_get_contents();
 		    if ($html) ob_end_clean();
-		    echo apply_filters( 'tc_head_display', $html );
+		    echo apply_filters( 'czr_head_display', $html );
 		}
 
 
@@ -180,7 +180,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       	if ( strpos( $_fav_src, '.png') ) $type = "image/png";
       	if ( strpos( $_fav_src, '.gif') ) $type = "image/gif";
 
-    	echo apply_filters( 'tc_favicon_display',
+    	echo apply_filters( 'czr_favicon_display',
       		sprintf('<link id="czr-favicon" rel="shortcut icon" href="%1$s" type="%2$s">' ,
       			$_fav_src,
       			$type
@@ -317,7 +317,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         $logo_type,
         $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
       );
-      return apply_filters( 'tc_logo_img_view', $_html, $_args);
+      return apply_filters( 'czr_logo_img_view', $_html, $_args);
     }
 
 
@@ -395,7 +395,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
 			$html = ob_get_contents();
 	       	if ($html) ob_end_clean();
-	       	echo apply_filters( 'tc_navbar_display', $html );
+	       	echo apply_filters( 'czr_navbar_display', $html );
 		}
 
 
@@ -440,7 +440,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_social_in_header') ) ) || ! czr__f( '__get_socials' );
+        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'czr_social_in_header') ) ) || ! czr__f( '__get_socials' );
         if ( ! CZR___::$instance -> czr_is_customizing() && $_nothing_to_render )
         	return;
 
@@ -454,7 +454,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         		$_nothing_to_render ? 'style="display:none"' : ''
         );
 
-        echo apply_filters( 'tc_social_in_header', $html, $resp );
+        echo apply_filters( 'czr_social_in_header', $html, $resp );
     }
 
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				);
 
 			}
-	        echo apply_filters( 'tc_tagline_display', $html );
+	        echo apply_filters( 'czr_tagline_display', $html );
 		}//end of fn
 
 
@@ -496,7 +496,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
     function czr_reset_margin_top_after_sticky_header() {
       echo apply_filters(
-        'tc_reset_margin_top_after_sticky_header',
+        'czr_reset_margin_top_after_sticky_header',
         sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
           apply_filters('tc_default_sticky_header_height' , 103 )
         )

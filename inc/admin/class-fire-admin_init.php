@@ -17,29 +17,29 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     function __construct () {
       self::$instance =& $this;
       //enqueue additional styling for admin screens
-      add_action( 'admin_init'            , array( $this , 'tc_admin_style' ) );
+      add_action( 'admin_init'            , array( $this , 'czr_admin_style' ) );
 
       //Load the editor-style specific (post formats and RTL), the active skin, the user style.css
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
-      add_action( 'after_setup_theme'     , array( $this, 'tc_add_editor_style') );
+      add_action( 'after_setup_theme'     , array( $this, 'czr_add_editor_style') );
 
-      add_filter( 'tiny_mce_before_init'  , array( $this, 'tc_user_defined_tinymce_css') );
+      add_filter( 'tiny_mce_before_init'  , array( $this, 'czr_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
-      add_action ( 'save_post'            , array( $this , 'tc_refresh_thumbnail') , 10, 2);
+      add_action ( 'save_post'            , array( $this , 'czr_refresh_thumbnail') , 10, 2);
 
       //refresh the posts slider transient on save_post. Since v3.4.9.
-      add_action ( 'save_post'            , array( $this , 'tc_refresh_posts_slider'), 20, 2 );
+      add_action ( 'save_post'            , array( $this , 'czr_refresh_posts_slider'), 20, 2 );
       //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
-      add_action ( 'deleted_post'         , array( $this , 'tc_refresh_posts_slider') );
+      add_action ( 'deleted_post'         , array( $this , 'czr_refresh_posts_slider') );
 
       //refresh the terms array (categories/tags pickers options) on term deletion
-      add_action ( 'delete_term'          , array( $this, 'tc_refresh_terms_pickers_options_cb'), 10, 3 );
+      add_action ( 'delete_term'          , array( $this, 'czr_refresh_terms_pickers_options_cb'), 10, 3 );
 
       //UPDATE NOTICE
-      add_action( 'admin_notices'         , array( $this, 'tc_may_be_display_update_notice') );
+      add_action( 'admin_notices'         , array( $this, 'czr_may_be_display_update_notice') );
       //always add the ajax action
-      add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'tc_dismiss_update_notice_action' ) );
-      add_action( 'admin_footer'                  , array( $this , 'tc_write_ajax_dismis_script' ) );
+      add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'czr_dismiss_update_notice_action' ) );
+      add_action( 'admin_footer'                  , array( $this , 'czr_write_ajax_dismis_script' ) );
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
         add_filter( 'tc_update_notice', $callback );
@@ -115,7 +115,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
        //alternative, cycle throughout the cats and keep just the existent ones
        /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
          //update the option
-         CZR_utils::$inst -> czr_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_utils::$inst, 'tc_category_id_exists' ) ) );
+         CZR_utils::$inst -> czr_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, array(CZR_utils::$inst, 'czr_category_id_exists' ) ) );
        }*/
     }
 

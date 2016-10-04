@@ -17,17 +17,17 @@ class CZR_post_list {
   function __construct () {
     self::$instance =& $this;
     //Set new image size can be set here ( => wp hook would be too late) (since 3.2.0)
-    add_action( 'init'                    , array( $this, 'tc_set_thumb_early_options') );
+    add_action( 'init'                    , array( $this, 'czr_set_thumb_early_options') );
     //modify the query with pre_get_posts
     //! wp_loaded is fired after WordPress is fully loaded but before the query is set
-    add_action( 'wp_loaded'               , array( $this, 'tc_set_early_hooks') );
+    add_action( 'wp_loaded'               , array( $this, 'czr_set_early_hooks') );
     //Set __loop hooks and customizer options (since 3.2.0)
-    add_action( 'wp_head'                 , array( $this, 'tc_set_post_list_hooks'));
+    add_action( 'wp_head'                 , array( $this, 'czr_set_post_list_hooks'));
     //append inline style to the custom stylesheet
     //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
     //fired on hook : wp_enqueue_scripts
     //Set thumbnail specific design based on user options
-    add_filter( 'tc_user_options_style'   , array( $this , 'tc_write_thumbnail_inline_css') );
+    add_filter( 'tc_user_options_style'   , array( $this , 'czr_write_thumbnail_inline_css') );
   }
 
 
@@ -44,7 +44,7 @@ class CZR_post_list {
   */
   function czr_set_thumb_early_options() {
     //Set thumb size depending on the customizer thumbnail position options (since 3.2.0)
-    add_filter ( 'tc_thumb_size_name'     , array( $this , 'tc_set_thumb_size') );
+    add_filter ( 'tc_thumb_size_name'     , array( $this , 'czr_set_thumb_size') );
   }
 
 
@@ -57,11 +57,11 @@ class CZR_post_list {
   */
   function czr_set_early_hooks() {
     //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_filter_home_blog_posts_by_tax' ), 9);
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_filter_home_blog_posts_by_tax' ), 9);
     //Include attachments in search results
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_attachments_in_search' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_include_attachments_in_search' ));
     //Include all post types in archive pages
-    add_action ( 'pre_get_posts'         , array( $this , 'tc_include_cpt_in_lists' ));
+    add_action ( 'pre_get_posts'         , array( $this , 'czr_include_cpt_in_lists' ));
   }
 
 
@@ -76,27 +76,27 @@ class CZR_post_list {
     if ( ! $this -> czr_post_list_controller() )
       return;
     //displays the article with filtered layout : content + thumbnail
-    add_action ( '__loop'               , array( $this , 'tc_prepare_section_view') );
+    add_action ( '__loop'               , array( $this , 'czr_prepare_section_view') );
 
     //page help blocks
-    add_filter( '__before_loop'         , array( $this , 'tc_maybe_display_img_smartload_help') );
+    add_filter( '__before_loop'         , array( $this , 'czr_maybe_display_img_smartload_help') );
 
     //based on customizer user options
-    add_filter( 'tc_post_list_layout'   , array( $this , 'tc_set_post_list_layout') );
-    add_filter( 'post_class'            , array( $this , 'tc_set_content_class') );
-    add_filter( 'excerpt_length'        , array( $this , 'tc_set_excerpt_length') , 999 );
-    add_filter( 'post_class'            , array( $this , 'tc_add_thumb_shape_name') );
+    add_filter( 'tc_post_list_layout'   , array( $this , 'czr_set_post_list_layout') );
+    add_filter( 'post_class'            , array( $this , 'czr_set_content_class') );
+    add_filter( 'excerpt_length'        , array( $this , 'czr_set_excerpt_length') , 999 );
+    add_filter( 'post_class'            , array( $this , 'czr_add_thumb_shape_name') );
 
     //add current context to the body class
-    add_filter( 'body_class'            , array( $this , 'tc_add_post_list_context') );
+    add_filter( 'body_class'            , array( $this , 'czr_add_post_list_context') );
     //Set thumb shape with customizer options (since 3.2.0)
-    add_filter( 'tc_post_thumb_wrapper' , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
+    add_filter( 'tc_post_thumb_wrapper' , array( $this , 'czr_set_thumb_shape'), 10 , 2 );
 
-    add_filter( 'tc_the_content'        , array( $this , 'tc_add_support_for_shortcode_special_chars') );
+    add_filter( 'tc_the_content'        , array( $this , 'czr_add_support_for_shortcode_special_chars') );
 
     // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
     // 3 args = $style, $_width, $_height
-    add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'tc_change_thumbnail_inline_css_width'), 20, 3 );
+    add_filter( 'tc_post_thumb_inline_style'  , array( $this , 'czr_change_thumbnail_inline_css_width'), 20, 3 );
   }
 
 
@@ -160,7 +160,7 @@ class CZR_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'czr_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -175,7 +175,7 @@ class CZR_post_list {
     //2) the excerpt option is not set to full
     //3) user settings in customizer
     //4) filter's conditions
-    return apply_filters( 'tc_show_thumb', array_product(
+    return apply_filters( 'czr_show_thumb', array_product(
         array(
           $this -> czr_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_has_thumb(),
@@ -323,7 +323,7 @@ class CZR_post_list {
   public function czr_post_list_controller() {
     global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'tc_post_list_controller',
+    return apply_filters( 'czr_post_list_controller',
       ! is_singular()
       && ! is_404()
       && 0 != $wp_query -> post_count
@@ -409,7 +409,7 @@ class CZR_post_list {
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
      $cats = CZR_utils::$inst -> czr_opt('tc_blog_restrict_by_cat');
-     $cats = array_filter( $cats, array( CZR_utils::$inst , 'tc_category_id_exists' ) );
+     $cats = array_filter( $cats, array( CZR_utils::$inst , 'czr_category_id_exists' ) );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );

@@ -20,7 +20,7 @@ if ( ! class_exists( 'CZR_404' ) ) :
       function __construct () {
           self::$instance =& $this;
           //404 content
-          add_action  ( '__loop'                      , array( $this , 'tc_404_content' ));
+          add_action  ( '__loop'                      , array( $this , 'czr_404_content' ));
       }
 
 

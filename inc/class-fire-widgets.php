@@ -21,7 +21,7 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
     function __construct () {
       self::$instance =& $this;
       //widgets actions
-      add_action( 'widgets_init'                    , array( $this , 'tc_widgets_factory' ) );
+      add_action( 'widgets_init'                    , array( $this , 'czr_widgets_factory' ) );
     }
 
     /******************************************

@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_page_hooks' ) );
+      add_action( 'wp'                , array( $this , 'czr_set_page_hooks' ) );
     }
 
 
@@ -32,9 +32,9 @@ if ( ! class_exists( 'CZR_page' ) ) :
     */
     function czr_set_page_hooks() {
       //add page content and footer to the __loop
-      add_action( '__loop'           , array( $this , 'tc_page_content' ) );
+      add_action( '__loop'           , array( $this , 'czr_page_content' ) );
       //page help blocks
-      add_filter( 'the_content'       , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_filter( 'the_content'       , array( $this, 'czr_maybe_display_img_smartload_help') , PHP_INT_MAX );
     }
 
 
@@ -73,7 +73,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
 
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'tc_page_content', $html );
+      echo apply_filters( 'czr_page_content', $html );
     }
 
 

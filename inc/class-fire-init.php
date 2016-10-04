@@ -365,19 +365,19 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Set image options set by user @since v3.2.0
           //! must be included in utils to be available in admin for plugins like regenerate thumbnails
-          add_action( 'after_setup_theme'                      , array( $this, 'tc_set_user_defined_settings'));
+          add_action( 'after_setup_theme'                      , array( $this, 'czr_set_user_defined_settings'));
 
           //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
-          add_action( 'after_setup_theme'                      , array( $this , 'tc_customizr_setup' ));
+          add_action( 'after_setup_theme'                      , array( $this , 'czr_customizr_setup' ));
           //registers the menu
-          add_action( 'after_setup_theme'                       , array( $this, 'tc_register_menus'));
+          add_action( 'after_setup_theme'                       , array( $this, 'czr_register_menus'));
 
           //add retina support for high resolution devices
-          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'tc_add_retina_support') , 10 , 2 );
-          add_filter( 'delete_attachment'                      , array( $this , 'tc_clean_retina_images') );
+          add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_add_retina_support') , 10 , 2 );
+          add_filter( 'delete_attachment'                      , array( $this , 'czr_clean_retina_images') );
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
-          add_filter('body_class'                              , array( $this , 'tc_set_body_classes') );
+          add_filter('body_class'                              , array( $this , 'czr_set_body_classes') );
 
       }//end of constructor
 
@@ -406,8 +406,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
         }
 
         if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
-            add_filter( 'tc_slider_full_size'    , array($this,  'tc_set_slider_img_height') );
-            add_filter( 'tc_slider_size'         , array($this,  'tc_set_slider_img_height') );
+            add_filter( 'tc_slider_full_size'    , array($this,  'czr_set_slider_img_height') );
+            add_filter( 'tc_slider_size'         , array($this,  'czr_set_slider_img_height') );
         }
 
 
@@ -426,9 +426,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
         add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
 
         if ( $_user_grid_height != $tc_grid_full_size['height'] )
-          add_filter( 'tc_grid_full_size', array( $this,  'tc_set_grid_img_height') );
+          add_filter( 'tc_grid_full_size', array( $this,  'czr_set_grid_img_height') );
         if ( $_user_grid_height != $tc_grid_size['height'] )
-          add_filter( 'tc_grid_size'     , array( $this,  'tc_set_grid_img_height') );
+          add_filter( 'tc_grid_size'     , array( $this,  'czr_set_grid_img_height') );
 
       }
 
@@ -520,10 +520,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
         add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
         //add support for svg and svgz format in media upload
-        add_filter( 'upload_mimes'                        , array( $this , 'tc_custom_mtypes' ) );
+        add_filter( 'upload_mimes'                        , array( $this , 'czr_custom_mtypes' ) );
 
         //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'tc_add_help_button' ));
+        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_add_help_button' ));
       }
 
 
@@ -566,7 +566,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
         else
           $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
 
-        return apply_filters ( 'tc_get_style_src' , $tc_get_style_src , $_wot );
+        return apply_filters ( 'czr_get_style_src' , $tc_get_style_src , $_wot );
       }
 
 

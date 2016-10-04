@@ -21,32 +21,32 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //check if WP version >= 3.4 to include customizer functions
       //Shall we really keep this ?
       if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
-        add_action( 'admin_menu'                    , array( $this , 'tc_add_fallback_page' ));
+        add_action( 'admin_menu'                    , array( $this , 'czr_add_fallback_page' ));
         return;
       }
 
       self::$instance =& $this;
   		//add control class
-  		add_action ( 'customize_register'				                , array( $this , 'tc_augment_customizer' ),10,1);
+  		add_action ( 'customize_register'				                , array( $this , 'czr_augment_customizer' ),10,1);
 
   		//add grid/post list buttons in the control views
-  		add_action( '__before_setting_control'                  , array( $this , 'tc_render_grid_control_link') );
+  		add_action( '__before_setting_control'                  , array( $this , 'czr_render_grid_control_link') );
 
   		//control scripts and style
-  		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'tc_customize_controls_js_css' ));
+  		add_action ( 'customize_controls_enqueue_scripts'	      , array( $this , 'czr_customize_controls_js_css' ));
   		//add the customizer built with the builder below
-  		add_action ( 'customize_register'				                , array( $this , 'tc_customize_register' ), 20, 1 );
+  		add_action ( 'customize_register'				                , array( $this , 'czr_customize_register' ), 20, 1 );
 
       //modify some WP built-in settings / controls / sections
-      add_action ( 'customize_register'                       , array( $this , 'tc_alter_wp_customizer_settings' ), 30, 1 );
+      add_action ( 'customize_register'                       , array( $this , 'czr_alter_wp_customizer_settings' ), 30, 1 );
 
       //preview scripts
       //set with priority 20 to be fired after tc_customize_store_db_opt in CZR_utils
-  		add_action ( 'customize_preview_init'			              , array( $this , 'tc_customize_preview_js' ), 20 );
+  		add_action ( 'customize_preview_init'			              , array( $this , 'czr_customize_preview_js' ), 20 );
   		//Hide donate button
-  		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'tc_hide_donate' ) );
+  		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'czr_hide_donate' ) );
 
-      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'tc_print_js_templates' ) );
+      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'czr_print_js_templates' ) );
     }
 
 
@@ -75,7 +75,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
 
         //add a favicon title after the logo upload
-        add_action( '__after_setting_control' , array( $this , 'tc_add_favicon_title') );
+        add_action( '__after_setting_control' , array( $this , 'czr_add_favicon_title') );
       }//end ALTER SITE ICON
 
 
@@ -650,7 +650,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             __( 'Upgrade WP' , 'customizr' ),   // Label in menu
             'edit_theme_options' ,          // Capability required
             'upgrade_wp.php' ,             // Menu slug, used to uniquely identify the page
-            array( $this , 'tc_fallback_admin_page' )         //function to be called to output the content of this page
+            array( $this , 'czr_fallback_admin_page' )         //function to be called to output the content of this page
         );
     }
 

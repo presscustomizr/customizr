@@ -16,8 +16,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     static $instance;
     function __construct () {
         self::$instance =& $this;
-        add_action( '__before_main_container'     , array( $this , 'tc_fp_block_display'), 10 );
-        add_action( '__after_fp'                  , array( $this , 'tc_maybe_display_dismiss_notice'));
+        add_action( '__before_main_container'     , array( $this , 'czr_fp_block_display'), 10 );
+        add_action( '__after_fp'                  , array( $this , 'czr_maybe_display_dismiss_notice'));
     }
 
 
@@ -33,7 +33,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       if ( ! CZR_placeholders::czr_is_fp_notice_on() )
         return;
 
-      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_utils::czr_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_utils::czr_get_customizer_url( array( 'control' => 'czr_show_featured_pages', 'section' => 'frontpage_sec') ) );
 
       ?>
       <div class="tc-placeholder-wrap tc-fp-notice">
@@ -65,6 +65,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
   	* @since Customizr 3.0
   	*/
     function czr_fp_block_display() {
+
       if ( ! $this -> czr_show_featured_pages()  )
         return;
 
@@ -127,7 +128,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       <?php
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'tc_fp_block_display' , $html, $args );
+      echo apply_filters( 'czr_fp_block_display' , $html, $args );
 	   }
 
 
@@ -289,7 +290,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
           <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          return apply_filters( 'tc_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
+          return apply_filters( 'czr_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
       }//end of function
 
 

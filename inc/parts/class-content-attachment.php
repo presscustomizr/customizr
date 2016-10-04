@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
         static $instance;
         function __construct () {
             self::$instance =& $this;
-            add_action  ( '__loop'			              , array( $this , 'tc_attachment_content' ));
+            add_action  ( '__loop'			              , array( $this , 'czr_attachment_content' ));
         }
 
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
             <?php
             $html = ob_get_contents();
             if ($html) ob_end_clean();
-            echo apply_filters( 'tc_attachment_content', $html );
+            echo apply_filters( 'czr_attachment_content', $html );
 
         }//end of function
     }//end of class

@@ -19,15 +19,15 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
     function __construct () {
       self::$instance =& $this;
       //add welcome page in menu
-      add_action( 'admin_menu'             , array( $this , 'tc_add_welcome_page' ));
+      add_action( 'admin_menu'             , array( $this , 'czr_add_welcome_page' ));
       //changelog
-      add_action( '__after_welcome_panel'  , array( $this , 'tc_extract_changelog' ));
+      add_action( '__after_welcome_panel'  , array( $this , 'czr_extract_changelog' ));
       //config infos
-      add_action( '__after_welcome_panel'  , array( $this , 'tc_config_infos' ), 20 );
+      add_action( '__after_welcome_panel'  , array( $this , 'czr_config_infos' ), 20 );
       //build the support url
       $this -> support_url = CZR___::czr_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
-      add_action( 'admin_print_styles'      , array( $this, 'tc_fix_wp_footer_link_style') );
+      add_action( 'admin_print_styles'      , array( $this, 'czr_fix_wp_footer_link_style') );
     }
 
 
@@ -46,7 +46,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             $_name,   // Label in menu
             'edit_theme_options' ,          // Capability required
             'welcome.php' ,             // Menu slug, used to uniquely identify the page
-            array( $this , 'tc_welcome_panel' )         //function to be called to output the content of this page
+            array( $this , 'czr_welcome_panel' )         //function to be called to output the content of this page
         );
     }
 

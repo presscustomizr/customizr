@@ -208,7 +208,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 	        		printf('<label><span class="customize-control-title %1$s">%2$s</span><input type="text" value="%3$s" %4$s /></label>',
 	        			! empty( $this -> icon) ? $this -> icon : '',
 	        			$this->label,
-	        			call_user_func( array( CZR_utils_settings_map::$instance, 'tc_sanitize_' . $this -> type), $this->value() ),
+	        			call_user_func( array( CZR_utils_settings_map::$instance, 'czr_sanitize_' . $this -> type), $this->value() ),
 	        			call_user_func( array( $this, 'get'.'_'.'link' ) )
 	        		);
 		        	break;

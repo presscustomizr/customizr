@@ -22,9 +22,9 @@ class CZR_breadcrumb {
 
     function __construct () {
         self::$instance =& $this;
-        add_action( '__before_main_container'			, array( $this , 'tc_breadcrumb_display' ), 20 );
+        add_action( '__before_main_container'			, array( $this , 'czr_breadcrumb_display' ), 20 );
         //since v3.2.0, customizer option
-        add_filter( 'tc_show_breadcrumb_in_context' 	, array( $this , 'tc_set_breadcrumb_display_in_context' ) );
+        add_filter( 'tc_show_breadcrumb_in_context' 	, array( $this , 'czr_set_breadcrumb_display_in_context' ) );
     }
 
 
@@ -98,7 +98,7 @@ class CZR_breadcrumb {
         $this -> args = $this -> _get_args();
 
 	  	echo apply_filters(
-	  			'tc_breadcrumb_display' ,
+	  			'czr_breadcrumb_display' ,
 				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
 					apply_filters( 'tc_breadcrumb_class', 'span12' ),
 					$this -> czr_breadcrumb_trail( $this -> args )
@@ -145,7 +145,7 @@ class CZR_breadcrumb {
 		$breadcrumb = '';
 
 		/* Get the trail items. */
-		$trail = apply_filters( 'tc_breadcrumb_trail' , $this -> czr_breadcrumb_trail_get_items( $args ) );
+		$trail = apply_filters( 'czr_breadcrumb_trail' , $this -> czr_breadcrumb_trail_get_items( $args ) );
 
 		/* Connect the breadcrumb trail if there are items in the trail. */
 		if ( !empty( $trail ) && is_array( $trail ) ) {

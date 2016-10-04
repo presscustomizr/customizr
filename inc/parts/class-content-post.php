@@ -16,15 +16,15 @@ if ( ! class_exists( 'CZR_post' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_hooks' ));
+      add_action( 'wp'                , array( $this , 'czr_set_single_post_hooks' ));
       //Set single post thumbnail with customizer options (since 3.2.0)
-      add_action( 'wp'                , array( $this , 'tc_set_single_post_thumbnail_hooks' ));
+      add_action( 'wp'                , array( $this , 'czr_set_single_post_thumbnail_hooks' ));
 
       //append inline style to the custom stylesheet
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       //Set thumbnail specific design based on user options
-      add_filter( 'tc_user_options_style'    , array( $this , 'tc_write_thumbnail_inline_css') );
+      add_filter( 'tc_user_options_style'    , array( $this , 'czr_write_thumbnail_inline_css') );
     }
 
 
@@ -39,11 +39,11 @@ if ( ! class_exists( 'CZR_post' ) ) :
     */
     function czr_set_single_post_hooks() {
       //add post header, content and footer to the __loop
-      add_action( '__loop'              , array( $this , 'tc_post_content' ));
+      add_action( '__loop'              , array( $this , 'czr_post_content' ));
       //posts parts actions
-      add_action( '__after_content'     , array( $this , 'tc_post_footer' ));
+      add_action( '__after_content'     , array( $this , 'czr_post_footer' ));
       //smartload help block
-      add_filter( 'the_content'         , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_filter( 'the_content'         , array( $this, 'czr_maybe_display_img_smartload_help') , PHP_INT_MAX );
 
     }
 
@@ -57,7 +57,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     */
     function czr_set_single_post_thumbnail_hooks() {
       if ( $this -> czr_single_post_display_controller() )
-        add_action( '__before_content'        , array( $this, 'tc_maybe_display_featured_image_help') );
+        add_action( '__before_content'        , array( $this, 'czr_maybe_display_featured_image_help') );
 
       //__before_main_wrapper, 200
       //__before_content 0
@@ -70,9 +70,9 @@ if ( ! class_exists( 'CZR_post' ) ) :
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
       //Hook post view
-      add_action( $_hook, array($this , 'tc_single_post_prepare_thumb') , $_priority );
+      add_action( $_hook, array($this , 'czr_single_post_prepare_thumb') , $_priority );
       //Set thumb shape with customizer options (since 3.2.0)
-      add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'tc_set_thumb_shape'), 10 , 2 );
+      add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'czr_set_thumb_shape'), 10 , 2 );
     }
 
 
@@ -105,7 +105,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       do_action( '__after_content' );
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'tc_post_content', $html );
+      echo apply_filters( 'czr_post_content', $html );
     }
 
 
@@ -144,7 +144,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
                           )
                     )
       );//end sprintf
-      echo apply_filters( 'tc_post_footer', $html );
+      echo apply_filters( 'czr_post_footer', $html );
     }
 
 
@@ -178,7 +178,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.3
     */
     private function czr_render_single_post_view( $_thumb_model , $_thumb_class ) {
-      echo apply_filters( 'tc_render_single_post_view',
+      echo apply_filters( 'czr_render_single_post_view',
         sprintf( '<div class="%1$s">%2$s</div>' ,
           $_thumb_class,
           CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model, 'span12', false )
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_show_single_post_thumbnail() {
       return $this -> czr_single_post_display_controller()
         && 'hide' != esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'tc_show_single_post_thumbnail' , true );
+        && apply_filters( 'czr_show_single_post_thumbnail' , true );
     }
 
 

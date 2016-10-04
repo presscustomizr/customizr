@@ -18,8 +18,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'init'           , array( $this, 'tc_placeholders_ajax_setup') );
-      add_action( 'wp'             , array( $this, 'tc_placeholders_write_ajax_js_in_footer') );
+      add_action( 'init'           , array( $this, 'czr_placeholders_ajax_setup') );
+      add_action( 'wp'             , array( $this, 'czr_placeholders_write_ajax_js_in_footer') );
     }
 
 
@@ -33,14 +33,14 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     function czr_placeholders_ajax_setup() {
       if ( ! $this -> czr_is_front_help_enabled() )
         return;
-      add_action( 'wp_ajax_dismiss_thumbnail_help'    , array( $this, 'tc_dismiss_thumbnail_help' ) );
-      add_action( 'wp_ajax_dismiss_img_smartload_help', array( $this, 'tc_dismiss_img_smartload_help' ) );
-      add_action( 'wp_ajax_dismiss_sidenav_help'      , array( $this, 'tc_dismiss_sidenav_help' ) );
-      add_action( 'wp_ajax_dismiss_second_menu_notice', array( $this, 'tc_dismiss_second_menu_notice' ) );
-      add_action( 'wp_ajax_dismiss_main_menu_notice'  , array( $this, 'tc_dismiss_main_menu_notice' ) );
-      add_action( 'wp_ajax_slider_notice_actions'     , array( $this, 'tc_slider_notice_ajax_actions' ) );
-      add_action( 'wp_ajax_fp_notice_actions'         , array( $this, 'tc_fp_notice_ajax_actions' ) );
-      add_action( 'wp_ajax_dismiss_widget_notice'     , array( $this, 'tc_dismiss_widget_notice' ) );
+      add_action( 'wp_ajax_dismiss_thumbnail_help'    , array( $this, 'czr_dismiss_thumbnail_help' ) );
+      add_action( 'wp_ajax_dismiss_img_smartload_help', array( $this, 'czr_dismiss_img_smartload_help' ) );
+      add_action( 'wp_ajax_dismiss_sidenav_help'      , array( $this, 'czr_dismiss_sidenav_help' ) );
+      add_action( 'wp_ajax_dismiss_second_menu_notice', array( $this, 'czr_dismiss_second_menu_notice' ) );
+      add_action( 'wp_ajax_dismiss_main_menu_notice'  , array( $this, 'czr_dismiss_main_menu_notice' ) );
+      add_action( 'wp_ajax_slider_notice_actions'     , array( $this, 'czr_slider_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_fp_notice_actions'         , array( $this, 'czr_fp_notice_ajax_actions' ) );
+      add_action( 'wp_ajax_dismiss_widget_notice'     , array( $this, 'czr_dismiss_widget_notice' ) );
     }
 
 
@@ -56,27 +56,27 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       if ( ! $this -> czr_is_front_help_enabled() )
         return;
       if ( $this -> czr_is_thumbnail_help_on() )
-          add_action( 'wp_footer'   , array( $this, 'tc_write_thumbnail_help_js'), 100 );
+          add_action( 'wp_footer'   , array( $this, 'czr_write_thumbnail_help_js'), 100 );
 
       /* The actual printing of the js is controlled with a filter inside the callback */
-      add_action( 'wp_footer'     , array( $this, 'tc_maybe_write_img_sarmtload_help_js'), 100 );
+      add_action( 'wp_footer'     , array( $this, 'czr_maybe_write_img_sarmtload_help_js'), 100 );
       if ( $this -> czr_is_sidenav_help_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_sidenav_help_js'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_write_sidenav_help_js'), 100 );
 
       if ( $this -> czr_is_second_menu_placeholder_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_second_menu_placeholder_js'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_write_second_menu_placeholder_js'), 100 );
 
       if ( $this -> czr_is_main_menu_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_main_menu_notice_js'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_write_main_menu_notice_js'), 100 );
 
       if ( $this -> czr_is_slider_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_slider_notice_js'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_write_slider_notice_js'), 100 );
 
       if ( $this -> czr_is_fp_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'tc_write_fp_notice_js'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_write_fp_notice_js'), 100 );
 
       if ( $this -> czr_is_widget_placeholder_enabled() )
-        add_action( 'wp_footer'   , array( $this, 'tc_widget_placeholder_script'), 100 );
+        add_action( 'wp_footer'   , array( $this, 'czr_widget_placeholder_script'), 100 );
     }
 
 
@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_thumbnail_help_on',
+        'czr_is_thumbnail_help_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -303,7 +303,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_img_smartload_help_on',
+        'czr_is_img_smartload_help_on',
         ! (bool) array_sum( $_dont_display_conditions )
       );
     }
@@ -398,7 +398,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_sidenav_help_on',
+        'czr_is_sidenav_help_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -584,7 +584,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_main_menu_notice_on',
+        'czr_is_main_menu_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -704,7 +704,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_slider_notice_on',
+        'czr_is_slider_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -733,7 +733,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       check_ajax_referer( 'tc-fp-notice-nonce', 'fpNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_fp':
-          CZR_utils::$inst -> czr_set_option( 'tc_show_featured_pages' , 0 );
+          CZR_utils::$inst -> czr_set_option( 'czr_show_featured_pages' , 0 );
         break;
 
         case 'remove_notice':
@@ -818,7 +818,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! CZR_utils::$inst-> czr_is_home(),
-        ! (bool)CZR_utils::$inst->czr_opt('tc_show_featured_pages'),
+        ! (bool)CZR_utils::$inst->czr_opt('czr_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> czr_is_one_fp_set(),
         CZR___::czr_is_pro(),
@@ -828,7 +828,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'tc_is_fp_notice_on',
+        'czr_is_fp_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -939,7 +939,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer') ) : array($_position);
 
       return apply_filters( "tc_display_widget_placeholders",
-        self::$instance -> czr_is_front_help_enabled() && is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( self::$instance , 'tc_check_widget_placeholder_transient'), $_position ) )
+        self::$instance -> czr_is_front_help_enabled() && is_user_logged_in() && current_user_can('edit_theme_options') && array_sum( array_map( array( self::$instance , 'czr_check_widget_placeholder_transient'), $_position ) )
       );
     }
 
@@ -958,7 +958,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * User option to enabe/disable all notices. Enabled by default.
     */
     function czr_is_front_help_enabled(){
-      return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_opt('tc_display_front_help') );
+      return apply_filters( 'czr_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_opt('tc_display_front_help') );
     }
 
   }//end of class

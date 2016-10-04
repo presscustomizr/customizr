@@ -16,19 +16,19 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
       static $instance;
       function __construct () {
           self::$instance =& $this;
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_post_meta_boxes' ));
-          add_action( '__post_slider_infos'                  , array( $this , 'tc_get_post_slider_infos' ));
-          add_action( 'save_post'                            , array( $this , 'tc_post_fields_save' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_post_meta_boxes' ));
+          add_action( '__post_slider_infos'                  , array( $this , 'czr_get_post_slider_infos' ));
+          add_action( 'save_post'                            , array( $this , 'czr_post_fields_save' ));
 
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_attachment_meta_box' ));
-          add_action( '__attachment_slider_infos'            , array( $this , 'tc_get_attachment_slider_infos' ));
-          add_action( 'edit_attachment'                      , array( $this , 'tc_slide_save' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_attachment_meta_box' ));
+          add_action( '__attachment_slider_infos'            , array( $this , 'czr_get_attachment_slider_infos' ));
+          add_action( 'edit_attachment'                      , array( $this , 'czr_slide_save' ));
 
-          add_action( '__show_slides'                        , array( $this , 'tc_show_slides' ), 10, 2);
+          add_action( '__show_slides'                        , array( $this , 'czr_show_slides' ), 10, 2);
 
-          add_action( 'wp_ajax_slider_action'                , array( $this , 'tc_slider_cb' ));
+          add_action( 'wp_ajax_slider_action'                , array( $this , 'czr_slider_cb' ));
 
-          add_action( 'admin_enqueue_scripts'                , array( $this , 'tc_slider_admin_scripts' ));
+          add_action( 'admin_enqueue_scripts'                , array( $this , 'czr_slider_admin_scripts' ));
 
 
 
@@ -40,8 +40,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          */
         global $wp_version;
         if (version_compare( $wp_version, '3.5' , '<' ) ) {
-            add_filter( 'attachment_fields_to_edit'           , array( $this , 'tc_attachment_filter' ), 11, 2 );
-            add_filter( 'attachment_fields_to_save'           , array( $this , 'tc_attachment_save_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_edit'           , array( $this , 'czr_attachment_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_save'           , array( $this , 'czr_attachment_save_filter' ), 11, 2 );
           }
 
       }//end of __construct
@@ -85,7 +85,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
               add_meta_box(
                   'layout_sectionid' ,
                   __( 'Layout Options' , 'customizr' ),
-                  array( $this , 'tc_post_layout_box' ),
+                  array( $this , 'czr_post_layout_box' ),
                   $screen,
                   ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen )
@@ -93,7 +93,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_post_slider_box' ),
+                  array( $this , 'czr_post_slider_box' ),
                   $screen,
                   'normal' ,
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
@@ -489,7 +489,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_attachment_slider_box' ),
+                  array( $this , 'czr_attachment_slider_box' ),
                   $screen/*,
                   'side' ,
                   'high'*/
