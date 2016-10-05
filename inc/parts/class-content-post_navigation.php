@@ -195,7 +195,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'czr_fn_post_nav' , $html );
+        echo apply_filters( 'tc_post_nav' , $html );
       }
 
 

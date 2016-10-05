@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
             $_title = sprintf( '%1$s %2$s', number_format_i18n( get_comments_number(), 'customizr' ) , __( 'thoughts on', 'customizr' ) );
           }
 
-          echo apply_filters( 'czr_fn_comment_title' ,
+          echo apply_filters( 'tc_comment_title' ,
                 sprintf( '<h2 id="tc-comment-title" class="comments-title">%1$s &ldquo;%2$s&rdquo;</h2>' ,
                   $_title,
                   '<span>' . get_the_title() . '</span>'
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
             <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          echo apply_filters( 'czr_fn_comment_list' , $html );
+          echo apply_filters( 'tc_comment_list' , $html );
         }
 
 
@@ -222,7 +222,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
 
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'czr_fn_comment_callback' , $html, $comment, $args, $depth, $max_comments_depth );
+        echo apply_filters( 'tc_comment_callback' , $html, $comment, $args, $depth, $max_comments_depth );
       }
 
 
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
 
         $html = ob_get_contents();
         ob_end_clean();
-        echo apply_filters( 'czr_fn_comment_navigation' , $html );
+        echo apply_filters( 'tc_comment_navigation' , $html );
 
       endif; // check for comment navigation
 
@@ -285,7 +285,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
        * But we only want the note on posts and pages that had comments in the first place.
        */
       if ( ! comments_open() && get_comments_number() ) :
-        echo apply_filters( 'czr_fn_comment_close' ,
+        echo apply_filters( 'tc_comment_close' ,
           sprintf('<p class="nocomments">%1$s</p>',
             __( 'Comments are closed.' , 'customizr' )
           )
@@ -474,7 +474,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       } else
         $_bool = false;
 
-      return apply_filters( 'czr_fn_are_comments_enabled', $_bool );
+      return apply_filters( 'tc_are_comments_enabled', $_bool );
     }
 
 

@@ -105,7 +105,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       do_action( '__after_content' );
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'czr_fn_post_content', $html );
+      echo apply_filters( 'tc_post_content', $html );
     }
 
 
@@ -144,7 +144,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
                           )
                     )
       );//end sprintf
-      echo apply_filters( 'czr_fn_post_footer', $html );
+      echo apply_filters( 'tc_post_footer', $html );
     }
 
 
@@ -178,7 +178,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.3
     */
     private function czr_fn_render_single_post_view( $_thumb_model , $_thumb_class ) {
-      echo apply_filters( 'czr_fn_render_single_post_view',
+      echo apply_filters( 'tc_render_single_post_view',
         sprintf( '<div class="%1$s">%2$s</div>' ,
           $_thumb_class,
           CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_show_single_post_thumbnail() {
       return $this -> czr_fn_single_post_display_controller()
         && 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'czr_fn_show_single_post_thumbnail' , true );
+        && apply_filters( 'tc_show_single_post_thumbnail' , true );
     }
 
 

@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       $html = ob_get_contents();
       ob_end_clean();
 
-      echo apply_filters( 'czr_fn_menu_display', $html );
+      echo apply_filters( 'tc_menu_display', $html );
     }
 
 
@@ -259,8 +259,8 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_sidenav_display() {
       ob_start();
-        $tc_side_nav_class        = implode(' ', apply_filters('tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
-        $tc_side_nav_inner_class  = implode(' ', apply_filters('tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );
+        $tc_side_nav_class        = implode(' ', apply_filters( 'tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
+        $tc_side_nav_inner_class  = implode(' ', apply_filters( 'tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );
         ?>
           <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>" role="navigation">
             <div class="<?php echo $tc_side_nav_inner_class; ?>">
@@ -270,7 +270,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         <?php
       $_sidenav = ob_get_contents();
       ob_end_clean();
-      echo apply_filters( 'czr_fn_sidenav_display', $_sidenav );
+      echo apply_filters( 'tc_sidenav_display', $_sidenav );
     }
 
 
@@ -490,7 +490,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_add_menuclass( $ulclass) {
       $html =  preg_replace( '/<ul>/' , '<ul class="nav">' , $ulclass, 1);
-      return apply_filters( 'czr_fn_add_menuclass', $html );
+      return apply_filters( 'tc_add_menuclass', $html );
     }
 
 
@@ -703,7 +703,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_sidenav_body_class( $_classes ){
       $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
-      array_push( $_classes, apply_filters( 'czr_fn_sidenav_body_class', "sn-$_where" ) );
+      array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;
     }
@@ -731,7 +731,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_sidenav_enabled() {
-      return apply_filters( 'czr_fn_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_style' ) ) );
+      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_style' ) ) );
     }
 
 
@@ -739,7 +739,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_second_menu_enabled() {
-      return apply_filters( 'czr_fn_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_second_menu' ) ) );
+      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_second_menu' ) ) );
     }
 
 

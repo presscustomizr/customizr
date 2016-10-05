@@ -107,7 +107,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'czr_fn_sidebar_display', $html, $sidebar_layout, $position );
+        echo apply_filters( 'tc_sidebar_display', $html, $sidebar_layout, $position );
       }//end of function
 
 
@@ -185,7 +185,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
             czr_fn__f( '__get_socials' )
         );
-        echo apply_filters( 'czr_fn_social_in_sidebar', $html, current_filter() );
+        echo apply_filters( 'tc_social_in_sidebar', $html, current_filter() );
       }
 
 

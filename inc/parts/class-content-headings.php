@@ -124,7 +124,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'czr_fn_render_headings_view', $html );
+        echo apply_filters( 'tc_render_headings_view', $html );
       }//end of function
 
 

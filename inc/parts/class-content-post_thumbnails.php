@@ -104,7 +104,7 @@ class CZR_post_thumbnails {
       //used for smart load when enabled
       $tc_thumb = apply_filters( 'tc_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
 
-      return apply_filters( 'czr_fn_get_thumbnail_model',
+      return apply_filters( 'tc_get_thumbnail_model',
         isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" ) : array(),
         $_post_id,
         $_thumb_id,
@@ -188,7 +188,7 @@ class CZR_post_thumbnails {
       //update_post_meta($post_id, $meta_key, $meta_value, $prev_value);
       update_post_meta( $post_id , 'tc-thumb-fld', compact( "_thumb_id" , "_thumb_type" ) );
       if ( $_return )
-        return apply_filters( 'czr_fn_set_thumb_info' , compact( "_thumb_id" , "_thumb_type" ), $post_id );
+        return apply_filters( 'tc_set_thumb_info' , compact( "_thumb_id" , "_thumb_type" ), $post_id );
     }//end of fn
 
 
@@ -270,7 +270,7 @@ class CZR_post_thumbnails {
         apply_filters( 'tc_post_thumb_class', $layout ),
         $thumb_wrapper
       );
-      $html = apply_filters_ref_array( 'czr_fn_render_thumb_view', array( $html, $_thumb_model, $layout ) );
+      $html = apply_filters_ref_array( 'tc_render_thumb_view', array( $html, $_thumb_model, $layout ) );
       if ( ! $_echo )
         return $html;
       echo $html;

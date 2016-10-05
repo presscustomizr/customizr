@@ -26,12 +26,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
           //Font size filter
           //Updates the array of font sizes for a given sidebar layout
-          add_filter( 'czr_fn_get_grid_font_sizes'      , array( $this , 'czr_fn_set_layout_font_size' ), 10, 4 );
-
-          //Various CSS filters
-          //those filters are fired on hook : tc_user_options_style => fired on hook : wp_enqueue_scripts
-          add_filter( 'tc_grid_title_sizes'         , array( $this , 'tc_set_grid_title_size'), 10, 2 );
-          add_filter( 'tc_grid_p_sizes'             , array( $this , 'tc_set_grid_p_size'), 10, 2 );
+          add_filter( 'tc_get_grid_font_sizes'      , array( $this , 'czr_fn_set_layout_font_size' ), 10, 4 );
 
           //append inline style to the custom stylesheet
           //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
@@ -62,7 +57,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'czr_fn_set_grid_icon_visibility') );
           //Layout filter
-          add_filter( 'czr_fn_get_grid_cols'            , array( $this, 'czr_fn_set_grid_section_cols'), 20 , 2 );
+          add_filter( 'tc_get_grid_cols'            , array( $this, 'czr_fn_set_grid_section_cols'), 20 , 2 );
           //pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'czr_fn_set_grid_before_loop_hooks'), 5 );
           //loop hooks
@@ -92,14 +87,14 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           add_action( '__grid_single_post_content'  , array( $this, 'czr_fn_grid_display_post_link'), $_content_priorities['link'] );
           add_action( '__grid_single_post_content'  , array( $this, 'czr_fn_grid_display_fade_excerpt'), 100 );
           //expanded sticky post : filter the figcaption content to include the post title
-          add_filter( 'czr_fn_grid_display_figcaption_content' , array( $this, 'czr_fn_grid_set_expanded_post_title') );
+          add_filter( 'tc_grid_display_figcaption_content' , array( $this, 'czr_fn_grid_set_expanded_post_title') );
 
           //ARTICLE CONTAINER CSS CLASSES TO HANDLE EFFECT LIKE SHADOWS
           add_filter( 'tc_article_container_class'  , array( $this, 'czr_fn_grid_container_set_classes' ) );
 
           //COMMENT BUBBLE
           remove_filter( 'tc_the_title'             , array( CZR_comments::$instance, 'czr_fn_display_comment_bubble' ) , 1 );
-          add_filter( 'czr_fn_grid_get_single_post_html'  , array( $this, 'czr_fn_grid_display_comment_bubble' ) );
+          add_filter( 'tc_grid_get_single_post_html'  , array( $this, 'czr_fn_grid_display_comment_bubble' ) );
 
           //POST METAS
           remove_filter( 'tc_meta_utility_text'     , array( CZR_post_metas::$instance , 'czr_fn_add_link_to_post_after_metas'), 20 );
@@ -122,8 +117,8 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           remove_action( '__loop'                   , array( CZR_post_list::$instance, 'czr_fn_prepare_section_view') );
           add_action( '__loop'                      , array( $this, 'czr_fn_grid_prepare_single_post') );
 
-          if ( CZR_headings::$instance -> czr_fn_is_edit_enabled() && apply_filters( 'czr_fn_grid_render_expanded_edit_link', true ) )
-            add_filter( 'czr_fn_grid_get_single_post_html' , array( $this, 'czr_fn_grid_render_expanded_edit_link' ), 50 );
+          if ( CZR_headings::$instance -> czr_fn_is_edit_enabled() && apply_filters( 'tc_grid_render_expanded_edit_link', true ) )
+            add_filter( 'tc_grid_get_single_post_html' , array( $this, 'czr_fn_grid_render_expanded_edit_link' ), 50 );
         }
 
 
@@ -248,7 +243,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : __grid_single_post_content
         */
         function czr_fn_grid_display_post_link(){
-          if ( ! apply_filters( 'czr_fn_grid_display_post_link' , true ) )
+          if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
           printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2$s"></a>',
               get_permalink( get_the_ID() ),
@@ -275,7 +270,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           ?>
               <div class="entry-summary">
                 <?php
-                  echo apply_filters( 'czr_fn_grid_display_figcaption_content',
+                  echo apply_filters( 'tc_grid_display_figcaption_content',
                     sprintf('<div class="tc-g-cont">%s</div>',
                       get_the_excerpt()
                     )
@@ -458,7 +453,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
             <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          return apply_filters( 'czr_fn_grid_get_single_post_html', $html, $post_list_content_class );
+          return apply_filters( 'tc_grid_get_single_post_html', $html, $post_list_content_class );
         }
 
 
@@ -633,7 +628,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           }
 
           return apply_filters(
-            'czr_fn_get_grid_font_sizes',
+            'tc_get_grid_font_sizes',
             isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
             $_col_nb,
             $_col_media_matrix,
@@ -689,7 +684,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * returns ratio of size / body size for a given selector type ( headings or paragraphs )
         */
         private function czr_fn_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
-          $_ratios =  apply_filters( 'czr_fn_get_grid_font_ratios' , array(
+          $_ratios =  apply_filters( 'tc_get_grid_font_ratios' , array(
               'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
               'xxl' => array( 'h' => 1.86, 'p' => 1 ),
               'xl' => array( 'h' => 1.60, 'p' => 0.93 ),
@@ -823,7 +818,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           }
 
           $_h = isset( $_grid_col_height_map[$_cols_nb][$_key] ) ? $_grid_col_height_map[$_cols_nb][$_key] : $_h;
-          return apply_filters( 'czr_fn_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
+          return apply_filters( 'tc_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
         }
 
 
@@ -909,13 +904,13 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return bool
         */
         public function czr_fn_is_grid_enabled() {
-          return apply_filters( 'czr_fn_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
         private function czr_fn_get_grid_cols() {
-          return apply_filters( 'czr_fn_get_grid_cols',
+          return apply_filters( 'tc_get_grid_cols',
             esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_columns') ),
             CZR_utils::czr_fn_get_layout( $this -> post_id , 'class' )
           );

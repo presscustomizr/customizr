@@ -98,7 +98,7 @@ class CZR_breadcrumb {
         $this -> args = $this -> _get_args();
 
 	  	echo apply_filters(
-	  			'czr_fn_breadcrumb_display' ,
+	  			'tc_breadcrumb_display' ,
 				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
 					apply_filters( 'tc_breadcrumb_class', 'span12' ),
 					$this -> czr_fn_breadcrumb_trail( $this -> args )
@@ -145,7 +145,7 @@ class CZR_breadcrumb {
 		$breadcrumb = '';
 
 		/* Get the trail items. */
-		$trail = apply_filters( 'czr_fn_breadcrumb_trail' , $this -> czr_fn_breadcrumb_trail_get_items( $args ) );
+		$trail = apply_filters( 'tc_breadcrumb_trail' , $this -> czr_fn_breadcrumb_trail_get_items( $args ) );
 
 		/* Connect the breadcrumb trail if there are items in the trail. */
 		if ( !empty( $trail ) && is_array( $trail ) ) {

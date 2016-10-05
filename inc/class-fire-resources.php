@@ -160,7 +160,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         )
       );//end of scripts map
 
-      return apply_filters('czr_fn_get_script_map' , $_map, $_handles );
+      return apply_filters('tc_get_script_map' , $_map, $_handles );
     }
 
 
@@ -558,7 +558,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         return $_skin;
 
       //allow custom skins to be taken in account
-      $_skins = apply_filters( 'czr_fn_get_skin_color', CZR_init::$instance -> skin_color_map, 'all' );
+      $_skins = apply_filters( 'tc_get_skin_color', CZR_init::$instance -> skin_color_map, 'all' );
 
       //allow users to filter the list of skins they want to randomize
       $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );
@@ -662,7 +662,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
     * @since v3.3+
     */
     function czr_fn_load_concatenated_front_scripts() {
-      return apply_filters( 'czr_fn_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+      return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
     }
 
     /**

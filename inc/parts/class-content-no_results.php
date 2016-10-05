@@ -32,7 +32,7 @@ if ( ! class_exists( 'CZR_no_results' ) ) :
 
           $content_no_results    = apply_filters( 'tc_no_results', CZR_init::$instance -> content_no_results );
 
-          echo apply_filters( 'czr_fn_no_result_content',
+          echo apply_filters( 'tc_no_result_content',
               sprintf('<div class="%1$s"><div class="entry-content %2$s">%3$s</div>%4$s</div>',
                   apply_filters( 'tc_no_results_wrapper_class', 'tc-content span12 format-quote' ),
                   apply_filters( 'tc_no_results_content_icon', 'format-icon' ),

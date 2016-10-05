@@ -182,7 +182,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_bbpress_disable_thumbnail($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
-      add_filter( 'czr_fn_show_excerpt', 'czr_fn_bbpress_disable_excerpt' );
+      add_filter( 'tc_show_excerpt', 'czr_fn_bbpress_disable_excerpt' );
       function czr_fn_bbpress_disable_excerpt($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
@@ -200,13 +200,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //disables post metas
-      add_filter( 'czr_fn_show_post_metas', 'czr_fn_bbpress_disable_post_metas', 100);
+      add_filter( 'tc_show_post_metas', 'czr_fn_bbpress_disable_post_metas', 100);
       function czr_fn_bbpress_disable_post_metas($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
 
       //disable the grid
-      add_filter( 'czr_fn_set_grid_hooks' , 'czr_fn_bbpress_disable_grid', 100 );
+      add_filter( 'tc_set_grid_hooks' , 'czr_fn_bbpress_disable_grid', 100 );
       function czr_fn_bbpress_disable_grid($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
@@ -219,7 +219,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_buddypress_compat() {
-      add_filter( 'czr_fn_are_comments_enabled', 'czr_fn_buddypress_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_buddypress_disable_comments' );
       function czr_fn_buddypress_disable_comments($bool){
         return ( is_page() && function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
@@ -495,7 +495,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           //cache this 'cause is used several times in filter callbacks
           wp_cache_set( $_wp_cache_key, $option_name_assoc );
         }
-        return apply_filters( 'czr_fn_wpml_get_options_names_config', $option_name_assoc );
+        return apply_filters( 'tc_wpml_get_options_names_config', $option_name_assoc );
       }
 
       //Wras wpml_object_id in a more convenient function which recursevely translates array of values
@@ -741,8 +741,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
-      add_filter( 'czr_fn_post_list_controller', 'czr_fn_tec_disable_post_list');
-      add_filter( 'czr_fn_is_grid_enabled', 'czr_fn_tec_disable_post_list');
+      add_filter( 'tc_post_list_controller', 'czr_fn_tec_disable_post_list');
+      add_filter( 'tc_is_grid_enabled', 'czr_fn_tec_disable_post_list');
       function czr_fn_tec_disable_post_list( $bool ) {
         return czr_fn_is_tec_events_list() ? false : $bool;
       }
@@ -865,7 +865,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
       //removes post comment action on after_loop hook
-      add_filter( 'czr_fn_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
       function czr_fn_sensei_disable_comments($bool) {
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
@@ -944,7 +944,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
       //removes post comment action on after_loop hook
-      add_filter( 'czr_fn_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
       function czr_fn_woocommerce_disable_comments($bool) {
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
@@ -988,13 +988,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //narrow the tagline
       add_filter( 'tc_tagline_class', 'czr_fn_woocommerce_force_tagline_width', 100 );
       function czr_fn_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
+        return 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
       }
 
       // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
       add_filter( 'woocommerce_add_to_cart_fragments', 'czr_fn_woocommerce_add_to_cart_fragment' );
       function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) ) {
+        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
           $_cart_count = WC()->cart->get_cart_contents_count();
           $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
         }
@@ -1004,7 +1004,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //print the cart menu in the header
       add_action( '__navbar', 'czr_fn_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function czr_fn_woocommerce_header_cart() {
-        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return;
 
         $_main_item_class = '';
@@ -1039,7 +1039,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //add woommerce header cart classes to the header (sticky enabled)
       add_filter( 'tc_header_classes'   , 'czr_fn_woocommerce_set_header_classes');
       function czr_fn_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) )
+        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           $_classes[]          = ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
         return $_classes;
       }
@@ -1047,7 +1047,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //add woocommerce header cart CSS
       add_filter('tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
       function czr_fn_woocommerce_header_cart_css( $_css ) {
-        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
 
         /* The only real decision I took here is the following:
@@ -1334,7 +1334,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
         $string_options[] = 'tc_featured_page_button_text';
       }
-      return apply_filters( 'czr_fn_get_string_options_to_translate', $string_options );
+      return apply_filters( 'tc_get_string_options_to_translate', $string_options );
     }
   }//end of class
 endif;

@@ -8,5 +8,3 @@
  */
 
 dynamic_sidebar( 'left' );
-
-?>

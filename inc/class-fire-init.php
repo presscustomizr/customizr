@@ -566,7 +566,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
         else
           $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
 
-        return apply_filters ( 'czr_fn_get_style_src' , $tc_get_style_src , $_wot );
+        return apply_filters ( 'tc_get_style_src' , $tc_get_style_src , $_wot );
       }
 
 

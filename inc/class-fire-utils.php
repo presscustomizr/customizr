@@ -179,7 +179,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
           break;
         }
-        return apply_filters( 'czr_fn_get_skin_color' , $_to_return , $_what );
+        return apply_filters( 'tc_get_skin_color' , $_to_return , $_what );
       }
 
 
@@ -196,7 +196,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_fn_is_customizr_option( $option_key ) {
         $_is_tc_option = in_array( substr( $option_key, 0, 3 ), $this -> tc_options_prefixes );
-        return apply_filters( 'czr_fn_is_customizr_option', $_is_tc_option , $option_key );
+        return apply_filters( 'tc_is_customizr_option', $_is_tc_option , $option_key );
       }
 
 
@@ -500,7 +500,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
         $r_content = preg_replace( $pattern, $replacement, $content);
         $content = $r_content ? $r_content : $content;
-        return apply_filters( 'czr_fn_fancybox_content_filter', $content );
+        return apply_filters( 'tc_fancybox_content_filter', $content );
       }
 
 
@@ -659,7 +659,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         // 404
         $selectors                  = is_404() ? apply_filters( 'tc_404_selectors' , 'id="post-0" class="post error404 no-results not-found row-fluid"' ) : $selectors;
 
-        echo apply_filters( 'czr_fn_article_selectors', $selectors );
+        echo apply_filters( 'tc_article_selectors', $selectors );
 
       }//end of function
 
@@ -957,7 +957,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
     */
     function czr_fn_get_ctx_excluded_options() {
       return apply_filters(
-        'czr_fn_get_ctx_excluded_options',
+        'tc_get_ctx_excluded_options',
         array(
           'defaults',
           'tc_sliders',

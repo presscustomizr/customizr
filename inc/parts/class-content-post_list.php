@@ -160,7 +160,7 @@ class CZR_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'czr_fn_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -175,7 +175,7 @@ class CZR_post_list {
     //2) the excerpt option is not set to full
     //3) user settings in customizer
     //4) filter's conditions
-    return apply_filters( 'czr_fn_show_thumb', array_product(
+    return apply_filters( 'tc_show_thumb', array_product(
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_fn_has_thumb(),
@@ -323,7 +323,7 @@ class CZR_post_list {
   public function czr_fn_post_list_controller() {
     global $wp_query;
     //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'czr_fn_post_list_controller',
+    return apply_filters( 'tc_post_list_controller',
       ! is_singular()
       && ! is_404()
       && 0 != $wp_query -> post_count

@@ -62,7 +62,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       add_action ( '__header' 				, array( $this , 'czr_fn_navbar_display' ) , 30 );
 
       //New menu view (since 3.2.0)
-      add_filter ( 'czr_fn_navbar_display', array( $this , 'czr_fn_new_menu_view'), 10, 2);
+      add_filter ( 'tc_navbar_display', array( $this , 'czr_fn_new_menu_view'), 10, 2);
 
       //body > header > navbar actions ordered by priority
   	  // GY : switch order for RTL sites
@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       //Set header classes from options
       add_filter( 'tc_header_classes'        , array( $this , 'czr_fn_set_header_classes') );
       //Set tagline visibility with a customizer option (since 3.2.0)
-      add_filter( 'czr_fn_tagline_display'       , array( $this , 'czr_fn_set_tagline_visibility') );
+      add_filter( 'tc_tagline_display'       , array( $this , 'czr_fn_set_tagline_visibility') );
       //Set logo layout with a customizer option (since 3.2.0)
       add_filter( 'tc_logo_class'            , array( $this , 'czr_fn_set_logo_title_layout') );
     }
@@ -134,7 +134,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				<?php
 			$html = ob_get_contents();
 		    if ($html) ob_end_clean();
-		    echo apply_filters( 'czr_fn_head_display', $html );
+		    echo apply_filters( 'tc_head_display', $html );
 		}
 
 
@@ -180,7 +180,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       	if ( strpos( $_fav_src, '.png') ) $type = "image/png";
       	if ( strpos( $_fav_src, '.gif') ) $type = "image/gif";
 
-    	echo apply_filters( 'czr_fn_favicon_display',
+    	echo apply_filters( 'tc_favicon_display',
       		sprintf('<link id="czr-favicon" rel="shortcut icon" href="%1$s" type="%2$s">' ,
       			$_fav_src,
       			$type
@@ -317,7 +317,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         $logo_type,
         $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
       );
-      return apply_filters( 'czr_fn_logo_img_view', $_html, $_args);
+      return apply_filters( 'tc_logo_img_view', $_html, $_args);
     }
 
 
@@ -395,7 +395,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
 			$html = ob_get_contents();
 	       	if ($html) ob_end_clean();
-	       	echo apply_filters( 'czr_fn_navbar_display', $html );
+	       	echo apply_filters( 'tc_navbar_display', $html );
 		}
 
 
@@ -454,7 +454,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         		$_nothing_to_render ? 'style="display:none"' : ''
         );
 
-        echo apply_filters( 'czr_fn_social_in_header', $html, $resp );
+        echo apply_filters( 'tc_social_in_header', $html, $resp );
     }
 
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				);
 
 			}
-	        echo apply_filters( 'czr_fn_tagline_display', $html );
+	        echo apply_filters( 'tc_tagline_display', $html );
 		}//end of fn
 
 
@@ -496,7 +496,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
     function czr_fn_reset_margin_top_after_sticky_header() {
       echo apply_filters(
-        'czr_fn_reset_margin_top_after_sticky_header',
+        'tc_reset_margin_top_after_sticky_header',
         sprintf('<div id="tc-reset-margin-top" class="container-fluid" style="margin-top:%1$spx"></div>',
           apply_filters('tc_default_sticky_header_height' , 103 )
         )

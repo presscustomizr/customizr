@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 			<?php
 			$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'czr_fn_widgets_footer', $html , $footer_widgets );
+	        echo apply_filters( 'tc_widgets_footer', $html , $footer_widgets );
 		}//end of function
 
 
@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 	    	<?php
 	    	$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'czr_fn_colophon_display', $html );
+	        echo apply_filters( 'tc_colophon_display', $html );
 	    }
 
 
@@ -212,7 +212,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 	    	$_nothing_to_render = $_nothing_to_render && ! CZR___::$instance -> czr_fn_is_customizing();
 
 	      	echo apply_filters(
-	      		'czr_fn_colophon_left_block',
+	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			implode( ' ', apply_filters( 'tc_colophon_left_block_class', array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) ),
 	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
@@ -244,7 +244,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
                             apply_filters( 'tc_credit_link', sprintf( '&middot; <span class="tc-credits-text">Designed by</span> %1$s', '<a href="'.CZR_WEBSITE.'">Press Customizr</a>' ) ),
                             apply_filters( 'tc_wp_powered', sprintf( '&middot; <span class="tc-wp-powered-text">%1$s</span> <a class="icon-wordpress" target="_blank" href="https://wordpress.org" title="%2$s"></a> &middot;',
                               __('Powered by', 'customizr'),
-                              __('Powered by Wordpress', 'customizr')
+                              __('Powered by WordPress', 'customizr')
                             ))
 					)
 	    		)
@@ -265,7 +265,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         return;
 
     	echo apply_filters(
-    		'czr_fn_colophon_right_block',
+    		'tc_colophon_right_block',
     		sprintf('<div class="%1$s"><p class="%3$s"><a class="back-to-top" href="#">%2$s</a></p></div>',
     			implode( ' ', apply_filters( 'tc_colophon_right_block_class', array( 'span3', 'backtop' ) ) ),
                 __( 'Back to top' , 'customizr' ),

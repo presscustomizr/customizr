@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_thumbnail_help_on',
+        'tc_is_thumbnail_help_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -303,7 +303,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_img_smartload_help_on',
+        'tc_is_img_smartload_help_on',
         ! (bool) array_sum( $_dont_display_conditions )
       );
     }
@@ -398,7 +398,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_sidenav_help_on',
+        'tc_is_sidenav_help_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -584,7 +584,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_main_menu_notice_on',
+        'tc_is_main_menu_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -704,7 +704,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_slider_notice_on',
+        'tc_is_slider_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -828,7 +828,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       //checks if at least one of the conditions is true
       return apply_filters(
-        'czr_fn_is_fp_notice_on',
+        'tc_is_fp_notice_on',
         ! (bool)array_sum($_dont_display_conditions)
       );
     }
@@ -958,7 +958,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * User option to enabe/disable all notices. Enabled by default.
     */
     function czr_fn_is_front_help_enabled(){
-      return apply_filters( 'czr_fn_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_fn_opt('tc_display_front_help') );
+      return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_fn_opt('tc_display_front_help') );
     }
 
   }//end of class

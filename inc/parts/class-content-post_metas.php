@@ -343,7 +343,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             return;
 
           $_terms_html_array  = array_map( array( $this , 'czr_fn_meta_term_view' ), $post_terms );
-          return apply_filters( 'czr_fn_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
+          return apply_filters( 'tc_meta_generate_tax_list', implode( apply_filters( 'tc_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
         }
 
 
@@ -371,7 +371,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
 
           $_to_return    = $_term_link ? '<a class="%1$s" href="%2$s" title="%3$s"> %4$s </a>' :  '<span class="%1$s"> %4$s </a>';
 
-          return apply_filters( 'czr_fn_meta_term_view' , sprintf($_to_return,
+          return apply_filters( 'tc_meta_term_view' , sprintf($_to_return,
               $_classes,
               $_term_link,
               esc_attr( sprintf( __( "View all posts in %s", 'customizr' ), $term -> name ) ),
@@ -528,7 +528,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           if ( apply_filters( 'tc_show_link_after_post_metas' , true )
             && in_array( get_post_format(), apply_filters( 'tc_post_formats_with_no_heading', CZR_init::$instance -> post_formats_with_no_heading ) )
             && ! is_singular() ) {
-            return apply_filters('czr_fn_add_link_to_post_after_metas',
+            return apply_filters('tc_add_link_to_post_after_metas',
               sprintf('%1$s | <a href="%2$s" title="%3$s">%3$s &raquo;</a>', $_metas_html, get_permalink(), __('Open' , 'customizr') )
             );
           }

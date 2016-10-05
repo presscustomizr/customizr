@@ -128,7 +128,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       <?php
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'czr_fn_fp_block_display' , $html, $args );
+      echo apply_filters( 'tc_fp_block_display' , $html, $args );
 	   }
 
 
@@ -290,7 +290,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
           <?php
           $html = ob_get_contents();
           if ($html) ob_end_clean();
-          return apply_filters( 'czr_fn_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
+          return apply_filters( 'tc_fp_single_display' , $html, $fp_single_id, $show_img, $fp_img, $featured_page_link, $featured_page_title, $text, $featured_page_id );
       }//end of function
 
 

@@ -147,7 +147,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
             <?php
             $html = ob_get_contents();
             if ($html) ob_end_clean();
-            echo apply_filters( 'czr_fn_attachment_content', $html );
+            echo apply_filters( 'tc_attachment_content', $html );
 
         }//end of function
     }//end of class

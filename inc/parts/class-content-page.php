@@ -73,7 +73,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
 
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'czr_fn_page_content', $html );
+      echo apply_filters( 'tc_page_content', $html );
     }
 
 
