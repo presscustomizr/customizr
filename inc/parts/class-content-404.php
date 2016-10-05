@@ -20,7 +20,7 @@ if ( ! class_exists( 'CZR_404' ) ) :
       function __construct () {
           self::$instance =& $this;
           //404 content
-          add_action  ( '__loop'                      , array( $this , 'czr_404_content' ));
+          add_action  ( '__loop'                      , array( $this , 'czr_fn_404_content' ));
       }
 
 
@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_404' ) ) :
        * @package Customizr
        * @since Customizr 3.0
        */
-      function czr_404_content() {
+      function czr_fn_404_content() {
           if ( !is_404() )
               return;
 

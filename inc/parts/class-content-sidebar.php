@@ -20,7 +20,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
-        add_action ( 'wp'       , array( $this , 'czr_set_sidebar_hooks' ) );
+        add_action ( 'wp'       , array( $this , 'czr_fn_set_sidebar_hooks' ) );
       }
 
 
@@ -33,18 +33,18 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       *
       * @since Customizr 3.3+
       */
-      function czr_set_sidebar_hooks() {
+      function czr_fn_set_sidebar_hooks() {
         //displays left sidebar
-    		add_action ( '__before_article_container'  , array( $this , 'czr_sidebar_display' ) );
-    		add_action ( '__before_left_sidebar'       , array( $this , 'czr_social_in_sidebar' ) );
+    		add_action ( '__before_article_container'  , array( $this , 'czr_fn_sidebar_display' ) );
+    		add_action ( '__before_left_sidebar'       , array( $this , 'czr_fn_social_in_sidebar' ) );
 
         //displays right sidebar
-    		add_action ( '__after_article_container'   , array( $this , 'czr_sidebar_display' ) );
-    		add_action ( '__before_right_sidebar'      , array( $this , 'czr_social_in_sidebar' ) );
+    		add_action ( '__after_article_container'   , array( $this , 'czr_fn_sidebar_display' ) );
+    		add_action ( '__before_right_sidebar'      , array( $this , 'czr_fn_social_in_sidebar' ) );
 
         //since 3.2.0 show/hide the WP built-in widget icons
-        add_filter ( 'tc_left_sidebar_class'       , array( $this , 'czr_set_sidebar_wrapper_widget_class' ) );
-        add_filter ( 'tc_right_sidebar_class'      , array( $this , 'czr_set_sidebar_wrapper_widget_class' ) );
+        add_filter ( 'tc_left_sidebar_class'       , array( $this , 'czr_fn_set_sidebar_wrapper_widget_class' ) );
+        add_filter ( 'tc_right_sidebar_class'      , array( $this , 'czr_fn_set_sidebar_wrapper_widget_class' ) );
       }
 
 
@@ -60,12 +60,12 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function czr_sidebar_display() {
+      function czr_fn_sidebar_display() {
         //first check if home and no content option is choosen
-        if ( czr__f( '__is_home_empty') )
+        if ( czr_fn__f( '__is_home_empty') )
           return;
         //gets current screen layout
-        $screen_layout        = CZR_utils::czr_get_layout( CZR_utils::czr_id() , 'sidebar'  );
+        $screen_layout        = CZR_utils::czr_fn_get_layout( CZR_utils::czr_fn_id() , 'sidebar'  );
 		    // GY: add relative right and left for LTR/RTL sites
         $rel_left             = is_rtl() ? 'right' : 'left';
         $rel_right            = is_rtl() ? 'left' : 'right';
@@ -97,7 +97,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
                 if ( is_active_sidebar( $position ) )
                   get_sidebar( $position );
                 else
-                  $this -> czr_display_sidebar_placeholder($position);
+                  $this -> czr_fn_display_sidebar_placeholder($position);
 
                 do_action( "__after_{$position}_sidebar" );
               ?>
@@ -107,7 +107,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        echo apply_filters( 'czr_sidebar_display', $html, $sidebar_layout, $position );
+        echo apply_filters( 'czr_fn_sidebar_display', $html, $sidebar_layout, $position );
       }//end of function
 
 
@@ -121,8 +121,8 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @param : string position left or right
       * @since Customizr 3.3
       */
-      private function czr_display_sidebar_placeholder( $position ) {
-        if ( ! CZR_placeholders::czr_is_widget_placeholder_enabled( 'sidebar' ) )
+      private function czr_fn_display_sidebar_placeholder( $position ) {
+        if ( ! CZR_placeholders::czr_fn_is_widget_placeholder_enabled( 'sidebar' ) )
           return;
         ?>
         <aside class="tc-placeholder-wrap tc-widget-placeholder">
@@ -137,7 +137,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
 
             printf('<p><strong>%1$s</strong></p>',
               sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -168,24 +168,24 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 1.0
       */
-      function czr_social_in_sidebar() {
+      function czr_fn_social_in_sidebar() {
         //get option from current hook
         $option               = ( false != strpos(current_filter(), 'left') ) ? 'tc_social_in_left-sidebar' : 'tc_social_in_right-sidebar';
 
         //when do we display these blocks ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks set.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( $option) ) ) || ! czr__f( '__get_socials' );
-        if ( ! CZR___::$instance -> czr_is_customizing() && $_nothing_to_render )
+        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option) ) ) || ! czr_fn__f( '__get_socials' );
+        if ( ! CZR___::$instance -> czr_fn_is_customizing() && $_nothing_to_render )
             return;
-        $_title = esc_attr( CZR_utils::$inst->czr_opt( 'tc_social_in_sidebar_title') );
+        $_title = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_sidebar_title') );
         $html = sprintf('<aside class="%1$s" %2$s>%3$s%4$s</aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
             $_nothing_to_render ? 'style="display:none"' : '',
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
-            czr__f( '__get_socials' )
+            czr_fn__f( '__get_socials' )
         );
-        echo apply_filters( 'czr_social_in_sidebar', $html, current_filter() );
+        echo apply_filters( 'czr_fn_social_in_sidebar', $html, current_filter() );
       }
 
 
@@ -198,11 +198,11 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       * @package Customizr
       * @since Customizr 3.2.0
       */
-      function czr_set_sidebar_wrapper_widget_class($_original_classes) {
+      function czr_fn_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( CZR_utils::$inst->czr_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
+          return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }

@@ -31,7 +31,7 @@
 * => Default filtered options for the customizer
 * => Customizr theme's hooks API : front end components are rendered with action and filter hooks
 *
-* The method CZR__::czr__() loads the php files and instantiates all theme's classes.
+* The method CZR__::czr_fn__() loads the php files and instantiates all theme's classes.
 * All classes files (except the class__.php file which loads the other) are named with the following convention : class-[group]-[class_name].php
 *
 * The theme is entirely built on an extensible filter and action hooks API, which makes customizations easy and safe, without ever needing to modify the core structure.

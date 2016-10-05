@@ -21,7 +21,7 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
     function __construct () {
       self::$instance =& $this;
       //widgets actions
-      add_action( 'widgets_init'                    , array( $this , 'czr_widgets_factory' ) );
+      add_action( 'widgets_init'                    , array( $this , 'czr_fn_widgets_factory' ) );
     }
 
     /******************************************
@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function czr_widgets_factory() {
+    function czr_fn_widgets_factory() {
       //default Customizr filtered args
       $default                  = apply_filters( 'tc_default_widget_args' ,
                                 array(

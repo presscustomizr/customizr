@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'czr_set_page_hooks' ) );
+      add_action( 'wp'                , array( $this , 'czr_fn_set_page_hooks' ) );
     }
 
 
@@ -30,11 +30,11 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function czr_set_page_hooks() {
+    function czr_fn_set_page_hooks() {
       //add page content and footer to the __loop
-      add_action( '__loop'           , array( $this , 'czr_page_content' ) );
+      add_action( '__loop'           , array( $this , 'czr_fn_page_content' ) );
       //page help blocks
-      add_filter( 'the_content'       , array( $this, 'czr_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_filter( 'the_content'       , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
     }
 
 
@@ -45,8 +45,8 @@ if ( ! class_exists( 'CZR_page' ) ) :
      * @package Customizr
      * @since Customizr 3.0
      */
-    function czr_page_content() {
-      if ( ! $this -> czr_page_display_controller() )
+    function czr_fn_page_content() {
+      if ( ! $this -> czr_fn_page_display_controller() )
         return;
 
       ob_start();
@@ -73,7 +73,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
 
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'czr_page_content', $html );
+      echo apply_filters( 'czr_fn_page_content', $html );
     }
 
 
@@ -86,11 +86,11 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * hook : the_content
     * @since Customizr 3.4+
     */
-    function czr_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> czr_page_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_is_img_smartload_help_on( $the_content ) ) )
+    function czr_fn_maybe_display_img_smartload_help( $the_content ) {
+      if ( ! ( $this -> czr_fn_page_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return CZR_placeholders::czr_get_smartload_help_block() . $the_content;
+      return CZR_placeholders::czr_fn_get_smartload_help_block() . $the_content;
     }
 
 
@@ -104,10 +104,10 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function czr_page_display_controller() {
-      $tc_show_page_content = 'page' == czr__f('__post_type')
+    function czr_fn_page_display_controller() {
+      $tc_show_page_content = 'page' == czr_fn__f('__post_type')
           && is_singular()
-          && ! czr__f( '__is_home_empty');
+          && ! czr_fn__f( '__is_home_empty');
 
       return apply_filters( 'tc_show_page_content', $tc_show_page_content );
     }

@@ -17,10 +17,10 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     function __construct () {
       self::$instance =& $this;
       //All footer hooks setup
-      add_action( 'wp_head'                   , array( $this , 'czr_footer_hook_setup') );
+      add_action( 'wp_head'                   , array( $this , 'czr_fn_footer_hook_setup') );
 
       // Sticky footer style
-      add_filter( 'tc_user_options_style' , array( $this , 'czr_write_sticky_footer_inline_css' ) );
+      add_filter( 'tc_user_options_style' , array( $this , 'czr_fn_write_sticky_footer_inline_css' ) );
     }
 
 
@@ -36,12 +36,12 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function czr_footer_hook_setup() {
+    function czr_fn_footer_hook_setup() {
       //add sticky_footer body class
-      add_filter ( 'body_class' , array( $this, 'czr_add_sticky_footer_body_class' ) );
+      add_filter ( 'body_class' , array( $this, 'czr_fn_add_sticky_footer_body_class' ) );
 
       //print the sticky_footer push div
-      add_action ( '__after_main_container' , array( $this, 'czr_sticky_footer_push'), 100 );
+      add_action ( '__after_main_container' , array( $this, 'czr_fn_sticky_footer_push'), 100 );
 
       //html > footer actions
       add_action ( '__after_main_wrapper'   , 'get_footer');
@@ -51,18 +51,18 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         return;
 
       //footer actions
-      add_action ( '__footer'         , array( $this , 'czr_widgets_footer' ), 10 );
-      add_action ( '__footer'         , array( $this , 'czr_colophon_display' ), 20 );
+      add_action ( '__footer'         , array( $this , 'czr_fn_widgets_footer' ), 10 );
+      add_action ( '__footer'         , array( $this , 'czr_fn_colophon_display' ), 20 );
 
       //colophon actions => some priorities are rtl dependants
-      add_action ( '__colophon'       , array( $this , 'czr_colophon_left_block' ), 10 );
-      add_action ( '__colophon'       , array( $this , 'czr_colophon_center_block' ), 20 );
-      add_action ( '__colophon'       , array( $this , 'czr_colophon_right_block' ), 30 );
+      add_action ( '__colophon'       , array( $this , 'czr_fn_colophon_left_block' ), 10 );
+      add_action ( '__colophon'       , array( $this , 'czr_fn_colophon_center_block' ), 20 );
+      add_action ( '__colophon'       , array( $this , 'czr_fn_colophon_right_block' ), 30 );
 
       //since v3.2.0, Show back to top from the Customizer option panel
-      add_action ( '__after_footer'       , array( $this , 'czr_render_back_to_top') );
+      add_action ( '__after_footer'       , array( $this , 'czr_fn_render_back_to_top') );
       //since v3.2.0, set no widget icons from the Customizer option panel
-      add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'czr_set_widget_wrapper_class') );
+      add_filter ( 'tc_footer_widget_wrapper_class' , array( $this , 'czr_fn_set_widget_wrapper_class') );
     }
 
 
@@ -77,7 +77,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0.10
 		*/
-	  function czr_widgets_footer() {
+	  function czr_fn_widgets_footer() {
     	//checks if there's at least one active widget area in footer.php.php
     	$status 					= false;
     	$footer_widgets 			= apply_filters( 'tc_footer_widgets', CZR_init::$instance -> footer_widgets );
@@ -87,12 +87,12 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
       //if no active widget area yet, display the footer widget placeholder
 			if ( ! $status ) {
-        $this -> czr_display_footer_placeholder();
+        $this -> czr_fn_display_footer_placeholder();
         return;
       }
 
 			//hack to render white color icons if skin is grey or black
-			$skin_class 					= ( in_array( CZR_utils::$inst->czr_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
+			$skin_class 					= ( in_array( CZR_utils::$inst->czr_fn_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
 			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
 			ob_start();
 			?>
@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 			<?php
 			$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'czr_widgets_footer', $html , $footer_widgets );
+	        echo apply_filters( 'czr_fn_widgets_footer', $html , $footer_widgets );
 		}//end of function
 
 
@@ -131,8 +131,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @param : string position left or right
     * @since Customizr 3.3
     */
-    private function czr_display_footer_placeholder() {
-      if ( ! CZR_placeholders::czr_is_widget_placeholder_enabled( 'footer' ) )
+    private function czr_fn_display_footer_placeholder() {
+      if ( ! CZR_placeholders::czr_fn_is_widget_placeholder_enabled( 'footer' ) )
         return;
 
       ?>
@@ -148,7 +148,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
           printf('<p><strong>%1$s</strong></p>',
               sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -172,7 +172,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.0.10
 		 */
-	    function czr_colophon_display() {
+	    function czr_fn_colophon_display() {
 
 	    	?>
 	    	<?php ob_start() ?>
@@ -190,7 +190,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 	    	<?php
 	    	$html = ob_get_contents();
 	        if ($html) ob_end_clean();
-	        echo apply_filters( 'czr_colophon_display', $html );
+	        echo apply_filters( 'czr_fn_colophon_display', $html );
 	    }
 
 
@@ -203,21 +203,21 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.0.10
 		 */
-	    function czr_colophon_left_block() {
+	    function czr_fn_colophon_left_block() {
 	    	//when do we display this block ?
 	        //1) if customizing always. (is hidden if empty of disabled)
 	        //2) if not customizing : must be enabled and have social networks.
-	    	$_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_social_in_footer') ) ) || ! czr__f( '__get_socials' );
-	    	$_hide_socials = $_nothing_to_render && CZR___::$instance -> czr_is_customizing();
-	    	$_nothing_to_render = $_nothing_to_render && ! CZR___::$instance -> czr_is_customizing();
+	    	$_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_footer') ) ) || ! czr_fn__f( '__get_socials' );
+	    	$_hide_socials = $_nothing_to_render && CZR___::$instance -> czr_fn_is_customizing();
+	    	$_nothing_to_render = $_nothing_to_render && ! CZR___::$instance -> czr_fn_is_customizing();
 
 	      	echo apply_filters(
-	      		'czr_colophon_left_block',
+	      		'czr_fn_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			implode( ' ', apply_filters( 'tc_colophon_left_block_class', array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) ),
 	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
 	      				( $_hide_socials ) ? 'style="display:none"' : '',
-	      				czr__f( '__get_socials' )
+	      				czr_fn__f( '__get_socials' )
 	      			) : ''
 	      		)
 	      	);
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		 * @package Customizr
 		 * @since Customizr 3.0.6
 		 */
-	    function czr_colophon_center_block() {
+	    function czr_fn_colophon_center_block() {
 	    	echo apply_filters(
 	    		'tc_credits_display',
 	    		sprintf('<div class="%1$s">%2$s</div>',
@@ -259,13 +259,13 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.0.10
 		*/
-        function czr_colophon_right_block() {
+        function czr_fn_colophon_right_block() {
           //since 3.4.16 BTT button excludes BTT text
-      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_back_to_top' ) ) ) )
+      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_back_to_top' ) ) ) )
         return;
 
     	echo apply_filters(
-    		'czr_colophon_right_block',
+    		'czr_fn_colophon_right_block',
     		sprintf('<div class="%1$s"><p class="%3$s"><a class="back-to-top" href="#">%2$s</a></p></div>',
     			implode( ' ', apply_filters( 'tc_colophon_right_block_class', array( 'span3', 'backtop' ) ) ),
                 __( 'Back to top' , 'customizr' ),
@@ -286,7 +286,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function czr_set_rtl_colophon_priority( $_priority, $_location ) {
+    function czr_fn_set_rtl_colophon_priority( $_priority, $_location ) {
       if ( ! is_rtl() )
         return $_priority;
       //tc_colophon_right_priority OR tc_colophon_left_priority
@@ -301,8 +301,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @package Customizr
     * @since Customizr 3.3.27
     */
-    function czr_write_sticky_footer_inline_css( $_css ){
-      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_is_customizing() ) )
+    function czr_fn_write_sticky_footer_inline_css( $_css ){
+      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_fn_is_customizing() ) )
         return $_css;
 
       $_css = sprintf("%s\n%s",
@@ -319,7 +319,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @package Customizr
     * @since Customizr 3.3.27
     */
-    function czr_add_sticky_footer_body_class($_classes) {
+    function czr_fn_add_sticky_footer_body_class($_classes) {
       if ( $this -> is_sticky_footer_enabled() )
         $_classes = array_merge( $_classes, array( 'tc-sticky-footer') );
 
@@ -337,8 +337,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @hook __after_main_container
     *
     */
-    function czr_sticky_footer_push() {
-      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_is_customizing() ) )
+    function czr_fn_sticky_footer_push() {
+      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_fn_is_customizing() ) )
         return;
 
       echo '<div id="tc-push-footer"></div>';
@@ -352,11 +352,11 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.2.0
 		*/
-		function czr_render_back_to_top() {
-			if ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_back_to_top' ) ) )
+		function czr_fn_render_back_to_top() {
+			if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_back_to_top' ) ) )
                 return;
             printf('<div id="tc-footer-btt-wrapper" class="tc-btt-wrapper %1$s"><i class="btt-arrow"></i></div>',
-                esc_attr( CZR_utils::$inst -> czr_opt( 'tc_back_to_top_position' ) )
+                esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_back_to_top_position' ) )
             );
 		}
 
@@ -368,11 +368,11 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @package Customizr
 		* @since Customizr 3.2.0
 		*/
-		function czr_set_widget_wrapper_class( $_original_classes ) {
+		function czr_fn_set_widget_wrapper_class( $_original_classes ) {
 			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-			if ( 1 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_footer_widget_icon' ) ) )
-				return ( 0 == esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_footer_widget_icon' ) ) )
+				return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
         }
@@ -386,7 +386,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @return bool
     */
     function is_sticky_footer_enabled() {
-      return 1 == esc_attr( CZR_utils::$inst -> czr_opt( 'tc_sticky_footer') );
+      return 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_sticky_footer') );
     }
   }//end of class
 endif;

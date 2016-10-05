@@ -16,15 +16,15 @@ if ( ! class_exists( 'CZR_post' ) ) :
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'czr_set_single_post_hooks' ));
+      add_action( 'wp'                , array( $this , 'czr_fn_set_single_post_hooks' ));
       //Set single post thumbnail with customizer options (since 3.2.0)
-      add_action( 'wp'                , array( $this , 'czr_set_single_post_thumbnail_hooks' ));
+      add_action( 'wp'                , array( $this , 'czr_fn_set_single_post_thumbnail_hooks' ));
 
       //append inline style to the custom stylesheet
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
       //Set thumbnail specific design based on user options
-      add_filter( 'tc_user_options_style'    , array( $this , 'czr_write_thumbnail_inline_css') );
+      add_filter( 'tc_user_options_style'    , array( $this , 'czr_fn_write_thumbnail_inline_css') );
     }
 
 
@@ -37,13 +37,13 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function czr_set_single_post_hooks() {
+    function czr_fn_set_single_post_hooks() {
       //add post header, content and footer to the __loop
-      add_action( '__loop'              , array( $this , 'czr_post_content' ));
+      add_action( '__loop'              , array( $this , 'czr_fn_post_content' ));
       //posts parts actions
-      add_action( '__after_content'     , array( $this , 'czr_post_footer' ));
+      add_action( '__after_content'     , array( $this , 'czr_fn_post_footer' ));
       //smartload help block
-      add_filter( 'the_content'         , array( $this, 'czr_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_filter( 'the_content'         , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
 
     }
 
@@ -55,24 +55,24 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function czr_set_single_post_thumbnail_hooks() {
-      if ( $this -> czr_single_post_display_controller() )
-        add_action( '__before_content'        , array( $this, 'czr_maybe_display_featured_image_help') );
+    function czr_fn_set_single_post_thumbnail_hooks() {
+      if ( $this -> czr_fn_single_post_display_controller() )
+        add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
 
       //__before_main_wrapper, 200
       //__before_content 0
       //__before_content 20
-      if ( ! $this -> czr_show_single_post_thumbnail() )
+      if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' )) );
       $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
       //Hook post view
-      add_action( $_hook, array($this , 'czr_single_post_prepare_thumb') , $_priority );
+      add_action( $_hook, array($this , 'czr_fn_single_post_prepare_thumb') , $_priority );
       //Set thumb shape with customizer options (since 3.2.0)
-      add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'czr_set_thumb_shape'), 10 , 2 );
+      add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'czr_fn_set_thumb_shape'), 10 , 2 );
     }
 
 
@@ -86,9 +86,9 @@ if ( ! class_exists( 'CZR_post' ) ) :
      * @package Customizr
      * @since Customizr 3.0
      */
-    function czr_post_content() {
+    function czr_fn_post_content() {
       //check conditional tags : we want to show single post or single custom post types
-      if ( ! $this -> czr_single_post_display_controller() )
+      if ( ! $this -> czr_fn_single_post_display_controller() )
           return;
       //display an icon for div if there is no title
       $icon_class = in_array( get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' ) ) ? apply_filters( 'tc_post_format_icon', 'format-icon' ) :'' ;
@@ -105,7 +105,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       do_action( '__after_content' );
       $html = ob_get_contents();
       if ($html) ob_end_clean();
-      echo apply_filters( 'czr_post_content', $html );
+      echo apply_filters( 'czr_fn_post_content', $html );
     }
 
 
@@ -116,12 +116,12 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function czr_post_footer() {
+    function czr_fn_post_footer() {
       //check conditional tags : we want to show single post or single custom post types
-      if ( ! $this -> czr_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
+      if ( ! $this -> czr_fn_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
       //@todo check if some conditions below not redundant?
-      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( CZR_utils::$inst->czr_opt( 'tc_show_author_info' ) ) )
+      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_author_info' ) ) )
         return;
 
       $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
@@ -144,7 +144,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
                           )
                     )
       );//end sprintf
-      echo apply_filters( 'czr_post_footer', $html );
+      echo apply_filters( 'czr_fn_post_footer', $html );
     }
 
 
@@ -154,20 +154,20 @@ if ( ! class_exists( 'CZR_post' ) ) :
     /**
     * Get Single post thumb model + view
     * Inject it in the view
-    * hook : esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_location' ) || '__before_content'
+    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    function czr_single_post_prepare_thumb() {
-      $_size_to_request = apply_filters( 'tc_single_post_thumb_size' , $this -> czr_get_current_thumb_size() );
+    function czr_fn_single_post_prepare_thumb() {
+      $_size_to_request = apply_filters( 'tc_single_post_thumb_size' , $this -> czr_fn_get_current_thumb_size() );
       //get the thumbnail data (src, width, height) if any
       //array( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" )
-      $_thumb_model   = CZR_post_thumbnails::$instance -> czr_get_thumbnail_model( $_size_to_request ) ;
+      $_thumb_model   = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $_size_to_request ) ;
       //may be render
-      if ( CZR_post_thumbnails::$instance -> czr_has_thumb() ) {
+      if ( CZR_post_thumbnails::$instance -> czr_fn_has_thumb() ) {
         $_thumb_class   = implode( " " , apply_filters( 'tc_single_post_thumb_class' , array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() ) ) );
-        $this -> czr_render_single_post_view( $_thumb_model , $_thumb_class );
+        $this -> czr_fn_render_single_post_view( $_thumb_model , $_thumb_class );
       }
     }
 
@@ -177,11 +177,11 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    private function czr_render_single_post_view( $_thumb_model , $_thumb_class ) {
-      echo apply_filters( 'czr_render_single_post_view',
+    private function czr_fn_render_single_post_view( $_thumb_model , $_thumb_class ) {
+      echo apply_filters( 'czr_fn_render_single_post_view',
         sprintf( '<div class="%1$s">%2$s</div>' ,
           $_thumb_class,
-          CZR_post_thumbnails::$instance -> czr_render_thumb_view( $_thumb_model, 'span12', false )
+          CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
         )
       );
     }
@@ -195,8 +195,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * hook : __before_content
     * @since Customizr 3.4
     */
-    function czr_maybe_display_featured_image_help() {
-      if ( ! CZR_placeholders::czr_is_thumbnail_help_on() )
+    function czr_fn_maybe_display_featured_image_help() {
+      if ( ! CZR_placeholders::czr_fn_is_thumbnail_help_on() )
         return;
       ?>
       <div class="tc-placeholder-wrap tc-thumbnail-help">
@@ -204,7 +204,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
               __( "You can display your post's featured image here if you have set one.", "customizr" ),
               sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
               ),
               sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
                 sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
@@ -226,11 +226,11 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * hook : the_content
     * @since Customizr 3.4+
     */
-    function czr_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> czr_single_post_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_is_img_smartload_help_on( $the_content ) ) )
+    function czr_fn_maybe_display_img_smartload_help( $the_content ) {
+      if ( ! ( $this -> czr_fn_single_post_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return CZR_placeholders::czr_get_smartload_help_block() . $the_content;
+      return CZR_placeholders::czr_fn_get_smartload_help_block() . $the_content;
     }
 
 
@@ -245,14 +245,14 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function czr_single_post_display_controller() {
+    function czr_fn_single_post_display_controller() {
       //check conditional tags : we want to show single post or single custom post types
       global $post;
       $tc_show_single_post_content = isset($post)
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
         && is_singular()
-        && ! czr__f( '__is_home_empty');
+        && ! czr_fn__f( '__is_home_empty');
       return apply_filters( 'tc_show_single_post_content', $tc_show_single_post_content );
     }
 
@@ -263,10 +263,10 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.11
     */
-    function czr_show_single_post_thumbnail() {
-      return $this -> czr_single_post_display_controller()
-        && 'hide' != esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'czr_show_single_post_thumbnail' , true );
+    function czr_fn_show_single_post_thumbnail() {
+      return $this -> czr_fn_single_post_display_controller()
+        && 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) )
+        && apply_filters( 'czr_fn_show_single_post_thumbnail' , true );
     }
 
 
@@ -276,8 +276,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    private function czr_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_location' ) ) );
+    private function czr_fn_get_current_thumb_size() {
+      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -289,7 +289,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function czr_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
+    function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
       return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2$s">%3$s</a></div>',
             get_permalink( get_the_ID() ),
             esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
@@ -306,10 +306,10 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function czr_write_thumbnail_inline_css( $_css ) {
-      if ( ! $this -> czr_show_single_post_thumbnail() )
+    function czr_fn_write_thumbnail_inline_css( $_css ) {
+      if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return $_css;
-      $_single_thumb_height   = esc_attr( CZR_utils::$inst->czr_opt( 'tc_single_post_thumb_height' ) );
+      $_single_thumb_height   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,

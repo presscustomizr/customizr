@@ -19,7 +19,7 @@
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
 	<?php
-		//the '__before_body' hook is used by CZR_header_main::$instance->czr_head_display()
+		//the '__before_body' hook is used by CZR_header_main::$instance->czr_fn_head_display()
 		do_action( '__before_body' );
 	?>
 
@@ -34,11 +34,11 @@
   	   	<header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>" role="banner">
   			<?php
   				// The '__header' hook is used with the following callback functions (ordered by priorities) :
-  				//CZR_header_main::$instance->tc_logo_title_display(), CZR_header_main::$instance->czr_tagline_display(), CZR_header_main::$instance->czr_navbar_display()
+  				//CZR_header_main::$instance->tc_logo_title_display(), CZR_header_main::$instance->czr_fn_tagline_display(), CZR_header_main::$instance->czr_fn_navbar_display()
   				do_action( '__header' );
   			?>
   		</header>
   		<?php
-  		 	//This hook is used for the slider : CZR_slider::$instance->czr_slider_display()
+  		 	//This hook is used for the slider : CZR_slider::$instance->czr_fn_slider_display()
   			do_action ( '__after_header' )
   		?>
