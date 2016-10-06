@@ -733,7 +733,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       check_ajax_referer( 'tc-fp-notice-nonce', 'fpNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_fp':
-          CZR_utils::$inst -> czr_fn_set_option( 'czr_fn_show_featured_pages' , 0 );
+          CZR_utils::$inst -> czr_fn_set_option( 'tc_show_featured_pages' , 0 );
         break;
 
         case 'remove_notice':
@@ -818,7 +818,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! CZR_utils::$inst-> czr_fn_is_home(),
-        ! (bool)CZR_utils::$inst->czr_fn_opt('czr_fn_show_featured_pages'),
+        ! (bool)CZR_utils::$inst->czr_fn_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> czr_fn_is_one_fp_set(),
         CZR___::czr_fn_is_pro(),

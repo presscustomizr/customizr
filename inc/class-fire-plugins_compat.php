@@ -445,7 +445,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // 1) We cannot use translated string for the "name" param (which actually they say should be in a readable format ..)
       // 2) We need a way to use the same "name" both when registering the string to translate and retrieving its translations
       function czr_fn_wpml_get_options_names_config() {
-        $_wp_cache_key     = 'czr_fn_wpml_get_options_names_config';
+        $_wp_cache_key     = 'tc_wpml_get_options_names_config';
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {

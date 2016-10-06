@@ -440,7 +440,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing always. (is hidden if empty of disabled)
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'czr_fn_social_in_header') ) ) || ! czr_fn__f( '__get_socials' );
+        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_header') ) ) || ! czr_fn__f( '__get_socials' );
         if ( ! CZR___::$instance -> czr_fn_is_customizing() && $_nothing_to_render )
         	return;
 

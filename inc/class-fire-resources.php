@@ -380,7 +380,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
 
-      return apply_filters( 'czr_fn_write_custom_css',
+      return apply_filters( 'tc_write_custom_css',
         $_css . "\n" . html_entity_decode( $tc_custom_css ),
         $_css,
         CZR_utils::$inst->czr_fn_opt( 'tc_custom_css')

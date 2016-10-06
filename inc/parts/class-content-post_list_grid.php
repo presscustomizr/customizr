@@ -639,7 +639,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
 
         /**
-        * hook : 'czr_fn_get_grid_font_sizes'
+        * hook : 'tc_get_grid_font_sizes'
         * Updates the array of sizes for a given sidebar layout
         * @param  $_sizes array. ex : array( 'xl' , 'l' , 'm', 'l', 'm' )
         * @param  $_col_nb string. Ex: '2'
