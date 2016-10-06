@@ -492,7 +492,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //credits: @Srdjan -> filter the slides in the current language
-      function sliders_filter( $sliders ) {
+      function czr_fn_wpml_sliders_filter( $sliders ) {
         if ( is_array( $sliders ) )
           foreach ( $sliders as $name => $slides ) {
             foreach ( $slides as $key => $attachment_id ) {
@@ -514,18 +514,18 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return $sliders;
       }
       //credits: @Srdjan,
-      function add_theme_options_filter() {
-        add_filter( 'option_tc_theme_options', 'theme_options_filter', 99 );
+      function czr_fn_wpml_add_theme_options_filter() {
+        add_filter( 'option_tc_theme_options', 'czr_fn_wpml_theme_options_filter', 99 );
       }
       //credits: @Srdjan
-      function theme_options_filter( $options ) {
+      function czr_fn_wpml_theme_options_filter( $options ) {
         if ( isset( $options['tc_sliders'] ) ) {
-            $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
+            $options['tc_sliders'] = czr_fn_wpml_sliders_filter( $options['tc_sliders'] );
         }
         return $options;
       }
       //credits: @Srdjan
-      function edit_attachment_action( $attachment_id ) {
+      function czr_fn_wpml_edit_attachment_action( $attachment_id ) {
         $languages = apply_filters( 'wpml_active_languages', array() );
         // TODO check which meta keys are a must
         $meta_data = get_post_custom( $attachment_id );
@@ -541,12 +541,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         }
       }
 
-      function pre_update_option_filter( $options ) {
+      function czr_fn_wpml_pre_update_option_filter( $options ) {
         if ( isset( $options['tc_sliders'] ) ) {
             // Force default language
             $current_language = CZR_plugins_compat::$instance->current_language;
             CZR_plugins_compat::$instance->current_language = CZR_plugins_compat::$instance->default_language;
-            $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
+            $options['tc_sliders'] = czr_fn_wpml_sliders_filter( $options['tc_sliders'] );
             CZR_plugins_compat::$instance->current_language = $current_language;
         }
         return $options;
@@ -595,12 +595,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
         //credits @Srdjan
         // Filter slides in admin screens
-        add_action( '__attachment_slider_infos', 'add_theme_options_filter', 9 );
-        add_action( '__post_slider_infos', 'add_theme_options_filter', 9 );
+        add_action( '__attachment_slider_infos', 'czr_fn_wpml_add_theme_options_filter', 9 );
+        add_action( '__post_slider_infos', 'czr_fn_wpml_add_theme_options_filter', 9 );
         // Update translated slide post meta
-        add_action( 'edit_attachment', 'edit_attachment_action', 99 );
+        add_action( 'edit_attachment', 'czr_fn_wpml_edit_attachment_action', 99 );
         // Pre-save hook
-        add_filter( 'pre_update_option_tc_theme_options', 'pre_update_option_filter', 99 );
+        add_filter( 'pre_update_option_tc_theme_options', 'czr_fn_wpml_pre_update_option_filter', 99 );
 
       }// end tc_wpml_admin_setup function
 
@@ -639,7 +639,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             add_filter("tc_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
-          add_filter( 'tc_opt_tc_sliders', 'sliders_filter', 99 );
+          add_filter( 'tc_opt_tc_sliders', 'czr_fn_wpml_sliders_filter', 99 );
 
         }
         /*A) FP*/
