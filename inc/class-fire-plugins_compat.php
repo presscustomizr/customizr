@@ -397,10 +397,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         /* Slider of posts */
         if ( function_exists( 'pll_current_language') ) {
         // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join'      , 'pll_posts_slider_join' );
-          add_filter( 'tc_query_posts_slider_join_where', 'pll_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join'      , 'czr_fn_pll_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join_where', 'czr_fn_pll_posts_slider_join' );
         }
-        function pll_posts_slider_join( $join ) {
+        function czr_fn_pll_posts_slider_join( $join ) {
           global $wpdb;
           switch ( current_filter() ){
             case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
@@ -675,10 +675,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         /* Slider of posts */
         if ( defined( 'ICL_LANGUAGE_CODE') ) {
         // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join'      , 'wpml_posts_slider_join' );
-          add_filter( 'tc_query_posts_slider_join_where', 'wpml_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join'      , 'czr_fn_wpml_posts_slider_join' );
+          add_filter( 'tc_query_posts_slider_join_where', 'czr_fn_wpml_posts_slider_join' );
         }
-        function wpml_posts_slider_join( $join ) {
+        function czr_fn_wpml_posts_slider_join( $join ) {
           global $wpdb;
           switch ( current_filter() ){
             case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
@@ -1261,7 +1261,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           if ( method_exists( 'TC_front_fpu', 'tc_set_fp_hook' ) )
             remove_action( 'template_redirect'         , array( TC_front_fpu::$instance , 'tc_set_fp_hook'), 10 );
           if ( method_exists( 'TC_front_fpu', 'tc_set_colors' ) )
-          remove_action( 'wp_head'                   , array( TC_front_fpu::$instance , 'tc_set_colors'), 10 );
+            remove_action( 'wp_head'                   , array( TC_front_fpu::$instance , 'tc_set_colors'), 10 );
           if ( method_exists( 'TC_front_fpu', 'tc_enqueue_plug_resources' ) )
             remove_action( 'wp_enqueue_scripts'        , array( TC_front_fpu::$instance , 'tc_enqueue_plug_resources') );
         }
@@ -1363,7 +1363,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         'tc_social_in_sidebar_title',
       );
       if ( ! apply_filters( 'tc_other_plugins_force_fpu_disable', class_exists('TC_fpu')  ) && ! class_exists('TC_fpc') ) {
-        echo "sono qui";
         $fp_areas = CZR_init::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
