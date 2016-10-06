@@ -25,6 +25,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_action ('after_setup_theme'          , array( $this , 'czr_fn_plugins_compatibility'), 30 );
       // remove qtranslateX theme options filter
       remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
+
     }//end of constructor
 
 
@@ -52,6 +53,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'visual-composer' );//or js-composer as they call it
       add_theme_support( 'disqus' );
       add_theme_support( 'uris' );
+      add_theme_support( 'tc-unlimited-featured-pages' );
     }
 
 
@@ -63,10 +65,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.0.15
     */
     function czr_fn_plugins_compatibility() {
+      /* Unlimited Featured Pages  */
+      if ( current_theme_supports( 'tc-unlimited-featured-pages' ) && $this -> czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php') )
+        $this -> czr_fn_set_tc_unlimited_featured_pages_compat();
+
       /* JETPACK */
       //adds compatibilty with the jetpack image carousel and photon
       if ( current_theme_supports( 'jetpack' ) && $this -> czr_fn_is_plugin_active('jetpack/jetpack.php') )
         $this -> czr_fn_set_jetpack_compat();
+
 
       /* BBPRESS */
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
@@ -260,7 +267,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter("tc_{$title}_title", 'czr_fn_apply_qtranslate' , 20);
 
       // QtranslateX for FP when no FPC or FPU running
-      if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+      if ( ! apply_filters( 'tc_other_plugins_force_fpu_disable', class_exists('TC_fpu') ) && ! class_exists('TC_fpc') ) {
         //outputs correct urls for current language : fp
         add_filter( 'tc_fp_link_url' , 'czr_fn_url_lang');
         //outputs the qtranslate translation for featured pages
@@ -582,7 +589,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
-            'page'     => ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) ? array( 'tc_featured_page_one', 'tc_featured_page_two', 'tc_featured_page_three' ) : array(),
+            'page'     => ( ! apply_filters( 'tc_other_plugins_force_fpu_disable', class_exists('TC_fpu') ) && ! class_exists('TC_fpc') ) ? array( 'tc_featured_page_one', 'tc_featured_page_two', 'tc_featured_page_three' ) : array(),
             'category' => array( 'tc_blog_restrict_by_cat' )
             )
           );
@@ -1219,6 +1226,51 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end uris compat
 
 
+    /**
+    * TC Unlimited Featured Pages compat hooks
+    * Since Customizr 3.4.24 we changed the functions and class prefixes
+    * Olf fpu versions might refer to them throwing PHP errors
+    * with the code below we basically "soft-disable" the plugin
+    * without actyally disabling it to allow the user to update it
+    * @package Customizr
+    * @since Customizr 3.4.24
+    */
+    private function czr_fn_set_tc_unlimited_featured_pages_compat() {
+      //This has to be fired after : tc_generates_featured_pages | 10 (priority)
+      if ( class_exists( 'TC_fpu' ) &&  version_compare( TC_fpu::$instance -> plug_version, '2.0.24', '<' ) ) {
+
+        //back
+        if ( method_exists( 'TC_back_fpu', 'tc_add_controls_class' ) )
+          remove_action ( 'customize_register'         , array( TC_back_fpu::$instance , 'tc_add_controls_class' ) ,10,1);
+
+        if ( method_exists( 'TC_back_fpu', 'tc_customize_controls_js_css' ) )
+          remove_action ( 'customize_controls_enqueue_scripts' , array(TC_back_fpu::$instance , 'tc_customize_controls_js_css' ), 100);
+
+        if ( method_exists( 'TC_back_fpu', 'tc_customize_register' ) )
+          remove_action ( 'customize_register'         , array( TC_back_fpu::$instance , 'tc_customize_register' ) , 20, 1 );
+
+        if ( method_exists( 'TC_back_fpu', 'tc_customize_preview_js' ) )
+          remove_action ( 'customize_preview_init'     , array( TC_back_fpu::$instance , 'tc_customize_preview_js' ));
+
+        //do not remove customizr free featured pages option panel
+        if ( method_exists( 'TC_fpu', 'tc_delete_fp_options' ) )
+          remove_filter ( 'tc_front_page_option_map'   , array( TC_fpu::$instance , 'tc_delete_fp_options' ), 20 );
+
+        //front
+        if ( class_exists( 'TC_front_fpu' ) ) {
+          if ( method_exists( 'TC_front_fpu', 'tc_set_fp_hook' ) )
+            remove_action( 'template_redirect'         , array( TC_front_fpu::$instance , 'tc_set_fp_hook'), 10 );
+          if ( method_exists( 'TC_front_fpu', 'tc_set_colors' ) )
+          remove_action( 'wp_head'                   , array( TC_front_fpu::$instance , 'tc_set_colors'), 10 );
+          if ( method_exists( 'TC_front_fpu', 'tc_enqueue_plug_resources' ) )
+            remove_action( 'wp_enqueue_scripts'        , array( TC_front_fpu::$instance , 'tc_enqueue_plug_resources') );
+        }
+
+        //needed as some plugins (lang) will check the TC_fpu class existence
+        add_filter( 'tc_other_plugins_force_fpu_disable', '__return_false' );
+      }
+    }
+
 
     /**
     * CUSTOMIZR WRAPPERS
@@ -1310,7 +1362,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         'tc_search_title',
         'tc_social_in_sidebar_title',
       );
-      if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
+      if ( ! apply_filters( 'tc_other_plugins_force_fpu_disable', class_exists('TC_fpu')  ) && ! class_exists('TC_fpc') ) {
+        echo "sono qui";
         $fp_areas = CZR_init::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
