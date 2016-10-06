@@ -616,7 +616,7 @@ class CZR_slider {
     $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
 
     $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'czr_fn_query_posts_slider', $_posts, $args );
+    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
   }
 
 
@@ -630,7 +630,7 @@ class CZR_slider {
   *
   */
   private function czr_fn_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
-    return apply_filters( 'czr_fn_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
+    return apply_filters( 'tc_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
         $this -> czr_fn_get_posts_have_thumbnail_sql( $_columns, $_pt_where ),
         $this -> czr_fn_get_posts_have_attachment_sql( $_columns, $_pa_where )
     ));
@@ -646,7 +646,7 @@ class CZR_slider {
   */
   private function czr_fn_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'czr_fn_get_posts_have_thumbnail_sql', "
+    return apply_filters( 'tc_get_posts_have_thumbnail_sql', "
         SELECT $_columns
         FROM $wpdb->posts AS posts INNER JOIN $wpdb->postmeta AS metas
         ON posts.ID=metas.post_id
@@ -664,7 +664,7 @@ class CZR_slider {
   */
   private function czr_fn_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
     global $wpdb;
-    return apply_filters( 'czr_fn_get_posts_have_attachment_sql', "
+    return apply_filters( 'tc_get_posts_have_attachment_sql', "
         SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
         WHERE $_where
     ");
@@ -722,7 +722,7 @@ class CZR_slider {
     <?php
     $html = ob_get_contents();
     if ($html) ob_end_clean();
-    echo apply_filters( 'czr_fn_slider_display', $html, $slider_name_id );
+    echo apply_filters( 'tc_slider_display', $html, $slider_name_id );
   }
 
 
@@ -998,7 +998,7 @@ class CZR_slider {
         self::$rendered_sliders
       )
     );
-    echo apply_filters( 'czr_fn_slider_control_view', $_html );
+    echo apply_filters( 'tc_slider_control_view', $_html );
   }
 
 
@@ -1225,7 +1225,7 @@ class CZR_slider {
       if ( false !== (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
-    return apply_filters( 'czr_fn_set_demo_slider_height' , 750 );
+    return apply_filters( 'tc_set_demo_slider_height' , 750 );
   }
 
 
