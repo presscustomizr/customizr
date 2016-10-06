@@ -42,7 +42,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : wp
         */
         function czr_fn_set_grid_hooks(){
-          if ( ! apply_filters( 'czr_fn_set_grid_hooks' , $this -> czr_fn_is_grid_enabled() ) )
+          if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> czr_fn_is_grid_enabled() ) )
               return;
 
           $this -> post_id = CZR_utils::czr_fn_id();

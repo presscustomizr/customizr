@@ -171,45 +171,28 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_bbpress_compat() {
+      if ( ! function_exists( 'czr_fn_bbpress_disable_feature' ) ) {
+        function czr_fn_bbpress_disable_feature( $bool ) {
+          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
+        }
+      }
+
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'czr_fn_bbpress_disable_tax_archive_title');
-      function czr_fn_bbpress_disable_tax_archive_title( $bool ){
-        return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_bbpress_disable_feature');
       //disables thumbnails and excerpt for post lists
-      add_filter( 'tc_show_post_list_thumb', 'czr_fn_bbpress_disable_thumbnail' );
-      function czr_fn_bbpress_disable_thumbnail($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-      add_filter( 'tc_show_excerpt', 'czr_fn_bbpress_disable_excerpt' );
-      function czr_fn_bbpress_disable_excerpt($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_post_list_thumb', 'czr_fn_bbpress_disable_feature' );
+      //show full content in post lists
+      add_filter( 'tc_show_excerpt', 'czr_fn_bbpress_disable_feature' );
       //disables Customizr author infos on forums
-      add_filter( 'tc_show_author_metas_in_post', 'czr_fn_bbpress_disable_author_meta' );
-      function czr_fn_bbpress_disable_author_meta($bool) {
-        return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_author_metas_in_post', 'czr_fn_bbpress_disable_feature' );
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'czr_fn_bbpress_disable_post_navigation' );
-      function czr_fn_bbpress_disable_post_navigation($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_post_navigation', 'czr_fn_bbpress_disable_feature' );
       //disables post metas
-      add_filter( 'tc_show_post_metas', 'czr_fn_bbpress_disable_post_metas', 100);
-      function czr_fn_bbpress_disable_post_metas($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_post_metas', 'czr_fn_bbpress_disable_feature', 100);
       //disable the grid
-      add_filter( 'tc_set_grid_hooks' , 'czr_fn_bbpress_disable_grid', 100 );
-      function czr_fn_bbpress_disable_grid($bool) {
-         return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
-      }
+      add_filter( 'tc_set_grid_hooks' , 'czr_fn_bbpress_disable_feature', 100 );
+      //disable the smartload help block
+      add_filter( 'tc_is_img_smartload_help_on', 'czr_fn_bbpress_disable_feature' );
     }
 
     /**

@@ -79,9 +79,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
           //3- Adding the meta-boxes to those screens
           foreach ( $screens as $key => $screen) {
-              //skip if acf
-              if ('acf' == $screen )
+              //skip if acf or ris_gallery (ultimate responsive image slider)
+              if ( in_array( $screen, array( 'acf', 'ris_gallery' ) ) )
                 continue;
+
               add_meta_box(
                   'layout_sectionid' ,
                   __( 'Layout Options' , 'customizr' ),
