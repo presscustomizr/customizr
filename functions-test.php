@@ -17,15 +17,15 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'plain_excerpt', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
     'tc_comment_show_info' => true,
 
-    'tc_sidebar_global_layout' => 'b',
+    'tc_sidebar_global_layout' => 'l',
     'tc_sidebar_post_layout'   => 'l',
-    'tc_front_layout'          => 'f',
+    'tc_front_layout'          => 'l',
 
     'tc_post_list_thumb_position' => 'left',
     'tc_post_list_thumb_alternate' => true,
