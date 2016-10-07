@@ -109,7 +109,6 @@ embed, iframe, object, video { max-width: 100%;}
 /* Alternate and Masonry special formats patch*/
 .format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
 .article-container .post-action { left: auto; }
-[class*=grid-container__] .format-gallery .tc-thumbnail, [class*=grid-container__] .format-image .tc-thumbnail { max-height: 600px;}
 
 .bg-link { top: 0; left: 0; width: 100%; height: 100%; position: absolute; z-index: 4;}
 
@@ -1217,4 +1216,26 @@ replace this
   .grid-container__full.post-list-plain .post .tc-content-inner {
     float: left;
   }
+}
+
+
+/* Some thumbnail container sizes ideas */
+/*[class*=grid-container__] .format-gallery .tc-thumbnail,
+[class*=grid-container__] .format-image.no-text .tc-thumbnail {
+  max-height: 600px;
+}*/
+
+.article-container  .grid-container__alternate .format-gallery .tc-thumbnail,
+.article-container  .grid-container__alternate .format-image.no-text .tc-thumbnail,
+.article-container  .grid-container__full .format-gallery .tc-thumbnail,
+.article-container  .grid-container__full .format-image.no-text .tc-thumbnail {
+    position: relative;
+    height: 0;
+    padding-bottom: 55%;
+}
+.article-container .grid-container__masonry .format-image.no-text .tc-thumbnail,
+.article-container  .grid-container__masonry .format-gallery .tc-thumbnail {
+    position: relative;
+    height: 0;
+    padding-bottom: 150%;
 }
