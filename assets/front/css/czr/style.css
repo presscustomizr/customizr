@@ -133,13 +133,35 @@ embed, iframe, object, video { max-width: 100%;}
 .article-container .grid-container__masonry .format-gallery .tc-content {
   z-index: initial;
 }
-
+.article-container .grid-container__alternate .entry-footer {
+  margin: 0;
+  margin-top: 2.5em;
+}
 /* reset bottom + when format-image apply only to those with no text*/
 .article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
     position: absolute;
     width: 90%;
-    bottom: 0;
+    bottom: 2,5em;
+}
+/* TO REMOVE
+@media (max-width: 992px)
+.grid-container__alternate .entry-header {
+    margin-top: 2.5em;
+}
+*/
+@media (max-width: 991px) {
+  .article-container .grid-container__alternate .entry-header {
+    margin-top: 0;
+  }
+}
+/* REMOVE
+.grid-container__alternate:not(.narrow) .format-image .entry-title {
+    font-size: 2.98598em;
+}
+*/
+.article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
+    font-size: calc( 1em + 1.0736 * ( ( 100vw - 20em) / 40 ) );
 }
 
 /* TO BE MERGED */
