@@ -39,36 +39,20 @@ class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
   }
 
 
-  function czr_fn_setup_children() {
-
-    $children = array (
-      /* THUMBS */
-   /*   array(
-        'id'          => 'post_list_standard_thumb',
-        'model_class' => 'content/post-lists/thumbnail'
-      ),
-      //the recangular thumb has a different model + a slighty different template
-      array(
-        'id'          => 'post_list_rectangular_thumb',
-        'model_class' => array( 'parent' => 'content/post-lists/thumbnail', 'name' => 'content/post-lists/thumbnail_rectangular')
-      ),
-      //Post/page headings
-      array(
-        'id' => 'post_page_headings',
-        'model_class' => 'content/singles/post_page_headings'
-      ),
-
-    */);
-
-    return $children;
-  }
-
-
   function czr_fn_setup_late_properties() {
     global $wp_query;
     $has_post_media            = $this -> czr_fn_show_media() ;
 
     $post_class                = ! $has_post_media ? array_merge( $this -> post_class, array('no-thumb') ) : $this -> post_class;
+
+    /*
+    * Using the excerpt filter here can cause some compatibility issues
+    * See: Super Socializer plugin
+    */
+    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+
+    /* Extend article selectors with info about the presence of an excerpt and/or thumb */
+    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
 
     $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
 

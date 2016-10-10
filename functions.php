@@ -117,22 +117,28 @@ if ( ! function_exists('czr_fn_new') ) {
 //model and template should share the same name
 //some templates are shared by several models => that's when the $_id param is useful
 if ( ! function_exists('czr_fn_render_template') ) {
-  function czr_fn_render_template( $_t, $_id = null ) {
+  function czr_fn_render_template( $_t, $_id = null, $args = array() ) {
     if ( ! $_t || empty($_t) )
         return;
 
     $_model_id = is_null($_id) ? basename($_t) : $_id;
 
     if ( czr_fn_is_registered( $_model_id ) ) {
+      $model_instance = czr_fn_get_model_instance( $_model_id );
+
       //sets the template property on the fly based on what's requested
       if ( ! czr_fn_get_model_property( $_model_id, 'template') ) {
-        czr_fn_get_model_instance( $_model_id ) -> czr_fn_set_property('template' , $_t );
+        $model_instance -> czr_fn_set_property('template' , $_t );
       }
+      //update model with the one passed
+      if ( ! empty ( $args ) )
+        $model_instance -> czr_fn_update( $args );
+
       czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();
     }
     else {
       //$_model_instance = CZR() -> collection -> czr_fn_get_model_instance( $_model_id );
-      czr_fn_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t ) );
+      czr_fn_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t, 'args' => $args ) );
     }
   }
 }
