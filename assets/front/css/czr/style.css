@@ -396,9 +396,66 @@ Fix paddings here:
 .post-pagination span + * {
   margin-left: 1.25em;
 }
-/* Dropdown toggler span test */
-.caret__dropdown-toggler[data-toggle="dropdown"] { position : absolute;}
+/* Dropdown toggler span test
+Replace
 
+.caret__dropdown-toggler {
+    float: right;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    z-index: inherit;
+}
+*/
+.caret__dropdown-toggler[data-toggle="dropdown"] {
+    position: absolute;
+    float: none;
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    top: 0;
+}
+.secondary-nav__menu-wrapper .caret__dropdown-toggler[data-toggle="dropdown"] {
+  padding: 0.425em 0;
+}
+.secondary-nav__container .secondary-nav__menu-wrapper li > a {
+  display: inline-block;
+}
+.dropdown-menu .caret__dropdown-toggler[data-toggle="dropdown"] {
+  padding: 0;
+  line-height: 4.3em;
+}
+.secondary-nav__menu-wrapper .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+  vertical-align: middle;
+}
+/* Replace this wrong code (transform-origin syntax is wrong!)
+@media (min-width: 992px)
+.dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 100% 100;
+    position: relative;
+    display: inline-block;
+}
+*/
+@media (min-width: 992px) {
+  .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+    display: block !important; /* to make the rotation unaffective!!*/
+    transform: rotate(0) !important;
+  }
+
+  .dropdown-menu .dropdown-item .caret__dropdown-toggler i:before {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 100% 100;
+  }
+}
 /*Comments patches */
 /*
 replace:
