@@ -137,12 +137,20 @@ embed, iframe, object, video { max-width: 100%;}
   margin: 0;
   margin-top: 2.5em;
 }
-/* reset bottom + when format-image apply only to those with no text*/
+/* reset bottom + when format-image apply only to those with no text
+
+.grid-container__alternate .format-image .tc-content .entry-footer, .grid-container__alternate .format-gallery .tc-content .entry-footer, .square-grid__mini .format-image .tc-content .entry-footer, .grid-container__masonry .format-image .tc-content .entry-footer, .grid-container__masonry .format-gallery .tc-content .entry-footer {
+    position: absolute;
+    width: 90%;
+    bottom: 2.5em;
+}
+
+*/
 .article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
     position: absolute;
     width: 90%;
-    bottom: 2,5em;
+    bottom: 1.25em;
 }
 /* TO REMOVE
 @media (max-width: 992px)
@@ -159,9 +167,22 @@ embed, iframe, object, video { max-width: 100%;}
 .grid-container__alternate:not(.narrow) .format-image .entry-title {
     font-size: 2.98598em;
 }
+.grid-container__alternate .format-image .entry-title {
+    margin-top: 0;
+}
 */
-.article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
+@media (max-width: 60em) and (min-width: 20em) {
+  .article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
     font-size: calc( 1em + 1.0736 * ( ( 100vw - 20em) / 40 ) );
+  }
+}
+@media (min-width: 60em) {
+  .article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
+    font-size: 2.0736em;
+  }
+}
+.article-container .grid-container__alternate .format-image .entry-title {
+    margin-top: 0.625em;
 }
 
 /* TO BE MERGED */
@@ -1209,7 +1230,17 @@ replace
 }
 
 */
-
+/*
+Limit to desktop
+.grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+    padding-top: 1.25em;
+}
+*/
+@media (max-width: 768px) {
+  .grid-container__alternate .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+    padding-top: 0 !important;
+  }
+}
 .article-container .post-list-plain .post .entry-footer {
     padding: 2.5em 0 0 0;
 }
@@ -1304,16 +1335,32 @@ replace this
   max-height: 600px;
 }*/
 
-.article-container  .grid-container__alternate .format-gallery .tc-thumbnail,
-.article-container  .grid-container__alternate .format-image.no-text .tc-thumbnail,
-.article-container  .grid-container__full .format-gallery .tc-thumbnail,
-.article-container  .grid-container__full .format-image.no-text .tc-thumbnail {
+.article-container .grid-container__alternate .format-gallery .tc-thumbnail  .carousel,
+.article-container .grid-container__alternate .format-image.no-text .tc-thumbnail,
+.article-container .grid-container__full .format-gallery .tc-thumbnail  .carousel,
+.article-container .grid-container__full .format-image.no-text .tc-thumbnail {
     position: relative;
     height: 0;
-    padding-bottom: 55%;
+    padding-bottom: 53.5%;
 }
-.article-container .grid-container__masonry .format-image.no-text .tc-thumbnail,
-.article-container  .grid-container__masonry .format-gallery .tc-thumbnail {
+/* viewport inherit size from carousel */
+
+.article-container .grid-container__masonry .format-gallery .flickity-viewport,
+.article-container .grid-container__alternate .format-gallery .flickity-viewport,
+.article-container .grid-container__full .format-gallery .flicity-viewport {
+  position: absolute;
+  width: 100%;
+}
+
+.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel-cell,
+.article-container .grid-container__alternate .format-gallery .tc-thumbnail .carousel-cell,
+.article-container .grid-container__full .format-gallery .tc-thumbnail .carousel-cell {
+  height: 100%;
+  overflow: hidden;
+}
+
+.article-container .grid-container__masonry .format-image .tc-thumbnail,
+.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel {
     position: relative;
     height: 0;
     padding-bottom: 150%;
@@ -1321,6 +1368,7 @@ replace this
 
 /* Alternate cards - thumb should cover the wrapper height */
 @media (min-width: 768px) {
+  /* Use table system */
   .czr-center-sections {
     transform: translate(0); /* revert */
     width: 100%;

@@ -25,7 +25,7 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
 
-      $('.grid-container__alternate .czr-center-sections .entry-image__container').centerImages({
+      $('.js-media-centering.entry-image__container').centerImages({
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : false, //true
@@ -134,6 +134,7 @@ var czrapp = czrapp || {};
           pageDots: false,
           wrapAround: true,
           imagesLoaded: true,
+          setGallerySize: false,
           cellSelector: '.carousel-cell'
       });
 
