@@ -25,6 +25,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     }
     elseif ( $is_full_image && 'gallery' == $post_format )
       array_push( $element_class, 'czr-carousel' );
+    elseif ( ! $is_full_image && esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) && 'audio' != $post_format )
+      array_push( $element_class, 'js-media-centering' );
 
     $this -> czr_fn_update( array(
       'element_class'       =>  $element_class,

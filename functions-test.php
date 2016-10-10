@@ -156,6 +156,7 @@ function czr_fn_enqueue_front_scripts() {
        '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
         'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ),
         'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img' ) ),
+        'centerAllImgs'     => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ),
         'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
   ) );
 
