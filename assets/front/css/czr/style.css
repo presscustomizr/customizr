@@ -1296,3 +1296,37 @@ replace this
     height: 0;
     padding-bottom: 150%;
 }
+
+/* Alternate cards - thumb should cover the wrapper height */
+@media (min-width: 768px) {
+  .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    display: table !important; /*overwrite*/
+    table-layout: fixed !important; /* will give us problems with safari ?!?! */
+  }
+
+  .czr-center-sections section {
+    transform: translate(0); /* revert */
+    display: table-cell;
+    vertical-align: middle;
+    float: initial !important;/*overwrite*/
+    overflow: hidden;
+  }
+
+  .czr-center-sections .entry-media__wrapper {
+    position: relative;
+  }
+  .czr-center-sections .js-media-centering .entry-media__wrapper {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  }
+  /*.grid-container__alternate .tc-thumbnail {
+    position:absolute;
+    height: 100%;
+  }*/
+}
+@media (max-width: 767px) {
+  .czr-center-sections .entry-media__wrapper img {
+    height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
+  }
+}

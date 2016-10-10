@@ -25,6 +25,15 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
 
+      $('.grid-container__alternate .czr-center-sections .entry-image__container').centerImages({
+        enableCentering : CZRParams.centerAllImg,
+        oncustom : ['smartload', 'simple_load'],
+        enableGoldenRatio : false, //true
+        zeroTopAdjust: 0,
+        goldenRatioVal : CZRParams.goldenRatio || 1.618,
+        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
+      });
+
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
         //centering per slider

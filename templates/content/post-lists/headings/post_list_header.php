@@ -7,7 +7,7 @@
  */
 ?>
 <header class="entry-header <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="<?php czr_fn_echo( 'entry_title_class' ) ?>">
+  <div class="entry-header-inner <?php czr_fn_echo( 'entry_title_class' ) ?>">
   <?php /* Maybe treat this case with CSS only */
     if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
       <div class="tc-grid-icon"><i class="format-icon"></i></div>
