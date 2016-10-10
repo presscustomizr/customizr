@@ -21,7 +21,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( 'tc_posts_slider' != $slider_name_id )
       return array();
 
-    $use_transient = apply_filters( 'czr_posts_slider_use_transient', ! CZR() -> czr_fn_is_customizing() );
+    $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! CZR() -> czr_fn_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
     $store_transient = $load_transient = $use_transient;
 
@@ -29,7 +29,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     if ( ! $use_transient )
       delete_transient( 'tc_posts_slides' );
 
-    return apply_filters( 'czr_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
+    return apply_filters( 'tc_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
   }
 
   /**
@@ -54,11 +54,11 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   * other suitable solution, to not use the transient).
   */
   private function czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
-    $load_transient  = apply_filters( 'czr_posts_slider_load_transient'  , $load_transient );
-    $store_transient = apply_filters( 'czr_posts_slider_store_transient', $store_transient );
+    $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
+    $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
     $pre_slides      = $this -> czr_fn_get_pre_posts_slides( compact( 'img_size', 'load_transient', 'store_transient' ) );
     //filter the pre_model
-    $pre_slides      = apply_filters( 'czr_posts_slider_pre_model', $pre_slides, $this );
+    $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides, $this );
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $pre_slides ) )
       return false;
@@ -122,6 +122,8 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     );
     $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
+    $load_transient = false;
+
     if ( $load_transient )
       // the transient stores the pre_model
       $pre_slides = get_transient( $transient_name );
@@ -140,7 +142,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'czr_thumb_html', 'czr_fn_parse_imgs' );
+      remove_filter( 'tc_thumb_html', 'czr_fn_parse_imgs' );
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -156,7 +158,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('czr_thumb_html', 'czr_fn_parse_imgs' );
+      add_filter('tc_thumb_html', 'czr_fn_parse_imgs' );
     /* end tc_thumb reset filters */
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
@@ -204,7 +206,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       'limit'          => 5,
       'offset'         => 0,
     );
-    $args           = apply_filters( 'czr_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
+    $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
     /* Set up */
     $columns        = 'posts.ID, posts.post_date';
@@ -229,21 +231,21 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
       }
     }
     $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
-             apply_filters( 'czr_query_posts_slider_columns', $columns, $args ),
+             apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
              $this -> czr_fn_get_posts_have_tc_thumb_sql(
-               apply_filters( 'czr_query_posts_slider_columns', $columns, $args ),
-               apply_filters( 'czr_query_posts_slide_thumbnail_where', $pt_where, $args ),
-               apply_filters( 'czr_query_posts_slider_attachment_where', $pa_where, $args )
+               apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
+               apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where, $args ),
+               apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where, $args )
              ),
-             apply_filters( 'czr_query_posts_slider_join', $join, $args ),
-             apply_filters( 'czr_query_posts_slider_join_where', $join_where, $args ),
-             apply_filters( 'czr_query_posts_slider_orderby', $order_by, $args ),
+             apply_filters( 'tc_query_posts_slider_join', $join, $args ),
+             apply_filters( 'tc_query_posts_slider_join_where', $join_where, $args ),
+             apply_filters( 'tc_query_posts_slider_orderby', $order_by, $args ),
              $limit,
              $offset
     );
-    $sql = apply_filters( 'czr_query_posts_slider_sql', $sql, $args );
+    $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
     $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'czr_query_posts_slider', $_posts, $args );
+    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
   }
 
 

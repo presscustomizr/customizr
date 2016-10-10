@@ -13,7 +13,7 @@
 
     <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/headings/post_list_header') ?>
 
-    <div class="tc-content-inner <?php czr_fn_echo( 'content_class' ) ?>">
+    <div class="tc-content-inner <?php czr_fn_echo( 'content_inner_class' ) ?>">
       <?php
         czr_fn_echo( 'the_post_list_content', null, array(
           __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ),

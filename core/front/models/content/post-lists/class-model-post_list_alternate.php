@@ -17,9 +17,6 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   public $media_col;
   public $content_col;
 
-  public $is_loop_start;
-  public $is_loop_end;
-
   //Default post list layout
   private static $default_post_list_layout   = array (
                                 // array( xl, lg, md, sm, xs )
@@ -43,7 +40,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $global_sidebar_layout                 = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+    $global_sidebar_layout            = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
 
     $model[ 'element_class']          = czr_fn_get_in_content_width_class();
     $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
@@ -57,56 +54,86 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     $model[ 'def_place_1' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'media' : 'content';
     $model[ 'def_place_2' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'content' : 'media';
 
+    /*
+    * Actually this should be done when the model (this) id has been set (which is not necessarily the $model
+    (param) id.....
+    */
+    add_action( "__alternate_loop_start", array( $this, 'setup_text_hooks') );
+    add_action( "__alternate_loop_end", array( $this, 'reset_text_hooks') );
+
     return $model;
   }
 
 
-  function czr_fn_setup_children() {
+ function setup_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  )
+      //filter the excerpt length
+      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
 
-    $children = array (
-      /* THUMBS */
-   /*   array(
-        'id'          => 'post_list_standard_thumb',
-        'model_class' => 'content/post-lists/thumbnail'
-      ),
-      //the recangular thumb has a different model + a slighty different template
-      array(
-        'id'          => 'post_list_rectangular_thumb',
-        'model_class' => array( 'parent' => 'content/post-lists/thumbnail', 'name' => 'content/post-lists/thumbnail_rectangular')
-      ),
-      //Post/page headings
-      array(
-        'id' => 'post_page_headings',
-        'model_class' => 'content/singles/post_page_headings'
-      ),
-
-    */);
-
-    return $children;
+  function reset_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  )
+      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
 
-  function czr_fn_setup_late_properties() {
+
+  /**
+  * hook : excerpt_length hook
+  * @return string
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
+  }
+
+  /* to cache and possibly move in utils */
+  function czr_fn_get_has_excerpt(){
+    /*
+    * Using the excerpt filter here can cause some compatibility issues
+    * See: Super Socializer plugin
+    */
+    return (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+
+  }
+
+  /* to cache */
+  function czr_fn_get_is_full_image() {
+
+    $_current_post_format    = get_post_format();
+
+    /* gallery and image (with no text) post formats */
+    return in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
+            ( 'image' == $_current_post_format && ! $this->czr_fn_get_has_excerpt() ) );
+  }
+
+  /* to cache */
+  function czr_fn_get_has_post_media(){
+    return $this -> czr_fn_show_media();
+  }
+
+
+  function czr_fn_get_article_selectors(){
+    $post_class              = self::$post_class;
+    /* Extend article selectors with info about the presence of an excerpt and/or thumb */
+    array_push( $post_class, ! $this->czr_fn_get_has_excerpt() ? 'no-text' : '',  ! $this->czr_fn_get_has_post_media() ? 'no-thumb' : '' );
+
+    return czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+  }
+
+  /* Temporary - to improve */
+  /* To cache */
+  function czr_fn_get_late_properties() {
     global $wp_query;
     /* Define variables */
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
 
-    $has_post_media          = $this -> czr_fn_show_media() ;
-
-    $post_class              = ! $has_post_media ? array_merge( self::$post_class, array('no-thumb') ) : self::$post_class;
-
-    /*
-    * Using the excerpt filter here can cause some compatibility issues
-    * See: Super Socializer plugin
-    */
-    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
-
+    $is_full_image           = $this->czr_fn_get_is_full_image();
+    $has_post_media          = $this->czr_fn_get_has_post_media();
     $_current_post_format    = get_post_format();
-
-    /* gallery and image (with no text) post formats */
-    $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
-            ( 'image' == $_current_post_format && ! $_has_excerpt  ) );
 
     $_sections_wrapper_class = array();
 
@@ -172,23 +199,49 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
       $place_2 = 'content';
     }
 
-    /* Extend article selectors with info about the presence of an excerpt and/or thumb */
-    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
-    $article_selectors    = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+    return compact( '_layout', 'place_1', 'place_2', '_sections_wrapper_class', '_push', '_pull' );
+  }
 
-    $this -> czr_fn_update( array(
-      'media_col'          => array_filter( $this -> czr_fn_build_cols( $_layout[ 'media' ], $_push['media'], $_pull['media'] ) ),
-      'content_col'        => array_filter( $this -> czr_fn_build_cols( $_layout[ 'content'], $_push['content'], $_pull['content'] ) ),
-      'has_post_media'         => $has_post_media,
-      'article_selectors'      => $article_selectors,
-      'is_loop_start'          => 0 == $wp_query -> current_post,
-      'is_loop_end'            => $wp_query -> current_post == $wp_query -> post_count -1,
-      'sections_wrapper_class' => $_sections_wrapper_class,
-      'is_full_image'          => $is_full_image,
-      'place_1'                => $place_1,
-      'place_2'                => $place_2
-    ) );
 
+  /* Tempory use of the extract here */
+  function czr_fn_get_content_col(){
+    extract( $this -> czr_fn_get_late_properties() );
+    return array_filter( $this -> czr_fn_build_cols( $_layout[ 'content'], $_push['content'], $_pull['content'] ) );
+  }
+
+
+  /* Tempory use of the extract here */
+  function czr_fn_get_media_col(){
+    extract( $this -> czr_fn_get_late_properties() );
+    return array_filter( $this -> czr_fn_build_cols( $_layout[ 'media'], $_push['media'], $_pull['media'] ) );
+  }
+
+  /* Tempory use of the extract here */
+  function czr_fn_get_place_1(){
+    extract( $this -> czr_fn_get_late_properties() );
+    return $place_1;
+  }
+
+  /* Tempory use of the extract here */
+  function czr_fn_get_place_2(){
+    extract( $this -> czr_fn_get_late_properties() );
+    return $place_2;
+  }
+
+  /* Tempory use of the extract here */
+  function czr_fn_get_sections_wrapper_class(){
+    extract( $this -> czr_fn_get_late_properties() );
+    return $_sections_wrapper_class;
+  }
+
+  function czr_fn_get_is_loop_start() {
+    global $wp_query;
+    return  0 == $wp_query -> current_post;
+  }
+
+  function czr_fn_get_is_loop_end() {
+    global $wp_query;
+    return $wp_query -> current_post == $wp_query -> post_count -1;
   }
 
 
@@ -222,6 +275,8 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   }
 
 
+
+
   /**
   * @return array() of layout data
   * @package Customizr
@@ -253,18 +308,6 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     return $_layout;
   }
 
-
-  /**
-  * hook : body_class
-  * @return  array of classes
-  *
-  * @package Customizr
-  * @since Customizr 3.3.2
-  */
-  function czr_fn_body_class( $_class ) {
-    array_push( $_class , 'czr-post-list-context');
-    return $_class;
-  }
 
 
   /* Following are here to allow to apply a filter on each loop ..

@@ -281,6 +281,9 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //is fired on instantiation
     //@param = array()
     protected function czr_fn_extend_params( $model = array() ) {
+          //parse args into the model
+          if ( ! empty( $model['args'] ) )
+            return wp_parse_args( $model['args'], $model );
           return $model;
     }
 

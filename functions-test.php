@@ -25,7 +25,7 @@ $_options = array(
 
     'tc_sidebar_global_layout' => 'l',
     'tc_sidebar_post_layout'   => 'l',
-    'tc_front_layout'          => 'l',
+    'tc_front_layout'          => 'f',
 
     'tc_post_list_thumb_position' => 'left',
     'tc_post_list_thumb_alternate' => true,
@@ -45,11 +45,14 @@ $_options = array(
     'tc_slider_parallax'       => true,
 
     'tc_posts_slider_number'   => '5',
+    'tc_posts_slider_stickies' => false,
 
     'tc_show_author_info'      => true,
 
     //to add
-    'tc_related_posts'         => true
+    'tc_related_posts'         => true,
+
+    'tc_center_img'            => false
 );
 
 
