@@ -292,7 +292,8 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
           $keys = array_keys( get_object_vars( $this ) );
           foreach ( $keys as $key ) {
             if ( isset( $model[ $key ] ) ) {
-              $this->$key = $model[ $key ];
+              if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
+                $this->$key = $model[ $key ];
             }
           }
           //emit an event when a model is updated
