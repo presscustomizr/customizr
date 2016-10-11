@@ -1,21 +1,10 @@
 <?php
 class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
-  public $article_selectors;
-  public $sections_wrapper_class;
-
-  public $has_format_icon_media;
-  public $has_post_media;
   public $has_narrow_layout;
-  public $is_full_image;
-
-  public $place_1;
-  public $place_2;
+  public $has_format_icon_media;
 
   public $def_place_1;
   public $def_place_2;
-
-  public $media_col;
-  public $content_col;
 
   //Default post list layout
   private static $default_post_list_layout   = array (
@@ -31,6 +20,11 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
       'xl', 'lg', 'md', 'sm', 'xs'
     );
   public $post_list_layout;
+
+  /* An array populated by items like
+  *  postID => array() //properties
+  */
+  public $alternate_items = array();
 
 
   /**
@@ -58,75 +52,80 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     * Actually this should be done when the model (this) id has been set (which is not necessarily the $model
     (param) id.....
     */
-    add_action( "__alternate_loop_start", array( $this, 'setup_text_hooks') );
-    add_action( "__alternate_loop_end", array( $this, 'reset_text_hooks') );
+    add_action( '__alternate_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
+    add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
+
+    //reset cache at loop end? sort of garbage collector
+    //add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_alternate_items') );
 
     return $model;
   }
 
 
- function setup_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      //filter the excerpt length
-      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
-  }
+  /* possibly move in utils */
+  function czr_fn_get_has_excerpt() {
+    if ( $this -> czr_fn_has_alternate_item_field( 'has_excerpt' ) )
+      return $this -> czr_fn_get_alternate_item_field( 'has_excerpt' );
 
-  function reset_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
-  }
-
-
-
-  /**
-  * hook : excerpt_length hook
-  * @return string
-  * @package Customizr
-  * @since Customizr 3.2.0
-  */
-  function czr_fn_set_excerpt_length( $length ) {
-    $_custom = esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
-    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
-  }
-
-  /* to cache and possibly move in utils */
-  function czr_fn_get_has_excerpt(){
     /*
     * Using the excerpt filter here can cause some compatibility issues
     * See: Super Socializer plugin
     */
-    return (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+    $has_excerpt = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+    $this -> czr_fn_set_alternate_item_field( 'has_excerpt', $has_excerpt );
 
+    return $has_excerpt;
   }
 
-  /* to cache */
+
   function czr_fn_get_is_full_image() {
+    if ( $this -> czr_fn_has_alternate_item_field( 'is_full_image' ) )
+      return $this -> czr_fn_get_alternate_item_field( 'is_full_image' );
 
     $_current_post_format    = get_post_format();
-
     /* gallery and image (with no text) post formats */
-    return in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
-            ( 'image' == $_current_post_format && ! $this->czr_fn_get_has_excerpt() ) );
+    $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
+          ( 'image' == $_current_post_format && ! $this->czr_fn_get_has_excerpt() ) );
+
+    //cache
+    $this -> czr_fn_set_alternate_item_field( 'is_full_image', $is_full_image );
+
+    return $is_full_image;
   }
 
-  /* to cache */
-  function czr_fn_get_has_post_media(){
-    return $this -> czr_fn_show_media();
+
+  function czr_fn_get_has_post_media() {
+    if ( $this -> czr_fn_has_alternate_item_field( 'has_post_media' ) )
+      return $this -> czr_fn_get_alternate_item_field( 'has_post_media' );
+
+    $has_post_media = $this -> czr_fn_show_media();
+    $this -> czr_fn_set_alternate_item_field( 'has_post_media', $has_post_media );
+
+    return $has_post_media;
   }
 
 
-  function czr_fn_get_article_selectors(){
+  function czr_fn_get_article_selectors() {
+    if ( $this -> czr_fn_has_alternate_item_field( 'article_selectors' ) )
+      return $this -> czr_fn_get_alternate_item_field( 'article_selectors' );
+
     $post_class              = self::$post_class;
+
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
     array_push( $post_class, ! $this->czr_fn_get_has_excerpt() ? 'no-text' : '',  ! $this->czr_fn_get_has_post_media() ? 'no-thumb' : '' );
+    $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+    $this -> czr_fn_set_alternate_item_field( 'article_selectors', $article_selectors );
 
-    return czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+    return $article_selectors;
   }
 
-  /* Temporary - to improve */
-  /* To cache */
-  function czr_fn_get_late_properties() {
+
+  function czr_fn_get_alternate_item_layout_properties() {
+    if ( $this -> czr_fn_has_alternate_item_field( 'item_layout_properties' ) )
+      return $this -> czr_fn_get_alternate_item_field( 'item_layout_properties' );
+
     global $wp_query;
+
     /* Define variables */
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
     $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
@@ -199,39 +198,57 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
       $place_2 = 'content';
     }
 
-    return compact( '_layout', 'place_1', 'place_2', '_sections_wrapper_class', '_push', '_pull' );
+    /* Merge push and pull info into $_layout */
+    $_layout['push_content'] = $_push['content'];
+    $_layout['push_media']   = $_push['media'];
+    $_layout['pull_content'] = $_pull['content'];
+    $_layout['pull_media']   = $_pull['media'];
+
+    $item_layout_properties = array(
+      'item_layout'             => $_layout,
+      'place_1'                 => $place_1,
+      'place_2'                 => $place_2,
+      'sections_wrapper_class'  => $_sections_wrapper_class,
+    );
+
+    //caching
+    $this -> czr_fn_set_alternate_item_field( 'item_layout_properties', $item_layout_properties );
+
+    return $item_layout_properties;
+
   }
 
 
   /* Tempory use of the extract here */
-  function czr_fn_get_content_col(){
-    extract( $this -> czr_fn_get_late_properties() );
-    return array_filter( $this -> czr_fn_build_cols( $_layout[ 'content'], $_push['content'], $_pull['content'] ) );
+  function czr_fn_get_content_col() {
+    $item_layout = $this -> czr_fn_get_alternate_item_layout_property( 'item_layout' );
+    if ( $item_layout )
+      return array_filter( $this -> czr_fn_build_cols( $item_layout['content'], $item_layout['push_content'], $item_layout['pull_content'] ) );
+    return;
   }
 
 
   /* Tempory use of the extract here */
-  function czr_fn_get_media_col(){
-    extract( $this -> czr_fn_get_late_properties() );
-    return array_filter( $this -> czr_fn_build_cols( $_layout[ 'media'], $_push['media'], $_pull['media'] ) );
+  function czr_fn_get_media_col() {
+    $item_layout = $this -> czr_fn_get_alternate_item_layout_property( 'item_layout' );
+    if ( $item_layout )
+      return array_filter( $this -> czr_fn_build_cols( $item_layout['media'], $item_layout['push_media'], $item_layout['pull_media'] ) );
+    return;
   }
 
   /* Tempory use of the extract here */
-  function czr_fn_get_place_1(){
-    extract( $this -> czr_fn_get_late_properties() );
-    return $place_1;
+  function czr_fn_get_place_1() {
+    return $this -> czr_fn_get_alternate_item_layout_property( 'place_1' );
   }
 
   /* Tempory use of the extract here */
-  function czr_fn_get_place_2(){
-    extract( $this -> czr_fn_get_late_properties() );
-    return $place_2;
+  function czr_fn_get_place_2() {
+    return $this -> czr_fn_get_alternate_item_layout_property( 'place_2' );
   }
 
   /* Tempory use of the extract here */
-  function czr_fn_get_sections_wrapper_class(){
-    extract( $this -> czr_fn_get_late_properties() );
-    return $_sections_wrapper_class;
+  function czr_fn_get_sections_wrapper_class() {
+    return $this -> czr_fn_get_alternate_item_layout_property( 'sections_wrapper_class' );
   }
 
   function czr_fn_get_is_loop_start() {
@@ -244,6 +261,88 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     return $wp_query -> current_post == $wp_query -> post_count -1;
   }
 
+
+
+  /**
+  * @return array() of layout data
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function czr_fn_get_the_post_list_layout( $narrow_layout = false ) {
+    $_layout                       = self::$default_post_list_layout;
+
+    $_layout[ 'position' ]         = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
+    $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
+
+    //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
+    if ( $narrow_layout )
+      $_layout['position']         = $_layout[ 'show_thumb_first' ] ? 'top' : 'bottom';
+    else {
+      if ( 'top' == $_layout[ 'position' ] )
+        $_layout[ 'position' ] = 'left';
+      elseif ( 'bottom' == $_layout[ 'position' ] )
+        $_layout[ 'position' ] = 'right';
+    }
+
+    //since 3.4.16 the alternate layout is not available when the position is top or bottom
+    $_layout['alternate']        = ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ) || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
+
+    if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
+      $_layout['content'] = $_layout['media'] = self::$default_post_list_layout['narrow_both'];
+
+    return $_layout;
+  }
+
+
+  /* HELPERS AND CALLBACKS */
+
+
+  function czr_fn_reset_alternate_items() {
+    $this -> alternate_items = array();
+  }
+
+
+  function czr_fn_has_alternate_item_field( $_property, $_post_id = null ) {
+    $_post_id = $_post_id ? $_post_id : get_the_ID();
+
+    if ( ! $_post_id || ! $_property )
+      return;
+
+    return isset( $this->alternate_items[$_post_id][$_property] );
+  }
+
+  function czr_fn_set_alternate_item_field( $_property, $_property_value = '', $_post_id = null ) {
+    $_post_id = $_post_id ? $_post_id : get_the_ID();
+    if ( ! $_post_id || ! $_property )
+      return;
+
+    $_alternate_items = $this -> alternate_items;
+    if ( ! isset( $_alternate_items[$_post_id] ) || ! is_array($_alternate_items[$_post_id]) )
+      $_alternate_items[$_post_id] = array();
+
+    $_item_array_new      = array_merge( $_alternate_items[$_post_id], array( $_property => $_property_value ) );
+    $_new_alternate_items = $_alternate_items;
+    $_new_alternate_items[$_post_id] = $_item_array_new;
+
+    $this -> czr_fn_set_property( 'alternate_items', $_new_alternate_items );
+  }
+
+  function czr_fn_get_alternate_item_field( $_property, $_post_id = null ) {
+    $_post_id = $_post_id ? $_post_id : get_the_ID();
+    if ( ! $_post_id || ! $_property )
+      return;
+    $_alternate_items = $this -> czr_fn_has_alternate_item_field( $_property ) ? $this -> alternate_items : null;
+
+    return  $_alternate_items ? $_alternate_items[$_post_id][$_property] : '';
+  }
+
+
+  function czr_fn_get_alternate_item_layout_property( $_property ) {
+    if ( ! $_property )
+      return;
+    $_properties = $this -> czr_fn_get_alternate_item_layout_properties();
+    return isset( $_properties[ $_property ] ) ? $_properties[ $_property ] : null;
+  }
 
   /**
   * @return array() of bootstrap classed defining the responsive widths
@@ -276,36 +375,37 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
 
 
 
+  /**
+  * hook : __alternate_loop_start
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_setup_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  )
+      //filter the excerpt length
+      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
 
   /**
-  * @return array() of layout data
+  * hook : __alternate_loop_end
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  )
+      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
+
+
+  /**
+  * hook : excerpt_length hook
+  * @return string
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  function czr_fn_get_the_post_list_layout( $narrow_layout = false ) {
-
-    $_layout                       = self::$default_post_list_layout;
-
-    $_layout[ 'position' ]         = esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) );
-    $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
-
-    //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
-    if ( $narrow_layout )
-      $_layout['position']       = $_layout[ 'show_thumb_first' ] ? 'top' : 'bottom';
-    else {
-      if ( 'top' == $_layout[ 'position' ] )
-        $_layout[ 'position' ] = 'left';
-      elseif ( 'bottom' == $_layout[ 'position' ] )
-        $_layout[ 'position' ] = 'right';
-    }
-
-    //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ) || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
-
-    if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
-      $_layout['content'] = $_layout['media'] = self::$default_post_list_layout['narrow_both'];
-
-    return $_layout;
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
 

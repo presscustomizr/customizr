@@ -251,12 +251,12 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //normalizes the way we can access and change a single model property
     //=> emit an event to update the collection
     //@return void()
-    public function czr_fn_set_property( $property, $value ){
+    public function czr_fn_set_property( $property, $value ) {
           $this -> $property = $value;
 
-      //will trigger a collection update
-      //pass : id, (object) model, changed property, new property value
-      do_action( 'model_property_changed', $this -> id, $this , $property, $value );
+          //will trigger a collection update
+          //pass : id, (object) model, changed property, new property value
+          do_action( 'model_property_changed', $this -> id, $this , $property, $value );
     }
 
     //normalizes the way we can access and change a single model property
