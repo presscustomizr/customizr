@@ -31,13 +31,15 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     return $element_class;
   }
 
-
+  /* To treat default thumb, might be passed by the parent ...*/
   /* Test purpose only */
   function czr_fn_get_media_content() {
-    /* Todo: treat case with no media -> show wanrning for admins only */
-    /* TEMPORARY: HARD CODED */
+    if ( ! $this -> has_post_media )
+      return false;
+
     $post_format = $this -> only_thumb ? '' : get_post_format();
 
+    /* TEMPORARY: HARD CODED */
     switch ( $post_format ) {
       case 'video':
           global $post, $wp_embed;
@@ -125,8 +127,10 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
       default:
           $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
 
-          if ( empty ( $_the_thumb['tc_thumb']) )
+          if ( empty ( $_the_thumb['tc_thumb']) ) {
+            $this -> czr_fn_set_property( 'original_thumb_url', '');
             return;
+          }
 
           //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
           /* use utils tc thumb to retrieve the original image size */
@@ -141,6 +145,10 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           }
           return '<a rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
     }
+  }
+
+  function czr_fn_get_has_media_action() {
+    return $this -> has_post_media && ! in_array( get_post_format(), array('video', 'audio') );
   }
 
 }

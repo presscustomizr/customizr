@@ -8,26 +8,14 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
   public $entry_header_inner_class = array( 'col-md-7', 'offset-md-4', 'col-xs-12'); //TODO: will depend on the layout too!
   public $entry_header_class       = array( 'row' );
 
-  public $article_selectors;
+  public $content_inner_col        = array('col-md-7', 'offset-md-1', 'col-xs-12'); //should depend on whether or not we display metas aside -> TODO
 
-  public $has_post_media;
+  public $content_class            = 'entry-content'; //might be entry-summary for special posts..
 
-  public $is_full_image;
+  public $post_class               = array( 'row', 'style-01'/*temporary*/ );
 
-  public $media_col = ''; //will be not set for gallery and image with no text
-  public $content_col = ''; //will be not set for gallery and image with no text
-
-  public $media_inner_wrapper_class = ''; //will be not set for gallery and image with no text
-  public $content_inner_col = array('col-md-7', 'offset-md-1', 'col-xs-12'); //should depend on whether or not we display metas aside -> TODO
-
-  public $is_loop_start;
-  public $is_loop_end;
-
-  public $show_full_content = true;
-
-  public $content_class = 'entry-content'; //might be entry-summary for special posts..
-
-  public $post_class    = array( 'row', 'style-01'/*temporary*/ );
+  public $has_format_icon_media    = false;
+  public $excerpt_length;
 
   /**
   * @override
@@ -42,28 +30,60 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
     if ( 'post_list_plain_excerpt' == $model['id'] ) {
       $model[ 'post_class' ]            = array_merge( $this -> post_class, array('short') );
       $model[ 'show_full_content' ]     = false;
-      /* TODO BETTER */
-      add_action( "__before_{$model['id']}", array( $this, 'setup_excerpt_hooks'), 999 );
-      add_action( "__after_{$model['id']}", array( $this, 'reset_excerpt_hooks'), 999 );
+
+      /*
+      * The alternate grid does the same
+      */
+      add_action( '__post_list_plain_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
+      add_action( '__post_list_plain_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
     }
 
     return $model;
   }
 
-  function setup_excerpt_hooks() {
-    if ( $this -> is_loop_start )
+  /**
+  * hook : __masonry_loop_start
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_setup_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  ) {
+      //filter the excerpt length
+      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
       add_filter( 'excerpt_more'        , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
+    }
   }
 
-  function reset_excerpt_hooks() {
-    if ( $this -> is_loop_end )
-      remove_filter( 'excerpt_more'     , array( $this , 'czr_fn_set_excerpt_length') , 99999999 );
+
+  /**
+  * hook : __masonry_loop_end
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_text_hooks( $model_id ) {
+    if ( $model_id == $this->id  ) {
+      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+      remove_filter( 'excerpt_more'        , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
+    }
+  }
+
+
+
+  /**
+  * hook : excerpt_length hook
+  * @return string
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
 
   // Replaces the excerpt "Read More" text by a button link
   function czr_fn_set_excerpt_more($more) {
-    return '<div class="readmore-holder"><a class="moretag btn btn-more" href="'. esc_url( get_permalink() ) . '"><span>' . __('Read more', 'customizr' ) .'<span></a></div>';
+    return $more.'<div class="readmore-holder"><a class="moretag btn btn-more" href="'. esc_url( get_permalink() ) . '"><span>' . __('Read more', 'customizr' ) .'<span></a></div>';
   }
 
 
@@ -77,44 +97,38 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
       array(
         'id'          => 'post_list_header',
         'model_class' => 'content/post-lists/headings/post_list_header'
-      ),
-      /* Footer */
-      array(
-        'id'          => 'post_list_footer',
-        'model_class' => 'content/post-lists/footers/post_list_footer'
       )
     );
 
     return $children;
   }
 
-  function czr_fn_setup_late_properties() {
-    global $wp_query;
+  function czr_fn_get_has_post_media() {
+    $has_post_media = $this -> czr_fn_show_media();
+    return $has_post_media;
+  }
 
-    $has_post_media          = $this -> czr_fn_show_media() ;
+  /*
+  * Very similar to the one in the alternate...
+  * probably the no-thumb/no-text should be ported somewhere else (in czr_fn_get_the_post_list_article_selectors maybe)
+  */
+  function czr_fn_get_article_selectors() {
+    $has_post_media            = $this -> czr_fn_get_has_post_media();
+    $post_class                = $this->post_class;
+
     /*
     * Using the excerpt filter here can cause some compatibility issues
     * See: Super Socializer plugin
     */
     $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
-    $_current_post_format    = get_post_format();
+    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
 
-    /* gallery and image (with no text) post formats */
-    $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
-            ( 'image' == $_current_post_format && ! $_has_excerpt  ) );
+    $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
 
-    $this -> czr_fn_update( array(
-      'has_post_media'           => $has_post_media,
-      'article_selectors'        => czr_fn_get_the_post_list_article_selectors( array_filter( $this -> post_class) ),
-      'is_loop_start'            => 0 == $wp_query -> current_post,
-      'is_loop_end'              => $wp_query -> current_post == $wp_query -> post_count -1,
-      'entry_header_inner_class' => $this -> entry_header_inner_class,
-      'entry_header_class'       => $this -> entry_header_class,
-      'is_full_image'            => $is_full_image
-    ) );
-
+    return $article_selectors;
   }
+
 
   /* Following are here to allow to apply a filter on each loop ..
   *  but we can think about move them in another place if we decide

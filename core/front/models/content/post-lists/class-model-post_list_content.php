@@ -5,13 +5,15 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   public  $content_inner_class;
 
   public  $has_header_format_icon;
+  public  $has_footer = true;
+  public  $has_header = true;
 
 
-  function czr_fn_get_the_post_list_content( $more  = null, $link_pages = null ) {
+  function czr_fn_get_the_post_list_content( $show_full_content = false, $more  = null, $link_pages = null ) {
     do_action( "__before_content_retrieve", $this->id, $this );
 
     $content                = $this -> content ;
-    $content_cb             = $this -> czr_fn_get_content_cb();
+    $content_cb             = $this -> czr_fn_get_content_cb( $show_full_content ? 'get_the_content' : 'get_the_excerpt' );
 
     if ( isset($content ) )
       $to_return = $content;
@@ -42,24 +44,28 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
 
 
   function czr_fn_get_content_inner_class() {
-    return 'get_the_excerpt' != $this -> czr_fn_get_content_cb() ? array( 'entry-content' ) : array( 'entry-summary' );
+    return 'get_the_excerpt' != $this -> czr_fn_get_content_cb( 'get_the_excerpt' ) ? array( 'entry-content' ) : array( 'entry-summary' );
   }
 
   /* Should be cached at each loop ??? */
-  function czr_fn_get_content_cb() {
+  function czr_fn_get_content_cb( $default ) {
     if ( isset( $this->content_cb ) )
       return $this->content_cb;
 
     $post_format         = get_post_format();
 
     switch( $post_format ) {
-      case 'status' :
-      case 'aside'  : return 'get_the_content';
+      case 'status'  :
+      case 'aside'   : return 'get_the_content';
+
+      case 'video'   :
+      case 'gallery' :
+      case 'audio'   : return 'get_the_excerpt';
 
       case 'link'   : return array( $this, 'get_the_post_link' );
       case 'quote'  : return array( $this, 'get_the_post_quote' );
 
-      default       : return 'get_the_excerpt';
+      default       : return $default;
     }
   }
 
