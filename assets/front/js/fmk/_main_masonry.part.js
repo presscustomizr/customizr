@@ -26,29 +26,32 @@ var czrapp = czrapp || {};
       * - use delegation for images (think about infinite scroll)
       * - use jQuery deferred (think about infinite scroll)
       */
-      this.grid = $('.grid-container__masonry' );
-      this._images = this.grid.find('img');
+      this.$_grid = $('.grid-container__masonry' );
+      this.$_images = this.$_grid.find('img');
 
       this._loaded_counter = 0;
-      this._n_images = this._images.length;
+      this._n_images = this.$_images.length;
+
+      if ( ! this._n_images )
+        this._czrFireMasonry();
 
     },
     masonryGridEventListener : function() {
       //LOADING ACTIONS
       var self = this;
 
+      this.$_grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
+
       if ( ! this._n_images )
         return;
-
-      this.grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
-      this._images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
+      this.$_images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
 
       //Dummy, for testing purpose only
-      this.triggerSimpleLoad( this._images );
+      this.triggerSimpleLoad( this.$_images );
     },
 
     _czrFireMasonry : function() {
-      this.grid.masonry({
+      this.$_grid.masonry({
           itemSelector: '.grid-item',
           percentPosition: true
       });
@@ -59,7 +62,7 @@ var czrapp = czrapp || {};
       this._loaded_counter++;;
       if ( this._loaded_counter == this._n_images )
         setTimeout( function(){
-          self.grid.trigger('images_loaded');
+          self.$_grid.trigger('images_loaded');
         }, 200);
     }
   };//_methods{}

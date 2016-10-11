@@ -6,6 +6,8 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   public $def_place_1;
   public $def_place_2;
 
+  public $excerpt_length;
+
   //Default post list layout
   private static $default_post_list_layout   = array (
                                 // array( xl, lg, md, sm, xs )
@@ -37,6 +39,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     $global_sidebar_layout            = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
 
     $model[ 'element_class']          = czr_fn_get_in_content_width_class();
+
     $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
     $model[ 'post_list_layout' ]      = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
     $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];
@@ -49,8 +52,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     $model[ 'def_place_2' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'content' : 'media';
 
     /*
-    * Actually this should be done when the model (this) id has been set (which is not necessarily the $model
-    (param) id.....
+    * The masonry grid does the same
     */
     add_action( '__alternate_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
     add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
@@ -251,16 +253,6 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     return $this -> czr_fn_get_alternate_item_layout_property( 'sections_wrapper_class' );
   }
 
-  function czr_fn_get_is_loop_start() {
-    global $wp_query;
-    return  0 == $wp_query -> current_post;
-  }
-
-  function czr_fn_get_is_loop_end() {
-    global $wp_query;
-    return $wp_query -> current_post == $wp_query -> post_count -1;
-  }
-
 
 
   /**
@@ -404,7 +396,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

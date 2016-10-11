@@ -193,3 +193,26 @@ function czr_fn_get_the_post_class( $class = '', $post_id = null ) {
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
 }
+
+/**
+* Returns whether or not the current wp_query post is the first one
+*
+* @package Customizr
+* @since 4.0
+*/
+function czr_fn_is_loop_start() {
+    global $wp_query;
+    return  0 == $wp_query -> current_post;
+}
+
+/**
+* Returns whether or not the current wp_query post is the latest one
+*
+*
+* @package Customizr
+* @since 4.0
+*/
+function czr_fn_is_loop_end() {
+    global $wp_query;
+    return $wp_query -> current_post == $wp_query -> post_count -1;
+}

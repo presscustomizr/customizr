@@ -51,12 +51,14 @@ img.h-centered {
   width: auto!important;
   max-width: none!important;
   position: relative;
+  transform: none !important;
 }
 img.v-centered {
   height: auto!important;
   max-height: none!important;
   vertical-align: top;
   position: relative;
+  transform: none !important;
 }
 
 /* STICKY */
@@ -1334,6 +1336,16 @@ replace this
 [class*=grid-container__] .format-image.no-text .tc-thumbnail {
   max-height: 600px;
 }*/
+.grid-container__masonry .format-gallery .tc-thumbnail img,
+.grid-container__masonry .format-image .tc-thumbnail img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transform: translate3d(-50%, 0, 0);
+}
 
 .article-container .grid-container__alternate .format-gallery .tc-thumbnail  .carousel,
 .article-container .grid-container__alternate .format-image.no-text .tc-thumbnail,

@@ -10,10 +10,10 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
   function czr_fn_get_the_post_list_content( $more  = null, $link_pages = null ) {
     do_action( "__before_content_retrieve", $this->id, $this );
 
-    $content                = czr_fn_get( 'content' );
+    $content                = $this -> content ;
     $content_cb             = $this -> czr_fn_get_content_cb();
 
-    if ( $content )
+    if ( isset($content ) )
       $to_return = $content;
     elseif ( 'get_the_excerpt' == $content_cb )
       $to_return = apply_filters( 'the_excerpt', get_the_excerpt() );
@@ -45,7 +45,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
     return 'get_the_excerpt' != $this -> czr_fn_get_content_cb() ? array( 'entry-content' ) : array( 'entry-summary' );
   }
 
-  /* Should be cached at each loop !!!! */
+  /* Should be cached at each loop ??? */
   function czr_fn_get_content_cb() {
     if ( isset( $this->content_cb ) )
       return $this->content_cb;
