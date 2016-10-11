@@ -122,7 +122,7 @@ var czrapp = czrapp || {};
       $('.square-grid__mini').flickity({
           prevNextButtons: false,
           pageDots: false,
-          groupCells: true,
+          groupCells: "50%",
           imagesLoaded: true,
           cellSelector: '.post',
           cellAlign: 'left'
@@ -152,14 +152,14 @@ var czrapp = czrapp || {};
       // previous
       czrapp.$_body.on( 'click', '.slider-prev', function(evt) {
         evt.preventDefault();
-        var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
-        $flickity_instance.flickity('previous');
+        var $flickity = $(this).closest('.czr-carousel').find('.flickity-enabled');
+        $flickity.flickity('previous');
       });
       // next
       czrapp.$_body.on( 'click', '.slider-next', function(evt) {
         evt.preventDefault();
-        var $flickity_instance = $(this).closest('.czr-carousel').find('.flickity-enabled');
-        $flickity_instance.flickity('next');
+        var $flickity = $(this).closest('.czr-carousel').find('.flickity-enabled');
+        $flickity.flickity('next');
       });
     }
   };//_methods{}

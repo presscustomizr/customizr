@@ -26,7 +26,8 @@ if ( have_posts() ) {
   <?php
     while ( have_posts() ):
       the_post();
-      if ( czr_fn_has( 'related_post_item' ) ) czr_fn_render_template( 'modules/related-posts/related_post_item', 'related_post_item' );
+      if ( czr_fn_has( 'related_post_item' ) )
+        czr_fn_render_template( 'modules/related-posts/related_post_item', 'related_post_item');
     endwhile
   ?>
   </div>

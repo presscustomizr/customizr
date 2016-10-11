@@ -1359,7 +1359,7 @@ replace this
 
 .article-container .grid-container__masonry .format-gallery .flickity-viewport,
 .article-container .grid-container__alternate .format-gallery .flickity-viewport,
-.article-container .grid-container__full .format-gallery .flicity-viewport {
+.article-container .grid-container__full .format-gallery .flickity-viewport {
   position: absolute;
   width: 100%;
 }

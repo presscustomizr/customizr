@@ -28,7 +28,7 @@ class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
     $this->post_class              = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this->post_class );
 
     /*
-    * The masonry grid does the same
+    * The alternate grid does the same
     */
     add_action( '__masonry_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
     add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
@@ -73,7 +73,7 @@ class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
   * We decided that in masonry all the images (even those with text) should be displayed like the gallery
   */
   function czr_fn_get_is_full_image() {
-    return in_array( $_current_post_format , array( 'gallery', 'image' ) );
+    return in_array( get_post_format() , array( 'gallery', 'image' ) );
   }
 
 

@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -37,7 +37,7 @@ $_options = array(
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    //'tc_front_slider'       => 'prova',
+    'tc_front_slider'       => 'prova',
     'tc_display_slide_loader' => true,
 
     //test

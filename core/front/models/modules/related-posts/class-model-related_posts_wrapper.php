@@ -1,22 +1,7 @@
 <?php
 class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
-  public  $has_post_media;
-  public  $media_col;
-  public  $content_col;
 
-  function czr_fn_setup_late_properties() {
-
-
-
-    $this -> czr_fn_update( array(
-      'has_post_media'  => true,
-      'media_col'   => array( 'col-xs-6' ),
-      'content_col' => array( 'col-xs-6' ),
-      'query'           => $this -> czr_fn_get_relate_post_query()
-    ) );
-  }
-
-  function czr_fn_get_relate_post_query() {
+  function czr_fn_get_query() {
     /* Query setup */
     wp_reset_postdata();
     global $post;

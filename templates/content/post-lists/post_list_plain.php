@@ -7,16 +7,30 @@
  * @package Customizr
  */
 ?>
-<?php if ( czr_fn_get( 'is_loop_start' ) ) : ?>
-<div class="post-list-plain <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
-<?php endif ?>
+<?php if ( czr_fn_is_loop_start() ) : ?>
+<div class="post-list-plain grid-container__full <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<?php
+  do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
+endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
     <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
-    <?php
-      if ( czr_fn_has('media') ) { czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media'); }
-    ?>
+      <?php
+        if ( czr_fn_has('media') ) {
+          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+             'has_post_media'           => czr_fn_get( 'has_post_media' ),
+             'is_full_image'            => czr_fn_get( 'is_full_image'  )
+            )
+          );
+        }
+      ?>
       <section class="tc-content entry-content__holder">
-        <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/headings/post_list_header-no_metas', 'post_list_header') ?>
+        <?php
+        if ( czr_fn_has('post_list_header') )
+          czr_fn_render_template('content/post-lists/headings/post_list_header-no_metas', 'post_list_header', array(
+            'entry_header_inner_class' => czr_fn_get( 'entry_header_inner_class' ),
+            'entry_header_class'       => czr_fn_get( 'entry_header_class' )
+          ));
+        ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
           <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
 
@@ -28,6 +42,7 @@
           <div class="tc-content-inner <?php czr_fn_echo('content_inner_col') ?> <?php czr_fn_echo( 'content_class' ) ?>">
             <?php
               czr_fn_echo( 'the_post_list_content', 'post_list_content', array(
+                $show_full_content = true,
                 __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ),
                 wp_link_pages( array(
                   'before'        => '<div class="post-pagination row"><div class="col-md-12">',
@@ -65,6 +80,8 @@
       </section>
     </div>
   </article>
-<?php if ( czr_fn_get( 'is_loop_end' ) ) : ?>
+<?php if ( czr_fn_is_loop_end() ) :
+  do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
+?>
 </div>
-<?php endif ?>
+<?php endif;
