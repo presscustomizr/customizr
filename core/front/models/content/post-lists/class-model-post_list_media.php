@@ -22,7 +22,9 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     $post_format           = get_post_format();
 
     $element_class = ! empty($this-> element_class) ? $this ->element_class : array();
-    if ( 'gallery' == $post_format )
+    $element_class = ! is_array( $element_class ) ? explode(' ', $element_class ) : $element_class;
+
+    if ( ! $this -> only_thumb && 'gallery' == $post_format )
       array_push( $element_class, 'czr-carousel' );
 
     if ( $this -> has_post_media && esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) && 'audio' != $post_format )
@@ -94,8 +96,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : '';
       case 'gallery':
           /* Rough */
-          if ( get_post_gallery() ) {
-            $gallery = get_post_gallery( get_the_ID(), false );
+          if ( (bool) $gallery = get_post_gallery(get_the_ID(), false) ) {
 
             $_gallery_html = '';
             /* Loop through all the image and output them one by one */

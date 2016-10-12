@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -52,7 +52,7 @@ $_options = array(
     //to add
     'tc_related_posts'         => true,
 
-    'tc_center_img'            => false
+    'tc_center_img'            => true
 );
 
 
@@ -159,7 +159,7 @@ function czr_fn_enqueue_front_scripts() {
        '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
         'stickyHeader'      => esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ),
         'centerSliderImg'   => esc_attr( czr_fn_get_opt( 'tc_center_slider_img' ) ),
-        'centerAllImgs'     => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ),
+        'centerAllImg'     => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ),
         'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
   ) );
 
