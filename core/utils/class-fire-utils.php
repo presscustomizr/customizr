@@ -9,7 +9,7 @@
 * @since Customizr 3.3.0
 */
 function czr_fn_wp_filters() {
-    add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
+    //add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
     if ( esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) ) ) {
         add_filter( 'the_content'   , 'czr_fn_parse_imgs' , PHP_INT_MAX );
         add_filter( 'czr_thumb_html' , 'czr_fn_parse_imgs'  );

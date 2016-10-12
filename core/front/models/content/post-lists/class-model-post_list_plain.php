@@ -14,7 +14,8 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
 
   public $post_class               = array( 'row', 'style-01'/*temporary*/ );
 
-  public $has_format_icon_media    = false;
+  public $has_post_media;
+
   public $excerpt_length;
 
   /**
@@ -25,6 +26,7 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $model[ 'element_class']            = czr_fn_get_in_content_width_class();
+    $model[ 'has_post_media']           = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
 
     //TEMP:
     if ( 'post_list_plain_excerpt' == $model['id'] ) {
@@ -104,8 +106,15 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_has_post_media() {
-    $has_post_media = $this -> czr_fn_show_media();
-    return $has_post_media;
+    $post_format = get_post_format();
+
+    if ( in_array( $post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
+      return true;
+
+    if ( in_array( $post_format, array( 'quote', 'link', 'status', 'aside' ) ) )
+      return false;
+
+    return czr_fn_has_thumb();
   }
 
   /*
@@ -124,9 +133,8 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
 
     array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
 
-    $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
+    return czr_fn_get_the_post_list_article_selectors( $post_class );
 
-    return $article_selectors;
   }
 
 

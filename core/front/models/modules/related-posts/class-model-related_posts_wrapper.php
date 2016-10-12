@@ -1,5 +1,6 @@
 <?php
 class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
+  public $excerpt_length = 15;
 
   /**
   * @override
@@ -45,7 +46,7 @@ class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    return 15;
+    return $this->excerpt_length;
   }
 
 

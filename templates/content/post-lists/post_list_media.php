@@ -10,7 +10,7 @@
 <?php if ( ( (bool) $media_content = czr_fn_get('media_content') ) || (bool) $icon_type = czr_fn_get('icon_type') ) : ?>
 <section class="tc-thumbnail entry-image__container <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="entry-media__wrapper <?php czr_fn_echo('inner_wrapper_class') ?>">
-  <?php if ( (bool) $media_content = czr_fn_get('media_content') ): ?>
+  <?php if ( $media_content ): ?>
     <?php echo $media_content ?>
     <?php if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ): ?>
       <div class="post-action">

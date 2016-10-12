@@ -24,21 +24,20 @@ endif ?>
             )
           );
         }
-        if ( czr_fn_has('media') ) {
-          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media',
-            array(
+        if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
+          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+             'has_post_media'           => $has_post_media,
              'element_class'            => czr_fn_get( 'media_col' ),
              'is_full_image'            => czr_fn_get( 'is_full_image' ),
              'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
-             'has_post_media'           => czr_fn_get( 'has_post_media' )
             )
           );
         }
 
       } else {
-        if ( czr_fn_has('media') ) {
-          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media',
-            array(
+        if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
+          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+             'has_post_media'           => $has_post_media,
              'element_class'            => czr_fn_get( 'media_col' ),
              'is_full_image'            => czr_fn_get( 'is_full_image' ),
              'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
