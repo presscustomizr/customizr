@@ -785,6 +785,17 @@ if ( ! class_exists( 'TC_plugins_compat' ) ) :
       function tc_tec_disable_post_navigation($bool) {
         return ( tc_is_tec_single_event() ) ? false : $bool;
       }
+
+      /*
+      * Avoid php smartload image php parsing in events list content
+      * See: https://github.com/presscustomizr/hueman/issues/285
+      */
+      add_filter( 'tc_disable_img_smart_load', 'tc_tec_disable_img_smart_load_events_list', 999, 2);
+      function tc_tec_disable_img_smart_load_events_list( $_bool, $parent_filter ) {
+        if ( 'the_content' == $parent_filter && tc_is_tec_events_list() )
+          return true;//disable
+        return $_bool;
+      }      
     }//end the-events-calendar compat
 
 

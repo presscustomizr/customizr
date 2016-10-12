@@ -115,7 +115,9 @@ if ( ! class_exists( 'TC_utils' ) ) :
       * @since Customizr 3.3.0
       */
       function tc_parse_imgs( $_html ) {
-        if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) ) )
+        $_bool = is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) );
+
+        if ( apply_filters( 'tc_disable_img_smart_load', $_bool, current_filter() ) )
           return $_html;
 
         return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'tc_regex_callback' ) , $_html);
