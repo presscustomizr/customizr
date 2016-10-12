@@ -15,6 +15,7 @@ class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
             'r'         => array('col-xs-12', 'col-md-6')
           );
   public $post_class    = array( 'grid-item' );
+
   /**
   * @override
   * fired before the model properties are parsed

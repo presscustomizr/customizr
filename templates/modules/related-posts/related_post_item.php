@@ -13,7 +13,7 @@
       ) );
       czr_fn_render_template('content/post-lists/post_list_content', 'post_list_content', array(
         'element_class' => 'col-xs-6',
-        'has_footer'    => false
+        'has_footer'    => false,
       ));
     ?>
   </div>

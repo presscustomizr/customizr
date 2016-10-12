@@ -10,7 +10,7 @@ global $wp_query, $wp_the_query;
 $wp_query = new WP_Query( czr_fn_get('query') );
 
 if ( have_posts() ) {
-
+  do_action('__related_posts_loop_start', czr_fn_get('id') );
 ?>
 <section class="post-related-articles czr-carousel" <?php czr_fn_echo('element_attributes') ?>>
   <header>
@@ -34,6 +34,7 @@ if ( have_posts() ) {
 </section>
 
 <?php
+  do_action('__related_posts_loop_end', czr_fn_get('id') );
 }
 wp_reset_query();
 wp_reset_postdata();
