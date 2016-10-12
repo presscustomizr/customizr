@@ -11,16 +11,16 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_page' ) ) :
-  class TC_page {
+if ( ! class_exists( 'CZR_page' ) ) :
+  class CZR_page {
     static $instance;
     function __construct () {
       self::$instance =& $this;
-      add_action( 'wp'                , array( $this , 'tc_set_page_hooks' ) );
+      add_action( 'wp'                , array( $this , 'czr_fn_set_page_hooks' ) );
     }
 
 
-        
+
     /***************************
     * PAGE HOOKS SETUP
     ****************************/
@@ -30,11 +30,11 @@ if ( ! class_exists( 'TC_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_set_page_hooks() {
+    function czr_fn_set_page_hooks() {
       //add page content and footer to the __loop
-      add_action( '__loop'           , array( $this , 'tc_page_content' ) );
+      add_action( '__loop'           , array( $this , 'czr_fn_page_content' ) );
       //page help blocks
-      add_filter( 'the_content'       , array( $this, 'tc_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_filter( 'the_content'       , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
     }
 
 
@@ -45,8 +45,8 @@ if ( ! class_exists( 'TC_page' ) ) :
      * @package Customizr
      * @since Customizr 3.0
      */
-    function tc_page_content() {
-      if ( ! $this -> tc_page_display_controller() )
+    function czr_fn_page_content() {
+      if ( ! $this -> czr_fn_page_display_controller() )
         return;
 
       ob_start();
@@ -86,11 +86,11 @@ if ( ! class_exists( 'TC_page' ) ) :
     * hook : the_content
     * @since Customizr 3.4+
     */
-    function tc_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> tc_page_display_controller()  &&  in_the_loop() && TC_placeholders::tc_is_img_smartload_help_on( $the_content ) ) )
+    function czr_fn_maybe_display_img_smartload_help( $the_content ) {
+      if ( ! ( $this -> czr_fn_page_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $the_content ) ) )
         return $the_content;
 
-      return TC_placeholders::tc_get_smartload_help_block() . $the_content;
+      return CZR_placeholders::czr_fn_get_smartload_help_block() . $the_content;
     }
 
 
@@ -104,10 +104,10 @@ if ( ! class_exists( 'TC_page' ) ) :
     * @package Customizr
     * @since Customizr 3.4+
     */
-    function tc_page_display_controller() {
-      $tc_show_page_content = 'page' == tc__f('__post_type') 
-          && is_singular() 
-          && ! tc__f( '__is_home_empty');
+    function czr_fn_page_display_controller() {
+      $tc_show_page_content = 'page' == czr_fn__f('__post_type')
+          && is_singular()
+          && ! czr_fn__f( '__is_home_empty');
 
       return apply_filters( 'tc_show_page_content', $tc_show_page_content );
     }
