@@ -9,8 +9,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   public $is_full_image;
 
   function czr_fn_get_icon_type() {
-    $post_format = get_post_format();
-    if ( ! $this->has_post_media && $this->has_format_icon_media && ! $this->is_full_image ) {
+    if ( $this->has_format_icon_media ) {
+      $post_format = get_post_format();
       $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'article';
       $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
       return $icon_type;
@@ -27,7 +27,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
     if ( ! $this -> only_thumb && 'gallery' == $post_format )
       array_push( $element_class, 'czr-carousel' );
 
-    if ( $this -> has_post_media && esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) && 'audio' != $post_format )
+    if ( ! $this->has_format_icon_media && esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) && 'audio' != $post_format )
       array_push( $element_class, 'js-media-centering' );
 
     return $element_class;
@@ -36,8 +36,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   /* To treat default thumb, might be passed by the parent ...*/
   /* Test purpose only */
   function czr_fn_get_media_content() {
-    if ( ! $this -> has_post_media )
-      return false;
+    if ( $this -> has_format_icon_media )
+      return;
 
     $post_format = $this -> only_thumb ? '' : get_post_format();
 

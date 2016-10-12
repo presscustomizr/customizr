@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'grid', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -173,10 +173,3 @@ function footer_widget_area_defaults( $defaults ){
       'after_title'             => '</h5>',
     ));
 }
-
-
-add_filter( 'czr_show_media', function( $bool){
-  /* Test */
-  return $bool
-    || in_array( get_post_format() , apply_filters( 'czr_alternate_media_post_formats', array( 'video', 'audio', 'gallery' ) ) );
-});

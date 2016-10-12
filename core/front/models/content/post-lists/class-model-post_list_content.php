@@ -58,6 +58,7 @@ class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
       case 'status'  :
       case 'aside'   : return 'get_the_content';
 
+      case 'image'   :
       case 'video'   :
       case 'gallery' :
       case 'audio'   : return 'get_the_excerpt';

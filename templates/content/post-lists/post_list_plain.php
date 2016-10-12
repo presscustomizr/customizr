@@ -15,10 +15,10 @@ endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
     <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
       <?php
-        if ( czr_fn_has('media') ) {
+        if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
           czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
-             'has_post_media'           => czr_fn_get( 'has_post_media' ),
-             'is_full_image'            => czr_fn_get( 'is_full_image'  )
+             'has_post_media'           => $has_post_media,
+             'is_full_image'            => czr_fn_get( 'is_full_image' )
             )
           );
         }
@@ -28,14 +28,14 @@ endif ?>
         if ( czr_fn_has('post_list_header') )
           czr_fn_render_template('content/post-lists/headings/post_list_header-no_metas', 'post_list_header', array(
             'entry_header_inner_class' => czr_fn_get( 'entry_header_inner_class' ),
-            'entry_header_class'       => czr_fn_get( 'entry_header_class' )
+            'element_class'       => czr_fn_get( 'entry_header_class' )
           ));
         ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
-          <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
+          <?php if ( czr_fn_has('post_metas') && (bool) $cat_list = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
 
             <div class="entry-meta col-md-3 col-xs-12 small caps">
-              <?php echo $cat ?>
+              <?php echo $cat_list ?>
             </div>
 
           <?php  endif; ?>
@@ -55,10 +55,10 @@ endif ?>
               ) );
             ?>
             <div class="entry-meta">
-              <?php if ( czr_fn_has('post_metas') && $tag = czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
+              <?php if ( czr_fn_has('post_metas') && (bool) $tag_list = czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
               <div class="post-tags">
                 <ul class="tags">
-                  <?php echo $tag ?>
+                  <?php echo $tag_list ?>
                 </ul>
               </div>
               <?php endif; ?>

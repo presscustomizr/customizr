@@ -15,10 +15,9 @@ endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
     <div class="sections-wrapper grid-post">
     <?php
-        if ( czr_fn_has('media') ) {
-          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media',
-            array(
-             'has_post_media'           => czr_fn_get( 'has_post_media' ),
+        if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
+          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+             'has_post_media'           => $has_post_media,
              'is_full_image'            => czr_fn_get( 'is_full_image'  )
             )
           );

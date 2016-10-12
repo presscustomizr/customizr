@@ -560,7 +560,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
           add_theme_support( 'title-tag' );
 
-          current_theme_supports( 'html5', 'comment-form' );
+          add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
           //remove theme support => generates notice in admin @todo fix-it!
            /* remove_theme_support( 'custom-background' );
             remove_theme_support( 'custom-header' );*/

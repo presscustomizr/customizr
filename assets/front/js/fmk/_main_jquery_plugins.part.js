@@ -125,7 +125,9 @@ var czrapp = czrapp || {};
           groupCells: "50%",
           imagesLoaded: true,
           cellSelector: '.post',
-          cellAlign: 'left'
+          cellAlign: 'left',
+          dragThreshold: 10,
+          contain: true
       });
 
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
@@ -135,7 +137,8 @@ var czrapp = czrapp || {};
           wrapAround: true,
           imagesLoaded: true,
           setGallerySize: false,
-          cellSelector: '.carousel-cell'
+          cellSelector: '.carousel-cell',
+          dragThreshold: 10
       });
 
       /* Test only !!!!!! MAIN SLIDER */
@@ -145,7 +148,8 @@ var czrapp = czrapp || {};
           wrapAround: true,
           imagesLoaded: true,
           setGallerySize: false,
-          cellSelector: '.carousel-cell'
+          cellSelector: '.carousel-cell',
+          dragThreshold: 10
       });
 
       /* Handle custom nav */
