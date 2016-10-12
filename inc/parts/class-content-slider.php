@@ -20,7 +20,7 @@ class CZR_slider {
 
   function __construct () {
     self::$instance =& $this;
-    add_action( 'wp'                       , array( $this, 'czr_fn_maybe_setup_parallax' ) );
+    add_action( 'tc_set_slider_hooks_done' , array( $this, 'czr_fn_maybe_setup_parallax' ) );
     add_action( 'template_redirect'        , array( $this, 'czr_fn_set_slider_hooks' ) );
     //set user customizer options. @since v3.2.0
     add_filter( 'tc_slider_layout_class'   , array( $this , 'czr_fn_set_slider_wrapper_class' ) );
@@ -72,6 +72,9 @@ class CZR_slider {
 
     //display an edit deep link to the Slider section in the Customize or post/page
     add_action( '__after_carousel_inner'    , array( $this, 'czr_fn_render_slider_edit_link_view'), 10, 2 );
+
+    //fire event when all the hooks have been set
+    do_action( 'tc_set_slider_hooks_done' );
   }
 
   /******************************
@@ -529,7 +532,7 @@ class CZR_slider {
     $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
 
     //declares the layout vars
-    $layout_class                 = implode( " " , apply_filters( 'tc_slider_layout_class' , ( 0 == $layout_value ) ? array('container', 'carousel', 'customizr-slide', $slider_name_id ) : array('carousel', 'customizr-slide', $slider_name_id) ) );
+    $layout_class                 = ( 0 == $layout_value ) ? array('container', 'carousel', 'customizr-slide', $slider_name_id ) : array('carousel', 'customizr-slide', $slider_name_id);
     $img_size                     = apply_filters( 'tc_slider_img_size' , ( 0 == $layout_value ) ? 'slider' : 'slider-full');
 
     //get slides
@@ -696,11 +699,12 @@ class CZR_slider {
     self::$rendered_sliders++ ;
 
     //define carousel inner classes
-    $_inner_classes = implode( ' ' , apply_filters( 'tc_carousel_inner_classes' , array( 'carousel-inner' ) ) );
+    $_inner_classes  = implode( ' ' , apply_filters( 'tc_carousel_inner_classes' , array( 'carousel-inner' ) ) );
+    $_layout_classes = implode( " " , apply_filters( 'tc_slider_layout_class' , $layout_class ) );
 
     ob_start();
     ?>
-    <div id="customizr-slider-<?php echo self::$rendered_sliders ?>" class="<?php echo $layout_class ?> ">
+    <div id="customizr-slider-<?php echo self::$rendered_sliders ?>" class="<?php echo $_layout_classes ?> ">
 
       <?php $this -> czr_fn_render_slider_loader_view( $slider_name_id ); ?>
 
