@@ -11,24 +11,24 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_meta_boxes' ) ) :
-  class TC_meta_boxes {
+if ( ! class_exists( 'CZR_meta_boxes' ) ) :
+  class CZR_meta_boxes {
       static $instance;
       function __construct () {
           self::$instance =& $this;
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_post_meta_boxes' ));
-          add_action( '__post_slider_infos'                  , array( $this , 'tc_get_post_slider_infos' ));
-          add_action( 'save_post'                            , array( $this , 'tc_post_fields_save' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_fn_post_meta_boxes' ));
+          add_action( '__post_slider_infos'                  , array( $this , 'czr_fn_get_post_slider_infos' ));
+          add_action( 'save_post'                            , array( $this , 'czr_fn_post_fields_save' ));
 
-          add_action( 'add_meta_boxes'                       , array( $this , 'tc_attachment_meta_box' ));
-          add_action( '__attachment_slider_infos'            , array( $this , 'tc_get_attachment_slider_infos' ));
-          add_action( 'edit_attachment'                      , array( $this , 'tc_slide_save' ));
+          add_action( 'add_meta_boxes'                       , array( $this , 'czr_fn_attachment_meta_box' ));
+          add_action( '__attachment_slider_infos'            , array( $this , 'czr_fn_get_attachment_slider_infos' ));
+          add_action( 'edit_attachment'                      , array( $this , 'czr_fn_slide_save' ));
 
-          add_action( '__show_slides'                        , array( $this , 'tc_show_slides' ), 10, 2);
+          add_action( '__show_slides'                        , array( $this , 'czr_fn_show_slides' ), 10, 2);
 
-          add_action( 'wp_ajax_slider_action'                , array( $this , 'tc_slider_cb' ));
+          add_action( 'wp_ajax_slider_action'                , array( $this , 'czr_fn_slider_cb' ));
 
-          add_action( 'admin_enqueue_scripts'                , array( $this , 'tc_slider_admin_scripts' ));
+          add_action( 'admin_enqueue_scripts'                , array( $this , 'czr_fn_slider_admin_scripts' ));
 
 
 
@@ -40,8 +40,8 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
          */
         global $wp_version;
         if (version_compare( $wp_version, '3.5' , '<' ) ) {
-            add_filter( 'attachment_fields_to_edit'           , array( $this , 'tc_attachment_filter' ), 11, 2 );
-            add_filter( 'attachment_fields_to_save'           , array( $this , 'tc_attachment_save_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_edit'           , array( $this , 'czr_fn_attachment_filter' ), 11, 2 );
+            add_filter( 'attachment_fields_to_save'           , array( $this , 'czr_fn_attachment_save_filter' ), 11, 2 );
           }
 
       }//end of __construct
@@ -59,7 +59,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
      * @package Customizr
      * @since Customizr 1.0
      */
-      function tc_post_meta_boxes() {//id, title, callback, post_type, context, priority, callback_args
+      function czr_fn_post_meta_boxes() {//id, title, callback, post_type, context, priority, callback_args
            /***
             Determines which screens we display the box
           **/
@@ -79,13 +79,14 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
           //3- Adding the meta-boxes to those screens
           foreach ( $screens as $key => $screen) {
-              //skip if acf
-              if ('acf' == $screen )
+              //skip if acf or ris_gallery (ultimate responsive image slider)
+              if ( in_array( $screen, array( 'acf', 'ris_gallery' ) ) )
                 continue;
+
               add_meta_box(
                   'layout_sectionid' ,
                   __( 'Layout Options' , 'customizr' ),
-                  array( $this , 'tc_post_layout_box' ),
+                  array( $this , 'czr_fn_post_layout_box' ),
                   $screen,
                   ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen )
@@ -93,7 +94,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_post_slider_box' ),
+                  array( $this , 'czr_fn_post_slider_box' ),
                   $screen,
                   'normal' ,
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
@@ -112,7 +113,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 1.0
        */
-      function tc_post_layout_box( $post ) {
+      function czr_fn_post_layout_box( $post ) {
             // Use nonce for verification
             wp_nonce_field( plugin_basename( __FILE__ ), 'post_layout_noncename' );
 
@@ -125,13 +126,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //Generates layouts select list array
             $layouts              = array();
-            $global_layout        = apply_filters( 'tc_global_layout' , TC_init::$instance -> global_layout );
+            $global_layout        = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
             foreach ( $global_layout as $key => $value ) {
               $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
             }
 
             //by default we apply the global default layout
-            $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_global_layout') );
+            $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_fn_opt('tc_sidebar_global_layout') );
 
             //get the lists of eligible post types + normal posts (not pages!)
             $args                 = array(
@@ -146,16 +147,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
 
             //eligible posts (and custom posts types) default layout
             if ( in_array($post->post_type , $eligible_posts ) ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_post_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_fn_opt('tc_sidebar_post_layout') );
             }
 
             //page default layout
             if ( $post->post_type == 'page' ) {
-              $tc_sidebar_default_layout  = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_page_layout') );
+              $tc_sidebar_default_layout  = esc_attr( CZR_utils::$inst->czr_fn_opt('tc_sidebar_page_layout') );
             }
 
             //check if the 'force default layout' option is checked
-            $force_layout                 = esc_attr( TC_utils::$inst->tc_opt('tc_sidebar_force_layout') );
+            $force_layout                 = esc_attr( CZR_utils::$inst->czr_fn_opt('tc_sidebar_force_layout') );
 
 
             ?>
@@ -211,7 +212,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_post_slider_box( $post ) {
+        function czr_fn_post_slider_box( $post ) {
             // Use nonce for verification
             wp_nonce_field( plugin_basename( __FILE__ ), 'post_slider_noncename' );
 
@@ -252,7 +253,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
      * @package Customizr
      * @since Customizr 2.0
      */
-      function tc_get_post_slider_infos( $postid ) {
+      function czr_fn_get_post_slider_infos( $postid ) {
           //check value is ajax saved ?
           $post_slider_check_value   = esc_attr(get_post_meta( $postid, $key = 'post_slider_check_key' , $single = true ));
 
@@ -261,7 +262,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           if ( isset($options['tc_sliders']) ) {
             $sliders                   = $options['tc_sliders'];
           }else
-            $sliders                   = array();  
+            $sliders                   = array();
 
           //post slider fields setup
           $post_slider_id            = 'post_slider_field';
@@ -283,9 +284,9 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
           //sliders field
           $slider_id                 = 'slider_field';
 
-          if( $post_slider_check_value == true ): 
+          if( $post_slider_check_value == true ):
               $selectable_sliders    = apply_filters( 'tc_post_selectable_sliders', $sliders );
-              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ): 
+              if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
 
           ?>
               <div class="meta-box-item-title">
@@ -313,7 +314,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                       printf( '<option value="%1$s" %2$s> %3$s</option>',
                           esc_attr( $id ),
                           selected( $current_post_slider, esc_attr( $id ), $echo = false ),
-                          $label  
+                          $label
                       );
                     }
                   ?>
@@ -358,10 +359,10 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                         </div>
                       </div>
                     <?php  do_action( '__show_slides' , $current_post_slides, $current_attachement_id = null); ?>
-                <?php else: //there are no slides 
+                <?php else: //there are no slides
                   do_action( '__no_slides', $postid, $current_post_slider );
                 ?>
-              <?php endif; //slides? ?>      
+              <?php endif; //slides? ?>
             <?php else://if no slider created yet and no slider of posts addon?>
 
                  <div class="meta-box-item-content">
@@ -389,7 +390,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 1.0
        */
-      function tc_post_fields_save( $post_id ) {
+      function czr_fn_post_fields_save( $post_id ) {
         // verify if this is an auto save routine.
         // If it is our form has not been submitted, so we dont want to do anything
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
@@ -483,13 +484,13 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
+        function czr_fn_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
           $screens = array( 'attachment' );
           foreach ( $screens as $screen) {
               add_meta_box(
                   'slider_sectionid' ,
                   __( 'Slider Options' , 'customizr' ),
-                  array( $this , 'tc_attachment_slider_box' ),
+                  array( $this , 'czr_fn_attachment_slider_box' ),
                   $screen/*,
                   'side' ,
                   'high'*/
@@ -507,7 +508,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_attachment_slider_box( $post ) {
+        function czr_fn_attachment_slider_box( $post ) {
             // Use nonce for verification
             //wp_nonce_field( plugin_basename( __FILE__ ), 'slider_noncename' );
             // The actual fields for data entry
@@ -550,7 +551,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_get_attachment_slider_infos( $postid ) {
+        function czr_fn_get_attachment_slider_infos( $postid ) {
           //check value is ajax saved ?
           $slider_check_value     = esc_attr(get_post_meta( $postid, $key = 'slider_check_key' , $single = true ));
 
@@ -803,7 +804,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function tc_slide_save( $post_id ) {
+        function czr_fn_slide_save( $post_id ) {
           // verify if this is an auto save routine.
           // If it is our form has not been submitted, so we dont want to do anything
 
@@ -899,7 +900,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-      function tc_show_slides ( $current_post_slides,$current_attachement_id) {
+      function czr_fn_show_slides ( $current_post_slides,$current_attachement_id) {
           //check if we have slides to show
           ?>
           <?php if(empty( $current_post_slides)) : ?>
@@ -1027,7 +1028,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-      function tc_slider_ajax_save( $post_id ) {
+      function czr_fn_slider_ajax_save( $post_id ) {
 
             //We check the ajax nonce (common for post and attachment)
             if ( isset( $_POST['SliderCheckNonce']) && !wp_verify_nonce( $_POST['SliderCheckNonce'], 'tc-slider-check-nonce' ) )
@@ -1300,7 +1301,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
                 }//end foreach
                 //attachments
                 if( $tc_post_type == 'attachment' )
-                  $this -> tc_slide_save( $post_ID );
+                  $this -> czr_fn_slide_save( $post_ID );
 
                 do_action( "__after_ajax_save_slider_{$tc_post_type}", $_POST, $tc_slider_fields );
             }//function
@@ -1323,7 +1324,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
    * @package Customizr
    * @since Customizr 2.0
    */
-     function tc_slider_cb() {
+     function czr_fn_slider_cb() {
 
       $nonce = $_POST['SliderCheckNonce'];
       // check if the submitted nonce matches with the generated nonce we created earlier
@@ -1336,16 +1337,16 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
         $tc_post_id         = $_POST['tc_post_id'];
 
         //save $_POST var in DB
-        $this -> tc_slider_ajax_save( $tc_post_id);
+        $this -> czr_fn_slider_ajax_save( $tc_post_id);
 
         //check if we are in the post or attachment screen and select the appropriate rendering
         //we use the post_slider var defined in tc_ajax_slider.js
         if ( isset( $_POST['tc_post_type'])) {
           if( $_POST['tc_post_type'] == 'post' ) {
-            $this -> tc_get_post_slider_infos( $tc_post_id );
+            $this -> czr_fn_get_post_slider_infos( $tc_post_id );
           }
           else {
-            $this -> tc_get_attachment_slider_infos( $tc_post_id );
+            $this -> czr_fn_get_attachment_slider_infos( $tc_post_id );
           }
         }
         //echo $_POST['slider_id'];
@@ -1365,7 +1366,7 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 1.0
        */
-        function tc_slider_admin_scripts( $hook) {
+        function czr_fn_slider_admin_scripts( $hook) {
         global $post;
 
         $_min_version = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min';
@@ -1453,17 +1454,17 @@ if ( ! class_exists( 'TC_meta_boxes' ) ) :
   ------------- ATTACHMENT FIELDS FILTER IF WP < 3.5 -------------
   ----------------------------------------------------------------
   */
-      function tc_attachment_filter( $form_fields, $post = null) {
-          $this -> tc_attachment_slider_box ( $post);
+      function czr_fn_attachment_filter( $form_fields, $post = null) {
+          $this -> czr_fn_attachment_slider_box ( $post);
            return $form_fields;
       }
 
 
-      function tc_attachment_save_filter( $post, $attachment ) {
+      function czr_fn_attachment_save_filter( $post, $attachment ) {
           if ( isset( $_POST['tc_post_id']))
            $postid = $_POST['tc_post_id'];
 
-          $this -> tc_slide_save( $postid );
+          $this -> czr_fn_slide_save( $postid );
 
           return $post;
       }

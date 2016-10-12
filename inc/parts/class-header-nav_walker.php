@@ -9,21 +9,21 @@
 * @since        3.0
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_nav_walker' ) ) :
-  class TC_nav_walker extends Walker_Nav_Menu {
+if ( ! class_exists( 'CZR_nav_walker' ) ) :
+  class CZR_nav_walker extends Walker_Nav_Menu {
     static $instance;
     public $tc_location;
     function __construct($_location) {
       self::$instance =& $this;
       $this -> tc_location = $_location;
-      add_filter( 'tc_nav_menu_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 4 );
+      add_filter( 'tc_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
     }
 
 
     /**
     * hook : nav_menu_css_class
     */
-    function tc_add_bootstrap_classes($classes, $item, $args, $depth ) {
+    function czr_fn_add_bootstrap_classes($classes, $item, $args, $depth ) {
       //cast $classes into array
       $classes = (array)$classes;
       //check if $item is a dropdown ( a parent )
@@ -53,7 +53,7 @@ if ( ! class_exists( 'TC_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? '<a data-test="joie"' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a data-test="joie"' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -88,7 +88,7 @@ endif;
 
 
 /**
-* Replace the walker for tc_page_menu()
+* Replace the walker for czr_fn_page_menu()
 * Used for the specific default page menu only
 *
 * Walker_Page is located in wp-includes/post-template.php
@@ -99,17 +99,17 @@ endif;
 * @since        3.0
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_nav_walker_page' ) ) :
-  class TC_nav_walker_page extends Walker_Page {
+if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
+  class CZR_nav_walker_page extends Walker_Page {
     function __construct() {
-      add_filter('page_css_class' , array($this, 'tc_add_bootstrap_classes'), 10, 5 );
+      add_filter('page_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 5 );
     }
 
 
     /**
     * hook : page_css_class
     */
-    function tc_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
+    function czr_fn_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
       if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
         if ( 0 === $depth) {
           $css_class[] = 'dropdown';
@@ -137,7 +137,7 @@ if ( ! class_exists( 'TC_nav_walker_page' ) ) :
       if ( $args['has_children'] ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( TC_utils::$inst->tc_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
         $item_html      = str_replace( $search , $replace , $item_html);

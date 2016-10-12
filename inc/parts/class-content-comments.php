@@ -11,19 +11,19 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_comments' ) ) :
-  class TC_comments {
+if ( ! class_exists( 'CZR_comments' ) ) :
+  class CZR_comments {
       static $instance;
       function __construct () {
         self::$instance =& $this;
         //wp hook => wp_query is built
-        add_action ( 'wp'                     , array( $this , 'tc_comments_set_hooks' ) );
+        add_action ( 'wp'                     , array( $this , 'czr_fn_comments_set_hooks' ) );
 
         //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
         //fired on hook : wp_enqueue_scripts
         //Set thumbnail specific design based on user options
         //Set user defined various inline stylings
-        add_filter( 'tc_user_options_style'   , array( $this , 'tc_comment_bubble_inline_css' ) );
+        add_filter( 'tc_user_options_style'   , array( $this , 'czr_fn_comment_bubble_inline_css' ) );
       }
 
 
@@ -37,25 +37,25 @@ if ( ! class_exists( 'TC_comments' ) ) :
       * @package Customizr
       * @since Customizr 3.3.2
       */
-      function tc_comments_set_hooks() {
+      function czr_fn_comments_set_hooks() {
         //Maybe fires the comment's template
-        add_action ( '__after_loop'           , array( $this , 'tc_comments' ), 10 );
+        add_action ( '__after_loop'           , array( $this , 'czr_fn_comments' ), 10 );
 
         //Apply a filter on the comment list ( comment list user defined option )
         //the filter tc_display_comment_list is fired in the comments.php template
-        add_filter( 'tc_display_comment_list' , array( $this , 'tc_set_comment_list_display' ) );
+        add_filter( 'tc_display_comment_list' , array( $this , 'czr_fn_set_comment_list_display' ) );
 
         //Add actions in the comment's template
-        add_action ( '__comment'              , array( $this , 'tc_comment_title' ), 10 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_list' ), 20 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_navigation' ), 30 );
-        add_action ( '__comment'              , array( $this , 'tc_comment_close' ), 40 );
-        add_filter ( 'comment_form_defaults'  , array( $this , 'tc_set_comment_title') );
+        add_action ( '__comment'              , array( $this , 'czr_fn_comment_title' ), 10 );
+        add_action ( '__comment'              , array( $this , 'czr_fn_comment_list' ), 20 );
+        add_action ( '__comment'              , array( $this , 'czr_fn_comment_navigation' ), 30 );
+        add_action ( '__comment'              , array( $this , 'czr_fn_comment_close' ), 40 );
+        add_filter ( 'comment_form_defaults'  , array( $this , 'czr_fn_set_comment_title') );
 
         //Add comment bubble
-        add_filter( 'tc_the_title'            , array( $this , 'tc_display_comment_bubble' ), 1 );
+        add_filter( 'tc_the_title'            , array( $this , 'czr_fn_display_comment_bubble' ), 1 );
         //Custom Bubble comment since 3.2.6
-        add_filter( 'tc_bubble_comment'       , array( $this , 'tc_custom_bubble_comment'), 10, 2 );
+        add_filter( 'tc_bubble_comment'       , array( $this , 'czr_fn_custom_bubble_comment'), 10, 2 );
       }
 
 
@@ -70,8 +70,8 @@ if ( ! class_exists( 'TC_comments' ) ) :
       * @package Customizr
       * @since Customizr 3.0.10
      */
-      function tc_comments() {
-        if ( ! $this -> tc_are_comments_enabled() )
+      function czr_fn_comments() {
+        if ( ! $this -> czr_fn_are_comments_enabled() )
           return;
         do_action('tc_before_comments_template');
           comments_template( '' , true );
@@ -88,7 +88,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         * @package Customizr
         * @since Customizr 3.0
        */
-        function tc_comment_title() {
+        function czr_fn_comment_title() {
           if ( 1 == get_comments_number() ) {
             $_title = __( 'One thought on', 'customizr' );
           } else {
@@ -111,8 +111,8 @@ if ( ! class_exists( 'TC_comments' ) ) :
         * @package Customizr
         * @since Customizr 3.0
        */
-        function tc_comment_list() {
-          $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'tc_comment_callback' ) , 'style' => 'ul' ) );
+        function czr_fn_comment_list() {
+          $_args = apply_filters( 'tc_list_comments_args' , array( 'callback' => array ( $this , 'czr_fn_comment_callback' ) , 'style' => 'ul' ) );
           ob_start();
             ?>
               <ul class="commentlist">
@@ -136,7 +136,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         * @package Customizr
         * @since Customizr 1.0
         */
-       function tc_comment_callback( $comment, $args, $depth ) {
+       function czr_fn_comment_callback( $comment, $args, $depth ) {
 
         $GLOBALS['comment'] = $comment;
         //get user defined max comment depth
@@ -153,7 +153,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
             <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
-                <?php if ( ! TC___::$instance -> tc_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
+                <?php if ( ! CZR___::$instance -> czr_fn_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
             </p>
           </article>
         <?php
@@ -195,7 +195,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
                             get_comment_author_link(),
                             // If current post author is also comment author, make it known visually.
                             ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author' , 'customizr' ) . '</span>' : '' ,
-                            ! TC___::$instance -> tc_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
+                            ! CZR___::$instance -> czr_fn_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
                         ),
                         sprintf( '<a class="comment-date" href="%1$s"><time datetime="%2$s">%3$s</time></a>' ,
                             esc_url( get_comment_link( $comment->comment_ID ) ),
@@ -234,7 +234,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.0
    */
-    function tc_comment_navigation () {
+    function czr_fn_comment_navigation () {
       if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through
 
         ob_start();
@@ -280,7 +280,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    function tc_comment_close() {
+    function czr_fn_comment_close() {
       /* If there are no comments and comments are closed, let's leave a note.
        * But we only want the note on posts and pages that had comments in the first place.
        */
@@ -309,8 +309,8 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    function tc_set_comment_list_display() {
-      return (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) );
+    function czr_fn_set_comment_list_display() {
+      return (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) );
     }
 
 
@@ -321,7 +321,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.0
     */
-    function tc_set_comment_title($_defaults) {
+    function czr_fn_set_comment_title($_defaults) {
       $_defaults['title_reply'] =  __( 'Leave a comment' , 'customizr' );
       return $_defaults;
     }
@@ -335,8 +335,8 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function tc_display_comment_bubble( $_title = null ) {
-      if ( ! $this -> tc_is_bubble_enabled() )
+    function czr_fn_display_comment_bubble( $_title = null ) {
+      if ( ! $this -> czr_fn_is_bubble_enabled() )
         return $_title;
 
       global $post;
@@ -347,7 +347,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title'),
         sprintf( '%1$s %2$s' , get_comments_number(), __( 'Comment(s) on' , 'customizr' ) ),
         is_null($_title) ? esc_attr( strip_tags( $post -> post_title ) ) : esc_attr( strip_tags( $_title ) ),
-        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) ) : ''
+        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) ) ) : ''
       );
     }
 
@@ -360,7 +360,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.2.6
     */
-    function tc_custom_bubble_comment( $_html , $_opt ) {
+    function czr_fn_custom_bubble_comment( $_html , $_opt ) {
       return sprintf('%4$s<span class="tc-comment-bubble %1$s">%2$s %3$s</span>',
         'default' == $_opt ? "default-bubble" : $_opt,
         get_comments_number(),
@@ -379,14 +379,14 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    function tc_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ) )
+    function czr_fn_comment_bubble_inline_css( $_css ) {
+      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
-      if ( 'skin' != esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color_type' ) ) ) {
-        $_custom_bubble_color = esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_color' ) );
+      if ( 'skin' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) ) ) {
+        $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
         $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
@@ -398,7 +398,7 @@ if ( ! class_exists( 'TC_comments' ) ) :
         ";
       }
 
-      if ( 'default' == esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_bubble_shape' ) ) )
+      if ( 'default' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) ) )
         return $_css;
 
       $_css .= "
@@ -456,11 +456,11 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_are_comments_enabled() {
+    private function czr_fn_are_comments_enabled() {
       global $post;
       // 1) By default not displayed on home, for protected posts, and if no comments for page option is checked
       if ( isset( $post ) ) {
-        $_bool = ( post_password_required() || tc__f( '__is_home' ) || ! is_singular() )  ? false : true;
+        $_bool = ( post_password_required() || czr_fn__f( '__is_home' ) || ! is_singular() )  ? false : true;
 
         //2) if user has enabled comment for this specific post / page => true
         //@todo contx : update default value user's value)
@@ -468,9 +468,9 @@ if ( ! class_exists( 'TC_comments' ) ) :
 
         //3) check global user options for pages and posts
         if ( is_page() )
-          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_page_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_page_comments' )) && $_bool;
         else
-          $_bool = 1 == esc_attr( TC_utils::$inst->tc_opt( 'tc_post_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_comments' )) && $_bool;
       } else
         $_bool = false;
 
@@ -495,13 +495,13 @@ if ( ! class_exists( 'TC_comments' ) ) :
     * @package Customizr
     * @since Customizr 3.3+
     */
-    private function tc_is_bubble_enabled() {
+    private function czr_fn_is_bubble_enabled() {
       $_bool_arr = array(
         in_the_loop(),
-        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_comment_show_bubble' ) ),
-        $this -> tc_are_comments_enabled(),
+        (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ),
+        $this -> czr_fn_are_comments_enabled(),
         get_comments_number() != 0,
-        (bool) esc_attr( TC_utils::$inst->tc_opt( 'tc_show_comment_list' ) ),
+        (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) ),
         (bool) apply_filters( 'tc_comments_in_title', true ),
         in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) )
       );

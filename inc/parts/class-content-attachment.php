@@ -11,12 +11,12 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC_attachment' ) ) :
-    class TC_attachment {
+if ( ! class_exists( 'CZR_attachment' ) ) :
+    class CZR_attachment {
         static $instance;
         function __construct () {
             self::$instance =& $this;
-            add_action  ( '__loop'			              , array( $this , 'tc_attachment_content' ));
+            add_action  ( '__loop'			              , array( $this , 'czr_fn_attachment_content' ));
         }
 
 
@@ -28,7 +28,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
          * @package Customizr
          * @since Customizr 3.0
          */
-        function tc_attachment_content() {
+        function czr_fn_attachment_content() {
             //check conditional tags
             global $post;
             if ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() )
@@ -52,7 +52,7 @@ if ( ! class_exists( 'TC_attachment' ) ) :
                         $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
                         //did we activate the fancy box in customizer?
-                        $tc_fancybox = esc_attr( TC_utils::$inst->tc_opt( 'tc_fancybox' ) );
+                        $tc_fancybox = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fancybox' ) );
 
                         ?>
 

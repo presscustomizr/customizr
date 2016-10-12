@@ -1,19 +1,19 @@
 <?php
 /**
-* The tc__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
+* The czr_fn__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
 * It is shorter than the original apply_filters() and only used on already defined filters.
 *
 * By convention in Customizr, filter hooks are used as follow :
 * 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
 * 2) declared with apply_filters in methods to make the code extensible for developers
-* 3) accessed with tc__f() to return values (while front end content is handled with action hooks)
+* 3) accessed with czr_fn__f() to return values (while front end content is handled with action hooks)
 *
 * Used everywhere in Customizr. Can pass up to five variables to the filter callback.
 *
 * @since Customizr 3.0
 */
-if( ! function_exists( 'tc__f' ) ) :
-    function tc__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+if( ! function_exists( 'czr_fn__f' ) ) :
+    function czr_fn__f ( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
     }
 endif;
@@ -32,8 +32,8 @@ endif;
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'TC___' ) ) :
-  class TC___ {
+if ( ! class_exists( 'CZR___' ) ) :
+  class CZR___ {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     public $tc_core;
@@ -78,8 +78,8 @@ if ( ! class_exists( 'TC___' ) ) :
       if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
       //THEMENAME contains the Name of the currently loaded theme
       if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
-      //TC_WEBSITE is the home website of Customizr
-      if( ! defined( 'TC_WEBSITE' ) )         define( 'TC_WEBSITE' , $tc_base_data['authoruri'] );
+      //CZR_WEBSITE is the home website of Customizr
+      if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
@@ -133,16 +133,16 @@ if ( ! class_exists( 'TC___' ) ) :
       );//end of filter
 
       //check the context
-      if ( $this -> tc_is_pro() )
+      if ( $this -> czr_fn_is_pro() )
         require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
 
       self::$tc_option_group = 'tc_theme_options';
 
       //set files to load according to the context : admin / front / customize
-      add_filter( 'tc_get_files_to_load' , array( $this , 'tc_set_files_to_load' ) );
+      add_filter( 'tc_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
 
       //theme class groups instanciation
-      $this -> tc__();
+      $this -> czr_fn__();
     }//end of __construct()
 
 
@@ -157,7 +157,7 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since Customizr 3.0
     */
-    function tc__( $_to_load = array(), $_no_filter = false ) {
+    function czr_fn__( $_to_load = array(), $_no_filter = false ) {
       static $instances;
       //do we apply a filter ? optional boolean can force no filter
       $_to_load = $_no_filter ? $_to_load : apply_filters( 'tc_get_files_to_load' , $_to_load );
@@ -167,17 +167,17 @@ if ( ! class_exists( 'TC___' ) ) :
       foreach ( $_to_load as $group => $files ) {
         foreach ($files as $path_suffix ) {
           //checks if a child theme is used and if the required file has to be overriden
-          if ( $this -> tc_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
+          if ( $this -> czr_fn_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
               require_once ( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           }
           else {
               require_once ( TC_BASE . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           }
 
-          $classname = 'TC_' . $path_suffix[1];
+          $classname = 'CZR_' . $path_suffix[1];
           if( ! isset( $instances[ $classname ] ) )  {
             //check if the classname can be instantiated here
-            if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'TC_nav_walker') ) ) )
+            if ( in_array( $classname, apply_filters( 'tc_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
               continue;
             //instantiates
             $instances[ $classname ] = class_exists($classname)  ? new $classname : '';
@@ -199,10 +199,10 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since  Customizr 3.3+
     */
-    function tc_set_files_to_load( $_to_load ) {
+    function czr_fn_set_files_to_load( $_to_load ) {
       $_to_load = empty($_to_load) ? $this -> tc_core : $_to_load;
       //Not customizing
-      //1) IS NOT CUSTOMIZING : tc_is_customize_left_panel() || tc_is_customize_preview_frame() || tc_doing_customizer_ajax()
+      //1) IS NOT CUSTOMIZING : czr_fn_is_customize_left_panel() || czr_fn_is_customize_preview_frame() || czr_fn_doing_customizer_ajax()
       //---1.1) IS ADMIN
       //-------1.1.a) Doing AJAX
       //-------1.1.b) Not Doing AJAX
@@ -210,33 +210,33 @@ if ( ! class_exists( 'TC___' ) ) :
       //2) IS CUSTOMIZING
       //---2.1) IS LEFT PANEL => customizer controls
       //---2.2) IS RIGHT PANEL => preview
-      if ( ! $this -> tc_is_customizing() )
+      if ( ! $this -> czr_fn_is_customizing() )
         {
           if ( is_admin() ) {
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
             if ( defined( 'DOING_AJAX' ) )
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
+              $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
             else
-              $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+              $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
           }
           else
             //Skips all admin classes
-            $_to_load = $this -> tc_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
+            $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
         }
       //Customizing
       else
         {
           //left panel => skip all front end classes
-          if ( $this -> tc_is_customize_left_panel() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_fn_is_customize_left_panel() ) {
+            $_to_load = $this -> czr_fn_unset_core_classes(
               $_to_load,
               array( 'header' , 'content' , 'footer' ),
               array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
             );
           }
-          if ( $this -> tc_is_customize_preview_frame() ) {
-            $_to_load = $this -> tc_unset_core_classes(
+          if ( $this -> czr_fn_is_customize_preview_frame() ) {
+            $_to_load = $this -> czr_fn_unset_core_classes(
               $_to_load,
               array(),
               array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
@@ -261,7 +261,7 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since  Customizr 3.0.11
     */
-    public function tc_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
+    public function czr_fn_unset_core_classes( $_tree, $_groups = array(), $_files = array() ) {
       if ( empty($_tree) )
         return array();
       if ( ! empty($_groups) ) {
@@ -300,7 +300,7 @@ if ( ! class_exists( 'TC___' ) ) :
     *
     * @since  Customizr 3.0.11
     */
-    function tc_is_child() {
+    function czr_fn_is_child() {
       // get themedata version wp 3.4+
       if ( function_exists( 'wp_get_theme' ) ) {
         //get WP_Theme object of customizr
@@ -323,12 +323,12 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  bool
     * @since  3.2.9
     */
-    function tc_is_customizing() {
+    function czr_fn_is_customizing() {
       //checks if is customizing : two contexts, admin and front (preview frame)
       return in_array( 1, array(
-        $this -> tc_is_customize_left_panel(),
-        $this -> tc_is_customize_preview_frame(),
-        $this -> tc_doing_customizer_ajax()
+        $this -> czr_fn_is_customize_left_panel(),
+        $this -> czr_fn_is_customize_preview_frame(),
+        $this -> czr_fn_doing_customizer_ajax()
       ) );
     }
 
@@ -338,7 +338,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    function tc_is_customize_left_panel() {
+    function czr_fn_is_customize_left_panel() {
       global $pagenow;
       return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
     }
@@ -349,7 +349,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  boolean
     * @since  3.3+
     */
-    function tc_is_customize_preview_frame() {
+    function czr_fn_is_customize_preview_frame() {
       return ! is_admin() && isset($_REQUEST['wp_customize']);
     }
 
@@ -362,7 +362,7 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return boolean
     * @since  3.3.2
     */
-    function tc_doing_customizer_ajax() {
+    function czr_fn_doing_customizer_ajax() {
       $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
       return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
     }
@@ -372,11 +372,11 @@ if ( ! class_exists( 'TC___' ) ) :
     * @return  boolean
     * @since  3.4+
     */
-    static function tc_is_pro() {
+    static function czr_fn_is_pro() {
       return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
     }
   }//end of class
 endif;
 
 //Creates a new instance
-new TC___;
+new CZR___;
