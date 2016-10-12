@@ -3018,6 +3018,7 @@ var TCParams = TCParams || {};
     var pluginName = 'extLinks',
         defaults = {
           addIcon : true,
+          iconClassName : 'tc-external',
           newTab: true,
           skipSelectors : { //defines the selector to skip when parsing the wrapper
             classes : [],
@@ -3028,15 +3029,16 @@ var TCParams = TCParams || {};
 
 
     function Plugin( element, options ) {
-      this.$_el     = $(element);
-      this.options  = $.extend( {}, defaults, options) ;
-      this._href    = $.trim( this.$_el.attr( 'href' ) );
-      this.init();
+        this.$_el     = $(element);
+        this.options  = $.extend( {}, defaults, options) ;
+        this._href    = $.trim( this.$_el.attr( 'href' ) );
+        this.init();
     }
 
 
     Plugin.prototype.init = function() {
-      var $_external_icon = this.$_el.next('.tc-external');
+      var self = this,
+          $_external_icon = this.$_el.next( '.' + self.options.iconClassName );
       //if not eligible, then remove any remaining icon element and return
       //important => the element to remove is right after the current link element ( => use of '+' CSS operator )
       if ( ! this._is_eligible() ) {
@@ -3044,10 +3046,9 @@ var TCParams = TCParams || {};
           $_external_icon.remove();
         return;
       }
-
       //add the icon link, if not already there
       if ( this.options.addIcon && 0 === $_external_icon.length ) {
-        this.$_el.after('<span class="tc-external">');
+        this.$_el.after('<span class="' + self.options.iconClassName + '">');
       }
 
       //add the target _blank, if not already there
@@ -3079,10 +3080,10 @@ var TCParams = TCParams || {};
       $.each( this.$_el.parents(), function() {
         if ( 'underline' == $(this).css('textDecoration') ){
           _is_eligible = false;
-          return false;    
+          return false;
         }
       });
-      
+
       return true && _is_eligible;
     };
 
@@ -3420,7 +3421,170 @@ var TCParams = TCParams || {};
   };
 
 })( jQuery, window, document );
-// Customizr version of Galambosi's SmoothScroll
+/* ===================================================
+ * jqueryParallax.js v1.0.0
+ * ===================================================
+ * (c) 2016 Nicolas Guillaume - Rocco Aliberti, Nice, France
+ * CenterImages plugin may be freely distributed under the terms of the GNU GPL v2.0 or later license.
+ *
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ *
+ *
+ * =================================================== */
+;(function ( $, window, document, undefined ) {
+  /*
+  * In order to handle a smooth scroll
+  * ( inspired by jquery.waypoints and smoothScroll.js )
+  * Maybe use this -> https://gist.github.com/paulirish/1579671
+  */
+  var czrParallaxRequestAnimationFrame = function(callback) {
+    var requestFn = ( czrapp && czrapp.requestAnimationFrame) ||
+      window.requestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      function( callback ) { window.setTimeout(callback, 1000 / 60); };
+
+    requestFn.call(window, callback);
+  };
+
+  //defaults
+  var pluginName = 'czrParallax',
+      defaults = {
+        parallaxRatio : 0.5,
+        parallaxDirection : 1,
+        parallaxOverflowHidden : true,
+        oncustom : [],//list of event here
+        backgroundClass : 'image'
+      };
+
+  function Plugin( element, options ) {
+    this.element = $(element);
+    this.options = $.extend( {}, defaults, options, this.parseElementDataOptions() ) ;
+    this._defaults = defaults;
+    this._name = pluginName;
+    this.init();
+  }
+
+  Plugin.prototype.parseElementDataOptions = function () {
+    return this.element.data();
+  };
+
+  //can access this.element and this.option
+  //@return void
+  Plugin.prototype.init = function () {
+    //cache some element
+    this.$_document   = $(document);
+    this.$_window     = czrapp ? czrapp.$_window : $(window);
+    this.windowIsBusy = false;
+
+    this.initWaypoints();
+    this.stageParallaxElements();
+    this._bind_evt();
+  };
+
+  //@return void
+  //map custom events if any
+  Plugin.prototype._bind_evt = function() {
+    var self = this,
+        _customEvt = $.isArray(this.options.oncustom) ? this.options.oncustom : this.options.oncustom.split(' ');
+
+    _.bindAll( this, 'maybeParallaxMe', 'parallaxMe' );
+    /* TODO: custom events? */
+  };
+
+  Plugin.prototype.stageParallaxElements = function() {
+
+    this.element.css( 'position', this.element.hasClass( this.options.backgroundClass ) ? 'absolute' : 'relative' );
+    if ( this.options.parallaxOverflowHidden ){
+      var $_wrapper = this.element.closest( '.parallax-wrapper' );
+      if ( $_wrapper.length )
+        $_wrapper.css( 'overflow', 'hidden' );
+    }
+  };
+
+  Plugin.prototype.initWaypoints = function() {
+    var self = this;
+
+      this.way_start = new Waypoint({
+        element: self.element,
+        handler: function() {
+          self.maybeParallaxMe();
+          if ( ! self.element.hasClass('parallaxing') ){
+            self.$_window.on('scroll', self.maybeParallaxMe );
+            self.element.addClass('parallaxing');
+          }else{
+            self.element.removeClass('parallaxing');
+            self.$_window.off('scroll', self.maybeParallaxMe );
+            self.windowIsBusy = false;
+            self.element.css('top', 0 );
+          }
+        }
+      });
+
+      this.way_stop = new Waypoint({
+        element: self.element,
+        handler: function() {
+          self.maybeParallaxMe();
+          if ( ! self.element.hasClass('parallaxing') ) {
+            self.$_window.on('scroll', self.maybeParallaxMe );
+            self.element.addClass('parallaxing');
+          }else {
+            self.element.removeClass('parallaxing');
+            self.$_window.off('scroll', self.maybeParallaxMe );
+            self.windowIsBusy = false;
+          }
+        },
+        offset: function(){
+          //offset = this.context.innerHeight() - this.adapter.outerHeight();
+          //return - (  offset > 20 /* possible wrong h scrollbar */ ? offset : this.context.innerHeight() );
+          return - this.adapter.outerHeight();
+        }
+      });
+  };
+
+  /*
+  * In order to handle a smooth scroll
+  */
+  Plugin.prototype.maybeParallaxMe = function() {
+      var self = this;
+
+      if ( !this.windowIsBusy ) {
+        this.windowIsBusy = true;
+        czrParallaxRequestAnimationFrame(function() {
+          self.parallaxMe();
+          self.windowIsBusy = false;
+        });
+      }
+  };
+
+  Plugin.prototype.parallaxMe = function() {
+      //parallax only the current slide if in slider context?
+      /*
+      if ( ! ( this.element.hasClass( 'is-selected' ) || this.element.parent( '.is-selected' ).length ) )
+        return;
+      */
+
+      var ratio = this.options.parallaxRatio,
+          parallaxDirection = this.options.parallaxDirection,
+
+          value = ratio * parallaxDirection * ( this.$_document.scrollTop() - this.way_start.triggerPoint );
+
+       this.element.css('top', parallaxDirection * value < 0 ? 0 : value );
+  };
+
+
+  // prevents against multiple instantiations
+  $.fn[pluginName] = function ( options ) {
+      return this.each(function () {
+          if (!$.data(this, 'plugin_' + pluginName)) {
+              $.data(this, 'plugin_' + pluginName,
+              new Plugin( this, options ));
+          }
+      });
+  };
+
+})( jQuery, window, document );// Customizr version of Galambosi's SmoothScroll
 
 // SmoothScroll for websites v1.3.8 (Balazs Galambosi)
 // Licensed under the terms of the MIT license.
@@ -4165,7 +4329,655 @@ var tcOutline;
 	});
   }
 })(document);
-//@global TCParams
+/*!
+Waypoints - 4.0.0
+Copyright © 2011-2015 Caleb Troughton
+Licensed under the MIT license.
+https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
+*/
+(function() {
+  'use strict'
+
+  var keyCounter = 0
+  var allWaypoints = {}
+
+  /* http://imakewebthings.com/waypoints/api/waypoint */
+  function Waypoint(options) {
+    if (!options) {
+      throw new Error('No options passed to Waypoint constructor')
+    }
+    if (!options.element) {
+      throw new Error('No element option passed to Waypoint constructor')
+    }
+    if (!options.handler) {
+      throw new Error('No handler option passed to Waypoint constructor')
+    }
+
+    this.key = 'waypoint-' + keyCounter
+    this.options = Waypoint.Adapter.extend({}, Waypoint.defaults, options)
+    this.element = this.options.element
+    this.adapter = new Waypoint.Adapter(this.element)
+    this.callback = options.handler
+    this.axis = this.options.horizontal ? 'horizontal' : 'vertical'
+    this.enabled = this.options.enabled
+    this.triggerPoint = null
+    this.group = Waypoint.Group.findOrCreate({
+      name: this.options.group,
+      axis: this.axis
+    })
+    this.context = Waypoint.Context.findOrCreateByElement(this.options.context)
+
+    if (Waypoint.offsetAliases[this.options.offset]) {
+      this.options.offset = Waypoint.offsetAliases[this.options.offset]
+    }
+    this.group.add(this)
+    this.context.add(this)
+    allWaypoints[this.key] = this
+    keyCounter += 1
+  }
+
+  /* Private */
+  Waypoint.prototype.queueTrigger = function(direction) {
+    this.group.queueTrigger(this, direction)
+  }
+
+  /* Private */
+  Waypoint.prototype.trigger = function(args) {
+    if (!this.enabled) {
+      return
+    }
+    if (this.callback) {
+      this.callback.apply(this, args)
+    }
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/destroy */
+  Waypoint.prototype.destroy = function() {
+    this.context.remove(this)
+    this.group.remove(this)
+    delete allWaypoints[this.key]
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/disable */
+  Waypoint.prototype.disable = function() {
+    this.enabled = false
+    return this
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/enable */
+  Waypoint.prototype.enable = function() {
+    this.context.refresh()
+    this.enabled = true
+    return this
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/next */
+  Waypoint.prototype.next = function() {
+    return this.group.next(this)
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/previous */
+  Waypoint.prototype.previous = function() {
+    return this.group.previous(this)
+  }
+
+  /* Private */
+  Waypoint.invokeAll = function(method) {
+    var allWaypointsArray = []
+    for (var waypointKey in allWaypoints) {
+      allWaypointsArray.push(allWaypoints[waypointKey])
+    }
+    for (var i = 0, end = allWaypointsArray.length; i < end; i++) {
+      allWaypointsArray[i][method]()
+    }
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/destroy-all */
+  Waypoint.destroyAll = function() {
+    Waypoint.invokeAll('destroy')
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/disable-all */
+  Waypoint.disableAll = function() {
+    Waypoint.invokeAll('disable')
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/enable-all */
+  Waypoint.enableAll = function() {
+    Waypoint.invokeAll('enable')
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/refresh-all */
+  Waypoint.refreshAll = function() {
+    Waypoint.Context.refreshAll()
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/viewport-height */
+  Waypoint.viewportHeight = function() {
+    return window.innerHeight || document.documentElement.clientHeight
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/viewport-width */
+  Waypoint.viewportWidth = function() {
+    return document.documentElement.clientWidth
+  }
+
+  Waypoint.adapters = []
+
+  Waypoint.defaults = {
+    context: window,
+    continuous: true,
+    enabled: true,
+    group: 'default',
+    horizontal: false,
+    offset: 0
+  }
+
+  Waypoint.offsetAliases = {
+    'bottom-in-view': function() {
+      return this.context.innerHeight() - this.adapter.outerHeight()
+    },
+    'right-in-view': function() {
+      return this.context.innerWidth() - this.adapter.outerWidth()
+    }
+  }
+
+  window.Waypoint = Waypoint
+}())
+;(function() {
+  'use strict'
+
+  function requestAnimationFrameShim(callback) {
+    window.setTimeout(callback, 1000 / 60)
+  }
+
+  var keyCounter = 0
+  var contexts = {}
+  var Waypoint = window.Waypoint
+  var oldWindowLoad = window.onload
+
+  /* http://imakewebthings.com/waypoints/api/context */
+  function Context(element) {
+    this.element = element
+    this.Adapter = Waypoint.Adapter
+    this.adapter = new this.Adapter(element)
+    this.key = 'waypoint-context-' + keyCounter
+    this.didScroll = false
+    this.didResize = false
+    this.oldScroll = {
+      x: this.adapter.scrollLeft(),
+      y: this.adapter.scrollTop()
+    }
+    this.waypoints = {
+      vertical: {},
+      horizontal: {}
+    }
+
+    element.waypointContextKey = this.key
+    contexts[element.waypointContextKey] = this
+    keyCounter += 1
+
+    this.createThrottledScrollHandler()
+    this.createThrottledResizeHandler()
+  }
+
+  /* Private */
+  Context.prototype.add = function(waypoint) {
+    var axis = waypoint.options.horizontal ? 'horizontal' : 'vertical'
+    this.waypoints[axis][waypoint.key] = waypoint
+    this.refresh()
+  }
+
+  /* Private */
+  Context.prototype.checkEmpty = function() {
+    var horizontalEmpty = this.Adapter.isEmptyObject(this.waypoints.horizontal)
+    var verticalEmpty = this.Adapter.isEmptyObject(this.waypoints.vertical)
+    if (horizontalEmpty && verticalEmpty) {
+      this.adapter.off('.waypoints')
+      delete contexts[this.key]
+    }
+  }
+
+  /* Private */
+  Context.prototype.createThrottledResizeHandler = function() {
+    var self = this
+
+    function resizeHandler() {
+      self.handleResize()
+      self.didResize = false
+    }
+
+    this.adapter.on('resize.waypoints', function() {
+      if (!self.didResize) {
+        self.didResize = true
+        Waypoint.requestAnimationFrame(resizeHandler)
+      }
+    })
+  }
+
+  /* Private */
+  Context.prototype.createThrottledScrollHandler = function() {
+    var self = this
+    function scrollHandler() {
+      self.handleScroll()
+      self.didScroll = false
+    }
+
+    this.adapter.on('scroll.waypoints', function() {
+      if (!self.didScroll || Waypoint.isTouch) {
+        self.didScroll = true
+        Waypoint.requestAnimationFrame(scrollHandler)
+      }
+    })
+  }
+
+  /* Private */
+  Context.prototype.handleResize = function() {
+    Waypoint.Context.refreshAll()
+  }
+
+  /* Private */
+  Context.prototype.handleScroll = function() {
+    var triggeredGroups = {}
+    var axes = {
+      horizontal: {
+        newScroll: this.adapter.scrollLeft(),
+        oldScroll: this.oldScroll.x,
+        forward: 'right',
+        backward: 'left'
+      },
+      vertical: {
+        newScroll: this.adapter.scrollTop(),
+        oldScroll: this.oldScroll.y,
+        forward: 'down',
+        backward: 'up'
+      }
+    }
+
+    for (var axisKey in axes) {
+      var axis = axes[axisKey]
+      var isForward = axis.newScroll > axis.oldScroll
+      var direction = isForward ? axis.forward : axis.backward
+
+      for (var waypointKey in this.waypoints[axisKey]) {
+        var waypoint = this.waypoints[axisKey][waypointKey]
+        var wasBeforeTriggerPoint = axis.oldScroll < waypoint.triggerPoint
+        var nowAfterTriggerPoint = axis.newScroll >= waypoint.triggerPoint
+        var crossedForward = wasBeforeTriggerPoint && nowAfterTriggerPoint
+        var crossedBackward = !wasBeforeTriggerPoint && !nowAfterTriggerPoint
+        if (crossedForward || crossedBackward) {
+          waypoint.queueTrigger(direction)
+          triggeredGroups[waypoint.group.id] = waypoint.group
+        }
+      }
+    }
+
+    for (var groupKey in triggeredGroups) {
+      triggeredGroups[groupKey].flushTriggers()
+    }
+
+    this.oldScroll = {
+      x: axes.horizontal.newScroll,
+      y: axes.vertical.newScroll
+    }
+  }
+
+  /* Private */
+  Context.prototype.innerHeight = function() {
+    /*eslint-disable eqeqeq */
+    if (this.element == this.element.window) {
+      return Waypoint.viewportHeight()
+    }
+    /*eslint-enable eqeqeq */
+    return this.adapter.innerHeight()
+  }
+
+  /* Private */
+  Context.prototype.remove = function(waypoint) {
+    delete this.waypoints[waypoint.axis][waypoint.key]
+    this.checkEmpty()
+  }
+
+  /* Private */
+  Context.prototype.innerWidth = function() {
+    /*eslint-disable eqeqeq */
+    if (this.element == this.element.window) {
+      return Waypoint.viewportWidth()
+    }
+    /*eslint-enable eqeqeq */
+    return this.adapter.innerWidth()
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-destroy */
+  Context.prototype.destroy = function() {
+    var allWaypoints = []
+    for (var axis in this.waypoints) {
+      for (var waypointKey in this.waypoints[axis]) {
+        allWaypoints.push(this.waypoints[axis][waypointKey])
+      }
+    }
+    for (var i = 0, end = allWaypoints.length; i < end; i++) {
+      allWaypoints[i].destroy()
+    }
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-refresh */
+  Context.prototype.refresh = function() {
+    /*eslint-disable eqeqeq */
+    var isWindow = this.element == this.element.window
+    /*eslint-enable eqeqeq */
+    var contextOffset = isWindow ? undefined : this.adapter.offset()
+    var triggeredGroups = {}
+    var axes
+
+    this.handleScroll()
+    axes = {
+      horizontal: {
+        contextOffset: isWindow ? 0 : contextOffset.left,
+        contextScroll: isWindow ? 0 : this.oldScroll.x,
+        contextDimension: this.innerWidth(),
+        oldScroll: this.oldScroll.x,
+        forward: 'right',
+        backward: 'left',
+        offsetProp: 'left'
+      },
+      vertical: {
+        contextOffset: isWindow ? 0 : contextOffset.top,
+        contextScroll: isWindow ? 0 : this.oldScroll.y,
+        contextDimension: this.innerHeight(),
+        oldScroll: this.oldScroll.y,
+        forward: 'down',
+        backward: 'up',
+        offsetProp: 'top'
+      }
+    }
+
+    for (var axisKey in axes) {
+      var axis = axes[axisKey]
+      for (var waypointKey in this.waypoints[axisKey]) {
+        var waypoint = this.waypoints[axisKey][waypointKey]
+        var adjustment = waypoint.options.offset
+        var oldTriggerPoint = waypoint.triggerPoint
+        var elementOffset = 0
+        var freshWaypoint = oldTriggerPoint == null
+        var contextModifier, wasBeforeScroll, nowAfterScroll
+        var triggeredBackward, triggeredForward
+
+        if (waypoint.element !== waypoint.element.window) {
+          elementOffset = waypoint.adapter.offset()[axis.offsetProp]
+        }
+
+        if (typeof adjustment === 'function') {
+          adjustment = adjustment.apply(waypoint)
+        }
+        else if (typeof adjustment === 'string') {
+          adjustment = parseFloat(adjustment)
+          if (waypoint.options.offset.indexOf('%') > - 1) {
+            adjustment = Math.ceil(axis.contextDimension * adjustment / 100)
+          }
+        }
+
+        contextModifier = axis.contextScroll - axis.contextOffset
+        waypoint.triggerPoint = elementOffset + contextModifier - adjustment
+        wasBeforeScroll = oldTriggerPoint < axis.oldScroll
+        nowAfterScroll = waypoint.triggerPoint >= axis.oldScroll
+        triggeredBackward = wasBeforeScroll && nowAfterScroll
+        triggeredForward = !wasBeforeScroll && !nowAfterScroll
+
+        if (!freshWaypoint && triggeredBackward) {
+          waypoint.queueTrigger(axis.backward)
+          triggeredGroups[waypoint.group.id] = waypoint.group
+        }
+        else if (!freshWaypoint && triggeredForward) {
+          waypoint.queueTrigger(axis.forward)
+          triggeredGroups[waypoint.group.id] = waypoint.group
+        }
+        else if (freshWaypoint && axis.oldScroll >= waypoint.triggerPoint) {
+          waypoint.queueTrigger(axis.forward)
+          triggeredGroups[waypoint.group.id] = waypoint.group
+        }
+      }
+    }
+
+    Waypoint.requestAnimationFrame(function() {
+      for (var groupKey in triggeredGroups) {
+        triggeredGroups[groupKey].flushTriggers()
+      }
+    })
+
+    return this
+  }
+
+  /* Private */
+  Context.findOrCreateByElement = function(element) {
+    return Context.findByElement(element) || new Context(element)
+  }
+
+  /* Private */
+  Context.refreshAll = function() {
+    for (var contextId in contexts) {
+      contexts[contextId].refresh()
+    }
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/context-find-by-element */
+  Context.findByElement = function(element) {
+    return contexts[element.waypointContextKey]
+  }
+
+  window.onload = function() {
+    if (oldWindowLoad) {
+      oldWindowLoad()
+    }
+    Context.refreshAll()
+  }
+
+  Waypoint.requestAnimationFrame = function(callback) {
+    var requestFn = window.requestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      requestAnimationFrameShim
+    requestFn.call(window, callback)
+  }
+  Waypoint.Context = Context
+}())
+;(function() {
+  'use strict'
+
+  function byTriggerPoint(a, b) {
+    return a.triggerPoint - b.triggerPoint
+  }
+
+  function byReverseTriggerPoint(a, b) {
+    return b.triggerPoint - a.triggerPoint
+  }
+
+  var groups = {
+    vertical: {},
+    horizontal: {}
+  }
+  var Waypoint = window.Waypoint
+
+  /* http://imakewebthings.com/waypoints/api/group */
+  function Group(options) {
+    this.name = options.name
+    this.axis = options.axis
+    this.id = this.name + '-' + this.axis
+    this.waypoints = []
+    this.clearTriggerQueues()
+    groups[this.axis][this.name] = this
+  }
+
+  /* Private */
+  Group.prototype.add = function(waypoint) {
+    this.waypoints.push(waypoint)
+  }
+
+  /* Private */
+  Group.prototype.clearTriggerQueues = function() {
+    this.triggerQueues = {
+      up: [],
+      down: [],
+      left: [],
+      right: []
+    }
+  }
+
+  /* Private */
+  Group.prototype.flushTriggers = function() {
+    for (var direction in this.triggerQueues) {
+      var waypoints = this.triggerQueues[direction]
+      var reverse = direction === 'up' || direction === 'left'
+      waypoints.sort(reverse ? byReverseTriggerPoint : byTriggerPoint)
+      for (var i = 0, end = waypoints.length; i < end; i += 1) {
+        var waypoint = waypoints[i]
+        if (waypoint.options.continuous || i === waypoints.length - 1) {
+          waypoint.trigger([direction])
+        }
+      }
+    }
+    this.clearTriggerQueues()
+  }
+
+  /* Private */
+  Group.prototype.next = function(waypoint) {
+    this.waypoints.sort(byTriggerPoint)
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints)
+    var isLast = index === this.waypoints.length - 1
+    return isLast ? null : this.waypoints[index + 1]
+  }
+
+  /* Private */
+  Group.prototype.previous = function(waypoint) {
+    this.waypoints.sort(byTriggerPoint)
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints)
+    return index ? this.waypoints[index - 1] : null
+  }
+
+  /* Private */
+  Group.prototype.queueTrigger = function(waypoint, direction) {
+    this.triggerQueues[direction].push(waypoint)
+  }
+
+  /* Private */
+  Group.prototype.remove = function(waypoint) {
+    var index = Waypoint.Adapter.inArray(waypoint, this.waypoints)
+    if (index > -1) {
+      this.waypoints.splice(index, 1)
+    }
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/first */
+  Group.prototype.first = function() {
+    return this.waypoints[0]
+  }
+
+  /* Public */
+  /* http://imakewebthings.com/waypoints/api/last */
+  Group.prototype.last = function() {
+    return this.waypoints[this.waypoints.length - 1]
+  }
+
+  /* Private */
+  Group.findOrCreate = function(options) {
+    return groups[options.axis][options.name] || new Group(options)
+  }
+
+  Waypoint.Group = Group
+}())
+;(function() {
+  'use strict'
+
+  var $ = window.jQuery
+  var Waypoint = window.Waypoint
+
+  function JQueryAdapter(element) {
+    this.$element = $(element)
+  }
+
+  $.each([
+    'innerHeight',
+    'innerWidth',
+    'off',
+    'offset',
+    'on',
+    'outerHeight',
+    'outerWidth',
+    'scrollLeft',
+    'scrollTop'
+  ], function(i, method) {
+    JQueryAdapter.prototype[method] = function() {
+      var args = Array.prototype.slice.call(arguments)
+      return this.$element[method].apply(this.$element, args)
+    }
+  })
+
+  $.each([
+    'extend',
+    'inArray',
+    'isEmptyObject'
+  ], function(i, method) {
+    JQueryAdapter[method] = $[method]
+  })
+
+  Waypoint.adapters.push({
+    name: 'jquery',
+    Adapter: JQueryAdapter
+  })
+  Waypoint.Adapter = JQueryAdapter
+}())
+;(function() {
+  'use strict'
+
+  var Waypoint = window.Waypoint
+
+  function createExtension(framework) {
+    return function() {
+      var waypoints = []
+      var overrides = arguments[0]
+
+      if (framework.isFunction(arguments[0])) {
+        overrides = framework.extend({}, arguments[1])
+        overrides.handler = arguments[0]
+      }
+
+      this.each(function() {
+        var options = framework.extend({}, overrides, {
+          element: this
+        })
+        if (typeof options.context === 'string') {
+          options.context = framework(this).closest(options.context)[0]
+        }
+        waypoints.push(new Waypoint(options))
+      })
+
+      return waypoints
+    }
+  }
+
+  if (window.jQuery) {
+    window.jQuery.fn.waypoint = createExtension(window.jQuery)
+  }
+  if (window.Zepto) {
+    window.Zepto.fn.waypoint = createExtension(window.Zepto)
+  }
+}())
+;//@global TCParams
 var czrapp = czrapp || {};
 
 (function($, czrapp) {
@@ -4502,7 +5314,7 @@ var czrapp = czrapp || {};
         $( _where ).imgSmartLoad(
           _.size( TCParams.imgSmartLoadOpts.opts ) > 0 ? TCParams.imgSmartLoadOpts.opts : {}
         );
-    
+
       //If the centerAllImg is on we have to ensure imgs will be centered when simple loaded,
       //for this purpose we have to trigger the simple-load on:
       //1) imgs which have been excluded from the smartloading if enabled
@@ -4510,15 +5322,15 @@ var czrapp = czrapp || {};
       //simple-load event on holders needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
       if ( 1 == TCParams.centerAllImg ) {
         var self                   = this,
-            $_to_center            = smartLoadEnabled ? 
+            $_to_center            = smartLoadEnabled ?
                $( _.filter( $( _where ).find('img'), function( img ) {
                   return $(img).is(TCParams.imgSmartLoadOpts.opts.excludeImg.join());
-                }) ): //filter 
+                }) ): //filter
                 $( _where ).find('img');
             $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
-                return $(img).hasClass('tc-holder-img'); 
+                return $(img).hasClass('tc-holder-img');
             }) );
-        
+
         //imgs to center with delay
         setTimeout( function(){
           self.triggerSimpleLoad( $_to_center_with_delay );
@@ -4596,7 +5408,7 @@ var czrapp = czrapp || {};
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
         //centering per slider
-        $.each( $( '.carousel .carousel-inner') , function() {  
+        $.each( $( '.carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == TCParams.centerSliderImg,
             imgSel : '.item .carousel-image img',
@@ -4611,7 +5423,7 @@ var czrapp = czrapp || {};
           setTimeout( function() {
               $( self ).prevAll('.tc-slider-loader-wrapper').fadeOut();
           }, 500 );
-        });  
+        });
       } , 50);
 
       //Featured Pages
@@ -4632,8 +5444,8 @@ var czrapp = czrapp || {};
         oncustom : ['smartload', 'simple_load']
       });
 
-      //rectangulars
-      $('.tc-rectangular-thumb').centerImages( {
+      //rectangulars in post lists
+      $('.tc-rectangular-thumb', '.tc-post-list-context' ).centerImages( {
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : true,
         goldenRatioVal : TCParams.goldenRatio || 1.618,
@@ -4658,6 +5470,18 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : TCParams.gridGoldenRatioLimit || 350
       } );
     },//center_images
+
+    /**
+    * PARALLAX
+    * @return {void}
+    */
+    parallax : function() {
+      $( '.parallax-item' ).czrParallax(
+      {
+        parallaxRatio : 0.55
+      }
+      );
+    },
 
   };//_methods{}
 
@@ -4815,11 +5639,11 @@ var czrapp = czrapp || {};
         break;
       }
     },//eventHandler
- 
+
     //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
     outline: function() {
-      if ( czrapp.$_body.hasClass( 'mozilla' ) )
-        tcOutline();
+      if ( czrapp.$_body.hasClass( 'mozilla' ) && 'function' == typeof( tcOutline ) )
+          tcOutline();
     },
 
     //SMOOTH SCROLL
@@ -4843,10 +5667,10 @@ var czrapp = czrapp || {};
       _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
       if ( _deep_excl )
         _links = _.toArray($_links).filter( function ( _el ) {
-          return ( 2 == ( ['ids', 'classes'].filter( 
-                        function( sel_type) { 
-                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type); 
-                        } ) ).length 
+          return ( 2 == ( ['ids', 'classes'].filter(
+                        function( sel_type) {
+                            return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
+                        } ) ).length
                 );
         });
       $(_links).click( function () {
@@ -4991,14 +5815,14 @@ var czrapp = czrapp || {};
 
       //both conain iframes => do nothing
       if ( leftIframe && contentIframe )
-        return;    
+        return;
 
       if ( that.$_left.length ) {
         if ( leftIframe )
           that.$_content[ _sidebarLayout === 'normal' ?  'insertAfter' : 'insertBefore']( that.$_left );
         else
           that.$_left[ _sidebarLayout === 'normal' ?  'insertBefore' : 'insertAfter']( that.$_content );
-      } 
+      }
     },
 
     //Handle dropdown on click for multi-tier menus
@@ -5131,7 +5955,7 @@ var czrapp = czrapp || {};
     },
 
     //Helpers
-    
+
     //Check if the passed element(s) contains an iframe
     //@return list of containers
     //@param $_elements = mixed
@@ -6011,7 +6835,7 @@ var czrapp = czrapp || {};
 jQuery(function ($) {
   var toLoad = {
     BrowserDetect : [],
-    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox'],
+    Czr_Plugins : ['centerImagesWithDelay', 'imgSmartLoad' , 'dropCaps', 'extLinks' , 'fancyBox', 'parallax'],
     Czr_Slider : ['fireSliders', 'manageHoverClass', 'centerSliderArrows', 'addSwipeSupport', 'sliderTriggerSimpleLoad'],
     //DropdownPlace is here to ensure is loaded before UserExperience's secondMenuRespActions
     //this will simplify the checks on whether or not move dropdowns at start

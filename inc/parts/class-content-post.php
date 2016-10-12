@@ -96,9 +96,10 @@ if ( ! class_exists( 'TC_post' ) ) :
       ob_start();
       do_action( '__before_content' );
         ?>
-          <section class="entry-content <?php echo $icon_class ?>">
+          <section class="<?php echo implode( ' ', apply_filters( 'tc_single_post_section_class', array( 'entry-content' ) ) ); ?> <?php echo $icon_class ?>">
               <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
               <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
+              <?php do_action( '__after_single_entry_inner' ); ?>
           </section><!-- .entry-content -->
         <?php
       do_action( '__after_content' );

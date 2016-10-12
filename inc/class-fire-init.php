@@ -548,7 +548,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       */
       function tc_get_style_src( $_wot = 'skin' ) {
         $_sheet    = ( 'skin' == $_wot ) ? esc_attr( TC_utils::$inst->tc_opt( 'tc_skin' ) ) : 'tc_common.css';
-        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet ); 
+        $_sheet    = $this -> tc_maybe_use_min_style( $_sheet );
 
         //Finds the good path : are we in a child theme and is there a skin to override?
         $remote_path    = ( TC___::$instance -> tc_is_child() && file_exists(TC_BASE_CHILD .'inc/assets/css/' . $_sheet) ) ? TC_BASE_URL_CHILD .'inc/assets/css/' : false ;
@@ -576,7 +576,7 @@ if ( ! class_exists( 'TC_init' ) ) :
       *
       * Returns the min or normal version of the passed css filename (basename.type)
       * depending on whether or not the minified version should be used
-      *  
+      *
       * @param $_sheet string
       *
       * @return string

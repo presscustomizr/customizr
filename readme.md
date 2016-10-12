@@ -1,4 +1,4 @@
-# Customizr v3.4.22 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.4.23 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,12 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.23 September 14th 2016 =
+* added : a parallax scrolling option for sliders. Enabled by default.
+* added : the waypoint js library (v4.0.0)
+* changed : slide loader icon is enabled by default
+* fixed : center the rectangular thumbs with golden ration only in post lists, not in single posts
+
 = 3.4.22 August 23rd 2016 =
 * Fix: tinymce custom style conflicts (detected with the ACF WP plugin ) with tinymce 4.x api. Fixes #626
 * Fix : customizer terms array (categories/tags pickers options) not being updated on term delettion. fixes #620

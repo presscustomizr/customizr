@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.4.22\n"
-"POT-Creation-Date: 2016-01-23 15:14+0100\n"
-"PO-Revision-Date: 2016-01-23 15:14+0100\n"
+"Project-Id-Version: * Customizr v3.4.23\n"
+"POT-Creation-Date: 2016-08-31 17:22+0200\n"
+"PO-Revision-Date: 2016-08-31 17:23+0200\n"
 "Last-Translator: Tommy Wikstrom <tommy.wikstrom@gmail.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -17,64 +17,64 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: admin/class-admin-customize.php:88
+#: admin/class-admin-customize.php:85
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
-#: admin/class-admin-customize.php:124
+#: admin/class-admin-customize.php:121
 msgid "Assign menus to locations"
 msgstr ""
 
-#: admin/class-admin-customize.php:134
+#: admin/class-admin-customize.php:131
 #, php-format
 msgid ""
 "You haven't created any menu yet. %s or check the %s to learn more about "
 "menus."
 msgstr ""
 
-#: admin/class-admin-customize.php:135
+#: admin/class-admin-customize.php:132
 msgid "Create a new menu now"
 msgstr ""
 
-#: admin/class-admin-customize.php:136 class-fire-utils_settings_map.php:1454
+#: admin/class-admin-customize.php:133 class-fire-utils_settings_map.php:1507
 #: parts/class-content-post.php:209
 msgid "WordPress documentation"
 msgstr ""
 
-#: admin/class-admin-customize.php:153
+#: admin/class-admin-customize.php:150
 msgid "SITE ICON"
 msgstr ""
 
-#: admin/class-admin-customize.php:346
+#: admin/class-admin-customize.php:363
 msgid "More grid design options"
 msgstr "Fler alternativ för tabell-design"
 
-#: admin/class-admin-customize.php:454
+#: admin/class-admin-customize.php:471
 msgid ""
 "This option generates a home page slider based on your last posts, starting "
 "from the most recent or the featured (sticky) post(s) if any."
 msgstr ""
 
-#: admin/class-admin-customize.php:455
+#: admin/class-admin-customize.php:472
 msgid ""
 "Your favicon is currently handled with an old method and will not be "
 "properly displayed on all devices. You might consider to re-upload your "
 "favicon with the new control below."
 msgstr ""
 
-#: admin/class-admin-customize.php:526
+#: admin/class-admin-customize.php:528
 msgid "dismiss"
 msgstr ""
 
-#: admin/class-admin-customize.php:529
+#: admin/class-admin-customize.php:531
 msgid "Hi! This is"
 msgstr "Hej! Detta är"
 
-#: admin/class-admin-customize.php:531
+#: admin/class-admin-customize.php:533
 msgid ", developer of the Customizr theme"
 msgstr ", utvecklare av Customizr temat"
 
-#: admin/class-admin-customize.php:534
+#: admin/class-admin-customize.php:536
 msgid ""
 "I'm doing my best to make Customizr the perfect free theme for you. If you "
 "think it helped you in any way to build a better web presence, please "
@@ -85,11 +85,11 @@ msgstr ""
 "webbnärvaro, vänligen stöd dess fortsatta utveckling med en donation på $20, "
 "$50..."
 
-#: admin/class-admin-customize.php:539
+#: admin/class-admin-customize.php:541
 msgid "Make a donation for Customizr"
 msgstr "Gör en donation till Customizr"
 
-#: admin/class-admin-customize.php:542
+#: admin/class-admin-customize.php:544
 msgid ""
 "Once clicked the 'Hide forever' button, this donation block will not be "
 "displayed anymore.<br/>Either you are using Customizr for personal or "
@@ -103,85 +103,85 @@ msgstr ""
 "detta kostnadsfria tema.<br/><strong>Redan donator? Tack, du är en klippa!"
 "<br/><br/>Lev länge och ha framgång med Customizr!</strong>"
 
-#: admin/class-admin-customize.php:543
+#: admin/class-admin-customize.php:545
 msgid "Hide forever"
 msgstr "Dölj för alltid"
 
-#: admin/class-admin-customize.php:544
+#: admin/class-admin-customize.php:546
 msgid "Let me think twice"
 msgstr "Låt mig tänka över det"
 
-#: admin/class-admin-customize.php:554 admin/class-admin-customize.php:565
-#: admin/class-admin-customize.php:576 admin/class-admin-customize.php:590
-#: admin/class-admin-customize.php:604 admin/class-admin-customize.php:616
+#: admin/class-admin-customize.php:556 admin/class-admin-customize.php:567
+#: admin/class-admin-customize.php:578 admin/class-admin-customize.php:592
+#: admin/class-admin-customize.php:606 admin/class-admin-customize.php:618
 msgid "Upgrade to Customizr Pro"
 msgstr ""
 
-#: admin/class-admin-customize.php:563
+#: admin/class-admin-customize.php:565
 msgid ""
 "Need more control on your fonts ? Style any text in live preview ( size, "
 "color, font family, effect, ...) with Customizr Pro."
 msgstr ""
 
-#: admin/class-admin-customize.php:574
+#: admin/class-admin-customize.php:576
 msgid "Add unlimited featured pages with Customizr Pro."
 msgstr ""
 
-#: admin/class-admin-customize.php:586
+#: admin/class-admin-customize.php:588
 msgid ""
 "Rediscover the beauty of your blog posts and increase your visitors "
 "engagement with the Grid Customizer."
 msgstr ""
 
-#: admin/class-admin-customize.php:587
+#: admin/class-admin-customize.php:589
 msgid "Try it in the demo"
 msgstr ""
 
-#: admin/class-admin-customize.php:600
+#: admin/class-admin-customize.php:602
 msgid "Add creative and engaging reveal animations to your side menu."
 msgstr ""
 
-#: admin/class-admin-customize.php:601
+#: admin/class-admin-customize.php:603
 msgid "Side menu animation demo"
 msgstr ""
 
-#: admin/class-admin-customize.php:614
+#: admin/class-admin-customize.php:616
 msgid "Customize your footer credits with Customizr Pro."
 msgstr ""
 
-#: admin/class-admin-customize.php:625
+#: admin/class-admin-customize.php:627
 msgid "If you like"
 msgstr "Om du tycker"
 
-#: admin/class-admin-customize.php:626
+#: admin/class-admin-customize.php:628
 msgid "the Customizr theme"
 msgstr "om Customizr-temat"
 
-#: admin/class-admin-customize.php:626
+#: admin/class-admin-customize.php:628
 msgid "the Customizr pro theme"
 msgstr "om Customizr Pro temat"
 
-#: admin/class-admin-customize.php:627
+#: admin/class-admin-customize.php:629
 msgid "we would love to receive a"
 msgstr "uppskattar vi att få ett"
 
-#: admin/class-admin-customize.php:629
+#: admin/class-admin-customize.php:631
 msgid "Review the Customizr theme"
 msgstr "Betygsätt Customizr-temat "
 
-#: admin/class-admin-customize.php:631
+#: admin/class-admin-customize.php:633
 msgid "rating. Thanks :) !"
 msgstr "betyg. Tack :-) !"
 
-#: admin/class-admin-customize.php:647 admin/class-admin-customize.php:648
+#: admin/class-admin-customize.php:649 admin/class-admin-customize.php:650
 msgid "Upgrade WP"
 msgstr "Uppgradera WP"
 
-#: admin/class-admin-customize.php:667
+#: admin/class-admin-customize.php:669
 msgid "This theme requires WordPress 3.4+"
 msgstr "Detta tema kräver WordPress 3.4+"
 
-#: admin/class-admin-customize.php:670 admin/class-admin-customize.php:671
+#: admin/class-admin-customize.php:672 admin/class-admin-customize.php:673
 msgid "Upgrade Wordpress Now"
 msgstr "Uppgradera WordPress nu"
 
@@ -239,8 +239,8 @@ msgstr "denna sida"
 msgid "this post"
 msgstr "detta inlägg"
 
-#: admin/class-admin-meta_boxes.php:176 class-fire-utils_settings_map.php:846
-#: class-fire-utils_settings_map.php:851
+#: admin/class-admin-meta_boxes.php:176 class-fire-utils_settings_map.php:880
+#: class-fire-utils_settings_map.php:885 class-fire-utils_settings_map.php:2194
 msgid "here"
 msgstr "här"
 
@@ -393,12 +393,12 @@ msgstr "Knapptext"
 msgid "Link"
 msgstr ""
 
-#: admin/class-admin-meta_boxes.php:922 parts/class-content-breadcrumb.php:645
-#: parts/class-content-breadcrumb.php:678
-#: parts/class-content-breadcrumb.php:693
-#: parts/class-content-breadcrumb.php:721 parts/class-content-comments.php:196
-#: parts/class-content-featured_pages.php:252
-#: parts/class-content-headings.php:238 parts/class-content-slider.php:920
+#: admin/class-admin-meta_boxes.php:922 parts/class-content-breadcrumb.php:648
+#: parts/class-content-breadcrumb.php:681
+#: parts/class-content-breadcrumb.php:696
+#: parts/class-content-breadcrumb.php:724 parts/class-content-comments.php:198
+#: parts/class-content-featured_pages.php:258
+#: parts/class-content-headings.php:241 parts/class-content-slider.php:925
 msgid "Edit"
 msgstr "Redigera"
 
@@ -429,31 +429,31 @@ msgstr ""
 msgid "Slider documentation"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:329
+#: admin/class-fire-admin_init.php:320
 msgid "Good, you've just upgraded to"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:331
+#: admin/class-fire-admin_init.php:322
 msgid "version"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:340
+#: admin/class-fire-admin_init.php:331
 msgid "We'd like to introduce the new features we've been working on."
 msgstr ""
 
-#: admin/class-fire-admin_init.php:342
+#: admin/class-fire-admin_init.php:333
 msgid "Read the latest release notes"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:344
+#: admin/class-fire-admin_init.php:335
 msgid "Visit the demo"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:350
+#: admin/class-fire-admin_init.php:341
 msgid "I already know what's new thanks !"
 msgstr ""
 
-#: admin/class-fire-admin_init.php:351
+#: admin/class-fire-admin_init.php:342
 msgid "close"
 msgstr ""
 
@@ -474,7 +474,7 @@ msgstr ""
 msgid "The best way to start is to read the %s."
 msgstr ""
 
-#: admin/class-fire-admin_page.php:93 admin/class-fire-admin_page.php:137
+#: admin/class-fire-admin_page.php:93 admin/class-fire-admin_page.php:139
 #: parts/class-header-menu.php:393
 msgid "documentation"
 msgstr ""
@@ -508,39 +508,43 @@ msgid "Check the FAQ"
 msgstr "Kontrollera FAQ"
 
 #: admin/class-fire-admin_page.php:116
-msgid "Code snippets"
-msgstr "Kodsnuttar"
+msgid "Code snippets for developers"
+msgstr ""
 
-#: admin/class-fire-admin_page.php:119
-msgid "Get support in the forum"
-msgstr "Få hjälp i forumet"
+#: admin/class-fire-admin_page.php:120
+msgid "Get support"
+msgstr ""
 
-#: admin/class-fire-admin_page.php:129
+#: admin/class-fire-admin_page.php:120
+msgid "Get help in the free support forum"
+msgstr ""
+
+#: admin/class-fire-admin_page.php:131
 #, php-format
 msgid "Thank you for using %s!"
 msgstr ""
 
-#: admin/class-fire-admin_page.php:130
+#: admin/class-fire-admin_page.php:132
 #, php-format
 msgid ""
 "%s %s has more features, is safer and more stable than ever to help you "
 "designing an awesome website."
 msgstr ""
 
-#: admin/class-fire-admin_page.php:131
+#: admin/class-fire-admin_page.php:133
 msgid "check the changelog"
 msgstr ""
 
-#: admin/class-fire-admin_page.php:135
+#: admin/class-fire-admin_page.php:137
 #, php-format
 msgid "The best way to start with %s is to read the %s and visit the %s."
 msgstr ""
 
-#: admin/class-fire-admin_page.php:138
+#: admin/class-fire-admin_page.php:140
 msgid "demo website"
 msgstr ""
 
-#: admin/class-fire-admin_page.php:152
+#: admin/class-fire-admin_page.php:154
 #, php-format
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
@@ -549,11 +553,11 @@ msgstr ""
 "Du använder ett barn tema Customizr %1$s: kontrollera alltid %2$s efter "
 "uppgradering för att se om en funktion eller en mall har utfasats."
 
-#: admin/class-fire-admin_page.php:169
+#: admin/class-fire-admin_page.php:171
 msgid "We need sponsors!"
 msgstr "Vi behöver sponsorer!"
 
-#: admin/class-fire-admin_page.php:170
+#: admin/class-fire-admin_page.php:172
 msgid ""
 "<strong>We do our best do make Customizr the perfect free theme for you!</"
 "strong><br/> Please help support it's continued development with a donation "
@@ -563,11 +567,11 @@ msgstr ""
 "gratistemat för dig! </ strong> <br/> Snälla bidra till att stödja den "
 "fortsatta utvecklingen med en donation på €20, €50, eller till och med €100."
 
-#: admin/class-fire-admin_page.php:177
+#: admin/class-fire-admin_page.php:179
 msgid "Happy user of Customizr?"
 msgstr "Lycklig användare av Customizr?"
 
-#: admin/class-fire-admin_page.php:178
+#: admin/class-fire-admin_page.php:180
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -575,23 +579,23 @@ msgstr ""
 "Om du är nöjd med temat, säg det på wordpress.org och ge Customizr en "
 "trevlig recension! <br /> (Vi är beroende av era återkopplingar ...)"
 
-#: admin/class-fire-admin_page.php:183
+#: admin/class-fire-admin_page.php:185
 msgid "Follow us"
 msgstr "Följ oss"
 
-#: admin/class-fire-admin_page.php:193
+#: admin/class-fire-admin_page.php:195
 msgid "Go Customizr Pro"
 msgstr ""
 
-#: admin/class-fire-admin_page.php:196
+#: admin/class-fire-admin_page.php:198
 msgid "Visit the extension's page"
 msgstr "Besök påbyggnadssidan"
 
-#: admin/class-fire-admin_page.php:197
+#: admin/class-fire-admin_page.php:199
 msgid "Easily take your web design one step further"
 msgstr "Ta lätt din webbdesign ett steg längre"
 
-#: admin/class-fire-admin_page.php:199
+#: admin/class-fire-admin_page.php:201
 msgid ""
 "The Customizr Pro WordPress theme allows anyone to create a beautiful, "
 "professional and fully responsive website in a few seconds. In the Pro "
@@ -599,23 +603,23 @@ msgid ""
 "cool and even revolutionary ones."
 msgstr ""
 
-#: admin/class-fire-admin_page.php:202
+#: admin/class-fire-admin_page.php:204
 msgid "Discover Customizr Pro"
 msgstr "Upptäck Customizr Pro"
 
-#: admin/class-fire-admin_page.php:209
+#: admin/class-fire-admin_page.php:211
 msgid "Customizr Showcase"
 msgstr "Customizr Showcase"
 
-#: admin/class-fire-admin_page.php:212 admin/class-fire-admin_page.php:219
+#: admin/class-fire-admin_page.php:214 admin/class-fire-admin_page.php:221
 msgid "Visit the showcase"
 msgstr "Besök vår showcase"
 
-#: admin/class-fire-admin_page.php:213
+#: admin/class-fire-admin_page.php:215
 msgid "Find inspiration for your next Customizr based website!"
 msgstr "Hitta inspiration till din nästa Customizr baserad webbplats!"
 
-#: admin/class-fire-admin_page.php:214
+#: admin/class-fire-admin_page.php:216
 msgid ""
 "This showcase aims to show what can be done with Customizr and helping other "
 "users to find inspiration for their web design."
@@ -623,7 +627,7 @@ msgstr ""
 "Denna presentation syftar till att visa vad som kan göras med Customizr och "
 "hjälpa andra användare att hitta inspiration till sin webbdesign."
 
-#: admin/class-fire-admin_page.php:216
+#: admin/class-fire-admin_page.php:218
 msgid ""
 "Do you think you made an awesome website that can inspire people? Submitting "
 "a site for review is quick and easy to do."
@@ -631,28 +635,28 @@ msgstr ""
 "Tror du att du gjort en fantastisk hemsida som kan inspirera människor? "
 "Skicka in en webbplats för granskning är snabb och enkel att göra."
 
-#: admin/class-fire-admin_page.php:228
+#: admin/class-fire-admin_page.php:230
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Gå till Adminpanel &rarr; Hem"
 
-#: admin/class-fire-admin_page.php:228
+#: admin/class-fire-admin_page.php:230
 msgid "Go to Dashboard"
 msgstr "Gå till Adminpanel"
 
-#: admin/class-fire-admin_page.php:286
+#: admin/class-fire-admin_page.php:288
 #, php-format
 msgid "Changelog in version %1$s"
 msgstr "Ändringslogg för version %1$s"
 
-#: admin/class-fire-admin_page.php:303
+#: admin/class-fire-admin_page.php:305
 msgid "System Informations"
 msgstr "Systeminformation"
 
-#: admin/class-fire-admin_page.php:304
+#: admin/class-fire-admin_page.php:306
 msgid "Please include the following informations when posting support requests"
 msgstr "Vänligen inkludera följande information när du skickar supportärenden"
 
-#: admin/class-fire-admin_page.php:305
+#: admin/class-fire-admin_page.php:307
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -672,11 +676,11 @@ msgstr "Behöver du hjälp att skapa en slider?"
 msgid "Check the documentation"
 msgstr "Läs dokumentationen"
 
-#: admin/class-tc-controls-settings.php:376
+#: admin/class-tc-controls-settings.php:581
 msgid "Upload"
 msgstr "Ladda upp"
 
-#: admin/class-tc-controls-settings.php:377
+#: admin/class-tc-controls-settings.php:582
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -888,50 +892,74 @@ msgstr "Följ mig på LinkedIn"
 msgid "LinkedIn profile url"
 msgstr "LinkedIn profil url"
 
+#: class-fire-init.php:265
+msgid "Follow me on VKontakte"
+msgstr ""
+
+#: class-fire-init.php:266
+msgid "VKontakte profile url"
+msgstr ""
+
 #: class-fire-init.php:270
+msgid "Follow me on Yelp"
+msgstr ""
+
+#: class-fire-init.php:271
+msgid "Yelp profile url"
+msgstr ""
+
+#: class-fire-init.php:275
+msgid "Follow me on Xing"
+msgstr ""
+
+#: class-fire-init.php:276
+msgid "Xing profile url"
+msgstr ""
+
+#: class-fire-init.php:285
 msgid "Left Sidebar"
 msgstr "Vänster sidofält"
 
-#: class-fire-init.php:271 class-fire-init.php:275
+#: class-fire-init.php:286 class-fire-init.php:290
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Visas i inlägg, statiska sidor, arkiv och söksidor"
 
-#: class-fire-init.php:274
+#: class-fire-init.php:289
 msgid "Right Sidebar"
 msgstr "Höger sidofält"
 
-#: class-fire-init.php:282
+#: class-fire-init.php:297
 msgid "Footer Widget Area One"
 msgstr "Sidfot widget område ett"
 
-#: class-fire-init.php:283 class-fire-init.php:287 class-fire-init.php:291
+#: class-fire-init.php:298 class-fire-init.php:302 class-fire-init.php:306
 msgid "Just use it as you want !"
 msgstr "Använd den som du vill!"
 
-#: class-fire-init.php:286
+#: class-fire-init.php:301
 msgid "Footer Widget Area Two"
 msgstr "Sidfot widget område två"
 
-#: class-fire-init.php:290
+#: class-fire-init.php:305
 msgid "Footer Widget Area Three"
 msgstr "Sidfot widget område tre"
 
-#: class-fire-init.php:308
+#: class-fire-init.php:323
 msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
 msgstr ""
 "Tala sanning i tider av universellt bedrägeri är en revolutionär handling."
 
-#: class-fire-init.php:309
+#: class-fire-init.php:324
 msgid "George Orwell"
 msgstr "George Orwell"
 
-#: class-fire-init.php:310
+#: class-fire-init.php:325
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
 "Ledsen, men den begärda sidan kan inte hittas. Du kan prova en sökning nedan."
 
-#: class-fire-init.php:315
+#: class-fire-init.php:330
 msgid ""
 "Success is the ability to go from one failure to another with no loss of "
 "enthusiasm..."
@@ -939,11 +967,11 @@ msgstr ""
 "Framgång är förmågan att gå från ett misslyckande till ett annat med "
 "bibehållen entusiasm..."
 
-#: class-fire-init.php:316
+#: class-fire-init.php:331
 msgid "Sir Winston Churchill"
 msgstr "Sir Winston Churchill"
 
-#: class-fire-init.php:317
+#: class-fire-init.php:332
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
@@ -951,11 +979,11 @@ msgstr ""
 "Tyvärr, men ingenting matchade dina sökkriterier. Vänligen försök igen med "
 "några andra nyckelord."
 
-#: class-fire-init.php:332
+#: class-fire-init.php:347
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr är ett rent responsivt tema"
 
-#: class-fire-init.php:346
+#: class-fire-init.php:361
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -963,19 +991,19 @@ msgstr ""
 "Många alternativ för layout och design är tillgängliga från WordPress "
 "Customizer skärmen: se dina ändringar live!"
 
-#: class-fire-init.php:521
+#: class-fire-init.php:536
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: class-fire-init.php:522
+#: class-fire-init.php:537
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: class-fire-init.php:686
+#: class-fire-init.php:721
 msgid "Help"
 msgstr "Hjälp"
 
-#: class-fire-init.php:689
+#: class-fire-init.php:724
 msgid "Need help with Customizr? Click here!"
 msgstr "Behöver du hjälp med Customizr? Klicka här!"
 
@@ -998,7 +1026,7 @@ msgstr ""
 
 #: class-fire-placeholders.php:215 parts/class-content-featured_pages.php:48
 #: parts/class-content-post.php:213 parts/class-content-sidebar.php:155
-#: parts/class-content-slider.php:1020 parts/class-footer-footer_main.php:159
+#: parts/class-content-slider.php:1028 parts/class-footer-footer_main.php:159
 #: parts/class-header-menu.php:115 parts/class-header-menu.php:370
 #: parts/class-header-menu.php:397
 msgid "dismiss notice"
@@ -1012,23 +1040,11 @@ msgstr ""
 msgid "Posts slider button text"
 msgstr ""
 
-#: class-fire-plugins_compat.php:987
-msgid "WooCommerce options"
-msgstr ""
-
-#: class-fire-plugins_compat.php:988
-msgid "WooCommerce settings for the Customizr theme."
-msgstr ""
-
-#: class-fire-plugins_compat.php:998
-msgid "Header Cart"
-msgstr ""
-
-#: class-fire-plugins_compat.php:1031
+#: class-fire-plugins_compat.php:1021
 msgid "View your shopping cart"
 msgstr ""
 
-#: class-fire-utils.php:532
+#: class-fire-utils.php:534
 #, php-format
 msgid "Page %s"
 msgstr "Sida %s"
@@ -1041,53 +1057,53 @@ msgstr "Logga-uppladdning (supportade format : .jpg, .png, .gif, .svg, .svgz)"
 msgid "LOGO"
 msgstr "LOGGA"
 
-#: class-fire-utils_settings_map.php:159
+#: class-fire-utils_settings_map.php:165
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Tvinga logotyp dimensioner till max-bredd: 250px och max-höjd: 100px"
 
-#: class-fire-utils_settings_map.php:163
+#: class-fire-utils_settings_map.php:169
 msgid "Uncheck this option to keep your original logo dimensions."
 msgstr ""
 "Avmarkera detta alternativ för att behålla dina ursprungliga logotypmått."
 
-#: class-fire-utils_settings_map.php:167
+#: class-fire-utils_settings_map.php:173
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr ""
 "Uppladdning av Förankrad Logga (format som stöds : .jpg, .png, .gif, .svg, ."
 "svgz)"
 
-#: class-fire-utils_settings_map.php:171
+#: class-fire-utils_settings_map.php:184
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 "Använd denna uppladdningskontroll för att ange en annan logga i förankrat "
 "sidhuvud läge."
 
-#: class-fire-utils_settings_map.php:177
+#: class-fire-utils_settings_map.php:190
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Favicon uppladdning (supportade format : .ico, .png, .gif)"
 
-#: class-fire-utils_settings_map.php:178
+#: class-fire-utils_settings_map.php:191
 msgid "FAVICON"
 msgstr "FAVICON"
 
-#: class-fire-utils_settings_map.php:195
+#: class-fire-utils_settings_map.php:208
 msgid "Choose a predefined skin"
 msgstr "Välj ett fördefinierat skal"
 
-#: class-fire-utils_settings_map.php:200
+#: class-fire-utils_settings_map.php:213
 msgid "Disabled if the random option is on."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:205
+#: class-fire-utils_settings_map.php:218
 msgid "Randomize the skin"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:208
+#: class-fire-utils_settings_map.php:221
 msgid "Apply a random color skin on each page load."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:222
+#: class-fire-utils_settings_map.php:235
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
@@ -1095,7 +1111,7 @@ msgstr ""
 "Välj ett vackert typsnittspar (rubriker &amp; fördefinierat typsnitt) eller "
 "enbart ett typsnitt för din hemsida."
 
-#: class-fire-utils_settings_map.php:229
+#: class-fire-utils_settings_map.php:242
 msgid ""
 "This font picker allows you to preview and select among a handy selection of "
 "font pairs and single fonts. If you choose a pair, the first font will be "
@@ -1109,11 +1125,11 @@ msgstr ""
 "hemsidenamn, överskrifter h1, h2, h3, medan det andra kommer att vara "
 "fördefinierat typsnitt på din hemsida för alla texter och avsnitt."
 
-#: class-fire-utils_settings_map.php:234
+#: class-fire-utils_settings_map.php:247
 msgid "Set your website default font size in pixels."
 msgstr "Ange din hemsidas fördefinierade typsnitts storlek i pixlar."
 
-#: class-fire-utils_settings_map.php:242
+#: class-fire-utils_settings_map.php:255
 msgid ""
 "This option sets the default font size applied to any text element of your "
 "website, when no font size is already applied."
@@ -1121,11 +1137,11 @@ msgstr ""
 "Detta alternativ ställer in den fördefinierade typsnittsstorleken för varje "
 "textelement på din hemsida, när ingen annan typsnittsstorlek redan tillämpas."
 
-#: class-fire-utils_settings_map.php:264
+#: class-fire-utils_settings_map.php:277
 msgid "Smooth scroll on click"
 msgstr "Mjukrullning vid klick"
 
-#: class-fire-utils_settings_map.php:267
+#: class-fire-utils_settings_map.php:280
 msgid ""
 "If enabled, this option activates a smooth page scroll when clicking on a "
 "link to an anchor of the same page."
@@ -1133,40 +1149,40 @@ msgstr ""
 "Om påslaget, så kommer detta val att aktivera mjukrullning när man klickar "
 "på en länk till ett ankare på samma sida."
 
-#: class-fire-utils_settings_map.php:267
+#: class-fire-utils_settings_map.php:280
 msgid "Important note"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:267
+#: class-fire-utils_settings_map.php:280
 msgid ""
 "this option can create conflicts with some plugins, make sure that your "
 "plugins features (if any) are working fine after enabling this option."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:272
+#: class-fire-utils_settings_map.php:285
 msgid "Fade effect on link hover"
 msgstr "Toningseffekt vid länkhovring"
 
-#: class-fire-utils_settings_map.php:282
+#: class-fire-utils_settings_map.php:295
 msgid "Display an icon next to external links"
 msgstr "Visa en ikon intill externa länkar"
 
-#: class-fire-utils_settings_map.php:286 class-fire-utils_settings_map.php:297
+#: class-fire-utils_settings_map.php:299 class-fire-utils_settings_map.php:310
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 "Detta kommer endast att tillämpas på länkar som ingår i inläggs- eller "
 "sidinnehåll."
 
-#: class-fire-utils_settings_map.php:293
+#: class-fire-utils_settings_map.php:306
 msgid "Open external links in a new tab"
 msgstr "Öppna externa länkar i ny flik"
 
-#: class-fire-utils_settings_map.php:313
+#: class-fire-utils_settings_map.php:326
 msgid "Display icons next to titles"
 msgstr "Visa ikoner intill titlar"
 
-#: class-fire-utils_settings_map.php:317
+#: class-fire-utils_settings_map.php:330
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -1174,19 +1190,19 @@ msgstr ""
 "När detta alternativ är markerat, visas en kontextuell ikon intill titlen på "
 "sidor, inlägg, arkiv och WP inbyggda widgetar."
 
-#: class-fire-utils_settings_map.php:323
+#: class-fire-utils_settings_map.php:336
 msgid "Display a page icon next to the page title"
 msgstr "Visa en sidikon intill sidans titel"
 
-#: class-fire-utils_settings_map.php:332
+#: class-fire-utils_settings_map.php:345
 msgid "Display a post icon next to the single post title"
 msgstr "Visa en inläggsikon intill den enskilda inläggstiteln"
 
-#: class-fire-utils_settings_map.php:341
+#: class-fire-utils_settings_map.php:354
 msgid "Display an icon next to the archive title"
 msgstr "Visa en ikon intill arkivtiteln"
 
-#: class-fire-utils_settings_map.php:344
+#: class-fire-utils_settings_map.php:357
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -1197,11 +1213,11 @@ msgstr ""
 "alla sorters arkiv, till vänster om titeln. En arkivsida kan vara: kategori, "
 "etikett, författare, datumarkiv, egna taxonomier, sökresultat."
 
-#: class-fire-utils_settings_map.php:351
+#: class-fire-utils_settings_map.php:364
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Visa en ikon intill varje inläggstitel på en arkivsida"
 
-#: class-fire-utils_settings_map.php:354
+#: class-fire-utils_settings_map.php:367
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -1211,19 +1227,19 @@ msgstr ""
 "om varje inläggstitel på en arkivsida. En arkivsida kan vara: kategori, "
 "etikett, författare, datumarkiv, egna taxonomier, sökresultat."
 
-#: class-fire-utils_settings_map.php:361
+#: class-fire-utils_settings_map.php:374
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP sidofält widgetar: visa ikoner intill titlar"
 
-#: class-fire-utils_settings_map.php:370
+#: class-fire-utils_settings_map.php:383
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP sidfot widgetar: visa ikoner intill titlar"
 
-#: class-fire-utils_settings_map.php:390
+#: class-fire-utils_settings_map.php:403
 msgid "Lightbox effect on images"
 msgstr "Llightboxeffekt på bilder"
 
-#: class-fire-utils_settings_map.php:393
+#: class-fire-utils_settings_map.php:406
 msgid ""
 "If enabled, this option activates a popin window whith a zoom effect when an "
 "image is clicked. Note : to enable this effect on the images of your pages "
@@ -1234,28 +1250,28 @@ msgstr ""
 "bilderna på dina sidor och inlägg, så måste bilderna vara länkade till "
 "Mediafilen."
 
-#: class-fire-utils_settings_map.php:399
+#: class-fire-utils_settings_map.php:412
 msgid "Autoscale images on zoom"
 msgstr "Autoskala bilder vid zoom"
 
-#: class-fire-utils_settings_map.php:402
+#: class-fire-utils_settings_map.php:415
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Om aktiverad, kommer detta alternativ att tvinga bilderna att passa skärmen "
 "vid lightbox zoom."
 
-#: class-fire-utils_settings_map.php:408
+#: class-fire-utils_settings_map.php:421
 msgid "High resolution (Retina) support"
 msgstr "Högupplösning (Retina) stöd"
 
-#: class-fire-utils_settings_map.php:412
+#: class-fire-utils_settings_map.php:425
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Om påslaget, kommer din hemsida att innehålla stöd för högupplösta enheter."
 
-#: class-fire-utils_settings_map.php:413
+#: class-fire-utils_settings_map.php:426
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -1263,34 +1279,34 @@ msgstr ""
 "Det rekommenderas starkt att du regenererar ditt mediabiblioteks bilder i "
 "högupplösning med detta gratistillägg"
 
-#: class-fire-utils_settings_map.php:414
+#: class-fire-utils_settings_map.php:427
 msgid "regenerate thumbnails"
 msgstr "regenerera miniatyrer"
 
-#: class-fire-utils_settings_map.php:416
+#: class-fire-utils_settings_map.php:429
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Öppna beskrivnings-sidan i Regenerera minatyrer - tillägget"
 
-#: class-fire-utils_settings_map.php:422
+#: class-fire-utils_settings_map.php:435
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Sliders: visa på laddnings-ikon innan bilderna renderas"
 
-#: class-fire-utils_settings_map.php:425
+#: class-fire-utils_settings_map.php:438
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr ""
 "Om markerat, visar detta alternativ en laddnings-ikon när bilderna laddas."
 
-#: class-fire-utils_settings_map.php:430
+#: class-fire-utils_settings_map.php:443
 msgid "Dynamic slider images centering on any devices"
 msgstr "Dynamiska slider-bilder centrerar på alla enheter"
 
-#: class-fire-utils_settings_map.php:438
+#: class-fire-utils_settings_map.php:451
 msgid "Dynamic thumbnails centering on any devices"
 msgstr "Dynamiska miniatyrer centrerar på alla enheter"
 
-#: class-fire-utils_settings_map.php:441
+#: class-fire-utils_settings_map.php:454
 msgid ""
 "This option dynamically centers your images on any devices, vertically or "
 "horizontally according to their initial aspect ratio."
@@ -1298,31 +1314,31 @@ msgstr ""
 "Detta alternativ centrerar dynamiskt dina bilder på valfri enhet, vertikalt "
 "eller horisontellt i enlighet med dess initiala sidförhållande."
 
-#: class-fire-utils_settings_map.php:450 class-fire-utils_settings_map.php:2429
+#: class-fire-utils_settings_map.php:463 class-fire-utils_settings_map.php:2506
 msgid "Responsive settings"
 msgstr "Responsiva inställningar"
 
-#: class-fire-utils_settings_map.php:451
+#: class-fire-utils_settings_map.php:464
 msgid "Enable the WordPress responsive image feature for the slider"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:458
+#: class-fire-utils_settings_map.php:471
 msgid ""
 "Enable the WordPress responsive image feature for the theme's thumbnails"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:460
+#: class-fire-utils_settings_map.php:473
 msgid ""
 "This feature has been introduced in WordPress v4.4+ (dec-2015), and might "
 "have minor side effects on some of your existing images. Check / uncheck "
 "this option to safely verify that your images are displayed nicely."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:482
+#: class-fire-utils_settings_map.php:495
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "Dynamisk sidefältsomguppering på små enheter"
 
-#: class-fire-utils_settings_map.php:485
+#: class-fire-utils_settings_map.php:498
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
@@ -1330,11 +1346,11 @@ msgstr ""
 "Aktivera detta alternativ för att flytta sidofälten (om det finns) efter "
 "huvudinnehålls-blocket, för smartphones eller plattors bildfält."
 
-#: class-fire-utils_settings_map.php:500
+#: class-fire-utils_settings_map.php:513
 msgid "Display an author box after each single post content"
 msgstr "Visa en författar-ruta efter varje enskilt inläggs innehåll"
 
-#: class-fire-utils_settings_map.php:504
+#: class-fire-utils_settings_map.php:517
 msgid ""
 "Check this option to display an author info block after each single post "
 "content. Note : the Biographical info field must be filled out in the user "
@@ -1344,61 +1360,71 @@ msgstr ""
 "efter varje enskilt inläggs innehåll. Notera: det Biografiska info-fältet "
 "måste ifyllas i användarprofilen."
 
-#: class-fire-utils_settings_map.php:519
+#: class-fire-utils_settings_map.php:532
 msgid "Enable Smooth Scroll"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:523
+#: class-fire-utils_settings_map.php:536
 msgid "This option enables a smoother page scroll."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:543 class-fire-utils_settings_map.php:2331
+#: class-fire-utils_settings_map.php:556 class-fire-utils_settings_map.php:2408
 msgid "Header design and layout"
 msgstr "Sidhuvud design och layout"
 
-#: class-fire-utils_settings_map.php:545
+#: class-fire-utils_settings_map.php:558
 msgid "Choose a layout for the header"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:549
+#: class-fire-utils_settings_map.php:562
 msgid "Logo / title on the left"
 msgstr "Logga / titel till vänster"
 
-#: class-fire-utils_settings_map.php:550
+#: class-fire-utils_settings_map.php:563
 msgid "Logo / title centered"
 msgstr "Logga / titel centrerad"
 
-#: class-fire-utils_settings_map.php:551
+#: class-fire-utils_settings_map.php:564
 msgid "Logo / title on the right"
 msgstr "Logga / titel till höger"
 
-#: class-fire-utils_settings_map.php:554
+#: class-fire-utils_settings_map.php:567
 msgid "This setting might impact the side on which the menu is revealed."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:559
+#: class-fire-utils_settings_map.php:572
 msgid "Display top border"
 msgstr "Visa överkant (top border)"
 
-#: class-fire-utils_settings_map.php:563
+#: class-fire-utils_settings_map.php:576
 msgid "Uncheck this option to remove the colored top border."
 msgstr ""
 "Kryssa ur detta alternativ för att ta bort den översta färgade linjen (top "
 "border)."
 
-#: class-fire-utils_settings_map.php:569
+#: class-fire-utils_settings_map.php:582
 msgid "Display the tagline"
 msgstr "Visa rubriklinjen"
 
-#: class-fire-utils_settings_map.php:577
+#: class-fire-utils_settings_map.php:590
+msgid "Display the shopping cart in the header"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:593
+msgid ""
+"WooCommerce: check to display a cart icon showing the number of items in "
+"your cart next to your header's tagline."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:600
 msgid "Social links in header"
 msgstr "Sociala länkar i sidhuvudet"
 
-#: class-fire-utils_settings_map.php:587
+#: class-fire-utils_settings_map.php:610
 msgid "Display menu in a box"
 msgstr "Visa menyn i en ruta"
 
-#: class-fire-utils_settings_map.php:592
+#: class-fire-utils_settings_map.php:615
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -1406,15 +1432,15 @@ msgstr ""
 "Om detta alternativ är markerat, så kommer sidhuvudets meny/rubriklinje/"
 "social att visas i en ljusgrå ruta."
 
-#: class-fire-utils_settings_map.php:597
+#: class-fire-utils_settings_map.php:620
 msgid "Sticky header settings"
 msgstr "Inställningar för förankrat sidhuvud"
 
-#: class-fire-utils_settings_map.php:598
+#: class-fire-utils_settings_map.php:621
 msgid "Sticky on scroll"
 msgstr "Förankrat vid scrollning"
 
-#: class-fire-utils_settings_map.php:603
+#: class-fire-utils_settings_map.php:626
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
@@ -1422,337 +1448,354 @@ msgstr ""
 "Om detta alternativ är markerat så kommer sidhuvudet att vara förankrat till "
 "sidans översta del vid scrollning neråt."
 
-#: class-fire-utils_settings_map.php:608
+#: class-fire-utils_settings_map.php:631
 msgid "Sticky header : display the tagline"
 msgstr "Förankrat sidhuvud: visa rubriklinjen"
 
-#: class-fire-utils_settings_map.php:617
+#: class-fire-utils_settings_map.php:639
+msgid "Sticky header: display the shopping cart"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:646
+msgid ""
+"WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
+"scrolling."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:651
 msgid "Sticky header : display the title / logo"
 msgstr "Förankrat sidhuvud: visa titel / logga"
 
-#: class-fire-utils_settings_map.php:626
+#: class-fire-utils_settings_map.php:660
 msgid "Sticky header : shrink title / logo"
 msgstr "Förankrat sidhuvud: krymp titel / logga"
 
-#: class-fire-utils_settings_map.php:635
+#: class-fire-utils_settings_map.php:669
 msgid "Sticky header : display the menu"
 msgstr "Förankrat sidhuvud: visa menyn"
 
-#: class-fire-utils_settings_map.php:640
+#: class-fire-utils_settings_map.php:674
 msgid "Also applied to the secondary menu if any."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:645
+#: class-fire-utils_settings_map.php:679
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Förankrat sidhuvud: halvgenomskinligt vid scrollning"
 
-#: class-fire-utils_settings_map.php:655
+#: class-fire-utils_settings_map.php:689
 msgid "Set the header z-index"
 msgstr "Sätt sidhuvudet i z-index"
 
-#: class-fire-utils_settings_map.php:663
+#: class-fire-utils_settings_map.php:697
 msgid "What is"
 msgstr "Vad är"
 
-#: class-fire-utils_settings_map.php:664
+#: class-fire-utils_settings_map.php:698
 msgid "the z-index"
 msgstr "z-indexet"
 
-#: class-fire-utils_settings_map.php:683
+#: class-fire-utils_settings_map.php:717
 msgid "Display a secondary (horizontal) menu in the header."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:687
+#: class-fire-utils_settings_map.php:721
 msgid ""
 "When you've set your main menu as a vertical side navigation, you can check "
 "this option to display a complementary horizontal menu in the header."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:692
+#: class-fire-utils_settings_map.php:726
 msgid "Main menu design"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:693
+#: class-fire-utils_settings_map.php:727
 msgid "Select a design : side menu (vertical) or regular (horizontal)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:697
+#: class-fire-utils_settings_map.php:731
 msgid "Regular (horizontal)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:698
+#: class-fire-utils_settings_map.php:732
 msgid "Side Menu (vertical)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:705
+#: class-fire-utils_settings_map.php:739
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:714
+#: class-fire-utils_settings_map.php:748
 msgid "Display a label next to the menu button."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:718
+#: class-fire-utils_settings_map.php:752
 msgid "Note : the label is hidden on mobile devices."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:723
+#: class-fire-utils_settings_map.php:757
 msgid "Menu position (for \"main\" menu)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:727 class-fire-utils_settings_map.php:752
+#: class-fire-utils_settings_map.php:761 class-fire-utils_settings_map.php:786
 msgid "Menu on the left"
 msgstr "Meny till vänster"
 
-#: class-fire-utils_settings_map.php:728 class-fire-utils_settings_map.php:753
+#: class-fire-utils_settings_map.php:762 class-fire-utils_settings_map.php:787
 msgid "Menu on the right"
 msgstr "Meny till höger"
 
-#: class-fire-utils_settings_map.php:733
+#: class-fire-utils_settings_map.php:767
 msgid ""
 "When the menu style is set to \"Side Menu\", the menu position is the side "
 "on which the menu will be revealed."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:734
+#: class-fire-utils_settings_map.php:768
 #, php-format
 msgid "To change the global header layout, %s"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:737
+#: class-fire-utils_settings_map.php:771
 msgid "jump to the Design and Layout section"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:738
+#: class-fire-utils_settings_map.php:772
 msgid "Change the header layout"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:747
+#: class-fire-utils_settings_map.php:781
 msgid "Secondary (horizontal) menu design"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:748
+#: class-fire-utils_settings_map.php:782
 msgid "Menu position (for the horizontal menu)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:763
+#: class-fire-utils_settings_map.php:797
 msgid "Select a submenu expansion option"
 msgstr "Välj ett expansionsalternativ för undermeny"
 
-#: class-fire-utils_settings_map.php:767
+#: class-fire-utils_settings_map.php:801
 msgid "Expand submenus on click"
 msgstr "Expandera undermenyer vid klick"
 
-#: class-fire-utils_settings_map.php:768
+#: class-fire-utils_settings_map.php:802
 msgid "Expand submenus on hover"
 msgstr "Expandera undermenyer vid hovring"
 
-#: class-fire-utils_settings_map.php:775
+#: class-fire-utils_settings_map.php:809
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Visa undermenyns block med toningseffekt"
 
-#: class-fire-utils_settings_map.php:784
+#: class-fire-utils_settings_map.php:818
 msgid "Hover move effect for the sub menu items"
 msgstr "Förflyttningseffekt för undermenydetaljer vid hovring"
 
-#: class-fire-utils_settings_map.php:793
+#: class-fire-utils_settings_map.php:827
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:797
+#: class-fire-utils_settings_map.php:831
 msgid "Move before inside the side menu "
 msgstr ""
 
-#: class-fire-utils_settings_map.php:798
+#: class-fire-utils_settings_map.php:832
 msgid "Move after inside the side menu "
 msgstr ""
 
-#: class-fire-utils_settings_map.php:799
+#: class-fire-utils_settings_map.php:833
 msgid "Display in the header"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:800
+#: class-fire-utils_settings_map.php:834
 msgid "Hide"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:808
+#: class-fire-utils_settings_map.php:842
 msgid "Remove all the menus."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:809
+#: class-fire-utils_settings_map.php:843
 msgid "Don't display any menus in the header of your website"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:813
+#: class-fire-utils_settings_map.php:847
 msgid ""
 "Use with caution : provide an alternative way to navigate in your website "
 "for your users."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:835
+#: class-fire-utils_settings_map.php:869
 msgid ""
 "Click inside the above field and pick post categories you want to display. "
 "No filter will be applied if empty."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:837
+#: class-fire-utils_settings_map.php:871
 msgid "Learn more about post categories in WordPress"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:844
+#: class-fire-utils_settings_map.php:878
 msgid "Set the number of posts to display"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:849
+#: class-fire-utils_settings_map.php:883
 msgid "Jump to the blog design options"
 msgstr "Hoppa till bloggdesign-alternativen "
 
-#: class-fire-utils_settings_map.php:862
+#: class-fire-utils_settings_map.php:896
 msgid "Choose content and layout"
 msgstr "Välj innehåll och layout"
 
-#: class-fire-utils_settings_map.php:870
+#: class-fire-utils_settings_map.php:904
 msgid "Front page displays"
 msgstr "Förstasidan visar"
 
-#: class-fire-utils_settings_map.php:875
+#: class-fire-utils_settings_map.php:909
 msgid "Don't show any posts or page"
 msgstr "Visa inga inlägg eller sidor"
 
-#: class-fire-utils_settings_map.php:876
+#: class-fire-utils_settings_map.php:910
 msgid "Your latest posts"
 msgstr "Dina senaste inlägg"
 
-#: class-fire-utils_settings_map.php:877
+#: class-fire-utils_settings_map.php:911
 msgid "A static page"
 msgstr "En statisk sida"
 
-#: class-fire-utils_settings_map.php:883
+#: class-fire-utils_settings_map.php:917
 msgid "Front page"
 msgstr "Förstasida"
 
-#: class-fire-utils_settings_map.php:891
+#: class-fire-utils_settings_map.php:925
 msgid "Posts page"
 msgstr "Inläggssida"
 
-#: class-fire-utils_settings_map.php:899
+#: class-fire-utils_settings_map.php:933
+msgid "Display navigation in your home blog"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:942
 msgid "Apply a category filter to your home / blog posts"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:909
+#: class-fire-utils_settings_map.php:952
 msgid "Set up the front page layout"
 msgstr "Ställ in titelsidans layout"
 
-#: class-fire-utils_settings_map.php:921
+#: class-fire-utils_settings_map.php:964
 msgid "Slider options"
 msgstr "Slider alternativ"
 
-#: class-fire-utils_settings_map.php:922
+#: class-fire-utils_settings_map.php:965
 msgid "Select front page slider"
 msgstr "Välj förstasidans slider"
 
-#: class-fire-utils_settings_map.php:933
+#: class-fire-utils_settings_map.php:976
 msgid "Number of posts to display"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:937
+#: class-fire-utils_settings_map.php:980
 msgid ""
 "Only the posts with a featured image or at least an image inside their "
 "content will qualify for the slider. The number of post slides displayed "
 "won't exceed the number of available posts in your website."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:942
+#: class-fire-utils_settings_map.php:985
 msgid "Include only sticky posts"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:947
+#: class-fire-utils_settings_map.php:990
 msgid ""
 "You can choose to display only the sticky posts. If you're not sure how to "
 "set a sticky post, check"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:948
+#: class-fire-utils_settings_map.php:991
 msgid "the WordPress documentation."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:955
+#: class-fire-utils_settings_map.php:998
 msgid "Display the title"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:959
+#: class-fire-utils_settings_map.php:1002
 msgid "The title will be limited to 80 chars max"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:964 class-fire-utils_settings_map.php:1151
+#: class-fire-utils_settings_map.php:1007
+#: class-fire-utils_settings_map.php:1194
 msgid "Display the excerpt"
 msgstr "Visa utdraget"
 
-#: class-fire-utils_settings_map.php:968
+#: class-fire-utils_settings_map.php:1011
 msgid "The excerpt will be limited to 80 chars max"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:973
+#: class-fire-utils_settings_map.php:1016
 msgid "Link post with"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:977
+#: class-fire-utils_settings_map.php:1020
 msgid "Call to action button"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:978
+#: class-fire-utils_settings_map.php:1021
 msgid "Entire slide"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:979
+#: class-fire-utils_settings_map.php:1022
 msgid "Entire slide and call to action button"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:985 class-fire-utils_settings_map.php:1077
+#: class-fire-utils_settings_map.php:1028
+#: class-fire-utils_settings_map.php:1120
 msgid "Read more &raquo;"
 msgstr "Läs mer &raquo;"
 
-#: class-fire-utils_settings_map.php:986 class-fire-utils_settings_map.php:1079
+#: class-fire-utils_settings_map.php:1029
+#: class-fire-utils_settings_map.php:1122
 msgid "Button text"
 msgstr "Knapptext"
 
-#: class-fire-utils_settings_map.php:990
+#: class-fire-utils_settings_map.php:1033
 msgid ""
 "The button text will be limited to 80 chars max. Leave this field empty to "
 "hide the button"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:996
+#: class-fire-utils_settings_map.php:1039
 msgid "Full width slider"
 msgstr "Full bredd slider"
 
-#: class-fire-utils_settings_map.php:1000
+#: class-fire-utils_settings_map.php:1043
 msgid "When checked, the front page slider occupies the full viewport's width"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1008
+#: class-fire-utils_settings_map.php:1051
 msgid "Delay between each slides"
 msgstr "Fördröjning mellan varje slide"
 
-#: class-fire-utils_settings_map.php:1013
+#: class-fire-utils_settings_map.php:1056
 msgid "in ms : 1000ms = 1s"
 msgstr "i ms : 1000ms = 1s"
 
-#: class-fire-utils_settings_map.php:1020
+#: class-fire-utils_settings_map.php:1063
 msgid "Set slider's height in pixels"
 msgstr "Ställ in sliderns höjd i pixlar"
 
-#: class-fire-utils_settings_map.php:1030
+#: class-fire-utils_settings_map.php:1073
 msgid "Apply this height to all sliders"
 msgstr "Använd denna höjd för alla sliders"
 
-#: class-fire-utils_settings_map.php:1038
+#: class-fire-utils_settings_map.php:1081
 msgid "Replace the default image slider's height"
 msgstr "Ersätt den fördefinierade höjden för bildslidern"
 
-#: class-fire-utils_settings_map.php:1044
+#: class-fire-utils_settings_map.php:1087
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1761,31 +1804,31 @@ msgstr ""
 "anpassade höjd vid uppladdning. Detta är bättre för dina allmänna "
 "laddningsprestanda."
 
-#: class-fire-utils_settings_map.php:1045
+#: class-fire-utils_settings_map.php:1088
 msgid "You might want to regenerate your thumbnails."
 msgstr "Du kanske vill regenerera dina miniatyrbilder."
 
-#: class-fire-utils_settings_map.php:1053
+#: class-fire-utils_settings_map.php:1096
 msgid "Featured pages options"
 msgstr "Alternativ för utvalda sidor"
 
-#: class-fire-utils_settings_map.php:1054
+#: class-fire-utils_settings_map.php:1097
 msgid "Display home featured pages area"
 msgstr "Visa området utvalda sidor på förstasidan"
 
-#: class-fire-utils_settings_map.php:1058
+#: class-fire-utils_settings_map.php:1101
 msgid "Enable"
 msgstr "Aktivera"
 
-#: class-fire-utils_settings_map.php:1059
+#: class-fire-utils_settings_map.php:1102
 msgid "Disable"
 msgstr "Inaktivera"
 
-#: class-fire-utils_settings_map.php:1068
+#: class-fire-utils_settings_map.php:1111
 msgid "Show images"
 msgstr "Visa bilder"
 
-#: class-fire-utils_settings_map.php:1071
+#: class-fire-utils_settings_map.php:1114
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -1793,19 +1836,19 @@ msgstr ""
 "Bilderna anges med \"Utvald bild \" på varje sida (på sidan redigera sidan). "
 "Bocka av alternativet ovan för att inaktivera de utvalda bilderna på sidan."
 
-#: class-fire-utils_settings_map.php:1101
+#: class-fire-utils_settings_map.php:1144
 msgid "Choose the global default layout"
 msgstr "Välj global fördefinierad layout"
 
-#: class-fire-utils_settings_map.php:1105
+#: class-fire-utils_settings_map.php:1148
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr "Notera: hemsidans layout måste ställas in i startsidesektionen"
 
-#: class-fire-utils_settings_map.php:1113
+#: class-fire-utils_settings_map.php:1156
 msgid "Force default layout everywhere"
 msgstr "Tvinga fördefinierad layout överallt"
 
-#: class-fire-utils_settings_map.php:1116
+#: class-fire-utils_settings_map.php:1159
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -1813,31 +1856,31 @@ msgstr ""
 "Detta alternativ kommer att åsidosätta de särskilda layouter på alla "
 "inlägg / sidor, inklusive den främre sidan."
 
-#: class-fire-utils_settings_map.php:1123
+#: class-fire-utils_settings_map.php:1166
 msgid "Choose the posts default layout"
 msgstr "Välj fördefinierad layout för inlägg"
 
-#: class-fire-utils_settings_map.php:1135
+#: class-fire-utils_settings_map.php:1178
 msgid "Global Post Lists Settings"
 msgstr "Globala inställningar för Inläggslistor"
 
-#: class-fire-utils_settings_map.php:1136
+#: class-fire-utils_settings_map.php:1179
 msgid "Maximum number of posts per page"
 msgstr "Maximalt antal inlägg per sida"
 
-#: class-fire-utils_settings_map.php:1147
+#: class-fire-utils_settings_map.php:1190
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Välj längd på inläggen i listor (hem. sök, arkiv, ...)"
 
-#: class-fire-utils_settings_map.php:1152
+#: class-fire-utils_settings_map.php:1195
 msgid "Display the full content"
 msgstr "Visa hela innehållet"
 
-#: class-fire-utils_settings_map.php:1160
+#: class-fire-utils_settings_map.php:1203
 msgid "Choose the pages default layout"
 msgstr "Välj fördefinierad layout för sidor"
 
-#: class-fire-utils_settings_map.php:1166
+#: class-fire-utils_settings_map.php:1209
 #, php-format
 msgid ""
 "The above layout options will set your layout globally for your post and "
@@ -1845,29 +1888,29 @@ msgid ""
 "individually. Learn how in the %s."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1167
+#: class-fire-utils_settings_map.php:1210
 msgid "Customizr theme documentation"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1170
+#: class-fire-utils_settings_map.php:1213
 msgid ""
 "If you need to change the layout design of the front page, then open the "
 "'Front Page' section above this one."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1188
+#: class-fire-utils_settings_map.php:1232
 msgid "Set the excerpt length (in number of words) "
 msgstr "Ange utdragets längd (i antal ord)"
 
-#: class-fire-utils_settings_map.php:1198
+#: class-fire-utils_settings_map.php:1242
 msgid "Thumbnails options"
 msgstr "Alternativ för miniatyrer"
 
-#: class-fire-utils_settings_map.php:1199
+#: class-fire-utils_settings_map.php:1243
 msgid "Display the post thumbnails"
 msgstr "Visa inläggets miniatyrer"
 
-#: class-fire-utils_settings_map.php:1203
+#: class-fire-utils_settings_map.php:1247
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -1875,152 +1918,154 @@ msgstr ""
 "När detta alternativ är markerat, så visas inläggsminiatyrer i alla "
 "inläggslistor: blogg, arkiv, författarsida, söksidor,..."
 
-#: class-fire-utils_settings_map.php:1203
+#: class-fire-utils_settings_map.php:1247
 msgid "Note : thumbnails are always displayed when the grid layout is choosen."
 msgstr "Obs: miniatyrer visas alltid när tabell-layout är vald."
 
-#: class-fire-utils_settings_map.php:1208
+#: class-fire-utils_settings_map.php:1252
 msgid "If no featured image is set, use the last image attached to this post."
 msgstr ""
 "Om ingen utvald bild har angivits, använd den sista bild som bifogas detta "
 "inlägg."
 
-#: class-fire-utils_settings_map.php:1215
+#: class-fire-utils_settings_map.php:1260
 msgid "Upload a default thumbnail"
 msgstr "Ladda upp en fördefinierad miniatyr"
 
-#: class-fire-utils_settings_map.php:1225
+#: class-fire-utils_settings_map.php:1278
 msgid "Thumbnails options for the alternate thumbnails layout"
 msgstr "Inställningar avseende miniatyrer för alternativa miniatyrer layouten"
 
-#: class-fire-utils_settings_map.php:1226
+#: class-fire-utils_settings_map.php:1279
 msgid "Thumbnails shape"
 msgstr "Miniatyrers utseende"
 
-#: class-fire-utils_settings_map.php:1230
+#: class-fire-utils_settings_map.php:1283
 msgid "Rounded, expand on hover"
 msgstr "Rundade, expandera vid hovring"
 
-#: class-fire-utils_settings_map.php:1231
+#: class-fire-utils_settings_map.php:1284
 msgid "Rounded, no expansion"
 msgstr "Rundade, ingen expansion"
 
-#: class-fire-utils_settings_map.php:1232
+#: class-fire-utils_settings_map.php:1285
 msgid "Squared, expand on hover"
 msgstr "Fyrkantiga, expandera vid hovring"
 
-#: class-fire-utils_settings_map.php:1233
+#: class-fire-utils_settings_map.php:1286
 msgid "Squared, no expansion"
 msgstr "Fyrkantiga, ingen expansion"
 
-#: class-fire-utils_settings_map.php:1234
+#: class-fire-utils_settings_map.php:1287
 msgid "Rectangular with no effect"
 msgstr "Rektangulära utan effekt"
 
-#: class-fire-utils_settings_map.php:1235
+#: class-fire-utils_settings_map.php:1288
 msgid "Rectangular with blur effect on hover"
 msgstr "Rektangulära med oskärpe-effekt vid hovring"
 
-#: class-fire-utils_settings_map.php:1236
+#: class-fire-utils_settings_map.php:1289
 msgid "Rectangular with unblur effect on hover"
 msgstr "Rektangulära med skärpe-effekt vid hovring"
 
-#: class-fire-utils_settings_map.php:1244
-#: class-fire-utils_settings_map.php:1462
+#: class-fire-utils_settings_map.php:1297
+#: class-fire-utils_settings_map.php:1515
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Ange miniatyrens maxhöjd i pixlar"
 
-#: class-fire-utils_settings_map.php:1256
+#: class-fire-utils_settings_map.php:1309
 msgid "Thumbnails position"
 msgstr "Miniatyrers position"
 
-#: class-fire-utils_settings_map.php:1260
+#: class-fire-utils_settings_map.php:1313
 msgid "Top"
 msgstr "Topp"
 
-#: class-fire-utils_settings_map.php:1261
+#: class-fire-utils_settings_map.php:1314
+#: class-fire-utils_settings_map.php:2085
 msgid "Right"
 msgstr "Höger"
 
-#: class-fire-utils_settings_map.php:1262
+#: class-fire-utils_settings_map.php:1315
 msgid "Bottom"
 msgstr "Botten"
 
-#: class-fire-utils_settings_map.php:1263
+#: class-fire-utils_settings_map.php:1316
+#: class-fire-utils_settings_map.php:2084
 msgid "Left"
 msgstr "Vänster"
 
-#: class-fire-utils_settings_map.php:1270
+#: class-fire-utils_settings_map.php:1323
 msgid "Alternate thumbnail/content"
 msgstr "Växla miniatyr/innehåll"
 
-#: class-fire-utils_settings_map.php:1279
+#: class-fire-utils_settings_map.php:1332
 msgid "Archive titles"
 msgstr "Arkiv rubriker"
 
-#: class-fire-utils_settings_map.php:1280
+#: class-fire-utils_settings_map.php:1333
 msgid "Category pages titles"
 msgstr "Kategori-sidors rubriker"
 
-#: class-fire-utils_settings_map.php:1289
+#: class-fire-utils_settings_map.php:1342
 msgid "Tag pages titles"
 msgstr "Etikettsidors titlar"
 
-#: class-fire-utils_settings_map.php:1298
+#: class-fire-utils_settings_map.php:1351
 msgid "Author pages titles"
 msgstr "Författarsidors titlar"
 
-#: class-fire-utils_settings_map.php:1306 parts/class-content-headings.php:336
+#: class-fire-utils_settings_map.php:1359 parts/class-content-headings.php:339
 msgid "Search Results for :"
 msgstr "Sökresutat för :"
 
-#: class-fire-utils_settings_map.php:1307
+#: class-fire-utils_settings_map.php:1360
 msgid "Search results page titles"
 msgstr "Sökresultatsidors rubriker"
 
-#: class-fire-utils_settings_map.php:1318
+#: class-fire-utils_settings_map.php:1371
 msgid "Post List Design"
 msgstr "Inläggslistans Utseende"
 
-#: class-fire-utils_settings_map.php:1319
+#: class-fire-utils_settings_map.php:1372
 msgid "Select a Layout"
 msgstr "Välj en Layout"
 
-#: class-fire-utils_settings_map.php:1323
+#: class-fire-utils_settings_map.php:1376
 msgid "Alternate thumbnails layout"
 msgstr "Layout för alternativa miniatyrer"
 
-#: class-fire-utils_settings_map.php:1324
+#: class-fire-utils_settings_map.php:1377
 msgid "Grid layout"
 msgstr "Tabellutformning"
 
-#: class-fire-utils_settings_map.php:1327
+#: class-fire-utils_settings_map.php:1380
 msgid ""
 "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 "När du väljer Tabellutformning, är inläggsinnehållet begränsat till utdrag."
 
-#: class-fire-utils_settings_map.php:1332
+#: class-fire-utils_settings_map.php:1385
 msgid "Number of columns per row"
 msgstr "Antal kolumner per rad"
 
-#: class-fire-utils_settings_map.php:1336
+#: class-fire-utils_settings_map.php:1389
 msgid "1"
 msgstr "1"
 
-#: class-fire-utils_settings_map.php:1337
+#: class-fire-utils_settings_map.php:1390
 msgid "2"
 msgstr "2"
 
-#: class-fire-utils_settings_map.php:1338
+#: class-fire-utils_settings_map.php:1391
 msgid "3"
 msgstr "3"
 
-#: class-fire-utils_settings_map.php:1339
+#: class-fire-utils_settings_map.php:1392
 msgid "4"
 msgstr "4"
 
-#: class-fire-utils_settings_map.php:1342
+#: class-fire-utils_settings_map.php:1395
 msgid ""
 "Note : columns are limited to 3 for single sidebar layouts and to 2 for "
 "double sidebar layouts."
@@ -2028,99 +2073,99 @@ msgstr ""
 "Obs: antalet kolumner är begränsad till 3 för enkela sidfältslayouter och 2 "
 "för dubbla sidfältslayouter."
 
-#: class-fire-utils_settings_map.php:1347
+#: class-fire-utils_settings_map.php:1400
 msgid "Expand the last sticky post (for home and blog page only)"
 msgstr ""
 "Expandera det senaste förankrade inlägget (avser endast hem och bloggsida)"
 
-#: class-fire-utils_settings_map.php:1355
+#: class-fire-utils_settings_map.php:1408
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Använd tabell-layout för Hem/Blogg"
 
-#: class-fire-utils_settings_map.php:1363
+#: class-fire-utils_settings_map.php:1416
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr "Använd tabell-layout för Arkiv (arkiv, kategorier, författarinlägg)"
 
-#: class-fire-utils_settings_map.php:1371
+#: class-fire-utils_settings_map.php:1424
 msgid "Apply the grid layout to Search results"
 msgstr "Använd tabell-layout för Sökresultat"
 
-#: class-fire-utils_settings_map.php:1375
+#: class-fire-utils_settings_map.php:1428
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr "Avmarkerade sammanhang visas med alternativa miniatyrer layout."
 
-#: class-fire-utils_settings_map.php:1380
+#: class-fire-utils_settings_map.php:1433
 msgid "Apply a shadow to each grid items"
 msgstr "Använd en skuggning för varje tabellobjekt"
 
-#: class-fire-utils_settings_map.php:1389
+#: class-fire-utils_settings_map.php:1442
 msgid "Apply a colored bottom border to each grid items"
 msgstr "Använd en färgad underkant för varje tabelldetalj"
 
-#: class-fire-utils_settings_map.php:1398
+#: class-fire-utils_settings_map.php:1451
 msgid "Display post format icons in the background"
 msgstr "Visa inläggsformat-ikoner i bakgrunden"
 
-#: class-fire-utils_settings_map.php:1408
+#: class-fire-utils_settings_map.php:1461
 msgid "Max. length for post titles (in words)"
 msgstr "Max. längd för inläggstitlar (i ord)"
 
-#: class-fire-utils_settings_map.php:1419
+#: class-fire-utils_settings_map.php:1472
 msgid "Thumbnails max height for the grid layout"
 msgstr "Miniatyrers maxhöjd vid tabell-layout"
 
-#: class-fire-utils_settings_map.php:1420
+#: class-fire-utils_settings_map.php:1473
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "Ange inläggstabell-miniatyrens maxhöjd i pixlar"
 
-#: class-fire-utils_settings_map.php:1441
+#: class-fire-utils_settings_map.php:1494
 msgid "Post thumbnail position"
 msgstr "Inläggsminiatyrers position"
 
-#: class-fire-utils_settings_map.php:1445
+#: class-fire-utils_settings_map.php:1498
 msgid "Don't display"
 msgstr "Visa inte"
 
-#: class-fire-utils_settings_map.php:1446
+#: class-fire-utils_settings_map.php:1499
 msgid "Before the title in full width"
 msgstr "Framför titeln vid full bredd"
 
-#: class-fire-utils_settings_map.php:1447
+#: class-fire-utils_settings_map.php:1500
 msgid "Before the title boxed"
 msgstr "Inramad framför titeln"
 
-#: class-fire-utils_settings_map.php:1448
+#: class-fire-utils_settings_map.php:1501
 msgid "After the title"
 msgstr "Efter titeln"
 
-#: class-fire-utils_settings_map.php:1452
+#: class-fire-utils_settings_map.php:1505
 msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "posts before their content, when they are displayed individually."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1453 parts/class-content-post.php:208
+#: class-fire-utils_settings_map.php:1506 parts/class-content-post.php:208
 #, php-format
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1487
+#: class-fire-utils_settings_map.php:1540
 msgid "Display Breadcrumb"
 msgstr "Visa navigation (breadcrumb)"
 
-#: class-fire-utils_settings_map.php:1496
+#: class-fire-utils_settings_map.php:1549
 msgid "Display the breadcrumb on home page"
 msgstr "Visa navigation (breadcrumb) på startsidan"
 
-#: class-fire-utils_settings_map.php:1504
+#: class-fire-utils_settings_map.php:1557
 msgid "Display the breadcrumb in pages"
 msgstr "Visa navigation (breadcrumb) på sidor"
 
-#: class-fire-utils_settings_map.php:1513
+#: class-fire-utils_settings_map.php:1566
 msgid "Display the breadcrumb in single posts"
 msgstr "Visa navigation (breadcrumb) för enskilda inlägg"
 
-#: class-fire-utils_settings_map.php:1522
+#: class-fire-utils_settings_map.php:1575
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
@@ -2128,11 +2173,11 @@ msgstr ""
 "Visa navigation (breadcrumb) i inläggslistor: bloggsidor, arkiv, "
 "sökresultat..."
 
-#: class-fire-utils_settings_map.php:1541
+#: class-fire-utils_settings_map.php:1594
 msgid "Display posts metas"
 msgstr "Visa inläggs-meta"
 
-#: class-fire-utils_settings_map.php:1544
+#: class-fire-utils_settings_map.php:1597
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -2140,64 +2185,64 @@ msgstr ""
 "När detta alternativ är markerat, så kommer inläggets meta (som taxonomier, "
 "datum och författare) att visas under inläggens titlar."
 
-#: class-fire-utils_settings_map.php:1551
+#: class-fire-utils_settings_map.php:1604
 msgid "Metas Design"
 msgstr "Metas Design"
 
-#: class-fire-utils_settings_map.php:1552
+#: class-fire-utils_settings_map.php:1605
 msgid "Select a design for the post metas"
 msgstr "Välj ett utseende för inläggs-meta"
 
-#: class-fire-utils_settings_map.php:1556
+#: class-fire-utils_settings_map.php:1609
 msgid "Buttons and text"
 msgstr "Knappar och text"
 
-#: class-fire-utils_settings_map.php:1557
+#: class-fire-utils_settings_map.php:1610
 msgid "Text only"
 msgstr "Enbart text"
 
-#: class-fire-utils_settings_map.php:1564
-#: class-fire-utils_settings_map.php:1914
+#: class-fire-utils_settings_map.php:1617
+#: class-fire-utils_settings_map.php:1968
 msgid "Select the contexts"
 msgstr "Välj sammanhangen"
 
-#: class-fire-utils_settings_map.php:1565
+#: class-fire-utils_settings_map.php:1618
 msgid "Display posts metas on home"
 msgstr "Visa inläggs meta på hem"
 
-#: class-fire-utils_settings_map.php:1574
+#: class-fire-utils_settings_map.php:1627
 msgid "Display posts metas for single posts"
 msgstr "Visa inläggs meta för enskilda inlägg"
 
-#: class-fire-utils_settings_map.php:1583
+#: class-fire-utils_settings_map.php:1636
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "Visa inläggs meta i inläggslistorna (arkiv, bloggsida)"
 
-#: class-fire-utils_settings_map.php:1593
+#: class-fire-utils_settings_map.php:1646
 msgid "Select the metas to display"
 msgstr "Välj de metan som ska visas"
 
-#: class-fire-utils_settings_map.php:1594
+#: class-fire-utils_settings_map.php:1647
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Visa hierarkiska taxonomier (som kategorier)"
 
-#: class-fire-utils_settings_map.php:1603
+#: class-fire-utils_settings_map.php:1656
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Visa icke-hierarkiska taxonomier (som etiketter)"
 
-#: class-fire-utils_settings_map.php:1612
+#: class-fire-utils_settings_map.php:1665
 msgid "Display the publication date"
 msgstr "Visa publiceringsdatum"
 
-#: class-fire-utils_settings_map.php:1620
+#: class-fire-utils_settings_map.php:1673
 msgid "Display the author"
 msgstr "Visa författaren"
 
-#: class-fire-utils_settings_map.php:1628
+#: class-fire-utils_settings_map.php:1681
 msgid "Display the update date"
 msgstr "Visa uppdateringsdatumet"
 
-#: class-fire-utils_settings_map.php:1632
+#: class-fire-utils_settings_map.php:1685
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -2207,27 +2252,27 @@ msgstr ""
 "senaste inläggsuppdateringen visas (inget kommer att synas om inlägget "
 "aldrig har uppdaterats)."
 
-#: class-fire-utils_settings_map.php:1638
+#: class-fire-utils_settings_map.php:1691
 msgid "Select the last update format"
 msgstr "Välj formatet för senaste uppdatering"
 
-#: class-fire-utils_settings_map.php:1642
+#: class-fire-utils_settings_map.php:1695
 msgid "Nb of days since last update"
 msgstr "Antal dagar sedan senaste uppdatering"
 
-#: class-fire-utils_settings_map.php:1643
+#: class-fire-utils_settings_map.php:1696
 msgid "Date of the last update"
 msgstr "Datum för den senaste uppdateringen"
 
-#: class-fire-utils_settings_map.php:1651
+#: class-fire-utils_settings_map.php:1704
 msgid "Recent update notice after post titles"
 msgstr "Senaste uppdateringsmeddelande efter inläggstitlar"
 
-#: class-fire-utils_settings_map.php:1652
+#: class-fire-utils_settings_map.php:1705
 msgid "Display a recent update notice"
 msgstr "Visa senaste meddelande om uppdatering"
 
-#: class-fire-utils_settings_map.php:1656
+#: class-fire-utils_settings_map.php:1709
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -2235,14 +2280,14 @@ msgstr ""
 "Om det här alternativet är markerat, visas ett anpassningsbart senaste "
 "uppdaterings - meddelande intill inläggstiteln."
 
-#: class-fire-utils_settings_map.php:1662
+#: class-fire-utils_settings_map.php:1715
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Visa meddelandet om den senaste uppdateringen är mindre (strikt) än n dagar "
 "gammal"
 
-#: class-fire-utils_settings_map.php:1668
+#: class-fire-utils_settings_map.php:1721
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -2250,154 +2295,154 @@ msgstr ""
 "Ange ett maximalt intervall (i dagar) under vilka det senaste uppdatering "
 "meddelandet kommer att visas."
 
-#: class-fire-utils_settings_map.php:1671
+#: class-fire-utils_settings_map.php:1724
 msgid "Recently updated !"
 msgstr "Nyligen uppdaterat!"
 
-#: class-fire-utils_settings_map.php:1673
+#: class-fire-utils_settings_map.php:1726
 msgid "Update notice text"
 msgstr "Uppdateringsmeddelande-text"
 
-#: class-fire-utils_settings_map.php:1682
+#: class-fire-utils_settings_map.php:1735
 msgid "Update notice style"
 msgstr "Uppdateringsmeddelande-stil"
 
-#: class-fire-utils_settings_map.php:1686
+#: class-fire-utils_settings_map.php:1739
 msgid "Default (grey)"
 msgstr "Fördefinierad (grå)"
 
-#: class-fire-utils_settings_map.php:1687
+#: class-fire-utils_settings_map.php:1740
 msgid "Success (green)"
 msgstr "Lyckat (grön)"
 
-#: class-fire-utils_settings_map.php:1688
+#: class-fire-utils_settings_map.php:1741
 msgid "Alert (orange)"
 msgstr "Alert (orange)"
 
-#: class-fire-utils_settings_map.php:1689
+#: class-fire-utils_settings_map.php:1742
 msgid "Important (red)"
 msgstr "Viktigt (röd)"
 
-#: class-fire-utils_settings_map.php:1690
+#: class-fire-utils_settings_map.php:1743
 msgid "Info (blue)"
 msgstr "Information (blå)"
 
-#: class-fire-utils_settings_map.php:1707
+#: class-fire-utils_settings_map.php:1760
 msgid "Enable Customizr galleries"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1709
+#: class-fire-utils_settings_map.php:1762
 msgid "Apply Customizr effects to galleries images"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1716
+#: class-fire-utils_settings_map.php:1769
 msgid "Enable Lightbox effect in galleries"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1718
+#: class-fire-utils_settings_map.php:1771
 msgid "Apply lightbox effects to galleries images"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1725
+#: class-fire-utils_settings_map.php:1778
 msgid "Enable Customizr effects on hover"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1727
+#: class-fire-utils_settings_map.php:1780
 msgid "Apply nice on hover expansion effect to the galleries images"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1745
+#: class-fire-utils_settings_map.php:1798
 msgid "Drop caps"
 msgstr "Anfanger"
 
-#: class-fire-utils_settings_map.php:1746
+#: class-fire-utils_settings_map.php:1799
 msgid "Enable drop caps"
 msgstr "Aktivera anfanger"
 
-#: class-fire-utils_settings_map.php:1748
+#: class-fire-utils_settings_map.php:1801
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1757
+#: class-fire-utils_settings_map.php:1810
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr "Använd en anfang när stycket omfattar minst följande antal ord:"
 
-#: class-fire-utils_settings_map.php:1758
+#: class-fire-utils_settings_map.php:1811
 msgid "(number of words)"
 msgstr "(antal ord)"
 
-#: class-fire-utils_settings_map.php:1768
+#: class-fire-utils_settings_map.php:1821
 msgid "Drop cap style"
 msgstr "Anfang-stil"
 
-#: class-fire-utils_settings_map.php:1772
+#: class-fire-utils_settings_map.php:1825
 msgid "Skin color with shadow"
 msgstr "Skalfärg med skugga"
 
-#: class-fire-utils_settings_map.php:1773
+#: class-fire-utils_settings_map.php:1826
 msgid "Simple black"
 msgstr "Helsvart"
 
-#: class-fire-utils_settings_map.php:1779
+#: class-fire-utils_settings_map.php:1832
 msgid "Enable drop caps in posts"
 msgstr "Aktivera anfanger i inlägg"
 
-#: class-fire-utils_settings_map.php:1781
+#: class-fire-utils_settings_map.php:1834
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "Använd en anfang i första stycket av ditt enskilda inläggs innehåll"
 
-#: class-fire-utils_settings_map.php:1788
+#: class-fire-utils_settings_map.php:1841
 msgid "Enable drop caps in pages"
 msgstr "Aktivera anfanger på sidor"
 
-#: class-fire-utils_settings_map.php:1790
+#: class-fire-utils_settings_map.php:1843
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "Använd en anfang i första stycket på dina sidor"
 
-#: class-fire-utils_settings_map.php:1807
+#: class-fire-utils_settings_map.php:1860
 msgid "Comments bubbles"
 msgstr "Kommentarbubblor"
 
-#: class-fire-utils_settings_map.php:1809
+#: class-fire-utils_settings_map.php:1862
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Visa antalet kommentarer i en bubbla intill inläggets titel"
 
-#: class-fire-utils_settings_map.php:1818
+#: class-fire-utils_settings_map.php:1871
 msgid "Comments bubble shape"
 msgstr "Kommentarbubblors form"
 
-#: class-fire-utils_settings_map.php:1822
+#: class-fire-utils_settings_map.php:1875
 msgid "Small bubbles"
 msgstr "Små bubblor"
 
-#: class-fire-utils_settings_map.php:1823
+#: class-fire-utils_settings_map.php:1876
 msgid "Large bubbles"
 msgstr "Stora bubblor"
 
-#: class-fire-utils_settings_map.php:1831
-#: class-fire-utils_settings_map.php:1843
+#: class-fire-utils_settings_map.php:1884
+#: class-fire-utils_settings_map.php:1896
 msgid "Comments bubble color"
 msgstr "Kommentarbubblors färg"
 
-#: class-fire-utils_settings_map.php:1835
+#: class-fire-utils_settings_map.php:1888
 msgid "Skin color"
 msgstr "Skalfärg"
 
-#: class-fire-utils_settings_map.php:1836
+#: class-fire-utils_settings_map.php:1889
 msgid "Custom"
 msgstr "Anpassad"
 
-#: class-fire-utils_settings_map.php:1854
+#: class-fire-utils_settings_map.php:1907
 msgid "Other comments settings"
 msgstr "Andra kommentarerinställningar"
 
-#: class-fire-utils_settings_map.php:1855
+#: class-fire-utils_settings_map.php:1908
 msgid "Enable comments on pages"
 msgstr "Aktivera kommentarer på sidor"
 
-#: class-fire-utils_settings_map.php:1860
+#: class-fire-utils_settings_map.php:1913
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -2405,19 +2450,19 @@ msgstr ""
 "Om markerat ger detta alternativ kommentarer på sidorna. Du kan inaktivera "
 "kommentarer för en enskild sida i snabbredigeringsläge på sidlistnings-sidan."
 
-#: class-fire-utils_settings_map.php:1861
+#: class-fire-utils_settings_map.php:1914
 msgid "You can also change other comments settings in :"
 msgstr "Du kan också ändra andra inställningar för kommentarer i:"
 
-#: class-fire-utils_settings_map.php:1863
+#: class-fire-utils_settings_map.php:1916
 msgid "the discussion settings page."
 msgstr "diskussionsinställnings-sidan."
 
-#: class-fire-utils_settings_map.php:1869
+#: class-fire-utils_settings_map.php:1922
 msgid "Enable comments on posts"
 msgstr "Aktivera kommentarer på inlägg"
 
-#: class-fire-utils_settings_map.php:1874
+#: class-fire-utils_settings_map.php:1927
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
 "can disable comments for a single post in quick edit mode from the"
@@ -2426,23 +2471,23 @@ msgstr ""
 "inlägg. Du kan inaktivera kommentarer för ett enda inlägg i "
 "snabbredigeringsläge på"
 
-#: class-fire-utils_settings_map.php:1876
+#: class-fire-utils_settings_map.php:1929
 msgid "post screen"
 msgstr "inläggs-sidan"
 
-#: class-fire-utils_settings_map.php:1877
+#: class-fire-utils_settings_map.php:1930
 msgid "You can also change other comments settings in the"
 msgstr "Du kan också ändra andra inställningar för kommentarer på"
 
-#: class-fire-utils_settings_map.php:1879
+#: class-fire-utils_settings_map.php:1932
 msgid "discussion settings page."
 msgstr "diskussionsinställnings-sidan."
 
-#: class-fire-utils_settings_map.php:1885
+#: class-fire-utils_settings_map.php:1938
 msgid "Display the comment list"
 msgstr "Visa listan över kommentar"
 
-#: class-fire-utils_settings_map.php:1889
+#: class-fire-utils_settings_map.php:1942
 msgid ""
 "By default, WordPress displays the past comments, even if comments are "
 "disabled in posts or pages. Unchecking this option allows you to not display "
@@ -2452,79 +2497,70 @@ msgstr ""
 "är inaktiverade i inlägg eller sidor. Om du avmarkerar det här alternativet "
 "så  visas inte denna kommentar-historik."
 
-#: class-fire-utils_settings_map.php:1904
+#: class-fire-utils_settings_map.php:1957
 msgid "Display posts navigation"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1907
+#: class-fire-utils_settings_map.php:1960
 msgid ""
 "When this option is checked, the posts navigation is displayed below the "
 "posts"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1915
+#: class-fire-utils_settings_map.php:1969
 msgid "Display navigation in pages"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1924
+#: class-fire-utils_settings_map.php:1978
 msgid "Display posts navigation in single posts"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1933
+#: class-fire-utils_settings_map.php:1987
 msgid ""
 "Display posts navigation in post lists (archives, blog page, categories, "
 "search results ..)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:1955
+#: class-fire-utils_settings_map.php:2009
 msgid "Social links in left sidebar"
 msgstr "Sociala länkar i vänster sidofält"
 
-#: class-fire-utils_settings_map.php:1965
+#: class-fire-utils_settings_map.php:2019
 msgid "Social links in right sidebar"
 msgstr "Sociala länkar i höger sidofält"
 
-#: class-fire-utils_settings_map.php:1973
-#: class-fire-utils_settings_map.php:2291
+#: class-fire-utils_settings_map.php:2027
+#: class-fire-utils_settings_map.php:2368
 msgid "Social links"
 msgstr "Sociala länkar"
 
-#: class-fire-utils_settings_map.php:1974
+#: class-fire-utils_settings_map.php:2028
 msgid "Social link title in sidebars"
 msgstr "Sociala länkar-rubriken i sidofält"
 
-#: class-fire-utils_settings_map.php:1980
+#: class-fire-utils_settings_map.php:2034
 msgid "Will be hidden if empty"
 msgstr "Kommer att vara dold om tom"
 
-#: class-fire-utils_settings_map.php:1999
+#: class-fire-utils_settings_map.php:2053
 msgid "Social links in footer"
 msgstr "Sociala länkar i sidfoten"
 
-#: class-fire-utils_settings_map.php:2009
+#: class-fire-utils_settings_map.php:2063
 msgid "Stick the footer to the bottom of the page"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2018
+#: class-fire-utils_settings_map.php:2072
+#: class-fire-utils_settings_map.php:2080
 msgid "Display a back to top arrow on scroll"
 msgstr "Visa en tillbaka till toppen pil vid scrollning"
 
-#: class-fire-utils_settings_map.php:2040
-msgid "Display the shopping cart in the header"
-msgstr ""
-
-#: class-fire-utils_settings_map.php:2043
-msgid ""
-"You can display a cart icon showing the number of items in your cart next to "
-"your header's tagline"
-msgstr ""
-
-#: class-fire-utils_settings_map.php:2066
+#: class-fire-utils_settings_map.php:2112
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Lägg till din egen CSS här och designa live! (för avancerade användare)"
 
-#: class-fire-utils_settings_map.php:2070
+#: class-fire-utils_settings_map.php:2116
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -2532,31 +2568,29 @@ msgstr ""
 "Använd detta fält för att testa små stycken CSS-kod. För viktig CSS-"
 "anpassning, vill du säkert modifiera style.css filen i ett"
 
-#: class-fire-utils_settings_map.php:2071
+#: class-fire-utils_settings_map.php:2117
 msgid "child theme."
 msgstr "barntema."
 
-#: class-fire-utils_settings_map.php:2072
+#: class-fire-utils_settings_map.php:2118
 msgid "How to create and use a child theme ?"
 msgstr "Hur skapar och använder man ett barntema?"
 
-#: class-fire-utils_settings_map.php:2089
-msgid "Performance : use the minified CSS stylesheet"
-msgstr "Prestanda: använd minimerat CSS format"
+#: class-fire-utils_settings_map.php:2135
+msgid "Performance : use the minified CSS stylesheets"
+msgstr ""
 
-#: class-fire-utils_settings_map.php:2092
+#: class-fire-utils_settings_map.php:2138
 msgid ""
-"Using the minified version of the skin stylesheet will speed up your webpage "
+"Using the minified version of the stylesheets will speed up your webpage "
 "load time."
 msgstr ""
-"Att använda den minimerade versionen av skalformatet snabbar upp din "
-"hemsidas laddningstid."
 
-#: class-fire-utils_settings_map.php:2096
+#: class-fire-utils_settings_map.php:2142
 msgid "Load images on scroll"
 msgstr "Ladda bilder vid scrollning"
 
-#: class-fire-utils_settings_map.php:2101
+#: class-fire-utils_settings_map.php:2147
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
@@ -2567,66 +2601,96 @@ msgstr ""
 "kan öka prestanda genom att minska belastningen från långa webbsidor med "
 "bilder."
 
-#: class-fire-utils_settings_map.php:2114
+#: class-fire-utils_settings_map.php:2160
 msgid "Display help notices on front-end for logged in users."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2117
+#: class-fire-utils_settings_map.php:2163
 msgid ""
 "When this options is enabled, various help notices and some placeholder "
 "blocks are displayed on the front-end of your website. They are only visible "
 "by logged in users with administration capabilities."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2136
+#: class-fire-utils_settings_map.php:2176
+msgid "Load Font Awesome set of icons"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2180
+msgid "Use with caution"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2181
+msgid ""
+"When checked, the Font Awesome icons will be loaded on front end. You might "
+"want to load the Font Awesome icons with a custom code, or let a plugin do "
+"it for you."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2187
+msgid "Load Font Awesome CSS"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2191
+msgid ""
+"When checked, the additional Font Awesome CSS stylesheet will be loaded. "
+"This stylesheet is not loaded by default to save bandwidth but you might "
+"need it if you want to use the whole Font Awesome CSS."
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2192
+msgid "Check out some example of uses"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2213
 msgid "Global settings"
 msgstr "Globala inställningar"
 
-#: class-fire-utils_settings_map.php:2137
+#: class-fire-utils_settings_map.php:2214
 msgid "Global settings for the Customizr theme :skin, socials, links..."
 msgstr "Globala inställningar för Customizr-temat: skal, socialt, länkar..."
 
-#: class-fire-utils_settings_map.php:2142
+#: class-fire-utils_settings_map.php:2219
 msgid "Header"
 msgstr "Sidhuvud"
 
-#: class-fire-utils_settings_map.php:2143
+#: class-fire-utils_settings_map.php:2220
 msgid "Header settings for the Customizr theme."
 msgstr "Inställningar för Customizr-temats sidhuvud."
 
-#: class-fire-utils_settings_map.php:2148
+#: class-fire-utils_settings_map.php:2225
 msgid "Content : home, posts, ..."
 msgstr "Innehåll: hem, inlägg..."
 
-#: class-fire-utils_settings_map.php:2149
+#: class-fire-utils_settings_map.php:2226
 msgid "Content settings for the Customizr theme."
 msgstr "Innehållsinställningar för Customizr-temat."
 
-#: class-fire-utils_settings_map.php:2154
+#: class-fire-utils_settings_map.php:2231
 msgid "Sidebars"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2155
+#: class-fire-utils_settings_map.php:2232
 msgid "Sidebars settings for the Customizr theme."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2160
+#: class-fire-utils_settings_map.php:2237
 msgid "Footer"
 msgstr "Sidfot"
 
-#: class-fire-utils_settings_map.php:2161
+#: class-fire-utils_settings_map.php:2238
 msgid "Footer settings for the Customizr theme."
 msgstr "Sidfotsinställningar för Customizr-temat."
 
-#: class-fire-utils_settings_map.php:2166
+#: class-fire-utils_settings_map.php:2243
 msgid "Advanced options"
 msgstr "Avancerade inställningar"
 
-#: class-fire-utils_settings_map.php:2167
+#: class-fire-utils_settings_map.php:2244
 msgid "Advanced settings for the Customizr theme."
 msgstr "Avancerade inställningar för Customizr-temat."
 
-#: class-fire-utils_settings_map.php:2241
+#: class-fire-utils_settings_map.php:2318
 #, fuzzy, php-format
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
@@ -2634,220 +2698,220 @@ msgid_plural ""
 msgstr[0] "Ditt tema stöder %s meny. Välj vilken meny du skulle vilja använda."
 msgstr[1] "Ditt tema stöder %s meny. Välj vilken meny du skulle vilja använda."
 
-#: class-fire-utils_settings_map.php:2244
-#: class-fire-utils_settings_map.php:2252
+#: class-fire-utils_settings_map.php:2321
+#: class-fire-utils_settings_map.php:2329
 #, php-format
 msgid "You can create new menu and edit your menu's content %s."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2247
+#: class-fire-utils_settings_map.php:2324
 msgid "on the Menus screen in the Appearance section"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2248
-#: class-fire-utils_settings_map.php:2256
+#: class-fire-utils_settings_map.php:2325
+#: class-fire-utils_settings_map.php:2333
 msgid "create/edit menus"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2255
+#: class-fire-utils_settings_map.php:2332
 msgid "in the menu panel"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2261
+#: class-fire-utils_settings_map.php:2338
 msgid ""
 "If a menu location has no menu assigned to it, a default page menu will be "
 "used."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2268
+#: class-fire-utils_settings_map.php:2345
 msgid "Site Title & Tagline"
 msgstr "Hemsidans Rubrik & Rubriklinje"
 
-#: class-fire-utils_settings_map.php:2273
+#: class-fire-utils_settings_map.php:2350
 msgid "Logo &amp; Favicon"
 msgstr "Logotyp &amp; Favicon"
 
-#: class-fire-utils_settings_map.php:2275
+#: class-fire-utils_settings_map.php:2352
 msgid "Set up logo and favicon options"
 msgstr "Ställ in logotyp och favicon alternativ"
 
-#: class-fire-utils_settings_map.php:2279
+#: class-fire-utils_settings_map.php:2356
 msgid "Skin"
 msgstr "Skal"
 
-#: class-fire-utils_settings_map.php:2281
+#: class-fire-utils_settings_map.php:2358
 msgid "Select a skin for Customizr"
 msgstr "Välj skal för Customizr"
 
-#: class-fire-utils_settings_map.php:2285
+#: class-fire-utils_settings_map.php:2362
 msgid "Fonts"
 msgstr "Typsnitt"
 
-#: class-fire-utils_settings_map.php:2287
+#: class-fire-utils_settings_map.php:2364
 msgid "Set up the font global settings"
 msgstr "Ställ in de globala inställningarna för teckensnitt"
 
-#: class-fire-utils_settings_map.php:2293
+#: class-fire-utils_settings_map.php:2370
 msgid "Set up your social links"
 msgstr "Ställ in dina sociala länkar"
 
-#: class-fire-utils_settings_map.php:2297
+#: class-fire-utils_settings_map.php:2374
 msgid "Links style and effects"
 msgstr "Länkars utseende och effekter"
 
-#: class-fire-utils_settings_map.php:2299
+#: class-fire-utils_settings_map.php:2376
 msgid "Various links settings"
 msgstr "Diverse länkinställningar"
 
-#: class-fire-utils_settings_map.php:2303
+#: class-fire-utils_settings_map.php:2380
 msgid "Titles icons settings"
 msgstr "Inställningar för titelikoner"
 
-#: class-fire-utils_settings_map.php:2305
+#: class-fire-utils_settings_map.php:2382
 msgid "Set up the titles icons options"
 msgstr "Ställ in alternativen för titelikoner"
 
-#: class-fire-utils_settings_map.php:2309
+#: class-fire-utils_settings_map.php:2386
 msgid "Image settings"
 msgstr "Bildinställningar"
 
-#: class-fire-utils_settings_map.php:2311
+#: class-fire-utils_settings_map.php:2388
 msgid "Various images settings"
 msgstr "Diverse bildinställningar"
 
-#: class-fire-utils_settings_map.php:2315
+#: class-fire-utils_settings_map.php:2392
 msgid "Authors"
 msgstr "Författare"
 
-#: class-fire-utils_settings_map.php:2317
+#: class-fire-utils_settings_map.php:2394
 msgid "Post authors settings"
 msgstr " Inställningar avseende inläggsförfattare"
 
-#: class-fire-utils_settings_map.php:2321
+#: class-fire-utils_settings_map.php:2398
 msgid "Smooth Scroll"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2323
+#: class-fire-utils_settings_map.php:2400
 msgid "Smooth Scroll settings"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2331
+#: class-fire-utils_settings_map.php:2408
 msgid "Design and layout"
 msgstr "Design och layout"
 
-#: class-fire-utils_settings_map.php:2336
+#: class-fire-utils_settings_map.php:2413
 msgid "Navigation Menus"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2348
+#: class-fire-utils_settings_map.php:2425
 msgid "Front Page"
 msgstr "Förstasidan"
 
-#: class-fire-utils_settings_map.php:2350
+#: class-fire-utils_settings_map.php:2427
 msgid "Set up front page options"
 msgstr "Ställ in alternativ för förstasidan"
 
-#: class-fire-utils_settings_map.php:2355
+#: class-fire-utils_settings_map.php:2432
 msgid "Pages &amp; Posts Layout"
 msgstr "Sidor &amp; inläggs layout"
 
-#: class-fire-utils_settings_map.php:2357
+#: class-fire-utils_settings_map.php:2434
 msgid "Set up layout options"
 msgstr "Ställ in layout alternativ"
 
-#: class-fire-utils_settings_map.php:2362
+#: class-fire-utils_settings_map.php:2439
 msgid "Post lists : blog, archives, ..."
 msgstr "Inlägslistor: blogg, arkiv, ..."
 
-#: class-fire-utils_settings_map.php:2364
+#: class-fire-utils_settings_map.php:2441
 msgid "Set up post lists options"
 msgstr "Ställ in alternativ för inläggslistor"
 
-#: class-fire-utils_settings_map.php:2368
+#: class-fire-utils_settings_map.php:2445
 msgid "Single posts"
 msgstr "Enstaka inlägg"
 
-#: class-fire-utils_settings_map.php:2370
+#: class-fire-utils_settings_map.php:2447
 msgid "Set up single posts options"
 msgstr "Ställ in alternativ för enskilda inlägg"
 
-#: class-fire-utils_settings_map.php:2374
+#: class-fire-utils_settings_map.php:2451
 msgid "Breadcrumb"
 msgstr "Navigation (breadcrumb)"
 
-#: class-fire-utils_settings_map.php:2376
+#: class-fire-utils_settings_map.php:2453
 msgid "Set up breadcrumb options"
 msgstr "Ställ in breadcrumb alternativ"
 
-#: class-fire-utils_settings_map.php:2388
+#: class-fire-utils_settings_map.php:2465
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Inläggs-meta (kategori, etiketter, egna uttryck)"
 
-#: class-fire-utils_settings_map.php:2390
+#: class-fire-utils_settings_map.php:2467
 msgid "Set up post metas options"
 msgstr "Ställ in alternativ för inläggs-meta"
 
-#: class-fire-utils_settings_map.php:2394
+#: class-fire-utils_settings_map.php:2471
 msgid "Galleries"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2396
+#: class-fire-utils_settings_map.php:2473
 msgid "Set up gallery options"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2400
+#: class-fire-utils_settings_map.php:2477
 msgid "Paragraphs"
 msgstr "Paragrafer"
 
-#: class-fire-utils_settings_map.php:2402
+#: class-fire-utils_settings_map.php:2479
 msgid "Set up paragraphs options"
 msgstr "Ställ in alternativ för avsnitt"
 
-#: class-fire-utils_settings_map.php:2406
+#: class-fire-utils_settings_map.php:2483
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: class-fire-utils_settings_map.php:2408
+#: class-fire-utils_settings_map.php:2485
 msgid "Set up comments options"
 msgstr "Ställ in alternativ för kommentarer"
 
-#: class-fire-utils_settings_map.php:2412
+#: class-fire-utils_settings_map.php:2489
 msgid "Post/Page Navigation"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2414
+#: class-fire-utils_settings_map.php:2491
 msgid "Set up post/page navigation options"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2423
+#: class-fire-utils_settings_map.php:2500
 msgid "Socials in Sidebars"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2425
+#: class-fire-utils_settings_map.php:2502
 msgid "Set up your social profiles links in the sidebar(s)."
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2431
+#: class-fire-utils_settings_map.php:2508
 msgid "Various settings for responsive display"
 msgstr "Diverse inställningar för responsiv visning"
 
-#: class-fire-utils_settings_map.php:2440
+#: class-fire-utils_settings_map.php:2517
 msgid "Footer global settings"
 msgstr "Globala inställningar för sidfoten"
 
-#: class-fire-utils_settings_map.php:2442
+#: class-fire-utils_settings_map.php:2519
 msgid "Set up footer global options"
 msgstr "Ställ in globala alternativ för sidfot"
 
-#: class-fire-utils_settings_map.php:2451
+#: class-fire-utils_settings_map.php:2528
 msgid "Custom CSS"
 msgstr "Anpassad CSS"
 
-#: class-fire-utils_settings_map.php:2456
+#: class-fire-utils_settings_map.php:2533
 msgid "Website Performances"
 msgstr "Hemsideprestanda"
 
-#: class-fire-utils_settings_map.php:2458
+#: class-fire-utils_settings_map.php:2535
 msgid ""
 "On the web, speed is key ! Improve the load time of your pages with those "
 "options."
@@ -2855,45 +2919,49 @@ msgstr ""
 "På webben är hastighet nyckeln! Förbättra laddningstiden för dina sidor med "
 "dessa alternativ."
 
-#: class-fire-utils_settings_map.php:2462
+#: class-fire-utils_settings_map.php:2539
 msgid "Front-end placeholders and help blocks"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2490
+#: class-fire-utils_settings_map.php:2544
+msgid "Front-end Icons (Font Awesome)"
+msgstr ""
+
+#: class-fire-utils_settings_map.php:2572
 msgid "Home featured page one"
 msgstr "Utvald sida ett"
 
-#: class-fire-utils_settings_map.php:2491
+#: class-fire-utils_settings_map.php:2573
 msgid "Home featured page two"
 msgstr "Utvald sida två"
 
-#: class-fire-utils_settings_map.php:2492
+#: class-fire-utils_settings_map.php:2574
 msgid "Home featured page three"
 msgstr "Utvald sida tre"
 
-#: class-fire-utils_settings_map.php:2495
+#: class-fire-utils_settings_map.php:2577
 msgid "Featured text one (200 char. max)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2496
+#: class-fire-utils_settings_map.php:2578
 msgid "Featured text two (200 char. max)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2497
+#: class-fire-utils_settings_map.php:2579
 msgid "Featured text three (200 char. max)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2513
+#: class-fire-utils_settings_map.php:2595
 #, php-format
 msgid "Custom featured page %1$s"
 msgstr "Anpassad utvald sida %1$s"
 
-#: class-fire-utils_settings_map.php:2529
+#: class-fire-utils_settings_map.php:2611
 #, php-format
 msgid "Featured text %1$s (200 char. max)"
 msgstr ""
 
-#: class-fire-utils_settings_map.php:2532
+#: class-fire-utils_settings_map.php:2614
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -2901,15 +2969,15 @@ msgstr ""
 "Du måste välja en sida först. Lämna det här fältet tomt om du vill använda "
 "ett utdrag från sidan."
 
-#: class-fire-utils_settings_map.php:2658
+#: class-fire-utils_settings_map.php:2740
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Ingen slider &mdash;"
 
-#: class-fire-utils_settings_map.php:2659
+#: class-fire-utils_settings_map.php:2741
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo Slider &mdash;"
 
-#: class-fire-utils_settings_map.php:2660
+#: class-fire-utils_settings_map.php:2742
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
@@ -2930,72 +2998,72 @@ msgstr "Hem"
 msgid "Browse:"
 msgstr "Bläddra:"
 
-#: parts/class-content-breadcrumb.php:524
+#: parts/class-content-breadcrumb.php:527
 msgid "g:i a"
 msgstr "g:i a"
 
-#: parts/class-content-breadcrumb.php:527
+#: parts/class-content-breadcrumb.php:530
 #, php-format
 msgid "Minute %1$s"
 msgstr "Minut %1$s"
 
-#: parts/class-content-breadcrumb.php:527
+#: parts/class-content-breadcrumb.php:530
 msgid "i"
 msgstr "i"
 
-#: parts/class-content-breadcrumb.php:530
+#: parts/class-content-breadcrumb.php:533
 msgid "g a"
 msgstr "g a"
 
-#: parts/class-content-breadcrumb.php:546
-#: parts/class-content-breadcrumb.php:556
-#: parts/class-content-breadcrumb.php:565
-#: parts/class-content-breadcrumb.php:576
-#: parts/class-content-breadcrumb.php:578
-#: parts/class-content-breadcrumb.php:777
+#: parts/class-content-breadcrumb.php:549
+#: parts/class-content-breadcrumb.php:559
+#: parts/class-content-breadcrumb.php:568
+#: parts/class-content-breadcrumb.php:579
+#: parts/class-content-breadcrumb.php:581
+#: parts/class-content-breadcrumb.php:824
 msgid "Y"
 msgstr "Y"
 
-#: parts/class-content-breadcrumb.php:547
-#: parts/class-content-breadcrumb.php:568
-#: parts/class-content-breadcrumb.php:570
-#: parts/class-content-breadcrumb.php:781
+#: parts/class-content-breadcrumb.php:550
+#: parts/class-content-breadcrumb.php:571
+#: parts/class-content-breadcrumb.php:573
+#: parts/class-content-breadcrumb.php:828
 msgid "F"
 msgstr "F"
 
-#: parts/class-content-breadcrumb.php:550
-#: parts/class-content-breadcrumb.php:552
-#: parts/class-content-breadcrumb.php:785
+#: parts/class-content-breadcrumb.php:553
+#: parts/class-content-breadcrumb.php:555
+#: parts/class-content-breadcrumb.php:832
 msgid "d"
 msgstr "d"
 
-#: parts/class-content-breadcrumb.php:559
-#: parts/class-content-breadcrumb.php:561
+#: parts/class-content-breadcrumb.php:562
+#: parts/class-content-breadcrumb.php:564
 #, php-format
 msgid "Week %1$s"
 msgstr "Vecka %1$s"
 
-#: parts/class-content-breadcrumb.php:587
-#: parts/class-content-breadcrumb.php:589
+#: parts/class-content-breadcrumb.php:590
+#: parts/class-content-breadcrumb.php:592
 #, php-format
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Sökresultat för &quot;%1$s&quot;"
 
-#: parts/class-content-breadcrumb.php:594
+#: parts/class-content-breadcrumb.php:597
 msgid "404 Not Found"
 msgstr "404 Kunde inte hittas"
 
-#: parts/class-content-breadcrumb.php:599
-#: parts/class-content-breadcrumb.php:601
+#: parts/class-content-breadcrumb.php:602
+#: parts/class-content-breadcrumb.php:604
 #, php-format
 msgid "Page %d"
 msgstr "Sida %d"
 
-#: parts/class-content-breadcrumb.php:670
+#: parts/class-content-breadcrumb.php:673
 msgid "Split"
 msgstr "Dela"
 
-#: parts/class-content-breadcrumb.php:674
+#: parts/class-content-breadcrumb.php:677
 msgid "Merge"
 msgstr "Sammanfoga"
 
@@ -3011,52 +3079,52 @@ msgstr "tankar om"
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: parts/class-content-comments.php:155
+#: parts/class-content-comments.php:156
 msgid "(Edit)"
 msgstr "(Redigera)"
 
-#: parts/class-content-comments.php:182
+#: parts/class-content-comments.php:184
 msgid "Reply"
 msgstr "Svara"
 
-#: parts/class-content-comments.php:195
+#: parts/class-content-comments.php:197
 msgid "Post author"
 msgstr "Inläggsförfattare"
 
-#: parts/class-content-comments.php:202
+#: parts/class-content-comments.php:204
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s vid %2$s"
 
-#: parts/class-content-comments.php:207
+#: parts/class-content-comments.php:209
 msgid "Your comment is awaiting moderation."
 msgstr "Din kommentar väntar på moderering."
 
-#: parts/class-content-comments.php:242
+#: parts/class-content-comments.php:244
 msgid "Comment navigation"
 msgstr "Kommentar navigering"
 
-#: parts/class-content-comments.php:248
+#: parts/class-content-comments.php:250
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Äldre Kommentarer"
 
-#: parts/class-content-comments.php:256
+#: parts/class-content-comments.php:258
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Nyare Kommentarer <span class=\"meta-nav\">&rarr;</span>"
 
-#: parts/class-content-comments.php:288
+#: parts/class-content-comments.php:290
 msgid "Comments are closed."
 msgstr "Kommentarer är stängda."
 
-#: parts/class-content-comments.php:323
+#: parts/class-content-comments.php:325
 msgid "Leave a comment"
 msgstr "Lämna en kommentar"
 
-#: parts/class-content-comments.php:346
+#: parts/class-content-comments.php:348
 msgid "Comment(s) on"
 msgstr "Kommentar(er) på"
 
-#: parts/class-content-comments.php:365
+#: parts/class-content-comments.php:367
 #, fuzzy
 msgid "comment"
 msgid_plural "comments"
@@ -3074,7 +3142,7 @@ msgid "Edit those featured pages"
 msgstr ""
 
 #: parts/class-content-featured_pages.php:43
-#: parts/class-content-sidebar.php:140 parts/class-content-slider.php:1015
+#: parts/class-content-sidebar.php:140 parts/class-content-slider.php:1023
 #: parts/class-footer-footer_main.php:151
 msgid "now"
 msgstr ""
@@ -3118,34 +3186,34 @@ msgstr "{ingen titel} Läs inlägget &raquo;"
 msgid "Permalink to %s"
 msgstr "Permalänk till %s"
 
-#: parts/class-content-headings.php:321
+#: parts/class-content-headings.php:324
 msgid "Ooops, page not found"
 msgstr "Ooops, sidan hittades inte"
 
-#: parts/class-content-headings.php:335
+#: parts/class-content-headings.php:338
 msgid "No"
 msgstr "Inga"
 
-#: parts/class-content-headings.php:369 parts/class-content-post.php:138
+#: parts/class-content-headings.php:372 parts/class-content-post.php:138
 #, php-format
 msgid "About %s"
 msgstr "Om %s"
 
-#: parts/class-content-headings.php:409
+#: parts/class-content-headings.php:412
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Dagsarkiv: %s"
 
-#: parts/class-content-headings.php:409
+#: parts/class-content-headings.php:412
 msgid "Archives"
 msgstr "Arkiv"
 
-#: parts/class-content-headings.php:410
+#: parts/class-content-headings.php:413
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Månadsarkiv: %s"
 
-#: parts/class-content-headings.php:411
+#: parts/class-content-headings.php:414
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Årsarkiv: %s"
@@ -3330,63 +3398,63 @@ msgstr "Ändring av layouten i Customizr temat"
 msgid "See the theme documentation."
 msgstr "Läs tema-dokumentationen"
 
-#: parts/class-content-slider.php:830
+#: parts/class-content-slider.php:832
 msgid "Go to"
 msgstr ""
 
-#: parts/class-content-slider.php:956
+#: parts/class-content-slider.php:964
 #, php-format
 msgid "Customize or remove %s"
 msgstr ""
 
-#: parts/class-content-slider.php:957
+#: parts/class-content-slider.php:965
 msgid "the posts slider"
 msgstr ""
 
-#: parts/class-content-slider.php:957
+#: parts/class-content-slider.php:965
 msgid "this slider"
 msgstr ""
 
-#: parts/class-content-slider.php:1014
+#: parts/class-content-slider.php:1022
 #, php-format
 msgid ""
 "Select your own slider %s, or %s (you'll be able to add one back later)."
 msgstr ""
 
-#: parts/class-content-slider.php:1015
+#: parts/class-content-slider.php:1023
 msgid "Select your own slider"
 msgstr ""
 
-#: parts/class-content-slider.php:1016
+#: parts/class-content-slider.php:1024
 msgid "Remove the home page slider"
 msgstr ""
 
-#: parts/class-content-slider.php:1016
+#: parts/class-content-slider.php:1024
 msgid "remove this demo slider"
 msgstr ""
 
-#: parts/class-content-slider.php:1049
+#: parts/class-content-slider.php:1057
 msgid "Discover how to replace or remove this demo slider."
 msgstr ""
 
-#: parts/class-content-slider.php:1051
+#: parts/class-content-slider.php:1059
 msgid "Check the front page slider doc &raquo;"
 msgstr ""
 
-#: parts/class-content-slider.php:1055
+#: parts/class-content-slider.php:1063
 msgid "Easily create sliders and add them in any posts or pages."
 msgstr ""
 
-#: parts/class-content-slider.php:1057
+#: parts/class-content-slider.php:1065
 msgid "Check the slider doc now &raquo;"
 msgstr ""
 
-#: parts/class-content-slider.php:1403
+#: parts/class-content-slider.php:1411
 #, php-format
 msgid "Protected: %s"
 msgstr ""
 
-#: parts/class-content-slider.php:1428
+#: parts/class-content-slider.php:1436
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
@@ -3411,7 +3479,7 @@ msgstr ""
 msgid "Back to top"
 msgstr "Åter till toppen"
 
-#: parts/class-header-header_main.php:317
+#: parts/class-header-header_main.php:309
 msgid "Back Home"
 msgstr "Åter till startsidan"
 
@@ -3503,6 +3571,22 @@ msgstr ""
 #: parts/class-header-menu.php:812
 msgid "Pages"
 msgstr ""
+
+#~ msgid "Code snippets"
+#~ msgstr "Kodsnuttar"
+
+#~ msgid "Get support in the forum"
+#~ msgstr "Få hjälp i forumet"
+
+#~ msgid "Performance : use the minified CSS stylesheet"
+#~ msgstr "Prestanda: använd minimerat CSS format"
+
+#~ msgid ""
+#~ "Using the minified version of the skin stylesheet will speed up your "
+#~ "webpage load time."
+#~ msgstr ""
+#~ "Att använda den minimerade versionen av skalformatet snabbar upp din "
+#~ "hemsidas laddningstid."
 
 #~ msgid "Need more customizations options and premium support ?"
 #~ msgstr "Behöver du fler anpassningsmöjligheter och premium-support?"
