@@ -1,0 +1,107 @@
+.sidebar.left  { padding-right:$base-line-height*2; } 
+.sidebar.right { padding-left:$base-line-height*2; } 
+@media screen and (min-width: 480px) and (max-width: 667px) {
+	.sidebar {
+		padding: 0 $base-line-height*2;
+	}
+}
+.sidebar {
+	@extend .small;	
+	.widget { 
+		li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
+		a { color: $grey-dark; display:inline-block; }
+		&:not(.widget_tag_cloud) a {  position:relative; @include underlined ($black, 1px);  }
+		&:not(.widget_tag_cloud) a:hover { color: $black; }
+		margin-bottom: $base-line-height*3;
+	}
+	.widget:first-of-type {
+		.widget-title { }
+	}
+	.widget-title {
+		@extend .caps;
+		@extend .letter-spacing-2;
+		position: relative;
+		margin: $base-line-height 0;
+		padding: $base-line-height 0;
+		font-size: 1em;
+		&:after {
+			content: "";
+			position: absolute;
+			width: $base-line-height*4;
+			height:2px;
+			bottom:0;
+			left:0;
+			background: $black;
+		}
+	}
+	&.right {
+		.widget_calendar{
+			table  {
+				caption, thead  th {
+					text-align: right;
+				}
+				
+			}
+		}
+		.widget_search { label i { float:left } }
+		.czr-form label i { float:right; }
+		.widget-title::after {
+			right:0;
+			left:auto;
+		}
+	}
+	@media (min-width: 20em) and (max-width: 60em) {
+		    h5 {
+		      font-size: calc(1em + 0.2 * ( ( 100vw - 20em) / 40 ) ); } }
+		  @media (min-width: 60em) {
+		    h5 { font-size: 1.2em; } 
+  }
+
+
+	.tagcloud {
+		@extend .tags;
+	}
+	
+	.widget_recent_comments {
+		@extend .bold;
+		.comment-author-link { color: $grey; @extend .thin; }
+	}
+	.widget_categories {
+		@extend .caps;
+		@extend .bold;
+		@extend .letter-spacing-1;
+		.cat-item.on {
+			a { color: $black; }
+		}
+	}
+	.widget_search  {
+		@extend .search-form__container;
+		.search-form__container {
+			.search__form {
+				width:100%;
+				max-width: 100%
+			}
+			label {
+				border-color: $black;
+			}
+			.search-field:focus { color: $black; }
+		}
+	}	
+	.widget_calendar {
+		table#wp-calendar { width: 100%; }
+		thead tr, tbody tr  { border-bottom: 1px solid $black; }
+		thead tr {  border-width: 2px; @extend .small; @extend .service-font; }
+		td { padding:$base-line-height/2 0; }
+		caption, tfoot {
+			padding: $base-line-height/2 0;
+			color: $grey;
+			@extend .caps;
+			@extend .small;
+			@extend .bold;
+			@extend .letter-spacing-1;
+			text-align: left;
+			caption-side: top; 
+		}
+	}
+
+}

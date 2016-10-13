@@ -1,0 +1,75 @@
+
+/* search forms */
+
+.search-form {
+    label { @include clearfix; }
+}
+
+.czr-form {
+  
+   input:not([type="submit"]), label, textarea {
+        width: 100%;
+    }
+
+    .form-group {
+        position: relative;
+        margin-top: $base-line-height*2;
+    }
+
+    .form-group label {
+        display: block;
+        position: absolute;
+        color: $black;
+        font-family: $serviceFont;
+        @extend .small;
+        @extend .caps;
+        @extend .thick;
+        @extend .letter-spacing-2;
+        @include transition(all, .3s ease);
+        z-index: 0;
+        span { float: left;  }
+        i    { float: right; }
+        i.icn-close {
+            margin-right: -2em;
+            color: $black;
+            border-radius:100%;
+            height:2em;
+            width:2em;
+            line-height: 2em;
+            @include opacity(0);
+            @include transition(all 0.3s ease);
+        }
+    }
+    .form-group .form-control {
+        z-index: 1;
+        position: relative;
+        background: transparent;
+    }
+
+    .form-group.in-focus label {
+        span:first-of-type {
+            @include transform(translateY(-110%));
+            color: $grey;
+        }
+        i.icn-search { @include opacity(0); }
+        i.icn-close {
+            @include opacity(1);
+        }
+    }
+        
+    .form-control {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $black;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        color: $black;
+        z-index: 1;
+        position: relative;
+        background: transparent
+    }
+    .form-control:focus { 
+        outline: none;
+    }
+}

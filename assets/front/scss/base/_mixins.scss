@@ -1,0 +1,177 @@
+// example pxtoem(14, 16);
+@function pxtoem($target, $context){
+  @return ($target/$context)+0em;
+}
+// Convert em to px
+@function emtopx($target, $context){
+  @return ($target*$context)+0px;
+}
+
+@mixin opacity ($value) {
+  $IEValue: $value*100;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
+  -moz-opacity: $value;
+  -khtml-opacity: $value;
+  opacity: $value;
+}
+
+
+@mixin filter ($bgColor, $color, $bgOpacity) {
+  color: $color;
+  &::before {
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    background: rgba($bgColor, $bgOpacity);
+  }
+}
+
+@mixin border($color, $strokeWidth, $sides ) {
+  @if ( $sides == '' ) {
+    border: $color $strokeWidth solid;
+  }
+  @else {
+    @each $side in $sides {
+               @if ($side == 'top' or
+                    $side == 'right' or
+                    $side == 'bottom' or
+                    $side == 'left') {
+
+                    border-#{$side}: $color $strokeWidth solid;
+                }
+            }
+        }  
+    
+}
+
+@mixin bg-gradient-t2b($start-colour, $end-colour) {
+    background-color: $start-colour;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+    background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
+    background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
+    background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
+    background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
+    background-image:         linear-gradient(top, $start-colour, $end-colour);
+    filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}');
+}
+
+@mixin border-top-radius($radius) {
+   border-top-right-radius: $radius;
+   border-top-left-radius: $radius;
+}
+@mixin border-right-radius($radius) {
+  border-bottom-right-radius: $radius;
+     border-top-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius) {
+  border-bottom-right-radius: $radius;
+   border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius) {
+  border-bottom-left-radius: $radius;
+     border-top-left-radius: $radius;
+}
+
+@mixin border-radius($top, $left, $bottom, $right) {
+    border-top-left-radius: $top;
+    border-top-right-radius: $left;
+    border-bottom-right-radius:$bottom;
+    border-bottom-left-radius:$right;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin backface-visibility ($arguments) {
+  -webkit-backface-visibility: $arguments;
+     -moz-backface-visibility: $arguments;
+      -ms-backface-visibility: $arguments;
+       -o-backface-visibility: $arguments;
+          backface-visibility: $arguments;
+}
+
+
+//reset box model mixin
+@mixin box-sizing($box-model) {
+	-webkit-box-sizing: $box-model; // Safari <= 5
+   	-moz-box-sizing: $box-model; // Firefox <= 19
+    box-sizing: $box-model;
+}
+
+//clearfix mixin
+@mixin clearfix() {
+	*zoom:1;
+
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+
+	&:after {
+	    clear:both;
+	}
+}
+
+
+// Use this to hide from both screenreaders and browsers: h5bp.com/u
+// Mostly used to eliminate elements when scaling down in media queries
+@mixin hidden() {
+    display: none !important;
+    visibility: hidden;
+}
+
+//vendor transitions mixins
+// Usage:   @include transition(width, height 0.3s ease-in-out);
+@mixin transition($transitions...) {
+  $unfoldedTransitions: ();
+  @each $transition in $transitions {
+    $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+  }
+  
+  -webkit-transition: $unfoldedTransitions;
+  transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+  // Default values
+  $property: all;
+  $duration: .2s;
+  $easing: null; // Browser default is ease, which is what we want
+  $delay: null; // Browser default is 0, which is what we want
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  // Grab transition properties if they exist
+  $unfoldedTransition: ();
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+    @if $i <= length($transition) {
+      $p: nth($transition, $i)
+    } @else {
+      $p: nth($defaultProperties, $i)
+    }
+    $unfoldedTransition: append($unfoldedTransition, $p);
+  }
+
+  @return $unfoldedTransition;
+}
+
+@mixin transform ($transforms) {
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
+}
