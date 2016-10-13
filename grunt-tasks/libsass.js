@@ -5,15 +5,15 @@ module.exports = function configureLibsass(grunt) {
   grunt.config.merge({
     sass: {
       options: {
-        includePaths: ['html/assets/scss'],
+        includePaths: ['assets/**/scss'],
         precision: 6,
         sourceComments: false,
         sourceMap: true,
         outputStyle: 'expanded'
       },
-      core: {
+      front: {
         files: {
-          'html/assets/css/style.css': 'html/assets/scss/style.scss'
+          'assets/front/css/style.css': 'assets/front/scss/style.scss'
         }
       }
     }

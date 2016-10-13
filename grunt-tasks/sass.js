@@ -3,7 +3,7 @@
 // [2]: https://github.com/gruntjs/grunt-contrib-sass
 module.exports = function configureRubySass(grunt) {
   var options = {
-    includePaths: ['html/assets/scss'],
+    includePaths: ['assets/**/scss'],
     precision: 6,
     sourcemap: 'auto',
     style: 'expanded',
@@ -12,10 +12,10 @@ module.exports = function configureRubySass(grunt) {
   };
   grunt.config.merge({
     sass: {
-      core: {
+      front: {
         options: options,
         files: {
-          'html/assets/css/style.css': 'html/assets/scss/style.scss'
+          'assets/front/css/style.css': 'assets/front/scss/style.scss'
         }
       }
     }

@@ -10,7 +10,7 @@
   <div class="entry-header-inner <?php czr_fn_echo( 'entry_title_class' ) ?>">
   <?php /* Maybe treat this case with CSS only */
     if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
-      <div class="tc-grid-icon"><i class="format-icon"></i></div>
+      <div class="post-type__icon"><i class="icn-format"></i></div>
   <?php endif; ?>
   <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
     <div class="entry-meta">

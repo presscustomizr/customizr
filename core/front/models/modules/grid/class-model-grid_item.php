@@ -149,7 +149,7 @@ class CZR_cl_grid_item_model_class extends CZR_cl_model {
   * @return array
   */
   function czr_fn_set_grid_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') ) && in_array( get_post_format(), array( 'link', 'quote' ) );
+    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') ) && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
     $icon_attributes     = '';
     if ( CZR() -> czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',

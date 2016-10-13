@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     watch: {
       css: {
         files: 'assets/**/*.scss',
-        tasks: ['sass:core']
+        tasks: ['sass:front']
       }
     }
   });
@@ -19,5 +19,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('customizr_dev', ['watch'] );
 
-  grunt.registerTask('customizr_prod', ['sass:core'] );
+  grunt.registerTask('customizr_prod', ['sass:front'] );
 }

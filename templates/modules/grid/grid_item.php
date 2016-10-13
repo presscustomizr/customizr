@@ -16,8 +16,8 @@
       if ( czr_fn_get( 'icon_enabled' ) ):
 
       ?>
-        <div class="tc-grid-icon" <?php czr_fn_echo( 'icon_attributes' ) ?>>
-          <i class="format-icon"></i>
+        <div class="tc-grid-icon post-type__icon" <?php czr_fn_echo( 'icon_attributes' ) ?>>
+          <i class="icn-format"></i>
         </div>
       <?php
 

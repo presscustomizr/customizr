@@ -22,11 +22,12 @@
 */
 
  [class^="icn-"]:before, [class*=" icn-"]:before {
+  content: '';
   font-family: "customizr";
   font-style: normal;
   font-weight: normal;
   speak: none;
-
+  vertical-align: middle;
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
@@ -61,7 +62,7 @@
 .icn-grid-empty:before { content: '\e803'; } /* '' */
 .icn-grid-filled:before { content: '\e804'; } /* '' */
 .icn-plus:before { content: '\e805'; } /* '' */
-.icn-quotes:before { content: '\e808'; } /* '' */
+.icn-quote:before { content: '\e808'; } /* '' */
 .icn-expand-thin:before { content: '\e809'; } /* '' */
 .icn-plus-thin:before { content: '\e80a'; } /* '' */
 .icn-close-thin:before { content: '\e80b'; } /* '' */
