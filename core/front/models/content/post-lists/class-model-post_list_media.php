@@ -3,20 +3,10 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   public $has_post_media;
   public $has_format_icon_media;
   public $only_thumb;
-  public $icon_type;
   public $media_content;
   public $original_thumb_url;
   public $is_full_image;
 
-  function czr_fn_get_icon_type() {
-    if ( $this->has_format_icon_media ) {
-      $post_format = get_post_format();
-      $icon_type           = $post_format ? substr($post_format, strpos($post_format, "-" ) ) : 'article';
-      $icon_type           = 'quote' == $post_format ? 'quotes' : $icon_type;
-      return $icon_type;
-    }
-    return false;
-  }
 
   function czr_fn_get_element_class() {
     $post_format           = get_post_format();

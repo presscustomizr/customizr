@@ -53,7 +53,7 @@ class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
     */
     $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
-    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! czr_fn_has_thumb() ? 'no-thumb' : '' );
+    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $this->czr_fn_get_has_post_media() ? 'no-thumb' : '' );
 
     $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
 

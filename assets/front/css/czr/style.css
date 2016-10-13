@@ -116,15 +116,15 @@ embed, iframe, object, video { max-width: 100%;}
 
 .hover .post-action,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-footer,
-.article-container .grid-container__alternate .format-image.no-text .entry-footer,
-.article-container .grid-container__alternate .format-image.no-text .entry-header,
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-footer,
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
 .article-container .grid-container__masonry .format-gallery .entry-header,
 .article-container .grid-container__masonry .format-gallery .entry-footer,
 .article-container .grid-container__masonry .format-image .entry-header,
 .article-container .grid-container__masonry .format-image .entry-footer { z-index: 5 }
 
-.article-container .grid-container__alternate .format-image.no-text .entry-header,
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
 .article-container .grid-container__masonry .format-gallery .entry-header,
 .article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
@@ -148,7 +148,7 @@ embed, iframe, object, video { max-width: 100%;}
 }
 
 */
-.article-container .grid-container__alternate .format-image.no-text  .tc-content .entry-footer,
+.article-container .grid-container__alternate .format-image.no-excerpt  .tc-content .entry-footer,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
     position: absolute;
     width: 90%;
@@ -522,7 +522,7 @@ Add to:
     font-size: 0.83333em;
 }
 */
-form label,
+
 .comment-notes {
   font-size: 0.83333em;
 }
@@ -546,22 +546,6 @@ Apply this to the form elements
     width: 100%;
 }
 */
-form input:not([type="submit"]), form textarea {
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #202020;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  color: #202020;
-  z-index: 1;
-  position: relative;
-  background: transparent;
-  width: 100%;
-}
-form label {
-  width: 100%;
-}
 
 
 /*DO:; style the submit as btn-skin
@@ -624,52 +608,8 @@ input[type="submit"] {
   font-size: 1rem;
 }
 
-/*
-Apply to all form labels
-.czr-form .form-group label {
-    display: block;
-    position: absolute;
-    color: #202020;
-    font-family: "Roboto", sans-serif;
-    -webkit-transition: all 0.2s, 0.3s ease;
-    transition: all 0.2s, 0.3s ease;
-    z-index: 0;
-}
-.letter-spacing-2, .entry-header .entry-meta a, .category-info a, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .post-section-title, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
-    letter-spacing: 2px;
-}
-.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-list-plain .post .entry-meta .category__link, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
-    text-transform: uppercase;
-}
-.thick, h1, h2, h3, h4, h5, h6, .czr-form .form-group label, strong {
-    font-weight: 700;
-}
-*/
-form label {
-  display: block;
 
-  color: #202020;
-  font-family: "Roboto", sans-serif;
-  -webkit-transition: all 0.2s, 0.3s ease;
-  transition: all 0.2s, 0.3s ease;
-  z-index: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-/* Limit this to safe forms like our forms and comments */
-.czr-focus label {
-  position: absolute;
-}
-/*
-Required to the left
-.czr-form .form-group label span {
-    float: left;
-}
-*/
-label .required {
-  float: left;
-}
+
 /* Comment text height */
 .comment-form-comment textarea {
   height: 116px;
@@ -710,54 +650,7 @@ Only to comment form elements?
     margin-left: 0;
   }
 }
-/*
-Transform for form labels on focus
-*/
-form .czr-focus.in-focus > label {
-  -webkit-transform: translateY(-110%);
-     -moz-transform: translateY(-110%);
-      -ms-transform: translateY(-110%);
-          transform: translateY(-110%);
-  color: #B4B4B4;
-  z-index: 2;
-}
-/* Patch the search label */
-/*
-.czr-form .form-group.in-focus label span:first-of-type {
-    -webkit-transform: translateY(-110%);
-    -moz-transform: translateY(-110%);
-    -ms-transform: translateY(-110%);
-    transform: translateY(-110%);
-    color: #B4B4B4;
-}
-*/
-.search-form__container .czr-form .form-group.in-focus label span:first-of-type {
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-}
-.search-form__container i {
-  width: 2em;
-  height: 2em;
-  text-align: center;
-}
-.search-form__container .icn-close {
-  -webkit-transform: translateY(-110%);
-  -moz-transform: translateY(-110%);
-  -ms-transform: translateY(-110%);
-  transform: translateY(-110%);
-  cursor: pointer;
-}
-.search-form__container .in-focus .icn-close {
-  -webkit-transform: translateY(110%);
-  -moz-transform: translateY(110%);
-  -ms-transform: translateY(110%);
-  transform: translateY(110%);
-}
-.search-form__container .form-control {
-  padding-right: 2em;
-}
+
 /* Comment list */
 .col-avatar {
   float: left
@@ -1270,7 +1163,7 @@ Limit to desktop
 }
 */
 @media (max-width: 768px) {
-  .grid-container__alternate .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-text .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+  .grid-container__alternate .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
     padding-top: 0 !important;
   }
 }
@@ -1364,7 +1257,7 @@ replace this
 
 /* Some thumbnail container sizes ideas */
 /*[class*=grid-container__] .format-gallery .tc-thumbnail,
-[class*=grid-container__] .format-image.no-text .tc-thumbnail {
+[class*=grid-container__] .format-image.no-excerpt .tc-thumbnail {
   max-height: 600px;
 }*/
 .grid-container__masonry .format-gallery .tc-thumbnail img,
@@ -1379,9 +1272,9 @@ replace this
 }
 
 .article-container .grid-container__alternate .format-gallery .tc-thumbnail  .carousel,
-.article-container .grid-container__alternate .format-image.no-text .tc-thumbnail,
+.article-container .grid-container__alternate .format-image.no-excerpt .tc-thumbnail,
 .article-container .grid-container__full .format-gallery .tc-thumbnail  .carousel,
-.article-container .grid-container__full .format-image.no-text .tc-thumbnail {
+.article-container .grid-container__full .format-image.no-excerpt .tc-thumbnail {
     position: relative;
     height: 0;
     padding-bottom: 53.5%;
