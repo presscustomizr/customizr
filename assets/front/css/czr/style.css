@@ -113,15 +113,6 @@ embed, iframe, object, video { max-width: 100%;}
 .article-container .post-action { left: auto; }
 
 
-.hover .post-action { z-index: 5; position: absolute; }
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-footer a,
-.article-container .grid-container__alternate .format-image.no-excerpt .entry-footer a,
-.article-container .grid-container__alternate .format-image.no-excerpt .entry-header a,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header a,
-.article-container .grid-container__masonry .format-gallery .entry-header a,
-.article-container .grid-container__masonry .format-gallery .entry-footer a,
-.article-container .grid-container__masonry .format-image .entry-header a,
-.article-container .grid-container__masonry .format-image .entry-footer a { z-index: 2; position: relative; }
 
 .article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,

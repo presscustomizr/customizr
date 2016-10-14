@@ -40,7 +40,7 @@ var czrapp = czrapp || {};
     },
     //FORM FOCUS ACTION
     formFocusAction : function() {
-      var _input_types     = ['input[type="text"]', 'textarea'],
+      var _input_types     = ['input[type="url"]', 'input[type="email"]', 'input[type="text"]', 'textarea'],
         _focusable_class   = 'czr-focus',
         _parent_selector   = '.'+_focusable_class,
         _focus_class       = 'in-focus',
