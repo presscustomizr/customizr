@@ -39,12 +39,16 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   function czr_fn_extend_params( $model = array() ) {
     $global_sidebar_layout            = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
 
-    $model[ 'element_class']          = czr_fn_get_in_content_width_class();
+
 
     $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
     $model[ 'post_list_layout' ]      = $this -> czr_fn_get_the_post_list_layout( $model[ 'has_narrow_layout' ] );
     $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];
     $model[ 'has_post_media' ]        = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
+
+    $model[ 'element_class']          = czr_fn_get_in_content_width_class();
+    array_push( $model[ 'element_class' ], $model[ 'has_post_media' ] ? 'has-media' : 'no-media' );
+
     /*
     * In the new theme the places are defined just by the option show_thumb_first,
     * we handle the alternate with bootstrap classes
@@ -149,8 +153,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     * - not be vertically centered
     * - avoid the media-content alternation
     */
-    if ( ! $is_full_image ) {
-      if ( $has_post_media ) {
+    if ( ! $is_full_image && $has_post_media ) {
         /*
         * Video post formats
         * In the new alternate layout video takes more space when global layout has less than 2 sidebars
@@ -164,7 +167,6 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
           $_layout[ 'media' ]      = $_layout[ 'content' ];
           $_layout[ 'content' ]    = $_t_l;
         }
-      }
 
       // conditions to swap place_1 with place_2 are:
       // alternate on and current post number is odd (1,3,..). (First post is 0 )
@@ -178,7 +180,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
         //allow centering sections
         array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true ) ? 'czr-center-sections' : 'a');
     }
-    else {
+    elseif ( $is_full_image && $has_post_media ){
       /*
       * $is_full_image: Gallery and images (with no text) should
       * - be displayed in full-width
@@ -188,6 +190,10 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
 
       $place_1 = 'media';
       $place_2 = 'content';
+    }
+    elseif ( ! $has_post_media ) {
+      //full width content
+      $_layout[ 'content' ] = array('', '', '', '', '12');
     }
 
     /* Merge push and pull info into $_layout */
@@ -302,7 +308,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
     if ( in_array( $post_format, array( 'quote', 'link', 'status', 'aside' ) ) )
       return true;
 
-    return ! czr_fn_has_thumb();
+    return ! ( $this->has_post_media && czr_fn_has_thumb() );
 
   }
 

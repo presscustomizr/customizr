@@ -57,7 +57,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
                 <p><strong>You need to setup the video post field</strong></p>
             </div>' : $content;
 
-          return $content ? '<div class="video-container '. $class .'">'. $content . '</div>' : '';
+          return $content ? '<div class="video-container '. $class .'">'. $content . '</div>' : ' ';
 
       case 'audio':
           global $post, $wp_embed;
@@ -83,7 +83,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
                 <p><strong>You need to setup the audio post field</strong></p>
             </div>' : $content;
 
-          return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : '';
+          return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : ' ';
       case 'gallery':
           /* Rough */
           if ( (bool) $gallery = get_post_gallery(get_the_ID(), false) ) {
@@ -130,11 +130,9 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
           $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
           $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
 
-          if ( $this -> is_full_image ) {
-            $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
-            return $_bg_link . $_the_thumb[ 'tc_thumb' ];
-          }
-          return '<a rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'">'.  $_the_thumb[ 'tc_thumb' ] . '</a>';
+
+          $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+          return $_bg_link . $_the_thumb[ 'tc_thumb' ];
     }
   }
 

@@ -19,7 +19,7 @@
     <?php endif ?>
   <?php elseif ( $has_icon ): ?>
     <div class="post-type__icon">
-      <i class="icn-format"><a class="bg-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a></i>
+      <i class="icn-format"><a class="bg-icon-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a></i>
     <div>
   <?php endif ?>
   </div>
