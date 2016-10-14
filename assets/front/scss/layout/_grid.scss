@@ -76,7 +76,7 @@ WP classes
 	}
 }
 
-.post-actions, .post-action  {
+.post-action  {
   position: absolute;
   border-radius: 2px;
   @include opacity(0);
@@ -86,22 +86,10 @@ WP classes
   left:   0;
   width:100%;
   text-align: center;
-  &::before {
-	content: '';
-	display: block;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 50%;
-	right: 50%;
-	@include transition (all, 0.6s ease);
-	background: rgba($black, 0.75);
- }
+
 }
-.post-actions .action-buttons {
-	position: relative;
-}
-.post-actions, .post-action {
+
+.post-action {
 	li {
 		position: relative;
 		line-height:$base-line-height*3;
@@ -120,10 +108,10 @@ WP classes
 	}
 	& + li { border-left: 1px solid rgba($white, 0.1); }
 }
-.hover .post-actions, .hover .post-action {
+.hover .post-action {
 		z-index: 10;
+		@include transform(scale(1));
 		@include opacity(1);
-		@include transition (all, 0.3s ease);
 		&::before {
 			left:0;
 			right:0;
@@ -136,7 +124,7 @@ WP classes
 .post-action {
 		right:$base-line-height;
 		top: $base-line-height;
-		left:inherit;
+		left:auto;
 		width: $base-line-height*3;
 		height:$base-line-height*3;
 		display: inline-block;
@@ -146,10 +134,6 @@ WP classes
 		@include transform(scale(0));
 		@include transition(all, 0.3s ease-in-out);
 		li, a { line-height: $base-line-height*3; }
-}
-.hover .post-action {
-
-		@include transform(scale(1));
 }
 
 .entry-image__container { position: relative; overflow: hidden; }
@@ -164,7 +148,7 @@ WP classes
 }
 /* GLOBAL */
 .entry-meta a, .post-info a { color: $grey; @include transition(color, 0.3s ease);  }
-.entry-summary a.external { display:inline-block; @include underlined ( $primary-color, 1px ); }
+.tc-content-inner a.external { display:inline-block; @include underlined ( $primary-color, 1px ); }
 .entry-meta a:hover, .post-info a:hover{ color: $black; }
 .entry-header {
 		.entry-title {
@@ -178,19 +162,19 @@ WP classes
 					@extend %categories;
 		}
 }
-.entry-summary {
+.tc-content-inner {
 	color: $grey-dark;
 }
-.entry-summary.entry-quote {
+.tc-content-inner.entry-quote {
 	p a { color: $black; }
 }
 .format-link .tc-content-inner a,
-.format-link .entry-summary a { color: $grey-dark; }
+.format-link .tc-content-inner a { color: $grey-dark; }
 
 .format-link.hover .tc-content-inner a,
-.format-link.hover .entry-summary a { color: $black; }
+.format-link.hover .tc-content-inner a { color: $black; }
 
-.hover .entry-summary.entry-quote {
+.hover .tc-content-inner .entry-quote {
 	p a { color: $grey-dark; }
 }
 .entry-footer {
@@ -276,9 +260,7 @@ WP classes
 		@extend .small;
 		margin: $base-line-height*2 0 $base-line-height 0;
 	}
-	.format-image.no-excerpt .tc-content, .format-gallery .tc-content {
 
-	}
 	article  {
 		background: $white;
 		position: relative;
@@ -425,8 +407,6 @@ WP classes
 }
 /* END CLASSIC */
 
-
-
 .bg-link, .bg-icon-link {
 		top: 0;
 		left: 0;
@@ -434,7 +414,6 @@ WP classes
 		height: 100%;
 		position: absolute;
 		z-index: 1;
-
 }
 .bg-link {
 	@include transition(all, 0.6s ease);
@@ -443,10 +422,11 @@ WP classes
 	@include filter($black, $white, 0.25);
 }
 
-
 /* MASONRY & ALTERNATE .format-image.no-excerpt/gallery */
 .grid-container__alternate.has-media .format-image.no-excerpt, .grid-container__alternate.has-media .format-gallery,
 .grid-container__masonry .format-image, .grid-container__masonry .format-gallery {
+	a:not(.bg-link) { z-index: 2; position: relative; }
+
 	.tc-thumbnail {
 		max-height: 600px; /* Use padding instead ?*/
 		.bg-link { @include filter($black, $white, 0.25); }

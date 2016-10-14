@@ -282,8 +282,10 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //@param = array()
     protected function czr_fn_extend_params( $model = array() ) {
           //parse args into the model
-          if ( ! empty( $model['args'] ) )
-            return wp_parse_args( $model['args'], $model );
+          if ( ! empty( $model['args'] ) ) {
+            $model = wp_parse_args( $model['args'], $model );
+            unset( $model['args'] );
+          }
           return $model;
     }
 
