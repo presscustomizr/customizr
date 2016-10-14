@@ -112,48 +112,28 @@ embed, iframe, object, video { max-width: 100%;}
 .format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
 .article-container .post-action { left: auto; }
 
-.bg-link { top: 0; left: 0; width: 100%; height: 100%; position: absolute; z-index: 4;}
 
-.hover .post-action,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-footer,
-.article-container .grid-container__alternate .format-image.no-excerpt .entry-footer,
-.article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
-.article-container .grid-container__masonry .format-gallery .entry-header,
-.article-container .grid-container__masonry .format-gallery .entry-footer,
-.article-container .grid-container__masonry .format-image .entry-header,
-.article-container .grid-container__masonry .format-image .entry-footer { z-index: 5 }
+.hover .post-action { z-index: 5; position: absolute; }
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-footer a,
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-footer a,
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-header a,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header a,
+.article-container .grid-container__masonry .format-gallery .entry-header a,
+.article-container .grid-container__masonry .format-gallery .entry-footer a,
+.article-container .grid-container__masonry .format-image .entry-header a,
+.article-container .grid-container__masonry .format-image .entry-footer a { z-index: 2; position: relative; }
 
 .article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
 .article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
 .article-container .grid-container__masonry .format-gallery .entry-header,
 .article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
 
-.article-container .grid-container__alternate .format-image .sections-wrapper .tc-content,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content,
-.article-container .grid-container__masonry .format-image .tc-content,
-.article-container .grid-container__masonry .format-gallery .tc-content {
-  z-index: initial;
-}
+
 .article-container .grid-container__alternate .entry-footer {
   margin: 0;
   margin-top: 2.5em;
 }
-/* reset bottom + when format-image apply only to those with no text
 
-.grid-container__alternate .format-image .tc-content .entry-footer, .grid-container__alternate .format-gallery .tc-content .entry-footer, .square-grid__mini .format-image .tc-content .entry-footer, .grid-container__masonry .format-image .tc-content .entry-footer, .grid-container__masonry .format-gallery .tc-content .entry-footer {
-    position: absolute;
-    width: 90%;
-    bottom: 2.5em;
-}
-
-*/
-.article-container .grid-container__alternate .format-image.no-excerpt  .tc-content .entry-footer,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .tc-content .entry-footer {
-    position: absolute;
-    width: 90%;
-    bottom: 1.25em;
-}
 /* TO REMOVE
 @media (max-width: 992px)
 .grid-container__alternate .entry-header {
@@ -165,27 +145,7 @@ embed, iframe, object, video { max-width: 100%;}
     margin-top: 0;
   }
 }
-/* REMOVE
-.grid-container__alternate:not(.narrow) .format-image .entry-title {
-    font-size: 2.98598em;
-}
-.grid-container__alternate .format-image .entry-title {
-    margin-top: 0;
-}
-*/
-@media (max-width: 60em) and (min-width: 20em) {
-  .article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
-    font-size: calc( 1em + 1.0736 * ( ( 100vw - 20em) / 40 ) );
-  }
-}
-@media (min-width: 60em) {
-  .article-container .grid-container__alternate:not(.narrow) .format-image .entry-title {
-    font-size: 2.0736em;
-  }
-}
-.article-container .grid-container__alternate .format-image .entry-title {
-    margin-top: 0.625em;
-}
+
 
 /* TO BE MERGED */
 .grid-container__classic .post-info .v-separator,

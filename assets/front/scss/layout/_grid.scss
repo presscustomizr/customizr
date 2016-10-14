@@ -277,8 +277,7 @@ WP classes
 		margin: $base-line-height*2 0 $base-line-height 0;
 	}
 	.format-image.no-excerpt .tc-content, .format-gallery .tc-content {
-		padding: $base-line-height;
-		.entry-title { max-width: 90%; }
+
 	}
 	article  {
 		background: $white;
@@ -427,17 +426,34 @@ WP classes
 /* END CLASSIC */
 
 
+
+.bg-link, .bg-icon-link {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 1;
+
+}
+.bg-link {
+	@include transition(all, 0.6s ease);
+}
+.hover .bg-link {
+	@include filter($black, $white, 0.25);
+}
+
+
 /* MASONRY & ALTERNATE .format-image.no-excerpt/gallery */
-.grid-container__alternate .format-image.no-excerpt, .grid-container__alternate .format-gallery,
+.grid-container__alternate.has-media .format-image.no-excerpt, .grid-container__alternate.has-media .format-gallery,
 .grid-container__masonry .format-image, .grid-container__masonry .format-gallery {
 	.tc-thumbnail {
-		@extend .filter;
-		@include transition(all, 0.6s ease);
-		@include filter($black, $white, 0.25);
-
+		max-height: 600px; /* Use padding instead ?*/
+		.bg-link { @include filter($black, $white, 0.25); }
 	}
 
 	.tc-content {
+		padding: $base-line-height;
 		width: 100%;
 		height: 100%;
 		max-height: 100%;
@@ -446,7 +462,8 @@ WP classes
 		left: 0;
 		right:0;
 		top: 0;
-		z-index: 104;
+		/*z-index: 104;*/
+		.entry-title { max-width: 90%; }
 		.entry-header a, .entry-footer a {
 			color: $white;
 		}
@@ -455,7 +472,6 @@ WP classes
 			@include opacity(1);
 			@include transition(all, 0.3s ease);
 		}
-		.post:not(.format-image) & .entry-header { margin-top: $base-line-height*2}
 		.entry-summary {
 			color: $white;
 			font-weight: 500;
@@ -467,7 +483,7 @@ WP classes
 		.entry-footer {
 			position: absolute;
 			width:90%;
-			bottom: $base-line-height*2;
+			bottom: $base-line-height;
 			.post-info {
 				padding-top: $base-line-height;
 				&:before { background-color: rgba($grey-lightest, 0.5); }
@@ -475,22 +491,15 @@ WP classes
 
 		}
 	}
-	&.hover {
-
+	&.format-image.hover {
 		cursor: pointer;
-		.tc-thumbnail 	{ @include filter($black, $white, 0.35); }
-		 }
+		.tc-thumbnail .bg-link	{ @include filter($black, $white, 0.35); }
+	}
+	&.format-gallery.hover {
+		.carousel { @include filter($black, $white, 0.35); }
+	}
 }
 
-.hover:not(.format-image) .tc-thumbnail > a {
-	@include filter($black, $white, 0.25);
-}
-
-.grid-container__alternate .format-image.no-excerpt, .grid-container__alternate .format-gallery {
-	.tc-thumbnail { max-height: 600px; }
-}
-
-/* .no-thumb .post-type__icon { padding-top: $base-line-height; } */
 
 .grid-container__masonry {
 	.post-type__icon {
