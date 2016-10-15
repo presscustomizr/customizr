@@ -20,7 +20,8 @@ module.exports = {
 			'!**/*.db',
       '!patches/**',
       '!inc/init-pro.php',
-      '!custom-skins/**'
+      '!custom-skins/**',
+      '!inc/_dev/**'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
 	},
@@ -47,7 +48,8 @@ module.exports = {
       '!readme.txt',
       '!screenshot.png',
       '!style.css',
-      '!custom-skins/**'
+      '!custom-skins/**',
+      '!inc/_dev/**'
     ],
     dest: '../customizr-pro/'
   }

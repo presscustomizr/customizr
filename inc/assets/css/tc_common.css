@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.23
+ * Customizr v3.4.3
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6167,6 +6167,18 @@ footer#footer .colophon .credits a[class*=icon-] {
   font-size: 17px;
   width: 50%;
   margin-top: 20px;
+}
+/*
+* round-divs and featured pages container compatibility with bootstrap3+
+*
+* See https://github.com/presscustomizr/customizr/issues/640
+* fixes also the alternate post list layout when displaying rounded thumb
+*/
+#tc-page-wrap .marketing,
+#tc-page-wrap .round-div {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
 /* Center align the text within the three columns below the carousel */
 .marketing {
