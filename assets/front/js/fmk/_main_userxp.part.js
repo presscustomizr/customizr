@@ -17,7 +17,6 @@ var czrapp = czrapp || {};
               czrapp.$_body.addClass('no-hover');
 
             timer = setTimeout(function() {
-              console.log('never here?');
               czrapp.$_body.removeClass('no-hover')
             }, 300);
         });
@@ -26,6 +25,9 @@ var czrapp = czrapp || {};
 
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
+      if ( czrapp.$_body.hasClass( 'tc-is-mobile' ) )
+        return;
+
       /* Grid */
       $( '.grid-container__alternate, .square-grid__mini, .grid-container__full' ).on( 'mouseenter mouseleave', '.entry-image__container, article.format-image.no-excerpt .tc-content, article.format-gallery .tc-content', _toggleArticleParentHover )
       $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-post, .tc-grid-post', _toggleArticleParentHover );

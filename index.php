@@ -32,6 +32,7 @@
       <div class="container" role="main">
 
         <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
+
         <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
           <?php do_action('__before_content'); ?>
@@ -44,7 +45,7 @@
                 while ( have_posts() ) {
                   the_post();
 
-                  if ( czr_fn_is_list_of_posts() ) {
+                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
                     if ( czr_fn_has('post_list_grid') ) {
                       czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
                     }
@@ -67,6 +68,7 @@
           </div>
 
           <?php do_action('__after_content'); ?>
+
           <?php
             if ( czr_fn_has('left_sidebar') ) {
               czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
@@ -77,10 +79,35 @@
               czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
             }
           ?>
-        </div>
+        </div><!-- .column-content-wrapper -->
+
+        <?php if ( czr_fn_has('comments') ) : ?>
+          <div class="row">
+            <div class="col-xs-12">
+              <?php czr_fn_render_template('content/comments/comments'); ?>
+            </div>
+          </div>
+        <?php endif ?>
+
       </div><!-- .container -->
+
+      <?php do_action('__after_main_container'); ?>
+
     </div><!-- #main-wrapper -->
 
     <?php do_action('__after_main_wrapper'); ?>
+
+    <?php
+      if ( czr_fn_has('post_navigation') ) :
+    ?>
+      <div class="container-fluid">
+        <div class="row">
+        <?php
+          $_post_navigation_template = $_is_post_list ? 'content/post-lists/post_navigation_posts' : 'content/singular/post_navigation_singular';
+          czr_fn_render_template($_post_navigation_template, 'post_navigation');
+        ?>
+        </div>
+      </div>
+    <?php endif ?>
 
 <?php get_footer() ?>

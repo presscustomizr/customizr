@@ -192,43 +192,25 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
         && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
     }
 
-
-    function czr_fn_display_view_post_navigation_singular() {
-      if ( ! $this -> czr_fn_display_post_navigation() )
-        return false;
-
-      $post_navigation_singular = false;
-
-      $_context = $this -> czr_fn_get_post_navigation_context();
-      if ( CZR() -> czr_fn_is_customizing() && in_array( $_context, array('page', 'single') ) )
-        $post_navigation_singular = true;
-      elseif ( $this -> czr_fn_is_post_navigation_enabled() )
-        $post_navigation_singular = in_array( $_context, array('page', 'single') ) ? $this -> czr_fn_is_post_navigation_context_enabled( $_context ) : false;
-
-      return $post_navigation_singular;
-    }
-
-
-    function czr_fn_display_view_post_navigation_posts() {
-      if ( ! $this -> czr_fn_display_post_navigation() )
-        return false;
-
-      $post_navigation_posts = false;
-
-      $_context = $this -> czr_fn_get_post_navigation_context();
-      if ( CZR() -> czr_fn_is_customizing() && in_array( $_context, array('home', 'archive') ) )
-        $post_navigation_posts = true;
-      elseif ( $this -> czr_fn_is_post_navigation_enabled() )
-        $post_navigation_posts = in_array( $_context, array('home', 'archive') ) ? $this -> czr_fn_is_post_navigation_context_enabled( $_context ) : false;
-
-      return $post_navigation_posts;
-    }
-
-    function czr_fn_display_post_navigation() {
+    function czr_fn_display_view_post_navigation() {
       global $wp_query;
-      $bool  =  $wp_query -> post_count > 0;
-      return is_singular() ?  $bool && ! is_attachment() : $bool;
+      $bool  = $wp_query -> post_count > 0;
+      $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
+
+      if ( ! $bool )
+        return false;
+
+      //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
+      if ( CZR() -> czr_fn_is_customizing() )
+        return true;
+
+      if ( ! $this->czr_fn_is_post_navigation_enabled() )
+        return false;
+
+      $_context = czr_fn_get_query_context();
+      return $this -> czr_fn_is_post_navigation_context_enabled( $_context );
     }
+
 
     function czr_fn_display_view_404() {
       return is_404();
@@ -282,7 +264,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       if ( isset( $post ) ) {
         $_bool = post_password_required() ? false : true;
 
-        $_bool = in_the_loop() ? $_bool && ( czr_fn_is_home() || ! is_singular() ) : $_bool;
+        $_bool = ! in_the_loop() ? $_bool && ! czr_fn_is_home() && is_singular() : $_bool;
 
         //2) if user has enabled comment for this specific post / page => true
         //@todo contx : update default value user's value)
@@ -299,23 +281,6 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
       return apply_filters( 'czr_are_comments_enabled', $_bool );
     }
 
-    /**
-    *
-    * @return string or bool
-    *
-    */
-    function czr_fn_get_post_navigation_context(){
-      if ( is_page() )
-        return 'page';
-      if ( is_single() && ! is_attachment() )
-        return 'single'; // exclude attachments
-      if ( is_home() && 'posts' == get_option('show_on_front') )
-        return 'home';
-      if ( !is_404() && ! czr_fn_is_home_empty() )
-        return 'archive';
-
-      return false;
-    }
 
     /*
     * @param (string or bool) the context

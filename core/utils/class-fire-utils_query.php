@@ -55,6 +55,19 @@ function czr_fn_is_list_of_posts() {
 }
 
 
+function czr_fn_get_query_context() {
+    if ( is_page() )
+        return 'page';
+    if ( is_single() && ! is_attachment() )
+        return 'single'; // exclude attachments
+    if ( is_home() && 'posts' == get_option('show_on_front') )
+        return 'home';
+    if ( !is_404() && ! czr_fn_is_home_empty() )
+        return 'archive';
+
+    return false;
+}
+
 function czr_fn_is_single_post() {
     global $post;
     return apply_filters( 'czr_is_single_post', isset($post)

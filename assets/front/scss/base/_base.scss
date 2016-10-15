@@ -1,15 +1,15 @@
-*, 
-*:after, 
-*:before { 
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box; 
+
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-body, html { 
-        padding: 0; 
-        margin: 0; 
-       /* height: 100%;*/
+body, html {
+        padding: 0;
+        margin: 0;
         -webkit-font-smoothing: antialiased;
 }
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
@@ -55,13 +55,13 @@ h1, h2, h3, h4, h5, h6 {
     text-rendering:optimizelegibility;
 }
 
-ul, ol { 
+ul, ol {
     list-style: none;
 }
 
 h1 a, h2 a, h3 a,
 h4 a, h5 a, h6 a {
- 
+
 }
 
 ul, ol {
@@ -95,15 +95,15 @@ dl dt {
 }
 
 dl dd {
-   
+
 }
 
 mark {
-   
+
 }
 
 code, tt {
-   
+
 }
 
 pre code, tt {
