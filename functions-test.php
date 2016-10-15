@@ -52,7 +52,10 @@ $_options = array(
     //to add
     'tc_related_posts'         => true,
 
-    'tc_center_img'            => true
+    'tc_center_img'            => true,
+
+    'tc_show_post_navigation_home' => true,
+
 );
 
 
@@ -62,7 +65,8 @@ function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) 
 }
 
 //Do not use post slider transient for the moment
-add_filter( 'czr_posts_slider_use_transient', '__return_false' );
+//add_filter( 'czr_posts_slider_use_transient', '__return_false' );
+
 add_filter( 'czr_add_custom_fonts_to_editor' , '__return_false' );
 
 //Test display a header sticky push in single posts

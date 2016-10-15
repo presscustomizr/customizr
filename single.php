@@ -45,6 +45,8 @@
               }//endif;
             ?>
           </div>
+          <?php do_action('__after_content'); ?>
+
           <?php
 
             if ( czr_fn_has('left_sidebar') ) {
@@ -80,22 +82,23 @@
               <?php czr_fn_render_template('content/comments/comments'); ?>
             </div>
           </div>
-        <?php endif; ?>
+        <?php endif ?>
       </div><!-- .container -->
 
       <?php do_action('__after_main_container'); ?>
-      <?php
-        if ( czr_fn_has('post_navigation_singular') ) :
-      ?>
-        <div class="container-fluid">
-          <div class="row">
-          <?php czr_fn_render_template('content/singular/post_navigation_singular', 'post_navigation_singular');  ?>
-          </div>
-        </div>
-      <?php endif; ?>
 
     </div><!-- #main-wrapper -->
 
     <?php do_action('__after_main_wrapper'); ?>
+
+    <?php
+      if ( czr_fn_has('post_navigation') ) :
+    ?>
+      <div class="container-fluid">
+        <div class="row">
+        <?php czr_fn_render_template('content/singular/post_navigation_singular', 'post_navigation');  ?>
+        </div>
+      </div>
+    <?php endif ?>
 
 <?php get_footer() ?>

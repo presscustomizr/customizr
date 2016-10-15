@@ -387,14 +387,8 @@ Fix paddings here:
   }*/
 }
 
-/* Post pagination fixes */
-.post-pagination > div > span {
-  font-weight: 600;
-}
-.post-pagination a + *,
-.post-pagination span + * {
-  margin-left: 1.25em;
-}
+
+
 /* Dropdown toggler span test
 Replace
 

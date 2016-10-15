@@ -55,7 +55,14 @@ class CZR_cl_content_model_class extends CZR_cl_Model {
       ),
       /* END GRID */
 
-
+      /* Needed here 'cause is used by two different templates */
+      /*********************************************
+      * POST NAVIGATION
+      *********************************************/
+      array(
+        'id'          => 'post_navigation',
+        'model_class' => 'content/navigation/post_navigation',
+      ),
     );
 
     return $children;

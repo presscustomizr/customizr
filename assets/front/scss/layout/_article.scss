@@ -124,7 +124,7 @@ section[class^="post-"] {
 		right:0;
 	 }
 }
-.post-pagination {
+.pagination {
 	text-align:center;
 	margin: 0 auto;
 }
@@ -168,18 +168,20 @@ section[class^="post-"] {
 		float:left;
 		width: 33.333%;
 		text-align: center;
+		min-height: 1px;
 	}
-	li:first-of-type { text-align: left;  }
+	.pagination li { width: auto; }
+	li:first-of-type { text-align: left; }
 	li:last-of-type  { text-align: right; }
-	.post-nav-title {
+	.meta-nav-title {
 		@include transition(all, 0.6s ease);
 		@include opacity(0);
 		display: inline-block;
 		vertical-align: top;
 	}
 	a i.arrow { font-size: $base-line-height; }
-	a {
-		color: $black;
+	.page-numbers, a {
+		color: $grey;
 		font-family: $serviceFont;
 		line-height: $base-line-height*3;
 		height: $base-line-height*3;
@@ -191,17 +193,21 @@ section[class^="post-"] {
 		@extend .caps;
 		@extend .letter-spacing-2;
 	}
+	.page-numbers {
+		font-family: inherit;
+	}
 	.post-prev a {
 		left: $base-line-height;
 	}
 	.post-next a {
 		right: $base-line-height;
 	}
-	a:hover i { color:$grey; }
-	@media (max-width: 992px) {
-		.post-nav-title { display:none; }
-	}
-	@media (min-width: 991px) {
+	a:hover i { color:$black; }
+
+	.meta-nav-title { display:none; color: $black; }
+
+	@media (min-width: 992px) {/*md*/
+			.meta-nav-title { display: inline-block;}
 			.post-prev a {
 				left: $base-line-height;
 			}
@@ -209,7 +215,7 @@ section[class^="post-"] {
 				right: $base-line-height;
 			}
 		a:hover {
-			.post-nav-title { @include opacity(1); }
+			.meta-nav-title { @include opacity(1); }
 		}
 		.post-prev a:hover {
 			;
@@ -349,15 +355,26 @@ section.post-related-articles {
 		}
 	}
 
-.post-pagination {
-	@extend .small;
-	a {
-		color:$grey;
+.pagination {
+	ul { display: inline-block }
+	&.post-pagination {
+		@extend .small;
+		a {
+			color:$grey;
+		}
 	}
-	a:hover, .active a {
+
+	a:hover, .active a, .current {
 		color: $black;
 	}
+	.current { font-weight: 600;}
+	li:not(first-of-type),
+	a + *,
+	span + * {
+  	margin-left: 1.25em;
+	}
 }
+.pagination > * > span { color: $black; font-weight: 600 }
 .post-share { text-align: right; }
 .action-link {
 	border-bottom-color: $grey-lightest;

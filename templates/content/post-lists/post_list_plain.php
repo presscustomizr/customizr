@@ -45,7 +45,7 @@ endif ?>
                 $show_full_content = true,
                 __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ),
                 wp_link_pages( array(
-                  'before'        => '<div class="post-pagination row"><div class="col-md-12">',
+                  'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
                   'after'         => '</div></div>',
                   'link_before'   => '<span>',
                   'link_after'    => '</span>',
