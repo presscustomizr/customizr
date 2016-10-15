@@ -42,6 +42,6 @@ module.exports = {
 	},
 	push_php : {
 		files: ['**/*.php' , '!build/**.*.php'],
-		tasks: ['gitinfo' , 'replace:readme', 'wait:pause']
+		tasks: ['gitinfo' , 'replace:readme', 'wait:pause', 'concat:init_php', 'concat:front_php', 'concat:admin_php']
 	}
 };

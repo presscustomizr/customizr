@@ -2,6 +2,55 @@ module.exports = {
 	options: {
 		separator: '',
 	},
+  init_php : {
+    src: [
+      '<%= paths.dev_php %>init.php',
+      '<%= paths.dev_php %>init-pro.php',
+      '<%= paths.dev_php %>class-fire-init.php',
+      '<%= paths.dev_php %>class-fire-plugins_compat.php',
+      '<%= paths.dev_php %>class-fire-utils_settings_map.php',
+      '<%= paths.dev_php %>class-fire-utils.php',
+      '<%= paths.dev_php %>class-fire-resources.php',
+      '<%= paths.dev_php %>class-fire-widgets.php',
+      '<%= paths.dev_php %>class-fire-placeholders.php',
+      '<%= paths.dev_php %>z_fire.php'
+    ],
+    dest: '<%= paths.inc_php %>czr-init.php',
+  },
+  front_php : {
+    src: [
+      '<%= paths.dev_php %>parts/class-header-header_main.php',
+      '<%= paths.dev_php %>parts/class-header-menu.php',
+      '<%= paths.dev_php %>parts/class-header-nav_walker.php',
+      '<%= paths.dev_php %>parts/class-content-404.php',
+      '<%= paths.dev_php %>parts/class-content-attachment.php',
+      '<%= paths.dev_php %>parts/class-content-breadcrumb.php',
+      '<%= paths.dev_php %>parts/class-content-comments.php',
+      '<%= paths.dev_php %>parts/class-content-featured_pages.php',
+      '<%= paths.dev_php %>parts/class-content-gallery.php',
+      '<%= paths.dev_php %>parts/class-content-headings.php',
+      '<%= paths.dev_php %>parts/class-content-no_results.php',
+      '<%= paths.dev_php %>parts/class-content-page.php',
+      '<%= paths.dev_php %>parts/class-content-post.php',
+      '<%= paths.dev_php %>parts/class-content-post_list.php',
+      '<%= paths.dev_php %>parts/class-content-post_list_grid.php',
+      '<%= paths.dev_php %>parts/class-content-post_metas.php',
+      '<%= paths.dev_php %>parts/class-content-post_navigation.php',
+      '<%= paths.dev_php %>parts/class-content-post_thumbnails.php',
+      '<%= paths.dev_php %>parts/class-content-sidebar.php',
+      '<%= paths.dev_php %>parts/class-content-slider.php',
+      '<%= paths.dev_php %>parts/class-footer-footer_main.php'
+    ],
+    dest: '<%= paths.inc_php %>czr-front.php',
+  },
+  admin_php : {
+    src: [
+      '<%= paths.dev_php %>admin/class-fire-admin_init.php',
+      '<%= paths.dev_php %>admin/class-fire-admin_page.php',
+      '<%= paths.dev_php %>admin/class-admin-meta_boxes.php'
+    ],
+    dest: '<%= paths.inc_php %>czr-admin.php',
+  },
 	front_main_parts_js : {
     src: [
       '<%= paths.front_js %>parts/_main_base.part.js',

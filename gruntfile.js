@@ -17,6 +17,8 @@ module.exports = function(grunt) {
         front_js : 'inc/assets/js/',
         admin_css : 'inc/admin/css/',
         admin_js : 'inc/admin/js/',
+        dev_php : 'inc/_dev/',
+        inc_php : 'inc/',
         lang : 'inc/lang/'
       },
       //default less modifiers
@@ -33,6 +35,7 @@ module.exports = function(grunt) {
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
         //PROD
+        'prod_php' : ['concat:init_php', 'concat:front_php', 'concat:admin_php'],
         'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'cssmin:prod_common_rtl'],
         'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
         'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
@@ -40,7 +43,7 @@ module.exports = function(grunt) {
         //Get Git info from a working copy and populate grunt.config with the data
         'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
         //final build meta task
-        'customizr_build' : ['prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+        'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
         //TRAVIS ci virtual machine build check on js @todo check other resources?
         'travis' : ['jshint'],
