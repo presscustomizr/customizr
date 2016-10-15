@@ -127,7 +127,7 @@ var czrapp = czrapp || {};
           cellSelector: '.post',
           cellAlign: 'left',
           dragThreshold: 10,
-          contain: true
+          contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
       });
 
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */

@@ -12,9 +12,9 @@
 		& + li { margin-left: $base-line-height; }
 	}
 }
-
-.shadow { 
-    @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08)); 
+.no-hover { pointer-events: none !important; }
+.shadow {
+    @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
 }
 
 @mixin border_b_t() {
@@ -89,7 +89,7 @@
       background-color: $color;
       @include transform( scaleX(1) );
    }
-} 
+}
 
 @mixin underlined ($color, $height) {
   &:before {
@@ -108,7 +108,7 @@
      visibility: visible;
      @include transform( scaleX(1) );
   }
-} 
+}
 
 @mixin text-truncate {
     overflow: hidden;
@@ -144,7 +144,7 @@
     content: '';
     display: inline-block;
     vertical-align: middle;
-    height: 100%; 
+    height: 100%;
     width: .1px;
   }
 }
