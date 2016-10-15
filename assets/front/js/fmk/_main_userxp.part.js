@@ -6,6 +6,24 @@ var czrapp = czrapp || {};
     init : function() {
 
     },
+    disableHoverOnScroll: function() {
+      //While scrolling we don' want to trigger hover actions
+      if ( ! czrapp.$_body.hasClass( 'tc-is-mobile' ) ) {
+        var timer;
+
+        czrapp.$_window.on('scroll', function() {
+            clearTimeout(timer);
+            if ( ! czrapp.$_body.hasClass( 'no-hover' ) )
+              czrapp.$_body.addClass('no-hover');
+
+            timer = setTimeout(function() {
+              console.log('never here?');
+              czrapp.$_body.removeClass('no-hover')
+            }, 300);
+        });
+      }
+    },
+
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
       /* Grid */
