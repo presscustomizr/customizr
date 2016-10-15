@@ -42,7 +42,7 @@
 * https://codex.wordpress.org/Plugin_API
 */
 
-
+add_filter('czr_fn_isprevdem', '__return_true');
 //Fire Customizr
 require_once( get_template_directory() . '/inc/czr-init.php' );
 

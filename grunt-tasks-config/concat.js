@@ -13,6 +13,7 @@ module.exports = {
       '<%= paths.dev_php %>class-fire-resources.php',
       '<%= paths.dev_php %>class-fire-widgets.php',
       '<%= paths.dev_php %>class-fire-placeholders.php',
+      '<%= paths.dev_php %>class-fire-prevdem.php',
       '<%= paths.dev_php %>z_fire.php'
     ],
     dest: '<%= paths.inc_php %>czr-init.php',
