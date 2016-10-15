@@ -208,7 +208,8 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tags li a, .tagcloud li a, .post-tags li a, .sidebar .tagcloud li a, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
+.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tagcloud a,
+.tags li, .sidebar .tagcloud li, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
@@ -278,17 +279,21 @@ blockquote p {
   text-align: right !important;
 }
 
-.inline-list, .tags, .tagcloud, .post-tags, .sidebar .tagcloud {
+.inline-list, .tags, .sidebar .tagcloud {
   list-style: none;
 }
 
-.inline-list li, .tags li, .tagcloud li, .post-tags li, .sidebar .tagcloud li {
+.inline-list li, .tags li, .sidebar .tagcloud li {
   display: inline-block;
   position: relative;
 }
 
-.inline-list li + li, .tags li + li, .tagcloud li + li, .post-tags li + li, .sidebar .tagcloud li + li {
+.inline-list li + li, .tags li + li, .sidebar .tagcloud li + li {
   margin-left: 1.25em;
+}
+
+.no-hover {
+  pointer-events: none !important;
 }
 
 .shadow, .header-skin-light header:not(.header-transparent) .primary-navbar__wrapper, .header-skin-dark header:not(.header-transparent) .primary-navbar__wrapper {
@@ -1507,36 +1512,38 @@ blockquote cite:before {
   transform: scale(1, 1);
 }
 
-.tags li, .tagcloud li, .post-tags li, .sidebar .tagcloud li {
+.tagcloud a,
+.tags li, .sidebar .tagcloud li {
   padding: 0 0.625em 0 0.625em;
   margin: 0.3125em 0;
   border: 1px solid #eceeef;
   border-radius: 2px;
   margin-right: 0.3125em;
+  color: #777;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.tags li a, .tagcloud li a, .post-tags li a, .sidebar .tagcloud li a {
-  color: #777;
-}
-
-.tags li + li, .tagcloud li + li, .post-tags li + li, .sidebar .tagcloud li + li {
+.tagcloud a + a,
+.tags li + li, .sidebar .tagcloud li + li {
   margin-left: 0;
   margin-right: 0.3125em;
 }
 
-.tags a:hover, .tagcloud a:hover, .post-tags a:hover {
-  color: #fff !important;
-}
-
-.tags li:hover, .tagcloud li:hover, .post-tags li:hover {
+.tagcloud a:hover,
+.tags li:hover, .sidebar .tagcloud li:hover {
   border-color: #202020;
   background-color: #202020;
 }
 
-.tags li:hover a, .tagcloud li:hover a, .post-tags li:hover a {
-  color: #fff !important;
+.widget .tagcloud a:hover,
+.tagcloud a:hover,
+.tags li:hover a, .sidebar .tagcloud li:hover a {
+  color: white;
+}
+
+.tagcloud a {
+  font-size: inherit !important;
 }
 
 .v-separator {

@@ -18,7 +18,7 @@ var czrapp = czrapp || {};
 
             timer = setTimeout(function() {
               czrapp.$_body.removeClass('no-hover')
-            }, 300);
+            }, 200);
         });
       }
     },
@@ -100,18 +100,6 @@ var czrapp = czrapp || {};
       });
     },
 
-    //test comment reply
-    // commentReplyTest : function() {
-    //   czrapp.$_body.on('click', '.comment-reply-link', function( evt ){
-    //     evt.preventDefault();
-    //     var $_this_parent = $(this).closest('.comment-content');
-    //      $.each( $( '#comments .comment-content.open') , function() {
-    //        if ( ! $(this).is($_this_parent) )
-    //          $(this).removeClass("open");
-    //      });
-    //     $_this_parent.toggleClass('open');
-    //   });
-    // },
     variousHeaderActions : function() {
       /* ham navbar */
       czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {

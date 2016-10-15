@@ -28,7 +28,7 @@
 	@include border-radius(2px, 2px, 2px, 2px);
 	@extend .service-font;
 }
-.btn-large {	
+.btn-large {
 	@extend .bold;
 	letter-spacing: 3px;
 	@extend .caps;
@@ -88,7 +88,7 @@
 	}
 }
 a.external { position: relative; @extend .semi-bold; }
-a[target="_blank"]:hover:after {  
+a[target="_blank"]:hover:after {
 }
 
 %categories  {
@@ -105,7 +105,7 @@ a[target="_blank"]:hover:after {
 	}
 	a:hover { color: $black; }
 	a:not(:last-of-type):after {
-		content: "/"; 
+		content: "/";
 		position: absolute;
 		top:0;
 		left:100%;
@@ -131,7 +131,7 @@ a[target="_blank"]:hover:after {
 blockquote {
 	position: relative;
 	margin: $base-line-height*2 0;
-	@extend .bold; 
+	@extend .bold;
 	p { color: $black; }
 	footer { margin-top:  $base-line-height; position: relative; }
 	cite   { color: $grey-dark; font-weight: 300; font-style: normal; text-align: right; padding-left: $base-line-height*4; position: relative; }
@@ -154,9 +154,9 @@ blockquote {
           font-size: inherit;
           @extend .letter-spacing-1;
           @extend .caps;
-          li {  
-          	clear:both; 
-          	min-width: 100%; 
+          li {
+          	clear:both;
+          	min-width: 100%;
           }
           a {
             @extend .bold;
@@ -168,16 +168,16 @@ blockquote {
             height: 30px;
             vertical-align: middle;
             padding: 0 !important;
-            width: 100%;           
+            width: 100%;
           }
           @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );
           .dropdown-item {
-              float:none; 
+              float:none;
               &.menu-item-has-children { padding-right:$base-line-height*2; }
               display: block;
               line-height: 4em;
               vertical-align: middle;
-			@media (min-width: 992px) {  
+			@media (min-width: 992px) {
               .caret__dropdown-toggler i {
             	 	@include transform(rotate(-90deg));
             		transform-origin:100% 100;
@@ -185,7 +185,7 @@ blockquote {
 					display: inline-block;
 	            }
 	        }
-              @media (max-width: 992px) {            
+              @media (max-width: 992px) {
                   &:last-of-type {
                        margin-bottom: $base-line-height/2;
                   }
@@ -197,13 +197,13 @@ blockquote {
           .dropdown-item + .dropdown-item { margin-left: 0 }
           .dropdown-item.open {
               .dropdown-item.open ul { display:block; }
-          }       
+          }
           .dropdown-menu {
               left: 100%;
               top: 100%;
               text-transform: none;
               font-size:ms(0);
-          }  
+          }
 
 }
 
@@ -222,8 +222,8 @@ blockquote {
          }
          .dropdown-item {
             background: transparent;
-            padding: $base-line-height/2 0 $base-line-height/2 $base-line-height; 
-          
+            padding: $base-line-height/2 0 $base-line-height/2 $base-line-height;
+
          }
       }
 }
@@ -249,50 +249,62 @@ blockquote {
     @include transform (scale(1, 1));
 }
 
-.tags { 
+.tags {
 		@extend .inline-list;
-		li {
-			padding: 0 $base-line-height/2 0 $base-line-height/2; 
+}
+.tagcloud a,
+.tags li {
+			padding: 0 $base-line-height/2 0 $base-line-height/2;
 			margin:$base-line-height/4 0;
-			border:1px solid $grey-light; 
+			border:1px solid $grey-light;
 			border-radius: 2px;
 			margin-right:  $base-line-height/4;
-			a { color: $grey-dark; 	@extend .service-font; }
+      color: $grey-dark;
+      @extend .service-font;
 			@include transition (all 0.3s ease);
-		}
-		li + li { 
-			margin-left:0; 
-			margin-right:$base-line-height/4;
-		}
-		a:hover  { color: $white !important; }
-		li:hover {
-			border-color: $black;
-			background-color: $black;
-			a { color: $white !important; }
-		}
-
 }
 
+.tagcloud a + a,
+.tags li + li {
+			margin-left:0;
+			margin-right:$base-line-height/4;
+}
+
+.tagcloud a:hover,
+.tags li:hover {
+		border-color: $black;
+		background-color: $black;
+}
+
+.widget .tagcloud a:hover,
+.tagcloud a:hover,
+.tags li:hover a {
+  color: white;
+}
+
+
+.tagcloud a {
+  font-size: inherit !important;
+}
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
-.tagcloud { @extend .tags }
 
 /* tabs */
 .tabs {
 	border-bottom: 2px solid $grey-light;
 	@extend .bold;
-	li { 
-			position: relative; 
+	li {
+			position: relative;
 			font-size: ms(2);
 			margin-bottom: -2px;
 			texl-align: left;
-			
+
 	}
 	a {
 			color: $grey;
 			position: relative;
 			background: none;
-			
-			@include underlined_simple (transparent, 2px); 
+
+			@include underlined_simple (transparent, 2px);
 			@extend .small;
 			text-align: left;
 			padding: $base-line-height/2 0 $base-line-height !important;
@@ -310,7 +322,7 @@ blockquote {
 	.active::before {
 			background-color: $black;
 			@include transform(scale(1));
-	}	
+	}
 }
 .tab-content {
 		margin-top: $base-line-height;
@@ -322,15 +334,15 @@ blockquote {
 
 /*  slider/gallery arrows  */
 .tc-gallery-nav { @extend .slider-nav; }
-.slider-nav { 
-	display:block; 
-	width: 100%; 
+.slider-nav {
+	display:block;
+	width: 100%;
 	.slider-prev, .slider-next {
 		position: absolute;
 		z-index: 130;
 		top: calc((100% - 60px)/2);
-		text-align: center; 
-		margin-top: 0px; 
+		text-align: center;
+		margin-top: 0px;
 		-webkit-backface-visibility: hidden;
 		display: block;
 		color: $white;
@@ -345,7 +357,7 @@ blockquote {
 		position: absolute;
 		line-height:60px;
 	}
-	.slider-prev {	
+	.slider-prev {
 		left: 0;
 		@include border-radius(0px, 2px, 2px, 0px);
 		.slider-count {
@@ -395,7 +407,7 @@ blockquote {
     	content: "";
 		position: absolute;
 		top: 0;
-		left: 0; 
+		left: 0;
 		width: 100%;
 		background: $black;
 		height: 2px;

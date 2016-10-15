@@ -139,10 +139,10 @@ WP classes
 .entry-image__container { position: relative; overflow: hidden; }
 
 
-.post-tags {
-	@extend .tags;
-	.grid-container__alternate & { margin-bottom: $base-line-height; }
-}
+
+.grid-container__alternate .post-tags { margin-bottom: $base-line-height; }
+
+
 .categories, .entry-header .entry-meta {
 
 }
