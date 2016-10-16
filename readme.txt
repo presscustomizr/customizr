@@ -36,13 +36,16 @@ The exceptions to this license are as follows:
 * SmoothScroll - v1.3.8 (Balazs Galambosi), MIT license
 * Icon Set: Font Awesome is licensed under SIL OFL 1.1 and MIT License
 * The images screenshot.png, inc/assets/img/customizr-theme-customizer.png, inc/assets/img/customizr-theme-responsive.png, inc/admin/img/ are creations of Nicolas Guillaume and licensed under GPL v2+
+* All images in inc/assets/img/demo are licensed under CC0 in pixabay.com
 * The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/
 
 
 #######################  Changelog ######################
-= 3.4.3 October 15th 2016 =
+= 3.4.30 October 15th 2016 =
 * added : in single post, new wp filter : apply_filters( 'tc_single_post_section_class', array( 'entry-content' )
 * added : in single post, new wp action : do_action( '__after_single_entry_inner' )
+* added : demo singleton class CZR_prevdem
+* added : demo images in inc/assets/img/demo
 * Imp: group files in 4 main files to load in inc/
 * Imp: add fp and round-div comp code with plugins running bootsrap3+ fixes #640
 * Fix: fix js issue for pages with no header (dropdown placement)fixes #643

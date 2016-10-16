@@ -702,8 +702,9 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'min'           => 0,
                                 'priority'      => 70,
                                 'transport'     => 'postMessage',
-                                'notice'    => sprintf('%1$s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index" target="_blank">%2$s</a> ?',
+                                'notice'    => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a> ?',
                                     __( "What is" , 'customizr' ),
+                                    esc_url('https://developer.mozilla.org/en-US/docs/Web/CSS/z-index'),
                                     __( "the z-index" , 'customizr')
                                 ),
               )

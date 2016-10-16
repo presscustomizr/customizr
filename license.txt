@@ -1,4 +1,4 @@
-Customizr WordPress theme, copyright (C) 2013 Nicolas GUILLAUME
+Customizr WordPress theme, copyright (C) 2013 - 2016 Nicolas GUILLAUME
         Licensed under the GNU GPL License below
 
 

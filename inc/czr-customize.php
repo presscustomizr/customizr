@@ -527,13 +527,13 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         <div id="tc-donate-customizer">
           <a href="#" class="tc-close-request button" title="<?php _e('dismiss' , 'customizr'); ?>">X</a>
             <?php
-              printf('<h3>%1$s <a href="%2$s" target="_blank">Nicolas</a>%3$s :).</h3>',
+              printf('<h3>%1$s <a href="%2$s" target="_blank">Nicolas</a>%3$s.</h3>',
                 __( "Hi! This is" , 'customizr' ),
-                esc_url('twitter.com/presscustomizr'),
+                esc_url('presscustomizr.com/about/'),
                 __( ", developer of the Customizr theme", 'customizr' )
               );
               printf('<span class="tc-notice">%1$s</span>',
-                __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation of $20, $50, ..." , 'customizr' )
+                __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation !" , 'customizr' )
               );
               printf('<a class="tc-donate-link" href="%1$s" target="_blank" rel="nofollow"><img src="%2$s" alt="%3$s"></a>',
                 esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU'),

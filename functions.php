@@ -15,7 +15,7 @@
 * @subpackage 	functions
 * @since     	1.0
 * @author    	Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright 	Copyright (c) 2013-2015, Nicolas GUILLAUME
+* @copyright 	Copyright (c) 2013-2016, Nicolas GUILLAUME
 * @link      	http://presscustomizr.com/customizr
 * @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
@@ -42,7 +42,6 @@
 * https://codex.wordpress.org/Plugin_API
 */
 
-add_filter('czr_fn_isprevdem', '__return_true');
 //Fire Customizr
 require_once( get_template_directory() . '/inc/czr-init.php' );
 

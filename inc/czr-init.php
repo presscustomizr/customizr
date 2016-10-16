@@ -3348,8 +3348,9 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'min'           => 0,
                                 'priority'      => 70,
                                 'transport'     => 'postMessage',
-                                'notice'    => sprintf('%1$s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index" target="_blank">%2$s</a> ?',
+                                'notice'    => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a> ?',
                                     __( "What is" , 'customizr' ),
+                                    esc_url('https://developer.mozilla.org/en-US/docs/Web/CSS/z-index'),
                                     __( "the z-index" , 'customizr')
                                 ),
               )
@@ -8347,7 +8348,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 endif;
 
 ?><?php
-
 if ( ! class_exists( 'CZR_prevdem' ) ) :
   final class CZR_prevdem {
     function __construct() {
@@ -8355,7 +8355,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
 
       //HEADER
-      add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
+      //add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
       add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
       add_filter('tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
 
@@ -8672,20 +8672,20 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Search' => array(
               'instance' => array(
-                'title' => __( 'Search', 'hueman')
+                'title' => __( 'Search', 'customizr')
               ),
               'args' => $default_args
             ),
             'WP_Widget_Recent_Posts' => array(
               'instance' => array(
-                'title' => __( 'Recent Posts', 'hueman'),
+                'title' => __( 'Recent Posts', 'customizr'),
                 'number' => 6
               ),
               'args' => $default_args
             ),
             'WP_Widget_Recent_Comments' => array(
               'instance' => array(
-                'title' => __( 'Recent Comments', 'hueman'),
+                'title' => __( 'Recent Comments', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -8696,7 +8696,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Recent_Posts' => array(
               'instance' => array(
-                'title' => __( 'Recent Posts', 'hueman'),
+                'title' => __( 'Recent Posts', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -8707,7 +8707,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Recent_Comments' => array(
               'instance' => array(
-                'title' => __( 'Recent Comments', 'hueman'),
+                'title' => __( 'Recent Comments', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -8718,7 +8718,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Search' => array(
               'instance' => array(
-                'title' => __( 'Search', 'hueman')
+                'title' => __( 'Search', 'customizr')
               ),
               'args' => $default_args
             )
