@@ -3690,8 +3690,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
-              $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
             }
+            $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
 
             //rendering
             $featured_page_id               =  null;
@@ -3820,7 +3820,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     /******************************
     * HELPERS
     *******************************/
-    function czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
+    function czr_fn_get_fp_img( $fp_img_size, $featured_page_id = null , $fp_custom_img_id = null ){
       //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       //czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
       $_fp_img_model = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
@@ -7818,7 +7818,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
               <?php
                 do_action( "__before_{$position}_sidebar" );##hook of social icons
 
-                if ( is_active_sidebar( $position ) )
+                if ( apply_filters( 'tc_has_sidebar_widgets', is_active_sidebar( $position ), $position ) )
                   get_sidebar( $position );
                 else
                   $this -> czr_fn_display_sidebar_placeholder($position);
@@ -9034,13 +9034,13 @@ class CZR_slider {
     switch ( $id ) {
       case 1 :
         $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ); //do we need an anchor in the doc?
+        $data['link_url']     = esc_url( 'http://docs.presscustomizr.com/article/102-customizr-theme-options-front-page/#front-page-slider' );
         $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
       break;
 
       case 2 :
         $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $data['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) );
+        $data['link_url']     = esc_url( 'http://docs.presscustomizr.com/article/3-creating-a-slider-with-customizr-wordpress-theme' );
         $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
@@ -9554,7 +9554,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     	}
 
       //if no active widget area yet, display the footer widget placeholder
-			if ( ! $status ) {
+			if ( ! apply_filters( 'tc_has_footer_widgets', true !== $status ) ) {
         $this -> czr_fn_display_footer_placeholder();
         return;
       }
@@ -9571,7 +9571,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
 							<div id="<?php echo $key; ?>" class="<?php echo apply_filters( "{$key}_widget_class", "span4" ) ?>">
 								<?php do_action("__before_{$key}_widgets"); ?>
-								<?php if ( is_active_sidebar( $key ) ) : ?>
+								<?php if ( apply_filters( 'tc_has_footer_widgets_zone', is_active_sidebar( $key ), $key ) ) : ?>
 
 										<?php dynamic_sidebar( $key ); ?>
 
