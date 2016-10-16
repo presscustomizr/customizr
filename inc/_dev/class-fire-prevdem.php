@@ -7,7 +7,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
 
       //HEADER
-      add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
+      //add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
       add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
       add_filter('tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
 
