@@ -130,10 +130,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         )//end of array
       );//end of filter
 
-      //check the context
-      // if ( $this -> czr_fn_is_pro() )
-      //   require_once( sprintf( '%sinc/init-pro.php' , TC_BASE ) );
-
       self::$tc_option_group = 'tc_theme_options';
 
       //set files to load according to the context : admin / front / customize
@@ -403,7 +399,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     static function czr_fn_is_pro() {
       //TC_BASE is the root server path of the parent theme
       if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
-      return file_exists( sprintf( '%sinc/init-pro.php' , TC_BASE ) ) && "customizr-pro" == self::$theme_name;
+      return class_exists( 'CZR_init_pro' ) && "customizr-pro" == self::$theme_name;
     }
   }//end of class
 endif;
@@ -491,11 +487,6 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
 
   }//end of class
 endif;
-
-//may be load pro
-if ( CZR___::czr_fn_is_pro() )
-  new CZR_init_pro(CZR___::$theme_name );
-
 ?><?php
 /**
 * Declares Customizr default settings
@@ -8781,4 +8772,7 @@ if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
   new CZR_prevdem();
 }
 
+//may be load pro
+if ( CZR___::czr_fn_is_pro() )
+  new CZR_init_pro(CZR___::$theme_name );
 ?>

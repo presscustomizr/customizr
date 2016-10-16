@@ -82,9 +82,4 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
 
   }//end of class
 endif;
-
-//may be load pro
-if ( CZR___::czr_fn_is_pro() )
-  new CZR_init_pro(CZR___::$theme_name );
-
 ?>
