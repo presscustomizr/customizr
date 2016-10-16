@@ -24,12 +24,11 @@ function czr_fn_isprevdem() {
   $czr_theme                     = wp_get_theme();
   //Get infos from parent theme if using a child theme
   $czr_theme = $czr_theme -> parent() ? $czr_theme -> parent() : $czr_theme;
-  return apply_filters( 'czr_fn_isprevdem', ( $_active_theme != strtolower( $czr_theme -> name ) && ! is_child_theme() ) );
+  return apply_filters( 'czr_fn_isprevdem', ( $_active_theme != strtolower( $czr_theme -> name ) && ! is_child_theme() && ! CZR___::czr_fn_is_pro() ) );
 }
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
   new CZR_prevdem();
 }
-
 
 ?>
