@@ -42,6 +42,9 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
      *  Socials
     /* ------------------------------------------------------------------------- */
     function czr_fn_set_socials( $options ) {
+      if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
+        return $options;
+
       $to_display = array('tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');
       foreach ($to_display as $social) {
          $options[$social] = 'javascript:void()';
