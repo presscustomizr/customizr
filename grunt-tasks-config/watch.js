@@ -41,7 +41,7 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
 	},
 	push_php : {
-		files: ['**/*.php' , '!build/**.*.php'],
+		files: ['**/*.php' , '!build/**.*.php', '! <%= paths.inc_php %>czr-admin.php', '! <%= paths.inc_php %>czr-front.php', '! <%= paths.inc_php %>czr-init.php'],
 		tasks: ['gitinfo' , 'replace:readme', 'wait:pause', 'concat:init_php', 'concat:front_php', 'concat:admin_php']
 	}
 };
