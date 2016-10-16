@@ -1186,7 +1186,7 @@ jQuery(function ($) {
     _render_gc_cta();
     _render_mc_cta();
   }
-  _render_rate_czr();
+  //_render_rate_czr();
 
   function _render_rate_czr() {
     var _cta = _.template(
