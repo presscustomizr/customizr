@@ -56,7 +56,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
 
         $_args = isset( $params[1] ) ? $params[1] : null;
         //instantiates only for the following classes, the other are instantiated in their respective files.
-        if ( 'CZR_activation_key' == $name || 'CZR_theme_check_updates' == $name )
+        if ( 'TC_activation_key' == $name || 'TC_theme_check_updates' == $name )
             new $name( $_args );
       }
     }
