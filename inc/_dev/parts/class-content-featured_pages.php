@@ -168,8 +168,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
-              $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
             }
+            $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
 
             //rendering
             $featured_page_id               =  null;
@@ -298,7 +298,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     /******************************
     * HELPERS
     *******************************/
-    function czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id ){
+    function czr_fn_get_fp_img( $fp_img_size, $featured_page_id = null , $fp_custom_img_id = null ){
       //try to get "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       //czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_thumb_id = null )
       $_fp_img_model = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $fp_img_size, $featured_page_id, $fp_custom_img_id );
