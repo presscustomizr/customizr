@@ -108,7 +108,7 @@
     right: -380px;
   }
 }
-/* Reponsive buttons + rating footer actions hack 
+/* Reponsive buttons + rating footer actions hack
 * What we do is:
 * a) stretch heigh and width of the footer-actions
 * b) sett an higher bottom vallue for the wp-full-overlay-sidebar-content
@@ -122,7 +122,7 @@
 }
 @media screen and (min-width: 1025px) {
   .wp-customizer .expanded #customize-footer-actions {
-    height: 85px;
+    /*height: 85px;*/
     background: inherit;
   }
   .wp-customizer #customize-controls .wp-full-overlay-sidebar-content {
@@ -215,7 +215,7 @@
   .rtl.wp-customizer .wp-full-overlay.expanded {
     margin-right: 0;
   }
-  
+
   .rtl .in-sub-panel #customize-info,
   .rtl .in-sub-panel #customize-theme-controls > ul > .accordion-section {
     right: -100%;
@@ -235,9 +235,9 @@
 
 /* PANELS AND SECTIONS TITLES */
 .wp-customizer #customize-theme-controls .accordion-section-title {
-  color: #1ABC9C;
+  /*color: #1ABC9C;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: normal;*/
 }
 .wp-customizer .control-section.control-panel .accordion-section-title .panel-title {
   font-size: 24px;
@@ -245,7 +245,7 @@
   line-height: 30px;
 }
 
-.wp-core-ui a {
+/*.wp-core-ui a {
 	color: #1ABC9C;
 }
 .wp-core-ui .button-primary {
@@ -261,19 +261,19 @@
 	color: #E5E5E5 !important;
 	background: #15AE90 !important;
 	border-color: #15AE90 !important;
-}
+}*/
 .wp-core-ui h3 {
 	color: #555;
 }
 .accordion-section-content {
 	padding: 10px 10px 15px 20px;
 }
-.widget-action, .handlediv, .item-edit, .sidebar-name-arrow, .accordion-section-title:after {
+/*.widget-action, .handlediv, .item-edit, .sidebar-name-arrow, .accordion-section-title:after {
 	color: #1ABC9C;
 }
 .control-section.control-panel > .accordion-section-title:after {
 	color: #1ABC9C;
-}
+}*/
 .customize-control-title {
 	line-height: 18px;
 }
@@ -282,7 +282,7 @@
 .wp-customizer #customize-theme-controls .accordion-section-content {
   background: #fff;
 }
-.wp-customizer .customize-panel-back {
+/*.wp-customizer .customize-panel-back {
   height: 60px;
 }
 .wp-customizer #customize-controls .customize-info .customize-help-toggle:hover, .wp-customizer #customize-controls .customize-info.open .customize-help-toggle, .wp-customizer #customize-controls .customize-info .customize-help-toggle:focus {
@@ -308,7 +308,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="color"]:focu
 .customize-screen-options-toggle:hover, .customize-screen-options-toggle:active, .customize-screen-options-toggle:focus, .active-menu-screen-options .customize-screen-options-toggle, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:hover, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:active, #customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle:focus {
   color: #1ABC9C!important;
 }
-
+*/
 /*SOCIAL ICONS*/
 /* ICONS
   -------------------------------------------------- */
@@ -334,7 +334,7 @@ span[class*=tc-icon]:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #1ABC9C;
+  color: #008ec2;
   font-size: 1.5em;
   text-shadow: 0 1px 0 #FFF;
   opacity: 0.8;
@@ -447,7 +447,7 @@ span[class*=tc-icon]:before {
 #tc-donate-customizer .donate-alert {
 	display: none;
 	clear: both;
-	background-color: #27CDA5;
+	background-color: #008ec2;
 	border-color: 1px solid #D6E9C6;
 	color: #FFF;
 	padding: 10px;
@@ -472,7 +472,7 @@ span[class*=tc-icon]:before {
   height: 21px;
   margin: 0;
   padding: 1px 6px 0;
-  background-color: #27cda5;
+  background-color: #008ec2;
   color: white;
   border: none;
   box-shadow: none;
@@ -495,18 +495,18 @@ span[class*=tc-icon]:before {
 li[id*="customize-control-"] {
 	margin: 8px 0;
 }
-#customize-info .accordion-section-title {
+/*#customize-info .accordion-section-title {
 	padding-bottom: 0px;
-}
+}*/
 
 .control-section .accordion-section-title {
-	padding: 6px 20px!important;
+	/*padding: 6px 20px!important;*/
 }
 .control-section .accordion-section-title:after {
-	top: 7px;
+	top: 11px;
 }
 .control-section.control-panel .accordion-section-title:after {
-	top: 7px;
+	top: 11px;
 	-webkit-transition: right .3s ease-in-out, opacity .3s ease-in-out;
 	-moz-transition: right .3s ease-in-out, opacity .3s ease-in-out;
 	-ms-transition: right .3s ease-in-out, opacity .3s ease-in-out;
@@ -526,9 +526,9 @@ li[id*="customize-control-"] {
 }
 #customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after ,  #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
 	right: 8px;
-	top: 8px;
+	/*top: 8px;*/
 	opacity:1;
-	color: #F5F5F5!important;
+	color: #666!important;
 }
 
 .rtl #customize-theme-controls .control-section.control-panel h3.accordion-section-title:hover:after , .rtl #customize-theme-controls .control-section.control-panel h3.accordion-section-title:focus:after {
@@ -542,8 +542,8 @@ li[id*="customize-control-"] {
 }
 
 #customize-theme-controls h3.accordion-section-title {
-	font-family: "Open Sans", sans-serif;
-	font-size: 15px;
+/*	font-family: "Open Sans", sans-serif;
+	font-size: 15px;*/
 	-webkit-transition: background .1s ease-in-out;
 	-moz-transition: background .1s ease-in-out;
 	-ms-transition: background .1s ease-in-out;
@@ -551,10 +551,10 @@ li[id*="customize-control-"] {
 	transition: background .1s ease-in-out;
 }
 #customize-theme-controls > .control-section:hover .accordion-section-title, #customize-theme-controls .control-section > .accordion-section-title:hover, #customize-theme-controls .control-section.open .accordion-section-title, #customize-theme-controls .control-section .accordion-section-title:focus{
-	background: #1ABC9C;
+/*	background: #1ABC9C;
 	-webkit-box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
 	box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
-	color: #FFF!important;
+	color: #FFF!important;*/
 }
 #customize-theme-controls > .control-section:hover .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:hover::after, #customize-theme-controls .control-section.open .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:focus::after {
 	color: #FFF;
@@ -573,7 +573,7 @@ li[id*="customize-control-"] {
 	/* text-shadow: 0 1px 0 #FFF; */
 	margin: 1em 0em 5px 0em;
 	font-size: 15px!important;
-	border-bottom: 1px dotted #1ABC9C;
+	border-bottom: 1px dotted #000;
 	padding-bottom: 5px;
   text-align: center;
 }
@@ -599,11 +599,11 @@ i.tc-notice {
 }
 span.tc-notice {
 	color: #313131;
-	font-size:13px;
-	font-style: italic;
-	clear: both;
-	display: block;
-	line-height: 18px;
+    font-size: 12px;
+    font-style: italic;
+    clear: both;
+    display: block;
+    line-height: 18px;
 }
 .tc-customizer-separator-invisible {
 	border:none;
@@ -893,20 +893,20 @@ body .select2-drop {
 	z-index: 999999;
 }
 body .select2-drop-active {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #008ec2;
 }
 body .select2-drop.select2-drop-above.select2-drop-active {
-    border-top: 1px solid #1ABC9C;
+    border-top: 1px solid #008ec2;
 }
 body .select2-container-active .select2-choices {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #008ec2;
 }
 body .select2-container-multi.select2-container-active .select2-choices {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #008ec2;
 }
 body .select2-container-active .select2-choice,
 body .select2-container-active .select2-choices {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #008ec2;
 }
 body .select2-container .select2-choice > .select2-chosen {
 	margin-right: 0px;
@@ -994,8 +994,8 @@ body .select2-results {
   float: left;
   position: relative;
   z-index: 100;
-  padding: 2px 4px 0 20px;
-  top: 6px;
+  padding: 2px 4px 0 14px;
+  top: 10px;
 }
 .rtl .tc-title-google-logo {
   float: right;
@@ -1063,8 +1063,9 @@ body .select2-results {
   text-decoration: underline!important;
 }
 .tc-cta .tc-cta-btn:hover {
-  background: #1B8D71;
-  color: #FFF;
+  color: #fff;
+  background: #ed9c28;
+  border-color: #d58512;
 }
 
 .tc-cta .tc-cta-btn {
@@ -1072,11 +1073,15 @@ body .select2-results {
   font-weight: 500;
   margin-top: 2px;
   padding: 4px 14px;
-  background: #27CDA5;
   display: inline-block;
-  color: #FFF;
+  color: #fff;
+  background: #f0ad4e;
+  border: 1px solid #eea236;
   -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
   cursor: pointer;
   border-radius: 3px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1089,7 +1094,6 @@ body .select2-results {
   -ms-user-select: none;
   user-select: none;
   line-height: 24px;
-  border: 1px solid #1B8D71;
 }
 
 .tc-cta .tc-cta-btn:active {
@@ -1106,23 +1110,23 @@ body .select2-results {
 .tc-grid-toggle-controls {
   font-size: 15px;
   text-transform: uppercase;
-  font-weight: bold;
+  /*font-weight: bold;*/
   clear: both;
   width: 100%;
   display: block;
   float: left;
   margin: 15px 0;
   cursor: pointer;
-  color: #1ABC9C;
+  color: #000;
 }
 .tc-grid-toggle-controls::before {
   content: '+';
-  font-size: 21px;
+  font-size: 18px;
   display: block;
   float: left;
-  background: #1ABC9C;
+  background: #000;
   padding: 5px;
-  line-height: 12px;
+  line-height: 11px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
@@ -1140,7 +1144,7 @@ body .select2-results {
   line-height: 11px;
 }
 .tc-grid-design-controls {
-  border-left: 2px dotted #1ABC9C;
+  border-left: 2px dotted #008ec2;
   width: 89%;
   float: left;
   background: #F5F5F5;
@@ -1152,14 +1156,14 @@ body .select2-results {
   padding: 5%;
 }
 .tc-grid-design {
-  border-left: 2px dotted #1ABC9C;
+  border-left: 2px dotted #008ec2;
   margin-left: 3%;
   padding-left: 3%;
   width: 93%;
   font-style: italic;
 }
 .customize-control .tc-navigate-to-post-list {
-  color: #1ABC9C;
+  color: #008ec2;
   font-weight: bold;
   float: left;
   clear: both;
@@ -1176,7 +1180,7 @@ body .select2-results {
 .tc-sub-control:before {
   content: '';
   height: 116%;
-  background: #1ABC9C;
+  background: #008ec2;
   width: 2%;
   position: absolute;
   left: 7%;
@@ -1184,7 +1188,7 @@ body .select2-results {
 
 /* Rate link */
 #customize-footer-actions .collapse-sidebar-label {
-  display: none;
+  /*display: none;*/
 }
 .tc-rate-link {
   position: absolute;
