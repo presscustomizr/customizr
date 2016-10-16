@@ -94,7 +94,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
               <?php
                 do_action( "__before_{$position}_sidebar" );##hook of social icons
 
-                if ( is_active_sidebar( $position ) )
+                if ( apply_filters( 'tc_has_sidebar_widgets', is_active_sidebar( $position ), $position ) )
                   get_sidebar( $position );
                 else
                   $this -> czr_fn_display_sidebar_placeholder($position);
