@@ -58,8 +58,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'CZR_post_thumbnails' ) )
-        CZR___::$instance -> czr_fn__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
+      if ( ! class_exists( 'CZR_post_thumbnails' ) ) {
+        CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
+        new CZR_post_thumbnails();
+      }
 
       CZR_post_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
     }
@@ -79,12 +81,16 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'CZR_post_thumbnails' ) )
-        CZR___::$instance -> czr_fn__( array('content' => array( array('inc/parts', 'post_thumbnails') ) ), true );
-      if ( ! class_exists( 'CZR_slider' ) )
-        CZR___::$instance -> czr_fn__( array('content' => array( array('inc/parts', 'slider') ) ), true );
-
-      CZR_slider::$instance -> czr_fn_cache_posts_slider();
+      if ( ! class_exists( 'CZR_post_thumbnails' ) ) {
+        CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
+        new CZR_post_thumbnails();
+      }
+      if ( ! class_exists( 'CZR_slider' ) ) {
+        CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
+        new CZR_slider();
+      }
+      if ( class_exists( 'CZR_slider' ) && is_object( CZR_slider::$instance ) )
+        CZR_slider::$instance -> czr_fn_cache_posts_slider();
     }
 
 
@@ -244,7 +250,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_resource class has to be loaded
       if ( ! class_exists('CZR_resources') )
-        CZR___::$instance -> czr_fn__( array('fire' => array( array('inc' , 'resources') ) ), true );
+        new CZR_resources();
 
       //fonts
       $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
