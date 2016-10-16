@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     	}
 
       //if no active widget area yet, display the footer widget placeholder
-			if ( ! $status ) {
+			if ( ! apply_filters( 'tc_has_footer_widgets', true !== $status ) ) {
         $this -> czr_fn_display_footer_placeholder();
         return;
       }
@@ -103,7 +103,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
 							<div id="<?php echo $key; ?>" class="<?php echo apply_filters( "{$key}_widget_class", "span4" ) ?>">
 								<?php do_action("__before_{$key}_widgets"); ?>
-								<?php if ( is_active_sidebar( $key ) ) : ?>
+								<?php if ( apply_filters( 'tc_has_footer_widgets_zone', is_active_sidebar( $key ), $key ) ) : ?>
 
 										<?php dynamic_sidebar( $key ); ?>
 
