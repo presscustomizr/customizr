@@ -1,5 +1,4 @@
 <?php
-
 if ( ! class_exists( 'CZR_prevdem' ) ) :
   final class CZR_prevdem {
     function __construct() {
@@ -324,20 +323,20 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Search' => array(
               'instance' => array(
-                'title' => __( 'Search', 'hueman')
+                'title' => __( 'Search', 'customizr')
               ),
               'args' => $default_args
             ),
             'WP_Widget_Recent_Posts' => array(
               'instance' => array(
-                'title' => __( 'Recent Posts', 'hueman'),
+                'title' => __( 'Recent Posts', 'customizr'),
                 'number' => 6
               ),
               'args' => $default_args
             ),
             'WP_Widget_Recent_Comments' => array(
               'instance' => array(
-                'title' => __( 'Recent Comments', 'hueman'),
+                'title' => __( 'Recent Comments', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -348,7 +347,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Recent_Posts' => array(
               'instance' => array(
-                'title' => __( 'Recent Posts', 'hueman'),
+                'title' => __( 'Recent Posts', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -359,7 +358,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Recent_Comments' => array(
               'instance' => array(
-                'title' => __( 'Recent Comments', 'hueman'),
+                'title' => __( 'Recent Comments', 'customizr'),
                 'number' => 4
               ),
               'args' => $default_args
@@ -370,7 +369,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           $_widgets_to_print[] = array(
             'WP_Widget_Search' => array(
               'instance' => array(
-                'title' => __( 'Search', 'hueman')
+                'title' => __( 'Search', 'customizr')
               ),
               'args' => $default_args
             )
