@@ -25,7 +25,12 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //SLIDER
       add_filter('tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
       //adds infos in the caption data of the demo slider
-      add_filter( 'tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+      add_filter('tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+
+      //SINGLE POSTS
+      add_filter('tc_show_single_post_thumbnail', '__return_true');
+      add_filter('tc_single_post_thumb_hook', array( $this, 'czr_fn_set_single_post_thumb_hook') );
+      add_filter('tc_single_post_thumb_height', array( $this, 'czr_fn_set_single_post_thumb_height') );
 
       //SOCIALS
       add_filter('option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
@@ -286,7 +291,16 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     }
 
 
+    /* ------------------------------------------------------------------------- *
+     *  Single Posts
+    /* ------------------------------------------------------------------------- */
+    function czr_fn_set_single_post_thumb_hook() {
+      return '__before_main_wrapper';
+    }
 
+    function czr_fn_set_single_post_thumb_height() {
+      return 350;
+    }
 
     /* ------------------------------------------------------------------------- *
      *  Widgets

@@ -56,8 +56,9 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_single_post_thumbnail_hooks() {
-      if ( $this -> czr_fn_single_post_display_controller() )
+      if ( $this -> czr_fn_single_post_display_controller() ) {
         add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
+      }
 
       //__before_main_wrapper, 200
       //__before_content 0
@@ -66,7 +67,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
         return;
 
       $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' )) );
-      $_hook                = isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content';
+      $_hook                = apply_filters( 'tc_single_post_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
       //Hook post view
@@ -264,9 +265,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.11
     */
     function czr_fn_show_single_post_thumbnail() {
-      return $this -> czr_fn_single_post_display_controller()
-        && 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'tc_show_single_post_thumbnail' , true );
+      return $this -> czr_fn_single_post_display_controller() && apply_filters( 'tc_show_single_post_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
     }
 
 
@@ -309,13 +308,21 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return $_css;
-      $_single_thumb_height   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) );
+      $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
         ".single .tc-rectangular-thumb {
           max-height: {$_single_thumb_height}px;
           height :{$_single_thumb_height}px
+        }\n
+        .tc-center-images.single .tc-rectangular-thumb img {
+          opacity : 0;
+          -webkit-transition: opacity .5s ease-in-out;
+          -moz-transition: opacity .5s ease-in-out;
+          -ms-transition: opacity .5s ease-in-out;
+          -o-transition: opacity .5s ease-in-out;
+          transition: opacity .5s ease-in-out;
         }\n"
       );
     }
