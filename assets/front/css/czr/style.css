@@ -187,50 +187,6 @@ embed, iframe, object, video { max-width: 100%;}
     left: 5px;
 }
 
-/* Breadcrumb fixes */
-/*
-Fix paddings here:
-.page-breadcrumbs {
-  position: relative;
-  padding: 1.875em 0;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em; }
-  .page-breadcrumbs div[class^="col-"] {
-    padding: 0; }
-*/
-
-@media ( max-width: 991px ) {
-  .czr-hot-crumble.page-breadcrumbs div[class^="col-"] {
-    padding: 0 15px;
-  }
-}
-@media ( min-width: 992px ) {
-  .czr-hot-crumble.page-breadcrumbs div[class^="col-"] {
-    padding: 0;
-  }
-}
-.page-breadcrumbs .breadcrumb {
-  background: transparent;
-}
-
-.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-end,
-.czr-hot-crumble.page-breadcrumbs div .breadcrumb a {
-  background: #fff;
-  padding: 6px;
-  float: left;
-  margin-left: 2.5em;
-}
-
-.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-begin {
-  margin-left: 0;
-  padding-left: 0;
-}
-.czr-hot-crumble.page-breadcrumbs .breadcrumb .trail-end {
-  font-weight: 400;
-  float: right;
-}
-
-
 /* Slider stuff */
 /* Slider loader wrapper took from Customizr */
 /* If automatic centering is enabled */

@@ -71,25 +71,27 @@
 	padding: $base-line-height*1.5 0;
 	margin-top: $base-line-height;
 	margin-bottom: $base-line-height;
-	div[class^="col-"] { padding:0; }
+	@media (min-width: 768px) {
+		[class^="col-"] { padding:0; }
+	}
 	.breadcrumb {
 		@include clearfix();
-		.breadcrumb-item {
+		.trail-end, a {
 			background: $white;
-		    padding: 6px;
+		  padding: 6px;
 			float:left;
+			margin-left: $base-line-height*2;
 		}
-		.breadcrumb-item + .breadcrumb-item { margin-left: $base-line-height*2; }
 		@extend .small;
 		color: $grey-dark;
 		a { @include underlined( $black, 1px ); position: relative; color: $black; }
-		a:first-of-type { padding-left:0;  }
+		.trail-begin { padding-left:0; margin-left: 0 }
 		position: relative;
-		.active {  font-weight: 400; float:right; }
+		.active, .trail-end {  float:right; }
 	}
 }
 
-.commnet.child {
+.comment.child {
 	margin-left:100px;
 }
 .post-comments {
