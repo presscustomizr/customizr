@@ -535,7 +535,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           /* Set default content width for post images and media. */
           global $content_width;
           if (! isset( $content_width ) )
-            $content_width = apply_filters( 'czr_content_width' , 1170 );
+            $content_width = apply_filters( 'czr_content_width' , 1140 );
 
           /*
            * Makes Customizr available for translation.
@@ -581,7 +581,11 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
           //add help button to admin bar
-          add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
+          add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
+
+          //tag cloud - same font size
+          add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
+
       }
 
 
@@ -805,6 +809,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
             array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
+
           //skin
           array_push( $_classes, 'header-skin-' . ( 'dark' == esc_attr( czr_fn_get_opt( 'tc_skin_type' ) ) ? 'dark' : 'light' ) );
 
@@ -858,6 +863,21 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
           if ( empty($image[1]) || empty($image[2]) )
             $_new_style             = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
           return $_new_style;
+      }
+
+      /**
+      * Add tag cloud widget args so to have all tags with the same font size.
+      *
+      * @since Customizr 4.0
+      *
+      * @param array $args arguments for tag cloud widget.
+      * @return array modified arguments.
+      */
+      function czr_fn_add_widget_tag_cloud_args( $args ) {
+        $args['largest'] = 1;
+        $args['smallest'] = 1;
+        $args['unit'] = 'em';
+        return $args;
       }
 
   }//end of class
