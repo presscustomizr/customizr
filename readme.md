@@ -1,4 +1,4 @@
-# Customizr v3.4.30 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.4.31 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -43,6 +43,10 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.31 October 16th 2016 =
+* fixed : wrong class name in czr-init.php
+* fixed : footer widgets not displayed
+
 = 3.4.30 October 15th 2016 =
 * added : in single post, new wp filter : apply_filters( 'tc_single_post_section_class', array( 'entry-content' )
 * added : in single post, new wp action : do_action( '__after_single_entry_inner' )

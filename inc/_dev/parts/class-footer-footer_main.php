@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     	}
 
       //if no active widget area yet, display the footer widget placeholder
-			if ( ! apply_filters( 'tc_has_footer_widgets', true !== $status ) ) {
+			if ( ! apply_filters( 'tc_has_footer_widgets', $status ) ) {
         $this -> czr_fn_display_footer_placeholder();
         return;
       }

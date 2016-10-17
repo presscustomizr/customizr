@@ -41,6 +41,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.31 October 16th 2016 =
+* fixed : wrong class name in czr-init.php
+* fixed : footer widgets not displayed
+
 = 3.4.30 October 15th 2016 =
 * added : in single post, new wp filter : apply_filters( 'tc_single_post_section_class', array( 'entry-content' )
 * added : in single post, new wp action : do_action( '__after_single_entry_inner' )
