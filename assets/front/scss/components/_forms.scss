@@ -34,6 +34,12 @@ form  {
 label .required {
   float: left;
 }
+label i {
+  float: right; width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
 .czr-form {
   input:not([type="submit"]), label, textarea {
     width: 100%;
@@ -49,11 +55,7 @@ label .required {
     position: absolute;
     @include transition(all, .3s ease);
     span { float: left; }
-    i {
-      float: right; width: 2em;
-      height: 2em;
-      text-align: center;
-    }
+
     i.icn-close {
       margin-right: -2em;
       color: $black;

@@ -7,12 +7,12 @@
 	$border             : 0 transparent;
 
 
-	
+
 	@if $primary-color == $white {
 		$secondary-colour : $grey;
 		$background       : $black;
    		$background-dark  : darken($black, 5%);
-   		$border           : 0 transparent; 
+   		$border           : 0 transparent;
  	}
    	@else if $primary-color == $black {
    		$secondary-colour : $grey;
@@ -29,7 +29,7 @@
 		color: $secondary-colour;
 		&:hover, .socials a:hover { color: $primary-color; }
 	}
-	.widget a { 
+	.widget a {
 			@include underlined(rgba($primary-color, 0.5), 1px );
 	}
 	.copyright__container {
@@ -39,49 +39,50 @@
 
 .footer__wrapper {
 	.header-skin-dark  &  { @include footer__skincolor($white); }
-	.header-skin-light &  { @include footer__skincolor($black); } 
+	.header-skin-light &  { @include footer__skincolor($black); }
 	padding:0;
 	margin:0 auto;
 	font-size: 90%;
 	padding-top: $base-line-height*2;
 
-	.widget__wrapper { 
+	.widget__wrapper {
 		padding: $base-line-height*3 0;
 	}
-	a { 
+	a {
 		display: inline-block;
 		position: relative;
 		width: auto;
 	}
 	h5 { @extend .semi-bold; }
+
 	.widget > h5  { margin-bottom: $base-line-height; }
 	.textwidget   {  width:90% }
 	.about {
 		position:relative;
-		p { 	
-			display:inline-block; 
-			position:relative; 
-			width:80%; 
+		p {
+			display:inline-block;
+			position:relative;
+			width:80%;
 			float:left;
 			margin:0;
 		}
 		.branding__logo {
 			margin-right: $base-line-height*2;
-			float:left; 
-			width:auto;		 
+			float:left;
+			width:auto;
 			position:relative;
 			display:inline-block;
 			max-width:100px;
-			img { 
+			img {
 				max-height:60px;
-				
+
 				}
 	 		}
  	}
 
-	.widget-contact-info-content { 
-		p  { 
-			line-height: 1.1em; 
+	.widget-contact-info-content {
+		p  {
+			line-height: 1.1em;
 		}
 
 	}
@@ -89,9 +90,9 @@
 		margin:0;
 		padding:$base-line-height/2 $base-line-height;
 	}
-	.copyright { 
-		@extend .small;  
-		@extend .letter-spacing-1; 
+	.copyright {
+		@extend .small;
+		@extend .letter-spacing-1;
 		color: $grey;
 		margin:0;
 		vertical-align: middle;
@@ -100,7 +101,7 @@
 	}
 }
 
-@media (max-width: 993px) { 
+@media (max-width: 993px) {
 	.footer__wrapper {
 		.widget  { padding: $base-line-height;  }
 	}

@@ -24,7 +24,7 @@ $_options = array(
     'tc_comment_show_info' => true,
 
     'tc_sidebar_global_layout' => 'l',
-    'tc_sidebar_post_layout'   => 'l',
+    'tc_sidebar_post_layout'   => 'r',
     'tc_front_layout'          => 'f',
 
     'tc_post_list_thumb_position' => 'left',
@@ -71,7 +71,7 @@ add_filter( 'czr_add_custom_fonts_to_editor' , '__return_false' );
 
 //Test display a header sticky push in single posts
 add_filter( 'czr_opt_tc_sticky_header_type', function( $_what ){
-  return is_single() ? 'push'/*full-width*/ : $_what;
+  return is_single() ? 'push' : $_what;
 });
 
 add_filter( 'czr_gfont_pairs', function( $_fonts ) {

@@ -16,7 +16,7 @@
 * In desktops when resizing below the "collapsing mobil menu" treshold
 * always expand submenus when .tc-open-on-hover
 */
-@media (max-width: 992px){
+@media (max-width: 991px){
   body:not(.tc-is-mobile) .tc-open-on-hover .dropdown-menu {
     display: block !important;
   }
@@ -29,7 +29,6 @@
 
 /* VARIOUS */
 #tc-page-wrap {
-  position: relative;
   z-index: 12;
 }
 
@@ -39,10 +38,6 @@ img.post-thumbnail {
   width: 100%;
   height: auto;
 }*/
-img {
-    max-width: 100%;
-    height: auto;
-}
 .tc-thumbnail img {
   width: 100%;
 }
