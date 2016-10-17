@@ -65,15 +65,15 @@
   */
   Plugin.prototype._better_scroll_event_handler = function( $_imgs , _evt ) {
     var self = this;
-    //use a timer
-    if ( 0 !== this.timer ) {
-        this.increment++;
-        window.clearTimeout( this.timer );
-    }
 
-    this.timer = window.setTimeout(function() {
-      self._maybe_trigger_load( $_imgs , _evt );
-    }, self.increment > 5 ? 50 : 0 );
+    if ( ! this.doingAnimation ) {
+      this.doingAnimation = true;
+      window.requestAnimationFrame(function() {
+        //self.parallaxMe();
+        self._maybe_trigger_load( $_imgs , _evt );        
+        self.doingAnimation = false;
+      });
+    }    
   };
 
 
