@@ -436,4 +436,16 @@
       }
    }
 }
+/*
+* In desktops when resizing below the "collapsing mobil menu" treshold
+* always expand submenus when .tc-open-on-hover (which is not available in mobiles )
+*/
+@media (max-width: 991px){
+  .tc-open-on-hover .dropdown-menu {
+    display: block !important;
+  }
+  .tc-open-on-hover .caret__dropdown-toggler {
+    display: none !important;
+  }
+}
 

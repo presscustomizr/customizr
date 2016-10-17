@@ -2,11 +2,11 @@
 /*
 $skin  		    : #076cf2;
 $alert          : #e74c3c;
-$black   	    : #273238; 
+$black   	    : #273238;
 $white          : #fff;
 
-$grey           : #c9cacc; 
-$grey-light     : #eeeff1; 
+$grey           : #c9cacc;
+$grey-light     : #eeeff1;
 $grey-lightest  : #F8F8F8;
 $grey-dark      : #777;
 
@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .post-list-plain .post .post-info, .post-list-plain .post .author-info, .post-list-plain .post .post-tags, .post-list-plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -188,7 +188,7 @@ blockquote p {
   font-size: 0.833;
 }
 
-.thin, .sidebar .widget_recent_comments .comment-author-link {
+.thin, .widget_recent_comments .comment-author-link {
   font-weight: 300;
 }
 
@@ -200,7 +200,7 @@ blockquote p {
   font-weight: 500;
 }
 
-.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .sidebar .widget_recent_comments, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   font-weight: 600;
 }
 
@@ -209,12 +209,12 @@ blockquote p {
 }
 
 .service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tagcloud a,
-.tags li, .sidebar .tagcloud li, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
+.tags li, .post-list-plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-list-plain .post .entry-meta .category__link, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-list-plain .post .entry-meta .category__link, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -242,7 +242,7 @@ blockquote p {
   letter-spacing: 0.5px;
 }
 
-.letter-spacing-1, .dropdown-menu, .featured .pre-header, .footer__wrapper .copyright, .grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote, .page__header .header-content .post-info, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.letter-spacing-1, .dropdown-menu, .featured .pre-header, .footer__wrapper .copyright, .grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote, .page__header .header-content .post-info, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   letter-spacing: 1px;
 }
 
@@ -267,28 +267,28 @@ blockquote p {
   background: transparent;
 }
 
-.center {
+.t__center {
   text-align: center !important;
 }
 
-.left {
+.t__left {
   text-align: left !important;
 }
 
-.right {
+.t__right {
   text-align: right !important;
 }
 
-.inline-list, .tags, .sidebar .tagcloud {
+.inline-list, .tags {
   list-style: none;
 }
 
-.inline-list li, .tags li, .sidebar .tagcloud li {
+.inline-list li, .tags li {
   display: inline-block;
   position: relative;
 }
 
-.inline-list li + li, .tags li + li, .sidebar .tagcloud li + li {
+.inline-list li + li, .tags li + li {
   margin-left: 1.25em;
 }
 
@@ -350,6 +350,11 @@ body, html {
   -webkit-font-smoothing: antialiased;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after {
   content: " ";
@@ -383,7 +388,7 @@ a.active {
 }
 
 a {
-  color: #284AFF;
+  color: #B4B4B4;
 }
 
 a img {
@@ -394,7 +399,8 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #001aa8;
+  color: #020202;
+  /* previously 25%*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -461,13 +467,13 @@ figcaption {
 
 ::-moz-selection {
   text-shadow: none;
-  background: #284AFF;
+  background: #B4B4B4;
   color: #fff;
 }
 
 ::selection {
   text-shadow: none;
-  background: #284AFF;
+  background: #B4B4B4;
   color: #fff;
 }
 
@@ -480,7 +486,7 @@ img::-moz-selection {
 }
 
 body {
-  webkit-tap-highlight-color: #284AFF;
+  webkit-tap-highlight-color: #B4B4B4;
 }
 
 /* Visibility */
@@ -1290,7 +1296,7 @@ body {
 
 .btn-skin {
   color: #fff;
-  background-color: #284AFF;
+  background-color: #B4B4B4;
 }
 
 .btn-skin:hover {
@@ -1513,7 +1519,7 @@ blockquote cite:before {
 }
 
 .tagcloud a,
-.tags li, .sidebar .tagcloud li {
+.tags li {
   padding: 0 0.625em 0 0.625em;
   margin: 0.3125em 0;
   border: 1px solid #eceeef;
@@ -1525,20 +1531,20 @@ blockquote cite:before {
 }
 
 .tagcloud a + a,
-.tags li + li, .sidebar .tagcloud li + li {
+.tags li + li {
   margin-left: 0;
   margin-right: 0.3125em;
 }
 
 .tagcloud a:hover,
-.tags li:hover, .sidebar .tagcloud li:hover {
+.tags li:hover {
   border-color: #202020;
   background-color: #202020;
 }
 
 .widget .tagcloud a:hover,
 .tagcloud a:hover,
-.tags li:hover a, .sidebar .tagcloud li:hover a {
+.tags li:hover a {
   color: white;
 }
 
@@ -1786,6 +1792,13 @@ label .required {
   float: left;
 }
 
+label i {
+  float: right;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
 .czr-form input:not([type="submit"]), .czr-form label, .czr-form textarea {
   width: 100%;
 }
@@ -1804,13 +1817,6 @@ label .required {
 
 .czr-form .czr-focus label span {
   float: left;
-}
-
-.czr-form .czr-focus label i {
-  float: right;
-  width: 2em;
-  height: 2em;
-  text-align: center;
 }
 
 .czr-form .czr-focus label i.icn-close {
@@ -2207,7 +2213,7 @@ label .required {
   position: relative;
 }
 
-.overlay .overlay-content .search-form__container, .overlay .overlay-content .sidebar .widget_search, .sidebar .overlay .overlay-content .widget_search {
+.overlay .overlay-content .search-form__container {
   position: relative;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -2222,7 +2228,7 @@ label .required {
   text-align: center;
 }
 
-.overlay .overlay-content .search-form__container .search-form, .overlay .overlay-content .sidebar .widget_search .search-form, .sidebar .overlay .overlay-content .widget_search .search-form {
+.overlay .overlay-content .search-form__container .search-form {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   -moz-opacity: 0;
@@ -2233,7 +2239,7 @@ label .required {
   visibility: hidden;
 }
 
-.overlay .overlay-content .search-form__container .search-form label span:first-of-type, .overlay .overlay-content .sidebar .widget_search .search-form label span:first-of-type, .sidebar .overlay .overlay-content .widget_search .search-form label span:first-of-type {
+.overlay .overlay-content .search-form__container .search-form label span:first-of-type {
   font-size: 2.0736em;
   font-family: "Poppins", sans-serif;
   text-transform: none;
@@ -2289,7 +2295,7 @@ label .required {
   opacity: 1;
 }
 
-.full-search-opened .overlay .overlay-content .search-form__container, .full-search-opened .overlay .overlay-content .sidebar .widget_search, .sidebar .full-search-opened .overlay .overlay-content .widget_search, .hamburger-menu.opened .overlay .overlay-content .search-form__container, .hamburger-menu.opened .overlay .overlay-content .sidebar .widget_search, .sidebar .hamburger-menu.opened .overlay .overlay-content .widget_search {
+.full-search-opened .overlay .overlay-content .search-form__container, .hamburger-menu.opened .overlay .overlay-content .search-form__container {
   visibility: visible;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
@@ -2299,7 +2305,7 @@ label .required {
   display: block;
 }
 
-.full-search-opened .overlay .overlay-content .search-form__container .search-form, .full-search-opened .overlay .overlay-content .sidebar .widget_search .search-form, .sidebar .full-search-opened .overlay .overlay-content .widget_search .search-form, .hamburger-menu.opened .overlay .overlay-content .search-form__container .search-form, .hamburger-menu.opened .overlay .overlay-content .sidebar .widget_search .search-form, .sidebar .hamburger-menu.opened .overlay .overlay-content .widget_search .search-form {
+.full-search-opened .overlay .overlay-content .search-form__container .search-form, .hamburger-menu.opened .overlay .overlay-content .search-form__container .search-form {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   -moz-opacity: 1;
@@ -2308,7 +2314,7 @@ label .required {
   visibility: visible;
 }
 
-.full-search-opened .overlay .overlay-content .search-form__container .search-form label, .full-search-opened .overlay .overlay-content .sidebar .widget_search .search-form label, .sidebar .full-search-opened .overlay .overlay-content .widget_search .search-form label, .hamburger-menu.opened .overlay .overlay-content .search-form__container .search-form label, .hamburger-menu.opened .overlay .overlay-content .sidebar .widget_search .search-form label, .sidebar .hamburger-menu.opened .overlay .overlay-content .widget_search .search-form label {
+.full-search-opened .overlay .overlay-content .search-form__container .search-form label, .hamburger-menu.opened .overlay .overlay-content .search-form__container .search-form label {
   text-align: center;
 }
 
@@ -2371,7 +2377,13 @@ label .required {
 }
 
 #tc-page-wrap {
-  overflow-x: hidden;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  #tc-page-wrap {
+    overflow-x: hidden;
+  }
 }
 
 .header-skin-dark .section-slider .filter, .header-skin-dark .section-slider .page__header.image-header, .header-skin-dark .page__header.image-header {
@@ -3156,7 +3168,7 @@ WP classes
   width: 3em;
   height: 3em;
   line-height: 3em;
-  background: #284AFF;
+  background: #B4B4B4;
   position: absolute;
   right: 1.25em;
   top: 1.25em;
@@ -3813,6 +3825,11 @@ WP classes
 .grid-container__alternate.has-media .format-image.no-excerpt .tc-content a:hover, .grid-container__alternate.has-media .format-gallery .tc-content a:hover,
 .grid-container__masonry .format-image .tc-content a:hover, .grid-container__masonry .format-gallery .tc-content a:hover {
   color: #eceeef;
+}
+
+.grid-container__alternate.has-media .format-image.no-excerpt .tc-content a:hover.btn-edit, .grid-container__alternate.has-media .format-gallery .tc-content a:hover.btn-edit,
+.grid-container__masonry .format-image .tc-content a:hover.btn-edit, .grid-container__masonry .format-gallery .tc-content a:hover.btn-edit {
+  color: #202020;
 }
 
 .grid-container__alternate.has-media .format-image.no-excerpt .tc-content .entry-header, .grid-container__alternate.has-media .format-image.no-excerpt .tc-content .entry-footer, .grid-container__alternate.has-media .format-gallery .tc-content .entry-header, .grid-container__alternate.has-media .format-gallery .tc-content .entry-footer,
@@ -4855,38 +4872,29 @@ section.post-content {
   }
 }
 
-.sidebar.left {
-  padding-right: 2.5em;
-}
-
-.sidebar.right {
-  padding-left: 2.5em;
-}
-
 @media screen and (min-width: 480px) and (max-width: 667px) {
   .sidebar {
     padding: 0 2.5em;
   }
 }
 
-.sidebar .widget {
+.widget {
   margin-bottom: 3.75em;
 }
 
-.sidebar .widget li:not(:last-of-type) {
+.widget li:not(:last-of-type) {
   margin-bottom: 0.625em;
 }
 
-.sidebar .widget a {
-  color: #777;
+.widget a {
   display: inline-block;
 }
 
-.sidebar .widget:not(.widget_tag_cloud) a {
+.widget:not(.widget_tag_cloud) a {
   position: relative;
 }
 
-.sidebar .widget:not(.widget_tag_cloud) a:before {
+.widget:not(.widget_tag_cloud) a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -4903,16 +4911,12 @@ section.post-content {
   transition: all 0.3s ease 0s;
 }
 
-.sidebar .widget:not(.widget_tag_cloud) a:hover:before {
+.widget:not(.widget_tag_cloud) a:hover:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
-}
-
-.sidebar .widget:not(.widget_tag_cloud) a:hover {
-  color: #202020;
 }
 
 .sidebar .widget-title {
@@ -4932,77 +4936,53 @@ section.post-content {
   background: #202020;
 }
 
-.sidebar.right .widget_calendar table caption, .sidebar.right .widget_calendar table thead th {
-  text-align: right;
-}
-
-.sidebar.right .widget_search label i {
-  float: left;
-}
-
-.sidebar.right .czr-form label i {
-  float: right;
-}
-
-.sidebar.right .widget-title::after {
-  right: 0;
-  left: auto;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  .sidebar h5 {
-    font-size: calc(1em + 0.2 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  .sidebar h5 {
-    font-size: 1.2em;
-  }
-}
-
-.sidebar .widget_recent_comments .comment-author-link {
+.widget_recent_comments .comment-author-link {
   color: #B4B4B4;
 }
 
-.sidebar .widget_categories .cat-item.on a {
+.widget_categories .cat-item.on a {
   color: #202020;
 }
 
-.sidebar .widget_search .search-form__container .search__form, .sidebar .widget_search .widget_search .search__form {
-  width: 100%;
-  max-width: 100%;
-}
-
-.sidebar .widget_search .search-form__container label, .sidebar .widget_search .widget_search label {
-  border-color: #202020;
-}
-
-.sidebar .widget_search .search-form__container .search-field:focus, .sidebar .widget_search .widget_search .search-field:focus {
-  color: #202020;
-}
-
-.sidebar .widget_calendar table#wp-calendar {
+.widget_calendar table#wp-calendar {
   width: 100%;
 }
 
-.sidebar .widget_calendar thead tr, .sidebar .widget_calendar tbody tr {
+.widget_calendar thead tr, .widget_calendar tbody tr {
   border-bottom: 1px solid #202020;
 }
 
-.sidebar .widget_calendar thead tr {
+.widget_calendar thead tr {
   border-width: 2px;
 }
 
-.sidebar .widget_calendar td {
+.widget_calendar td {
   padding: 0.625em 0;
 }
 
-.sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot {
+.widget_calendar caption, .widget_calendar tfoot {
   padding: 0.625em 0;
   color: #B4B4B4;
   text-align: left;
   caption-side: top;
+}
+
+@media screen and (min-width: 768px) {
+  /*md*/
+  .sidebar.left {
+    padding-right: 2.5em;
+  }
+  .sidebar.right {
+    text-align: right;
+    padding-left: 2.5em;
+  }
+  .sidebar.right .widget_calendar table caption, .sidebar.right .widget_calendar table thead th {
+    text-align: right;
+  }
+  .sidebar.right .widget-title::after {
+    right: 0;
+    left: auto;
+  }
 }
 
 /* mamburger and caret */
@@ -5451,9 +5431,7 @@ section.post-content {
     left: 1.25em;
   }
   .mobile-utils__wrapper,
-  .primary-nav__utils .search-form__container,
-  .primary-nav__utils .sidebar .widget_search, .sidebar
-  .primary-nav__utils .widget_search {
+  .primary-nav__utils .search-form__container {
     display: none;
   }
   .hamburger-menu .mobile-utils__wrapper {
@@ -5590,6 +5568,19 @@ section.post-content {
   }
   .primary-nav__container .primary-nav__search .czr-form .form-group {
     margin: 1.25em 0;
+  }
+}
+
+/*
+* In desktops when resizing below the "collapsing mobil menu" treshold
+* always expand submenus when .tc-open-on-hover (which is not available in mobiles )
+*/
+@media (max-width: 991px) {
+  .tc-open-on-hover .dropdown-menu {
+    display: block !important;
+  }
+  .tc-open-on-hover .caret__dropdown-toggler {
+    display: none !important;
   }
 }
 

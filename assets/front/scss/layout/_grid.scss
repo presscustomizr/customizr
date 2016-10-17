@@ -447,7 +447,7 @@ WP classes
 		.entry-header a, .entry-footer a {
 			color: $white;
 		}
-		a:hover { color: $grey-light; }
+		a:hover { color: $grey-light; &.btn-edit { color: $black; } }
 		.entry-header, .entry-footer  {
 			@include opacity(1);
 			@include transition(all, 0.3s ease);

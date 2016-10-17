@@ -12,6 +12,10 @@ body, html {
         margin: 0;
         -webkit-font-smoothing: antialiased;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
@@ -47,7 +51,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: darken($skin, 25%);
+    color: darken($skin, 70%); /* previously 25%*/
 }
 
 
