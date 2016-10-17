@@ -4159,8 +4159,10 @@ WP classes
   margin-bottom: 1.25em;
 }
 
-.page-breadcrumbs div[class^="col-"] {
-  padding: 0;
+@media (min-width: 768px) {
+  .page-breadcrumbs [class^="col-"] {
+    padding: 0;
+  }
 }
 
 .page-breadcrumbs .breadcrumb {
@@ -4178,13 +4180,10 @@ WP classes
   clear: both;
 }
 
-.page-breadcrumbs .breadcrumb .breadcrumb-item {
+.page-breadcrumbs .breadcrumb .trail-end, .page-breadcrumbs .breadcrumb a {
   background: #fff;
   padding: 6px;
   float: left;
-}
-
-.page-breadcrumbs .breadcrumb .breadcrumb-item + .breadcrumb-item {
   margin-left: 2.5em;
 }
 
@@ -4218,16 +4217,16 @@ WP classes
   transform: scaleX(1);
 }
 
-.page-breadcrumbs .breadcrumb a:first-of-type {
+.page-breadcrumbs .breadcrumb .trail-begin {
   padding-left: 0;
+  margin-left: 0;
 }
 
-.page-breadcrumbs .breadcrumb .active {
-  font-weight: 400;
+.page-breadcrumbs .breadcrumb .active, .page-breadcrumbs .breadcrumb .trail-end {
   float: right;
 }
 
-.commnet.child {
+.comment.child {
   margin-left: 100px;
 }
 
