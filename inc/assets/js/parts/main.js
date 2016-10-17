@@ -479,7 +479,9 @@ var czrapp = czrapp || {};
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height', 'simple_load'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        setOpacityWhenCentered : true,//will set the opacity to 1
+        opacity : 1
       });
 
       //POST GRID IMAGES

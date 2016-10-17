@@ -602,6 +602,11 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       $_skin = sprintf( 'skin-%s' , basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
       array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
+      //IMAGE CENTERED
+      if ( (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ) ){
+        $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
+      }
+
       return $_classes;
     }
 

@@ -2898,15 +2898,15 @@ var TCParams = TCParams || {};
   */
   Plugin.prototype._better_scroll_event_handler = function( $_imgs , _evt ) {
     var self = this;
-    //use a timer
-    if ( 0 !== this.timer ) {
-        this.increment++;
-        window.clearTimeout( this.timer );
-    }
 
-    this.timer = window.setTimeout(function() {
-      self._maybe_trigger_load( $_imgs , _evt );
-    }, self.increment > 5 ? 50 : 0 );
+    if ( ! this.doingAnimation ) {
+      this.doingAnimation = true;
+      window.requestAnimationFrame(function() {
+        //self.parallaxMe();
+        self._maybe_trigger_load( $_imgs , _evt );        
+        self.doingAnimation = false;
+      });
+    }    
   };
 
 
@@ -3213,7 +3213,9 @@ var TCParams = TCParams || {};
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
         disableGRUnder : 767,//in pixels
-        useImgAttr:false//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
+        useImgAttr:false,//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
+        setOpacityWhenCentered : false,//this can be used to hide the image during the time it is centered
+        opacity : 1
       };
 
   function Plugin( element, options ) {
@@ -3373,14 +3375,24 @@ var TCParams = TCParams || {};
 
   //@return void
   Plugin.prototype._maybe_center_img = function( $_img, _state ) {
-    var _case  = _state.current,
+    var self = this,
+        _case  = _state.current,
         _p     = _state.prop[_case],
         _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
-        _not_p_dir_val = 'h' == _case ? ( this.options.zeroTopAdjust || 0 ) : ( this.options.zeroLeftAdjust || 0 );
-
-    $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , this.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
-        .addClass( _p._class ).removeClass( _not_p._class )
-        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+        _not_p_dir_val = 'h' == _case ? ( this.options.zeroTopAdjust || 0 ) : ( this.options.zeroLeftAdjust || 0 ),
+        _centerImg = function( $_img ) {
+          $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , self.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
+          .addClass( _p._class ).removeClass( _not_p._class )
+          .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+          return $_img;
+        };
+    if ( this.options.setOpacityWhenCentered ) {
+        $.when( _centerImg( $_img ) ).done( function( $_img ) {
+            $_img.css('opacity', self.options.opacity );
+        });
+    } else {
+        _centerImg( $_img );
+    }
   };
 
   /********
@@ -3476,7 +3488,7 @@ var TCParams = TCParams || {};
     //cache some element
     this.$_document   = $(document);
     this.$_window     = czrapp ? czrapp.$_window : $(window);
-    this.windowIsBusy = false;
+    this.doingAnimation = false;
 
     this.initWaypoints();
     this.stageParallaxElements();
@@ -3516,7 +3528,7 @@ var TCParams = TCParams || {};
           }else{
             self.element.removeClass('parallaxing');
             self.$_window.off('scroll', self.maybeParallaxMe );
-            self.windowIsBusy = false;
+            self.doingAnimation = false;
             self.element.css('top', 0 );
           }
         }
@@ -3532,7 +3544,7 @@ var TCParams = TCParams || {};
           }else {
             self.element.removeClass('parallaxing');
             self.$_window.off('scroll', self.maybeParallaxMe );
-            self.windowIsBusy = false;
+            self.doingAnimation = false;
           }
         },
         offset: function(){
@@ -3549,11 +3561,11 @@ var TCParams = TCParams || {};
   Plugin.prototype.maybeParallaxMe = function() {
       var self = this;
 
-      if ( !this.windowIsBusy ) {
-        this.windowIsBusy = true;
-        czrParallaxRequestAnimationFrame(function() {
+      if ( !this.doingAnimation ) {
+        this.doingAnimation = true;
+        window.requestAnimationFrame(function() {
           self.parallaxMe();
-          self.windowIsBusy = false;
+          self.doingAnimation = false;
         });
       }
   };
@@ -5458,7 +5470,9 @@ var czrapp = czrapp || {};
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
-        oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        oncustom : ['smartload', 'refresh-height', 'simple_load'], //bind 'refresh-height' event (triggered to the the customizer preview frame)
+        setOpacityWhenCentered : true,//will set the opacity to 1
+        opacity : 1
       });
 
       //POST GRID IMAGES

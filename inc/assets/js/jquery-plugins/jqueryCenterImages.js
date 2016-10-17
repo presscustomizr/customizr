@@ -27,7 +27,9 @@
         goldenRatioVal : 1.618,
         skipGoldenRatioClasses : ['no-gold-ratio'],
         disableGRUnder : 767,//in pixels
-        useImgAttr:false//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
+        useImgAttr:false,//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
+        setOpacityWhenCentered : false,//this can be used to hide the image during the time it is centered
+        opacity : 1
       };
 
   function Plugin( element, options ) {
@@ -187,14 +189,24 @@
 
   //@return void
   Plugin.prototype._maybe_center_img = function( $_img, _state ) {
-    var _case  = _state.current,
+    var self = this,
+        _case  = _state.current,
         _p     = _state.prop[_case],
         _not_p = _state.prop[ 'h' == _case ? 'v' : 'h'],
-        _not_p_dir_val = 'h' == _case ? ( this.options.zeroTopAdjust || 0 ) : ( this.options.zeroLeftAdjust || 0 );
-
-    $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , this.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
-        .addClass( _p._class ).removeClass( _not_p._class )
-        .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+        _not_p_dir_val = 'h' == _case ? ( this.options.zeroTopAdjust || 0 ) : ( this.options.zeroLeftAdjust || 0 ),
+        _centerImg = function( $_img ) {
+          $_img.css( _p.dim.name , _p.dim.val ).css( _not_p.dim.name , self.options.defaultCSSVal[_not_p.dim.name] || 'auto' )
+          .addClass( _p._class ).removeClass( _not_p._class )
+          .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+          return $_img;
+        };
+    if ( this.options.setOpacityWhenCentered ) {
+        $.when( _centerImg( $_img ) ).done( function( $_img ) {
+            $_img.css('opacity', self.options.opacity );
+        });
+    } else {
+        _centerImg( $_img );
+    }
   };
 
   /********
