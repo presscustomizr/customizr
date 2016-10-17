@@ -562,7 +562,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
         //Defines the active skin and fallback to blue.css if needed
         if ( 'skin' == $_wot )
-          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/blue3.css';
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/grey.css';
         else
           $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
 

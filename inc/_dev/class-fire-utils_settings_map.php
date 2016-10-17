@@ -203,7 +203,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       return array(
               //skin select
               'tc_skin'     => array(
-                                'default'   =>  'blue3.css' ,
+                                'default'   =>  CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.32' , '1.2.31') ? 'blue3.css' : 'grey.css',
                                 'control'   => 'CZR_controls' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'skins_sec' ,

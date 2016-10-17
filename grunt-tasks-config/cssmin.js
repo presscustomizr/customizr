@@ -8,7 +8,7 @@ module.exports = {
   },
 	dev_skin: {
 		files: [
-			{'<%= paths.front_css %>blue3.min.css' : '<%= paths.front_css %>blue3.css'}
+			{'<%= paths.front_css %>grey.min.css' : '<%= paths.front_css %>grey.css'}
 		]
 	},
   dev_common: {

@@ -15,7 +15,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.front_css %>blue3.min.css', '<%= paths.front_css %>blue3.css']
+				src: ['<%= paths.front_css %>grey.min.css', '<%= paths.front_css %>grey.css']
 			}
 		]
 	},

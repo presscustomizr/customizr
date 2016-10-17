@@ -1,5 +1,5 @@
 module.exports = {
-	//in development mode, only the default skin (blue3 : #27CDA5 ) is compiled when less files are updated
+	//in development mode, only the default skin (grey : #5A5A5A ) is compiled when less files are updated
 	dev_common : {
 		files: [
 			{src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>tc_common.css'}
@@ -7,7 +7,7 @@ module.exports = {
 	},
   dev_skin : {
     files: [
-      {src: '<%= paths.less %>tc_skin_gen.less', dest: '<%= paths.front_css %>blue3.css'}
+      {src: '<%= paths.less %>tc_skin_gen.less', dest: '<%= paths.front_css %>grey.css'}
     ]
   },
 	//in production, skins are generated with modified less vars

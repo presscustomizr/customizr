@@ -1059,7 +1059,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
         //Defines the active skin and fallback to blue.css if needed
         if ( 'skin' == $_wot )
-          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/blue3.css';
+          $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/grey.css';
         else
           $tc_get_style_src  = $remote_path ? $remote_path.$_sheet : TC_BASE_URL.'inc/assets/css/tc_common.css';
 
@@ -2848,7 +2848,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       return array(
               //skin select
               'tc_skin'     => array(
-                                'default'   =>  'blue3.css' ,
+                                'default'   =>  CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.32' , '1.2.31') ? 'blue3.css' : 'grey.css',
                                 'control'   => 'CZR_controls' ,
                                 'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                                 'section'   =>  'skins_sec' ,
@@ -5662,8 +5662,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
         $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-        //falls back to blue3 ( default #27CDA5 ) if not defined
-        $_to_return = array( '#27CDA5', '#1b8d71' );
+        //falls back to grey.css array( '#5A5A5A', '#343434' ) if not defined
+        $_to_return = array( '#5A5A5A', '#343434' );
 
         switch ($_what) {
           case 'all':
@@ -8373,7 +8373,12 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //SLIDER
       add_filter('tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
       //adds infos in the caption data of the demo slider
-      add_filter( 'tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+      add_filter('tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+
+      //SINGLE POSTS
+      add_filter('tc_show_single_post_thumbnail', '__return_true');
+      add_filter('tc_single_post_thumb_hook', array( $this, 'czr_fn_set_single_post_thumb_hook') );
+      add_filter('tc_single_post_thumb_height', array( $this, 'czr_fn_set_single_post_thumb_height') );
 
       //SOCIALS
       add_filter('option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
@@ -8634,7 +8639,16 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     }
 
 
+    /* ------------------------------------------------------------------------- *
+     *  Single Posts
+    /* ------------------------------------------------------------------------- */
+    function czr_fn_set_single_post_thumb_hook() {
+      return '__before_main_wrapper';
+    }
 
+    function czr_fn_set_single_post_thumb_height() {
+      return 350;
+    }
 
     /* ------------------------------------------------------------------------- *
      *  Widgets

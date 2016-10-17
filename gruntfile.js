@@ -24,8 +24,8 @@ module.exports = function(grunt) {
       //default less modifiers
       is_rtl: 'true',
       //check if a custom color is requested
-      skin_name : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? [ 'custom-skin-' , grunt.option.flags()[0].replace(/-|#/g, '') ].join('') : "blue3",
-      skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "blue3",
+      skin_name : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? [ 'custom-skin-' , grunt.option.flags()[0].replace(/-|#/g, '') ].join('') : "grey",
+      skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "grey",
       //https://www.npmjs.org/package/grunt-ssh
       //Check if the context var is set and == travis => avoid travis error with ftpauth no found
       credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),

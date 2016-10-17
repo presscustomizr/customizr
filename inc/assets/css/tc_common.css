@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.31
+ * Customizr v3.4.32
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -2436,14 +2436,14 @@ table th[class*="span"],
 .dropdown-submenu:focus > a {
   text-decoration: none;
   color: #ffffff;
-  background-color: #25c49e;
-  background-image: -moz-linear-gradient(top, #27cda5, #23b894);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#27cda5), to(#23b894));
-  background-image: -webkit-linear-gradient(top, #27cda5, #23b894);
-  background-image: -o-linear-gradient(top, #27cda5, #23b894);
-  background-image: linear-gradient(to bottom, #27cda5, #23b894);
+  background-color: #555555;
+  background-image: -moz-linear-gradient(top, #5a5a5a, #4d4d4d);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5a5a5a), to(#4d4d4d));
+  background-image: -webkit-linear-gradient(top, #5a5a5a, #4d4d4d);
+  background-image: -o-linear-gradient(top, #5a5a5a, #4d4d4d);
+  background-image: linear-gradient(to bottom, #5a5a5a, #4d4d4d);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff27cda5' , endColorstr='#ff23b894' , GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5a5a5a' , endColorstr='#ff4d4d4d' , GradientType=0);
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,

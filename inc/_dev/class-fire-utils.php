@@ -165,8 +165,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
         $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-        //falls back to blue3 ( default #27CDA5 ) if not defined
-        $_to_return = array( '#27CDA5', '#1b8d71' );
+        //falls back to grey.css array( '#5A5A5A', '#343434' ) if not defined
+        $_to_return = array( '#5A5A5A', '#343434' );
 
         switch ($_what) {
           case 'all':
