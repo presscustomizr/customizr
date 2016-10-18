@@ -322,21 +322,6 @@ embed, iframe, object, video { max-width: 100%;}
 [id^=customizr-slider-].czr-carousel .carousel-inner { width: 100%; height: 100%; overflow: hidden;}
 
 
-/* Test header overflow-x hidden !!! */
-@media screen and (min-width: 992px) {
-  .super-wrapper {
-    overflow-x: hidden;
-    position: absolute;
-    width: 100%;
-  }
-  [class*='li-open-'].super-wrapper { height: 100vh; }
-  /*
-  .navbar-sticky-overlap #tc-page-wrap {
-    overflow-x: initial !important;
-  }*/
-}
-
-
 
 /* Dropdown toggler span test
 Replace
@@ -358,6 +343,12 @@ Replace
     width: auto;
     height: 100%;
     top: 0;
+    right: -1.5em;
+}
+@media (max-width: 971px){
+  .caret__dropdown-toggler[data-toggle="dropdown"] {
+    right: 1em;
+  }
 }
 .secondary-nav__menu-wrapper .caret__dropdown-toggler[data-toggle="dropdown"] {
   padding: 0.425em 0;
@@ -368,6 +359,7 @@ Replace
 .dropdown-menu .caret__dropdown-toggler[data-toggle="dropdown"] {
   padding: 0;
   line-height: 4.3em;
+  right: 1em;
 }
 .secondary-nav__menu-wrapper .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
   vertical-align: middle;
