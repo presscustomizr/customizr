@@ -2,7 +2,7 @@
 $_options = array(
     //to add
     'tc_skin_type' => 'light', // (light|dark)
-
+    'tc_menu_position' => 'pull-menu-left', //pull-menu-left
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
@@ -10,7 +10,7 @@ $_options = array(
     'tc_sticky_header_type' => 'overlap',// (overlap||push)
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
-    'tc_display_second_menu' => true,
+    'tc_display_second_menu' => false,
     'tc_menu_style' => 'regular',
     'tc_menu_type' => 'click',
     'tc_logo_upload' => '611',

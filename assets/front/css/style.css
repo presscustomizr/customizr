@@ -267,16 +267,8 @@ blockquote p {
   background: transparent;
 }
 
-.t__center {
-  text-align: center !important;
-}
-
-.t__left {
-  text-align: left !important;
-}
-
-.t__right {
-  text-align: right !important;
+.big-text-10 {
+  font-size: 10em;
 }
 
 .inline-list, .tags {
@@ -1546,10 +1538,6 @@ blockquote cite:before {
 .tagcloud a:hover,
 .tags li:hover a {
   color: white;
-}
-
-.tagcloud a {
-  font-size: inherit !important;
 }
 
 .v-separator {
@@ -4944,8 +4932,12 @@ section.post-content {
   color: #202020;
 }
 
-.widget_calendar table#wp-calendar {
+.widget_calendar table {
   width: 100%;
+}
+
+.widget_calendar table caption, .widget_calendar table thead th {
+  text-align: inherit;
 }
 
 .widget_calendar thead tr, .widget_calendar tbody tr {
@@ -4973,11 +4965,7 @@ section.post-content {
     padding-right: 2.5em;
   }
   .sidebar.right {
-    text-align: right;
     padding-left: 2.5em;
-  }
-  .sidebar.right .widget_calendar table caption, .sidebar.right .widget_calendar table thead th {
-    text-align: right;
   }
   .sidebar.right .widget-title::after {
     right: 0;
@@ -5278,24 +5266,19 @@ section.post-content {
 
 .primary-nav__container .socials {
   float: right;
-  height: 68px;
-  line-height: 68px;
+  /* height: 68px;
+            line-height: 68px;*/
 }
 
 .primary-nav__container .primary-nav__nav {
   width: 100%;
+  /*@media (min-width: 993px) {  display:inline-block; }*/
   text-align: right;
-}
-
-@media (min-width: 993px) {
-  .primary-nav__container .primary-nav__nav {
-    display: inline-block;
-  }
 }
 
 .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
   padding-left: 2.5em;
-  /*float:right;*/
+  /*&.pull-menu-left { float: left; }*/
   display: inline-block;
   position: relative;
   margin: 0 auto;
@@ -5324,7 +5307,6 @@ section.post-content {
 .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-align: center;
   display: inline-block;
-  z-index: 199;
 }
 
 .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu > li {
@@ -5343,8 +5325,6 @@ section.post-content {
   display: inline-block;
   vertical-align: bottom;
   padding: 0;
-  height: 70px;
-  line-height: 68px;
   *zoom: 1;
 }
 

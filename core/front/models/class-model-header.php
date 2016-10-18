@@ -29,16 +29,22 @@ class CZR_cl_header_model_class extends CZR_cl_Model {
       array_push( $_model['elements_container_class'], $_sticky_overlap ? 'navbar-fixed-top' : '' );
     }
 
+    //No navbar box
+    if ( 1 != esc_attr( czr_fn_get_opt( 'tc_display_boxed_navbar') ) )
+      array_push( $_model['element_class'], 'no-navbar' );
+    //regular menu
+    if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )
+      array_push( $_model['element_class'], 'tc-regular-menu' );
+
+    //header class for the secondary menu
+    array_push(  $_model['element_class'],
+      'tc-second-menu-on',
+      'tc-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+    );
+
     return array_merge( $model, $_model );
   }
 
-  /**
-  * parse this model properties for rendering
-  */
-  function czr_fn_sanitize_model_properties( $model ) {
-    parent::czr_fn_sanitize_model_properties( $model );
-    $model -> content_width_class = $this -> czr_fn_stringify_model_property( 'elements_container_class' );
-  }
 
   function czr_fn_setup_children() {
     $children = array(

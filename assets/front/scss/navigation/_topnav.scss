@@ -234,18 +234,18 @@
   .primary-nav__container {
         .socials {
             float:right;
-            height: 68px;
-            line-height: 68px;
+           /* height: 68px;
+            line-height: 68px;*/
         }
 
     .primary-nav__nav {
         width: 100%;
-        @media (min-width: 993px) {  display:inline-block; }
+        /*@media (min-width: 993px) {  display:inline-block; }*/
         text-align: right;
         .primary-nav__menu-wrapper
         {
           padding-left: 2.5em;
-          /*float:right;*/
+          /*&.pull-menu-left { float: left; }*/
           display:inline-block;
           position: relative;
           margin:0 auto;
@@ -265,7 +265,6 @@
          .primary-nav__menu {
             text-align:center;
             display:inline-block;
-            z-index:199;
             @extend .small;
             @extend .caps;
             @extend .bold;
@@ -283,8 +282,6 @@
                       display:inline-block;
                       vertical-align:bottom;
                       padding:0;
-                      height:70px;
-                      line-height:68px;
                       @include clearfix();
 
                   }

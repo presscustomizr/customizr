@@ -5,7 +5,6 @@
 	}
 }
 
-
 .widget {
 	li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
 	a { display: inline-block; }
@@ -52,7 +51,12 @@
 
 
 .widget_calendar {
-	table#wp-calendar { width: 100%; }
+	table {
+		width: 100%;
+		caption, thead  th {
+			text-align: inherit;
+		}
+	}
 	thead tr, tbody tr  { border-bottom: 1px solid $black; }
 	thead tr {  border-width: 2px; @extend .small; @extend .service-font; }
 	td { padding:$base-line-height/2 0; }
@@ -70,15 +74,7 @@
 @media screen and (min-width: 768px) { /*md*/
 	.sidebar.left  { padding-right:$base-line-height*2; }
 	.sidebar.right {
-		text-align: right;
 		padding-left:$base-line-height*2;
-		.widget_calendar{
-			table  {
-				caption, thead  th {
-					text-align: right;
-				}
-			}
-		}
 		.widget-title::after {
 			right:0;
 			left:auto;
