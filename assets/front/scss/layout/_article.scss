@@ -328,8 +328,8 @@ section.post-related-articles {
 	margin-top: 0;
 		header {
 			@include clearfix;
-			h2 { float:left;text-align: center; font-weight: 600; margin-top: $base-line-height*2; }
-			ul {
+			.related-posts_title { float:left; font-weight: 600; margin-top: $base-line-height*2; }
+			.related-posts_nav {
 				float: right;
 				margin-top: $base-line-height*4;
 				li {

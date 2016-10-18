@@ -2,7 +2,7 @@
 /* search forms */
 
 .search-form {
-  label { @include clearfix; }
+  label { @include clearfix; width: 100% }
 }
 input:not([type="submit"]), textarea {
   max-width: 100%;
@@ -41,7 +41,7 @@ label i {
 }
 
 .czr-form {
-  input:not([type="submit"]), label, textarea {
+  input:not([type="submit"]), textarea {
     width: 100%;
   }
 

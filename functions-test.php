@@ -1,7 +1,7 @@
 <?php
 $_options = array(
     //to add
-    'tc_skin_type' => 'light', // (light|dark)
+    'tc_skin_type' => 'dark', // (light|dark)
     'tc_menu_position' => 'pull-menu-left', //pull-menu-left
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
