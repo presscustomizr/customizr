@@ -14,9 +14,9 @@ if ( have_posts() ) {
 ?>
 <section class="post-related-articles czr-carousel" <?php czr_fn_echo('element_attributes') ?>>
   <header>
-    <h2><?php _e('You may also like', 'customizr') ?></h2>
+    <h3 class="related-posts_title"><?php _e('You may also like', 'customizr') ?></h3>
     <?php if ( $wp_query->post_count > 1 ) : ?>
-      <ul class="related-post_nav">
+      <ul class="related-posts_nav">
         <li><a href="#" class="slider-prev" title="Previous related articles"><i class="icn-left-open-big"></i></a></li>
         <li><a href="#" class="slider-next" title="Next related articles"><i class="icn-right-open-big"></i></a></li>
       </ul>

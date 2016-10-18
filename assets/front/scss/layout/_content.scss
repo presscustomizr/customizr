@@ -8,23 +8,28 @@
 }
 
 //header skins
-.header-skin-dark  {
 
-		.section-slider .filter, .page__header.image-header
-		{
-			@extend .filter;
-			@include filter($black, $white, 0.5);
-		}
-}
-
-.header-skin-light {
-
-	.section-slider .filter, .page__header.image-header
-	 {
-		@extend .filter;
-		@include filter($white, $black, 0.75);
+	&.header-skin-dark  {
+			.section-slider .filter {
+				@include filter($black, $white, 0.5);
+				+ .slider-text { color: $white; }
+			}
+			.page__header.image-header {
+				@extend .filter;
+				@include filter($black, $white, 0.5);
+			}
 	}
-}
+
+	&.header-skin-light {
+		.section-slider .filter {
+			@include filter($white, $black, 0.75);
+			+ .slider-text { color: $black; }
+		}
+		.page__header.image-header {
+			@extend .filter;
+			@include filter($white, $black, 0.75);
+		}
+	}
 
 
 //slider section
