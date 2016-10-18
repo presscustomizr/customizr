@@ -1233,3 +1233,50 @@ replace this
     height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
   }
 }
+
+/* nav with tables */
+@media (min-width: 992px) {
+  .primary-navbar__wrapper {
+    display: table !important;
+    min-width: 100% !important;
+    white-space: nowrap;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
+  }
+  .primary-nav__container .primary-nav__nav {
+    width: 100%;
+    text-align: initial !important;
+  }
+  .branding__container {
+    left: 0 !important;
+    display: table-cell !important;
+    float: none !important;
+  }
+  .primary-nav__container {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    display: table-cell !important;
+  }
+  .primary-nav__menu-wrapper {
+    display: table-cell !important;
+    width: 100% !important;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+    margin: 0 !important;
+  }
+  .primary-nav__container .primary-nav__utils {
+    display: table-cell !important;
+    white-space: nowrap !important;
+  }
+  .primary-nav__container .primary-nav__utils .socials {
+    float: none !important;
+    display: inline-block !important;
+  }
+  .primary-nav__menu-wrapper.pull-menu-left {
+    text-align: left;
+  }
+  .primary-nav__menu-wrapper.pull-menu-right {
+    text-align: right;
+  }
+}

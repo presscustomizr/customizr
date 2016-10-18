@@ -46,7 +46,8 @@
 	padding-top: $base-line-height*2;
 
 	.widget__wrapper {
-		padding: $base-line-height*3 0;
+		padding-top: $base-line-height*1.5;
+		padding-bottom: $base-line-height*1.5;
 	}
 	a {
 		display: inline-block;
@@ -86,7 +87,7 @@
 		}
 
 	}
-	.copyright__container {
+	.colophon__container {
 		margin:0;
 		padding:$base-line-height/2 $base-line-height;
 	}
