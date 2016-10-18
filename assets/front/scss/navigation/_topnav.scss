@@ -140,13 +140,8 @@
   }
 
  .mobile-utils__wrapper {
-    display: inline-block;
     vertical-align: middle;
     float: right;
-    text-align: right;
-    position: relative;
-    width: auto;
-    line-height: 68px;
  }
   .hamburger-toggler__container,
   .mobile-woocart__container
@@ -166,8 +161,6 @@
       position: relative;
       height:auto;
       text-align: left;
-      top:0;
-      padding: 0 ;
    }
 
   .branding {
@@ -248,20 +241,12 @@
           /*&.pull-menu-left { float: left; }*/
           display:inline-block;
           position: relative;
-          margin:0 auto;
-          left: 0;
+          /*margin:0 auto;
+          left: 0;*/
           /*max-width:calc(100% - 200px); */
-          width: auto;
+          /*width: auto;*/
           @media (min-width: 993px) {  margin-right: $base-line-height*2; }
-          &.left {
 
-            float:none;
-            @media (min-width: 993px) {
-                width:auto;
-                margin-right: $base-line-height*2;
-            }
-
-          }
          .primary-nav__menu {
             text-align:center;
             display:inline-block;
@@ -304,7 +289,7 @@
         display: inline-block;
         height: inherit;
         vertical-align: bottom;
-        li a { height:60px; line-height:60px }
+       /* li a { height:60px; line-height:60px }*/
       }
       .socials {
          @extend .small;
@@ -339,9 +324,9 @@
 
 @media (min-width: 992px) {
   .branding__container { left:$base-line-height; }
-  .mobile-utils__wrapper,
-  .primary-nav__utils .search-form__container   { display:none; }
-  .hamburger-menu .mobile-utils__wrapper { display:inherit; }
+/*  .mobile-utils__wrapper,
+  .primary-nav__utils .search-form__container   { display:none; }*/
+  .hamburger-menu .mobile-utils__wrapper { display:inherit !important; }
   .primary-navbar__wrapper {
     white-space: nowrap;
     padding-right: $base-line-height; /* same of the left .branding_container property */
@@ -353,7 +338,12 @@
   }
   .primary-nav__utils { white-space: normal; /* firefox patch */}
 }
-
+.desktop_search__link {
+  display: block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
 @media (max-width: 992px) {
     .primary-nav__container { width: 100%; }
     .primary-nav__container .primary-nav__utils {
@@ -361,12 +351,7 @@
       display: block;
       margin-bottom:$base-line-height;
       float:none;
-        .desktop_search__link {
-          display:none
-      }
-
     }
-    .mobile-utils__wrapper { display:inline-block; }
     .navbar-sticky {
       padding : 0;
      .primary-nav__container { padding-top:0; }

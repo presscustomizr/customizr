@@ -120,7 +120,7 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
 
           if ( empty ( $_the_thumb['tc_thumb']) ) {
             $this -> czr_fn_set_property( 'original_thumb_url', '');
-            return;
+            return ' ';
           }
 
           //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );

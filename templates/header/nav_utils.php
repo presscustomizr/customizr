@@ -11,11 +11,11 @@
   <ul class="nav navbar-nav utils inline-list">
     <?php czr_fn_render_template('header/nav_search'); ?>
     <?php if ( czr_fn_has( 'woocommerce_cart', null, $only_registered = true ) ) : ?>
-      <li class="primary-nav__woocart hidden-tablet">
+      <li class="primary-nav__woocart hidden-md-down">
         <?php czr_fn_render_template('header/woocommerce_cart'); ?>
-      </li>  
+      </li>
     <?php endif ?>
-  </ul>   
+  </ul>
     <?php  if ( ! ( czr_fn_has('navbar_secondary_menu') ) ) : ?>
       <?php czr_fn_render_template('header/header_socials'); ?>
     <?php endif ?>
