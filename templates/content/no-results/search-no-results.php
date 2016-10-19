@@ -1,17 +1,16 @@
 <?php
 /**
- * The template for displaying the 404 content
+ * The template for displaying the search no results content
  */
 ?>
 <header class="entry-header text-xs-center"<?php czr_fn_echo('element_attributes') ?>>
-  <h1 class="entry-title big-text-10 m-b-0"><?php _e( '404', 'customizr') ?></h1>
-  <h2><?php _e('Ooops, page not found', 'customizr') ?></h2>
+  <h1 class="entry-title m-b-0"><?php _e('Nothing Found', 'customizr') ?></h1>
 </header>
 <hr class='featurette-divider'>
 <article id="post-0" class="post error404 no-results not-found row text-xs-center">
   <div class="tc-content col-xs-12">
     <div class="entry-content">
-      <p class="m-b-2"><?php _e( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' ) ?></p>
+      <p class="m-b-3"><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'customizr' ) ?></p>
       <?php get_search_form() ?>
     </div>
   </div>

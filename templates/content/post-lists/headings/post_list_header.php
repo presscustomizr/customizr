@@ -22,7 +22,7 @@
     </h2>
     <?php
       if ( ( ! CZR() -> czr_fn_is_customizing() && get_edit_post_link() ) ) : ?>
-        <a class="post-edit-link btn-edit" title="<?php _e( 'Edit', 'customizr' ) ?>" href="<?php echo get_edit_post_link() ?>"><i class="icn-edit"></i><?php _e( 'Edit post', 'customizr' ) ?></a>
+        <a class="post-edit-link btn-edit" title="<?php _e( 'Edit', 'customizr' ) ?>" href="<?php echo get_edit_post_link() ?>"><i class="icn-edit"></i><?php _e( 'Edit', 'customizr' ) ?></a>
     <?php endif ?>
   </div>
 </header>

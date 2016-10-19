@@ -1,7 +1,7 @@
 <?php
 $_options = array(
     //to add
-    'tc_skin_type' => 'light', // (light|dark)
+    'tc_skin_type' => 'dark', // (light|dark)
     'tc_menu_position' => 'pull-menu-left', //pull-menu-left
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'plain', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -69,9 +69,9 @@ function czr_fn_get_opt( $_opt_name, $option_group = null, $use_default = true) 
 
 add_filter( 'czr_add_custom_fonts_to_editor' , '__return_false' );
 
-//Test display a header sticky push in single posts
+//Test display a header sticky push except in home
 add_filter( 'czr_opt_tc_sticky_header_type', function( $_what ){
-  return is_singular() ? 'push' : $_what;
+  return czr_fn_is_home() ? $_what :  'push';
 });
 
 add_filter( 'czr_gfont_pairs', function( $_fonts ) {

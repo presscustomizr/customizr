@@ -32,7 +32,7 @@
 	.widget a {
 			@include underlined(rgba($primary-color, 0.5), 1px );
 	}
-	.copyright__container {
+	.colophon__row {
 		background: $background-dark;
 	}
 }
@@ -87,7 +87,7 @@
 		}
 
 	}
-	.colophon__container {
+	.colophon__row {
 		margin:0;
 		padding:$base-line-height/2 $base-line-height;
 	}
