@@ -16,11 +16,11 @@
 
 class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
   public $breadcrumb;
-  private $args;
+  private $_args;
 
   function czr_fn_extend_params( $model = array() ) {
-    $this -> args       = $this -> _get_args();
-    $this -> breadcrumb = $this -> czr_fn_breadcrumb_trail( $this -> args );
+    $this -> _args       = $this -> _get_args();
+    $this -> breadcrumb = $this -> czr_fn_breadcrumb_trail( $this -> _args );
 
     return $model;
   }
@@ -178,7 +178,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
     if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
       $trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_bbpress_items() );
     }
-  
+
     /* If WooCommerce is installed and we're on a WooCommerce page. */
     elseif ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
       $trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_woocommerce_items() );
@@ -898,7 +898,7 @@ class CZR_cl_breadcrumb_model_class extends CZR_cl_Model {
     }
 
     $first_parent_post  = get_post($parent_key);
-    $args       = $this -> args;
+    $args       = $this -> _args;
 
     /*if (  isset($args["singular_breadcrumb_taxonomy"]) && $args["singular_breadcrumb_taxonomy"] )
       $trail  = $this -> czr_fn_add_first_term_from_hierarchical_taxinomy( $trail , $parent_key );*/
