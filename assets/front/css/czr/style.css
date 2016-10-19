@@ -772,9 +772,7 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
 }
 @media ( min-width: 768px ) {
   .row.grid.square-grid__mini {
-    height: 0;
     padding-bottom: 25%; /* 2 items shown */
-    overflow: hidden;
   }
 }
 
@@ -799,10 +797,10 @@ replace:
 }
 .square-grid__mini .entry-content__wrapper {
   position: absolute;
-  left: 2em;
-  right: 2em;
-  top: 2em;
-  bottom: 2em;
+  left: 1.6em;
+  right: 1.6em;
+  top: 1.6em;
+  bottom: 1.6em;
   overflow: hidden;
 }
 /*

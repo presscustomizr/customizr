@@ -8,7 +8,6 @@
     top: 0;
     left: 0;
     z-index:90;
-    text-align:center;
     animation: a .3s forwards;
     @include transition (all 0.3s cubic-bezier(.19, 1, .22, 1));
 
@@ -116,7 +115,6 @@
               .search-form {
                   @include opacity(1);
                   visibility:visible;
-                  label { text-align: center; }
               }
             }
       }

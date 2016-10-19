@@ -196,12 +196,6 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
       $_layout[ 'content' ] = array('', '', '', '', '12');
     }
 
-    /* Merge push and pull info into $_layout */
-    $_layout['push_content'] = $_push['content'];
-    $_layout['push_media']   = $_push['media'];
-    $_layout['pull_content'] = $_pull['content'];
-    $_layout['pull_media']   = $_pull['media'];
-
     $item_layout_properties = array(
       'item_layout'             => array(
         'content' => array( 'width' => $_layout['content'], 'push' => $_push['content'], 'pull' => $_pull['content'] ),
@@ -233,7 +227,7 @@ class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
   function czr_fn_get_media_col() {
     $item_layout = $this -> czr_fn_get_alternate_item_layout_property( 'item_layout' );
     if ( isset($item_layout['media']) )
-      return array_filter( $this -> czr_fn_build_cols( $item_layout['media']['width'], $item_layout['media']['push'], $item_layout['content']['pull'] ) );
+      return array_filter( $this -> czr_fn_build_cols( $item_layout['media']['width'], $item_layout['media']['push'], $item_layout['media']['pull'] ) );
     return;
   }
 

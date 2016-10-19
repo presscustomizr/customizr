@@ -554,7 +554,7 @@ body {
   background: #202020;
 }
 
-.header-skin-light .secondary-navbar__wrapper a, .header-skin-light .secondary-navbar__wrapper a:focus, .header-skin-light .secondary-navbar__wrapper a:active {
+.header-skin-light .secondary-navbar__wrapper a, .header-skin-light .secondary-navbar__wrapper a:focus, .header-skin-light .secondary-navbar__wrapper a:active, .header-skin-light .secondary-navbar__wrapper li > .caret__dropdown-toggler {
   color: #B4B4B4;
 }
 
@@ -731,7 +731,7 @@ body {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-light .primary-nav__menu > li > a {
+.header-skin-light .primary-nav__menu > li > a, .header-skin-light .primary-nav__menu .caret__dropdown-toggler {
   color: #202020;
 }
 
@@ -824,15 +824,15 @@ body {
   background: rgba(255, 255, 255, 0.95);
 }
 
-.header-skin-light header .czr-form .form-group label {
+.header-skin-light header .czr-form .form-group label, .header-skin-light .overlay .czr-form .form-group label {
   color: #202020;
 }
 
-.header-skin-light header .czr-form .form-group.in-focus label {
+.header-skin-light header .czr-form .form-group.in-focus label, .header-skin-light .overlay .czr-form .form-group.in-focus label {
   color: #B4B4B4;
 }
 
-.header-skin-light header .czr-form .form-control {
+.header-skin-light header .czr-form .form-control, .header-skin-light .overlay .czr-form .form-control {
   color: #202020;
   border-color: #202020;
 }
@@ -892,7 +892,7 @@ body {
   background: #fff;
 }
 
-.header-skin-dark .secondary-navbar__wrapper a, .header-skin-dark .secondary-navbar__wrapper a:focus, .header-skin-dark .secondary-navbar__wrapper a:active {
+.header-skin-dark .secondary-navbar__wrapper a, .header-skin-dark .secondary-navbar__wrapper a:focus, .header-skin-dark .secondary-navbar__wrapper a:active, .header-skin-dark .secondary-navbar__wrapper li > .caret__dropdown-toggler {
   color: #B4B4B4;
 }
 
@@ -1069,7 +1069,7 @@ body {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-dark .primary-nav__menu > li > a {
+.header-skin-dark .primary-nav__menu > li > a, .header-skin-dark .primary-nav__menu .caret__dropdown-toggler {
   color: #fff;
 }
 
@@ -1162,15 +1162,15 @@ body {
   background: rgba(32, 32, 32, 0.95);
 }
 
-.header-skin-dark header .czr-form .form-group label {
+.header-skin-dark header .czr-form .form-group label, .header-skin-dark .overlay .czr-form .form-group label {
   color: #fff;
 }
 
-.header-skin-dark header .czr-form .form-group.in-focus label {
+.header-skin-dark header .czr-form .form-group.in-focus label, .header-skin-dark .overlay .czr-form .form-group.in-focus label {
   color: #B4B4B4;
 }
 
-.header-skin-dark header .czr-form .form-control {
+.header-skin-dark header .czr-form .form-control, .header-skin-dark .overlay .czr-form .form-control {
   color: #fff;
   border-color: #fff;
 }
@@ -1810,7 +1810,6 @@ label i {
 
 .czr-form .czr-focus label i.icn-close {
   margin-right: -2em;
-  color: #202020;
   border-radius: 100%;
   height: 2em;
   width: 2em;
@@ -2152,7 +2151,6 @@ label i {
   top: 0;
   left: 0;
   z-index: 90;
-  text-align: center;
   animation: a .3s forwards;
   -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
@@ -2301,10 +2299,6 @@ label i {
   -khtml-opacity: 1;
   opacity: 1;
   visibility: visible;
-}
-
-.full-search-opened .overlay .overlay-content .search-form__container .search-form label, .hamburger-menu.opened .overlay .overlay-content .search-form__container .search-form label {
-  text-align: center;
 }
 
 .hamburger-menu.opened {
@@ -4602,7 +4596,7 @@ section.post-related-articles header .related-posts_nav {
   margin-top: 5em;
 }
 
-section.post-related-articles header .related-posts_nav li {
+section.post-related-articles header .related-posts_nav .slider-control {
   width: 3em;
   height: 3em;
   line-height: 3em;
@@ -4610,21 +4604,21 @@ section.post-related-articles header .related-posts_nav li {
   vertical-align: middle;
   text-align: center;
   border: 2px solid #f7f8f9;
-}
-
-section.post-related-articles header .related-posts_nav li:hover {
-  background: #202020;
-  border-color: #202020;
-}
-
-section.post-related-articles header .related-posts_nav li:hover a, section.post-related-articles header .related-posts_nav li a:hover {
-  color: #fff;
   -webkit-transition: all 0.2s, 0.3s ease;
   transition: all 0.2s, 0.3s ease;
+  color: #202020;
+  cursor: pointer;
 }
 
-section.post-related-articles header .related-posts_nav li a {
-  color: #202020;
+section.post-related-articles header .related-posts_nav .slider-control:hover {
+  background: #202020;
+  border-color: #202020;
+  color: #fff;
+}
+
+section.post-related-articles header .related-posts_nav .slider-control.disabled {
+  pointer-events: none;
+  color: #f7f8f9;
 }
 
 section.post-related-articles .grid {
