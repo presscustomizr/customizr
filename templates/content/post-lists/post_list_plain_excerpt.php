@@ -8,7 +8,7 @@
  */
 ?>
 <?php if ( czr_fn_is_loop_start() ) : ?>
-<div class="post-list-plain short grid-container__full <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="grid-container__plain short <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
 <?php
   do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
 endif ?>

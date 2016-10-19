@@ -12,7 +12,7 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
 
   public $content_class            = 'entry-content'; //might be entry-summary for special posts..
 
-  public $post_class               = array( 'row', 'style-01'/*temporary*/ );
+  public $post_class               = array( 'row' );
 
   public $has_post_media;
 
@@ -30,7 +30,6 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
 
     //TEMP:
     if ( 'post_list_plain_excerpt' == $model['id'] ) {
-      $model[ 'post_class' ]            = array_merge( $this -> post_class, array('short') );
       $model[ 'show_full_content' ]     = false;
 
       /*
