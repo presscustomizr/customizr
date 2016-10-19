@@ -37,7 +37,6 @@
 
           <h2 class="entry-title">
             <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
-            <?php if ( czr_fn_get( 'has_recently_updated' ) && czr_fn_has( 'recently_updated' ) ) czr_fn_render_template( 'modules/recently_updated', 'recently_updated' ) ?>
           </h2>
 
           <?php
@@ -51,13 +50,13 @@
         <?php
 
         /* additional effect for not expanded grid items with no img */
-        if( czr_fn_get( 'has_fade_expt' ) /* ! ( czr_fn_get( 'is_expanded' ) || czr_fn_get( 'thumb_img' ) ) */ ):
+      if( czr_fn_get( 'has_fade_expt' ) /* ! ( czr_fn_get( 'is_expanded' ) || czr_fn_get( 'thumb_img' ) ) */ ):
 
         ?>
         <span class="tc-grid-fade_expt"></span>
         <?php
 
-        endif
+      endif
 
         ?>
       </div>

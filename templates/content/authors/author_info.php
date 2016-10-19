@@ -4,7 +4,7 @@
  * used in the single post footer and in the list of posts of a specific author as description below the list of posts title
 */
 ?>
-<section class="author-info post-author" <?php czr_fn_echo('element_attributes') ?>>
+<section class="post-author author-info" <?php czr_fn_echo('element_attributes') ?>>
   <figure class="author-avatar">
     <?php echo get_avatar( get_the_author_meta( 'user_email' ), 120 ) ?>
     <figcaption>

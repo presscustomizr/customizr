@@ -12,9 +12,9 @@
     if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
       <div class="post-type__icon"><i class="icn-format"></i></div>
   <?php endif; ?>
-  <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
+  <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => czr_fn_get('cat_limit') ) ) ) : ?>
     <div class="entry-meta">
-      <?php czr_fn_echo( 'cat_list', 'post_metas' ) ?>
+      <?php echo $cat ?>
     </div>
   <?php endif; ?>
     <h2 class="entry-title ">

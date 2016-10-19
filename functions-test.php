@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'masonry', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -71,7 +71,7 @@ add_filter( 'czr_add_custom_fonts_to_editor' , '__return_false' );
 
 //Test display a header sticky push in single posts
 add_filter( 'czr_opt_tc_sticky_header_type', function( $_what ){
-  return is_single() ? 'push' : $_what;
+  return is_singular() ? 'push' : $_what;
 });
 
 add_filter( 'czr_gfont_pairs', function( $_fonts ) {

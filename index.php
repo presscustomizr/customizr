@@ -60,7 +60,7 @@
                     }
 
                   } else {
-                    czr_fn_render_template('content/singles/page_content', 'page');
+                    czr_fn_render_template('content/singular/page_content', 'page');
                   }
                 }//endwhile;
               }

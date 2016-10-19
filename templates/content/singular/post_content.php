@@ -7,8 +7,6 @@
 ?>
 <article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?> >
   <?php do_action( '__before_inner_post_article' ) ?>
-  <?php /* if ( czr_fn_has('post_thumbnail') && 'before_title' == czr_fn_get( 'thumbnail_position' ) ) czr_fn_render_template('content/singles/thumbnail_single', 'post_thumbnail'); ?>
-  <?php if ( czr_fn_has('singular_headings') ) czr_fn_render_template('content/singles/singular_headings', 'singular_headings'); */ ?>
   <div class="post-entry">
     <?php do_action( '__before_post_entry_content' ) ?>
 
