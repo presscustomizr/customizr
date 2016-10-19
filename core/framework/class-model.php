@@ -294,13 +294,11 @@ if ( ! class_exists( 'CZR_cl_Model' ) ) :
     //is fired on instantiation
     //@param = array()
     public function czr_fn_update( $model = array() ) {
-          $keys = array_keys( get_object_vars( $this ) );
-          foreach ( $keys as $key ) {
-            if ( isset( $model[ $key ] ) ) {
-              if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
-                $this->$key = $model[ $key ];
-            }
+          foreach ( $model as $key => $value ) {
+            if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
+              $this->$key = $model[ $key ];
           }
+
           //emit an event when a model is updated
           do_action( 'model_updated', $this -> id );
     }
