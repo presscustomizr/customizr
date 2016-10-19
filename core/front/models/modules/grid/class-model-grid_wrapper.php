@@ -1,20 +1,9 @@
 <?php
 class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
-
-  public $is_first_of_row;
-  public $is_last_of_row;
-
-  public $is_loop_start;
-  public $is_loop_end;
-
-  //number of cols of the current section
-  public $section_cols;
-
   public $expanded_sticky;
 
   private $post_id;
 
-  public $grid_item;
 
   /**
   * @override
@@ -32,77 +21,32 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   }
 
 
-  /*
-  *
-  *  Children setup
-  */
-  function czr_fn_setup_children() {
-    $children = array(
-      //grid item
-      array(
-        'id'          => 'grid_item',
-        'model_class' => 'modules/grid/grid_item',
-      ),
-    );
 
-    return $children;
-  }
-
-
-  //inside the loop but before rendering set some properties
-  function czr_fn_setup_late_properties() {
-    //parent::czr_fn_setup_late_properties();
-    $element_wrapper        = $this -> czr_fn_get_element_wrapper_properties();
-
-    //check if the current post is the expanded one
-    $is_expanded            = $this -> czr_fn_force_current_post_expansion();
-
-    //section properties which refers to the section row wrapper
-    $section_row_wrapper    = $this -> czr_fn_get_section_row_wrapper_properties();
-
-    $grid_item              = array(
-        'section_cols' => $section_row_wrapper['section_cols'],
-        'is_expanded'  => $is_expanded,
-    );
-
-    $this -> czr_fn_update( array_merge( $element_wrapper, $section_row_wrapper, compact( 'grid_item') ) );
-  }
-
-
-
-  /*
-  * post list wrapper
-  */
-  function czr_fn_get_element_wrapper_properties() {
-    global $wp_query;
-    $is_loop_start = 0 == $wp_query -> current_post;
-    $is_loop_end   = $wp_query -> current_post == $wp_query -> post_count -1 ;
-
-    return compact( 'is_loop_start', 'is_loop_end' );
-  }
-
-
-  /*
-  * Wrap articles in a grid section
-  */
-  function czr_fn_get_section_row_wrapper_properties() {
+  function czr_fn_get_is_first_of_row() {
     global $wp_query;
 
     $current_post      = $wp_query -> current_post;
     $start_post        = ! empty( $this -> expanded_sticky ) ? 1 : 0;
-    $section_cols      = $this     -> czr_fn_get_grid_section_cols();
-
-    $is_first_of_row   = false;
-    $is_last_of_row    = false;
-
+    $section_cols      = $this     -> czr_fn_get_section_cols();
 
     if ( $start_post == $current_post || 0 == ( $current_post - $start_post ) % $section_cols )
-      $is_first_of_row = true;
+      return true;
+
+    return false;
+  }
+
+  function czr_fn_get_is_last_of_row() {
+    global $wp_query;
+
+    $current_post      = $wp_query -> current_post;
+    $start_post        = ! empty( $this -> expanded_sticky ) ? 1 : 0;
+    $section_cols      = $this     -> czr_fn_get_section_cols();
+
 
     if ( $wp_query->post_count == ( $current_post + 1 ) || 0 == ( ( $current_post - $start_post + 1 ) % $section_cols ) )
-      $is_last_of_row  = true;
+      return true;
 
-    return compact( 'is_first_of_row', 'is_last_of_row', 'section_cols' );
+    return false;
   }
 
 
@@ -120,7 +64,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
 
 
   /* returns articles wrapper section columns */
-  private function czr_fn_get_grid_section_cols() {
+  public function czr_fn_get_section_cols() {
     return apply_filters( 'czr_grid_section_cols',
       $this -> czr_fn_force_current_post_expansion() ? '1' : $this -> czr_fn_get_grid_cols()
     );
@@ -141,6 +85,184 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     return $is_expanded;
   }
 
+
+
+  /******************************
+  GRID ITEM SETUP
+  *******************************/
+
+  function czr_fn_get_grid_item() {
+    $section_cols           = $this -> czr_fn_get_section_cols();
+
+    $is_expanded            = $this -> czr_fn_force_current_post_expansion();
+
+    //thumb
+    $thumb_properties       = $this -> czr_fn_get_grid_item_thumb_properties( $section_cols );
+    $has_thumb              = isset( $thumb_properties[ 'has_thumb' ] ) ? $thumb_properties[ 'has_thumb' ] : false;
+    $thumb_img              = isset( $thumb_properties[ 'thumb_img' ] ) ? $thumb_properties[ 'thumb_img' ] : '';
+
+    //figure class
+    $figure_class           = $this -> czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols );
+
+    //array
+    $icon_visibility        = $this -> czr_fn_get_grid_item_icon_visibility();
+
+    $title                  = $this -> czr_fn_get_grid_item_title( get_the_title(), $is_expanded );
+
+    $has_title_in_caption   = $this -> czr_fn_grid_item_has_title_in_caption( $is_expanded );
+
+    $has_edit_in_caption    = $this -> czr_fn_grid_item_has_edit_in_caption( $is_expanded );
+
+    $has_fade_expt          = $this -> czr_fn_grid_item_has_fade_expt( $is_expanded, $thumb_img );
+
+    $article_selectors      = $this -> czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded );
+
+    //update the model
+    return array_merge(
+        $icon_visibility,
+        compact(
+          'thumb_img',
+          'figure_class',
+          'is_expanded',
+          'title',
+          'has_title_in_caption',
+          'has_fade_expt',
+          'has_edit_in_caption',
+          'section_cols',
+          'article_selectors'
+        )
+    );
+  }
+
+  /*
+  * has edit in caption
+  */
+  function czr_fn_grid_item_has_edit_in_caption( $is_expanded ) {
+    return $is_expanded;
+  }
+
+  /*
+  * has title in caption
+  */
+  function czr_fn_grid_item_has_title_in_caption( $is_expanded ) {
+    return $is_expanded;
+  }
+
+  /*
+  * has fade expt
+  */
+  function czr_fn_grid_item_has_fade_expt( $is_expanded, $thumb_img ) {
+    return ! ( $is_expanded || $thumb_img );
+  }
+
+
+  /**
+  * Limits the length of the post titles in grids to a custom number of characters
+  * @return string
+  */
+  function czr_fn_get_grid_item_title( $_title, $is_expanded ) {
+    $_max = esc_attr( czr_fn_get_opt( 'tc_grid_num_words') );
+    $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
+    $_max = $_max <= 0 ? 1 : $_max;
+
+    if ( empty($_title) || ! is_string($_title) )
+      return $_title;
+
+    if ( count( explode( ' ', $_title ) ) > $_max ) {
+      $_words = array_slice( explode( ' ', $_title ), 0, $_max );
+      $_title = sprintf( '%s ...',
+        implode( ' ', $_words )
+      );
+    }
+    return $_title;
+  }
+
+
+  /*
+  * thumb properties
+  */
+  function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
+    $has_thumb           = $this -> czr_fn_grid_show_thumb();
+    $thumb_img           = '';
+
+    if ( $has_thumb ) {
+      $thumb_model                   = czr_fn_get_thumbnail_model(
+          $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
+          null, null, null,
+          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols )
+      );
+
+      if ( ! isset( $thumb_model['tc_thumb'] ) )
+        return;
+
+      $thumb_img              = apply_filters( 'czr-grid-thumb-img', $thumb_model[ 'tc_thumb' ], czr_fn_get_id() );
+    }
+
+    return compact( 'has_thumb', 'thumb_img' );
+  }
+
+
+  /*
+  * figure class
+  */
+  function czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols ) {
+    $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
+
+    //if 1 col layout or current post is the expanded => golden ratio should be disabled
+    if ( ( '1' == $section_cols ) && ! wp_is_mobile() )
+      array_push( $figure_class, 'no-gold-ratio' );
+    return $figure_class;
+  }
+
+
+
+  /*
+  * grid icon visibility
+  * @return array
+  */
+  function czr_fn_get_grid_item_icon_visibility() {
+    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') ) && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
+    $icon_attributes     = '';
+    if ( CZR() -> czr_fn_is_customizing() )
+      $icon_attributes   = sprintf('style="display:%1$s"',
+          $icon_enabled ? 'inline-block' : 'none'
+      );
+    return compact( 'icon_enabled', 'icon_attributes' );
+  }
+
+  function czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded ) {
+    $post_class = sprintf( '%1$s tc-grid col-xs-12 col-md-%2$s',
+      apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) ? 'expanded' : '',
+      is_numeric( $section_cols ) ? 12 / $section_cols : 6
+    );
+
+    return czr_fn_get_the_post_list_article_selectors( $post_class );
+  }
+
+  /**** HELPER ****/
+
+  /**
+  * @return  boolean
+  */
+  /*
+  * get the thumb size name to use according to the grid element width
+  */
+  function czr_fn_get_thumb_size_name( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
+  }
+
+
+  /*
+  * get the thumb size name to set the proper inline style
+  * if needed, accordint to the grid element width
+  */
+  function czr_fn_get_filtered_thumb_size_name( $section_cols ){
+    return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
+  }
+
+  private function czr_fn_grid_show_thumb() {
+    return czr_fn_has_thumb() && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
+  }
 
   /******************************
   VARIOUS HELPERS
@@ -167,7 +289,6 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
   * add custom classes to the grid container element
   */
   function czr_fn_grid_container_set_classes( $_classes ) {
-    array_push( $_classes, 'tc-post-list-grid' );
     if ( esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ) )
       array_push( $_classes, 'tc-grid-shadow' );
     if ( esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ) )
@@ -270,6 +391,7 @@ class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
     }
     return $_return;
   }
+
 
 
 
