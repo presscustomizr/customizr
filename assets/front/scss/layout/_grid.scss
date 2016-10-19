@@ -298,7 +298,7 @@ WP classes
 /* CLASSIC */
 .grid-container__classic {
 	.tc-content { @extend .small; }
-	.grid.tc-grid-shadow .tc-grid-post { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) ); }
+	&.tc-grid-shadow .tc-grid-post { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) ); }
 	.no-thumb .tc-grid-fade_expt {
 		position: absolute;
 		bottom: 0;

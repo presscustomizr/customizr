@@ -1560,7 +1560,6 @@ blockquote cite:before {
 .tabs a, .nav-pills a {
   color: #B4B4B4;
   position: relative;
-  background: none;
   text-align: left;
   padding: 0.625em 0 1.25em !important;
 }
@@ -1599,7 +1598,7 @@ blockquote cite:before {
   background-color: transparent;
 }
 
-.tabs .nav-link.active, .nav-pills .nav-link.active, .tabs .nav-link:hover, .nav-pills .nav-link:hover, .tabs .nav-link.active:hover, .nav-pills .nav-link.active:hover {
+.tabs .nav-link.active, .nav-pills .nav-link.active, .tabs .nav-link:hover, .nav-pills .nav-link:hover, .tabs .nav-link.active:hover, .nav-pills .nav-link.active:hover, .tabs .nav-link.active:focus, .nav-pills .nav-link.active:focus {
   background: none;
   color: #202020;
 }
@@ -3590,7 +3589,7 @@ WP classes
 }
 
 /* CLASSIC */
-.grid-container__classic .grid.tc-grid-shadow .tc-grid-post {
+.grid-container__classic.tc-grid-shadow .tc-grid-post {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);

@@ -13,7 +13,8 @@
 
     <?php if ( czr_fn_get('has_header') && czr_fn_has('post_list_header') )
       czr_fn_render_template('content/post-lists/headings/post_list_header', 'post_list_header', array(
-        'has_header_format_icon' => czr_fn_get('has_header_format_icon')
+        'has_header_format_icon' => czr_fn_get( 'has_header_format_icon' ),
+        'cat_limit'              => czr_fn_get( 'cat_limit' )
         )
       );
     ?>

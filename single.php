@@ -38,9 +38,6 @@
                 while ( have_posts() ) {
                   the_post();
                   czr_fn_render_template('content/singular/post_content');
-                  ?>
-
-                <?php
                 }//endwhile;
               }//endif;
             ?>

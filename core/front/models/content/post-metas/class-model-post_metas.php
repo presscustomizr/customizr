@@ -166,7 +166,6 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
       return;
     $_terms_html_array  = array_map( array( $this , 'czr_fn_meta_term_view' ), $post_terms );
     return $_terms_html_array;
-              //apply_filters( 'czr_fn_meta_generate_tax_list', implode( apply_filters( 'czr_meta_terms_glue' , '' ) , $_terms_html_array ) , $post_terms );
   }
 
 
@@ -216,6 +215,7 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     $tax_list               = get_object_taxonomies( $post_type, 'object' );
     $_tax_type_list         = array();
     $_tax_type_terms_list   = array();
+
     if ( empty($tax_list) )
       return false;
 
@@ -243,6 +243,8 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
     if ( empty($_tax_type_list) )
       return false;
 
+    $found = 0;
+
     //fill the post terms array
     foreach ($_tax_type_list as $tax_name => $data ) {
       $_current_tax_terms = get_the_terms( czr_fn_get_id() , $tax_name );
@@ -251,13 +253,15 @@ class CZR_cl_post_metas_model_class extends CZR_cl_Model {
         continue;
       while( $term = current($_current_tax_terms) ) {
         $_tax_type_terms_list[$term -> term_id] = $term;
+        if ( $limit > 0 && ++$found == $limit )
+          break 2;
         next($_current_tax_terms);
       }
     }
 
-    if ( ! empty($_tax_type_terms_list) && $limit > 0 )
+    /*if ( ! empty($_tax_type_terms_list) && $limit > 0 )
       $_tax_type_terms_list = array_slice( $_tax_type_terms_list, 0, $limit );
-
+*/
     return empty($_tax_type_terms_list) ? false : apply_filters( "czr_tax_meta_list" , $_tax_type_terms_list , $hierarchical );
   }
 

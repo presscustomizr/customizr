@@ -298,8 +298,6 @@ blockquote {
 	a {
 			color: $grey;
 			position: relative;
-			background: none;
-
 			@include underlined_simple (transparent, 2px);
 			@extend .small;
 			text-align: left;
@@ -314,7 +312,7 @@ blockquote {
 			color:$black;
 			background-color: transparent;
 	}
-	.nav-link.active, .nav-link:hover, .nav-link.active:hover { background: none; color:$black; }
+	.nav-link.active, .nav-link:hover, .nav-link.active:hover, .nav-link.active:focus { background: none; color:$black; }
 	.active::before {
 			background-color: $black;
 			@include transform(scale(1));
