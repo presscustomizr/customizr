@@ -1,6 +1,8 @@
 <?php
 class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
-  public $excerpt_length = 15;
+  public $excerpt_length = 18;
+  public $media_col      = 'col-xs-6';
+  public $content_col    = 'col-xs-6';
 
   /**
   * @override
@@ -47,6 +49,10 @@ class CZR_cl_related_posts_wrapper_model_class extends CZR_cl_model {
   */
   function czr_fn_set_excerpt_length( $length ) {
     return $this->excerpt_length;
+  }
+
+  function czr_fn_get_article_selectors() {
+    return czr_fn_get_the_post_list_article_selectors( array('col-xs-12', 'col-md-6', 'grid-item') );
   }
 
 

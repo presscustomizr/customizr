@@ -1,7 +1,7 @@
 <?php
 $_options = array(
     //to add
-    'tc_skin_type' => 'dark', // (light|dark)
+    'tc_skin_type' => 'light', // (light|dark)
     'tc_menu_position' => 'pull-menu-left', //pull-menu-left
     'tc_fonts' => '_g_poppins_hind',
     'tc_font_awesome_css' => true,
@@ -27,7 +27,7 @@ $_options = array(
     'tc_sidebar_post_layout'   => 'r',
     'tc_front_layout'          => 'f',
 
-    'tc_post_list_thumb_position' => 'left',
+    'tc_post_list_thumb_position' => 'right',
     'tc_post_list_thumb_alternate' => true,
 
     'tc_img_smart_load' => false,

@@ -137,7 +137,8 @@ class CZR_cl_post_list_media_model_class extends CZR_cl_Model {
   }
 
   function czr_fn_get_has_media_action() {
-    return $this -> has_post_media && ! in_array( get_post_format(), array('video', 'audio') );
+    return $this -> has_post_media && ( $this -> only_thumb ||
+      ! in_array( get_post_format(), array('video', 'audio') ) );
   }
 
 }

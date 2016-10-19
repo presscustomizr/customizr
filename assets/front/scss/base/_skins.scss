@@ -45,7 +45,7 @@ $secondary-color-dark   : $grey;
     .secondary-navbar__wrapper
 	{
 
-		a, a:focus, a:active { color: $secondary-color-dark;  }
+		a, a:focus, a:active, li > .caret__dropdown-toggler { color: $secondary-color-dark;  }
 		a:hover, a.active    { color: $primary-color; }
 		ul.secondary-nav__menu > li > a {
 		    @include underlined ( $primary-color, 1px );
@@ -144,7 +144,7 @@ $secondary-color-dark   : $grey;
 
 	.primary-nav__menu {
 
-		& > li >  a {
+		& > li >  a, .caret__dropdown-toggler {
 			color: $primary-color;
 
 		}
@@ -193,7 +193,7 @@ $secondary-color-dark   : $grey;
 
 	.header-transparent .navbar-sticky { background: rgba($background-color, 0.95); }
 
-	header .czr-form {
+	header .czr-form, .overlay .czr-form {
 		.form-group label {
 			 color: $primary-color;
 		}
