@@ -31,7 +31,7 @@ var czrapp = czrapp || {};
       /* Grid */
       $( '.grid-container__alternate, .square-grid__mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-image__container, article.format-image.no-excerpt .tc-content, article.format-gallery .tc-content', _toggleArticleParentHover )
       $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid-post, .tc-grid-post', _toggleArticleParentHover );
-      czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item', _toggleThisHover );
+      czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front', _toggleThisHover );
 
       /* end Grid */
 
