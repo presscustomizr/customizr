@@ -240,7 +240,7 @@
 		font-size: ms(-5);
 
 	}
-	&:hover {
+	.widget-front.hover {
 		color: $grey-dark;
 		h2::after {
 			background: $grey-dark;
