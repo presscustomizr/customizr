@@ -17,7 +17,7 @@ var czrapp = czrapp || {};
     */
     centerImages : function() {
       //POST CLASSIC GRID IMAGES
-      $('.tc-grid-figure, .square-grid__mini .entry-image__container ').centerImages( {
+      $('.tc-grid-figure, .square-grid__mini .entry-image__container, .widget-front .tc-thumbnail').centerImages( {
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : false, //true
