@@ -172,7 +172,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
           'featured_page_title'  => $featured_page_title,
           'featured_page_link'   => $featured_page_link,
           'fp_img'               => $fp_img ,
-          'text'                 =>  $text,
+          'text'                 => $text,
           'edit_enabled'         => $edit_enabled,
           'thumb_wrapper_class'  => $thumb_wrapper_class,
           'fp_button_text'       => $button_block[ 'fp_button_text' ],
