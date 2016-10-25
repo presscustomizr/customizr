@@ -9,6 +9,11 @@
 ?>
 <li <?php comment_class() ?> id="comment-<?php comment_ID() ?>" <?php czr_fn_echo('element_attributes') ?>>
   <a href="<?php echo esc_url( get_comment_author_url() ) ?>"><sup><?php czr_fn_echo('ping_number') ?></sup><strong><?php comment_excerpt() ?></strong> - <?php comment_author() ?></a>
-<?php if ( ! CZR() -> czr_fn_is_customizing() && get_edit_comment_link() ) : ?>
-  <a class="comment-edit-link btn btn-edit" href="<?php echo esc_url( get_edit_comment_link( $comment ) ); ?>"><i class="icn-edit"></i><?php _e('Edit', 'customizr') ?></a>
-<?php endif;
+  <?php
+  if ( czr_fn_has('edit_button') && (bool) $edit_comment_link = get_edit_comment_link() )
+    czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+      'edit_button_class' => 'comment-edit-link',
+      'edit_button_text'  => __( 'Edit', 'customizr' ),
+      'edit_button_link'  => $edit_comment_link,
+    ) );
+

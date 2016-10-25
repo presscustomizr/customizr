@@ -27,9 +27,13 @@
             <a class="comment-time comment-link" href="<?php comment_link() ?>"><?php comment_time() ?></a>
           </time>
         </div>
-        <?php if ( ! CZR() -> czr_fn_is_customizing() && get_edit_comment_link() ) : ?>
-          <a class="comment-edit-link btn btn-edit" href="<?php echo esc_url( get_edit_comment_link() ); ?>"><i class="icn-edit"></i><?php _e('Edit comment', 'customizr') ?></a>
-        <?php endif; ?>
+        <?php if ( czr_fn_has('edit_button') && (bool) $edit_comment_link = get_edit_comment_link() )
+          czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+            'edit_button_class' => 'comment-edit-link',
+            'edit_button_text'  => __( 'Edit comment', 'customizr' ),
+            'edit_button_link'  => $edit_comment_link,
+          ) );
+        ?>
       </header>
       <div class="comment-content"><?php comment_text() ?></div>
       <?php if ( czr_fn_get( 'is_awaiting_moderation' ) ): ?>

@@ -42,7 +42,8 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
               'post_list_grid',
               'main_slider',
               'post_list_grid',
-              'featured_pages'
+              'featured_pages',
+              'edit_button'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),

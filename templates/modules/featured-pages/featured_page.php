@@ -18,9 +18,18 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
         <?php /* FP TITLE */ ?>
           <h4 class="fp-title"><?php czr_fn_echo( 'featured_page_title' ) ?></h4>
         <?php /* END FP TITLE */ ?>
-        <?php if ( czr_fn_get( 'edit_enabled' ) ): ?>
-          <a class="post-edit-link btn-edit" href="<?php echo get_edit_post_link( czr_fn_get( 'featured_page_id' ) ) ?>" title="<?php czr_fn_echo( 'featured_page_title' ) ?>" target="_blank"><i class="icn-edit"></i><?php _e( 'Edit', 'customizr' ) ?></a>
-        <?php endif ?>
+        <?php
+        /* FP EDIT BUTTON */
+        if ( czr_fn_has( 'edit_button' ) && czr_fn_get( 'edit_enabled' ) )
+
+          czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+            'edit_button_title'  => czr_fn_get( 'featured_page_title' ),
+            'edit_button_text'   => __( 'Edit', 'customizr' ),
+            'edit_button_link'  => get_edit_post_link( czr_fn_get( 'featured_page_id' ) ),
+          ) );
+        /* END FP EDIT BUTTON */
+
+        ?>
         <?php /* FP TEXT */ ?>
           <p class="fp-text-<?php czr_fn_echo( 'fp_id' ) ?>"><?php czr_fn_echo( 'text' ) ?></p>
         <?php /* END FP TEXT*/ ?>

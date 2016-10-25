@@ -16,8 +16,11 @@
       <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php the_title() ?></a>
     </h2>
     <?php
-      if ( ( ! CZR() -> czr_fn_is_customizing() && get_edit_post_link() ) ) : ?>
-        <a class="post-edit-link btn-edit" title="<?php _e( 'Edit', 'customizr' ) ?>" href="<?php echo get_edit_post_link() ?>"><i class="icn-edit"></i><?php _e( 'Edit', 'customizr' ) ?></a>
-    <?php endif ?>
+      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+        czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+            'edit_button_text' => __( 'Edit post', 'customizr' ),
+            'edit_button_link' => $edit_post_link,
+          ) );
+    ?>
   </div>
 </header>

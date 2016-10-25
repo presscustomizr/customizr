@@ -106,7 +106,6 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
     * The edit link is allowed when:
     * 1) user logged in
     * 2) not customizing
-    * 3) current user can edit posts
     * inside the model another check will be done on the user capability to edit the current post
     * and in the loop
     */
@@ -114,7 +113,6 @@ if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
       return apply_filters( 'czr_edit_in_title',
           is_user_logged_in()
        && ! CZR() -> czr_fn_is_customizing()
-       && current_user_can( 'edit_posts' )
       );
     }
 
