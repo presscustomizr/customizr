@@ -4,11 +4,10 @@
  *
  * In WP loop
  *
- * @package Customizr
  */
 ?>
 <?php if ( czr_fn_is_loop_start() ) : ?>
-<div class="row grid grid-container__masonry <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
+<div class="grid grid-container__masonry <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
 <?php
   do_action( '__masonry_loop_start', czr_fn_get('id') );
 endif ?>
