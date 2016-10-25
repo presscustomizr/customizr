@@ -20,6 +20,7 @@ var czrapp = czrapp || {};
       $('.tc-grid-figure, .square-grid__mini .entry-image__container, .widget-front .tc-thumbnail').centerImages( {
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
+        zeroTopAdjust: 0,
         enableGoldenRatio : false, //true
         goldenRatioVal : CZRParams.goldenRatio || 1.618,
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
@@ -44,7 +45,8 @@ var czrapp = czrapp || {};
             /* To check settle.flickity is working, it should according to the docs */
             oncustom : ['settle.flickity', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
-            useImgAttr : true
+            useImgAttr : true,
+            zeroTopAdjust: 0
           });
           //fade out the loading icon per slider with a little delay
           //mostly for retina devices (the retina image will be downloaded afterwards
