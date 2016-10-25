@@ -22,9 +22,10 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
         $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
         $_skin_color                    = czr_fn_getskincolor();
+
         $fp_holder_img                  = apply_filters (
               'tc_fp_holder_img' ,
-              sprintf('<img class="tc-holder-img" data-src="holder.js/340x340/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:340px;height:340px;"/>',
+              sprintf('<img class="tc-holder-img" data-src="holder.js/350x350/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:350px;height:350px;"/>',
                 ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
                 $_skin_color
               )
@@ -134,7 +135,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
 
           if ( $czr_fn_show_featured_pages_img ) {
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
-            $fp_img_size                    = apply_filters( 'czr_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
+            $fp_img_size                    = apply_filters( 'czr_fp_img_size' , 'tc-fp-thumb', $fp_single_id, $featured_page_id );
             //allow user to specify a custom image id
             $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
 

@@ -18,6 +18,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
       //declares the filtered default settings
       public $global_layout;
       public $tc_thumb_size;
+      public $tc_fp_thumb_size;
       public $tc_slider_full_size;
       public $tc_slider_size;
       public $tc_grid_full_size;
@@ -96,6 +97,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
           //Default images sizes
           $this -> tc_thumb_size        = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
+          $this -> tc_fp_thumb_size     = array( 'width' => 350 , 'height' => 350, 'crop' => true ); //size name : tc-thumb
           $this -> tc_slider_full_size  = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> tc_slider_size       = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
           $this -> tc_grid_full_size    = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
@@ -565,9 +567,13 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
            /* remove_theme_support( 'custom-background' );
             remove_theme_support( 'custom-header' );*/
 
-          //post thumbnails for featured pages and post lists (archive, search, ...)
+          //post thumbnails for post lists (archive, search, ...)
           $tc_thumb_size    = apply_filters( 'czr_thumb_size' , $this -> tc_thumb_size );
           add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
+
+          //post thumbnails for featured pages
+          $tc_fp_thumb_size  = apply_filters( 'czr_fp_thumb_size' , $this -> tc_fp_thumb_size );
+          add_image_size( 'tc-fp-thumb' , $tc_fp_thumb_size['width'] , $tc_fp_thumb_size['height'], $tc_fp_thumb_size['crop'] );
 
           //slider full width
           $slider_full_size = apply_filters( 'czr_slider_full_size' , $this -> tc_slider_full_size );

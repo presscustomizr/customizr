@@ -1,5 +1,5 @@
 /* featured opages */
-.featured .thumb-wrapper { height: 0; padding-bottom: 100%; overflow: hidden;}
+.featured .thumb-wrapper { height: 0; padding-bottom: 100%; overflow: hidden; position: relative;}
 /* PARALLAX FILTER FIX */
 .carousel.filter {
   height: 100vh !important;
