@@ -84,7 +84,11 @@ class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
 
   // Replaces the excerpt "Read More" text by a button link
   function czr_fn_set_excerpt_more($more) {
-    return $more.'<div class="readmore-holder"><a class="moretag btn btn-more" href="'. esc_url( get_permalink() ) . '"><span>' . __('Read more', 'customizr' ) .'<span></a></div>';
+    ob_start();
+      czr_fn_render_template( 'modules/read_more', 'readmore' );
+      $readmore = ob_get_contents();
+    ob_end_clean();
+    return $more . $readmore;
   }
 
 
