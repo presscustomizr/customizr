@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'plain', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'plain_excerpt', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
@@ -126,10 +126,11 @@ function czr_fn_enqueue_front_scripts() {
      'vendors/jquery.waypoints.js',
      'vendors/flickity.pkgd.js',
      'vendors/modernizr.min.js',
+     'vendors/holder.min.js',
   //will be concatenated with GRUNT
      'fmk/tc-js-params.js',
      'fmk/smoothScroll.js',
-     'fmk/requestAnimationFramePolyfill.js',
+     //'fmk/requestAnimationFramePolyfill.js',
      'jquery-plugins/jqueryimgOriginalSizes.js',
      'jquery-plugins/jqueryCenterImages.js',
      'jquery-plugins/jqueryParallax.js',

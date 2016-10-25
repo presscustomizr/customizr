@@ -8,7 +8,7 @@
  */
 ?>
 <?php if ( czr_fn_is_loop_start() ) : ?>
-<div class="row grid-container__alternate <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
+<div class="grid-container__alternate <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
 <?php
   do_action( '__alternate_loop_start', czr_fn_get('id') );
 endif ?>
