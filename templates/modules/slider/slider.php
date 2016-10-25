@@ -26,7 +26,13 @@
       ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner__' ) ?>
-  <?php if ( czr_fn_has( 'slider_edit_button' ) ) czr_fn_render_template( 'modules/edit_button', 'slider_edit_button' )  ?>
+  <?php
+    if ( czr_fn_get( 'has_slider_edit_link' ) )
+      czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+        'edit_button_link' => czr_fn_get( 'slider_edit_link' ),
+        'edit_button_text' => czr_fn_get( 'slider_edit_link_text' ),
+      ))
+  ?>
   <?php if ( czr_fn_get( 'has_controls' ) ) : ?>
         <div class="slider-nav">
           <span class="slider-prev <?php czr_fn_echo( 'left_control_class' ) ?>"><i class="icn-left-open-big"></i></span>

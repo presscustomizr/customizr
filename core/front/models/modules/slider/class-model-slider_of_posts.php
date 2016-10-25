@@ -32,6 +32,13 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
     return apply_filters( 'tc_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
   }
 
+  /*
+  * @override
+  */
+  function czr_fn_get_slider_edit_link_text() {
+    return __( 'Customize or remove the posts slider', 'customizr' );
+  }
+
   /**
   * Helper
   * Return an array of the post slide models
