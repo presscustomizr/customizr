@@ -229,7 +229,7 @@ if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
     }
 
     function czr_fn_display_view_comment_list() {
-      return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_display_view_comments() );
+      return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_are_comments_enabled() );
     }
 
     function czr_fn_display_view_comment() {
