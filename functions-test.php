@@ -127,10 +127,10 @@ function czr_fn_enqueue_front_scripts() {
      'vendors/flickity.pkgd.js',
      'vendors/modernizr.min.js',
      'vendors/holder.min.js',
+     'vendors/requestAnimationFramePolyfill.js',
   //will be concatenated with GRUNT
      'fmk/tc-js-params.js',
      'fmk/smoothScroll.js',
-     //'fmk/requestAnimationFramePolyfill.js',
      'jquery-plugins/jqueryimgOriginalSizes.js',
      'jquery-plugins/jqueryCenterImages.js',
      'jquery-plugins/jqueryParallax.js',

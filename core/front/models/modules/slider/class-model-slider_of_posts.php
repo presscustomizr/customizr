@@ -366,6 +366,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     $link_target            = apply_filters( 'czr_posts_slide_link_target', '_self', $ID );
     $link_whole_slide       = apply_filters( 'czr_posts_slide_link_whole_slide', $link_whole_slide, $ID );
     $color_style            = apply_filters( 'czr_posts_slide_color_style', '', $ID );
+
     return apply_filters( 'czr_single_post_slide_model', compact(
         'title',
         'text',
@@ -375,7 +376,8 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
         'link_target',
         'link_whole_slide',
         'color_style',
-        'slide_background'
+        'slide_background',
+        'edit_suffix'
     ), $ID );
   }
 

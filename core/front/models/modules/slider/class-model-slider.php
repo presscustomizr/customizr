@@ -273,6 +273,9 @@ class CZR_slider_model_class extends CZR_Model {
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
     if ( !isset($slide_background) || empty($slide_background) )
       return;
+
+    $edit_suffix            = "#slider_sectionid";
+
     return array(
       'title'               =>  $title,
       'text'                =>  $text,
@@ -282,7 +285,8 @@ class CZR_slider_model_class extends CZR_Model {
       'link_target'         =>  $link_target,
       'link_whole_slide'    =>  $link_whole_slide,
       'color_style'         =>  $color_style,
-      'slide_background'    =>  $slide_background
+      'slide_background'    =>  $slide_background,
+      'edit_suffix'         =>  $edit_suffix
     );
   }
 

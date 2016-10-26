@@ -18,7 +18,7 @@
 
   <?php
 
-  if ( czr_fn_get( 'has_caption' ) ) :
+if ( czr_fn_get( 'has_caption' ) ) :
 
   do_action('__before_all_slides_caption__');
 
@@ -40,10 +40,15 @@
   <?php
 
   do_action('__after_all_slides_caption__');
-  if ( czr_fn_has( 'slide_edit_button' ) )
-    czr_fn_render_template( 'modules/edit_button', 'slide_edit_button' );
   /* endif caption*/
-  endif;
+endif;
 
+  /* edit link */
+  if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) )
+      czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+        'edit_button_class' => 'slide-btn-edit',
+        'edit_button_link'  => $edit_url,
+        'edit_button_text'  => __('Edit', 'customizr'),
+      ))
   ?>
 </div><! -- /.item -->
