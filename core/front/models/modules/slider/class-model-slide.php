@@ -26,7 +26,7 @@ class CZR_slide_model_class extends CZR_Model {
   /* In the slider loop */
   function czr_fn_setup_late_properties() {
     //get the current slide;
-    $current_slide        = czr_fn_get( 'current_slide' );
+    $current_slide        = $this -> the_slide;
 
     if ( empty ( $current_slide ) )
       return;
@@ -35,10 +35,6 @@ class CZR_slide_model_class extends CZR_Model {
     $slide          = $current_slide['slide'];
     $slide_id       = $current_slide['slide_id'];
     $slider_name_id = czr_fn_get( 'slider_name_id' );
-
-    //demo data
-    if ( 'demo' == $slider_name_id && is_user_logged_in() )
-      $slide = array_merge( $slide,  $this -> czr_fn_set_demo_slide_data( $slide, $slide_id ) );
 
     //Extract slide properties
     $link_whole_slide   = isset($slide['link_whole_slide']) && $slide['link_whole_slide'] && ! empty( $slide['link_url'] );
@@ -133,35 +129,6 @@ class CZR_slide_model_class extends CZR_Model {
     $caption_elements = wp_parse_args( compact( 'title', 'button_text', 'subtitle', 'button_link' ), $defaults );
 
     return $caption_elements;
-  }
-
-
-
-  /******************************
-  * HELPERS / SETTERS / CALLBACKS
-  *******************************/
-  /**
-  * Returns the modified caption data array with a link to the doc
-  * Only displayed for the demo slider and logged in users
-  *
-  * @package Customizr
-  * @since Customizr 3.3.+
-  *
-  */
-  function czr_fn_set_demo_slide_data( $slide, $id ) {
-    switch ( $id ) {
-      case 1 :
-        $slide['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $slide['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ); //do we need an anchor in the doc?
-        $slide['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
-      break;
-      case 2 :
-        $slide['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $slide['link_url']     = implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) );
-        $slide['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
-      break;
-    };
-    return $slide;
   }
 
 }//end class

@@ -22,45 +22,6 @@ class CZR_slider_model_class extends CZR_Model {
   public $pure_css_loader     = '';
 
   private $queried_id;
-  private $is_slider_active;
-
-
-  public $current_slide      = array();
-
-  function czr_fn_setup_children() {
-    $children = array(
-      // array(
-      //   'id' => 'slide',
-      //   'model_class'  => 'modules/slider/slide',
-      // ),
-      // //edit slide button
-      // array(
-      //   'id'          => 'slide_edit_button',
-      //   'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/slider/edit_button_slide'),
-      //   'controller'  => 'edit_button'
-      // ),
-      // //edit slider button
-      // array(
-      //   'id'          => 'slider_edit_button',
-      //   'model_class' => array( 'parent' => 'modules/edit_button', 'name' => 'modules/slider/edit_button_slider'),
-      //   'controller'  => 'edit_button',
-      // ),
-    );
-
-    // if ( 'demo' == $this -> slider_name_id )
-    //   array_push( $children,
-    //   //slider helpblock
-    //     array(
-    //       'hook'        => '__after_carousel_inner__',
-    //       'id'          => 'slider_notice',
-    //       'template'    => 'modules/help_block',
-    //       'model_class' => array( 'parent' => 'modules/help_block', 'name' => 'modules/slider_help_block' ),
-    //     )
-    //   );
-
-    return $children;
-  }
-
 
   /**
   * @override
@@ -78,15 +39,9 @@ class CZR_slider_model_class extends CZR_Model {
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> czr_fn_get_real_id();
 
-    if ( ! $this -> is_slider_active = $this -> czr_fn_is_slider_active( $queried_id ) ) {
-      $model['id'] = FALSE;
-      return $model;
-    }
-
-    $slider_name_id     = $this -> czr_fn_get_current_slider( $queried_id );
+    $slider_name_id     = czr_fn_get_current_slider( $queried_id );
 
     $layout             = $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id );
-
 
     /*
     * We decided to not have slider image size anymore
@@ -98,7 +53,7 @@ class CZR_slider_model_class extends CZR_Model {
 
     $slides             = $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
     */
-    $slides             = $this -> czr_fn_get_the_slides( $slider_name_id );
+    $slides             = $this -> czr_fn_get_slides( $slider_name_id );
     //We need a way to silently fail when the model "decides" it doesn't have to be instantiated
     if ( empty( $slides ) ){
       $model['id'] = FALSE;
@@ -147,36 +102,17 @@ class CZR_slider_model_class extends CZR_Model {
     ) );
   }
 
-  function czr_fn_get_has_slider_edit_link() {
-    if ( 'demo' == $this -> slider_name_id )
-      return false;
 
-    $show_slider_edit_link    = false;
-    //We have to show the slider edit link to
-    //a) users who can edit theme options for the slider in home -> deep link in the customizer
-    //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
-    if ( czr_fn_is_home() )
-      $show_slider_edit_link = current_user_can('edit_theme_options') ? true : false;
-    else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
-      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ? true : false;
 
-    return apply_filters( 'czr_show_slider_edit_link' , $show_slider_edit_link, $this -> slider_name_id );
+
+  protected function czr_fn_get_slides( $slider_name_id/*, $img_size*/ ) {
+    //returns the default slider if requested
+    if ( 'demo' == $slider_name_id )
+      return apply_filters( 'czr_default_slides', $this -> czr_fn_get_default_slides() );
+    else
+      return $this -> czr_fn_get_the_slides( $slider_name_id );
   }
 
-  function czr_fn_get_slider_edit_link() {
-    if ( czr_fn_is_home() )
-      $slider_edit_link            = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
-    elseif ( is_singular() ) {
-      global $post;
-      $slider_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
-    }
-
-    return $slider_edit_link;
-  }
-
-  function czr_fn_get_slider_edit_link_text() {
-    return __( 'Customize or remove this slider', 'customizr' );
-  }
 
   /**
   * Helper
@@ -187,14 +123,7 @@ class CZR_slider_model_class extends CZR_Model {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_the_slides( $slider_name_id/*, $img_size*/ ) {
-    //returns the default slider if requested
-    if ( 'demo' == $slider_name_id )
-      return apply_filters( 'czr_default_slides', $this -> czr_fn_get_default_slides() );
-    else if ( 'tc_posts_slider' == $slider_name_id ) {
-      return array();
-    }
-
+  protected function czr_fn_get_the_slides( $slider_name_id/*, /*$img_size*/) {
     //if not demo or tc_posts_slider, we get slides from options
     $all_sliders    = czr_fn_get_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
@@ -315,16 +244,16 @@ class CZR_slider_model_class extends CZR_Model {
   }
 
 
-  function czr_fn_get_has_slide() {
-    $_slide = current( $this -> slides );
-    if ( empty( $_slide ) )
-      return false;
+  function czr_fn_get_the_slide( $autoadvance = true ) {
+        $slide      = current( $this -> slides );
+        if ( empty( $slide ) )
+          return false;
 
-    $slide = & $_slide;
-    $slide_id            = key( $this -> slides );
-    $this -> czr_fn_set_property( 'current_slide', compact( 'slide', 'slide_id' ) );
-    next( $this -> slides );
-    return true;
+        $slide_id   = key( $this -> slides );
+        if ( $autoadvance )
+          next( $this -> slides );
+
+        return compact('slide', 'slide_id');
   }
 
   /**
@@ -347,7 +276,7 @@ class CZR_slider_model_class extends CZR_Model {
   */
   protected function czr_fn_get_default_slides() {
     //Default slides content
-    return array(
+    $demo_slides =array(
       1 => array(
         'title'         =>  '',
         'text'          =>  '',
@@ -361,7 +290,6 @@ class CZR_slider_model_class extends CZR_Model {
                                     __( 'Customizr is a clean responsive theme' , 'customizr' )
                             )
       ),
-
       2 => array(
         'title'         =>  '',
         'text'          =>  '',
@@ -375,9 +303,23 @@ class CZR_slider_model_class extends CZR_Model {
                                     __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                             )
       )
-    );///end of slides array
-  }
+    );
 
+    if ( current_user_can('edit_theme_options') ) {
+      $demo_slides[1] = array_merge( $demo_slides[1], array(
+          'title'         => __( 'Discover how to replace or remove this demo slider.', 'customizr' ),
+          'link_url'      => implode('/', array('http:/','docs.presscustomizr.com' , 'article', '102-customizr-theme-options-front-page/#front-page-slider' ) ), //do we need an anchor in the doc?
+          'button_text'   => __( 'Check the front page slider doc &raquo;' , 'customizr')
+        )
+      );
+      $demo_slides[2] = array_merge( $demo_slides[2], array(
+        'title'         => __( 'Easily create sliders and add them in any posts or pages.', 'customizr' ),
+        'link_url'      => implode('/', array('http:/','docs.presscustomizr.com' , 'article', '3-creating-a-slider-with-customizr-wordpress-theme' ) ),
+        'button_text'   => __( 'Check the slider doc now &raquo;' , 'customizr')
+      ) );
+    }
+    return $demo_slides;///end of slides array
+  }
 
 
   /**
@@ -475,6 +417,56 @@ class CZR_slider_model_class extends CZR_Model {
 
   /**
   * helper
+  * returns whether or not display the edit slider link
+  * @return bool
+  *
+  */
+  function czr_fn_get_has_slider_edit_link() {
+    if ( 'demo' == $this -> slider_name_id )
+      return false;
+
+    $show_slider_edit_link    = false;
+    //We have to show the slider edit link to
+    //a) users who can edit theme options for the slider in home -> deep link in the customizer
+    //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
+    if ( czr_fn_is_home() )
+      $show_slider_edit_link = current_user_can('edit_theme_options') ? true : false;
+    else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
+      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ? true : false;
+
+    return apply_filters( 'czr_show_slider_edit_link' , $show_slider_edit_link, $this -> slider_name_id );
+  }
+
+  /**
+  * helper
+  * returns the slider edit link
+  * @return string
+  *
+  */
+  function czr_fn_get_slider_edit_link() {
+    if ( czr_fn_is_home() )
+      $slider_edit_link            = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    elseif ( is_singular() ) {
+      global $post;
+      $slider_edit_link            = get_edit_post_link( $post -> ID ) . '#slider_sectionid';
+    }
+
+    return $slider_edit_link;
+  }
+
+  /**
+  * helper
+  * returns the slider edit text
+  * @return string
+  *
+  */
+  function czr_fn_get_slider_edit_link_text() {
+    return __( 'Customize or remove this slider', 'customizr' );
+  }
+
+
+  /**
+  * helper
   * returns the actual page id if we are displaying the posts page
   * @return  number
   *
@@ -483,22 +475,6 @@ class CZR_slider_model_class extends CZR_Model {
     return apply_filters( 'czr_slider_get_real_id', czr_fn_get_real_id(), $this );
   }
 
-
-  /**
-  * helper
-  * returns the actual page id if we are displaying the posts page
-  * @return  boolean
-  *
-  */
-  protected function czr_fn_is_slider_active( $queried_id ) {
-    //is the slider set to on for the queried id?
-    if ( czr_fn_is_home() && czr_fn_get_opt( 'tc_front_slider' ) )
-      return apply_filters( 'czr_slider_active_status', true , $queried_id );
-    $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
-    if ( ! empty( $_slider_on ) && $_slider_on )
-      return apply_filters( 'czr_slider_active_status', true , $queried_id );
-    return apply_filters( 'czr_slider_active_status', false , $queried_id );
-  }
 
 
   /**
@@ -513,18 +489,6 @@ class CZR_slider_model_class extends CZR_Model {
     return ! ( !isset($slider) || !is_array($slider) || empty($slider) );
   }
 
-  /**
-  * helper
-  * returns the slider name id
-  * @return  string
-  *
-  */
-  private function czr_fn_get_current_slider( $queried_id ) {
-    //gets the current slider id
-    $_home_slider     = czr_fn_get_opt( 'tc_front_slider' );
-    $slider_name_id   = ( czr_fn_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
-    return apply_filters( 'czr_slider_name_id', $slider_name_id , $queried_id, $this -> id );
-  }
 
 
   /**
@@ -580,7 +544,7 @@ class CZR_slider_model_class extends CZR_Model {
   function czr_fn_set_demo_slider_height( $_h ) {
     //this custom demo height is applied when :
     //1) current slider is demo
-    if ( 'demo' != $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) )
+    if ( 'demo' != czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) )
       return $_h;
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
@@ -601,7 +565,7 @@ class CZR_slider_model_class extends CZR_Model {
   *
   */
   function czr_fn_get_slider_loader_css( $slider_name_id ) {
-    $slider_name_id =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
+    $slider_name_id =  $slider_name_id ? $slider_name_id : czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
     $_css           = '';
 
     //custom css for the slider loader
@@ -649,7 +613,7 @@ class CZR_slider_model_class extends CZR_Model {
     if ( 'full-page' == $this -> layout )
       return '';
 
-    $slider_name_id     =  $slider_name_id ? $slider_name_id : $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
+    $slider_name_id     =  $slider_name_id ? $slider_name_id : czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( czr_fn_get_opt( 'tc_slider_default_height') );
@@ -715,7 +679,7 @@ class CZR_slider_model_class extends CZR_Model {
   * @since Customizr 3.2.6
   */
   function czr_fn_user_options_style_cb( $_css ) {
-    $slider_name_id     =  $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ;
+    $slider_name_id     =  czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ;
     return sprintf("%s\n%s\n%s",
               $_css,
               $this -> czr_fn_get_slider_loader_css( $slider_name_id ),

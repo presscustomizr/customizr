@@ -48,14 +48,30 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     function czr_fn_display_view_main_slider() {
+      if ( ! $this -> czr_fn_display_main_slider() )
+        return;
+
+      return 'tc_posts_slider' != czr_fn_get_current_slider();
+    }
+
+    function czr_fn_display_view_main_posts_slider() {
+      if ( ! $this -> czr_fn_display_main_slider() )
+        return;
+
+      return 'tc_posts_slider' == czr_fn_get_current_slider();
+    }
+
+    function czr_fn_display_main_slider() {
       //gets the front slider if any
-      $tc_front_slider              = esc_attr(czr_fn_get_opt( 'tc_front_slider' ) );
+      $tc_front_slider  = esc_attr( czr_fn_get_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
-      $_show_slider = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+      $_show_slider     = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
+
+      $_show_slider     = $_show_slider && czr_fn_is_slider_active();
 
       return apply_filters( 'czr_show_slider' , $_show_slider );
-
     }
+
 
     /* BREADCRUMB */
     function czr_fn_display_view_breadcrumb() {

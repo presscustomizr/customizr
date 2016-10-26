@@ -19,10 +19,8 @@
 
   <div class="<?php czr_fn_echo( 'inner_class' ) ?>" <?php czr_fn_echo( 'inner_attrs' ) ?>>
       <?php
-        while ( czr_fn_get( 'has_slide' ) ) {
-          if ( czr_fn_has( 'slide' ) )
-            czr_fn_render_template( 'modules/slider/slide', 'slide');
-        }
+        while ( (bool) $the_slide = czr_fn_get( 'the_slide' ) )
+          czr_fn_render_template( 'modules/slider/slide', 'slide', array( 'the_slide' => $the_slide ) );
       ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner__' ) ?>
