@@ -5,8 +5,8 @@
 //If the model is used as a method parameter, it shall be an array()
 //=> because a controller can be checked and fired before the model has been instantiated
 //=> always check the existence of the id
-if ( ! class_exists( 'CZR_cl_controllers' ) ) :
-  class CZR_cl_controllers {
+if ( ! class_exists( 'CZR_controllers' ) ) :
+  class CZR_controllers {
     static $instance;
     private $controllers;
     static $controllers_instances = array();
@@ -206,7 +206,7 @@ if ( ! class_exists( 'CZR_cl_controllers' ) ) :
     //@return the $instance
     private function czr_fn_instantiate_group_controller( $group ) {
           $_path  = "controllers/class-controller-{$group}.php";
-          $_class = "CZR_cl_controller_{$group}";
+          $_class = "CZR_controller_{$group}";
           $_instance = false;
 
           CZR() -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );

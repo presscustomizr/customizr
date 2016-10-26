@@ -6,8 +6,8 @@
 //- Instantiates the specified model extended class if any
 //- Handles the model's modifications, including deletion
 //- Make sure the collection is a public array of model's instance
-if ( ! class_exists( 'CZR_cl_Collection' ) ) :
-  class CZR_cl_Collection {
+if ( ! class_exists( 'CZR_Collection' ) ) :
+  class CZR_Collection {
     static $instance;
     //public $group = "";//header,content,footer,modules
     //private $args = array();//will store the updated args on model creation and use them to instantiate the child
@@ -155,7 +155,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
         return;
 
       if ( ! is_array($model) || empty($model) ) {
-        do_action('czr_dev_notice', "CZR_cl_collection : A model is not eligible for the collection, it won't be registered. The model must be an array of params." );
+        do_action('czr_dev_notice', "CZR_collection : A model is not eligible for the collection, it won't be registered. The model must be an array of params." );
         return;
       }
       return true;
@@ -193,7 +193,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //a model with a unique id can be registered only once
       //a model with a promise registered deletion won't be registered
       if ( $this -> czr_fn_is_registered( $model['id'] ) ) {
-        do_action('czr_dev_notice', "CZR_cl_Collection. Model : ". $model['id'] ." . The id is still not unique. Not registered." );
+        do_action('czr_dev_notice', "CZR_Collection. Model : ". $model['id'] ." . The id is still not unique. Not registered." );
         return;
       }
       return $model;
@@ -293,7 +293,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
       //try to instantiate the model specified in the model_class param
       //if not found try to retrieve it from the template param (mandatory):
       //a) The model_class, when specified, must refer to a valid model otherwise a notice will be fired.
-      //b) Also if a whatever model has been instantiated it must be a subclass of CZR_cl_Model - otherwise a notice will be fired.
+      //b) Also if a whatever model has been instantiated it must be a subclass of CZR_Model - otherwise a notice will be fired.
       //c) Else If no suitable model has been instantiated instantiate the base model class
       foreach ( array( 'model_class', 'template' ) as $_model_class ) {
         if ( ! isset($model[ $_model_class ]) || empty($model[ $_model_class ]) )
@@ -309,7 +309,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
           $model_class     = $model[ $_model_class ];
         }
 
-        $model_class_name     = sprintf( 'CZR_cl_%s_model_class', $this -> czr_fn_require_model_class( $model_class ) );
+        $model_class_name     = sprintf( 'CZR_%s_model_class', $this -> czr_fn_require_model_class( $model_class ) );
 
         if ( class_exists($model_class_name) ) {
           $instance = new $model_class_name( $model );
@@ -319,15 +319,15 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
           do_action('czr_dev_notice', "Model : " . $model['id'] . ". The model has not been instantiated." );
           return;
         }
-        //A model must be CZR_cl_model or a child class of CZR_cl_model.
-        if ( is_object($instance) && ! is_subclass_of($instance, 'CZR_cl_Model') ) {
-          do_action('czr_dev_notice', "Model : " . $model['id'] . ". View Instantiation aborted : the specified model class must be a child of CZR_cl_Model." );
+        //A model must be CZR_model or a child class of CZR_model.
+        if ( is_object($instance) && ! is_subclass_of($instance, 'CZR_Model') ) {
+          do_action('czr_dev_notice', "Model : " . $model['id'] . ". View Instantiation aborted : the specified model class must be a child of CZR_Model." );
           return;
         } else break;
       }//end foreach
 
       if ( ! is_object( $instance ) )
-        return new CZR_cl_Model( $model );
+        return new CZR_Model( $model );
 
       return $instance;
     }
@@ -360,7 +360,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     //=> always update the model list before rendering something
     //=> a model might have been registered in the delete / change candidates
     //=> this is fired on model_property_changed event
-    //=> when a single model property has been changed in CZR_cl_Model::czr_fn_set_property()
+    //=> when a single model property has been changed in CZR_Model::czr_fn_set_property()
     //@param id string
     //@param $model instance object
     public function czr_fn_update_collection( $id = false, $model ) {
@@ -415,7 +415,7 @@ if ( ! class_exists( 'CZR_cl_Collection' ) ) :
     ***********************************************************************************/
     //the model might not have been created yet
     //=> register a promise deletion in this case
-    //IMPORTANT : always use the CZR_cl_Collection::$instance -> _models property to access the model list here
+    //IMPORTANT : always use the CZR_Collection::$instance -> _models property to access the model list here
     //=> because it can be accessed from a child class
     public function czr_fn_delete( $id = null ) {
       if ( is_null($id) )

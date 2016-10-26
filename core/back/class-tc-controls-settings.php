@@ -2,8 +2,8 @@
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
-if ( ! class_exists( 'CZR_cl_Customize_Setting') ) :
-  class CZR_cl_Customize_Setting extends WP_Customize_Setting {
+if ( ! class_exists( 'CZR_Customize_Setting') ) :
+  class CZR_Customize_Setting extends WP_Customize_Setting {
     /**
      * Fetch the value of the setting.
      *
@@ -76,8 +76,8 @@ endif;
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_controls' ) ) :
-	class CZR_cl_controls extends WP_Customize_Control	{
+if ( ! class_exists( 'CZR_controls' ) ) :
+	class CZR_controls extends WP_Customize_Control	{
 	    public $type;
 	    public $link;
 	    public $title;
@@ -316,8 +316,8 @@ endif;
  * @since 3.4.19
  * @package      Customizr
 */
-if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'CZR_cl_Customize_Cropped_Image_Control' ) ) :
-  class CZR_cl_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control {
+if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'CZR_Customize_Cropped_Image_Control' ) ) :
+  class CZR_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control {
     public $type = 'czr_cropped_image';
     public $title;
     public $notice;
@@ -385,7 +385,7 @@ endif;
 /**************************************************************************************************
 * MULTIPICKER CLASSES
 ***************************************************************************************************/
-if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Control' ) ) :
+if ( ! class_exists( 'CZR_Customize_Multipicker_Control' ) ) :
   /**
   * Customize Multi-picker Control Class
   *
@@ -393,7 +393,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Control' ) ) :
   * @subpackage Customize
   * @since 3.4.10
   */
-  abstract class CZR_cl_Customize_Multipicker_Control extends CZR_cl_controls {
+  abstract class CZR_Customize_Multipicker_Control extends CZR_controls {
 
     public function render_content() {
 
@@ -427,8 +427,8 @@ if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Control' ) ) :
   }//end class
 endif;
 
-if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Categories_Control' ) ) :
-  class CZR_cl_Customize_Multipicker_Categories_Control extends CZR_cl_Customize_Multipicker_Control {
+if ( ! class_exists( 'CZR_Customize_Multipicker_Categories_Control' ) ) :
+  class CZR_Customize_Multipicker_Categories_Control extends CZR_Customize_Multipicker_Control {
 
     public function czr_fn_get_dropdown_multipicker() {
       $cats_dropdown = wp_dropdown_categories(
@@ -438,7 +438,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Multipicker_Categories_Control' ) ) :
               //hide empty, set it to false to avoid complains
               'hide_empty'         => 0 ,
               'echo'               => 0 ,
-              'walker'             => new CZR_cl_Walker_CategoryDropdown_Multipicker(),
+              'walker'             => new CZR_Walker_CategoryDropdown_Multipicker(),
               'hierarchical'       => 1,
               'class'              => 'select2 '.$this->type,
               'selected'           => implode(',', $this->value() )
@@ -462,8 +462,8 @@ endif;
  * we need to allow more than one "selected" attribute
  */
 
-if ( ! class_exists( 'CZR_cl_Walker_CategoryDropdown_Multipicker' ) ) :
-  class CZR_cl_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown {
+if ( ! class_exists( 'CZR_Walker_CategoryDropdown_Multipicker' ) ) :
+  class CZR_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown {
     /**
      * Start the element output.
      *
@@ -516,7 +516,7 @@ endif;
 * Old upload control used until v3.4.18, still used if current version of WP is < 4.3
 **********************************************************************************/
 
-if ( ! class_exists( 'CZR_cl_Customize_Upload_Control' ) ) :
+if ( ! class_exists( 'CZR_Customize_Upload_Control' ) ) :
   /**
    * Customize Upload Control Class
    *
@@ -524,7 +524,7 @@ if ( ! class_exists( 'CZR_cl_Customize_Upload_Control' ) ) :
    * @subpackage Customize
    * @since 3.4.0
    */
-  class CZR_cl_Customize_Upload_Control extends WP_Customize_Control {
+  class CZR_Customize_Upload_Control extends WP_Customize_Control {
     public $type    = 'czr_upload';
     public $removed = '';
     public $context;

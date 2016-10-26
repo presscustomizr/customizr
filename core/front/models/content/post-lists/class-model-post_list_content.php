@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_post_list_content_model_class extends CZR_cl_Model {
+class CZR_post_list_content_model_class extends CZR_Model {
   public  $content_cb;
   public  $content;
   public  $content_inner_class;

@@ -87,7 +87,7 @@ function czr_fn_enqueue_front_styles() {
     if ( true == czr_fn_get_opt( 'tc_font_awesome_css' ) ) {
         $_path = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
       wp_enqueue_style( 'customizr-fa',
-        $_path . '/fonts/' . CZR_cl_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+        $_path . '/fonts/' . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
         array() , CUSTOMIZR_VER, 'all' );
     }
 

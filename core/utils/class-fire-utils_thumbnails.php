@@ -21,7 +21,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 
     $_filtered_thumb_size_name  = ! is_null( $_filtered_thumb_size_name ) ? $_filtered_thumb_size_name : 'tc_thumb_size';
-    $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, $_filtered_thumb_size_name ? CZR_cl_init::$instance -> $_filtered_thumb_size_name : null );
+    $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, $_filtered_thumb_size_name ? CZR_init::$instance -> $_filtered_thumb_size_name : null );
 
     $_model                     = array();
     $_img_attr                  = array();
@@ -244,7 +244,7 @@ function czr_fn_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = t
       return;
 
     //handles the case when the image dimensions are too small
-    $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_cl_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
+    $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
     $no_effect_class  = ( esc_attr( czr_fn_get_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 

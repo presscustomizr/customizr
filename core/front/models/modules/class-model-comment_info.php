@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_comment_info_model_class extends CZR_cl_Model {
+class CZR_comment_info_model_class extends CZR_Model {
   /*
   * @param link (stirng url) the link
   * @param add_anchor (bool) whether or not add an anchor to the link, default true

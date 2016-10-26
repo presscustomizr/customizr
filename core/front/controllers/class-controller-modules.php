@@ -1,13 +1,13 @@
 <?php
-if ( ! class_exists( 'CZR_cl_controller_modules' ) ) :
-  class CZR_cl_controller_modules extends CZR_cl_controllers {
+if ( ! class_exists( 'CZR_controller_modules' ) ) :
+  class CZR_controller_modules extends CZR_controllers {
     static $instance;
     private static $_cache = array();
 
     function __construct( $_args = array()) {
       self::$instance =& $this;
-      //why we don't call CZR_cl_controllers constructor?
-      //why this class extends CZR_cl_controllers?
+      //why we don't call CZR_controllers constructor?
+      //why this class extends CZR_controllers?
     }
 
     function czr_fn_display_view_social_block( $model ) {

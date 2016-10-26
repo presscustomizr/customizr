@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_comment_model_class extends CZR_cl_Model {
+class CZR_comment_model_class extends CZR_Model {
   public $comment_reply_link_args;
 
   //bools

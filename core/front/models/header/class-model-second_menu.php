@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_second_menu_model_class extends CZR_cl_menu_model_class {
+class CZR_second_menu_model_class extends CZR_menu_model_class {
   public $theme_location = 'secondary';
   public $menu_id = 'secondary-menu';
   /*

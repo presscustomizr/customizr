@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_post_list_alternate_model_class extends CZR_cl_Model {
+class CZR_post_list_alternate_model_class extends CZR_Model {
   public $has_narrow_layout;
   public $has_format_icon_media;
   public $has_post_media;

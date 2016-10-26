@@ -1,13 +1,13 @@
 <?php
-if ( ! class_exists( 'CZR_cl_controller_header' ) ) :
-  class CZR_cl_controller_header extends CZR_cl_controllers {
+if ( ! class_exists( 'CZR_controller_header' ) ) :
+  class CZR_controller_header extends CZR_controllers {
     static $instance;
     private $_cache;
 
     function __construct( $_args = array()) {
           self::$instance =& $this;
-          //why we don't call CZR_cl_controllers constructor?
-          //why this class extends CZR_cl_controllers?
+          //why we don't call CZR_controllers constructor?
+          //why this class extends CZR_controllers?
 
           //init the cache
           $this -> _cache = array();

@@ -10,8 +10,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
-  class CZR_cl_plugins_compat {
+if ( ! class_exists( 'CZR_plugins_compat' ) ) :
+  class CZR_plugins_compat {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
     //credits @Srdjan
@@ -340,7 +340,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         $polylang_group = 'customizr-pro' == CZR_THEMENAME ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
-        $tc_translatable_raw_options = CZR_cl_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
+        $tc_translatable_raw_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
         $tc_pll_options              = array();
 
         //build array if option => array( label (gettext-ed), option )
@@ -370,7 +370,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       if ( function_exists( 'pll_get_post' ) && function_exists( 'pll__' ) && ! is_admin() ) {
         //strings translation
         //get the options to translate
-        $tc_translatable_options = CZR_cl_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
+        $tc_translatable_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
           add_filter("czr_opt_$tc_translatable_option", 'pll__');
@@ -457,7 +457,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         $option_name_assoc = wp_cache_get( $_wp_cache_key );
 
         if ( false === $option_name_assoc ) {
-          $options_to_translate = CZR_cl_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
+          $options_to_translate = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
 
           $option_name_assoc = apply_filters( 'czr_wpml_options_names_config', array(
  //           'tc_front_slider'              => 'Front page slider name', //Handled in a different way by Srdjan
@@ -508,7 +508,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
               $slide_language = apply_filters( 'wpml_element_language_code',
                             null, array('element_id' => $attachment_id,
                                 'element_type' => 'attachment') );
-              if ( CZR_cl_plugins_compat::$instance->current_language != $slide_language ) {
+              if ( CZR_plugins_compat::$instance->current_language != $slide_language ) {
                 // Replace with translated slide
                 $translated_slide_id = apply_filters( 'wpml_object_id',
                                 $attachment_id, 'attachment', false );
@@ -552,10 +552,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
       function pre_update_option_filter( $options ) {
         if ( isset( $options['tc_sliders'] ) ) {
             // Force default language
-            $current_language = CZR_cl_plugins_compat::$instance->current_language;
-            CZR_cl_plugins_compat::$instance->current_language = CZR_cl_plugins_compat::$instance->default_language;
+            $current_language = CZR_plugins_compat::$instance->current_language;
+            CZR_plugins_compat::$instance->current_language = CZR_plugins_compat::$instance->default_language;
             $options['tc_sliders'] = sliders_filter( $options['tc_sliders'] );
-            CZR_cl_plugins_compat::$instance->current_language = $current_language;
+            CZR_plugins_compat::$instance->current_language = $current_language;
         }
         return $options;
       }
@@ -805,10 +805,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       function czr_fn_sensei_wrappers() {
         switch ( current_filter() ) {
-          case 'sensei_before_main_content': CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_start();
+          case 'sensei_before_main_content': CZR_plugins_compat::$instance -> czr_fn_mainwrapper_start();
                                              break;
 
-          case 'sensei_after_main_content' : CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_end();
+          case 'sensei_after_main_content' : CZR_plugins_compat::$instance -> czr_fn_mainwrapper_end();
                                              break;
         }//end of switch on hook
       }//end of nested function
@@ -854,10 +854,10 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
 
       function czr_fn_woocommerce_wrappers() {
         switch ( current_filter() ) {
-          case 'woocommerce_before_main_content': CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_start();
+          case 'woocommerce_before_main_content': CZR_plugins_compat::$instance -> czr_fn_mainwrapper_start();
                                                   break;
 
-          case 'woocommerce_after_main_content' : CZR_cl_plugins_compat::$instance -> czr_fn_mainwrapper_end();
+          case 'woocommerce_after_main_content' : CZR_plugins_compat::$instance -> czr_fn_mainwrapper_end();
                                                   break;
         }//end of switch on hook
       }//end of nested function
@@ -1157,7 +1157,7 @@ if ( ! class_exists( 'CZR_cl_plugins_compat' ) ) :
         'tc_social_in_sidebar_title',
       );
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
-        $fp_areas = CZR_cl_init::$instance -> fp_ids;
+        $fp_areas = CZR_init::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
 

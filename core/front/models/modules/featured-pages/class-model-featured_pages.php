@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
+class CZR_featured_pages_model_class extends CZR_Model {
 
   public $fp_ids;
   public $fp_nb;
@@ -31,7 +31,7 @@ class CZR_cl_featured_pages_model_class extends CZR_cl_Model {
               )
         );
         //gets the featured pages array and sets the fp layout
-        $fp_ids                         = apply_filters( 'czr_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids );
+        $fp_ids                         = apply_filters( 'czr_featured_pages_ids' , CZR_init::$instance -> fp_ids );
 
         $fp_nb                          = count($fp_ids);
         $fp_per_row                     = apply_filters( 'czr_fp_per_line', 3 );

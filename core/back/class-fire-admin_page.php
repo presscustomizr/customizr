@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_admin_page' ) ) :
-  class CZR_cl_admin_page {
+if ( ! class_exists( 'CZR_admin_page' ) ) :
+  class CZR_admin_page {
     static $instance;
     public $support_url;
 

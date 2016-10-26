@@ -9,8 +9,8 @@
 * @since        3.0
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
-  class CZR_cl_nav_walker extends Walker_Nav_Menu {
+if ( ! class_exists( 'CZR_nav_walker' ) ) :
+  class CZR_nav_walker extends Walker_Nav_Menu {
     static $instance;
     public $czr_location;
     function __construct($_location) {
@@ -27,7 +27,7 @@ if ( ! class_exists( 'CZR_cl_nav_walker' ) ) :
     * hook : nav_menu_link_attributed
     */
     function czr_fn_process_menu_links( $atts, $item, $args, $depth ) {
-      if (  'CZR_cl_nav_walker' != get_class( (object)$args->walker ) )
+      if (  'CZR_nav_walker' != get_class( (object)$args->walker ) )
         return $atts;
 
       $atts[ 'class' ] = 'nav-link';
@@ -142,8 +142,8 @@ endif;
 * @since        3.0
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_nav_walker_page' ) ) :
-  class CZR_cl_nav_walker_page extends Walker_Page {
+if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
+  class CZR_nav_walker_page extends Walker_Page {
     public $czr_location;
 
     function __construct() {

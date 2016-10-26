@@ -13,8 +13,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_init' ) ) :
-  class CZR_cl_init {
+if ( ! class_exists( 'CZR_init' ) ) :
+  class CZR_init {
       //declares the filtered default settings
       public $global_layout;
       public $tc_thumb_size;
@@ -641,7 +641,7 @@ if ( ! class_exists( 'CZR_cl_init' ) ) :
 
 
       /**
-      * //Move in CZR_cl_utils?
+      * //Move in CZR_utils?
       *
       * Returns the min or normal version of the passed css filename (basename.type)
       * depending on whether or not the minified version should be used

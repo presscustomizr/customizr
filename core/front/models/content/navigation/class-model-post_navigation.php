@@ -2,7 +2,7 @@
 /*
 * This class only handles the visibility in the Customizer preview
 */
-class CZR_cl_post_navigation_model_class extends CZR_cl_Model {
+class CZR_post_navigation_model_class extends CZR_Model {
   /**
   * @override
   * fired before the model properties are parsed

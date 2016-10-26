@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_trackpingback_model_class extends CZR_cl_Model {
+class CZR_trackpingback_model_class extends CZR_Model {
 
   //bools
   public $ping_number = 0;

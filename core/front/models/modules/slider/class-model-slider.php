@@ -3,7 +3,7 @@
 * TODO: force header overlaps on slider-full selected
 *
 */
-class CZR_cl_slider_model_class extends CZR_cl_Model {
+class CZR_slider_model_class extends CZR_Model {
   public $inner_class;
   public $inner_attrs;
 
@@ -550,7 +550,7 @@ class CZR_cl_slider_model_class extends CZR_cl_Model {
   * @since Customizr 3.4.9
   *
   */
-  // move this into CZR_cl_utils?
+  // move this into CZR_utils?
   function czr_fn_trim_text( $text, $text_length, $more ) {
     if ( ! $text )
       return '';

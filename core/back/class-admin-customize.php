@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_customize' ) ) :
-	class CZR_cl_customize {
+if ( ! class_exists( 'CZR_customize' ) ) :
+	class CZR_customize {
     static $instance;
     public $control_translations;
 
@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
       add_action ( 'customize_register'                       , array( $this , 'czr_fn_alter_wp_customizer_settings' ), 30, 1 );
 
       //preview scripts
-      //set with priority 20 to be fired after czr_fn_customize_store_db_opt in CZR_cl_utils
+      //set with priority 20 to be fired after czr_fn_customize_store_db_opt in CZR_utils
   		add_action ( 'customize_preview_init'			              , array( $this , 'czr_fn_customize_preview_js' ), 20 );
   		//Hide donate button
   		add_action ( 'wp_ajax_hide_donate'				              , array( $this , 'czr_fn_hide_donate' ) );
@@ -134,7 +134,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
           );
         }
 
-        $wp_customize -> add_control( new CZR_cl_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
+        $wp_customize -> add_control( new CZR_controls( $wp_customize, $menu_setting_id, $_control_properties ) );
 
         $_priority = $_priority + 10;
       }//foreach
@@ -157,18 +157,18 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 		*/
 		function czr_fn_augment_customizer( $manager ) {
       //loads custom settings and controls classes for the Customizr theme
-      //- CZR_cl_Customize_Setting extends WP_Customize_Setting => to override the value() method
-      //- CZR_cl_controls extends WP_Customize_Control => overrides the render() method
-      //- CZR_cl_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
-      //- CZR_cl_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
-      //- CZR_cl_Customize_Multipicker_Control extends CZR_cl_controls => used for multiple cat picker for example
-      //- CZR_cl_Customize_Multipicker_Categories_Control extends CZR_cl_Customize_Multipicker_Control => extends the multipicker
-      //- CZR_cl_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
+      //- CZR_Customize_Setting extends WP_Customize_Setting => to override the value() method
+      //- CZR_controls extends WP_Customize_Control => overrides the render() method
+      //- CZR_Customize_Cropped_Image_Control extends WP_Customize_Cropped_Image_Control => introduced in v3.4.19, uses a js template to render the control
+      //- CZR_Customize_Upload_Control extends WP_Customize_Control => old upload control used until v3.4.18, still used if current version of WP is < 4.3
+      //- CZR_Customize_Multipicker_Control extends CZR_controls => used for multiple cat picker for example
+      //- CZR_Customize_Multipicker_Categories_Control extends CZR_Customize_Multipicker_Control => extends the multipicker
+      //- CZR_Walker_CategoryDropdown_Multipicker extends Walker_CategoryDropdown => needed for the multipicker to allow more than one "selected" attribute
       locate_template( 'core/back/class-tc-controls-settings.php' , $load = true, $require_once = true );
 
       //Registered types are eligible to be rendered via JS and created dynamically.
-      if ( class_exists('CZR_cl_Customize_Cropped_Image_Control') )
-        $manager -> register_control_type( 'CZR_cl_Customize_Cropped_Image_Control' );
+      if ( class_exists('CZR_Customize_Cropped_Image_Control') )
+        $manager -> register_control_type( 'CZR_Customize_Cropped_Image_Control' );
 		}
 
 
@@ -332,8 +332,8 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 					}
 
           //add setting
-          if ( class_exists('CZR_cl_Customize_Setting') )
-            $wp_customize -> add_setting( new CZR_cl_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
+          if ( class_exists('CZR_Customize_Setting') )
+            $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
           else
             $wp_customize -> add_setting( $_opt_name, $option_settings );
 
@@ -394,7 +394,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
                 //array( 'skinName' => 'custom-skin-#40542.css', 'fullPath' => 'http://....' )
                 'customSkin'      => apply_filters( 'czr_custom_skin_preview_params' , $custom_skin ),
                 'fontPairs'       => czr_fn_get_font( 'list' ),
-                'fontSelectors'   => CZR_cl_init::$instance -> font_selectors,
+                'fontSelectors'   => CZR_init::$instance -> font_selectors,
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' )
 			        )
@@ -440,7 +440,7 @@ if ( ! class_exists( 'CZR_cl_customize' ) ) :
 
 
 			//gets the featured pages id from init
-			$fp_ids				= apply_filters( 'czr_featured_pages_ids' , CZR_cl_init::$instance -> fp_ids);
+			$fp_ids				= apply_filters( 'czr_featured_pages_ids' , CZR_init::$instance -> fp_ids);
 
 			//declares the common fp control fields and the dynamic arrays
 			$fp_controls 			= array(

@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
+class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   public $slider_type = 'slider_of_posts';
 
   /**
@@ -462,7 +462,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   * @since Customizr 3.4.9
   *
   */
-  // move this into CZR_cl_utils?
+  // move this into CZR_utils?
   function czr_fn_get_post_title( $_post, $default_title_length, $more ) {
     $title = $_post->post_title;
     if ( ! empty( $_post->post_password ) ) {
@@ -486,7 +486,7 @@ class CZR_cl_slider_of_posts_model_class extends CZR_cl_slider_model_class {
   * @since Customizr 3.4.9
   *
   */
-  // move this into CZR_cl_utils?
+  // move this into CZR_utils?
   function czr_fn_get_post_excerpt( $_post, $default_text_length, $more ) {
     if ( ! empty( $_post->post_password) )
       return __( 'There is no excerpt because this is a protected post.', 'customizr' );

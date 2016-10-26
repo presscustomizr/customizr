@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
-  class CZR_cl_admin_init {
+if ( ! class_exists( 'CZR_admin_init' ) ) :
+  class CZR_admin_init {
     static $instance;
     function __construct () {
       self::$instance =& $this;
@@ -91,7 +91,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       $slider_of_posts = null;
 
       /* Instantiate slider of posts */
-       if ( ! class_exists( 'CZR_cl_slider_of_posts_model_class' ) ) {
+       if ( ! class_exists( 'CZR_slider_of_posts_model_class' ) ) {
         $slider          = CZR() -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
         if ( ! $slider )
           return;
@@ -143,7 +143,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     */
     function czr_fn_maybe_add_gfonts_to_editor() {
       $_font_pair         = esc_attr( czr_fn_get_opt('tc_fonts') );
-      $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
+      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
         return;
       //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
@@ -229,7 +229,7 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
     function czr_fn_add_editor_style() {
       $_stylesheets = array(
           CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
-          CZR_cl_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
+          CZR_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
       );
 
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
@@ -253,18 +253,18 @@ if ( ! class_exists( 'CZR_cl_admin_init' ) ) :
       if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
       //some plugins fire tiny mce editor in the customizer
-      //in this case, the CZR_cl_resource class has to be loaded
-      if ( ! class_exists('CZR_cl_resources_styles') )
+      //in this case, the CZR_resource class has to be loaded
+      if ( ! class_exists('CZR_resources_styles') )
         CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_styles') ) ), true );
-      if ( ! class_exists('CZR_cl_resources_fonts') )
+      if ( ! class_exists('CZR_resources_fonts') )
         CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_fonts') ) ), true );
-      if ( ! class_exists('CZR_cl_resources_scripts') )
+      if ( ! class_exists('CZR_resources_scripts') )
         CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_scripts') ) ), true );
 
       //fonts
-      $_css = CZR_cl_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+      $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
       //icons
-      $_css .= CZR_cl_resources::$instance -> czr_fn_get_inline_font_icons_css();
+      $_css .= CZR_resources::$instance -> czr_fn_get_inline_font_icons_css();
      ?>
 
         <script type="text/javascript">

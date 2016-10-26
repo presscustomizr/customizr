@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_navbar_wrapper_model_class extends CZR_cl_Model {
+class CZR_navbar_wrapper_model_class extends CZR_Model {
 
   function czr_fn_setup_children() {
         $children = array(
