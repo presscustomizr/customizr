@@ -2453,6 +2453,31 @@ label i {
   overflow: hidden;
 }
 
+[id^=customizr-slider-] .bg-link {
+  z-index: 4;
+}
+
+[id^=customizr-slider-] .btn-edit {
+  position: absolute;
+  color: #202020;
+  background: #fff;
+}
+
+[id^=customizr-slider-] .btn-edit.slider-btn-edit {
+  bottom: 10px;
+  left: 10px;
+}
+
+[id^=customizr-slider-] .btn-edit.slide-btn-edit {
+  bottom: 10%;
+  right: 10px;
+  z-index: 4;
+}
+
+[id^=customizr-slider-] .btn-edit:hover {
+  background: #eceeef;
+}
+
 .parallax {
   display: block;
   margin-left: auto;

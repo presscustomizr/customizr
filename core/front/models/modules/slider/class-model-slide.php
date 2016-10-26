@@ -21,6 +21,7 @@ class CZR_slide_model_class extends CZR_Model {
   public $slide_id;
 
   public $slider_name_id;
+  public $edit_url;
 
   /* In the slider loop */
   function czr_fn_setup_late_properties() {
@@ -53,13 +54,29 @@ class CZR_slide_model_class extends CZR_Model {
     //img elements
     $img_wrapper_class = apply_filters( 'czr_slide_content_class', 'carousel-image', $slide_id );
 
+    $edit_url          = $this -> czr_fn_get_the_edit_url( $slide, $slide_id, $slider_name_id );
+
     $this -> czr_fn_update(
         array_merge( $slide, $caption,
-          compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id', 'color_style' )
+          compact('element_class', 'img_wrapper_class', 'has_caption', 'link_whole_slide', 'slider_name_id', 'slide_id', 'color_style', 'edit_url' )
         )
     );
   }
 
+
+  function czr_fn_get_the_edit_url( $slide, $slide_id, $slider_name_id ) {
+    if ( ! $slide_id  || 'demo' == $slider_name_id )
+      return '';
+
+    $show_slide_edit_link  = current_user_can( 'edit_post', $slide_id ) ? true : false;
+
+    if ( ! apply_filters('czr_show_slide_edit_link' , $show_slide_edit_link && ! is_null( $slide['link_id'] ), $slide_id  ) )
+      return '';
+
+    $_edit_suffix = ! empty( $slide['edit_suffix'] ) ? $slide['edit_suffix'] : '';
+    $_link        = get_edit_post_link( $slide_id );
+    return $_link ? $_link . $_edit_suffix : '';
+  }
 
   /**
   * Slide caption submodel
