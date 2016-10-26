@@ -6,5 +6,5 @@
  */
 ?>
 <div class="readmore-holder">
-  <a class="moretag btn btn-more" href="<?php esc_url( get_permalink() ) ?>"><span><?php _e('Read more', 'customizr' ) ?></span></a>
+  <a class="moretag btn btn-more" href="<?php echo esc_url( get_permalink() ) ?>"><span><?php _e('Read more', 'customizr' ) ?></span></a>
 </div>
