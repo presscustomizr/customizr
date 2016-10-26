@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'comment_info',
               'post_list_grid',
               'main_slider',
-              'post_list_grid',
+              'main_posts_slider',
               'featured_pages',
               'edit_button'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'

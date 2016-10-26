@@ -8,9 +8,6 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
   public $featured_pages;
 
-  public $current_fp = array();
-
-
   /**
   * @override
   * fired before the model properties are parsed

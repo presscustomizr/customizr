@@ -13,13 +13,6 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   *
   */
   protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'full' ) {
-    /* This is where we check this model is allowed
-    *  otherwise we have to chose which one to display in the controller,
-    *  this means that the controller might repeat some functions which are
-    *  defined in the slider class
-    */
-    if ( 'tc_posts_slider' != $slider_name_id )
-      return array();
 
     $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! CZR() -> czr_fn_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
@@ -32,8 +25,11 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     return apply_filters( 'tc_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
   }
 
-  /*
-  * @override
+  /**
+  * helper
+  * returns the slider edit text
+  * @return  number
+  *
   */
   function czr_fn_get_slider_edit_link_text() {
     return __( 'Customize or remove the posts slider', 'customizr' );

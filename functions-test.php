@@ -10,7 +10,7 @@ $_options = array(
     'tc_sticky_header_type' => 'overlap',// (overlap||push)
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
-    'tc_display_second_menu' => true,
+    'tc_display_second_menu' => false,
     'tc_menu_style' => 'regular',
     'tc_menu_type' => 'click',
     'tc_logo_upload' => '611',
@@ -37,7 +37,7 @@ $_options = array(
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    'tc_front_slider'       => 'prova',
+    'tc_front_slider'       => 'tc_posts_slider',
     'tc_display_slide_loader' => true,
 
     //test
