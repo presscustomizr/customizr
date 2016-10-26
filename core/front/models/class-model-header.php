@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_header_model_class extends CZR_cl_Model {
+class CZR_header_model_class extends CZR_Model {
   public $elements_container_class;
 
   /**

@@ -3,7 +3,7 @@
 *
 * TODO: treat case post format image with no text and post format gallery
 */
-class CZR_cl_post_list_plain_model_class extends CZR_cl_Model {
+class CZR_post_list_plain_model_class extends CZR_Model {
 
   public $entry_header_inner_class = array( 'col-md-7', 'offset-md-4', 'col-xs-12'); //TODO: will depend on the layout too!
   public $entry_header_class       = array( 'row' );

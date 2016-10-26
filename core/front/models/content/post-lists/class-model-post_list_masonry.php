@@ -3,7 +3,7 @@
 *
 * TODO: treat case post format image with no text and post format gallery
 */
-class CZR_cl_post_list_masonry_model_class extends CZR_cl_Model {
+class CZR_post_list_masonry_model_class extends CZR_Model {
   public $excerpt_length;
   public $has_post_media;
 

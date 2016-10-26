@@ -71,10 +71,10 @@ function czr_fn_regex_callback( $matches ) {
 * @since Customizr 3.1.23
 */
 function czr_fn_getskincolor( $_what = null ) {
-    $_color_map    = CZR_cl_init::$instance -> skin_color_map;
+    $_color_map    = CZR_init::$instance -> skin_color_map;
     $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
-    $_active_skin =  str_replace('.min.', '.', basename( CZR_cl_init::$instance -> czr_fn_get_style_src() ) );
+    $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
     //falls back to blue3 ( default #27CDA5 ) if not defined
     $_to_return = array( '#27CDA5', '#1b8d71' );
 
@@ -120,13 +120,13 @@ function czr_fn_get_id()  {
 
 
 /**
-* This function returns the filtered global layout defined in CZR_cl_init
+* This function returns the filtered global layout defined in CZR_init
 *
 * @package Customizr
 * @since Customizr 4.0
 */
 function czr_fn_get_global_layout() {
-  return apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
+  return apply_filters( 'czr_global_layout' , CZR_init::$instance -> global_layout );
 }
 
 /**
@@ -319,7 +319,7 @@ function czr_fn_get_social_networks() {
   $__options    = czr_fn_get_theme_options();
 
   //gets the social network array
-  $socials      = apply_filters( 'czr_default_socials' , CZR_cl_init::$instance -> socials );
+  $socials      = apply_filters( 'czr_default_socials' , CZR_init::$instance -> socials );
 
   //declares some vars
   $html         = '';
@@ -423,7 +423,7 @@ function czr_fn_date_diff( $_date_one , $_date_two ) {
   } else {
     $_date_one_timestamp   = $_date_one->format("U");
     $_date_two_timestamp   = $_date_two->format("U");
-    return new CZR_cl_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
+    return new CZR_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
   }
 }
 
@@ -503,7 +503,7 @@ function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
     $_to_return = ( 'list' == $_what ) ? array() : false;
     $_font_groups = apply_filters(
       'tc_font_pairs',
-      CZR_cl_init::$instance -> font_pairs
+      CZR_init::$instance -> font_pairs
     );
     foreach ( $_font_groups as $_group_slug => $_font_list ) {
       if ( 'list' == $_what ) {

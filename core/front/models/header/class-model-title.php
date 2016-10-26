@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_title_model_class extends CZR_cl_Model {
+class CZR_title_model_class extends CZR_Model {
   /**
   * @override
   * fired before the model properties are parsed

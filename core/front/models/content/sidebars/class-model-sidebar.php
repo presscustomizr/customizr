@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_sidebar_model_class extends CZR_cl_Model {
+class CZR_sidebar_model_class extends CZR_Model {
   private static $sidebar_map = array(
       //id => allowed layout (- b both )
       'right'  => 'r',
@@ -36,7 +36,7 @@ class CZR_cl_sidebar_model_class extends CZR_cl_Model {
     if ( ! in_array( $position, array('right', 'left' ) ) )
       return array();
 
-    $global_layout        = czr_fn_get_global_layout();    
+    $global_layout        = czr_fn_get_global_layout();
     $sidebar_layout       = $global_layout[$screen_layout];
     $sidebar_prefix       = self::$sidebar_map[$position];
 

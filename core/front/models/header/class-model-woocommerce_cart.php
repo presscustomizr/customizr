@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
+class CZR_woocommerce_cart_model_class extends CZR_Model {
 
   public $display_widget;
 
@@ -44,7 +44,7 @@ class CZR_cl_woocommerce_cart_model_class extends CZR_cl_Model {
   /**
   * @hook czr_fn_user_options_style
   */
-  function czr_fn_user_options_style_cb( $_css ) { 
+  function czr_fn_user_options_style_cb( $_css ) {
     /* The only real decision I took here is the following:
     * I let the "count" number possibily overflow the parent (span1) width
     * so that as it grows it won't break on a new line. This is quite an hack to

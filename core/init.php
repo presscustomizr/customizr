@@ -50,8 +50,8 @@ if ( ! class_exists( 'CZR___' ) ) :
                 self::$instance -> czr_fn_load();
 
                 //FMK
-                self::$instance -> collection = new CZR_cl_Collection();
-                self::$instance -> controllers = new CZR_cl_Controllers();
+                self::$instance -> collection = new CZR_Collection();
+                self::$instance -> controllers = new CZR_Controllers();
 
                 //register the model's map in front
                 if ( ! is_admin() )
@@ -63,7 +63,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
         /**
-      * Init CZR_cl_utils class properties after_setup_theme
+      * Init CZR_utils class properties after_setup_theme
       * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
       * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
       * hook : after_setup_theme
@@ -226,11 +226,11 @@ if ( ! class_exists( 'CZR___' ) ) :
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
-            new CZR_cl_init();
+            new CZR_init();
 
             //loads the plugin compatibility
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
-            new CZR_cl_plugins_compat();
+            new CZR_plugins_compat();
 
             //loads utils
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
@@ -251,8 +251,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             foreach ( $_to_load as $group => $files )
               foreach ($files as $path_suffix ) {
                 $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-                $classname = 'CZR_cl_' . $path_suffix[1];
-                if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_cl_nav_walker') ) ) )
+                $classname = 'CZR_' . $path_suffix[1];
+                if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
                   continue;
                 //instantiates
                 $instances = class_exists($classname)  ? new $classname : '';

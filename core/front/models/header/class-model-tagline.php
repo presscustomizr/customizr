@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_tagline_model_class extends CZR_cl_Model {
+class CZR_tagline_model_class extends CZR_Model {
 
   /*
   * @override

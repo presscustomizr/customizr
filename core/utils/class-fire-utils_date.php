@@ -2,8 +2,8 @@
 //Helper class to build a simple date diff object
 //Alternative to date_diff for php version < 5.3.0
 //http://stackoverflow.com/questions/9373718/php-5-3-date-diff-equivalent-for-php-5-2-on-own-function
-if ( ! class_exists( 'CZR_cl_DateInterval' ) ) :
-  Class CZR_cl_DateInterval {
+if ( ! class_exists( 'CZR_DateInterval' ) ) :
+  Class CZR_DateInterval {
       /* Properties */
       public $y = 0;
       public $m = 0;

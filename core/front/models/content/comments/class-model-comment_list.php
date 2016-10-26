@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_comment_list_model_class extends CZR_cl_Model {
+class CZR_comment_list_model_class extends CZR_Model {
   public $czr_args = array();
   public $czr_depth;
 

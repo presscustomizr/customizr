@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_post_metas_model_class extends CZR_cl_Model {
+class CZR_post_metas_model_class extends CZR_Model {
   //protected $_cache = array();
 
   public    $type   = 'post_metas';

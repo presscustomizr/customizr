@@ -1,13 +1,13 @@
 <?php
-if ( ! class_exists( 'CZR_cl_controller_footer' ) ) :
-  class CZR_cl_controller_footer extends CZR_cl_controllers {
+if ( ! class_exists( 'CZR_controller_footer' ) ) :
+  class CZR_controller_footer extends CZR_controllers {
     static $instance;
     private $_cache;
 
     function __construct( $_args = array()) {
       self::$instance =& $this;
-      //why we don't call CZR_cl_controllers constructor?
-      //why this class extends CZR_cl_controllers?
+      //why we don't call CZR_controllers constructor?
+      //why this class extends CZR_controllers?
 
       //init the cache
       $this -> _cache = array();
@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_cl_controller_footer' ) ) :
     }
 
     function czr_fn_display_view_footer_widgets_wrapper() {
-      $footer_widgets = apply_filters( 'czr_footer_widgets', CZR_cl_init::$instance -> footer_widgets );
+      $footer_widgets = apply_filters( 'czr_footer_widgets', CZR_init::$instance -> footer_widgets );
       foreach ( $footer_widgets as $key => $area ) {
         if ( is_active_sidebar( $key ) )
           return true;

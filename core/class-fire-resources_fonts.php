@@ -5,8 +5,8 @@
 *
 * @package      Customizr
 */
-if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
-	class CZR_cl_resources_fonts {
+if ( ! class_exists( 'CZR_resources_fonts' ) ) :
+	class CZR_resources_fonts {
 	    //Access any method or var of the class with classname::$instance -> var or method():
 	    static $instance;
 
@@ -81,7 +81,7 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
     */
     function czr_fn_enqueue_gfonts() {
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
-      $_all_font_pairs    = CZR_cl_init::$instance -> font_pairs;
+      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
       if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
         return;
 
@@ -107,10 +107,10 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
       $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
       $_body_font_size    = esc_attr( czr_fn_get_opt( 'tc_body_font_size' ) );
-      $_font_selectors    = CZR_cl_init::$instance -> font_selectors;
+      $_font_selectors    = CZR_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
-      extract( CZR_cl_init::$instance -> font_selectors, EXTR_OVERWRITE );
+      extract( CZR_init::$instance -> font_selectors, EXTR_OVERWRITE );
 
       if ( ! isset($body) || ! isset($titles) )
         return;
@@ -244,5 +244,5 @@ if ( ! class_exists( 'CZR_cl_resources_fonts' ) ) :
       return compact("_family" , "_weight" );
     }
 
-  }//end of CZR_cl_resources
+  }//end of CZR_resources
 endif;

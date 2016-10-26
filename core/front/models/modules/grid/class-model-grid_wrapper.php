@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_grid_wrapper_model_class extends CZR_cl_Model {
+class CZR_grid_wrapper_model_class extends CZR_Model {
   public $expanded_sticky;
 
   private $post_id;

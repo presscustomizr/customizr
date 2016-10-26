@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_regular_menu_model_class extends CZR_cl_menu_model_class {
+class CZR_regular_menu_model_class extends CZR_menu_model_class {
   public $menu_id = 'main-menu';
 
   /*

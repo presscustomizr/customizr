@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_gallery' ) ) :
-  class CZR_cl_gallery {
+if ( ! class_exists( 'CZR_gallery' ) ) :
+  class CZR_gallery {
       static $instance;
       function __construct () {
         self::$instance =& $this;

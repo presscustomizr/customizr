@@ -11,8 +11,8 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
-if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
-  class CZR_cl_meta_boxes {
+if ( ! class_exists( 'CZR_meta_boxes' ) ) :
+  class CZR_meta_boxes {
       static $instance;
       function __construct () {
           self::$instance =& $this;
@@ -125,7 +125,7 @@ if ( ! class_exists( 'CZR_cl_meta_boxes' ) ) :
 
             //Generates layouts select list array
             $layouts              = array();
-            $global_layout        = apply_filters( 'czr_global_layout' , CZR_cl_init::$instance -> global_layout );
+            $global_layout        = apply_filters( 'czr_global_layout' , CZR_init::$instance -> global_layout );
             foreach ( $global_layout as $key => $value ) {
               $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
             }

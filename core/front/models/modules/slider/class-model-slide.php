@@ -1,5 +1,5 @@
 <?php
-class CZR_cl_slide_model_class extends CZR_cl_Model {
+class CZR_slide_model_class extends CZR_Model {
   public $img_wrapper_class;
 
   public $slide_background;

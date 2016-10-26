@@ -1,6 +1,6 @@
 <?php
-if ( ! class_exists( 'CZR_cl_controller_content' ) ) :
-  class CZR_cl_controller_content extends CZR_cl_controllers {
+if ( ! class_exists( 'CZR_controller_content' ) ) :
+  class CZR_controller_content extends CZR_controllers {
     static $instance;
 
     function __construct( $_args = array()) {

@@ -130,7 +130,7 @@
       //ctx retro compat => falls back to default val if ctx like option detected
       //important note : some options like tc_slider are not concerned by ctx
       if ( ! czr_fn_is_option_excluded_from_ctx( $option_name ) ) {
-        if ( is_array( $_single_opt ) && ! class_exists( 'CZR_cl_contx' ) )
+        if ( is_array( $_single_opt ) && ! class_exists( 'CZR_contx' ) )
           $_single_opt = $_default_val;
       }
 
