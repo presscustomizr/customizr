@@ -37,7 +37,7 @@ $_options = array(
     'tc_grid_shadow'        => true,
 
     'tc_slider_width'       => 'full-page',
-    'tc_front_slider'       => 'tc_posts_slider',
+    'tc_front_slider'       => 'prova',
     'tc_display_slide_loader' => true,
 
     //test
