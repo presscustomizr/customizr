@@ -34,7 +34,7 @@ endif ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
           <?php if ( czr_fn_has('post_metas') && (bool) $cat_list = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
 
-            <div class="entry-meta col-md-3 col-xs-12 small caps">
+            <div class="entry-meta tax__container col-md-3 col-xs-12 small caps">
               <?php echo $cat_list ?>
             </div>
 
@@ -54,7 +54,7 @@ endif ?>
                 )
               ) );
             ?>
-            <div class="entry-meta">
+            <div class="entry-meta tags__conainer">
               <?php if ( czr_fn_has('post_metas') && (bool) $tag_list = czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
               <div class="post-tags">
                 <ul class="tags">

@@ -34,7 +34,7 @@ endif ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
           <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
 
-            <div class="entry-meta col-md-3 col-xs-12 small caps">
+            <div class="entry-meta tax__container col-md-3 col-xs-12 small caps">
               <?php echo $cat ?>
             </div>
 
