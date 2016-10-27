@@ -884,7 +884,7 @@ Remove
     text-align: right;
     width: 50%;
 }
-.article-container .grid-container__plain .post .post-info {
+.article-container .grid-container__plain article .post-info {
     float: right;
     text-align: right;
 }
@@ -899,13 +899,13 @@ Remove
     width: 50%;
     }
 */
-  .article-container .grid-container__plain .post.style-01 .post-info {
+  .article-container .grid-container__plain article.style-01 .post-info {
     float: initial; /* set with the bs columns parent*/
     text-align: right; /*keep*/
     width: auto;
   }
 
-  .article-container .grid-container__plain .post.style-01 .author-info {
+  .article-container .grid-container__plain article.style-01 .author-info {
     float: initial;
     width: auto;
   }
@@ -934,7 +934,7 @@ Limit to desktop
     padding-top: 0 !important;
   }
 }
-.article-container .grid-container__plain .post .entry-footer {
+.article-container .grid-container__plain article .entry-footer {
     padding: 2.5em 0 0 0;
 }
 /*

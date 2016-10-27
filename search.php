@@ -26,7 +26,15 @@
 
   <?php do_action('__before_main_wrapper'); ?>
     <div id="main-wrapper" class="section bg">
-
+      <?php
+        if ( czr_fn_has('post_list_search_header') ):
+      ?>
+        <div class="container-fluid">
+          <?php czr_fn_render_template('content/post-lists/post_list_search_header', 'post_list_search_header');?>
+        </div>
+      <?php
+        endif;
+      ?>
       <?php do_action('__before_main_container'); ?>
 
       <div class="container" role="main">
@@ -39,7 +47,7 @@
 
           <div id="content" class="<?php czr_fn_article_container_class() ?>">
             <?php
-              if ( is_home() && ! is_front_page() )//blog page title
+
                 if ( czr_fn_has('posts_list_headings') ) { czr_fn_render_template('content/post-lists/posts_list_headings', 'posts_list_headings'); }
               if ( have_posts() ) {
                 while ( have_posts() ) {

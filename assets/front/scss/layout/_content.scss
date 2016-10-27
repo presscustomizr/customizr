@@ -265,8 +265,8 @@
 
 /* plain post list */
 .grid-container__plain {
-	.article-container { padding-top: $base-line-height*4; }
-	.post {
+	.article-container { padding-top: $base-line-height*4; margin-bottom: 30px; }
+	article {
 		section { padding:0; }
 		section:last-of-type { padding:$base-line-height*2; }
 		background: $white;
@@ -387,7 +387,7 @@
 		}
 
 	}
-	.post {
+	article {
 		.post-tags { width: 50%; float: left; }
 		.socials   { float:right; margin-top:$base-line-height;  }
 		.post-info {  }

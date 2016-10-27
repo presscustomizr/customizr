@@ -7,7 +7,7 @@ $_options = array(
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
     'tc_sticky_header' => true,
-    'tc_header_type' => 'absolute',// (absolute||standard)
+    'tc_header_type' => 'absolut',// (absolute||standard)
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
@@ -55,6 +55,9 @@ $_options = array(
     'tc_center_img'            => true,
 
     'tc_show_post_navigation_home' => true,
+
+    'tc_cat_title'             => 'Category:',
+    'tc_author_title'          => 'Author:'
 
 );
 

@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .category-info a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain .post .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .category-info a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
   font-weight: 500;
 }
 
@@ -209,7 +209,7 @@ blockquote p {
 }
 
 .service-font, .btn, .entry-header .entry-meta a, .category-info a, .tagcloud a,
-.tags li, .grid-container__plain .post .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
+.tags li, .grid-container__plain article .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
@@ -2745,67 +2745,68 @@ label i {
 /* plain post list */
 .grid-container__plain .article-container {
   padding-top: 5em;
+  margin-bottom: 30px;
 }
 
-.grid-container__plain .post {
+.grid-container__plain article {
   background: #fff;
 }
 
-.grid-container__plain .post section {
+.grid-container__plain article section {
   padding: 0;
 }
 
-.grid-container__plain .post section:last-of-type {
+.grid-container__plain article section:last-of-type {
   padding: 2.5em;
 }
 
-.grid-container__plain .post .tc-thumbnail {
+.grid-container__plain article .tc-thumbnail {
   max-height: 600px;
   overflow: hidden;
 }
 
-.grid-container__plain .post .entry-header .entry-meta {
+.grid-container__plain article .entry-header .entry-meta {
   margin-top: 1.25em;
 }
 
-.grid-container__plain .post .entry-header .entry-meta a {
+.grid-container__plain article .entry-header .entry-meta a {
   margin-right: 0;
 }
 
-.grid-container__plain .post .post-tags {
+.grid-container__plain article .post-tags {
   width: 50%;
   float: left;
   margin-top: 1.25em;
 }
 
-.grid-container__plain .post .socials {
+.grid-container__plain article .socials {
   float: right;
   margin-top: 1.25em;
 }
 
-.grid-container__plain .post .post-info {
+.grid-container__plain article .post-info {
   margin-top: 1.25em;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain .post .post-info {
+  .grid-container__plain article .post-info {
     text-align: right;
     margin-top: 0;
   }
 }
 
-.grid-container__plain .post .author-info .avatar, .grid-container__plain .post .author-info a {
+.grid-container__plain article .author-info .avatar, .grid-container__plain article .author-info a {
   float: none;
   clear: none;
   display: inline-block;
 }
 
-.grid-container__plain .post .author-info a {
+.grid-container__plain article .author-info a {
   width: auto;
   margin-left: 1.25em;
 }
 
-.grid-container__plain .post .author-info a {
+.grid-container__plain article .author-info a {
   color: #202020;
   line-height: 48px;
   margin-right: 1.25em;
@@ -2817,17 +2818,17 @@ label i {
   letter-spacing: 4px;
 }
 
-.grid-container__plain .post .author-info .avatar {
+.grid-container__plain article .author-info .avatar {
   display: block;
   float: right;
   clear: both;
 }
 
-.grid-container__plain .post .tax__container {
+.grid-container__plain article .tax__container {
   overflow: hidden;
 }
 
-.grid-container__plain .post .tax__container .tax__link {
+.grid-container__plain article .tax__container .tax__link {
   display: block;
   letter-spacing: 3px;
   line-height: 3em;
@@ -2836,21 +2837,21 @@ label i {
   position: relative;
 }
 
-.grid-container__plain .post .tax__container .tax__link:not(:last-of-type)::after {
+.grid-container__plain article .tax__container .tax__link:not(:last-of-type)::after {
   content: none;
 }
 
-.grid-container__plain .post .tax__container .tax__link span {
+.grid-container__plain article .tax__container .tax__link span {
   position: relative;
   width: auto;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain .post .tax__container .tax__link {
+  .grid-container__plain article .tax__container .tax__link {
     text-align: right;
     margin: 0;
   }
-  .grid-container__plain .post .tax__container .tax__link span::before {
+  .grid-container__plain article .tax__container .tax__link span::before {
     content: "";
     position: absolute;
     top: calc(50% + 2px);
@@ -2863,26 +2864,26 @@ label i {
   }
 }
 
-.grid-container__plain .post .tax__container .tax__link:hover span::before {
+.grid-container__plain article .tax__container .tax__link:hover span::before {
   width: 0.625em;
 }
 
 @media (max-width: 48em) {
-  .grid-container__plain .post .tax__container .tax__link {
+  .grid-container__plain article .tax__container .tax__link {
     width: auto;
     display: inline-block;
     text-align: left;
   }
-  .grid-container__plain .post .tax__container .tax__link:not(:first-of-type) {
+  .grid-container__plain article .tax__container .tax__link:not(:first-of-type) {
     margin-left: 1.25em;
   }
-  .grid-container__plain .post .tax__container .tax__link span::before {
+  .grid-container__plain article .tax__container .tax__link span::before {
     content: none;
   }
-  .grid-container__plain .post .tax__container .tax__link span {
+  .grid-container__plain article .tax__container .tax__link span {
     position: relative;
   }
-  .grid-container__plain .post .tax__container .tax__link:not(:last-of-type) span::after {
+  .grid-container__plain article .tax__container .tax__link:not(:last-of-type) span::after {
     content: "/";
     position: absolute;
     left: 100%;
@@ -2890,31 +2891,31 @@ label i {
   }
 }
 
-.grid-container__plain .post .entry-footer {
+.grid-container__plain article .entry-footer {
   clear: both;
   border-top: 1px solid #eceeef;
   padding: 2.5em 2.5em 0 2.5em;
 }
 
-.grid-container__plain .post .entry-footer .entry-meta {
+.grid-container__plain article .entry-footer .entry-meta {
   margin-top: 2.5em;
 }
 
-.grid-container__plain .post .entry-footer .btn-holder {
+.grid-container__plain article .entry-footer .btn-holder {
   text-align: right;
 }
 
-.grid-container__plain .post .entry-footer .socials {
+.grid-container__plain article .entry-footer .socials {
   float: right;
 }
 
-.grid-container__plain .post header.entry-footer {
+.grid-container__plain article header.entry-footer {
   padding: 0 2.5em 2.5em 2.5em;
   border-top: none;
   border-bottom: 1px solid #eceeef;
 }
 
-.grid-container__plain .post .tc-content-inner {
+.grid-container__plain article .tc-content-inner {
   margin-bottom: 2.5em;
 }
 
@@ -2923,23 +2924,23 @@ label i {
   width: 100%;
 }
 
-.grid-container__plain .post .post-tags {
+.grid-container__plain article .post-tags {
   width: 50%;
   float: left;
 }
 
-.grid-container__plain .post .socials {
+.grid-container__plain article .socials {
   float: right;
   margin-top: 1.25em;
 }
 
-.grid-container__plain .post .author-info .avatar, .grid-container__plain .post .author-info a {
+.grid-container__plain article .author-info .avatar, .grid-container__plain article .author-info a {
   float: none;
   clear: none;
   display: inline-block;
 }
 
-.grid-container__plain .post .author-info a {
+.grid-container__plain article .author-info a {
   width: auto;
   margin-left: 1.25em;
 }
