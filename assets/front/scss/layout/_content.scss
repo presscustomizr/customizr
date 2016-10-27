@@ -279,11 +279,6 @@
 			 }
 
 		}
-		header {
-			@media (max-width: 60em) {
-				padding: 0 15px;
-			}
-		}
 		.post-tags { width: 50%; float: left; margin-top: $base-line-height; }
 		.socials   { float:right; margin-top:$base-line-height;  }
 
@@ -317,14 +312,15 @@
 			}
 			.avatar { display: block; float:right; clear:both; }
 		}
-		.entry-meta .category__link {
+		.tax__container {
+			overflow:hidden;
+			.tax__link {
 				display: block;
 				letter-spacing: 3px;
 				line-height: 3em;
 				clear:both;
 				width:auto;
 				position: relative;
-				@extend .caps;
 				@extend .service-font;
 				&:not(:last-of-type)::after { content:none; }
 				span { position: relative; width: auto; }
@@ -360,6 +356,7 @@
 					}
 
 				}
+			}
 		}
 		.entry-footer {
 			clear: both;

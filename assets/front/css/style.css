@@ -209,12 +209,12 @@ blockquote p {
 }
 
 .service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tagcloud a,
-.tags li, .grid-container__plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
+.tags li, .grid-container__plain .post .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .grid-container__plain .post .entry-meta .category__link, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -2764,12 +2764,6 @@ label i {
   margin-right: 0;
 }
 
-@media (max-width: 60em) {
-  .grid-container__plain .post header {
-    padding: 0 15px;
-  }
-}
-
 .grid-container__plain .post .post-tags {
   width: 50%;
   float: left;
@@ -2821,7 +2815,11 @@ label i {
   clear: both;
 }
 
-.grid-container__plain .post .entry-meta .category__link {
+.grid-container__plain .post .tax__container {
+  overflow: hidden;
+}
+
+.grid-container__plain .post .tax__container .tax__link {
   display: block;
   letter-spacing: 3px;
   line-height: 3em;
@@ -2830,21 +2828,21 @@ label i {
   position: relative;
 }
 
-.grid-container__plain .post .entry-meta .category__link:not(:last-of-type)::after {
+.grid-container__plain .post .tax__container .tax__link:not(:last-of-type)::after {
   content: none;
 }
 
-.grid-container__plain .post .entry-meta .category__link span {
+.grid-container__plain .post .tax__container .tax__link span {
   position: relative;
   width: auto;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain .post .entry-meta .category__link {
+  .grid-container__plain .post .tax__container .tax__link {
     text-align: right;
     margin: 0;
   }
-  .grid-container__plain .post .entry-meta .category__link span::before {
+  .grid-container__plain .post .tax__container .tax__link span::before {
     content: "";
     position: absolute;
     top: calc(50% + 2px);
@@ -2857,26 +2855,26 @@ label i {
   }
 }
 
-.grid-container__plain .post .entry-meta .category__link:hover span::before {
+.grid-container__plain .post .tax__container .tax__link:hover span::before {
   width: 0.625em;
 }
 
 @media (max-width: 48em) {
-  .grid-container__plain .post .entry-meta .category__link {
+  .grid-container__plain .post .tax__container .tax__link {
     width: auto;
     display: inline-block;
     text-align: left;
   }
-  .grid-container__plain .post .entry-meta .category__link:not(:first-of-type) {
+  .grid-container__plain .post .tax__container .tax__link:not(:first-of-type) {
     margin-left: 1.25em;
   }
-  .grid-container__plain .post .entry-meta .category__link span::before {
+  .grid-container__plain .post .tax__container .tax__link span::before {
     content: none;
   }
-  .grid-container__plain .post .entry-meta .category__link span {
+  .grid-container__plain .post .tax__container .tax__link span {
     position: relative;
   }
-  .grid-container__plain .post .entry-meta .category__link:not(:last-of-type) span::after {
+  .grid-container__plain .post .tax__container .tax__link:not(:last-of-type) span::after {
     content: "/";
     position: absolute;
     left: 100%;
