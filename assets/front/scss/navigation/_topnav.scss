@@ -313,15 +313,31 @@
 }
 /* Header types: Absolute or Standard(pushing) */
 
+
+.navbar-sticky,
+.header-absolute .topnav_navbars__wrapper,
+#sticky-placeholder {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030
+}
+.header-absolute {
+  .topnav_navbars__wrapper,
+  .sticky-placeholder {
+    position: absolute;
+  }
+}
 /* Sticky header */
 .navbar-sticky {
-   @include transition(all 0.5s ease-in-out);
-   //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
-   .header-transparent & .primary-navbar__wrapper {
-      @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
-    }
-   .secondary-navbar__wrapper  { display:none; }
-
+  position: fixed;
+  .admin-bar & { top: 30px }
+  @include transition(all 0.5s ease-in-out);
+  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
+  .header-transparent & .primary-navbar__wrapper {
+    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
+  }
+  .secondary-navbar__wrapper  { display:none; }
 }
 
 @media (min-width: 992px) {

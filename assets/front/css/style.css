@@ -5380,10 +5380,29 @@ section.post-content {
 }
 
 /* Header types: Absolute or Standard(pushing) */
+.navbar-sticky,
+.header-absolute .topnav_navbars__wrapper,
+#sticky-placeholder {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+.header-absolute .topnav_navbars__wrapper,
+.header-absolute .sticky-placeholder {
+  position: absolute;
+}
+
 /* Sticky header */
 .navbar-sticky {
+  position: fixed;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+
+.admin-bar .navbar-sticky {
+  top: 30px;
 }
 
 .header-transparent .navbar-sticky .primary-navbar__wrapper {
