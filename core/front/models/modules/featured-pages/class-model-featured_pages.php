@@ -69,8 +69,9 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
 
   function czr_fn_get_single_fp_model( $fp_single_id, $czr_fn_show_featured_pages_img, $fp_holder_img, $fp_index ) {
-        $fp_img = '';
+        $fp_img              = '';
         $thumb_wrapper_class = '';
+        $edit_enabled        = false;
 
         //if fps are not set
         if ( null == czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id ) || ! czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id ) ) {
@@ -106,7 +107,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $featured_page_id               = apply_filters( 'czr_fp_id', esc_attr( czr_fn_get_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
           $featured_page_link             = apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
           $featured_page_title            = apply_filters( 'czr_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
-          $edit_enabled                   = false;
+
 
         //when are we displaying the edit link?
           //never display when customizing
