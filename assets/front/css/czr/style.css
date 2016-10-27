@@ -59,17 +59,6 @@ img.v-centered {
   transform: none !important;
 }
 
-/* STICKY */
-.header-absolute .topnav_navbars__wrapper,
-.header-absolute #sticky-placeholder,
-.navbar-sticky { top: 0; left: 0; right: 0; position: absolute; z-index: 1030 }
-.header-absolute #sticky-placeholder { z-index: 0;}
-.navbar-sticky { position: fixed !important;}
-.admin-bar .navbar-sticky{ top: 30px }
-/* END STICKY */
-
-
-
 /* FLICKITY SLIDER  */
 /*.carousel { z-index: 4;}*/
 .carousel-cell { width: 100%;}
