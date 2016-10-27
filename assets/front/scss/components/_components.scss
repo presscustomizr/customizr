@@ -25,15 +25,10 @@
 }
 .socials { @extend %socials }
 .btn {
-	@include border-radius(2px, 2px, 2px, 2px);
+	border-radius: 2px;
 	@extend .service-font;
 }
-.btn-large {
-	@extend .bold;
-	letter-spacing: 3px;
-	@extend .caps;
-	padding: $base-line-height $base-line-height*2;
-}
+
 .readmore-holder {
   padding-top: $base-line-height;
   padding-bottom: $base-line-height;
@@ -47,7 +42,6 @@
 	@extend .caps;
 	@extend .semi-bold;
 	border: 2px solid $black;
-	border-radius: 2px;
 	line-height: $base-line-height*2;
 	padding: 0 $base-line-height*2;
 	span {
@@ -58,6 +52,12 @@
 		color: $black;
 		background: $white;
 	}
+}
+.btn-large {
+  @extend .bold;
+  letter-spacing: 3px;
+  @extend .caps;
+  padding: $base-line-height $base-line-height*2;
 }
 .btn-small {
 	font-size: 0.65em;
@@ -73,7 +73,6 @@
 	&:hover { color: $black; border-color: transparent; background: $grey-light; }
 }
 .btn-skin {
-	@extend .btn;
 	color: $white;
 	background-color: $skin;
 	&:hover { color: $grey-light; }

@@ -208,13 +208,13 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tagcloud a,
+.service-font, .btn, .entry-header .entry-meta a, .category-info a, .tagcloud a,
 .tags li, .grid-container__plain .post .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-more, .btn-large, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -1236,16 +1236,8 @@ body {
   color: #bb0000 !important;
 }
 
-.btn, .btn-skin {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.btn-large {
-  letter-spacing: 3px;
-  padding: 1.25em 2.5em;
+.btn {
+  border-radius: 2px;
 }
 
 .readmore-holder {
@@ -1260,7 +1252,6 @@ body {
   color: #fff;
   font-size: 0.75em;
   border: 2px solid #202020;
-  border-radius: 2px;
   line-height: 2.5em;
   padding: 0 2.5em;
 }
@@ -1273,6 +1264,11 @@ body {
 .btn-more:hover {
   color: #202020;
   background: #fff;
+}
+
+.btn-large {
+  letter-spacing: 3px;
+  padding: 1.25em 2.5em;
 }
 
 .btn-small, .btn-edit {

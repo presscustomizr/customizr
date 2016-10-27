@@ -34,7 +34,7 @@ if ( czr_fn_get( 'has_caption' ) ) :
     <?php endif; ?>
     <!-- BUTTON -->
     <?php if ( czr_fn_get( 'button_text' ) ): ?>
-      <a class="btn btn-fill btn-skin btn-large" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
+      <a class="btn btn-skin btn-large" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
   <?php
