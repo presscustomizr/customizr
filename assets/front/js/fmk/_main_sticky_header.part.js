@@ -63,6 +63,14 @@ var czrapp = czrapp || {};
       .on( 'sticky-disable', function() {
         self.stickyHeaderEventHandler('on-unstick');
       })
+      /* Remove animating class */
+      .on( 'sticky-enabled', function() {
+        self.stickyHeaderEventHandler('on-toggled');
+      })
+      .on( 'sticky-disabled', function() {
+        self.stickyHeaderEventHandler('on-toggled');
+      });
+
 
       czrapp.$_window.scroll( function() {
         self.stickyHeaderEventHandler('scroll');
@@ -118,6 +126,11 @@ var czrapp = czrapp || {};
         case 'on-unstick' :
           this._on_sticky_disable();
         break;
+
+        case 'on-toggled' :
+          setTimeout( function(){
+            self.$_sticky_candidate.removeClass('animating');
+          }, 10);
       }
     },
 
@@ -174,14 +187,14 @@ var czrapp = czrapp || {};
       if ( this._sticky_candidate_push )
         this._set_sticky_placeholder();
 
-      this.$_sticky_candidate.addClass( this._fixed_classes );
+      this.$_sticky_candidate.addClass('animating').addClass( this._fixed_classes );
       czrapp.$_body.addClass( 'sticky-enabled' ).removeClass( 'sticky-disabled' ).trigger('sticky-enabled');
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _on_sticky_disable : function() {
       this._reset_sticky_placeholder();
-      this.$_sticky_candidate.removeClass( this._fixed_classes );
+      this.$_sticky_candidate.addClass('animating').removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
     },
 

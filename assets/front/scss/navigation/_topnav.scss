@@ -315,23 +315,25 @@
 
 
 .navbar-sticky,
-.header-absolute .topnav_navbars__wrapper,
-#sticky-placeholder {
-  top: 0;
+.header-absolute .topnav_navbars__wrapper {
   left: 0;
   right: 0;
   z-index: 1030
 }
 .header-absolute {
   .topnav_navbars__wrapper,
-  .sticky-placeholder {
+  #sticky-placeholder {
     position: absolute;
   }
 }
+.navbar-sticky.animating { top: -20% !important }
 /* Sticky header */
-.navbar-sticky {
+.navbar-to-stick.navbar-sticky {
   position: fixed;
-  .admin-bar & { top: 30px }
+  &:not(.animating) {
+    top: 0;
+    .admin-bar & { top: 30px }
+  }
   @include transition(all 0.5s ease-in-out);
   //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
   .header-transparent & .primary-navbar__wrapper {
