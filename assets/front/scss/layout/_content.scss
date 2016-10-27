@@ -270,7 +270,6 @@
 		section { padding:0; }
 		section:last-of-type { padding:$base-line-height*2; }
 		background: $white;
-		.readmore-holder { border-bottom: 1px solid $grey-lightest; padding-bottom: $base-line-height; }
 		.tc-thumbnail { max-height: 600px; overflow: hidden; }
 		.entry-header {
 			.entry-meta {
@@ -381,28 +380,12 @@
 			margin-bottom: $base-line-height*2;
 		}
 	}
-
 	&.short {
 		.post-tags {
 			float: none;
 			width: 100%;
 		}
-		.readmore-holder {
-			padding-top: $base-line-height;
-			border-bottom: 0;
-			border-bottom: none;
-		}
-		.btn-more {
-			border-radius: 2px;
-			background: $black;
-			color: $white;
-			border-color: transparent;
-			&:hover {
-				background: $white;
-				color: $black;
-				border-color: $black;
-			}
-		}
+
 	}
 	.post {
 		.post-tags { width: 50%; float: left; }

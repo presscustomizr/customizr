@@ -34,13 +34,20 @@
 	@extend .caps;
 	padding: $base-line-height $base-line-height*2;
 }
+.readmore-holder {
+  padding-top: $base-line-height;
+  padding-bottom: $base-line-height;
+  border-bottom: 0;
+  border-bottom: none;
+}
 .btn-more {
-	color: $black;
+  background: $black;
+	color: $white;
 	font-size: 0.75em;
 	@extend .caps;
 	@extend .semi-bold;
-	border: 2px solid $grey-light;
-	border-radius: 0;
+	border: 2px solid $black;
+	border-radius: 2px;
 	line-height: $base-line-height*2;
 	padding: 0 $base-line-height*2;
 	span {
@@ -48,9 +55,8 @@
 		vertical-align: middle;
 	}
 	&:hover {
-		color: $white;
-		border-color: transparent;
-		background: $black;
+		color: $black;
+		background: $white;
 	}
 }
 .btn-small {
