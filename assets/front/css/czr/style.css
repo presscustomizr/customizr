@@ -60,25 +60,12 @@ img.v-centered {
 }
 
 /* STICKY */
-.topnav_navbars__wrapper { top: 0; }
-.header-skin-dark #sticky-placeholder{
-  background: #202020 ;
-}
-.header-skin-light #sticky-placeholder{
-  background: white ;
-}
-.navbar-sticky-overlap #sticky-placeholder{
-  position: absolute; top: 0;
-}
-.tc-header.header-transparent #sticky-placeholder{
-  background: transparent;
-}
-.admin-bar.sticky-enabled .navbar-fixed-top { top: 30px; }
-
-/* TO DECIDE */
-body:not(.tc-sticky-header) .navbar-fixed-top { position: relative;}
-.navbar-sticky-overlap .navbar-fixed-top { position: absolute;}
-.sticky-enabled.navbar-sticky-overlap .navbar-fixed-top { position: fixed;}
+.header-absolute .topnav_navbars__wrapper,
+.header-absolute #sticky-placeholder,
+.navbar-sticky { top: 0; left: 0; right: 0; position: absolute; z-index: 1030 }
+.header-absolute #sticky-placeholder { z-index: 0;}
+.navbar-sticky { position: fixed !important;}
+.admin-bar .navbar-sticky{ top: 30px }
 /* END STICKY */
 
 

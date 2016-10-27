@@ -1,5 +1,5 @@
 
- /* mamburger and caret */
+ /* hamburger and caret */
 
   .caret__dropdown-toggler,
   .ham__navbar-toggler {
@@ -311,7 +311,9 @@
   }
 
 }
+/* Header types: Absolute or Standard(pushing) */
 
+/* Sticky header */
 .navbar-sticky {
    @include transition(all 0.5s ease-in-out);
    //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
