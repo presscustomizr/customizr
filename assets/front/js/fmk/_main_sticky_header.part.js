@@ -5,29 +5,30 @@ var czrapp = czrapp || {};
   /*
   * The script uses a placeholder for the sticky-element:
   * - when the "sticky candidate" overlaps the content (e.g. a slider) at the first first scroll
-  * a placeholder will be injected. The placeholder has position absolute and its height is set to the
-  * header height when injected, reset to 0 when the fixed element backs to normal state, set again
+  * a placeholder will be injected. The placeholder has position absolute and its height is set equal to the
+  * sticky candidate height when injected, reset to 0 when the fixed element backs to normal state, set again
   * when scrolling down.
-  * - when the "sticky candidate" pushes the content the placeholder is relatively positioned,
-  * it's injected when every time the element becomes sticky, its height is set to the header height,
-  * and reset when unsticks.
+  * - when the "sticky candidate" pushes the content, the placeholder is staticaly positioned,
+  * it's injected each time the candidate sticks, its height is set equal to the sticky candidate height,
+  * and reset when it unsticks.
   *
   * In both cases the placeholder will be our reference to switch from sticky to un-sticky mode
   * and the reference to switch from un-sticky to sticky ONLY in the "overlapping" case. 'Cause in that
-  * case we cannot rely the trigger point dynamic computation to the sticky candidate as its position is
+  * case the trigger point dynamic computation cannto rely the sticky candidate as its position is
   * fixed or absolute
   * (see _toggleStickyAt() )
   */
 (function($, czrapp) {
   var _methods =  {
     init : function() {
+      this.namespace                  = 'tc-sticky-header';
       //cache jQuery el
-      this.$_sticky_candidate         = $( '.tc-header .topnav_navbars__wrapper' );
+      this.$_sticky_candidate         = czrapp.$_tcHeader.find('.navbar-to-stick');
 
       //additional state props
       this._didScroll                 = false;
-      this._sticky_candidate_overlap  = czrapp.$_body.hasClass( 'navbar-sticky-overlap' );
-      this._sticky_candidate_push     = czrapp.$_body.hasClass( 'navbar-sticky-push' );
+      this._sticky_candidate_overlap  = czrapp.$_tcHeader.hasClass( 'header-absolute' );
+      this._sticky_candidate_push     = !  this._sticky_candidate_overlap;
       this._fixed_classes             = 'navbar-sticky';
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
@@ -36,20 +37,16 @@ var czrapp = czrapp || {};
       this.debounced_resize_actions   = _.debounce( this.stickyHeaderMaybeToggling, 300 );
 
       //set some props depending on the desired sticky behavior
-      if ( this._sticky_candidate_push )
-        this._fixed_classes   = 'navbar-fixed-top navbar-sticky'
-      else if ( ! this._sticky_candidate_overlap )
-        this._sticky_trigger  = 300;
-
+      this._sticky_trigger  = 300;
     },
 
     triggerStickyHeaderLoad : function() {
-      //this should actually check the header sticky in the CZRParams only
-      if ( ! this._is_sticky_enabled() )
+      if ( ! CZRParams.stickyHeader )
         return;
 
       //LOADING ACTIONS
-      czrapp.$_body.trigger( 'sticky-enabled-on-load' , { on : 'load' } );
+      czrapp.$_body.addClass( 'tc-sticky-header' )
+                   .trigger( 'sticky-enabled-on-load' );
     },
 
     stickyHeaderEventListener : function() {
@@ -87,10 +84,9 @@ var czrapp = czrapp || {};
                        .removeClass( 'tc-sticky-header' );
       } else {
         /* the viewport is at least 992 pixels wide */
-        if ( ! this._is_sticky_enabled() ) {
+        if ( ! this._is_sticky_enabled() )
           czrapp.$_body.addClass( 'tc-sticky-header' );
-          this.stickyHeaderEventHandler('scroll');
-        }
+        this.stickyHeaderEventHandler('scroll');
       }
     },
 
@@ -137,6 +133,7 @@ var czrapp = czrapp || {};
         return this._sticky_trigger;
 
       var $_trigger_element = this.$_sticky_placeholder && this.$_sticky_placeholder.height() ? this.$_sticky_placeholder : this.$_sticky_candidate;
+      console.log($_trigger_element.outerHeight() + $_trigger_element.offset().top + 50);
       return $_trigger_element.outerHeight() + $_trigger_element.offset().top + 50;
     },
 
@@ -191,7 +188,7 @@ var czrapp = czrapp || {};
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_sticky_placeholder : function() {
       if ( ! this.$_sticky_placeholder ) {
-        this.$_sticky_candidate.closest('header').after('<div id="sticky-placeholder"></div>');
+        czrapp.$_tcHeader.append('<div id="sticky-placeholder"></div>');
         this.$_sticky_placeholder = $('#sticky-placeholder');
       }
       this.$_sticky_placeholder.css('height', this.$_sticky_candidate.outerHeight() );

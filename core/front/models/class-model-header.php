@@ -9,40 +9,47 @@ class CZR_header_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $_model = array(
-      'element_class' => apply_filters('czr_header_class', array(
-          'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) )
-      )),
-      'elements_container_class' => apply_filters('czr_header_elements_container_class', array() )
-    );
 
-    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || CZR() -> czr_fn_is_customizing();
+    $element_class            = array( 'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) ) );
+    $elements_container_class = array();
 
-    if ( $_sticky_header ) {
-      $_sticky_overlap = $_sticky_header && 'overlap' == esc_attr( czr_fn_get_opt( 'tc_sticky_header_type' ) );
 
-      array_push( $_model['element_class'],
-        $_sticky_overlap ? 'header-transparent' : '',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
-      );
-      array_push( $_model['elements_container_class'], $_sticky_overlap ? 'navbar-fixed-top' : '' );
-    }
+    /* Is the header absolute ? add absolute and header-transparent classes */
+    if ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) )
+      array_push( $element_class, 'header-absolute', 'header-transparent' );
 
     //No navbar box
     if ( 1 != esc_attr( czr_fn_get_opt( 'tc_display_boxed_navbar') ) )
-      array_push( $_model['element_class'], 'no-navbar' );
+      array_push( $element_class, 'no-navbar' );
+
     //regular menu
     if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )
-      array_push( $_model['element_class'], 'tc-regular-menu' );
+      array_push( $element_class, 'tc-regular-menu' );
+
 
     //header class for the secondary menu
-    array_push(  $_model['element_class'],
+    array_push(  $element_class,
       'tc-second-menu-on',
       'tc-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
     );
 
-    return array_merge( $model, $_model );
+
+    /* Sticky header treatment */
+    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || CZR() -> czr_fn_is_customizing();
+
+    if ( $_sticky_header ) {
+      array_push( $element_class,
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
+      );
+      array_push( $elements_container_class, 'navbar-to-stick' );
+    }
+
+
+    return array_merge( $model, array(
+      'element_class'            => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
+      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) )
+     ) );
   }
 
 
@@ -88,7 +95,6 @@ class CZR_header_model_class extends CZR_Model {
   function czr_fn_body_class( $_classes/*array*/ ) {
     //STICKY HEADER
     if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
-      array_push( $_classes, 'tc-sticky-header', 'sticky-disabled', 'navbar-sticky-' . esc_attr( czr_fn_get_opt( 'tc_sticky_header_type' ) ) );
 
       /* WHICH OPTIONS SHOULD BE KEPT HERE ???? */
       //STICKY TRANSPARENT ON SCROLL
@@ -97,8 +103,7 @@ class CZR_header_model_class extends CZR_Model {
       else
         array_push( $_classes, 'tc-solid-color-on-scroll' );
     }
-    else
-      array_push( $_classes, 'tc-no-sticky-header' );
+
     return $_classes;
   }
 }//end of class

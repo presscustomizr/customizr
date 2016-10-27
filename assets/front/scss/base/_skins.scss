@@ -51,12 +51,13 @@ $secondary-color-dark   : $grey;
 		    @include underlined ( $primary-color, 1px );
 		}
 	}
-
+	#sticky-placeholder,
 	.secondary-navbar__wrapper, .primary-navbar__wrapper  {
 		background: $background-color;
 	}
 
 	.header-transparent {
+		#sticky-placeholder { background: transparent }
 		@media (min-width: 993px) {
 			.secondary-navbar__wrapper, .primary-navbar__wrapper  {
 				background: transparent;
