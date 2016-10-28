@@ -12,7 +12,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
   public $content_class            = 'entry-content'; //might be entry-summary for special posts..
 
-  public $post_class               = array( 'row' );
+  public $post_class               = array();
 
   public $has_post_media;
 

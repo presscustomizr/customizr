@@ -4087,12 +4087,11 @@ WP classes
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 667px) {
-  .article-container {
-    padding: 0 2.5em;
-  }
-}
-
+/*@media screen and (min-width: 480px) and (max-width: 667px) {
+	.article-container {
+		padding: 0 $base-line-height*2;
+	}
+}*/
 .grid-container__plain .page__header.image-header {
   background-image: url("../../assets/img/customizr_photos/fleurs.jpg");
 }

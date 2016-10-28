@@ -27,13 +27,13 @@
         ?>
         <div class="entry-meta row">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-          <div class="post-tags pull-md-left col-md-8">
+          <div class="post-tags pull-md-left col-md-8 col-xs-12">
             <ul class="tags">
               <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
             </ul>
           </div>
           <?php endif; ?>
-          <div class="post-share pull-md-right col-md-4">
+          <div class="post-share pull-md-right col-md-4 col-xs-12">
             <!-- fake need to have social links somewhere -->
             <ul class="socials">
               <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
