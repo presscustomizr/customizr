@@ -58,7 +58,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'CZR_post_thumbnails' ) ) {
+      if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
         CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
         new CZR_post_thumbnails();
       }
@@ -81,11 +81,11 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( ! class_exists( 'CZR_post_thumbnails' ) ) {
+      if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
         CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
         new CZR_post_thumbnails();
       }
-      if ( ! class_exists( 'CZR_slider' ) ) {
+      if ( ! class_exists( 'CZR_slider' ) || ! is_object(CZR_slider::$instance) ) {
         CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
         new CZR_slider();
       }
