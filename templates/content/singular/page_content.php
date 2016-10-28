@@ -26,7 +26,7 @@
           );
         ?>
         <div class="entry-meta row">
-          <div class="post-share pull-md-right col-md-4">
+          <div class="post-share pull-md-right col-md-4 col-xs-12">
             <!-- fake need to have social links somewhere -->
             <ul class="socials">
               <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
