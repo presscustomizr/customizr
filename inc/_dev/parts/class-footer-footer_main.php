@@ -92,7 +92,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
       }
 
 			//hack to render white color icons if skin is grey or black
-			$skin_class 					= ( in_array( CZR_utils::$inst->czr_fn_opt( 'tc_skin') , array('grey.css' , 'black.css')) ) ? 'white-icons' : '';
+			$skin_class 					= ( in_array( CZR_utils::$inst->czr_fn_opt( 'tc_skin') , array('grey.css' , 'black.css', 'black2.css')) ) ? 'white-icons' : '';
 			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
 			ob_start();
 			?>
