@@ -1,58 +1,62 @@
+.navbar-nav a {
+  padding-top: .425rem;
+  padding-bottom: .425rem;
+}
 
- /* hamburger and caret */
+/* hamburger and caret */
 
-  .caret__dropdown-toggler,
-  .ham__navbar-toggler {
-    position: relative;
+.caret__dropdown-toggler,
+.ham__navbar-toggler {
+  position: relative;
+  text-align: center;
+  z-index: 10001;
+  border:none;
+  background: none;
+  margin: 0;
+  vertical-align: middle;
+  border-radius: 0;
+  cursor: pointer;
+  @include transition (all, .3s);
+}
+.ham__navbar-toggler {
+    width: auto;
     text-align: center;
-    z-index: 10001;
-    border:none;
-    background: none;
-    margin: 0;
+    height: 1.33em;
+    display: inline-block;
+    float:none;
+}
+.caret__dropdown-toggler {
+    float: right;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
     vertical-align: middle;
-    border-radius: 0;
-    cursor: pointer;
-    @include transition (all, .3s);
-  }
-  .ham__navbar-toggler {
-      width: auto;
-      text-align: center;
-      height: 1.33em;
+    z-index: inherit;
+}
+
+
+.ham-toggler-menu__span  { background: transparent; }
+
+.ham-toggler-menu__span,
+.caret__dropdown-toggler__span {
+  display: block;
+  width: 1rem;
+  height: 1.5px;
+  position: relative;
+  top: 0;
+  vertical-align: bottom;
+  @include transition (all ease 0.3s);
+  &:before, &:after {
+      position: absolute;
+      content: '';
       display: inline-block;
-      float:none;
+      width: inherit;
+      height: inherit;
+      transition: all ease .3s;
+      outline: .075rem solid transparent;
+      left: 0;
   }
-  .caret__dropdown-toggler {
-      float: right;
-      display: inline-block;
-      width: 0;
-      height: 0;
-      margin-left: 2px;
-      vertical-align: middle;
-      z-index: inherit;
-  }
-
-
-  .ham-toggler-menu__span  { background: transparent; }
-
-  .ham-toggler-menu__span,
-  .caret__dropdown-toggler__span {
-    display: block;
-    width: 1rem;
-    height: 1.5px;
-    position: relative;
-    top: 0;
-    vertical-align: bottom;
-    @include transition (all ease 0.3s);
-    &:before, &:after {
-        position: absolute;
-        content: '';
-        display: inline-block;
-        width: inherit;
-        height: inherit;
-        transition: all ease .3s;
-        outline: .075rem solid transparent;
-        left: 0;
-    }
 }
 .caret__dropdown-toggler__span { display:inline-block; vertical-align: middle }
 .ham__navbar-toggler .ham-toggler-menu__span:after  { @include transform(rotateZ(45deg));  }
@@ -311,9 +315,9 @@
   }
 
 }
-/* Header types: Absolute or Standard(pushing) */
-
-
+/*
+* Header types: Absolute or Standard(pushing) and Sticky
+*/
 .navbar-sticky,
 .header-absolute .topnav_navbars__wrapper {
   left: 0;
@@ -327,6 +331,7 @@
   }
 }
 .navbar-sticky.animating { top: -20% !important }
+
 /* Sticky header */
 .navbar-to-stick.navbar-sticky {
   position: fixed;
@@ -439,7 +444,7 @@
    }
 }
 /*
-* In desktops when resizing below the "collapsing mobil menu" treshold
+* In desktops when resizing below the "collapsing mobile menu" treshold
 * always expand submenus when .tc-open-on-hover (which is not available in mobiles )
 */
 @media (max-width: 991px){
