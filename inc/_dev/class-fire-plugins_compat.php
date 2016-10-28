@@ -1130,10 +1130,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                .tc-wc-menu .widget_shopping_cart .product_list_widget li a.remove {
                  position: relative; float: left; top: auto; margin-right: 0.2em;
                }
-               /* hack for the first letter issue */
-               .tc-wc-menu .count:before {
-                 content: '';
-               }
                .tc-wc-menu .widget_shopping_cart .product_list_widget {
                  max-height: 10em;
                  overflow-y: auto;
