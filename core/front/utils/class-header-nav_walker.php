@@ -30,7 +30,6 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if (  'CZR_nav_walker' != get_class( (object)$args->walker ) )
         return $atts;
 
-      $atts[ 'class' ] = 'nav-link';
       if ( $item->is_dropdown ) {
         if ( ! apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
           if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
@@ -208,8 +207,6 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //since the &$output is passed by reference, it will modify the value on the fly based on the parent method treatment
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
-
-      $item_html = str_replace( '<a', '<a class="nav-link"', $item_html);
 
       if ( $args['has_children'] ) {
 

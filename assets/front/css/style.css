@@ -4984,6 +4984,11 @@ section.post-content {
   }
 }
 
+.navbar-nav a {
+  padding-top: .425rem;
+  padding-bottom: .425rem;
+}
+
 /* hamburger and caret */
 .caret__dropdown-toggler,
 .ham__navbar-toggler {
@@ -5380,7 +5385,9 @@ section.post-content {
   }
 }
 
-/* Header types: Absolute or Standard(pushing) */
+/*
+* Header types: Absolute or Standard(pushing) and Sticky
+*/
 .navbar-sticky,
 .header-absolute .topnav_navbars__wrapper {
   left: 0;
@@ -5567,7 +5574,7 @@ section.post-content {
 }
 
 /*
-* In desktops when resizing below the "collapsing mobil menu" treshold
+* In desktops when resizing below the "collapsing mobile menu" treshold
 * always expand submenus when .tc-open-on-hover (which is not available in mobiles )
 */
 @media (max-width: 991px) {
