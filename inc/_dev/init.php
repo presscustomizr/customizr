@@ -382,7 +382,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     * @since  3.3+
     */
     function czr_fn_is_customize_preview_frame() {
-      return ! is_admin() && isset($_REQUEST['wp_customize']);
+      return is_customize_preview() || ( ! is_admin() && isset($_REQUEST['customize_messenger_channel']) );
     }
 
 
