@@ -751,6 +751,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
 
       //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
       //fired on hook : wp_enqueue_scripts
+      add_filter( 'tc_user_options_style'         , array( $this , 'czr_fn_menu_item_style_first_letter_css') );
       //set second menu specific style including @media rules
       add_filter( 'tc_user_options_style'         , array( $this , 'czr_fn_add_second_menu_inline_style') );
 
@@ -1202,6 +1203,26 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       return apply_filters( 'tc_add_menuclass', $html );
     }
 
+
+
+    /**
+    * Adds a specific style to the first letter of the menu item
+    * hook : tc_user_options_style
+    *
+    * @package Customizr
+    * @since Customizr 3.2.11
+    */
+    function czr_fn_menu_item_style_first_letter_css( $_css ) {
+      if ( ! apply_filters( 'tc_menu_item_style_first_letter' , CZR_utils::$inst -> czr_fn_user_started_before_version( '3.2.0' , '1.0.0' ) ? true : false ) )
+        return $_css;
+
+      return sprintf("%s\n%s",
+        $_css,
+        ".navbar .nav > li > a:first-letter {
+          font-size: 17px;
+        }\n"
+      );
+    }
 
     /*
     * Second menu

@@ -2895,7 +2895,7 @@ msgstr "Suivez notre actu"
 
 #: inc/czr-admin.php:605
 msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
-msgstr "Si Customizr vous donne entière satisfaction, dites le sur wordpress.org en évaluant le thème!"
+"Project-Id-Version: * Customizr v3.4.34\n"
 
 #: inc/czr-admin.php:604
 msgid "Happy user of Customizr?"
