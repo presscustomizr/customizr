@@ -502,21 +502,16 @@ body {
   webkit-tap-highlight-color: #B4B4B4;
 }
 
-/* Visibility */
-.visible-phone {
-  display: none !important;
-}
-
-.visible-tablet {
-  display: none !important;
-}
-
-.hidden-desktop {
-  display: none !important;
-}
-
-.md-hidden {
-  display: none !important;
+/*
+* Reset list styling for some elements
+*/
+.topnav_navbars__wrapper ul li:before,
+nav ul li::before,
+ul.nav li::before,
+li.pingback::before,
+li.comment::before,
+.products li::before {
+  content: none;
 }
 
 /* end mixin */
@@ -1369,8 +1364,7 @@ a.external {
   content: "/";
   position: absolute;
   top: 0;
-  left: 100%;
-  margin: 0 6px;
+  right: -1em;
 }
 
 /* go-to-top button*/
@@ -2938,7 +2932,7 @@ dl dd {
   border-bottom: 1px solid #eceeef;
 }
 
-.grid-container__plain article .tc-content-inner {
+.grid-container__plain article .tc-content-inner-wrapper {
   margin-bottom: 2.5em;
 }
 
@@ -4025,6 +4019,7 @@ WP classes
 
 [class*=grid-container__] .entry-quote {
   border: none;
+  margin: 0;
 }
 
 [class*=grid-container__] .entry-quote p, [class*=grid-container__] .entry-quote footer {
@@ -5039,11 +5034,6 @@ section.post-content {
 .navbar-nav a {
   padding-top: .425rem;
   padding-bottom: .425rem;
-}
-
-.topnav_navbars__wrapper li:before,
-nav li:before {
-  content: none;
 }
 
 /* hamburger and caret */

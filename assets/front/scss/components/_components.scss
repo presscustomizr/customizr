@@ -114,8 +114,7 @@ a[target="_blank"]:hover:after {
 		content: "/";
 		position: absolute;
 		top:0;
-		left:100%;
-		margin: 0 6px;
+		right: -1em;
 	}
 }
 /* go-to-top button*/
