@@ -561,6 +561,12 @@ WP classes
 		}
 	}
 }
+[class*=grid-container__] {
+	.entry-quote {
+		p, footer { margin-left: 0; padding-left: 0; }
+		&::before { content: none }
+	}
+}
 
 .square-grid__mini {
 	.col-xs-12 { padding: 0; }

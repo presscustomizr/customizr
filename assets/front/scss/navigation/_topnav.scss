@@ -2,7 +2,10 @@
   padding-top: .425rem;
   padding-bottom: .425rem;
 }
-
+.topnav_navbars__wrapper li:before,
+nav li:before {
+  content: none;
+}
 /* hamburger and caret */
 
 .caret__dropdown-toggler,

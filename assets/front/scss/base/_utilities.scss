@@ -7,6 +7,7 @@
     position: relative;
 		& + li { margin-left: $base-line-height; }
 	}
+  li:before { content: none }
 }
 .no-hover { pointer-events: none !important; }
 .shadow {

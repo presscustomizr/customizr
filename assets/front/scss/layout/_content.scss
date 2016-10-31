@@ -108,9 +108,9 @@
   height: 65vh;
 }
 
-//post formatting
-.post-entry {
-	ol.pre, ol.pre ol {
+//formatting
+/*.post-entry {*/
+	ol/*.pre*/, ol/*.pre*/ ol {
 		counter-reset: item;
 		li:before {
 			content: counters(item, ".") ".";
@@ -118,7 +118,7 @@
 			padding-right: $base-line-height/2;
 		}
 	}
-	ul.pre {
+	ul/*.pre*/ {
 		li {
 			    list-style: none;
 			}
@@ -130,7 +130,7 @@
 
 			}
 	}
-	ul.pre.dash {
+	ul/*.pre*/.dash {
 		list-style: none;
 		margin-left: $base-line-height;
 		li::before {
@@ -144,42 +144,12 @@
 			margin-right: $base-line-height;
 		}
 	}
-	ol.pre, ul.pre {
+	ol/*.pre*/, ul/*.pre*/ {
 		ol, ul {
-			margin-left: $base-line-height*2;
+			margin-left: $base-line-height*1.6;
 		}
 	}
-	blockquote {
-		padding-top: $base-line-height*2;
-		padding-bottom: $base-line-height*2;
-		border-top: 1px solid $grey-lightest;
-		border-bottom: 1px solid $grey-lightest;
-		p, footer { margin-left: 5em; width: 90%; }
-		p { padding-left:$base-line-height*4; }
-		footer { margin-left:$base-line-height*4; }
-		&::before{
-			content: "\e808";
-			top:$base-line-height*2;
-			left:$base-line-height*2;
-			position: absolute;
-			font-size: ms(2);
-			display: inline-block;
-			vertical-align: top;
-			font-family: "customizr";
-			font-style: normal;
-			font-weight: normal;
-			speak: none;
-			width: 1em;
-			margin-right: .2em;
-			text-align: center;
-			font-variant: normal;
-			text-transform: none;
-			margin-left: .2em;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-	}
-	}
-	table {
+	table:not([id^=wp-calendar]) {
 		border: 2px solid $grey-lightest;
 		th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
 		th, td { @extend .small; padding: $base-line-height; border: 1px solid $grey-lightest; }
@@ -206,7 +176,7 @@
 			padding-left : $base-line-height;
 		}
 	}
-}
+/*}*/
 
 /* featured pages*/
 
@@ -278,8 +248,8 @@
 			 }
 
 		}
-		.post-tags { width: 50%; float: left; margin-top: $base-line-height; }
-		.socials   { float:right; margin-top:$base-line-height;  }
+		.post-tags { width: 50%; float: left; margin-top: 1.5em; }
+		.socials   { float:right; margin-top:1em;  }
 
 		.post-info {
 			margin-top: $base-line-height;
@@ -389,7 +359,6 @@
 	}
 	article {
 		.post-tags { width: 50%; float: left; }
-		.socials   { float:right; margin-top:$base-line-height;  }
 		.post-info {  }
 		.author-info {
 
