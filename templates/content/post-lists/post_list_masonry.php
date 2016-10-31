@@ -15,14 +15,14 @@ endif ?>
     <div class="sections-wrapper grid-post">
     <?php
         if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
-          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+          czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
              'has_post_media'           => $has_post_media,
              'is_full_image'            => czr_fn_get( 'is_full_image'  )
             )
           );
         }
         if ( czr_fn_has('content') ) {
-          czr_fn_render_template('content/post-lists/post_list_content', 'post_list_content',
+          czr_fn_render_template('content/post-lists/singles/post_list_single_content', 'post_list_content',
             array(
               'has_header_format_icon'  => czr_fn_get( 'has_header_format_icon' )
             )

@@ -101,7 +101,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       //Post/page headings
       array(
         'id'          => 'post_list_header',
-        'model_class' => 'content/post-lists/headings/post_list_header'
+        'model_class' => 'content/post-lists/singles/headings/post_list_single_header'
       )
     );
 

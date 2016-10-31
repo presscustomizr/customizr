@@ -13,7 +13,7 @@ class CZR_content_model_class extends CZR_Model {
       array(
         //registered here also because we access to its properties from other templates
         //which as of now is only possibile with already registered models
-        'model_class' => 'content/post-lists/post_list_content',
+        'model_class' => 'content/post-lists/singles/post_list_single_content',
         'id' => 'post_list_content',
       ),
       array(
@@ -24,7 +24,7 @@ class CZR_content_model_class extends CZR_Model {
         'model_class' => 'content/post-lists/post_list_masonry_wrapper',
         'id' => 'post_list_masonry',
       ),
-      //Temporary registering here as we feed the template with a model which is not retrievable from the template name
+      //Temp registered here as we feed the template with a model which is not retrievable from the template name
       array(
         'model_class' => 'content/post-lists/post_list_plain',
         'id' => 'post_list_plain_excerpt',

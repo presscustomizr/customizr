@@ -16,7 +16,7 @@ endif ?>
     <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
       <?php
         if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
-          czr_fn_render_template('content/post-lists/post_list_media', 'post_list_media', array(
+          czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
              'has_post_media'           => $has_post_media,
              'is_full_image'            => czr_fn_get( 'is_full_image'  )
             )
@@ -26,7 +26,7 @@ endif ?>
       <section class="tc-content entry-content__holder">
         <?php
         if ( czr_fn_has('post_list_header') )
-          czr_fn_render_template('content/post-lists/headings/post_list_header-no_metas', 'post_list_header', array(
+          czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header-no_metas', 'post_list_header', array(
             'entry_header_inner_class' => czr_fn_get( 'entry_header_inner_class' ),
             'element_class'            => czr_fn_get( 'entry_header_class' )
           ));
@@ -45,7 +45,7 @@ endif ?>
             ?>
           </div>
         </div>
-        <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/footers/post_list_footer_author', 'post_list_footer' ); ?>
+        <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer_author', 'post_list_footer' ); ?>
       </section>
     </div>
   </article>

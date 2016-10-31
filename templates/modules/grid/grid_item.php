@@ -74,8 +74,8 @@
 
   ?>
     <div class="tc-content">
-      <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/headings/post_list_header') ?>
-      <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/footers/post_list_footer') ?>
+      <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header') ?>
+      <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer') ?>
     </div>
   <?php
 
