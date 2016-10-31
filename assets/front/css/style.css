@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -214,7 +214,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.caps, .btn-more, .btn-large, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-more, .btn-large, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .entry-header .entry-meta a, .category-info a, form label, .overlay .overlay-content .nav__container nav, .post-entry table th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+.letter-spacing-2, .entry-header .entry-meta a, .category-info a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -282,6 +282,10 @@ blockquote p {
 
 .inline-list li + li, .tags li + li {
   margin-left: 1.25em;
+}
+
+.inline-list li:before, .tags li:before {
+  content: none;
 }
 
 .no-hover {
@@ -1191,6 +1195,10 @@ body {
   width: auto !important;
 }
 
+.socials li:before {
+  content: none;
+}
+
 .socials li + li {
   margin-left: 1.25em;
 }
@@ -1364,21 +1372,55 @@ a.external {
   background: #202020;
 }
 
+/* Blockquotes and cites */
 blockquote {
   position: relative;
   margin: 2.5em 0;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+  border-top: 1px solid #f7f8f9;
+  border-bottom: 1px solid #f7f8f9;
+}
+
+blockquote p, blockquote footer {
+  margin-left: 5em;
+  width: 90%;
 }
 
 blockquote p {
+  padding-left: 5em;
   color: #202020;
 }
 
 blockquote footer {
+  margin-left: 5em;
   margin-top: 1.25em;
   position: relative;
 }
 
-blockquote cite {
+blockquote::before {
+  content: "\e808";
+  top: 2.5em;
+  left: 2.5em;
+  position: absolute;
+  font-size: 1.44em;
+  display: inline-block;
+  vertical-align: top;
+  font-family: "customizr";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+cite {
   color: #777;
   font-weight: 300;
   font-style: normal;
@@ -1387,7 +1429,7 @@ blockquote cite {
   position: relative;
 }
 
-blockquote cite:before {
+cite::before {
   content: "";
   position: absolute;
   width: 5em;
@@ -1397,6 +1439,7 @@ blockquote cite:before {
   background: #202020;
 }
 
+/* Blockquotes and cites END */
 .dropdown-menu {
   border-radius: 0;
   border: 0;
@@ -1882,6 +1925,10 @@ label i {
   margin: 0;
   padding: 0;
   margin-bottom: 1.25em;
+}
+
+.gallery-item dt::before {
+  content: none;
 }
 
 .gallery-item .tc-thumbnail {
@@ -2554,33 +2601,34 @@ label i {
   height: 65vh;
 }
 
-.post-entry ol.pre, .post-entry ol.pre ol {
+/*.post-entry {*/
+ol, ol ol {
   counter-reset: item;
 }
 
-.post-entry ol.pre li:before, .post-entry ol.pre ol li:before {
+ol li:before, ol ol li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   padding-right: 0.625em;
 }
 
-.post-entry ul.pre li {
+ul li {
   list-style: none;
 }
 
-.post-entry ul.pre li:before {
+ul li:before {
   content: "■";
   font-size: 12px;
   vertical-align: middle;
   padding-right: 0.625em;
 }
 
-.post-entry ul.pre.dash {
+ul.dash {
   list-style: none;
   margin-left: 1.25em;
 }
 
-.post-entry ul.pre.dash li::before {
+ul.dash li::before {
   content: "";
   display: inline-block;
   vertical-align: middle;
@@ -2591,80 +2639,38 @@ label i {
   margin-right: 1.25em;
 }
 
-.post-entry ol.pre ol, .post-entry ol.pre ul, .post-entry ul.pre ol, .post-entry ul.pre ul {
-  margin-left: 2.5em;
+ol ol, ol ul, ul ol, ul ul {
+  margin-left: 2em;
 }
 
-.post-entry blockquote {
-  padding-top: 2.5em;
-  padding-bottom: 2.5em;
-  border-top: 1px solid #f7f8f9;
-  border-bottom: 1px solid #f7f8f9;
-}
-
-.post-entry blockquote p, .post-entry blockquote footer {
-  margin-left: 5em;
-  width: 90%;
-}
-
-.post-entry blockquote p {
-  padding-left: 5em;
-}
-
-.post-entry blockquote footer {
-  margin-left: 5em;
-}
-
-.post-entry blockquote::before {
-  content: "\e808";
-  top: 2.5em;
-  left: 2.5em;
-  position: absolute;
-  font-size: 1.44em;
-  display: inline-block;
-  vertical-align: top;
-  font-family: "customizr";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  font-variant: normal;
-  text-transform: none;
-  margin-left: .2em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.post-entry table {
+table:not([id^=wp-calendar]) {
   border: 2px solid #f7f8f9;
 }
 
-.post-entry table th {
+table:not([id^=wp-calendar]) th {
   font-family: "Roboto", sans-serif;
 }
 
-.post-entry table th, .post-entry table td {
+table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td {
   padding: 1.25em;
   border: 1px solid #f7f8f9;
 }
 
-.post-entry table td {
+table:not([id^=wp-calendar]) td {
   color: #777;
 }
 
-.post-entry dl {
+dl {
   margin-bottom: 1.25em;
 }
 
-.post-entry dl dt {
+dl dt {
   text-align: left;
   position: relative;
   padding: 1.25em 1.25em 0.625em 1.25em;
 }
 
-.post-entry dl dt::before {
+dl dt::before {
   content: "";
   position: absolute;
   width: 1.25em;
@@ -2674,10 +2680,11 @@ label i {
   background: #202020;
 }
 
-.post-entry dl dd {
+dl dd {
   padding-left: 1.25em;
 }
 
+/*}*/
 /* featured pages*/
 .featured {
   margin-top: 2.5em;
@@ -2776,12 +2783,12 @@ label i {
 .grid-container__plain article .post-tags {
   width: 50%;
   float: left;
-  margin-top: 1.25em;
+  margin-top: 1.5em;
 }
 
 .grid-container__plain article .socials {
   float: right;
-  margin-top: 1.25em;
+  margin-top: 1em;
 }
 
 .grid-container__plain article .post-info {
@@ -2927,11 +2934,6 @@ label i {
 .grid-container__plain article .post-tags {
   width: 50%;
   float: left;
-}
-
-.grid-container__plain article .socials {
-  float: right;
-  margin-top: 1.25em;
 }
 
 .grid-container__plain article .author-info .avatar, .grid-container__plain article .author-info a {
@@ -4005,6 +4007,15 @@ WP classes
   height: 80px;
 }
 
+[class*=grid-container__] .entry-quote p, [class*=grid-container__] .entry-quote footer {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+[class*=grid-container__] .entry-quote::before {
+  content: none;
+}
+
 .square-grid__mini .col-xs-12 {
   padding: 0;
 }
@@ -4884,6 +4895,10 @@ section.post-content {
   margin-bottom: 0.625em;
 }
 
+.widget li:before {
+  content: none;
+}
+
 .widget a {
   display: inline-block;
 }
@@ -4986,6 +5001,11 @@ section.post-content {
 .navbar-nav a {
   padding-top: .425rem;
   padding-bottom: .425rem;
+}
+
+.topnav_navbars__wrapper li:before,
+nav li:before {
+  content: none;
 }
 
 /* hamburger and caret */

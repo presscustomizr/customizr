@@ -2,6 +2,7 @@
 	li {
 		display: inline-block !important;
 		width: auto !important;
+    &:before { content: none }
 	}
 	li + li { margin-left:$base-line-height; }
 	a {
@@ -131,25 +132,59 @@ a[target="_blank"]:hover:after {
 	color:white;
 	background: $black;
 }
-
-
+/* Blockquotes and cites */
 blockquote {
-	position: relative;
-	margin: $base-line-height*2 0;
-	@extend .bold;
-	p { color: $black; }
-	footer { margin-top:  $base-line-height; position: relative; }
-	cite   { color: $grey-dark; font-weight: 300; font-style: normal; text-align: right; padding-left: $base-line-height*4; position: relative; }
-	cite:before {
-		content: "";
-		position: absolute;
-		width: $base-line-height*4;
-		height:1px;
-		bottom:2px;
-		left:0;
-		background: $black;
-	}
+  position: relative;
+  margin: $base-line-height*2 0;
+  @extend .bold;
+  padding-top: $base-line-height*2;
+  padding-bottom: $base-line-height*2;
+  border-top: 1px solid $grey-lightest;
+  border-bottom: 1px solid $grey-lightest;
+  p, footer { margin-left: 5em; width: 90%; }
+  p { padding-left:$base-line-height*4; color: $black; }
+  footer { margin-left:$base-line-height*4; margin-top:  $base-line-height; position: relative; }
+  &::before{
+    content: "\e808";
+    top:$base-line-height*2;
+    left:$base-line-height*2;
+    position: absolute;
+    font-size: ms(2);
+    display: inline-block;
+    vertical-align: top;
+    font-family: "customizr";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    margin-left: .2em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
+
+cite {
+  color: $grey-dark;
+  font-weight: 300;
+  font-style: normal;
+  text-align: right;
+  padding-left: $base-line-height*4;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: $base-line-height*4;
+    height:1px;
+    bottom:2px;
+    left:0;
+    background: $black;
+  }
+}
+/* Blockquotes and cites END */
 
 .dropdown-menu {
           border-radius: 0;
