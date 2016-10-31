@@ -16,26 +16,12 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
       static $instance;
       function __construct () {
         self::$instance =& $this;
+        if ( ! esc_attr( czr_fn_get_opt( 'tc_enable_gallery' ) ) )
+          return;
 
-        add_filter ( 'czr_fn_article_container_class' , array( $this, 'czr_fn_add_gallery_class' ), 20 );
         //adds a filter for link markup (allow lightbox)
         add_filter ( 'wp_get_attachment_link'     , array( $this, 'czr_fn_modify_attachment_link') , 20, 6 );
       }
-
-      /**
-       *
-       * Add a class to the article-container to apply Customizr galleries on hover effects
-       *
-       * @package Customizr
-       * @since Customizr 3.3.21
-       *
-       */
-      function czr_fn_add_gallery_class( $_classes ){
-        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'czr_gallery_style', esc_attr( czr_fn_get_opt( 'tc_gallery_style' ) ) ) )
-          array_push($_classes, 'tc-gallery-style');
-        return $_classes;
-      }
-
 
 
       /**

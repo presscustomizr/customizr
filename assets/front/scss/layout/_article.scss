@@ -510,20 +510,29 @@ time span { color: $grey; }
 
 }
 section.post-content { margin-top:0; }
-.post-content {
+/*.post-content {
 	figure {
 		position: relative;
 		text-align: left;
 		margin: $base-line-height*4 0;
-	}
-	figcaption {
+	}*/
+	.wp-caption-text {
 		@extend .small;
 		color: $grey;
 		text-align: left;
-		margin: $base-line-height*2 $base-line-height*4 $base-line-height*2;
+		margin: $base-line-height 0;
+		/*$base-line-height*4 $base-line-height*2;*/
+		&::before {
+					content: '';
+					border-top: 3px solid $black;
+					width: 4em;
+					display: block;
+					margin-bottom: 1em
+		}
 	}
-}
+/*}*/
 
+/*
  @media (min-width: 993px) {
 	.single-post:not(.sidebar-l):not(.sidebar-r):not(.sidebar-lr) {
 		.post-content {
@@ -549,4 +558,4 @@ section.post-content { margin-top:0; }
 			}
 		}
 	}
-}
+}*/
