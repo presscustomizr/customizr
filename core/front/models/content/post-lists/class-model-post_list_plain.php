@@ -8,9 +8,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   public $entry_header_inner_class = array( 'col-md-7', 'offset-md-4', 'col-xs-12'); //TODO: will depend on the layout too!
   public $entry_header_class       = array( 'row' );
 
-  public $content_inner_col        = array('col-md-7', 'offset-md-1', 'col-xs-12'); //should depend on whether or not we display metas aside -> TODO
-
-  public $content_class            = 'entry-content'; //might be entry-summary for special posts..
+  public $content_inner_class      = array('col-md-7', 'offset-md-1', 'col-xs-12'); //should depend on whether or not we display metas aside -> TODO
 
   public $post_class               = array();
 

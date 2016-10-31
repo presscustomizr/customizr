@@ -160,24 +160,14 @@ body {
     webkit-tap-highlight-color: $skin;
 }
 
-
-/* Visibility */
-
-.visible-phone
-{
-    display: none!important
-}
-
-.visible-tablet
-{
-    display: none!important
-}
-
-.hidden-desktop
-{
-    display: none!important
-}
-
-.md-hidden {
-    display: none !important;
+/*
+* Reset list styling for some elements
+*/
+.topnav_navbars__wrapper ul li:before,
+nav ul li::before,
+ul.nav li::before,
+li.pingback::before,
+li.comment::before,
+.products li::before {
+  content: none;
 }

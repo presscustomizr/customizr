@@ -11,12 +11,6 @@ class CZR_content_model_class extends CZR_Model {
         'id' => 'post_metas',
       ),
       array(
-        //registered here also because we access to its properties from other templates
-        //which as of now is only possibile with already registered models
-        'model_class' => 'content/post-lists/singles/post_list_single_content',
-        'id' => 'post_list_content',
-      ),
-      array(
         'model_class' => 'content/post-lists/post_list_wrapper',
         'id' => 'post_list',
       ),
