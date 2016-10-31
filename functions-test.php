@@ -50,7 +50,7 @@ $_options = array(
     'tc_show_author_info'      => true,
 
     //to add
-    'tc_related_posts'         => true,
+    'tc_related_posts'         => 'categories',
 
     'tc_center_img'            => true,
 

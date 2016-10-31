@@ -611,7 +611,7 @@ replace:
 .bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .sidebar .widget_recent_comments, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
     font-weight: 600;
 }
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
     font-size: 0.83333em;
 }
 */
@@ -694,69 +694,70 @@ section.post-related-articles header ul li a {
 
 /*
 replace:
-.square-grid__mini .col-xs-12 {
+.grid-container__square-mini .col-xs-12 {
     padding: 0;
 }
 */
-.grid.square-grid__mini {
+.grid.grid-container__square-mini {
   font-size: .72em;
 }
 /*
 remove:
-.square-grid__mini .entry-summary {
+.grid-container__square-mini .entry-summary {
     margin-top: 2.5em;
 }
 */
-.grid.square-grid__mini .entry-summary {
+.grid.grid-container__square-mini .entry-summary {
     margin-top: 0;
 }
-.square-grid__mini .tc-content-inner {
+.grid-container__square-mini .tc-content-inner {
     margin-top: 1.5em;
 }
 /*
-remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
-.square-grid__mini .format-standard .entry-summary
+remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
+.grid-container__square-mini .format-standard .entry-summary
 */
-.grid.square-grid__mini .tc-content-inner {
+.grid.grid-container__square-mini .tc-content-inner {
   font-size: 1.25em !important;
 }
-.grid.square-grid__mini .tc-content-inner blockquote{
+.grid.grid-container__square-mini .tc-content-inner blockquote{
   font-size: 0.8em;
   margin: 0 !important;
-}
-.grid.square-grid__mini .tc-content-inner blockquote cite,
-.grid.square-grid__mini .tc-content-inner blockquote p {
-  font-size: 1.3em;
-}
-.square-grid__mini section {
   padding: 0;
 }
-.square-grid__mini section.entry-image__container {
+.grid.grid-container__square-mini .tc-content-inner blockquote cite,
+.grid.grid-container__square-mini .tc-content-inner blockquote p {
+  font-size: 1.3em;
+}
+.grid-container__square-mini section {
+  padding: 0;
+}
+.grid-container__square-mini section.entry-image__container {
   padding-bottom: 50%;
   height: 0;
   overflow: hidden;
 }
 
 /* Avoid wrapping the title on a new line */
-.square-grid__mini .grid-post .entry-header .entry-title {
+.grid-container__square-mini .grid-post .entry-header .entry-title {
   text-align: left;
 }
 
 
-.row.grid.square-grid__mini {
+.row.grid.grid-container__square-mini {
   height: 0;
   padding-bottom: 50%; /* Only 1 item shown */
   overflow: hidden;
 }
 @media ( min-width: 768px ) {
-  .row.grid.square-grid__mini {
+  .row.grid.grid-container__square-mini {
     padding-bottom: 25%; /* 2 items shown */
   }
 }
 
 /*
 replace:
-.square-grid__mini .tc-grid-post .tc-content {
+.grid-container__square-mini .tc-grid-post .tc-content {
     max-width: 50%;
     padding: 2em;
     display: inline-block;
@@ -764,7 +765,7 @@ replace:
     height: 277.5px;
 }
 */
-.square-grid__mini .tc-grid-post.grid-post .tc-content {
+.grid-container__square-mini .tc-grid-post.grid-post .tc-content {
   max-width: 50%; /* can be removed */
   padding: 0; /* can be removed */
   display: block; /* can be removed */
@@ -773,7 +774,7 @@ replace:
   padding-bottom: 50%;
   float: right;
 }
-.square-grid__mini .entry-content__wrapper {
+.grid-container__square-mini .entry-content__wrapper {
   position: absolute;
   left: 1.6em;
   right: 1.6em;
@@ -803,11 +804,11 @@ section.post-related-articles .grid .tc-grid-post {
 
 /*
 * Extend this to all post formats
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
     font-size: 0.83333em;
 }
 
-.square-grid__mini .format-standard .entry-header .entry-title::after {
+.grid-container__square-mini .format-standard .entry-header .entry-title::after {
     content: "";
     position: absolute;
     top: 45px;
@@ -819,20 +820,7 @@ section.post-related-articles .grid .tc-grid-post {
     transition: all 0.3s ease;
 }
 */
-.square-grid__mini .entry-header .entry-meta {
-  font-size: 0.83333em;
-}
-.square-grid__mini .entry-header .entry-title::after {
-  content: "";
-  position: absolute;
-  top: 1.2em !important; /* to correct teh top applied only to standard format above*/
-  left: 0;
-  width: 2.5em;
-  height: 2px;
-  background: #202020;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
+
 
 /* main margins */
 #main-wrapper .column-content-wrapper {
@@ -841,12 +829,13 @@ section.post-related-articles .grid .tc-grid-post {
 #main-wrapper .czr-hot-crumble + .column-content-wrapper {
   padding-top: 0;
 }
+/* form ?*/
 .czr-form.search-form .czr-focus:not(.in-focus) input { color: transparent; }
 .czr-form.search-form .czr-focus input { transition: all 600ms;}
 
 /* header secondary menu font-size fix
 replace
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.83333em; }
 
   .secondary-navbar__wrapper li
@@ -925,12 +914,12 @@ replace
 */
 /*
 Limit to desktop
-.grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+.grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
     padding-top: 1.25em;
 }
 */
 @media (max-width: 768px) {
-  .grid-container__alternate .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .square-grid__mini .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+  .grid-container__alternate .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
     padding-top: 0 !important;
   }
 }

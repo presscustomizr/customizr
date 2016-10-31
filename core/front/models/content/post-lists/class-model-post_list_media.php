@@ -103,7 +103,7 @@ class CZR_post_list_media_model_class extends CZR_Model {
                           <span class="slider-next"><i class="icn-right-open-big"></i></span>
                         </div>';
 
-            $_post_action     = '<div class="post-action"><a href="#" class="expand-img gallery"><i class="icn-expand"></i></a></div>';
+            $_post_action     = '<div class="post-action"><a href="#" class="expand-img-gallery"><i class="icn-expand"></i></a></div>';
 
             $_gallery_html   = sprintf( '%1$s<div class="carousel carousel-inner">%2$s</div>',
                                        $_gallery_nav,
@@ -138,7 +138,7 @@ class CZR_post_list_media_model_class extends CZR_Model {
 
   function czr_fn_get_has_media_action() {
     return $this -> has_post_media && ( $this -> only_thumb ||
-      ! in_array( get_post_format(), array('video', 'audio') ) );
+      ! in_array( get_post_format(), array('video', 'audio', 'gallery') ) );
   }
 
 }

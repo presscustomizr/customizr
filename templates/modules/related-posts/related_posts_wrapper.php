@@ -22,7 +22,7 @@ if ( have_posts() ) {
       </div>
     <?php endif ?>
   </header>
-  <div class="row grid square-grid__mini grid__container-square_mini">
+  <div class="row grid grid-container__square-mini">
   <?php
     while ( have_posts() ):
       the_post();
