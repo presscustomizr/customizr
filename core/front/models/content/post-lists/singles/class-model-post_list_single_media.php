@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_media_model_class extends CZR_Model {
+class CZR_post_list_single_media_model_class extends CZR_Model {
   public $has_post_media;
   public $has_format_icon_media;
   public $only_thumb;

@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_header_model_class extends CZR_Model {
+class CZR_post_list_single_header_model_class extends CZR_Model {
   public $has_header_format_icon;
   public $entry_header_inner_class;
   public $has_edit_button;

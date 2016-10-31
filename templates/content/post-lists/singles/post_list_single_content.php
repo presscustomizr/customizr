@@ -12,7 +12,7 @@
     <?php do_action( 'before_post_list_entry_content' ) ?>
 
     <?php if ( czr_fn_get('has_header') && czr_fn_has('post_list_header') )
-      czr_fn_render_template('content/post-lists/headings/post_list_header', 'post_list_header', array(
+      czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_header', array(
         'has_header_format_icon' => czr_fn_get( 'has_header_format_icon' ),
         'cat_limit'              => czr_fn_get( 'cat_limit' )
         )
@@ -36,7 +36,7 @@
       ?>
     </div>
 
-    <?php if ( czr_fn_get('has_footer') && czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/footers/post_list_footer') ?>
+    <?php if ( czr_fn_get('has_footer') && czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer') ?>
 
     <?php do_action( 'after_post_list_entry_content' ) ?>
   </div>
