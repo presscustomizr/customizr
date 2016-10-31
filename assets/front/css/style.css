@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -4023,49 +4023,54 @@ WP classes
   height: 80px;
 }
 
+[class*=grid-container__] .entry-quote {
+  border: none;
+}
+
 [class*=grid-container__] .entry-quote p, [class*=grid-container__] .entry-quote footer {
   margin-left: 0;
   padding-left: 0;
+  width: auto;
 }
 
 [class*=grid-container__] .entry-quote::before {
   content: none;
 }
 
-.square-grid__mini .col-xs-12 {
+.grid-container__square-mini .entry-header .entry-meta {
+  font-size: 0.83333em;
+}
+
+.grid-container__square-mini .col-xs-12 {
   padding: 0;
 }
 
-.square-grid__mini .post {
+.grid-container__square-mini .post {
   margin-bottom: 0;
 }
 
-.wide .square-grid__mini .tc-grid-post .tc-content {
+.wide .grid-container__square-mini .tc-grid-post .tc-content {
   height: 356.25px;
 }
 
-.wide .square-grid__mini .tc-grid-post .post-thumbnail {
+.wide .grid-container__square-mini .tc-grid-post .post-thumbnail {
   width: 356.25px;
   height: 356.25px;
 }
 
-.square-grid__mini .post-thumbnail {
+.grid-container__square-mini .post-thumbnail {
   width: 277.5px;
   height: 277.5px;
 }
 
-.square-grid__mini .grid-item {
+.grid-container__square-mini .grid-item {
   margin-left: 0;
 }
 
-.square-grid__mini .format-standard .entry-header .entry-title {
-  position: relative;
-}
-
-.square-grid__mini .format-standard .entry-header .entry-title::after {
+.grid-container__square-mini .entry-header .entry-title::after {
   content: "";
   position: absolute;
-  top: 45px;
+  bottom: -.1em;
   left: 0;
   width: 2.5em;
   height: 2px;
@@ -4074,25 +4079,29 @@ WP classes
   transition: all 0.3s ease;
 }
 
-.square-grid__mini .format-standard .tc-content.right .entry-header h2::after {
+.grid-container__square-mini .format-standard .entry-header .entry-title {
+  position: relative;
+}
+
+.grid-container__square-mini .format-standard .tc-content.right .entry-header h2::after {
   left: calc(100% - 2.5em);
 }
 
-.square-grid__mini .entry-summary {
+.grid-container__square-mini .entry-summary {
   margin-top: 2.5em;
 }
 
-.square-grid__mini .format-image.no-excerpt .post-thumbnail {
+.grid-container__square-mini .format-image.no-excerpt .post-thumbnail {
   width: 100%;
 }
 
-.square-grid__mini .format-image.no-excerpt .tc-grid-post .tc-content {
+.grid-container__square-mini .format-image.no-excerpt .tc-grid-post .tc-content {
   max-width: 100%;
   background: transparent;
   height: 100%;
 }
 
-.square-grid__mini .tc-grid-post .tc-content {
+.grid-container__square-mini .tc-grid-post .tc-content {
   max-width: 50%;
   padding: 2em;
   display: inline-block;
@@ -4100,11 +4109,11 @@ WP classes
   height: 277.5px;
 }
 
-.square-grid__mini .tc-grid-post .tc-content .entry-header h2 {
+.grid-container__square-mini .tc-grid-post .tc-content .entry-header h2 {
   font-weight: 600;
 }
 
-.square-grid__mini .tc-grid-post .tc-content.right {
+.grid-container__square-mini .tc-grid-post .tc-content.right {
   text-align: right;
 }
 
@@ -4923,7 +4932,7 @@ section.post-content {
   margin-bottom: 0.625em;
 }
 
-.widget li:before {
+.widget li::before {
   content: none;
 }
 
@@ -4967,7 +4976,7 @@ section.post-content {
   font-size: 1em;
 }
 
-.sidebar .widget-title:after {
+.sidebar .widget-title::after {
   content: "";
   position: absolute;
   width: 5em;
@@ -4994,7 +5003,8 @@ section.post-content {
 }
 
 .widget_calendar thead tr, .widget_calendar tbody tr {
-  border-bottom: 1px solid #202020;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 .widget_calendar thead tr {

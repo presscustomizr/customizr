@@ -563,12 +563,17 @@ WP classes
 }
 [class*=grid-container__] {
 	.entry-quote {
-		p, footer { margin-left: 0; padding-left: 0; }
+		border: none;
+		p, footer { margin-left: 0; padding-left: 0; width: auto }
 		&::before { content: none }
 	}
 }
 
-.square-grid__mini {
+.grid-container__square-mini .entry-header .entry-meta {
+  font-size: 0.83333em;
+}
+
+.grid-container__square-mini {
 	.col-xs-12 { padding: 0; }
 	.post { margin-bottom: 0; }
 	.wide & {
@@ -582,19 +587,20 @@ WP classes
 	}
 	.post-thumbnail { width: 277.5px; height: 277.5px}
 	.grid-item { margin-left:0 }
+	.entry-header .entry-title::after {
+		content: "";
+		position: absolute;
+		bottom: -.1em;
+		left:0;
+		width: $base-line-height*2;
+		height: 2px;
+		background: $black;
+		@include transition (all 0.3s ease);
+	}
 	.format-standard {
 		.entry-header .entry-meta, .entry-summary  { @extend .small; }
 		.entry-header .entry-title { position: relative; }
-		.entry-header .entry-title::after {
-				content: "";
-					position: absolute;
-					top: 45px;
-					left:0;
-					width: $base-line-height*2;
-					height: 2px;
-					background: $black;
-					@include transition (all 0.3s ease);
-		}
+
 		.tc-content.right .entry-header h2::after { left:calc(100% - #{$base-line-height*2}); }
 	}
 	.entry-summary { margin-top: $base-line-height*2; }

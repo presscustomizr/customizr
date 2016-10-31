@@ -17,7 +17,7 @@ var czrapp = czrapp || {};
     */
     centerImages : function() {
       //POST CLASSIC GRID IMAGES
-      $('.tc-grid-figure, .square-grid__mini .entry-image__container, .widget-front .tc-thumbnail').centerImages( {
+      $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         zeroTopAdjust: 0,
@@ -79,13 +79,8 @@ var czrapp = czrapp || {};
       * but clicking on an another a.expand-img the image speficied in the
       * dynamically added a.expang-img href is added to the gallery
       */
-      $( '.square-grid__mini' ).magnificPopup({
-        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
-        type: 'image'
-        // other options
-      });
       $( '[class*="grid-container__"]' ).magnificPopup({
-        delegate: 'a.expand-img:not(.gallery)', // child items selector, by clicking on it popup will open
+        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
         type: 'image'
         // other options
       });
@@ -102,8 +97,9 @@ var czrapp = czrapp || {};
       });
       //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
-      czrapp.$_body.on( 'click', '[class*="grid-container__"] .format-gallery .expand-img.gallery', function(e) {
+      czrapp.$_body.on( 'click', '[class*="grid-container__"] .format-gallery .expand-img-gallery', function(e) {
         e.preventDefault();
+
         $(this).closest('article').magnificPopup({
             delegate: '.gallery-img', // child items selector, by clicking on it popup will open
             type: 'image',
@@ -121,7 +117,7 @@ var czrapp = czrapp || {};
     */
     czr_slider : function() {
       /* Test only RELATED POSTS !!!!!! */
-      $('.square-grid__mini').flickity({
+      $('.grid-container__square-mini').flickity({
           prevNextButtons: false,
           pageDots: false,
           groupCells: "50%",
