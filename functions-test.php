@@ -57,7 +57,9 @@ $_options = array(
     'tc_show_post_navigation_home' => true,
 
     'tc_cat_title'             => 'Category:',
-    'tc_author_title'          => 'Author:'
+    'tc_author_title'          => 'Author:',
+
+    'tc_enable_gallery'        => true
 
 );
 

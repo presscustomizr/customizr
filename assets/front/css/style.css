@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .square-grid__mini .format-standard .entry-header .entry-meta, .square-grid__mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -330,6 +330,22 @@ blockquote p {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.75em;
 }
 
 *,
@@ -4844,43 +4860,55 @@ section.post-content {
   margin-top: 0;
 }
 
-.post-content figure {
-  position: relative;
-  text-align: left;
-  margin: 5em 0;
-}
-
-.post-content figcaption {
+/*.post-content {
+	figure {
+		position: relative;
+		text-align: left;
+		margin: $base-line-height*4 0;
+	}*/
+.wp-caption-text {
   color: #B4B4B4;
   text-align: left;
-  margin: 2.5em 5em 2.5em;
+  margin: 1.25em 0;
+  /*$base-line-height*4 $base-line-height*2;*/
 }
 
-@media (min-width: 993px) {
-  .single-post:not(.sidebar-l):not(.sidebar-r):not(.sidebar-lr) .post-content figure img {
-    width: 70%;
-    left: 0;
-    display: inline-block;
-  }
-  .single-post:not(.sidebar-l):not(.sidebar-r):not(.sidebar-lr) .post-content figure figcaption {
-    position: absolute;
-    right: 0;
-    width: 15rem;
-    text-align: left;
-    bottom: 0;
-    margin-top: 0;
-    margin-left: 2rem;
-    margin-bottom: 0;
-  }
-  .single-post:not(.sidebar-l):not(.sidebar-r):not(.sidebar-lr) .post-content figure figcaption::before {
-    content: '';
-    border-top: 3px solid #202020;
-    width: 4rem;
-    display: block;
-    margin-bottom: 2rem;
-  }
+.wp-caption-text::before {
+  content: '';
+  border-top: 3px solid #202020;
+  width: 4em;
+  display: block;
+  margin-bottom: 1em;
 }
 
+/*}*/
+/*
+ @media (min-width: 993px) {
+	.single-post:not(.sidebar-l):not(.sidebar-r):not(.sidebar-lr) {
+		.post-content {
+			figure {
+				img { width: 70%; left:0; display: inline-block; }
+				figcaption {
+					position: absolute;
+					right: 0;
+					width: 15rem;
+					text-align: left;
+					bottom: 0;
+					margin-top: 0;
+					margin-left: 2rem;
+					margin-bottom: 0;
+				}
+				figcaption::before {
+					content: '';
+					border-top: 3px solid $black;
+					width: 4rem;
+					display: block;
+					margin-bottom: 2rem
+				}
+			}
+		}
+	}
+}*/
 @media screen and (min-width: 480px) and (max-width: 667px) {
   .sidebar {
     padding: 0 2.5em;
