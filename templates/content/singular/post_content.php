@@ -9,7 +9,6 @@
   <?php do_action( '__before_inner_post_article' ) ?>
   <div class="post-entry tc-content-inner">
     <?php do_action( '__before_post_entry_content' ) ?>
-
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
       <?php do_action( '__before_inner_post_content' ) ?>
       <?php
