@@ -21,7 +21,15 @@
 
   <?php do_action('__before_main_wrapper'); ?>
     <div id="main-wrapper" class="section">
-
+      <?php
+        if ( czr_fn_has('page_header') ):
+      ?>
+        <div class="container-fluid">
+          <?php czr_fn_render_template('content/singular/page_header', 'page_header');?>
+        </div>
+      <?php
+        endif;
+      ?>
       <?php do_action('__before_main_container'); ?>
 
       <div class="container" role="main">

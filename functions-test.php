@@ -7,7 +7,7 @@ $_options = array(
     'tc_font_awesome_css' => true,
     'tc_font_awesome_icons' => true,
     'tc_sticky_header' => true,
-    'tc_header_type' => 'absolute',// (absolute||standard)
+    'tc_header_type' => 'standard',// (absolute||standard)
     'tc_woocommerce_header_cart_sticky' => false,
     'tc_show_tagline' => true,
     'tc_display_second_menu' => true,
@@ -17,7 +17,7 @@ $_options = array(
     'tc_sticky_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'plain', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,

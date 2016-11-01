@@ -13,7 +13,7 @@
   do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
 endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-    <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
+    <div class="sections-wrapper grid__item <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
       <?php
         if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
           czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
