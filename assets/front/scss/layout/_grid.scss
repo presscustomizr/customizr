@@ -598,6 +598,9 @@ WP classes
 		background: $black;
 		@include transition (all 0.3s ease);
 	}
+	.entry-header.no-title .entry-title::after {
+		content: none
+	}
 	.format-standard {
 		.entry-header .entry-meta, .entry-summary  { @extend .small; }
 		.entry-header .entry-title { position: relative; }
