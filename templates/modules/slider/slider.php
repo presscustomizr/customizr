@@ -7,13 +7,10 @@
 <div id="customizr-slider-<?php czr_fn_echo( 'id' ) ?>" class="section-slider <?php czr_fn_echo( 'element_class' ) ?> " <?php czr_fn_echo('element_attributes') ?>>
 
   <?php if ( czr_fn_get( 'has_loader' ) ) : ?>
-        <div id="czr-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>" class="czr-slider-loader-wrapper" style="display:none;">
+        <div id="czr-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>" class="czr-slider-loader-wrapper">
             <div class="czr-img-gif-loader"></div>
             <?php czr_fn_echo( 'pure_css_loader' ) ?>
         </div>
-        <script type="text/javascript">
-          document.getElementById("czr-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>").style.display="block";
-        </script>
   <?php endif ?>
   <?php do_action( '__before_carousel_inner__' ); ?>
 

@@ -349,11 +349,26 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //Include all post types in archive pages
           add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_cpt_in_lists' ));
 
+          //Javascript detection
+          add_action( 'wp_head'                , array( $this, 'czr_fn_javascript_detection'), 0 );
+
           //Add the context
           add_filter ( 'body_class'            , 'czr_fn_set_post_list_context_class' );
 
       }
 
+      /**
+      * hook : wp_head
+      * Handles JavaScript detection.
+      *
+      * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+      *
+      * @package Customizr
+      * @since Customizr 4.0.0
+      */
+      function czr_fn_javascript_detection() {
+       echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+      }
 
 
       /**
