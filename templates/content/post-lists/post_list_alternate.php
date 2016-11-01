@@ -13,7 +13,7 @@
   do_action( '__alternate_loop_start', czr_fn_get('id') );
 endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-    <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
+    <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?> grid__item">
     <?php
 
       if ( 'content' == czr_fn_get( 'place_1' ) ) {

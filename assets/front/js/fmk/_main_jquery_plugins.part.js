@@ -26,7 +26,7 @@ var czrapp = czrapp || {};
         goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
       } );
 
-      $('.js-media-centering.entry-image__container').centerImages({
+      $('.js-media-centering.entry-media__holder').centerImages({
         enableCentering : CZRParams.centerAllImg,
         oncustom : ['smartload', 'simple_load'],
         enableGoldenRatio : false, //true

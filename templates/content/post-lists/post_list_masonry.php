@@ -12,7 +12,7 @@
   do_action( '__masonry_loop_start', czr_fn_get('id') );
 endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-    <div class="sections-wrapper grid-post">
+    <div class="sections-wrapper grid__item">
     <?php
         if ( ( $has_post_media = czr_fn_get('has_post_media') ) && czr_fn_has('media') ) {
           czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(

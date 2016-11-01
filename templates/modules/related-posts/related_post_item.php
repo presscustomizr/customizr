@@ -4,7 +4,7 @@
 */
 ?>
 <article <?php czr_fn_echo('article_selectors') ?> <?php czr_fn_echo('element_attributes') ?>>
-  <div class="grid-post tc-grid-post">
+  <div class="grid__item">
     <?php
       czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
         'element_class' => czr_fn_get('media_col'),
