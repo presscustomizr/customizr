@@ -116,12 +116,11 @@ embed, iframe, object, video { max-width: 100%;}
 .grid-container__classic .post-info .v-separator,
 .grid-container__masonry .post-info .v-separator { display: none; }
 
-.grid .tc-grid-post .entry-footer .post-info a:first-of-type,
-.grid .grid-post .entry-footer .post-info a:first-of-type { float: none; }
+.grid .grid__item .entry-footer .post-info a:first-of-type { float: none; }
 /* think about this */
 .entry-header .entry-title { word-wrap: break-word;}
 
-.entry-image__container .post-type__icon i {
+.entry-media__holder .post-type__icon i {
     position: relative;
 }
 
@@ -642,14 +641,14 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
 .grid-container__square-mini section {
   padding: 0;
 }
-.grid-container__square-mini section.entry-image__container {
+.grid-container__square-mini section.entry-media__holder {
   padding-bottom: 50%;
   height: 0;
   overflow: hidden;
 }
 
 /* Avoid wrapping the title on a new line */
-.grid-container__square-mini .grid-post .entry-header .entry-title {
+.grid-container__square-mini .grid__item .entry-header .entry-title {
   text-align: left;
 }
 
@@ -667,7 +666,7 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
 
 /*
 replace:
-.grid-container__square-mini .tc-grid-post .tc-content {
+.grid-container__square-mini .grid__item .tc-content {
     max-width: 50%;
     padding: 2em;
     display: inline-block;
@@ -675,7 +674,7 @@ replace:
     height: 277.5px;
 }
 */
-.grid-container__square-mini .tc-grid-post.grid-post .tc-content {
+[class*=.grid-container__square-mini] .grid__item.tc-content {
   max-width: 50%; /* can be removed */
   padding: 0; /* can be removed */
   display: block; /* can be removed */
@@ -694,13 +693,13 @@ replace:
 }
 /*
 replace:
-section.post-related-articles .grid .tc-grid-post {
+section.post-related-articles .grid .grid__item {
     background: #f7f8f9;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
 */
-section.post-related-articles .grid .tc-grid-post {
+section.post-related-articles .grid .grid__item {
   background: #f7f8f9;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -1049,3 +1048,7 @@ replace this
     text-align: right;
   }
 }
+
+/* Give borders to the articles */
+[class*=grid-container__] .grid__item { outline: 1px solid #efefef }
+[class*=grid-container__square-mini] .grid__item { outline: none }

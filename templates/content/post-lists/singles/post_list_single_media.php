@@ -8,7 +8,7 @@
  */
 ?>
 <?php if ( ( (bool) $media_content = czr_fn_get('media_content') ) || (bool) $has_icon = czr_fn_get('has_format_icon_media') ) : ?>
-<section class="tc-thumbnail entry-image__container <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+<section class="tc-thumbnail entry-media__holder <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="entry-media__wrapper <?php czr_fn_echo('inner_wrapper_class') ?>">
   <?php if ( $media_content ): ?>
     <?php echo $media_content ?>
@@ -20,7 +20,7 @@
   <?php elseif ( $has_icon ): ?>
     <div class="post-type__icon">
       <i class="icn-format"><a class="bg-icon-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a></i>
-    <div>
+    </div>
   <?php endif ?>
   </div>
 </section>

@@ -47,7 +47,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $model[ 'has_post_media' ]        = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
 
     $model[ 'element_class']          = czr_fn_get_in_content_width_class();
-    array_push( $model[ 'element_class' ], $model[ 'has_post_media' ] ? 'has-media' : 'no-media' );
+    array_push( self::$post_class, $model[ 'has_post_media' ] ? 'has-media' : 'no-media' );
 
     /*
     * In the new theme the places are defined just by the option show_thumb_first,

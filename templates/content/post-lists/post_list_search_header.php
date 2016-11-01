@@ -7,7 +7,16 @@
   <div class="container header-content">
     <div class="header-content-inner">
        <h1 class="header-title"><?php echo __( 'Search results for:', 'customizr' ) . ' ' . get_search_query() ?></h1>
-       <span><?php global $wp_query; echo $wp_query->found_posts . ' ' . __('posts', 'customizr' ) ?></span>
+       <?php
+        global $wp_query;
+        if ( $wp_query->found_posts ):
+        ?>
+        <span>
+          <?php printf( _n('%s result', '%s results', $wp_query->found_posts, 'customizr' ), $wp_query->found_posts ) ?>
+        </span>
+        <?php
+        endif
+        ?>
     </div>
   </div>
 </div>

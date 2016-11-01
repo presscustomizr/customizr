@@ -9,7 +9,7 @@
  */
 ?>
 <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-  <section class="tc-grid-post" <?php czr_fn_echo('element_attributes') ?>>
+  <section class="grid__item" <?php czr_fn_echo('element_attributes') ?>>
     <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
       <?php
 

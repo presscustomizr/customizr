@@ -11,7 +11,7 @@ POST TYPE classes:
 */
 /* custom classes
 
-	.czr-thumb-wrapper -> .entry-image__container
+	.czr-thumb-wrapper -> .entry-media__holder
 	.post-thumbnail
 	.action-buttons
 	.post-info    -
@@ -38,8 +38,7 @@ WP classes
 
 .post-type__icon { font-size: ms(6); margin:0 auto; text-align:center; }
 
-.grid-item .post-type__icon,
-.tc-grid-post .post-type__icon {
+.grid .grid__item .post-type__icon {
   width: 3em;
   height: 3em;
   line-height: 3em;
@@ -59,7 +58,7 @@ WP classes
 .post-type__icon i {
   font-size: 1.33em;
 }
-.entry-image__container .post-type__icon i {
+.entry-media__holder .post-type__icon i {
   position: relative;
   font-size: 1em;
 }
@@ -136,7 +135,7 @@ WP classes
 		li, a { line-height: $base-line-height*3; }
 }
 
-.entry-image__container { position: relative; overflow: hidden; }
+.entry-media__holder { position: relative; overflow: hidden; }
 
 
 
@@ -189,8 +188,8 @@ WP classes
 }
 /* specific to grid layout (masonry/classc) */
 .grid {
-	.grid-post { position: relative; }
-	.grid-post, .tc-grid-post {
+	.grid__item {
+		position: relative;
 		background: $white;
 		text-align:center;
 	}
@@ -242,10 +241,10 @@ WP classes
 
 	.post.no-thumb .tc-content { padding-top:$base-line-height*4; }
 	.no-header {
-		.tc-grid-post .entry-footer { margin-top: 0 ; padding-top:0  }
+		.grid__item .entry-footer { margin-top: 0 ; padding-top:0  }
 	}
 	.no-footer {
-		.tc-grid-post .entry-header { }
+		.grid__item .entry-header { }
 	}
 }
 
@@ -298,7 +297,7 @@ WP classes
 /* CLASSIC */
 .grid-container__classic {
 	.tc-content { @extend .small; }
-	&.tc-grid-shadow .tc-grid-post { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) ); }
+	&.tc-grid-shadow .grid__item { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) ); }
 	.no-thumb .tc-grid-fade_expt {
 		position: absolute;
 		bottom: 0;
@@ -423,7 +422,7 @@ WP classes
 }
 
 /* MASONRY & ALTERNATE .format-image.no-excerpt/gallery */
-.grid-container__alternate.has-media .format-image.no-excerpt, .grid-container__alternate.has-media .format-gallery,
+.grid-container__alternate .format-image.no-excerpt.has-media, .grid-container__alternate .format-gallery.has-media,
 .grid-container__masonry .format-image, .grid-container__masonry .format-gallery {
 	a:not(.bg-link) { z-index: 2; position: relative; }
 
@@ -578,16 +577,15 @@ WP classes
 	.col-xs-12 { padding: 0; }
 	.post { margin-bottom: 0; }
 	.wide & {
-		.tc-grid-post .tc-content {
+		.grid__item .tc-content {
 			height:356.25px;
 		}
-		.tc-grid-post .post-thumbnail {
+		.grid__item .post-thumbnail {
 			width: 356.25px;
 			height: 356.25px;
 		}
 	}
 	.post-thumbnail { width: 277.5px; height: 277.5px}
-	.grid-item { margin-left:0 }
 	.entry-header .entry-title::after {
 		content: "";
 		position: absolute;
@@ -610,9 +608,9 @@ WP classes
 	.entry-summary { margin-top: $base-line-height*2; }
 	.format-image.no-excerpt {
 		.post-thumbnail { width: 100%; }
-		.tc-grid-post .tc-content { max-width: 100%; background: transparent; height: 100%; }
+		.grid__item .tc-content { max-width: 100%; background: transparent; height: 100%; }
 	}
-	.tc-grid-post {
+	.grid__item {
 		.tc-content { max-width: 50%; padding: 2em; display: inline-block; background: $grey-lightest; height: 277.5px; }
 		.tc-content .entry-header h2 {
 			font-weight: 600;

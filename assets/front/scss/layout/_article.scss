@@ -350,7 +350,7 @@ section.post-related-articles {
 		}
 
 		.grid { margin-top:$base-line-height;  }
-		.grid .tc-grid-post {
+		.grid .grid__item {
 			h3 { font-weight: 600; }
 			background: $grey-lightest;
 			-webkit-box-shadow: none;
@@ -360,7 +360,7 @@ section.post-related-articles {
 	}
 
 .pagination {
-	ul { display: inline-block }
+	ul { display: inline-block; vertical-align: middle }
 	&.post-pagination {
 		@extend .small;
 		a {

@@ -13,7 +13,16 @@
           czr_fn_echo( 'title' );
         ?>
       </h1>
-      <span><?php global $wp_query; echo $wp_query->found_posts ?>&nbsp<?php _e('posts', 'customizr' ) ?></span>
+       <?php
+        global $wp_query;
+        if ( $wp_query->found_posts ):
+        ?>
+        <span>
+          <?php printf( _n('%s post', '%s posts', $wp_query->found_posts, 'customizr' ), $wp_query->found_posts ) ?>
+        </span>
+        <?php
+        endif
+        ?>
     </div>
   </div>
 </div>
