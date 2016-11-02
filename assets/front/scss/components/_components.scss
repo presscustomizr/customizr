@@ -80,6 +80,11 @@
 }
 .btn-edit {
 		@extend .btn-small;
+    &.btn-edit-inverse {
+     background: $grey-dark;
+     color: $white;
+     &:hover { color: $black; background: $grey-light; }
+    }
 		padding: 0 $base-line-height 0 $base-line-height/2;
 		line-height: 2em;
 		vertical-align: middle;
