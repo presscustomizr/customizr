@@ -71,7 +71,7 @@
                       czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
                     }
 
-                  } else {
+                  } else { //fallback
                     czr_fn_render_template('content/singular/page_content', 'page');
                   }
                 }//endwhile;

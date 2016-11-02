@@ -813,16 +813,6 @@ Remove
   }
 
 /*
-replace
-
-.grid-container__plain .post .entry-footer {
-  clear: both;
-  border-top: 1px solid #eceeef;
-  padding: 2.5em 2.5em 0 2.5em;
-}
-
-*/
-/*
 Limit to desktop
 .grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
     padding-top: 1.25em;
@@ -833,9 +823,7 @@ Limit to desktop
     padding-top: 0 !important;
   }
 }
-.article-container .grid-container__plain article .entry-footer {
-    padding: 2.5em 0 0 0;
-}
+
 /*
 Replace
 */

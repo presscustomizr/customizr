@@ -89,6 +89,7 @@
 		line-height: 2em;
 		vertical-align: middle;
 		display: inline-block;
+    margin-bottom: 1em;
 	i {
 		margin-right: $base-line-height;
 		border-right: 2px solid $grey-light;
@@ -103,7 +104,7 @@ a[target="_blank"]:hover:after {
 }
 
 %categories  {
-	a  {
+	a, .sep  {
 		@extend .caps;
 		@extend .service-font;
 		@extend .letter-spacing-2;
@@ -112,16 +113,11 @@ a[target="_blank"]:hover:after {
 		position: relative;
 		display: inline-block;
 		vertical-align:  middle;
-		margin-right:$base-line-height;
 	}
 	a:hover { color: $black; }
-	a:not(:last-of-type):after {
-		content: "/";
-		position: absolute;
-		top:0;
-		right: -1em;
-	}
+  .sep { margin: 0 1em }
 }
+
 /* go-to-top button*/
 .go-to-top {
 	width: 50px;
@@ -145,7 +141,7 @@ blockquote {
   padding-bottom: $base-line-height*2;
   border-top: 1px solid $grey-lightest;
   border-bottom: 1px solid $grey-lightest;
-  p, footer { margin-left: 5em; width: 90%; }
+  p, footer { margin-left: 5em; max-width: 90% }
   p { padding-left:$base-line-height*4; color: $black; }
   footer { margin-left:$base-line-height*4; margin-top:  $base-line-height; position: relative; }
   &::before{

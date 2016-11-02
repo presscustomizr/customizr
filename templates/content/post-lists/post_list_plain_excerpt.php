@@ -33,23 +33,26 @@ endif ?>
         ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
           <?php
-          if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
-
+          if ( czr_fn_has('post_metas') && $cat_list = czr_fn_get( 'cat_list', 'post_metas', array(
+            'limit' => 3,
+            'separator' => '<span class="sep hidden-md-up">/</span>'
+            )
+          ) ) :
+          ?>
             <div class="entry-meta tax__container col-md-3 col-xs-12 small caps">
-              <?php echo $cat ?>
+              <?php echo $cat_list ?>
             </div>
 
           <?php
           endif;
           /* Content Inner */
-          czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_content_inner',
-            array(
-              'content_inner_class' => czr_fn_get( 'content_inner_class' )
-            )
-          );
-
           ?>
-
+          <div class="tc-content-inner-wrapper <?php czr_fn_echo( 'content_inner_class' ) ?>">
+            <?php
+              /* Content Inner */
+              czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_content_inner' )
+            ?>
+          </div>
         </div>
         <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer_author', 'post_list_footer' ); ?>
       </section>

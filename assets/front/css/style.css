@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .category-info a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
   font-weight: 500;
 }
 
@@ -208,13 +208,13 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .entry-header .entry-meta a, .category-info a, .tagcloud a,
+.service-font, .btn, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .tagcloud a,
 .tags li, .grid-container__plain article .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-more, .btn-large, .entry-header .entry-meta a, .category-info a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-more, .btn-large, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .entry-header .entry-meta a, .category-info a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -1338,6 +1338,7 @@ li.comment::before,
   line-height: 2em;
   vertical-align: middle;
   display: inline-block;
+  margin-bottom: 1em;
 }
 
 .btn-edit.btn-edit-inverse {
@@ -1363,23 +1364,19 @@ a.external {
   position: relative;
 }
 
-.entry-header .entry-meta a, .category-info a {
+.grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep {
   color: #B4B4B4;
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 1.25em;
 }
 
-.entry-header .entry-meta a:hover, .category-info a:hover {
+.grid-container__plain article .tax__container a:hover, .entry-header .entry-meta a:hover {
   color: #202020;
 }
 
-.entry-header .entry-meta a:not(:last-of-type):after, .category-info a:not(:last-of-type):after {
-  content: "/";
-  position: absolute;
-  top: 0;
-  right: -1em;
+.grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep {
+  margin: 0 1em;
 }
 
 /* go-to-top button*/
@@ -1409,7 +1406,7 @@ blockquote {
 
 blockquote p, blockquote footer {
   margin-left: 5em;
-  width: 90%;
+  max-width: 90%;
 }
 
 blockquote p {
@@ -2971,7 +2968,6 @@ dl dd {
 .grid-container__plain article .tax__container .tax__link {
   display: block;
   letter-spacing: 3px;
-  line-height: 3em;
   clear: both;
   width: auto;
   position: relative;
@@ -2990,6 +2986,7 @@ dl dd {
   .grid-container__plain article .tax__container .tax__link {
     text-align: right;
     margin: 0;
+    line-height: 3em;
   }
   .grid-container__plain article .tax__container .tax__link span::before {
     content: "";
@@ -3010,31 +3007,19 @@ dl dd {
 
 @media (max-width: 48em) {
   .grid-container__plain article .tax__container .tax__link {
-    width: auto;
     display: inline-block;
     text-align: left;
   }
-  .grid-container__plain article .tax__container .tax__link:not(:first-of-type) {
-    margin-left: 1.25em;
-  }
   .grid-container__plain article .tax__container .tax__link span::before {
     content: none;
-  }
-  .grid-container__plain article .tax__container .tax__link span {
-    position: relative;
-  }
-  .grid-container__plain article .tax__container .tax__link:not(:last-of-type) span::after {
-    content: "/";
-    position: absolute;
-    left: 100%;
-    margin: 0 6px;
   }
 }
 
 .grid-container__plain article .entry-footer {
   clear: both;
   border-top: 1px solid #eceeef;
-  padding: 2.5em 2.5em 0 2.5em;
+  padding-top: 2.5em;
+  margin-top: 2.5em;
 }
 
 .grid-container__plain article .entry-footer .entry-meta {
@@ -3047,16 +3032,6 @@ dl dd {
 
 .grid-container__plain article .entry-footer .socials {
   float: right;
-}
-
-.grid-container__plain article header.entry-footer {
-  padding: 0 2.5em 2.5em 2.5em;
-  border-top: none;
-  border-bottom: 1px solid #eceeef;
-}
-
-.grid-container__plain article .tc-content-inner-wrapper {
-  margin-bottom: 2.5em;
 }
 
 .grid-container__plain.short .post-tags {
@@ -4420,30 +4395,8 @@ section[class^="post-"] .row {
   margin: 5em 0 2.5em 0;
 }
 
-.category-info {
-  position: relative;
-}
-
-.category-info:after {
-  content: "";
-  position: absolute;
-  width: 3.75em;
-  height: 3px;
-  top: 3.75em;
-  margin: 0 auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.category-info a {
+.page__header .category-info a {
   letter-spacing: 3px;
-  margin: 0 1.25em;
-  padding-right: 1.25em;
-}
-
-.category-info a:last-of-type {
-  padding-right: 0;
 }
 
 .pagination {

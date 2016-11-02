@@ -7,7 +7,6 @@
 <?php get_header() ?>
 
   <?php
-
     /* SLIDERS : standard or slider of posts */
     if ( czr_fn_has('main_slider') ) {
       czr_fn_render_template('modules/slider/slider', 'main_slider');
@@ -22,7 +21,7 @@
   <?php do_action('__before_main_wrapper'); ?>
     <div id="main-wrapper" class="section">
       <?php
-        if ( czr_fn_has('page_header') ):
+        if ( ! is_front_page() && czr_fn_has('page_header') ):
       ?>
         <div class="container-fluid">
           <?php czr_fn_render_template('content/singular/page_header', 'page_header');?>
