@@ -47,6 +47,7 @@ img.post-thumbnail {
 /* JS IMAGE CENTERING */
 img.h-centered {
   width: auto!important;
+  min-width: 100%!important;
   max-width: none!important;
   position: relative;
   transform: none !important;
@@ -1050,5 +1051,5 @@ replace this
 }
 
 /* Give borders to the articles */
-[class*=grid-container__] .grid__item { outline: 1px solid #efefef }
-[class*=grid-container__square-mini] .grid__item { outline: none }
+.grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
+.grid-container__square-mini .grid__item { outline: none }

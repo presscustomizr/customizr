@@ -403,6 +403,12 @@ WP classes
 		@include transform(scale(1));
 		@include opacity(1);
 	}
+	.expanded .btn-edit {
+	  position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+	}
 }
 /* END CLASSIC */
 
@@ -492,9 +498,9 @@ WP classes
     font-size: 1em;
 	}
 	.format-image { .post-type__icon {top:0;  right:0; } }
-	.grid-post { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.025)); }
+	.grid__item { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.025)); }
 	.tc-content  { @extend .small; }
-	.hover .grid-post {
+	.hover .grid__item {
 		@include box-shadow(0, 6px, 10px, rgba(0, 0, 0, 0.055) );
 		@include transform(translate(0, -4px));
 	}
