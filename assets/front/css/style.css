@@ -4424,12 +4424,6 @@ section[class^="post-"] .row {
   position: relative;
 }
 
-.category-info a {
-  letter-spacing: 3px;
-  margin: 0 1.25em;
-  padding-right: 1.25em;
-}
-
 .category-info:after {
   content: "";
   position: absolute;
@@ -4440,6 +4434,16 @@ section[class^="post-"] .row {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.category-info a {
+  letter-spacing: 3px;
+  margin: 0 1.25em;
+  padding-right: 1.25em;
+}
+
+.category-info a:last-of-type {
+  padding-right: 0;
 }
 
 .pagination {
@@ -4487,9 +4491,7 @@ section[class^="post-"] .row {
 
 .post-navigation li {
   float: left;
-  width: 33.333%;
   text-align: center;
-  min-height: 1px;
 }
 
 .post-navigation .pagination li {
@@ -4780,6 +4782,7 @@ section.post-related-articles .grid .grid__item h3 {
 .pagination ul {
   display: inline-block;
   vertical-align: middle;
+  margin: 0;
 }
 
 .pagination.post-pagination a {
@@ -4794,10 +4797,14 @@ section.post-related-articles .grid .grid__item h3 {
   font-weight: 600;
 }
 
-.pagination li:not(first-of-type),
+.pagination li,
 .pagination a + *,
 .pagination span + * {
   margin-left: 1.25em;
+}
+
+.pagination li:first-of-type {
+  margin-left: 0;
 }
 
 .pagination > * > span {

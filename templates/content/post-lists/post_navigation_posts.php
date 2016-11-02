@@ -28,13 +28,13 @@ if ( null != $prev_link || null != $next_link ) :
   <nav id="nav-below" class="" role="navigation">
     <h2 class="sr-only"><?php _e('Posts navigation', 'customizr') ?></h2>
     <ul class="pager clearfix">
-      <li class="next">
+      <li class="next col-xs-2 col-sm-4">
       <?php if ( null != $next_link ) : ?>
         <span class="sr-only"><?php echo $_newer_label ?></span>
         <span class="nav-next"><?php echo $next_link ?></span>
       <?php endif ?>
       </li>
-      <li class="pagination">
+      <li class="pagination col-xs-8 col-sm-4">
         <ul>
         <?php
           $_paginate_links = paginate_links( array(
@@ -47,7 +47,7 @@ if ( null != $prev_link || null != $next_link ) :
         ?>
         </ul>
       </li>
-      <li class="previous">
+      <li class="previous col-xs-2 col-sm-4">
       <?php if ( null != $prev_link ) : ?>
         <span class="sr-only"><?php echo $_older_label ?></span>
         <span class="nav-previous"><?php echo $prev_link ?></span>

@@ -32,19 +32,19 @@ if ( null != $prev_link || null != $next_link ) :
   <nav id="nav-below" class="" role="navigation">
     <h2 class="sr-only"><?php _e('Post navigation', 'customizr') ?></h2>
     <ul class="pager clearfix">
-      <li class="previous">
+      <li class="previous col-xs-5">
       <?php if ( null != $prev_link ) : ?>
         <span class="sr-only"><?php _e('Next post', 'customizr') ?></span>
         <span class="nav-previous"><?php echo $prev_link ?></span>
       <?php endif; ?>
       </li>
-      <li class="nav-back">
+      <li class="nav-back col-xs-2">
         <a href="<?php echo esc_url( ! get_option( 'page_for_posts' ) ? home_url( '/' ) : get_permalink( get_option( 'page_for_posts' ) ) ) ?>" title="<?php _e( 'Back to post list', 'customizr') ?>">
           <span><i class="icn-grid-empty"></i></span>
           <span class="sr-only"><?php _e( 'Back to post list', 'customizr') ?></span>
         </a>
       </li>
-      <li class="next">
+      <li class="next col-xs-5">
       <?php if ( null != $next_link ) : ?>
         <span class="sr-only"><?php _e('Next post', 'customizr') ?></span>
         <span class="nav-next"><?php echo $next_link ?></span>
