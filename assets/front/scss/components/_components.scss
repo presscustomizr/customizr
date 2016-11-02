@@ -173,7 +173,9 @@ cite {
   font-style: normal;
   text-align: right;
   padding-left: $base-line-height*4;
+  padding-right: $base-line-height/5;
   position: relative;
+  float: left;
   &::before {
     content: "";
     position: absolute;

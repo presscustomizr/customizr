@@ -63,7 +63,7 @@ WP classes
   font-size: 1em;
 }
 
-.grid-item, .post { margin-bottom: 30px }
+[class*=grid-container__] article { margin-bottom: 40px }
 .comments__link { white-space: nowrap; }
 .grid-title_size {
 	line-height:1.4;
