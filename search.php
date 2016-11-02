@@ -25,7 +25,7 @@
   ?>
 
   <?php do_action('__before_main_wrapper'); ?>
-    <div id="main-wrapper" class="section bg">
+    <div id="main-wrapper" class="section">
       <?php
         if ( czr_fn_has('post_list_search_header') ):
       ?>

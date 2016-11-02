@@ -355,6 +355,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //Add the context
           add_filter ( 'body_class'            , 'czr_fn_set_post_list_context_class' );
 
+          //Add custom search form
+          add_filter( 'get_search_form'        , array( $this, 'czr_fn_search_form' ), 0 );
       }
 
       /**
@@ -900,6 +902,22 @@ if ( ! class_exists( 'CZR_init' ) ) :
         $args['unit'] = 'em';
         return $args;
       }
+
+
+      /*
+      * hook : get_search_form
+      *
+      * @since Customizr 4.0
+      * @return string custom search form html
+      */
+      function czr_fn_search_form() {
+        ob_start();
+         czr_fn_render_template( 'modules/searchform', 'searchform' );
+        $form = ob_get_clean();
+
+        return $form;
+      }
+
 
   }//end of class
 endif;
