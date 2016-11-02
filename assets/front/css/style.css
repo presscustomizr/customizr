@@ -362,6 +362,10 @@ body, html {
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  font-size: 15px;
+}
+
 .wp-caption,
 img {
   max-width: 100%;
@@ -1334,6 +1338,16 @@ li.comment::before,
   line-height: 2em;
   vertical-align: middle;
   display: inline-block;
+}
+
+.btn-edit.btn-edit-inverse {
+  background: #777;
+  color: #fff;
+}
+
+.btn-edit.btn-edit-inverse:hover {
+  color: #202020;
+  background: #eceeef;
 }
 
 .btn-edit i {
@@ -3856,6 +3870,13 @@ WP classes
   opacity: 1;
 }
 
+.grid-container__classic .expanded .btn-edit {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
 /* END CLASSIC */
 .bg-link, .bg-icon-link {
   top: 0;
@@ -4050,13 +4071,13 @@ WP classes
   right: 0;
 }
 
-.grid-container__masonry .grid-post {
+.grid-container__masonry .grid__item {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
 }
 
-.grid-container__masonry .hover .grid-post {
+.grid-container__masonry .hover .grid__item {
   -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
   -moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
