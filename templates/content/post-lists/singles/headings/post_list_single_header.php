@@ -8,15 +8,20 @@
 ?>
 <header class="entry-header <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="entry-header-inner <?php czr_fn_echo( 'entry_title_class' ) ?>">
-  <?php /* Maybe treat this case with CSS only */
-    if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
-      <div class="post-type__icon"><i class="icn-format"></i></div>
-  <?php endif; ?>
-  <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => czr_fn_get('cat_limit') ) ) ) : ?>
-    <div class="entry-meta">
-      <?php echo $cat ?>
-    </div>
-  <?php endif; ?>
+    <?php /* Maybe treat this case with CSS only */
+      if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
+        <div class="post-type__icon"><i class="icn-format"></i></div>
+    <?php endif; ?>
+    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array(
+            'limit'     => czr_fn_get('cat_limit'),
+            'separator' => '<span class="sep">/</span>'
+          )
+        ) ) :
+    ?>
+      <div class="entry-meta">
+        <?php echo $cat ?>
+      </div>
+    <?php endif; ?>
     <h2 class="entry-title ">
       <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php the_title() ?></a>
     </h2>

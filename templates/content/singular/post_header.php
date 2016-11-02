@@ -8,8 +8,13 @@
 ?>
 <div class="row page__header plain <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="container header-content">
-    <div class="header-content-inner">
-      <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
+    <div class="header-content-inner entry-header">
+      <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array(
+          'limit' => 3,
+          'separator' => '<span class="sep">/</span>'
+        )
+      ) ) :
+      ?>
         <div class="entry-meta category-info">
           <?php echo $cat ?>
         </div>

@@ -106,27 +106,10 @@ section[class^="post-"] {
 	.row { margin: $base-line-height*4 0 $base-line-height*2 0; }
 }
 
-.category-info {
-	@extend %categories;
-	 position: relative;
-	 &:after {
-	 	content: "";
-		position: absolute;
-		width: $base-line-height*3;
-		height: 3px;
-		top: 3.75em;
-		margin:0 auto;
-		bottom: 0;
-		left: 0;
-		right:0;
-	 }
-	a {
-		letter-spacing: 3px;
-		margin: 0  $base-line-height;
-		padding-right: $base-line-height;
-		&:last-of-type{ padding-right: 0 }
-	}
+.page__header .category-info a {
+	letter-spacing: 3px;
 }
+
 
 .pagination {
 	text-align:center;
