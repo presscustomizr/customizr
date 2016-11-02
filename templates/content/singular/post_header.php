@@ -15,20 +15,39 @@
         </div>
       <?php endif; ?>
       <h1 class="header-title"><?php the_title() ?></h1>
+      <?php
+        if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+          czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
+              'edit_button_class' => '',
+              'edit_button_title' => __( 'Edit post', 'customizr' ),
+              'edit_button_text'  => __( 'Edit post', 'customizr' ),
+              'edit_button_link'  => $edit_post_link,
+            ) );
+      ?>
       <div class="post-info">
         <?php
-          if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) )
-            echo $pub_date;
-
-          if ( czr_fn_has( 'comment_info' ) && CZR() -> controllers -> czr_fn_is_possible( 'comment_info' ) ) :
+          if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) ) :
         ?>
-          <span class="v-separator">|</span>
-          <?php czr_fn_render_template( 'modules/comment_info', 'comment_info' ) ?>
+          <div class="date-info">
+            <?php echo $pub_date; ?>
+          </div>
+        <?php
+         endif;
+          if ( czr_fn_has( 'comment_info' ) && CZR() -> controllers -> czr_fn_is_possible( 'comment_info' ) ) :
+            $comment_info = true;
+        ?>
+          <div class="comment-info">
+            <?php if ( $pub_date ): ?> <span class="v-separator">|</span> <?php endif ?>
+            <?php czr_fn_render_template( 'modules/comment_info', 'comment_info' ) ?>
+          </div>
         <?php endif ?>
         <?php if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) ) : ?>
-          <span class="v-separator">|</span>
-          <?php echo $author ?>
+          <div class="author-info">
+            <?php if ( $pub_date || $comment_info ): ?> <span class="v-separator">|</span> <?php endif ?>
+            <?php echo $author ?>
+          </div>
         <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
