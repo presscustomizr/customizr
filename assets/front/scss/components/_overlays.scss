@@ -96,7 +96,7 @@
     .search-close_btn {
         position: absolute;
         top:   68px;
-        right: 68px;
+        right: $base-line-height;
         font-size: ms(2);
     }
 }
