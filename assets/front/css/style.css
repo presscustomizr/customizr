@@ -1448,7 +1448,9 @@ cite {
   font-style: normal;
   text-align: right;
   padding-left: 5em;
+  padding-right: 0.25em;
   position: relative;
+  float: left;
 }
 
 cite::before {
@@ -2902,12 +2904,8 @@ dl dd {
   overflow: hidden;
 }
 
-.grid-container__plain article .entry-header .entry-meta {
+.grid-container__plain article .tax__container {
   margin-top: 1.25em;
-}
-
-.grid-container__plain article .entry-header .entry-meta a {
-  margin-right: 0;
 }
 
 .grid-container__plain article .post-tags {
@@ -3300,8 +3298,8 @@ WP classes
   font-size: 1em;
 }
 
-.grid-item, .post {
-  margin-bottom: 30px;
+[class*=grid-container__] article {
+  margin-bottom: 40px;
 }
 
 .comments__link {

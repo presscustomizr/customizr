@@ -1,11 +1,6 @@
 <?php
 /**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- *
- * Used to display either your home displaying latest posts or your blog page or your empty front
+ * The search template file
  *
  */
 ?>

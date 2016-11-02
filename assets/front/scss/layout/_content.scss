@@ -241,12 +241,8 @@
 		section:last-of-type { padding:$base-line-height*2; }
 		background: $white;
 		.tc-thumbnail { max-height: 600px; overflow: hidden; }
-		.entry-header {
-			.entry-meta {
-				margin-top:$base-line-height;
-				a { margin-right:0; }
-			 }
-
+		.tax__container {
+			margin-top:$base-line-height;
 		}
 		.post-tags { width: 50%; float: left; margin-top: 1.5em; }
 		.socials   { float:right; margin-top:1em;  }

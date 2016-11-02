@@ -25,19 +25,26 @@ endif ?>
       ?>
       <section class="tc-content entry-content__holder">
         <?php
+        /*
+        * Get the category list if any
+        * impacts on inner layout
+        */
+        if ( czr_fn_has('post_metas') )
+         $cat_list = czr_fn_get( 'cat_list', 'post_metas', array(
+            'limit' => 3,
+            'separator' => '<span class="sep hidden-md-up">/</span>'
+            )
+        );
+
         if ( czr_fn_has('post_list_header') )
           czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header-no_metas', 'post_list_header', array(
-            'entry_header_inner_class' => czr_fn_get( 'entry_header_inner_class' ),
+            'entry_header_inner_class' => $cat_list ? czr_fn_get( 'entry_header_inner_class' ) : array('col-xs-12'),
             'element_class'            => czr_fn_get( 'entry_header_class' )
           ));
         ?>
         <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
           <?php
-          if ( czr_fn_has('post_metas') && $cat_list = czr_fn_get( 'cat_list', 'post_metas', array(
-            'limit' => 3,
-            'separator' => '<span class="sep hidden-md-up">/</span>'
-            )
-          ) ) :
+          if ( $cat_list ) :
           ?>
             <div class="entry-meta tax__container col-md-3 col-xs-12 small caps">
               <?php echo $cat_list ?>
@@ -47,7 +54,12 @@ endif ?>
           endif;
           /* Content Inner */
           ?>
-          <div class="tc-content-inner-wrapper <?php czr_fn_echo( 'content_inner_class' ) ?>">
+          <div class="tc-content-inner-wrapper <?php
+            if ( $cat_list )
+              czr_fn_echo( 'content_inner_class' );
+            else
+              echo 'col-xs-12';
+            ?>" >
             <?php
               /* Content Inner */
               czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_content_inner' )
