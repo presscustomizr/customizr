@@ -138,6 +138,7 @@ function czr_fn_get_single_thumbnail_position() {
 */
 function czr_fn_has_thumb( $_post_id = null , $_thumb_id = null ) {
     $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
+
     //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
     extract( czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
     return wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id);

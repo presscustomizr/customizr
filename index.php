@@ -27,10 +27,15 @@
     <div id="main-wrapper" class="section">
       <?php
         //blog page title
-        if ( is_home() && ! is_front_page() && czr_fn_has('post_list_page_header') ):
+        if ( ! czr_fn_is_home() ):
       ?>
         <div class="container-fluid">
-          <?php czr_fn_render_template('content/post-lists/post_list_page_header', 'post_list_page_header');?>
+          <?php
+            if ( czr_fn_has( 'post_list_heading' ) )
+              czr_fn_render_template( 'content/post-lists/headings/post_list_heading', 'post_list_heading' );
+            elseif ( czr_fn_has( 'post_list_search_heading' ) )
+              czr_fn_render_template( 'content/post-lists/headings/post_list_search_heading', 'post_list_search_heading' );
+          ?>
         </div>
       <?php
         endif;
@@ -53,17 +58,38 @@
 
           <div id="content" class="<?php czr_fn_article_container_class() ?>">
             <?php
+
+              do_action( '__before_loop' );
+
               if ( have_posts() ) {
                 while ( have_posts() ) {
                   the_post();
 
                   // Render list of posts based on the options
-                  if ( $_is_post_list = czr_fn_is_list_of_posts() ){
-                    czr_fn_render_list_of_posts();
+                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
+                    if ( czr_fn_has('post_list_grid') ) {
+                      czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
+                    }
+                    elseif ( czr_fn_has('post_list') ){
+                      czr_fn_render_template('content/post-lists/post_list_alternate', 'post_list');
+                    }elseif ( czr_fn_has('post_list_masonry') ) {
+                      czr_fn_render_template('content/post-lists/post_list_masonry', 'post_list_masonry');
+                    }elseif ( czr_fn_has('post_list_plain') ) {
+                      czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
+                    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
+                      czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
+                    } else { //fallback
+                      czr_fn_render_template('content/singular/page_content', 'page');
+                    }
                   } else { //fallback
                     czr_fn_render_template('content/singular/page_content', 'page');
                   }
                 }//endwhile;
+              }else {//no results
+                if ( is_search() )
+                  czr_fn_render_template('content/no-results/search-no-results', 'search_no_results');
+                else
+                  czr_fn_render_template('content/no-results/404', '404' );
               }
             ?>
           </div>
@@ -71,13 +97,15 @@
           <?php do_action('__after_content'); ?>
 
           <?php
-            if ( czr_fn_has('left_sidebar') ) {
-              czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
-            }
-          ?>
-          <?php
-            if ( czr_fn_has('right_sidebar') ) {
-              czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
+            /* By design do not display sidebars in 404 */
+            if ( ! is_404() ) {
+              if ( czr_fn_has('left_sidebar') ) {
+                czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
+              }
+
+              if ( czr_fn_has('right_sidebar') ) {
+                czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
+              }
             }
           ?>
         </div><!-- .column-content-wrapper -->

@@ -138,28 +138,6 @@ if ( ! function_exists('czr_fn_render_template') ) {
   }
 }
 
-//shortcut function to render a post list
-if ( ! function_exists('czr_fn_render_list_of_posts') ) {
-  function czr_fn_render_list_of_posts( $_t = null, $_id = null, $args = array() ) {
-    if ( $_t && $_id )
-      czr_fn_render_template( $_t, $_id, $args );
-
-    elseif ( czr_fn_has('post_list_grid') ) {
-      czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
-    }
-    elseif ( czr_fn_has('post_list') ){
-      czr_fn_render_template('content/post-lists/post_list_alternate', 'post_list');
-    }elseif ( czr_fn_has('post_list_masonry') ) {
-      czr_fn_render_template('content/post-lists/post_list_masonry', 'post_list_masonry');
-    }elseif ( czr_fn_has('post_list_plain') ) {
-      czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
-    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-      czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
-    }
-
-  }
-}
-
 //@return boolean
 //states if registered and possible
 //useful is a check has to be done in the template before "instant" registration.

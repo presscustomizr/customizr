@@ -134,7 +134,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
     array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
 
-    return czr_fn_get_the_post_list_article_selectors( $post_class );
+    return czr_fn_get_the_post_list_article_selectors(  );
 
   }
 

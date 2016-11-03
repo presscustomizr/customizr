@@ -32,21 +32,33 @@
             <?php echo $pub_date; ?>
           </div>
         <?php
-         endif;
+          endif;
+
           if ( czr_fn_has( 'comment_info' ) ) :
             $comment_info = true;
-        ?>
+            if ( $pub_date ):
+          ?>
+              <span class="v-separator">|</span>
+          <?php
+            endif
+          ?>
           <div class="comment-info">
-            <?php if ( $pub_date ): ?> <span class="v-separator">|</span> <?php endif ?>
             <?php czr_fn_render_template( 'modules/comment_info', 'comment_info' ) ?>
           </div>
-        <?php endif ?>
-        <?php if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) ) : ?>
+        <?php
+          endif;
+
+          if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) ) :
+            if ( $pub_date || $comment_info ):
+          ?>
+            <span class="v-separator">|</span>
+          <?php
+            endif
+          ?>
           <div class="author-info">
-            <?php if ( $pub_date || $comment_info ): ?> <span class="v-separator">|</span> <?php endif ?>
             <?php echo $author ?>
           </div>
-        <?php endif; ?>
+        <?php endif ?>
       </div>
     </div>
   </div>
