@@ -162,6 +162,16 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       //Article wrapper class definition
       $global_layout                 = czr_fn_get_global_layout();
 
+      /* Force 404 layout */
+      //checks if the 'force default layout' option is checked and return the default layout before any specific layout
+      if ( is_404() ) {
+        $czr_screen_layout = array(
+          'sidebar' => false,
+          'class'   => 'col-xs-12 col-md-8 push-md-2'
+        );
+        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+      }
+
       /* DEFAULT LAYOUTS */
       //what is the default layout we want to apply? By default we apply the global default layout
       $czr_sidebar_default_layout    = esc_attr( czr_fn_get_opt('tc_sidebar_global_layout') );

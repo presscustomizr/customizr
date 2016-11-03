@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_page_header_model_class extends CZR_Model {
+class CZR_post_list_heading_model_class extends CZR_Model {
   public $pre_title;
   public $title;
   public $context;
