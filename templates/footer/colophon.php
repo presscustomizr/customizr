@@ -8,9 +8,9 @@
 ?>
 <div id="colophon" class="colophon__row row">
   <div class="col-sm-6 col-xs-12">
-    <?php czr_fn_render_template( 'footer/footer_credits' ); ?>
+    <?php if ( czr_fn_has( 'footer_credits' ) ) czr_fn_render_template( 'footer/footer_credits' ); ?>
   </div>
   <div class="col-sm-6 col-xs-12">
-    <?php czr_fn_render_template( 'footer/footer_socials' ); ?>
+    <?php if ( czr_fn_has( 'footer_socials' ) ) czr_fn_render_template( 'footer/footer_socials' ); ?>
   </div>
 </div>

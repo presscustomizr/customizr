@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
       return ! $this -> czr_fn_display_view_btt_arrow();
     }
 
-    function czr_fn_display_view_footer_widgets_wrapper() {
+    function czr_fn_display_view_footer_widgets() {
       $footer_widgets = apply_filters( 'czr_footer_widgets', CZR_init::$instance -> footer_widgets );
       foreach ( $footer_widgets as $key => $area ) {
         if ( is_active_sidebar( $key ) )
