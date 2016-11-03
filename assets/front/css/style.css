@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .gallery-item .tc-content, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
   font-weight: 500;
 }
 
@@ -208,13 +208,13 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .tagcloud a,
-.tags li, .grid-container__plain article .tax__container .tax__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
+.service-font, .btn, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .tagcloud a,
+.tags li, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-more, .btn-large, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-more, .btn-large, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -330,22 +330,6 @@ blockquote p {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-
-.alignleft {
-  float: left;
-  margin: 0.375em 1.75em 1.75em 0;
-}
-
-.alignright {
-  float: right;
-  margin: 0.375em 0 1.75em 1.75em;
-}
-
-.aligncenter {
-  clear: both;
-  display: block;
-  margin: 0 auto 1.75em;
 }
 
 *,
@@ -504,6 +488,22 @@ img::-moz-selection {
 
 body {
   webkit-tap-highlight-color: #B4B4B4;
+}
+
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.75em;
 }
 
 /*
@@ -1364,19 +1364,29 @@ a.external {
   position: relative;
 }
 
-.grid-container__plain article .tax__container a, .entry-header .entry-meta a, .grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep {
+.grid-container__plain article .tax__container a, .entry-header .entry-meta a {
   color: #B4B4B4;
   position: relative;
   display: inline-block;
   vertical-align: middle;
 }
 
-.grid-container__plain article .tax__container a:hover, .entry-header .entry-meta a:hover {
-  color: #202020;
+.grid-container__plain article .tax__container a:not(:last-of-type), .entry-header .entry-meta a:not(:last-of-type) {
+  margin-right: 1.5em;
 }
 
-.grid-container__plain article .tax__container .sep, .entry-header .entry-meta .sep {
-  margin: 0 1em;
+.grid-container__plain article .tax__container a:not(:last-of-type)::after, .entry-header .entry-meta a:not(:last-of-type)::after {
+  content: '/';
+  color: #B4B4B4;
+  z-index: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: -1em;
+}
+
+.grid-container__plain article .tax__container a:hover, .entry-header .entry-meta a:hover {
+  color: #202020;
 }
 
 /* go-to-top button*/
@@ -2058,6 +2068,292 @@ label i {
   padding-right: 2em;
 }
 
+.gallery-item {
+  position: relative;
+  float: left;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1.25em;
+}
+
+.gallery-item dt {
+  text-align: inherit;
+  padding: 0;
+}
+
+.gallery-item dt::before {
+  content: none;
+}
+
+.gallery-item .tc-thumbnail {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item .post-thumbnail {
+  -webkit-transition: all 0.2s, 0.3s ease;
+  transition: all 0.2s, 0.3s ease;
+}
+
+.gallery-item .tc-content {
+  padding-top: 0.625em;
+  font-family: "Roboto", sans-serif;
+  color: #B4B4B4;
+}
+
+.gallery-item.hover .post-thumbnail {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.gallery-item.hover .tc-content {
+  color: #202020;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-item:not(:last-of-type) {
+  margin-right: 1.25em;
+}
+
+.bg .gallery-item {
+  background: #fff;
+}
+
+.bg .gallery-item .tc-content {
+  padding: 1.25em;
+}
+
+.post-gallery {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  *zoom: 1;
+  position: ralative;
+  overflow: hidden;
+}
+
+.post-gallery:before, .post-gallery:after {
+  content: "";
+  display: table;
+}
+
+.post-gallery:after {
+  clear: both;
+}
+
+.col-num-1 .gallery-item {
+  width: calc( (100% - 1.25em * (1 - 1) ) / 1);
+}
+
+.col-num-1 .gallery-item:nth-child(1) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-1 .gallery-item {
+    width: calc( (100% - 1.25em * (1 - 1) ) / (1 / 2));
+  }
+}
+
+.col-num-2 .gallery-item {
+  width: calc( (100% - 1.25em * (2 - 1) ) / 2);
+}
+
+.col-num-2 .gallery-item:nth-child(2) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-2 .gallery-item {
+    width: calc( (100% - 1.25em * (2 - 1) ) / (2 / 2));
+  }
+}
+
+.col-num-3 .gallery-item {
+  width: calc( (100% - 1.25em * (3 - 1) ) / 3);
+}
+
+.col-num-3 .gallery-item:nth-child(3) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-3 .gallery-item {
+    width: calc( (100% - 1.25em * (3 - 1) ) / (3 / 2));
+  }
+}
+
+.col-num-4 .gallery-item {
+  width: calc( (100% - 1.25em * (4 - 1) ) / 4);
+}
+
+.col-num-4 .gallery-item:nth-child(4) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-4 .gallery-item {
+    width: calc( (100% - 1.25em * (4 - 1) ) / (4 / 2));
+  }
+}
+
+.col-num-5 .gallery-item {
+  width: calc( (100% - 1.25em * (5 - 1) ) / 5);
+}
+
+.col-num-5 .gallery-item:nth-child(5) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-5 .gallery-item {
+    width: calc( (100% - 1.25em * (5 - 1) ) / (5 / 2));
+  }
+}
+
+.col-num-6 .gallery-item {
+  width: calc( (100% - 1.25em * (6 - 1) ) / 6);
+}
+
+.col-num-6 .gallery-item:nth-child(6) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-6 .gallery-item {
+    width: calc( (100% - 1.25em * (6 - 1) ) / (6 / 2));
+  }
+}
+
+.col-num-7 .gallery-item {
+  width: calc( (100% - 1.25em * (7 - 1) ) / 7);
+}
+
+.col-num-7 .gallery-item:nth-child(7) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-7 .gallery-item {
+    width: calc( (100% - 1.25em * (7 - 1) ) / (7 / 2));
+  }
+}
+
+.col-num-8 .gallery-item {
+  width: calc( (100% - 1.25em * (8 - 1) ) / 8);
+}
+
+.col-num-8 .gallery-item:nth-child(8) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-8 .gallery-item {
+    width: calc( (100% - 1.25em * (8 - 1) ) / (8 / 2));
+  }
+}
+
+.col-num-9 .gallery-item {
+  width: calc( (100% - 1.25em * (9 - 1) ) / 9);
+}
+
+.col-num-9 .gallery-item:nth-child(9) {
+  float: none;
+}
+
+@media (max-width: 992px) {
+  .col-num-9 .gallery-item {
+    width: calc( (100% - 1.25em * (9 - 1) ) / (9 / 2));
+  }
+}
+
+.col-num-3 .gallery-item .post-action {
+  width: 3.75em;
+  height: 3.75em;
+  top: 0.95em;
+  right: 0.95em;
+}
+
+.col-num-3 .gallery-item .post-action a {
+  line-height: 3.75em;
+}
+
+.col-num-4 .gallery-item .post-action {
+  width: 2.8125em;
+  height: 2.8125em;
+  top: 0.85em;
+  right: 0.85em;
+}
+
+.col-num-4 .gallery-item .post-action a {
+  line-height: 2.8125em;
+}
+
+.col-num-5 .gallery-item .post-action {
+  width: 2.25em;
+  height: 2.25em;
+  top: 0.75em;
+  right: 0.75em;
+}
+
+.col-num-5 .gallery-item .post-action a {
+  line-height: 2.25em;
+}
+
+.col-num-6 .gallery-item .post-action {
+  width: 1.875em;
+  height: 1.875em;
+  top: 0.65em;
+  right: 0.65em;
+}
+
+.col-num-6 .gallery-item .post-action a {
+  line-height: 1.875em;
+}
+
+.col-num-7 .gallery-item .post-action {
+  width: 1.607143em;
+  height: 1.607143em;
+  top: 0.55em;
+  right: 0.55em;
+}
+
+.col-num-7 .gallery-item .post-action a {
+  line-height: 1.607143em;
+}
+
+.col-num-8 .gallery-item .post-action {
+  width: 1.40625em;
+  height: 1.40625em;
+  top: 0.45em;
+  right: 0.45em;
+}
+
+.col-num-8 .gallery-item .post-action a {
+  line-height: 1.40625em;
+}
+
+.col-num-9 .gallery-item .post-action {
+  width: 1.25em;
+  height: 1.25em;
+  top: 0.35em;
+  right: 0.35em;
+}
+
+.col-num-9 .gallery-item .post-action a {
+  line-height: 1.25em;
+}
+
 .overlay {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -2695,30 +2991,24 @@ dl dd {
   overflow: hidden;
 }
 
-.grid-container__plain article .tax__container .tax__link {
+.grid-container__plain article .tax__container a[class*=tax__link] {
   display: block;
   letter-spacing: 3px;
   clear: both;
-  width: auto;
   position: relative;
 }
 
-.grid-container__plain article .tax__container .tax__link:not(:last-of-type)::after {
-  content: none;
-}
-
-.grid-container__plain article .tax__container .tax__link span {
+.grid-container__plain article .tax__container a[class*=tax__link] span {
   position: relative;
-  width: auto;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain article .tax__container .tax__link {
-    text-align: right;
+  .grid-container__plain article .tax__container a[class*=tax__link] {
     margin: 0;
+    text-align: right;
     line-height: 3em;
   }
-  .grid-container__plain article .tax__container .tax__link span::before {
+  .grid-container__plain article .tax__container a[class*=tax__link] span::before {
     content: "";
     position: absolute;
     top: calc(50% + 2px);
@@ -2729,18 +3019,21 @@ dl dd {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
+  .grid-container__plain article .tax__container a[class*=tax__link]::after {
+    content: none;
+  }
 }
 
-.grid-container__plain article .tax__container .tax__link:hover span::before {
+.grid-container__plain article .tax__container a[class*=tax__link]:hover span::before {
   width: 0.625em;
 }
 
 @media (max-width: 48em) {
-  .grid-container__plain article .tax__container .tax__link {
+  .grid-container__plain article .tax__container a[class*=tax__link] {
     display: inline-block;
     text-align: left;
   }
-  .grid-container__plain article .tax__container .tax__link span::before {
+  .grid-container__plain article .tax__container a[class*=tax__link] span::before {
     content: none;
   }
 }
@@ -4691,7 +4984,7 @@ section.post-content {
   color: #B4B4B4;
   text-align: left;
   margin: 1.25em 0;
-  /*$base-line-height*4 $base-line-height*2;*/
+  padding: 0;
 }
 
 .wp-caption-text::before {
@@ -4846,287 +5139,6 @@ section.post-content {
     right: 0;
     left: auto;
   }
-}
-
-.gallery-item {
-  position: relative;
-  float: left;
-  display: block;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1.25em;
-}
-
-.gallery-item dt::before {
-  content: none;
-}
-
-.gallery-item .tc-thumbnail {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.gallery-item .post-thumbnail {
-  -webkit-transition: all 0.2s, 0.3s ease;
-  transition: all 0.2s, 0.3s ease;
-}
-
-.gallery-item .tc-content {
-  padding-top: 0.625em;
-  font-family: "Roboto", sans-serif;
-  color: #B4B4B4;
-}
-
-.gallery-item.hover .post-thumbnail {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.gallery-item.hover .tc-content {
-  color: #202020;
-}
-
-.gallery-item img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.gallery-item:not(:last-of-type) {
-  margin-right: 1.25em;
-}
-
-.bg .gallery-item {
-  background: #fff;
-}
-
-.bg .gallery-item .tc-content {
-  padding: 1.25em;
-}
-
-.post-gallery {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  *zoom: 1;
-  position: ralative;
-  overflow: hidden;
-}
-
-.post-gallery:before, .post-gallery:after {
-  content: "";
-  display: table;
-}
-
-.post-gallery:after {
-  clear: both;
-}
-
-.col-num-1 .gallery-item {
-  width: calc( (100% - 1.25em * (1 - 1) ) / 1);
-}
-
-.col-num-1 .gallery-item:nth-child(1) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-1 .gallery-item {
-    width: calc( (100% - 1.25em * (1 - 1) ) / (1 / 2));
-  }
-}
-
-.col-num-2 .gallery-item {
-  width: calc( (100% - 1.25em * (2 - 1) ) / 2);
-}
-
-.col-num-2 .gallery-item:nth-child(2) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-2 .gallery-item {
-    width: calc( (100% - 1.25em * (2 - 1) ) / (2 / 2));
-  }
-}
-
-.col-num-3 .gallery-item {
-  width: calc( (100% - 1.25em * (3 - 1) ) / 3);
-}
-
-.col-num-3 .gallery-item:nth-child(3) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-3 .gallery-item {
-    width: calc( (100% - 1.25em * (3 - 1) ) / (3 / 2));
-  }
-}
-
-.col-num-4 .gallery-item {
-  width: calc( (100% - 1.25em * (4 - 1) ) / 4);
-}
-
-.col-num-4 .gallery-item:nth-child(4) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-4 .gallery-item {
-    width: calc( (100% - 1.25em * (4 - 1) ) / (4 / 2));
-  }
-}
-
-.col-num-5 .gallery-item {
-  width: calc( (100% - 1.25em * (5 - 1) ) / 5);
-}
-
-.col-num-5 .gallery-item:nth-child(5) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-5 .gallery-item {
-    width: calc( (100% - 1.25em * (5 - 1) ) / (5 / 2));
-  }
-}
-
-.col-num-6 .gallery-item {
-  width: calc( (100% - 1.25em * (6 - 1) ) / 6);
-}
-
-.col-num-6 .gallery-item:nth-child(6) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-6 .gallery-item {
-    width: calc( (100% - 1.25em * (6 - 1) ) / (6 / 2));
-  }
-}
-
-.col-num-7 .gallery-item {
-  width: calc( (100% - 1.25em * (7 - 1) ) / 7);
-}
-
-.col-num-7 .gallery-item:nth-child(7) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-7 .gallery-item {
-    width: calc( (100% - 1.25em * (7 - 1) ) / (7 / 2));
-  }
-}
-
-.col-num-8 .gallery-item {
-  width: calc( (100% - 1.25em * (8 - 1) ) / 8);
-}
-
-.col-num-8 .gallery-item:nth-child(8) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-8 .gallery-item {
-    width: calc( (100% - 1.25em * (8 - 1) ) / (8 / 2));
-  }
-}
-
-.col-num-9 .gallery-item {
-  width: calc( (100% - 1.25em * (9 - 1) ) / 9);
-}
-
-.col-num-9 .gallery-item:nth-child(9) {
-  float: none;
-}
-
-@media (max-width: 992px) {
-  .col-num-9 .gallery-item {
-    width: calc( (100% - 1.25em * (9 - 1) ) / (9 / 2));
-  }
-}
-
-.col-num-3 .gallery-item .post-action {
-  width: 3.75em;
-  height: 3.75em;
-  top: 0.95em;
-  right: 0.95em;
-}
-
-.col-num-3 .gallery-item .post-action a {
-  line-height: 3.75em;
-}
-
-.col-num-4 .gallery-item .post-action {
-  width: 2.8125em;
-  height: 2.8125em;
-  top: 0.85em;
-  right: 0.85em;
-}
-
-.col-num-4 .gallery-item .post-action a {
-  line-height: 2.8125em;
-}
-
-.col-num-5 .gallery-item .post-action {
-  width: 2.25em;
-  height: 2.25em;
-  top: 0.75em;
-  right: 0.75em;
-}
-
-.col-num-5 .gallery-item .post-action a {
-  line-height: 2.25em;
-}
-
-.col-num-6 .gallery-item .post-action {
-  width: 1.875em;
-  height: 1.875em;
-  top: 0.65em;
-  right: 0.65em;
-}
-
-.col-num-6 .gallery-item .post-action a {
-  line-height: 1.875em;
-}
-
-.col-num-7 .gallery-item .post-action {
-  width: 1.607143em;
-  height: 1.607143em;
-  top: 0.55em;
-  right: 0.55em;
-}
-
-.col-num-7 .gallery-item .post-action a {
-  line-height: 1.607143em;
-}
-
-.col-num-8 .gallery-item .post-action {
-  width: 1.40625em;
-  height: 1.40625em;
-  top: 0.45em;
-  right: 0.45em;
-}
-
-.col-num-8 .gallery-item .post-action a {
-  line-height: 1.40625em;
-}
-
-.col-num-9 .gallery-item .post-action {
-  width: 1.25em;
-  height: 1.25em;
-  top: 0.35em;
-  right: 0.35em;
-}
-
-.col-num-9 .gallery-item .post-action a {
-  line-height: 1.25em;
 }
 
 .navbar-nav a {

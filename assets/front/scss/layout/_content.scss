@@ -281,18 +281,15 @@
 		.tax__container {
 			@extend %categories;
 			overflow:hidden;
-			.tax__link {
+			a[class*=tax__link] {
 				display: block;
 				letter-spacing: 3px;
 				clear:both;
-				width:auto;
 				position: relative;
-				@extend .service-font;
-				&:not(:last-of-type)::after { content:none }
-				span { position: relative; width: auto }
+				span { position: relative }
 				@media (min-width: 48em) {
+					margin: 0;
 					text-align: right;
-					margin:0;
 					line-height: 3em;
 					& span::before {
 						content: "";
@@ -304,6 +301,7 @@
 						left:-3em;
 						@include transition (all 0.3s ease);
 					}
+					&::after { content: none }
 				}
 				&:hover span::before {
 					width: $base-line-height/2;

@@ -22,7 +22,7 @@ $line-height:
   1.4  20em,
   1.75 40em;
 
-body { 
+body {
 	 font-family: $baseFont;
 	 @include ms-respond(line-height, 1, $line-height, 1);
 }
@@ -35,7 +35,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-	@extend .thick; 
+	@extend .thick;
 	position:relative;
 }
 
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h6 {
-	@extend .semi-bold; 
+	@extend .semi-bold;
 	color:$grey ;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -63,13 +63,13 @@ $ms-range:
 
 
 body {
-	 @include ms-respond(font-size, 1); 
+	 @include ms-respond(font-size, 1);
 }
 
 blockquote p {
 	font-family: $baseFont;
 }
-.small, small { 
+.small, small {
 	font-size: ms(-1);
 }
 .demi-small {
@@ -78,7 +78,7 @@ blockquote p {
 .thin {
 	font-weight: 300;
 }
-.normal { 
+.normal {
 	font-weight: 400;
  }
  .semi-bold {
@@ -87,7 +87,7 @@ blockquote p {
  .bold {
 	font-weight: 600;
 }
-.thick, strong { 
+.thick, strong {
 	font-weight: 700;
 }
 
@@ -130,7 +130,6 @@ blockquote p {
 	box-shadow: inset 0 -5px 0 $grey-lightest;
 }
 .underline { text-decoration: underline; }
-
 
 
 

@@ -30,11 +30,7 @@ endif ?>
         * impacts on inner layout
         */
         if ( czr_fn_has('post_metas') )
-         $cat_list = czr_fn_get( 'cat_list', 'post_metas', array(
-            'limit' => null,
-            'separator' => '<span class="sep hidden-md-up">/</span>'
-            )
-        );
+         $cat_list = czr_fn_get( 'cat_list', 'post_metas');
 
         if ( czr_fn_has('post_list_header') )
           czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header-no_metas', 'post_list_header', array(

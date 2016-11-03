@@ -320,15 +320,21 @@ if ( ! class_exists( 'CZR_init' ) ) :
           $this -> footer_widgets     = array(
             'footer_one'    => array(
                             'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                            'before_title'            => '<h5 class="widget-title">',
+                            'after_title'             => '</h5>'
             ),
             'footer_two'    => array(
                             'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                            'before_title'            => '<h5 class="widget-title">',
+                            'after_title'             => '</h5>'
             ),
             'footer_three'   => array(
                             'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' )
+                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                            'before_title'            => '<h5 class="widget-title">',
+                            'after_title'             => '</h5>'
             )
           );//end of array
       }//end of constructor
