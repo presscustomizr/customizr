@@ -24,11 +24,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     );
   public $post_list_layout;
 
-  /* An array populated by items like
-  *  postID => array() //properties
-  */
-  public $alternate_items = array();
-
 
   /**
   * @override
@@ -72,38 +67,28 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
   /* possibly move in utils */
   function czr_fn_get_has_excerpt() {
-    if ( $this -> czr_fn_has_alternate_item_field( 'has_excerpt' ) )
-      return $this -> czr_fn_get_alternate_item_field( 'has_excerpt' );
-
     /*
     * Using the excerpt filter here can cause some compatibility issues
     * See: Super Socializer plugin
     */
     $has_excerpt = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
-    $this -> czr_fn_set_alternate_item_field( 'has_excerpt', $has_excerpt );
 
     return $has_excerpt;
   }
 
 
   function czr_fn_get_is_full_image() {
-    if ( $this -> czr_fn_has_alternate_item_field( 'is_full_image' ) )
-      return $this -> czr_fn_get_alternate_item_field( 'is_full_image' );
 
     $_current_post_format    = get_post_format();
     /* gallery and image (with no text) post formats */
     $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
           ( 'image' == $_current_post_format && ! $this->czr_fn_get_has_excerpt() ) );
 
-    //cache
-    $this -> czr_fn_set_alternate_item_field( 'is_full_image', $is_full_image );
 
     return $is_full_image;
   }
 
   function czr_fn_get_article_selectors() {
-    if ( $this -> czr_fn_has_alternate_item_field( 'article_selectors' ) )
-      return $this -> czr_fn_get_alternate_item_field( 'article_selectors' );
 
     $post_class              = self::$post_class;
 
@@ -111,15 +96,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     array_push( $post_class, ! $this->czr_fn_get_has_excerpt() ? 'no-excerpt' : '',  $this->czr_fn_get_has_format_icon_media() ? 'no-thumb' : '' );
 
     $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
-    $this -> czr_fn_set_alternate_item_field( 'article_selectors', $article_selectors );
 
     return $article_selectors;
   }
 
 
   function czr_fn_get_alternate_item_layout_properties() {
-    if ( $this -> czr_fn_has_alternate_item_field( 'item_layout_properties' ) )
-      return $this -> czr_fn_get_alternate_item_field( 'item_layout_properties' );
 
     global $wp_query;
 
@@ -207,9 +189,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'sections_wrapper_class'  => $_sections_wrapper_class,
     );
 
-    //caching
-    $this -> czr_fn_set_alternate_item_field( 'item_layout_properties', $item_layout_properties );
-
     return $item_layout_properties;
 
   }
@@ -224,7 +203,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   }
 
 
-  /* Tempory use of the extract here */
+
   function czr_fn_get_media_col() {
     $item_layout = $this -> czr_fn_get_alternate_item_layout_property( 'item_layout' );
     if ( isset($item_layout['media']) )
@@ -232,22 +211,27 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     return;
   }
 
-  /* Tempory use of the extract here */
+
   function czr_fn_get_place_1() {
     return $this -> czr_fn_get_alternate_item_layout_property( 'place_1' );
   }
 
-  /* Tempory use of the extract here */
+
   function czr_fn_get_place_2() {
     return $this -> czr_fn_get_alternate_item_layout_property( 'place_2' );
   }
 
-  /* Tempory use of the extract here */
+
   function czr_fn_get_sections_wrapper_class() {
     return $this -> czr_fn_get_alternate_item_layout_property( 'sections_wrapper_class' );
   }
 
-
+  function czr_fn_get_alternate_item_layout_property( $_property ) {
+    if ( ! $_property )
+      return;
+    $_properties = $this -> czr_fn_get_alternate_item_layout_properties();
+    return isset( $_properties[ $_property ] ) ? $_properties[ $_property ] : null;
+  }
 
   /**
   * @return array() of layout data
@@ -307,53 +291,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
   }
 
-
-  function czr_fn_reset_alternate_items() {
-    $this -> alternate_items = array();
-  }
-
-
-  function czr_fn_has_alternate_item_field( $_property, $_post_id = null ) {
-    $_post_id = $_post_id ? $_post_id : get_the_ID();
-
-    if ( ! $_post_id || ! $_property )
-      return;
-
-    return isset( $this->alternate_items[$_post_id][$_property] );
-  }
-
-  function czr_fn_set_alternate_item_field( $_property, $_property_value = '', $_post_id = null ) {
-    $_post_id = $_post_id ? $_post_id : get_the_ID();
-    if ( ! $_post_id || ! $_property )
-      return;
-
-    $_alternate_items = $this -> alternate_items;
-    if ( ! isset( $_alternate_items[$_post_id] ) || ! is_array($_alternate_items[$_post_id]) )
-      $_alternate_items[$_post_id] = array();
-
-    $_item_array_new      = array_merge( $_alternate_items[$_post_id], array( $_property => $_property_value ) );
-    $_new_alternate_items = $_alternate_items;
-    $_new_alternate_items[$_post_id] = $_item_array_new;
-
-    $this -> czr_fn_set_property( 'alternate_items', $_new_alternate_items );
-  }
-
-  function czr_fn_get_alternate_item_field( $_property, $_post_id = null ) {
-    $_post_id = $_post_id ? $_post_id : get_the_ID();
-    if ( ! $_post_id || ! $_property )
-      return;
-    $_alternate_items = $this -> czr_fn_has_alternate_item_field( $_property ) ? $this -> alternate_items : null;
-
-    return  $_alternate_items ? $_alternate_items[$_post_id][$_property] : '';
-  }
-
-
-  function czr_fn_get_alternate_item_layout_property( $_property ) {
-    if ( ! $_property )
-      return;
-    $_properties = $this -> czr_fn_get_alternate_item_layout_properties();
-    return isset( $_properties[ $_property ] ) ? $_properties[ $_property ] : null;
-  }
 
   /**
   * @return array() of bootstrap classed defining the responsive widths
