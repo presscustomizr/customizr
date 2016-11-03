@@ -172,6 +172,7 @@
 				background: $black;
 			}
 		}
+		.wp-caption-dt::before { content: none }
 		dd {
 			padding-left : $base-line-height;
 		}

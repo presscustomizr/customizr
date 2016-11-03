@@ -7,7 +7,7 @@
 @import 'base/skins';
 @import 'components/components';
 @import 'components/forms';
-@import 'components/gallery';
+
 @import 'components/overlays';
 @import 'base/variables';
 
@@ -16,6 +16,8 @@
 @import 'layout/grid';
 @import 'layout/article';
 @import 'layout/sidebar';
+
+@import 'components/gallery';
 @import 'navigation/topnav';
 
 
