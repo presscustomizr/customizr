@@ -42,27 +42,11 @@
 
           <div id="content" class="<?php czr_fn_article_container_class() ?>">
             <?php
-
-                if ( czr_fn_has('posts_list_headings') ) { czr_fn_render_template('content/post-lists/posts_list_headings', 'posts_list_headings'); }
-              if ( have_posts() ) {
+              if ( have_posts() && czr_fn_is_list_of_posts() ) {
                 while ( have_posts() ) {
                   the_post();
-
-                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
-                    if ( czr_fn_has('post_list_grid') ) {
-                      czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
-                    }
-                    elseif ( czr_fn_has('post_list') ){
-                      czr_fn_render_template('content/post-lists/post_list_alternate', 'post_list');
-                    }elseif ( czr_fn_has('post_list_masonry') ) {
-                      czr_fn_render_template('content/post-lists/post_list_masonry', 'post_list_masonry');
-                    }elseif ( czr_fn_has('post_list_plain') ) {
-                      czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
-                    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                      czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
-                    }
-
-                  }
+                  // Render list of posts based on the options
+                  czr_fn_render_list_of_posts();
                 }//endwhile;
               }else {//no results
                 czr_fn_render_template('content/no-results/search-no-results', 'search_no_results');

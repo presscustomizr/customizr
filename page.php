@@ -31,6 +31,12 @@
       ?>
       <?php do_action('__before_main_container'); ?>
 
+      <?php
+        /* FEATURED PAGES */
+        if ( czr_fn_has( 'featured_pages' ) )
+          czr_fn_render_template('modules/featured-pages/featured_pages', 'featured_pages');
+      ?>
+
       <div class="container" role="main">
 
         <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
