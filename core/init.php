@@ -282,7 +282,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         //returns an array of models describing the theme's views
         private function czr_fn_get_model_map() {
           return apply_filters(
-            'tc_model_map',
+            'czr_model_map',
             array(
               /*********************************************
               * ROOT HTML STRUCTURE
@@ -312,8 +312,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               //slider of posts
               array(
                 'id'          => 'main_posts_slider',
-                'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
-                'controller'  => 'main_slider'
+                'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' )
               ),
               /** end slider **/
 
@@ -628,3 +627,9 @@ if ( ! class_exists( 'CZR___' ) ) :
 
   }//end of class
 endif;//endif;
+
+//Fire
+require_once( get_template_directory() . '/core/functions.php' );
+
+// Fire Customizr
+CZR();
