@@ -1414,6 +1414,17 @@ blockquote p {
   color: #202020;
 }
 
+blockquote p cite {
+  clear: both;
+  display: block;
+  margin-top: 1.5em;
+}
+
+blockquote p cite::before {
+  top: 1em;
+  bottom: auto;
+}
+
 blockquote footer {
   margin-left: 5em;
   margin-top: 1.25em;
@@ -1446,11 +1457,9 @@ cite {
   color: #777;
   font-weight: 300;
   font-style: normal;
-  text-align: right;
-  padding-left: 5em;
+  padding-left: 5.125em;
   padding-right: 0.25em;
   position: relative;
-  float: left;
 }
 
 cite::before {
