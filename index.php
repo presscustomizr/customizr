@@ -12,7 +12,6 @@
 <?php get_header() ?>
 
   <?php
-
     /* SLIDERS : standard or slider of posts */
     if ( czr_fn_has('main_slider') ) {
       czr_fn_render_template('modules/slider/slider', 'main_slider');
@@ -24,7 +23,7 @@
 
   ?>
 
-  <?php do_action('__before_main_wrapper'); ?>
+  <?php do_action('__before_main_wrapper') ?>
     <div id="main-wrapper" class="section">
       <?php
         //blog page title
@@ -43,6 +42,7 @@
         if ( czr_fn_has( 'featured_pages' ) )
           czr_fn_render_template('modules/featured-pages/featured_pages', 'featured_pages');
       ?>
+
       <div class="container" role="main">
 
         <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
@@ -57,20 +57,9 @@
                 while ( have_posts() ) {
                   the_post();
 
-                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
-                    if ( czr_fn_has('post_list_grid') ) {
-                      czr_fn_render_template('modules/grid/grid_wrapper', 'post_list_grid');
-                    }
-                    elseif ( czr_fn_has('post_list') ){
-                      czr_fn_render_template('content/post-lists/post_list_alternate', 'post_list');
-                    }elseif ( czr_fn_has('post_list_masonry') ) {
-                      czr_fn_render_template('content/post-lists/post_list_masonry', 'post_list_masonry');
-                    }elseif ( czr_fn_has('post_list_plain') ) {
-                      czr_fn_render_template('content/post-lists/post_list_plain', 'post_list_plain');
-                    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                      czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
-                    }
-
+                  // Render list of posts based on the options
+                  if ( $_is_post_list = czr_fn_is_list_of_posts() ){
+                    czr_fn_render_list_of_posts();
                   } else { //fallback
                     czr_fn_render_template('content/singular/page_content', 'page');
                   }
