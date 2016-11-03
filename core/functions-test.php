@@ -16,14 +16,14 @@ $_options = array(
     'tc_logo_upload' => '611',
     'tc_sticky_shrink_title_logo' => true,
     //for backward compatiblity keep the _grid suffix
-    'tc_post_list_grid' => 'alternate', //grid - masonry - alternate - plain - plain_excerpt
+    'tc_post_list_grid' => 'plain', //grid - masonry - alternate - plain - plain_excerpt
 
     'tc_show_post_metas_home' => true,
     'tc_show_post_metas_tags' => true,
     'tc_comment_show_info' => true,
 
     'tc_sidebar_global_layout' => 'l',
-    'tc_sidebar_post_layout'   => 'r',
+    'tc_sidebar_post_layout'   => 'l',
     'tc_front_layout'          => 'f',
 
     'tc_post_list_thumb_position' => 'right',
@@ -172,13 +172,4 @@ function czr_fn_enqueue_front_scripts() {
         'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
   ) );
 
-}
-foreach ( array('one', 'two', 'three') as $footer_widget_area )
-  add_filter( "czr_default_widget_args_footer_{$footer_widget_area}", 'footer_widget_area_defaults' );
-
-function footer_widget_area_defaults( $defaults ){
-  return array_merge( $defaults, array(
-      'before_title'            => '<h5 class="widget-title">',
-      'after_title'             => '</h5>',
-    ));
 }

@@ -505,7 +505,7 @@ section.post-content { margin-top:0; }
 		color: $grey;
 		text-align: left;
 		margin: $base-line-height 0;
-		/*$base-line-height*4 $base-line-height*2;*/
+		padding: 0;
 		&::before {
 					content: '';
 					border-top: 3px solid $black;

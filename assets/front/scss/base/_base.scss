@@ -163,6 +163,22 @@ body {
     webkit-tap-highlight-color: $skin;
 }
 
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.75em;
+}
+
 /*
 * Reset list styling for some elements
 */

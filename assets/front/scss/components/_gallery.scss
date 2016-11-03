@@ -1,5 +1,9 @@
 .gallery-item {
-   dt::before { content: none }
+  dt {
+    text-align: inherit;
+    padding: 0;
+    &::before { content: none }
+  }
 	 position: relative;
 	 float:left;
 	 display:block;
