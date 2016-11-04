@@ -135,7 +135,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     function czr_fn_display_view_edit_button() {
       return apply_filters( 'czr_edit_in_title',
           is_user_logged_in()
-       && ! CZR() -> czr_fn_is_customizing()
+          && ! CZR() -> czr_fn_is_customizing()
       );
     }
 
