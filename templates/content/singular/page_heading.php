@@ -19,7 +19,6 @@
               'edit_button_link'  => $edit_post_link,
             ) );
       ?>
-      </div>
     </div>
   </div>
 </header>
