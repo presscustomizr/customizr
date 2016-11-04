@@ -34,8 +34,13 @@ if ( ! class_exists( 'CZR___' ) ) :
         function __construct( $_args = array()) {
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
+
+            //this action callback is the one responsibile to load new czr main templates
+            add_action( 'czr_four_template'       , array( $this, 'czr_fn_four_template_redirect' ) );
+
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
+
             //filters to 'the_content', 'wp_title' => in utils
             add_action( 'wp_head' , 'czr_fn_wp_filters' );
         }
@@ -63,30 +68,30 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
         /**
-      * Init CZR_utils class properties after_setup_theme
-      * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-      * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
-      * hook : after_setup_theme
-      *
-      * @package Customizr
-      * @since Customizr 3.2.3
-      */
-      function czr_fn_init_properties() {
-            self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
-            self::$default_options  = czr_fn_get_default_options();
-            $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
+        * Init CZR_utils class properties after_setup_theme
+        * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+        * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
+        * hook : after_setup_theme
+        *
+        * @package Customizr
+        * @since Customizr 3.2.3
+        */
+        function czr_fn_init_properties() {
+              self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+              self::$default_options  = czr_fn_get_default_options();
+              $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
-            //What was the theme version when the user started to use Customizr?
-            //new install = no options yet
-            //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-            if ( 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-              set_transient(
-                $_trans,
-                sprintf('%s|%s' , 1 >= count( self::$db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-                60*60*24*9999
-              );
-            }
-      }
+              //What was the theme version when the user started to use Customizr?
+              //new install = no options yet
+              //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
+              if ( 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
+                set_transient(
+                  $_trans,
+                  sprintf('%s|%s' , 1 >= count( self::$db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
+                  60*60*24*9999
+                );
+              }
+        }
 
 
 
@@ -112,7 +117,9 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-
+        public function czr_fn_four_template_redirect( $template = 'index.php' ) {
+          $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template );
+        }
 
 
 
@@ -143,35 +150,37 @@ if ( ! class_exists( 'CZR___' ) ) :
               }
 
               //CUSTOMIZR_VER is the Version
-              if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
+              if( ! defined( 'CUSTOMIZR_VER' ) )            define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
               //CZR_BASE is the root server path of the parent theme
-              if( ! defined( 'CZR_BASE' ) )            define( 'CZR_BASE' , get_template_directory().'/' );
+              if( ! defined( 'CZR_BASE' ) )                 define( 'CZR_BASE' , get_template_directory().'/' );
               //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-              if( ! defined( 'CZR_CORE_PATH' ) ) define( 'CZR_CORE_PATH' , 'core/' );
+              if( ! defined( 'CZR_CORE_PATH' ) )            define( 'CZR_CORE_PATH' , 'core/' );
+              //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
+              if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'core/main-templates/' );
               //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-              if( ! defined( 'CZR_UTILS_PATH' ) ) define( 'CZR_UTILS_PATH' , 'core/utils/' );
+              if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/utils/' );
               //CZR_FRAMEWORK_PATH is the relative path where the framework is located
-              if( ! defined( 'CZR_FRAMEWORK_PATH' ) ) define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
-              //CZR_FRAMEWORK_FRONT_PATH is the relative path where the framework fornt files are located
+              if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
+              //CZR_FRAMEWORK_FRONT_PATH is the relative path where the framework front files are located
               if( ! defined( 'CZR_FRAMEWORK_FRONT_PATH' ) ) define( 'CZR_FRAMEWORK_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
-              if( ! defined( 'CZR_ASSETS_PREFIX' ) )   define( 'CZR_ASSETS_PREFIX' , 'assets/' );
+              if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
               //CZR_BASE_CHILD is the root server path of the child theme
-              if( ! defined( 'CZR_BASE_CHILD' ) )      define( 'CZR_BASE_CHILD' , get_stylesheet_directory().'/' );
+              if( ! defined( 'CZR_BASE_CHILD' ) )           define( 'CZR_BASE_CHILD' , get_stylesheet_directory().'/' );
               //CZR_BASE_URL http url of the loaded parent theme
-              if( ! defined( 'CZR_BASE_URL' ) )        define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
+              if( ! defined( 'CZR_BASE_URL' ) )             define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
               //CZR_BASE_URL_CHILD http url of the loaded child theme
-              if( ! defined( 'CZR_BASE_URL_CHILD' ) )  define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
+              if( ! defined( 'CZR_BASE_URL_CHILD' ) )       define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
               //CZR_THEMENAME contains the Name of the currently loaded theme
-              if( ! defined( 'CZR_THEMENAME' ) )          define( 'CZR_THEMENAME' , $tc_base_data['title'] );
+              if( ! defined( 'CZR_THEMENAME' ) )            define( 'CZR_THEMENAME' , $tc_base_data['title'] );
               //CZR_WEBSITE is the home website of Customizr
-              if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
+              if( ! defined( 'CZR_WEBSITE' ) )              define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
               //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
-              if( ! defined( 'CZR_OPT_PREFIX' ) )      define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
+              if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
-              if( ! defined( 'CZR_OPT_NAME' ) )      define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+              if( ! defined( 'CZR_OPT_NAME' ) )             define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
               //IS PRO
-              if( ! defined( 'CZR_IS_PRO' ) )      define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
+              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
 
 
         }//setup_contants()
@@ -199,7 +208,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core/front/utils', 'nav_walker')
                     ),
                     'content'   =>   array(
-                        array('core/front/utils', 'gallery')
+   //                     array('core/front/utils', 'gallery')
                     ),
  //                   'addons'    => apply_filters( 'czr_addons_classes' , array() )
                 )

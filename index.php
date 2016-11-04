@@ -41,7 +41,6 @@
               czr_fn_render_template('content/singular/post_heading', 'post_heading');
             else //fallback
               czr_fn_render_template('content/singular/page_heading', 'page_heading');
-
           ?>
         </div>
       <?php
