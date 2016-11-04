@@ -5,8 +5,11 @@
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  *
- * Used to display either your home displaying latest posts or your blog page or your empty front
+ * Includes the loop.
  *
+ *
+ * @package Customizr
+ * @since Customizr 1.0
  */
 ?>
 <?php get_header() ?>
@@ -26,7 +29,6 @@
   <?php do_action('__before_main_wrapper') ?>
     <div id="main-wrapper" class="section">
       <?php
-        //blog page title
         if ( ! czr_fn_is_home() ):
       ?>
         <div class="container-fluid">
@@ -35,6 +37,11 @@
               czr_fn_render_template( 'content/post-lists/headings/post_list_heading', 'post_list_heading' );
             elseif ( czr_fn_has( 'post_list_search_heading' ) )
               czr_fn_render_template( 'content/post-lists/headings/post_list_search_heading', 'post_list_search_heading' );
+            elseif ( czr_fn_has('post_heading') )
+              czr_fn_render_template('content/singular/post_heading', 'post_heading');
+            else //fallback
+              czr_fn_render_template('content/singular/page_heading', 'page_heading');
+
           ?>
         </div>
       <?php
@@ -79,10 +86,16 @@
                     }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
                       czr_fn_render_template('content/post-lists/post_list_plain_excerpt', 'post_list_plain_excerpt');
                     } else { //fallback
-                      czr_fn_render_template('content/singular/page_content', 'page');
+                      czr_fn_render_template('content/singular/page_content', 'page_content');
                     }
-                  } else { //fallback
-                    czr_fn_render_template('content/singular/page_content', 'page');
+                  } else {
+
+                    if( is_single() )
+                      czr_fn_render_template('content/singular/post_content', 'post_content' );
+                    else
+                      //fallback
+                      czr_fn_render_template('content/singular/page_content', 'page_content');
+
                   }
                 }//endwhile;
               }else {//no results
@@ -109,6 +122,19 @@
             }
           ?>
         </div><!-- .column-content-wrapper -->
+
+        <?php if ( is_single() && ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) ) : ?>
+          <div class="row single-post-info">
+            <div class="col-xs-12">
+            <?php
+              if ( czr_fn_has('single_author_info') )
+                 czr_fn_render_template('content/authors/author_info', 'single_author_info');
+
+              if ( czr_fn_has('related_posts') )
+                czr_fn_render_template('modules/related-posts/related_posts_wrapper', 'related_posts_wrapper') ?>
+            </div>
+          </div>
+        <?php endif ?>
 
         <?php if ( czr_fn_has('comments') ) : ?>
           <div class="row">

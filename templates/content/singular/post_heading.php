@@ -6,7 +6,7 @@
 * TODO: what to show? featured image, header image video .. ????
 */
 ?>
-<div class="row page__header plain <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+<header class="row page__header plain <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="container header-content">
     <div class="header-content-inner entry-header">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
@@ -62,4 +62,4 @@
       </div>
     </div>
   </div>
-</div>
+</header>
