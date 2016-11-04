@@ -200,7 +200,7 @@ blockquote p {
   font-weight: 500;
 }
 
-.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   font-weight: 600;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li.pingback sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -4923,54 +4923,40 @@ time span {
   border: 0;
 }
 
-.comment-list li li {
-  margin-left: calc(80px + 1.25em);
+.comment-list ul.children {
+  margin-left: calc(3em + 1.25em);
 }
 
-.comment-list li li li {
-  margin-left: calc(64px + 1.25em);
-}
-
-.comment-list li li li li {
-  margin-left: calc(48px + 1.25em);
-}
-
-.pingback-list li {
+.pingback-list li.pingback {
   padding: 1.25em 0;
 }
 
-.pingback-list li:not(:last-of-type) {
+.pingback-list li.pingback:not(:last-of-type) {
   border-bottom: 1px solid #f7f8f9;
 }
 
-.pingback-list li strong {
+.pingback-list li.pingback strong {
   font-weight: 600;
   border-bottom: 1px solid;
 }
 
-.pingback-list li sup {
+.pingback-list li.pingback sup {
   font-family: "Roboto", sans-serif;
   color: #B4B4B4;
   top: -1.25em;
 }
 
-.pingback-list li a {
+.pingback-list li.pingback a {
   color: #202020;
 }
 
-@media (max-width: 992px) {
-  .col-avatar-80, .col-avatar-64, .col-avatar-48 {
-    width: 48px;
-    height: 48px;
-  }
-  .comment-avatar .avatar-80, .comment-avatar .avatar-64, .comment-avatar .avatar-48 {
-    width: 48px;
-    height: 48px;
-  }
-  .comment-list li li,
-  .comment-list li li li,
-  .comment-list li li li li {
+@media (max-width: 768px) {
+  .comment-list ul.children {
     margin-left: 1.25em;
+  }
+  .comment-author, time.comment-date {
+    float: left;
+    width: 100%;
   }
 }
 
