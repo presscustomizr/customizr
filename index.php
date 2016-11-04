@@ -59,6 +59,8 @@
 
         <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
 
+        <?php do_action('__before_content_wrapper'); ?>
+
         <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
           <?php do_action('__before_content'); ?>
@@ -110,11 +112,13 @@
           <?php do_action('__after_content'); ?>
 
           <?php
+            /*
+            * SIDEBARS
+            */
             /* By design do not display sidebars in 404 */
             if ( ! is_404() ) {
               if ( czr_fn_has('left_sidebar') )
                 get_sidebar( 'left' );
-
 
               if ( czr_fn_has('right_sidebar') )
                 get_sidebar( 'right' );
@@ -122,6 +126,8 @@
             }
           ?>
         </div><!-- .column-content-wrapper -->
+
+        <?php do_action('__after_content_wrapper'); ?>
 
         <?php if ( is_single() && ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) ) : ?>
           <div class="row single-post-info">

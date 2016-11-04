@@ -16,13 +16,15 @@
     </div>
   <?php endif; ?>
     <div class="post-info">
-      <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'publication_date', 'post_metas' ) ) : ?>
-        <?php czr_fn_echo( 'publication_date', 'post_metas' ) ?>
-      <?php endif; ?>
-      <?php if ( czr_fn_has( 'comment_info' ) ) : ?>
-        <span class="v-separator">|</span>
-        <?php czr_fn_render_template( 'modules/comment_info', 'comment_info' ) ?>
-      <?php endif?>
+    <?php
+      if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) )
+        echo $date;
+
+      if ( czr_fn_has( 'comment_info' ) && CZR() -> controllers -> czr_fn_is_possible( 'comment_info' ) ) :
+        if ( $date ) : ?> <span class="v-separator">|</span> <?php endif;
+        czr_fn_render_template( 'modules/comment_info', 'comment_info' );
+      endif
+    ?>
     </div>
   </div>
 </footer>
