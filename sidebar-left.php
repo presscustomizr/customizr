@@ -6,5 +6,4 @@
  * @package Customizr
  * @since Customizr 3.1.0
  */
-
-dynamic_sidebar( 'left' );
+czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');

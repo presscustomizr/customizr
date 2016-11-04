@@ -112,13 +112,13 @@
           <?php
             /* By design do not display sidebars in 404 */
             if ( ! is_404() ) {
-              if ( czr_fn_has('left_sidebar') ) {
-                czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
-              }
+              if ( czr_fn_has('left_sidebar') )
+                get_sidebar( 'left' );
 
-              if ( czr_fn_has('right_sidebar') ) {
-                czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
-              }
+
+              if ( czr_fn_has('right_sidebar') )
+                get_sidebar( 'right' );
+
             }
           ?>
         </div><!-- .column-content-wrapper -->
