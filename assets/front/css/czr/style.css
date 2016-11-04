@@ -430,7 +430,12 @@ Only to comment form elements?
 
 /* Comment list */
 .col-avatar {
-  float: left
+  float: left;
+  width: 10%;
+}
+.col-avatar .comment-avatar [class*=avatar-] {
+  max-width: 100%;
+  height: auto;
 }
 .comment-author {
   display: inline-block;
@@ -505,9 +510,8 @@ replace
 */
 .comment-section .comment-body {
     display: block;
-    padding-left: 1.25em;
-    float: left;
-    width: calc(100% - 90px);
+    padding-left: 12%;
+    width: 100%
 }
 /*
 replace:

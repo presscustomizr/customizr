@@ -457,10 +457,8 @@ time span { color: $grey; }
 
 .comment-list li.comment { margin-top:$base-line-height*2; padding-top:$base-line-height*2; border-top:1px solid $grey-light; }
 .comment-list li.comment.depth-1:first-of-type { border:0 }
-.comment-list li li    { margin-left: calc(80px + #{$base-line-height});   }
-.comment-list li li li { margin-left: calc(64px + #{$base-line-height});   }
-.comment-list li li li li { margin-left: calc(48px + #{$base-line-height});   }
-.pingback-list li {
+.comment-list ul.children    { margin-left: calc(3em + #{$base-line-height});   }
+.pingback-list li.pingback {
 	padding: $base-line-height 0;
 	&:not(:last-of-type) { border-bottom: 1px solid $grey-lightest; }
 	strong { font-weight: 600; border-bottom: 1px solid;}
@@ -478,20 +476,9 @@ time span { color: $grey; }
 	}
 }
 
-@media (max-width: 992px) {
-	.col-avatar-80, .col-avatar-64, .col-avatar-48 {
-		width:  48px;
-		height: 48px;
-	}
-	.comment-avatar .avatar-80, .comment-avatar .avatar-64, .comment-avatar .avatar-48 {
-		width:  48px;
-		height: 48px;
-	}
-
-	.comment-list li li,
-	.comment-list li li li,
-	.comment-list li li li li   { margin-left: $base-line-height;  }
-
+@media (max-width: 768px) {
+	.comment-list ul.children { margin-left: $base-line-height;  }
+	.comment-author, time.comment-date { float: left; width: 100% }
 }
 section.post-content { margin-top:0; }
 /*.post-content {
