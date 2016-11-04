@@ -1009,10 +1009,21 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /* Since 3.5.0 the comments_template is wrapped it the "comments" id
       so we don't need the disqus wrapper anymore */
       //replace the default comment link anchor with a more descriptive disqus anchor
-      add_filter( 'czr_bubble_comment_anchor', 'czr_fn_disqus_bubble_comment_anchor' );
-      function czr_fn_disqus_bubble_comment_anchor( $anchor ) {
+      add_filter( 'czr_comment_info_anchor', 'czr_fn_disqus_comment_info_anchor' );
+      function czr_fn_disqus_comment_info_anchor( $anchor ) {
         return czr_fn_disqus_comments_enabled() ? '#disqus_thread' : $anchor;
       }
+
+      /*
+      * Add disqus specific attribute to the comment link
+      */
+      add_filter( 'czr_comment_info_link_attributes', 'czr_fn_disqus_comment_info_link_attributes' );
+      function czr_fn_disqus_comment_info_link_attributes( $attributes ) {
+        if ( czr_fn_disqus_comments_enabled() && is_array( $attributes ) )
+          array_push( $attributes, 'data-disqus-identifier="javascript:this.page.identifier"');
+        return $attributes;
+      }
+
     }//end disqus compat
 
 
