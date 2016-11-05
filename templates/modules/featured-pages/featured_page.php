@@ -25,7 +25,6 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
           czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
             'edit-button_class' => 'm-t-1',
             'edit_button_title' => czr_fn_get( 'featured_page_title' ),
-            'edit_button_text'  => __( 'Edit', 'customizr' ),
             'edit_button_link'  => get_edit_post_link( czr_fn_get( 'featured_page_id' ) ),
           ) );
         /* END FP EDIT BUTTON */

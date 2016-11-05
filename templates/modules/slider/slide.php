@@ -48,7 +48,7 @@ endif;
       czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
         'edit_button_class' => 'slide-btn-edit',
         'edit_button_link'  => $edit_url,
-        'edit_button_text'  => __('Edit', 'customizr'),
+        'edit_button_text'  => __('Edit slide', 'customizr'),
       ))
   ?>
 </div><! -- /.item -->
