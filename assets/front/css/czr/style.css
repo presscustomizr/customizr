@@ -1,0 +1,1047 @@
+/* featured opages */
+.featured .thumb-wrapper { height: 0; padding-bottom: 100%; overflow: hidden; position: relative;}
+/* PARALLAX FILTER FIX */
+.carousel.filter {
+  height: 100vh !important;
+}
+.section-slider .container { height: 100vh !important;}
+/* parallax test with tc-page-wrap shifting ^^*/
+/*.parallax-mirror,*/
+/* #tc-page-wrap { transition: right, left 300ms ease-in; left: 0 ; } */
+/*.open .parallax-mirror,*/
+/*.open #tc-page-wrap {
+  left: -300px !important;
+  overflow: hidden;
+}*/
+
+/*
+* In desktops when resizing below the "collapsing mobil menu" treshold
+* always expand submenus when .tc-open-on-hover
+*/
+@media (max-width: 991px){
+  body:not(.tc-is-mobile) .tc-open-on-hover .dropdown-menu {
+    display: block !important;
+  }
+  body:not(.tc-is-mobile) .tc-open-on-hover .caret__dropdown-toggler {
+    display: none !important;
+  }
+}
+
+/* end HEADER HACK */
+
+/* VARIOUS */
+#tc-page-wrap {
+  z-index: 12;
+}
+
+/*.grid img,
+img.wp-post-image,
+img.post-thumbnail {
+  width: 100%;
+  height: auto;
+}*/
+.tc-thumbnail img {
+  width: 100%;
+}
+
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto!important;
+  min-width: 100%!important;
+  max-width: none!important;
+  position: relative;
+  transform: none !important;
+}
+img.v-centered {
+  height: auto!important;
+  max-height: none!important;
+  vertical-align: top;
+  position: relative;
+  transform: none !important;
+}
+
+/* FLICKITY SLIDER  */
+/*.carousel { z-index: 4;}*/
+.carousel-cell { width: 100%;}
+.carousel img { min-width: 100%;}
+
+/* .carousel { height: 100vh; }
+.format-gallery .carousel { height: 100%; }
+
+.carousel-cell { height: 100%; width: 100%; }
+.carousel-cell img { width: 100%; } */
+/* move page dots into carousel */
+.flickity-page-dots { bottom: 10px; }
+.flickity-page-dots, .flickity-prev-button, .flickity-prev-next-button { z-index: 105; position: absolute;}
+/* Patches */
+
+/* Alternate sections centering */
+@media ( min-width: 768px) {
+  .czr-center-sections{transform: translateY(50%) }
+  .czr-center-sections section {transform: translateY(-50%) }
+  .no-thumb .czr-center-sections .post-type__icon{ padding: 0 }
+}
+article .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
+embed, iframe, object, video { max-width: 100%;}
+/* Alternate and Masonry special formats patch*/
+.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
+.article-container .post-action { left: auto; }
+
+
+
+.article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
+.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .format-gallery .entry-header,
+.article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
+
+
+.article-container .grid-container__alternate .entry-footer {
+  margin: 0;
+  margin-top: 2.5em;
+}
+
+/* TO REMOVE
+@media (max-width: 992px)
+.grid-container__alternate .entry-header {
+    margin-top: 2.5em;
+}
+*/
+@media (max-width: 991px) {
+  .article-container .grid-container__alternate .entry-header {
+    margin-top: 0;
+  }
+}
+
+
+/* TO BE MERGED */
+.grid-container__classic .post-info .v-separator,
+.grid-container__masonry .post-info .v-separator { display: none; }
+
+.grid .grid__item .entry-footer .post-info a:first-of-type { float: none; }
+/* think about this */
+.entry-header .entry-title { word-wrap: break-word;}
+
+.entry-media__holder .post-type__icon i {
+    position: relative;
+}
+
+/* Placeholder temp */
+.tc-placeholder-wrap {
+    padding: 19px;
+    background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    position: relative;
+}
+.tc-placeholder-wrap p {
+    font-style: italic;
+    font-size: 80%;
+    color: #5A5A5A!important;
+    text-align: center;
+}
+.tc-placeholder-wrap::before {
+    font-family: FontAwesome;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    font-style: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+
+    font-size: 1em;
+    content: "\f05a";
+    padding-left: 0;
+    position: absolute;
+    text-decoration: none!important;
+    top: 5px;
+    left: 5px;
+}
+
+/* Slider stuff */
+/* Slider loader wrapper took from Customizr */
+/* If automatic centering is enabled */
+.czr-carousel > .center-slides-enabled > .item > .carousel-image img {
+  display: block;
+  position: relative;
+}
+/* end took from customizer */
+
+.slider-nav, .tc-gallery-nav { cursor: pointer;}
+.czr-carousel { position: relative; overflow: hidden;}
+.carousel-caption {
+  height: auto;
+  max-height: 80%;
+  width: 80%;
+  text-align: center;
+  z-index: 3;
+  overflow: hidden;
+
+  /* temporary centering */
+  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+}
+
+.center-slides-disabled .carousel-image img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.czr-carousel.full-page {
+  width: 100%;
+  height: 100vh;
+}
+[id^=customizr-slider-].czr-carousel .carousel-cell,
+[id^=customizr-slider-].czr-carousel .carousel-inner { width: 100%; height: 100%; overflow: hidden;}
+
+
+
+/* Dropdown toggler span test
+Replace
+
+.caret__dropdown-toggler {
+    float: right;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    z-index: inherit;
+}
+*/
+.caret__dropdown-toggler[data-toggle="dropdown"] {
+    position: absolute;
+    float: none;
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    top: 0;
+    right: -1.5em;
+}
+@media (max-width: 971px){
+  .caret__dropdown-toggler[data-toggle="dropdown"] {
+    right: 1em;
+  }
+}
+.secondary-nav__menu-wrapper .caret__dropdown-toggler[data-toggle="dropdown"] {
+  padding: 0.425em 0;
+}
+.secondary-nav__container .secondary-nav__menu-wrapper li > a {
+  display: inline-block;
+}
+.dropdown-menu .caret__dropdown-toggler[data-toggle="dropdown"] {
+  padding: 0;
+  line-height: 4.3em;
+  right: 1em;
+}
+.secondary-nav__menu-wrapper .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+  vertical-align: middle;
+}
+/* Replace this wrong code (transform-origin syntax is wrong!)
+@media (min-width: 992px)
+.dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 100% 100;
+    position: relative;
+    display: inline-block;
+}
+*/
+@media (min-width: 992px) {
+  .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
+    display: block !important; /* to make the rotation unaffective!!*/
+    transform: rotate(0) !important;
+  }
+
+  .dropdown-menu .dropdown-item .caret__dropdown-toggler i:before {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    transform-origin: 100% 100;
+  }
+}
+/*Comments patches */
+/*
+replace:
+.comment-reply {
+    background: #f7f8f9;
+    padding: 2.5em;
+    margin-top: 2.5em;
+}
+*/
+.comment-respond {
+    background: #f7f8f9;
+    padding: 2.5em;
+    margin-top: 2.5em;
+}
+
+/*
+Add to:
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+    font-size: 0.83333em;
+}
+*/
+
+.comment-notes {
+  font-size: 0.83333em;
+}
+
+/*
+Apply this to the form elements
+
+.czr-form .form-control {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #202020;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    color: #202020;
+    z-index: 1;
+    position: relative;
+    background: transparent;
+}
+.czr-form input:not([type="submit"]), .czr-form label, .czr-form textarea {
+    width: 100%;
+}
+*/
+
+
+/*DO:; style the submit as btn-skin
+.btn-skin {
+    color: #fff;
+    background-color: #284AFF;
+}
+.btn, .btn-skin {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.service-font, .btn, .btn-skin, .entry-header .entry-meta a, .category-info a, .tags li a, .tagcloud li a, .post-tags li a, .sidebar .tagcloud li a, .grid-container__plain .post .entry-meta .category__link, .entry-footer, .comment-meta time, .sidebar .widget_calendar thead tr {
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 1px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+*/
+/* add also woocommerce style */
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
+.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
+.woocommerce #respond input#submit,
+input[type="submit"] {
+  color: #fff;
+  background-color: #284AFF;
+  border-radius: 2px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+
+
+/* Comment text height */
+.comment-form-comment textarea {
+  height: 116px;
+}
+/*
+Only to comment form elements?
+.czr-form .form-group {
+    position: relative;
+    margin-top: 2.5em;
+}
+*/
+.comment-form-comment, .comment-form-author, .comment-form-email, .comment-form-url {
+  margin-top: 2.5em;
+}
+/* Three columns for the comment form elements in desktops
+@media (min-width: 993px)
+.wide .czr-form .form-group-text {
+    width: calc((100% - 2.5em - 12px)/3);
+    display: inline-block;
+}
+@media (min-width: 993px)
+.czr-form .form-group-text:nth-child(-n+3) {
+    width: calc((100% - 1.25em - 8px)/2);
+    display: inline-block;
+}
+@media (min-width: 993px)
+.wide .czr-form .form-group-text + .form-group-text {
+    margin-left: 1.25em;
+}
+*/
+@media (min-width: 992px) {
+  .comment-form-author, .comment-form-email, .comment-form-url {
+    width: calc((100% - 2.5em - 12px)/3);
+    display: inline-block;
+    margin-left: 1.25em;
+  }
+  .comment-form-author {
+    margin-left: 0;
+  }
+}
+
+/* Comment list */
+.col-avatar {
+  float: left;
+  width: 10%;
+}
+.col-avatar .comment-avatar [class*=avatar-] {
+  max-width: 100%;
+  height: auto;
+}
+.comment-author {
+  display: inline-block;
+}
+/*
+remove:??
+.comment-meta time {
+    float: right;
+}
+
+/*
+*
+replace:;
+.comment-author a {
+    color: #202020;
+}
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .category-info a, .overlay .overlay-content .nav__container nav, .featured h2, .grid-container__plain .post .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
+  font-weight: 500;
+}
+*/
+
+.comment-link {
+  color: #202020;
+  font-weight: 500;
+}
+
+.action-link .comment-reply-link:hover {
+    color: #B4B4B4;
+}
+/*
+We cannot really act on the comment-reply-link <a> class
+so we need to style it directly as this:
+.action-link {
+    border-bottom-color: #f7f8f9;
+    box-shadow: inset 0 -5px 0 #f7f8f9;
+    font-family: "Roboto", sans-serif;
+    color: #202020;
+}
+.action-link:hover {
+    color: #B4B4B4;
+}
+.letter-spacing-2, .entry-header .entry-meta a, .category-info a, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .post-section-title, .post-navigation a, .action-link, .pingback-list li sup, .sidebar .widget-title {
+    letter-spacing: 2px;
+}
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .grid-container__plain .post .entry-meta .category__link, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    text-transform: uppercase;
+}
+.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .sidebar .widget_recent_comments, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    font-weight: 600;
+}
+*/
+.comment-reply-link {
+  border-bottom-color: #f7f8f9;
+  box-shadow: inset 0 -5px 0 #f7f8f9;
+  font-family: "Roboto", sans-serif;
+  color: #202020;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.comment-reply-link:hover {
+  color: #B4B4B4;
+}
+/*
+replace
+.comment-content .comment-meta {
+    display: block;
+    padding-left: 1.25em;
+    float: left;
+    width: calc(100% - 90px);
+}
+*/
+.comment-section .comment-body {
+    display: block;
+    padding-left: 12%;
+    width: 100%
+}
+/*
+replace:
+.comment-cancel-link {
+    float: right;
+    font-family: "Roboto", sans-serif;
+}
+.caps, .btn-large, .btn-more, .entry-header .entry-meta a, .category-info a, .dropdown-menu, .czr-form .form-group label, .overlay .overlay-content .nav__container nav, .post-entry table th, .featured .pre-header, .grid-container__plain .post .entry-meta .category__link, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    text-transform: uppercase;
+}
+.bold, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .comment-meta .comment-author-link , .action-link, .comment-cancel-link, .pingback-list li sup, .sidebar .widget_recent_comments, .sidebar .widget_categories, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+    font-weight: 600;
+}
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+    font-size: 0.83333em;
+}
+*/
+#cancel-comment-reply-link {
+    float: right;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.70em; /*cause it's inside an h4*/
+}
+/* replace:;
+.comment-meta p {
+    color: #777;
+}
+*/
+.comment-content p {
+  color: #777;
+}
+/* To remove: not used!!!!!*/
+/*
+.comment-edit-btn {
+ padding: 0.25em 0.67em 0.25em 0.67em;
+}
+*/
+
+/*
+To remove:
+//not used, also can be totally wrong as we use a stupid .open class added to the body
+//when opening the full-page hamburger
+.open .comment-reply-form {
+  display: block; }
+
+//keep
+.comment-list li.comment {
+  margin-top: 2.5em;
+  padding-top: 2.5em;
+  border-top: 1px solid #eceeef; }
+
+.comment-list li.comment.depth-1:first-of-type {
+  border: 0; }
+
+//make this comment/pingbacks paddings/margins specific to comment/pingback elements
+//otherwise they will affect li inside the comment texts
+
+.comment-list li li {
+  margin-left: calc(80px + 1.25em); }
+
+.comment-list li li li {
+  margin-left: calc(64px + 1.25em); }
+
+.comment-list li li li li {
+  margin-left: calc(48px + 1.25em); }
+
+.pingback-list li {
+  padding: 1.25em 0; }
+  .pingback-list li:not(:last-of-type) {
+    border-bottom: 1px solid #f7f8f9; }
+  .pingback-list li strong {
+    font-weight: 600;
+    border-bottom: 1px solid; }
+  .pingback-list li sup {
+    font-family: "Roboto", sans-serif;
+    color: #B4B4B4;
+    top: -1.25em; }
+  .pingback-list li a {
+    color: #202020; }
+;
+*/
+
+/*
+* Related posts
+*/
+/*
+section.post-related-articles header ul li a {
+    color: #202020;
+}*/
+section.post-related-articles header ul li a {
+  display: block;
+}
+
+/*
+replace:
+.grid-container__square-mini .col-xs-12 {
+    padding: 0;
+}
+*/
+.grid.grid-container__square-mini {
+  font-size: .72em;
+}
+/*
+remove:
+.grid-container__square-mini .entry-summary {
+    margin-top: 2.5em;
+}
+*/
+.grid.grid-container__square-mini .entry-summary {
+    margin-top: 0;
+}
+.grid-container__square-mini .tc-content-inner {
+    margin-top: 1.5em;
+}
+/*
+remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
+.grid-container__square-mini .format-standard .entry-summary
+*/
+.grid.grid-container__square-mini .tc-content-inner {
+  font-size: 1.25em !important;
+}
+.grid.grid-container__square-mini .tc-content-inner blockquote{
+  font-size: 0.8em;
+  margin: 0 !important;
+  padding: 0;
+}
+.grid.grid-container__square-mini .tc-content-inner blockquote cite,
+.grid.grid-container__square-mini .tc-content-inner blockquote p {
+  font-size: 1.3em;
+}
+.grid-container__square-mini section {
+  padding: 0;
+}
+.grid-container__square-mini section.entry-media__holder {
+  padding-bottom: 50%;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Avoid wrapping the title on a new line */
+.grid-container__square-mini .grid__item .entry-header .entry-title {
+  text-align: left;
+}
+
+
+.row.grid.grid-container__square-mini {
+  height: 0;
+  padding-bottom: 50%; /* Only 1 item shown */
+  overflow: hidden;
+}
+@media ( min-width: 768px ) {
+  .row.grid.grid-container__square-mini {
+    padding-bottom: 25%; /* 2 items shown */
+  }
+}
+
+/*
+replace:
+.grid-container__square-mini .grid__item .tc-content {
+    max-width: 50%;
+    padding: 2em;
+    display: inline-block;
+    background: #f7f8f9;
+    height: 277.5px;
+}
+*/
+[class*=.grid-container__square-mini] .grid__item.tc-content {
+  max-width: 50%; /* can be removed */
+  padding: 0; /* can be removed */
+  display: block; /* can be removed */
+  background: transparent; /* can be removed */
+  height: 0; /*can be removed */
+  padding-bottom: 50%;
+  float: right;
+}
+.grid-container__square-mini .entry-content__wrapper {
+  position: absolute;
+  left: 1.6em;
+  right: 1.6em;
+  top: 1.6em;
+  bottom: 1.6em;
+  overflow: hidden;
+}
+/*
+replace:
+section.post-related-articles .grid .grid__item {
+    background: #f7f8f9;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+*/
+section.post-related-articles .grid .grid__item {
+  background: #f7f8f9;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  vertical-align: middle;
+}
+
+
+/*
+* Extend this to all post formats
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+    font-size: 0.83333em;
+}
+
+.grid-container__square-mini .format-standard .entry-header .entry-title::after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 2.5em;
+    height: 2px;
+    background: #202020;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+*/
+
+
+/* main margins */
+#main-wrapper .column-content-wrapper {
+  padding-top: 5em;
+}
+#main-wrapper .czr-hot-crumble + .column-content-wrapper {
+  padding-top: 0;
+}
+/* form ?*/
+.czr-form.search-form .czr-focus:not(.in-focus) input { color: transparent; }
+.czr-form.search-form .czr-focus input { transition: all 600ms;}
+
+/* header secondary menu font-size fix
+replace
+.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+  font-size: 0.83333em; }
+
+  .secondary-navbar__wrapper li
+*/
+.secondary-navbar__wrapper ul li{
+  font-size: 1em;
+}
+.secondary-navbar__wrapper {
+  font-size: 0.83333em;
+}
+.secondary-navbar__wrapper .dropdown > .dropdown-menu {
+  font-size: 0.8em;
+}
+
+/*
+Remove this
+
+section[class^="post-"] .row {
+    margin: 5em 0 2.5em 0;
+}
+*/
+article section[class^="post-"] .row {
+  margin: 5em -15px 2.5em -15px;
+}
+/* Use this instead */
+.single .post-footer .entry-meta {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+/*
+Remove
+
+.grid-container__plain .post.style-01 .post-info {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+.article-container .grid-container__plain article .post-info {
+    float: right;
+    text-align: right;
+}
+.grid-container__plain .post .post-info {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+
+  .grid-container__plain .post .author-info {
+    float: left;
+    width: 50%;
+    }
+*/
+  .article-container .grid-container__plain article.style-01 .post-info {
+    float: initial; /* set with the bs columns parent*/
+    text-align: right; /*keep*/
+    width: auto;
+  }
+
+  .article-container .grid-container__plain article.style-01 .author-info {
+    float: initial;
+    width: auto;
+  }
+  .grid-container__plain .post.format-video .tc-thumbnail .entry-media__wrapper {
+    height: 100%;
+  }
+
+/*
+Limit to desktop
+.grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+    padding-top: 1.25em;
+}
+*/
+@media (max-width: 768px) {
+  .grid-container__alternate .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+    padding-top: 0 !important;
+  }
+}
+
+/*
+Replace
+*/
+.entry-content,
+.entry-summary {
+    color: #777;
+}
+
+/* Plain post list in narrow contexts */
+.grid-container__plain.narrow .entry-header-inner,
+.grid-container__plain.narrow .entry-content__wrapper > .entry-meta,
+.grid-container__plain.narrow .entry-content__wrapper > .tc-content-inner {
+  width: 100% ;
+  float: left ;
+  margin-left: 0;
+}
+/*
+Apply the same to the narrow list
+@media (max-width: 48em)
+.grid-container__plain .post .entry-meta .tax__link {
+    width: auto;
+    display: inline-block;
+    text-align: left;
+}
+
+
+@media (max-width: 48em)
+.grid-container__plain .post .entry-meta .tax__link:not(:last-of-type) span::after {
+    content: "/";
+    position: absolute;
+    left: 100%;
+    margin: 0 6px;
+}
+@media (min-width: 48em)
+.grid-container__plain .post .entry-meta .tax__link span::before {
+    content: "";
+    position: absolute;
+    top: calc(50% + 2px);
+    width: 2.5em;
+    height: 2px;
+    background: #202020;
+    left: -3em;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+@media (max-width: 48em)
+.grid-container__plain .post .entry-meta .tax__link:not(:first-of-type) {
+    margin-left: 1.25em;
+}
+*/
+.grid-container__plain.narrow .entry-meta .tax__link {
+    width: auto;
+    display: inline-block;
+    text-align: left;
+}
+.grid-container__plain.narrow .tax__link:not(:first-of-type) {
+    margin-left: 1.25em;
+}
+.grid-container__plain.narrow .tax__link:not(:last-of-type) span::after {
+    content: "/";
+    position: absolute;
+    left: 100%;
+    margin: 0 6px;
+}
+.grid-container__plain.narrow .tax__link span::before {
+  content: none !important;
+}
+/*
+replace this
+@media (max-width: 60em)
+.grid-container__plain .post .entry-header, .grid-container__plain .post .tc-content-inner {
+  float: none;
+}
+.grid-container__plain .post.style-01 .post-tags {
+     width: 50%;
+    float: left;
+}
+*/
+@media (max-width: 60em) {
+  .grid-container__plain.grid-container__plain .post .tc-content-inner {
+    float: left;
+  }
+}
+
+
+/* Some thumbnail container sizes ideas */
+/*[class*=grid-container__] .format-gallery .tc-thumbnail,
+[class*=grid-container__] .format-image.no-excerpt .tc-thumbnail {
+  max-height: 600px;
+}*/
+.grid-container__masonry .format-gallery .tc-thumbnail img,
+.grid-container__masonry .format-image .tc-thumbnail img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transform: translate3d(-50%, 0, 0);
+}
+
+.article-container .grid-container__alternate .format-gallery .tc-thumbnail  .carousel,
+.article-container .grid-container__alternate .format-image.no-excerpt .tc-thumbnail,
+.article-container .grid-container__plain .format-gallery .tc-thumbnail  .carousel,
+.article-container .grid-container__plain .format-image.no-excerpt .tc-thumbnail {
+    position: relative;
+    height: 0;
+    padding-bottom: 53.5%;
+}
+/* viewport inherit size from carousel */
+
+.article-container .grid-container__masonry .format-gallery .flickity-viewport,
+.article-container .grid-container__alternate .format-gallery .flickity-viewport,
+.article-container .grid-container__plain .format-gallery .flickity-viewport {
+  position: absolute;
+  width: 100%;
+}
+
+.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel-cell,
+.article-container .grid-container__alternate .format-gallery .tc-thumbnail .carousel-cell,
+.article-container .grid-container__plain .format-gallery .tc-thumbnail .carousel-cell {
+  height: 100%;
+  overflow: hidden;
+}
+
+.article-container .grid-container__masonry .format-image .tc-thumbnail,
+.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel {
+    position: relative;
+    height: 0;
+    padding-bottom: 150%;
+}
+
+/* Alternate cards - thumb should cover the wrapper height */
+@media (min-width: 768px) {
+  /* Use table system */
+  .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    display: table !important; /*overwrite*/
+    table-layout: fixed !important; /* will give us problems with safari ?!?! */
+  }
+
+  .czr-center-sections section {
+    transform: translate(0); /* revert */
+    display: table-cell;
+    vertical-align: middle;
+    float: initial !important;/*overwrite*/
+    overflow: hidden;
+  }
+
+  .czr-center-sections .entry-media__wrapper {
+    position: relative;
+  }
+  .czr-center-sections .js-media-centering .entry-media__wrapper {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  }
+  /*.grid-container__alternate .tc-thumbnail {
+    position:absolute;
+    height: 100%;
+  }*/
+}
+@media (max-width: 767px) {
+  .czr-center-sections .entry-media__wrapper img {
+    height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
+  }
+}
+
+/* nav with tables */
+@media (min-width: 992px) {
+  .primary-navbar__wrapper {
+    display: table !important;
+    min-width: 100% !important;
+    white-space: nowrap;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
+  }
+  .primary-nav__container .primary-nav__nav {
+    width: 100%;
+    text-align: initial !important;
+  }
+  .branding__container {
+    left: 0 !important;
+    display: table-cell !important;
+    float: none !important;
+  }
+  .primary-nav__container {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    display: table-cell !important;
+  }
+  .primary-nav__menu-wrapper {
+    display: table-cell !important;
+    width: 100% !important;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+    margin: 0 !important;
+  }
+  .primary-nav__container .primary-nav__utils {
+    display: table-cell !important;
+    white-space: nowrap !important;
+  }
+  .primary-nav__container .primary-nav__utils .socials {
+    float: none !important;
+    display: inline-block !important;
+  }
+  .primary-nav__menu-wrapper.pull-menu-left {
+    text-align: left;
+  }
+  .primary-nav__menu-wrapper.pull-menu-right {
+    text-align: right;
+  }
+}
+
+/* Give borders to the articles */
+.grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
+.grid-container__square-mini .grid__item { outline: none }

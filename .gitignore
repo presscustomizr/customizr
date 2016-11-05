@@ -8,12 +8,6 @@
 ehthumbs.db
 Thumbs.db
 
-# DEV PHP FILES
-# _dev/
-
-# dev img
-inc/assets/img/demo/ALL/
-
 # CUSTOM SKINS
 custom-skins/
 
