@@ -35,8 +35,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
-            //this action callback is the one responsibile to load new czr main templates
-            add_action( 'czr_four_template'       , array( $this, 'czr_fn_four_template_redirect' ) );
+            //this action callback is the one responsible to load new czr main templates
+            add_action( 'czr_four_template'       , array( $this, 'czr_fn_four_template_redirect' ), 10 , 1 );
 
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -97,7 +97,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-         /**
+        /**
         * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
         * => preview performance improvement
         * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
@@ -106,8 +106,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         *
         * hook : customize_preview_init
         * @return  void
-        *
-        * @since  v3.4+
+
         */
         function czr_fn_customize_refresh_db_opt(){
           CZR___::$db_options = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
@@ -117,8 +116,14 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-        public function czr_fn_four_template_redirect( $template = 'index.php' ) {
-          $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template );
+        /**
+        * The purpose of this callback is to load the themes bootstrap4 main templates
+        * hook : czr_four_template
+        * @return  void
+        */
+        public function czr_fn_four_template_redirect( $template = null ) {
+          $template = $template ? $template : 'index';
+          $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template . '.php' );
         }
 
 
