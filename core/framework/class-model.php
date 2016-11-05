@@ -40,6 +40,8 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     public $controller = "";
     public $visibility = true;//can be typically overriden by a check on a user option
 
+    public $defaults   = array();
+
     //on instantiation the id is unique and the priority propery setup
     //=> those treatments have been managed by the collection
     function __construct( $model = array() ) {
@@ -294,6 +296,22 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //is fired on instantiation
     //@param = array()
     public function czr_fn_update( $model = array() ) {
+          /*
+          * Parse model into $this->defaults, if not empty
+          * This property will be merged with the array of properties
+          * It allows us, when updating a model, to specify only those properties that need to be different from the defaults.
+          * Specially interesting for those "singleton" models, whose only one instance is used throughout the page.
+          * The fact that the models retain the properties could cause undesired effects.
+          * E.g.
+          * - Edit Button
+          * the edit button model, which feeds the template,
+          * is filled by the slider of posts with a text saying "Customize or remove the posts slider",
+          * this means that if we render the edit button in a list of posts below the slider
+          * we are forced to specify the new text, which, in most of the cases would be just "Edit" (defaults)
+          */
+          if ( ! empty( $this -> defaults ) )
+            $model = wp_parse_args( $model, $this->defaults );
+
           foreach ( $model as $key => $value ) {
             if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
               $this->$key = $model[ $key ];
