@@ -89,10 +89,10 @@ embed, iframe, object, video { max-width: 100%;}
 
 
 
-.article-container .grid-container__alternate .format-image.no-excerpt .entry-header,
-.article-container .grid-container__alternate .format-gallery .sections-wrapper .entry-header,
-.article-container .grid-container__masonry .format-gallery .entry-header,
-.article-container .grid-container__masonry .format-image .entry-header{ position: relative;}
+.article-container .grid-container__alternate .full-image .entry-header,
+.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header{ position: relative;}
 
 
 .article-container .grid-container__alternate .entry-footer {
@@ -823,7 +823,8 @@ Limit to desktop
 }
 */
 @media (max-width: 768px) {
-  .grid-container__alternate .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-image.no-excerpt .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
+  .grid-container__alternate .full-image .tc-content .entry-footer .post-info,
+  .grid-container__masonry .full-image .tc-content .entry-footer .post-info {
     padding-top: 0 !important;
   }
 }
@@ -915,11 +916,10 @@ replace this
 
 /* Some thumbnail container sizes ideas */
 /*[class*=grid-container__] .format-gallery .tc-thumbnail,
-[class*=grid-container__] .format-image.no-excerpt .tc-thumbnail {
+[class*=grid-container__] .full-image .tc-thumbnail {
   max-height: 600px;
 }*/
-.grid-container__masonry .format-gallery .tc-thumbnail img,
-.grid-container__masonry .format-image .tc-thumbnail img {
+.grid-container__masonry .full-image .tc-thumbnail img{
     width: auto;
     height: 100%;
     max-width: none;
@@ -927,34 +927,38 @@ replace this
     left: 50%;
     transform: translate(-50%, 0);
     transform: translate3d(-50%, 0, 0);
+
 }
 
-.article-container .grid-container__alternate .format-gallery .tc-thumbnail  .carousel,
-.article-container .grid-container__alternate .format-image.no-excerpt .tc-thumbnail,
-.article-container .grid-container__plain .format-gallery .tc-thumbnail  .carousel,
-.article-container .grid-container__plain .format-image.no-excerpt .tc-thumbnail {
+.full-image .tc-thumbnail {
+  background: #B4B4B4 ;
+}
+.article-container .grid-container__alternate .full-image .czr-carousel  .carousel,
+.article-container .grid-container__alternate .full-image .tc-thumbnail:not(.czr-carousel),
+.article-container .grid-container__plain .full-image .czr-carousel  .carousel,
+.article-container .grid-container__plain .full-image .tc-thumbnail:not(.czr-carousel) {
     position: relative;
     height: 0;
     padding-bottom: 53.5%;
 }
 /* viewport inherit size from carousel */
 
-.article-container .grid-container__masonry .format-gallery .flickity-viewport,
-.article-container .grid-container__alternate .format-gallery .flickity-viewport,
-.article-container .grid-container__plain .format-gallery .flickity-viewport {
+.article-container .grid-container__masonry .full-image .flickity-viewport,
+.article-container .grid-container__alternate .full-image .flickity-viewport,
+.article-container .grid-container__plain .full-image .flickity-viewport {
   position: absolute;
   width: 100%;
 }
 
-.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel-cell,
-.article-container .grid-container__alternate .format-gallery .tc-thumbnail .carousel-cell,
-.article-container .grid-container__plain .format-gallery .tc-thumbnail .carousel-cell {
+.article-container .grid-container__masonry .full-image .tc-thumbnail .carousel-cell,
+.article-container .grid-container__alternate .full-image .tc-thumbnail .carousel-cell,
+.article-container .grid-container__plain .full-image .tc-thumbnail .carousel-cell {
   height: 100%;
   overflow: hidden;
 }
 
-.article-container .grid-container__masonry .format-image .tc-thumbnail,
-.article-container .grid-container__masonry .format-gallery .tc-thumbnail .carousel {
+.article-container .grid-container__masonry .full-image .tc-thumbnail:not(.czr-carousel),
+.article-container .grid-container__masonry .full-image .czr-carousel .carousel {
     position: relative;
     height: 0;
     padding-bottom: 150%;

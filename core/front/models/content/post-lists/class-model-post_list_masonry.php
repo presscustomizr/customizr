@@ -44,18 +44,18 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * probably the no-thumb/no-text should be ported somewhere else (in czr_fn_get_the_post_list_article_selectors maybe)
   */
   function czr_fn_get_article_selectors() {
+    $is_full_image             = $this->czr_fn_get_is_full_image();
     $has_post_media            = $this -> czr_fn_get_has_post_media();
-    $post_class                = $this->post_class;
+    $post_class                = $this -> post_class;
 
-    /*
-    * Using the excerpt filter here can cause some compatibility issues
-    * See: Super Socializer plugin
-    */
-    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+    /* Extend article selectors with info about the presence of an excerpt and/or thumb */
+    array_push( $post_class,
+      $is_full_image && $has_post_media ? 'full-image' : '',
+      /* Find a different solution for the one below, needed just for some icon alignment*/
+      $has_post_media ? 'has-thumb' : 'no-thumb'
+    );
 
-    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $this->czr_fn_get_has_post_media() ? 'no-thumb' : '' );
-
-    $article_selectors         = czr_fn_get_the_post_list_article_selectors( $post_class );
+    $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
 
     return $article_selectors;
   }

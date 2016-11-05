@@ -427,9 +427,9 @@ WP classes
 	@include filter($black, $white, 0.25);
 }
 
-/* MASONRY & ALTERNATE .format-image.no-excerpt/gallery */
-.grid-container__alternate .format-image.no-excerpt.has-media, .grid-container__alternate .format-gallery.has-media,
-.grid-container__masonry .format-image, .grid-container__masonry .format-gallery {
+/* MASONRY & ALTERNATE full-image = image with no excerpt/gallery */
+.grid-container__alternate .full-image,
+.grid-container__masonry .full-image {
 	a:not(.bg-link) { z-index: 2; position: relative; }
 
 	.tc-thumbnail {

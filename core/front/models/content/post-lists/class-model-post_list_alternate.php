@@ -91,9 +91,15 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   function czr_fn_get_article_selectors() {
 
     $post_class              = self::$post_class;
+    $is_full_image           = $this->czr_fn_get_is_full_image();
+    $has_post_media          = $this->has_post_media;
+    $has_thumb               = ! $this->czr_fn_get_has_format_icon_media();
 
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
-    array_push( $post_class, ! $this->czr_fn_get_has_excerpt() ? 'no-excerpt' : '',  $this->czr_fn_get_has_format_icon_media() ? 'no-thumb' : '' );
+    array_push( $post_class,
+      $is_full_image && $has_post_media ? 'full-image' : '',
+      $has_thumb ? 'has-thumb' : 'no-thumb'
+    );
 
     $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
 
