@@ -1,0 +1,422 @@
+//
+// Mixins
+// --------------------------------------------------
+// Webkit-style focus
+// ------------------
+.tab-focus() {
+  // Default
+  outline: thin dotted #333;
+  // Webkit
+  //outline: 5px auto -webkit-focus-ring-color;
+  outline: thin auto @lnkColLightenlinkColor;
+  outline-offset: -2px;
+}
+
+//
+// Reset CSS
+// --------------------------------------------------
+// Focus states
+a:focus {
+  .tab-focus();
+}
+
+//
+// Scaffolding
+// --------------------------------------------------
+// Links
+// -------------------------
+
+a {
+  color: @lnkCol;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: @lnkColHover;
+  text-decoration: underline;
+}
+
+
+//
+// Typography
+// --------------------------------------------------
+// Blockquotes
+blockquote {
+  border-left: 5px solid @lnkColBorderQuote;
+}
+
+
+
+// Link buttons
+// --------------------------------------------------
+.btn-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: @lnkCol;
+  .border-radius(0);
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: @lnkColHover;
+  text-decoration: underline;
+  background-color: transparent;
+}
+//
+// Buttons
+// --------------------------------------------------
+//backgrounds
+.btn-primary {
+  .buttonBackground(@lnkColbtnPrimaryBackground, @lnkColbtnPrimaryBackgroundHighlight);
+}
+// Info appears as a neutral blue
+.btn-info {
+  .buttonBackground(@lnkColbtnInfoBackground, @lnkColbtnInfoBackgroundHighlight);
+}
+
+.btn {
+  // Focus state for keyboard and accessibility
+  &:focus {
+    .tab-focus();
+  }
+}
+
+
+//
+// Button groups
+// --------------------------------------------------
+
+.btn-group.open {
+  .btn-primary.dropdown-toggle {
+    background-color: @lnkColbtnPrimaryBackgroundHighlight;
+  }
+   .btn-info.dropdown-toggle {
+    background-color: @lnkColbtnInfoBackgroundHighlight;
+  }
+}
+
+
+//
+// Carousel
+// --------------------------------------------------
+// Left/right controls for nav
+// ---------------------------
+
+.carousel-control {
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: @lnkColCarouselhover;
+    text-decoration: none;
+    .opacity(90);
+  }
+}
+
+
+//
+// Dropdown menus
+// --------------------------------------------------
+// Active state
+// ------------
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: @dropdownLinkColorActive;
+  text-decoration: none;
+  outline: 0;
+  #gradient > .vertical(@lnkColdropdownLinkBackgroundActive, darken(@lnkColdropdownLinkBackgroundActive, 5%));
+}
+
+//
+// Forms
+// --------------------------------------------------
+// Everything else
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  background-color: @inputBackground;
+  border: 1px solid @inputBorder;
+  .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  .transition(~"border linear .2s, box-shadow linear .2s");
+
+  // Focus state
+  &:focus {
+    //border-color: rgba(82,168,236,.8);
+    border-color: @lnkColinputBorderFocus;
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    //.box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6)");
+    .box-shadow(0 0 8px @lnkColinputShadowFocus);
+  }
+}
+
+// Focus for select, file, radio, and checkbox
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  .tab-focus();
+}
+
+
+
+//
+// Navbars (Redux)
+// --------------------------------------------------
+// Janky solution for now to account for links outside the .nav
+// -------------------------
+.navbar-link {
+  color: @navbarLinkColor;
+  &:hover,
+  &:focus {
+    color: @lnkColnavbarLinkColorHover;
+  }
+}
+// Hover/focus
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover/:focus from .active
+  color: @lnkColnavbarLinkColorHover;
+  text-decoration: none;
+}
+
+// Navbar button for toggling navbar items in responsive layouts
+// These definitions need to come after '.navbar .btn'
+.navbar .btn-navbar {
+  float: right;
+  padding: 7px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  .buttonBackground(darken(@lnkColnavbarBtnHighlight, 5%), darken(@lnkColnavbarBtn, 5%));
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)");
+}
+
+// Caret should match text color on hover/focus
+.navbar .nav li.dropdown > a:hover .caret,
+.navbar .nav li.dropdown > a:focus .caret {
+  border-top-color: @lnkColnavbarLinkColorHover;
+  border-bottom-color: @lnkColnavbarLinkColorHover;
+}
+
+// Remove background color from open dropdown
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  color: @lnkColMenufocus;
+}
+
+
+//
+// Navs
+// --------------------------------------------------
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  color: @white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  background-color: @lnkCol;
+}
+
+// Active state
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  color: @white;
+  background-color: @lnkCol;
+}
+
+// Make carets use linkColor to start
+.nav .dropdown-toggle .caret {
+  border-top-color: @lnkCol;
+  border-bottom-color: @lnkCol;
+  margin-top: 6px;
+}
+.nav .dropdown-toggle:hover .caret,
+.nav .dropdown-toggle:focus .caret {
+  border-top-color: @lnkColHover;
+  border-bottom-color: @lnkColHover;
+}
+
+//
+// Thumbnails
+// --------------------------------------------------
+// Add a hover/focus state for linked versions only
+a.thumbnail:hover,
+a.thumbnail:focus {
+  border-color: @lnkCol;
+  .box-shadow(0 1px 4px rgba(0,105,214,.25));
+}
+
+//
+// Customs for Customizr
+// --------------------------------------------------
+.tc-header {
+  border-top: 5px solid @lnkColTopBorder;
+}
+
+.navbar .btn-navbar:hover, .navbar .btn-navbar:focus, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled] {
+  background-color: @lnkColnavbarBtn;
+  background-position: 0 -30px;
+}
+
+// SIDE/MOBILE MENU BUTTON
+.navbar .nav-collapse.in + .btn-toggle-nav .icon-bar,
+.tc-is-mobile.tc-sn-visible .btn-toggle-nav .icon-bar,
+.no-csstransforms .tc-sn-visible .btn-toggle-nav .icon-bar,
+.navbar .btn-toggle-nav.hover .icon-bar {
+  background-color: @lnkCol;
+}
+.navbar .btn-toggle-nav.hover .menu-label {
+  color:@lnkCol;
+}
+
+.site-description {
+  color:@lnkColSlogan;
+}
+
+.navbar .nav > li.current-menu-item > a, .tc-regular-menu .navbar .nav > li.current-menu-ancestor > a {
+  color: @lnkColnavbarLinkColorHover;
+}
+
+.navbar .nav > li.current-menu-item > a .caret, .tc-regular-menu .navbar .nav li.current-menu-ancestor > a .caret, .navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.current-menu-item > a .caret, .tc-regular-menu .navbar .nav li.dropdown.current-menu-ancestor > a .caret, .navbar .nav li.dropdown.open.current-menu-ancestor > .dropdown-toggle .caret {
+  border-top-color: @lnkColnavbarLinkColorHover;
+  border-bottom-color:@lnkColnavbarLinkColorHover;
+}
+
+.dropdown-menu > li.current-menu-item > a, .tc-regular-menu .dropdown-menu > li.current-menu-ancestor > a {
+  color: @lnkCol;
+  /*#gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 5%));*/
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
+  color: @lnkCol;
+}
+
+.dropdown-submenu:hover > a:after, .dropdown-menu > li.current-menu-item > a:after, .tc-regular-menu .dropdown-menu > li.current-menu-ancestor > a:after {
+  border-left-color: @lnkCol;
+}
+
+
+/* External Links style */
+a + span.tc-external:after {
+  color: @lnkCol;
+}
+
+table {
+  border-bottom: 5px solid @lnkColTableBorder;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 2;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+  border-bottom: 1px solid @lnkColTableBorder;
+}
+td {
+  border-top: 1px solid #ededed;
+  padding: 6px 10px 6px 0;
+}
+
+/*ICONS FOR WIDGETS*/
+.widget h3:before {
+  color: @lnkColIconColor;
+}
+
+/*ARCHIVES ICONS AND SINGULAR ICONS*/
+.single #content .entry-header .entry-title.format-icon:before, .page #content > article.page .entry-header .entry-title.format-icon:before,
+.search .search-header .format-icon:before, .archive .archive-header .format-icon:before {
+  color: @lnkColIconColor;
+  opacity:1;
+}
+
+/* WIDGETS STYLING */
+.widget {
+  &.widget_archive, &.widget_categories, &.widget_calendar, &.widget_pages, &.widget_links, &.widget_meta, &.widget_recent_entries, &.widget_recent_comments, &.widget_nav_menu, &.widget_rss  {
+    li:before {
+    color:@lnkColWidgetArrow;
+    }
+  }
+}
+
+.social-block a:hover{
+  color: @lnkColSocialHover;
+}
+
+/* SLIDER CONTROLS */
+.tc-carousel-control:hover {
+  color: @lnkCol;
+}
+
+/* pagination */
+.page-links button.btn {
+  color: @lnkCol;
+}
+
+/* Comment bubbles */
+.comments-link .tc-comment-bubble {
+  color: @lnkCol
+}
+.comments-link .default-bubble:before {
+  border: solid 2px @lnkCol;
+}
+.comments-link .tc-comment-bubble {
+  color: @lnkCol;
+  border: 2px solid @lnkCol;
+}
+.comments-link .custom-bubble-one:before {
+  border-color: @lnkCol rgba(0, 0, 0, 0);
+}
+
+
+/* POST NAVIGATION*/
+
+h3.assistive-text {
+  color: @lnkColPostNavigationText;
+}
+
+/* OTHER CUSTOMIZED WP CSS */
+#footer .calendar_wrap table a{
+  color:@lnkColWidgetlinkColor
+}
+
+#wp-calendar th {
+  background-color: @lnkColCalendarBorder;
+  color: white;
+}
+
+/* FOOTER */
+/* Back to top */
+.btt-arrow,
+footer#footer .colophon a.back-to-top {
+  color:  @lnkCol;
+}
+
+/* GRID */
+.tc-grid-border .tc-grid {
+  border-bottom: 3px solid @lnkCol;
+}
+/* Grid icons */
+.tc-grid-icon:before {
+  color:  @lnkCol;
+}
+
+/* Placeholder icons */
+.tc-placeholder-wrap::before, .tc-admin-notice:before {
+  color: @lnkCol;
+}
