@@ -7,6 +7,10 @@
  * @package Customizr
  * @since Customizr 1.0
  */
+if ( apply_filters( 'do_czr_four', false ) ) {
+  do_action( 'czr_four_template', 'header' );
+  return;
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>

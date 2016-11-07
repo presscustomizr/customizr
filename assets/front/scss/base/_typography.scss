@@ -1,0 +1,138 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+
+@import '../modules/modular-scale';
+
+$baseFont 	  : "Poppins", sans-serif;
+$monotypeFont : 'Roboto Mono', monospace;
+$serviceFont  : "Roboto", sans-serif;
+
+$ms-base: 1em;
+$ms-ratio: 1.2;
+
+
+$base-line-height: $ms-base * 1.25;
+
+$ms-range:
+  1   20em,
+  1.2 60em;
+
+$line-height:
+  1.4  20em,
+  1.75 40em;
+
+body {
+	 font-family: $baseFont;
+	 @include ms-respond(line-height, 1, $line-height, 1);
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @include ms-respond(font-size, ($i - 6) * -1);
+  }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	@extend .thick;
+	position:relative;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: $base-line-height;
+}
+
+h6 {
+	@extend .semi-bold;
+	color:$grey ;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.display {
+	@include ms-respond(font-size, 9);
+}
+
+$line-height:
+  1.4    20em,
+  1.75   40em;
+
+$ms-range:
+  0.833  20em,
+  1      60em;
+
+
+body {
+	 @include ms-respond(font-size, 1);
+}
+
+blockquote p {
+	font-family: $baseFont;
+}
+.small, small {
+	font-size: ms(-1);
+}
+.demi-small {
+	font-size: 0.833;
+}
+.thin {
+	font-weight: 300;
+}
+.normal {
+	font-weight: 400;
+ }
+ .semi-bold {
+ 	font-weight: 500;
+ }
+ .bold {
+	font-weight: 600;
+}
+.thick, strong {
+	font-weight: 700;
+}
+
+.service-font {
+	font-family: $serviceFont;
+	letter-spacing: 1px;
+}
+.caps {
+	text-transform: uppercase;
+}
+.right-aligned {
+	text-align:right;
+}
+.left-aligned {
+	text-align:left;
+}
+.centered {
+	text-align:center;
+}
+.justified {
+	text-align: justify;
+}
+.letter-spacing-075 {
+	letter-spacing: 0.075px;
+}
+.letter-spacing-05 {
+	letter-spacing: 0.5px;
+}
+.letter-spacing-1 {
+	letter-spacing: 1px;
+}
+.letter-spacing-2 {
+	letter-spacing: 2px;
+}
+.italics {
+	font-style: italic;
+}
+.underline-thick {
+	border-bottom-color: $grey-lightest;
+	box-shadow: inset 0 -5px 0 $grey-lightest;
+}
+.underline { text-decoration: underline; }
+
+
+
+
+
+
