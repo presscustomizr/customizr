@@ -1,0 +1,22 @@
+@media (max-width: 800px) {
+    /** General Styles **/
+    .responsive-full-width {
+        width: 100% !important;
+    }
+
+    .visible-phone {
+        display: inherit !important;
+    }
+
+    .hidden-phone {
+        display: none !important;
+    }
+
+    .hidden-desktop {
+        display: inherit !important;
+    }
+
+    .visible-desktop{
+        display: none !important;
+    }
+}

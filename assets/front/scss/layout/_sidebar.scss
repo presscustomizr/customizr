@@ -1,0 +1,81 @@
+@media screen and (min-width: 480px) and (max-width: 667px) {
+  .sidebar {
+    padding: 0 $base-line-height*2;
+  }
+}
+
+.widget {
+  margin-bottom: $base-line-height*3;
+  li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
+  li::before { content: none }
+  a { display: inline-block; }
+  &:not(.widget_tag_cloud) a { position:relative; @include underlined ($black, 1px) }
+}
+
+.sidebar {
+  @extend .small;
+  .widget-title {
+    @extend .caps;
+    @extend .letter-spacing-2;
+    position: relative;
+    margin: $base-line-height 0;
+    padding: $base-line-height 0;
+    font-size: 1em;
+    &::after {
+      content: "";
+      position: absolute;
+      width: $base-line-height*4;
+      height:2px;
+      bottom:0;
+      left:0;
+      background: $black;
+    }
+  }
+}
+
+.widget_recent_comments {
+  @extend .bold;
+  .comment-author-link { color: $grey; @extend .thin }
+}
+
+.widget_categories {
+  @extend .caps;
+  @extend .bold;
+  @extend .letter-spacing-1;
+  .cat-item.on {
+    a { color: $black }
+  }
+}
+
+.widget_calendar {
+  table {
+    width: 100%;
+    caption, thead  th {
+      text-align: inherit;
+    }
+	}
+  thead tr, tbody tr { border-bottom-width: 1px; border-bottom-style: solid }
+  thead tr {  border-width: 2px; @extend .small; @extend .service-font }
+  td { padding:$base-line-height/2 0 }
+  caption, tfoot {
+    padding: $base-line-height/2 0;
+    color: $grey;
+    @extend .caps;
+    @extend .small;
+    @extend .bold;
+    @extend .letter-spacing-1;
+    text-align: left;
+    caption-side: top;
+  }
+}
+
+@media screen and (min-width: 768px) { /*md*/
+  .sidebar.left  { padding-right:$base-line-height*2; }
+  .sidebar.right {
+    padding-left:$base-line-height*2;
+    .widget-title::after {
+      right:0;
+      left:auto;
+    }
+  }
+}
