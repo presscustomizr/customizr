@@ -1,29 +1,30 @@
 module.exports = {
-  free: {
-    src:  [
-      '**',
-      '!bin/**',
-      '!build/**',
-      '!grunt-tasks-config/**',
-      '!node_modules/**',
-      '!tests/**',
-      '!wpcs/**',
-      '!.git/**',
-      '!gruntfile.js',
-      '!package.json',
-      '!.gitignore',
-      '!.ftpauth',
-      '!.travis.yml',
-      '!travis-examples/**',
-      '!phpunit.xml',
-      '!readme.md',
-      '!**/*.db',
+	free: {
+		src:  [
+			'**',
+			'!bin/**',
+			'!build/**',
+			'!grunt-tasks-config/**',
+			'!node_modules/**',
+			'!tests/**',
+			'!wpcs/**',
+			'!.git/**',
+			'!gruntfile.js',
+			'!package.json',
+			'!.gitignore',
+			'!.ftpauth',
+			'!.travis.yml',
+			'!travis-examples/**',
+			'!phpunit.xml',
+			'!readme.md',
+			'!**/*.db',
       '!patches/**',
-      '!core/init-pro.php',
-      '!custom-skins/**'
-    ],
-    dest: 'build/free/<%= pkg.name %>/'
-  },
+      '!inc/init-pro.php',
+      '!custom-skins/**',
+      '!inc/_dev/**'
+		],
+		dest: 'build/free/<%= pkg.name %>/'
+	},
   pro: {
     src:  [
       '**',
@@ -47,7 +48,8 @@ module.exports = {
       '!readme.txt',
       '!screenshot.png',
       '!style.css',
-      '!custom-skins/**'
+      '!custom-skins/**',
+      '!inc/_dev/**'
     ],
     dest: '../customizr-pro/'
   }

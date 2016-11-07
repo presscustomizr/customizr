@@ -4,19 +4,27 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to tc_comment_callback()
+ * handled by a callback to czr_fn_comment_callback()
+ *
+ * @package Customizr
+ * @since Customizr 1.0
  */
+
+/*
+ * If the current post is protected by a password and
+ * the visitor has not yet entered the password we will
+ * return early without loading the comments.
+ */
+
+if ( have_comments() ) {
+	echo apply_filters( 'tc_comment_separator', '<hr class="featurette-divider '. current_filter() .'">' );
+}
 ?>
-<div id="comments" class="comments_container">
-  <section class="post-comments">
-    <?php
-      if ( czr_fn_has('comment_list') ) { czr_fn_render_template('content/comments/comment_list', 'comment_list'); }
-      comment_form( array(
-        'class_form'         => 'czr-form comment-form',
-        'title_reply_before' => '<h4 id="reply-title" class="comment-reply-title">',
-        'title_reply_after'  => '</h4>',
-        'title_reply'        => __( 'Leave a comment' , 'customizr' )
-      ));
-  ?>
-  </section>
-</div>
+
+<div id="comments" class="<?php echo implode( ' ', apply_filters( 'tc_comments_wrapper_class' , array('comments-area') ) ) ?>" >
+	<?php
+		comment_form();
+		if ( have_comments() && apply_filters( 'tc_display_comment_list', true ) )
+			do_action ( '__comment' );
+	?>
+</div><!-- //#comments .comments-area -->

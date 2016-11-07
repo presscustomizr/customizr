@@ -1,29 +1,21 @@
 <?php
-/**
- * The template for displaying the site footer
+ /**
+ * The template for displaying the footer.
  *
- * Contains the closing of the #tc-page-wrap div and all content after
+ *
+ * @package Customizr
+ * @since Customizr 3.0
  */
-
-      do_action( '__before_footer' );
-      if ( czr_fn_has('footer') )
-        czr_fn_render_template('footer');
-    ?>
-    </div><!-- end #tc-page-wrap -->
-
-    <?php
-      do_action('__after_page_wrapper');
-
-      if ( czr_fn_has('saerch_full_page') )
-        czr_fn_render_template('modules/search_full_page');
-
-      if ( czr_fn_has('btt_arrow') )
-        czr_fn_render_template('footer/btt_arrow');
-
-      wp_footer();
-
-      do_action( '__after_footer' );
-    ?>
-  </body>
-  <?php do_action( '__after_body' ) ?>
+  	do_action( '__before_footer' ); ?>
+  		<!-- FOOTER -->
+  		<footer id="footer" class="<?php echo czr_fn__f('tc_footer_classes', '') ?>">
+  		 	<?php do_action( '__footer' ); // hook of footer widget and colophon?>
+  		</footer>
+    </div><!-- //#tc-page-wrapper -->
+		<?php
+    do_action( '__after_page_wrap' );
+		wp_footer(); //do not remove, used by the theme and many plugins
+	  do_action( '__after_footer' ); ?>
+	</body>
+	<?php do_action( '__after_body' ); ?>
 </html>
