@@ -1,0 +1,95 @@
+.gallery-item {
+  dt {
+    text-align: inherit;
+    padding: 0;
+    &::before { content: none }
+  }
+	 position: relative;
+	 float:left;
+	 display:block;
+	 overflow:hidden;
+	 margin:0;
+	 padding:0;
+	 margin-bottom:$base-line-height;
+
+	.tc-thumbnail {
+		width: 100%;
+		position: relative;
+		overflow:hidden;
+
+	}
+	.post-thumbnail {
+		@include transition(all, 0.3s ease);
+	}
+	.tc-content {
+		@extend .small;
+		padding-top: $base-line-height/2;
+		font-family: $serviceFont;
+		color: $grey;
+	}
+	&.hover  .post-thumbnail {
+		@include transform(scale(1.1));
+	}
+	&.hover .tc-content { color: $black; }
+	img {
+		display:block;
+		width: 100%;
+		height: 100%
+	 }
+}
+.gallery-item:not(:last-of-type)  {
+	 margin-right:$base-line-height;
+
+}
+.bg .gallery-item {
+	background: $white;
+	.tc-content { padding:$base-line-height;  }
+}
+.col-1 {
+
+}
+.post-gallery {
+
+	padding:0;
+	margin:0;
+	width:100%;
+	@include clearfix;
+	position: ralative;
+	overflow:hidden;
+}
+div[class^="col-num"] {
+
+
+}
+@for $i from 1 through 9 {
+  .col-num-#{$i} {
+  	.gallery-item {
+  		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
+  	}
+   	.gallery-item:nth-child(#{$i}) {
+  		float:none;
+  	}
+  	@media (max-width: 992px)  {
+	  .gallery-item {
+  		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+  		}
+	}
+  }
+}
+
+
+@for $i from 3 through 9 {
+  .col-num-#{$i} {
+  	.gallery-item {
+		.post-action {
+			width:  $base-line-height*9/$i;
+			height: $base-line-height*9/$i;
+			top: $base-line-height - $i/10 ;
+			right: $base-line-height - $i/10 ;
+			a {
+				line-height: $base-line-height*9/$i;
+			}
+  		}
+  	}
+  }
+}

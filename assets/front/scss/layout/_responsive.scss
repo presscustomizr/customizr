@@ -1,0 +1,114 @@
+/* mobile sticky*/
+
+ @media only screen and (max-width : 768px) {
+     .mobile-sticky {
+        background: rgba($white, 0.95);
+
+        @include transition(all 0.5s ease-in-out); 
+        @include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
+     }
+ }
+
+@media only screen and (min-width: 991px ) {
+
+    .hidden-desktop {
+        display: none !important;
+    }
+
+    .visible-desktop {
+        display: inherit !important;
+    }
+
+}
+@media only screen and (max-width : 992px)  {
+    .hidden-tablet {
+        display: none !important;
+    }
+     .visible-tablet {
+        display: inherit !important;
+    }
+}
+
+/* reminder to be removed
+iPhone 6 (Zoom View)
+    @media screen and (max-device-width: 320px) and (max-device-height: 568px) {}
+
+iPhone 6 (Standard View), iPhone 6 Plus (Zoom View):
+    @media screen and (max-device-width: 375px) and (max-device-height: 667px) {}
+
+iPhone 6 Plus (Standard View):
+    @media screen and (max-device-width: 414px) and (max-device-height: 776px) {}
+*/
+
+@media screen and (min-device-width: 320px) and (max-device-width: 776px) {
+    .visible-phone {
+        display: inherit !important;
+    }
+
+    .hidden-phone {
+        display: none !important;
+    }
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+
+
+
+    /*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+        
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+
+
+    /*==========  Non-Mobile First Method  ==========*/
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (max-width : 480px) {
+
+    }
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (max-width : 320px) {
+        
+    }
