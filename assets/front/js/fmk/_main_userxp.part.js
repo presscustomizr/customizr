@@ -64,6 +64,7 @@ var czrapp = czrapp || {};
         _focusable_class   = 'czr-focus',
         _parent_selector   = '.'+_focusable_class,
         _focus_class       = 'in-focus',
+        _czr_form_class    = 'czr-form',
         _inputs            = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
         $_focusable_inputs = $( _input_types.join() );
         _maybe_fire        = $_focusable_inputs.length > 0;
@@ -73,7 +74,8 @@ var czrapp = czrapp || {};
       //consider the exclude?!
       if ( _maybe_fire ) {
         $_focusable_inputs.each( function() {
-          $(this).parent().addClass(_focusable_class);
+          $(this).parent().addClass(_focusable_class)
+                 .closest('form').addClass(_czr_form_class);
         });
       }else
         return;

@@ -10,53 +10,12 @@ var czrapp = czrapp || {};
       this.dropdownMenuOnClick();
       this.dropdownMenuOnHover();
 
-      /* Test: do decide */
-      //this.dropdownEventsListener();
     },
 
-
-    /* Test */
-    dropdownEventsListener : function( evt ) {
-      var self = this,
-          namespace = this.namespace;
-
-      czrapp.$_body.on( 'li-open.'+namespace, function( evt ) {
-        self.dropdownEventHandler( 'li-open', evt.target );
-      })
-      .on( 'li-close.'+namespace, function( evt ) {
-        self.dropdownEventHandler( 'li-close', evt.target );
-      });
-    },
-
-
-    dropdownEventHandler : function( evt_name, target ) {
-      var self = this;
-
-      switch ( evt_name ) {
-        case 'li-open' :
-          //test - in wp we can take it from the li class as it is unique
-          var $_target     = $(target),
-              _unique_attr = $_target.attr('unique') || Math.random();
-
-          $_target.closest('.super-wrapper').addClass( 'li-open-'+_unique_attr );
-          $_target.attr('unique', _unique_attr);
-
-        break;
-
-        case 'li-close' :
-          var $_target     = $(target);
-              _unique_attr = $_target.attr('unique');
-
-          if ( _unique_attr )
-            $_target.closest('.super-wrapper').removeClass( 'li-open-' + _unique_attr );
-        break;
-      }
-    },
 
     dropdownTrigger : function( $_el, evt, data ) {
       $_el.trigger( evt+'.'+this.namespace, data );
     },
-    /* Test*/
 
     //Handle dropdown on hover via js
     dropdownMenuOnHover : function() {
