@@ -9,7 +9,7 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-if ( apply_filters( 'do_czr_four', false ) ) {
+if ( apply_filters( 'czr_four_do', false ) ) {
   do_action( 'czr_four_template', 'comments' );
   return;
 }

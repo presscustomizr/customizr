@@ -1,5 +1,6 @@
 <?php
-require_once( get_template_directory() . '/core/functions-test.php' );
+
+do_action( 'czr_four_doing_functions' );
 
 //shortcut function to get a Customizr option
 if ( ! function_exists('czr_fn_get_opt') ) {

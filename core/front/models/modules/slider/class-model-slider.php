@@ -625,7 +625,7 @@ class CZR_slider_model_class extends CZR_Model {
     $_bool = $_bool && ( czr_fn_is_home() || 0 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
-      return $_css;
+      return $_slider_inline_css;
 
     $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
       array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )

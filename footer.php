@@ -6,7 +6,7 @@
  * @package Customizr
  * @since Customizr 3.0
  */
-if ( apply_filters( 'do_czr_four', false ) ) {
+if ( apply_filters( 'czr_four_do', false ) ) {
   do_action( 'czr_four_template', 'footer' );
   return;
 }

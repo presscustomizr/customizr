@@ -106,7 +106,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         *
         * hook : customize_preview_init
         * @return  void
-
         */
         function czr_fn_customize_refresh_db_opt(){
           CZR___::$db_options = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );

@@ -43,7 +43,7 @@
 */
 
 //Fire Customizr
-if ( apply_filters( 'do_czr_four', false ) )
+if ( apply_filters( 'czr_four_do', false ) )
   require_once( get_template_directory() . '/core/init.php' );
 else
   require_once( get_template_directory() . '/inc/czr-init.php' );
