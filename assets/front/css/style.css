@@ -5601,6 +5601,7 @@ section.post-content {
   }
 }
 
+.woocart.cart-contents,
 .desktop_search__link {
   display: block;
   height: 100%;
