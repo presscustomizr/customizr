@@ -70,7 +70,7 @@ function czr_fn_regex_callback( $matches ) {
 * @package Customizr
 * @since Customizr 3.1.23
 */
-function czr_fn_getskincolor( $_what = null ) {
+function czr_fn_get_skin_color( $_what = null ) {
     $_color_map    = CZR_init::$instance -> skin_color_map;
     $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 

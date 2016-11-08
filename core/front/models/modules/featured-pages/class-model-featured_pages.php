@@ -18,7 +18,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
-        $_skin_color                    = czr_fn_getskincolor();
+        $_skin_color                    = czr_fn_get_skin_color();
 
         $fp_holder_img                  = apply_filters (
               'tc_fp_holder_img' ,

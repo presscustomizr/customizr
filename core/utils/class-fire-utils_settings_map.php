@@ -1868,7 +1868,7 @@
                                 'priority'    => 20,
               ),
               'tc_comment_bubble_color' => array(
-                                'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : czr_fn_getskincolor(),
+                                'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : czr_fn_get_skin_color(),
                                 'control'     => 'WP_Customize_Color_Control',
                                 'label'       => __( 'Comments bubble color' , 'customizr' ),
                                 'section'     => 'comments_sec',
