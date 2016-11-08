@@ -16,6 +16,7 @@ module.exports = function(grunt) {
         front_css4 : 'assets/front/css/',
         less : 'inc/assets/less/',
         front_css : 'inc/assets/css/',
+        front_js_4_source : 'assets/front/js/',
         front_js : 'inc/assets/js/',
         admin_css : 'inc/admin/css/',
         admin_js : 'inc/admin/js/',

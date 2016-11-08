@@ -21,7 +21,7 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'less:dev_common', 'less:dev_skin' , 'cssmin:dev_common', 'cssmin:dev_skin' ],
 	},
   front_jquery_js : {
-    files : ['<%= paths.front_js %>jquery-plugins/*.js', '!*.min.js'],
+    files : ['<%= paths.front_js_4_source %>jquery-plugins/*.js', '!*.min.js'],
     tasks : ['jshint:those', 'jshint:part_front_js', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },

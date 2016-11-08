@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
         ),
         'tc-img-original-sizes' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryimgOriginalSizes.js' ),
           'dependencies' => array('jquery')
         ),
@@ -116,27 +116,27 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           'dependencies' => array('jquery')
         ),
         'tc-dropcap' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryaddDropCap.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-img-smartload' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryimgSmartLoad.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-ext-links' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryextLinks.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-parallax' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryParallax.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
         ),
         'tc-center-images' => array(
-          'path' => 'inc/assets/js/jquery-plugins/',
+          'path' => 'assets/front/js/jquery-plugins/',
           'files' => array( 'jqueryCenterImages.js' ),
           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
         ),
