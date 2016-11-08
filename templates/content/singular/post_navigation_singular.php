@@ -34,7 +34,7 @@ if ( null != $prev_link || null != $next_link ) :
     <ul class="pager clearfix">
       <li class="previous col-xs-5">
       <?php if ( null != $prev_link ) : ?>
-        <span class="sr-only"><?php _e('Next post', 'customizr') ?></span>
+        <span class="sr-only"><?php _e('Previous post', 'customizr') ?></span>
         <span class="nav-previous"><?php echo $prev_link ?></span>
       <?php endif; ?>
       </li>
