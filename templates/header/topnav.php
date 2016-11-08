@@ -13,8 +13,9 @@
     <div class="secondary-nav__socials">
       <?php
         if ( czr_fn_has('header_socials') )
-          czr_fn_render_template('modules/social_block', 'social_block', array(
-            'element_class' => 'nav navbar-nav socials'
+          czr_fn_render_template('modules/social_block', 'header_socials', array(
+            'element_class' => 'nav navbar-nav socials',
+            'something' => 'avercene'
           ));
       ?>
     </div>

@@ -15,14 +15,10 @@
         <?php the_author_posts() ?>&nbsp;<?php _e( 'posts', 'customizr') ?>
       </a>
       <!-- fake need to have social links somewhere -->
-      <ul class="socials">
-        <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="http://plus.google.com/"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="http://plus.google.com/"><i class="fa fa-pinterest"></i></a></li>
-        <li><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
-      </ul>
+      <?php
+        if ( czr_fn_has('author_socials') )
+          czr_fn_render_template( 'modules/social_block', 'author_socials' );
+      ?>
     </figcaption>
   </figure>
 </section>

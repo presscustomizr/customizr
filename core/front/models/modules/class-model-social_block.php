@@ -2,6 +2,7 @@
 class CZR_social_block_model_class extends CZR_Model {
   public $socials;
   public $where         = null;
+  public $defaults      = array( 'element_class' => 'socials' );
   /*
   * @override
   * fired before the model properties are parsed
@@ -12,7 +13,7 @@ class CZR_social_block_model_class extends CZR_Model {
         $model[ 'socials' ]             = czr_fn_get_social_networks( $output_type = 'array' );
         $model[ 'where' ]               = $this -> czr_fn_get_socials_where( $model );
         $model[ 'element_attributes' ]  = $this -> czr_fn_social_block_get_attributes( $model );
-        return $model;
+        return parent::czr_fn_extend_params( $model );
   }
 
   protected function czr_fn_get_socials_where( $model ) {
@@ -39,7 +40,7 @@ class CZR_social_block_model_class extends CZR_Model {
   * Helper, wrap social links in <li>
   */
   protected function czr_fn_li_wrap( $el ) {
-    return "<li>$el</li>";
+        return "<li>$el</li>";
   }
 
 }
