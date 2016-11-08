@@ -43,7 +43,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
-              'social_block',
+              //'social_block',
               'breadcrumb',
               'comment_info',
               'post_list_grid',

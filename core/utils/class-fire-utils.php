@@ -322,17 +322,21 @@ function czr_fn_wp_title( $title, $sep ) {
 /**
 * Gets the social networks list defined in customizer options
 *
+*
 * @package Customizr
 * @since Customizr 3.0.10
+*
+* @since Customizr 3.4.55 Added the ability to retrieve them as array
+* @param $output_type optional. Return type "string" or "array"
 */
-function czr_fn_get_social_networks() {
+function czr_fn_get_social_networks( $output_type = 'string' ) {
   $__options    = czr_fn_get_theme_options();
 
   //gets the social network array
   $socials      = apply_filters( 'czr_default_socials' , CZR_init::$instance -> socials );
 
   //declares some vars
-  $html         = '';
+  $html         = array();
 
   foreach ( $socials as $key => $data ) {
     if ( $__options[$key] != '' ) {
@@ -345,7 +349,7 @@ function czr_fn_get_social_networks() {
           $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $__options[$key] );
         }
         //there is one exception : rss feed has no target _blank and special icon title
-        $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
+        array_push( $html, sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
             apply_filters( 'czr_social_link_class',
                           sprintf('social-icon icon-%1$s' ,
                             ( $key == 'tc_rss' ) ? 'feed' : str_replace('tc_', '', $key)
@@ -362,10 +366,16 @@ function czr_fn_get_social_networks() {
                                                     $height,
                                                     isset($data['link_title']) ? call_user_func( '__' , $data['link_title'] , 'customizr' ) : ''
                                                   ) : ''
-        );
+        ) );
     }
   }
-  return $html;
+  /*
+  * return
+  */
+  switch ( $output_type ) :
+    case 'array' : return $html;
+    default      : return implode( '', $html );
+  endswitch;
 }
 
 

@@ -11,7 +11,12 @@
   </div>
   <div class="col-md-3">
     <div class="secondary-nav__socials">
-      <?php czr_fn_render_template('header/header_socials') ?>
+      <?php
+        if ( czr_fn_has('header_socials') )
+          czr_fn_render_template('modules/social_block', 'social_block', array(
+            'element_class' => 'nav navbar-nav socials'
+          ));
+      ?>
     </div>
   </div>
 </div>
