@@ -10,15 +10,8 @@ class CZR_content_model_class extends CZR_Model {
         'model_class' => 'content/post-metas/post_metas',
         'id' => 'post_metas',
       ),
-      array(
-        'model_class' => 'content/post-lists/post_list_wrapper',
-        'id' => 'post_list',
-      ),
-      array(
-        'model_class' => 'content/post-lists/post_list_masonry_wrapper',
-        'id' => 'post_list_masonry',
-      ),
       //Temp registered here as we feed the template with a model which is not retrievable from the template name
+      //see czr_fn_render_template()
       array(
         'model_class' => 'content/post-lists/post_list_plain',
         'id' => 'post_list_plain_excerpt',
