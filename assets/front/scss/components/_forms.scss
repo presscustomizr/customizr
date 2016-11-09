@@ -30,6 +30,7 @@ form  {
     background: transparent;
     max-width: 100%;
   }
+  fieldset { margin-top: 3em }
 }
 label .required {
   float: left;
@@ -40,12 +41,12 @@ label i {
   text-align: center;
 }
 
-.czr-form {
+form.czr-form {
   input:not([type="submit"]), textarea {
     width: 100%;
   }
 
-  .form-group {
+  .form-group, .czr-focus {
     position: relative;
     margin-top: $base-line-height*2;
   }
