@@ -570,7 +570,7 @@ WP classes
 	.entry-quote {
 		border: none;
 		margin: 0;
-		p, footer { margin-left: 0; padding-left: 0; width: auto }
+		p, footer { margin-left: 0; margin-bottom: 0; padding-left: 0; width: auto }
 		&::before { content: none }
 	}
 }

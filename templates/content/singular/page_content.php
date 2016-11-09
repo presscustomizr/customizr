@@ -26,7 +26,7 @@
           );
         ?>
         <div class="entry-meta row">
-          <div class="post-share pull-md-right col-md-4 col-xs-12">
+          <div class="post-share float-md-right col-md-4 col-xs-12">
             <!-- fake need to have social links somewhere -->
             <?php
               if ( czr_fn_has('social_share') )

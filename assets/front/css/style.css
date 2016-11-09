@@ -271,6 +271,10 @@ blockquote p {
   font-size: 10em;
 }
 
+.m-t-05 {
+  margin-top: 0.5em;
+}
+
 .inline-list, .tags {
   list-style: none;
 }
@@ -2881,6 +2885,10 @@ dl dd {
   transition: all 0.6s ease;
 }
 
+.featured .btn-edit {
+  margin-top: 1.25em;
+}
+
 .featured a.btn-more {
   margin-bottom: 2.5em;
 }
@@ -4150,6 +4158,7 @@ WP classes
 
 [class*=grid-container__] .entry-quote p, [class*=grid-container__] .entry-quote footer {
   margin-left: 0;
+  margin-bottom: 0;
   padding-left: 0;
   width: auto;
 }

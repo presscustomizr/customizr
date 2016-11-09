@@ -79,7 +79,7 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
       $_content = '<a title="'. the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) ).'" href="'. esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ) .'">' . $_content . '</a>';
 
     return '<blockquote class="blockquote entry-quote">
-              <p class="m-b-0">'. $_content .'</p>
+              <p>'. $_content .'</p>
               <footer class="blockquote-footer"><cite title="Source Title">Some Crazy Idiot</cite></footer>
             </blockquote>';
   }

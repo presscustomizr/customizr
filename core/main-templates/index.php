@@ -29,7 +29,7 @@
   <?php do_action('__before_main_wrapper') ?>
     <div id="main-wrapper" class="section">
       <?php
-        if ( ! czr_fn_is_home() ):
+        if ( ! czr_fn_is_home() && ! is_404() ):
       ?>
         <div class="container-fluid">
           <?php

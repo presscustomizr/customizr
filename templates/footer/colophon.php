@@ -12,7 +12,7 @@
   </div>
   <div class="col-sm-6 col-xs-12">
     <?php if ( czr_fn_has( 'footer_socials' ) ) czr_fn_render_template( 'modules/social_block', 'footer_socials', array(
-      'element_class' => 'socials pull-sm-right'
+      'element_class' => 'socials float-sm-right'
     ) ); ?>
   </div>
 </div>
