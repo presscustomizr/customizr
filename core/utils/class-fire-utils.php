@@ -330,7 +330,6 @@ function czr_fn_wp_title( $title, $sep ) {
 * @param $output_type optional. Return type "string" or "array"
 */
 function czr_fn_get_social_networks( $output_type = 'string' ) {
-  $__options    = czr_fn_get_theme_options();
 
   //gets the social network array
   $socials      = apply_filters( 'czr_default_socials' , CZR_init::$instance -> socials );
@@ -339,14 +338,14 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
   $html         = array();
 
   foreach ( $socials as $key => $data ) {
-    if ( $__options[$key] != '' ) {
+    if ( $social = czr_fn_get_opt( $key ) ) {
         //gets height and width from image, we check if getimagesize can be used first with the error control operator
         $width = $height = '';
         if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
         $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
         $link = 'email' == $type ? 'mailto:' : '';
         if ( function_exists( 'czr_fn_sanitize_'. $type ) ) {
-          $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $__options[$key] );
+          $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $social );
         }
         $icon_suffix = str_replace('tc_', '', $key);
 
