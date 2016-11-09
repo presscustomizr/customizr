@@ -71,17 +71,20 @@ endif ?>
                 </ul>
               </div>
             <?php endif; ?>
-              <div class="post-share">
-                <!-- fake need to have social links somewhere -->
-                <ul class="socials">
-                  <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="http://plus.google.com/"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="http://plus.google.com/"><i class="fa fa-pinterest"></i></a></li>
-                  <li><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
-                </ul>
-              </div>
+
+            <!-- fake need to have social links somewhere -->
+            <?php
+              if ( czr_fn_has('social_share') ) :
+            ?>
+
+            <div class="post-share">
+              <?php czr_fn_render_template( 'modules/social_block', 'social_share' ); ?>
+            </div>
+
+            <?php
+              endif;
+            ?>
+
           </div>
         </div>
         <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer_author', 'post_list_footer' ); ?>

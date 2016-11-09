@@ -348,11 +348,13 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         if ( function_exists( 'czr_fn_sanitize_'. $type ) ) {
           $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $__options[$key] );
         }
+        $icon_suffix = str_replace('tc_', '', $key);
+
         //there is one exception : rss feed has no target _blank and special icon title
         array_push( $html, sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
             apply_filters( 'czr_social_link_class',
-                          sprintf('social-icon icon-%1$s' ,
-                            ( $key == 'tc_rss' ) ? 'feed' : str_replace('tc_', '', $key)
+                          sprintf('social-icon icon-%s' ,
+                            $icon_suffix
                           ),
                           $key
             ),
@@ -360,12 +362,14 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
             isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
             ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'czr_socials_target', 'target=_blank', $key ),
             apply_filters( 'czr_additional_social_attributes', '' , $key),
-            ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ? sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
+            ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ?
+                          sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
                                                     $data['custom_icon_url'],
                                                     $width,
                                                     $height,
                                                     isset($data['link_title']) ? call_user_func( '__' , $data['link_title'] , 'customizr' ) : ''
-                                                  ) : ''
+                                                  ) :
+                          sprintf( '<i class="fa fa-%s"></i>', $icon_suffix )
         ) );
     }
   }

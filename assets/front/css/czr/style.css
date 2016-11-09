@@ -65,14 +65,7 @@ img.v-centered {
 .carousel-cell { width: 100%;}
 .carousel img { min-width: 100%;}
 
-/* .carousel { height: 100vh; }
-.format-gallery .carousel { height: 100%; }
 
-.carousel-cell { height: 100%; width: 100%; }
-.carousel-cell img { width: 100%; } */
-/* move page dots into carousel */
-.flickity-page-dots { bottom: 10px; }
-.flickity-page-dots, .flickity-prev-button, .flickity-prev-next-button { z-index: 105; position: absolute;}
 /* Patches */
 
 /* Alternate sections centering */
@@ -81,7 +74,7 @@ img.v-centered {
   .czr-center-sections section {transform: translateY(-50%) }
   .no-thumb .czr-center-sections .post-type__icon{ padding: 0 }
 }
-article .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
+.grid-container__alternate .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
 embed, iframe, object, video { max-width: 100%;}
 /* Alternate and Masonry special formats patch*/
 .format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
