@@ -1229,43 +1229,43 @@ li.comment::before,
   line-height: 2.5em;
 }
 
-.socials .fa-twitter:hover {
+.socials .icon-twitter:hover {
   color: #00aced !important;
 }
 
-.socials .fa-facebook:hover {
+.socials .icon-facebook:hover {
   color: #3b5998 !important;
 }
 
-.socials .fa-instagram:hover {
+.socials .icon-instagram:hover {
   color: #517fa4 !important;
 }
 
-.socials .fa-linkedin:hover {
+.socials .icon-linkedin:hover {
   color: #007bb6 !important;
 }
 
-.socials .fa-google-plus:hover {
+.socials .icon-google-plus:hover {
   color: #dd4b39 !important;
 }
 
-.socials .fa-pinterest:hover {
+.socials .icon-pinterest:hover {
   color: #cb2027 !important;
 }
 
-.socials .fa-flickr:hover {
+.socials .icon-flickr:hover {
   color: #ff0084 !important;
 }
 
-.socials .fa-dribbble:hover {
+.socials .icon-dribbble:hover {
   color: #ea4c89 !important;
 }
 
-.socials .fa-tumblr:hover {
+.socials .icon-tumblr:hover {
   color: #32506d !important;
 }
 
-.socials .fa-youtube:hover {
+.socials .icon-youtube:hover {
   color: #bb0000 !important;
 }
 
