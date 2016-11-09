@@ -46,7 +46,7 @@ $secondary-color-dark   : $grey;
 	{
 
 		a, a:focus, a:active, li > .caret__dropdown-toggler { color: $secondary-color-dark;  }
-		a:hover, a.active    { color: $primary-color; }
+		a:hover, a.current-active    { color: $primary-color; }
 		ul.secondary-nav__menu > li > a {
 		    @include underlined ( $primary-color, 1px );
 		}
@@ -99,7 +99,7 @@ $secondary-color-dark   : $grey;
 	.primary-nav__utils {
  		color: $primary-color;
 		a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);	}
-		a:hover, a.active    { color: $secondary-color-light;   }
+		a:hover, a.current-active    { color: $secondary-color-light;   }
 
 	     @media (min-width: 993px) {
 	     	.socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
@@ -152,18 +152,18 @@ $secondary-color-dark   : $grey;
 		& > li:not(.dropdown-item) > a {
 			& > span:first-of-type { @include underlined ($primary-color, 2px); }
 		}
-		& > li.open > a, &  li.active > a {
+		& > li.active > a, &  li.current-active > a {
 			color: $secondary-color;
 		    & > span:first-of-type { @include underlined_simple ($secondary-color, 2px); }
 		}
-	    &  li.open {
+	    &  li.active {
 			.caret__dropdown-toggler__span:after,
 			.caret__dropdown-toggler__span:before  {
 				background: $secondary-color-dark;
 			}
 		}
 		.dropdown-menu a { color: $primary-color; }
-		.dropdown-menu a:hover, li.open > a  { color: $secondary-color;  }
+		.dropdown-menu a:hover, li.active > a  { color: $secondary-color;  }
 		.dropdown-item  a { color: $secondary-color; }
 		.dropdown-item:hover a { color: $primary-color; }
 

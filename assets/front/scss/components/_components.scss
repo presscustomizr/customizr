@@ -291,7 +291,7 @@ cite {
 
 /* drop down hover effect test */
 .dropdown-item { position: relative; }
-.dropdown-item:before {
+nav li.dropdown-item:before {
     content: '';
     position: absolute;
     width: 100%;

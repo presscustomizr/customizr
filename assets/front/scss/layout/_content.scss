@@ -203,7 +203,7 @@
 			@include transition (all 0.6s ease);
 		}
 	}
-	.btn-edit { margin-top: $base-line-height }
+	.btn-edit { margin: $base-line-height 0 -1*$base-line-height 0 }
 	a.btn-more { margin-bottom: $base-line-height*2 }
 	.tc-content {
 		width: 90%;

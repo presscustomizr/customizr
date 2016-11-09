@@ -7,9 +7,9 @@ var czrapp = czrapp || {};
 
     init : function() {
       this.namespace = 'czrDropdown';
+      this.openClass = 'active';
       this.dropdownMenuOnClick();
       this.dropdownMenuOnHover();
-
     },
 
 
@@ -24,22 +24,23 @@ var czrapp = czrapp || {};
 
       function _addOpenClass () {
         $_el = $(this);
-        if ( ! $_el.hasClass('open') ) {
+        console.log(this.openClass);
+        if ( ! $_el.hasClass(self.openClass) ) {
           self.dropdownTrigger( $_el, 'li-open' );
-          $_el.addClass('open');
+          $_el.addClass(self.openClass);
         }
       };
 
       //a little delay before closing to avoid closing a parent before accessing the child
-      function _removeOpenClass (){
+      function _removeOpenClass () {
 
-        var $_el = $(this);
+        var $_el = $(this)
 
         _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
             //test
             self.dropdownTrigger( $_el, 'li-close' );
-            $_el.removeClass('open');
+            $_el.removeClass(self.openClass);
           }
 
         }, 150);
@@ -58,7 +59,7 @@ var czrapp = czrapp || {};
           _dropdown_submenu_selector         = '.dropdown-submenu',
           _dropdown_toggler_selector         = '[data-toggle="dropdown"]',
           _dropdown_submenu_toggler_selector = '.dropdown .dropdown-submenu > [data-toggle="dropdown"]',
-          _open_class                        = 'open',
+          _open_class                        = this.openClass,
           self                               = this;
 
           //_dropdown_link_selector            = '.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'

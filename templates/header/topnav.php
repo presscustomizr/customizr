@@ -5,9 +5,9 @@
 ?>
 <div class="hidden-md-down secondary-navbar__wrapper row" <?php czr_fn_echo('element_attributes') ?>>
   <div class="col-md-9">
-    <div class="secondary-nav__container">
+    <nav class="secondary-nav__nav">
       <?php czr_fn_render_template('header/menu', 'secondary_menu' ) ?>
-    </div>
+    </nav>
   </div>
   <div class="col-md-3">
     <div class="secondary-nav__socials">

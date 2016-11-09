@@ -74,8 +74,8 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       }
 
       if ( ! empty( array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) ) )
-          && ! in_array( 'active' , $classes ) )
-        $classes[] = 'active';
+          && ! in_array( 'current-active' , $classes ) )
+        $classes[] = 'current-active';
 
       return $classes;
     }
@@ -190,8 +190,8 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
         $classes[] = 'menu-item';
 
       if ( ! empty( array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) ) )
-          && ! in_array( 'active' , $classes ) )
-        $classes[] = 'active';
+          && ! in_array( 'current-active' , $classes ) )
+        $classes[] = 'current-active';
 
        return $classes;
     }

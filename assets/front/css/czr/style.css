@@ -233,7 +233,7 @@ Replace
 .secondary-nav__menu-wrapper .caret__dropdown-toggler[data-toggle="dropdown"] {
   padding: 0.425em 0;
 }
-.secondary-nav__container .secondary-nav__menu-wrapper li > a {
+.secondary-nav__nav .secondary-nav__menu-wrapper li > a {
   display: inline-block;
 }
 .dropdown-menu .caret__dropdown-toggler[data-toggle="dropdown"] {
