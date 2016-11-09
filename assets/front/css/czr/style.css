@@ -613,50 +613,49 @@ remove:
     margin-top: 2.5em;
 }
 */
-.grid.grid-container__square-mini .entry-summary {
+.grid[class*=grid-container__square-mini] .tc-content {
     margin-top: 0;
 }
-.grid-container__square-mini .tc-content-inner {
-    margin-top: 1.5em;
-}
+
 /*
 remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
 .grid-container__square-mini .format-standard .entry-summary
 */
-.grid.grid-container__square-mini .tc-content-inner {
+.grid[class*=grid-container__square-mini] .tc-content-inner {
   font-size: 1.25em !important;
+  margin-top: 1.5em;
 }
-.grid.grid-container__square-mini .tc-content-inner blockquote{
+.grid[class*=grid-container__square-mini] .tc-content-inner blockquote{
   font-size: 0.8em;
   margin: 0 !important;
   padding: 0;
 }
-.grid.grid-container__square-mini .tc-content-inner blockquote cite,
-.grid.grid-container__square-mini .tc-content-inner blockquote p {
+.grid[class*=grid-container__square-mini] .tc-content-inner blockquote cite,
+.grid[class*=grid-container__square-mini] .tc-content-inner blockquote p {
   font-size: 1.3em;
 }
-.grid-container__square-mini section {
+[class*=grid-container__square-mini] section {
   padding: 0;
 }
-.grid-container__square-mini section.entry-media__holder {
+[class*=grid-container__square-mini] section.entry-media__holder {
   padding-bottom: 50%;
   height: 0;
   overflow: hidden;
 }
 
 /* Avoid wrapping the title on a new line */
-.grid-container__square-mini .grid__item .entry-header .entry-title {
+[class*=grid-container__square-mini] .grid__item .entry-header .entry-title {
   text-align: left;
 }
 
 
-.row.grid.grid-container__square-mini {
+.row.grid[class*=grid-container__square-mini] {
   height: 0;
   padding-bottom: 50%; /* Only 1 item shown */
   overflow: hidden;
 }
 @media ( min-width: 768px ) {
-  .row.grid.grid-container__square-mini {
+  .row.grid[class*=grid-container__square-mini] {
     padding-bottom: 25%; /* 2 items shown */
   }
 }
@@ -671,7 +670,8 @@ replace:
     height: 277.5px;
 }
 */
-[class*=.grid-container__square-mini] .grid__item.tc-content {
+
+.grid[class*=grid-container__square-mini] .grid__item .tc-content {
   max-width: 50%; /* can be removed */
   padding: 0; /* can be removed */
   display: block; /* can be removed */
@@ -679,6 +679,7 @@ replace:
   height: 0; /*can be removed */
   padding-bottom: 50%;
   float: right;
+  margin-top: 0
 }
 .grid-container__square-mini .entry-content__wrapper {
   position: absolute;
