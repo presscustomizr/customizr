@@ -24,7 +24,6 @@ var czrapp = czrapp || {};
 
       function _addOpenClass () {
         $_el = $(this);
-        console.log(this.openClass);
         if ( ! $_el.hasClass(self.openClass) ) {
           self.dropdownTrigger( $_el, 'li-open' );
           $_el.addClass(self.openClass);
