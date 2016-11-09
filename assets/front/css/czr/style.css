@@ -47,7 +47,6 @@ img.post-thumbnail {
 /* JS IMAGE CENTERING */
 img.h-centered {
   width: auto!important;
-  min-width: 100%!important;
   max-width: none!important;
   position: relative;
   transform: none !important;
@@ -928,24 +927,21 @@ replace this
 }
 .article-container .grid-container__alternate .full-image .czr-carousel  .carousel,
 .article-container .grid-container__alternate .full-image .tc-thumbnail:not(.czr-carousel),
-.article-container .grid-container__plain .full-image .czr-carousel  .carousel,
-.article-container .grid-container__plain .full-image .tc-thumbnail:not(.czr-carousel) {
+.article-container .grid-container__plain .czr-carousel  .carousel,
+.article-container .grid-container__plain .tc-thumbnail:not(.czr-carousel) {
     position: relative;
     height: 0;
     padding-bottom: 53.5%;
 }
 /* viewport inherit size from carousel */
 
-.article-container .grid-container__masonry .full-image .flickity-viewport,
-.article-container .grid-container__alternate .full-image .flickity-viewport,
-.article-container .grid-container__plain .full-image .flickity-viewport {
+.article-container [class*=grid-container__] .flickity-viewport {
   position: absolute;
   width: 100%;
 }
 
-.article-container .grid-container__masonry .full-image .tc-thumbnail .carousel-cell,
-.article-container .grid-container__alternate .full-image .tc-thumbnail .carousel-cell,
-.article-container .grid-container__plain .full-image .tc-thumbnail .carousel-cell {
+
+.article-container [class*=grid-container__] .tc-thumbnail .carousel-cell {
   height: 100%;
   overflow: hidden;
 }
