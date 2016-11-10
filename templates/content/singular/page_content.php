@@ -15,7 +15,7 @@
       <?php
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
-      <footer class="post-footer">
+      <footer class="post-footer container-fluid">
         <?php
           wp_link_pages( array(
             'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
@@ -26,7 +26,7 @@
           );
         ?>
         <div class="entry-meta row">
-          <div class="post-share float-md-right col-md-4 col-xs-12">
+          <div class="post-share float-md-right col-xs-12">
             <!-- fake need to have social links somewhere -->
             <?php
               if ( czr_fn_has('social_share') )

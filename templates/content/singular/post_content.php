@@ -14,7 +14,7 @@
       <?php
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
-      <footer class="post-footer">
+      <footer class="post-footer container-fluid">
         <?php
           wp_link_pages( array(
             'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
