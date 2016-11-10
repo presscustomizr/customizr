@@ -1,7 +1,5 @@
 <?php
 class CZR_post_list_alternate_model_class extends CZR_Model {
-  public $has_narrow_layout;
-  public $has_format_icon_media;
   public $has_post_media;
 
   public $def_place_1;
@@ -59,7 +57,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
 
     //reset alternate items at loop end? sort of garbage collector
-    add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_alternate_items') );
+    add_action( '__alternate_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
 
     return $model;
   }
@@ -82,7 +80,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   /*
   *  Public getters
   */
-  /* Tempory use of the extract here */
   function czr_fn_get_content_cols() {
     return $this -> czr_fn__get_post_list_item_property( 'content_cols' );
   }
@@ -126,7 +123,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   *  Method to compute the properties of the current (in a loop) post list item
   *  @return array
   */
-  function czr_fn__get_post_list_item() {
+  protected function czr_fn__get_post_list_item() {
 
     global $wp_query;
 
@@ -399,7 +396,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_alternate_items( $model_id ) {
+  function czr_fn_reset_post_list_items( $model_id ) {
     if ( $model_id == $this->id  )
       $this -> post_list_items = array();
   }

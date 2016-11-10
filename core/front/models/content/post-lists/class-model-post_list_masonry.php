@@ -16,6 +16,8 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
           );
   public $post_class    = array( 'grid-item' );
 
+  public $post_list_items = array();
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -34,18 +36,80 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     */
     add_action( '__masonry_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
     add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
+    //reset masonry items at loop end? sort of garbage collector
+    add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
 
     return $model;
   }
 
 
-   /*
+  /*
+  * Fired just before the view is rendered
+  * @hook: pre_rendering_view_{$this -> id}, 9999
+  */
+  /*
+  * Each time this model view is rendered setup the current post list item
+  * and add it to the post_list_items_array
+  */
+  function czr_fn_setup_late_properties() {
+    array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
+  }
+
+  /*
+  *  Public getters
+  */
+
+  function czr_fn_get_article_selectors() {
+    return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
+  }
+
+  function czr_fn_get_has_format_icon_media() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_format_icon_media' );
+  }
+
+  function czr_fn_get_is_full_image() {
+    return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
+  }
+
+  function czr_fn_get_has_header_format_icon() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_header_format_icon' );
+  }
+
+  /*
+  * Private/protected getters
+  */
+
+  /*
+  *  Method to compute the properties of the current (in a loop) post list item
+  *  @return array
+  */
+  protected function czr_fn__get_post_list_item() {
+    $current_post_format    = get_post_format();
+    $is_full_image          = $this -> czr_fn__get_is_full_image( $current_post_format );
+    $has_post_media         = $this -> czr_fn__get_has_post_media( $current_post_format );
+    $has_header_format_icon = $this -> czr_fn__get_has_header_format_icon( $current_post_format );
+    $article_selectors      = $this -> czr_fn__get_article_selectors( $is_full_image, $has_post_media );
+
+    return array(
+      'article_selectors'      => $article_selectors,
+      'has_post_media'         => $has_post_media,
+      'is_full_image'          => $is_full_image,
+      'has_header_format_icon' => $has_header_format_icon
+    );
+  }
+
+  protected function czr_fn__get_post_list_item_property( $_property ) {
+    if ( ! $_property )
+      return;
+    $_properties = end( $this->post_list_items );
+    return isset( $_properties[ $_property ] ) ? $_properties[ $_property ] : null;
+  }
+
+  /*
   * Very similar to the one in the alternate...
   * probably the no-thumb/no-text should be ported somewhere else (in czr_fn_get_the_post_list_article_selectors maybe)
   */
-  function czr_fn_get_article_selectors() {
-    $is_full_image             = $this->czr_fn_get_is_full_image();
-    $has_post_media            = $this -> czr_fn_get_has_post_media();
+  protected function czr_fn__get_article_selectors( $is_full_image, $has_post_media ) {
     $post_class                = $this -> post_class;
 
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
@@ -61,23 +125,32 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   }
 
 
-  function czr_fn_get_has_header_format_icon(){
-    return in_array( get_post_format() , array( 'quote', 'link', 'status', 'aside', 'chat' ) );
+  protected function czr_fn__get_has_post_media( $current_post_format ) {
+    return $this->has_post_media && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
   }
-
-  function czr_fn_get_has_post_media() {
-    return $this->has_post_media && ! $this -> czr_fn_get_has_header_format_icon();
-  }
-
 
   /*
   * We decided that in masonry all the images (even those with text) should be displayed like the gallery
   */
-  function czr_fn_get_is_full_image() {
-    return in_array( get_post_format() , array( 'gallery', 'image' ) );
+  protected function czr_fn__get_is_full_image( $current_post_format ) {
+    return in_array(  $current_post_format  , array( 'gallery', 'image' ) );
   }
 
 
+  protected function czr_fn__get_has_header_format_icon( $current_post_format ){
+    return in_array(  $current_post_format  , array( 'quote', 'link', 'status', 'aside', 'chat' ) );
+  }
+
+  /* HELPERS AND CALLBACKS */
+
+  /*
+  * Callbacks
+  */
+
+  /*
+  * Following methods: czr_fn_setup_text_hooks, czr_fn_reset_text_hooks, czr_fn_set_excerpt_length
+  * are shared by the post lists classes, do we want to build a common class?
+  */
 
   /**
   * hook : __masonry_loop_start
@@ -101,6 +174,16 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
       remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
+
+  /**
+  * hook : __masonry_loop_end
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_post_list_items( $model_id ) {
+    if ( $model_id == $this->id  )
+      $this -> post_list_items = array();
+  }
 
 
   /**
