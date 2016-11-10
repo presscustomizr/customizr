@@ -1516,6 +1516,7 @@ cite::before {
 
 .dropdown-menu .dropdown-item {
   float: none;
+  background-color: transparent;
   display: block;
   line-height: 4em;
   vertical-align: middle;
@@ -1578,7 +1579,6 @@ cite::before {
     left: 0;
   }
   .dropdown-menu .dropdown-item {
-    background: transparent;
     padding: 0.625em 0 0.625em 1.25em;
   }
 }

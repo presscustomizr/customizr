@@ -233,6 +233,7 @@ cite {
           @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );
           .dropdown-item {
               float:none;
+              background-color: transparent;
               &.menu-item-has-children { padding-right:$base-line-height*2; }
               display: block;
               line-height: 4em;
@@ -281,9 +282,7 @@ cite {
          	 left:0;
          }
          .dropdown-item {
-            background: transparent;
             padding: $base-line-height/2 0 $base-line-height/2 $base-line-height;
-
          }
       }
 }
