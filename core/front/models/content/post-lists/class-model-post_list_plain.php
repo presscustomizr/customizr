@@ -26,16 +26,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $model[ 'element_class']            = czr_fn_get_in_content_width_class();
     $model[ 'has_post_media']           = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
 
-    //TEMP:
-    if ( 'post_list_plain_excerpt' == $model['id'] ) {
-      $model[ 'show_full_content' ]     = false;
 
-      /*
-      * The alternate grid does the same
-      */
-      add_action( '__post_list_plain_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
-      add_action( '__post_list_plain_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
-    }
+    /*
+    * The alternate grid does the same
+    */
+    add_action( '__post_list_plain_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
+    add_action( '__post_list_plain_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
 
     return $model;
   }
@@ -91,14 +87,20 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
 
   function czr_fn_setup_children() {
-
     $children = array (
       /* Temporary */
       /* Register models here so that we have their instances to pass to the views/templates */
-      /* Header */
+      /*
+      * Header :
+      * why so? because the render_template function tries to feed the template with
+      * a model whose retrieved by the template name itself.
+      * It falls back on the model instance only if the model, with that specified id, has
+      * already been registered.
+      *
+      */
       //Post/page headings
       array(
-        'id'          => 'post_list_header',
+        'id'          => 'post_list_single_header',
         'model_class' => 'content/post-lists/singles/headings/post_list_single_header'
       )
     );

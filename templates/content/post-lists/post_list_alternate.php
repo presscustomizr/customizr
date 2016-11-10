@@ -26,11 +26,11 @@ endif ?>
           <div class="entry-content__wrapper">
           <?php
             /* header */
-            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_header');
+            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_single_header' );
             /* content inner */
-            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_content_inner');
+            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_single_content_inner' );
             /* footer */
-            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer');
+            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer', 'post_list_single_footer' );
           ?>
           </div>
         </section>
@@ -65,11 +65,11 @@ endif ?>
           <div class="entry-content__wrapper">
           <?php
             /* header */
-            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_header');
+            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_single_header' );
             /* content inner */
-            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_content_inner');
+            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_single_content_inner' );
             /* footer */
-            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer');
+            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer', 'post_list_single_footer' );
           ?>
           </div>
         </section>
