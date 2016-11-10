@@ -258,17 +258,9 @@ Replace
 */
 @media (min-width: 992px) {
   .dropdown-menu .dropdown-item .caret__dropdown-toggler i {
-    display: block !important; /* to make the rotation unaffective!!*/
     transform: rotate(0) !important;
   }
 
-  .dropdown-menu .dropdown-item .caret__dropdown-toggler i:before {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-    transform-origin: 100% 100;
-  }
 }
 /*Comments patches */
 /*
@@ -1006,6 +998,7 @@ replace this
     left: 0 !important;
     display: table-cell !important;
     float: none !important;
+    vertical-align: middle;
   }
   .primary-nav__container {
     margin: 0 !important;
@@ -1019,6 +1012,7 @@ replace this
     padding-right: 2.5em;
     padding-left: 2.5em;
     margin: 0 !important;
+    vertical-align: middle;
   }
   .primary-nav__container .primary-nav__utils {
     display: table-cell !important;
