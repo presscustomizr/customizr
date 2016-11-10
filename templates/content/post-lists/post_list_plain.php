@@ -58,7 +58,7 @@ endif ?>
             /* Content Inner */
             czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_single_content_inner',
               array(
-                $show_full_content = true,
+                'show_full_content' => true,
               )
             );
 

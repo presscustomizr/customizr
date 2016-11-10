@@ -392,17 +392,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
   /**
-  * hook : __alternate_loop_end
-  * @package Customizr
-  * @since Customizr 4.0
-  */
-  function czr_fn_reset_post_list_items( $model_id ) {
-    if ( $model_id == $this->id  )
-      $this -> post_list_items = array();
-  }
-
-
-  /**
   * hook : excerpt_length hook
   * @return string
   * @package Customizr
@@ -414,4 +403,14 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   }
 
 
-}
+  /**
+  * hook : __alternate_loop_end
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_post_list_items( $model_id ) {
+    if ( $model_id == $this->id  )
+      $this -> post_list_items = array();
+  }
+
+}//end of class

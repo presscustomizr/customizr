@@ -7,6 +7,9 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
   function czr_fn_get_the_post_list_content( $show_full_content = false, $more  = null, $link_pages = null ) {
     do_action( "__before_content_retrieve", $this->id, $this );
 
+    $show_full_content      = $show_full_content ? $show_full_content : (
+      isset($this->show_full_content) ? $this->show_full_content : false
+    );
     $content                = $this -> content ;
     $content_cb             = $this -> czr_fn_get_content_cb( $show_full_content ? 'get_the_content' : 'get_the_excerpt' );
 
@@ -59,8 +62,8 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
       case 'gallery' :
       case 'audio'   : return 'get_the_excerpt';
 
-      case 'link'   : return array( $this, 'get_the_post_link' );
-      case 'quote'  : return array( $this, 'get_the_post_quote' );
+      case 'link'   : return array( $this, 'czr_fn__get_the_post_link' );
+      case 'quote'  : return array( $this, 'czr_fn__get_the_post_quote' );
 
       default       : return $default;
     }
@@ -68,12 +71,12 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
 
 
   /* Testing purpose */
-  function get_the_post_link() {
+  function czr_fn__get_the_post_link() {
     return '<p><a class="external" target="_blank" href="http://www.google.it">www.google.it</a></p>';
   }
 
 
-  function get_the_post_quote() {
+  function czr_fn__get_the_post_quote() {
     $_content =  "Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free XOXO wolf typewriter mixtape small batch.";
     if ( empty( get_the_title() ) )
       $_content = '<a title="'. the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) ).'" href="'. esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ) .'">' . $_content . '</a>';
