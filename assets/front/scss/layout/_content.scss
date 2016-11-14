@@ -149,6 +149,7 @@
 			margin-left: $base-line-height*1.6;
 		}
 	}
+	table { width: 100% }
 	table:not([id^=wp-calendar]) {
 		border: 2px solid $grey-lightest;
 		th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }

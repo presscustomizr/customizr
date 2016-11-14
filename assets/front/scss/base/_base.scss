@@ -193,3 +193,6 @@ li.comment::before,
   content: none;
   padding: 0
 }
+p {
+  word-wrap: break-word;
+}

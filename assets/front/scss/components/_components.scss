@@ -203,6 +203,9 @@ cite {
     left:0;
     background: $black;
   }
+  &::first-child {
+    float: left
+  }
 }
 /* Blockquotes and cites END */
 

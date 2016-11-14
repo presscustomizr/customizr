@@ -527,6 +527,10 @@ li.comment::before,
   padding: 0;
 }
 
+p {
+  word-wrap: break-word;
+}
+
 /* end mixin */
 .header-skin-light {
   /* overlays skin */
@@ -1483,6 +1487,10 @@ cite::before {
   bottom: 2px;
   left: 0;
   background: #202020;
+}
+
+cite::first-child {
+  float: left;
 }
 
 /* Blockquotes and cites END */
@@ -2804,6 +2812,10 @@ ul.dash li::before {
 
 ol ol, ol ul, ul ol, ul ul {
   margin-left: 2em;
+}
+
+table {
+  width: 100%;
 }
 
 table:not([id^=wp-calendar]) {
@@ -4247,6 +4259,10 @@ WP classes
   text-align: right;
 }
 
+.tc-content-inner {
+  max-width: 100%;
+}
+
 @media (min-width: 668px) {
   .single-post .sidebar {
     padding: 0;
@@ -5139,7 +5155,7 @@ section.post-content {
   }
 }
 
-.navbar-nav a {
+.secondary-navbar__wrapper .menu-item a {
   padding-top: .425rem;
   padding-bottom: .425rem;
 }
