@@ -14,7 +14,7 @@
 				@include filter($black, $white, 0.5);
 				+ .slider-text { color: $white; }
 			}
-			.page__header.image-header {
+			.image__header {
 				@extend .filter;
 				@include filter($black, $white, 0.5);
 			}
@@ -25,7 +25,7 @@
 			@include filter($white, $black, 0.75);
 			+ .slider-text { color: $black; }
 		}
-		.page__header.image-header {
+		.image__header {
 			@extend .filter;
 			@include filter($white, $black, 0.75);
 		}

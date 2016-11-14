@@ -89,7 +89,7 @@ $secondary-color-dark   : $grey;
 
 	}
 
-    .image-header .header-content {
+    .image__header .header-content {
     	.post-info a,  .category-info a { color:$primary-color; }
     	.post-info a:hover,  .category-info a:hover { color:$secondary-color-light; }
     	.category-info:after { background-color:$primary-color; }

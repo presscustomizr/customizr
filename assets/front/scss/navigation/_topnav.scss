@@ -324,10 +324,12 @@
   right: 0;
   z-index: 1030
 }
-.header-absolute {
-  .topnav_navbars__wrapper,
-  #sticky-placeholder {
-    position: absolute;
+@media screen and (min-width: 992px ) {
+  .header-absolute {
+    .topnav_navbars__wrapper,
+    #sticky-placeholder {
+      position: absolute;
+    }
   }
 }
 .navbar-sticky.animating { top: -20% !important }

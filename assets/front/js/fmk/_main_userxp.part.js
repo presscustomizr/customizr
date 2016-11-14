@@ -132,11 +132,13 @@ var czrapp = czrapp || {};
         czrapp.$_body.removeClass('full-search-opened');
       });
     },
+
     //SMOOTH SCROLL
     smoothScroll: function() {
       if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
         smoothScroll( CZRParams.SmoothScroll.Options );
     },
+
     pluginsCompatibility: function() {
       /*
       * Super socializer
@@ -150,6 +152,28 @@ var czrapp = czrapp || {};
       var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
       if ( $_ssbar.length )
         $_ssbar.detach().prependTo('.article-container');
+    },
+
+    headingsActions_test : function() { console.log('ever here');
+      //User request animation frame
+      var _page_header_inner   = $('.header-content-inner'),
+          _header_push         = $('.topnav_navbars__wrapper'),
+          _offset, __push;
+
+      if ( ! _page_header_inner.length )
+        return;
+
+      czrapp.$_window.on( 'resize', function(){
+        /*
+        * todo: swap topnav_navbars_wrapper with sticky-placeholder when needed.
+        */
+        _offset = _page_header_inner.offset().top - _header_push.offset().top - _header_push.height();
+
+        __push = _offset < 0 ? -1 * _offset : _page_header_inner.css('marginTop');
+
+        _page_header_inner.css('marginTop', __push );
+      });
+
     }
   };//_methods{}
 

@@ -142,9 +142,6 @@ WP classes
 .grid-container__alternate .post-tags { margin-bottom: $base-line-height; }
 
 
-.categories, .entry-header .entry-meta {
-
-}
 /* GLOBAL */
 .entry-meta a, .post-info a { color: $grey; @include transition(color, 0.3s ease);  }
 .tc-content-inner a.external { display:inline-block; @include underlined ( $primary-color, 1px ); }

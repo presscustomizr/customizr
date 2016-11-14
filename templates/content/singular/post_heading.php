@@ -6,22 +6,23 @@
 * TODO: what to show? featured image, header image video .. ????
 */
 ?>
-<header class="row page__header plain <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+<header class="row page__header image__header entry-header" <?php czr_fn_echo('element_attributes') ?>>
   <div class="container header-content">
-    <div class="header-content-inner entry-header">
+    <div class="header-content-inner">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
         <div class="entry-meta category-info">
           <?php echo $cat ?>
         </div>
     <?php endif; ?>
-      <h1 class="header-title"><?php the_title() ?></h1>
+      <h1 class="entry-title"><?php the_title() ?></h1>
     <?php
         if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
           czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
               'edit_button_link'  => $edit_post_link,
           ));
     ?>
-      <div class="post-info">
+    </div>
+    <div class="post-info">
         <?php
           if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) ) :
         ?>
@@ -56,7 +57,6 @@
             <?php echo $author ?>
           </div>
         <?php endif ?>
-      </div>
     </div>
   </div>
 </header>
