@@ -1,5 +1,5 @@
 /*!
- * Flickity PACKAGED v2.0.2
+ * Flickity PACKAGED v2.0.5
  * Touch, responsive, flickable carousels
  *
  * Licensed GPLv3 for open source use
@@ -11,20 +11,19 @@
 
 /**
  * Bridget makes jQuery widgets
- * v2.0.0
+ * v2.0.1
  * MIT license
  */
 
 /* jshint browser: true, strict: true, undef: true, unused: true */
 
 ( function( window, factory ) {
-  'use strict';
-  /* globals define: false, module: false, require: false */
-
+  // universal module definition
+  /*jshint strict: false */ /* globals define, module, require */
   if ( typeof define == 'function' && define.amd ) {
     // AMD
     define( 'jquery-bridget/jquery-bridget',[ 'jquery' ], function( jQuery ) {
-      factory( window, jQuery );
+      return factory( window, jQuery );
     });
   } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS
@@ -529,7 +528,7 @@ return getSize;
 }));
 
 /**
- * Fizzy UI utils v2.0.2
+ * Fizzy UI utils v2.0.3
  * MIT license
  */
 
@@ -702,7 +701,8 @@ utils.debounceMethod = function( _class, methodName, threshold ) {
 utils.docReady = function( callback ) {
   var readyState = document.readyState;
   if ( readyState == 'complete' || readyState == 'interactive' ) {
-    callback();
+    // do async to allow for other scripts to run. metafizzy/flickity#441
+    setTimeout( callback );
   } else {
     document.addEventListener( 'DOMContentLoaded', callback );
   }
@@ -750,7 +750,7 @@ utils.htmlInit = function( WidgetClass, namespace ) {
       }
       // initialize
       var instance = new WidgetClass( elem, options );
-      // make available via $().data('layoutname')
+      // make available via $().data('namespace')
       if ( jQuery ) {
         jQuery.data( elem, namespace, instance );
       }
@@ -1228,6 +1228,13 @@ function Flickity( element, options ) {
     return;
   }
   this.element = queryElement;
+  // do not initialize twice on same element
+  if ( this.element.flickityGUID ) {
+    var instance = instances[ this.element.flickityGUID ];
+    instance.option( options );
+    return instance;
+  }
+
   // add jQuery
   if ( jQuery ) {
     this.$element = jQuery( this.element );
@@ -2639,11 +2646,20 @@ utils.extend( proto, Unidragger.prototype );
 
 // --------------------------  -------------------------- //
 
+var isTouch = 'createTouch' in document;
+var isTouchmoveScrollCanceled = false;
+
 proto._createDrag = function() {
   this.on( 'activate', this.bindDrag );
   this.on( 'uiChange', this._uiChangeDrag );
   this.on( 'childUIPointerDown', this._childUIPointerDownDrag );
   this.on( 'deactivate', this.unbindDrag );
+  // HACK - add seemingly innocuous handler to fix iOS 10 scroll behavior
+  // #457, RubaXa/Sortable#973
+  if ( isTouch && !isTouchmoveScrollCanceled ) {
+    window.addEventListener( 'touchmove', function() {});
+    isTouchmoveScrollCanceled = true;
+  }
 };
 
 proto.bindDrag = function() {
@@ -2680,6 +2696,7 @@ proto._childUIPointerDownDrag = function( event ) {
 var cursorNodes = {
   TEXTAREA: true,
   INPUT: true,
+  OPTION: true,
 };
 
 // input types that do not have text fields
@@ -2693,7 +2710,7 @@ var clickTypes = {
 };
 
 proto.pointerDown = function( event, pointer ) {
-  // dismiss inputs with text fields. #404
+  // dismiss inputs with text fields. #403, #404
   var isCursorInput = cursorNodes[ event.target.nodeName ] &&
     !clickTypes[ event.target.type ];
   if ( isCursorInput ) {
@@ -2781,6 +2798,7 @@ proto.pointerDone = function() {
 proto.dragStart = function( event, pointer ) {
   this.dragStartPosition = this.x;
   this.startAnimation();
+  window.removeEventListener( 'scroll', this );
   this.dispatchEvent( 'dragStart', event, [ pointer ] );
 };
 
@@ -3140,16 +3158,10 @@ PrevNextButton.prototype._create = function() {
   // create arrow
   var svg = this.createSVG();
   element.appendChild( svg );
-  // update on select
-  this.parent.on( 'select', function() {
-    this.update();
-  }.bind( this ));
-  // tap
+  // events
   this.on( 'tap', this.onTap );
-  // pointerDown
-  this.on( 'pointerDown', function onPointerDown( button, event ) {
-    this.parent.childUIPointerDown( event );
-  }.bind( this ));
+  this.parent.on( 'select', this.update.bind( this ) );
+  this.on( 'pointerDown', this.parent.childUIPointerDown.bind( this.parent ) );
 };
 
 PrevNextButton.prototype.activate = function() {
@@ -3351,9 +3363,9 @@ PageDots.prototype._create = function() {
   this.holder.className = 'flickity-page-dots';
   // create dots, array of elements
   this.dots = [];
-  // tap
+  // events
   this.on( 'tap', this.onTap );
-
+  this.on( 'pointerDown', this.parent.childUIPointerDown.bind( this.parent ) );
 };
 
 PageDots.prototype.activate = function() {
@@ -3454,10 +3466,6 @@ proto._createPageDots = function() {
   this.on( 'cellChange', this.updatePageDots );
   this.on( 'resize', this.updatePageDots );
   this.on( 'deactivate', this.deactivatePageDots );
-
-  this.pageDots.on( 'pointerDown', function( button, event ) {
-    this.childUIPointerDown( event );
-  }.bind( this ));
 };
 
 proto.activatePageDots = function() {
@@ -4002,7 +4010,7 @@ return Flickity;
 }));
 
 /*!
- * Flickity v2.0.2
+ * Flickity v2.0.5
  * Touch, responsive, flickable carousels
  *
  * Licensed GPLv3 for open source use
@@ -4045,7 +4053,7 @@ return Flickity;
 });
 
 /*!
- * Flickity asNavFor v2.0.0
+ * Flickity asNavFor v2.0.1
  * enable asNavFor for Flickity
  */
 
@@ -4059,26 +4067,22 @@ return Flickity;
     define( 'flickity-as-nav-for/as-nav-for',[
       'flickity/js/index',
       'fizzy-ui-utils/utils'
-    ], function( classie, Flickity, utils ) {
-      return factory( window, classie, Flickity, utils );
-    });
+    ], factory );
   } else if ( typeof module == 'object' && module.exports ) {
     // CommonJS
     module.exports = factory(
-      window,
       require('flickity'),
       require('fizzy-ui-utils')
     );
   } else {
     // browser global
     window.Flickity = factory(
-      window,
       window.Flickity,
       window.fizzyUIUtils
     );
   }
 
-}( window, function factory( window, Flickity, utils ) {
+}( window, function factory( Flickity, utils ) {
 
 
 
@@ -4124,26 +4128,37 @@ proto.setNavCompanion = function( elem ) {
   // click
   this.on( 'staticClick', this.onNavStaticClick );
 
-  this.navCompanionSelect();
+  this.navCompanionSelect( true );
 };
 
-proto.navCompanionSelect = function() {
+proto.navCompanionSelect = function( isInstant ) {
   if ( !this.navCompanion ) {
     return;
   }
   // select slide that matches first cell of slide
   var selectedCell = this.navCompanion.selectedCells[0];
-  var cellIndex = this.navCompanion.cells.indexOf( selectedCell );
-  this.selectCell( cellIndex );
+  var firstIndex = this.navCompanion.cells.indexOf( selectedCell );
+  var lastIndex = firstIndex + this.navCompanion.selectedCells.length - 1;
+  var selectIndex = Math.floor( lerp( firstIndex, lastIndex,
+    this.navCompanion.cellAlign ) );
+  this.selectCell( selectIndex, false, isInstant );
   // set nav selected class
   this.removeNavSelectedElements();
   // stop if companion has more cells than this one
-  if ( cellIndex >= this.cells.length ) {
+  if ( selectIndex >= this.cells.length ) {
     return;
   }
-  this.navSelectedElements = this.slides[ this.selectedIndex ].getCellElements();
+
+  var selectedCells = this.cells.slice( firstIndex, lastIndex + 1 );
+  this.navSelectedElements = selectedCells.map( function( cell ) {
+    return cell.element;
+  });
   this.changeNavSelectedClass('add');
 };
+
+function lerp( a, b, t ) {
+  return ( b - a ) * t + a;
+}
 
 proto.changeNavSelectedClass = function( method ) {
   this.navSelectedElements.forEach( function( navElem ) {
@@ -4152,7 +4167,7 @@ proto.changeNavSelectedClass = function( method ) {
 };
 
 proto.activateAsNavFor = function() {
-  this.navCompanionSelect();
+  this.navCompanionSelect( true );
 };
 
 proto.removeNavSelectedElements = function() {
@@ -4189,7 +4204,7 @@ return Flickity;
 }));
 
 /*!
- * imagesLoaded v4.1.0
+ * imagesLoaded v4.1.1
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
@@ -4622,4 +4637,3 @@ proto.imagesLoaded = function() {
 return Flickity;
 
 }));
-
