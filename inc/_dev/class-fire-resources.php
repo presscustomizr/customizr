@@ -349,17 +349,27 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       if ( false == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) )
         return;
 
-      $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+      /*
+      * Not using add_query_var here in order to keep the code simple
+      */
+      $_path            = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+      $_version         = apply_filters( 'tc_font_icons_version', true ) ? '4.7.0' : '';
+      $_ie_query_var    = $_version ? "&v={$_version}" : '';
+      $_query_var       = $_version ? "?v={$_version}" : '';
+
+
       ob_start();
         ?>
         @font-face {
           font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot');
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' ) );
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf<?php echo $_query_var ?>') format('truetype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg<?php echo $_query_var ?>#fontawesomeregular') format('svg');
+          font-weight: normal;
+          font-style: normal;
         }
         <?php
       $_font_css = ob_get_contents();
