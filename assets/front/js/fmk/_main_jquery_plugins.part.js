@@ -125,6 +125,7 @@ var czrapp = czrapp || {};
           cellSelector: '.post',
           cellAlign: 'left',
           dragThreshold: 10,
+          accessibility: false,
           contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
       });
 
@@ -136,6 +137,7 @@ var czrapp = czrapp || {};
           imagesLoaded: true,
           setGallerySize: false,
           cellSelector: '.carousel-cell',
+          accessibility: false,
           dragThreshold: 10
       });
 
@@ -147,7 +149,20 @@ var czrapp = czrapp || {};
           imagesLoaded: true,
           setGallerySize: false,
           cellSelector: '.carousel-cell',
-          dragThreshold: 10
+          dragThreshold: 10,
+          /*
+          * Set accessibility to false as it produces the following issue:
+          * - flickity, when accessibiity is set to true, sets the "carousel" tabindex property
+          * - dragging a slide the carousel is focused with focus(), because of the tabindex the page scrolls to top
+          * and flickity re-scrolls to the correct position.
+          * The scroll to top (due to the focus) for some reason conflicts with the #customizr-slider-* overflow:hidden property
+          * when parallaxing.
+          * Basically the parallaxed item, despite the top property is set to Y <> 0, appears as it had Y = 0.
+          * Plus absoluted elements referring to the #customizr-slider-* seems to be shifted up of -Y
+          * very weird behavior to investigate on :/
+          */
+          accessibility: false,
+          draggable: true
       });
 
       /* Handle custom nav */

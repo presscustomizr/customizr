@@ -198,9 +198,8 @@ embed, iframe, object, video { max-width: 100%;}
   width: 100%;
   height: 100vh;
 }
-[id^=customizr-slider-].czr-carousel .carousel-cell,
-[id^=customizr-slider-].czr-carousel .carousel-inner { width: 100%; height: 100%; overflow: hidden;}
-
+[id^=customizr-slider-].czr-carousel .carousel-inner,
+[id^=customizr-slider-].czr-carousel .carousel-cell { width: 100%; height: 100%; overflow: hidden;}
 
 
 /* Dropdown toggler span test

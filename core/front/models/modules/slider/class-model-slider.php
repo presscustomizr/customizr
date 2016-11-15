@@ -368,6 +368,9 @@ class CZR_slider_model_class extends CZR_Model {
     if ( ! in_array( 'full-page', $class ) && 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
       array_push( $class, 'custom-slider-height' );
 
+    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+      array_push( $class, 'parallax-wrapper' );
+
     return array_filter( $class );
   }
 

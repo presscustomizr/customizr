@@ -5,7 +5,6 @@
  */
 ?>
 <div id="customizr-slider-<?php czr_fn_echo( 'id' ) ?>" class="section-slider <?php czr_fn_echo( 'element_class' ) ?> " <?php czr_fn_echo('element_attributes') ?>>
-
   <?php if ( czr_fn_get( 'has_loader' ) ) : ?>
         <div id="czr-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>" class="czr-slider-loader-wrapper">
             <div class="czr-img-gif-loader"></div>

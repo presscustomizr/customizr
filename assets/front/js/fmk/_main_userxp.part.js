@@ -154,7 +154,7 @@ var czrapp = czrapp || {};
         $_ssbar.detach().prependTo('.article-container');
     },
 
-    headingsActions_test : function() { console.log('ever here');
+    headingsActions_test : function() {
       //User request animation frame
       var _page_header_inner   = $('.header-content-inner'),
           _header_push         = $('.topnav_navbars__wrapper'),
