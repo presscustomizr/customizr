@@ -679,8 +679,14 @@ h2.site-description {
   background-image: none;
   text-decoration: none;
 }
-
+/*
+* Reset bootstrap caret
+* dropdowns.less
+*/
 .dropdown-submenu > a:after {
+  content: none;
+}
+.nav .dropdown-submenu > a:after {
   display: block;
   content: " ";
   & when (@is_rtl = true) {
