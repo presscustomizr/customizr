@@ -347,7 +347,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         if ( function_exists( 'czr_fn_sanitize_'. $type ) ) {
           $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $social );
         }
-        $icon_suffix = str_replace('tc_', '', $key);
+        $icon_suffix = str_replace('tc_', '', 'tc_email' == $key ? 'tc_envelope' : $key );
 
         //there is one exception : rss feed has no target _blank and special icon title
         array_push( $html, sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
