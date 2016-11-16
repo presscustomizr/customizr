@@ -1073,11 +1073,11 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       /* SLIDERS : standard or slider of posts */
       if ( czr_fn_has('main_slider') ) {
-        czr_fn_render_template('modules/slider/slider', 'main_slider');
+        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_slider') );
       }
 
       elseif( czr_fn_has( 'main_posts_slider' ) ) {
-        czr_fn_render_template('modules/slider/slider', 'main_posts_slider');
+        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_posts_slider') );
       }
 
       do_action('__before_main_wrapper');
@@ -1089,7 +1089,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
         <div class="container" role="main">
 
-          <?php if ( czr_fn_has('breadcrumb') ) { czr_fn_render_template('modules/breadcrumb'); } ?>
+          <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( array( 'template' => 'modules/breadcrumb') ); ?>
+
+          <?php do_action('__before_content_wrapper'); ?>
 
           <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
@@ -1106,21 +1108,26 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             <?php do_action('__after_content'); ?>
 
             <?php
-              if ( czr_fn_has('left_sidebar') ) {
-                czr_fn_render_template('content/sidebars/left_sidebar', 'left_sidebar');
-              }
-            ?>
-            <?php
-              if ( czr_fn_has('right_sidebar') ) {
-                czr_fn_render_template('content/sidebars/right_sidebar', 'right_sidebar');
+              /*
+              * SIDEBARS
+              */
+              /* By design do not display sidebars in 404 */
+              if ( ! is_404() ) {
+                if ( czr_fn_has('left_sidebar') )
+                  get_sidebar( 'left' );
+
+                if ( czr_fn_has('right_sidebar') )
+                  get_sidebar( 'right' );
               }
             ?>
           </div><!-- .column-content-wrapper -->
 
+          <?php do_action('__after_content_wrapper'); ?>
+
           <?php if ( czr_fn_has('comments') ) : ?>
             <div class="row">
               <div class="col-xs-12">
-                <?php czr_fn_render_template('content/comments/comments'); ?>
+                <?php czr_fn_render_template( array( 'template' => 'content/comments/comments') ) ?>
               </div>
             </div>
           <?php endif ?>
