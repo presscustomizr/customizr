@@ -16,16 +16,19 @@
   <div class="<?php czr_fn_echo( 'inner_class' ) ?>" <?php czr_fn_echo( 'inner_attrs' ) ?>>
       <?php
         while ( (bool) $the_slide = czr_fn_get( 'the_slide' ) )
-          czr_fn_render_template( 'modules/slider/slide', 'slide', array( 'the_slide' => $the_slide ) );
+          czr_fn_render_template( array( 'template' => 'modules/slider/slide', 'model_args' => array( 'the_slide' => $the_slide ) ) )
       ?>
   </div><!-- /.carousel-inner -->
   <?php  do_action( '__after_carousel_inner__' ) ?>
   <?php
     if ( czr_fn_get( 'has_slider_edit_link' ) )
-      czr_fn_render_template( 'modules/edit_button', 'edit_button', array(
-        'edit_button_class' => 'slider-btn-edit',
-        'edit_button_link'  => czr_fn_get( 'slider_edit_link' ),
-        'edit_button_text'  => czr_fn_get( 'slider_edit_link_text' ),
+      czr_fn_render_template( array(
+          'template'   => 'modules/edit_button',
+          'model_args' => array(
+          'edit_button_class' => 'slider-btn-edit',
+          'edit_button_link'  => czr_fn_get( 'slider_edit_link' ),
+          'edit_button_text'  => czr_fn_get( 'slider_edit_link_text' ),
+        )
       ))
   ?>
   <?php if ( czr_fn_get( 'has_controls' ) ) : ?>

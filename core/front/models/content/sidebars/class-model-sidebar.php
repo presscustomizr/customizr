@@ -27,7 +27,6 @@ class CZR_sidebar_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-
     $screen_layout        = czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
 
     //extract the position
@@ -43,6 +42,6 @@ class CZR_sidebar_model_class extends CZR_Model {
     //defines the sidebar wrapper class
     $model['element_class']  = $sidebar_layout[ "{$sidebar_prefix}-sidebar" ];
 
-    return $model;
+    return parent::czr_fn_extend_params( $model );
   }
 }

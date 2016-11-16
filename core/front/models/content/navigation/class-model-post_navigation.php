@@ -3,20 +3,9 @@
 * This class only handles the visibility in the Customizer preview
 */
 class CZR_post_navigation_model_class extends CZR_Model {
-  /**
-  * @override
-  * fired before the model properties are parsed
-  *
-  * return model params array()
-  */
-  function czr_fn_extend_params( $model = array() ) {
-    $model[ 'element_class' ]       = $this -> czr_fn_get_pn_element_class( array() );
-
-    return $model;
-  }
 
   /* visibility in the customizer */
-  function czr_fn_get_pn_element_class( $_nav_classes ) {
+  function czr_fn_get_element_class( $_nav_classes = array() ) {
     if ( ! CZR() -> czr_fn_is_customizing() )
       return $_nav_classes;
 

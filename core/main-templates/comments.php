@@ -10,7 +10,9 @@
 <div id="comments" class="comments_container">
   <section class="post-comments">
     <?php
-      if ( czr_fn_has('comment_list') ) { czr_fn_render_template('content/comments/comment_list', 'comment_list'); }
+      if ( czr_fn_has('comment_list') ) {
+        czr_fn_render_template( array( 'template' 'content/comments/comment_list' ) );
+      }
       comment_form( array(
         'class_form'         => 'czr-form comment-form',
         'title_reply_before' => '<h4 id="reply-title" class="comment-reply-title">',

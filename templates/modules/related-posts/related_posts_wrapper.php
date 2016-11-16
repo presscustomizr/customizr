@@ -27,11 +27,13 @@ if ( have_posts() ) {
     while ( have_posts() ):
       the_post();
       if ( czr_fn_has( 'related_post_item' ) )
-        czr_fn_render_template(
-          'modules/related-posts/related_post_item', 'related_post_item', array(
-            'article_selectors' => czr_fn_get( 'article_selectors' ),
-            'media_col' => czr_fn_get('media_col'),
-            'content_col' => czr_fn_get('content_col')
+        czr_fn_render_template( array(
+          'template'   => 'modules/related-posts/related_post_item',
+          'model_args' => array(
+              'article_selectors' => czr_fn_get( 'article_selectors' ),
+              'media_col' => czr_fn_get('media_col'),
+              'content_col' => czr_fn_get('content_col')
+          )
         ));
     endwhile
   ?>

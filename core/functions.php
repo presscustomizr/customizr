@@ -109,15 +109,39 @@ if ( ! function_exists('czr_fn_new') ) {
   }
 }
 
-//shortcut function to instantiate a model + render its template
-//model and template should share the same name
-//some templates are shared by several models => that's when the $_id param is useful
-if ( ! function_exists('czr_fn_render_template') ) {
-  function czr_fn_render_template( $_t, $_id = null, $args = array() ) {
-    if ( ! $_t || empty($_t) )
-        return;
+/*
+* Shortcut function to instantiate a model + render its template
+* model and template should share the same name
+* some templates are shared by several models => that's when the $_id param is useful
+* @since 4.0.0
+*
+* @param array $args {
+*     Array of options.
+*     @type string $template           The template to render (with tree path, without the trailing .php)
+*     @type string $model_id           Optional. The id of the model to feed the template with.
+*                                      If not specified or not already registered the system will try to
+*                                      register a model with classname retrieved from the template option,
+*                                      if available, otherwise the base model class will be registered
+*     @type array|string $model_class  Optional. array|string. The model class (with tree path, without the trailing .php)
+*                                      to  feed the model with. When array, in the form array( parent, name )
 
-    $_model_id = is_null($_id) ? basename($_t) : $_id;
+*     @type array $model_args          Optional. array of params to be injected into the model
+*
+*
+* }
+* @return void
+*/
+if ( ! function_exists('czr_fn_render_template') ) {
+  function czr_fn_render_template( $args = array() ) {
+
+    if ( empty( $args['template'] ) )
+      return; /* Fire a notice? */
+
+    //extract
+    $_t           =  $args['template'];
+    $_model_id    =  ! empty( $args['model_id'] ) ? $args['model_id'] : basename($_t);
+    $_model_class =  ! empty( $args['model_class'] ) ? $args['model_class'] : '';
+    $_model_args  =  ! empty( $args['model_args'] )  ? $args['model_args']  : array();
 
     if ( czr_fn_is_registered( $_model_id ) ) {
       $model_instance = czr_fn_get_model_instance( $_model_id );
@@ -127,14 +151,14 @@ if ( ! function_exists('czr_fn_render_template') ) {
         $model_instance -> czr_fn_set_property('template' , $_t );
       }
       //update model with the one passed
-      if ( ! empty ( $args ) )
-        $model_instance -> czr_fn_update( $args );
+      if ( ! empty ( $_model_args ) )
+        $model_instance -> czr_fn_update( $_model_args );
 
       czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();
     }
     else {
       //$_model_instance = CZR() -> collection -> czr_fn_get_model_instance( $_model_id );
-      czr_fn_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t, 'args' => $args ) );
+      czr_fn_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t, 'model_class' => $_model_class, 'args' => $_model_args ) );
     }
   }
 }

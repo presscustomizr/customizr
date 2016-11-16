@@ -8,7 +8,7 @@
 ?>
 <footer class="entry-footer row" <?php czr_fn_echo('element_attributes') ?>>
   <div class="col-md-6 col-xs-12">
-    <?php czr_fn_render_template( 'content/authors/author_info_small' ) ?>
+    <?php czr_fn_render_template( array( 'template' => 'content/authors/author_info_small' ) ) ?>
   </div>
   <div class="col-md-6 col-xs-12">
     <div class="post-info">
@@ -18,7 +18,7 @@
 
       if ( czr_fn_has( 'comment_info' ) && CZR() -> controllers -> czr_fn_is_possible( 'comment_info' ) ) :
         if ( $date ) : ?> <span class="v-separator">|</span> <?php endif;
-        czr_fn_render_template( 'modules/comment_info', 'comment_info' );
+        czr_fn_render_template( array( 'template' => 'modules/comment_info' ) );
       endif
     ?>
     </div>

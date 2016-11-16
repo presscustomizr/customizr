@@ -10,27 +10,6 @@ class CZR_content_model_class extends CZR_Model {
         'model_class' => 'content/post-metas/post_metas',
         'id' => 'post_metas',
       ),
-      //Temp registered here as we feed the template with a model which is not retrievable from the template name
-      //see czr_fn_render_template()
-      array(
-        'model_class' => 'content/post-lists/post_list_plain',
-        'id' => 'post_list_plain_excerpt',
-      ),
-      //sidebars need to be registered because they use the same model which does not match the model id nor the template
-       /********************************************************************
-      * Left sidebar
-      ********************************************************************/
-       array(
-        'id'          => 'left_sidebar',
-        'model_class' => 'content/sidebars/sidebar',
-      ),
-      /********************************************************************
-      * Right sidebar
-      ********************************************************************/
-      array(
-        'id'          => 'right_sidebar',
-        'model_class' => 'content/sidebars/sidebar'
-      ),
 
       /* Needs to access the czr_user_options_style */
       /*********************************************
@@ -42,14 +21,6 @@ class CZR_content_model_class extends CZR_Model {
       ),
       /* END GRID */
 
-      /* Needed here 'cause is used by two different templates */
-      /*********************************************
-      * POST NAVIGATION
-      *********************************************/
-      array(
-        'id'          => 'post_navigation',
-        'model_class' => 'content/navigation/post_navigation',
-      ),
     );
 
     return $children;

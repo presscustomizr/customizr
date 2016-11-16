@@ -26,38 +26,42 @@ endif ?>
           <div class="entry-content__wrapper">
           <?php
             /* header */
-            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_single_header' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/headings/post_list_single_header' ) );
             /* content inner */
-            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_single_content_inner' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/contents/post_list_single_content_inner' ) );
             /* footer */
-            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer', 'post_list_single_footer' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/footers/post_list_single_footer' ) );
           ?>
           </div>
         </section>
         <?php
         /* Media */
         if ( $has_post_media = czr_fn_get('has_post_media') ) {
-          czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
-             'has_post_media'           => $has_post_media,
-             'element_class'            => czr_fn_get( 'media_cols' ),
-             'is_full_image'            => czr_fn_get( 'is_full_image' ),
-             'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
-             'has_post_media'           => czr_fn_get( 'has_post_media' )
+          czr_fn_render_template( array(
+            'template'   => 'content/post-lists/singles/post_list_single_media',
+            'model_args' =>  array(
+                'has_post_media'           => $has_post_media,
+                'element_class'            => czr_fn_get( 'media_cols' ),
+                'is_full_image'            => czr_fn_get( 'is_full_image' ),
+                'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
+                'has_post_media'           => czr_fn_get( 'has_post_media' )
             )
-          );
+          ));
         }
 
       } else {
         /* Media */
         if ( $has_post_media = czr_fn_get('has_post_media') ) {
-          czr_fn_render_template('content/post-lists/singles/post_list_single_media', 'post_list_media', array(
-             'has_post_media'           => $has_post_media,
-             'element_class'            => czr_fn_get( 'media_cols' ),
-             'is_full_image'            => czr_fn_get( 'is_full_image' ),
-             'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
-             'has_post_media'           => czr_fn_get( 'has_post_media' )
+          czr_fn_render_template( array(
+            'template'   => 'content/post-lists/singles/post_list_single_media',
+            'model_args' =>  array(
+                'has_post_media'           => $has_post_media,
+                'element_class'            => czr_fn_get( 'media_cols' ),
+                'is_full_image'            => czr_fn_get( 'is_full_image' ),
+                'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
+                'has_post_media'           => czr_fn_get( 'has_post_media' )
             )
-          );
+          ));
         }
          /* Content */
         ?>
@@ -65,11 +69,11 @@ endif ?>
           <div class="entry-content__wrapper">
           <?php
             /* header */
-            czr_fn_render_template('content/post-lists/singles/headings/post_list_single_header', 'post_list_single_header' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/headings/post_list_single_header' ) );
             /* content inner */
-            czr_fn_render_template('content/post-lists/singles/contents/post_list_single_content_inner', 'post_list_single_content_inner' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/contents/post_list_single_content_inner' ) );
             /* footer */
-            czr_fn_render_template('content/post-lists/singles/footers/post_list_single_footer', 'post_list_single_footer' );
+            czr_fn_render_template( array( 'template' =>'content/post-lists/singles/footers/post_list_single_footer' ) );
           ?>
           </div>
         </section>

@@ -36,7 +36,11 @@
             <!-- fake need to have social links somewhere -->
             <?php
               if ( czr_fn_has('social_share') )
-                czr_fn_render_template( 'modules/social_block', 'social_share' );
+                czr_fn_render_template( array(
+                    'template'      => 'modules/social_block',
+                    'model_id'      => 'social_share'
+                  )
+                );
             ?>
           </div>
         </div>

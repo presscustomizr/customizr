@@ -1,5 +1,5 @@
 <?php
-class CZR_related_posts_wrapper_model_class extends CZR_model {
+class CZR_related_posts_model_class extends CZR_model {
   public $excerpt_length = 18;
   public $media_col      = 'col-xs-6';
   public $content_col    = 'col-xs-6';

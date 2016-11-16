@@ -40,30 +40,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $model;
   }
 
-  /*
-  * @override
-  */
-  function czr_fn_setup_children() {
-    $children = array (
-      /* Temporary */
-      /* Register models here so that we have their instances to pass to the views/templates */
-      /*
-      * Header :
-      * why so? because the render_template function tries to feed the template with
-      * a model whose retrieved by the template name itself.
-      * It falls back on the model instance only if the model, with that specified id, has
-      * already been registered.
-      *
-      */
-      //Post/page headings
-      array(
-        'id'          => 'post_list_single_header',
-        'model_class' => 'content/post-lists/singles/headings/post_list_single_header'
-      )
-    );
-
-    return $children;
-  }
 
   /*
   * Fired just before the view is rendered
