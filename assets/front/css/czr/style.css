@@ -894,6 +894,7 @@ replace this
 @media (max-width: 60em) {
   .grid-container__plain.grid-container__plain .post .tc-content-inner {
     float: left;
+    width: 100%;
   }
 }
 

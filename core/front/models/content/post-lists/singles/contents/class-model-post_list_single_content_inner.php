@@ -4,7 +4,7 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
   public  $content;
 
 
-  function czr_fn_get_the_post_list_content( $show_full_content = false, $more  = null, $link_pages = null ) {
+  function czr_fn_get_the_post_list_content( $show_full_content = false, $more  = null ) {
     do_action( "__before_content_retrieve", $this->id, $this );
 
     $show_full_content      = $show_full_content ? $show_full_content : (
@@ -19,7 +19,7 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
       $to_return = apply_filters( 'the_excerpt', get_the_excerpt() );
     elseif ( 'get_the_content' == $content_cb )
       //filter the content
-      $to_return = '<p>'.$this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) ) . $link_pages . '</p>';
+      $to_return = $this -> czr_fn_add_support_for_shortcode_special_chars( get_the_content( $more ) );
     else
       $to_return = call_user_func( $content_cb );
 
