@@ -6,6 +6,10 @@
  * @package Customizr
  * @since Customizr 1.0
  */
+if ( apply_filters( 'czr_four_do', false ) ) {
+  do_action( 'czr_four_template' );
+  return;
+}
 ?>
 <?php do_action( '__before_main_wrapper' ); ##hook of the header with get_header ?>
 <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">

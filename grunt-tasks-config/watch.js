@@ -12,12 +12,16 @@ module.exports = {
 	//the gitinfo task updates the config object with the current branch name
 	//replace:readme writes the current git branch name => always up to date for Travis build pass status link
 	//Regenerate the main css skin each time a less file is changed
+	create_czr4_css : {
+		files : ['<%= paths.sass4 %>**/*.scss'],
+		tasks : ['gitinfo', 'sass:front'],
+	},
 	create_push_skin : {
 		files : ['<%= paths.less %>**/*.less'],
 		tasks : ['gitinfo' , 'replace:readme', 'less:dev_common', 'less:dev_skin' , 'cssmin:dev_common', 'cssmin:dev_skin' ],
 	},
   front_jquery_js : {
-    files : ['<%= paths.front_js %>jquery-plugins/*.js', '!*.min.js'],
+    files : ['<%= paths.front_js_4_source %>jquery-plugins/*.js', '!*.min.js'],
     tasks : ['jshint:those', 'jshint:part_front_js', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },

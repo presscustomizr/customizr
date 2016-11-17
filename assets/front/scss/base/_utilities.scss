@@ -1,0 +1,149 @@
+.bg-transparent { background: transparent }
+.big-text-10 { font-size: 10em }
+.m-t-05 { margin-top: 0.5em }
+
+.inline-list {
+	list-style : none;
+	li {
+		display: inline-block;
+    position: relative;
+		& + li { margin-left: $base-line-height; }
+	}
+  li:before { content: none }
+}
+.no-hover { pointer-events: none !important; }
+.shadow {
+    @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
+}
+
+@mixin border_b_t() {
+     &::before {
+        content:"";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        top:0;
+        left:0;
+        background: $grey-light;
+      }
+}
+.img-centered {
+  @extend .centered;
+	margin: 0 auto;
+}
+
+.filter {
+  position: relative;
+  height: 100%;
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 3;
+    content: "";
+  }
+}
+
+@mixin v-divider ($mp, $color, $side, $active:0) {
+  padding-#{$side}: $mp;
+  &:before {
+      content:" ";
+      position:absolute;
+      top:0;
+      height:100%;
+      bottom:0;
+      /* #{$side} : -$mp; */
+      left:0;
+      background: $color;
+      @if $active == 0 { width: 0; }
+      @else { width: 1px } ;
+      /* border-#{$side}: 1px solid $color; */
+  }
+}
+
+@mixin underlined_border ($color, $height) {
+  .no-thumb & {
+      position: relative;
+      display: inline;
+      border-bottom: $height solid transparent;
+      @include transition(all, 0.3s ease);
+  }
+  .hover.no-thumb & {
+      border-color: $color;
+  }
+}
+
+@mixin underlined_simple ($color, $height) {
+  &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: $height;
+      bottom: 0;
+      left: 0;
+      visibility: visible;
+      background-color: $color;
+      @include transform( scaleX(1) );
+   }
+}
+
+@mixin underlined ($color, $height) {
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: $height;
+    bottom: 0;
+    left: 0;
+    background-color: $color;
+    visibility: hidden;
+    @include transform( scaleX(0) );
+    @include transition( all 0.3s ease 0s );
+   }
+   &:hover:before {
+     visibility: visible;
+     @include transform( scaleX(1) );
+  }
+}
+
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+@mixin centered {
+  @extend .centered;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//vectical-alignement
+%vertical-align-parent {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+%vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin vertical-align() {
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: .1px;
+  }
+}

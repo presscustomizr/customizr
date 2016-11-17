@@ -9,7 +9,10 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-
+if ( apply_filters( 'czr_four_do', false ) ) {
+  do_action( 'czr_four_template', 'comments' );
+  return;
+}
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will

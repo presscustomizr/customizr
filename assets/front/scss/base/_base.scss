@@ -1,0 +1,198 @@
+
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, html {
+        padding: 0;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+}
+html {
+    font-size: 15px;
+}
+.wp-caption,
+img {
+    max-width: 100%;
+    height: auto;
+}
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+a, button, button:focus { outline:0 }
+
+a {
+    transition: color ease 0.3s;
+}
+
+/* end clearfix
+/*
+* > :first-child { margin-top: 0 !important; margin-left: 0 !important; }
+* > :last-child  { margin-bottom: 0 !important; margin-right: 0 !important; }
+*/
+a,
+a:hover,
+a:focus,
+a:active,
+a.current-active {
+    text-decoration: none;
+    outline: none;
+}
+
+a {
+    color: $skin;
+}
+
+a img {
+    border: none;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: darken($skin, 70%); /* previously 25%*/
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    text-rendering:optimizelegibility;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+h1 a, h2 a, h3 a,
+h4 a, h5 a, h6 a {
+
+}
+
+ul, ol {
+    margin: 0;
+    padding:0;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $grey-light;
+    margin: 3.2em 0;
+    padding: 0;
+}
+
+strong {
+    font-weight:700;
+}
+
+dl {
+
+}
+
+dl dt {
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+dl dd {
+
+}
+
+mark {
+
+}
+
+code, tt {
+
+}
+
+pre code, tt {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: inherit;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: $monotypeFont;
+}
+pre {
+    background: $grey-lightest;
+    padding: $base-line-height*2;
+    word-wrap: normal;
+    color: $black;
+    font-family: $monotypeFont !important;
+}
+
+figure { text-align: center; }
+figcaption { text-align:center; }
+
+// Highlight Color Customization
+
+::-moz-selection {
+    text-shadow: none;
+    background: $skin;
+    color: $white;
+}
+
+::selection {
+    text-shadow: none;
+    background: $skin;
+    color: $white;
+}
+
+img::selection {
+    background: transparent;
+
+}
+
+img::-moz-selection {
+    background: transparent;
+}
+
+body {
+    webkit-tap-highlight-color: $skin;
+}
+
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.75em;
+}
+.m-t-6 {
+  margin-top: 6rem !important;
+}
+/*
+* Reset list styling for some elements
+*/
+.topnav_navbars__wrapper ul li:before,
+nav ul li::before,
+ul.nav li::before,
+li.pingback::before,
+li.comment::before,
+.products li::before {
+  content: none;
+  padding: 0
+}
+p {
+  word-wrap: break-word;
+}

@@ -1,0 +1,82 @@
+@font-face {
+  font-family: 'customizr';
+  src: url('../../shared/css/fonts/customizr/customizr.eot?12839698');
+  src: url('../../shared/css/fonts/customizr/customizr.eot?12839698#iefix') format('embedded-opentype'),
+       url('../../shared/css/fonts/customizr/customizr.woff2?128396981') format('woff2'),
+       url('../../shared/css/fonts/customizr/customizr.woff?12839698') format('woff'),
+       url('../../shared/css/fonts/customizr/customizr.ttf?12839698') format('truetype'),
+       url('../../shared/css/fonts/customizr/customizr.svg?12839698#customizr') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'customizr';
+    src: url('../font/customizr.svg?12839698#customizr') format('svg');
+  }
+}
+*/
+
+ [class^="icn-"]:before, [class*=" icn-"]:before {
+  content: '';
+  font-family: "customizr";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  vertical-align: middle;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+.icn-close:before { content: '\e800'; } /* '' */
+.icn-shoppingcart:before { content: '\e801'; } /* '' */
+.icn-search:before { content: '\e802'; } /* '' */
+.icn-grid-empty:before { content: '\e803'; } /* '' */
+.icn-grid-filled:before { content: '\e804'; } /* '' */
+.icn-plus:before { content: '\e805'; } /* '' */
+.icn-quote:before { content: '\e808'; } /* '' */
+.icn-expand-thin:before { content: '\e809'; } /* '' */
+.icn-plus-thin:before { content: '\e80a'; } /* '' */
+.icn-close-thin:before { content: '\e80b'; } /* '' */
+.icn-arrow-l:before { content: '\e80d'; } /* '' */
+.icn-arrow-r:before { content: '\e80e'; } /* '' */
+.icn-down-small:before { content: '\e80f'; } /* '' */
+.icn-up-small:before { content: '\e810'; } /* '' */
+.icn-text:before { content: '\e811'; } /* '' */
+.icn-link:before { content: '\e812'; } /* '' */
+.icn-left-open-big:before { content: '\e813'; } /* '' */
+.icn-right-open-big:before { content: '\e814'; } /* '' */
+.icn-expand-small:before { content: '\e815'; } /* '' */
+.icn-expand:before { content: '\e816'; } /* '' */
+.icn-edit:before { content: '\e817'; } /* '' */
+.icn-arrow-r-long:before { content: '\e819'; } /* '' */
+.icn-arrow-l-long:before { content: '\e81a'; } /* '' */
+.icn-article:before { content: '\e81c'; } /* '' */

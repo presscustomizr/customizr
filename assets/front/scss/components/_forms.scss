@@ -1,0 +1,88 @@
+
+/* search forms */
+
+.search-form {
+  label { @include clearfix; width: 100% }
+}
+input:not([type="submit"]), textarea {
+  max-width: 100%;
+}
+
+form  {
+  label {
+    color: $black;
+    font-family: $serviceFont;
+    @extend .small;
+    @extend .caps;
+    @extend .thick;
+    @extend .letter-spacing-2;
+  }
+  .form-control,
+  input:not([type="submit"]), textarea {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #202020;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    color: #202020;
+    position: relative;
+    background: transparent;
+    max-width: 100%;
+  }
+  fieldset { margin-top: 3em }
+}
+label .required {
+  float: left;
+}
+label i {
+  float: right; width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+form.czr-form {
+  input:not([type="submit"]), textarea {
+    width: 100%;
+  }
+
+  .form-group, .czr-focus {
+    position: relative;
+    margin-top: $base-line-height*2;
+  }
+
+  .czr-focus label {
+    display: block;
+    position: absolute;
+    @include transition(all, .3s ease);
+    span { float: left; }
+
+    i.icn-close {
+      margin-right: -2em;
+      border-radius:100%;
+      height:2em;
+      width:2em;
+      line-height: 2em;
+      @include opacity(0);
+      @include transition(all 0.3s ease);
+      @include transform(translateY(-110%));
+    }
+  }
+
+  .czr-focus.in-focus > label {
+    z-index: 1;
+    @include transform(translateY(-110%));
+    color: $grey;
+
+    i.icn-search { @include opacity(0); }
+    i.icn-close {
+      @include opacity(1);
+      @include transform(translateY(110%));
+      cursor: pointer;
+    }
+  }
+
+  .czr-search-field {
+    padding-right: 2em;
+  }
+}
