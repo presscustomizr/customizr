@@ -12,7 +12,6 @@
 * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 *
 * @package   	Customizr
-* @subpackage 	functions
 * @since     	1.0
 * @author    	Nicolas GUILLAUME <nicolas@presscustomizr.com>
 * @copyright 	Copyright (c) 2013-2016, Nicolas GUILLAUME
@@ -44,7 +43,6 @@
 
 //Fire Customizr
 require_once( apply_filters( 'czr_init', get_template_directory() . '/inc/czr-init.php' ) );
-
 
 /**
 * THE BEST AND SAFEST WAY TO EXTEND THE CUSTOMIZR THEME WITH YOUR OWN CUSTOM CODE IS TO CREATE A CHILD THEME.

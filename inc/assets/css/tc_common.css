@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.34
+ * Customizr v3.4.35
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4836,6 +4836,9 @@ h3#reply-title:before,
 .icon-xing:before {
   content: "\f168";
 }
+.icon-snapchat:before {
+  content: "\f2ab";
+}
 /* icons in social block - fine alignment */
 .social-block a.social-icon {
   top: -0.04em;
@@ -5286,7 +5289,14 @@ h2.site-description {
   background-image: none;
   text-decoration: none;
 }
+/*
+* Reset bootstrap caret
+* dropdowns.less
+*/
 .dropdown-submenu > a:after {
+  content: none;
+}
+.nav .dropdown-submenu > a:after {
   display: block;
   content: " ";
   float: right;
@@ -9081,7 +9091,7 @@ li#wp-admin-bar-tc-customizr-help a {
   .navbar .nav-collapse ul.nav > li li li a {
     padding-left: 50px;
   }
-  .dropdown-submenu > a:after {
+  .nav .dropdown-submenu > a:after {
     content: none;
   }
   .nav a {

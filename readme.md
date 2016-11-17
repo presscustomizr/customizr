@@ -1,4 +1,4 @@
-# Customizr v3.4.34 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.4.35 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -43,6 +43,10 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.35 November 17th 2016 =
+* fixed : display dropdown submenu caret only for relevant '.nav' elements
+* improved : update FontAwesome to v4.7.0 + add Snapchat social link
+
 = 3.4.34 October 28th 2016 =
 * fixed : compatibility issue with php7
 * fixed : better check for is customize preview()

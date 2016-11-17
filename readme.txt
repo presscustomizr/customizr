@@ -41,6 +41,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.4.35 November 17th 2016 =
+* fixed : display dropdown submenu caret only for relevant '.nav' elements
+* improved : update FontAwesome to v4.7.0 + add Snapchat social link
+
 = 3.4.34 October 28th 2016 =
 * fixed : compatibility issue with php7
 * fixed : better check for is customize preview()
