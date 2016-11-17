@@ -1,5 +1,3 @@
-/* featured opages */
-.featured .thumb-wrapper { height: 0; padding-bottom: 100%; overflow: hidden; position: relative;}
 /* PARALLAX FILTER FIX */
 .carousel.filter {
   height: 100vh !important;
@@ -1035,25 +1033,84 @@ replace this
 .grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
 .grid-container__square-mini .grid__item { outline: none }
 
-/* Featured rounded */
+/*
+*
+* Featured Pages
+*
+*/
+.featured .czr-thumb-wrapper {
+  overflow: hidden;
+  max-width: 350px; /* this actually depends on the thumb size */
+  margin: auto;
+  position: relative
+}
+.featured .czr-thumb-wrapper::after {
+  /* Ensure square thumb-wrappers*/
+  width: 100%;
+  /*
+  * this refers to the parent width, allowing us to have a perfect square
+  * as it has the same element's width percentage value.
+  */
+  padding-bottom: 100%;
+  content: '';
+  display: block;
+}
+
+.czr-link-mask {
+  position: absolute;
+  /*
+  * left/right/top/bottom values set to avoid (hopefully) visible line
+  * see:
+  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
+  */
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  overflow: hidden;
+  z-index: 1;
+}
 .czr-link-mask::before {
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    content: '';
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    transform: translate2d(-50%,-50%);
-    transform: translate3d(-50%,-50%, 0);
-    border: 999px solid;
-    border-color: white;
-    box-sizing: content-box;
-    transition: all .3s ease;
+  position: absolute;
+  width: 60%;
+  /*
+  * this refers to the parent width, allowing us to have a perfect square despite the parent
+  * as it has the same element's width percentage value.
+  */
+  padding-bottom: 60%;
+  content: '';
+  z-index: 1;
+  /* Centering */
+  left: 50%;
+  top: 50%;
+  transform: translate2d(-50%,-50%); /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%,-50%, 0);
+  /* end of centering */
+  border: 500px solid;
+  border-color: white;
+  box-sizing: content-box;
+  transition: all .3s ease;
 }
 .round .czr-link-mask::before {
   border-radius: 50%;
 }
+.no-effect .czr-link-mask {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.no-effect .czr-link-mask::before {
+  border: transparent;
+}
 .hover .czr-link-mask:before {
   transform: translate3d(-50%,-50%, 0) scale(1.3);
+}
+.center-images-disabled .widget-front img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
 }
