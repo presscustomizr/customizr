@@ -19,12 +19,14 @@ class CZR_featured_pages_model_class extends CZR_Model {
         $czr_fn_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
         $_skin_color                    = czr_fn_get_skin_color();
+        $_center_imgs                   = czr_fn_get_opt( 'tc_center_img' );
 
         $fp_holder_img                  = apply_filters (
               'tc_fp_holder_img' ,
-              sprintf('<img class="tc-holder-img" data-src="holder.js/350x350/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" style="width:350px;height:350px;"/>',
+              sprintf('<img class="tc-holder-img" data-src="holder.js/350x350/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
                 ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
-                $_skin_color
+                $_skin_color,
+                $_center_imgs ? 'style="max-width:350px;width:350px;height:350px;"' : ''
               )
         );
         //gets the featured pages array and sets the fp layout
@@ -44,15 +46,17 @@ class CZR_featured_pages_model_class extends CZR_Model {
             7 => 2
         );
 
-        $fp_col         = 4;
-        $fp_col         = ( $fp_per_row > 7) ? 1 : $fp_col;
+        $fp_col             = 4;
+        $fp_col             = ( $fp_per_row > 7) ? 1 : $fp_col;
 
-        $this -> fp_col = isset( $cols_map[$fp_per_row] ) ? $cols_map[$fp_per_row] : $fp_col;
+        $this -> fp_col     = isset( $cols_map[$fp_per_row] ) ? $cols_map[$fp_per_row] : $fp_col;
         $this -> fp_per_row = $fp_per_row;
         $this -> fp_nb      = $fp_nb;
         $this -> fp_ids     = $fp_ids;
 
         $this -> featured_pages = $this -> czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $czr_fn_show_featured_pages_img, $fp_holder_img );
+
+        $this -> element_class  = $_center_imgs ? 'center-images-enabled' : 'center-images-disabled';
 
         return $model;
   }

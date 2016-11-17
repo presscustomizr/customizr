@@ -174,6 +174,87 @@ var czrapp = czrapp || {};
         _page_header_inner.css('marginTop', __push );
       });
 
+    },
+
+    featuredPages_test : function() {
+      var $_featured_pages = $('.featured .widget-front'),
+          doingAnimation   = false;
+
+      if ( $_featured_pages.length < 2 )
+        return;
+
+      var   _fp_offsets = [];
+            _offsets  = new Array(2),
+            _maxs     = new Array(2);
+
+      for (var i = 0; i < 2; i++) {
+        _offsets[i] = new Array(2);
+      }
+
+      maybeSetElementsPosition();
+      czrapp.$_window.on('resize', maybeSetElementsPosition );
+
+      function maybeSetElementsPosition() {
+        setTimeout( function() {
+          if ( ! doingAnimation ) {
+            doingAnimation = true;
+            window.requestAnimationFrame(function() {
+
+              setElementsPosition();
+              doingAnimation = false;
+            });
+          }
+        }, 50 );
+      }
+
+      function setElementsPosition() {
+        var $_fp_offset = '',
+            _elements = [ '[class*=fp-text]', '.fp-button' ];
+
+        $.each( _elements, function(_element_index, _class ) {
+          $.each( $_featured_pages, function( _fp_index, _fp ) {
+            var $_el    = $(_fp).find(_class),
+                _offset = 0;
+
+            //reset top
+            $_el.css( 'top', '' );
+            //reset fp height
+            $(_fp).css( 'height', '' );
+
+            if ( $_el.length > 0 )
+              _offset = $_el.offset().top;
+
+            _offsets[_element_index][_fp_index] = _offset;
+            _fp_offsets[_fp_index] = parseFloat($(_fp).offset().top);
+
+          });
+
+          /*
+          * Break all when featured pages one on top of each other
+          */
+          if ( 1 != $.unique(_fp_offsets).length )
+            return false;
+
+          _maxs[_element_index] = Math.max.apply(Math, _offsets[_element_index] );
+
+
+          $.each( $_featured_pages, function( _fp_index, _fp ) {
+            var $_el    = $(_fp).find(_class),
+                _offset;
+
+
+            if ( $_el.length > 0 ){
+              //console.log ( $_el.css('top') );
+              /* var _this_top = parseFloat($_el.css('top')); */
+              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
+
+              $_el.css( 'top', _offset ).css('position', 'relative');
+              $(_fp).css( 'height',  $(_fp).height() + _offset );
+            }
+          });
+
+        });
+      }
     }
   };//_methods{}
 

@@ -1086,7 +1086,7 @@ replace this
   transform: translate2d(-50%,-50%); /* fallback for those browsers w/o translate3d transform property*/
   transform: translate3d(-50%,-50%, 0);
   /* end of centering */
-  border: 500px solid;
+  border: 150px solid;
   border-color: white;
   box-sizing: content-box;
   transition: all .3s ease;
