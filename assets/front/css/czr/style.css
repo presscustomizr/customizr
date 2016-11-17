@@ -1034,3 +1034,26 @@ replace this
 /* Give borders to the articles */
 .grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
 .grid-container__square-mini .grid__item { outline: none }
+
+/* Featured rounded */
+.czr-link-mask::before {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    content: '';
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate2d(-50%,-50%);
+    transform: translate3d(-50%,-50%, 0);
+    border: 999px solid;
+    border-color: white;
+    box-sizing: content-box;
+    transition: all .3s ease;
+}
+.round .czr-link-mask::before {
+  border-radius: 50%;
+}
+.hover .czr-link-mask:before {
+  transform: translate3d(-50%,-50%, 0) scale(1.3);
+}
