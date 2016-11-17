@@ -409,6 +409,9 @@ span[class*=tc-icon]:before {
 .tc-icon-xing:before {
   content: "\f168";
 }
+.tc-icon-snapchat:before {
+  content: "\f2ab";
+}
 
 /* DONATE BLOCK*/
 #tc-donate-customizer {

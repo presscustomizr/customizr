@@ -275,6 +275,11 @@ if ( ! class_exists( 'CZR_init' ) ) :
                                     'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
                                     'option_label'  => __( 'Xing profile url' , 'customizr' ),
                                     'default'       => null
+                                  ),
+            'tc_snapchat'       => array(
+                                    'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
+                                    'option_label'  => __( 'Snapchat profile url' , 'customizr' ),
+                                    'default'       => null
                                   )
           );//end of social array
 
