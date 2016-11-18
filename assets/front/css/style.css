@@ -1302,7 +1302,7 @@ p {
   vertical-align: middle;
 }
 
-.btn-more:hover {
+.btn-more:hover, .btn-more:focus, .btn-more:active {
   color: #202020;
   background: #fff;
 }

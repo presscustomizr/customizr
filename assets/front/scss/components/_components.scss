@@ -47,7 +47,7 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
-	&:hover {
+	&:hover, &:focus, &:active {
 		color: $black;
 		background: $white;
 	}
