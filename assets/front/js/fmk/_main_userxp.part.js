@@ -183,6 +183,7 @@ var czrapp = czrapp || {};
     },
 
     featuredPages_test : function() {
+
       var $_featured_pages  = $('.featured .widget-front'),
           _n_featured_pages = $_featured_pages.length;
           doingAnimation    = false,
@@ -192,18 +193,17 @@ var czrapp = czrapp || {};
       if ( _n_featured_pages < 2 )
         return;
 
-      var
-            _offsets    = new Array(_elements.length),
-            _maxs       = new Array(_elements.length);
+      var _offsets    = new Array(_elements.length),
+          _maxs       = new Array(_elements.length);
 
       /*
       * Build the _offsets matrix
       * Row => element (order given by _elements array)
       * Col => fp
       */
-      for (var i = 0; i < _elements.length; i++) {
+      for (var i = 0; i < _elements.length; i++)
         _offsets[i] = new Array( _n_featured_pages);
-      }
+
 
       //fire
       maybeSetElementsPosition();
@@ -233,15 +233,16 @@ var czrapp = czrapp || {};
       }
 
       function setElementsPosition() {
-        var _fp_offset = '',
-            _fp_offsets = [];
+        /*
+        * this array will store the
+        */
+        var _fp_offsets = [];
 
         $.each( _elements, function(_element_index, _class ) {
           $.each( $_featured_pages, function( _fp_index, _fp ) {
             var $_el    = $(_fp).find(_class),
                 _offset = 0;
 
-            //console.log( _fp_offsets );
 
             if ( $_el.length > 0 ) {
               //reset maybe added top margin

@@ -47,14 +47,14 @@ img.h-centered {
   width: auto!important;
   max-width: none!important;
   position: relative;
-  transform: none !important;
+  transform: translateZ(0) !important;
 }
 img.v-centered {
   height: auto!important;
   max-height: none!important;
   vertical-align: top;
   position: relative;
-  transform: none !important;
+  transform: translateZ(0) !important;
 }
 
 /* FLICKITY SLIDER  */
@@ -1061,6 +1061,8 @@ replace this
   /*
   * left/right/top/bottom values set to avoid (hopefully) visible line
   * see:
+  * https://github.com/presscustomizr/customizr/issues/632
+  * https://github.com/presscustomizr/customizr/issues/474
   * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
   */
   left: 2px;
@@ -1105,6 +1107,14 @@ replace this
 }
 .hover .czr-link-mask:before {
   transform: translate3d(-50%,-50%, 0) scale(1.3);
+}
+.center-images-enabled .widget-front img {
+  /* should help avoiding undesired visible line
+  * see:
+  * https://github.com/presscustomizr/customizr/issues/632
+  * https://github.com/presscustomizr/customizr/issues/474
+  */
+  transform: translateZ(0);
 }
 .center-images-disabled .widget-front img {
   /* temporary CSS centering */
