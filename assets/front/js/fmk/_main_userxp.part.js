@@ -158,99 +158,132 @@ var czrapp = czrapp || {};
       //User request animation frame
       var _page_header_inner   = $('.header-content-inner'),
           _header_push         = $('.topnav_navbars__wrapper'),
-          _offset, __push;
+          _offset, __push, doingAnimation;
 
       if ( ! _page_header_inner.length )
         return;
 
       czrapp.$_window.on( 'resize', function(){
-        /*
-        * todo: swap topnav_navbars_wrapper with sticky-placeholder when needed.
-        */
-        _offset = _page_header_inner.offset().top - _header_push.offset().top - _header_push.height();
+        if ( ! doingAnimation ) {
+          doingAnimation = true;
+          window.requestAnimationFrame( function() {
+            /*
+            * todo: swap topnav_navbars_wrapper with sticky-placeholder when needed.
+            */
+            _offset = _page_header_inner.offset().top - _header_push.offset().top - _header_push.height();
 
-        __push = _offset < 0 ? -1 * _offset : _page_header_inner.css('marginTop');
+            __push = _offset < 0 ? -1 * _offset : _page_header_inner.css('marginTop');
 
-        _page_header_inner.css('marginTop', __push );
+            _page_header_inner.css('marginTop', __push );
+            doingAnimation = false;
+          });
+        }
       });
 
     },
 
     featuredPages_test : function() {
-      var $_featured_pages = $('.featured .widget-front'),
-          doingAnimation   = false;
+      var $_featured_pages  = $('.featured .widget-front'),
+          _n_featured_pages = $_featured_pages.length;
+          doingAnimation    = false,
+          _elements         = [ '[class*=fp-text]', '.fp-button' ],
+          _lastWinWidth     = '';
 
-      if ( $_featured_pages.length < 2 )
+      if ( _n_featured_pages < 2 )
         return;
 
-      var   _fp_offsets = [];
-            _offsets  = new Array(2),
-            _maxs     = new Array(2);
+      var
+            _offsets    = new Array(_elements.length),
+            _maxs       = new Array(_elements.length);
 
-      for (var i = 0; i < 2; i++) {
-        _offsets[i] = new Array(2);
+      /*
+      * Build the _offsets matrix
+      * Row => element (order given by _elements array)
+      * Col => fp
+      */
+      for (var i = 0; i < _elements.length; i++) {
+        _offsets[i] = new Array( _n_featured_pages);
       }
 
+      //fire
       maybeSetElementsPosition();
+      //bind
       czrapp.$_window.on('resize', maybeSetElementsPosition );
 
       function maybeSetElementsPosition() {
-        setTimeout( function() {
-          if ( ! doingAnimation ) {
-            doingAnimation = true;
-            window.requestAnimationFrame(function() {
 
-              setElementsPosition();
-              doingAnimation = false;
-            });
-          }
-        }, 50 );
+        if ( ! doingAnimation ) {
+          var _winWidth = czrapp.$_window.width();
+          /*
+          * we're not interested in win height resizing
+          */
+          if ( _winWidth == _lastWinWidth )
+            return;
+
+          _lastWinWidth = _winWidth;
+
+          doingAnimation = true;
+
+          window.requestAnimationFrame(function() {
+            setElementsPosition();
+            doingAnimation = false;
+          });
+
+        }
       }
 
       function setElementsPosition() {
-        var $_fp_offset = '',
-            _elements = [ '[class*=fp-text]', '.fp-button' ];
+        var _fp_offset = '',
+            _fp_offsets = [];
 
         $.each( _elements, function(_element_index, _class ) {
           $.each( $_featured_pages, function( _fp_index, _fp ) {
             var $_el    = $(_fp).find(_class),
                 _offset = 0;
 
-            //reset top
-            $_el.css( 'top', '' );
-            //reset fp height
-            $(_fp).css( 'height', '' );
+            //console.log( _fp_offsets );
 
-            if ( $_el.length > 0 )
+            if ( $_el.length > 0 ) {
+              //reset maybe added top margin
+              $_el.css( 'marginTop', '' );
+              //retrieve the top position
               _offset = $_el.offset().top;
-
+            }
             _offsets[_element_index][_fp_index] = _offset;
-            _fp_offsets[_fp_index] = parseFloat($(_fp).offset().top);
+
+            /*
+            * Build the array of fp offset once (first loop on elements)
+            */
+            if ( _fp_offsets.length < _n_featured_pages )
+              _fp_offsets[_fp_index] = parseFloat($(_fp).offset().top);
 
           });
 
           /*
-          * Break all when featured pages one on top of each other
+          * Break all when featured pages are one on top of each other
+          * featured pages top offset differs
           */
-          if ( 1 != $.unique(_fp_offsets).length )
+          if ( 1 != _.uniq(_fp_offsets).length )
             return false;
 
+          /*
+          * for each type of element store the max offset value
+          */
           _maxs[_element_index] = Math.max.apply(Math, _offsets[_element_index] );
 
-
+          /*
+          * apply the needed offset for each featured page element
+          */
           $.each( $_featured_pages, function( _fp_index, _fp ) {
             var $_el    = $(_fp).find(_class),
                 _offset;
 
-
-            if ( $_el.length > 0 ){
-              //console.log ( $_el.css('top') );
-              /* var _this_top = parseFloat($_el.css('top')); */
-              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
-
-              $_el.css( 'top', _offset ).css('position', 'relative');
-              $(_fp).css( 'height',  $(_fp).height() + _offset );
+            if ( $_el.length > 0 ) {
+              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index] + parseFloat($_el.css('marginTop'));
+              if ( _offset )
+                $_el.css( 'marginTop', _offset );
             }
+
           });
 
         });
