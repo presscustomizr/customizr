@@ -1105,8 +1105,11 @@ replace this
 .no-effect .czr-link-mask::before {
   border: transparent;
 }
+.fp-title {
+  margin-top: 0;
+}
 .hover .czr-link-mask:before {
-  transform: translate3d(-50%,-50%, 0) scale(1.3);
+  transform: translate3d(-50%,-50%, 0) scale(1.4);
 }
 .center-images-enabled .widget-front img {
   /* should help avoiding undesired visible line

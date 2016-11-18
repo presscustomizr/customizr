@@ -36,7 +36,9 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
           <p class="fp-text-<?php czr_fn_echo( 'fp_id' ) ?>"><?php czr_fn_echo( 'text' ) ?></p>
         <?php /* END FP TEXT*/ ?>
         <?php if ( czr_fn_get( 'fp_button_text' ) ): /* FP BUTTON TEXT */ ?>
-          <a class="fp-button <?php czr_fn_echo( 'fp_button_class' ) ?>" href="<?php czr_fn_echo( 'featured_page_link' ) ?>" title="<?php czr_fn_echo( 'featured_page_title' ) ?>" ><?php czr_fn_echo( 'fp_button_text' ) ?></a>
+          <span class="fp-button">
+            <a class="<?php czr_fn_echo( 'fp_button_class' ) ?>" href="<?php czr_fn_echo( 'featured_page_link' ) ?>" title="<?php czr_fn_echo( 'featured_page_title' ) ?>" ><?php czr_fn_echo( 'fp_button_text' ) ?></a>
+          </span>
         <?php endif;/* END FP BUTTON TEXT*/ ?>
       </div>
     </div><!--/.widget-front-->

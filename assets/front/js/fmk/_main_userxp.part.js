@@ -185,23 +185,39 @@ var czrapp = czrapp || {};
     featuredPages_test : function() {
 
       var $_featured_pages  = $('.featured .widget-front'),
-          _n_featured_pages = $_featured_pages.length;
+          _n_featured_pages = $_featured_pages.length,
           doingAnimation    = false,
-          _elements         = [ '[class*=fp-text]', '.fp-button' ],
           _lastWinWidth     = '';
+
 
       if ( _n_featured_pages < 2 )
         return;
 
-      var _offsets    = new Array(_elements.length),
-          _maxs       = new Array(_elements.length);
+      var $_fp_elements     = new Array( _n_featured_pages ),
+          _n_elements       = new Array( _n_featured_pages );
 
+      //Grab all subelements having class starting with fp-
+      //Requires all fps having same html structure...
+      $.each( $_featured_pages, function( _fp_index, _fp ) {
+        $_fp_elements[_fp_index]  = $(_fp).find( '[class^=fp-]' );
+        _n_elements[_fp_index]    = $_fp_elements[_fp_index].length;
+      });
+
+      _n_elements = Math.max.apply(Math, _n_elements );
+
+      if ( ! _n_elements )
+        return;
+
+      var _offsets    = new Array( _n_elements ),
+          _maxs       = new Array( _n_elements );
+
+      console.log( $_fp_elements );
       /*
       * Build the _offsets matrix
       * Row => element (order given by _elements array)
       * Col => fp
       */
-      for (var i = 0; i < _elements.length; i++)
+      for (var i = 0; i < _n_elements; i++)
         _offsets[i] = new Array( _n_featured_pages);
 
 
@@ -232,23 +248,27 @@ var czrapp = czrapp || {};
         }
       }
 
+
       function setElementsPosition() {
         /*
         * this array will store the
         */
         var _fp_offsets = [];
 
-        $.each( _elements, function(_element_index, _class ) {
-          $.each( $_featured_pages, function( _fp_index, _fp ) {
-            var $_el    = $(_fp).find(_class),
-                _offset = 0;
+        for ( _element_index = 0; _element_index < _n_elements; _element_index++ ) {
 
+          for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+            //Reset and grab the the top offset for each element
+            var $_el    = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                _offset = 0,
+                $_fp    = $($_featured_pages[_fp_index]);
 
             if ( $_el.length > 0 ) {
-              //reset maybe added top margin
-              $_el.css( 'marginTop', '' );
+              //reset maybe added paddingTop
+              $_el.css( 'paddingTop', '' );
               //retrieve the top position
               _offset = $_el.offset().top;
+
             }
             _offsets[_element_index][_fp_index] = _offset;
 
@@ -256,16 +276,17 @@ var czrapp = czrapp || {};
             * Build the array of fp offset once (first loop on elements)
             */
             if ( _fp_offsets.length < _n_featured_pages )
-              _fp_offsets[_fp_index] = parseFloat($(_fp).offset().top);
+              _fp_offsets[_fp_index] = parseFloat( $_fp.offset().top);
+          }//endfor
 
-          });
 
           /*
-          * Break all when featured pages are one on top of each other
+          * Break this only loop when featured pages are one on top of each other
           * featured pages top offset differs
+          * We continue over other elements as we need to reset other marginTop
           */
           if ( 1 != _.uniq(_fp_offsets).length )
-            return false;
+            continue;
 
           /*
           * for each type of element store the max offset value
@@ -275,21 +296,28 @@ var czrapp = czrapp || {};
           /*
           * apply the needed offset for each featured page element
           */
-          $.each( $_featured_pages, function( _fp_index, _fp ) {
-            var $_el    = $(_fp).find(_class),
+          for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+            var $_el    = $( $_fp_elements[ _fp_index ][ _element_index ] ),
                 _offset;
 
             if ( $_el.length > 0 ) {
-              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index] + parseFloat($_el.css('marginTop'));
-              if ( _offset )
-                $_el.css( 'marginTop', _offset );
+              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
+              //if ( _offset ) {
+                $_el.css( 'paddingTop', parseFloat($_el.css('paddingTop')) + _offset );
+                //.css('position', 'relative')
+                //    .css( 'height', parseFloat($_el.css('height')) + _offset  );
+                /*for ( __element_index = _element_index+1; __element_index < _n_elements; __element_index++ ) {
+                  var $_el    = $( $_fp_elements[ _fp_index ][ __element_index ] );
+                  console.log(_offset);
+                  $_el.css( 'top', parseFloat($_el.css('top')) + _offset ).css('position', 'relative');
+                }*/
+              //}
             }
+          }//endfor
+        }//endfor
+      }//endfunction
+    }//endmethod
 
-          });
-
-        });
-      }
-    }
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};

@@ -191,6 +191,7 @@
 	.fp-title {
 		@extend .semi-bold;
 		line-height: $base-line-height;
+		margin-bottom: $base-line-height;
 		&::after {
 			content: "";
 			position: absolute;
@@ -200,12 +201,13 @@
 			top: 100%;
 			left: 0;
 			right: 0;
-			margin: $base-line-height/4 auto $base-line-height auto;
+			margin: $base-line-height/4 auto 0;
 			@include transition (all 0.6s ease);
 		}
 	}
 	.btn-edit { margin: $base-line-height 0 -1*$base-line-height 0 }
 	a.btn-more { margin-bottom: $base-line-height*2 }
+	.fp-button { display: block}
 	.tc-content {
 		width: 90%;
 		text-align: center;

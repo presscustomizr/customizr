@@ -2881,6 +2881,7 @@ dl dd {
 
 .featured .fp-title {
   line-height: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .featured .fp-title::after {
@@ -2892,7 +2893,7 @@ dl dd {
   top: 100%;
   left: 0;
   right: 0;
-  margin: 0.3125em auto 1.25em auto;
+  margin: 0.3125em auto 0;
   -webkit-transition: all 0.6s ease;
   transition: all 0.6s ease;
 }
@@ -2903,6 +2904,10 @@ dl dd {
 
 .featured a.btn-more {
   margin-bottom: 2.5em;
+}
+
+.featured .fp-button {
+  display: block;
 }
 
 .featured .tc-content {
