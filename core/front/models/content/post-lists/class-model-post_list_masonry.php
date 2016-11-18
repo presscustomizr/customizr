@@ -63,10 +63,6 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
   }
 
-  function czr_fn_get_has_format_icon_media() {
-    return $this -> czr_fn__get_post_list_item_property( 'has_format_icon_media' );
-  }
-
   function czr_fn_get_is_full_image() {
     return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
   }
@@ -75,6 +71,9 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'has_header_format_icon' );
   }
 
+  function czr_fn_get_has_post_media() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
+  }
   /*
   * Private/protected getters
   */
