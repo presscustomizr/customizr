@@ -25,17 +25,19 @@
             )
           );
         ?>
-        <div class="entry-meta row">
-          <div class="post-share float-md-right">
-            <!-- fake need to have social links somewhere -->
-            <?php
-              if ( czr_fn_has('social_share') )
-                czr_fn_render_template( array( 'template' => 'modules/social_block', 'model_id' => 'social_share' ) );
-            ?>
+        <?php
+          if ( czr_fn_has('social_share') ) :
+        ?>
+          <div class="entry-meta row">
+            <div class="post-share float-md-right">
+              <!-- fake need to have social links somewhere -->
+              <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
+            </div>
           </div>
-        </div>
+        <?php
+          endif;
+        ?>
       </footer>
-
       <?php do_action( '__after_inner_post_content' ) ?>
     </section><!-- .entry-content -->
 

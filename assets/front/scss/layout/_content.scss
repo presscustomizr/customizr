@@ -205,7 +205,7 @@
 			@include transition (all 0.6s ease);
 		}
 	}
-	.btn-edit { margin: $base-line-height 0 -1*$base-line-height 0 }
+	.btn-edit { margin: -1em 0 0 }
 	a.btn-more { margin-bottom: $base-line-height*2 }
 	.fp-button { display: block}
 	.tc-content {

@@ -18,29 +18,33 @@ endif ?>
     <div class="sections-wrapper grid__item">
     <?php
         if ( $has_post_media = czr_fn_get('has_post_media') ) {
-          czr_fn_render_template( array(
-            'template' => 'content/post-lists/singles/post_list_single_media',
-            'model_args' => array(
+          czr_fn_render_template(
+            'content/post-lists/singles/post_list_single_media',
+             array(
+              'model_args' => array(
                 'has_post_media'           => $has_post_media,
                 'is_full_image'            => czr_fn_get( 'is_full_image'  )
+              )
             )
-          ));
+          );
         }
     ?>
       <section class="tc-content entry-content__holder">
         <div class="entry-content__wrapper">
         <?php
           /* header */
-          czr_fn_render_template( array(
-            'template'   => 'content/post-lists/singles/headings/post_list_single_header',
-            'model_args' => array(
+          czr_fn_render_template(
+            'content/post-lists/singles/headings/post_list_single_header',
+            array(
+              'model_args' => array(
                 'has_header_format_icon'  => czr_fn_get( 'has_header_format_icon' )
+              )
             )
-          ));
+          );
           /* content inner */
-          czr_fn_render_template( array( 'template' =>'content/post-lists/singles/contents/post_list_single_content_inner' ) );
+          czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
           /* footer */
-          czr_fn_render_template( array( 'template' =>'content/post-lists/singles/footers/post_list_single_footer' ) );
+          czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer' );
         ?>
         </div>
       </section>

@@ -2900,7 +2900,7 @@ dl dd {
 }
 
 .featured .btn-edit {
-  margin: 1.25em 0 -1.25em 0;
+  margin: -1em 0 0;
 }
 
 .featured a.btn-more {

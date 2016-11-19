@@ -902,15 +902,17 @@ replace this
 [class*=grid-container__] .full-image .tc-thumbnail {
   max-height: 600px;
 }*/
+
 .grid-container__masonry .full-image .tc-thumbnail img{
     width: auto;
     height: 100%;
     max-width: none;
+/*
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
     transform: translate3d(-50%, 0, 0);
-
+*/
 }
 
 .full-image .tc-thumbnail {
@@ -1120,6 +1122,34 @@ replace this
   transform: translateZ(0);
 }
 .center-images-disabled .widget-front img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+/*
+Headings images
+*/
+.page__header {
+  overflow: hidden;
+}
+.page__header .entry-media__holder {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.page__header .entry-media__holder img {
+  width: 100%;
+  height: auto;
+}
+/* general */
+.no-js-media-centering.entry-media__holder img {
   /* temporary CSS centering */
   transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
   transform: translate3d(-50%, -50%, 0);

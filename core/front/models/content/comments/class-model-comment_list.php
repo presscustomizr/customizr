@@ -41,8 +41,8 @@ class CZR_comment_list_model_class extends CZR_Model {
     ) );
 
     if ( czr_fn_has( 'comment' ) && isset( $args['type'] ) && 'comment' == $args['type'] )
-      czr_fn_render_template( array( 'template' => 'content/comments/comment' ) );
+      czr_fn_render_template( 'content/comments/comment' );
     elseif ( czr_fn_has( 'trackpingback' ) && isset( $args['type'] ) && 'pings' == $args['type'] )
-      czr_fn_render_template( array( 'template' => 'content/comments/trackpingback' ) );
+      czr_fn_render_template( 'content/comments/trackpingback' );
   }
 }

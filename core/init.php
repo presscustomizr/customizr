@@ -457,7 +457,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         }//end of fn
 
 
-        //called when requiring a file will - always give the precedence to the child-theme file if it exists
+        //called when requiring a file - will always give the precedence to the child-theme file if it exists
         //then to the theme root
         function czr_fn_get_theme_file( $path_suffix ) {
             $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
@@ -491,11 +491,10 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //requires a file only if exists
         function czr_fn_require_once( $path_suffix ) {
-            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
+            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) )
               require_once( $filename );
-              return true;
-            }
-            return false;
+
+            return (bool) $filename;
         }
 
 

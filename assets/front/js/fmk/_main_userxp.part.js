@@ -157,31 +157,39 @@ var czrapp = czrapp || {};
     headingsActions_test : function() {
       //User request animation frame
       var _page_header_inner   = $('.header-content-inner'),
-          _header_push         = $('.topnav_navbars__wrapper'),
-          _offset, __push, doingAnimation;
+          _header_push         = $('.header-absolute .topnav_navbars__wrapper'),
+          _offset, doingAnimation;
 
-      if ( ! _page_header_inner.length )
+      if ( ! _page_header_inner.length || ! _header_push.length )
         return;
 
-      czrapp.$_window.on( 'resize', function(){
+      _maybeHandleResize();
+      czrapp.$_window.on('resize', _maybeHandleResize );
+
+      function _maybeHandleResize(){
         if ( ! doingAnimation ) {
+          //do nothing if is scrolling
+          if ( czrapp.$_body.hasClass('sticky-enabled') )
+            return;
+
           doingAnimation = true;
           window.requestAnimationFrame( function() {
-            /*
-            * todo: swap topnav_navbars_wrapper with sticky-placeholder when needed.
-            */
-            _offset = _page_header_inner.offset().top - _header_push.offset().top - _header_push.height();
 
-            __push = _offset < 0 ? -1 * _offset : _page_header_inner.css('marginTop');
+            //reset offset
+            if ( 'absolute' != _header_push.css('position') )
+              _offset = '';
+            else
+              _offset =  parseFloat( _header_push.outerHeight() );
 
-            _page_header_inner.css('marginTop', __push );
+            _page_header_inner.css('paddingTop', _offset );
+            //We should handle the font sizing I think
             doingAnimation = false;
           });
         }
-      });
+      };
 
     },
-
+    /* Find a way to make this smaller but still effective */
     featuredPages_test : function() {
 
       var $_featured_pages  = $('.featured .widget-front'),
@@ -303,14 +311,6 @@ var czrapp = czrapp || {};
               _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
               if ( _offset )
                 $_el.css( 'paddingTop', parseFloat($_el.css('paddingTop')) + _offset );
-                //.css('position', 'relative')
-                //    .css( 'height', parseFloat($_el.css('height')) + _offset  );
-                /*for ( __element_index = _element_index+1; __element_index < _n_elements; __element_index++ ) {
-                  var $_el    = $( $_fp_elements[ _fp_index ][ __element_index ] );
-                  console.log(_offset);
-                  $_el.css( 'top', parseFloat($_el.css('top')) + _offset ).css('position', 'relative');
-                }*/
-              //}
             }
           }//endfor
         }//endfor

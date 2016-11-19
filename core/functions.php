@@ -114,10 +114,9 @@ if ( ! function_exists('czr_fn_new') ) {
 * model and template should share the same name
 * some templates are shared by several models => that's when the $_id param is useful
 * @since 4.0.0
-*
-* @param array $args {
-*     Array of options.
-*     @type string $template           The template to render (with tree path, without the trailing .php)
+* @param string $template             The template to render (with tree path, without the trailing .php)
+* @param array  $args {
+*     Optional. Array of options.
 *     @type string $model_id           Optional. The id of the model to feed the template with.
 *                                      If not specified or not already registered the system will try to
 *                                      register a model with classname retrieved from the template option,
@@ -132,13 +131,13 @@ if ( ! function_exists('czr_fn_new') ) {
 * @return void
 */
 if ( ! function_exists('czr_fn_render_template') ) {
-  function czr_fn_render_template( $args = array() ) {
+  function czr_fn_render_template( $template, $args = array() ) {
 
-    if ( empty( $args['template'] ) )
+    if ( empty( $template ) )
       return; /* Fire a notice? */
 
     //extract
-    $_t           =  $args['template'];
+    $_t           =  $template;
     $_model_id    =  ! empty( $args['model_id'] ) ? $args['model_id'] : basename($_t);
     $_model_class =  ! empty( $args['model_class'] ) ? $args['model_class'] : '';
     $_model_args  =  ! empty( $args['model_args'] )  ? $args['model_args']  : array();

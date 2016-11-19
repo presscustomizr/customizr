@@ -65,13 +65,15 @@
       /* Edit link in the figure for the expanded item */
         if( czr_fn_get( 'has_edit_in_caption' ) )
           if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
-            czr_fn_render_template( array(
-              'template' => 'modules/edit_button',
-              'model_args' => array(
+            czr_fn_render_template(
+              'modules/edit_button',
+              array(
+                'model_args' => array(
                   'edit_button_class' => 'btn-edit-inverse',
                   'edit_button_link'  => $edit_post_link,
+                )
               )
-            ) );
+            );
       ?>
     </div>
   <?php
@@ -81,8 +83,8 @@
 
   ?>
     <div class="tc-content">
-      <?php if ( czr_fn_has('post_list_header') ) czr_fn_render_template( array( 'template' => 'content/post-lists/singles/headings/post_list_single_header') ) ?>
-      <?php if ( czr_fn_has('post_list_footer') ) czr_fn_render_template( array( 'template' => 'content/post-lists/singles/footers/post_list_single_footer') ) ?>
+      <?php czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header' ) ?>
+      <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer' ) ?>
     </div>
   <?php
 

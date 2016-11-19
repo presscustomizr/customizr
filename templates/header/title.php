@@ -9,7 +9,7 @@
   </a>
   <?php
     if ( czr_fn_has( 'tagline' ) )
-      czr_fn_render_template( array( 'template' =>'header/tagline') );
+      czr_fn_render_template( 'header/tagline' );
   ?>
 </h1>
 

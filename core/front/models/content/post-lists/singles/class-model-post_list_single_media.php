@@ -17,8 +17,8 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
     if ( ! $this -> only_thumb && 'gallery' == $post_format )
       array_push( $element_class, 'czr-carousel' );
 
-    if ( ! $this->has_format_icon_media && esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) && 'audio' != $post_format )
-      array_push( $element_class, 'js-media-centering' );
+    if ( $this -> only_thumb || ( ! $this->has_format_icon_media && 'audio' != $post_format ) )
+      array_push( $element_class, esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-media-centering' : 'no-js-media-centering' );
 
     return $element_class;
   }
