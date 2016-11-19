@@ -2882,6 +2882,7 @@ dl dd {
 .featured .fp-title {
   line-height: 1.25em;
   margin-bottom: 1.25em;
+  word-break: break-word;
 }
 
 .featured .fp-title::after {

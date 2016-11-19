@@ -9,27 +9,27 @@
 
 //header skins
 
-	&.header-skin-dark  {
-			.section-slider .filter {
-				@include filter($black, $white, 0.5);
-				+ .slider-text { color: $white; }
-			}
-			.image__header {
-				@extend .filter;
-				@include filter($black, $white, 0.5);
-			}
-	}
-
-	&.header-skin-light {
+&.header-skin-dark  {
 		.section-slider .filter {
-			@include filter($white, $black, 0.75);
-			+ .slider-text { color: $black; }
+			@include filter($black, $white, 0.5);
+			+ .slider-text { color: $white; }
 		}
 		.image__header {
 			@extend .filter;
-			@include filter($white, $black, 0.75);
+			@include filter($black, $white, 0.5);
 		}
+}
+
+&.header-skin-light {
+	.section-slider .filter {
+		@include filter($white, $black, 0.75);
+		+ .slider-text { color: $black; }
 	}
+	.image__header {
+		@extend .filter;
+		@include filter($white, $black, 0.75);
+	}
+}
 
 
 //slider section
@@ -67,8 +67,7 @@
 		top: 0;
 
 }
-.parallax  .content
-{
+.parallax  .content {
 	@extend %vertical-align;
 }
 #main-wrapper .section.custom  { margin : $base-line-height*2 0; }
@@ -192,6 +191,7 @@
 		@extend .semi-bold;
 		line-height: $base-line-height;
 		margin-bottom: $base-line-height;
+		word-break: break-word;
 		&::after {
 			content: "";
 			position: absolute;

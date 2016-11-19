@@ -211,7 +211,6 @@ var czrapp = czrapp || {};
       var _offsets    = new Array( _n_elements ),
           _maxs       = new Array( _n_elements );
 
-      console.log( $_fp_elements );
       /*
       * Build the _offsets matrix
       * Row => element (order given by _elements array)
@@ -302,7 +301,7 @@ var czrapp = czrapp || {};
 
             if ( $_el.length > 0 ) {
               _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
-              //if ( _offset ) {
+              if ( _offset )
                 $_el.css( 'paddingTop', parseFloat($_el.css('paddingTop')) + _offset );
                 //.css('position', 'relative')
                 //    .css( 'height', parseFloat($_el.css('height')) + _offset  );
