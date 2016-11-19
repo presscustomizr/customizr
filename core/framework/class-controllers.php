@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'author_description',
               'comment_list',
               'comments',
-              'post_navigation',
+              'posts_navigation',
               'post_list_heading',
               'search_heading',
               'post_heading',

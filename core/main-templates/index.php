@@ -161,13 +161,13 @@
     <?php do_action('__after_main_wrapper'); ?>
 
     <?php
-      if ( czr_fn_has('post_navigation') ) :
+      if ( czr_fn_has('posts_navigation') ) :
     ?>
       <div class="container-fluid">
         <div class="row">
         <?php
-          $_post_navigation_template = $_is_post_list ? 'content/post-lists/post_navigation_posts' : 'content/singular/post_navigation_singular';
-          czr_fn_render_template( array( 'template' => $_post_navigation_template, 'model_id' => 'post_navigation', 'model_class' => 'content/navigation/post_navigation' ) );
+          $_pn_template_prefix = $_is_post_list ? 'post_list' : 'singular';
+          czr_fn_render_template( array( 'template' => "content/navigation/{$_pn_template_prefix}_posts_navigation", 'model_id' => 'posts_navigation',  ) );
         ?>
         </div>
       </div>

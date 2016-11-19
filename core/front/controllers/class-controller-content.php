@@ -200,7 +200,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
     }
 
-    function czr_fn_display_view_post_navigation() {
+    function czr_fn_display_view_posts_navigation() {
       global $wp_query;
       $bool  = $wp_query -> post_count > 0;
       $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
@@ -212,11 +212,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       if ( CZR() -> czr_fn_is_customizing() )
         return true;
 
-      if ( ! $this->czr_fn_is_post_navigation_enabled() )
+      if ( ! $this->czr_fn_is_posts_navigation_enabled() )
         return false;
 
       $_context = czr_fn_get_query_context();
-      return $this -> czr_fn_is_post_navigation_context_enabled( $_context );
+      return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
     }
 
 
@@ -294,14 +294,14 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     * @param (string or bool) the context
     * @return bool
     */
-    function czr_fn_is_post_navigation_context_enabled( $_context ) {
+    function czr_fn_is_posts_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
     /*
     * @return bool
     */
-    function czr_fn_is_post_navigation_enabled(){
+    function czr_fn_is_posts_navigation_enabled(){
       return apply_filters( 'czr_show_post_navigation', 1 == esc_attr( czr_fn_get_opt( 'tc_show_post_navigation' ) ) );
     }
 
