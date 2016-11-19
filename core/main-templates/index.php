@@ -34,13 +34,15 @@
         <div class="container-fluid">
           <?php
             if ( czr_fn_has( 'post_list_heading' ) )
-              czr_fn_render_template( array( 'template' => 'content/post-lists/headings/post_list_heading' ) );
-            elseif ( czr_fn_has( 'post_list_search_heading' ) )
-              czr_fn_render_template( array( 'template' => 'content/post-lists/headings/post_list_search_heading' ) );
+              $_heading_template = 'content/headings/post_list_heading';
+            elseif ( czr_fn_has( 'search_heading' ) )
+              $_heading_template = 'content/headings/search_heading';
             elseif ( czr_fn_has('post_heading') )
-              czr_fn_render_template( array( 'template' => 'content/singular/post_heading' ) );
+              $_heading_template = 'content/headings/post_heading';
             else //pages and fallback
-              czr_fn_render_template( array( 'template' => 'content/singular/page_heading' ) );
+              $_heading_template = 'content/headings/page_heading';
+
+            czr_fn_render_template( array( 'template' => $_heading_template ) );
           ?>
         </div>
       <?php
