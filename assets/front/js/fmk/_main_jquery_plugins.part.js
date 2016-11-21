@@ -150,6 +150,7 @@ var czrapp = czrapp || {};
           setGallerySize: false,
           cellSelector: '.carousel-cell',
           dragThreshold: 10,
+          autoPlay: true,
           /*
           * Set accessibility to false as it produces the following issue:
           * - flickity, when accessibiity is set to true, sets the "carousel" tabindex property
