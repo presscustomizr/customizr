@@ -579,26 +579,23 @@ WP classes
 .grid-container__square-mini {
 	.col-xs-12 { padding: 0; }
 	.post { margin-bottom: 0; }
-	.wide & {
-		.grid__item .tc-content {
-			height:356.25px;
-		}
-		.grid__item .post-thumbnail {
-			width: 356.25px;
-			height: 356.25px;
-		}
-	}
 	.post-thumbnail { width: 277.5px; height: 277.5px}
 	.entry-header .entry-title::after {
 		content: "";
 		position: absolute;
-		bottom: -.1em;
+		bottom: 0;
 		left:0;
 		width: $base-line-height*2;
 		height: 2px;
 		background: $black;
 		@include transition (all 0.3s ease);
 	}
+	.entry-title {
+		overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
+  }
 	.entry-header.no-title .entry-title::after {
 		content: none
 	}

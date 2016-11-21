@@ -259,12 +259,6 @@
 				margin-top: 0;
 			}
 		}
-		.author-info {
-
-			.avatar, a { float:none; clear: none; display: inline-block; }
-			a { width: auto; margin-left: $base-line-height;}
-		}
-
 
 		.post-info, .author-info, .post-tags, .entry-header .entry-meta {	@extend .small;	}
 		.author-info {
@@ -273,14 +267,13 @@
 				@extend .semi-bold;
 				line-height: 48px;
 				margin-right: $base-line-height;
-				width: 100%;
-				display: block;
-				clear:both;
+				width: auto;
+				margin-left: $base-line-height;
 				text-transform: uppercase;
 				font-family: $serviceFont;
 				letter-spacing: 4px;
 			}
-			.avatar { display: block; float:right; clear:both; }
+			.avatar, a { float:none; clear: none; display: inline-block; }
 		}
 		.tax__container {
 			@extend %categories;
@@ -340,15 +333,6 @@
 			width: 100%;
 		}
 
-	}
-	article {
-		.post-tags { width: 50%; float: left; }
-		.post-info {  }
-		.author-info {
-
-			.avatar, a { float:none; clear: none; display: inline-block; }
-			a { width: auto; margin-left: $base-line-height;}
-		}
 	}
 
 	.post.format-video {

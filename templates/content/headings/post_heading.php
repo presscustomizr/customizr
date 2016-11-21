@@ -18,7 +18,7 @@
     endif
 ?>
   <div class="container header-content">
-    <div class="header-content-inner">
+    <div class="header-content-inner col-xs-12">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => 3 ) ) ) : ?>
         <div class="entry-meta category-info">
           <?php echo $cat ?>
@@ -36,7 +36,8 @@
           );
     ?>
     </div>
-    <div class="post-info">
+    <div class="header-content-bottom">
+      <div class="post-info col-xs-12">
         <?php
           if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) ) :
         ?>
@@ -71,6 +72,7 @@
               <?php echo $author ?>
             </div>
         <?php endif ?>
+      </div>
     </div>
   </div>
 </header>

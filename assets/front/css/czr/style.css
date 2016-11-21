@@ -632,12 +632,6 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
   overflow: hidden;
 }
 
-/* Avoid wrapping the title on a new line */
-[class*=grid-container__square-mini] .grid__item .entry-header .entry-title {
-  text-align: left;
-}
-
-
 .row.grid[class*=grid-container__square-mini] {
   height: 0;
   padding-bottom: 50%; /* Only 1 item shown */
