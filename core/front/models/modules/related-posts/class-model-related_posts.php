@@ -1,6 +1,6 @@
 <?php
 class CZR_related_posts_model_class extends CZR_model {
-  public $excerpt_length = 18;
+  public $excerpt_length = 22;
   public $media_col      = 'col-xs-6';
   public $content_col    = 'col-xs-6';
 
@@ -52,7 +52,7 @@ class CZR_related_posts_model_class extends CZR_model {
   }
 
   function czr_fn_get_article_selectors() {
-    return czr_fn_get_the_post_list_article_selectors( array('col-xs-12', 'col-md-6', 'grid-item') );
+    return czr_fn_get_the_post_list_article_selectors( array('col-xs-12', 'col-lg-6', 'grid-item') );
   }
 
 

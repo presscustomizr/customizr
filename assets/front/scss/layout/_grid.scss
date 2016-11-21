@@ -572,10 +572,6 @@ WP classes
 	}
 }
 
-.grid-container__square-mini .entry-header .entry-meta {
-  font-size: 0.83333em;
-}
-
 .grid-container__square-mini {
 	.col-xs-12 { padding: 0; }
 	.post { margin-bottom: 0; }
@@ -598,6 +594,9 @@ WP classes
   }
 	.entry-header.no-title .entry-title::after {
 		content: none
+	}
+	.entry-header .entry-meta {
+  	font-size: 0.83333em;
 	}
 	.format-standard {
 		.entry-header .entry-meta, .entry-summary  { @extend .small; }

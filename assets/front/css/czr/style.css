@@ -610,8 +610,8 @@ remove:
 remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
 .grid-container__square-mini .format-standard .entry-summary
 */
-.grid[class*=grid-container__square-mini] .tc-content-inner {
-  font-size: 1.25em !important;
+.grid[class*=grid-container__square-mini] article .tc-content-inner {
+  font-size: 1.5em;
   margin-top: 1.5em;
 }
 .grid[class*=grid-container__square-mini] .tc-content-inner blockquote{
@@ -621,7 +621,7 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
 }
 .grid[class*=grid-container__square-mini] .tc-content-inner blockquote cite,
 .grid[class*=grid-container__square-mini] .tc-content-inner blockquote p {
-  font-size: 1.3em;
+  font-size: 1em;
 }
 [class*=grid-container__square-mini] section {
   padding: 0;
@@ -631,15 +631,25 @@ remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item
   height: 0;
   overflow: hidden;
 }
-
+.row.grid[class*=grid-container__square-mini] .entry-meta {
+  display: none;
+}
 .row.grid[class*=grid-container__square-mini] {
   height: 0;
   padding-bottom: 50%; /* Only 1 item shown */
   overflow: hidden;
 }
-@media ( min-width: 768px ) {
+@media ( min-width: 769px ) {
+  .row.grid[class*=grid-container__square-mini] .entry-meta{
+    display: block;
+  }
+}
+@media ( min-width: 992px ) {
   .row.grid[class*=grid-container__square-mini] {
     padding-bottom: 25%; /* 2 items shown */
+  }
+  .grid[class*=grid-container__square-mini] article .tc-content-inner {
+    font-size: 1.25em;
   }
 }
 
@@ -666,10 +676,10 @@ replace:
 }
 .grid-container__square-mini .entry-content__wrapper {
   position: absolute;
-  left: 1.6em;
-  right: 1.6em;
-  top: 1.6em;
-  bottom: 1.6em;
+  left: 2em;
+  right: 2em;
+  top: 2em;
+  bottom: 2em;
   overflow: hidden;
 }
 /*

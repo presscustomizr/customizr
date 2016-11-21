@@ -2596,7 +2596,7 @@ form.czr-form .czr-search-field {
 
 @media (min-width: 992px) {
   #tc-page-wrap {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 }
 
@@ -4157,10 +4157,6 @@ WP classes
   content: none;
 }
 
-.grid-container__square-mini .entry-header .entry-meta {
-  font-size: 0.83333em;
-}
-
 .grid-container__square-mini .col-xs-12 {
   padding: 0;
 }
@@ -4195,6 +4191,10 @@ WP classes
 
 .grid-container__square-mini .entry-header.no-title .entry-title::after {
   content: none;
+}
+
+.grid-container__square-mini .entry-header .entry-meta {
+  font-size: 0.83333em;
 }
 
 .grid-container__square-mini .format-standard .entry-header .entry-title {
