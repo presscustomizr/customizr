@@ -1073,12 +1073,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       /* SLIDERS : standard or slider of posts */
       if ( czr_fn_has('main_slider') ) {
-        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_slider') );
+        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_slider') );
       }
 
       elseif( czr_fn_has( 'main_posts_slider' ) ) {
-        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_posts_slider') );
+        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_posts_slider') );
       }
+
 
       do_action('__before_main_wrapper');
 
@@ -1089,7 +1090,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
         <div class="container" role="main">
 
-          <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( array( 'template' => 'modules/breadcrumb') ); ?>
+          <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( 'modules/breadcrumb' ); ?>
 
           <?php do_action('__before_content_wrapper'); ?>
 
@@ -1123,14 +1124,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           </div><!-- .column-content-wrapper -->
 
           <?php do_action('__after_content_wrapper'); ?>
-
-          <?php if ( czr_fn_has('comments') ) : ?>
-            <div class="row">
-              <div class="col-xs-12">
-                <?php czr_fn_render_template( array( 'template' => 'content/comments/comments') ) ?>
-              </div>
-            </div>
-          <?php endif ?>
 
         </div><!-- .container -->
 
