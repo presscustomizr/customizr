@@ -26,7 +26,7 @@
         'modules/edit_button',
          array(
           'model_args' => array(
-            'edit_button_class' => 'slider-btn-edit',
+            'edit_button_class' => 'slider-btn-edit inverse',
             'edit_button_link'  => czr_fn_get( 'slider_edit_link' ),
             'edit_button_text'  => czr_fn_get( 'slider_edit_link_text' ),
           )

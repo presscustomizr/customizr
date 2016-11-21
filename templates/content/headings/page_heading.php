@@ -25,6 +25,7 @@
           czr_fn_render_template(
             'modules/edit_button',
             array( 'model_args' => array(
+                'edit_button_class' => 'inverse',
                 'edit_button_link'  => $edit_post_link
               )
             )

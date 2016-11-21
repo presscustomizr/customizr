@@ -49,7 +49,7 @@ endif;
         'modules/edit_button',
         array(
           'model_args' => array(
-            'edit_button_class' => 'slide-btn-edit',
+            'edit_button_class' => 'slide-btn-edit inverse',
             'edit_button_link'  => $edit_url,
             'edit_button_text'  => __('Edit this slide', 'customizr')
           )

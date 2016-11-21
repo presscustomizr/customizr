@@ -45,12 +45,8 @@
 	.bg-link { z-index: 4 }
 	.btn-edit {
 		position: absolute;
-
-		color: $black;
-		background: $white;
 		&.slider-btn-edit { bottom: 10px;	left: 10px }
 		&.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
-		&:hover { background: $grey-light; }
 	}
 }
  .parallax {

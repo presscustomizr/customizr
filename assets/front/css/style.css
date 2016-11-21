@@ -1348,12 +1348,11 @@ p {
   margin-bottom: 1em;
 }
 
-.btn-edit.btn-edit-inverse {
-  background: #777;
+.btn-edit.inverse {
   color: #fff;
 }
 
-.btn-edit.btn-edit-inverse:hover {
+.btn-edit.inverse:hover {
   color: #202020;
   background: #eceeef;
 }
@@ -2690,8 +2689,6 @@ form.czr-form .czr-search-field {
 
 [id^=customizr-slider-] .btn-edit {
   position: absolute;
-  color: #202020;
-  background: #fff;
 }
 
 [id^=customizr-slider-] .btn-edit.slider-btn-edit {
@@ -2703,10 +2700,6 @@ form.czr-form .czr-search-field {
   bottom: 10%;
   right: 10px;
   z-index: 4;
-}
-
-[id^=customizr-slider-] .btn-edit:hover {
-  background: #eceeef;
 }
 
 .parallax {

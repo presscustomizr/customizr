@@ -78,10 +78,9 @@
 }
 .btn-edit {
 		@extend .btn-small;
-    &.btn-edit-inverse {
-     background: $grey-dark;
-     color: $white;
-     &:hover { color: $black; background: $grey-light; }
+    &.inverse {
+      color: $white;
+      &:hover { color: $black; background: $grey-light; }
     }
 		padding: 0 $base-line-height 0 $base-line-height/2;
 		line-height: 2em;
@@ -97,6 +96,7 @@
 		display:inline-block;
 	}
 }
+
 a.external { position: relative; @extend .semi-bold; }
 a[target="_blank"]:hover:after {
 }
