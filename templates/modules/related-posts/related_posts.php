@@ -5,7 +5,7 @@
 ?>
 <?php
 
-global $wp_query, $wp_the_query;
+global $wp_query;
 //do we have a custom query ?
 $wp_query = new WP_Query( czr_fn_get('query') );
 

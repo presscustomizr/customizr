@@ -72,6 +72,10 @@ if ( ! class_exists( 'CZR_View' ) ) :
             echo "<!-- HOOK CONTENT HERE : __after_{$this -> model -> id} -->";
           }
           do_action( "__after_{$this -> model -> id}" );
+
+          // (the view's model is passed by reference)
+          do_action_ref_array( 'post_rendering_view', array(&$this -> model) );
+          do_action_ref_array( "post_rendering_view_{$this -> model -> id}", array(&$this -> model) );
     }
 
 

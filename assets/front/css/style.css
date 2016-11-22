@@ -2585,8 +2585,14 @@ form.czr-form .czr-search-field {
   background: #f7f8f9;
 }
 
-#main-wrapper.section {
+#main-wrapper {
   padding-bottom: 5em;
+}
+
+#main-wrapper::before, #main-wrapper::after, .container[role="main"]::before, .container[role="main"]::after {
+  display: table;
+  content: '';
+  line-height: 0;
 }
 
 #tc-page-wrap {
@@ -2675,8 +2681,8 @@ form.czr-form .czr-search-field {
 
 .section {
   position: relative;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .section-slider {
@@ -2718,7 +2724,7 @@ form.czr-form .czr-search-field {
 }
 
 #main-wrapper .section.custom {
-  margin: 2.5em 0;
+  margin: 2.5em;
 }
 
 .section .image {
@@ -2858,6 +2864,10 @@ dl dd {
 
 /*}*/
 /* featured pages*/
+.marketing {
+  margin-bottom: 3.25em;
+}
+
 .featured {
   margin-top: 2.5em;
   position: relative;

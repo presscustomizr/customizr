@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           if ( empty( $model ) ) {
             do_action('czr_dev_notice', 'in CZR_MODEL construct : a model has no id ');
             return;
-          }elseif ( FALSE == $model['id'] ) {
+          } elseif ( FALSE == $model['id'] ) {
             //if model ID has been set to false => silent exit. Useful in cases when in czr_fn_extend_params the model
             //itself understands that it has to exit its instantiation
             CZR() -> collection -> czr_fn_delete( $this -> id );
@@ -85,8 +85,8 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           //maybe add style
           $this -> czr_fn_maybe_add_style();
 
-          //Allow models to filter other view's model before rendering
-          $this -> czr_fn_maybe_filter_views_model();
+          //a way to allow models to act on their view
+          $this -> czr_fn_add_view_pre_and_post_actions();
 
           //Allow models to filter their view visibility
           add_filter( "czr_do_render_view_{$this -> id}", array( $this, 'czr_fn_maybe_render_this_model_view' ), 0 );
@@ -97,6 +97,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
 
           //takes the view instance as param
           add_action( "view_instantiated_{$this -> id}"   , array( $this, 'czr_fn_maybe_hook_or_render_view'), 20, 1 );
+
 
           //Maybe instantiate the model's view
           //listens to 'wp' if not fired yet, or fire the instantiation
@@ -189,6 +190,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           //? using the czr_fn_set_property ( 'hook' , 'value' ) could also be an option in an extended model ?
           $_da_hook     = apply_filters("_da_hook_{$this -> id}" , $this -> hook );
           $_da_priority = apply_filters("_da_priority_{$this -> id}" , $this -> priority );
+
 
           //Renders the view on the requested hook
           //'cause yes we do have a hook at this point, who doubts about that ?
@@ -341,12 +343,13 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     // The class parameter will be stored in the model as an array to allow a better way to filter it ( e.g. avoid duplications), but to make it suitable for the rendering, it must be transformed in a string
     // Maybe we can think about make the model attributes, when needed, a set of
     // value, "sanitize" callback and let the view class do this..
-    protected function czr_fn_maybe_filter_views_model() {
-          if ( method_exists( $this, 'pre_rendering_view_cb' ) )
-            add_action( 'pre_rendering_view', array( $this, 'pre_rendering_view_cb' ) );
+    protected function czr_fn_add_view_pre_and_post_actions() {
 
           //by default filter this module before rendering (for default properties parsing, e.g. element_class )
-          add_action( "pre_rendering_view_{$this -> id}", array($this, "pre_rendering_my_view_cb" ), 9999 );
+          add_action( "pre_rendering_view_{$this -> id}", array($this, "czr_fn_pre_rendering_my_view_cb" ), 9999 );
+
+          //by default filter this module before rendering (for default properties parsing, e.g. element_class )
+          add_action( "post_rendering_view_{$this -> id}", array($this, "czr_fn_post_rendering_my_view_cb" ), 9999 );
     }
 
 
@@ -354,13 +357,21 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     * Before rendering this model view allow the setup of the late properties (e.g. in the loops)
     * Always sanitize those properties for being printed ( e.g. array to string )
     */
-    public function pre_rendering_my_view_cb( $model ) {
+    public function czr_fn_pre_rendering_my_view_cb( $model ) {
           if ( method_exists( $this, 'czr_fn_setup_late_properties' ) )
             $this -> czr_fn_setup_late_properties();
 
           $this -> czr_fn_sanitize_model_properties( $model );
     }
 
+    /*
+    * After rendering this model view allow the reset (e.g. in the loops)
+    */
+    public function czr_fn_post_rendering_my_view_cb( $model ) {
+          if ( method_exists( $this, 'czr_fn_reset_late_properties' ) )
+            $this -> czr_fn_reset_late_properties();
+
+    }
 
     protected function czr_fn_sanitize_model_properties( $model ) {
           $this -> element_class  = $this -> czr_fn_stringify_model_property( 'element_class' );

@@ -5,7 +5,6 @@
 */
 class CZR_post_list_masonry_model_class extends CZR_Model {
   public $excerpt_length;
-  public $has_post_media;
 
   //Default post list layout
   private static $default_post_list_layout   = array(
@@ -26,10 +25,9 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
-    $model[ 'element_class']       = czr_fn_get_in_content_width_class();
-    $model[ 'has_post_media' ]     = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
-
     $this->post_class              = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this->post_class );
+
+    $model                         = $this -> czr_fn_masonry_set_default_options( $model );
 
     /*
     * The alternate grid does the same
@@ -39,7 +37,30 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     //reset masonry items at loop end? sort of garbage collector
     add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
 
-    return $model;
+    return parent::czr_fn_extend_params( $model );
+  }
+
+
+  function czr_fn_masonry_set_default_options( $model ) {
+    $_defaults = array(
+      'masonry_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'masonry_content_width'    => czr_fn_get_in_content_width_class(),
+      'contained'                => false
+    );
+
+    return wp_parse_args( $_defaults, $model );
+  }
+
+ /**
+  * add custom classes to the masonry container element
+  */
+  function czr_fn_get_element_class() {
+    $_classes = array();
+    if ( ! empty( $this->masonry_content_width ) )
+      $_classes = array_merge( $_classes, $this->masonry_content_width );
+    if ( ! empty( $this->contained ) )
+      array_push( $_classes, 'container' );
+    return $_classes;
   }
 
 
@@ -125,7 +146,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
 
 
   protected function czr_fn__get_has_post_media( $current_post_format ) {
-    return $this->has_post_media && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
+    return $this->masonry_show_thumb && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
   }
 
   /*

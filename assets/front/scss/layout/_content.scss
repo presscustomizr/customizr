@@ -1,5 +1,13 @@
 #main-wrapper.bg { background: $grey-lightest; }
-#main-wrapper.section { padding-bottom:$base-line-height*4; }
+#main-wrapper { padding-bottom:$base-line-height*4; }
+
+#main-wrapper, .container[role="main"]{
+	&::before, &::after {
+		display: table;
+		content: '';
+		line-height: 0
+	}
+}
 #tc-page-wrap {
 	position: relative;
 	@media (min-width: 992px){
@@ -35,11 +43,10 @@
 //slider section
 .slider-text > h2 { margin:0; line-height: 1.1 }
 .slider-text > h2 + h3 { margin-top:0; margin-bottom: $base-line-height; }
-.section { position: relative; margin:0; padding:0 }
+.section { position: relative; padding:0; margin:0;}
 .section-slider {
 	@extend %vertical-align-parent;
 	overflow: hidden;
-
 }
 [id^=customizr-slider-] {
 	.bg-link { z-index: 4 }
@@ -66,7 +73,7 @@
 .parallax  .content {
 	@extend %vertical-align;
 }
-#main-wrapper .section.custom  { margin : $base-line-height*2 0; }
+#main-wrapper .section.custom  { margin: $base-line-height*2; }
 
 .section .image {
   background-size: cover;
@@ -176,7 +183,7 @@
 /*}*/
 
 /* featured pages*/
-
+.marketing { margin-bottom: $base-line-height + 2 }
 .featured {
 	margin-top: $base-line-height * 2;
 	position: relative;

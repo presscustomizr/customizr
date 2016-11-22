@@ -25,7 +25,7 @@ class CZR_related_posts_model_class extends CZR_model {
   * @since Customizr 4.0
   */
   function czr_fn_setup_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
+    if ( $model_id == $this->id )
       //filter the excerpt length
       add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }

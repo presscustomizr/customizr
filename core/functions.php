@@ -133,7 +133,7 @@ if ( ! function_exists('czr_fn_new') ) {
 if ( ! function_exists('czr_fn_render_template') ) {
   function czr_fn_render_template( $template, $args = array() ) {
 
-    if ( empty( $template ) )
+    if ( empty( $template ) || ! is_string( $template ) )
       return; /* Fire a notice? */
 
     //extract

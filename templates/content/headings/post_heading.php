@@ -8,7 +8,7 @@
 ?>
 <header class="row page__header image__header entry-header" <?php czr_fn_echo('element_attributes') ?>>
 <?php
-    $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
+    $_the_thumb = czr_fn_get_thumbnail_model( 'full' );
     if ( ! empty ( $_the_thumb['tc_thumb']) ) :
 ?>
   <div class="entry-media__holder <?php echo esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-media-centering' : 'no-js-media-centering' ?>">

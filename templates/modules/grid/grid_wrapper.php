@@ -30,9 +30,9 @@ endif;
   endif;
 
     czr_fn_render_template(
-      array( 'template'   => 'modules/grid/grid_item',
-      'model_args' => czr_fn_get( 'grid_item' )
-    ));
+      'modules/grid/grid_item',
+      array( 'model_args' => czr_fn_get( 'grid_item' ) )
+    );
 
   /* close the row if the displayed item is the last of row */
   if ( czr_fn_get( 'is_last_of_row' ) ) :
