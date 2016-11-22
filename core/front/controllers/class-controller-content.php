@@ -83,13 +83,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_posts_list_description() {
-      return $this -> czr_fn_display_view_posts_list_headings() && ! is_author() && ! is_search();
+      return ! is_author() && ! is_search();
     }
 
     function czr_fn_display_view_author_description() {
-      return ( ( $this -> czr_fn_display_view_posts_list_headings() && is_author() ) &&
-             apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) )
-      || ( is_single() && apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) );
+      return apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') );
     }
 
     function czr_fn_display_view_page() {
@@ -102,7 +100,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_single_author_info() {
-      if ( ! ( $this -> czr_fn_display_view_post() && get_the_author_meta( 'description' ) ) )
+      if ( ! get_the_author_meta( 'description' ) )
         return;
 
       //@todo check if some conditions below not redundant?

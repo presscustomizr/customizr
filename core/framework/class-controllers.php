@@ -25,11 +25,12 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'right_sidebar',
               'left_sidebar',
               'single_author_info',
-              'author_description',
               'comment_list',
               'comments',
               'posts_navigation',
               'post_list_heading',
+              'author_description',
+              'posts_list_description',
               'search_heading',
               'post_heading',
               //'404', 'attachment', 'headings', 'no_results', 'page', 'post', 'single_author_info', 'post_list', 'post_metas','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment', 'tracepingback', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'

@@ -4250,9 +4250,6 @@ WP classes
 
 .page__header.image__header {
   height: calc(  100vh * ( 2 / 3 ));
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .page__header.plain {

@@ -74,6 +74,14 @@ class CZR_post_list_heading_model_class extends CZR_Model {
     $context = $context ? $context : $this -> context;
     //we should have some filter here, to allow the processing of the description
     //for example to allow shortcodes in it.... (requested at least twice from users, in my memories)
+    if ( 'author' == $context  )
+      $_controlled = 'author_description';
+    else
+      $_controlled = 'posts_list_description';
+
+    if ( ! czr_fn_has( $_controlled ) )
+      return '';
+
     switch ( $context ) {
       case 'page_for_posts' : return get_the_excerpt( get_option('page_for_posts') ); //use the excerpt as description in blog page?
       case 'author'         : return sprintf( '<span class="author-avatar">%1$s</span><p class="author-bio">%2$s</p>',
