@@ -4,23 +4,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
   private $queried_id;
 
-
   /**
   * @override
   * fired before the model properties are parsed
   *
-  * return model params array()
+  * return model preset array()
   */
-  function czr_fn_extend_params( $model = array() ) {
-    $model                        = $this -> czr_fn_grid_set_default_options( $model );
-    $this -> queried_id           = czr_fn_get_id();
-
-    return parent::czr_fn_extend_params( $model );
-  }
-
-
-  function czr_fn_grid_set_default_options( $model ) {
-    $_defaults = array(
+  function czr_fn_get_preset_model() {
+    $_preset = array(
       'grid_columns'          => esc_attr( czr_fn_get_opt( 'tc_grid_columns') ),
       'grid_title_num_words'  => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
       'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
@@ -33,8 +24,21 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'contained'             => false
     );
 
-    return wp_parse_args( $_defaults, $model );
+    return $_preset;
   }
+
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
+  * return model params array()
+  */
+  function czr_fn_extend_params( $model = array() ) {
+    $this -> queried_id           = czr_fn_get_id();
+
+    return parent::czr_fn_extend_params( $model );
+  }
+
 
 
   function czr_fn_get_is_first_of_row() {

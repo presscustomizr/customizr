@@ -21,13 +21,26 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @override
   * fired before the model properties are parsed
   *
+  * return model preset array()
+  */
+  function czr_fn_get_preset_model() {
+    $_preset = array(
+      'masonry_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'masonry_content_width'    => czr_fn_get_in_content_width_class(),
+      'contained'                => false
+    );
+    return $_preset;
+  }
+
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
     $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
     $this->post_class              = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this->post_class );
-
-    $model                         = $this -> czr_fn_masonry_set_default_options( $model );
 
     /*
     * The alternate grid does the same
@@ -40,16 +53,6 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return parent::czr_fn_extend_params( $model );
   }
 
-
-  function czr_fn_masonry_set_default_options( $model ) {
-    $_defaults = array(
-      'masonry_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'masonry_content_width'    => czr_fn_get_in_content_width_class(),
-      'contained'                => false
-    );
-
-    return wp_parse_args( $_defaults, $model );
-  }
 
   /**
   * add custom classes to the masonry container element

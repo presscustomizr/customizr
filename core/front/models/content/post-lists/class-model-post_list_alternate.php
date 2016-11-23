@@ -16,6 +16,30 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
   public $post_list_items = array();
 
+
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
+  * return model preset array()
+  */
+  function czr_fn_get_preset_model() {
+    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+
+    $_preset = array(
+      'alternate_has_narrow_layout'     => 'b' == $global_sidebar_layout,
+      'alternate_has_format_icon_media' => 'b' != $global_sidebar_layout,
+      'alternate_thumb_alternate'       => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
+      'alternate_thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
+      'alternate_show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'alternate_content_width'         => czr_fn_get_in_content_width_class(),
+      'alternate_excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'contained'                       => false
+    );
+
+    return $_preset;
+  }
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -23,9 +47,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    //set default options
-    $model                            = $this -> czr_fn_alternate_set_default_options( $model );
-
     //merge with args
     $model                            = parent::czr_fn_extend_params( $model );
 
@@ -55,23 +76,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   }
 
 
-  function czr_fn_alternate_set_default_options( $model ) {
-    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
-
-    $_defaults = array(
-      'alternate_has_narrow_layout'         => 'b' == $global_sidebar_layout,
-      'alternate_has_format_icon_media' => 'b' != $global_sidebar_layout,
-      'alternate_thumb_alternate'       => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
-      'alternate_thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
-      'alternate_show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'alternate_content_width'         => czr_fn_get_in_content_width_class(),
-      'alternate_excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'contained'                       => false
-    );
-
-    return wp_parse_args( $_defaults, $model );
-  }
-
   /**
   * add custom classes to the masonry container element
   */
@@ -82,6 +86,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $_classes, 'container' );
     return $_classes;
   }
+
 
   /*
   * Fired just before the view is rendered

@@ -47,7 +47,12 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     function __construct( $model = array() ) {
           self::$instance =& $this;
 
-          //this is where extension classes can modify the model params before they're parsed
+          //here is where extension classes can set their preset models
+          $_preset = $this -> czr_fn_get_preset_model();
+          if ( is_array($_preset) && ! empty( $_preset ) )
+            $model = wp_parse_args( $_preset, $model );
+
+          //here is where extension classes can modify the model params before they're parsed
           //becoming model properties
           $model = $this -> czr_fn_extend_params( $model );
 
@@ -281,14 +286,22 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     }
 
     //@return array()
+    //Extension models can use this to declare a preset model
+    //is fired on instantiation
+    //@return array()
+    protected function czr_fn_get_preset_model() {
+      return array();
+    }
+
+    //@return array()
     //Extension models can use this to update the model params with a set of new ones
     //is fired on instantiation
     //@param = array()
     protected function czr_fn_extend_params( $model = array() ) {
           //parse args into the model
-          if ( ! empty( $model['args'] ) ) {
-            $model = wp_parse_args( $model['args'], $model );
-            unset( $model['args'] );
+          if ( ! empty( $model[ 'args' ] ) && is_array( $model[ 'args' ] ) ) {
+            $model = wp_parse_args( $model[ 'args' ], $model );
+            unset( $model[ 'args' ] );
           }
           return $model;
     }
