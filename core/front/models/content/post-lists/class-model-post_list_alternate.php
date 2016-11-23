@@ -1,12 +1,5 @@
 <?php
 class CZR_post_list_alternate_model_class extends CZR_Model {
-  public $has_post_media;
-
-  public $def_place_1;
-  public $def_place_2;
-
-  public $excerpt_length;
-
   //Default post list layout
   private static $default_post_list_layout   = array (
                                 // array( xl, lg, md, sm, xs )
@@ -16,12 +9,10 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             'show_thumb_first'  => false,
             'alternate'         => true,
           );
-  private static $post_class    = array( 'row' );
   private static $_col_bp = array(
       'xl', 'lg', 'md', 'sm', 'xs'
-    );
-
-  public $post_list_layout;
+  );
+  private $post_class     = array( 'row' );
 
   public $post_list_items = array();
 
@@ -32,16 +23,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $global_sidebar_layout            = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+    //set default options
+    $model                            = $this -> czr_fn_alternate_set_default_options( $model );
 
+    //merge with args
+    $model                            = parent::czr_fn_extend_params( $model );
 
-    $model[ 'has_narrow_layout' ]     = 'b' == $global_sidebar_layout;
-    $model[ 'post_list_layout' ]      = $this -> czr_fn__get_post_list_layout( $model[ 'has_narrow_layout' ] );
-    $model[ 'has_format_icon_media' ] = ! $model[ 'has_narrow_layout' ];
-    $model[ 'has_post_media' ]        = 0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) );
+    //build properties depending on merged defaults and args
+    $model[ 'post_list_layout' ]      = $this -> czr_fn__get_post_list_layout( $model );
 
-    $model[ 'element_class']          = czr_fn_get_in_content_width_class();
-    array_push( self::$post_class, $model[ 'has_post_media' ] ? 'has-media' : 'no-media' );
+    $model[ 'has_post_media']         = $model[ 'alternate_show_thumb' ];
+    array_push( $this->post_class, $model[ 'alternate_show_thumb' ] ? 'has-media' : 'no-media');
 
     /*
     * In the new theme the places are defined just by the option show_thumb_first,
@@ -63,6 +55,33 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   }
 
 
+  function czr_fn_alternate_set_default_options( $model ) {
+    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
+
+    $_defaults = array(
+      'alternate_has_narrow_layout'         => 'b' == $global_sidebar_layout,
+      'alternate_has_format_icon_media' => 'b' != $global_sidebar_layout,
+      'alternate_thumb_alternate'       => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
+      'alternate_thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
+      'alternate_show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'alternate_content_width'         => czr_fn_get_in_content_width_class(),
+      'alternate_excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'contained'                       => false
+    );
+
+    return wp_parse_args( $_defaults, $model );
+  }
+
+  /**
+  * add custom classes to the masonry container element
+  */
+  function czr_fn_get_element_class() {
+    $_classes = is_array( $this->alternate_content_width ) ? $this->alternate_content_width : array();
+
+    if ( ! empty( $this->contained ) )
+      array_push( $_classes, 'container' );
+    return $_classes;
+  }
 
   /*
   * Fired just before the view is rendered
@@ -133,7 +152,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     $_current_post_format    = get_post_format();
 
-    $has_post_media          = $this->has_post_media;
+    $has_post_media          = $this->alternate_show_thumb;
     $has_thumb               = czr_fn_has_thumb();
     $is_full_image           = $this->czr_fn_is_full_image( $_current_post_format );
 
@@ -174,7 +193,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
         *
         */
         if ( in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video', 'image' ) ) )
-            && ! $this->has_narrow_layout ) {
+            && ! $this->alternate_has_narrow_layout ) {
           /* Swap the layouts */
           $_t_l                    = $_layout[ 'media' ];
           $_layout[ 'media' ]      = $_layout[ 'content' ];
@@ -189,7 +208,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
         $_pull[ $place_2 ]        = array_slice( $_layout[ $place_1 ], 0, count($_layout[ $place_1 ]) - 1);
       }
 
-      if ( ! $this->has_narrow_layout )
+      if ( ! $this->alternate_has_narrow_layout )
         //allow centering sections
         array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true ) ? 'czr-center-sections' : 'a');
     }
@@ -239,8 +258,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
   protected function czr_fn__get_article_selectors( $is_full_image, $has_format_icon_media ) {
 
-    $post_class              = self::$post_class;
-    $has_post_media          = $this->has_post_media;
+    $post_class              = $this->post_class;
+    $has_post_media          = $this->alternate_show_thumb;
 
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
     array_push( $post_class,
@@ -260,12 +279,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 3.2.0
   */
-  protected function czr_fn__get_post_list_layout( $narrow_layout = false ) {
+  protected function czr_fn__get_post_list_layout( $model ) {
     $_layout                       = self::$default_post_list_layout;
 
-    $_layout[ 'position' ]         = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_layout[ 'position' ]         = $model[ 'alternate_thumb_position' ];
     $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
-
+    $narrow_layout                 = $model[ 'alternate_has_narrow_layout' ];
     //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
     if ( $narrow_layout )
       $_layout['position']         = $_layout[ 'show_thumb_first' ] ? 'top' : 'bottom';
@@ -277,7 +296,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     }
 
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ! ( 0 == esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ) || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
+    $_layout['alternate']        = ! ( 0 == $model[ 'alternate_thumb_alternate' ]  || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
 
     if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
       $_layout['content'] = $_layout['media'] = self::$default_post_list_layout['narrow_both'];
@@ -319,7 +338,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   */
   function czr_fn_has_format_icon_media( $has_thumb, $current_post_format = null ) {
 
-    if ( ! $this -> has_format_icon_media )
+    if ( ! $this -> alternate_has_format_icon_media )
       return false;
 
 
@@ -329,7 +348,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     if ( in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside' ) ) )
       return true;
 
-    return ! ( $this->has_post_media && $has_thumb );
+    return ! ( $this->alternate_show_thumb && $has_thumb );
 
   }
 
@@ -398,7 +417,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = $this -> alternate_excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

@@ -51,13 +51,12 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return wp_parse_args( $_defaults, $model );
   }
 
- /**
+  /**
   * add custom classes to the masonry container element
   */
   function czr_fn_get_element_class() {
-    $_classes = array();
-    if ( ! empty( $this->masonry_content_width ) )
-      $_classes = array_merge( $_classes, $this->masonry_content_width );
+    $_classes = is_array($this->masonry_content_width) ? $this->masonry_content_width : array();
+
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
     return $_classes;

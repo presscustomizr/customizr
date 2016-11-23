@@ -29,6 +29,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      'grid_excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false
     );
 
