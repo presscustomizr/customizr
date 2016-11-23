@@ -4,8 +4,6 @@
 * TODO: treat case post format image with no text and post format gallery
 */
 class CZR_post_list_masonry_model_class extends CZR_Model {
-  public $excerpt_length;
-
   //Default post list layout
   private static $default_post_list_layout   = array(
             'b'         => array('col-xs-12'),
@@ -215,7 +213,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = $this -> alternate_excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

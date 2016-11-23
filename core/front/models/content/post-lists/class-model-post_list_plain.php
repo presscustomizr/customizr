@@ -5,18 +5,28 @@
 */
 class CZR_post_list_plain_model_class extends CZR_Model {
 
-  public $entry_header_inner_class = array( 'col-md-7', 'offset-md-4', 'col-xs-12');
-  public $entry_header_class       = array( 'row' );
-
-  public $content_inner_class      = array('col-md-7', 'offset-md-1', 'col-xs-12');
-
   public $post_class               = array();
+  public $post_list_items          = array();
 
-  public $has_post_media;
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
+  * return model preset array()
+  */
+  function czr_fn_get_preset_model() {
+    $_preset = array(
+      'plain_entry_header_inner_class'  => array( 'col-md-7', 'offset-md-4', 'col-xs-12'),
+      'plain_entry_header_class'        => array( 'row' ),
+      'plain_content_inner_class'       => array('col-md-7', 'offset-md-1', 'col-xs-12'),
+      'plain_show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'plain_content_width'             => czr_fn_get_in_content_width_class(),
+      'plain_excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'contained'                       => false
+    );
 
-  public $excerpt_length;
-
-  public $post_list_items = array();
+    return $_preset;
+  }
 
   /**
   * @override
@@ -25,9 +35,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'element_class']            = czr_fn_get_in_content_width_class();
-    $model[ 'has_post_media']           = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
-
     /*
     * The alternate grid does the same
     */
@@ -40,7 +47,16 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $model;
   }
 
+  /**
+  * add custom classes to the masonry container element
+  */
+  function czr_fn_get_element_class() {
+    $_classes = is_array($this->masonry_content_width) ? $this->masonry_content_width : array();
 
+    if ( ! empty( $this->contained ) )
+      array_push( $_classes, 'container' );
+    return $_classes;
+  }
   /*
   * Fired just before the view is rendered
   * @hook: pre_rendering_view_{$this -> id}, 9999
@@ -106,6 +122,8 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   }
 
   protected function czr_fn__get_has_post_media( $post_format ) {
+    if ( ! $this->plain_show_thumb )
+      return false;
 
     if ( in_array( $post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
       return true;
@@ -166,7 +184,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = $_custom = $this -> alternate_excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

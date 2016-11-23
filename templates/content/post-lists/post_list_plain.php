@@ -13,14 +13,16 @@
   do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
 endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-    <div class="sections-wrapper grid__item <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
+    <div class="sections-wrapper grid__item">
       <?php
         if ( $has_post_media = czr_fn_get('has_post_media') )
           czr_fn_render_template(
             'content/post-lists/singles/post_list_single_media',
              array(
               'model_args' => array(
+                'element_class'            => '',
                 'has_post_media'           => $has_post_media,
+                'has_format_icon_media'    => false,
                 'is_full_image'            => czr_fn_get( 'is_full_image' )
               )
             )
@@ -40,13 +42,13 @@ endif ?>
           array(
             'model_class' => 'content/post-lists/singles/headings/post_list_single_header',
             'model_args'  => array(
-              'entry_header_inner_class' => $cat_list ? czr_fn_get( 'entry_header_inner_class' ) : array('col-xs-12'),
-              'element_class'            => czr_fn_get( 'entry_header_class' )
+              'entry_header_inner_class' => $cat_list ? czr_fn_get( 'plain_entry_header_inner_class' ) : array('col-xs-12'),
+              'element_class'            => czr_fn_get( 'plain_entry_header_class' )
             )
           )
         );
       ?>
-        <div class="entry-content__wrapper row <?php czr_fn_echo('inner_wrapper_class') ?>">
+        <div class="entry-content__wrapper row">
           <?php
           if ( $cat_list ) :
           ?>
@@ -60,7 +62,7 @@ endif ?>
           ?>
           <div class="tc-content-inner-wrapper <?php
             if ( $cat_list )
-              czr_fn_echo( 'content_inner_class' );
+              czr_fn_echo( 'plain_content_inner_class' );
             else
               echo 'col-xs-12';
             ?>" >
@@ -103,7 +105,7 @@ endif ?>
     </div>
   </article>
 <?php if ( czr_fn_is_loop_end() ) :
-  do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
+  do_action( '__post_list_plain_loop_end', czr_fn_get('id') );
 ?>
 </div>
 <?php endif;
