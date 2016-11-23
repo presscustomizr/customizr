@@ -23,6 +23,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
+      'masonry_excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'masonry_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'masonry_content_width'    => czr_fn_get_in_content_width_class(),
       'contained'                => false
@@ -37,18 +38,12 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
+    $model                         = parent::czr_fn_extend_params( $model );
+
     $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
     $this->post_class              = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this->post_class );
 
-    /*
-    * The alternate grid does the same
-    */
-    add_action( '__masonry_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
-    add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
-    //reset masonry items at loop end? sort of garbage collector
-    add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
-
-    return parent::czr_fn_extend_params( $model );
+    return $model;
   }
 
 
@@ -73,7 +68,23 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * and add it to the post_list_items_array
   */
   function czr_fn_setup_late_properties() {
+    //all post lists do this
+    if ( czr_fn_is_loop_start() )
+      $this -> czr_fn_setup_text_hooks();
     array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
+  }
+
+ /*
+  * Fired just before the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    if ( czr_fn_is_loop_end() ) {
+      //all post lists do this
+      $this -> czr_fn_reset_text_hooks();
+      //reset alternate items at loop end
+      $this -> czr_fn_reset_post_list_items();
+    }
   }
 
   /*
@@ -164,45 +175,35 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   /* HELPERS AND CALLBACKS */
 
   /*
-  * Callbacks
-  */
-
-  /*
   * Following methods: czr_fn_setup_text_hooks, czr_fn_reset_text_hooks, czr_fn_set_excerpt_length
   * are shared by the post lists classes, do we want to build a common class?
   */
 
   /**
-  * hook : __masonry_loop_start
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_setup_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      //filter the excerpt length
-      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  function czr_fn_setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
 
   /**
-  * hook : __masonry_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  function czr_fn_reset_text_hooks() {
+    remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
 
   /**
-  * hook : __masonry_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_post_list_items( $model_id ) {
-    if ( $model_id == $this->id  )
-      $this -> post_list_items = array();
+  function czr_fn_reset_post_list_items() {
+    $this -> post_list_items = array();
   }
 
 
@@ -213,7 +214,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> alternate_excerpt_length;
+    $_custom = $this -> masonry_excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

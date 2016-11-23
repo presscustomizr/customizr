@@ -9,9 +9,7 @@
 ?>
 <?php if ( czr_fn_is_loop_start() ) : ?>
 <div class="grid-container__plain short <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-<?php
-  do_action( '__post_list_plain_loop_start', czr_fn_get('id') );
-endif ?>
+<?php endif ?>
   <article <?php czr_fn_echo( 'article_selectors' ) ?> >
     <div class="sections-wrapper grid__item">
       <?php
@@ -84,8 +82,6 @@ endif ?>
       </section>
     </div>
   </article>
-<?php if ( czr_fn_is_loop_end() ) :
-  do_action( '__post_list_plain_loop_end', czr_fn_get('id') );
-?>
+<?php if ( czr_fn_is_loop_end() ) : ?>
 </div>
 <?php endif;

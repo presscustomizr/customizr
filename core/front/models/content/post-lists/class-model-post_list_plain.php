@@ -28,30 +28,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $_preset;
   }
 
-  /**
-  * @override
-  * fired before the model properties are parsed
-  *
-  * return model params array()
-  */
-  function czr_fn_extend_params( $model = array() ) {
-    /*
-    * The alternate grid does the same
-    */
-    add_action( '__post_list_plain_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
-    add_action( '__post_list_plain_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
-
-    //reset alternate items at loop end? sort of garbage collector
-    add_action( '__post_list_plain_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
-
-    return $model;
-  }
 
   /**
   * add custom classes to the masonry container element
   */
   function czr_fn_get_element_class() {
-    $_classes = is_array($this->masonry_content_width) ? $this->masonry_content_width : array();
+    $_classes = array();
 
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
@@ -66,7 +48,24 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * and add it to the post_list_items_array
   */
   function czr_fn_setup_late_properties() {
+    //all post lists do this
+    if ( czr_fn_is_loop_start() )
+      $this -> czr_fn_setup_text_hooks();
     array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
+  }
+
+
+  /*
+  * Fired just before the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    if ( czr_fn_is_loop_end() ) {
+      //all post lists do this
+      $this -> czr_fn_reset_text_hooks();
+      //reset alternate items at loop end
+      $this -> czr_fn_reset_post_list_items();
+    }
   }
 
 
@@ -143,48 +142,39 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return isset( $_properties[ $_property ] ) ? $_properties[ $_property ] : null;
   }
 
+
+
   /* HELPERS AND CALLBACKS */
 
-  /*
-  * Callbacks
-  */
-
   /**
-  * hook : __masonry_loop_start
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_setup_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  ) {
-      //filter the excerpt length
-      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
-      add_filter( 'excerpt_more'          , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
-    }
+  function czr_fn_setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+    add_filter( 'excerpt_more'       , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
   }
 
 
   /**
-  * hook : __masonry_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  ) {
-      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
-      remove_filter( 'excerpt_more'       , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
-    }
+  function czr_fn_reset_text_hooks() {
+    remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+    remove_filter( 'excerpt_more'       , array( $this , 'czr_fn_set_excerpt_more') , 99999999 );
   }
 
 
-
   /**
-  * hook : excerpt_length
+  * hook : excerpt_length hook
   * @return string
   * @package Customizr
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $_custom = $this -> alternate_excerpt_length;
+    $_custom = $this -> plain_excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -206,13 +196,11 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
 
   /**
-  * hook : __post_list_plain_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_post_list_items( $model_id ) {
-    if ( $model_id == $this->id  )
-      $this -> post_list_items = array();
+  function czr_fn_reset_post_list_items() {
+    $this -> post_list_items = array();
   }
 
 }

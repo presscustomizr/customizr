@@ -6,16 +6,10 @@
  *
  */
 ?>
-<?php
-  if ( czr_fn_is_loop_start() ) : ?>
+<?php if ( czr_fn_is_loop_start() ) : ?>
 <div class="grid grid-container__masonry <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
   <div class="masonry__wrapper row">
-  <?php
-
-    do_action( '__masonry_loop_start', czr_fn_get('id') );
-
-  endif
-  ?>
+<?php endif ?>
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >
       <div class="sections-wrapper grid__item">
       <?php
@@ -52,9 +46,7 @@
         </section>
       </div>
     </article>
-  <?php if ( czr_fn_is_loop_end() ) :
-    do_action( '__masonry_loop_end', czr_fn_get('id') );
-  ?>
+<?php if ( czr_fn_is_loop_end() ) : ?>
   </div>
 </div>
 <?php endif ?>

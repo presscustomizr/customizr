@@ -11,10 +11,10 @@ class CZR_loop_model_class extends CZR_Model {
   */
   function czr_fn_setup_late_properties() {
     $this -> czr_fn_maybe_setup_query();
-    $this -> czr_fn_maybe_setup_loop_item();
+    $this -> czr_fn_setup_loop_item();
   }
 
-  function czr_fn_maybe_setup_loop_item( $_t = '', $_args = array() ) {
+  function czr_fn_setup_loop_item( $_t = '', $_args = array() ) {
 
     if ( ! empty( $this -> loop_item ) )
       $_t = is_string( $this->loop_item[0] ) ? $this->loop_item[0] : $_t;

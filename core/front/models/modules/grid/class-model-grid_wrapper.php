@@ -39,6 +39,29 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return parent::czr_fn_extend_params( $model );
   }
 
+  /*
+  * Fired just before the view is rendered
+  * @hook: pre_rendering_view_{$this -> id}, 9999
+  */
+  /*
+  * Each time this model view is rendered setup the current post list item
+  * and add it to the post_list_items_array
+  */
+  function czr_fn_setup_late_properties() {
+    //all post lists do this
+    if ( czr_fn_is_loop_start() )
+      $this -> czr_fn_setup_text_hooks();
+  }
+
+  /*
+  * Fired just before the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    if ( czr_fn_is_loop_end() )
+      //all post lists do this
+      $this -> czr_fn_reset_text_hooks();
+  }
 
 
   function czr_fn_get_is_first_of_row() {
@@ -638,6 +661,36 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   private function czr_fn_grid_get_thumb_height() {
     $_opt = $this -> grid_thumb_height;
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
+  }
+
+  /**
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
+
+
+  /**
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_text_hooks() {
+    remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
+
+
+  /**
+  * hook : excerpt_length hook
+  * @return string
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = $this -> grid_excerpt_length;
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
 
