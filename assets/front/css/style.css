@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .entry-header .entry-meta, .grid-container__square-mini .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -3062,9 +3062,10 @@ dl dd {
   float: right;
 }
 
-.grid-container__plain.narrow .entry-header-inner, .grid-container__plain.narrow .entry-content__wrapper > .entry-meta, .grid-container__plain.narrow .entry-content__wrapper > .tc-content-inner-wrapper {
+.grid-container__plain.narrow .entry-header-inner,
+.grid-container__plain.narrow .entry-content__wrapper > .entry-meta,
+.grid-container__plain.narrow .entry-content__wrapper > .tc-content-inner-wrapper {
   width: 100%;
-  float: left;
   margin-left: 0;
 }
 
@@ -4146,12 +4147,13 @@ WP classes
   content: none;
 }
 
-.grid-container__square-mini .col-xs-12 {
-  padding: 0;
+.grid-container__square-mini {
+  font-size: 0.75em;
 }
 
-.grid-container__square-mini .post {
+.grid-container__square-mini article {
   margin-bottom: 0;
+  padding: 0;
 }
 
 .grid-container__square-mini .post-thumbnail {
@@ -4176,52 +4178,15 @@ WP classes
   text-overflow: ellipsis;
   max-width: 100%;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .grid-container__square-mini .entry-header.no-title .entry-title::after {
   content: none;
 }
 
-.grid-container__square-mini .entry-header .entry-meta {
-  font-size: 0.83333em;
-}
-
-.grid-container__square-mini .format-standard .entry-header .entry-title {
-  position: relative;
-}
-
-.grid-container__square-mini .format-standard .tc-content.right .entry-header h2::after {
-  left: calc(100% - 2.5em);
-}
-
 .grid-container__square-mini .entry-summary {
   margin-top: 2.5em;
-}
-
-.grid-container__square-mini .format-image.no-excerpt .post-thumbnail {
-  width: 100%;
-}
-
-.grid-container__square-mini .format-image.no-excerpt .grid__item .tc-content {
-  max-width: 100%;
-  background: transparent;
-  height: 100%;
-}
-
-.grid-container__square-mini .grid__item .tc-content {
-  max-width: 50%;
-  padding: 2em;
-  display: inline-block;
-  background: #f7f8f9;
-  height: 277.5px;
-}
-
-.grid-container__square-mini .grid__item .tc-content .entry-header h2 {
-  font-weight: 600;
-}
-
-.grid-container__square-mini .grid__item .tc-content.right {
-  text-align: right;
 }
 
 .tc-content-inner {

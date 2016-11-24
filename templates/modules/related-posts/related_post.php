@@ -10,7 +10,7 @@
         'content/post-lists/singles/post_list_single_media',
         array(
           'model_args' => array(
-            'element_class' => czr_fn_get('media_col'),
+            'element_class' => czr_fn_get('media_cols'),
             'only_thumb'    => true,
             'has_post_media' => true
           )
@@ -18,7 +18,7 @@
       );
       /* Content */
     ?>
-      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_col') ?>" <?php czr_fn_echo('element_attributes') ?> >
+      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>" <?php czr_fn_echo('element_attributes') ?> >
         <div class="entry-content__wrapper">
         <?php
           /* header */

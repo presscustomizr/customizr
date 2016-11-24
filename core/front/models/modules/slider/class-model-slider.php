@@ -435,7 +435,7 @@ class CZR_slider_model_class extends CZR_Model {
     if ( czr_fn_is_home() )
       $show_slider_edit_link = current_user_can('edit_theme_options') ? true : false;
     else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
-      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ? true : false;
+      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts' ) ) ? true : false;
 
     return apply_filters( 'czr_show_slider_edit_link' , $show_slider_edit_link, $this -> slider_name_id );
   }

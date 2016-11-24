@@ -3,15 +3,7 @@
 * Related posts wrapper template
 */
 ?>
-<?php
-
-global $wp_query;
-//do we have a custom query ?
-$wp_query = new WP_Query( czr_fn_get('query') );
-
-if ( have_posts() ) {
-  do_action('__related_posts_loop_start', czr_fn_get('id') );
-?>
+<?php if ( have_posts() ) : ?>
 <section class="post-related-articles czr-carousel" <?php czr_fn_echo('element_attributes') ?>>
   <header>
     <h3 class="related-posts_title"><?php _e('You may also like', 'customizr') ?></h3>
@@ -31,8 +23,8 @@ if ( have_posts() ) {
         array(
           'model_args' => array(
             'article_selectors' => czr_fn_get( 'article_selectors' ),
-            'media_col' => czr_fn_get('media_col'),
-            'content_col' => czr_fn_get('content_col')
+            'media_cols'         => czr_fn_get('media_cols'),
+            'content_cols'       => czr_fn_get('content_cols')
           )
         )
       );
@@ -40,9 +32,4 @@ if ( have_posts() ) {
   ?>
   </div>
 </section>
-
-<?php
-  do_action('__related_posts_loop_end', czr_fn_get('id') );
-}
-wp_reset_query();
-wp_reset_postdata();
+<?php endif;
