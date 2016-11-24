@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain article .post-info, .grid-container__plain article .author-info, .grid-container__plain article .post-tags, .grid-container__plain article .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
+.small, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .featured .pre-header, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .pagination.post-pagination, .comment-cancel-link, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
   font-size: 0.833333em;
 }
 
@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain article .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .grid-container__plain .tax__container a, .entry-header .entry-meta a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .grid-container__plain .author-info a, .footer__wrapper h5, .entry-footer .post-info a, .page__header .header-content .post-info, .comment-author a {
   font-weight: 500;
 }
 
@@ -208,13 +208,13 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .tagcloud a,
+.service-font, .btn, .grid-container__plain .tax__container a, .entry-header .entry-meta a, .tagcloud a,
 .tags li, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .btn-more, .btn-large, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
+.caps, .btn-more, .btn-large, .grid-container__plain .tax__container a, .entry-header .entry-meta a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .featured .pre-header, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-cancel-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu {
   text-transform: uppercase;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .grid-container__plain article .tax__container a, .entry-header .entry-meta a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li.pingback sup, .sidebar .widget-title {
+.letter-spacing-2, .grid-container__plain .tax__container a, .entry-header .entry-meta a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .pingback-list li.pingback sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -1370,18 +1370,18 @@ a.external {
   position: relative;
 }
 
-.grid-container__plain article .tax__container a, .entry-header .entry-meta a {
+.grid-container__plain .tax__container a, .entry-header .entry-meta a {
   color: #B4B4B4;
   position: relative;
   display: inline-block;
   vertical-align: middle;
 }
 
-.grid-container__plain article .tax__container a:not(:last-of-type), .entry-header .entry-meta a:not(:last-of-type) {
+.grid-container__plain .tax__container a:not(:last-of-type), .entry-header .entry-meta a:not(:last-of-type) {
   margin-right: 1.5em;
 }
 
-.grid-container__plain article .tax__container a:not(:last-of-type)::after, .entry-header .entry-meta a:not(:last-of-type)::after {
+.grid-container__plain .tax__container a:not(:last-of-type)::after, .entry-header .entry-meta a:not(:last-of-type)::after {
   content: '/';
   color: #B4B4B4;
   z-index: 1;
@@ -1391,7 +1391,7 @@ a.external {
   right: -1em;
 }
 
-.grid-container__plain article .tax__container a:hover, .entry-header .entry-meta a:hover {
+.grid-container__plain .tax__container a:hover, .entry-header .entry-meta a:hover {
   color: #202020;
 }
 
@@ -2942,55 +2942,46 @@ dl dd {
 }
 
 /* plain post list */
-.grid-container__plain .article-container {
-  padding-top: 5em;
-  margin-bottom: 30px;
+.grid-container__plain section {
+  padding: 0;
+}
+
+.grid-container__plain section:last-of-type {
+  padding: 2.5em;
 }
 
 .grid-container__plain article {
   background: #fff;
 }
 
-.grid-container__plain article section {
-  padding: 0;
-}
-
-.grid-container__plain article section:last-of-type {
-  padding: 2.5em;
-}
-
-.grid-container__plain article .tc-thumbnail {
+.grid-container__plain .tc-thumbnail {
   max-height: 600px;
   overflow: hidden;
 }
 
-.grid-container__plain article .tax__container {
-  margin-top: 1.25em;
-}
-
-.grid-container__plain article .post-tags {
-  width: 50%;
+.grid-container__plain .post-tags {
+  /*width: 50%;*/
   float: left;
   margin-top: 1.5em;
 }
 
-.grid-container__plain article .socials {
+.grid-container__plain .socials {
   float: right;
   margin-top: 1em;
 }
 
-.grid-container__plain article .post-info {
+.grid-container__plain .post-info {
   margin-top: 1.25em;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain article .post-info {
+  .grid-container__plain .post-info {
     text-align: right;
     margin-top: 0;
   }
 }
 
-.grid-container__plain article .author-info a {
+.grid-container__plain .author-info a {
   color: #202020;
   line-height: 48px;
   margin-right: 1.25em;
@@ -3001,34 +2992,38 @@ dl dd {
   letter-spacing: 4px;
 }
 
-.grid-container__plain article .author-info .avatar, .grid-container__plain article .author-info a {
+.grid-container__plain .author-info .avatar, .grid-container__plain .author-info a {
   float: none;
   clear: none;
   display: inline-block;
 }
 
-.grid-container__plain article .tax__container {
+.grid-container__plain .tax__container {
+  margin-top: 1.25em;
+}
+
+.grid-container__plain:not(.narrow) .tax__container {
   overflow: hidden;
 }
 
-.grid-container__plain article .tax__container a[class*=tax__link] {
-  display: block;
+.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] {
   letter-spacing: 3px;
   clear: both;
   position: relative;
 }
 
-.grid-container__plain article .tax__container a[class*=tax__link] span {
+.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] span {
   position: relative;
 }
 
-@media (min-width: 48em) {
-  .grid-container__plain article .tax__container a[class*=tax__link] {
+@media (min-width: 768px) {
+  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] {
     margin: 0;
     text-align: right;
     line-height: 3em;
+    display: block;
   }
-  .grid-container__plain article .tax__container a[class*=tax__link] span::before {
+  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] span::before {
     content: "";
     position: absolute;
     top: calc(50% + 2px);
@@ -3039,47 +3034,38 @@ dl dd {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
-  .grid-container__plain article .tax__container a[class*=tax__link]::after {
+  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link]::after {
     content: none;
   }
 }
 
-.grid-container__plain article .tax__container a[class*=tax__link]:hover span::before {
+.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link]:hover span::before {
   width: 0.625em;
 }
 
-@media (max-width: 48em) {
-  .grid-container__plain article .tax__container a[class*=tax__link] {
-    display: inline-block;
-    text-align: left;
-  }
-  .grid-container__plain article .tax__container a[class*=tax__link] span::before {
-    content: none;
-  }
-}
-
-.grid-container__plain article .entry-footer {
+.grid-container__plain .entry-footer {
   clear: both;
   border-top: 1px solid #eceeef;
   padding-top: 2.5em;
   margin-top: 2.5em;
 }
 
-.grid-container__plain article .entry-footer .entry-meta {
+.grid-container__plain .entry-footer .entry-meta {
   margin-top: 2.5em;
 }
 
-.grid-container__plain article .entry-footer .btn-holder {
+.grid-container__plain .entry-footer .btn-holder {
   text-align: right;
 }
 
-.grid-container__plain article .entry-footer .socials {
+.grid-container__plain .entry-footer .socials {
   float: right;
 }
 
-.grid-container__plain.short .post-tags {
-  float: none;
+.grid-container__plain.narrow .entry-header-inner, .grid-container__plain.narrow .entry-content__wrapper > .entry-meta, .grid-container__plain.narrow .entry-content__wrapper > .tc-content-inner-wrapper {
   width: 100%;
+  float: left;
+  margin-left: 0;
 }
 
 .grid-container__plain .post.format-video .tc-thumbnail {
