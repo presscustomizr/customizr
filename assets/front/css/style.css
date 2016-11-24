@@ -1476,6 +1476,7 @@ cite {
   padding-left: 5.125em;
   padding-right: 0.25em;
   position: relative;
+  display: inline-block;
 }
 
 cite::before {

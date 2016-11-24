@@ -143,7 +143,7 @@ function czr_fn_get_in_content_width_class() {
   switch ( $global_sidebar_layout ) {
     case 'b': $_class = 'narrow';
               break;
-    case 'f': $_class = '';
+    case 'f': $_class = 'full';
               break;
     default : $_class = 'semi-narrow';
   }

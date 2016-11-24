@@ -41,7 +41,6 @@
                 'element_class'            => czr_fn_get( 'media_cols' ),
                 'is_full_image'            => czr_fn_get( 'is_full_image' ),
                 'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
-                'has_post_media'           => czr_fn_get( 'has_post_media' )
               )
             )
           );
@@ -58,7 +57,6 @@
                 'element_class'            => czr_fn_get( 'media_cols' ),
                 'is_full_image'            => czr_fn_get( 'is_full_image' ),
                 'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
-                'has_post_media'           => czr_fn_get( 'has_post_media' )
               )
             )
           );

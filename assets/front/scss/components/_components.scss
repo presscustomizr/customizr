@@ -194,6 +194,7 @@ cite {
   padding-left: $base-line-height*4.1;
   padding-right: $base-line-height/5;
   position: relative;
+  display: inline-block;
   &::before {
     content: "";
     position: absolute;
