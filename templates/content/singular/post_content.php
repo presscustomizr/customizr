@@ -14,7 +14,7 @@
       <?php
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
-      <footer class="post-footer container-fluid">
+      <footer class="post-footer container-fluid clearfix">
         <?php
           wp_link_pages( array(
             'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
@@ -24,7 +24,7 @@
             )
           );
         ?>
-        <div class="entry-meta row">
+        <div class="entry-meta row clearfix">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
           <div class="post-tags float-md-left">
             <ul class="tags">

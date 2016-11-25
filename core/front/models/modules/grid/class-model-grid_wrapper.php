@@ -16,11 +16,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'grid_title_num_words'  => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
       'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
       'grid_expand_featured'  => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
-      'grid_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
-      'grid_excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false
     );
 
@@ -224,7 +224,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * thumb properties
   */
   function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> czr_fn_grid_show_thumb();
+    $has_thumb           = $this -> czr_fn_show_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {
@@ -302,8 +302,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
 
-  private function czr_fn_grid_show_thumb() {
-    return czr_fn_has_thumb() && 0 != $this -> grid_show_thumb ;
+  private function czr_fn_show_thumb() {
+    return czr_fn_has_thumb() && 0 != $this -> show_thumb ;
   }
 
   /******************************
@@ -689,7 +689,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> grid_excerpt_length;
+    $_custom = $this -> excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

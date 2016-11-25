@@ -845,7 +845,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
           if ( in_array( $_layout, array('b', 'l', 'r', 'f') ) ) {
-            array_push( $_classes, sprintf( 'tc-%s-sidebar',
+            array_push( $_classes, sprintf( 'czr-%s-sidebar',
               'f' == $_layout ? 'no' : $_layout
             ) );
           }

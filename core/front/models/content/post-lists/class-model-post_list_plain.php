@@ -5,7 +5,7 @@
 */
 class CZR_post_list_plain_model_class extends CZR_Model {
 
-  public $post_class               = array();
+  public $post_class               = array( 'col-xs-12' );
   public $post_list_items          = array();
 
   /**
@@ -16,13 +16,13 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'plain_entry_header_inner_class'  => array( 'col-md-7', 'offset-md-4', 'col-xs-12'),
-      'plain_entry_header_class'        => array( 'row' ),
-      'plain_content_inner_class'       => array('col-md-7', 'offset-md-1', 'col-xs-12'),
-      'plain_show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'plain_content_width'             => czr_fn_get_in_content_width_class(),
-      'plain_excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'contained'                       => false
+      'entry_header_inner_class'  => array( 'col-md-7', 'offset-md-4', 'col-xs-12'),
+      'entry_header_class'        => array( 'row' ),
+      'content_inner_class'       => array('col-md-7', 'offset-md-1', 'col-xs-12'),
+      'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'content_width'             => czr_fn_get_in_content_width_class(),
+      'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'contained'                 => false
     );
 
     return $_preset;
@@ -33,7 +33,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * add custom classes to the masonry container element
   */
   function czr_fn_get_element_class() {
-    $_classes = array();
+    $_classes = is_array($this->content_width) ? $this->content_width : array();
 
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
@@ -116,12 +116,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
     array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
 
-    return czr_fn_get_the_post_list_article_selectors( $post_class );
+    return czr_fn_get_the_post_list_article_selectors( array_filter( $post_class ) );
 
   }
 
   protected function czr_fn__get_has_post_media( $post_format ) {
-    if ( ! $this->plain_show_thumb )
+    if ( ! $this->show_thumb )
       return false;
 
     if ( in_array( $post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
@@ -174,7 +174,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> plain_excerpt_length;
+    $_custom = $this -> excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

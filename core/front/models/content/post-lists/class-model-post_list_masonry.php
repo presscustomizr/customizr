@@ -23,10 +23,10 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'masonry_excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'masonry_show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'masonry_content_width'    => czr_fn_get_in_content_width_class(),
-      'contained'                => false
+      'excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'content_width'    => czr_fn_get_in_content_width_class(),
+      'contained'        => false
     );
     return $_preset;
   }
@@ -51,7 +51,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * add custom classes to the masonry container element
   */
   function czr_fn_get_element_class() {
-    $_classes = is_array($this->masonry_content_width) ? $this->masonry_content_width : array();
+    $_classes = is_array($this->content_width) ? $this->content_width : array();
 
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
@@ -157,7 +157,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
 
 
   protected function czr_fn__get_has_post_media( $current_post_format ) {
-    return $this->masonry_show_thumb && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
+    return $this->show_thumb && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
   }
 
   /*
@@ -214,7 +214,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> masonry_excerpt_length;
+    $_custom = $this -> excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

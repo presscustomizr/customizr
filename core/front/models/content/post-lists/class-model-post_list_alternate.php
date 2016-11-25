@@ -20,7 +20,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   private static $_col_bp = array(
       'xl', 'lg', 'md', 'sm', 'xs'
   );
-  private $post_class     = array( 'row' );
+  private $post_class     = array('col-xs-12');
 
   public $post_list_items = array();
 
@@ -59,7 +59,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     //build properties depending on merged defaults and args
 
-    $model['has_narrow_layout']     = in_array( 'narrow', $model['content_width'] );
+    $model['has_narrow_layout']       = in_array( 'narrow', $model['content_width'] );
 
     $model[ 'post_list_layout' ]      = $this -> czr_fn__get_post_list_layout( $model );
 

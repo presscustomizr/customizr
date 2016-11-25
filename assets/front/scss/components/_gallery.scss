@@ -37,10 +37,11 @@
 		height: 100%
 	 }
 }
+/*
 .gallery-item:not(:last-of-type)  {
 	 margin-right:$base-line-height;
-
 }
+*/
 .bg .gallery-item {
 	background: $white;
 	.tc-content { padding:$base-line-height;  }
@@ -49,7 +50,6 @@
 
 }
 .post-gallery {
-
 	padding:0;
 	margin:0;
 	width:100%;
@@ -57,11 +57,12 @@
 	position: ralative;
 	overflow:hidden;
 }
-div[class^="col-num"] {
 
-
-}
-@for $i from 1 through 9 {
+/* replace 9 with 0 -
+* temporary
+* Gallery needs a better implementation
+*/
+ @for $i from 1 through 0 {
   .col-num-#{$i} {
   	.gallery-item {
   		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
@@ -78,7 +79,7 @@ div[class^="col-num"] {
 }
 
 
-@for $i from 3 through 9 {
+@for $i from 3 through 0 {
   .col-num-#{$i} {
   	.gallery-item {
 		.post-action {

@@ -261,7 +261,7 @@ WP classes
 		background: $white;
 		position: relative;
 		margin:  $base-line-height*2 0;
-		padding: 0;
+		/*padding: 0;*/
 		section { padding:0 }
 		section + section { float:right }
 		.tc-content { padding:$base-line-height*3 $base-line-height*2; }
@@ -536,7 +536,8 @@ WP classes
 }
 
 .grid-container__alternate.semi-narrow  {
-	padding: 0 0 0 $base-line-height*2;
+	/*.czr-r-sidebar & { padding: 0 $base-line-height*2 0 0  }
+	.czr-l-sidebar & { padding: 0 0 0 $base-line-height*2 }*/
 	.tc-content { padding:$base-line-height*2; font-size: 90%; }
 	.no-thumb .tc-content { padding: $base-line-height*2; }
 	.format-video .video-container  {
