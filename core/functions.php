@@ -22,6 +22,16 @@ if ( ! function_exists('czr_fn_column_content_wrapper_class') ) {
 /*
  * @since 3.5.0
  */
+//shortcut function to echo the column content wrapper class
+if ( ! function_exists('czr_fn_main_container_wrapper_class') ) {
+  function czr_fn_main_container_class() {
+    return CZR() -> czr_fn_main_container_class();
+  }
+}
+
+/*
+ * @since 3.5.0
+ */
 //shortcut function to echo the article container class
 if ( ! function_exists('czr_fn_article_container_class') ) {
   function czr_fn_article_container_class() {

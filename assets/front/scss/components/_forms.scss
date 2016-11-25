@@ -69,16 +69,20 @@ form.czr-form {
     }
   }
 
-  .czr-focus.in-focus > label {
-    z-index: 1;
-    @include transform(translateY(-110%));
-    color: $grey;
+  .czr-focus {
+    input { transition: all 600ms; }
+    &:not(.in-focus) input { color: transparent; }
+    &.in-focus > label {
+      z-index: 1;
+      @include transform(translateY(-110%));
+      color: $grey;
 
-    i.icn-search { @include opacity(0); }
-    i.icn-close {
-      @include opacity(1);
-      @include transform(translateY(110%));
-      cursor: pointer;
+      i.icn-search { @include opacity(0); }
+      i.icn-close {
+        @include opacity(1);
+        @include transform(translateY(110%));
+        cursor: pointer;
+      }
     }
   }
 

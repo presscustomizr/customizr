@@ -27,10 +27,9 @@
   ?>
 
   <?php do_action('__before_main_wrapper') ?>
+
     <div id="main-wrapper" class="section">
-      <?php
-        if ( ! czr_fn_is_home() && ! is_404() ):
-      ?>
+      <?php  if ( ! czr_fn_is_home() && ! is_404() ): ?>
         <div class="container-fluid">
           <?php
             if ( czr_fn_has( 'post_list_heading' ) )
@@ -45,10 +44,8 @@
             czr_fn_render_template( $_heading_template );
           ?>
         </div>
-      <?php
-        endif;
-      ?>
-      <?php do_action('__before_main_container'); ?>
+      <?php endif ?>
+
 
       <?php
         /* FEATURED PAGES */
@@ -56,9 +53,15 @@
           czr_fn_render_template( 'modules/featured-pages/featured_pages' );
       ?>
 
-      <div class="container" role="main">
+      <?php if ( czr_fn_has('breadcrumb') ) : ?>
+        <div class="container">
+          <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+        </div>
+      <?php endif ?>
 
-        <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( 'modules/breadcrumb' ) ?>
+      <?php do_action('__before_main_container') ?>
+
+      <div class="<?php czr_fn_main_container_class() ?>" role="main">
 
         <?php do_action('__before_content_wrapper'); ?>
 

@@ -724,16 +724,16 @@ section.post-related-articles .grid .grid__item {
 
 
 /* main margins */
-#main-wrapper .column-content-wrapper {
+/*#main-wrapper .column-content-wrapper {
   padding-top: 5em;
 }
 #main-wrapper .czr-hot-crumble + .column-content-wrapper {
   padding-top: 0;
 }
 /* form ?*/
-.czr-form.search-form .czr-focus:not(.in-focus) input { color: transparent; }
+/*.czr-form.search-form .czr-focus:not(.in-focus) input { color: transparent; }
 .czr-form.search-form .czr-focus input { transition: all 600ms;}
-
+*/
 /* header secondary menu font-size fix
 replace
 .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {

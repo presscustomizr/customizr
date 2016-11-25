@@ -556,6 +556,13 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
         /*
+        * An handly function to print the main container class
+        */
+        function czr_fn_main_container_class() {
+            echo czr_fn_stringify_array( czr_fn_get_main_container_class() );
+        }
+
+        /*
         * An handly function to print the article containerr class
         */
         function czr_fn_article_container_class() {

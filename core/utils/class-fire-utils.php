@@ -243,6 +243,16 @@ function czr_fn_get_column_content_wrapper_class() {
 }
 
 /**
+* This function returns the main container class
+*
+* @package Customizr
+* @since Customizr 3.5
+*/
+function czr_fn_get_main_container_class() {
+    return apply_filters( 'czr_main_container_classes' , array('container') );
+}
+
+/**
 * This function returns the article container class
 *
 * @package Customizr

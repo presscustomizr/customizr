@@ -2049,6 +2049,14 @@ form.czr-form .czr-focus label i.icn-close {
   transform: translateY(-110%);
 }
 
+form.czr-form .czr-focus input {
+  transition: all 600ms;
+}
+
+form.czr-form .czr-focus:not(.in-focus) input {
+  color: transparent;
+}
+
 form.czr-form .czr-focus.in-focus > label {
   z-index: 1;
   -webkit-transform: translateY(-110%);

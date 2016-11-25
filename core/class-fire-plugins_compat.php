@@ -1086,11 +1086,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       ?>
       <div id="main-wrapper" class="section">
 
+        <?php if ( czr_fn_has('breadcrumb') ) : ?>
+          <div class="container">
+            <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+          </div>
+        <?php endif ?>
+
         <?php do_action('__before_main_container'); ?>
 
-        <div class="container" role="main">
-
-          <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( 'modules/breadcrumb' ); ?>
+        <div class="<?php czr_fn_main_container_class() ?>" role="main">
 
           <?php do_action('__before_content_wrapper'); ?>
 
