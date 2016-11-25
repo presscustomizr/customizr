@@ -77,6 +77,7 @@
 }
 
 @mixin underlined_simple ($color, $height) {
+  position: relative;
   &:before {
       content: "";
       position: absolute;
@@ -91,6 +92,7 @@
 }
 
 @mixin underlined ($color, $height) {
+  position: relative;
   &:before {
     content: "";
     position: absolute;
