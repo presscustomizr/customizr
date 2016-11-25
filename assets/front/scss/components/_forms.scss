@@ -18,7 +18,7 @@ form  {
     @extend .letter-spacing-2;
   }
   .form-control,
-  input:not([type="submit"]), textarea {
+  input[type="text"], input[type="password"], input[type="email"],  input[type="number"], textarea {
     outline: none;
     border: none;
     border-bottom: 2px solid #202020;
@@ -28,7 +28,6 @@ form  {
     color: #202020;
     position: relative;
     background: transparent;
-    max-width: 100%;
   }
   fieldset { margin-top: 3em }
 }
@@ -42,7 +41,7 @@ label i {
 }
 
 form.czr-form {
-  input:not([type="submit"]), textarea {
+  input[type="text"], input[type="password"], input[type="email"] , textarea {
     width: 100%;
   }
 

@@ -2620,7 +2620,7 @@ form label {
 }
 
 form .form-control,
-form input:not([type="submit"]), form textarea {
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"], form textarea {
   outline: none;
   border: none;
   border-bottom: 2px solid #202020;
@@ -2630,7 +2630,6 @@ form input:not([type="submit"]), form textarea {
   color: #202020;
   position: relative;
   background: transparent;
-  max-width: 100%;
 }
 
 form fieldset {
@@ -2648,7 +2647,7 @@ label i {
   text-align: center;
 }
 
-form.czr-form input:not([type="submit"]), form.czr-form textarea {
+form.czr-form input[type="text"], form.czr-form input[type="password"], form.czr-form input[type="email"], form.czr-form textarea {
   width: 100%;
 }
 
