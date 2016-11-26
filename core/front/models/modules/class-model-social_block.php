@@ -26,13 +26,14 @@ class CZR_social_block_model_class extends CZR_Model {
 
   protected function czr_fn_social_block_get_attributes( $model ) {
         $where   = $this -> where;
+        $CZR            = CZR();
         //the block must be hidden via CSS when
         //1a) the relative display option is unchecked
         //or
         //1b) there are no social icons set
         //and
         //2) customizing
-        $_hidden = ( ( $where && 0 == esc_attr( czr_fn_get_opt( "tc_social_in_{$where}" ) ) ) || ! $model['socials']  ) && CZR() -> czr_fn_is_customizing();
+        $_hidden = ( ( $where && 0 == esc_attr( czr_fn_get_opt( "tc_social_in_{$where}" ) ) ) || ! $model['socials']  ) && $CZR -> czr_fn_is_customizing();
         return $_hidden ? 'style="display:none;"' : '';
   }
 

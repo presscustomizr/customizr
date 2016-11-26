@@ -130,12 +130,14 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
 
     function czr_fn_display_view_post_metas() {
+      $CZR            = CZR();
+
       //disable in attachment context, attachment post metas have their own class
       if ( is_attachment() )
         $post_metas = false;
 
       //post metas are always insanciated in customizing context
-      elseif ( CZR() -> czr_fn_is_customizing() )
+      elseif ( $CZR -> czr_fn_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
@@ -200,6 +202,8 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
     function czr_fn_display_view_posts_navigation() {
       global $wp_query;
+      $CZR            = CZR();
+
       $bool  = $wp_query -> post_count > 0;
       $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
 
@@ -207,7 +211,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         return false;
 
       //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
-      if ( CZR() -> czr_fn_is_customizing() )
+      if ( $CZR -> czr_fn_is_customizing() )
         return true;
 
       if ( ! $this->czr_fn_is_posts_navigation_enabled() )

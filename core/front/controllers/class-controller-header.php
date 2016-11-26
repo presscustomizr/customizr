@@ -54,8 +54,9 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //1) not in customizer preview (we just hide it in the model)
     //2) the user choose to not display it
     function czr_fn_display_view_tagline() {
+      $CZR            = CZR();
       if ( ! isset( $this -> _cache[ 'view_tagline' ] ) )
-        $this -> _cache[ 'view_tagline' ] = CZR() -> czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
+        $this -> _cache[ 'view_tagline' ] = $CZR -> czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
       return $this -> _cache[ 'view_tagline' ];
     }
 

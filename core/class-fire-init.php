@@ -652,8 +652,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Defines the active skin and fallback to blue.css if needed
           if ( 'skin' == $_wot ) {
+            $CZR = CZR();
             //custom skin old tree compatibility for customizr-pro children only
-            $remote_path       = ( CZR_IS_PRO && CZR() -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
+            $remote_path       = ( CZR_IS_PRO && $CZR -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
             $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
           } else
             $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
@@ -829,9 +830,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
+          $CZR = CZR();
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
             array_push( $_classes, 'tc-fade-hover-links' );
-          if ( CZR() -> czr_fn_is_customizing() )
+          if ( $CZR -> czr_fn_is_customizing() )
             array_push( $_classes, 'is-customizing' );
           if ( wp_is_mobile() )
             array_push( $_classes, 'tc-is-mobile' );

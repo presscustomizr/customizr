@@ -298,7 +298,8 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   /* Customizer: allow dynamic visibility in the preview */
   function czr_fn_body_class( $_classes/*array*/ ) {
-    if ( ! CZR() -> czr_fn_is_customizing() )
+    $CZR            = CZR();
+    if ( ! $CZR -> czr_fn_is_customizing() )
       return $_classes;
 
     if ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )

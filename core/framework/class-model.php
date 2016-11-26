@@ -46,6 +46,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //=> those treatments have been managed by the collection
     function __construct( $model = array() ) {
           self::$instance =& $this;
+          $CZR            = CZR();
 
           //here is where extension classes can set their preset models
           $_preset = $this -> czr_fn_get_preset_model();
@@ -63,7 +64,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           } elseif ( FALSE == $model['id'] ) {
             //if model ID has been set to false => silent exit. Useful in cases when in czr_fn_extend_params the model
             //itself understands that it has to exit its instantiation
-            CZR() -> collection -> czr_fn_delete( $this -> id );
+            $CZR -> collection -> czr_fn_delete( $this -> id );
             return;
           }
           //equivalent of wp_parse_args() with default model property values
@@ -74,7 +75,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           //2) a priority set
           //3) a hook => not anymore since czr_fn_render_template()
           if ( ! $this -> czr_fn_can_model_be_instantiated() ) {
-            CZR() -> collection -> czr_fn_delete( $this -> id );
+            $CZR -> collection -> czr_fn_delete( $this -> id );
             return;
           }
           //set-up the children
@@ -131,10 +132,10 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //@return void()
     public function czr_fn_maybe_instantiate_view() {
           do_action( "pre_instantiate_view" );
-
+          $CZR            = CZR();
           //this check has already been done before instantiating the model.
           //Do we really need this again here ?
-          if ( ! CZR() -> controllers -> czr_fn_is_possible($this -> czr_fn_get())  )
+          if ( ! $CZR -> controllers -> czr_fn_is_possible($this -> czr_fn_get())  )
             return;
 
           //instantiate the view with the current model object as param
@@ -230,11 +231,12 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           if ( ! $this -> czr_fn_has_children() )
             return;
 
+          $CZR            = CZR();
           $children_collection = array();
           foreach ( $this -> children as $id => $model ) {
             //re-inject the id into the view_params
      //       $model['id'] = $id;
-            $id = CZR() -> collection -> czr_fn_register( $model );
+            $id = $CZR -> collection -> czr_fn_register( $model );
             if ( $id )
               $children_collection[$id] = $model;
           }//foreach

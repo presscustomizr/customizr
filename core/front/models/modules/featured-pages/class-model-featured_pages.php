@@ -113,7 +113,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
         $fp_img                         = '';
         $thumb_wrapper_class            = '';
         $edit_enabled                   = false;
-
+        $CZR                            = CZR();
 
         $featured_page_id               = apply_filters( 'czr_fp_id', $this -> fps[$fp_index-1], $fp_single_id );
 
@@ -125,7 +125,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $featured_page_link             = '';
           $customizr_link                 = '';
 
-        if ( ! CZR() -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+        if ( ! $CZR -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
             $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
                 czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
@@ -155,7 +155,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         //when are we displaying the edit link?
           //never display when customizing
-          if ( ! CZR() -> czr_fn_is_customizing() ) {
+          if ( ! $CZR -> czr_fn_is_customizing() ) {
             $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
             $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
           }
@@ -243,8 +243,9 @@ class CZR_featured_pages_model_class extends CZR_Model {
         //button block
         $fp_button_text    = call_user_func( '__', apply_filters( 'czr_fp_button_text' , $this -> button_text , $fp_single_id ) );
         $fp_button_class   = '';
+        $CZR               = CZR();
 
-        if ( $fp_button_text || CZR() -> czr_fn_is_customizing() ){
+        if ( $fp_button_text || $CZR -> czr_fn_is_customizing() ){
           $fp_button_text  = '<span>' . $fp_button_text . '</span>';
           $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-more', $fp_single_id );
           $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';

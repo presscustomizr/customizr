@@ -24,11 +24,12 @@
   function czr_fn_get_default_options() {
       $_db_opts     = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
       $def_options  = isset($_db_opts['defaults']) ? $_db_opts['defaults'] : array();
+      $CZR          = CZR();
 
       //Don't update if default options are not empty + customizing context
       //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
       //customzing => takes into account if user has set a filter or added a new customizer setting
-      if ( ! empty($def_options) && CZR() -> czr_fn_is_customizing() )
+      if ( ! empty($def_options) && $CZR -> czr_fn_is_customizing() )
         return apply_filters( 'czr_default_options', $def_options );
 
       //Always update/generate the default option when (OR) :

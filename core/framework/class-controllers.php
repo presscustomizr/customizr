@@ -213,11 +213,12 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@param is a string : header, content, footer, modules
     //@return the $instance
     private function czr_fn_instantiate_group_controller( $group ) {
-          $_path  = "controllers/class-controller-{$group}.php";
-          $_class = "CZR_controller_{$group}";
+          $_path     = "controllers/class-controller-{$group}.php";
+          $_class    = "CZR_controller_{$group}";
           $_instance = false;
+          $CZR       = CZR();
 
-          CZR() -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
+          $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

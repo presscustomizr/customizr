@@ -284,9 +284,10 @@ if ( ! class_exists( 'CZR___' ) ) :
         //hook : wp
         function czr_fn_register_model_map( $_map = array() ) {
           $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> czr_fn_get_model_map() : $_map;
+          $CZR          = CZR();
 
           foreach ( $_to_register as $model ) {
-            CZR() -> collection -> czr_fn_register( $model);
+            $CZR -> collection -> czr_fn_register( $model);
           }
 
         }
