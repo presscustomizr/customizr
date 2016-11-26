@@ -6,6 +6,7 @@
 }
 input:not([type="submit"]), textarea {
   max-width: 100%;
+  background: transparent;
 }
 
 form  {
@@ -18,7 +19,7 @@ form  {
     @extend .letter-spacing-2;
   }
   .form-control,
-  input[type="text"], input[type="password"], input[type="email"],  input[type="number"], textarea {
+  input[type="text"], input[type="url"], input[type="password"], input[type="email"],  input[type="number"], textarea {
     outline: none;
     border: none;
     border-bottom: 2px solid #202020;
@@ -27,7 +28,6 @@ form  {
     padding-top: 0;
     color: #202020;
     position: relative;
-    background: transparent;
   }
   fieldset { margin-top: 3em }
 }
