@@ -303,7 +303,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   }
 
   private function czr_fn_show_thumb() {
-    return czr_fn_has_thumb() && 0 != $this -> show_thumb ;
+    return 0 != $this -> show_thumb && czr_fn_has_thumb();
   }
 
   /******************************

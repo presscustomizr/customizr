@@ -7,7 +7,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
   public $post_class               = array( 'col-xs-12' );
   public $post_list_items          = array();
-
+  public $cat_list_class           = array( 'col-lg-3', 'col-xs-12' );
   /**
   * @override
   * fired before the model properties are parsed
@@ -16,12 +16,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'entry_header_inner_class'  => array( 'col-md-7', 'offset-md-4', 'col-xs-12'),
-      'entry_header_class'        => array( 'row' ),
-      'content_inner_class'       => array('col-md-7', 'offset-md-1', 'col-xs-12'),
       'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_full_content'         => true, //post list plain excerpt
       'contained'                 => false
     );
 
@@ -49,7 +47,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_setup_late_properties() {
     //all post lists do this
-    if ( czr_fn_is_loop_start() )
+    if ( $this -> show_full_content && czr_fn_is_loop_start() )
       $this -> czr_fn_setup_text_hooks();
     array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
   }
@@ -61,8 +59,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_reset_late_properties() {
     if ( czr_fn_is_loop_end() ) {
-      //all post lists do this
-      $this -> czr_fn_reset_text_hooks();
+      if ( $this -> show_full_content )
+        //all post lists do this
+        $this -> czr_fn_reset_text_hooks();
+
       //reset alternate items at loop end
       $this -> czr_fn_reset_post_list_items();
     }
@@ -80,7 +80,17 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
   }
 
+  function czr_fn_get_cat_list() {
+    return $this -> czr_fn__get_post_list_item_property( 'cat_list' );
+  }
 
+  function czr_fn_get_entry_header_inner_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'entry_header_inner_class' );
+  }
+
+  function czr_fn_get_content_inner_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'content_inner_class' );
+  }
 
   /*
   * Private/protected getters
@@ -91,21 +101,50 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   *  @return array
   */
   protected function czr_fn__get_post_list_item() {
-    $current_post_format    = get_post_format();
-    $has_post_media         = $this -> czr_fn__get_has_post_media( $current_post_format );
-    $article_selectors      = $this -> czr_fn__get_article_selectors( $has_post_media );
+    $current_post_format         = in_the_loop() ? get_post_format() : '';
+
+    $has_post_media              = $this -> czr_fn__get_has_post_media( $current_post_format );
+
+
+
+
+    /* retrieve category list */
+    $cat_list                    = $this -> czr_fn__get_cat_list();
+
+    /* Build inner elements classes */
+    $entry_header_inner_class    = $content_inner_class = array( 'col-xs-12' );
+    if ( $cat_list ) {
+      /* the header inner class (width) depends on the presence of the category list */
+      array_push( $entry_header_inner_class, 'col-lg-7', 'offset-lg-4' );
+      /* the content inner class (width) depends on the presence of the category list */
+      array_push( $content_inner_class, 'col-lg-7', 'offset-lg-1' );
+    }
+
+    $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
 
     return array(
-      'article_selectors'      => $article_selectors,
-      'has_post_media'         => $has_post_media
+      'article_selectors'        => $article_selectors,
+      'has_post_media'           => $has_post_media,
+      'cat_list'                 => $cat_list,
+      'entry_header_inner_class' => $entry_header_inner_class,
+      'content_inner_class'      => $content_inner_class
     );
   }
 
   /*
-  * Very similar to the one in the alternate...
-  * probably the no-thumb/no-text should be ported somewhere else (in czr_fn_get_the_post_list_article_selectors maybe)
+  * Get the category list
   */
-  protected function czr_fn__get_article_selectors( $has_post_media ) {
+  protected function czr_fn__get_cat_list() {
+    /* Post list plain showing excerpts limits the category to show to 3 */
+    $cat_list                  = $this -> show_full_content ? czr_fn_get( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get( 'cat_list', 'post_metas');
+    return $cat_list;
+  }
+
+
+  /*
+  * Very similar to the one in the alternate...
+  */
+  protected function czr_fn__get_article_selectors( $has_post_media, $cat_list ) {
     $post_class                = $this->post_class;
 
     /*
@@ -114,7 +153,11 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     */
     $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
-    array_push( $post_class, ! $_has_excerpt ? 'no-text' : '',  ! $has_post_media ? 'no-thumb' : '' );
+    array_push( $post_class,
+      ! $_has_excerpt   ? 'no-text' : '',
+      ! $has_post_media ? 'no-thumb' : '',
+      ! $cat_list       ? 'no-cat-list' : ''
+    );
 
     return czr_fn_get_the_post_list_article_selectors( array_filter( $post_class ) );
 

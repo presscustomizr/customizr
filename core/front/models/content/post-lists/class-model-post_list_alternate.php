@@ -175,7 +175,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $_current_post_format    = get_post_format();
 
     $has_post_media          = $this->show_thumb;
-    $has_thumb               = czr_fn_has_thumb();
+    $has_thumb               = $this->show_thumb && czr_fn_has_thumb();
+
     $is_full_image           = $this->czr_fn_is_full_image( $_current_post_format );
 
     $has_format_icon_media   = $this->czr_fn_has_format_icon_media( $has_thumb, $_current_post_format );
