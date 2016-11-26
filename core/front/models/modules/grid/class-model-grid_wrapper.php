@@ -280,7 +280,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       is_numeric( $section_cols ) ? 12 / $section_cols : 6
     );
 
-    return czr_fn_get_the_post_list_article_selectors( $post_class );
+    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
+    return czr_fn_get_the_post_list_article_selectors( $post_class, $id_suffix );
+
   }
 
   /**** HELPER ****/

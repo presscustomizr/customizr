@@ -72,7 +72,8 @@ class CZR_related_posts_model_class extends CZR_model {
 
   function czr_fn_get_article_selectors() {
     $_width  = is_array( $this -> element_width ) ? $this -> element_width : array();
-    return czr_fn_get_the_post_list_article_selectors( array_merge( $_width, array( 'grid-item') ) );
+
+    return czr_fn_get_the_post_list_article_selectors( array_merge( $_width, array( 'grid-item') ), "_{$this -> id}" );
   }
 
 

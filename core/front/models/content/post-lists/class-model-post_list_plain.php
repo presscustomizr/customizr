@@ -159,9 +159,11 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       ! $cat_list       ? 'no-cat-list' : ''
     );
 
-    return czr_fn_get_the_post_list_article_selectors( array_filter( $post_class ) );
+    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
 
+    return czr_fn_get_the_post_list_article_selectors( array_filter($post_class), $id_suffix );
   }
+
 
   protected function czr_fn__get_has_post_media( $post_format ) {
     if ( ! $this->show_thumb )

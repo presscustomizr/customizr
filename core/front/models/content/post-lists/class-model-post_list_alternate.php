@@ -290,9 +290,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       ! $has_format_icon_media && $has_post_media  ? 'has-thumb' : 'no-thumb'
     );
 
-    $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
 
-    return $article_selectors;
+    return czr_fn_get_the_post_list_article_selectors( array_filter($post_class), $id_suffix );
   }
 
 
