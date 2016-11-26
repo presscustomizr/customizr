@@ -90,7 +90,7 @@
                     }elseif ( czr_fn_has('post_list_plain') ) {
                       czr_fn_render_template( 'content/post-lists/post_list_plain' );
                     }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                      czr_fn_render_template( 'content/post-lists/post_list_plain_excerpt', array( 'model_id' => 'post_list_plain_excerpt', 'model_class' => 'content/post-lists/post_list_plain' ) );
+                      czr_fn_render_template( 'content/post-lists/post_list_plain_excerpt', array( 'model_class' => 'content/post-lists/post_list_plain', 'model_args' => array( 'show_full_content' => 0 ) ) );
                     } else { //fallback
                       czr_fn_render_template( 'content/singular/page_content' );
                     }

@@ -19,7 +19,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'show_full_content'         => true, //post list plain excerpt
+      'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false
     );
 
@@ -47,7 +47,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_setup_late_properties() {
     //all post lists do this
-    if ( $this -> show_full_content && czr_fn_is_loop_start() )
+    if ( ! $this -> show_full_content && czr_fn_is_loop_start() )
       $this -> czr_fn_setup_text_hooks();
     array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
   }
@@ -59,7 +59,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_reset_late_properties() {
     if ( czr_fn_is_loop_end() ) {
-      if ( $this -> show_full_content )
+      if ( ! $this -> show_full_content )
         //all post lists do this
         $this -> czr_fn_reset_text_hooks();
 
@@ -136,7 +136,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   protected function czr_fn__get_cat_list() {
     /* Post list plain showing excerpts limits the category to show to 3 */
-    $cat_list                  = $this -> show_full_content ? czr_fn_get( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get( 'cat_list', 'post_metas');
+    $cat_list                  = ! $this -> show_full_content ? czr_fn_get( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get( 'cat_list', 'post_metas');
     return $cat_list;
   }
 
