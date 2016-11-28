@@ -518,19 +518,6 @@ body {
   margin-top: 6rem !important;
 }
 
-/*
-* Reset list styling for some elements
-*/
-.topnav_navbars__wrapper ul li:before,
-nav ul li::before,
-ul.nav li::before,
-li.pingback::before,
-li.comment::before,
-.products li::before {
-  content: none;
-  padding: 0;
-}
-
 p {
   word-wrap: break-word;
 }
@@ -2463,7 +2450,7 @@ nav li.dropdown-item:before {
 
 /*  slider/gallery */
 /* Loader */
-.no-js [id*=czr-slider-loader-wrapper] {
+html.no-js [id*=czr-slider-loader-wrapper] {
   display: none;
 }
 
@@ -3296,33 +3283,33 @@ form.czr-form .czr-search-field {
 }
 
 /*.tc-content-inner {*/
-ol, ol ol {
+ol {
   counter-reset: item;
 }
 
-ol li:before, ol ol li:before {
+ol li li {
+  margin-left: 1.25em;
+}
+
+ol li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   padding-right: 0.625em;
 }
 
-ul li {
-  list-style: none;
+.tc-content-inner ul {
+  list-style: square;
 }
 
-ul li:before {
-  content: "■";
-  font-size: 12px;
-  vertical-align: middle;
-  padding-right: 0.625em;
-}
-
-ul.dash {
-  list-style: none;
+.tc-content-inner ul li {
   margin-left: 1.25em;
 }
 
-ul.dash li::before {
+ul.dash, ul.dash ul {
+  list-style: none;
+}
+
+ul.dash li::before, ul.dash ul li::before {
   content: "";
   display: inline-block;
   vertical-align: middle;
@@ -3334,7 +3321,7 @@ ul.dash li::before {
 }
 
 ol ol, ol ul, ul ol, ul ul {
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 table {

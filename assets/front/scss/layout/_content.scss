@@ -112,7 +112,10 @@
 
 //formatting
 /*.tc-content-inner {*/
-	ol/*.pre*/, ol/*.pre*/ ol {
+	ol {
+		li li {
+			margin-left: $base-line-height;
+		}
 		counter-reset: item;
 		li:before {
 			content: counters(item, ".") ".";
@@ -120,35 +123,29 @@
 			padding-right: $base-line-height/2;
 		}
 	}
-	ul/*.pre*/ {
-		li {
-			    list-style: none;
-			}
-			li:before {
-			    content:"■";
-			    font-size:12px;
-			    vertical-align:middle;
-			    padding-right: $base-line-height/2;
+	ul {
+		.tc-content-inner & {
+			list-style: square;
+			li { margin-left: $base-line-height; }
+		}
 
+		&.dash, &.dash ul {
+			list-style: none;
+			li::before {
+				content: "";
+				display: inline-block;
+				vertical-align: middle;
+				margin-left:-$base-line-height;
+				width: $base-line-height;
+				height: 1px;
+				background: black;
+				margin-right: $base-line-height;
 			}
-	}
-	ul/*.pre*/.dash {
-		list-style: none;
-		margin-left: $base-line-height;
-		li::before {
-			content: "";
-			display: inline-block;
-			vertical-align: middle;
-			margin-left:-$base-line-height;
-			width: $base-line-height;
-			height: 1px;
-			background: black;
-			margin-right: $base-line-height;
 		}
 	}
-	ol/*.pre*/, ul/*.pre*/ {
+	ol, ul {
 		ol, ul {
-			margin-left: $base-line-height*1.6;
+			margin-left: $base-line-height * .8;
 		}
 	}
 	table { width: 100% }

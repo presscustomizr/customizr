@@ -181,18 +181,7 @@ body {
 .m-t-6 {
   margin-top: 6rem !important;
 }
-/*
-* Reset list styling for some elements
-*/
-.topnav_navbars__wrapper ul li:before,
-nav ul li::before,
-ul.nav li::before,
-li.pingback::before,
-li.comment::before,
-.products li::before {
-  content: none;
-  padding: 0
-}
+
 p {
   word-wrap: break-word;
 }

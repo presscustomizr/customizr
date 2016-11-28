@@ -474,7 +474,7 @@ nav li.dropdown-item:before {
 
 /*  slider/gallery */
 /* Loader */
-.no-js [id*=czr-slider-loader-wrapper] { display: none; }
+html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 /* Gif Loader if center slide option is checked */
 .czr-slider-loader-wrapper {
   height: 100%;
