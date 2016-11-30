@@ -259,3 +259,62 @@ function czr_fn_register( $model = array() ) {
 function CZR() {
   return CZR___::czr_fn_instance();
 }
+
+/****************************************************************************
+****************************** HELPERS **************************************
+*****************************************************************************/
+/**
+* Is the customizer left panel being displayed ?
+* @return  boolean
+* @since  3.4+
+*/
+function czr_fn_is_customize_left_panel() {
+  global $pagenow;
+  return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
+}
+
+
+/**
+* Is the customizer preview panel being displayed ?
+* @return  boolean
+* @since  3.4+
+*/
+function czr_fn_is_customize_preview_frame() {
+  return ! is_admin() && isset($_REQUEST['wp_customize']);
+}
+
+
+/**
+* Always include wp_customize or customized in the custom ajax action triggered from the customizer
+* => it will be detected here on server side
+* typical example : the donate button
+*
+* @return boolean
+* @since  3.4+
+*/
+function czr_fn_doing_customizer_ajax() {
+  $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
+  return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+}
+
+
+/**
+* Are we in a customization context ? => ||
+* 1) Left panel ?
+* 2) Preview panel ?
+* 3) Ajax action from customizer ?
+* @return  bool
+* @since  3.4+
+*/
+function czr_fn_is_customizing() {
+  //checks if is customizing : two contexts, admin and front (preview frame)
+  return czr_fn_is_customize_left_panel() ||
+    czr_fn_is_customize_preview_frame() ||
+    czr_fn_doing_customizer_ajax();
+}
+
+
+//@return boolean
+function czr_fn_is_partial_refreshed_on() {
+  return apply_filters( 'czr_partial_refresh_on', true );
+}

@@ -8,8 +8,7 @@ class CZR_tagline_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $CZR            = CZR();
-    $model[ 'element_attributes' ] = ( $CZR -> czr_fn_is_customizing() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
+    $model[ 'element_attributes' ] = ( czr_fn_is_customizing() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) ) ? 'style="display:none;"' : '';
     return $model;
   }
   /**
@@ -31,8 +30,7 @@ class CZR_tagline_model_class extends CZR_Model {
     if ( $_fired ) return;
     $_fired        = true;
 
-    $CZR            = CZR();
-    if ( esc_attr( czr_fn_get_opt( "tc_sticky_header") || $CZR -> czr_fn_is_customizing() ) ) {
+    if ( esc_attr( czr_fn_get_opt( "tc_sticky_header") || czr_fn_is_customizing() ) ) {
       $_class =        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_tagline') ) ? 'tc-tagline-on' : 'tc-tagline-off';
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );

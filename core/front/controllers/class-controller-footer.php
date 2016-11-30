@@ -14,8 +14,7 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
     }
 
     function czr_fn_display_view_footer_push () {
-      $CZR            = CZR();
-      return esc_attr( czr_fn_get_opt( 'tc_sticky_footer') ) || $CZR -> czr_fn_is_customizing();
+      return esc_attr( czr_fn_get_opt( 'tc_sticky_footer') ) || czr_fn_is_customizing();
     }
 
     function czr_fn_display_view_btt_arrow() {

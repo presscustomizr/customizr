@@ -6,9 +6,8 @@ class CZR_posts_navigation_model_class extends CZR_Model {
 
   /* visibility in the customizer */
   function czr_fn_get_element_class( $_nav_classes = array() ) {
-    $CZR            = CZR();
 
-    if ( ! $CZR -> czr_fn_is_customizing() )
+    if ( ! czr_fn_is_customizing() )
       return $_nav_classes;
 
     $_context                  = czr_fn_get_query_context();

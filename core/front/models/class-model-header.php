@@ -12,7 +12,7 @@ class CZR_header_model_class extends CZR_Model {
 
     $element_class            = array( 'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) ) );
     $elements_container_class = array();
-    $CZR                      = CZR();
+
 
     /* Is the header absolute ? add absolute and header-transparent classes
     * The header is absolute when:
@@ -42,7 +42,7 @@ class CZR_header_model_class extends CZR_Model {
 
 
     /* Sticky header treatment */
-    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || $CZR -> czr_fn_is_customizing();
+    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || czr_fn_is_customizing();
 
     if ( $_sticky_header ) {
       array_push( $element_class,

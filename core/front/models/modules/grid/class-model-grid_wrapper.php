@@ -265,9 +265,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   function czr_fn_get_grid_item_icon_visibility() {
     $icon_enabled        = (bool) $this -> grid_icons && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
     $icon_attributes     = '';
-    $CZR                 = CZR();
 
-    if ( $CZR -> czr_fn_is_customizing() )
+    if ( czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
           $icon_enabled ? 'inline-block' : 'none'
       );

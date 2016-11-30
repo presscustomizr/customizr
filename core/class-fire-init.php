@@ -833,7 +833,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           $CZR = CZR();
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
             array_push( $_classes, 'tc-fade-hover-links' );
-          if ( $CZR -> czr_fn_is_customizing() )
+          if ( czr_fn_is_customizing() )
             array_push( $_classes, 'is-customizing' );
           if ( wp_is_mobile() )
             array_push( $_classes, 'tc-is-mobile' );

@@ -56,7 +56,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     function czr_fn_display_view_tagline() {
       $CZR            = CZR();
       if ( ! isset( $this -> _cache[ 'view_tagline' ] ) )
-        $this -> _cache[ 'view_tagline' ] = $CZR -> czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
+        $this -> _cache[ 'view_tagline' ] = czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
       return $this -> _cache[ 'view_tagline' ];
     }
 

@@ -17,7 +17,6 @@ if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ {
         public static $instance;//@todo make private in the future
         public $czr_core;
-        public $is_customizing;
 
         static $default_options;
         static $db_options;
@@ -382,7 +381,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           //2) IS CUSTOMIZING
           //---2.1) IS LEFT PANEL => customizer controls
           //---2.2) IS RIGHT PANEL => preview
-          if ( ! $this -> czr_fn_is_customizing() )
+          if ( ! czr_fn_is_customizing() )
             {
               if ( is_admin() )
                 $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
@@ -394,14 +393,14 @@ if ( ! class_exists( 'CZR___' ) ) :
           else
             {
               //left panel => skip all front end classes
-              if ( $this -> czr_fn_is_customize_left_panel() ) {
+              if (czr_fn_is_customize_left_panel() ) {
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array( 'header' , 'content' , 'footer' ),
                   array( 'fire|core|resources_styles' , 'fire|core|resources_fonts', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
                 );
               }
-              if ( $this -> czr_fn_is_customize_preview_frame() ) {
+              if ( czr_fn_is_customize_preview_frame() ) {
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array(),
@@ -568,60 +567,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         */
         function czr_fn_article_container_class() {
             echo czr_fn_stringify_array( czr_fn_get_article_container_class() );
-        }
-
-        /**
-        * Are we in a customization context ? => ||
-        * 1) Left panel ?
-        * 2) Preview panel ?
-        * 3) Ajax action from customizer ?
-        * @return  bool
-        * @since  3.2.9
-        */
-        function czr_fn_is_customizing() {
-            if ( ! isset( $this -> is_customizing ) )
-              //checks if is customizing : two contexts, admin and front (preview frame)
-              $this -> is_customizing = in_array( 1, array(
-                $this -> czr_fn_is_customize_left_panel(),
-                $this -> czr_fn_is_customize_preview_frame(),
-               $this -> czr_fn_doing_customizer_ajax()
-              ) );
-            return $this -> is_customizing;
-        }
-
-
-        /**
-        * Is the customizer left panel being displayed ?
-        * @return  boolean
-        * @since  3.3+
-        */
-        function czr_fn_is_customize_left_panel() {
-            global $pagenow;
-            return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
-        }
-
-
-        /**
-        * Is the customizer preview panel being displayed ?
-        * @return  boolean
-        * @since  3.3+
-        */
-        function czr_fn_is_customize_preview_frame() {
-            return is_customize_preview() || ( ! is_admin() && isset($_REQUEST['customize_messenger_channel']) );
-        }
-
-
-        /**
-        * Always include wp_customize or customized in the custom ajax action triggered from the customizer
-        * => it will be detected here on server side
-        * typical example : the donate button
-        *
-        * @return boolean
-        * @since  3.3.2
-        */
-        function czr_fn_doing_customizer_ajax() {
-            $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
-            return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
         }
 
 

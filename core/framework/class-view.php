@@ -49,8 +49,7 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
           do_action( "__before_{$this -> model -> id}" );
 
-          $CZR                = CZR();
-          $czr_fn_print_debug =  ! $CZR -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+          $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
           ?>
           <?php

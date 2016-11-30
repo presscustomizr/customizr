@@ -18,7 +18,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
         'header_social_block'        => 'header',
         'footer_social_block'        => 'footer',
       );
-      $CZR            = CZR();
+
       //the block must be instantiated when
       //1) IS customizing or no model hook set
       //or
@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //3b) There are social icons set
 
       //(1)
-      if ( $CZR -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return true;
 
       $_socials = czr_fn_get_social_networks();
@@ -134,19 +134,17 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     * and in the loop
     */
     function czr_fn_display_view_edit_button() {
-      $CZR            = CZR();
       return apply_filters( 'czr_edit_in_title',
           is_user_logged_in()
-          && ! $CZR -> czr_fn_is_customizing()
+          && ! czr_fn_is_customizing()
       );
     }
 
 
     /* Help blocks generic controller */
     function czr_fn_display_view_help_block() {
-      $CZR            = CZR();
       //never display when customizing or admin
-      if ( $CZR -> czr_fn_is_customizing() || is_admin() )
+      if ( czr_fn_is_customizing() || is_admin() )
         return;
       //always display in DEV mode
       if ( defined('CZR_DEV') && true === CZR_DEV )

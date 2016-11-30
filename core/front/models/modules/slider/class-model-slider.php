@@ -550,10 +550,9 @@ class CZR_slider_model_class extends CZR_Model {
     if ( 'demo' != czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) )
       return $_h;
 
-    $CZR            = CZR();
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( $CZR -> czr_fn_is_customizing() ) {
+    if ( czr_fn_is_customizing() ) {
       if ( 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
