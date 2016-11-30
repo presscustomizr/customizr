@@ -39,7 +39,7 @@
           );
         ?>
       </header>
-      <div class="comment-content"><?php comment_text() ?></div>
+      <div class="comment-content tc-content-inner"><?php comment_text() ?></div>
       <?php if ( czr_fn_get( 'is_awaiting_moderation' ) ): ?>
         <p class="comment-awaiting-moderation comment-content"><?php _e( 'Your comment is awaiting moderation.' , 'customizr' ) ?></p>
       <?php endif; ?>
