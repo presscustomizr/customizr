@@ -91,7 +91,7 @@
   */
   function czr_fn_get_theme_options ( $option_group = null ) {
       //do we have to look in a specific group of option (plugin?)
-      $option_group       = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group       = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       $saved              = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
       $defaults           = CZR___::$default_options;
       $__options          = wp_parse_args( $saved, $defaults );
@@ -110,7 +110,7 @@
   */
   function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
       //do we have to look for a specific group of option (plugin?)
-      $option_group = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
       $_db_options  = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
 
@@ -158,7 +158,7 @@
   * @since Customizr 3.4+
   */
   function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
-      $option_group           = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       $_options               = czr_fn_get_theme_options( $option_group );
       $_options[$option_name] = $option_value;
 
@@ -174,7 +174,7 @@
   * @since Customizr 3.2.0
   */
   function czr_fn_cache_db_options($opt_group = null) {
-      $opts_group = is_null($opt_group) ? CZR_OPT_NAME : $opt_group;
+      $opts_group = is_null($opt_group) ? CZR_THEME_OPTIONS : $opt_group;
       CZR___::$db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
       return CZR___::$db_options;
   }

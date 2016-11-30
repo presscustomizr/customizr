@@ -556,7 +556,7 @@ class CZR_slider_model_class extends CZR_Model {
       if ( 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( czr_fn_get_opt( 'tc_slider_default_height', CZR_OPT_NAME, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( czr_fn_get_opt( 'tc_slider_default_height', CZR_THEME_OPTIONS, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'czr_set_demo_slider_height' , 750 );

@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.2.3
         */
         function czr_fn_init_properties() {
-              self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+              self::$db_options       = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
               self::$default_options  = czr_fn_get_default_options();
               $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
@@ -107,7 +107,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @return  void
         */
         function czr_fn_customize_refresh_db_opt(){
-          CZR___::$db_options = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+          CZR___::$db_options = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
         }
 
 
@@ -181,10 +181,9 @@ if ( ! class_exists( 'CZR___' ) ) :
               //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
               if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
-              if( ! defined( 'CZR_OPT_NAME' ) )             define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+              if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
               //IS PRO
               if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
-
 
         }//setup_contants()
 
