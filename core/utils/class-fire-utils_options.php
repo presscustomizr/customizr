@@ -200,7 +200,8 @@ function czr_fn_get_ctx_excluded_options() {
         'tc_sliders',
         'tc_blog_restrict_by_cat',
         'last_update_notice',
-        'last_update_notice_pro'
+        'last_update_notice_pro',
+        'tc_social_links'
       )
     );
 }
