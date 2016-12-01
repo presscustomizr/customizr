@@ -59,9 +59,9 @@
                 )
               )
               ?>
-              <div class="clearfix">
+              <div class="clearfix entry-meta ">
                 <?php  if ( czr_fn_has('post_metas') && (bool) $tag_list = czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-                    <div class="entry-meta post-tags">
+                    <div class="post-tags float-md-left">
                       <ul class="tags">
                         <?php echo $tag_list ?>
                       </ul>
@@ -71,7 +71,7 @@
                   <!-- fake need to have social links somewhere -->
                 <?php if ( czr_fn_has('social_share') ) : ?>
 
-                  <div class="post-share">
+                  <div class="post-share float-md-right">
                     <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
                   </div>
 

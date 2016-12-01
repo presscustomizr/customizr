@@ -279,20 +279,20 @@ blockquote p {
   margin-top: 0.5em;
 }
 
-.inline-list, .tags {
+.inline-list, .socials, .tags {
   list-style: none;
 }
 
-.inline-list li, .tags li {
+.inline-list li, .socials li, .tags li {
   display: inline-block;
   position: relative;
 }
 
-.inline-list li + li, .tags li + li {
+.inline-list li + li, .socials li + li, .tags li + li {
   margin-left: 1.25em;
 }
 
-.inline-list li:before, .tags li:before {
+.inline-list li:before, .socials li:before, .tags li:before {
   content: none;
 }
 
@@ -1846,15 +1846,6 @@ p {
   }
 }
 
-.socials li {
-  display: inline-block !important;
-  width: auto !important;
-}
-
-.socials li:before {
-  content: none;
-}
-
 .socials li + li {
   margin-left: 1.25em;
 }
@@ -3297,19 +3288,19 @@ ol li:before {
   padding-right: 0.625em;
 }
 
-.tc-content-inner ul {
+.tc-content-inner ul:not(.socials):not(.tags) {
   list-style: square;
 }
 
-.tc-content-inner ul li {
+.tc-content-inner ul:not(.socials):not(.tags) li {
   margin-left: 1.25em;
 }
 
-ul.dash, ul.dash ul {
+ul:not(.socials):not(.tags).dash, ul:not(.socials):not(.tags).dash ul {
   list-style: none;
 }
 
-ul.dash li::before, ul.dash ul li::before {
+ul:not(.socials):not(.tags).dash li::before, ul:not(.socials):not(.tags).dash ul li::before {
   content: "";
   display: inline-block;
   vertical-align: middle;
@@ -4376,13 +4367,11 @@ WP classes
 }
 
 .grid-container__plain .post-tags {
-  float: left;
   margin-top: 1.5em;
 }
 
-.grid-container__plain .socials {
-  float: right;
-  margin-top: 1em;
+.grid-container__plain .post-share .socials {
+  margin-top: 1.1em;
 }
 
 .grid-container__plain .post-info {
@@ -5068,10 +5057,6 @@ section.post-related-articles .grid .grid__item h3 {
 .pagination > * > span {
   color: #202020;
   font-weight: 600;
-}
-
-.post-share {
-  text-align: right;
 }
 
 .action-link, .comment-reply-link {

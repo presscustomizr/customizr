@@ -1,9 +1,5 @@
 %socials {
-	li {
-		display: inline-block !important;
-		width: auto !important;
-    &:before { content: none }
-	}
+  @extend .inline-list;
 	li + li { margin-left:$base-line-height; }
 	a {
 		display:block;
