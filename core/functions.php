@@ -318,3 +318,31 @@ function czr_fn_is_customizing() {
 function czr_fn_is_partial_refreshed_on() {
   return apply_filters( 'czr_partial_refresh_on', true );
 }
+
+/* HELPER FOR CHECKBOX OPTIONS */
+//the old options used 'on' and 'off'
+//the new options use 1 and 0
+function czr_fn_is_checked( $opt_name = '') {
+  $val = czr_fn_get_opt($opt_name);
+  return czr_fn_booleanize_checkbox_val( $val );
+}
+
+function czr_fn_booleanize_checkbox_val( $val ) {
+  if ( ! $val )
+    return;
+  switch ( (string) $val ) {
+    case 'off':
+    case '' :
+      return false;
+    case 'on':
+    case '1' :
+      return true;
+    default: return false;
+  }
+}
+
+//used in the customizer
+//replace wp checked() function
+function czr_fn_checked( $val ) {
+  echo czr_fn_is_checked( $val ) ? 'checked="checked"' : '';
+}

@@ -182,6 +182,8 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
               if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+
+              if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );
               //IS PRO
               if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
 
@@ -235,6 +237,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
             new CZR_init();
@@ -396,7 +399,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array( 'header' , 'content' , 'footer' ),
-                  array( 'fire|core|resources_styles' , 'fire|core|resources_fonts', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
+                  array( 'fire|core|resources_styles' , 'fire|core', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
                 );
               }
               if ( czr_fn_is_customize_preview_frame() ) {
