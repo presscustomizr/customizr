@@ -358,8 +358,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         isset($item['title']) ? esc_attr( $item['title'] ) : '',
         ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
         ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
-        //isset($item['social-color']) ? esc_attr($item['social-color']) : '#000',
-        '',
+        isset($item['social-color']) ? esc_attr($item['social-color']) : '#000',
         isset($item['social-icon']) ? esc_attr($item['social-icon']) : ''
       ) );
     }

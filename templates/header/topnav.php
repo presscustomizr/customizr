@@ -9,20 +9,16 @@
       <?php czr_fn_render_template( 'header/menu', array( 'model_id' => 'secondary_menu' ) ) ?>
     </nav>
   </div>
+  <?php if ( czr_fn_has('header_socials') ) : ?>
   <div class="col-md-3">
-    <div class="secondary-nav__socials">
-      <?php
-        if ( czr_fn_has('header_socials') )
+      <div class="secondary-nav__socials social-links">
+          <?php
           czr_fn_render_template(
             'modules/social_block',
-            array(
-              'model_id'   => 'header_socials',
-              'model_args' => array(
-                'element_class' => 'nav navbar-nav socials'
-              )
-            )
+            array( 'model_id'   => 'header_socials' )
           );
-      ?>
-    </div>
+          ?>
+      </div>
   </div>
+  <?php endif ?>
 </div>

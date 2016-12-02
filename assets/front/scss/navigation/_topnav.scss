@@ -229,7 +229,7 @@
    }
 
   .primary-nav__container {
-        .socials {
+        .primary-nav__socials {
             float:right;
            /* height: 68px;
             line-height: 68px;*/
@@ -295,17 +295,17 @@
         vertical-align: bottom;
        /* li a { height:60px; line-height:60px }*/
       }
-      .socials {
+      .primary-nav__socials {
          @extend .small;
          position: relative;
          margin-left: $base-line-height;
-         padding-left: $base-line-height*2;
+         /* padding-left: $base-line-height*2; */
          @media (max-width: 992px) {
            width: 100%;
            float:none;
            text-align:  left;
            margin-left: $base-line-height*2;
-           li { display: inline-block; }
+           li { display: inline-block; width: auto }
          }
          @media (min-width: 993px) {
 

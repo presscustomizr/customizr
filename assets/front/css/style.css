@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header .entry-meta, .grid-container__square-mini .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header .entry-meta, .grid-container__square-mini .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright, small {
   font-size: 0.833333em;
 }
 
@@ -679,10 +679,10 @@ p {
 }
 
 @media (min-width: 993px) {
-  .header-skin-light .primary-nav__utils .socials {
+  .header-skin-light .primary-nav__utils .primary-nav__socials {
     padding-left: 1.25em;
   }
-  .header-skin-light .primary-nav__utils .socials:before {
+  .header-skin-light .primary-nav__utils .primary-nav__socials:before {
     content: " ";
     position: absolute;
     top: 0;
@@ -712,7 +712,7 @@ p {
 }
 
 @media (max-width: 992px) {
-  .header-skin-light .primary-nav__utils .socials {
+  .header-skin-light .primary-nav__utils .primary-nav__socials {
     border-top: 1px solid rgba(32, 32, 32, 0.09);
   }
 }
@@ -1038,10 +1038,10 @@ p {
 }
 
 @media (min-width: 993px) {
-  .header-skin-dark .primary-nav__utils .socials {
+  .header-skin-dark .primary-nav__utils .primary-nav__socials {
     padding-left: 1.25em;
   }
-  .header-skin-dark .primary-nav__utils .socials:before {
+  .header-skin-dark .primary-nav__utils .primary-nav__socials:before {
     content: " ";
     position: absolute;
     top: 0;
@@ -1071,7 +1071,7 @@ p {
 }
 
 @media (max-width: 992px) {
-  .header-skin-dark .primary-nav__utils .socials {
+  .header-skin-dark .primary-nav__utils .primary-nav__socials {
     border-top: 1px solid rgba(255, 255, 255, 0.09);
   }
 }
@@ -1530,7 +1530,7 @@ p {
   z-index: 190;
 }
 
-.primary-nav__container .socials {
+.primary-nav__container .primary-nav__socials {
   float: right;
   /* height: 68px;
             line-height: 68px;*/
@@ -1618,26 +1618,27 @@ p {
   /* li a { height:60px; line-height:60px }*/
 }
 
-.primary-nav__container .primary-nav__utils .socials {
+.primary-nav__container .primary-nav__utils .primary-nav__socials {
   position: relative;
   margin-left: 1.25em;
-  padding-left: 2.5em;
+  /* padding-left: $base-line-height*2; */
 }
 
 @media (max-width: 992px) {
-  .primary-nav__container .primary-nav__utils .socials {
+  .primary-nav__container .primary-nav__utils .primary-nav__socials {
     width: 100%;
     float: none;
     text-align: left;
     margin-left: 2.5em;
   }
-  .primary-nav__container .primary-nav__utils .socials li {
+  .primary-nav__container .primary-nav__utils .primary-nav__socials li {
     display: inline-block;
+    width: auto;
   }
 }
 
 @media (min-width: 993px) {
-  .primary-nav__container .primary-nav__utils .socials li + li {
+  .primary-nav__container .primary-nav__utils .primary-nav__socials li + li {
     margin-left: 1.25em;
   }
 }

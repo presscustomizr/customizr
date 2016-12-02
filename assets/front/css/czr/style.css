@@ -766,7 +766,7 @@ Replace
     display: table-cell !important;
     white-space: nowrap !important;
   }
-  .primary-nav__container .primary-nav__utils .socials {
+  .primary-nav__container .primary-nav__utils .primary-nav__socials {
     float: none !important;
     display: inline-block !important;
   }
