@@ -63,12 +63,12 @@ $secondary-color-dark   : $grey;
 				background: transparent;
 			}
 		}
-		& > div:not(.navbar-sticky) {
-			@media (min-width: 993px) {
-				.primary-navbar__wrapper  {
-					border-bottom: 1px solid rgba($primary-color, 0.09);
-				}
+		@media (min-width: 993px) {
+			.primary-navbar__wrapper  {
+				border-bottom: 1px solid rgba($primary-color, 0.09);
 			}
+		}
+		& > div:not(.navbar-sticky) {
 			@media (max-width: 992px) {
 				.primary-navbar__wrapper  {
 					@include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
@@ -77,11 +77,11 @@ $secondary-color-dark   : $grey;
 		}
 	}
 
-	header > div:not(.navbar-sticky) {
-		.secondary-navbar__wrapper  {
-			border-bottom: 1px solid rgba($primary-color, 0.09);
-		}
+
+	.secondary-navbar__wrapper  {
+		border-bottom: 1px solid rgba($primary-color, 0.09);
 	}
+
 	header:not(.header-transparent) {
 		.primary-navbar__wrapper {
 			@extend .shadow;
@@ -102,12 +102,12 @@ $secondary-color-dark   : $grey;
 		a:hover, a.current-active    { color: $secondary-color-light;   }
 
 	     @media (min-width: 993px) {
-	     	.primary-nav__socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
+	     	.primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
 	     	.utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
 
 	     }
 	      @media (max-width: 992px) {
-	     	.primary-nav__socials { border-top: 1px solid rgba($primary-color, 0.09);  }
+	     	.primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
 	     }
 	}
 	.dropdown-item:before {
