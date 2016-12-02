@@ -6,4 +6,4 @@
  * @since Customizr 3.5.0
  */
 ?>
- <div class="go-to-top"><i class="icn-up-big"></i></div>
+<div class="go-to-top" <?php czr_fn_echo('element_attributes') ?>><i class="icn-up-big"></i></div>

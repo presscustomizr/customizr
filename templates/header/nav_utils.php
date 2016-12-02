@@ -16,14 +16,11 @@
       </li>
     <?php endif ?>
   </ul>
-  <?php if ( ! czr_fn_has('navbar_secondary_menu') && czr_fn_has('header_socials') ) : ?>
-  <div class="primary-nav__socials social-links">
+  <?php if ( ! czr_fn_has('navbar_secondary_menu') && czr_fn_has('header_social_block') ) : ?>
+    <div class="primary-nav__socials social-links">
       <?php
-        czr_fn_render_template(
-          'modules/social_block',
-          array( 'model_id'   => 'header_socials' )
-        );
+        czr_fn_render_template('modules/social_block' );
       ?>
-  </div>
+    </div>
   <?php endif ?>
 </div>

@@ -15,7 +15,23 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           self::$instance =& $this;
           $this -> controllers = array(
             'header' => array(
-              'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button',
+              'head',
+              'title',
+              'logo_wrapper',
+              'logo',
+              'sticky_logo', /*'logo_title', */
+              'tagline',
+              'mobile_tagline',
+              'favicon',
+              'menu',
+              'sidenav',
+              'navbar_menu',
+              'navbar_secondary_menu',
+              'menu_button',
+              'mobile_menu_button',
+              'sidenav_menu_button',
+              'sidenav_navbar_menu_button',
+              'header_social_block'
             ),
             'content' => array(
               'post_list',
@@ -40,11 +56,12 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'footer_btt',
               'footer_push',
               'footer_widgets',
-              'colophon'
+              'colophon',
+              'footer_social_block'
           //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
-              //'social_block',
+              'social_block',
               'breadcrumb',
               'comment_info',
               'post_list_grid',

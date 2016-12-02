@@ -44,6 +44,9 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return true;
     }
 
+    function czr_fn_display_view_header_social_block() {
+      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) ) ) && czr_fn_is_possible('social_block');
+    }
 
 
     function czr_fn_display_view_mobile_tagline() {

@@ -10,42 +10,10 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //why this class extends CZR_controllers?
     }
 
-    function czr_fn_display_view_social_block( $model ) {
-      static $socials_map = array(
-        //id => option filter
-        'left_sidebar_social_block'  => 'left-sidebar',
-        'right_sidebar_social_block' => 'right-sidebar',
-        'header_social_block'        => 'header',
-        'footer_social_block'        => 'footer',
-      );
 
-      //the block must be instantiated when
-      //1) IS customizing or no model hook set
-      //or
-      //2a) the block is displayed in a non-standard (not option mapped) structural hook
-      //and
-      //2b) There are social icons set
-      //or
-      //3a) the relative display option IS unchecked ( matching the map array above )
-      //and
-      //3b) There are social icons set
-
-      //(1)
-      if ( czr_fn_is_customizing() )
-        return true;
-
-      $_socials = czr_fn_get_social_networks();
-
-      //(2a)
-      if ( ! array_key_exists( $model['id'], $socials_map ) )
-        return (bool) $_socials;
-
-      //(3b)
-      $_id = $model['id'];
-      $_opt_name = $socials_map[ $_id ];
-      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_{$_opt_name}" ) ) && czr_fn_get_social_networks() );
+    function czr_fn_display_view_social_block() {
+      return czr_fn_is_customizing() || czr_fn_get_social_networks();
     }
-
 
     function czr_fn_display_view_main_slider() {
       if ( ! $this -> czr_fn_display_main_slider() )

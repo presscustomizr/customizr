@@ -4,7 +4,7 @@
  *
  */
 ?>
-<footer id="footer" class="container-fluid footer__wrapper">
+<footer id="footer" class="container-fluid footer__wrapper" <?php czr_fn_echo('element_attributes') ?>>
   <?php
   do_action( '__before_inner_footer' );
 
