@@ -326,7 +326,7 @@ if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
 //replace wp checked() function
 if ( ! function_exists( 'czr_fn_checked' ) ) {
   function czr_fn_checked( $val ) {
-    echo czr_fn_get_opt($opt_name) ? 'checked="checked"' : '';
+    echo $val ? 'checked="checked"' : '';
   }
 }
 
