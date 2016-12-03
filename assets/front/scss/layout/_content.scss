@@ -2,41 +2,41 @@
 #main-wrapper { padding-bottom:$base-line-height*4; }
 
 #main-wrapper, .container[role="main"]{
-	&::before, &::after {
-		display: table;
-		content: '';
-		line-height: 0
-	}
+  &::before, &::after {
+    display: table;
+    content: '';
+    line-height: 0
+  }
 }
 #tc-page-wrap {
-	position: relative;
-	@media (min-width: 992px){
-		overflow: hidden;
-	}
+  position: relative;
+  @media (min-width: 992px){
+    overflow: hidden;
+  }
 }
 
 //header skins
 
 &.header-skin-dark  {
-		.section-slider .filter {
-			@include filter($black, $white, 0.5);
-			+ .slider-text { color: $white; }
-		}
-		.image__header {
-			@extend .filter;
-			@include filter($black, $white, 0.5);
-		}
+  .section-slider .filter {
+    @include filter($black, $white, 0.5);
+    + .slider-text { color: $white; }
+  }
+  .image__header {
+    @extend .filter;
+    @include filter($black, $white, 0.5);
+  }
 }
 
 &.header-skin-light {
-	.section-slider .filter {
-		@include filter($white, $black, 0.75);
-		+ .slider-text { color: $black; }
-	}
-	.image__header {
-		@extend .filter;
-		@include filter($white, $black, 0.75);
-	}
+  .section-slider .filter {
+    @include filter($white, $black, 0.75);
+    + .slider-text { color: $black; }
+  }
+  .image__header {
+    @extend .filter;
+    @include filter($white, $black, 0.75);
+  }
 }
 
 
@@ -45,33 +45,33 @@
 .slider-text > h2 + h3 { margin-top:0; margin-bottom: $base-line-height; }
 .section { position: relative; padding:0; margin:0;}
 .section-slider {
-	@extend %vertical-align-parent;
-	overflow: hidden;
+  @extend %vertical-align-parent;
+  overflow: hidden;
 }
 [id^=customizr-slider-] {
-	.bg-link { z-index: 4 }
-	.btn-edit {
-		position: absolute;
-		&.slider-btn-edit { bottom: 10px;	left: 10px }
-		&.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
-	}
+  .bg-link { z-index: 4 }
+  .btn-edit {
+    position: absolute;
+    &.slider-btn-edit { bottom: 10px;  left: 10px }
+    &.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
+  }
 }
  .parallax {
-	@include centered;
-	@extend %vertical-align-parent;
+  @include centered;
+  @extend %vertical-align-parent;
 }
 
 .section-slider .container {
-		z-index: 3;
-		position: relative;
-		width: 100%;
-		height: 100%;
-		display: block;
-		top: 0;
-
+  z-index: 3;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  top: 0;
 }
+
 .parallax  .content {
-	@extend %vertical-align;
+  @extend %vertical-align;
 }
 #main-wrapper .section.custom  { margin: $base-line-height*2; }
 
@@ -112,121 +112,121 @@
 
 //formatting
 /*.tc-content-inner {*/
-	ol {
-		li li {
-			margin-left: $base-line-height;
-		}
-		counter-reset: item;
-		li:before {
-			content: counters(item, ".") ".";
-			counter-increment: item;
-			padding-right: $base-line-height/2;
-		}
-	}
-	ul:not(.socials):not(.tags) {
-		.tc-content-inner & {
-			list-style: square;
-			li { margin-left: $base-line-height; }
-		}
+ol {
+  li li {
+    margin-left: $base-line-height;
+  }
+  counter-reset: item;
+  li:before {
+    content: counters(item, ".") ".";
+    counter-increment: item;
+    padding-right: $base-line-height/2;
+  }
+}
+ul:not(.socials):not(.tags) {
+  .tc-content-inner & {
+    list-style: square;
+    li { margin-left: $base-line-height; }
+  }
 
-		&.dash, &.dash ul {
-			list-style: none;
-			li::before {
-				content: "";
-				display: inline-block;
-				vertical-align: middle;
-				margin-left:-$base-line-height;
-				width: $base-line-height;
-				height: 1px;
-				background: black;
-				margin-right: $base-line-height;
-			}
-		}
-	}
-	ol, ul {
-		ol, ul {
-			margin-left: $base-line-height * .8;
-		}
-	}
-	table { width: 100% }
-	table:not([id^=wp-calendar]) {
-		border: 2px solid $grey-lightest;
-		th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
-		th, td { @extend .small; padding: $base-line-height; border: 1px solid $grey-lightest; }
-		td { color: $grey-dark; }
-	}
+  &.dash, &.dash ul {
+    list-style: none;
+    li::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      margin-left:-$base-line-height;
+      width: $base-line-height;
+      height: 1px;
+      background: black;
+      margin-right: $base-line-height;
+    }
+  }
+}
+ol, ul {
+  ol, ul {
+    margin-left: $base-line-height * .8;
+  }
+}
+table { width: 100% }
+table:not([id^=wp-calendar]) {
+  border: 2px solid $grey-lightest;
+  th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
+  th, td { @extend .small; padding: $base-line-height; border: 1px solid $grey-lightest; }
+  td { color: $grey-dark; }
+}
 
-	dl {
-		margin-bottom:  $base-line-height;
-		dt {
-			text-align: left;
-			position: relative;
-			padding : $base-line-height $base-line-height $base-line-height/2 $base-line-height;
-			&::before {
-				content: "";
-				position: absolute;
-				width: $base-line-height;
-				height: 2px;
-				bottom: calc(#{$base-line-height} - 6px);
-				left: 0;
-				background: $black;
-			}
-		}
-		.wp-caption-dt::before { content: none }
-		dd {
-			padding-left : $base-line-height;
-		}
-	}
+dl {
+  margin-bottom:  $base-line-height;
+  dt {
+    text-align: left;
+    position: relative;
+    padding : $base-line-height $base-line-height $base-line-height/2 $base-line-height;
+    &::before {
+      content: "";
+      position: absolute;
+      width: $base-line-height;
+      height: 2px;
+      bottom: calc(#{$base-line-height} - 6px);
+      left: 0;
+      background: $black;
+    }
+  }
+  .wp-caption-dt::before { content: none }
+  dd {
+    padding-left : $base-line-height;
+  }
+}
 /*}*/
 
 /* featured pages*/
 .marketing { margin-bottom: $base-line-height + 2 }
 .featured {
-	margin-top: $base-line-height * 2;
-	position: relative;
-	text-align: center;
-	.widget-front { background: $white; }
-	img { max-width: 100%; }
-	.fp-title {
-		@extend .semi-bold;
-		line-height: $base-line-height;
-		margin-bottom: $base-line-height;
-		word-break: break-word;
-		&::after {
-			content: "";
-			position: absolute;
-			width: $base-line-height;
-			background: $black;
-			height: 2px;
-			top: 100%;
-			left: 0;
-			right: 0;
-			margin: $base-line-height/4 auto 0;
-			@include transition (all 0.6s ease);
-		}
-	}
-	.btn-edit { margin: -1em 0 0 }
-	a.btn-more { margin-bottom: $base-line-height*2 }
-	.fp-button { display: block}
-	.tc-content {
-		width: 90%;
-		text-align: center;
-		margin:0 auto;
-		[class*=fp-text-] {
-			width: 90%;
-			margin: $base-line-height*2 auto;
-			color: $grey-dark;
-			@extend .small;
-		}
+  margin-top: $base-line-height * 2;
+  position: relative;
+  text-align: center;
+  .widget-front { background: $white; }
+  img { max-width: 100%; }
+  .fp-title {
+    @extend .semi-bold;
+    line-height: $base-line-height;
+    margin-bottom: $base-line-height;
+    word-break: break-word;
+    &::after {
+      content: "";
+      position: absolute;
+      width: $base-line-height;
+      background: $black;
+      height: 2px;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: $base-line-height/4 auto 0;
+      @include transition (all 0.6s ease);
+    }
+  }
+  .btn-edit { margin: -1em 0 0 }
+  a.btn-more { margin-bottom: $base-line-height*2 }
+  .fp-button { display: block}
+  .tc-content {
+    width: 90%;
+    text-align: center;
+    margin:0 auto;
+    [class*=fp-text-] {
+      width: 90%;
+      margin: $base-line-height*2 auto;
+      color: $grey-dark;
+      @extend .small;
+    }
 
-	}
-	.widget-front.hover {
-		color: $grey-dark;
-		.fp-title::after {
-			background: $grey-dark;
-			width: $base-line-height*2;
-		}
-	}
+  }
+  .widget-front.hover {
+    color: $grey-dark;
+    .fp-title::after {
+      background: $grey-dark;
+      width: $base-line-height*2;
+    }
+  }
 }
 
 

@@ -6,12 +6,12 @@
 .m-t-05 { margin-top: 0.5em }
 
 .inline-list {
-	list-style : none;
-	li {
-		display: inline-block;
-    position: relative;
-		& + li { margin-left: $base-line-height; }
-	}
+  list-style : none;
+  li {
+    display: inline-block;
+
+    & + li { margin-left: $base-line-height; }
+  }
   li:before { content: none }
 }
 .no-hover { pointer-events: none !important; }
@@ -32,7 +32,7 @@
 }
 .img-centered {
   @extend .centered;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .filter {
