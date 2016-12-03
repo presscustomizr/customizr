@@ -214,3 +214,17 @@ function czr_fn_get_ctx_excluded_options() {
 function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
     return in_array( $opt_name, czr_fn_get_ctx_excluded_options() );
 }
+
+
+//@return an array of unfiltered options
+//=> all options or a single option val
+function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
+    $alloptions = wp_cache_get( 'alloptions', 'options' );
+    $alloptions = maybe_unserialize($alloptions);
+    if ( ! is_null( $opt_group ) && isset($alloptions[$opt_group]) ) {
+      $alloptions = maybe_unserialize($alloptions[$opt_group]);
+    }
+    if ( is_null( $opt_name ) )
+      return $alloptions;
+    return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
+}
