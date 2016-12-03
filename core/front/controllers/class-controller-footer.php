@@ -18,7 +18,8 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
     }
 
     function czr_fn_display_view_footer_social_block() {
-      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_footer" ) ) ) && czr_fn_is_possible('social_block');
+      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_footer" ) ) ) &&
+        ( czr_fn_is_customize_preview_frame() || czr_fn_is_possible('social_block') );
     }
 
     function czr_fn_display_view_btt_arrow() {

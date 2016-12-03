@@ -12,7 +12,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     function czr_fn_display_view_social_block() {
-      return czr_fn_is_customizing() || czr_fn_get_social_networks();
+      return czr_fn_has_social_links();
     }
 
     function czr_fn_display_view_main_slider() {
@@ -76,10 +76,9 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
         return false;
 
       global $post;
-      $CZR            = CZR();
 
-      return  $post -> comment_count > 0 &&
-        $CZR -> controllers -> czr_fn_is_possible( 'comment_list' ) && in_array( get_post_type(), apply_filters('czr_show_comment_infos_for_post_types' , array( 'post' , 'page') ) );
+      return  $post -> comment_count > 0 && czr_fn_is_possible( 'comment_list' ) &&
+        in_array( get_post_type(), apply_filters('czr_show_comment_infos_for_post_types' , array( 'post' , 'page') ) );
     }
 
 
