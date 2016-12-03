@@ -315,34 +315,27 @@ function czr_fn_is_customizing() {
 
 
 //@return boolean
-function czr_fn_is_partial_refreshed_on() {
-  return apply_filters( 'czr_partial_refresh_on', true );
-}
-
-/* HELPER FOR CHECKBOX OPTIONS */
-//the old options used 'on' and 'off'
-//the new options use 1 and 0
-function czr_fn_is_checked( $opt_name = '') {
-  $val = czr_fn_get_opt($opt_name);
-  return czr_fn_booleanize_checkbox_val( $val );
-}
-
-function czr_fn_booleanize_checkbox_val( $val ) {
-  if ( ! $val )
-    return;
-  switch ( (string) $val ) {
-    case 'off':
-    case '' :
-      return false;
-    case 'on':
-    case '1' :
-      return true;
-    default: return false;
+if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
+  function czr_fn_is_partial_refreshed_on() {
+    return apply_filters( 'czr_partial_refresh_on', true );
   }
 }
 
+/* HELPER FOR CHECKBOX OPTIONS */
 //used in the customizer
 //replace wp checked() function
-function czr_fn_checked( $val ) {
-  echo czr_fn_is_checked( $val ) ? 'checked="checked"' : '';
+if ( ! function_exists( 'czr_fn_checked' ) ) {
+  function czr_fn_checked( $val ) {
+    echo czr_fn_get_opt($opt_name) ? 'checked="checked"' : '';
+  }
+}
+
+/**
+* helper
+* @return  bool
+*/
+if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
+  function czr_fn_has_social_links() {
+    return ! empty ( czr_fn_get_opt('tc_social_links') );
+  }
 }
