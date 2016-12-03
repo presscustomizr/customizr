@@ -129,6 +129,39 @@ var czrapp = czrapp || {};
           contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
       });
 
+      /*
+      * TODO: find a better way
+      * Disable controllers when the first or the latest slide is in the viewport
+      */
+      $('.grid-container__square-mini', '.czr-carousel').on( 'activate.flickity, settle.flickity', function() {
+        var $_this             = $(this),
+            flkty              = $_this.data('flickity'),
+            $_carousel_wrapper = $_this.closest('.czr-carousel'),
+            $_prev             = $_carousel_wrapper.find('.slider-prev'),
+            $_next             = $_carousel_wrapper.find('.slider-next');
+
+        //Reset
+        $_prev.removeClass('disabled');
+        $_next.removeClass('disabled');
+
+        //selected index is 0, disable prev or
+        // first slide shown but not selected (when showing 2 slides at time )
+        if ( ( 0 == flkty.selectedIndex ) ||
+              ( 1 == flkty.selectedIndex
+                && $(flkty.selectedElement.previousElementSibling).offset().left == $_this.offset().left ) )
+          $_prev.addClass('disabled');
+
+
+        //selected index is latest, disable next or
+        //latest slide shown but not selected (when showing 2 slides at time )
+        if ( ( flkty.slides.length - 1 == flkty.selectedIndex ) ||
+              ( flkty.slides.length - 2 == flkty.selectedIndex
+                  && $(flkty.selectedElement.nextElementSibling).offset().left < ( $_this.offset().left + $_this.outerWidth() ) ) )
+          $_next.addClass('disabled');
+
+        console.log(flkty);
+      })
+
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
       $('[class*="grid-container__"] .format-gallery .carousel-inner').flickity({
           prevNextButtons: false,
