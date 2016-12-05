@@ -196,6 +196,14 @@ embed, iframe, object, video { max-width: 100%;}
   width: 100%;
   height: 100vh;
 }
+.admin-bar .czr-carousel.full-page {
+  height: calc( 100vh - 46px );
+}
+@media screen and ( min-width: 783px ){
+  .admin-bar .czr-carousel.full-page {
+    height: calc( 100vh - 32px );
+  }
+}
 [id^=customizr-slider-].czr-carousel .carousel-inner,
 [id^=customizr-slider-].czr-carousel .carousel-cell { width: 100%; height: 100%; overflow: hidden;}
 

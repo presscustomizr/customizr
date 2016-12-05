@@ -130,10 +130,9 @@ var czrapp = czrapp || {};
       });
 
       /*
-      * TODO: find a better way
       * Disable controllers when the first or the latest slide is in the viewport
       */
-      $('.grid-container__square-mini', '.czr-carousel').on( 'activate.flickity, settle.flickity', function() {
+      $('.grid-container__square-mini', '.czr-carousel').on( 'settle.flickity', function( evt ) {
         var $_this             = $(this),
             flkty              = $_this.data('flickity'),
             $_carousel_wrapper = $_this.closest('.czr-carousel'),
@@ -145,21 +144,16 @@ var czrapp = czrapp || {};
         $_next.removeClass('disabled');
 
         //selected index is 0, disable prev or
-        // first slide shown but not selected (when showing 2 slides at time )
-        if ( ( 0 == flkty.selectedIndex ) ||
-              ( 1 == flkty.selectedIndex
-                && $(flkty.selectedElement.previousElementSibling).offset().left == $_this.offset().left ) )
+        //first slide shown but not selected
+        if ( ( 0 == flkty.selectedIndex ) || ( Math.abs(flkty.x ) < .1 ) )
           $_prev.addClass('disabled');
 
-
+        //console.log(Math.abs( flkty.slidesWidth + flkty.x ) );
         //selected index is latest, disable next or
-        //latest slide shown but not selected (when showing 2 slides at time )
-        if ( ( flkty.slides.length - 1 == flkty.selectedIndex ) ||
-              ( flkty.slides.length - 2 == flkty.selectedIndex
-                  && $(flkty.selectedElement.nextElementSibling).offset().left < ( $_this.offset().left + $_this.outerWidth() ) ) )
+        //latest slide shown but not selected
+        if ( ( flkty.slides.length - 1 == flkty.selectedIndex ) || ( Math.abs( flkty.slidesWidth + flkty.x ) < .1 ) )
           $_next.addClass('disabled');
 
-        console.log(flkty);
       })
 
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
@@ -203,14 +197,33 @@ var czrapp = czrapp || {};
       // previous
       czrapp.$_body.on( 'click', '.slider-prev', function(evt) {
         evt.preventDefault();
-        var $flickity = $(this).closest('.czr-carousel').find('.flickity-enabled');
-        $flickity.flickity('previous');
+
+        var $_this    = $(this),
+            _flickity = $_this.data( 'controls' );
+
+        //if not already done, cache the slider this control controls as data-controls attribute
+        if ( ! _flickity ) {
+          _flickity   = $_this.closest('.czr-carousel').find('.flickity-enabled').data('flickity');
+          $_this.data( 'controls', _flickity )
+        }
+
+        _flickity.previous();
       });
+
       // next
       czrapp.$_body.on( 'click', '.slider-next', function(evt) {
         evt.preventDefault();
-        var $flickity = $(this).closest('.czr-carousel').find('.flickity-enabled');
-        $flickity.flickity('next');
+
+        var $_this    = $(this),
+            _flickity = $_this.data( 'controls' );
+
+        //if not already done, cache the slider this control controls as data-controls attribute
+        if ( ! _flickity ) {
+          _flickity   = $_this.closest('.czr-carousel').find('.flickity-enabled').data('flickity');
+          $_this.data( 'controls', _flickity )
+        }
+
+        _flickity.next();
       });
     }
   };//_methods{}
