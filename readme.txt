@@ -43,7 +43,7 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.4.36 December 6th 2016 =
 * improved : compatibility with WP 4.7
-* improved: add small CSS compatibility code for wp 4.7
+* added : minor UI change in the customizer, new home button added
 
 = 3.4.35 November 17th 2016 =
 * fixed : display dropdown submenu caret only for relevant '.nav' elements

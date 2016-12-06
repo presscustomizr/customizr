@@ -1306,3 +1306,8 @@ body .select2-results {
     width: 440px;
   }
 }
+
+/* ROOT PANEL : SEPARATE MENUS, WIDGETS AND ADVANCED OPTIONS */
+.control-panel-nav_menus > .accordion-section-title, .control-panel-widgets > .accordion-section-title {
+  margin: 10px 0;
+}

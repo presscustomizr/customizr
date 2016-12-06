@@ -60,8 +60,12 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     */
     function czr_fn_alter_wp_customizer_settings( $wp_customize ) {
       //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
-      $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
-      $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
+      if ( is_object( $wp_customize -> get_setting( 'blogname' ) ) ) {
+        $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
+      }
+      if ( is_object( $wp_customize -> get_setting( 'blogdescription' ) ) ) {
+        $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
+      }
 
 
       //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
@@ -138,6 +142,20 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
         $_priority = $_priority + 10;
       }//foreach
+
+      //REMOVE CUSTOM CSS ADDED IN 4.7 => IT WILL REPLACE THE CUSTOMIZR BUILT-IN ONE SOON
+      //But the migration is not coded yet
+      $custom_css_setting_id = sprintf( 'custom_css[%s]', get_stylesheet() );
+      if ( is_object( $wp_customize -> get_setting( $custom_css_setting_id ) ) ) {
+        $wp_customize -> remove_setting( $custom_css_setting_id );
+      }
+      if ( is_object( $wp_customize -> get_control( 'custom_css' ) ) ) {
+        $wp_customize -> remove_control( 'custom_css' );
+      }
+      if ( is_object( $wp_customize -> get_section( 'custom_css' ) ) ) {
+        $wp_customize -> remove_section( 'custom_css' );
+      }
+
     }
 
 
