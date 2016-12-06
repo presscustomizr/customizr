@@ -690,10 +690,7 @@ WP classes
     @include transition (all 0.3s ease);
   }
   .entry-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    white-space: nowrap;
+    @include text-truncate();
     font-weight: 600;
   }
   .entry-header.no-title .entry-title::after {

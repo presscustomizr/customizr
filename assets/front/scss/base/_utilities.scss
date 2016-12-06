@@ -20,15 +20,16 @@
 }
 
 @mixin border_b_t() {
-     &::before {
-        content:"";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        top:0;
-        left:0;
-        background: $grey-light;
-      }
+  position: relative;
+  &::before {
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top:0;
+    left:0;
+    background: $grey-light;
+  }
 }
 .img-centered {
   @extend .centered;
@@ -51,6 +52,7 @@
 }
 
 @mixin v-divider ($mp, $color, $side, $active:0) {
+  position: relative;
   padding-#{$side}: $mp;
   &:before {
       content:" ";
@@ -128,7 +130,7 @@
   margin-right: auto;
 }
 
-//vectical-alignement
+//vectical-alignment
 %vertical-align-parent {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;

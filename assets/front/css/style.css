@@ -680,6 +680,7 @@ p {
 
 @media (min-width: 993px) {
   .header-skin-light .primary-nav__utils .primary-nav__socials .socials {
+    position: relative;
     padding-left: 1.25em;
   }
   .header-skin-light .primary-nav__utils .primary-nav__socials .socials:before {
@@ -695,6 +696,7 @@ p {
     /* border-left: 1px solid $color; */
   }
   .header-skin-light .primary-nav__utils .utils li {
+    position: relative;
     padding-left: 1.25em;
   }
   .header-skin-light .primary-nav__utils .utils li:before {
@@ -751,6 +753,7 @@ p {
 
 .header-skin-light .hamburger-toggler__container,
 .header-skin-light .mobile-woocart__container {
+  position: relative;
   padding-left: 1.25em;
 }
 
@@ -1039,6 +1042,7 @@ p {
 
 @media (min-width: 993px) {
   .header-skin-dark .primary-nav__utils .primary-nav__socials .socials {
+    position: relative;
     padding-left: 1.25em;
   }
   .header-skin-dark .primary-nav__utils .primary-nav__socials .socials:before {
@@ -1054,6 +1058,7 @@ p {
     /* border-left: 1px solid $color; */
   }
   .header-skin-dark .primary-nav__utils .utils li {
+    position: relative;
     padding-left: 1.25em;
   }
   .header-skin-dark .primary-nav__utils .utils li:before {
@@ -1110,6 +1115,7 @@ p {
 
 .header-skin-dark .hamburger-toggler__container,
 .header-skin-dark .mobile-woocart__container {
+  position: relative;
   padding-left: 1.25em;
 }
 
@@ -3053,6 +3059,7 @@ form.czr-form .czr-search-field {
 
 .hamburger-menu.opened .hamburger-toggler__container,
 .hamburger-menu.opened .mobile-woocart__container {
+  position: relative;
   padding-left: 1.25em;
 }
 
@@ -3788,6 +3795,7 @@ WP classes
 
 .grid .entry-footer .post-info {
   padding-top: 2.5em;
+  position: relative;
 }
 
 .grid .entry-footer .post-info::before {
@@ -4030,6 +4038,10 @@ WP classes
 
 .grid-container__classic .format-link.hover .tc-grid-excerpt .entry-summary {
   color: #fff;
+}
+
+.grid-container__classic .format-image .tc-content .entry-footer .post-info {
+  position: relative;
 }
 
 .grid-container__classic .format-image .tc-content .entry-footer .post-info::before {
@@ -4528,7 +4540,6 @@ WP classes
 .grid-container__square-mini .entry-title {
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
   white-space: nowrap;
   font-weight: 600;
 }
@@ -4615,7 +4626,6 @@ WP classes
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
   white-space: nowrap;
 }
 

@@ -54,10 +54,7 @@
   }
   .entry-title, .archive-title {
     margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    white-space: nowrap;
+    @include text-truncate();
   }
   .btn-edit {
     margin-bottom: 0;
