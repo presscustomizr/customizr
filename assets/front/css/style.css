@@ -2465,7 +2465,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   position: absolute;
   z-index: 99;
   /*less than the default sticky-header z-index */
-  background: #FAFAFA;
+  background: #ffffff;
 }
 
 /* slider/gallery arrows  */
@@ -2474,9 +2474,9 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   width: 100%;
 }
 
-.slider-nav .slider-prev, .tc-gallery-nav .slider-prev, .slider-nav .slider-next, .tc-gallery-nav .slider-next {
+.slider-nav .slider-control, .tc-gallery-nav .slider-control {
   position: absolute;
-  z-index: 130;
+  z-index: 90;
   top: calc((100% - 60px)/2);
   text-align: center;
   margin-top: 0px;
@@ -2490,11 +2490,11 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-.slider-nav .slider-prev i, .tc-gallery-nav .slider-prev i, .slider-nav .slider-next i, .tc-gallery-nav .slider-next i {
+.slider-nav .slider-control i, .tc-gallery-nav .slider-control i {
   line-height: 60px;
 }
 
-.slider-nav .slider-prev span, .tc-gallery-nav .slider-prev span, .slider-nav .slider-next span, .tc-gallery-nav .slider-next span {
+.slider-nav .slider-control span, .tc-gallery-nav .slider-control span {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   -moz-opacity: 0;
@@ -2531,14 +2531,14 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   right: 1em;
 }
 
-.slider-nav .slider-prev:hover, .tc-gallery-nav .slider-prev:hover, .slider-nav .slider-next:hover, .tc-gallery-nav .slider-next:hover {
+.slider-nav .slider-control:hover, .tc-gallery-nav .slider-control:hover {
   transform: translateY(0px);
   background-color: rgba(32, 32, 32, 0.9);
   opacity: 1;
   width: 100px;
 }
 
-.slider-nav .slider-prev:hover .slider-count, .tc-gallery-nav .slider-prev:hover .slider-count, .slider-nav .slider-next:hover .slider-count, .tc-gallery-nav .slider-next:hover .slider-count {
+.slider-nav .slider-control:hover .slider-count, .tc-gallery-nav .slider-control:hover .slider-count {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   -moz-opacity: 0.5;
