@@ -1284,3 +1284,52 @@ body .select2-results {
   margin-left: 3px;
 }
 
+
+/* HOME BUTTON */
+#customize-header-actions .customize-controls-close {
+  left:45px;
+}
+.customize-controls-home, .customize-controls-close {
+  top: -1px;
+}
+.customize-controls-home {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 45px;
+    height: 42px;
+    padding: 0 2px 0 0;
+    background: #eee;
+    border: none;
+    border-top: 4px solid #eee;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    color: #444;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: color .15s ease-in-out, border-color .15s ease-in-out, background .15s ease-in-out;
+    transition: color .1s ease-in-out, border-color .15s ease-in-out, background .15s ease-in-out;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+
+.customize-controls-home:before {
+    font: normal 22px/45px dashicons;
+    content: "\f102";
+    font-size: 17px;
+    line-height:45px;
+    position: relative;
+    top: -4px;
+    left: 14px;
+}
+.customize-controls-home:hover {
+    background: #fff;
+    color: #0073aa;
+    border-top-color: #0073aa;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

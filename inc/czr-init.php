@@ -5561,7 +5561,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       /**
       * Init CZR_utils class properties after_setup_theme
       * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-      * tc_get_default_options uses is_user_logged_in() => was causing the bug
+      * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
       * hook : after_setup_theme
       *
       * @package Customizr
@@ -5718,18 +5718,17 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           return apply_filters( 'tc_default_options', $def_options );
 
         //Always update/generate the default option when (OR) :
-        // 1) user is logged in
+        // 1) current user can edit theme options
         // 2) they are not defined
         // 3) theme version not defined
         // 4) versions are different
-        if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+        if ( current_user_can('edit_theme_options') || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
           $def_options          = $this -> czr_fn_generate_default_options( CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
           //Adds the version in default
           $def_options['ver']   =  CUSTOMIZR_VER;
 
-          $_db_opts['defaults'] = $def_options;
-          //writes the new value in db
-          update_option( "tc_theme_options" , $_db_opts );
+          //writes the new value in db (merging raw options with the new defaults ).
+          $this -> czr_fn_set_option( 'defaults', $def_options, 'tc_theme_options' );
         }
         return apply_filters( 'tc_default_options', $def_options );
       }
@@ -5784,8 +5783,6 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           //$__options        = array_intersect_key( $__options, $defaults );
         return $__options;
       }
-
-
 
 
       /**
@@ -5859,7 +5856,12 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
         $option_group           = is_null($option_group) ? CZR___::$tc_option_group : $option_group;
-        $_options               = $this -> czr_fn_get_theme_options( $option_group );
+        /*
+        * Get raw theme options:
+        * avoid filtering
+        * avoid merging with defaults
+        */
+        $_options               = czr_fn_get_raw_option( $option_group );
         $_options[$option_name] = $option_value;
 
         update_option( $option_group, $_options );
@@ -8369,6 +8371,10 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
       add_filter('tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
 
+      //FRONT PAGE
+      add_filter('option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+      add_filter('pre_option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+
       //FEATURED PAGES
       add_filter('fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
       add_filter('tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
@@ -8447,6 +8453,13 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
         return 'Customizr';
     }
 
+
+    /* ------------------------------------------------------------------------- *
+     *  Front page
+    /* ------------------------------------------------------------------------- */
+    function czr_fn_set_front_page_content( $value ) {
+        return 'posts';
+    }
 
 
     /* ------------------------------------------------------------------------- *

@@ -10,6 +10,10 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
       add_filter('tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
 
+      //FRONT PAGE
+      add_filter('option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+      add_filter('pre_option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+
       //FEATURED PAGES
       add_filter('fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
       add_filter('tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
@@ -88,6 +92,13 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
         return 'Customizr';
     }
 
+
+    /* ------------------------------------------------------------------------- *
+     *  Front page
+    /* ------------------------------------------------------------------------- */
+    function czr_fn_set_front_page_content( $value ) {
+        return 'posts';
+    }
 
 
     /* ------------------------------------------------------------------------- *

@@ -470,7 +470,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             'translatedStrings'    => array(
               'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
               'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr')
-            )
+            ),
+            'isThemeSwitchOn' => isset( $_GET['theme'])
 	        )
 	      )
       );

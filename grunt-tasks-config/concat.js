@@ -52,6 +52,12 @@ module.exports = {
     ],
     dest: '<%= paths.inc_php %>czr-admin.php',
   },
+  customize_php : {
+    src: [
+      '<%= paths.dev_php %>admin/class-admin-customize.php'
+    ],
+    dest: '<%= paths.inc_php %>czr-customize.php',
+  },
 	front_main_parts_js : {
     src: [
       '<%= paths.front_js %>parts/_main_base.part.js',

@@ -64,8 +64,8 @@
     $('input[type=checkbox]').not('input[id*="widget"]').each( function() {
       if ( 0 === $(this).closest('div[class^="icheckbox"]').length ) {
         $(this).iCheck({
-          checkboxClass: 'icheckbox_flat-green',
-          radioClass: 'iradio_flat-green'
+          checkboxClass: 'icheckbox_flat-grey',
+          radioClass: 'iradio_flat-grey'
         })
         .on( 'ifChanged', function(e){
             $(e.currentTarget).trigger('change');
@@ -135,6 +135,33 @@
 
     /* NUMBER */
     $('input[type="number"]').stepper();
+
+
+    ( function() {
+          var $home_button = $('<span/>', { class:'customize-controls-home', html:'<span class="screen-reader-text">Home</span>' } );
+          $.when( $('#customize-header-actions').append( $home_button ) )
+                .done( function() {
+                      $home_button
+                            .keydown( function( event ) {
+                                  if ( 9 === event.which ) // tab
+                                    return;
+                                  if ( 13 === event.which ) // enter
+                                    this.click();
+                                  event.preventDefault();
+                            })
+                            .on( 'click.customize-controls-home', function() {
+                                  //event.preventDefault();
+                                  //close everything
+                                  api.section.each( function( _s ) {
+                                      _s.expanded( false );
+                                  });
+                                  api.panel.each( function( _p ) {
+                                        _p.expanded( false );
+                                  });
+                            });
+                });
+      })();
+
 
   });//end of $( function($) ) dom ready
 
