@@ -108,33 +108,7 @@
     right: -380px;
   }
 }
-/* Reponsive buttons + rating footer actions hack
-* What we do is:
-* a) stretch heigh and width of the footer-actions
-* b) sett an higher bottom vallue for the wp-full-overlay-sidebar-content
-* according with the new footer-actions-height
-* ( the devices buttons are not visibile for window's width below 1025px
-*/
-@media screen and (min-width: 980px) {
-  .wp-customizer .expanded #customize-footer-actions {
-    width: 380px;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .wp-customizer .expanded #customize-footer-actions {
-    /*height: 85px;*/
-    background: inherit;
-  }
-  .wp-customizer #customize-controls .wp-full-overlay-sidebar-content {
-    bottom: 85px;
-  }
-}
-@media screen and (min-width: 1401px) {
-  .wp-customizer .expanded #customize-footer-actions {
-    width: 440px;
-  }
-}
-/* end hack */
+
 
 @media screen and (max-width: 979px) {
   .wp-customizer .wp-full-overlay.expanded {
@@ -1193,30 +1167,7 @@ body .select2-results {
 #customize-footer-actions .collapse-sidebar-label {
   /*display: none;*/
 }
-.tc-rate-link {
-  position: absolute;
-  bottom: 0;
-  left: 40px;
-  padding: 4px 12px 4px 0;
-  font-size: 10px;
-  line-height: 14px;
-  text-align: right;
-  right: 0;
-}
 
-.rtl .tc-rate-link {
-  text-align: left;
-  left: auto;
-  right: 40px;
-  padding: 4px 0 4px 12px;
-}
-.wp-full-overlay.collapsed .tc-rate-link {
-  display: none;
-}
-.tc-rate-link .tc-stars {
-  color: #E6B800;
-  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.6);
-}
 /* Cropped Image style */
 /* Unified with the default cropped_image CSS */
 .customize-control-tc_cropped_image .upload-button {
@@ -1284,7 +1235,6 @@ body .select2-results {
   margin-left: 3px;
 }
 
-
 /* HOME BUTTON */
 #customize-header-actions .customize-controls-close {
   left:45px;
@@ -1332,4 +1282,27 @@ body .select2-results {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+/*
+* Fix: wp 4.7 sticky section title and footer actions z-index
+*/
+.expanded .wp-full-overlay-footer,
+#customize-controls .customize-section-title.is-in-view.is-sticky {
+  z-index: 999;
+}
+
+/* Reponsive buttons footer actions hack
+* What we do is:
+* stretch width of the footer-actions
+* ( the devices buttons are not visibile for window's width below 1025px
+*/
+@media screen and (min-width: 980px) {
+  .wp-customizer .expanded #customize-footer-actions {
+    width: 380px;
+  }
+}
+@media screen and (min-width: 1401px) {
+  .wp-customizer .expanded #customize-footer-actions {
+    width: 440px;
+  }
 }
