@@ -17,7 +17,6 @@ if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ {
         public static $instance;//@todo make private in the future
         public $czr_core;
-        public $is_customizing;
 
         static $default_options;
         static $db_options;
@@ -77,7 +76,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.2.3
         */
         function czr_fn_init_properties() {
-              self::$db_options       = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+              self::$db_options       = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
               self::$default_options  = czr_fn_get_default_options();
               $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
@@ -108,7 +107,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @return  void
         */
         function czr_fn_customize_refresh_db_opt(){
-          CZR___::$db_options = false === get_option( CZR_OPT_NAME ) ? array() : (array)get_option( CZR_OPT_NAME );
+          CZR___::$db_options = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
         }
 
 
@@ -182,10 +181,11 @@ if ( ! class_exists( 'CZR___' ) ) :
               //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
               if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
-              if( ! defined( 'CZR_OPT_NAME' ) )             define( 'CZR_OPT_NAME' , apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+              if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+
+              if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );
               //IS PRO
               if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
-
 
         }//setup_contants()
 
@@ -237,6 +237,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
             new CZR_init();
@@ -284,9 +285,10 @@ if ( ! class_exists( 'CZR___' ) ) :
         //hook : wp
         function czr_fn_register_model_map( $_map = array() ) {
           $_to_register =  ( empty( $_map ) || ! is_array($_map) ) ? $this -> czr_fn_get_model_map() : $_map;
+          $CZR          = CZR();
 
           foreach ( $_to_register as $model ) {
-            CZR() -> collection -> czr_fn_register( $model);
+            $CZR -> collection -> czr_fn_register( $model);
           }
 
         }
@@ -381,7 +383,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           //2) IS CUSTOMIZING
           //---2.1) IS LEFT PANEL => customizer controls
           //---2.2) IS RIGHT PANEL => preview
-          if ( ! $this -> czr_fn_is_customizing() )
+          if ( ! czr_fn_is_customizing() )
             {
               if ( is_admin() )
                 $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
@@ -393,14 +395,14 @@ if ( ! class_exists( 'CZR___' ) ) :
           else
             {
               //left panel => skip all front end classes
-              if ( $this -> czr_fn_is_customize_left_panel() ) {
+              if (czr_fn_is_customize_left_panel() ) {
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array( 'header' , 'content' , 'footer' ),
-                  array( 'fire|core|resources_styles' , 'fire|core|resources_fonts', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
+                  array( 'fire|core|resources_styles' , 'fire|core', 'fire|core|resources_scripts', 'fire|core/back|admin_page' , 'admin|core/back|meta_boxes' )
                 );
               }
-              if ( $this -> czr_fn_is_customize_preview_frame() ) {
+              if ( czr_fn_is_customize_preview_frame() ) {
                 $_to_load = $this -> czr_fn_unset_core_classes(
                   $_to_load,
                   array(),
@@ -457,7 +459,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         }//end of fn
 
 
-        //called when requiring a file will - always give the precedence to the child-theme file if it exists
+        //called when requiring a file - will always give the precedence to the child-theme file if it exists
         //then to the theme root
         function czr_fn_get_theme_file( $path_suffix ) {
             $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
@@ -491,11 +493,10 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //requires a file only if exists
         function czr_fn_require_once( $path_suffix ) {
-            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) ) {
+            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) )
               require_once( $filename );
-              return true;
-            }
-            return false;
+
+            return (bool) $filename;
         }
 
 
@@ -557,64 +558,17 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
         /*
+        * An handly function to print the main container class
+        */
+        function czr_fn_main_container_class() {
+            echo czr_fn_stringify_array( czr_fn_get_main_container_class() );
+        }
+
+        /*
         * An handly function to print the article containerr class
         */
         function czr_fn_article_container_class() {
             echo czr_fn_stringify_array( czr_fn_get_article_container_class() );
-        }
-
-        /**
-        * Are we in a customization context ? => ||
-        * 1) Left panel ?
-        * 2) Preview panel ?
-        * 3) Ajax action from customizer ?
-        * @return  bool
-        * @since  3.2.9
-        */
-        function czr_fn_is_customizing() {
-            if ( ! isset( $this -> is_customizing ) )
-              //checks if is customizing : two contexts, admin and front (preview frame)
-              $this -> is_customizing = in_array( 1, array(
-                $this -> czr_fn_is_customize_left_panel(),
-                $this -> czr_fn_is_customize_preview_frame(),
-               $this -> czr_fn_doing_customizer_ajax()
-              ) );
-            return $this -> is_customizing;
-        }
-
-
-        /**
-        * Is the customizer left panel being displayed ?
-        * @return  boolean
-        * @since  3.3+
-        */
-        function czr_fn_is_customize_left_panel() {
-            global $pagenow;
-            return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
-        }
-
-
-        /**
-        * Is the customizer preview panel being displayed ?
-        * @return  boolean
-        * @since  3.3+
-        */
-        function czr_fn_is_customize_preview_frame() {
-            return ! is_admin() && isset($_REQUEST['wp_customize']);
-        }
-
-
-        /**
-        * Always include wp_customize or customized in the custom ajax action triggered from the customizer
-        * => it will be detected here on server side
-        * typical example : the donate button
-        *
-        * @return boolean
-        * @since  3.3.2
-        */
-        function czr_fn_doing_customizer_ajax() {
-            $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
-            return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
         }
 
 

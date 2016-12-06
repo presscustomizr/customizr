@@ -42,7 +42,7 @@ class CZR_header_model_class extends CZR_Model {
 
 
     /* Sticky header treatment */
-    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || CZR() -> czr_fn_is_customizing();
+    $_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || czr_fn_is_customizing();
 
     if ( $_sticky_header ) {
       array_push( $element_class,

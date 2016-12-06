@@ -12,7 +12,7 @@
       if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
         <div class="post-type__icon"><i class="icn-format"></i></div>
     <?php endif; ?>
-    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'     => czr_fn_get('cat_limit') ) ) ) : ?>
+    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get('cat_limit') ) ) ) : ?>
       <div class="entry-meta">
         <?php echo $cat ?>
       </div>
@@ -22,12 +22,14 @@
     </h2>
     <?php
       if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
-        czr_fn_render_template( array(
-            'template'   => 'modules/edit_button',
-            'model_args' => array(
+        czr_fn_render_template(
+            'modules/edit_button',
+            array(
+              'model_args' => array(
                 'edit_button_link'  => $edit_post_link,
+              )
             )
-        ));
+        );
     ?>
   </div>
 </header>

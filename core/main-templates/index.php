@@ -17,46 +17,51 @@
   <?php
     /* SLIDERS : standard or slider of posts */
     if ( czr_fn_has('main_slider') ) {
-      czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_slider') );
+      czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_slider') );
     }
 
     elseif( czr_fn_has( 'main_posts_slider' ) ) {
-      czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_posts_slider') );
+      czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_posts_slider') );
     }
 
   ?>
 
   <?php do_action('__before_main_wrapper') ?>
+
     <div id="main-wrapper" class="section">
-      <?php
-        if ( ! czr_fn_is_home() && ! is_404() ):
-      ?>
+      <?php  if ( ! czr_fn_is_home() && ! is_404() ): ?>
         <div class="container-fluid">
           <?php
             if ( czr_fn_has( 'post_list_heading' ) )
-              czr_fn_render_template( array( 'template' => 'content/post-lists/headings/post_list_heading' ) );
-            elseif ( czr_fn_has( 'post_list_search_heading' ) )
-              czr_fn_render_template( array( 'template' => 'content/post-lists/headings/post_list_search_heading' ) );
+              $_heading_template = 'content/headings/post_list_heading';
+            elseif ( czr_fn_has( 'search_heading' ) )
+              $_heading_template = 'content/headings/search_heading';
             elseif ( czr_fn_has('post_heading') )
-              czr_fn_render_template( array( 'template' => 'content/singular/post_heading' ) );
+              $_heading_template = 'content/headings/post_heading';
             else //pages and fallback
-              czr_fn_render_template( array( 'template' => 'content/singular/page_heading' ) );
+              $_heading_template = 'content/headings/page_heading';
+
+            czr_fn_render_template( $_heading_template );
           ?>
         </div>
-      <?php
-        endif;
-      ?>
-      <?php do_action('__before_main_container'); ?>
+      <?php endif ?>
+
 
       <?php
         /* FEATURED PAGES */
         if ( czr_fn_has( 'featured_pages' ) )
-          czr_fn_render_template( array( 'template' => 'modules/featured-pages/featured_pages' ) );
+          czr_fn_render_template( 'modules/featured-pages/featured_pages' );
       ?>
 
-      <div class="container" role="main">
+      <?php if ( czr_fn_has('breadcrumb') ) : ?>
+        <div class="container">
+          <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+        </div>
+      <?php endif ?>
 
-        <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( array( 'template' => 'modules/breadcrumb') ); ?>
+      <?php do_action('__before_main_container') ?>
+
+      <div class="<?php czr_fn_main_container_class() ?>" role="main">
 
         <?php do_action('__before_content_wrapper'); ?>
 
@@ -76,34 +81,34 @@
                   // Render list of posts based on the options
                   if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
                     if ( czr_fn_has('post_list_grid') ) {
-                      czr_fn_render_template( array( 'template' => 'modules/grid/grid_wrapper', 'model_id' => 'post_list_grid' ) );
+                      czr_fn_render_template( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) );
                     }
                     elseif ( czr_fn_has('post_list') ){
-                      czr_fn_render_template( array( 'template' => 'content/post-lists/post_list_alternate' ) );
+                      czr_fn_render_template( 'content/post-lists/post_list_alternate' );
                     }elseif ( czr_fn_has('post_list_masonry') ) {
-                      czr_fn_render_template( array( 'template' => 'content/post-lists/post_list_masonry' ) );
+                      czr_fn_render_template( 'content/post-lists/post_list_masonry' );
                     }elseif ( czr_fn_has('post_list_plain') ) {
-                      czr_fn_render_template( array( 'template' => 'content/post-lists/post_list_plain' ) );
+                      czr_fn_render_template( 'content/post-lists/post_list_plain' );
                     }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                      czr_fn_render_template( array( 'template' => 'content/post-lists/post_list_plain_excerpt', 'model_id' => 'post_list_plain_excerpt', 'model_class' => 'content/post-lists/post_list_plain' ) );
+                      czr_fn_render_template( 'content/post-lists/post_list_plain_excerpt', array( 'model_class' => 'content/post-lists/post_list_plain', 'model_args' => array( 'show_full_content' => 0 ) ) );
                     } else { //fallback
-                      czr_fn_render_template( array( 'template' => 'content/singular/page_content' ) );
+                      czr_fn_render_template( 'content/singular/page_content' );
                     }
                   } else {
 
                     if( is_single() )
-                      czr_fn_render_template( array( 'template' => 'content/singular/post_content' ) );
+                      czr_fn_render_template( 'content/singular/post_content' );
                     else
                       //fallback
-                      czr_fn_render_template( array( 'template' => 'content/singular/page_content' ) );
+                      czr_fn_render_template( 'content/singular/page_content' );
 
                   }
                 }//endwhile;
               }else {//no results
                 if ( is_search() )
-                  czr_fn_render_template( array( 'template' => 'content/no-results/search_no_results' ) );
+                  czr_fn_render_template( 'content/no-results/search_no_results' );
                 else
-                  czr_fn_render_template( array( 'template' => 'content/no-results/404' ) );
+                  czr_fn_render_template( 'content/no-results/404' );
               }
             ?>
           </div>
@@ -133,10 +138,10 @@
             <div class="col-xs-12">
             <?php
               if ( czr_fn_has('single_author_info') )
-                 czr_fn_render_template( array( 'template' => 'content/authors/author_info' ) );
+                 czr_fn_render_template( 'content/authors/author_info' );
 
               if ( czr_fn_has('related_posts') )
-                czr_fn_render_template( array( 'template' => 'modules/related-posts/related_posts' ) )
+                czr_fn_render_template( 'modules/related-posts/related_posts' )
             ?>
             </div>
           </div>
@@ -145,7 +150,7 @@
         <?php if ( czr_fn_has('comments') ) : ?>
           <div class="row">
             <div class="col-xs-12">
-              <?php czr_fn_render_template( array( 'template' => 'content/comments/comments') ) ?>
+              <?php czr_fn_render_template( 'content/comments/comments' ) ?>
             </div>
           </div>
         <?php endif ?>
@@ -159,13 +164,13 @@
     <?php do_action('__after_main_wrapper'); ?>
 
     <?php
-      if ( czr_fn_has('post_navigation') ) :
+      if ( czr_fn_has('posts_navigation') ) :
     ?>
       <div class="container-fluid">
         <div class="row">
         <?php
-          $_post_navigation_template = $_is_post_list ? 'content/post-lists/post_navigation_posts' : 'content/singular/post_navigation_singular';
-          czr_fn_render_template( array( 'template' => $_post_navigation_template, 'model_id' => 'post_navigation', 'model_class' => 'content/navigation/post_navigation' ) );
+          $_pn_template_prefix = $_is_post_list ? 'post_list' : 'singular';
+          czr_fn_render_template( "content/navigation/{$_pn_template_prefix}_posts_navigation", array( 'model_id' => 'posts_navigation', 'model_class' => 'content/navigation/posts_navigation' ) );
         ?>
         </div>
       </div>

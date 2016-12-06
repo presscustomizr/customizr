@@ -45,13 +45,14 @@ endif;
 
   /* edit link */
   if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) )
-      czr_fn_render_template( array(
-        'template'   => 'modules/edit_button',
-        'model_args' => array(
-          'edit_button_class' => 'slide-btn-edit',
-          'edit_button_link'  => $edit_url,
-          'edit_button_text'  => __('Edit this slide', 'customizr')
+      czr_fn_render_template(
+        'modules/edit_button',
+        array(
+          'model_args' => array(
+            'edit_button_class' => 'slide-btn-edit inverse',
+            'edit_button_link'  => $edit_url
+          )
         )
-      ))
+      );
   ?>
 </div><! -- /.item -->

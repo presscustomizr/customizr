@@ -586,7 +586,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( CZR() -> czr_fn_is_customize_left_panel() )
+        if ( czr_fn_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'czr_wpml_customizer_translate_options', array(
@@ -1073,23 +1073,28 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       /* SLIDERS : standard or slider of posts */
       if ( czr_fn_has('main_slider') ) {
-        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_slider') );
+        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_slider') );
       }
 
       elseif( czr_fn_has( 'main_posts_slider' ) ) {
-        czr_fn_render_template( array( 'template' => 'modules/slider/slider', 'model_id' => 'main_posts_slider') );
+        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_posts_slider') );
       }
+
 
       do_action('__before_main_wrapper');
 
       ?>
       <div id="main-wrapper" class="section">
 
+        <?php if ( czr_fn_has('breadcrumb') ) : ?>
+          <div class="container">
+            <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+          </div>
+        <?php endif ?>
+
         <?php do_action('__before_main_container'); ?>
 
-        <div class="container" role="main">
-
-          <?php if ( czr_fn_has('breadcrumb') ) czr_fn_render_template( array( 'template' => 'modules/breadcrumb') ); ?>
+        <div class="<?php czr_fn_main_container_class() ?>" role="main">
 
           <?php do_action('__before_content_wrapper'); ?>
 
@@ -1123,14 +1128,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           </div><!-- .column-content-wrapper -->
 
           <?php do_action('__after_content_wrapper'); ?>
-
-          <?php if ( czr_fn_has('comments') ) : ?>
-            <div class="row">
-              <div class="col-xs-12">
-                <?php czr_fn_render_template( array( 'template' => 'content/comments/comments') ) ?>
-              </div>
-            </div>
-          <?php endif ?>
 
         </div><!-- .container -->
 

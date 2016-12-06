@@ -28,7 +28,7 @@
       //Don't update if default options are not empty + customizing context
       //customizing out ? => we can assume that the user has at least refresh the default once (because logged in, see conditions below) before accessing the customizer
       //customzing => takes into account if user has set a filter or added a new customizer setting
-      if ( ! empty($def_options) && CZR() -> czr_fn_is_customizing() )
+      if ( ! empty($def_options) && czr_fn_is_customizing() )
         return apply_filters( 'czr_default_options', $def_options );
 
       //Always update/generate the default option when (OR) :
@@ -91,7 +91,7 @@
   */
   function czr_fn_get_theme_options ( $option_group = null ) {
       //do we have to look in a specific group of option (plugin?)
-      $option_group       = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group       = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       $saved              = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
       $defaults           = CZR___::$default_options;
       $__options          = wp_parse_args( $saved, $defaults );
@@ -110,7 +110,7 @@
   */
   function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
       //do we have to look for a specific group of option (plugin?)
-      $option_group = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
       $_db_options  = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
 
@@ -158,7 +158,7 @@
   * @since Customizr 3.4+
   */
   function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
-      $option_group           = is_null($option_group) ? CZR_OPT_NAME : $option_group;
+      $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
       $_options               = czr_fn_get_theme_options( $option_group );
       $_options[$option_name] = $option_value;
 
@@ -174,7 +174,7 @@
   * @since Customizr 3.2.0
   */
   function czr_fn_cache_db_options($opt_group = null) {
-      $opts_group = is_null($opt_group) ? CZR_OPT_NAME : $opt_group;
+      $opts_group = is_null($opt_group) ? CZR_THEME_OPTIONS : $opt_group;
       CZR___::$db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
       return CZR___::$db_options;
   }
@@ -200,7 +200,8 @@ function czr_fn_get_ctx_excluded_options() {
         'tc_sliders',
         'tc_blog_restrict_by_cat',
         'last_update_notice',
-        'last_update_notice_pro'
+        'last_update_notice_pro',
+        'tc_social_links'
       )
     );
 }
@@ -212,4 +213,18 @@ function czr_fn_get_ctx_excluded_options() {
 */
 function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
     return in_array( $opt_name, czr_fn_get_ctx_excluded_options() );
+}
+
+
+//@return an array of unfiltered options
+//=> all options or a single option val
+function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
+    $alloptions = wp_cache_get( 'alloptions', 'options' );
+    $alloptions = maybe_unserialize($alloptions);
+    if ( ! is_null( $opt_group ) && isset($alloptions[$opt_group]) ) {
+      $alloptions = maybe_unserialize($alloptions[$opt_group]);
+    }
+    if ( is_null( $opt_name ) )
+      return $alloptions;
+    return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
 }

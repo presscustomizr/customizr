@@ -27,7 +27,8 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
   }
 
   function czr_fn_get_wc_cart_count_html() {
-    $_cart_count = WC()->cart->get_cart_contents_count();
+    $WC          = WC();
+    $_cart_count = $WC->cart->get_cart_contents_count();
     return sprintf( '<sup class="count tc-wc-count">%1$s</sup>', $_cart_count ? $_cart_count : '' );
   }
 

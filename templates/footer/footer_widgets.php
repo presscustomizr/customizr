@@ -10,7 +10,7 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div id="footer-widget-area" class="container widget__wrapper" role="complementary">
+<div id="footer-widget-area" class="container widget__wrapper" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
   <div class="row widget__container">
     <?php do_action("__before_footer_widgets") ?>
     <?php

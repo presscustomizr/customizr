@@ -13,8 +13,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   *
   */
   protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'full' ) {
-
-    $use_transient = apply_filters( 'tc_posts_slider_use_transient', ! CZR() -> czr_fn_is_customizing() );
+    $use_transient   = apply_filters( 'tc_posts_slider_use_transient', ! czr_fn_is_customizing() );
     //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
     $store_transient = $load_transient = $use_transient;
 

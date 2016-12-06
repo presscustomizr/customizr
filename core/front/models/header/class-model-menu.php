@@ -54,7 +54,8 @@ class CZR_menu_model_class extends CZR_Model {
     if ( $_fired ) return $header_model;
     $_fired        = true;
 
-    if ( esc_attr( czr_fn_get_opt( "tc_sticky_header") || CZR() -> czr_fn_is_customizing() ) ) {
+
+    if ( esc_attr( czr_fn_get_opt( "tc_sticky_header") || czr_fn_is_customizing() ) ) {
       if ( ! is_array( $header_model -> element_class ) )
         $header_model -> element_class = explode( ' ', $header_model -> element_class );
       array_push( $header_model -> element_class,

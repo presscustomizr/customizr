@@ -4,52 +4,52 @@
     padding: 0;
     &::before { content: none }
   }
-	 position: relative;
-	 float:left;
-	 display:block;
-	 overflow:hidden;
-	 margin:0;
-	 padding:0;
-	 margin-bottom:$base-line-height;
+   position: relative;
+   float:left;
+   display:block;
+   overflow:hidden;
+   margin:0;
+   padding:0;
+   margin-bottom:$base-line-height;
 
-	.tc-thumbnail {
-		width: 100%;
-		position: relative;
-		overflow:hidden;
+  .tc-thumbnail {
+    width: 100%;
+    position: relative;
+    overflow:hidden;
 
-	}
-	.post-thumbnail {
-		@include transition(all, 0.3s ease);
-	}
-	.tc-content {
-		@extend .small;
-		padding-top: $base-line-height/2;
-		font-family: $serviceFont;
-		color: $grey;
-	}
-	&.hover  .post-thumbnail {
-		@include transform(scale(1.1));
-	}
-	&.hover .tc-content { color: $black; }
-	img {
-		display:block;
-		width: 100%;
-		height: 100%
-	 }
+  }
+  .post-thumbnail {
+    @include transition(all, 0.3s ease);
+  }
+  .tc-content {
+    @extend .small;
+    padding-top: $base-line-height/2;
+    font-family: $serviceFont;
+    color: $grey;
+  }
+  &.hover  .post-thumbnail {
+    @include transform(scale(1.1));
+  }
+  &.hover .tc-content { color: $black; }
+  img {
+    display:block;
+    width: 100%;
+    height: 100%
+   }
 }
+/*
 .gallery-item:not(:last-of-type)  {
-	 margin-right:$base-line-height;
-
+   margin-right:$base-line-height;
 }
+*/
 .bg .gallery-item {
-	background: $white;
-	.tc-content { padding:$base-line-height;  }
+  background: $white;
+  .tc-content { padding:$base-line-height;  }
 }
 .col-1 {
 
 }
 .post-gallery {
-
 	padding:0;
 	margin:0;
 	width:100%;
@@ -57,11 +57,12 @@
 	position: ralative;
 	overflow:hidden;
 }
-div[class^="col-num"] {
 
-
-}
-@for $i from 1 through 9 {
+/* replace 9 with 0 -
+* temporary
+* Gallery needs a better implementation
+*/
+ @for $i from 1 through 0 {
   .col-num-#{$i} {
   	.gallery-item {
   		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
@@ -78,7 +79,7 @@ div[class^="col-num"] {
 }
 
 
-@for $i from 3 through 9 {
+@for $i from 3 through 0 {
   .col-num-#{$i} {
   	.gallery-item {
 		.post-action {

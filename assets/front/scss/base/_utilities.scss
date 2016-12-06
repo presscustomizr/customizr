@@ -1,14 +1,17 @@
+.clearfix {
+  clear: both
+}
 .bg-transparent { background: transparent }
 .big-text-10 { font-size: 10em }
 .m-t-05 { margin-top: 0.5em }
 
 .inline-list {
-	list-style : none;
-	li {
-		display: inline-block;
-    position: relative;
-		& + li { margin-left: $base-line-height; }
-	}
+  list-style : none;
+  li {
+    display: inline-block;
+
+    & + li { margin-left: $base-line-height; }
+  }
   li:before { content: none }
 }
 .no-hover { pointer-events: none !important; }
@@ -29,7 +32,7 @@
 }
 .img-centered {
   @extend .centered;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .filter {
@@ -77,6 +80,7 @@
 }
 
 @mixin underlined_simple ($color, $height) {
+  position: relative;
   &:before {
       content: "";
       position: absolute;
@@ -91,6 +95,7 @@
 }
 
 @mixin underlined ($color, $height) {
+  position: relative;
   &:before {
     content: "";
     position: absolute;

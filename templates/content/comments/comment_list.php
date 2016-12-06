@@ -27,28 +27,28 @@
 <div id="comments" class="tab-content">
   <?php if ( ! empty( $wp_query->comments_by_type['comment'] ) ) : ?>
     <div id="commentlist-container" class="tab-pane comments active" role="tabpanel">
-      <ol class="comment-list">
+      <ul class="comment-list">
         <?php
 
         /* Comments list */
         wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'comment' ) ) );
 
         ?>
-      </ol>
+      </ul>
     </div>
   <?php
   endif;
   if ( ! empty( $wp_query->comments_by_type['pings'] ) ) :
     $_active = empty( $wp_query->comments_by_type['comment'] ); ?>
     <div id="pinglist-container" class="<?php echo $_active ?> tab-pane pings" role="tabpanel">
-      <ol class="pingback-list">
+      <ul class="pingback-list">
         <?php
 
         /* Pings list */
         wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'pings' ) ) );
 
         ?>
-      </ol>
+      </ul>
     </div>
   <?php
   endif;

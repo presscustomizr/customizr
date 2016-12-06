@@ -34,6 +34,5 @@ class CZR_comment_model_class extends CZR_Model {
     );
 
     $this -> czr_fn_update( $props );
-    return $comment;
   }
 }

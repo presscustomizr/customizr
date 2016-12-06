@@ -15,7 +15,23 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           self::$instance =& $this;
           $this -> controllers = array(
             'header' => array(
-              'head', 'title', 'logo_wrapper', 'logo', 'sticky_logo', /*'logo_title', */'tagline', 'mobile_tagline', 'favicon', 'menu', 'sidenav', 'navbar_menu', 'navbar_secondary_menu', 'menu_button', 'mobile_menu_button', 'sidenav_menu_button', 'sidenav_navbar_menu_button',
+              'head',
+              'title',
+              'logo_wrapper',
+              'logo',
+              'sticky_logo', /*'logo_title', */
+              'tagline',
+              'mobile_tagline',
+              'favicon',
+              'menu',
+              'sidenav',
+              'navbar_menu',
+              'navbar_secondary_menu',
+              'menu_button',
+              'mobile_menu_button',
+              'sidenav_menu_button',
+              'sidenav_navbar_menu_button',
+              'header_social_block'
             ),
             'content' => array(
               'post_list',
@@ -25,12 +41,13 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'right_sidebar',
               'left_sidebar',
               'single_author_info',
-              'author_description',
               'comment_list',
               'comments',
-              'post_navigation',
+              'posts_navigation',
               'post_list_heading',
-              'post_list_search_heading',
+              'author_description',
+              'posts_list_description',
+              'search_heading',
               'post_heading',
               //'404', 'attachment', 'headings', 'no_results', 'page', 'post', 'single_author_info', 'post_list', 'post_metas','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment', 'tracepingback', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'
             ),
@@ -39,11 +56,12 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'footer_btt',
               'footer_push',
               'footer_widgets',
-              'colophon'
+              'colophon',
+              'footer_social_block'
           //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
-              //'social_block',
+              'social_block',
               'breadcrumb',
               'comment_info',
               'post_list_grid',
@@ -212,11 +230,12 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@param is a string : header, content, footer, modules
     //@return the $instance
     private function czr_fn_instantiate_group_controller( $group ) {
-          $_path  = "controllers/class-controller-{$group}.php";
-          $_class = "CZR_controller_{$group}";
+          $_path     = "controllers/class-controller-{$group}.php";
+          $_class    = "CZR_controller_{$group}";
           $_instance = false;
+          $CZR       = CZR();
 
-          CZR() -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
+          $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

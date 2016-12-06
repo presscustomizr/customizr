@@ -10,6 +10,6 @@
  */
 ?>
 <div class="primary-navbar__wrapper row" <?php czr_fn_echo('element_attributes') ?>>
-  <?php czr_fn_render_template( array( 'template' => 'header/branding_wrapper') ) ?>
-  <?php czr_fn_render_template( array( 'template' => 'header/nav_container') ) ?>
+  <?php czr_fn_render_template(  'header/branding_wrapper') ?>
+  <?php czr_fn_render_template(  'header/nav_container') ?>
 </div>

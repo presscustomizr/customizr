@@ -39,8 +39,8 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return czr_fn_is_list_of_posts() && ! is_search();
     }
 
-    function czr_fn_display_view_post_list_search_heading() {
-      return czr_fn_is_list_of_posts() && is_search();
+    function czr_fn_display_view_search_heading() {
+      return is_search();
     }
 
     function czr_fn_display_view_post_heading() {
@@ -83,13 +83,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_posts_list_description() {
-      return $this -> czr_fn_display_view_posts_list_headings() && ! is_author() && ! is_search();
+      return ! is_author() && ! is_search();
     }
 
     function czr_fn_display_view_author_description() {
-      return ( ( $this -> czr_fn_display_view_posts_list_headings() && is_author() ) &&
-             apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) )
-      || ( is_single() && apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') ) );
+      return apply_filters ( 'czr_show_author_meta', get_the_author_meta('description') );
     }
 
     function czr_fn_display_view_page() {
@@ -102,7 +100,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_single_author_info() {
-      if ( ! ( $this -> czr_fn_display_view_post() && get_the_author_meta( 'description' ) ) )
+      if ( ! get_the_author_meta( 'description' ) )
         return;
 
       //@todo check if some conditions below not redundant?
@@ -132,12 +130,13 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
 
     function czr_fn_display_view_post_metas() {
+
       //disable in attachment context, attachment post metas have their own class
       if ( is_attachment() )
         $post_metas = false;
 
       //post metas are always insanciated in customizing context
-      elseif ( CZR() -> czr_fn_is_customizing() )
+      elseif ( czr_fn_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
@@ -200,8 +199,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
     }
 
-    function czr_fn_display_view_post_navigation() {
+    function czr_fn_display_view_posts_navigation() {
       global $wp_query;
+
       $bool  = $wp_query -> post_count > 0;
       $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
 
@@ -209,14 +209,14 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         return false;
 
       //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
-      if ( CZR() -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return true;
 
-      if ( ! $this->czr_fn_is_post_navigation_enabled() )
+      if ( ! $this->czr_fn_is_posts_navigation_enabled() )
         return false;
 
       $_context = czr_fn_get_query_context();
-      return $this -> czr_fn_is_post_navigation_context_enabled( $_context );
+      return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
     }
 
 
@@ -294,14 +294,14 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     * @param (string or bool) the context
     * @return bool
     */
-    function czr_fn_is_post_navigation_context_enabled( $_context ) {
+    function czr_fn_is_posts_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
     /*
     * @return bool
     */
-    function czr_fn_is_post_navigation_enabled(){
+    function czr_fn_is_posts_navigation_enabled(){
       return apply_filters( 'czr_show_post_navigation', 1 == esc_attr( czr_fn_get_opt( 'tc_show_post_navigation' ) ) );
     }
 
