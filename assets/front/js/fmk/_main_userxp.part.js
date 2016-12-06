@@ -157,24 +157,166 @@ var czrapp = czrapp || {};
     headingsActions_test : function() {
       //User request animation frame
       var _page_header_inner   = $('.header-content-inner'),
-          _header_push         = $('.topnav_navbars__wrapper'),
-          _offset, __push;
+          _header_push         = $('.header-absolute .topnav_navbars__wrapper'),
+          _offset, doingAnimation;
 
-      if ( ! _page_header_inner.length )
+      if ( ! _page_header_inner.length || ! _header_push.length )
         return;
 
-      czrapp.$_window.on( 'resize', function(){
-        /*
-        * todo: swap topnav_navbars_wrapper with sticky-placeholder when needed.
-        */
-        _offset = _page_header_inner.offset().top - _header_push.offset().top - _header_push.height();
+      _maybeHandleResize();
+      czrapp.$_window.on('resize', _maybeHandleResize );
 
-        __push = _offset < 0 ? -1 * _offset : _page_header_inner.css('marginTop');
+      function _maybeHandleResize(){
+        if ( ! doingAnimation ) {
+          //do nothing if is scrolling
+          if ( czrapp.$_body.hasClass('sticky-enabled') )
+            return;
 
-        _page_header_inner.css('marginTop', __push );
+          doingAnimation = true;
+          window.requestAnimationFrame( function() {
+
+            //reset offset
+            if ( 'absolute' != _header_push.css('position') )
+              _offset = '';
+            else
+              _offset =  parseFloat( _header_push.outerHeight() );
+
+            _page_header_inner.css('paddingTop', _offset );
+            //We should handle the font sizing I think
+            doingAnimation = false;
+          });
+        }
+      };
+
+    },
+    /* Find a way to make this smaller but still effective */
+    featuredPages_test : function() {
+
+      var $_featured_pages  = $('.featured .widget-front'),
+          _n_featured_pages = $_featured_pages.length,
+          doingAnimation    = false,
+          _lastWinWidth     = '';
+
+
+      if ( _n_featured_pages < 2 )
+        return;
+
+      var $_fp_elements     = new Array( _n_featured_pages ),
+          _n_elements       = new Array( _n_featured_pages );
+
+      //Grab all subelements having class starting with fp-
+      //Requires all fps having same html structure...
+      $.each( $_featured_pages, function( _fp_index, _fp ) {
+        $_fp_elements[_fp_index]  = $(_fp).find( '[class^=fp-]' );
+        _n_elements[_fp_index]    = $_fp_elements[_fp_index].length;
       });
 
-    }
+      _n_elements = Math.max.apply(Math, _n_elements );
+
+      if ( ! _n_elements )
+        return;
+
+      var _offsets    = new Array( _n_elements ),
+          _maxs       = new Array( _n_elements );
+
+      /*
+      * Build the _offsets matrix
+      * Row => element (order given by _elements array)
+      * Col => fp
+      */
+      for (var i = 0; i < _n_elements; i++)
+        _offsets[i] = new Array( _n_featured_pages);
+
+
+      //fire
+      maybeSetElementsPosition();
+      //bind
+      czrapp.$_window.on('resize', maybeSetElementsPosition );
+
+      function maybeSetElementsPosition() {
+
+        if ( ! doingAnimation ) {
+          var _winWidth = czrapp.$_window.width();
+          /*
+          * we're not interested in win height resizing
+          */
+          if ( _winWidth == _lastWinWidth )
+            return;
+
+          _lastWinWidth = _winWidth;
+
+          doingAnimation = true;
+
+          window.requestAnimationFrame(function() {
+            setElementsPosition();
+            doingAnimation = false;
+          });
+
+        }
+      }
+
+
+      function setElementsPosition() {
+        /*
+        * this array will store the
+        */
+        var _fp_offsets = [];
+
+        for ( _element_index = 0; _element_index < _n_elements; _element_index++ ) {
+
+          for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+            //Reset and grab the the top offset for each element
+            var $_el    = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                _offset = 0,
+                $_fp    = $($_featured_pages[_fp_index]);
+
+            if ( $_el.length > 0 ) {
+              //reset maybe added paddingTop
+              $_el.css( 'paddingTop', '' );
+              //retrieve the top position
+              _offset = $_el.offset().top;
+
+            }
+            _offsets[_element_index][_fp_index] = _offset;
+
+            /*
+            * Build the array of fp offset once (first loop on elements)
+            */
+            if ( _fp_offsets.length < _n_featured_pages )
+              _fp_offsets[_fp_index] = parseFloat( $_fp.offset().top);
+          }//endfor
+
+
+          /*
+          * Break this only loop when featured pages are one on top of each other
+          * featured pages top offset differs
+          * We continue over other elements as we need to reset other marginTop
+          */
+          if ( 1 != _.uniq(_fp_offsets).length )
+            continue;
+
+          /*
+          * for each type of element store the max offset value
+          */
+          _maxs[_element_index] = Math.max.apply(Math, _offsets[_element_index] );
+
+          /*
+          * apply the needed offset for each featured page element
+          */
+          for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+            var $_el    = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                _offset;
+
+            if ( $_el.length > 0 ) {
+              _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
+              if ( _offset )
+                $_el.css( 'paddingTop', parseFloat($_el.css('paddingTop')) + _offset );
+            }
+          }//endfor
+        }//endfor
+      }//endfunction
+    }//endmethod
+
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};

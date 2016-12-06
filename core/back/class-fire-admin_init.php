@@ -89,15 +89,15 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
     public function czr_fn_maybe_get_slider_of_posts_instance() {
       $slider_of_posts = null;
-
+      $CZR             = CZR();
       /* Instantiate slider of posts */
        if ( ! class_exists( 'CZR_slider_of_posts_model_class' ) ) {
-        $slider          = CZR() -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
+        $slider          = $CZR -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
         if ( ! $slider )
           return;
-        $slider_of_posts = CZR() -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => 'modules/slider/slider_of_posts' ) );
+        $slider_of_posts = $CZR -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => 'modules/slider/slider_of_posts' ) );
       } else
-        $slider_of_posts = CZR() -> collection -> czr_fn_get_model_instance( 'slider_of_posts' );
+        $slider_of_posts = $CZR -> collection -> czr_fn_get_model_instance( 'slider_of_posts' );
 
       return $slider_of_posts;
     }
@@ -252,14 +252,16 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     function czr_fn_user_defined_tinymce_css( $init ) {
       if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
+
+      $CZR = CZR();
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_resource class has to be loaded
       if ( ! class_exists('CZR_resources_styles') )
-        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_styles') ) ), true );
+        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_styles') ) ), true );
       if ( ! class_exists('CZR_resources_fonts') )
-        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_fonts') ) ), true );
+        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_fonts') ) ), true );
       if ( ! class_exists('CZR_resources_scripts') )
-        CZR() -> czr_fn_load( array('fire' => array( array('inc' , 'resources_scripts') ) ), true );
+        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_scripts') ) ), true );
 
       //fonts
       $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');

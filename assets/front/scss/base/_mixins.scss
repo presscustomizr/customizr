@@ -44,8 +44,8 @@
                     border-#{$side}: $color $strokeWidth solid;
                 }
             }
-        }  
-    
+        }
+
 }
 
 @mixin bg-gradient-t2b($start-colour, $end-colour) {
@@ -106,24 +106,24 @@
 
 //reset box model mixin
 @mixin box-sizing($box-model) {
-	-webkit-box-sizing: $box-model; // Safari <= 5
-   	-moz-box-sizing: $box-model; // Firefox <= 19
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
     box-sizing: $box-model;
 }
 
 //clearfix mixin
 @mixin clearfix() {
-	*zoom:1;
+  *zoom:1;
 
-	&:before,
-	&:after {
-	    content:"";
-	    display:table;
-	}
+  &:before,
+  &:after {
+      content:"";
+      display:table;
+  }
 
-	&:after {
-	    clear:both;
-	}
+  &:after {
+      clear:both;
+  }
 }
 
 
@@ -141,7 +141,7 @@
   @each $transition in $transitions {
     $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
   }
-  
+
   -webkit-transition: $unfoldedTransitions;
   transition: $unfoldedTransitions;
 }

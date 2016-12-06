@@ -39,10 +39,12 @@ if ( null != $prev_link || null != $next_link ) :
       <?php endif; ?>
       </li>
       <li class="nav-back col-xs-2">
+        <?php if ( is_single() ) :  ?>
         <a href="<?php echo esc_url( ! get_option( 'page_for_posts' ) ? home_url( '/' ) : get_permalink( get_option( 'page_for_posts' ) ) ) ?>" title="<?php _e( 'Back to post list', 'customizr') ?>">
           <span><i class="icn-grid-empty"></i></span>
           <span class="sr-only"><?php _e( 'Back to post list', 'customizr') ?></span>
         </a>
+        <?php endif ?>
       </li>
       <li class="next col-xs-5">
       <?php if ( null != $next_link ) : ?>

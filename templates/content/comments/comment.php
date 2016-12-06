@@ -28,17 +28,18 @@
           </time>
         </div>
         <?php if ( czr_fn_has('edit_button') && (bool) $edit_comment_link = get_edit_comment_link() )
-          czr_fn_render_template( array(
-            'template' => 'modules/edit_button',
-            'model_args' => array(
+          czr_fn_render_template(
+            'modules/edit_button',
+            array( 'model_args' => array(
                 'edit_button_class' => 'comment-edit-link',
                 'edit_button_text'  => __( 'Edit comment', 'customizr' ),
                 'edit_button_link'  => $edit_comment_link,
+              )
             )
-          ));
+          );
         ?>
       </header>
-      <div class="comment-content"><?php comment_text() ?></div>
+      <div class="comment-content tc-content-inner"><?php comment_text() ?></div>
       <?php if ( czr_fn_get( 'is_awaiting_moderation' ) ): ?>
         <p class="comment-awaiting-moderation comment-content"><?php _e( 'Your comment is awaiting moderation.' , 'customizr' ) ?></p>
       <?php endif; ?>

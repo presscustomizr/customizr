@@ -652,8 +652,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Defines the active skin and fallback to blue.css if needed
           if ( 'skin' == $_wot ) {
+            $CZR = CZR();
             //custom skin old tree compatibility for customizr-pro children only
-            $remote_path       = ( CZR_IS_PRO && CZR() -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
+            $remote_path       = ( CZR_IS_PRO && $CZR -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
             $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
           } else
             $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
@@ -829,9 +830,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
+          $CZR = CZR();
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
             array_push( $_classes, 'tc-fade-hover-links' );
-          if ( CZR() -> czr_fn_is_customizing() )
+          if ( czr_fn_is_customizing() )
             array_push( $_classes, 'is-customizing' );
           if ( wp_is_mobile() )
             array_push( $_classes, 'tc-is-mobile' );
@@ -845,7 +847,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
           if ( in_array( $_layout, array('b', 'l', 'r', 'f') ) ) {
-            array_push( $_classes, sprintf( 'tc-%s-sidebar',
+            array_push( $_classes, sprintf( 'czr-%s-sidebar',
               'f' == $_layout ? 'no' : $_layout
             ) );
           }
@@ -918,7 +920,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       */
       function czr_fn_search_form() {
         ob_start();
-         czr_fn_render_template( array( 'template' => 'modules/searchform' ) );
+         czr_fn_render_template( 'modules/searchform' );
         $form = ob_get_clean();
 
         return $form;

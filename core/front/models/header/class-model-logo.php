@@ -42,13 +42,14 @@ class CZR_logo_model_class extends CZR_Model {
     if ( $_fired ) return $_css;
     $_fired        = true;
 
+
     //when to print the shrink logo CSS?
     //1) In the customizer as the sticky_header is passed as postMessage
     //or
     //2) The sticky header is enabled
     //and
     //2.1) the shrink title_logo option is enabled
-    if ( CZR() -> czr_fn_is_customizing() ||
+    if ( czr_fn_is_customizing() ||
         ( 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_header') ) && 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
       $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
       $_css = sprintf("%s%s",

@@ -143,7 +143,7 @@ function czr_fn_get_in_content_width_class() {
   switch ( $global_sidebar_layout ) {
     case 'b': $_class = 'narrow';
               break;
-    case 'f': $_class = '';
+    case 'f': $_class = 'full';
               break;
     default : $_class = 'semi-narrow';
   }
@@ -243,6 +243,16 @@ function czr_fn_get_column_content_wrapper_class() {
 }
 
 /**
+* This function returns the main container class
+*
+* @package Customizr
+* @since Customizr 3.5
+*/
+function czr_fn_get_main_container_class() {
+    return apply_filters( 'czr_main_container_classes' , array('container') );
+}
+
+/**
 * This function returns the article container class
 *
 * @package Customizr
@@ -331,54 +341,35 @@ function czr_fn_wp_title( $title, $sep ) {
 */
 function czr_fn_get_social_networks( $output_type = 'string' ) {
 
-  //gets the social network array
-  $socials      = apply_filters( 'czr_default_socials' , CZR_init::$instance -> socials );
+    $_socials = czr_fn_get_opt('tc_social_links');
 
-  //declares some vars
-  $html         = array();
+    if ( empty( $_socials ) )
+      return;
 
-  foreach ( $socials as $key => $data ) {
-    if ( $social = czr_fn_get_opt( $key ) ) {
-        //gets height and width from image, we check if getimagesize can be used first with the error control operator
-        $width = $height = '';
-        if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
-        $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
-        $link = 'email' == $type ? 'mailto:' : '';
-        if ( function_exists( 'czr_fn_sanitize_'. $type ) ) {
-          $link .=  call_user_func( 'czr_fn_sanitize_'. $type , $social );
-        }
-        $icon_suffix = str_replace('tc_', '', 'tc_email' == $key ? 'tc_envelope' : $key );
+    $_social_links = array();
+    foreach( $_socials as $key => $item ) {
+      array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon" %1$s title="%2$s" href="%3$s" %4$s style="color:%5$s"><i class="fa %6$s"></i></a>',
+      //do we have an id set ?
+      //Typically not if the user still uses the old options value.
+      //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
 
-        //there is one exception : rss feed has no target _blank and special icon title
-        array_push( $html, sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
-            apply_filters( 'czr_social_link_class',
-                          sprintf('social-icon icon-%s' ,
-                            $icon_suffix
-                          ),
-                          $key
-            ),
-            $link,
-            isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
-            ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'czr_socials_target', 'target=_blank', $key ),
-            apply_filters( 'czr_additional_social_attributes', '' , $key),
-            ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ?
-                          sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
-                                                    $data['custom_icon_url'],
-                                                    $width,
-                                                    $height,
-                                                    isset($data['link_title']) ? call_user_func( '__' , $data['link_title'] , 'customizr' ) : ''
-                                                  ) :
-                          sprintf( '<i class="fa fa-%s"></i>', $icon_suffix )
-        ) );
+      // Put them together
+        ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'hu_socials_'. $key : $item['id'] ),
+        isset($item['title']) ? esc_attr( $item['title'] ) : '',
+        ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+        ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
+        isset($item['social-color']) ? esc_attr($item['social-color']) : '#000',
+        isset($item['social-icon']) ? esc_attr($item['social-icon']) : ''
+      ) );
     }
-  }
-  /*
-  * return
-  */
-  switch ( $output_type ) :
-    case 'array' : return $html;
-    default      : return implode( '', $html );
-  endswitch;
+
+    /*
+    * return
+    */
+    switch ( $output_type ) :
+      case 'array' : return $_social_links;
+      default      : return implode( '', $_social_links );
+    endswitch;
 }
 
 

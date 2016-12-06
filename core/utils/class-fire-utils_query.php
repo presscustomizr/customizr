@@ -135,7 +135,7 @@ function czr_fn_is_home_empty() {
 */
 function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id                   = get_queried_object_id();
+    $queried_id  = get_queried_object_id();
     return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
 }
 
@@ -144,19 +144,23 @@ function czr_fn_get_real_id() {
 /**
 * Returns or displays the selectors of the article depending on the context
 *
+* @return string
+*
 * @package Customizr
 * @since 3.1.0
 */
-function czr_fn_get_the_post_list_article_selectors($post_class = '') {
+function czr_fn_get_the_post_list_article_selectors( $post_class = '', $id_suffix = '' ) {
     //gets global vars
     global $post;
 
     //declares selector var
     $selectors                  = '';
 
-    if ( isset($post) && czr_fn_is_list_of_posts() )
-        //!is_singular() && !is_404() && !czr_fn_is_home_empty() ) || ( is_search() && 0 != $wp_query -> post_count )
-      $selectors                = apply_filters( 'czr_post_list_selectors' , 'id="post-'.get_the_ID().'" '. czr_fn_get_the_post_class( $post_class ) );
+    if ( isset($post) )
+      $selectors = apply_filters( "czr_post_list_selectors", sprintf('%1$s %2$s',
+        czr_fn_get_the_post_id( 'post', get_the_ID(), $id_suffix ),
+        czr_fn_get_the_post_class( $post_class )
+      ) );
 
     return apply_filters( 'czr_article_selectors', $selectors );
 }//end of function
@@ -170,6 +174,8 @@ function czr_fn_get_the_post_list_article_selectors($post_class = '') {
 * @override
 * Returns or displays the selectors of the article depending on the context
 *
+* @return string
+*
 * @package Customizr
 * @since 3.1.0
 */
@@ -178,19 +184,19 @@ function czr_fn_get_the_singular_article_selectors( $post_class = '' ) {
     global $post;
 
     //declares selector var
-    $selectors                  = '';
+    $selectors                   = '';
 
     // SINGLE POST/ATTACHMENT
-    if ( isset($post) && 'page' != $post -> post_type && is_singular() )
-      $selectors = apply_filters( "czr_single_{$post -> post_type}_selectors" ,'id="post-'.get_the_ID().'" '. czr_fn_get_the_post_class( $post_class ) );
+    if ( isset($post) ) {
+      $post_type  = czr_fn_get_post_type();
+      $selectors  = apply_filters( "czr_article_singular_{$post_type}_selectors", sprintf('%1$s %2$s',
+        czr_fn_get_the_post_id( 'page' == $post_type ? $post_type : 'post', get_the_ID() ),
+        czr_fn_get_the_post_class( $post_class )
+      ) );
+    }
 
-    // PAGE
-    elseif ( isset($post) && 'page' == czr_fn_get_post_type() && is_singular() && ! czr_fn_is_home_empty() )
-      $selectors = apply_filters( 'czr_page_selectors' , 'id="page-'.get_the_ID().'" '. czr_fn_get_the_post_class( $post_class ) );
+    return apply_filters( 'czr_article_selectors', $selectors );
 
-    $selectors = apply_filters( 'czr_article_selectors', $selectors );
-
-    return $selectors;
 }//end of function
 
 
@@ -205,6 +211,20 @@ function czr_fn_get_the_singular_article_selectors( $post_class = '' ) {
 function czr_fn_get_the_post_class( $class = '', $post_id = null ) {
     //Separates classes with a single space, collates classes for post DIV
     return 'class="' . join( ' ', get_post_class( $class, $post_id ) ) . '"';
+}
+
+/**
+* Returns the classes for the post div.
+*
+* @param string $type Optional. post type. Default 'post' .
+* @param int $post_id An optional post ID.
+* @param string $id_suffix An optional suffix.
+* @package Customizr
+* @since 3.0.10
+*/
+function czr_fn_get_the_post_id( $type = 'post', $post_id = null, $id_suffix = '' ) {
+    //Separates classes with a single space, collates classes for post DIV
+    return sprintf( 'id="%1$s-%2$s%3$s"', $type, $post_id, $id_suffix );
 }
 
 /**

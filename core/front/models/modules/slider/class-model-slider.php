@@ -435,7 +435,7 @@ class CZR_slider_model_class extends CZR_Model {
     if ( czr_fn_is_home() )
       $show_slider_edit_link = current_user_can('edit_theme_options') ? true : false;
     else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
-      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ? true : false;
+      $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts' ) ) ? true : false;
 
     return apply_filters( 'czr_show_slider_edit_link' , $show_slider_edit_link, $this -> slider_name_id );
   }
@@ -549,13 +549,14 @@ class CZR_slider_model_class extends CZR_Model {
     //1) current slider is demo
     if ( 'demo' != czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) )
       return $_h;
+
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( CZR() -> czr_fn_is_customizing() ) {
+    if ( czr_fn_is_customizing() ) {
       if ( 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( czr_fn_get_opt( 'tc_slider_default_height', CZR_OPT_NAME, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( czr_fn_get_opt( 'tc_slider_default_height', CZR_THEME_OPTIONS, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'czr_set_demo_slider_height' , 750 );
@@ -623,15 +624,15 @@ class CZR_slider_model_class extends CZR_Model {
     $_custom_height     = apply_filters( 'czr_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
 
     $_slider_inline_css = "";
+
     //When shall we append custom slider style to the global custom inline stylesheet?
-    $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( czr_fn_is_home() || 0 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = ( czr_fn_is_home() || 0 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_slider_inline_css;
 
     $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
-      array('1200' => 0.77 , '979' => 0.618, '480' => 0.38 , '320' => 0.28 )
+      array('1199' => 0.77 , '991' => 0.618, '543' => 0.38 )
     );
     //this slider element id;
     $slider_html_element_id = "#customizr-slider-{$this->id}";

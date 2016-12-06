@@ -2,8 +2,30 @@
 class CZR_grid_wrapper_model_class extends CZR_Model {
   public $expanded_sticky;
 
-  private $post_id;
+  private $queried_id;
 
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
+  * return model preset array()
+  */
+  function czr_fn_get_preset_model() {
+    $_preset = array(
+      'grid_columns'          => esc_attr( czr_fn_get_opt( 'tc_grid_columns') ),
+      'grid_title_num_words'  => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
+      'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
+      'grid_expand_featured'  => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
+      'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
+      'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
+      'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'contained'             => false
+    );
+
+    return $_preset;
+  }
 
   /**
   * @override
@@ -12,14 +34,34 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $this -> post_id              = czr_fn_get_id();
+    $this -> queried_id           = czr_fn_get_id();
 
-    //wrapper classes based on the user options
-    $model[ 'element_class' ]     = $this -> czr_fn_grid_container_set_classes( array() );
-
-    return $model;
+    return parent::czr_fn_extend_params( $model );
   }
 
+  /*
+  * Fired just before the view is rendered
+  * @hook: pre_rendering_view_{$this -> id}, 9999
+  */
+  /*
+  * Each time this model view is rendered setup the current post list item
+  * and add it to the post_list_items_array
+  */
+  function czr_fn_setup_late_properties() {
+    //all post lists do this
+    if ( czr_fn_is_loop_start() )
+      $this -> czr_fn_setup_text_hooks();
+  }
+
+  /*
+  * Fired just before the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    if ( czr_fn_is_loop_end() )
+      //all post lists do this
+      $this -> czr_fn_reset_text_hooks();
+  }
 
 
   function czr_fn_get_is_first_of_row() {
@@ -54,7 +96,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /* retrieves number of cols option, and wrap it into a filter */
   private function czr_fn_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
-      $grid_cols = $this -> czr_fn_set_grid_cols( esc_attr( czr_fn_get_opt( 'tc_grid_columns') ), czr_fn_get_layout( $this -> post_id , 'class' ) );
+      $grid_cols = $this -> czr_fn_set_grid_cols( $this -> grid_columns, czr_fn_get_layout( $this -> queried_id , 'class' ) );
     else
       $grid_cols = $this -> grid_cols;
 
@@ -161,7 +203,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return string
   */
   function czr_fn_get_grid_item_title( $_title, $is_expanded ) {
-    $_max = esc_attr( czr_fn_get_opt( 'tc_grid_num_words') );
+    $_max = $this -> grid_title_num_words;
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
@@ -182,7 +224,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * thumb properties
   */
   function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> czr_fn_grid_show_thumb();
+    $has_thumb           = $this -> czr_fn_show_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {
@@ -221,9 +263,10 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return array
   */
   function czr_fn_get_grid_item_icon_visibility() {
-    $icon_enabled        = (bool) esc_attr( czr_fn_get_opt( 'tc_grid_icons') ) && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
+    $icon_enabled        = (bool) $this -> grid_icons && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
     $icon_attributes     = '';
-    if ( CZR() -> czr_fn_is_customizing() )
+
+    if ( czr_fn_is_customizing() )
       $icon_attributes   = sprintf('style="display:%1$s"',
           $icon_enabled ? 'inline-block' : 'none'
       );
@@ -236,7 +279,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       is_numeric( $section_cols ) ? 12 / $section_cols : 6
     );
 
-    return czr_fn_get_the_post_list_article_selectors( $post_class );
+    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
+    return czr_fn_get_the_post_list_article_selectors( $post_class, $id_suffix );
+
   }
 
   /**** HELPER ****/
@@ -260,8 +305,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
 
-  private function czr_fn_grid_show_thumb() {
-    return czr_fn_has_thumb() && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
+  private function czr_fn_show_thumb() {
+    return 0 != $this -> show_thumb && czr_fn_has_thumb();
   }
 
   /******************************
@@ -280,19 +325,21 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
         $wp_query -> is_posts_page ) )
       return false;
 
-    return apply_filters( 'czr_grid_expand_featured', esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ) );
+    return apply_filters( 'czr_grid_expand_featured', $this -> grid_expand_featured );
   }
 
 
   /**
-  * inside loop
   * add custom classes to the grid container element
   */
-  function czr_fn_grid_container_set_classes( $_classes ) {
-    if ( esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ) )
+  function czr_fn_get_element_class() {
+    $_classes = array();
+    if ( ! empty( $this->grid_shadow ) )
       array_push( $_classes, 'tc-grid-shadow' );
-    if ( esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ) )
+    if ( ! empty( $this->grid_bottom_border ) )
       array_push( $_classes, 'tc-grid-border' );
+    if ( ! empty( $this->contained ) )
+      array_push( $_classes, 'container' );
     return $_classes;
   }
 
@@ -349,7 +396,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   private function czr_fn_get_grid_column_height( $_cols_nb = '3' ) {
     $_h               = $this -> czr_fn_grid_get_thumb_height();
-    $_current_layout  = czr_fn_get_layout( $this -> post_id , 'sidebar' );
+    $_current_layout  = czr_fn_get_layout( $this -> queried_id , 'sidebar' );
     $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
     $_key             = 3;//default value == full
     if ( in_array( $_current_layout, $_layouts ) )
@@ -468,7 +515,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       isset($_col_media_matrix[$_col_nb]) ? $_col_media_matrix[$_col_nb] : array( 'xl' , 'l' , 'm', 'l', 'm' ),
       $_col_nb,
       $_col_media_matrix,
-      czr_fn_get_layout( $this -> post_id , 'class' )
+      czr_fn_get_layout( $this -> queried_id , 'class' )
     );
   }
 
@@ -615,8 +662,38 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return (number) customizer user defined height for the grid thumbnails
   */
   private function czr_fn_grid_get_thumb_height() {
-    $_opt = esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') );
+    $_opt = $this -> grid_thumb_height;
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
+  }
+
+  /**
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
+
+
+  /**
+  * @package Customizr
+  * @since Customizr 4.0
+  */
+  function czr_fn_reset_text_hooks() {
+    remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  }
+
+
+  /**
+  * hook : excerpt_length hook
+  * @return string
+  * @package Customizr
+  * @since Customizr 3.2.0
+  */
+  function czr_fn_set_excerpt_length( $length ) {
+    $_custom = $this -> excerpt_length;
+    return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
 

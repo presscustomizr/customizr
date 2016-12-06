@@ -14,7 +14,7 @@
       <?php
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
-      <footer class="post-footer container-fluid">
+      <footer class="post-footer container-fluid clearfix">
         <?php
           wp_link_pages( array(
             'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
@@ -24,25 +24,24 @@
             )
           );
         ?>
-        <div class="entry-meta row">
+        <div class="entry-meta row clearfix">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-          <div class="post-tags float-md-left col-md-8 col-xs-12">
+          <div class="post-tags float-md-left">
             <ul class="tags">
               <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
             </ul>
           </div>
           <?php endif; ?>
-          <div class="post-share float-md-right col-md-4 col-xs-12">
-            <!-- fake need to have social links somewhere -->
-            <?php
-              if ( czr_fn_has('social_share') )
-                czr_fn_render_template( array(
-                    'template'      => 'modules/social_block',
-                    'model_id'      => 'social_share'
-                  )
-                );
-            ?>
+        <?php
+          if ( czr_fn_has('social_share') ) :
+        ?>
+          <div class="post-share float-md-right">
+              <!-- fake need to have social links somewhere -->
+              <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
           </div>
+        <?php
+          endif
+        ?>
         </div>
       </footer>
 

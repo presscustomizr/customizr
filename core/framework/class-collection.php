@@ -205,6 +205,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
     //@param array() raw model
     private function czr_fn_can_register_model( $model = array() ) {
       $bool = false;
+      $CZR  = CZR();
       //the first check is on the visibility
       //Typically : Has the user allowed this model's view in options ?
       if ( isset( $model['visibility']) && ! (bool) $model['visibility'] )
@@ -223,7 +224,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       }
       //if 'wp' has been fired (or is currently being fired) 1) check the controller if set
       else {
-        $bool = CZR() -> controllers -> czr_fn_is_possible( $model );
+        $bool = $CZR -> controllers -> czr_fn_is_possible( $model );
       }
       return apply_filters('czr_can_register_model', $bool, $model );
     }
@@ -336,8 +337,9 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
     private function czr_fn_require_model_class( $_model_class ) {
       $model_class_basename = basename( $_model_class );
       $model_class_dirname  = dirname( $_model_class );
+      $CZR                  = CZR();
 
-      CZR() -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+      $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
 
       return $model_class_basename;
     }

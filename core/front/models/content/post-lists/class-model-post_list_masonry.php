@@ -4,9 +4,6 @@
 * TODO: treat case post format image with no text and post format gallery
 */
 class CZR_post_list_masonry_model_class extends CZR_Model {
-  public $excerpt_length;
-  public $has_post_media;
-
   //Default post list layout
   private static $default_post_list_layout   = array(
             'b'         => array('col-xs-12'),
@@ -22,24 +19,43 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @override
   * fired before the model properties are parsed
   *
+  * return model preset array()
+  */
+  function czr_fn_get_preset_model() {
+    $_preset = array(
+      'excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'content_width'    => czr_fn_get_in_content_width_class(),
+      'contained'        => false
+    );
+    return $_preset;
+  }
+
+  /**
+  * @override
+  * fired before the model properties are parsed
+  *
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
-    $model[ 'element_class']       = czr_fn_get_in_content_width_class();
-    $model[ 'has_post_media' ]     = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
+    $model                         = parent::czr_fn_extend_params( $model );
 
+    $global_sidebar_layout         = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
     $this->post_class              = array_merge( self::$default_post_list_layout[$global_sidebar_layout], $this->post_class );
 
-    /*
-    * The alternate grid does the same
-    */
-    add_action( '__masonry_loop_start', array( $this, 'czr_fn_setup_text_hooks') );
-    add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_text_hooks') );
-    //reset masonry items at loop end? sort of garbage collector
-    add_action( '__masonry_loop_end'  , array( $this, 'czr_fn_reset_post_list_items') );
-
     return $model;
+  }
+
+
+  /**
+  * add custom classes to the masonry container element
+  */
+  function czr_fn_get_element_class() {
+    $_classes = is_array($this->content_width) ? $this->content_width : array();
+
+    if ( ! empty( $this->contained ) )
+      array_push( $_classes, 'container' );
+    return $_classes;
   }
 
 
@@ -52,7 +68,23 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * and add it to the post_list_items_array
   */
   function czr_fn_setup_late_properties() {
+    //all post lists do this
+    if ( czr_fn_is_loop_start() )
+      $this -> czr_fn_setup_text_hooks();
     array_push( $this->post_list_items, $this->czr_fn__get_post_list_item() );
+  }
+
+ /*
+  * Fired just before the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    if ( czr_fn_is_loop_end() ) {
+      //all post lists do this
+      $this -> czr_fn_reset_text_hooks();
+      //reset alternate items at loop end
+      $this -> czr_fn_reset_post_list_items();
+    }
   }
 
   /*
@@ -63,10 +95,6 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
   }
 
-  function czr_fn_get_has_format_icon_media() {
-    return $this -> czr_fn__get_post_list_item_property( 'has_format_icon_media' );
-  }
-
   function czr_fn_get_is_full_image() {
     return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
   }
@@ -75,6 +103,9 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'has_header_format_icon' );
   }
 
+  function czr_fn_get_has_post_media() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
+  }
   /*
   * Private/protected getters
   */
@@ -119,14 +150,14 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
       $has_post_media ? 'has-thumb' : 'no-thumb'
     );
 
-    $article_selectors       = czr_fn_get_the_post_list_article_selectors( array_filter($post_class) );
+    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
 
-    return $article_selectors;
+    return czr_fn_get_the_post_list_article_selectors( array_filter($post_class), $id_suffix );
   }
 
 
   protected function czr_fn__get_has_post_media( $current_post_format ) {
-    return $this->has_post_media && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
+    return $this->show_thumb && ! $this -> czr_fn__get_has_header_format_icon( $current_post_format );
   }
 
   /*
@@ -144,45 +175,35 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   /* HELPERS AND CALLBACKS */
 
   /*
-  * Callbacks
-  */
-
-  /*
   * Following methods: czr_fn_setup_text_hooks, czr_fn_reset_text_hooks, czr_fn_set_excerpt_length
   * are shared by the post lists classes, do we want to build a common class?
   */
 
   /**
-  * hook : __masonry_loop_start
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_setup_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      //filter the excerpt length
-      add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  function czr_fn_setup_text_hooks() {
+    //filter the excerpt length
+    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
 
   /**
-  * hook : __masonry_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_text_hooks( $model_id ) {
-    if ( $model_id == $this->id  )
-      remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+  function czr_fn_reset_text_hooks() {
+    remove_filter( 'excerpt_length'     , array( $this , 'czr_fn_set_excerpt_length') , 999 );
   }
 
 
   /**
-  * hook : __masonry_loop_end
   * @package Customizr
   * @since Customizr 4.0
   */
-  function czr_fn_reset_post_list_items( $model_id ) {
-    if ( $model_id == $this->id  )
-      $this -> post_list_items = array();
+  function czr_fn_reset_post_list_items() {
+    $this -> post_list_items = array();
   }
 
 
@@ -193,7 +214,7 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> excerpt_length ? $this -> excerpt_length : esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = $this -> excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 

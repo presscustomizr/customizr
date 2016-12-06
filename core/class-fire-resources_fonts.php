@@ -49,21 +49,28 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     * @package Customizr
     * @since Customizr 3.3.2
     */
-    public function czr_fn_get_inline_font_icons_css() {
-      if ( false == czr_fn_get_opt( 'tc_font_awesome_icons' ) )
+    public function czr_fn_get_inline_font_icons_css( $_force = false ) {
+      if ( ! $_force && false == czr_fn_get_opt( 'tc_font_awesome_icons' ) )
         return;
-
-      $_path = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
+      /*
+      * Not using add_query_var here in order to keep the code simple
+      */
+      $_path            = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
+      $_version         = apply_filters( 'czr_font_icons_version', true ) ? '4.7.0' : '';
+      $_ie_query_var    = $_version ? "&v={$_version}" : '';
+      $_query_var       = $_version ? "?v={$_version}" : '';
       ob_start();
         ?>
         @font-face {
           font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot');
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' ) );
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf<?php echo $_query_var ?>') format('truetype'),
+              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg<?php echo $_query_var ?>#fontawesomeregular') format('svg');
+          font-weight: normal;
+          font-style: normal;
         }
         <?php
       $_font_css = ob_get_contents();
