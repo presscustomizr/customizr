@@ -6,8 +6,6 @@
 *
 */
 
-
-
     /**
     * Defines sections, settings and function of customizer and return and array
     * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop)
@@ -27,8 +25,8 @@
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_social_option_map'     , 'czr_fn_generates_socials' );
-      add_filter( 'czr_front_page_option_map' , 'czr_fn_generates_featured_pages' );
+      //add_filter( 'czr_social_option_map'     , 'czr_fn_generates_socials' );
+      //add_filter( 'czr_front_page_option_map' , 'czr_fn_generates_featured_pages' );
 
       //ALLOW FILTERING FOR THE GLOBAL CUSTOMIZER MAP
       return apply_filters( 'czr_customizer_map', array_merge(
@@ -95,7 +93,7 @@
         //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
         //each section map takes one boolean param : $get_default
         $_section_map = apply_filters(
-          str_replace( '_fn_', '_', $_section_cb ),
+          $_section_cb,
           call_user_func_array( $_section_cb, array( $get_default ) )
         );
 

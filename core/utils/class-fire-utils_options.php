@@ -15,8 +15,11 @@
 
 
 
- /**
+  /**
   * Returns the default options array
+  * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
+  * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
+  * hook : after_setup_theme (?)
   *
   * @package Customizr
   * @since Customizr 3.1.11
@@ -32,19 +35,19 @@
         return apply_filters( 'czr_default_options', $def_options );
 
       //Always update/generate the default option when (OR) :
-      // 1) user is logged in
+      // 1) current user can edit theme options
       // 2) they are not defined
       // 3) theme version not defined
       // 4) versions are different
-      if ( is_user_logged_in() || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+      if ( current_user_can('edit_theme_options') || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
         $def_options          = czr_fn_generate_default_options( czr_fn_get_customizer_map( $get_default_option = 'true' ) , 'tc_theme_options' );
         //Adds the version in default
         $def_options['ver']   =  CUSTOMIZR_VER;
 
-        $_db_opts['defaults'] = $def_options;
-        //writes the new value in db
-        update_option( "tc_theme_options" , $_db_opts );
+        //writes the new value in db (merging raw options with the new defaults ).
+        czr_fn_set_option( 'defaults', $def_options, 'tc_theme_options' );
       }
+
       return apply_filters( 'czr_default_options', $def_options );
   }
 
@@ -159,7 +162,7 @@
   */
   function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
       $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
-      $_options               = czr_fn_get_theme_options( $option_group );
+      $_options               = czr_fn_get_raw_option( $option_group );
       $_options[$option_name] = $option_value;
 
       update_option( $option_group, $_options );
