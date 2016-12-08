@@ -14,7 +14,7 @@
       </div>
     <?php endif ?>
   </header>
-  <div class="row grid grid-container__square-mini">
+  <div class="row grid-container__square-mini carousel-inner">
   <?php
     while ( have_posts() ):
       the_post();

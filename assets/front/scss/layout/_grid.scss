@@ -183,65 +183,52 @@ WP classes
       }
      }
 }
-/* specific to grid layout (masonry/classc) */
+.grid__item {
+  position: relative;
+  background: $white;
+}
+
+/* specific to grid layout (masonry/classic) */
 .grid {
-  .grid__item {
-    position: relative;
-    background: $white;
-    text-align:center;
-  }
-  .post-thumbnail {
-    width: 100%;
-    height: auto;
-  }
   .tc-content {
-      padding: $base-line-height*2 $base-line-height;
-      margin:  0 auto;
-      text-align: left;
-      width:   90%;
-    }
-     @media (max-width: 992px) {
-      & .tc-content { width:90%; }
-     }
-     blockquote {
-      font-size: ms(1);
-     }
-    .entry-header {
-
-      .entry-meta { margin-bottom: $base-line-height; }
-
-      &.no-title .entry-meta {
-          margin-bottom: 0;
-      }
-      .entry-title {
-        @extend .grid-title_size;
-        margin-top:0;
-      }
-    }
-    .entry-footer {
-       margin-top:$base-line-height*2;
-       position: relative;
-       .post-info {
-        padding-top:$base-line-height*2;
-        @include border_b_t();
-       }
-      .post-info a:last-of-type { float:right; }
-      .post-tags {
-        margin-bottom:$base-line-height;
-      }
+    padding: $base-line-height*2 $base-line-height;
+    margin:  0 auto;
+    text-align: left;
+    width:   90%;
   }
-  .post:not(.format-image) .tc-content .entry-footer {
-    .post-info {
 
+  blockquote {
+    font-size: ms(1);
+  }
+
+  .entry-header {
+
+    .entry-meta { margin-bottom: $base-line-height; }
+
+    &.no-title .entry-meta { margin-bottom: 0 }
+
+    .entry-title {
+      @extend .grid-title_size;
+      margin-top:0;
+    }
+
+  }
+  .entry-footer {
+     margin-top:$base-line-height*2;
+     position: relative;
+    .post-info {
+      padding-top:$base-line-height*2;
+      @include border_b_t();
+    }
+    .post-info a:last-of-type { float:right; }
+    .post-tags {
+      margin-bottom:$base-line-height;
     }
   }
 
   .post.no-thumb .tc-content { padding-top:$base-line-height*4; }
   .no-header {
     .grid__item .entry-footer { margin-top: 0 ; padding-top:0  }
-  }
-  .no-footer {
-    .grid__item .entry-header { }
   }
 }
 
@@ -677,8 +664,26 @@ WP classes
 
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
-  article { margin-bottom: 0; padding: 0; }
-  .post-thumbnail { width: 277.5px; height: 277.5px}
+  margin-top: $base-line-height*2 !important;
+  background: $grey-lightest;
+  white-space: nowrap;
+  overflow: hidden;
+  article {
+    margin-bottom: 0;
+    padding: 0;
+    display: inline-block;
+    float: none;
+    white-space: initial
+  }
+  section {
+    padding: 0;
+    &:after {
+      content: '';
+      padding-bottom: 100%; /* this will ensure always a square thumbnail and content*/
+      display: block;
+      width: 100%;
+    }
+  }
   .entry-header .entry-title::after {
     content: "";
     position: absolute;
@@ -692,10 +697,41 @@ WP classes
   .entry-title {
     @include text-truncate();
     font-weight: 600;
+    margin-top: $base-line-height/2;
   }
   .entry-header.no-title .entry-title::after {
     content: none
   }
-  .entry-header .entry-meta, .entry-summary  { @extend .small; }
-  .entry-summary { margin-top: $base-line-height*2; }
+  .entry-header { @extend .small }
+  .entry-meta {
+    @extend .small;
+    display: none;
+    @media screen and ( min-width: 769px) { display: block }
+  }
+  .entry-media__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  .entry-content__wrapper {
+    position: absolute;
+    left: $base-line-height;
+    right: $base-line-height;
+    top: $base-line-height;
+    bottom: $base-line-height;
+    overflow: hidden;
+  }
+  .tc-content-inner {
+    font-size: 1.5em; margin-top: $base-line-height;
+    @media screen and ( min-width: 992px ) { font-size: $base-line-height }
+  }
+  blockquote{
+    @extend .small;
+    margin: 0;
+    padding: 0;
+    p,cite { font-size: 1em}
+  }
 }

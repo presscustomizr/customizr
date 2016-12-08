@@ -184,7 +184,6 @@ dl {
 .featured {
   margin-top: $base-line-height * 2;
   position: relative;
-  text-align: center;
   .widget-front { background: $white; }
   img { max-width: 100%; }
   .fp-title {
@@ -210,15 +209,14 @@ dl {
   .fp-button { display: block}
   .tc-content {
     width: 90%;
-    text-align: center;
     margin:0 auto;
-    [class*=fp-text-] {
+    text-align:center;
+    @at-root [class*=fp-text-] {
       width: 90%;
       margin: $base-line-height*2 auto;
       color: $grey-dark;
       @extend .small;
     }
-
   }
   .widget-front.hover {
     color: $grey-dark;

@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, .featured .tc-content [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header .entry-meta, .grid-container__square-mini .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright, small {
   font-size: 0.833333em;
 }
 
@@ -3390,7 +3390,6 @@ dl dd {
 .featured {
   margin-top: 2.5em;
   position: relative;
-  text-align: center;
 }
 
 .featured .widget-front {
@@ -3435,11 +3434,11 @@ dl dd {
 
 .featured .tc-content {
   width: 90%;
-  text-align: center;
   margin: 0 auto;
+  text-align: center;
 }
 
-.featured .tc-content [class*=fp-text-] {
+[class*=fp-text-] {
   width: 90%;
   margin: 2.5em auto;
   color: #777;
@@ -3747,29 +3746,17 @@ WP classes
   position: relative;
 }
 
-/* specific to grid layout (masonry/classc) */
-.grid .grid__item {
+.grid__item {
   position: relative;
   background: #fff;
-  text-align: center;
 }
 
-.grid .post-thumbnail {
-  width: 100%;
-  height: auto;
-}
-
+/* specific to grid layout (masonry/classic) */
 .grid .tc-content {
   padding: 2.5em 1.25em;
   margin: 0 auto;
   text-align: left;
   width: 90%;
-}
-
-@media (max-width: 992px) {
-  .grid .tc-content {
-    width: 90%;
-  }
 }
 
 .grid blockquote {
@@ -4513,16 +4500,30 @@ WP classes
 
 .grid-container__square-mini {
   font-size: 0.75em;
+  margin-top: 2.5em !important;
+  background: #f7f8f9;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .grid-container__square-mini article {
   margin-bottom: 0;
   padding: 0;
+  display: inline-block;
+  float: none;
+  white-space: initial;
 }
 
-.grid-container__square-mini .post-thumbnail {
-  width: 277.5px;
-  height: 277.5px;
+.grid-container__square-mini section {
+  padding: 0;
+}
+
+.grid-container__square-mini section:after {
+  content: '';
+  padding-bottom: 100%;
+  /* this will ensure always a square thumbnail and content*/
+  display: block;
+  width: 100%;
 }
 
 .grid-container__square-mini .entry-header .entry-title::after {
@@ -4542,14 +4543,59 @@ WP classes
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 600;
+  margin-top: 0.625em;
 }
 
 .grid-container__square-mini .entry-header.no-title .entry-title::after {
   content: none;
 }
 
-.grid-container__square-mini .entry-summary {
-  margin-top: 2.5em;
+.grid-container__square-mini .entry-meta {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .grid-container__square-mini .entry-meta {
+    display: block;
+  }
+}
+
+.grid-container__square-mini .entry-media__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.grid-container__square-mini .entry-content__wrapper {
+  position: absolute;
+  left: 1.25em;
+  right: 1.25em;
+  top: 1.25em;
+  bottom: 1.25em;
+  overflow: hidden;
+}
+
+.grid-container__square-mini .tc-content-inner {
+  font-size: 1.5em;
+  margin-top: 1.25em;
+}
+
+@media screen and (min-width: 992px) {
+  .grid-container__square-mini .tc-content-inner {
+    font-size: 1.25em;
+  }
+}
+
+.grid-container__square-mini blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+.grid-container__square-mini blockquote p, .grid-container__square-mini blockquote cite {
+  font-size: 1em;
 }
 
 .tc-content-inner {

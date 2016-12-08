@@ -267,7 +267,7 @@ Replace
   }
 
 }
-/*Comments patches */
+
 
 /*
 Apply this to the form elements
@@ -351,157 +351,6 @@ input[type="submit"] {
 }
 
 
-
-/* Comment text height */
-
-
-/*
-* Related posts
-*/
-/*
-section.post-related-articles header ul li a {
-    color: #202020;
-}*/
-section.post-related-articles header ul li a {
-  display: block;
-}
-
-/*
-replace:
-.grid-container__square-mini .col-xs-12 {
-    padding: 0;
-}
-*/
-/*
-.grid.grid-container__square-mini {
-  font-size: .72em;
-}*/
-/*
-remove:
-.grid-container__square-mini .entry-summary {
-    margin-top: 2.5em;
-}
-*/
-.grid[class*=grid-container__square-mini] .tc-content {
-    margin-top: 0;
-}
-
-/*
-remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
-.grid-container__square-mini .format-standard .entry-summary
-*/
-.grid[class*=grid-container__square-mini] article .tc-content-inner {
-  font-size: 1.5em;
-  margin-top: 1.5em;
-}
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote{
-  font-size: 0.8em;
-  margin: 0 !important;
-  padding: 0;
-}
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote cite,
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote p {
-  font-size: 1em;
-}
-[class*=grid-container__square-mini] section {
-  padding: 0;
-}
-[class*=grid-container__square-mini] section.entry-media__holder {
-  padding-bottom: 50%;
-  height: 0;
-  overflow: hidden;
-}
-.row.grid[class*=grid-container__square-mini] .entry-meta {
-  display: none;
-}
-.row.grid[class*=grid-container__square-mini] {
-  height: 0;
-  padding-bottom: 50%; /* Only 1 item shown */
-  overflow: hidden;
-}
-@media ( min-width: 769px ) {
-  .row.grid[class*=grid-container__square-mini] .entry-meta{
-    display: block;
-  }
-}
-@media ( min-width: 992px ) {
-  .row.grid[class*=grid-container__square-mini] {
-    padding-bottom: 25%; /* 2 items shown */
-  }
-  .grid[class*=grid-container__square-mini] article .tc-content-inner {
-    font-size: 1.25em;
-  }
-}
-
-/*
-replace:
-.grid-container__square-mini .grid__item .tc-content {
-    max-width: 50%;
-    padding: 2em;
-    display: inline-block;
-    background: #f7f8f9;
-    height: 277.5px;
-}
-*/
-
-.grid[class*=grid-container__square-mini] .grid__item .tc-content {
-  max-width: 50%; /* can be removed */
-  padding: 0; /* can be removed */
-  display: block; /* can be removed */
-  background: transparent; /* can be removed */
-  height: 0; /*can be removed */
-  padding-bottom: 50%;
-  float: right;
-  margin-top: 0
-}
-.grid-container__square-mini .entry-content__wrapper {
-  position: absolute;
-  left: 2em;
-  right: 2em;
-  top: 2em;
-  bottom: 2em;
-  overflow: hidden;
-}
-/*
-replace:
-section.post-related-articles .grid .grid__item {
-    background: #f7f8f9;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-*/
-section.post-related-articles .grid .grid__item {
-  background: #f7f8f9;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  display: inline-block;
-  width: 100%;
-  position: relative;
-  vertical-align: middle;
-}
-
-
-/*
-* Extend this to all post formats
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
-    font-size: 0.83333em;
-}
-
-.grid-container__square-mini .format-standard .entry-header .entry-title::after {
-    content: "";
-    position: absolute;
-    top: 45px;
-    left: 0;
-    width: 2.5em;
-    height: 2px;
-    background: #202020;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-*/
-
-
 /* header secondary menu font-size fix
 replace
 .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
@@ -557,19 +406,7 @@ Remove
     width: 50%;
     }
 */
-  .article-container .grid-container__plain article.style-01 .post-info {
-    float: initial; /* set with the bs columns parent*/
-    text-align: right; /*keep*/
-    width: auto;
-  }
 
-  .article-container .grid-container__plain article.style-01 .author-info {
-    float: initial;
-    width: auto;
-  }
-  .grid-container__plain .post.format-video .tc-thumbnail .entry-media__wrapper {
-    height: 100%;
-  }
 
 /*
 Limit to desktop
@@ -584,15 +421,7 @@ Limit to desktop
   }
 }
 
-/*
-Replace
-*/
-.entry-content,
-.entry-summary {
-    color: #777;
-}
 
-*/
 
 
 /* Some thumbnail container sizes ideas */
