@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .grid-container__plain .tax__container a, .overlay .overlay-content .nav__container nav, .featured .fp-title, .entry-footer .post-info a, .grid-container__plain .author-info a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .grid-container__plain .tax__container a, .overlay .overlay-content .nav__container nav, .fp-title, .entry-footer .post-info a, .grid-container__plain .author-info a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
   font-weight: 500;
 }
 
@@ -2590,6 +2590,68 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   }
 }
 
+/*
+* Link mask, like round divs
+*/
+.czr-link-mask {
+  position: absolute;
+  /*
+  * left/right/top/bottom values set to avoid (hopefully) visible line
+  * see:
+  * https://github.com/presscustomizr/customizr/issues/632
+  * https://github.com/presscustomizr/customizr/issues/474
+  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
+  */
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.no-effect .czr-link-mask {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.czr-link-mask::before {
+  position: absolute;
+  width: 60%;
+  /*
+    * this refers to the parent width, allowing us to have a perfect square despite the parent
+    * as it has the same element's width percentage value.
+    */
+  padding-bottom: 60%;
+  content: '';
+  z-index: 1;
+  /* Centering */
+  left: 50%;
+  top: 50%;
+  transform: translate2d(-50%, -50%);
+  /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  /* end of centering */
+  border: 150px solid;
+  border-color: white;
+  box-sizing: content-box;
+  transition: all .3s ease;
+}
+
+.no-effect .czr-link-mask::before {
+  border: transparent;
+}
+
+.round .czr-link-mask::before {
+  border-radius: 50%;
+}
+
+.hover .czr-link-mask::before {
+  transform: translate3d(-50%, -50%, 0) scale(1.4);
+}
+
 /* search forms */
 .search-form label {
   *zoom: 1;
@@ -3290,7 +3352,6 @@ form.czr-form .czr-search-field {
   height: 65vh;
 }
 
-/*.tc-content-inner {*/
 ol {
   counter-reset: item;
 }
@@ -3381,10 +3442,9 @@ dl dd {
   padding-left: 1.25em;
 }
 
-/*}*/
 /* featured pages*/
 .marketing {
-  margin-bottom: 3.25em;
+  margin-bottom: 5em;
 }
 
 .featured {
@@ -3392,21 +3452,57 @@ dl dd {
   position: relative;
 }
 
-.featured .widget-front {
-  background: #fff;
+.featured .czr-thumb-wrapper {
+  overflow: hidden;
+  max-width: 350px;
+  /* this actually depends on the thumb size */
+  margin: auto;
+  position: relative;
 }
 
-.featured img {
-  max-width: 100%;
+.featured .czr-thumb-wrapper::after {
+  /* Ensure square thumb-wrappers*/
+  width: 100%;
+  /*
+      * this refers to the parent width, allowing us to have a perfect square
+      * as it has the same element's width percentage value.
+      */
+  padding-bottom: 100%;
+  content: '';
+  display: block;
 }
 
-.featured .fp-title {
+.featured .no-effect .czr-thumb-wrapper {
+  margin-bottom: 2.5em;
+}
+
+.center-images-enabled .featured img {
+  /* should help avoiding undesired visible line
+    * see:
+    * https://github.com/presscustomizr/customizr/issues/632
+    * https://github.com/presscustomizr/customizr/issues/474
+    */
+  transform: translateZ(0);
+}
+
+.center-images-disabled .featured img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%);
+  /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.fp-title {
   line-height: 1.25em;
+  margin-top: 0;
   margin-bottom: 1.25em;
   word-break: break-word;
 }
 
-.featured .fp-title::after {
+.fp-title::after {
   content: "";
   position: absolute;
   width: 1.25em;
@@ -3420,16 +3516,21 @@ dl dd {
   transition: all 0.6s ease;
 }
 
+.hover .fp-title::after {
+  background: #777;
+  width: 2.5em;
+}
+
 .featured .btn-edit {
   margin: -1em 0 0;
 }
 
-.featured a.btn-more {
-  margin-bottom: 2.5em;
+.fp-button {
+  display: block;
 }
 
-.featured .fp-button {
-  display: block;
+.fp-button .btn-more {
+  margin-bottom: 2.5em;
 }
 
 .featured .tc-content {
@@ -3444,13 +3545,8 @@ dl dd {
   color: #777;
 }
 
-.featured .widget-front.hover {
+.featured .hover {
   color: #777;
-}
-
-.featured .widget-front.hover .fp-title::after {
-  background: #777;
-  width: 2.5em;
 }
 
 /*

@@ -111,7 +111,6 @@
 }
 
 //formatting
-/*.tc-content-inner {*/
 ol {
   li li {
     margin-left: $base-line-height;
@@ -177,18 +176,56 @@ dl {
     padding-left : $base-line-height;
   }
 }
-/*}*/
+
 
 /* featured pages*/
-.marketing { margin-bottom: $base-line-height + 2 }
+.marketing { margin-bottom: $base-line-height * 4 }
 .featured {
   margin-top: $base-line-height * 2;
   position: relative;
-  .widget-front { background: $white; }
-  img { max-width: 100%; }
-  .fp-title {
+
+  .czr-thumb-wrapper {
+    overflow: hidden;
+    max-width: 350px; /* this actually depends on the thumb size */
+    margin: auto;
+    position: relative;
+    &::after {
+      /* Ensure square thumb-wrappers*/
+      width: 100%;
+      /*
+      * this refers to the parent width, allowing us to have a perfect square
+      * as it has the same element's width percentage value.
+      */
+      padding-bottom: 100%;
+      content: '';
+      display: block;
+    }
+  }
+  .no-effect .czr-thumb-wrapper {
+    margin-bottom: $base-line-height*2
+  }
+
+  .center-images-enabled & img {
+    /* should help avoiding undesired visible line
+    * see:
+    * https://github.com/presscustomizr/customizr/issues/632
+    * https://github.com/presscustomizr/customizr/issues/474
+    */
+    transform: translateZ(0);
+  }
+  .center-images-disabled & img {
+    /* temporary CSS centering */
+    transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  @at-root .fp-title {
     @extend .semi-bold;
     line-height: $base-line-height;
+    margin-top : 0;
     margin-bottom: $base-line-height;
     word-break: break-word;
     &::after {
@@ -202,11 +239,21 @@ dl {
       right: 0;
       margin: $base-line-height/4 auto 0;
       @include transition (all 0.6s ease);
+      @at-root .hover & {
+        background: $grey-dark;
+        width: $base-line-height*2;
+      }
     }
   }
+
   .btn-edit { margin: -1em 0 0 }
-  a.btn-more { margin-bottom: $base-line-height*2 }
-  .fp-button { display: block}
+
+  @at-root .fp-button {
+    display: block;
+    .btn-more {
+      margin-bottom: $base-line-height*2
+    }
+  }
   .tc-content {
     width: 90%;
     margin:0 auto;
@@ -218,12 +265,8 @@ dl {
       @extend .small;
     }
   }
-  .widget-front.hover {
+  & .hover {
     color: $grey-dark;
-    .fp-title::after {
-      background: $grey-dark;
-      width: $base-line-height*2;
-    }
   }
 }
 

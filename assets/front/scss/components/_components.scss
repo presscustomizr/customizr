@@ -568,3 +568,52 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 @media (max-width: 768px) {
   .line-holder { display: none; }
 }
+/*
+* Link mask, like round divs
+*/
+.czr-link-mask {
+  position: absolute;
+  /*
+  * left/right/top/bottom values set to avoid (hopefully) visible line
+  * see:
+  * https://github.com/presscustomizr/customizr/issues/632
+  * https://github.com/presscustomizr/customizr/issues/474
+  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
+  */
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  overflow: hidden;
+  z-index: 1;
+  .no-effect & {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  &::before {
+    position: absolute;
+    width: 60%;
+    /*
+    * this refers to the parent width, allowing us to have a perfect square despite the parent
+    * as it has the same element's width percentage value.
+    */
+    padding-bottom: 60%;
+    content: '';
+    z-index: 1;
+    /* Centering */
+    left: 50%;
+    top: 50%;
+    transform: translate2d(-50%,-50%); /* fallback for those browsers w/o translate3d transform property*/
+    transform: translate3d(-50%,-50%, 0);
+    /* end of centering */
+    border: 150px solid;
+    border-color: white;
+    box-sizing: content-box;
+    transition: all .3s ease;
+    .no-effect & { border: transparent }
+    .round & { border-radius: 50% }
+    .hover & { transform: translate3d(-50%,-50%, 0) scale(1.4) }
+  }
+}
