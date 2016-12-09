@@ -1,6 +1,5 @@
 <?php
 class CZR_logo_model_class extends CZR_Model {
-  public $src = '';
   public $logo_type = '';
 
   /**

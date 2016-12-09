@@ -15,8 +15,8 @@ class CZR_tagline_model_class extends CZR_Model {
   * @override
   * Allow filtering of the header class by registering to its pre view rendering hook
   */
-  function czr_fn_maybe_filter_views_model() {
-    parent::czr_fn_maybe_filter_views_model();
+  function czr_fn_add_view_pre_and_post_actions() {
+    parent::czr_fn_add_view_pre_and_post_actions();
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
   /**

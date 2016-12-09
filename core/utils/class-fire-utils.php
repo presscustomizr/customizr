@@ -789,6 +789,15 @@ function czr_fn_post_has_title() {
 /* TODO: caching system */
 function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true ) {
     $logo_type_sep      = $logo_type ? '_sticky_' : '_';
+
+    $_cache_key         = "czr{$logo_type_sep}logo_atts";
+    $_logo_atts         = wp_cache_get( $_cache_key );
+
+    if ( false !== $_logo_atts )
+      return $_logo_atts;
+
+    $_logo_atts = array();
+
     $accepted_formats   = apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
 
     //check if the logo is a path or is numeric
@@ -816,7 +825,7 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     $filetype           = czr_fn_check_filetype ($_logo_src);
 
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
-      return array(
+      $_logo_atts = array(
                 'logo_src'           => $_logo_src,
                 'logo_attachment_id' => $_attachment_id,
                 'logo_width'         => $_width,
@@ -824,5 +833,8 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
                 'logo_type'          => trim($logo_type_sep,'_')
       );
 
-    return array();
+    //cache this
+    wp_cache_set( $_cache_key, $_logo_atts );
+
+    return $_logo_atts;
 }
