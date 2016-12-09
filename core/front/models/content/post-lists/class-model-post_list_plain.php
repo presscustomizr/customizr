@@ -151,7 +151,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     * Using the excerpt filter here can cause some compatibility issues
     * See: Super Socializer plugin
     */
-    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+    $_has_excerpt              = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
     array_push( $post_class,
       ! $_has_excerpt   ? 'no-text' : '',

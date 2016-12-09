@@ -87,6 +87,8 @@
         'czr_fn_external_resources_option_map'
       );
 
+      $_settings_sections = apply_filters( 'czr_settings_sections', $_settings_sections );
+
       foreach ( $_settings_sections as $_section_cb ) {
         if ( ! function_exists( $_section_cb ) )
           continue;

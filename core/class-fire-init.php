@@ -752,7 +752,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
           //skin
-          array_push( $_classes, 'header-skin-' . ( 'dark' == esc_attr( czr_fn_get_opt( 'tc_skin_type' ) ) ? 'dark' : 'light' ) );
+          array_push( $_classes, 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_dark' ) ) ? 'dark' : 'light' ) );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );

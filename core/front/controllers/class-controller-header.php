@@ -127,5 +127,9 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return $this -> czr_fn_display_view_menu();
     }
 
+
+    function czr_fn_display_view_nav_search()  {
+      return czr_fn_get_opt( 'tc_search_in_header' );
+    }
   }//end of class
 endif;

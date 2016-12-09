@@ -31,7 +31,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'mobile_menu_button',
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
-              'header_social_block'
+              'header_social_block',
+              'nav_search'
             ),
             'content' => array(
               'post_list',

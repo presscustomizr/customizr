@@ -238,19 +238,15 @@ WP classes
   .tc-content { font-size: 90%; }
   h2.entry-title { margin-top:$base-line-height/2; }
 
-
   .entry-footer {
     @extend .small;
     margin: $base-line-height*2 0 $base-line-height 0;
   }
 
   article  {
-    background: $white;
     position: relative;
     margin:  $base-line-height*2 0;
-    /*padding: 0;*/
     section { padding:0 }
-    section + section { float:right }
     .tc-content { padding:$base-line-height*3 $base-line-height*2; }
   }
   .post-type__icon { display:none; }
@@ -561,9 +557,8 @@ WP classes
 
 /* plain post list */
 .grid-container__plain {
-  section { padding:0; }
+  section { padding:0 }
   section:last-of-type { padding:$base-line-height*2; }
-  article { background: $white; }
   .tc-thumbnail { max-height: 600px; overflow: hidden; }
   .post-tags { margin-top: 1.5em; }
   .post-share .socials { margin-top: 1.1em }

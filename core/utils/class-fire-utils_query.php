@@ -158,7 +158,7 @@ function czr_fn_get_the_post_list_article_selectors( $post_class = '', $id_suffi
 
     if ( isset($post) )
       $selectors = apply_filters( "czr_post_list_selectors", sprintf('%1$s %2$s',
-        czr_fn_get_the_post_id( 'post', get_the_ID(), $id_suffix ),
+        czr_fn_get_the_post_id( 'post', $post->ID, $id_suffix ),
         czr_fn_get_the_post_class( $post_class )
       ) );
 
@@ -190,7 +190,7 @@ function czr_fn_get_the_singular_article_selectors( $post_class = '' ) {
     if ( isset($post) ) {
       $post_type  = czr_fn_get_post_type();
       $selectors  = apply_filters( "czr_article_singular_{$post_type}_selectors", sprintf('%1$s %2$s',
-        czr_fn_get_the_post_id( 'page' == $post_type ? $post_type : 'post', get_the_ID() ),
+        czr_fn_get_the_post_id( 'page' == $post_type ? $post_type : 'post', $post->ID ),
         czr_fn_get_the_post_class( $post_class )
       ) );
     }
