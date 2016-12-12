@@ -14,7 +14,9 @@
     <?php endif; ?>
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get('cat_limit') ) ) ) : ?>
       <div class="entry-meta">
-        <?php echo $cat ?>
+        <div class="tax__container">
+          <?php echo $cat ?>
+        </div>
       </div>
     <?php endif; ?>
     <h2 class="entry-title ">

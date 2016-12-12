@@ -90,9 +90,9 @@ $secondary-color-dark   : $grey;
   }
 
     .image__header .header-content {
-      .post-info a,  .category-info a { color:$primary-color; }
-      .post-info a:hover,  .category-info a:hover { color:$secondary-color-light; }
-      .category-info:after { background-color:$primary-color; }
+      a { color:$primary-color; }
+      a:hover { color:$secondary-color-light; }
+      .entry-meta .tax__container:after { background-color:$primary-color }
     }
 
 

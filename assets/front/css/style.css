@@ -196,7 +196,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .entry-header .entry-meta a, .grid-container__plain .tax__container a, .overlay .overlay-content .nav__container nav, .fp-title, .entry-footer .post-info a, .grid-container__plain .author-info a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .tax__container a, .overlay .overlay-content .nav__container nav, .fp-title, .entry-footer .post-info a, .grid-container__plain .author-info a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
   font-weight: 500;
 }
 
@@ -208,13 +208,13 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .entry-header .entry-meta a, .grid-container__plain .tax__container a, .tagcloud a,
+.service-font, .btn, .tax__container a, .tagcloud a,
 .tags li, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-more, .btn-large, .entry-header .entry-meta a, .grid-container__plain .tax__container a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.caps, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-more, .btn-large, .tax__container a, .dropdown-menu, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   text-transform: uppercase;
 }
 
@@ -246,7 +246,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .entry-header .entry-meta a, .grid-container__plain .tax__container a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
+.letter-spacing-2, .tax__container a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -652,15 +652,15 @@ p {
   border-bottom: 1px solid rgba(32, 32, 32, 0.09);
 }
 
-.header-skin-light .image__header .header-content .post-info a, .header-skin-light .image__header .header-content .category-info a {
+.header-skin-light .image__header .header-content a {
   color: #202020;
 }
 
-.header-skin-light .image__header .header-content .post-info a:hover, .header-skin-light .image__header .header-content .category-info a:hover {
+.header-skin-light .image__header .header-content a:hover {
   color: #B4B4B4;
 }
 
-.header-skin-light .image__header .header-content .category-info:after {
+.header-skin-light .image__header .header-content .entry-meta .tax__container:after {
   background-color: #202020;
 }
 
@@ -1014,15 +1014,15 @@ p {
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-.header-skin-dark .image__header .header-content .post-info a, .header-skin-dark .image__header .header-content .category-info a {
+.header-skin-dark .image__header .header-content a {
   color: #fff;
 }
 
-.header-skin-dark .image__header .header-content .post-info a:hover, .header-skin-dark .image__header .header-content .category-info a:hover {
+.header-skin-dark .image__header .header-content a:hover {
   color: #B4B4B4;
 }
 
-.header-skin-dark .image__header .header-content .category-info:after {
+.header-skin-dark .image__header .header-content .entry-meta .tax__container:after {
   background-color: #fff;
 }
 
@@ -1952,18 +1952,17 @@ a.external {
   position: relative;
 }
 
-.entry-header .entry-meta a, .grid-container__plain .tax__container a {
-  color: #B4B4B4;
+.tax__container a {
   position: relative;
   display: inline-block;
   vertical-align: middle;
 }
 
-.entry-header .entry-meta a:not(:last-of-type), .grid-container__plain .tax__container a:not(:last-of-type) {
+.tax__container a:not(:last-of-type) {
   margin-right: 1.5em;
 }
 
-.entry-header .entry-meta a:not(:last-of-type)::after, .grid-container__plain .tax__container a:not(:last-of-type)::after {
+.tax__container a:not(:last-of-type)::after {
   content: '/';
   color: #B4B4B4;
   z-index: 1;
@@ -1971,10 +1970,6 @@ a.external {
   position: absolute;
   top: 0;
   right: -1em;
-}
-
-.entry-header .entry-meta a:hover, .grid-container__plain .tax__container a:hover {
-  color: #202020;
 }
 
 /* go-to-top button*/
@@ -3709,7 +3704,6 @@ WP classes
 
 /* GLOBAL */
 .entry-meta a, .post-info a {
-  color: #B4B4B4;
   -webkit-transition: color 0.2s, 0.3s ease;
   transition: color 0.2s, 0.3s ease;
 }
@@ -3744,10 +3738,6 @@ WP classes
   transform: scaleX(1);
 }
 
-.entry-meta a:hover, .post-info a:hover {
-  color: #202020;
-}
-
 .entry-header .entry-title {
   line-height: 1.1;
   margin-bottom: 0.3125em;
@@ -3759,10 +3749,6 @@ WP classes
 
 .hover .entry-header .entry-title a {
   color: #777;
-}
-
-.entry-header .entry-meta {
-  color: #B4B4B4;
 }
 
 .tc-content-inner {
@@ -4651,6 +4637,26 @@ WP classes
   min-height: 300px;
 }
 
+.page__header .tax__container {
+  position: relative;
+}
+
+.page__header .tax__container::after {
+  content: "";
+  position: absolute;
+  width: 3.75em;
+  height: 3px;
+  top: 2.5em;
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page__header .tax__container a {
+  letter-spacing: 3px;
+}
+
 .page__header.image__header {
   height: calc(  100vh * ( 2 / 3 ));
 }
@@ -4716,7 +4722,7 @@ WP classes
   margin-top: 1em;
 }
 
-.page__header .category-info + .entry-title {
+.page__header .entry-meta + .entry-title {
   margin-top: 1.25em;
 }
 
@@ -4814,10 +4820,6 @@ section[class^="post-"] {
 
 section[class^="post-"] .row {
   margin: 5em 0 2.5em 0;
-}
-
-.page__header .category-info a {
-  letter-spacing: 3px;
 }
 
 .pagination {

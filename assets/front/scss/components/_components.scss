@@ -103,7 +103,6 @@ a[target="_blank"]:hover:after {
     @extend .service-font;
     @extend .letter-spacing-2;
     @extend .semi-bold;
-    color: $grey;
     position: relative;
     display: inline-block;
     vertical-align:  middle;
@@ -120,7 +119,6 @@ a[target="_blank"]:hover:after {
       right: -1em;
     }
   }
-  a:hover { color: $black }
 }
 
 /* go-to-top button*/

@@ -20,8 +20,10 @@
   <div class="container header-content">
     <div class="header-content-inner col-xs-12">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
-        <div class="entry-meta category-info">
-          <?php echo $cat ?>
+        <div class="entry-meta">
+          <div class="tax__container">
+            <?php echo $cat ?>
+          </div>
         </div>
     <?php endif; ?>
       <h1 class="entry-title"><?php the_title() ?></h1>

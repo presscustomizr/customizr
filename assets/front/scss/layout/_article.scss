@@ -11,7 +11,23 @@
 .page__header {
   text-align: center;
   min-height: 300px;
-
+  .tax__container {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      width: $base-line-height*3;
+      height: 3px;
+      top: $base-line-height*2;
+      margin:0 auto;
+      bottom: 0;
+      left: 0;
+      right:0;
+    }
+    a {
+      letter-spacing: 3px;
+    }
+  }
   &.image__header {
     height: calc(  100vh * ( 2 / 3 ) );
   }
@@ -60,7 +76,7 @@
     margin-bottom: 0;
     margin-top: 1em;
   }
-  .category-info + .entry-title {
+  .entry-meta + .entry-title {
     margin-top: $base-line-height;
   }
 }
@@ -100,10 +116,6 @@
 section[class^="post-"] {
   margin: $base-line-height*4 0 $base-line-height*2 0;
   .row { margin: $base-line-height*4 0 $base-line-height*2 0; }
-}
-
-.page__header .category-info a {
-  letter-spacing: 3px;
 }
 
 

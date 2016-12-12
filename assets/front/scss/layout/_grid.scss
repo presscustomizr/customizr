@@ -143,9 +143,10 @@ WP classes
 
 
 /* GLOBAL */
-.entry-meta a, .post-info a { color: $grey; @include transition(color, 0.3s ease);  }
+
+.tax__container { @extend %categories; }
+.entry-meta a, .post-info a { @include transition(color, 0.3s ease);  }
 .tc-content-inner a.external { display:inline-block; @include underlined ( $primary-color, 1px ); }
-.entry-meta a:hover, .post-info a:hover{ color: $black; }
 .entry-header {
     .entry-title {
         a { color: $black; }
@@ -153,10 +154,6 @@ WP classes
         margin-bottom:$base-line-height/4;
       }
       .hover & .entry-title a { color: $grey-dark; }
-      .entry-meta  {
-          color: $grey;
-          @extend %categories;
-    }
 }
 .tc-content-inner {
   color: $grey-dark;
@@ -586,10 +583,7 @@ WP classes
     .avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
-  .tax__container {
-    @extend %categories;
-    margin-top:$base-line-height;
-  }
+  .tax__container{ margin-top:$base-line-height }
   &:not(.narrow) .tax__container {
     overflow:hidden;
     a[class*=tax__link] {
