@@ -109,13 +109,18 @@
     visibility: hidden;
     @include transform( scaleX(0) );
     @include transition( all 0.3s ease 0s );
-   }
-   &:hover:before {
-     visibility: visible;
-     @include transform( scaleX(1) );
+  }
+  &:hover {
+    @include underlined_highlight_before($color);
   }
 }
-
+@mixin underlined_highlight_before ($color) {
+  &::before {
+    background-color: $color;
+    visibility: visible;
+    @include transform( scaleX(1) );
+  }
+}
 @mixin text-truncate {
     overflow: hidden;
     text-overflow: ellipsis;

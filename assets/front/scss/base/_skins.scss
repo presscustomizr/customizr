@@ -146,7 +146,7 @@ $secondary-color-dark   : $grey;
     }
     & > li.active > a, &  li.current-active > a {
       color: $secondary-color;
-        & > span:first-of-type { @include underlined_simple ($secondary-color, 2px); }
+        & > span:first-of-type { @include underlined_highlight_before($secondary-color); }
     }
       &  li.active {
       .caret__dropdown-toggler__span:after,
