@@ -8,7 +8,7 @@ var czrapp = czrapp || {};
     },
     disableHoverOnScroll: function() {
       //While scrolling we don' want to trigger hover actions
-      if ( ! czrapp.$_body.hasClass( 'tc-is-mobile' ) ) {
+      if ( ! czrapp.$_body.hasClass( 'czr-is-mobile' ) ) {
         var timer;
 
         czrapp.$_window.on('scroll', function() {
@@ -25,7 +25,7 @@ var czrapp = czrapp || {};
 
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
-      if ( czrapp.$_body.hasClass( 'tc-is-mobile' ) )
+      if ( czrapp.$_body.hasClass( 'czr-is-mobile' ) )
         return;
 
       /* Grid */

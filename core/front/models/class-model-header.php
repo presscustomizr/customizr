@@ -35,10 +35,11 @@ class CZR_header_model_class extends CZR_Model {
 
 
     //header class for the secondary menu
-    array_push(  $element_class,
-      'tc-second-menu-on',
-      'tc-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
-    );
+    if ( czr_fn_is_secondary_menu_enabled() )
+      array_push(  $element_class,
+        'czr-second-menu-on',
+        'czr-second-menu-' . esc_attr( czr_fn_get_opt( 'czr_second_menu_resp_setting' ) ) . '-when-mobile'
+      );
 
 
     /* Sticky header treatment */
@@ -46,8 +47,11 @@ class CZR_header_model_class extends CZR_Model {
 
     if ( $_sticky_header ) {
       array_push( $element_class,
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
+        0 != esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? 'czr-shrink-on' : 'czr-shrink-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'czr-title-logo-on' : 'czr-title-logo-off'
       );
       array_push( $elements_container_class, 'navbar-to-stick' );
     }
@@ -63,10 +67,12 @@ class CZR_header_model_class extends CZR_Model {
   function czr_fn_setup_children() {
     $children = array(
       //* Registered as children here as they need to filter the header class and add custom style css */
-      array( 'model_class' => 'header/logo', 'id' => 'logo' ),
-      array( 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky'), 'id' => 'sticky_logo' ),
+      array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
+      array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
 
-      //secondary menu registered here because of the extending
+      //secondary and primary menu registered here because of the extending
+      array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_menu' ) ),
+
       array( 'id' => 'secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
 
       //here because it acts on the header class

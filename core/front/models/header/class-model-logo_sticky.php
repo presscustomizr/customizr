@@ -2,14 +2,15 @@
 class CZR_logo_sticky_model_class extends CZR_logo_model_class{
   public $logo_type   = 'sticky';
 
-  /**
-  * @override
-  * Allow filtering of the header class by registering to its pre view rendering hook
-  */
-  function czr_fn_add_view_pre_and_post_actions() {
-    parent::czr_fn_add_view_pre_and_post_actions();
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+
+    /*
+    * Allow filtering of the header class by registering to its pre view rendering hook
+    */
     add_action( 'pre_rendering_view_header', array( $this, 'pre_rendering_view_header_cb' ) );
   }
+
 
   /**
   * parse header model before rendering to add sticky logo
@@ -18,7 +19,7 @@ class CZR_logo_sticky_model_class extends CZR_logo_model_class{
     if ( ! is_array( $header_model -> element_class ) )
       $header_model -> element_class = explode( " ", $header_model -> element_class );
 
-    array_push( $header_model -> element_class, 'tc-sticky-logo-on' );
+    array_push( $header_model -> element_class, 'czr-sticky-logo-on' );
   }
 
   function czr_fn_user_options_style_cb( $_css ) {
@@ -28,10 +29,10 @@ class CZR_logo_sticky_model_class extends CZR_logo_model_class{
         .navbar-logo img.sticky {
             display: none;
          }
-        .sticky-enabled .tc-sticky-logo-on .navbar-logo img {
+        .sticky-enabled .czr-sticky-logo-on .navbar-logo img {
             display: none;
          }
-        .sticky-enabled .tc-sticky-logo-on .navbar-logo img.sticky {
+        .sticky-enabled .czr-sticky-logo-on .navbar-logo img.sticky {
             display: inline-block;
         }"
     );

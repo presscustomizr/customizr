@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'title',
               'logo_wrapper',
               'logo',
-              'sticky_logo', /*'logo_title', */
+              'sticky_logo',
               'tagline',
               'mobile_tagline',
               'favicon',

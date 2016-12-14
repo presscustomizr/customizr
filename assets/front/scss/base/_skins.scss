@@ -52,61 +52,53 @@ $secondary-color-dark   : $grey;
     }
   }
   #sticky-placeholder,
-  .secondary-navbar__wrapper, .primary-navbar__wrapper  {
+  .topnav_navbars__wrapper  {
     background: $background-color;
   }
 
   .header-transparent {
     #sticky-placeholder { background: transparent }
-    @media (min-width: 993px) {
-      .secondary-navbar__wrapper, .primary-navbar__wrapper  {
+    @media (min-width: 992px) {
+      .topnav_navbars__wrapper {
         background: transparent;
       }
     }
-    @media (min-width: 993px) {
-      .primary-navbar__wrapper  {
+    @media (min-width: 992px) {
+      .topnav_navbars__wrapper {
         border-bottom: 1px solid rgba($primary-color, 0.09);
-      }
-    }
-    & > div:not(.navbar-sticky) {
-      @media (max-width: 992px) {
-        .primary-navbar__wrapper  {
-          @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
-        }
       }
     }
   }
 
 
-  .secondary-navbar__wrapper  {
+  .secondary-navbar__wrapper {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
 
   header:not(.header-transparent) {
-    .primary-navbar__wrapper {
-      @extend .shadow;
+    .topnav_navbars__wrapper {
+      @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
     }
-
   }
 
-    .image__header .header-content {
-      a { color:$primary-color; }
-      a:hover { color:$secondary-color-light; }
-      .entry-meta .tax__container:after { background-color:$primary-color }
-    }
+  .image__header .header-content {
+    a { color:$primary-color; }
+    a:hover { color:$secondary-color-light; }
+    .entry-meta .tax__container:after { background-color:$primary-color }
+  }
 
 
   .primary-nav__utils {
      color: $primary-color;
     a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
-    a:hover, a.current-active    { color: $secondary-color-light;   }
+    a:hover, a.current-active { color: $secondary-color-light;   }
 
-       @media (min-width: 993px) {
+       @media (min-width: 992px) {
          .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
          .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
 
        }
-        @media (max-width: 992px) {
+        @media (max-width: 991px) {
          .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
        }
   }
@@ -209,9 +201,9 @@ $secondary-color-dark   : $grey;
 }
 /* end mixin */
 
-  .header-skin-light  {
-    @include headerskin($white, $black);
-  }
-  .header-skin-dark  {
-    @include headerskin($black, $white);
-  }
+.header-skin-light  {
+  @include headerskin($white, $black);
+}
+.header-skin-dark  {
+  @include headerskin($black, $white);
+}

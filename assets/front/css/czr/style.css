@@ -17,10 +17,10 @@
 * always expand submenus when .tc-open-on-hover
 */
 @media (max-width: 991px){
-  body:not(.tc-is-mobile) .tc-open-on-hover .dropdown-menu {
+  body:not(.czr-is-mobile) .czr-open-on-hover .dropdown-menu {
     display: block !important;
   }
-  body:not(.tc-is-mobile) .tc-open-on-hover .caret__dropdown-toggler {
+  body:not(.czr-is-mobile) .czr-open-on-hover .caret__dropdown-toggler {
     display: none !important;
   }
 }
@@ -572,11 +572,10 @@ Limit to desktop
     display: table !important;
     min-width: 100% !important;
     white-space: nowrap;
-    padding-right: 1.25em;
-    padding-left: 1.25em;
   }
   .primary-nav__container .primary-nav__nav {
     width: 100%;
+    display: table !important;
     text-align: initial !important;
   }
   .branding__container {

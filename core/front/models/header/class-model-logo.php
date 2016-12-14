@@ -10,6 +10,7 @@ class CZR_logo_model_class extends CZR_Model {
   */
   function czr_fn_extend_params( $model = array() ) {
     $atts = czr_fn_get_logo_atts( $this -> logo_type );
+
     if ( empty( $atts ) )
       return $model;
 
@@ -27,6 +28,7 @@ class CZR_logo_model_class extends CZR_Model {
                                 ) : '',
         implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == czr_fn_get_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
+
 
     return $model;
   }
@@ -54,7 +56,7 @@ class CZR_logo_model_class extends CZR_Model {
       $_css = sprintf("%s%s",
           $_css,
           "
-      .sticky-enabled .tc-shrink-on .navbar-logo img {
+      .sticky-enabled .czr-shrink-on .navbar-logo img {
         {$_logo_shrink}
       }"
       );
