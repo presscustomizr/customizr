@@ -98,7 +98,10 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_fn_wp_filters() {
         add_filter( 'the_content'                         , array( $this , 'czr_fn_fancybox_content_filter' ) );
-        if ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) ) ) {
+        /*
+        * Smartload disabled for content retrieved via ajax
+        */
+        if ( apply_filters( 'tc_globally_enable_img_smart_load', ! $this -> czr_fn_is_ajax() && esc_attr( $this->czr_fn_opt( 'tc_img_smart_load' ) ) ) ) {
           add_filter( 'the_content'                       , array( $this , 'czr_fn_parse_imgs' ), PHP_INT_MAX );
           add_filter( 'tc_thumb_html'                     , array( $this , 'czr_fn_parse_imgs' ) );
         }
@@ -1029,6 +1032,26 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
     }
 
+    /**
+    * Whether or not we are in the ajax context
+    * @return bool
+    * @since v3.4.37
+    */
+    function czr_fn_is_ajax() {
+
+      /*
+      * wp_doing_ajax() introduced in 4.7.0
+      */
+      $wp_doing_ajax = ( function_exists('wp_doing_ajax') && wp_doing_ajax() ) || ( ( defined('DOING_AJAX') && 'DOING_AJAX' ) );
+
+      /*
+      * https://core.trac.wordpress.org/ticket/25669#comment:19
+      * http://stackoverflow.com/questions/18260537/how-to-check-if-the-request-is-an-ajax-request-with-php
+      */
+      $_is_ajax      = $wp_doing_ajax || ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+      return apply_filters( 'czr_is_ajax', $_is_ajax );
+    }
 
   }//end of class
 endif;
