@@ -751,8 +751,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
             array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
 
 
-          //skin
+          //header and footer skins
           array_push( $_classes, 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_skin' ) ) ) );
+          array_push( $_classes, 'footer-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_footer_skin' ) ) ) );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );

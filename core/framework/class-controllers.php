@@ -54,12 +54,10 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
             ),
             'footer' => array(
               'btt_arrow',
-              'footer_btt',
               'footer_push',
               'footer_widgets',
               'colophon',
               'footer_social_block'
-          //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
               'social_block',

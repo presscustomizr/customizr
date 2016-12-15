@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -242,7 +242,7 @@ blockquote p {
   letter-spacing: 0.5px;
 }
 
-.letter-spacing-1, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .dropdown-menu, .grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote, .page__header .header-content .post-info, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .footer__wrapper .copyright {
+.letter-spacing-1, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .dropdown-menu, .grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote, .page__header .header-content .post-info, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits {
   letter-spacing: 1px;
 }
 
@@ -1959,19 +1959,50 @@ a.external {
   right: -1em;
 }
 
-/* go-to-top button*/
-.go-to-top {
+/* go-to-top button */
+.czr-btta {
   width: 50px;
   height: 50px;
   position: fixed;
   right: 17px;
-  bottom: 17px;
+  bottom: 100px;
   cursor: pointer;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99999999;
   z-index: 100;
   border-radius: 2px;
-  color: white;
+  color: #fff;
   background: #202020;
+  border: 1px solid black;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.czr-btta i {
+  line-height: 50px;
+  display: inline-block;
+}
+
+.czr-btta i:before {
+  font-weight: 700;
+}
+
+.czr-btta.left {
+  left: 17px;
+  right: auto;
+}
+
+.czr-btta.show {
+  visibility: visible;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.czr-btta:hover {
+  color: #202020;
+  background: #fff;
 }
 
 /* Blockquotes and cites */
@@ -5498,25 +5529,25 @@ section.post-content {
   font-size: 90%;
 }
 
-.header-skin-dark .footer__wrapper {
+.footer-skin-dark .footer__wrapper {
   color: #fff;
   background: #202020;
-  border-top: 1px solid 0 transparent;
+  border-top: 1px solid transparent;
 }
 
-.header-skin-dark .footer__wrapper a {
+.footer-skin-dark .footer__wrapper a {
   color: #B4B4B4;
 }
 
-.header-skin-dark .footer__wrapper a:hover, .header-skin-dark .footer__wrapper a .socials a:hover {
+.footer-skin-dark .footer__wrapper a:hover, .footer-skin-dark .footer__wrapper a .socials a:hover {
   color: #fff;
 }
 
-.header-skin-dark .footer__wrapper .widget a {
+.footer-skin-dark .footer__wrapper .widget a {
   position: relative;
 }
 
-.header-skin-dark .footer__wrapper .widget a:before {
+.footer-skin-dark .footer__wrapper .widget a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -5533,7 +5564,7 @@ section.post-content {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-dark .footer__wrapper .widget a:hover::before {
+.footer-skin-dark .footer__wrapper .widget a:hover::before {
   background-color: rgba(255, 255, 255, 0.5);
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -5542,29 +5573,29 @@ section.post-content {
   transform: scaleX(1);
 }
 
-.header-skin-dark .footer__wrapper .colophon__row {
+.footer-skin-dark .footer__wrapper .colophon__row {
   background: #131313;
 }
 
-.header-skin-light .footer__wrapper {
+.footer-skin-light .footer__wrapper {
   color: #202020;
   background: #fff;
   border-top: 1px solid #eceeef;
 }
 
-.header-skin-light .footer__wrapper a {
+.footer-skin-light .footer__wrapper a {
   color: #B4B4B4;
 }
 
-.header-skin-light .footer__wrapper a:hover, .header-skin-light .footer__wrapper a .socials a:hover {
+.footer-skin-light .footer__wrapper a:hover, .footer-skin-light .footer__wrapper a .socials a:hover {
   color: #202020;
 }
 
-.header-skin-light .footer__wrapper .widget a {
+.footer-skin-light .footer__wrapper .widget a {
   position: relative;
 }
 
-.header-skin-light .footer__wrapper .widget a:before {
+.footer-skin-light .footer__wrapper .widget a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -5581,7 +5612,7 @@ section.post-content {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-light .footer__wrapper .widget a:hover::before {
+.footer-skin-light .footer__wrapper .widget a:hover::before {
   background-color: rgba(32, 32, 32, 0.5);
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -5590,19 +5621,19 @@ section.post-content {
   transform: scaleX(1);
 }
 
-.header-skin-light .footer__wrapper .colophon__row {
+.footer-skin-light .footer__wrapper .colophon__row {
   background: #f7f8f9;
-}
-
-.footer__wrapper .widget__wrapper {
-  padding-top: 3.75em;
-  padding-bottom: 1.875em;
 }
 
 .footer__wrapper a {
   display: inline-block;
   position: relative;
   width: auto;
+}
+
+.footer__wrapper .widget__wrapper {
+  padding-top: 3.75em;
+  padding-bottom: 1.875em;
 }
 
 .footer__wrapper .widget > h5 {
@@ -5642,23 +5673,36 @@ section.post-content {
   line-height: 1.1em;
 }
 
+@media (max-width: 991px) {
+  .footer__wrapper .widget {
+    padding: 1.25em;
+  }
+}
+
 .footer__wrapper .colophon__row {
   margin: 0;
   padding: 0.625em 1.25em;
 }
 
-.footer__wrapper .copyright {
-  color: #B4B4B4;
-  margin: 0;
-  vertical-align: middle;
-  display: inline-block;
-  line-height: 2.5em;
+.colophon__row > [class*=col-] {
+  padding-right: 0;
+  padding-left: 0;
 }
 
-@media (max-width: 993px) {
-  .footer__wrapper .widget {
-    padding: 1.25em;
-  }
+.colophon__row .footer__credits {
+  color: #B4B4B4;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 2em;
+}
+
+.colophon__row .footer__credits p {
+  margin: 0;
+}
+
+.colophon__row .footer__credits,
+.colophon__row .social-links {
+  margin: 1em 0;
 }
 
 /*# sourceMappingURL=style.css.map */

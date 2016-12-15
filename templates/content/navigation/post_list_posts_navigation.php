@@ -39,6 +39,7 @@ if ( null != $prev_link || null != $next_link ) :
         <?php
           $_paginate_links = paginate_links( array(
             'prev_next' => false,
+            'mid_size'  => 1,
             'type'      => 'array',
           ));
           foreach ( $_paginate_links as $_page ) {

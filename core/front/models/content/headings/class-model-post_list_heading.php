@@ -6,7 +6,7 @@ class CZR_post_list_heading_model_class extends CZR_Model {
   public $context;
 
   function czr_fn_extend_params( $model = array() ) {
-    //the controlleer will check if we're in (not singular) context
+    //the controller will check if we're in (not singular) context
     //context
     $this -> context  = $this -> czr_fn_get_the_posts_list_context();
     if ( ! $this -> context )
