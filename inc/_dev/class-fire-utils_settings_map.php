@@ -2087,12 +2087,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_back_to_top_position'  =>  array(
                                 'default'       => 'right',
                                 'control'       => 'CZR_controls' ,
-                                'label'         => __( "Display a back to top arrow on scroll" , "customizr" ),
+                                'label'         => __( "Back to top arrow position" , "customizr" ),
                                 'section'       => 'footer_global_sec' ,
                                 'type'          => 'select',
                                 'choices'       => array(
                                       'left'      => __( 'Left' , 'customizr' ),
-                                      'centered'  => __( 'Right' , 'customizr'),
+                                      'right'     => __( 'Right' , 'customizr'),
                                 ),
                                 'priority'      => 5,
                                 'transport'     => 'postMessage'
