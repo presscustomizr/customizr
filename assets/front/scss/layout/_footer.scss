@@ -96,6 +96,7 @@
     padding:$base-line-height/2 $base-line-height;
 
     @at-root .colophon__row {
+
        > [class*=col-] {
         padding-right: 0;
         padding-left: 0;

@@ -12,19 +12,6 @@
   overflow: hidden;
 }*/
 
-/*
-* In desktops when resizing below the "collapsing mobil menu" treshold
-* always expand submenus when .tc-open-on-hover
-*/
-@media (max-width: 991px){
-  body:not(.czr-is-mobile) .czr-open-on-hover .dropdown-menu {
-    display: block !important;
-  }
-  body:not(.czr-is-mobile) .czr-open-on-hover .caret__dropdown-toggler {
-    display: none !important;
-  }
-}
-
 /* end HEADER HACK */
 
 /* VARIOUS */
