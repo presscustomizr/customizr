@@ -134,31 +134,38 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
 
+    // /**
+    // * Old version: NOT USED ANYMORE: context skopified
+    // */
+    // function czr_fn_display_view_post_list_grid() {
+    //   return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+    // }
 
-    /* returns the type of post list we're in if any, an empty string otherwise */
-    private function czr_fn_get_grid_context() {
-      global $wp_query;
 
-      if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-              $wp_query->is_posts_page )
-          return 'blog';
-      else if ( is_search() && $wp_query->post_count > 0 )
-          return 'search';
-      else if ( is_archive() )
-          return 'archive';
-      return '';
-    }
+    // /* returns the type of post list we're in if any, an empty string otherwise */
+    // private function czr_fn_get_grid_context() {
+    //   global $wp_query;
 
-    /* performs the match between the option where to use post list grid
-     * and the post list we're in */
-    private function czr_fn_is_grid_context_matching() {
-      $_type = $this -> czr_fn_get_grid_context();
-      $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
-      return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
-    }
+    //   if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+    //           $wp_query->is_posts_page )
+    //       return 'blog';
+    //   else if ( is_search() && $wp_query->post_count > 0 )
+    //       return 'search';
+    //   else if ( is_archive() )
+    //       return 'archive';
+    //   return '';
+    // }
+
+    // /* performs the match between the option where to use post list grid
+    //  * and the post list we're in */
+    // private function czr_fn_is_grid_context_matching() {
+    //   $_type = $this -> czr_fn_get_grid_context();
+    //   $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
+    //   return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
+    // }
 
   }//end of class
 endif;
