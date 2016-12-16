@@ -79,7 +79,7 @@
                   the_post();
 
                   // Render list of posts based on the options
-                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
+                  if ( czr_fn_is_list_of_posts() ) {
                     if ( czr_fn_has('post_list_grid') ) {
                       czr_fn_render_template( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) );
                     }
@@ -169,7 +169,7 @@
       <div class="container-fluid">
         <div class="row">
         <?php
-          $_pn_template_prefix = $_is_post_list ? 'post_list' : 'singular';
+          $_pn_template_prefix = ! is_singular() ? 'post_list' : 'singular';
           czr_fn_render_template( "content/navigation/{$_pn_template_prefix}_posts_navigation", array( 'model_id' => 'posts_navigation', 'model_class' => 'content/navigation/posts_navigation' ) );
         ?>
         </div>

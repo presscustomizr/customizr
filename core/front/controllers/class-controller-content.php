@@ -199,24 +199,38 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
     }
 
+    /*
+    * OLD VERSION
+    */
+    // function czr_fn_display_view_posts_navigation() {
+    //   global $wp_query;
+
+    //   $bool  = $wp_query -> post_count > 0;
+    //   $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
+
+    //   if ( ! $bool )
+    //     return false;
+
+    //   //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
+    //   if ( czr_fn_is_customizing() )
+    //     return true;
+
+    //   if ( ! $this->czr_fn_is_posts_navigation_enabled() )
+    //     return false;
+
+    //   $_context = czr_fn_get_query_context();
+    //   return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
+    // }
+
     function czr_fn_display_view_posts_navigation() {
       global $wp_query;
 
-      $bool  = $wp_query -> post_count > 0;
-      $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
-
-      if ( ! $bool )
-        return false;
-
-      //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
-      if ( czr_fn_is_customizing() )
-        return true;
-
-      if ( ! $this->czr_fn_is_posts_navigation_enabled() )
-        return false;
-
-      $_context = czr_fn_get_query_context();
-      return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
+      /*
+      * We do not show post navigation in attachments
+      */
+      return $wp_query -> post_count > 0 &&
+            ! is_attachment() &&
+             $this->czr_fn_is_posts_navigation_enabled();
     }
 
 
@@ -240,13 +254,6 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_are_comments_enabled() );
     }
 
-    function czr_fn_display_view_comment() {
-      return $this -> czr_fn_display_view_comment_list();
-    }
-
-    function czr_fn_display_view_trackpingback() {
-      return $this -> czr_fn_display_view_comment_list();
-    }
 
    /******************************
     VARIOUS HELPERS
@@ -293,6 +300,8 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     /*
     * @param (string or bool) the context
     * @return bool
+    *
+    * NOT USED ANYMORE!!!
     */
     function czr_fn_is_posts_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
