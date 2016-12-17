@@ -39,6 +39,8 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
     return sprintf( "%s\n%s",
           $_css,
           ".sticky-enabled .czr-wccart-off .primary-nav__woocart { display: none; }
+          .logo-center .primary-nav__woocart .dropdown-menu,
+          .logo-left .primary-nav__woocart .dropdown-menu{ right: 0; left: auto }/*open left*/
     ");
   }/*end rendering the cart icon in the header */
 }//end class
