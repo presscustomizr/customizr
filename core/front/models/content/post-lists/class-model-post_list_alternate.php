@@ -38,6 +38,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'thumb_alternate'       => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ),
       'thumb_position'        => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) ),
       'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'content_width'         => $content_width,
       'has_format_icon_media' => ! in_array( 'narrow', $content_width ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
@@ -155,6 +156,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
   }
 
+  function czr_fn_get_show_comment_meta() {
+    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
 
   /*
   * Private/protected getters
@@ -251,8 +255,10 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       $_layout[ 'content' ] = array('', '', '', '', '12');
     }
 
-    $content_cols = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
-    $media_cols   = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+    $content_cols      = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
+    $media_cols        = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+
+    $show_comment_meta = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     $post_list_item = array(
       'content_cols'            => $content_cols,
@@ -262,7 +268,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'sections_wrapper_class'  => $_sections_wrapper_class,
       'article_selectors'       => $article_selectors,
       'is_full_image'           => $is_full_image,
-      'has_format_icon_media'   => $has_format_icon_media
+      'has_format_icon_media'   => $has_format_icon_media,
+      'show_comment_meta'       => $show_comment_meta
     );
 
     return $post_list_item;

@@ -86,7 +86,13 @@
   ?>
     <div class="tc-content">
       <?php czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header' ) ?>
-      <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer' ) ?>
+      <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
+        array(
+          'model_args' => array(
+            'show_comment_meta' => czr_fn_get('show_comment_meta')
+          )
+        )
+      ) ?>
     </div>
   <?php
 

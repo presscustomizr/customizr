@@ -80,7 +80,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     }
 
     function czr_fn_display_view_comment_info() {
-      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_info' ) )
+      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) )
           && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) );
 
       if ( ! $_allow_comment_info )

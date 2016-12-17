@@ -23,10 +23,11 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'excerpt_length'   => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'show_thumb'       => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'content_width'    => czr_fn_get_in_content_width_class(),
-      'contained'        => false
+      'excerpt_length'    => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_thumb'        => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta' => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
+      'content_width'     => czr_fn_get_in_content_width_class(),
+      'contained'         => false
     );
     return $_preset;
   }
@@ -106,6 +107,11 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
   function czr_fn_get_has_post_media() {
     return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
   }
+
+  function czr_fn_get_show_comment_meta() {
+    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
+
   /*
   * Private/protected getters
   */
@@ -120,12 +126,14 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     $has_post_media         = $this -> czr_fn__get_has_post_media( $current_post_format );
     $has_header_format_icon = $this -> czr_fn__get_has_header_format_icon( $current_post_format );
     $article_selectors      = $this -> czr_fn__get_article_selectors( $is_full_image, $has_post_media );
+    $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     return array(
       'article_selectors'      => $article_selectors,
       'has_post_media'         => $has_post_media,
       'is_full_image'          => $is_full_image,
-      'has_header_format_icon' => $has_header_format_icon
+      'has_header_format_icon' => $has_header_format_icon,
+      'show_comment_meta'      => $show_comment_meta
     );
   }
 

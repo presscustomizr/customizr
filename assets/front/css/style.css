@@ -3901,6 +3901,10 @@ WP classes
   float: right;
 }
 
+.grid .entry-footer .post-info a:first-of-type {
+  float: left;
+}
+
 .grid .entry-footer .post-tags {
   margin-bottom: 1.25em;
 }

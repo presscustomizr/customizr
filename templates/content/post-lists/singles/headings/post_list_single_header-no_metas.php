@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the header of a post in a post list
- * In WP loop
+ * In CZR loop
  *
  * @package Customizr
  */

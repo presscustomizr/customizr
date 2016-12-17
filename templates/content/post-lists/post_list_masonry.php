@@ -39,8 +39,15 @@
             );
             /* content inner */
             czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
+
             /* footer */
-            czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer' );
+            czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
+                    array(
+                      'model_args' => array(
+                        'show_comment_meta' => czr_fn_get('show_comment_meta')
+                      )
+                    )
+            )
           ?>
           </div>
         </section>

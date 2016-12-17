@@ -19,6 +19,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_comment_meta'         => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false
     );
@@ -92,6 +93,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'content_inner_class' );
   }
 
+  function czr_fn_get_show_comment_meta() {
+    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
+
   /*
   * Private/protected getters
   */
@@ -121,13 +126,15 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
+    $show_comment_meta           = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     return array(
       'article_selectors'        => $article_selectors,
       'has_post_media'           => $has_post_media,
       'cat_list'                 => $cat_list,
       'entry_header_inner_class' => $entry_header_inner_class,
-      'content_inner_class'      => $content_inner_class
+      'content_inner_class'      => $content_inner_class,
+      'show_comment_meta'        => $show_comment_meta
     );
   }
 

@@ -217,7 +217,10 @@ WP classes
       padding-top:$base-line-height*2;
       @include border_b_t();
     }
-    .post-info a:last-of-type { float:right; }
+    .post-info a {
+      &:last-of-type { float:right; }
+      &:first-of-type { float:left; }
+    }
     .post-tags {
       margin-bottom:$base-line-height;
     }

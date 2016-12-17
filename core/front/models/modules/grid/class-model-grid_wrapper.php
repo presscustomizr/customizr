@@ -17,6 +17,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
       'grid_expand_featured'  => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
       'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
@@ -159,6 +160,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $article_selectors      = $this -> czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded );
 
+    $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
+
     //update the model
     return array_merge(
         $icon_visibility,
@@ -171,7 +174,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'has_fade_expt',
           'has_edit_in_caption',
           'section_cols',
-          'article_selectors'
+          'article_selectors',
+          'show_comment_meta'
         )
     );
   }
