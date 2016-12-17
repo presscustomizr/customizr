@@ -190,9 +190,11 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
 
       if ( is_single() )
-        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
+        $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
       if ( is_page() )
-        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+        $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+
+      $czr_sidebar_default_layout     = empty($_czr_sidebar_default_layout) ? $czr_sidebar_default_layout : $_czr_sidebar_default_layout;
 
       //builds the default layout option array including layout and article class
       $class_tab  = $global_layout[$czr_sidebar_default_layout];
@@ -219,7 +221,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
          $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
       }
 
-      if( $czr_specific_post_layout ) {
+      if ( $czr_specific_post_layout ) {
           $class_tab  = $global_layout[$czr_specific_post_layout];
           $class_tab  = $class_tab['content'];
           $czr_screen_layout = array(

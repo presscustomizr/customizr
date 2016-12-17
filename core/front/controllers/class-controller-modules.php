@@ -42,31 +42,42 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     /* BREADCRUMB */
+    // /**
+    // * Old version: NOT USED ANYMORE: context skopified
+    // */
+    // function czr_fn_display_view_breadcrumb() {
+
+    //   if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
+    //     if ( is_search() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
+
+    //     elseif ( is_404() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
+
+    //     elseif ( czr_fn_is_home() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+
+    //     elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+    //       $to_return = false;
+
+    //     elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+    //       $to_return = false;
+
+    //     elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+    //       $to_return = false;
+    //   }
+
+    //   return apply_filters( 'czr_show_breadcrumb', $to_return );
+    // }
+
+    /* BREADCRUMB */
     function czr_fn_display_view_breadcrumb() {
-
       if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
-        if ( is_search() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
-
-        elseif ( is_404() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
-
-        elseif ( czr_fn_is_home() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
-
-        elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
-          $to_return = false;
-
-        elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
-          $to_return = false;
-
-        elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
-          $to_return = false;
+        if ( czr_fn_is_home() )
+          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_hide_breadcrumb_home' ) ) ? true : false;
       }
-
       return apply_filters( 'czr_show_breadcrumb', $to_return );
     }
-
 
     function czr_fn_display_view_comment_info() {
       $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_info' ) )
