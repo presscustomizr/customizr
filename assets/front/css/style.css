@@ -180,7 +180,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .primary-nav__socials, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -200,7 +200,7 @@ blockquote p {
   font-weight: 500;
 }
 
-.bold, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-excerpt .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.bold, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-caption .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   font-weight: 600;
 }
 
@@ -242,7 +242,7 @@ blockquote p {
   letter-spacing: 0.5px;
 }
 
-.letter-spacing-1, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .dropdown-menu, .grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote, .page__header .header-content .post-info, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits {
+.letter-spacing-1, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .dropdown-menu, .grid-container__classic .tc-g-cont blockquote, .page__header .header-content .post-info, .widget_categories, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits {
   letter-spacing: 1px;
 }
 
@@ -337,6 +337,28 @@ blockquote p {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.czr-valign {
+  -webkit-transform: translate(0, 50%);
+  -moz-transform: translate(0, 50%);
+  -ms-transform: translate(0, 50%);
+  transform: translate(0, 50%);
+  -webkit-transform: translate3d(0, 50%, 0);
+  -moz-transform: translate3d(0, 50%, 0);
+  -ms-transform: translate3d(0, 50%, 0);
+  transform: translate3d(0, 50%, 0);
+}
+
+.czr-valign .czr-valign-child {
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  -webkit-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  -ms-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
 }
 
 *,
@@ -3996,28 +4018,34 @@ WP classes
   filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#fff', end-colourStr='#B4B4B4');
 }
 
-.grid-container__classic img.post-thumbnail {
-  width: 100%;
-  height: auto;
-}
-
 .grid-container__classic .tc-grid-figure {
-  height: 225px;
-  max-height: 225px;
-  line-height: 225px;
   position: relative;
   overflow: hidden;
 }
 
-.grid-container__classic .tc-grid-excerpt {
-  height: inherit;
-  max-height: inherit;
-  line-height: inherit;
-  display: inline-block;
-  vertical-align: middle;
+.grid-container__classic .tc-grid-figure::before {
+  content: '';
+  display: block;
+  position: relative;
+  padding-bottom: 61.804697%;
+  height: 0;
+}
+
+.grid-container__classic .tc-grid-figure img {
+  width: 100%;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.grid-container__classic .tc-grid-caption {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   text-align: center;
   background: #202020;
@@ -4030,7 +4058,16 @@ WP classes
   transition: all 0.3s ease-in-out;
 }
 
-.grid-container__classic .tc-grid-excerpt > a.tc-grid-bg-link {
+.grid-container__classic .entry-summary-wrapper {
+  position: absolute;
+  top: 1.25em;
+  left: 1.25em;
+  right: 1.25em;
+  bottom: 1.25em;
+  overflow: hidden;
+}
+
+.grid-container__classic .entry-summary-wrapper > a.tc-grid-bg-link {
   position: absolute;
   z-index: 12;
   top: 0;
@@ -4039,36 +4076,40 @@ WP classes
   height: 100%;
 }
 
-.grid-container__classic .tc-grid-excerpt .entry-summary {
-  vertical-align: middle;
-  display: inline-block;
+.grid-container__classic .entry-summary {
   position: relative;
-  height: auto;
-  line-height: normal;
-  overflow: hidden;
+  height: 100%;
   margin: 0 auto;
   padding: 0;
-  width: 80%;
+  width: 100%;
   text-align: left;
   color: #fff;
   text-rendering: geometricPrecision;
 }
 
-.grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote {
+.grid-container__classic .tc-g-cont {
+  max-height: 100%;
+}
+
+.grid-container__classic .tc-g-cont p {
+  margin: 0;
+}
+
+.grid-container__classic .tc-g-cont blockquote {
   font-size: 1em;
   width: 100%;
 }
 
-.grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote p {
+.grid-container__classic .tc-g-cont blockquote p {
   color: #fff;
 }
 
-.grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote cite {
+.grid-container__classic .tc-g-cont blockquote cite {
   color: #eceeef;
   padding-left: 2.5em;
 }
 
-.grid-container__classic .tc-grid-excerpt .tc-g-cont blockquote cite::before {
+.grid-container__classic .tc-g-cont blockquote cite::before {
   background: #fff;
   width: 2.5em;
 }
@@ -4077,7 +4118,7 @@ WP classes
   background: none;
 }
 
-.grid-container__classic .tc-grid-figure.no-thumb .tc-grid-excerpt {
+.grid-container__classic .tc-grid-figure.no-thumb .tc-grid-caption {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   -moz-opacity: 0.5;
@@ -4085,11 +4126,11 @@ WP classes
   opacity: 0.5;
 }
 
-.grid-container__classic .tc-grid-figure.no-thumb .tc-grid-excerpt .tc-grid-fade_expt {
+.grid-container__classic .tc-grid-figure.no-thumb .tc-grid-caption .tc-grid-fade_expt {
   background: none;
 }
 
-.grid-container__classic .hover .tc-grid-figure .tc-grid-excerpt {
+.grid-container__classic .hover .tc-grid-figure .tc-grid-caption {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
   filter: alpha(opacity=75);
   -moz-opacity: 0.75;
@@ -4097,7 +4138,7 @@ WP classes
   opacity: 0.75;
 }
 
-.grid-container__classic .format-link.hover .tc-grid-excerpt .entry-summary {
+.grid-container__classic .format-link.hover .tc-grid-caption .entry-summary {
   color: #fff;
 }
 

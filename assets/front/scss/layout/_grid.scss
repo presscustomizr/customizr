@@ -285,64 +285,78 @@ WP classes
     margin: 0;
     @include bg-gradient-t2b($white, $grey);
   }
-  img.post-thumbnail {
-    width: 100%;
-    height: auto;
-  }
+
   .tc-grid-figure {
-    height: 225px;
-    max-height: 225px;
-    line-height: 225px;
     position: relative;
     overflow:hidden;
-  }
-  .tc-grid-excerpt {
-      height: inherit;
-      max-height: inherit;
-      line-height: inherit;
-      display:inline-block;
-      vertical-align: middle;
+    &::before {
+      //golden ratio for the height
+      content: '';
+      display: block;
+      position: relative;
+      padding-bottom: 100 / 1.618 * 1%;//the golden ratio
+      height: 0;
+    }
+    img {
+      width: 100%;
+      height: auto;
       position: absolute;
       top: 0;
       left: 0;
+    }
+  }
+  .tc-grid-caption {
+      display:block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       width: 100%;
       text-align: center;
       background: $black;
       @include opacity(0);
       @include transition(all .3s ease-in-out);
-      > a.tc-grid-bg-link {
+      @at-root .grid-container__classic .entry-summary-wrapper {
+        position: absolute;
+        top:    $base-line-height;
+        left:   $base-line-height;
+        right:  $base-line-height;
+        bottom: $base-line-height;
+        overflow: hidden;
+        > a.tc-grid-bg-link {
           position: absolute;
           z-index: 12;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
+        }
       }
-      .entry-summary {
-        vertical-align: middle;
-        display: inline-block;
+      @at-root .grid-container__classic .entry-summary {
         position: relative;
-        height:auto;
-        line-height: normal;
-        overflow: hidden;
+        height:100%;
         margin: 0 auto;
         padding: 0;
-        width:80%;
+        width:100%;
         text-align: left;
         color: $white;
         @extend .small;
         text-rendering: geometricPrecision;
       }
-      .tc-g-cont blockquote {
-        font-size: ms(0);
-        @extend .letter-spacing-1;
-        width:100%;
-        p { color: $white; }
-        footer {  }
-        cite {
-          color: $grey-light;
-          padding-left: $base-line-height*2;
-          &::before { background: $white; width: $base-line-height*2; }
+      @at-root .grid-container__classic .tc-g-cont {
+        max-height: 100%;
+        p { margin: 0 }
+        blockquote {
+          font-size: ms(0);
+          @extend .letter-spacing-1;
+          width:100%;
+          p { color: $white; }
+          cite {
+            color: $grey-light;
+            padding-left: $base-line-height*2;
+            &::before { background: $white; width: $base-line-height*2; }
+          }
         }
       }
     }
@@ -350,17 +364,17 @@ WP classes
 
 
   .hover .tc-grid-fade_expt { background: none; }
-  .tc-grid-figure.no-thumb .tc-grid-excerpt {
+  .tc-grid-figure.no-thumb .tc-grid-caption {
     @include opacity(0.5);
     .tc-grid-fade_expt { background: none; }
    }
-  .hover .tc-grid-figure .tc-grid-excerpt   {
+  .hover .tc-grid-figure .tc-grid-caption   {
     @include opacity(0.75);
   }
-  .format-link .tc-grid-excerpt .entry-summary  {
+  .format-link .tc-grid-caption .entry-summary  {
     @extend .bold;
   }
-  .format-link.hover .tc-grid-excerpt .entry-summary  {
+  .format-link.hover .tc-grid-caption .entry-summary  {
     color: $white;
   }
 

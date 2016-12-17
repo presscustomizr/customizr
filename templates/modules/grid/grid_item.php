@@ -25,40 +25,42 @@
 
       ?>
       <?php czr_fn_echo( 'thumb_img' ) ?>
-      <div class="tc-grid-excerpt">
-        <div class="entry-summary">
-          <div class="tc-g-cont"><?php the_excerpt() ?></div>
+      <div class="tc-grid-caption">
+        <div class="entry-summary-wrapper">
+          <div class="entry-summary czr-valign">
+            <div class="tc-g-cont czr-valign-child"><?php the_excerpt() ?></div>
+            <?php
+
+            /* The expanded grid item has the title inside the caption */
+            if( czr_fn_get( 'has_title_in_caption' ) ):
+
+            ?>
+
+            <h2 class="entry-title">
+              <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
+            </h2>
+
+            <?php
+
+            /* end expanded title */
+            endif
+
+            ?>
+          </div>
+          <a class="tc-grid-bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
           <?php
 
-          /* The expanded grid item has the title inside the caption */
-          if( czr_fn_get( 'has_title_in_caption' ) ):
+          /* additional effect for not expanded grid items with no img */
+        if( czr_fn_get( 'has_fade_expt' ) /* ! ( czr_fn_get( 'is_expanded' ) || czr_fn_get( 'thumb_img' ) ) */ ):
 
           ?>
-
-          <h2 class="entry-title">
-            <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
-          </h2>
-
+          <span class="tc-grid-fade_expt"></span>
           <?php
 
-          /* end expanded title */
-          endif
+        endif
 
           ?>
         </div>
-        <a class="tc-grid-bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
-        <?php
-
-        /* additional effect for not expanded grid items with no img */
-      if( czr_fn_get( 'has_fade_expt' ) /* ! ( czr_fn_get( 'is_expanded' ) || czr_fn_get( 'thumb_img' ) ) */ ):
-
-        ?>
-        <span class="tc-grid-fade_expt"></span>
-        <?php
-
-      endif
-
-        ?>
       </div>
       <?php
 
