@@ -303,40 +303,34 @@ WP classes
     img {
       width: 100%;
       height: auto;
-      position: absolute;
       top: 0;
       left: 0;
     }
-  }
-  .tc-grid-caption {
-      display:block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+    @at-root .grid-container__classic .entry-media__wrapper,
+    .grid-container__classic .tc-grid-caption {
+        display:block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    @at-root .grid-container__classic .tc-grid-caption {
       width: 100%;
       text-align: center;
       background: $black;
+      padding: 1.25em $base-line-height;
       @include opacity(0);
       @include transition(all .3s ease-in-out);
-      @at-root .grid-container__classic .entry-summary-wrapper {
+      a.tc-grid-bg-link {
         position: absolute;
-        top:    $base-line-height;
-        left:   $base-line-height;
-        right:  $base-line-height;
-        bottom: $base-line-height;
-        overflow: hidden;
-        > a.tc-grid-bg-link {
-          position: absolute;
-          z-index: 12;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
+        z-index: 12;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
-      @at-root .grid-container__classic .entry-summary {
+      .entry-summary {
         position: relative;
         height:100%;
         margin: 0 auto;
@@ -347,8 +341,9 @@ WP classes
         @extend .small;
         text-rendering: geometricPrecision;
       }
-      @at-root .grid-container__classic .tc-g-cont {
+       .tc-g-cont {
         max-height: 100%;
+        overflow: hidden;
         p { margin: 0 }
         blockquote {
           font-size: ms(0);
@@ -363,6 +358,9 @@ WP classes
         }
       }
     }
+  }
+
+
 
 
 
@@ -671,7 +669,6 @@ WP classes
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
   margin-top: $base-line-height*2 !important;
-  background: $grey-lightest;
   white-space: nowrap;
   overflow: hidden;
   article {
@@ -679,6 +676,7 @@ WP classes
     padding: 0;
     display: inline-block;
     float: none;
+    background: $grey-lightest;
     white-space: initial
   }
   section {

@@ -434,10 +434,23 @@ Limit to desktop
 .article-container [class*=grid-container__alternate] .full-image .tc-thumbnail:not(.czr-carousel),
 .article-container [class*=grid-container__plain] .post .czr-carousel  .carousel,
 .article-container [class*=grid-container__plain] .post.format-image .tc-thumbnail,
+.article-container [class*=grid-container__plain] .post.format-video    .tc-thumbnail,
 .article-container [class*=grid-container__plain] .post.format-standard .tc-thumbnail {
     position: relative;
     height: 0;
+    min-height: 0;
     padding-bottom: 53.5%;
+    overflow: hidden;
+}
+
+.article-container [class*=grid-container__plain] .post.format-image .tc-thumbnail .entry-media__wrapper,
+.article-container [class*=grid-container__plain] .post.format-video    .tc-thumbnail .entry-media__wrapper,
+.article-container [class*=grid-container__plain] .post.format-standard .tc-thumbnail .entry-media__wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 /* viewport inherit size from carousel */
 

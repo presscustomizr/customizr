@@ -110,9 +110,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
     $has_post_media              = $this -> czr_fn__get_has_post_media( $current_post_format );
 
-
-
-
     /* retrieve category list */
     $cat_list                    = $this -> czr_fn__get_cat_list();
 
@@ -176,7 +173,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     if ( ! $this->show_thumb )
       return false;
 
-    if ( in_array( $post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
+    if ( in_array( $post_format, array( 'gallery', 'audio', 'video' ) ) )
       return true;
 
     if ( in_array( $post_format, array( 'quote', 'link', 'status', 'aside' ) ) )

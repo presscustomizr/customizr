@@ -112,6 +112,10 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
   }
 
+  function czr_fn_get_allow_css_centering() {
+    return $this -> czr_fn__get_post_list_item_property( 'allow_css_centering' );
+  }
+
   /*
   * Private/protected getters
   */
@@ -127,13 +131,15 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
     $has_header_format_icon = $this -> czr_fn__get_has_header_format_icon( $current_post_format );
     $article_selectors      = $this -> czr_fn__get_article_selectors( $is_full_image, $has_post_media );
     $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
+    $allow_css_centering    = $is_full_image;
 
     return array(
       'article_selectors'      => $article_selectors,
       'has_post_media'         => $has_post_media,
       'is_full_image'          => $is_full_image,
       'has_header_format_icon' => $has_header_format_icon,
-      'show_comment_meta'      => $show_comment_meta
+      'show_comment_meta'      => $show_comment_meta,
+      'allow_css_centering'    => $allow_css_centering
     );
   }
 

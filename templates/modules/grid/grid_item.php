@@ -11,22 +11,24 @@
 <article <?php czr_fn_echo( 'article_selectors' ) ?> >
   <section class="grid__item" <?php czr_fn_echo('element_attributes') ?>>
     <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
-      <?php
+      <div class="entry-media__wrapper">
+        <?php
 
-      if ( czr_fn_get( 'icon_enabled' ) ):
+        if ( czr_fn_get( 'icon_enabled' ) ):
 
-      ?>
-        <div class="tc-grid-icon post-type__icon" <?php czr_fn_echo( 'icon_attributes' ) ?>>
-          <i class="icn-format"></i>
-        </div>
-      <?php
+        ?>
+          <div class="tc-grid-icon post-type__icon" <?php czr_fn_echo( 'icon_attributes' ) ?>>
+            <i class="icn-format"></i>
+          </div>
+        <?php
 
-      endif
+        endif
 
-      ?>
-      <?php czr_fn_echo( 'thumb_img' ) ?>
+        ?>
+        <?php czr_fn_echo( 'thumb_img' ) ?>
+      </div>
       <div class="tc-grid-caption">
-        <div class="entry-summary-wrapper">
+        <!--div class="entry-summary-wrapper"-->
           <div class="entry-summary czr-valign">
             <div class="tc-g-cont czr-valign-child"><?php the_excerpt() ?></div>
             <?php
@@ -60,8 +62,8 @@
         endif
 
           ?>
-        </div>
-      </div>
+        <!--/div-->
+
       <?php
 
       /* Edit link in the figure for the expanded item */
@@ -77,6 +79,7 @@
               )
             );
       ?>
+      </div>
     </div>
   <?php
 

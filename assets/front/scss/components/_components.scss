@@ -123,22 +123,27 @@ a[target="_blank"]:hover:after {
 
 /* go-to-top button */
 .czr-btta {
-  width: 50px;
+  width: 51px;
   height: 50px;
   position: fixed;
-  right: 17px;
   bottom: 100px;
   cursor: pointer;
-  visibility: hidden;
-  opacity: 0;
+  @include opacity(0);
   z-index: 99999999;
   z-index: 100;
-  border-radius: 2px;
   color: $white;
-  background: $black;
-  border: 1px solid black;
+  background: rgba($black, 0.75);
+  border: 1px solid $grey;
   text-align: center;
-  @include transition (all 0.3s ease-in-out);
+  @include transition (all 0.3s ease-in-out,  right .6s ease-in-out,  left .6s ease-in-out);
+  &.right {
+    right: -50px;
+    border-radius: 2px 0px 0px 2px;
+  }
+  &.left {
+    left: -50px;
+    border-radius: 0 2px 2px 0;
+  }
   i {
     line-height: 50px;
     display: inline-block;
@@ -146,18 +151,20 @@ a[target="_blank"]:hover:after {
       font-weight: 700;
     }
   }
-  &.left {
-    left: 17px;
-    right: auto;
-  }
   &.show {
-    visibility: visible;
     cursor: pointer;
-    opacity: 1;
+    @include opacity(1);
+    right: 0;
+    &.left {
+      left: -1px
+    }
+    &.right {
+      right: -1px
+    }
   }
   &:hover {
     color: $black;
-    background: $white;
+    background: rgba($white, 0.75);
   }
 }
 /* Blockquotes and cites */
@@ -506,14 +513,14 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
 
 /* slider/gallery arrows  */
-
-.tc-gallery-nav { @extend .slider-nav; }
+.mfp-gallery { @extend .slider-nav }
+.tc-gallery-nav { @extend .slider-nav }
 .slider-nav {
   display:block;
   width: 100%;
   .slider-control {
     position: absolute;
-    z-index: 90;
+    z-index: 1046;
     top: calc((100% - 60px)/2);
     text-align: center;
     margin-top: 0px;
@@ -524,33 +531,24 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     width: 50px;
     background-color: rgba($black, 0.2);
     @include transition (all  0.3s cubic-bezier(0.39, 0.575, 0.565, 1));
-    i { line-height: 60px; }
-    span { @include opacity(0); }
+    line-height: 60px;
+    cursor: pointer;
+    &:hover{
+      transform: translateY(0px);
+      background-color: rgba($black, 0.9);
+      opacity: 1;
+      width: 100px;
+      & .slider-count { @include opacity(0.5); }
+    }
   }
-  .slider-count {
-    position: absolute;
-    line-height:60px;
-  }
+  [class*=mfp-arrow-]::before { border: none }
   .slider-prev {
     left: 0;
     @include border-radius(0px, 2px, 2px, 0px);
-    .slider-count {
-      left: 1em;
-    }
   }
   .slider-next  {
     right: 0;
     @include border-radius(2px, 0px, 0px, 2px);
-    .slider-count {
-      right: 1em;
-    }
-  }
-  .slider-control:hover {
-    transform: translateY(0px);
-    background-color: rgba($black, 0.9);
-    opacity: 1;
-    width: 100px;
-    & .slider-count { @include opacity(0.5); }
   }
 }
 

@@ -430,6 +430,7 @@
                                 'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
               )
       );//end of images options
+
       //add responsive image settings for wp >= 4.4
       if ( version_compare( $wp_version, '4.4', '>=' ) )
         $_image_options = array_merge( $_image_options, array(

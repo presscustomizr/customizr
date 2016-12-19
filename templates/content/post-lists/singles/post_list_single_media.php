@@ -14,7 +14,7 @@
     <?php echo $media_content ?>
     <?php if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ): ?>
       <div class="post-action">
-        <a href="<?php echo esc_url( $original_thumb_url ) ?>" class="expand-img"><icon class="icn-expand"></icon></a>
+        <a href="<?php echo esc_url( $original_thumb_url ) ?>" class="expand-img icn-expand"></a>
       </div>
     <?php endif ?>
   <?php elseif ( $has_icon ): ?>

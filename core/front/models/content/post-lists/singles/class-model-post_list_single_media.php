@@ -6,7 +6,7 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
   public $media_content;
   public $original_thumb_url;
   public $is_full_image;
-
+  public $allow_css_centering = true;
 
   function czr_fn_get_element_class() {
     $post_format           = get_post_format();
@@ -17,8 +17,16 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
     if ( ! $this -> only_thumb && 'gallery' == $post_format )
       array_push( $element_class, 'czr-carousel' );
 
-    if ( $this -> only_thumb || ( ! $this->has_format_icon_media && 'audio' != $post_format ) )
-      array_push( $element_class, esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-media-centering' : 'no-js-media-centering' );
+    //centering
+    if ( $this -> only_thumb || ( ! $this->has_format_icon_media && 'audio' != $post_format ) ) {
+      if ( esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) )
+        $_centering_class = 'js-media-centering';
+      elseif ( $this -> allow_css_centering )
+        $_centering_class = 'no-js-media-centering';
+
+      if ( ! empty( $_centering_class ) )
+        array_push( $element_class, $_centering_class );
+    }
 
     return $element_class;
   }
@@ -99,11 +107,11 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
             $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
 
             $_gallery_nav    = count($gallery['src']) < 2 ? '' : '<div class="tc-gallery-nav">
-                          <span class="slider-control slider-prev"><i class="icn-left-open-big"></i></span>
-                          <span class="slider-control slider-next"><i class="icn-right-open-big"></i></span>
+                          <span class="slider-control slider-prev icn-left-open-big"></span>
+                          <span class="slider-control slider-next icn-right-open-big"></span>
                         </div>';
 
-            $_post_action     = '<div class="post-action"><a href="#" class="expand-img-gallery"><i class="icn-expand"></i></a></div>';
+            $_post_action     = '<div class="post-action"><a href="#" class="expand-img-gallery icn-expand"></a></div>';
 
             $_gallery_html   = sprintf( '%1$s<div class="carousel carousel-inner">%2$s</div>',
                                        $_gallery_nav,

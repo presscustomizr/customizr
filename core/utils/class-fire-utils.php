@@ -9,7 +9,7 @@
 * @since Customizr 3.3.0
 */
 function czr_fn_wp_filters() {
-    //add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
+    add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
     if ( esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) ) ) {
         add_filter( 'the_content'   , 'czr_fn_parse_imgs' , PHP_INT_MAX );
         add_filter( 'czr_thumb_html' , 'czr_fn_parse_imgs'  );
@@ -284,7 +284,8 @@ function czr_fn_fancybox_content_filter( $content) {
       return $content;
 
     $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-    $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
+    $replacement = '<a$1href=$2$3.$4$5 class="expand-img-grouped" rel="czr-mfp-group'.$post -> ID.'"$6>';
+
     $r_content = preg_replace( $pattern, $replacement, $content);
     $content = $r_content ? $r_content : $content;
     return apply_filters( 'czr_fancybox_content_filter', $content );

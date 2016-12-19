@@ -74,9 +74,11 @@ var czrapp = czrapp || {};
     },
 
     lightbox : function() {
+      var _arrowMarkup = '<span class="slider-control mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+
       /* The magnificPopup delegation is very good
-      * not even works when clicking on a dynamically added a.expand-img
-      * but clicking on an another a.expand-img the image speficied in the
+      * it works when clicking on a dynamically added a.expand-img
+      * but also when clicking on an another a.expand-img the image speficified in the
       * dynamically added a.expang-img href is added to the gallery
       */
       $( '[class*="grid-container__"]' ).magnificPopup({
@@ -90,10 +92,22 @@ var czrapp = czrapp || {};
           delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
           type: 'image',
           gallery: {
-           enabled: true
+           enabled: true,
+           arrowMarkup: _arrowMarkup
           }
           // other options
         });
+      });
+      /*
+      * in singles when former tc_fancybox enabled
+      */
+      $('#content').magnificPopup({
+        delegate: '.expand-img-grouped',
+        type: 'image',
+        gallery: {
+         enabled: true,
+         arrowMarkup: _arrowMarkup
+        }
       });
       //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
@@ -104,7 +118,8 @@ var czrapp = czrapp || {};
             delegate: '.gallery-img', // child items selector, by clicking on it popup will open
             type: 'image',
             gallery: {
-              enabled: true
+              enabled: true,
+              arrowMarkup: _arrowMarkup
             },
         }).magnificPopup('open');
       });
@@ -219,7 +234,7 @@ var czrapp = czrapp || {};
       // previous
       function slider_previous(evt) {
         evt.preventDefault();
-
+console.log('am I here');
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 
@@ -235,7 +250,7 @@ var czrapp = czrapp || {};
       // next
       function slider_next(evt) {
         evt.preventDefault();
-
+console.log('am I here');
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 
