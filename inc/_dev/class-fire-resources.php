@@ -465,7 +465,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
       if ( 'helvetica_arial' != $_font_pair ) {//check if not default
-        $_selector_fonts  = explode( '|', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) );
+        $_selector_fonts  = explode( '%7C', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) );
         if ( ! is_array($_selector_fonts) )
           return $_css;
 
