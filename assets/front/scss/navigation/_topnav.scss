@@ -96,17 +96,17 @@
         display: inline-block;
         vertical-align: middle;
         height:auto;
-        .navbar-brand-tagline {
+        @at-root .navbar-brand-tagline {
             font-size:0.5em;
             font-weight: 500;
             line-height: normal;
             padding: 0;
             margin: 0;
             margin-top: 4px;
-            display: block;
+            display: none;
             width: 100%;
-            @media screen and (min-width: 480px) and (max-width: 667 px) {
-                display : none;
+            @media screen and (min-width: 668px) {
+              display: block;
             }
 
         }

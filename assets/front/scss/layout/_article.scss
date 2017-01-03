@@ -14,15 +14,17 @@
   .tax__container {
     position: relative;
     &::after {
-      content: "";
-      position: absolute;
-      width: $base-line-height*3;
-      height: 3px;
-      top: $base-line-height*2;
-      margin:0 auto;
-      bottom: 0;
-      left: 0;
-      right:0;
+      @media screen and (min-width: 544px) {
+        content: "";
+        position: absolute;
+        width: $base-line-height*3;
+        height: 3px;
+        top: $base-line-height*2;
+        margin:0 auto;
+        bottom: 0;
+        left: 0;
+        right:0;
+      }
     }
     a {
       letter-spacing: 3px;

@@ -125,7 +125,7 @@ a[target="_blank"]:hover:after {
 .czr-btta {
   width: 51px;
   height: 50px;
-  position: fixed;
+  position: fixed !important;
   bottom: 100px;
   cursor: pointer;
   @include opacity(0);

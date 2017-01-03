@@ -1455,20 +1455,20 @@ p {
   height: auto;
 }
 
-.branding .navbar-logo.has_tagline .navbar-brand-tagline {
+.navbar-brand-tagline {
   font-size: 0.5em;
   font-weight: 500;
   line-height: normal;
   padding: 0;
   margin: 0;
   margin-top: 4px;
-  display: block;
+  display: none;
   width: 100%;
 }
 
-@media screen and (min-width: 480px) and (max-width: 667 px) {
-  .branding .navbar-logo.has_tagline .navbar-brand-tagline {
-    display: none;
+@media screen and (min-width: 668px) {
+  .navbar-brand-tagline {
+    display: block;
   }
 }
 
@@ -2014,7 +2014,7 @@ a.external {
 .czr-btta {
   width: 51px;
   height: 50px;
-  position: fixed;
+  position: fixed !important;
   bottom: 100px;
   cursor: pointer;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4628,12 +4628,18 @@ WP classes
   padding: 0;
 }
 
-.grid-container__square-mini section:after {
+.grid-container__square-mini section::after {
   content: '';
   padding-bottom: 100%;
   /* this will ensure always a square thumbnail and content*/
   display: block;
   width: 100%;
+}
+
+@media screen and (max-width: 543px) {
+  .grid-container__square-mini section.entry-content__holder::after {
+    padding-bottom: 70%;
+  }
 }
 
 .grid-container__square-mini .entry-header .entry-title::after {
@@ -4729,16 +4735,18 @@ WP classes
   position: relative;
 }
 
-.page__header .tax__container::after {
-  content: "";
-  position: absolute;
-  width: 3.75em;
-  height: 3px;
-  top: 2.5em;
-  margin: 0 auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@media screen and (min-width: 544px) {
+  .page__header .tax__container::after {
+    content: "";
+    position: absolute;
+    width: 3.75em;
+    height: 3px;
+    top: 2.5em;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .page__header .tax__container a {

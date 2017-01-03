@@ -10,8 +10,8 @@ class CZR_related_posts_model_class extends CZR_model {
   function czr_fn_get_preset_model() {
     $_preset = array(
       'excerpt_length'        => 22,
-      'media_cols'            => 'col-xs-6',
-      'content_cols'          => 'col-xs-6',
+      'media_cols'            => 'col-xs-12 col-sm-6',
+      'content_cols'          => 'col-xs-12 col-sm-6',
       'element_width'         => array( 'col-xs-12', 'col-lg-6' ),
     );
 

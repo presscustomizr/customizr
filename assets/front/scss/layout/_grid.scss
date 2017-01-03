@@ -681,11 +681,16 @@ WP classes
   }
   section {
     padding: 0;
-    &:after {
+    &::after {
       content: '';
       padding-bottom: 100%; /* this will ensure always a square thumbnail and content*/
       display: block;
       width: 100%;
+    }
+    &.entry-content__holder::after {
+      @media screen and (max-width: 543px) {
+        padding-bottom: 70%
+      }
     }
   }
   .entry-header .entry-title::after {
