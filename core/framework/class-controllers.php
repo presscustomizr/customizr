@@ -181,15 +181,15 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return array(instance, method) or array() if nothind found
     private function czr_fn_get_default_controller( $controller_ids ) {
           $controller_cb = false;
-          foreach ( $this -> controllers as $group => $views_id )
-            foreach( $controller_ids as $id )
+          foreach ( $this -> controllers as $group => $views_id ) {
+            foreach( $controller_ids as $id ) {
               if ( in_array($id, $views_id) ) {
                 $controller_cb = $id;
                 $controller_group = $group;
                 break 2;
               }//if
-            //foreach
-          //foreach
+            }//foreach
+          }//foreach
           //return here is no match found
           if ( ! $controller_cb ) {
             do_action( 'czr_dev_notice', 'View : '.$id.'. No control method found.');
