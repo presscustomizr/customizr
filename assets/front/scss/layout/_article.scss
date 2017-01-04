@@ -14,7 +14,7 @@
   .tax__container {
     position: relative;
     &::after {
-      @media screen and (min-width: 544px) {
+      @media screen and (min-width: 576px) {
         content: "";
         position: absolute;
         width: $base-line-height*3;
@@ -41,7 +41,7 @@
   .header-content-inner {
     line-height: normal;
     top: 50%;
-    lefT: 50%;
+    left: 50%;
     transform: translate(-50%, -50% );
     transform: translate3d(-50%,-50%, 0);
     position: absolute;

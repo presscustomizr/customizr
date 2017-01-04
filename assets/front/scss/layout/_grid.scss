@@ -688,8 +688,8 @@ WP classes
       width: 100%;
     }
     &.entry-content__holder::after {
-      @media screen and (max-width: 543px) {
-        padding-bottom: 70%
+      @media screen and (max-width: 575px) {
+        padding-bottom: 50%
       }
     }
   }

@@ -67,7 +67,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'edit_button'
+              'edit_button',
+              'search_full_page'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),

@@ -4636,9 +4636,9 @@ WP classes
   width: 100%;
 }
 
-@media screen and (max-width: 543px) {
+@media screen and (max-width: 575px) {
   .grid-container__square-mini section.entry-content__holder::after {
-    padding-bottom: 70%;
+    padding-bottom: 50%;
   }
 }
 
@@ -4735,7 +4735,7 @@ WP classes
   position: relative;
 }
 
-@media screen and (min-width: 544px) {
+@media screen and (min-width: 576px) {
   .page__header .tax__container::after {
     content: "";
     position: absolute;
@@ -4769,7 +4769,7 @@ WP classes
 .page__header .header-content-inner {
   line-height: normal;
   top: 50%;
-  lefT: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   transform: translate3d(-50%, -50%, 0);
   position: absolute;

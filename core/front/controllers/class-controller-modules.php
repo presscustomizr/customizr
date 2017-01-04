@@ -10,6 +10,9 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //why this class extends CZR_controllers?
     }
 
+    function czr_fn_display_view_search_full_page () {
+      return czr_fn_has( 'nav_search' );
+    }
 
     function czr_fn_display_view_social_block() {
       return czr_fn_has_social_links();

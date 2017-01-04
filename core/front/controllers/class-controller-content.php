@@ -223,9 +223,10 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       /*
       * We do not show post navigation in attachments
       */
-      return $wp_query -> post_count > 0 &&
+      return ! czr_fn_is_home_empty() &&
+            $wp_query -> post_count > 0 &&
             ! is_attachment() &&
-             $this->czr_fn_is_posts_navigation_enabled();
+            $this->czr_fn_is_posts_navigation_enabled();
     }
 
 
