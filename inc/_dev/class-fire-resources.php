@@ -427,7 +427,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
       wp_enqueue_style(
         'tc-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ),
+        sprintf( '//fonts.googleapis.com/css?family=%s', str_replace( '|', '%7C', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ) ),
         array(),
         null,
         'all'
