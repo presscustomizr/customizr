@@ -44,6 +44,8 @@ The exceptions to this license are as follows:
 = 3.4.37 January 5th 2017 =
 * fixed : correctly handle sizes attribute when smartloading resp imgs
 * improved : encode pipes when requesting multiple gfont families
+* fixed : back to top arrow position option
+* fixed : prevent paging info duplication in wc breadcrumb
 
 = 3.4.36 December 6th 2016 =
 * improved : compatibility with WP 4.7
