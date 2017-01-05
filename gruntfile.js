@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
         //https://www.npmjs.org/package/grunt-gitinfo
         //Get Git info from a working copy and populate grunt.config with the data
-        'prod_build':  [ 'gitinfo', 'replace', 'clean', 'copy', 'compress'],
+        'prod_build':  [ 'gitinfo', 'replace', 'clean:free', 'clean:in_customizr_pro', 'copy', 'clean:customizr_pro_lang', 'compress'],
         //final build meta task
         'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 

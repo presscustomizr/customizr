@@ -21,7 +21,8 @@ module.exports = {
       '!patches/**',
       '!inc/init-pro.php',
       '!custom-skins/**',
-      '!inc/_dev/**'
+      '!inc/_dev/**',
+      '!lang_pro/**'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
 	},
@@ -49,8 +50,15 @@ module.exports = {
       '!screenshot.png',
       '!style.css',
       '!custom-skins/**',
-      '!inc/_dev/**'
+      '!inc/_dev/**',
+      '!inc/lang/**'
     ],
     dest: '../customizr-pro/'
-  }
+  },
+  pro_lang: {
+    src:  [
+      'lang_pro/**'
+    ],
+    dest: '../customizr-pro/inc/'
+  },
 };

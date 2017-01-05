@@ -17,5 +17,8 @@ module.exports = {
     '!../customizr-pro/screenshot.png',
     '!../customizr-pro/style.css',
     '!../customizr-pro/gruntfile.js'
+  ],
+  customizr_pro_lang : [
+    '../customizr-pro/lang_pro/**',
   ]
 };

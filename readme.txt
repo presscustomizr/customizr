@@ -47,6 +47,7 @@ The exceptions to this license are as follows:
 * fixed : prevent paging info duplication in wc breadcrumb
 * improved : encode pipes when requesting multiple gfont families
 * improved: avoid img smartload php parsing in ajax requests
+* improved : removed language packs already translated on translate.wordpress.org. German (Formal) (de_DE_formal), English (Canada) (en_CA), English (UK) (en_GB), Finnish (fi), French (Belgium) (fr_BE), French (France) (fr_FR), French (Canada) (fr_CA), Hebrew (he_IL), Italian (it_IT), Norwegian (Bokmål) (nb_NO), Polish (pl_PL), Romanian (ro_RO), Russian (ru_RU)
 
 = 3.4.36 December 6th 2016 =
 * improved : compatibility with WP 4.7
