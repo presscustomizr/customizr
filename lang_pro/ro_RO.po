@@ -1,0 +1,3204 @@
+# Translation of Themes - Customizr in Romanian
+# This file is distributed under the same license as the Themes - Customizr package.
+msgid ""
+msgstr ""
+"Project-Id-Version: * Customizr v3.4.35\n"
+"POT-Creation-Date: 2015-08-22 17:06+0200\n"
+"PO-Revision-Date: 2015-08-22 17:06+0200\n"
+"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
+"Language-Team: websiter.ro <mail@websiter.ro>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: ro\n"
+"Project-Id-Version: Themes - Customizr\n"
+
+#. Description of the plugin/theme
+msgid "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content."
+msgstr "Customizr este o temă WordPress versatilă și ușor de personalizat, ce va da instantaneu un aspect profesional prezenței tale online. Proiectată cu gândul la angajarea vizitatorului, ea permite oricui să creeze un sit web frumos, rapid și adecvat mobilelor, compatibil cu toate navigatoarele și dispozitivele. Customizr lucrează bine și cu modulele majore pentru WordPress cum ar fi WooCommerce, bbPress, JetPack și multe altele. Evaluată în top de sute și cu o comunitate extrem de activă de utilizatori și dezvoltatori, tema Customizr este o opțiune de design sigură și de încredere pentru a-ți publica conținutul cu WordPress."
+
+#. Theme Name of the plugin/theme
+msgid "Customizr"
+msgstr "Customizr"
+
+#: inc/czr-init.php:8456
+msgid "What We Do"
+msgstr "Ce facem"
+
+#: inc/czr-init.php:8452
+msgid "Who We Are"
+msgstr "Cine suntem"
+
+#: inc/czr-init.php:8633
+msgid "Call to action"
+msgstr "Apel la acțiune"
+
+#: inc/czr-init.php:8688 inc/czr-init.php:8734
+msgid "Search"
+msgstr "Caută"
+
+#: inc/czr-init.php:8631
+msgid "Engage your visitors with a carousel in any pages."
+msgstr "Captivează-ți vizitatorii cu un carusel în orice pagini."
+
+#: inc/czr-init.php:8460
+msgid "Contact Us"
+msgstr "Contactează-ne"
+
+#: inc/czr-init.php:8625
+msgid "The Customizr theme fits nicely on any mobile devices."
+msgstr "Tema Customizr se potrivește frumos pe orice dispozitiv mobil."
+
+#: inc/czr-init.php:8694 inc/czr-init.php:8712
+msgid "Recent Posts"
+msgstr "Articole recente"
+
+#: inc/czr-init.php:8701 inc/czr-init.php:8723
+msgid "Recent Comments"
+msgstr "Comentarii recente"
+
+#: inc/czr-init.php:3083
+msgid "If enabled, your slides scroll slower than the page (parallax effect)."
+msgstr "Dacă e permisă, diapozitivele tale vor defila mai încet decât pagina (efect de paralaxă)."
+
+#: inc/czr-init.php:3080
+msgid "Sliders : use parallax scrolling"
+msgstr "Caruseluri: folosesc derularea paralaxă"
+
+#: inc/czr-init.php:3300
+msgid "WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling."
+msgstr "WooCommerce: dacă e bifat, iconul tău cu coșul de cumpărături WooCommerce va rămâne vizibil la derulare."
+
+#: inc/czr-admin.php:545
+msgid "Get help in the free support forum"
+msgstr "Obține ajutor în forumul pentru suport gratuit"
+
+#: inc/czr-admin.php:545
+msgid "Get support"
+msgstr "Obține suport"
+
+#: inc/czr-admin.php:541
+msgid "Code snippets for developers"
+msgstr "Fragmente de cod pentru dezvoltatori"
+
+#: inc/czr-init.php:5199
+msgid "Front-end Icons (Font Awesome)"
+msgstr "Iconuri în față (Font Awesome)"
+
+#: inc/czr-init.php:4847
+msgid "Check out some example of uses"
+msgstr "Vezi câteva exemple de utilizare"
+
+#: inc/czr-init.php:4846
+msgid "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS."
+msgstr "Când e bifat, foaia de stiluri CSS a Font Awesome va fi încărcată. Aceasta nu se încarcă implicit pentru a salva lățime de bandă dar s-ar putea să-ți trebuiască dacă vrei să folosești tot CSS-ul Font Awesome."
+
+#: inc/czr-init.php:4842
+msgid "Load Font Awesome CSS"
+msgstr "Încarcă CSS-ul Font Awesome"
+
+#: inc/czr-init.php:4836
+msgid "When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
+msgstr "Când e bifat, iconurile Font Awesome se vor încărca în partea din față. Poate dorești să încarci iconurile Font Awesome cu un cod personalizat, sau să lași un modul s-o facă pentru tine."
+
+#: inc/czr-init.php:4835
+msgid "Use with caution"
+msgstr "Folosește cu precauție"
+
+#: inc/czr-init.php:3588
+msgid "Display navigation in your home blog"
+msgstr "Afișează navigarea în pagina ta de blog"
+
+#: inc/czr-init.php:773
+msgid "Xing profile url"
+msgstr "URL profil Xing"
+
+#: inc/czr-init.php:772
+msgid "Follow me on Xing"
+msgstr "Urmărește-mă pe Xing"
+
+#: inc/czr-init.php:768
+msgid "Yelp profile url"
+msgstr "URL profil Yelp"
+
+#: inc/czr-init.php:767
+msgid "Follow me on Yelp"
+msgstr "Urmărește-mă pe Yelp"
+
+#: inc/czr-init.php:763
+msgid "VKontakte profile url"
+msgstr "URL profil VKontakte"
+
+#: inc/czr-init.php:762
+msgid "Follow me on VKontakte"
+msgstr "Urmărește-mă pe VKontakte"
+
+#: inc/czr-init.php:4831
+msgid "Load Font Awesome set of icons"
+msgstr "Încarcă setul de iconuri Font Awesome"
+
+#: inc/czr-init.php:3293
+msgid "Sticky header: display the shopping cart"
+msgstr "Antet fixat: afișează căruciorul de cumpărături"
+
+#: inc/czr-init.php:3247
+msgid "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline."
+msgstr "WooCommerce: bifează pentru a afișa iconul cu căruciorul arătând numărul de elemente din el alături de sloganul antetului."
+
+#: inc/czr-init.php:3244
+msgid "Display the shopping cart in the header"
+msgstr "Afișează căruciorul de cumpărături în antet"
+
+#: inc/czr-init.php:3127
+msgid "This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely."
+msgstr "Această facilitate a fost introdusă de la WordPress 4.4+ (dec.2015) și poate avea efecte minore asupra unora dintre imaginile existente. Bifează / debifează această opțiune pentru a verifica în siguranță că imaginile tale sunt bine afișate."
+
+#: inc/czr-init.php:3125
+msgid "Enable the WordPress responsive image feature for the theme's thumbnails"
+msgstr "Permite facilitatea imagini responsive a WordPress pentru miniaturile temei"
+
+#: inc/czr-init.php:3118
+msgid "Enable the WordPress responsive image feature for the slider"
+msgstr "Permite facilitatea imagini responsive a WordPress pentru carusel"
+
+#: inc/czr-init.php:2280
+msgid "View your shopping cart"
+msgstr "Accesează-ți coșul"
+
+#: inc/czr-init.php:3645
+msgid "You can choose to display only the sticky posts. If you're not sure how to set a sticky post, check"
+msgstr "Poți alege să afișezi doar articolele evidențiate. Dacă nu știi cum să setezi evidențierea unui articol, vezi"
+
+#: inc/czr-init.php:3640
+msgid "Include only sticky posts"
+msgstr "Include doar articole evidențiate"
+
+#: inc/czr-init.php:1609
+msgid "Posts slider button text"
+msgstr "Text buton carusel articole"
+
+#: inc/czr-init.php:1607
+msgid "Front page slider name"
+msgstr "Numele caruselului din prima pagină"
+
+#: inc/czr-front.php:9727
+msgid "Powered by WordPress"
+msgstr "Propulsată de WordPress"
+
+#: inc/czr-front.php:9726
+msgid "Powered by"
+msgstr "Potențat de"
+
+#: inc/czr-front.php:8915
+msgid "this slider"
+msgstr "acest carusel"
+
+#: inc/czr-front.php:8915
+msgid "the posts slider"
+msgstr "caruselul articolelor"
+
+#: inc/czr-front.php:8914
+msgid "Customize or remove %s"
+msgstr "Personalizează sau înlătură %s"
+
+#: inc/czr-init.php:7592
+msgid "%s and check the option 'Load images on scroll' under 'Website Performances' section."
+msgstr "%s și verifică opțiunea Încarcă imaginile la derulare' sub secțiunea 'Performanța web sitului'."
+
+#: inc/czr-init.php:7591
+msgid "Did you know you can easily speed up your page load by deferring the loading of the non visible images?"
+msgstr "Știi că poți cu ușurință să grăbești încărcarea paginii tale prin amânarea încărcării imaginilor care nu sunt vizibile?"
+
+#: inc/czr-init.php:697
+msgid "Contact E-mail address"
+msgstr "Adresa de email pentru contact"
+
+#: inc/czr-init.php:696
+msgid "E-mail"
+msgstr "E-mail"
+
+#: inc/czr-init.php:3597
+msgid "Apply a category filter to your home / blog posts"
+msgstr "Aplică un filtru de categorie pentru articolele din prima pagină / sau blog"
+
+#: inc/czr-init.php:3533
+msgid "Set the number of posts to display"
+msgstr "Setează numărul de articole de afișat"
+
+#: inc/czr-init.php:3526
+msgid "Learn more about post categories in WordPress"
+msgstr "Află mai multe despre categoriile de articole în WordPress"
+
+#: inc/czr-init.php:3524
+msgid "Click inside the above field and pick post categories you want to display. No filter will be applied if empty."
+msgstr "Dă clic în interiorul câmpului de deasupra și alege categorii de articole pe care vrei să le afișezi. Nu se va aplica niciun filtru dacă acesta e bol."
+
+#: inc/czr-front.php:9427
+msgid "There is no excerpt because this is a protected post."
+msgstr "Nu există niciun rezumat deoarece acesta este un articol protejat."
+
+#: inc/czr-front.php:9402
+msgid "Protected: %s"
+msgstr "Protejat: %s"
+
+#: inc/czr-init.php:5397
+msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
+msgstr "&mdash; Carusel auto-generat din articolele blogului tău &mdash;"
+
+#: inc/czr-init.php:3698
+msgid "When checked, the front page slider occupies the full viewport's width"
+msgstr "Am verificat, caruselul pentru prima pagină ocupă întreaga lățime a spațiului vizibil"
+
+#: inc/czr-init.php:3688
+msgid "The button text will be limited to 80 chars max. Leave this field empty to hide the button"
+msgstr "Textul butonului va fi limitat la maximum 80 de caractere. Lasă gol acest câmp pentru a ascunde butonul"
+
+#: inc/czr-init.php:3677
+msgid "Entire slide and call to action button"
+msgstr "Întregul diapozitiv și butonul ce cere acțiune"
+
+#: inc/czr-init.php:3676
+msgid "Entire slide"
+msgstr "Întreg diapozitivul"
+
+#: inc/czr-init.php:3675
+msgid "Call to action button"
+msgstr "Buton ce cerere acțiune"
+
+#: inc/czr-init.php:3671
+msgid "Link post with"
+msgstr "Legătură articol cu"
+
+#: inc/czr-init.php:3666
+msgid "The excerpt will be limited to 80 chars max"
+msgstr "Rezumatul va fi limitat la maxim 80 de caractere"
+
+#: inc/czr-init.php:3657
+msgid "The title will be limited to 80 chars max"
+msgstr "Titlul va fi limitat la maxim 80 de caractere"
+
+#: inc/czr-init.php:3653
+msgid "Display the title"
+msgstr "Afișează titlul"
+
+#: inc/czr-init.php:3646
+msgid "the WordPress documentation."
+msgstr "documentația WordPress."
+
+#: inc/czr-init.php:3635
+msgid "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website."
+msgstr "Doar articolele cu o imagine reprezentativă sau cu cel puțin o imagine în conținutul lor se pot califica pentru carusel. Numărul de diapozitive afișate pentru articole nu va depăși numărul articolelor disponibile în situl tău."
+
+#: inc/czr-init.php:3631
+msgid "Number of posts to display"
+msgstr "Număr de articole de afișat"
+
+#: inc/czr-admin.php:1861
+msgid "Slider documentation"
+msgstr "Documentație carusel"
+
+#: inc/czr-admin.php:1859
+msgid "For more informations about sliders, check the documentation page :"
+msgstr "Pentru mai multe informații despre caruseluri, vezi pagina de documentație:"
+
+#: inc/czr-admin.php:1858
+msgid "To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page."
+msgstr "Pentru a adăuga alt diapozitiv: navighează către biblioteca ta media (clic pe Media), deschide ecranul de editare pentru o imagine (sau adaugă una nouă), apoi adaug-o caruselului dorit utilizând blocul dedicat de opțiuni de la baza paginii."
+
+#: inc/czr-customize.php:556 inc/czr-customize.php:567
+#: inc/czr-customize.php:578 inc/czr-customize.php:592
+#: inc/czr-customize.php:606 inc/czr-customize.php:618
+msgid "Upgrade to Customizr Pro"
+msgstr "Avansează la Customizr Pro"
+
+#: inc/czr-customize.php:471
+msgid "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any."
+msgstr "Această opțiune generează un carusel pentru pagina principală bazat pe ultimele tale articole, începând de la cele mai recente sau de la cele evidențiate dacă există și de-acestea."
+
+#: inc/czr-init.php:3427
+msgid "Change the header layout"
+msgstr "Schimbă aranjamentul antetului"
+
+#: inc/czr-init.php:3426
+msgid "jump to the Design and Layout section"
+msgstr "sari la secțiunea Design și Aranjament"
+
+#: inc/czr-init.php:3423
+msgid "To change the global header layout, %s"
+msgstr "Pentru a schimba aranjamentul antetului global, %s"
+
+#: inc/czr-customize.php:472
+msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
+msgstr "Actualul tău favicon este tratat cu o metodă veche și nu va fi afișat corespunzător pe toate dispozitivele. Ar trebui să te gândești să re-încarci favicon-ul cu noul mecanism de mai jos."
+
+#: inc/czr-customize.php:150
+msgid "SITE ICON"
+msgstr "ICON SIT"
+
+#: inc/czr-front.php:884
+msgid "Open the menu"
+msgstr "Deschide meniul"
+
+#: inc/czr-front.php:1073
+msgid "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed."
+msgstr "Poți afișa acum meniul tău ca unul vertical și potrivit mobilelor, cu animație la apariție."
+
+#: inc/czr-front.php:1074
+msgid "%s or %s."
+msgstr "%s sau %s."
+
+#: inc/czr-front.php:1075
+msgid "Try it with the demo"
+msgstr "Încearcă-l cu exemplul demonstrativ"
+
+#: inc/czr-front.php:1076
+msgid "open the customizer menu section"
+msgstr "deschide personalizatorul la secțiunea meniuri"
+
+#: inc/czr-front.php:1076
+msgid "change your menu design now"
+msgstr "schimbă acum designul meniului tău"
+
+#: inc/czr-front.php:1100
+msgid "You can display your main menu or a second menu here horizontally."
+msgstr "Poți afișa aici orizontal meniul tău principal sau un meniu secundar."
+
+#: inc/czr-front.php:1101
+msgid "%s or read the %s."
+msgstr "%s sau citește %s."
+
+#: inc/czr-front.php:1102
+msgid "Manage menus in the header"
+msgstr "Gestionează meniurile în antet"
+
+#: inc/czr-front.php:1102
+msgid "Manage your menus in the header now"
+msgstr "Gestionează acum meniurile tale în antet"
+
+#: inc/czr-front.php:1522
+msgid "Pages"
+msgstr "Pagini"
+
+#: inc/czr-front.php:877
+msgid "Menu"
+msgstr "Meniu"
+
+#: inc/czr-front.php:877 inc/czr-front.php:884
+msgid "Close"
+msgstr "Închide"
+
+#: inc/czr-init.php:5155
+msgid "Socials in Sidebars"
+msgstr "Sociale în bare laterale"
+
+#: inc/czr-init.php:5157
+msgid "Set up your social profiles links in the sidebar(s)."
+msgstr "Setează-ți legăturile spre profilele sociale în bara/barele laterale."
+
+#: inc/czr-init.php:5194
+msgid "Front-end placeholders and help blocks"
+msgstr "Substituenți pentru conținut și blocuri de ajutor"
+
+#: inc/czr-front.php:3569
+msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
+msgstr "Editează acele pagini reprezentative %s, sau %s (le vei putea adăuga pe ale tale mai târziu)."
+
+#: inc/czr-front.php:3570
+msgid "Edit those featured pages"
+msgstr "Editează acele pagini reprezentative"
+
+#: inc/czr-front.php:3570 inc/czr-front.php:7876 inc/czr-front.php:8973
+#: inc/czr-front.php:9631
+msgid "now"
+msgstr "acum"
+
+#: inc/czr-front.php:3571
+msgid "Remove the featured pages"
+msgstr "Înlătură paginile reprezentative"
+
+#: inc/czr-front.php:3696
+msgid "Edit now."
+msgstr "Editează acum."
+
+#: inc/czr-front.php:3571
+msgid "remove them"
+msgstr "înlătură-le"
+
+#: inc/czr-front.php:4857
+msgid "You can display your post's featured image here if you have set one."
+msgstr "Poți afișa aici imaginea reprezentativă a articolului tău dacă ai setat una."
+
+#: inc/czr-front.php:4858
+msgid "%s to display a featured image here."
+msgstr "%s pentru a afișa aici o imagine reprezentativă."
+
+#: inc/czr-front.php:4859 inc/czr-init.php:7593
+msgid "Jump to the customizer now"
+msgstr "Sari acum la personalizator"
+
+#: inc/czr-front.php:7871
+msgid "The %s sidebar has no widgets."
+msgstr "Bara laterală %s nu are nicio piesă."
+
+#: inc/czr-front.php:7875
+msgid "Add widgets to this sidebar %s or %s."
+msgstr "Adaugă piese la această bară laterală %s sau %s."
+
+#: inc/czr-front.php:7878 inc/czr-front.php:9633
+msgid "dismiss this notice"
+msgstr "ascunde această notificare"
+
+#: inc/czr-front.php:8972
+msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
+msgstr "Selectează propriul tău carusel %s, sau %s (vei putea să adaugi unul mai târziu)."
+
+#: inc/czr-front.php:8782
+msgid "Go to"
+msgstr "Mergi la"
+
+#: inc/czr-front.php:8973
+msgid "Select your own slider"
+msgstr "Selectează propriul tău carusel"
+
+#: inc/czr-front.php:8974
+msgid "Remove the home page slider"
+msgstr "Înlătură caruselul de pe prima pagină"
+
+#: inc/czr-front.php:9630
+msgid "Add widgets to the footer %s or %s."
+msgstr "Adaugă piese la subsol %s sau %s."
+
+#: inc/czr-front.php:8974
+msgid "remove this demo slider"
+msgstr "înlături acest carusel demonstrativ"
+
+#: inc/czr-front.php:817
+msgid "This is a default page menu."
+msgstr "Acesta este un meniu de pagini implicit."
+
+#: inc/czr-front.php:818
+msgid "( If you don't have any pages in your website, then this side menu is empty for the moment. )"
+msgstr "( Dacă nu ai pagini în situl tău, atunci acest meniu lateral este pentru moment gol. )"
+
+#: inc/czr-front.php:819
+msgid "If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s."
+msgstr "Dacă deja ai creat un meniu (sau mai multe) poți să %s. Dacă trebuie să creezi un nou meniu, sari la %s."
+
+#: inc/czr-front.php:820
+msgid "change the default menu"
+msgstr "schimbi meniul implicit"
+
+#: inc/czr-front.php:820
+msgid "replace this default menu by another one"
+msgstr "înlocuiești acest meniu implicit cu un altul"
+
+#: inc/czr-front.php:821
+msgid "menu creation screen"
+msgstr "ecranul de creare meniu"
+
+#: inc/czr-init.php:3497
+msgid "Remove all the menus."
+msgstr "Înlătură toate meniurile."
+
+#: inc/czr-init.php:3498
+msgid "Don't display any menus in the header of your website"
+msgstr "Nu afișa niciun meniu în antetul sitului tău"
+
+#: inc/czr-init.php:3502
+msgid "Use with caution : provide an alternative way to navigate in your website for your users."
+msgstr "Folosește cu atenție: oferă utilizatorilor tăi o alternativă de navigare în situl tău."
+
+#: inc/czr-init.php:3864
+msgid "The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."
+msgstr "Opțiunile de aranjament de mai sus vor seta un aranjament global pentru articolele și paginile tale. Dar poți de asemenea să definești individual aranjarea fiecărui articol sau pagini. Învață cum din %s."
+
+#: inc/czr-init.php:3865
+msgid "Customizr theme documentation"
+msgstr "Documentația temei Customizr"
+
+#: inc/czr-init.php:3868
+msgid "If you need to change the layout design of the front page, then open the 'Front Page' section above this one."
+msgstr "Dacă ai nevoie să schimbi aranjamentul primei pagini, deschide secțiunea 'Prima pagină' deasupra acesteia."
+
+#: inc/czr-init.php:4160
+msgid "You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually."
+msgstr "Imaginile reprezentative ale articolelor tale (numite și miniaturi) pot fi afișate înaintea conținutului acestora, atunci când articolele sunt afișate individual."
+
+#: inc/czr-front.php:4861 inc/czr-init.php:4161
+msgid "Don't know how to set a featured image to a post? Learn how in the %s."
+msgstr "Nu știi cum să setezi o imagine reprezentativă pentru un articol? Învață asta în %s."
+
+#: inc/czr-init.php:4718
+msgid "Stick the footer to the bottom of the page"
+msgstr "Lipește subsolul la baza paginii"
+
+#: inc/czr-init.php:4815
+msgid "Display help notices on front-end for logged in users."
+msgstr "Afișare notificări de ajutor în partea din față a sitului pentru utilizatori autentificați."
+
+#: inc/czr-init.php:4818
+msgid "When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
+msgstr "Când este validată această opțiune, în partea din față a sitului tău sunt afișate diverse notificări de ajutor și ceva blocuri cu substituenți. Acestea sunt vizibile doar pentru utilizatori autentificați cu drepturi administrative."
+
+#: inc/czr-init.php:4886
+msgid "Sidebars"
+msgstr "Bare laterale"
+
+#: inc/czr-init.php:4887
+msgid "Sidebars settings for the Customizr theme."
+msgstr "Setări bare laterale pentru tema Customizr."
+
+#: inc/czr-init.php:4976 inc/czr-init.php:4984
+msgid "You can create new menu and edit your menu's content %s."
+msgstr "Poți crea un meniu nou și edita conținutul meniului tău %s."
+
+#: inc/czr-init.php:4979
+msgid "on the Menus screen in the Appearance section"
+msgstr "pe ecranul de Meniuri în secțiunea Aspect"
+
+#: inc/czr-init.php:4980 inc/czr-init.php:4988
+msgid "create/edit menus"
+msgstr "crează/editează meniuri"
+
+#: inc/czr-init.php:4987
+msgid "in the menu panel"
+msgstr "în panoul meniului"
+
+#: inc/czr-init.php:4993
+msgid "If a menu location has no menu assigned to it, a default page menu will be used."
+msgstr "Dacă o locație de meniu nu are niciun meniu asignat ei, va fi folosit un meniu implicit de pagini."
+
+#: inc/czr-init.php:5053
+msgid "Smooth Scroll"
+msgstr "Derulare lină"
+
+#: inc/czr-init.php:5055
+msgid "Smooth Scroll settings"
+msgstr "Setări pentru derulare lină"
+
+#: inc/czr-init.php:5068
+msgid "Navigation Menus"
+msgstr "Meniuri navigare"
+
+#: inc/czr-init.php:3376
+msgid "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header."
+msgstr "Când ai setat meniul principal ca fiind o bară de navigare verticală laterală, poți bifa această opțiune pentru a afișa un meniu orizontal complementar în antet."
+
+#: inc/czr-init.php:3372
+msgid "Display a secondary (horizontal) menu in the header."
+msgstr "Afișează un meniu secundar (orizontal) în antet."
+
+#: inc/czr-init.php:3328
+msgid "Also applied to the secondary menu if any."
+msgstr "Se aplică de asemenea meniului secundar dacă există"
+
+#: inc/czr-init.php:3381
+msgid "Main menu design"
+msgstr "Designul meniului principal"
+
+#: inc/czr-init.php:3382
+msgid "Select a design : side menu (vertical) or regular (horizontal)"
+msgstr "Selectează un design: meniu lateral (vertical) sau obișnuit (orizontal)"
+
+#: inc/czr-init.php:3386
+msgid "Regular (horizontal)"
+msgstr "Obișnuit (orizontal) "
+
+#: inc/czr-init.php:3387
+msgid "Side Menu (vertical)"
+msgstr "Meniu lateral (vertical)"
+
+#: inc/czr-init.php:3394
+msgid "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport."
+msgstr "Pentru dispozitive mobile (responsive), limitează înălțimea blocului meniului derulant la spațiul vizibil."
+
+#: inc/czr-init.php:3403
+msgid "Display a label next to the menu button."
+msgstr "Afișarea unei etichete alături de butonul meniului."
+
+#: inc/czr-init.php:3407
+msgid "Note : the label is hidden on mobile devices."
+msgstr "Notă: eticheta este ascunsă pe dispozitivele mobile."
+
+#: inc/czr-init.php:3412
+msgid "Menu position (for \"main\" menu)"
+msgstr "Poziție meniu (pentru meniul \"principal\")"
+
+#: inc/czr-init.php:3422
+msgid "When the menu style is set to \"Side Menu\", the menu position is the side on which the menu will be revealed."
+msgstr "Când stilul meniului este setat ca \"Meniu lateral\", poziția meniului este pe latura de unde acesta va fi dezvăluit."
+
+#: inc/czr-init.php:3436
+msgid "Secondary (horizontal) menu design"
+msgstr "Design meniu secundar (orizontal)"
+
+#: inc/czr-init.php:3437
+msgid "Menu position (for the horizontal menu)"
+msgstr "Poziție meniu (pentru meniul orizontal)"
+
+#: inc/czr-init.php:3482
+msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
+msgstr "Alege o comportare adecvată mobilelor (responsivă) pentru meniul secundar."
+
+#: inc/czr-init.php:3487
+msgid "Move after inside the side menu "
+msgstr "Mută după în interiorul meniului lateral"
+
+#: inc/czr-init.php:3486
+msgid "Move before inside the side menu "
+msgstr "Mută înainte în interiorul meniului lateral"
+
+#: inc/czr-init.php:3488
+msgid "Display in the header"
+msgstr "Afișare în antet"
+
+#: inc/czr-init.php:3489
+msgid "Hide"
+msgstr "Ascunde"
+
+#: inc/czr-admin.php:626
+msgid "The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones."
+msgstr "Tema WordPress Customizr Pro permite oricui să creeze în câteva secunde situri web frumoase, profesionale și responsive. În versiunea Pro, vei avea toate funcționalitățile temei gratuite plus alte câteva deosebite ba chiar revoluționare."
+
+#: inc/czr-init.php:1034
+msgid "Secondary (horizontal) Menu"
+msgstr "Meniu secundar (orizontal)"
+
+#: inc/czr-init.php:2858
+msgid "Disabled if the random option is on."
+msgstr "Dezactivat dacă opțiunea aleatoare este pornită."
+
+#: inc/czr-init.php:2925
+msgid "Important note"
+msgstr "Notă importantă"
+
+#: inc/czr-init.php:2925
+msgid "this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option."
+msgstr "această opțiune poate intra în conflict cu unele module, asigură-te că funcționalitățile acestora (dacă există) lucrează bine înainte de a o valida."
+
+#: inc/czr-init.php:3186
+msgid "Enable Smooth Scroll"
+msgstr "Validare derulare lină"
+
+#: inc/czr-init.php:3190
+msgid "This option enables a smoother page scroll."
+msgstr "Această opțiune permite o derulare mai lină a paginii."
+
+#: inc/czr-init.php:3212
+msgid "Choose a layout for the header"
+msgstr "Alege un aranjament pentru antet"
+
+#: inc/czr-init.php:3221
+msgid "This setting might impact the side on which the menu is revealed."
+msgstr "Această setare poate afecta partea din care apare meniul."
+
+#: inc/czr-admin.php:522
+msgid "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums."
+msgstr "Dacă nu găsești niciun răspuns pentru problema ta în documentație, nu te panica! Tema Customizr este folosită de o din ce în ce mai mare comunitate de webmasteri ce raportează erori și fac îmbunătățiri continue. Dacă ai o problemă cu tema, sunt șanse mari să fi fost deja raportată și rezolvată în forumurile de suport."
+
+#: inc/czr-admin.php:523
+msgid "The easiest way to search in the support forums is to use our Google powered search engine on our %s."
+msgstr "Cel mai ușor mod de a căuta în forumurile de suport este să folosești motorul nostru de căutare propulsat de Google pe situl nostru %s."
+
+#: inc/czr-admin.php:524
+msgid "home page"
+msgstr "pagina principală"
+
+#: inc/czr-admin.php:556
+msgid "Thank you for using %s!"
+msgstr "Îți mulțumim pentru că folosești %s!"
+
+#: inc/czr-admin.php:557
+msgid "%s %s has more features, is safer and more stable than ever to help you designing an awesome website."
+msgstr "%s %s are mai multe facilități, e mai sigur și mai stabil ca niciodată pentru a te ajuta să creezi un web sit grozav."
+
+#: inc/czr-admin.php:558
+msgid "check the changelog"
+msgstr "verifică jurnalul modificărilor"
+
+#: inc/czr-admin.php:562
+msgid "The best way to start with %s is to read the %s and visit the %s."
+msgstr "Cel mai bun mod de a începe cu %s este să citești %s și să vizitezi %s."
+
+#: inc/czr-admin.php:620
+msgid "Go Customizr Pro"
+msgstr "Treci la Customizr Pro"
+
+#: inc/czr-admin.php:565
+msgid "demo website"
+msgstr "situl web demo"
+
+#: inc/czr-admin.php:499
+msgid "Need help with"
+msgstr "Ai nevoie de ajutor cu"
+
+#: inc/czr-admin.php:517
+msgid "The best way to start is to read the %s."
+msgstr "Cel mai bun mod pentru a începe este să citești %s."
+
+#: inc/czr-admin.php:504
+msgid "Welcome to"
+msgstr "Bine ai venit la"
+
+#: inc/czr-admin.php:518 inc/czr-admin.php:564 inc/czr-front.php:1103
+msgid "documentation"
+msgstr "documentație"
+
+#: inc/czr-admin.php:328
+msgid "Good, you've just upgraded to"
+msgstr "Bine, tocmai ai actualizat la "
+
+#: inc/czr-admin.php:339
+msgid "We'd like to introduce the new features we've been working on."
+msgstr "Ne-ar place să-ți prezentăm noile funcționalități la care lucrăm."
+
+#: inc/czr-admin.php:330
+msgid "version"
+msgstr "versiune"
+
+#: inc/czr-admin.php:341
+msgid "Read the latest release notes"
+msgstr "Citește notele despre ultimele versiuni"
+
+#: inc/czr-admin.php:343
+msgid "Visit the demo"
+msgstr "Vizitează demo-ul"
+
+#: inc/czr-admin.php:349
+msgid "I already know what's new thanks !"
+msgstr "Mulțumesc, eu deja știu ce-i nou!"
+
+#: inc/czr-admin.php:350
+msgid "close"
+msgstr "închide"
+
+#: inc/czr-admin.php:1579
+msgid "Link the whole slide"
+msgstr "Pune o legătură pe întreg diapozitivul"
+
+#: inc/czr-admin.php:1776
+msgid "Link"
+msgstr "Legătură"
+
+#: inc/czr-customize.php:131
+msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
+msgstr "Încă n-ai creat niciun meniu. %s sau uită-te pe %s pentru a afla mai multe despre meniuri."
+
+#: inc/czr-customize.php:121
+msgid "Assign menus to locations"
+msgstr "Asignează meniuri la locații"
+
+#: inc/czr-customize.php:132
+msgid "Create a new menu now"
+msgstr "Crează acum un meniu nou"
+
+#: inc/czr-customize.php:133 inc/czr-front.php:4862 inc/czr-init.php:4162
+msgid "WordPress documentation"
+msgstr "Documentație WordPress"
+
+#: inc/czr-customize.php:528
+msgid "dismiss"
+msgstr "renunță"
+
+#: inc/czr-customize.php:588
+msgid "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer."
+msgstr "Redescoperă frumusețea articolelor tale de blog și sporește angajamentul vizitatorilor tăi cu Personalizatorul grilă."
+
+#: inc/czr-customize.php:602
+msgid "Add creative and engaging reveal animations to your side menu."
+msgstr "Adaugă meniului tău lateral animații creative și angajante de apariție."
+
+#: inc/czr-customize.php:589
+msgid "Try it in the demo"
+msgstr "Încearcă-l în demo"
+
+#: inc/czr-customize.php:603
+msgid "Side menu animation demo"
+msgstr "demo de meniu lateral animat"
+
+#: inc/czr-admin.php:1566
+msgid "or a custom link (leave this empty if you already selected a page or post above)"
+msgstr "sau o legătură personalizată (lasă aici gol dacă deja ai selectat deasupra o pagină sau un articol)"
+
+#: inc/czr-admin.php:1572
+msgid "Open link in a new page/tab"
+msgstr "Deschide legătura într-o nouă filă/pagină"
+
+#: inc/czr-customize.php:85
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Selectare &mdash;"
+
+#. Template Name of the plugin/theme
+msgid "Custom Page Example"
+msgstr "Exemplu de pagină personalizată"
+
+#: inc/czr-front.php:910
+msgid "Add a menu"
+msgstr "Adaugă un meniu"
+
+#: inc/czr-front.php:309
+msgid "Back Home"
+msgstr "Înapoi la prima pagină"
+
+#: inc/czr-front.php:9751
+msgid "Back to top"
+msgstr "Înapoi sus"
+
+#: inc/czr-front.php:9626
+msgid "The footer has no widgets"
+msgstr "Subsolul nu are piese"
+
+#: inc/czr-front.php:9056
+msgid "Check the slider doc now &raquo;"
+msgstr "Vezi documentația pentru carusel acum &raquo;"
+
+#: inc/czr-front.php:9054
+msgid "Easily create sliders and add them in any posts or pages."
+msgstr "Crează cu ușurință caruseluri și adaugă-le în orice articole sau pagini."
+
+#: inc/czr-front.php:9050
+msgid "Check the front page slider doc &raquo;"
+msgstr "Vezi documentația pentru caruselul de pe prima pagină &raquo;"
+
+#: inc/czr-front.php:9048
+msgid "Discover how to replace or remove this demo slider."
+msgstr "Descoperă cum să înlocuiești sau să înlături acest carusel demo."
+
+#: inc/czr-front.php:825 inc/czr-front.php:1080 inc/czr-front.php:1107
+#: inc/czr-front.php:3575 inc/czr-front.php:4866 inc/czr-front.php:7891
+#: inc/czr-front.php:8978 inc/czr-front.php:9639 inc/czr-init.php:7597
+msgid "dismiss notice"
+msgstr "notă de respingere"
+
+#: inc/czr-front.php:7887
+msgid "See the theme documentation."
+msgstr "Vezi documentația temei."
+
+#: inc/czr-front.php:7886
+msgid "Changing the layout in the Customizr theme"
+msgstr "Schimbarea aranjamentului în tema Customizr"
+
+#: inc/czr-front.php:7884
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr "Poți de asemenea să înlături o bară laterală prin schimbarea aranjamentului de pagină curent."
+
+#: inc/czr-front.php:7876 inc/czr-front.php:9631
+msgid "Add widgets"
+msgstr "Adaugă piese"
+
+#: inc/czr-front.php:7867 inc/czr-front.php:9622
+msgid "This block is visible for admin users only."
+msgstr "Acest bloc e vizibil doar pentru administratori."
+
+#: inc/czr-front.php:7326
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Articole mai noi <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:7306
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Articole mai vechi"
+
+#: inc/czr-front.php:7238 inc/czr-front.php:7293
+msgid "Post navigation"
+msgstr "Navigare articole"
+
+#: inc/czr-front.php:7128
+msgid "by"
+msgstr "de"
+
+#: inc/czr-front.php:7105
+msgid "tagged"
+msgstr "etichetat"
+
+#: inc/czr-front.php:7055
+msgid "Open"
+msgstr "Deschide"
+
+#: inc/czr-front.php:7035
+msgid "View all posts by %s"
+msgstr "Vezi toate articolele de %s"
+
+#: inc/czr-front.php:6900
+msgid "View all posts in %s"
+msgstr "Vezi toate articolele din %s"
+
+#: inc/czr-front.php:6839
+msgid "(updated on %1$s)"
+msgstr "(actualizat în %1$s)"
+
+#: inc/czr-front.php:6836
+msgid "(updated 1 day ago)"
+msgstr "(actualizat acum 1 zi)"
+
+#: inc/czr-front.php:6835
+msgid "(updated %s days ago)"
+msgstr "(actualizat acum %s zile)"
+
+#: inc/czr-front.php:6835
+msgid "(updated today)"
+msgstr "(actualizat azi)"
+
+#: inc/czr-front.php:6819 inc/czr-front.php:6821
+msgid "by %1$s"
+msgstr "de %1$s"
+
+#: inc/czr-front.php:6819
+msgid "This entry was posted"
+msgstr "Această intrare a fost publicată"
+
+#: inc/czr-front.php:6807
+msgid "and posted on %1$s"
+msgstr "și publicată la %1$s"
+
+#: inc/czr-front.php:6805
+msgid "on %1$s"
+msgstr "la %1$s"
+
+#: inc/czr-front.php:6803
+msgid "This entry was posted on %1$s"
+msgstr "Această intrare a fost publicată la %1$s"
+
+#: inc/czr-front.php:6794
+msgid "This entry was tagged %2$s"
+msgstr "Această intrare a fost etichetată %2$s"
+
+#: inc/czr-front.php:6792
+msgid "This entry was posted in %1$s"
+msgstr "Această intrare a fost publicată în %1$s"
+
+#: inc/czr-front.php:6790
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr "Această intrare a fost publicată în %1$s și etichetată %2$s"
+
+#: inc/czr-front.php:6728
+msgid "Return to "
+msgstr "Înapoi la"
+
+#: inc/czr-front.php:6728 inc/czr-front.php:7104
+msgid "in"
+msgstr "în"
+
+#: inc/czr-front.php:6727
+msgid "Link to full-size image"
+msgstr "Legătură la imagine de dimensiune completă"
+
+#: inc/czr-front.php:6727
+msgid "at dimensions"
+msgstr "la dimensiuni"
+
+#: inc/czr-front.php:6724
+msgid "Published"
+msgstr "Publicat"
+
+#: inc/czr-front.php:6705
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr "Această intrare a fost publicată în %1$s<span class=\"by-author\"> de %2$s</span>."
+
+#: inc/czr-front.php:4795
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Vezi toate articolele de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4595 inc/czr-front.php:4753 inc/czr-front.php:5231
+msgid "Pages:"
+msgstr "Pagini:"
+
+#: inc/czr-front.php:4593 inc/czr-front.php:4752 inc/czr-front.php:5229
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continuă lectura <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4364
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:4364
+msgid "Yearly Archives: %s"
+msgstr "Arhive anuale: %s"
+
+#: inc/czr-front.php:4363
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:4363
+msgid "Monthly Archives: %s"
+msgstr "Arhive lunare: %s"
+
+#: inc/czr-front.php:4362
+msgid "Archives"
+msgstr "Arhive"
+
+#: inc/czr-front.php:4362
+msgid "Daily Archives: %s"
+msgstr "Arhive zilnice: %s"
+
+#: inc/czr-front.php:4322 inc/czr-front.php:4791
+msgid "About %s"
+msgstr "Despre %s"
+
+#: inc/czr-front.php:4288
+msgid "No"
+msgstr "Nu"
+
+#: inc/czr-front.php:4274
+msgid "Ooops, page not found"
+msgstr "Hopa, pagină negăsită"
+
+#: inc/czr-front.php:4136
+msgid "Permalink to %s"
+msgstr "Legătură permanentă la %s"
+
+#: inc/czr-front.php:4132 inc/czr-front.php:4137
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title} Citește articolul &raquo;"
+
+#: inc/czr-front.php:3919
+msgid "Missing Attachment"
+msgstr "Atașamentul lipsește"
+
+#: inc/czr-front.php:3707
+msgid "Featured page description text : use the page excerpt or set your own custom text in the Customizr screen."
+msgstr "Text descriptiv pentru pagina reprezentativă: folosește rezumatul paginii sau setează propriul tău text personalizat în ecranul Customizr."
+
+#: inc/czr-front.php:3703
+msgid "Featured page"
+msgstr "Pagină reprezentativă"
+
+#: inc/czr-front.php:3695
+msgid "Customizer screen"
+msgstr "Ecran Personalizator"
+
+#: inc/czr-front.php:3381
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "comentariu"
+msgstr[1] "comentarii"
+msgstr[2] "de comentarii"
+
+#: inc/czr-front.php:3362
+msgid "Comment(s) on"
+msgstr "Comentariu(i) despre"
+
+#: inc/czr-front.php:3339
+msgid "Leave a comment"
+msgstr "Lasă un comentariu"
+
+#: inc/czr-front.php:3304
+msgid "Comments are closed."
+msgstr "Comentariile sunt închise."
+
+#: inc/czr-front.php:3272
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Comentarii mai noi <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:3264
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Comentarii mai vechi"
+
+#: inc/czr-front.php:3258
+msgid "Comment navigation"
+msgstr "Navigare în comentarii"
+
+#: inc/czr-front.php:3223
+msgid "Your comment is awaiting moderation."
+msgstr "Comentariul tău așteptă moderarea."
+
+#. translators: 1: date, 2: time
+#: inc/czr-front.php:3218
+msgid "%1$s at %2$s"
+msgstr "%1$s la %2$s"
+
+#: inc/czr-front.php:3211
+msgid "Post author"
+msgstr "Autor articol"
+
+#: inc/czr-front.php:3198
+msgid "Reply"
+msgstr "Răspunde"
+
+#: inc/czr-front.php:3170
+msgid "(Edit)"
+msgstr "(Editează)"
+
+#: inc/czr-front.php:3169
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/czr-front.php:3109
+msgid "thoughts on"
+msgstr "gânduri despre"
+
+#: inc/czr-front.php:3107
+msgid "One thought on"
+msgstr "Un gând despre"
+
+#: inc/czr-front.php:2805
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: inc/czr-front.php:2801
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:2650
+msgid "Merge"
+msgstr "Îmbină"
+
+#: inc/czr-front.php:2646
+msgid "Split"
+msgstr "Împarte"
+
+#: inc/czr-front.php:2575 inc/czr-front.php:2577
+msgid "Page %d"
+msgstr "Pagina %d"
+
+#: inc/czr-front.php:2570
+msgid "404 Not Found"
+msgstr "404 Negăsită"
+
+#: inc/czr-front.php:2563 inc/czr-front.php:2565
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Rezultatele căutării după &quot;%1$s&quot;"
+
+#: inc/czr-front.php:2535 inc/czr-front.php:2537
+msgid "W"
+msgstr "W"
+
+#: inc/czr-front.php:2535 inc/czr-front.php:2537
+msgid "Week %1$s"
+msgstr "Săptămâna %1$s"
+
+#: inc/czr-front.php:2526 inc/czr-front.php:2528 inc/czr-front.php:2805
+msgid "d"
+msgstr "d"
+
+#: inc/czr-front.php:2523 inc/czr-front.php:2544 inc/czr-front.php:2546
+#: inc/czr-front.php:2801
+msgid "F"
+msgstr "F"
+
+#: inc/czr-front.php:2522 inc/czr-front.php:2532 inc/czr-front.php:2541
+#: inc/czr-front.php:2552 inc/czr-front.php:2554 inc/czr-front.php:2797
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:2506
+msgid "g a"
+msgstr "G"
+
+#: inc/czr-front.php:2503
+msgid "i"
+msgstr "i"
+
+#: inc/czr-front.php:2503
+msgid "Minute %1$s"
+msgstr "Minutul %1$s"
+
+#: inc/czr-front.php:2500
+msgid "g:i a"
+msgstr "G:i"
+
+#: inc/czr-front.php:2020
+msgid "Browse:"
+msgstr "Răsfoiește:"
+
+#: inc/czr-front.php:1474 inc/czr-front.php:2011 inc/czr-front.php:2023
+msgid "Home"
+msgstr "Prima pagină"
+
+#: inc/czr-front.php:1860
+msgid "Next &rarr;"
+msgstr "Următor &rarr;"
+
+#: inc/czr-front.php:1859
+msgid "&larr; Previous"
+msgstr "&larr; Anterior"
+
+#: inc/czr-init.php:4128
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "Setează înălțimea maximă în pixeli a miniaturilor pentru aranjamentul grilă"
+
+#: inc/czr-init.php:4127
+msgid "Thumbnails max height for the grid layout"
+msgstr "Înălțimea maximă a miniaturilor pentru aranjamentul grilă"
+
+#: inc/czr-init.php:4116
+msgid "Max. length for post titles (in words)"
+msgstr "Lungime maximă pentru titlurile de articole (în cuvinte)"
+
+#: inc/czr-init.php:4106
+msgid "Display post format icons in the background"
+msgstr "Afișează iconurile formatelor de articole în fundal"
+
+#: inc/czr-init.php:4097
+msgid "Apply a colored bottom border to each grid items"
+msgstr "Aplică o bordură colorată la bază fiecărui element din grilă"
+
+#: inc/czr-init.php:4088
+msgid "Apply a shadow to each grid items"
+msgstr "Aplică o umbră fiecărui element din grilă"
+
+#: inc/czr-init.php:4083
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr "Contextele nebifate sunt afișate într-un aranjament cu miniaturi alternante."
+
+#: inc/czr-init.php:4079
+msgid "Apply the grid layout to Search results"
+msgstr "Aplică aranjamentul grilă rezultatelor căutării"
+
+#: inc/czr-init.php:4071
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr "Aplică aranjamentul grilă la Arhive (arhive, categorii, articole autor)"
+
+#: inc/czr-init.php:4063
+msgid "Apply the grid layout to Home/Blog"
+msgstr "Aplică aranjamentul grilă la Prima pagină/Blog"
+
+#: inc/czr-init.php:4055
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr "Extinde ultimul articol evidențiat (doar pentru prima pagină sau cea de blog)"
+
+#: inc/czr-init.php:4050
+msgid "Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts."
+msgstr "Notă: coloanele sunt limitate la 3 pentru aranjamentele cu o singură bară laterală și la 2 pentru aranjamentele cu două bare laterale."
+
+#: inc/czr-init.php:4047
+msgid "4"
+msgstr "4"
+
+#: inc/czr-init.php:4046
+msgid "3"
+msgstr "3"
+
+#: inc/czr-init.php:4045
+msgid "2"
+msgstr "2"
+
+#: inc/czr-init.php:4044
+msgid "1"
+msgstr "1"
+
+#: inc/czr-init.php:4040
+msgid "Number of columns per row"
+msgstr "Număr de coloane per rând"
+
+#: inc/czr-init.php:4035
+msgid "When you select the grid Layout, the post content is limited to the excerpt."
+msgstr "Atunci când selectezi aranjamentul în grilă, conținutul articolului este limitat la rezumat."
+
+#: inc/czr-init.php:4032
+msgid "Grid layout"
+msgstr "Aranjament în grilă"
+
+#: inc/czr-init.php:4031
+msgid "Alternate thumbnails layout"
+msgstr "Aranjamentul cu miniaturi alternante"
+
+#: inc/czr-init.php:4027
+msgid "Select a Layout"
+msgstr "Alege un aranjament"
+
+#: inc/czr-init.php:4026
+msgid "Post List Design"
+msgstr "Designul listei de articole"
+
+#: inc/czr-init.php:3743
+msgid "You might want to regenerate your thumbnails."
+msgstr "Ai putea dori să regenerezi miniaturile tale."
+
+#: inc/czr-init.php:3742
+msgid "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance."
+msgstr "Dacă această opțiune e bifată, imaginile tale vor fi redimensionate la încărcare la această înălțime. Asta afectează pozitiv performanța generală de încărcare."
+
+#: inc/czr-init.php:3736
+msgid "Replace the default image slider's height"
+msgstr "Înlocuiește înălțimea implicită a imaginilor din carusele"
+
+#: inc/czr-init.php:3728
+msgid "Apply this height to all sliders"
+msgstr "Aplică această înălțime tuturor caruselurilor"
+
+#: inc/czr-init.php:3718
+msgid "Set slider's height in pixels"
+msgstr "Setează înălțimea caruselului în pixeli"
+
+#: inc/czr-init.php:4802
+msgid "Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images."
+msgstr "Bifează această opțiune pentru a amâna încărcarea imaginilor care nu sunt vizibile. Imaginile dincolo de spațiul vizibil se vor încărca dinamic la derulare. Asta va mări viteza de încărcare prin reducerea mărimii paginilor lungi ce includ multe imagini."
+
+#: inc/czr-init.php:4797
+msgid "Load images on scroll"
+msgstr "Încarcă imaginile la derulare"
+
+#: inc/czr-init.php:4689
+msgid "Will be hidden if empty"
+msgstr "Va fi ascuns dacă e gol"
+
+#: inc/czr-init.php:4683
+msgid "Social link title in sidebars"
+msgstr "Titlu pentru legături sociale în bara laterală"
+
+#: inc/czr-init.php:4727 inc/czr-init.php:4735
+msgid "Display a back to top arrow on scroll"
+msgstr "Afișează o săgeată de revenire la început în derulare"
+
+#: inc/czr-init.php:4642
+msgid "Display posts navigation in post lists (archives, blog page, categories, search results ..)"
+msgstr "Afișare navigare între articole pentru liste de articole (arhive, pgină de blog, de categorie, de rezultate ale căutării ...)"
+
+#: inc/czr-init.php:4633
+msgid "Display posts navigation in single posts"
+msgstr "Afișare navigare între articole pentru articol singular"
+
+#: inc/czr-init.php:4624
+msgid "Display navigation in pages"
+msgstr "Afișare navigare între pagini"
+
+#: inc/czr-init.php:4615
+msgid "When this option is checked, the posts navigation is displayed below the posts"
+msgstr "Când această opțiune e bifată, navigarea între articole e afișată la sfârșitul acestora"
+
+#: inc/czr-init.php:4612
+msgid "Display posts navigation"
+msgstr "Afișare navigare între articole"
+
+#: inc/czr-init.php:4597
+msgid "By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history."
+msgstr "Implicit, WordPress afișează ultimele comentarii, chiar dacă acestea sunt invalidate în articole sau pagini. De-bifarea acestei opțiuni îți permite să nu afișezi acest istoric al comentariilor."
+
+#: inc/czr-init.php:4593
+msgid "Display the comment list"
+msgstr "Afișarea listei de comentarii"
+
+#: inc/czr-init.php:4587
+msgid "discussion settings page."
+msgstr "pagina de setări pentru discuții."
+
+#: inc/czr-init.php:4585
+msgid "You can also change other comments settings in the"
+msgstr "Poți de asemenea schimba alte setări pentru comentarii în"
+
+#: inc/czr-init.php:4584
+msgid "post screen"
+msgstr "în ecranul cu lista articolelor."
+
+#: inc/czr-init.php:4582
+msgid "If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the"
+msgstr "Bifată, această opțiune permite comentarii la orice tip de articol prezentat singur. Poți dezactiva comentariile pentru un anume articol din modul de editare rapidă"
+
+#: inc/czr-init.php:4577
+msgid "Enable comments on posts"
+msgstr "Permite comentarii la articole"
+
+#: inc/czr-init.php:4571
+msgid "the discussion settings page."
+msgstr "pagina de setări pentru discuții."
+
+#: inc/czr-init.php:4569
+msgid "You can also change other comments settings in :"
+msgstr "Poți de asemenea schimba alte setări pentru comentarii în:"
+
+#: inc/czr-init.php:4568
+msgid "If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen."
+msgstr "Bifată, această opțiune permite comentarii la pagini. Poți dezactiva comentariile pentru o anume pagină din modul de editare rapidă în ecranul cu lista paginilor."
+
+#: inc/czr-init.php:4562
+msgid "Other comments settings"
+msgstr "Alte setări pentru comentarii"
+
+#: inc/czr-init.php:4544
+msgid "Custom"
+msgstr "Personalizat"
+
+#: inc/czr-init.php:4543
+msgid "Skin color"
+msgstr "Culoare suprafață"
+
+#: inc/czr-init.php:4539 inc/czr-init.php:4551
+msgid "Comments bubble color"
+msgstr "Culoarea bulelor de comentarii"
+
+#: inc/czr-init.php:4531
+msgid "Large bubbles"
+msgstr "Bule mari"
+
+#: inc/czr-init.php:4530
+msgid "Small bubbles"
+msgstr "Bule mici"
+
+#: inc/czr-init.php:4526
+msgid "Comments bubble shape"
+msgstr "Forma bulelor de comentarii"
+
+#: inc/czr-init.php:4517
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "Afișează numărul de comentarii într-o bulă lângă titlul articolului"
+
+#: inc/czr-init.php:4515
+msgid "Comments bubbles"
+msgstr "Bule comentarii"
+
+#: inc/czr-init.php:4498
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr "Aplică letrina primului paragraf din paginile tale"
+
+#: inc/czr-init.php:4496
+msgid "Enable drop caps in pages"
+msgstr "Permite letrine în pagini"
+
+#: inc/czr-init.php:4489
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr "Aplică letrina primului paragraf din conținutul articolelor tale singure în pagină"
+
+#: inc/czr-init.php:4487
+msgid "Enable drop caps in posts"
+msgstr "Permite letrine în articole"
+
+#: inc/czr-init.php:4481
+msgid "Simple black"
+msgstr "Negru simplu"
+
+#: inc/czr-init.php:4480
+msgid "Skin color with shadow"
+msgstr "Culoare suprafață cu umbră"
+
+#: inc/czr-init.php:4476
+msgid "Drop cap style"
+msgstr "Stil letrină"
+
+#: inc/czr-init.php:4466
+msgid "(number of words)"
+msgstr "(număr de cuvinte)"
+
+#: inc/czr-init.php:4465
+msgid "Apply a drop cap when the paragraph includes at least the following number of words :"
+msgstr "Aplică o letrină când paragraful include cel puțin următorul număr de cuvinte:"
+
+#: inc/czr-init.php:4456
+msgid "Apply a drop cap to the first paragraph of your post / page content"
+msgstr "Aplică letrina primului paragraf din conținutul articolului/paginii tale"
+
+#: inc/czr-init.php:4454
+msgid "Enable drop caps"
+msgstr "Permite letrine"
+
+#: inc/czr-init.php:4453
+msgid "Drop caps"
+msgstr "Letrine"
+
+#: inc/czr-init.php:4435
+msgid "Apply nice on hover expansion effect to the galleries images"
+msgstr "Aplică efectul de expansiune drăguță la trecerea peste imaginilor din galerii"
+
+#: inc/czr-init.php:4433
+msgid "Enable Customizr effects on hover"
+msgstr "Permite efectele Customizr la trecere peste"
+
+#: inc/czr-init.php:4426
+msgid "Apply lightbox effects to galleries images"
+msgstr "Aplică efectele Lightbox imaginilor din galerii"
+
+#: inc/czr-init.php:4424
+msgid "Enable Lightbox effect in galleries"
+msgstr "Permite efectul Lightbox în galerii"
+
+#: inc/czr-init.php:4417
+msgid "Apply Customizr effects to galleries images"
+msgstr "Aplică efectele Customizr imaginilor din galerii"
+
+#: inc/czr-init.php:4415
+msgid "Enable Customizr galleries"
+msgstr "Permite galerii Customizr"
+
+#: inc/czr-init.php:4156
+msgid "After the title"
+msgstr "După titlu"
+
+#: inc/czr-init.php:4155
+msgid "Before the title boxed"
+msgstr "Înainte de titlu încasetată"
+
+#: inc/czr-init.php:4154
+msgid "Before the title in full width"
+msgstr "Înainte de titlu pe toată lățimea"
+
+#: inc/czr-init.php:4153
+msgid "Don't display"
+msgstr "Nu afișa"
+
+#: inc/czr-init.php:4149
+msgid "Post thumbnail position"
+msgstr "Poziție miniatură articol"
+
+#: inc/czr-init.php:4015
+msgid "Search results page titles"
+msgstr "Titluri pagini de rezultate căutare"
+
+#: inc/czr-front.php:4289 inc/czr-init.php:4014
+msgid "Search Results for :"
+msgstr "Rezultatul căutării după:"
+
+#: inc/czr-init.php:4006
+msgid "Author pages titles"
+msgstr "Titluri pagini de autor"
+
+#: inc/czr-init.php:3997
+msgid "Tag pages titles"
+msgstr "Titluri pagini de etichetă"
+
+#: inc/czr-init.php:3988
+msgid "Category pages titles"
+msgstr "Titluri pagini de categorie"
+
+#: inc/czr-init.php:3987
+msgid "Archive titles"
+msgstr "Titluri arhive"
+
+#: inc/czr-init.php:3978
+msgid "Alternate thumbnail/content"
+msgstr "Miniatură/conținut alternativ"
+
+#: inc/czr-init.php:3971 inc/czr-init.php:4739
+msgid "Left"
+msgstr "Stânga"
+
+#: inc/czr-init.php:3970
+msgid "Bottom"
+msgstr "Jos"
+
+#: inc/czr-init.php:3969 inc/czr-init.php:4740
+msgid "Right"
+msgstr "Dreapta"
+
+#: inc/czr-init.php:3968
+msgid "Top"
+msgstr "Sus"
+
+#: inc/czr-init.php:3964
+msgid "Thumbnails position"
+msgstr "Poziție miniatură"
+
+#: inc/czr-init.php:3952 inc/czr-init.php:4170
+msgid "Set the thumbnail's max height in pixels"
+msgstr "Setare înălțime maximă în pixeli a miniaturii"
+
+#: inc/czr-init.php:3944
+msgid "Rectangular with unblur effect on hover"
+msgstr "Rectangulară cu efect de ne-blurare la trecere peste"
+
+#: inc/czr-init.php:3943
+msgid "Rectangular with blur effect on hover"
+msgstr "Rectangulară cu efect de blurare la trecere peste"
+
+#: inc/czr-init.php:3942
+msgid "Rectangular with no effect"
+msgstr "Rectangulară, fără niciun efect"
+
+#: inc/czr-init.php:3941
+msgid "Squared, no expansion"
+msgstr "Pătrată, fără expandare"
+
+#: inc/czr-init.php:3940
+msgid "Squared, expand on hover"
+msgstr "Pătrată, cu expandare la trecere peste"
+
+#: inc/czr-init.php:3939
+msgid "Rounded, no expansion"
+msgstr "Rotundă, fără expandare"
+
+#: inc/czr-init.php:3938
+msgid "Rounded, expand on hover"
+msgstr "Rotundă, cu expandare la trecere peste"
+
+#: inc/czr-init.php:3934
+msgid "Thumbnails shape"
+msgstr "Formă miniatură"
+
+#: inc/czr-init.php:3933
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "Opțiuni miniatură pentru aranjamente cu miniaturi alternative"
+
+#: inc/czr-init.php:3915
+msgid "Upload a default thumbnail"
+msgstr "Încarcă o miniatură implicită"
+
+#: inc/czr-init.php:3907
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "Dacă nu este setată nicio imagine reprezentativă, se folosește ultima imagine atașată acestui articol."
+
+#: inc/czr-init.php:3902
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr "Notă: miniaturile sunt întotdeauna afișate când se alege aranjamentul grilă."
+
+#: inc/czr-init.php:3902
+msgid "When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ..."
+msgstr "Atunci când opțiunea aceasta e bifată, miniaturile articolelor sunt afișate în toate listele de articole: arhive, pagini de autor, pagini de căutare, ..."
+
+#: inc/czr-init.php:3898
+msgid "Display the post thumbnails"
+msgstr "Afișare miniaturi articole"
+
+#: inc/czr-init.php:3897
+msgid "Thumbnails options"
+msgstr "Opțiuni miniatură"
+
+#: inc/czr-init.php:3887
+msgid "Set the excerpt length (in number of words) "
+msgstr "Setare lungime rezumat (în număr de cuvinte)"
+
+#: inc/czr-init.php:4398
+msgid "Info (blue)"
+msgstr "Informativ (albastru)"
+
+#: inc/czr-init.php:4397
+msgid "Important (red)"
+msgstr "Important (roșu)"
+
+#: inc/czr-init.php:4396
+msgid "Alert (orange)"
+msgstr "Alertă (portocaliu)"
+
+#: inc/czr-init.php:4395
+msgid "Success (green)"
+msgstr "Succes (verde)"
+
+#: inc/czr-init.php:4394
+msgid "Default (grey)"
+msgstr "Implicit (gri)"
+
+#: inc/czr-init.php:4390
+msgid "Update notice style"
+msgstr "Stil notiță de actualizare"
+
+#: inc/czr-init.php:4381
+msgid "Update notice text"
+msgstr "Text notiță de actualizare"
+
+#: inc/czr-init.php:4379
+msgid "Recently updated !"
+msgstr "Recent actualizat!"
+
+#: inc/czr-init.php:4376
+msgid "Set a maximum interval (in days) during which the last update notice will be displayed."
+msgstr "Setare interval maxim (în zile) pe durata căruia să fie afișată notița de ultimă actualizare."
+
+#: inc/czr-init.php:4370
+msgid "Display the notice if the last update is less (strictly) than n days old"
+msgstr "Afișează notița dacă ultima actualizare este (strict) mai recentă decât n zile"
+
+#: inc/czr-init.php:4364
+msgid "If this option is checked, a customizable recent update notice is displayed next to the post title."
+msgstr "Dacă această opțiune e bifată, u notiță de actualizare recentă personalizabilă este afișată alături de titlul articolului."
+
+#: inc/czr-init.php:4360
+msgid "Display a recent update notice"
+msgstr "Afișare notiță de actualizare recentă"
+
+#: inc/czr-init.php:4359
+msgid "Recent update notice after post titles"
+msgstr "Notiță de actualizare recentă după titlul articolului"
+
+#: inc/czr-init.php:4351
+msgid "Date of the last update"
+msgstr "Data ultimei actualizări"
+
+#: inc/czr-init.php:4350
+msgid "Nb of days since last update"
+msgstr "Nr. de zile de la ultima actualizare"
+
+#: inc/czr-init.php:4346
+msgid "Select the last update format"
+msgstr "Selectează formatul pentru ultima actualizare"
+
+#: inc/czr-init.php:4340
+msgid "If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated)."
+msgstr "Dacă această opțiune e bifată, informații suplimentare despre data ultimei actualizări a articolului pot fi afișate (nu se va afișa nimic dacă articolul n-a fost niciodată actualizat)."
+
+#: inc/czr-init.php:4336
+msgid "Display the update date"
+msgstr "Afișare dată actualizare"
+
+#: inc/czr-init.php:4328
+msgid "Display the author"
+msgstr "Afișează autorul"
+
+#: inc/czr-init.php:4320
+msgid "Display the publication date"
+msgstr "Afișare dată publicare"
+
+#: inc/czr-init.php:4311
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr "Afișare taxonomii neierarhizate (cum ar fi etichetele)"
+
+#: inc/czr-init.php:4302
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr "Afișare taxonomii ierarhice (cum ar fi categoriile)"
+
+#: inc/czr-init.php:4301
+msgid "Select the metas to display"
+msgstr "Selectare metadate de afișat"
+
+#: inc/czr-init.php:4291
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr "Afișare metadate articole în liste de articole"
+
+#: inc/czr-init.php:4282
+msgid "Display posts metas for single posts"
+msgstr "Afișare metadate articole singulare"
+
+#: inc/czr-init.php:4273
+msgid "Display posts metas on home"
+msgstr "Afișare metadate articole pe pagina principală"
+
+#: inc/czr-init.php:4272 inc/czr-init.php:4623
+msgid "Select the contexts"
+msgstr "Selectare contexte"
+
+#: inc/czr-init.php:4265
+msgid "Text only"
+msgstr "Doar text"
+
+#: inc/czr-init.php:4264
+msgid "Buttons and text"
+msgstr "Butoane și text"
+
+#: inc/czr-init.php:4260
+msgid "Select a design for the post metas"
+msgstr "Alege un design pentru metadatele articolelor"
+
+#: inc/czr-init.php:4259
+msgid "Metas Design"
+msgstr "Design metadate"
+
+#: inc/czr-init.php:4252
+msgid "When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles."
+msgstr "Când această opțiune este bifată, metadatele articolului (cum ar fi taxonomiile, data și autorul) sunt afișate sub titlurile articolelor."
+
+#: inc/czr-init.php:4249
+msgid "Display posts metas"
+msgstr "Afișare metadate articole"
+
+#: inc/czr-init.php:3028
+msgid "WP footer widgets : display icons next to titles"
+msgstr "Piese WP în subsol: se afișează un icon alături de titluri"
+
+#: inc/czr-init.php:3019
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr "Piese WP în bară laterală: se afișează un icon alături de titluri"
+
+#: inc/czr-init.php:3012
+msgid "When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Când este bifată această opțiune, un icon cu tipul articolului este afișat la stânga fiecărui titlu de articol într-o pagină de arhivă. O pagină de arhivă poate fi de: categorie, etichetă, autor, calendaristică, taxonomie personalizată, rezultate de căutare."
+
+#: inc/czr-init.php:3009
+msgid "Display an icon next to each post title in an archive page"
+msgstr "Afișează un icon alături de fiecare titlu de articol într-o pagină de arhivă"
+
+#: inc/czr-init.php:3002
+msgid "When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Atunci când această opțiune e setată, se afișează iconul unui tip de arhivă la începutul fiecărei pagini de arhivă, în stânga titlului. O pagină de arhivă poate fi de: categorie, etichetă, autor, calendaristică, taxonomie personalizată, rezultate de căutare."
+
+#: inc/czr-init.php:2999
+msgid "Display an icon next to the archive title"
+msgstr "Afișează un icon alături de titlul arhivei"
+
+#: inc/czr-init.php:2990
+msgid "Display a post icon next to the single post title"
+msgstr "Afișează un icon al articolului alături de titlul unui articol singular"
+
+#: inc/czr-init.php:2981
+msgid "Display a page icon next to the page title"
+msgstr "Afișează un icon al paginii alături de titlul paginii"
+
+#: inc/czr-init.php:2975
+msgid "When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets."
+msgstr "Atunci când această opțiune e bifată, un icon contextual este afișat alături de titlul paginii, articolului, arhivei și a pieselor interne WP."
+
+#: inc/czr-init.php:2971
+msgid "Display icons next to titles"
+msgstr "Afișează iconuri alături de titluri"
+
+#: inc/czr-init.php:4230
+msgid "Display the breadcrumb in posts lists : blog page, archives, search results..."
+msgstr "Afișează firimiturile în liste de articole: pagini de blog, arhive, rezultate ale căutării..."
+
+#: inc/czr-init.php:4221
+msgid "Display the breadcrumb in single posts"
+msgstr "Afișează firimiturile în paginile articolelor singulare"
+
+#: inc/czr-init.php:4212
+msgid "Display the breadcrumb in pages"
+msgstr "Afișează firimiturile în pagini"
+
+#: inc/czr-init.php:4204
+msgid "Display the breadcrumb on home page"
+msgstr "Afișează firimiturile pe pagina principală"
+
+#: inc/czr-init.php:2951
+msgid "Open external links in a new tab"
+msgstr "Deschide legăturile externe într-o filă nouă"
+
+#: inc/czr-init.php:2944 inc/czr-init.php:2955
+msgid "This will be applied to the links included in post or page content only."
+msgstr "Aceasta va fi aplicată doar legăturilor incluse în conținutul articolelor sau paginilor."
+
+#: inc/czr-init.php:2940
+msgid "Display an icon next to external links"
+msgstr "Afișarea unui icon alături de legăturile externe"
+
+#: inc/czr-init.php:2930
+msgid "Fade effect on link hover"
+msgstr "Efectul de estompare/clarificare la trecerea peste o legătură"
+
+#: inc/czr-init.php:3473
+msgid "Hover move effect for the sub menu items"
+msgstr "Efectul aplicat elementelor de meniu la trecerea peste ele"
+
+#: inc/czr-init.php:3464
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "Dezvăluie blocurile de sub-meniu cu un efect de estompare/clarificare"
+
+#: inc/czr-init.php:3417 inc/czr-init.php:3442
+msgid "Menu on the right"
+msgstr "Meniu la dreapta"
+
+#: inc/czr-init.php:3416 inc/czr-init.php:3441
+msgid "Menu on the left"
+msgstr "Meniu la stânga"
+
+#: inc/czr-init.php:3353
+msgid "the z-index"
+msgstr "z-index"
+
+#: inc/czr-init.php:3351
+msgid "What is"
+msgstr "Ce este"
+
+#: inc/czr-init.php:3343
+msgid "Set the header z-index"
+msgstr "Setare indexul în ordinea de suprapunere pentru antet (z-index)"
+
+#: inc/czr-init.php:3333
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "Antet fixat: semitransparent la derulare"
+
+#: inc/czr-init.php:3323
+msgid "Sticky header : display the menu"
+msgstr "Antet fixat: afișează meniul"
+
+#: inc/czr-init.php:3314
+msgid "Sticky header : shrink title / logo"
+msgstr "Antet fixat: micșorează titlul/logoul"
+
+#: inc/czr-init.php:3305
+msgid "Sticky header : display the title / logo"
+msgstr "Antet fixat: afișează titlul / logoul"
+
+#: inc/czr-init.php:3285
+msgid "Sticky header : display the tagline"
+msgstr "Antet fixat: afișează sloganul"
+
+#: inc/czr-init.php:3280
+msgid "If checked, this option makes the header stick to the top of the page on scroll down."
+msgstr "Dacă e setată, această opțiune face ca antetul să rămână fixat la începutul paginii când se derulează în jos."
+
+#: inc/czr-init.php:3275
+msgid "Sticky on scroll"
+msgstr "Fixare la derulare"
+
+#: inc/czr-init.php:3274
+msgid "Sticky header settings"
+msgstr "Setări antet fixat"
+
+#: inc/czr-init.php:3218
+msgid "Logo / title on the right"
+msgstr "Logo / titlu la dreapta"
+
+#: inc/czr-init.php:3217
+msgid "Logo / title centered"
+msgstr "Logo / titlu centrate"
+
+#: inc/czr-init.php:3216
+msgid "Logo / title on the left"
+msgstr "Logo / titlu la stânga"
+
+#: inc/czr-init.php:3269
+msgid "If checked, this option wraps the header menu/tagline/social in a light grey box."
+msgstr "Dacă e setată, această opțiune cuprinde într-o casetă gri deschis meniul din antet/ sloganul/ legăturile sociale."
+
+#: inc/czr-init.php:3264
+msgid "Display menu in a box"
+msgstr "Afișare meniu într-o casetă"
+
+#: inc/czr-init.php:3236
+msgid "Display the tagline"
+msgstr "Afișare slogan"
+
+#: inc/czr-init.php:2900
+msgid "This option sets the default font size applied to any text element of your website, when no font size is already applied."
+msgstr "Această opțiune setează dimensiunea implicită a fontului aplicat oricărui element de text de pe situl tău web, atunci când nu este aplicată deja o mărime de font."
+
+#: inc/czr-init.php:2892
+msgid "Set your website default font size in pixels."
+msgstr "Setează mărimea implicită a fontului ăe situl tău web în pixeli."
+
+#: inc/czr-init.php:2887
+msgid "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs."
+msgstr "Acest selector de font îți permite să pre-vizualizezi și selectezi dintr-o utilă selecție de perechi de fonturi și fonturi singulare. Dacă alegi o pereche, primul font va fi aplicat titlurilor principale din sit: nume sit, descriere set, subtitluri h1, h2, h3, în timp ce al doilea va fi fontul implicit al sitului tău pentru orice text sau paragraf."
+
+#: inc/czr-init.php:2880
+msgid "Select a beautiful font pair (headings &amp; default fonts) or single font for your website."
+msgstr "Selectează o frumoasă pereche de fonturi (pentru titluri și corp de text) sau un singur font pentru situl tău."
+
+#: inc/czr-init.php:3171
+msgid "Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile."
+msgstr "Bifează această opțiune pentru a afișa un bloc cu informații despre autor după conținutul fiecărui articol singular. Notă: câmpul cu informații biografice trebuie completat în profilul utilizatorului."
+
+#: inc/czr-init.php:3167
+msgid "Display an author box after each single post content"
+msgstr "Afișare o casetă despre autor după conținutul fiecărui articol singular"
+
+#: inc/czr-init.php:3833
+msgid "Global Post Lists Settings"
+msgstr "Setări globale pentru liste articole"
+
+#: inc/czr-init.php:3803
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr "Notă: aranjamentul paginii principale trebuie setat în secțiunea pentru pagina principală"
+
+#: inc/czr-init.php:5190
+msgid "On the web, speed is key ! Improve the load time of your pages with those options."
+msgstr "Pe web, viteza este cheia! Îmbunătățește timpii de încărcare a paginilor tale cu aceste opțiuni."
+
+#: inc/czr-init.php:5188
+msgid "Website Performances"
+msgstr "Performanțe sit web"
+
+#: inc/czr-init.php:5174
+msgid "Set up footer global options"
+msgstr "Setare opțiuni globale pentru subsol"
+
+#: inc/czr-init.php:5172
+msgid "Footer global settings"
+msgstr "Setări globale subsol"
+
+#: inc/czr-init.php:5146
+msgid "Set up post/page navigation options"
+msgstr "Setează opțiunile de navigare articole/pagini"
+
+#: inc/czr-init.php:5144
+msgid "Post/Page Navigation"
+msgstr "Navigare articole/pagini"
+
+#: inc/czr-init.php:5134
+msgid "Set up paragraphs options"
+msgstr "Setare opțiuni paragrafe"
+
+#: inc/czr-init.php:5132
+msgid "Paragraphs"
+msgstr "Paragrafe"
+
+#: inc/czr-init.php:5128
+msgid "Set up gallery options"
+msgstr "Setare opțiuni galerii"
+
+#: inc/czr-init.php:5126
+msgid "Galleries"
+msgstr "Galerii"
+
+#: inc/czr-init.php:5122
+msgid "Set up post metas options"
+msgstr "Setări opțiuni metadate articole"
+
+#: inc/czr-init.php:5120
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr "Metadate articol (categorie, etichete, taxonomii personalizate)"
+
+#: inc/czr-init.php:5108
+msgid "Set up breadcrumb options"
+msgstr "Setare opțiuni firimituri"
+
+#: inc/czr-init.php:5106
+msgid "Breadcrumb"
+msgstr "Firimitură"
+
+#: inc/czr-init.php:5102
+msgid "Set up single posts options"
+msgstr "Setare opțiuni articole singulare"
+
+#: inc/czr-init.php:5100
+msgid "Single posts"
+msgstr "Articole singulare"
+
+#: inc/czr-init.php:5096
+msgid "Set up post lists options"
+msgstr "Setări opțiuni liste articole"
+
+#: inc/czr-init.php:5094
+msgid "Post lists : blog, archives, ..."
+msgstr "Listă articole: blog, arhive, ..."
+
+#: inc/czr-init.php:4973
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
+msgstr[0] "Tema ta suportă %s meniu. Selectează meniul pe care vrei să-l folosești."
+msgstr[1] "Tema ta suportă %s meniuri. Selectează care meniu apare în fiecare locație."
+msgstr[2] "Tema ta suportă %s de meniuri. Selectează care meniu apare în fiecare locație."
+
+#: inc/czr-init.php:5063
+msgid "Design and layout"
+msgstr "Design și aranjament"
+
+#: inc/czr-init.php:3210 inc/czr-init.php:5063
+msgid "Header design and layout"
+msgstr "Design antet și aranjament"
+
+#: inc/czr-init.php:5049
+msgid "Post authors settings"
+msgstr "Setări autori articole"
+
+#: inc/czr-init.php:5047
+msgid "Authors"
+msgstr "Autori"
+
+#: inc/czr-init.php:5041
+msgid "Image settings"
+msgstr "Setări imagini"
+
+#: inc/czr-init.php:5037
+msgid "Set up the titles icons options"
+msgstr "Setarea opțiunilor iconurilor de titlu"
+
+#: inc/czr-init.php:5035
+msgid "Titles icons settings"
+msgstr "Setările iconurilor pentru titluri"
+
+#: inc/czr-init.php:5029
+msgid "Links style and effects"
+msgstr "Stilul și efectele pentru legături"
+
+#: inc/czr-init.php:5019
+msgid "Set up the font global settings"
+msgstr "Inițializarea setărilor globale pentru font"
+
+#: inc/czr-init.php:5017
+msgid "Fonts"
+msgstr "Fonturi"
+
+#: inc/czr-init.php:5000
+msgid "Site Title & Tagline"
+msgstr "Titlul și sloganul sitului"
+
+#: inc/czr-init.php:4773
+msgid "How to create and use a child theme ?"
+msgstr "Cum să creezi și să folosești o temă copil?"
+
+#: inc/czr-init.php:4772
+msgid "child theme."
+msgstr "teme copil."
+
+#: inc/czr-init.php:4771
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a"
+msgstr "Folosește acest câmp pentru mici bucăți de cod CSS. Pentru personalizări CSS importante, vei prefera să modifici fișierul style.css al unei"
+
+#: inc/czr-init.php:4767
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Adaugă aici css-ul tău personalizat și modifică designul pe viu! (pentru utilizatori avansați)"
+
+#: inc/czr-init.php:3152
+msgid "Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport."
+msgstr "Activează această opțiune pentru a muta barele laterale (dacă există) după blocul principal de conținut, pentru spațiul vizibil de pe tablete sau telefoane inteligente."
+
+#: inc/czr-init.php:3149
+msgid "Dynamic sidebar reordering on small devices"
+msgstr "Reordonare dinamică a barei laterale pe ecrane mici"
+
+#: inc/czr-init.php:2925
+msgid "If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page."
+msgstr "Dacă e validată, această opțiune activează derularea lină a paginii când se dă clic pe o legătură către o ancoră din aceeași pagină."
+
+#: inc/czr-init.php:2922
+msgid "Smooth scroll on click"
+msgstr "Derulare lină la clic"
+
+#: inc/czr-init.php:3108
+msgid "This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio."
+msgstr "Această opțiune centrează imaginile pe orice dispozitiv, vertical sau orizontal în conformitate cu raportul aspectului inițial."
+
+#: inc/czr-init.php:3105
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "Miniaturi dinamice centrate pe orice dispozitiv"
+
+#: inc/czr-init.php:3097
+msgid "Dynamic slider images centering on any devices"
+msgstr "Imaginile dinamice din carusel centrate pe orice dispozitiv"
+
+#: inc/czr-init.php:3091
+msgid "When checked, this option displays a loading icon when the slides are being setup."
+msgstr "Când e bifată, această opțiune afișează un icon de încărcare pe durata inițializării diapozitivelor."
+
+#: inc/czr-init.php:3088
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr "Caruseluri: afișare icon de încărcare înainte de a randa diapozitivele"
+
+#: inc/czr-init.php:3074
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr "Deschide pagina de descriere a modulului pentru regenerarea miniaturilor"
+
+#: inc/czr-init.php:3072
+msgid "regenerate thumbnails"
+msgstr "regenerare miniaturi"
+
+#: inc/czr-init.php:3071
+msgid "It is strongly recommended to regenerate your media library images in high definition with this free plugin"
+msgstr "Se recomandă cu tărie regenerarea imaginilor din biblioteca media în modul de înaltă definiție cu ajutorul acestui modul gratuit"
+
+#: inc/czr-init.php:3070
+msgid "If enabled, your website will include support for high resolution devices."
+msgstr "Dacă e validat, situl tău web va include suport pentru dispozitivele cu ecrane de mare rezoluție."
+
+#: inc/czr-init.php:3066
+msgid "High resolution (Retina) support"
+msgstr "Suport pentru rezoluție înaltă (Retina)"
+
+#: inc/czr-init.php:3060
+msgid "If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "Dacă e validată, această opțiune va forța imaginile casetei luminoase să se mărească pe tot ecranul."
+
+#: inc/czr-init.php:3057
+msgid "Autoscale images on zoom"
+msgstr "Auto-scalare imagini la mărire"
+
+#: inc/czr-init.php:3051
+msgid "If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File."
+msgstr "Dacă e validată, această opțiune activează o fereastră peste o imagine căreia i s-a dat clic cu un efect de mărire. Notă: pentru a valida acest efect pe imaginile din pagini sau articole, imaginile trebuie să fi legate la fișierul media."
+
+#: inc/czr-init.php:3048
+msgid "Lightbox effect on images"
+msgstr "Efect de casetă luminoasă pe imagini"
+
+#: inc/czr-init.php:4708
+msgid "Social links in footer"
+msgstr "Legăturile sociale în subsol"
+
+#: inc/czr-init.php:4674
+msgid "Social links in right sidebar"
+msgstr "Legăturile sociale în bara laterală dreaptă"
+
+#: inc/czr-init.php:4664
+msgid "Social links in left sidebar"
+msgstr "Legăturile sociale în bara laterală stângă"
+
+#: inc/czr-init.php:3254
+msgid "Social links in header"
+msgstr "Legăturile sociale în antet"
+
+#: inc/czr-init.php:4563
+msgid "Enable comments on pages"
+msgstr "Permite comentariile pe pagini"
+
+#: inc/czr-init.php:3858
+msgid "Choose the pages default layout"
+msgstr "Alege aranjamentul implicit pentru pagini"
+
+#: inc/czr-init.php:3850
+msgid "Display the full content"
+msgstr "Afișează întregul conținut"
+
+#: inc/czr-init.php:3662 inc/czr-init.php:3849
+msgid "Display the excerpt"
+msgstr "Afișează rezumatul"
+
+#: inc/czr-init.php:3845
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Selectează lungimea articolelor în listă (pe pagina principală, de căutare, de arhive, ...)"
+
+#: inc/czr-init.php:3834
+msgid "Maximum number of posts per page"
+msgstr "Numărul maxim de articole per pagină"
+
+#: inc/czr-init.php:3821
+msgid "Choose the posts default layout"
+msgstr "Alege aranjamentul implicit pentru articole"
+
+#: inc/czr-init.php:3814
+msgid "This option will override the specific layouts on all posts/pages, including the front page."
+msgstr "Această opțiune va suprascrie aranjamentele specifice pentru toate articolele/paginile, inclusiv pagina principală."
+
+#: inc/czr-init.php:3811
+msgid "Force default layout everywhere"
+msgstr "Impune aranjamentul implicit peste tot"
+
+#: inc/czr-init.php:3799
+msgid "Choose the global default layout"
+msgstr "Alege aranjamentul global implicit"
+
+#: inc/czr-init.php:4195
+msgid "Display Breadcrumb"
+msgstr "Afișare firimituri"
+
+#: inc/czr-init.php:3684 inc/czr-init.php:3777
+msgid "Button text"
+msgstr "Text buton"
+
+#: inc/czr-init.php:3683 inc/czr-init.php:3775
+msgid "Read more &raquo;"
+msgstr "Citește mai mult &raquo;"
+
+#: inc/czr-init.php:3769
+msgid "The images are set with the \"featured image\" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images."
+msgstr "Imaginile sunt setate cu opțiunea \"imagine reprezentativă\" pe fiecare dintre pagini (în ecranul de editare pagină). Debifează opțiunea de deasupra pentru a dezactiva imaginile reprezentative ale paginilor."
+
+#: inc/czr-init.php:3766
+msgid "Show images"
+msgstr "Arată imagini"
+
+#: inc/czr-init.php:3757
+msgid "Disable"
+msgstr "Dezactivare"
+
+#: inc/czr-init.php:3756
+msgid "Enable"
+msgstr "Activare"
+
+#: inc/czr-init.php:3752
+msgid "Display home featured pages area"
+msgstr "Afișează zonă pe prima pagină pentru pagini reprezentative"
+
+#: inc/czr-init.php:3751
+msgid "Featured pages options"
+msgstr "Opțiuni pagini reprezentative"
+
+#: inc/czr-init.php:3711
+msgid "in ms : 1000ms = 1s"
+msgstr "în milisecunde: 1000ms = 1s"
+
+#: inc/czr-init.php:3706
+msgid "Delay between each slides"
+msgstr "Îmtârzierea dintre diapozitive"
+
+#: inc/czr-init.php:3694
+msgid "Full width slider"
+msgstr "Carusel pe întreaga lățime"
+
+#: inc/czr-init.php:3620
+msgid "Select front page slider"
+msgstr "Selectare carusel pentru pagina principală"
+
+#: inc/czr-init.php:3619
+msgid "Slider options"
+msgstr "Opțiuni carusel"
+
+#: inc/czr-init.php:3607
+msgid "Set up the front page layout"
+msgstr "Setarea aranjamentului pentru pagina principală"
+
+#: inc/czr-init.php:3580
+msgid "Posts page"
+msgstr "Pagină articole"
+
+#: inc/czr-init.php:3572
+msgid "Front page"
+msgstr "Pagina din față"
+
+#: inc/czr-init.php:3566
+msgid "A static page"
+msgstr "O pagină statică"
+
+#: inc/czr-init.php:3565
+msgid "Your latest posts"
+msgstr "Ultimele tale articole"
+
+#: inc/czr-init.php:3564
+msgid "Don't show any posts or page"
+msgstr "Nu arăta niciun articol sau pagină"
+
+#: inc/czr-init.php:3559
+msgid "Front page displays"
+msgstr "Afișări pe pagina din față"
+
+#: inc/czr-init.php:3551
+msgid "Choose content and layout"
+msgstr "Alege conținut și aranjare"
+
+#: inc/czr-init.php:2836
+msgid "FAVICON"
+msgstr "Icon (favicon)"
+
+#: inc/czr-init.php:2835
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Încărcare icon (formate suportate: .ico, .png, .gif)"
+
+#: inc/czr-init.php:2829
+msgid "Use this upload control to specify a different logo on sticky header mode."
+msgstr "Folosește acest control de încărcare pentru a specifica un logo diferit pentru modul cu antet fixat."
+
+#: inc/czr-init.php:2818
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr " Încărcare logo pentru antet fixat (formate suportate: .jpg, .png, .gif, .svg, .svgz)"
+
+#: inc/czr-init.php:2814
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "Debifează această opțiune pentru a folosi dimensiunile originale ale logoului tău."
+
+#: inc/czr-init.php:2810
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Forțează dimensiunile logo la lățime de max. 250px și înălțime de max. 100px"
+
+#: inc/czr-init.php:2795
+msgid "LOGO"
+msgstr "LOGO"
+
+#: inc/czr-init.php:2794
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Încărcare logo (formate suportate: .jpg, .png, .gif, .svg, .svgz)"
+
+#: inc/czr-init.php:3230
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Debifează această opțiune pentru a înlătura bordura colorată de sus."
+
+#: inc/czr-init.php:3226
+msgid "Display top border"
+msgstr "Afișare bordură sus"
+
+#: inc/czr-init.php:4793
+msgid "Using the minified version of the stylesheets will speed up your webpage load time."
+msgstr "Folosirea versiunii minificate a foilor de stil va reduce timpul de încărcare a paginii tale web."
+
+#: inc/czr-init.php:4790
+msgid "Performance : use the minified CSS stylesheets"
+msgstr "Performanță: folosire foi de stil CSS minificate"
+
+#: inc/czr-init.php:2866
+msgid "Apply a random color skin on each page load."
+msgstr "Aplică un aspect colorat aleator la fiecare pagină încărcată."
+
+#: inc/czr-init.php:2863
+msgid "Randomize the skin"
+msgstr "Aspect aleator"
+
+#: inc/czr-init.php:2853
+msgid "Choose a predefined skin"
+msgstr "Alege un aspect predefinit"
+
+#: inc/czr-init.php:3457
+msgid "Expand submenus on hover"
+msgstr "Extinde submeniurile la trecerea peste"
+
+#: inc/czr-init.php:3456
+msgid "Expand submenus on click"
+msgstr "Extinde submeniurile la clic"
+
+#: inc/czr-init.php:3452
+msgid "Select a submenu expansion option"
+msgstr "Selectează o opțiune pentru expandarea submeniurilor"
+
+#: inc/czr-init.php:5163
+msgid "Various settings for responsive display"
+msgstr "Diferite setări pentru afișări responsive"
+
+#: inc/czr-init.php:3117 inc/czr-init.php:5161
+msgid "Responsive settings"
+msgstr "Setări de responsivitate"
+
+#: inc/czr-init.php:5183
+msgid "Custom CSS"
+msgstr "CSS personalizat"
+
+#: inc/czr-init.php:5031
+msgid "Various links settings"
+msgstr "Diferite setări pentru legături"
+
+#: inc/czr-init.php:5043
+msgid "Various images settings"
+msgstr "Diferite setări pentru imagini"
+
+#: inc/czr-init.php:5025
+msgid "Set up your social links"
+msgstr "Setează-ți legăturile sociale"
+
+#: inc/czr-init.php:4682 inc/czr-init.php:5023
+msgid "Social links"
+msgstr "Legături sociale"
+
+#: inc/czr-init.php:5140
+msgid "Set up comments options"
+msgstr "Setări opțiuni pentru comentarii"
+
+#: inc/czr-init.php:5138
+msgid "Comments"
+msgstr "Comentarii"
+
+#: inc/czr-init.php:5089
+msgid "Set up layout options"
+msgstr "Setări opțiuni de aranjament"
+
+#: inc/czr-init.php:5087
+msgid "Pages &amp; Posts Layout"
+msgstr "Aranjament pentru pagini și articole"
+
+#: inc/czr-init.php:5082
+msgid "Set up front page options"
+msgstr "Setează opțiunile pentru prima pagină"
+
+#: inc/czr-init.php:5080
+msgid "Front Page"
+msgstr "Pagina din față"
+
+#: inc/czr-init.php:5007
+msgid "Set up logo and favicon options"
+msgstr "Setează opțiunile pentru logo și icon"
+
+#: inc/czr-init.php:5005
+msgid "Logo &amp; Favicon"
+msgstr "Logo și icon sit"
+
+#: inc/czr-init.php:5013
+msgid "Select a skin for Customizr"
+msgstr "Alege un aspect pentru Customizr"
+
+#: inc/czr-init.php:5011
+msgid "Skin"
+msgstr "Aspect"
+
+#: inc/czr-init.php:4899
+msgid "Advanced settings for the Customizr theme."
+msgstr "Setări avansate pentru tema Customizr."
+
+#: inc/czr-init.php:4898
+msgid "Advanced options"
+msgstr "Opțiuni avansate"
+
+#: inc/czr-init.php:4893
+msgid "Footer settings for the Customizr theme."
+msgstr "Setări de subsol pentru tema Customizr."
+
+#: inc/czr-init.php:4892
+msgid "Footer"
+msgstr "Subsol"
+
+#: inc/czr-init.php:4881
+msgid "Content settings for the Customizr theme."
+msgstr "Setări de conținut pentru tema Customizr."
+
+#: inc/czr-init.php:4880
+msgid "Content : home, posts, ..."
+msgstr "Conținut: prima pagină, articole, ..."
+
+#: inc/czr-init.php:4875
+msgid "Header settings for the Customizr theme."
+msgstr "Setări de antet pentru tema Customizr."
+
+#: inc/czr-init.php:4874
+msgid "Header"
+msgstr "Antet"
+
+#: inc/czr-init.php:4869
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Setări globale pentru tema Customizr: aspect, sociale, legături..."
+
+#: inc/czr-init.php:4868
+msgid "Global settings"
+msgstr "Setări globale"
+
+#: inc/czr-init.php:5396
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Carusel demo &mdash;"
+
+#: inc/czr-init.php:5395
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Niciun carusel &mdash;"
+
+#: inc/czr-init.php:5269
+msgid "You need to select a page first. Leave this field empty if you want to use the page excerpt."
+msgstr "Trebuie mai întâi să selectezi o pagină. Lasă acest câmp gol dacă vrei să folosești rezumatul paginii."
+
+#: inc/czr-init.php:5266
+msgid "Featured text %1$s (200 char. max)"
+msgstr "Text de exemplificat %1$s (max. 200 caractere)"
+
+#: inc/czr-init.php:5250
+msgid "Custom featured page %1$s"
+msgstr "Pagină personalizată exemplificată %1$s"
+
+#: inc/czr-init.php:5234
+msgid "Featured text three (200 char. max)"
+msgstr "Al treilea text de exemplificat (max. 200 caractere)"
+
+#: inc/czr-init.php:5233
+msgid "Featured text two (200 char. max)"
+msgstr "Al doilea text de exemplificat (max. 200 caractere)"
+
+#: inc/czr-init.php:5232
+msgid "Featured text one (200 char. max)"
+msgstr "Primul text de exemplificat (max. 200 caractere)"
+
+#: inc/czr-init.php:5229
+msgid "Home featured page three"
+msgstr "A treia exemplificare pentru prima pagină"
+
+#: inc/czr-init.php:5228
+msgid "Home featured page two"
+msgstr "A doua exemplificare pentru prima pagină"
+
+#: inc/czr-init.php:5227
+msgid "Home featured page one"
+msgstr "Prima exemplificare pentru prima pagină"
+
+#: inc/czr-init.php:6033
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: inc/czr-init.php:1221
+msgid "Need help with Customizr? Click here!"
+msgstr "Ai nevoie de ajutor cu Customizr? Dă clic aici!"
+
+#: inc/czr-init.php:1218
+msgid "Help"
+msgstr "Ajutor"
+
+#: inc/czr-init.php:1033
+msgid "Main Menu"
+msgstr "Meniu principal"
+
+#: inc/czr-init.php:858 inc/czr-init.php:8601
+msgid "Many layout and design options are available from the WordPress customizer screen : see your changes live !"
+msgstr "Multe opțiuni de design și aranjare sunt disponibile din ecranul de personalizare al WordPress: vezi modificările pe viu!"
+
+#: inc/czr-init.php:844 inc/czr-init.php:8595 inc/czr-init.php:8607
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr este o temă curată și resposivă"
+
+#: inc/czr-init.php:829
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Regret, dar nimic nu se potrivește cu criteriul tău de căutare. Te rog încearcă din nou cu alte cuvinte cheie."
+
+#: inc/czr-init.php:828
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: inc/czr-init.php:827
+msgid "Success is the ability to go from one failure to another with no loss of enthusiasm..."
+msgstr "Succesul este însușirea de a trece de la o înfrângere la alta fără a pierde din entuziasm..."
+
+#: inc/czr-init.php:822
+msgid "Sorry, but the requested page is not found. You might try a search below."
+msgstr "Regret, pagina cerută n-a fost găsită. Poți încerca mai jos o nouă căutare."
+
+#: inc/czr-init.php:821
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: inc/czr-init.php:820
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Într-o lume a amăgirii universale, a spune adevărul e un act revoluționar."
+
+#: inc/czr-init.php:802
+msgid "Footer Widget Area Three"
+msgstr "Zona a treia de asamblare din subsol"
+
+#: inc/czr-init.php:798
+msgid "Footer Widget Area Two"
+msgstr "Zona a doua de asamblare din subsol"
+
+#: inc/czr-init.php:795 inc/czr-init.php:799 inc/czr-init.php:803
+msgid "Just use it as you want !"
+msgstr "Folosește-o cum dorești!"
+
+#: inc/czr-init.php:794
+msgid "Footer Widget Area One"
+msgstr "Zona unu de asamblare din subsol"
+
+#: inc/czr-init.php:782
+msgid "Left Sidebar"
+msgstr "Bară laterală stânga"
+
+#: inc/czr-init.php:783 inc/czr-init.php:787
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Apar în articole, pagini statice, arhive și pagini de căutare"
+
+#: inc/czr-init.php:786
+msgid "Right Sidebar"
+msgstr "Bară laterală dreapta"
+
+#: inc/czr-init.php:758
+msgid "LinkedIn profile url"
+msgstr "URL profil LinkedIn"
+
+#: inc/czr-init.php:757
+msgid "Follow me on LinkedIn"
+msgstr "Urmărește-mă pe LinkedIn"
+
+#: inc/czr-init.php:753
+msgid "Dribbble profile url"
+msgstr "URL profil Dribbble"
+
+#: inc/czr-init.php:752
+msgid "Follow me on Dribbble"
+msgstr "Urmărește-mă pe Dribbble"
+
+#: inc/czr-init.php:748
+msgid "Github profile url"
+msgstr "URL profil Github"
+
+#: inc/czr-init.php:747
+msgid "Follow me on Github"
+msgstr "Urmărește-mă pe Github"
+
+#: inc/czr-init.php:743
+msgid "Pinterest profile url"
+msgstr "URL profil Pinterest"
+
+#: inc/czr-init.php:742
+msgid "Pin me on Pinterest"
+msgstr "Prinde-mă pe Pinterest"
+
+#: inc/czr-init.php:738
+msgid "Youtube profile url"
+msgstr "URL profil YouTube"
+
+#: inc/czr-init.php:737
+msgid "Follow me on Youtube"
+msgstr "Urmărește-mă pe YouTube"
+
+#: inc/czr-init.php:733
+msgid "WordPress profile url"
+msgstr "URL profil WordPress"
+
+#: inc/czr-init.php:732
+msgid "Follow me on WordPress"
+msgstr "Urmărește-mă pe WordPress"
+
+#: inc/czr-init.php:728
+msgid "Flickr url"
+msgstr "URL Flickr"
+
+#: inc/czr-init.php:727
+msgid "Follow me on Flickr"
+msgstr "Urmărește-mă pe Flickr"
+
+#: inc/czr-init.php:723
+msgid "Tumblr url"
+msgstr "URL Tumblr"
+
+#: inc/czr-init.php:722
+msgid "Follow me on Tumblr"
+msgstr "Urmărește-mă pe Tumbls"
+
+#: inc/czr-init.php:718
+msgid "Instagram profile url"
+msgstr "URL profil Instagram"
+
+#: inc/czr-init.php:717
+msgid "Follow me on Instagram"
+msgstr "Urmărește-mă pe Instagram"
+
+#: inc/czr-init.php:713
+msgid "Google+ profile url"
+msgstr "URL profil Google"
+
+#: inc/czr-init.php:712
+msgid "Follow me on Google+"
+msgstr "Urmărește-mă pe Google+"
+
+#: inc/czr-init.php:708
+msgid "Facebook profile url"
+msgstr "URL profil Facebook"
+
+#: inc/czr-init.php:707
+msgid "Follow me on Facebook"
+msgstr "Urmărește-mă pe Facebook"
+
+#: inc/czr-init.php:703
+msgid "Twitter profile url"
+msgstr "URL profil Twitter"
+
+#: inc/czr-init.php:702
+msgid "Follow me on Twitter"
+msgstr "Urmărește-mă pe Twitter"
+
+#: inc/czr-init.php:692
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "Flux RSS (implicit e fluxul wordpress)"
+
+#: inc/czr-init.php:691
+msgid "Subscribe to my rss feed"
+msgstr "Abonează-te la fluxul meu rss"
+
+#: inc/czr-init.php:653
+msgid "Single fonts"
+msgstr "Fonturi singulare"
+
+#: inc/czr-init.php:644
+msgid "Web safe fonts pairs"
+msgstr "Perechi de fonturi sigure pe web"
+
+#: inc/czr-init.php:624
+msgid "Google fonts pairs"
+msgstr "Perechi de fonturi Google"
+
+#: inc/czr-init.php:597
+msgid "Light blue "
+msgstr "Albastru deschis"
+
+#: inc/czr-init.php:596
+msgid "Green blue"
+msgstr "Verde albastru"
+
+#: inc/czr-init.php:595
+msgid "Light green"
+msgstr "Verde deschis"
+
+#: inc/czr-init.php:594
+msgid "Green"
+msgstr "Verde"
+
+#: inc/czr-init.php:593
+msgid "Flat yellow"
+msgstr "Galben plat"
+
+#: inc/czr-init.php:592
+msgid "Yellow"
+msgstr "Galben"
+
+#: inc/czr-init.php:591
+msgid "Flat orange"
+msgstr "Portocaliu plat"
+
+#: inc/czr-init.php:590
+msgid "Orange"
+msgstr "Portocaliu"
+
+#: inc/czr-init.php:589
+msgid "Red"
+msgstr "Roșu"
+
+#: inc/czr-init.php:588
+msgid "Flat red"
+msgstr "Roșu plat"
+
+#: inc/czr-init.php:587
+msgid "Purple"
+msgstr "Violet"
+
+#: inc/czr-init.php:586
+msgid "Flat purple"
+msgstr "Mov plat"
+
+#: inc/czr-init.php:585
+msgid "Ligth grey"
+msgstr "Gri deschis"
+
+#: inc/czr-init.php:584
+msgid "Grey"
+msgstr "Gri"
+
+#: inc/czr-init.php:583
+msgid "Flat black"
+msgstr "Negru plat"
+
+#: inc/czr-init.php:582
+msgid "Black"
+msgstr "Negru"
+
+#: inc/czr-init.php:581
+msgid "Blue"
+msgstr "Albastru"
+
+#: inc/czr-init.php:566 inc/czr-init.php:567
+msgid "No sidebars : full width layout"
+msgstr "Fără bare laterale: aranjament pe toată lățimea"
+
+#: inc/czr-init.php:560 inc/czr-init.php:561
+msgid "2 sidebars : Right and Left"
+msgstr "2 bare laterale: stânga și dreapta"
+
+#: inc/czr-init.php:554 inc/czr-init.php:555
+msgid "Left sidebar"
+msgstr "Bară laterală stânga"
+
+#: inc/czr-init.php:548 inc/czr-init.php:549
+msgid "Right sidebar"
+msgstr "Bară laterală dreapta"
+
+#: inc/czr-customize.php:1282
+msgid "Remove"
+msgstr "Înlăturare"
+
+#: inc/czr-customize.php:1281
+msgid "Upload"
+msgstr "Încarcă"
+
+#: inc/czr-customize.php:845
+msgid "Check the documentation"
+msgstr "Verifică documentația"
+
+#: inc/czr-customize.php:843
+msgid "Need help to create a slider ?"
+msgstr "Ai nevoie de ajutor pentur a crea un carusel?"
+
+#: inc/czr-customize.php:842
+msgid "Create a slider"
+msgstr "Creează un carusel"
+
+#: inc/czr-admin.php:732
+msgid "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr "Pentru a copia informațiile de sistem, dă un clic mai jos și apoi apasă Ctrl + C (PC) sau Cmd + C (Mac)."
+
+#: inc/czr-admin.php:731
+msgid "Please include the following informations when posting support requests"
+msgstr "Te rog include următoarele informații când faci o cerere de suport"
+
+#: inc/czr-admin.php:730
+msgid "System Informations"
+msgstr "Informații sistem"
+
+#: inc/czr-admin.php:655
+msgid "Go to Dashboard"
+msgstr "Mergi la panoul de control"
+
+#: inc/czr-admin.php:655
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Mergi la panoul de control &rarr; ecranul de start"
+
+#: inc/czr-admin.php:713
+msgid "Changelog in version %1$s"
+msgstr "Modificări în versiunea %1$s"
+
+#: inc/czr-admin.php:643
+msgid "Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do."
+msgstr "Crezi că ai făcut un sit excelent ce poate să-i inspire și pe alții? Înscrierea unui sit pentru evaluare poate fi făcută rapid și ușor."
+
+#: inc/czr-admin.php:641
+msgid "This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design."
+msgstr "Aceste exemplificări doresc să-ți arate ce poate fi făcut cu Customizr și să ajute alți utilizatori să găsească inspirație pentru designul lor web."
+
+#: inc/czr-admin.php:640
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Găsește inspirație pentru următorul tău sit web bazat pe Customizr!"
+
+#: inc/czr-admin.php:639 inc/czr-admin.php:646
+msgid "Visit the showcase"
+msgstr "Vizitează exemplificările"
+
+#: inc/czr-admin.php:636
+msgid "Customizr Showcase"
+msgstr "Exemplificări Customizr"
+
+#: inc/czr-admin.php:624
+msgid "Easily take your web design one step further"
+msgstr "Fă un pas înainte cu designul tău web"
+
+#: inc/czr-admin.php:623
+msgid "Visit the extension's page"
+msgstr "Vizitează pagina extensiei"
+
+#: inc/czr-admin.php:610
+msgid "Follow us"
+msgstr "Urmărește-ne"
+
+#: inc/czr-admin.php:605
+msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr "Dacă ești mulțumit de temă, spune-o pe wordpress.org și scrie o evaluare pozitivă despre Customizer! <br />(suntem dependenți de impresiile tale...)"
+
+#: inc/czr-admin.php:604
+msgid "Happy user of Customizr?"
+msgstr "Ești un utilizator mulțumit de Customizr?"
+
+#: inc/czr-admin.php:597
+msgid "<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it's continued development with a donation of $20, $50, or even $100."
+msgstr "<strong>Facem tot ce putem pentru a face Customizr tema gratuită perfectă pentru tine!</strong><br/> Te rog ajută-ne să sprijinim dezvoltarea sa continuă cu o donație de 20$, 50$, sau chiar 100$."
+
+#: inc/czr-admin.php:596
+msgid "We need sponsors!"
+msgstr "Avem nevoie de sponsori!"
+
+#: inc/czr-admin.php:579
+msgid "You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated."
+msgstr "Folosești o temă copil a Customizr %1$s: verifică întotdeauna %2$s după actualizare pentru a vedea dacă vreun șablon sau funcție au fost declarate învechite."
+
+#: inc/czr-admin.php:536
+msgid "Check the FAQ"
+msgstr "Verifică întrebările frecvente (FAQ)"
+
+#: inc/czr-admin.php:532
+msgid "Read the documentation"
+msgstr "Citește documentația"
+
+#: inc/czr-admin.php:466
+msgid "About Customizr"
+msgstr "Despre Customizr"
+
+#: inc/czr-admin.php:1847
+msgid "Current slide"
+msgstr "Diapozitiv curent"
+
+#: inc/czr-admin.php:1845
+msgid "Edit this slide"
+msgstr "Editează acest diapozitiv"
+
+#: inc/czr-admin.php:1819
+msgid "No Image Selected"
+msgstr "Nicio imagine selectată"
+
+#: inc/czr-admin.php:1777 inc/czr-front.php:2621 inc/czr-front.php:2654
+#: inc/czr-front.php:2669 inc/czr-front.php:2697 inc/czr-front.php:3212
+#: inc/czr-front.php:3786 inc/czr-front.php:4191 inc/czr-front.php:8875
+msgid "Edit"
+msgstr "Editare"
+
+#: inc/czr-admin.php:1775
+msgid "Button Text"
+msgstr "Text buton"
+
+#: inc/czr-admin.php:1774
+msgid "Slide Text"
+msgstr "Text diapozitiv"
+
+#: inc/czr-admin.php:1773
+msgid "Title"
+msgstr "Titlu"
+
+#: inc/czr-admin.php:1772
+msgid "Slide Image"
+msgstr "Imagine diapozitiv"
+
+#: inc/czr-admin.php:1762
+msgid "This slider has not slides to show. Go to the media library and start adding images to it."
+msgstr "Acest carusel nu are diapozitive de arătat. Mergi în biblioteca media și începe să-i adaugi imagini."
+
+#: inc/czr-admin.php:1634
+msgid "You haven't create any slider yet. Write a slider name and click on the button to add you first slider."
+msgstr "Încă nu ai creat niciun carusel. Scrie un nume pentur carusel și dă clic pe buton pentru a adăuga primul tău carusel."
+
+#: inc/czr-admin.php:1607 inc/czr-admin.php:1636
+msgid "Add a slider"
+msgstr "Adaugă un carusel"
+
+#: inc/czr-admin.php:1557
+msgid "No link"
+msgstr "Nicio legătură"
+
+#: inc/czr-admin.php:1552
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Alege o legătură la o pagină sau un articol (dintre ultimele 100)"
+
+#: inc/czr-admin.php:1545
+msgid "Button text (80 char. max length)"
+msgstr "Text buton (lungime maximă 80 de caractere)"
+
+#: inc/czr-admin.php:1537
+msgid "Title and text color"
+msgstr "Culoare titlu și text"
+
+#: inc/czr-admin.php:1530
+msgid "Description text (below the title, 250 char. max length)"
+msgstr "Text descriere (sub titlu, lungime maximă de 250 de caractere)"
+
+#: inc/czr-admin.php:1523
+msgid "Title text (80 char. max length)"
+msgstr "Text titlu (lungime maximă de 80 caractere)"
+
+#: inc/czr-admin.php:1377
+msgid "Add to a slider (create one if needed)"
+msgstr "Adaugă la un carusel (creează unul dacă trebuie)"
+
+#: inc/czr-admin.php:1375
+msgid "Add to a slider"
+msgstr "Adaugă la un carusel"
+
+#: inc/czr-admin.php:1223 inc/czr-customize.php:840
+msgid "You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders."
+msgstr "Încă nu ai creat niciun carusel. Mergi la biblioteca media, editează=ți imaginile și adaugă-le caruselelor tale."
+
+#: inc/czr-admin.php:1212 inc/czr-admin.php:1617
+msgid "Delete slider"
+msgstr "Ștergere carusel"
+
+#: inc/czr-admin.php:1209 inc/czr-admin.php:1614
+msgid "The slider will be deleted permanently (images, call to actions and link will be kept)."
+msgstr "Acest carusel va fi șters permanent (imaginile, apelurile la acțiune și legăturile vor fi păstrate)."
+
+#: inc/czr-admin.php:1204 inc/czr-admin.php:1610
+msgid "Delete this slider"
+msgstr "Șterge acest carusel"
+
+#: inc/czr-admin.php:1187
+msgid "Slider Layout : set the slider in full width"
+msgstr "Aranjament carusel: setează caruselul pe lățime completă"
+
+#: inc/czr-admin.php:1180
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Întârzierea între fiecare diapozitiv în milisecunde (implicit: 5000 ms)"
+
+#: inc/czr-admin.php:1176
+msgid "To create a new slider : open the media library, edit your images and add them to your new slider."
+msgstr "Pentru a creea un nou carusel: deschide biblioteca media, editează imaginile și adaugă-le noului tău carusel."
+
+#: inc/czr-admin.php:1153 inc/czr-admin.php:1601
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Selectează un carusel &mdash; "
+
+#: inc/czr-admin.php:1147 inc/czr-admin.php:1586
+msgid "Choose a slider"
+msgstr "Alege un carusel"
+
+#: inc/czr-admin.php:1081
+msgid "Add a slider to this post/page"
+msgstr "Adaugă un carusel acestui articol / acestei pagini"
+
+#: inc/czr-admin.php:1038
+msgid "Default layout %1s"
+msgstr "Aranjament implicit %1s"
+
+#: inc/czr-admin.php:1034
+msgid "Select a specific layout for %1$s"
+msgstr "Selectează un aranjament specific pentru %1$s"
+
+#: inc/czr-admin.php:1031 inc/czr-init.php:3535 inc/czr-init.php:3540
+#: inc/czr-init.php:4849
+msgid "here"
+msgstr "aici"
+
+#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+msgid "this post"
+msgstr "acest articol"
+
+#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+msgid "this page"
+msgstr "această pagină"
+
+#: inc/czr-admin.php:1029
+msgid "You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />"
+msgstr "Poți defini un aranjament specific pentru %1$s utilizându-le pe cele predefinite cu bare laterale. Aranjamentele implicite pot fi definite în ecranul WordPress de Personalizare %2$s.<br />"
+
+#: inc/czr-admin.php:1025
+msgid "Change layout options"
+msgstr "Schimbă opțiunile de aranjament"
+
+#: inc/czr-admin.php:1024
+msgid "You have checked the <i>\"Force global default layout for all posts and pages\"</i>, you must unchecked this option to enable a specific layout for this post."
+msgstr "Ai bifat <i>\"Forțează aranjamentul global pentru toate articolele și paginile\"</i>, trebuie să debifezi această opțiune pentru a permite un aranjament specific pentru acest articol."
+
+#: inc/czr-admin.php:1019
+msgid "posts"
+msgstr "articole"
+
+#: inc/czr-admin.php:1019
+msgid "pages"
+msgstr "pagini"
+
+#: inc/czr-admin.php:1019
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Aranjamentul implicit penturu %1$s este setat la : %2$s"
+
+#: inc/czr-admin.php:950 inc/czr-admin.php:1346
+msgid "Slider Options"
+msgstr "Opțiuni carusel"
+
+#: inc/czr-admin.php:942
+msgid "Layout Options"
+msgstr "Opțiuni aranjament"
+
+#: inc/czr-customize.php:672 inc/czr-customize.php:673
+msgid "Upgrade Wordpress Now"
+msgstr "Actualizează acum WordPress"
+
+#: inc/czr-customize.php:669
+msgid "This theme requires WordPress 3.4+"
+msgstr "Această temă necesită WordPress 3.4+"
+
+#: inc/czr-customize.php:649 inc/czr-customize.php:650
+msgid "Upgrade WP"
+msgstr "Actualizează WP"
+
+#: inc/czr-customize.php:633
+msgid "rating. Thanks :) !"
+msgstr "evaluare. Mulțumim :) !"
+
+#: inc/czr-customize.php:631
+msgid "Review the Customizr theme"
+msgstr "Recenzie a temei Customizr"
+
+#: inc/czr-customize.php:629
+msgid "we would love to receive a"
+msgstr "ne-am bucura să primim o"
+
+#: inc/czr-customize.php:628
+msgid "the Customizr pro theme"
+msgstr "tema Customizr Pro"
+
+#: inc/czr-customize.php:628
+msgid "the Customizr theme"
+msgstr "tema Customizr"
+
+#: inc/czr-customize.php:627
+msgid "If you like"
+msgstr "Dacă îți place"
+
+#: inc/czr-customize.php:616
+msgid "Customize your footer credits with Customizr Pro."
+msgstr "Personalizează-ți notele de subsol cu Customizr Pro."
+
+#: inc/czr-customize.php:576
+msgid "Add unlimited featured pages with Customizr Pro."
+msgstr "Adaugă un număr nelimitat de pagini reprezentative cu Customizr Pro."
+
+#: inc/czr-customize.php:565
+msgid "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro."
+msgstr "Ai nevoie de mai mult control asupra fonturilor? Stilează orice text în previzualizare live (mărime, culoare, familie de fonturi, efect, ...) cu Customizr Pro."
+
+#: inc/czr-admin.php:629
+msgid "Discover Customizr Pro"
+msgstr "Descoperă Customizr Pro"
+
+#: inc/czr-customize.php:546
+msgid "Let me think twice"
+msgstr "Lasă-mă să mă gândesc de două ori"
+
+#: inc/czr-customize.php:545
+msgid "Hide forever"
+msgstr "Ascunde pentru totdeauna"
+
+#: inc/czr-customize.php:544
+msgid "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>"
+msgstr "Odată ce ai apăsat butonul 'Ascunde pentru totdeauna', acest bloc despre donații nu va mai fi afișat niciodată. <br/> Fie că folosești Customizr în scop personal sau de afaceri, orice fel de sponsorizare va fi apreciată pentru sprijinirea acestei teme gratuite.<br/><strong>Ai donat deja? Mulțumesc, ești grozav!<br/><br/> Viață lungă și prosperă cu Customizr!</strong>"
+
+#: inc/czr-customize.php:541
+msgid "Make a donation for Customizr"
+msgstr "Fă o donație pentru Customizr"
+
+#: inc/czr-customize.php:536
+msgid "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support it's continued development with a donation !"
+msgstr "Fac tot ce pot mai bine ca tema Customizr să fie tema gratuită perfectă pentru tine. Dacă crezi că te-a ajutat în orice fel să construiești o mai bună prezență pe web, te rog sprijină-i dezvoltarea continuă cu o donație!"
+
+#: inc/czr-customize.php:533
+msgid ", developer of the Customizr theme"
+msgstr ", dezvoltatorul temei Customizr"
+
+#: inc/czr-customize.php:531
+msgid "Hi! This is"
+msgstr "Hei! Eu sunt"
+
+#: inc/czr-init.php:3538
+msgid "Jump to the blog design options"
+msgstr "Sari la opțiunile de design blog"
+
+#: inc/czr-customize.php:363
+msgid "More grid design options"
+msgstr "Mai multe opțiuni de design grid"
+
+#. Author URI of the plugin/theme
+msgid "http://presscustomizr.com/"
+msgstr "http://presscustomizr.com/"
+
+#. Author of the plugin/theme
+msgid "nikeo"
+msgstr "nikeo"
+
+#. Theme URI of the plugin/theme
+msgid "http://presscustomizr.com/customizr"
+msgstr "http://presscustomizr.com/customizr"

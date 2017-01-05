@@ -1,0 +1,3160 @@
+# Translation of Themes - Customizr in Finnish
+# This file is distributed under the same license as the Themes - Customizr package.
+msgid ""
+msgstr ""
+
+"Project-Id-Version: * Customizr v3.4.35\n"
+"Report-Msgid-Bugs-To: http://themesandco.com/contact/\n"
+"POT-Creation-Date: 2016-09-01 09:08+0200\n"
+"PO-Revision-Date: 2016-09-01 09:08+0200\n"
+"Last-Translator: Daniel Landau <daniel@landau.fi>\n"
+"Language-Team: Customizr translation contributors <contact@themesandco.com>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: fi\n"
+"Project-Id-Version: Themes - Customizr\n"
+
+#. Description of the plugin/theme
+msgid "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content."
+msgstr "Customizr on monipuolinen ja helposti muokattava Wordpress-teema, joka antaa verkkosivullesi välittömästi ammattimaisen ilmeen. Se on suunniteltu vierailijoiden sitouttamiseen ja antaa kenelle tahansa mahdollisuuden luoda kauniin, nopean ja mobiiliystävällisen sivuston, joka toimii kaikilla selaimilla ja laitteilla. Customizr toimii mainiosti tärkeimpien Wordpress-lisäosien, kuten WooCommercen, bbPressin ja JetPackin ja monien muiden kanssa. Customizr on kerännyt satoja huippuarvosteluja ja sen aktiivinen käyttäjien ja kehittäjien yhteisö tekee Customizrista varman ja luotettavan valinnan Wordpress-sisältösi julkaisemiseen."
+
+#. Theme Name of the plugin/theme
+msgid "Customizr"
+msgstr "Customizr"
+
+#: inc/czr-init.php:3083
+msgid "If enabled, your slides scroll slower than the page (parallax effect)."
+msgstr "Tämän ollessa valittuna Kuvasarajojen vieritys on hitaampi kuin sivun (parallaksi-efekti)"
+
+#: inc/czr-init.php:3080
+msgid "Sliders : use parallax scrolling"
+msgstr "käytä parallaksi-vieritystä"
+
+#: inc/czr-init.php:3300
+msgid "WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling."
+msgstr "WooCommerce: Tämän ollessa valittuna WooCommerce-ostoskorin kuvake pysyy vierityksen aikana näkyvissä."
+
+#: inc/czr-admin.php:545
+msgid "Get help in the free support forum"
+msgstr "Pyydä tukea ilmaisella tukifoorumilla"
+
+#: inc/czr-admin.php:545
+msgid "Get support"
+msgstr "Pyydä tukea"
+
+#: inc/czr-admin.php:541
+msgid "Code snippets for developers"
+msgstr "Koodinpätkiä kehittäjille"
+
+#: inc/czr-init.php:5199
+msgid "Front-end Icons (Font Awesome)"
+msgstr "Käyttöliittymän kuvakkeet (Font Awesome)"
+
+#: inc/czr-init.php:4847
+msgid "Check out some example of uses"
+msgstr "Katso esimerkkejä käyttötavoista"
+
+#: inc/czr-init.php:4846
+msgid "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS."
+msgstr "Kun tämä on valittuna, ladataan ylimääräinen Font Awesome CSS-tyylitiedosto. Tiedonsiirron vähentämiseksi tätä tyylitiedostoa ei ladata oletuksena, mutta saatat tarvita sitä, jos haluat käyttää kaikkia Font Awesome CSS-toimintoja."
+
+#: inc/czr-init.php:4842
+msgid "Load Font Awesome CSS"
+msgstr "Lataa Font Awesome CSS"
+
+#: inc/czr-init.php:4836
+msgid "When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
+msgstr "Kun tämä on valittuna, käyttöliittymään ladataan Font Awesome-kuvakkeet. Voit ladata Font Awesome-kuvakkeet käyttämällä mukautettua koodia tai antaa lisäosan tehdä sen puolestasi."
+
+#: inc/czr-init.php:4835
+msgid "Use with caution"
+msgstr "Käytä varoen"
+
+#: inc/czr-init.php:3588
+msgid "Display navigation in your home blog"
+msgstr "Näytä navigointi etusivulla"
+
+#: inc/czr-init.php:773
+msgid "Xing profile url"
+msgstr "Xing-profiilin URL"
+
+#: inc/czr-init.php:772
+msgid "Follow me on Xing"
+msgstr "Seuraa minua Xingissä"
+
+#: inc/czr-init.php:768
+msgid "Yelp profile url"
+msgstr "Yelp-profiilin URL"
+
+#: inc/czr-init.php:767
+msgid "Follow me on Yelp"
+msgstr "Seuraa minua Yelpissä"
+
+#: inc/czr-init.php:763
+msgid "VKontakte profile url"
+msgstr "VKontakte-profiilin URL"
+
+#: inc/czr-init.php:762
+msgid "Follow me on VKontakte"
+msgstr "Seuraa minua VKontaktessa"
+
+#: inc/czr-init.php:4831
+msgid "Load Font Awesome set of icons"
+msgstr "Lataa Font Awesome-kuvakkeet"
+
+#: inc/czr-init.php:3293
+msgid "Sticky header: display the shopping cart"
+msgstr "Kiinnittyvä otsake: näytä ostoskori"
+
+#: inc/czr-init.php:3247
+msgid "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline."
+msgstr "WooCommerce: kun tämä on valittuna, ostoskärryn kuvake sekä siellä olevien tuotteiden määrä näytetään otsakkeen valikkorivin vierellä."
+
+#: inc/czr-init.php:3244
+msgid "Display the shopping cart in the header"
+msgstr "Näytä ostoskori otsakkeessa"
+
+#: inc/czr-init.php:3127
+msgid "This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely."
+msgstr "Tämä ominaisuus on ilmestynyt WordPressin versiossa 4.4+ (dec-2015), ja se voi aiheuttaa lieviä sivuvaikutuksia joissakin vanhemmista kuvista. Valitse / jätä valitsematta tämä toiminto, niin voit varmistaa, että kuvasi näkyvät oikein."
+
+#: inc/czr-init.php:3125
+msgid "Enable the WordPress responsive image feature for the theme's thumbnails"
+msgstr "Käytä Wordpressin responsiivisen kuvan ominaisuutta teeman esikatselukuvissa"
+
+#: inc/czr-init.php:3118
+msgid "Enable the WordPress responsive image feature for the slider"
+msgstr "Käytä Wordpressin responsiivisen kuvan ominaisuutta kuvasarjassa"
+
+#: inc/czr-init.php:2280
+msgid "View your shopping cart"
+msgstr "Näytä ostoskori"
+
+#: inc/czr-init.php:3645
+msgid "You can choose to display only the sticky posts. If you're not sure how to set a sticky post, check"
+msgstr "Voit valita, että vain kiinnitetyt artikkelit näytetään. Jos et ole varma, miten artikkeli kiinnitetään, vilkaise"
+
+#: inc/czr-init.php:3640
+msgid "Include only sticky posts"
+msgstr "Näytä vain kiinnitetyt artikkelit"
+
+#: inc/czr-init.php:1609
+msgid "Posts slider button text"
+msgstr "Artikkelien kuvasarjan painikkeen teksti"
+
+#: inc/czr-init.php:1607
+msgid "Front page slider name"
+msgstr "Etusivun kuvasarjan nimi"
+
+#: inc/czr-front.php:9726
+msgid "Powered by"
+msgstr "Powered by"
+
+#: inc/czr-front.php:8915
+msgid "this slider"
+msgstr "tämä kuvasarja"
+
+#: inc/czr-front.php:8915
+msgid "the posts slider"
+msgstr "artikkelin kuvasarja"
+
+#: inc/czr-front.php:8914
+msgid "Customize or remove %s"
+msgstr "Mukauta tai poista %s"
+
+#: inc/czr-init.php:7592
+msgid "%s and check the option 'Load images on scroll' under 'Website Performances' section."
+msgstr "%s ja valitse asetus 'Lataa kuvat vieritettäessä' osiosta 'Sivuston suorituskyky'."
+
+#: inc/czr-init.php:7591
+msgid "Did you know you can easily speed up your page load by deferring the loading of the non visible images?"
+msgstr "Tiesitkö, että voit helposti nopeuttaa sivun latautumista lykkäämällä kuvaruudun ulkopuolisten kuvien lataamista?"
+
+#: inc/czr-init.php:697
+msgid "Contact E-mail address"
+msgstr "Lähetä sähköpostia"
+
+#: inc/czr-init.php:696
+msgid "E-mail"
+msgstr "Sähköposti"
+
+#: inc/czr-init.php:3597
+msgid "Apply a category filter to your home / blog posts"
+msgstr "Suodata etusivulla / blogissa näytettävät artikkelit kategorian perusteella"
+
+#: inc/czr-init.php:3533
+msgid "Set the number of posts to display"
+msgstr "Valitse näytettävien artikkelien määrä"
+
+#: inc/czr-init.php:3526
+msgid "Learn more about post categories in WordPress"
+msgstr "Lue lisää artikkelien kategorioista WordPressissä"
+
+#: inc/czr-init.php:3524
+msgid "Click inside the above field and pick post categories you want to display. No filter will be applied if empty."
+msgstr "Klikkaa ylläolevaa kenttää ja valitse ne kategoriat, joiden artikkelit haluat näyttää. Jos kenttä on tyhjä, artikkeleita ei suodateta."
+
+#: inc/czr-front.php:9427
+msgid "There is no excerpt because this is a protected post."
+msgstr "Otetta ei näytetä, koska artikkeli on suojattu."
+
+#: inc/czr-front.php:9402
+msgid "Protected: %s"
+msgstr "Suojattu: %s"
+
+#: inc/czr-init.php:5397
+msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
+msgstr "&mdash; Blogisi artikkeleista automaattisesti luotu kuvasarja &mdash;"
+
+#: inc/czr-init.php:3698
+msgid "When checked, the front page slider occupies the full viewport's width"
+msgstr "Kun tämä on valittu, etusivun kuvasarja venytetään koko ruudun leveydelle"
+
+#: inc/czr-init.php:3688
+msgid "The button text will be limited to 80 chars max. Leave this field empty to hide the button"
+msgstr "Painikkeet teksti rajoitetaan enintään 80 merkkiin. Painiketta ei näytetä, jos tämä kenttä jätetään tyhjäksi."
+
+#: inc/czr-init.php:3677
+msgid "Entire slide and call to action button"
+msgstr "Koko kuvaan ja painikkeeseen"
+
+#: inc/czr-init.php:3676
+msgid "Entire slide"
+msgstr "Koko kuvaan"
+
+#: inc/czr-init.php:3675
+msgid "Call to action button"
+msgstr "Painikkeeseen"
+
+#: inc/czr-init.php:3671
+msgid "Link post with"
+msgstr "Linkitä artikkeli"
+
+#: inc/czr-init.php:3666
+msgid "The excerpt will be limited to 80 chars max"
+msgstr "Ote rajoitetaan enintään 80 merkkiin"
+
+#: inc/czr-init.php:3657
+msgid "The title will be limited to 80 chars max"
+msgstr "Otsikon pituus on rajoitettu 80 merkkiin."
+
+#: inc/czr-init.php:3653
+msgid "Display the title"
+msgstr "Näytä otsikko"
+
+#: inc/czr-init.php:3646
+msgid "the WordPress documentation."
+msgstr "WordPressin dokumentaatiosta."
+
+#: inc/czr-init.php:3635
+msgid "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website."
+msgstr "Kuvasarjaan kelpaavat vain sellaiset artikkelit, joilla on artikkelikuva tai jotka vähintäänkin sisältävät kuvan. Artikkeleiden perusteella luotujen kuvien määrä ei ylitä sivustolla käytettävissä olevien artikkelien määrää."
+
+#: inc/czr-init.php:3631
+msgid "Number of posts to display"
+msgstr "Kuinka monta julkaisua näytetään"
+
+#: inc/czr-admin.php:1861
+msgid "Slider documentation"
+msgstr "Kuvasarjojen dokumentaatio"
+
+#: inc/czr-admin.php:1859
+msgid "For more informations about sliders, check the documentation page :"
+msgstr "Lisätietoa kuvasarjoista löydät dokumentaatiosivulta:"
+
+#: inc/czr-admin.php:1858
+msgid "To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page."
+msgstr "Lisää uusi kuva: navigoin mediakirjastoon (klikkaa Media), avaa valitsemasi kuvan muokkausnäkymä (tai lisää uusi kuva), ja lopuksi lisää kuva haluamaasi kuvasarjaan käyttämällä siihen tarkoitettuja asetuksia sivun alalaidassa."
+
+#: inc/czr-customize.php:556 inc/czr-customize.php:567
+#: inc/czr-customize.php:578 inc/czr-customize.php:592
+#: inc/czr-customize.php:606 inc/czr-customize.php:618
+msgid "Upgrade to Customizr Pro"
+msgstr "Päivitä Customizr Pro-versioon."
+
+#: inc/czr-customize.php:471
+msgid "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any."
+msgstr "Tämä valinta luo etusivullesi kuvasarjan, joka perustuu viimeisimpiin artikkeleihisi alkaen uusimmista tai kiinnitetyistä artikkeleista, jos niitä on."
+
+#: inc/czr-init.php:3427
+msgid "Change the header layout"
+msgstr "Muuta otsakkeen asettelua"
+
+#: inc/czr-init.php:3426
+msgid "jump to the Design and Layout section"
+msgstr "siirry Sommittelu-osioon"
+
+#: inc/czr-init.php:3423
+msgid "To change the global header layout, %s"
+msgstr "Vaihtaaksesi yleistä otsakkeen asettelua %s"
+
+#: inc/czr-customize.php:472
+msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
+msgstr "Sivuston kuvake (favicon) on lisätty vanhalla menetelmällä eikä se näy oikein kaikilla laitteilla. Saatat haluta ladata sen uudelleen käyttäen allaolevaa uudistettua hallintaa."
+
+#: inc/czr-customize.php:150
+msgid "SITE ICON"
+msgstr "SIVUSTON IKONI"
+
+#: inc/czr-front.php:884
+msgid "Open the menu"
+msgstr "Avaa valikko"
+
+#: inc/czr-front.php:1073
+msgid "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed."
+msgstr "Valikosta voi tehdä nyt pystysuoran ja mobiiliystävällisen sivuvalikon, joka tulee esiin animoituna."
+
+#: inc/czr-front.php:1074
+msgid "%s or %s."
+msgstr "%s tai %s."
+
+#: inc/czr-front.php:1075
+msgid "Try it with the demo"
+msgstr "Kokeile esittelyversiota"
+
+#: inc/czr-front.php:1076
+msgid "open the customizer menu section"
+msgstr "avaa valikon mukautusosio"
+
+#: inc/czr-front.php:1076
+msgid "change your menu design now"
+msgstr "muuta valikon asettelua heti"
+
+#: inc/czr-front.php:1100
+msgid "You can display your main menu or a second menu here horizontally."
+msgstr "Päävalikko tai jokin muu valikko voidaan näyttää täällä vaakasuuntaisena."
+
+#: inc/czr-front.php:1101
+msgid "%s or read the %s."
+msgstr "%s tai katso %s"
+
+#: inc/czr-front.php:1102
+msgid "Manage menus in the header"
+msgstr "Hallitse otsakkeen valikkoja"
+
+#: inc/czr-front.php:1102
+msgid "Manage your menus in the header now"
+msgstr "Hallitse otsakkeen valikkoja heti"
+
+#: inc/czr-front.php:1522
+msgid "Pages"
+msgstr "Sivut"
+
+#: inc/czr-front.php:877
+msgid "Menu"
+msgstr "Valikko"
+
+#: inc/czr-front.php:877 inc/czr-front.php:884
+msgid "Close"
+msgstr "Sulje"
+
+#: inc/czr-init.php:5155
+msgid "Socials in Sidebars"
+msgstr "Sosiaaliset linkit sivupalkeissa"
+
+#: inc/czr-init.php:5157
+msgid "Set up your social profiles links in the sidebar(s)."
+msgstr "Aseta sosiaalisen median linkit sivupalkkeihin."
+
+#: inc/czr-init.php:5194
+msgid "Front-end placeholders and help blocks"
+msgstr "Käyttöliittymän paikkamerkit ja apupalkit"
+
+#: inc/czr-front.php:3569
+msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
+msgstr "Muokkaa näitä valikoituja sivuja %s tai %s (voit luoda lisää myöhemmin)."
+
+#: inc/czr-front.php:3570
+msgid "Edit those featured pages"
+msgstr "Muokkaa näitä valikoituja sivuja"
+
+#: inc/czr-front.php:3570 inc/czr-front.php:7876 inc/czr-front.php:8973
+#: inc/czr-front.php:9631
+msgid "now"
+msgstr "heti"
+
+#: inc/czr-front.php:3571
+msgid "Remove the featured pages"
+msgstr "Poista valikoidut sivut"
+
+#: inc/czr-front.php:3696
+msgid "Edit now."
+msgstr "Muokkaa heti."
+
+#: inc/czr-front.php:3571
+msgid "remove them"
+msgstr "poista ne"
+
+#: inc/czr-front.php:4857
+msgid "You can display your post's featured image here if you have set one."
+msgstr "Voit näyttää tässä artikkelisi artikkelikuvan, jos sellainen on asetettuna."
+
+#: inc/czr-front.php:4858
+msgid "%s to display a featured image here."
+msgstr "%s näyttääksesi tässä artikkelikuvan."
+
+#: inc/czr-front.php:4859 inc/czr-init.php:7593
+msgid "Jump to the customizer now"
+msgstr "Siirry heti muokkaimeen"
+
+#: inc/czr-front.php:7871
+msgid "The %s sidebar has no widgets."
+msgstr "Sivupalkissa %s ei ole vimpaimia."
+
+#: inc/czr-front.php:7875
+msgid "Add widgets to this sidebar %s or %s."
+msgstr "Lisää vimpaimia sivupalkkiin %s tai %s."
+
+#: inc/czr-front.php:7878 inc/czr-front.php:9633
+msgid "dismiss this notice"
+msgstr "poista huomautus"
+
+#: inc/czr-front.php:8972
+msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
+msgstr "Valitse oma kuvasarjasi %s tai %s (voit luoda lisää myöhemmin)."
+
+#: inc/czr-front.php:8782
+msgid "Go to"
+msgstr "Siirry kohteeseen"
+
+#: inc/czr-front.php:8973
+msgid "Select your own slider"
+msgstr "Valitse oma kuvasarjasi"
+
+#: inc/czr-front.php:8974
+msgid "Remove the home page slider"
+msgstr "Poista etusivun kuvasarja"
+
+#: inc/czr-front.php:9630
+msgid "Add widgets to the footer %s or %s."
+msgstr "Lisää vimpaimia alatunnisteeseen %s tai %s."
+
+#: inc/czr-front.php:8974
+msgid "remove this demo slider"
+msgstr "poista tämä esittelyluontoinen kuvasarja"
+
+#: inc/czr-front.php:817
+msgid "This is a default page menu."
+msgstr "Tämä on oletusarvoinen sivuvalikko."
+
+#: inc/czr-front.php:818
+msgid "( If you don't have any pages in your website, then this side menu is empty for the moment. )"
+msgstr "(Jos sivustollasi ei ole yhtään sivua, niin tämä sivupalkki on toistaiseksi tyhjä.)"
+
+#: inc/czr-front.php:819
+msgid "If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s."
+msgstr "Jos olet jo luonut valikoita, voit %s. Jos haluat luoda uuden valikon, siirry %s."
+
+#: inc/czr-front.php:820
+msgid "change the default menu"
+msgstr "vaihda oletusvalikko"
+
+#: inc/czr-front.php:820
+msgid "replace this default menu by another one"
+msgstr "korvata tämän oletusvalikon toisella valikolla"
+
+#: inc/czr-front.php:821
+msgid "menu creation screen"
+msgstr "valikon luonti-ikkunaan"
+
+#: inc/czr-init.php:3497
+msgid "Remove all the menus."
+msgstr "Poista kaikki valikot."
+
+#: inc/czr-init.php:3498
+msgid "Don't display any menus in the header of your website"
+msgstr "Älä näytä mitään valikoita sivuston otsakkeessa"
+
+#: inc/czr-init.php:3502
+msgid "Use with caution : provide an alternative way to navigate in your website for your users."
+msgstr "Käytä harkiten: vaatii loppukäyttäjiä varten vaihtoehtoisen ratkaisun sivuston navigointiin."
+
+#: inc/czr-init.php:3864
+msgid "The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."
+msgstr "Ylläolevat valinnat määrittävät artikkelien ja sivujen yleisen asettelutavan. Voit kuitenkin valita asettelutavan jokaiselle artikkelille ja sivulle yksitellen. Lue lisää %s."
+
+#: inc/czr-init.php:3865
+msgid "Customizr theme documentation"
+msgstr "Customizr-teeman dokumentaatio"
+
+#: inc/czr-init.php:3868
+msgid "If you need to change the layout design of the front page, then open the 'Front Page' section above this one."
+msgstr "Jos haluat muuttaa etusivun asettelua, avaa ylläoleva 'Etusivu'-osio."
+
+#: inc/czr-init.php:4160
+msgid "You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually."
+msgstr "Artikkelikuva (tunnetaan myös artikkelin esikatselukuvana) voidaan näyttää ennen artikkelin varsinaista sisältöä, kun artikkeli esitetään yksitellen."
+
+#: inc/czr-front.php:4861 inc/czr-init.php:4161
+msgid "Don't know how to set a featured image to a post? Learn how in the %s."
+msgstr "Etkö ole ennen asettanut artikkeliin artikkelikuvaa? Lue lisäohjeita %s."
+
+#: inc/czr-init.php:4718
+msgid "Stick the footer to the bottom of the page"
+msgstr "Kiinnitä alaviite sivun alaosaan"
+
+#: inc/czr-init.php:4815
+msgid "Display help notices on front-end for logged in users."
+msgstr "Näytä apuhuomautuksia sivustolle kirjautuneille käyttäjille."
+
+#: inc/czr-init.php:4818
+msgid "When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
+msgstr "Kun tämä on valittuna, näet sivustollasi erilaisia apuhuomautuksia ja joitakin paikkamerkkilohkoja. Ne ovat näkyvissä vain kirjautuneille käyttäjille, joilla on ylläpito-oikeudet."
+
+#: inc/czr-init.php:4886
+msgid "Sidebars"
+msgstr "Sivuplakit"
+
+#: inc/czr-init.php:4887
+msgid "Sidebars settings for the Customizr theme."
+msgstr "Sivupalkin asetukset Customizr-teemalle."
+
+#: inc/czr-init.php:4976 inc/czr-init.php:4984
+msgid "You can create new menu and edit your menu's content %s."
+msgstr "Voit luoda uusia valikoita ja muokata valikoiden sisältöjä %s."
+
+#: inc/czr-init.php:4979
+msgid "on the Menus screen in the Appearance section"
+msgstr "Valikoiden muokkausnäkymässä Ulkoasun asetuksissa"
+
+#: inc/czr-init.php:4980 inc/czr-init.php:4988
+msgid "create/edit menus"
+msgstr "luo/muokkaa valikkoja"
+
+#: inc/czr-init.php:4987
+msgid "in the menu panel"
+msgstr "valikkorivillä"
+
+#: inc/czr-init.php:4993
+msgid "If a menu location has no menu assigned to it, a default page menu will be used."
+msgstr "Jos valikon paikalle ei ole valittuna ainuttakaan valikkoa, käytetään oletuksena sivuvalikkoa."
+
+#: inc/czr-init.php:5053
+msgid "Smooth Scroll"
+msgstr "Pehmeä vieritys"
+
+#: inc/czr-init.php:5055
+msgid "Smooth Scroll settings"
+msgstr "Pehmeän vierityksen asetukset"
+
+#: inc/czr-init.php:5068
+msgid "Navigation Menus"
+msgstr "Navigaatiovalikot"
+
+#: inc/czr-init.php:3376
+msgid "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header."
+msgstr "Jos olet asettanut päävalikkosi pystysuoraksi sivunavigointipalkiksi, voit valita tämän lisätäksesi täydentävän vaakasuoran valikon otsakkeessa."
+
+#: inc/czr-init.php:3372
+msgid "Display a secondary (horizontal) menu in the header."
+msgstr "Näytä toinen (vaakasuora) valikko otsakkeessa."
+
+#: inc/czr-init.php:3328
+msgid "Also applied to the secondary menu if any."
+msgstr "Vaikuttaa myös toissijaiseen valikkoon, jos sellainen on määritelty."
+
+#: inc/czr-init.php:3381
+msgid "Main menu design"
+msgstr "Päävalikon asettelu"
+
+#: inc/czr-init.php:3382
+msgid "Select a design : side menu (vertical) or regular (horizontal)"
+msgstr "Valitse asettelu: sivuvalikko (pystysuora) tai tavallainen (vaakasuora)"
+
+#: inc/czr-init.php:3386
+msgid "Regular (horizontal)"
+msgstr "Tavallinen (vaakasuora)"
+
+#: inc/czr-init.php:3387
+msgid "Side Menu (vertical)"
+msgstr "Sivuvalikko (pystysuora)"
+
+#: inc/czr-init.php:3394
+msgid "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport."
+msgstr "Rajoita aukeava valikon korkeus enintään ruudun korkuiseksi mobiililaitteilla (responsiivinen)."
+
+#: inc/czr-init.php:3403
+msgid "Display a label next to the menu button."
+msgstr "Näytä pienoiskuvake menuvalikon vieressä."
+
+#: inc/czr-init.php:3407
+msgid "Note : the label is hidden on mobile devices."
+msgstr "Huomio: pienoiskuvake on piilotettu mobiililaitteilla."
+
+#: inc/czr-init.php:3412
+msgid "Menu position (for \"main\" menu)"
+msgstr "Valikon sijainti (päävalikolle)"
+
+#: inc/czr-init.php:3422
+msgid "When the menu style is set to \"Side Menu\", the menu position is the side on which the menu will be revealed."
+msgstr "Kun valikon tyyliksi valitaan \"Sivuvalikko\", valikon sijainti tarkoittaa sitä puolta, josta valikko ilmestyy."
+
+#: inc/czr-init.php:3436
+msgid "Secondary (horizontal) menu design"
+msgstr "Toissijaisen (pystysuoran) valikon asettelu"
+
+#: inc/czr-init.php:3437
+msgid "Menu position (for the horizontal menu)"
+msgstr "Valikon sijaini (vaakasuorassa valikossa)"
+
+#: inc/czr-init.php:3482
+msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
+msgstr "Valitse mobiililaiteiden (responsiivinen) toiminta toissijaiselle valikolle."
+
+#: inc/czr-init.php:3487
+msgid "Move after inside the side menu "
+msgstr "Siirrä loppuun sivuvalikon sisällä"
+
+#: inc/czr-init.php:3486
+msgid "Move before inside the side menu "
+msgstr "Siirrä alkuun sivuvalikon sisällä"
+
+#: inc/czr-init.php:3488
+msgid "Display in the header"
+msgstr "Näytä otsakkeessa"
+
+#: inc/czr-init.php:3489
+msgid "Hide"
+msgstr "Piilota"
+
+#: inc/czr-admin.php:626
+msgid "The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones."
+msgstr "Customizr Pro on Wordpress-teema, joka antaa kenelle tahansa mahdollisuuden luoda kaunis, ammattimainen ja täysin responsiivinen sivusto vain muutamassa sekunnissa. Pro-versiossa on kaikki ilmaisen version ominaisuudet ja lisäksi joitakin aivan huippuja ja jopa kumouksellisia toimintoja."
+
+#: inc/czr-init.php:1034
+msgid "Secondary (horizontal) Menu"
+msgstr "Toissijainen (vaakasuora) valikko"
+
+#: inc/czr-init.php:2858
+msgid "Disabled if the random option is on."
+msgstr "Pois käytöstä, jos 'satunnainen' valinta on käytössä."
+
+#: inc/czr-init.php:2925
+msgid "Important note"
+msgstr "Tärkeä huomautus"
+
+#: inc/czr-init.php:2925
+msgid "this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option."
+msgstr "tämä valinta saattaa aiheuttaa ongelmia joidenkin lisäosien kanssa. Varmista, että kaikki lisäosasi (jos sellaisia on) toimivat oikein, kun tämä asetus on valittuna."
+
+#: inc/czr-init.php:3186
+msgid "Enable Smooth Scroll"
+msgstr "Ota käyttöön pehmeä vieritys"
+
+#: inc/czr-init.php:3190
+msgid "This option enables a smoother page scroll."
+msgstr "Tämä valinta mahdollistaa sivun pehmeämmän vierityksen."
+
+#: inc/czr-init.php:3212
+msgid "Choose a layout for the header"
+msgstr "Valitse otsakkeen asettelu"
+
+#: inc/czr-init.php:3221
+msgid "This setting might impact the side on which the menu is revealed."
+msgstr "Tämä asetus saattaa vaikuttaa siihen, kummalta puolelta valikko ilmestyy."
+
+#: inc/czr-admin.php:522
+msgid "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums."
+msgstr "Jos et löydä dokumentaatiosta vastausta ongelmaasi, älä hätäile! Customizr-teemaa käyttää alati kasvava yhteisö web-ylläpitäjiä, jotka raportoivat virheistä ja tekevät yhä uusia parannuksia. Jos sinulla on ongelma teeman käytössä, on hyvin mahdollista, että se on jo raportoitu ja korjattu tukifoorumeilla."
+
+#: inc/czr-admin.php:523
+msgid "The easiest way to search in the support forums is to use our Google powered search engine on our %s."
+msgstr "Helpoin tapa hakea tietoa tukifoorumeilta on käyttää Googlen hakukonetta %s."
+
+#: inc/czr-admin.php:524
+msgid "home page"
+msgstr "kotisivu"
+
+#: inc/czr-admin.php:556
+msgid "Thank you for using %s!"
+msgstr "Kiitos siitä, että valintasi on %s!"
+
+#: inc/czr-admin.php:557
+msgid "%s %s has more features, is safer and more stable than ever to help you designing an awesome website."
+msgstr "%s %s on monipuolisempi, turvallisempi ja vakaampi kuin koskaan, jotta sinä voisit suunnitella mahtavan nettisivuston."
+
+#: inc/czr-admin.php:558
+msgid "check the changelog"
+msgstr "vilkaise muutoslokia"
+
+#: inc/czr-admin.php:562
+msgid "The best way to start with %s is to read the %s and visit the %s."
+msgstr "Paras tapa aloittaa %s-teeman käyttö on lukea %s ja vilkaista %s."
+
+#: inc/czr-admin.php:620
+msgid "Go Customizr Pro"
+msgstr "Hanki Customizr Pro"
+
+#: inc/czr-admin.php:565
+msgid "demo website"
+msgstr "demo-sivusto"
+
+#: inc/czr-admin.php:499
+msgid "Need help with"
+msgstr "Tarvitsetko opastusta teemaan"
+
+#: inc/czr-admin.php:517
+msgid "The best way to start is to read the %s."
+msgstr "Paras tapa aloittaa on lukea %s."
+
+#: inc/czr-admin.php:504
+msgid "Welcome to"
+msgstr "Tervetuloa käyttämään teemaa "
+
+#: inc/czr-admin.php:518 inc/czr-admin.php:564 inc/czr-front.php:1103
+msgid "documentation"
+msgstr "dokumentaatio"
+
+#: inc/czr-admin.php:328
+msgid "Good, you've just upgraded to"
+msgstr "Hyvä, olet juuri päivittänyt versioon"
+
+#: inc/czr-admin.php:339
+msgid "We'd like to introduce the new features we've been working on."
+msgstr "Haluaisimme esitellä uusia ominaisuuksia, joita olemme työstäneet."
+
+#: inc/czr-admin.php:330
+msgid "version"
+msgstr "versio"
+
+#: inc/czr-admin.php:341
+msgid "Read the latest release notes"
+msgstr "Lue viimeisimmät julkaisumuistiinpanot"
+
+#: inc/czr-admin.php:343
+msgid "Visit the demo"
+msgstr "Vieraile esittelysivustolla"
+
+#: inc/czr-admin.php:349
+msgid "I already know what's new thanks !"
+msgstr "Olen jo lukenut uusista ominaisuuksista, kiitos vain!"
+
+#: inc/czr-admin.php:350
+msgid "close"
+msgstr "sulje"
+
+#: inc/czr-admin.php:1579
+msgid "Link the whole slide"
+msgstr "Linkitä koko kuva"
+
+#: inc/czr-admin.php:1776
+msgid "Link"
+msgstr "Linkki"
+
+#: inc/czr-customize.php:131
+msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
+msgstr "Et ole vielä luonut ainuttakaan valikkoa. %s tai vilkaise %s oppiaksesi lisää valikoista."
+
+#: inc/czr-customize.php:121
+msgid "Assign menus to locations"
+msgstr "Määritä valikoille sijainti"
+
+#: inc/czr-customize.php:132
+msgid "Create a new menu now"
+msgstr "Lisää uusi valikko tästä"
+
+#: inc/czr-customize.php:133 inc/czr-front.php:4862 inc/czr-init.php:4162
+msgid "WordPress documentation"
+msgstr "Wordpressin dokumentaatio"
+
+#: inc/czr-customize.php:528
+msgid "dismiss"
+msgstr "Sulje"
+
+#: inc/czr-customize.php:588
+msgid "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer."
+msgstr "Löydä uudelleen blogiartikkelin kauneus ja sitouta vierailijoitasi käyttämällä Grid Customizer-taulukkoa."
+
+#: inc/czr-customize.php:602
+msgid "Add creative and engaging reveal animations to your side menu."
+msgstr "Lisää sivuvalikollesi luovia ja tarttuvia paljastusanimaatioita."
+
+#: inc/czr-customize.php:589
+msgid "Try it in the demo"
+msgstr "Testaa tätä esittelysivulla"
+
+#: inc/czr-customize.php:603
+msgid "Side menu animation demo"
+msgstr "Sivupalkin animaatio esittely"
+
+#: inc/czr-admin.php:1566
+msgid "or a custom link (leave this empty if you already selected a page or post above)"
+msgstr "tai mukailtu linkki (jätä tämä kenttä tyhjäksi, jos olet jo valinnut yllä sivun tai artikkelin)"
+
+#: inc/czr-admin.php:1572
+msgid "Open link in a new page/tab"
+msgstr "Avaa linkki uuteen välilehteen"
+
+#: inc/czr-customize.php:85
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Valitse &mdash;"
+
+#. Template Name of the plugin/theme
+msgid "Custom Page Example"
+msgstr "Mukautetun sivun esimerkki"
+
+#: inc/czr-front.php:910
+msgid "Add a menu"
+msgstr "Lisää valikko"
+
+#: inc/czr-front.php:309
+msgid "Back Home"
+msgstr "Takaisin etusivulle"
+
+#: inc/czr-front.php:9751
+msgid "Back to top"
+msgstr "Takaisin ylös"
+
+#: inc/czr-front.php:9626
+msgid "The footer has no widgets"
+msgstr "alaviitteessä ei ole vimpaimia"
+
+#: inc/czr-front.php:9056
+msgid "Check the slider doc now &raquo;"
+msgstr "Vilkaiset kuvasarjan ohjeet saman tien &raquo;"
+
+#: inc/czr-front.php:9054
+msgid "Easily create sliders and add them in any posts or pages."
+msgstr "Luo uusia kuvasarjoja helposti ja lisää ne helposti mihin tahansa artikkeliin tai sivuun."
+
+#: inc/czr-front.php:9050
+msgid "Check the front page slider doc &raquo;"
+msgstr "Vilkaise etusivun kuvasarjan ohjeet &raquo;"
+
+#: inc/czr-front.php:9048
+msgid "Discover how to replace or remove this demo slider."
+msgstr "Ota selvää, miten voit korvata tai poistaa tämän esimerkkikuvasarjan."
+
+#: inc/czr-front.php:825 inc/czr-front.php:1080 inc/czr-front.php:1107
+#: inc/czr-front.php:3575 inc/czr-front.php:4866 inc/czr-front.php:7891
+#: inc/czr-front.php:8978 inc/czr-front.php:9639 inc/czr-init.php:7597
+msgid "dismiss notice"
+msgstr "poista huomautus"
+
+#: inc/czr-front.php:7887
+msgid "See the theme documentation."
+msgstr "Katso teeman dokumentaatio"
+
+#: inc/czr-front.php:7886
+msgid "Changing the layout in the Customizr theme"
+msgstr "Asettelun muokkaaminen Customizr-teemassa"
+
+#: inc/czr-front.php:7884
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr "Voit myös poistaa tämän sivupalkin muuttamalla sivun asettelua."
+
+#: inc/czr-front.php:7876 inc/czr-front.php:9631
+msgid "Add widgets"
+msgstr "Lisää vimpaimia"
+
+#: inc/czr-front.php:7867 inc/czr-front.php:9622
+msgid "This block is visible for admin users only."
+msgstr "Tämä palkki näkyy vain ylläpitäjille."
+
+#: inc/czr-front.php:7326
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Uudemmat artikkelit <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:7306
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vanhemmat artikkelit"
+
+#: inc/czr-front.php:7238 inc/czr-front.php:7293
+msgid "Post navigation"
+msgstr "Artikkelien navigointi"
+
+#: inc/czr-front.php:7128
+msgid "by"
+msgstr "kirjoittajalta"
+
+#: inc/czr-front.php:7105
+msgid "tagged"
+msgstr "tagit:"
+
+#: inc/czr-front.php:7055
+msgid "Open"
+msgstr "Avaa"
+
+#: inc/czr-front.php:7035
+msgid "View all posts by %s"
+msgstr "Katso kaikki artikkelit tekijältä %s"
+
+#: inc/czr-front.php:6900
+msgid "View all posts in %s"
+msgstr "Katso kaikki artikkelit kategoriassa %s"
+
+#: inc/czr-front.php:6839
+msgid "(updated on %1$s)"
+msgstr "(muokattu %1$s)"
+
+#: inc/czr-front.php:6836
+msgid "(updated 1 day ago)"
+msgstr "(muokattu eilen)"
+
+#: inc/czr-front.php:6835
+msgid "(updated %s days ago)"
+msgstr "(muokattu %s päivää sitten)"
+
+#: inc/czr-front.php:6835
+msgid "(updated today)"
+msgstr "(muokattu tänään)"
+
+#: inc/czr-front.php:6819 inc/czr-front.php:6821
+msgid "by %1$s"
+msgstr "%1$s mennessä"
+
+#: inc/czr-front.php:6819
+msgid "This entry was posted"
+msgstr "Julkaistu"
+
+#: inc/czr-front.php:6807
+msgid "and posted on %1$s"
+msgstr "ja julkaistu %1$s"
+
+#: inc/czr-front.php:6805
+msgid "on %1$s"
+msgstr "%1$s"
+
+#: inc/czr-front.php:6803
+msgid "This entry was posted on %1$s"
+msgstr "Julkaistu %1$s"
+
+#: inc/czr-front.php:6794
+msgid "This entry was tagged %2$s"
+msgstr "Julkaistu tageilla %2$s"
+
+#: inc/czr-front.php:6792
+msgid "This entry was posted in %1$s"
+msgstr "Julkaistu kategoriassa %1$s"
+
+#: inc/czr-front.php:6790
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr "tämä julkaistiin kategoriassa %1$s tagilla %2$s"
+
+#: inc/czr-front.php:6728
+msgid "Return to "
+msgstr "Takaisin kohteeseen"
+
+#: inc/czr-front.php:6728 inc/czr-front.php:7104
+msgid "in"
+msgstr "in"
+
+#: inc/czr-front.php:6727
+msgid "Link to full-size image"
+msgstr "Linkki täysikokoisiin kuviin"
+
+#: inc/czr-front.php:6727
+msgid "at dimensions"
+msgstr "resoluutiot"
+
+#: inc/czr-front.php:6724
+msgid "Published"
+msgstr "Julkaistu"
+
+#: inc/czr-front.php:6705
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr "<span class=\"by-author\"> %2$s</span> julkaisi tämän %1$s."
+
+#: inc/czr-front.php:4795
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Katso kaikki artikkelit käyttäjältä %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4595 inc/czr-front.php:4753 inc/czr-front.php:5231
+msgid "Pages:"
+msgstr "Sivut:"
+
+#: inc/czr-front.php:4593 inc/czr-front.php:4752 inc/czr-front.php:5229
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Jatka lukemista <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4364
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:4364
+msgid "Yearly Archives: %s"
+msgstr "Vuotuiset arkistot: %s"
+
+#: inc/czr-front.php:4363
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:4363
+msgid "Monthly Archives: %s"
+msgstr "Kuukausittaiset arkistot: %s"
+
+#: inc/czr-front.php:4362
+msgid "Archives"
+msgstr "Arkisto"
+
+#: inc/czr-front.php:4362
+msgid "Daily Archives: %s"
+msgstr "Päivittäiset arkistot: %s"
+
+#: inc/czr-front.php:4322 inc/czr-front.php:4791
+msgid "About %s"
+msgstr "Lisätietoa aiheesta %s"
+
+#: inc/czr-front.php:4288
+msgid "No"
+msgstr "Ei"
+
+#: inc/czr-front.php:4274
+msgid "Ooops, page not found"
+msgstr "Ups, sivua ei löytynyt"
+
+#: inc/czr-front.php:4136
+msgid "Permalink to %s"
+msgstr "Kestolinkki kohteeseen %s"
+
+#: inc/czr-front.php:4132 inc/czr-front.php:4137
+msgid "{no title} Read the post &raquo;"
+msgstr "{ei otsikkoa} Lue artikkeli &raquo;"
+
+#: inc/czr-front.php:3919
+msgid "Missing Attachment"
+msgstr "Liitetiedosto puuttuu"
+
+#: inc/czr-front.php:3707
+msgid "Featured page description text : use the page excerpt or set your own custom text in the Customizr screen."
+msgstr "Korostetun sivun kuvausteksti: käytä sivun Otetta tai aseta mukautettu teksti Customizr:in valikossa."
+
+#: inc/czr-front.php:3703
+msgid "Featured page"
+msgstr "Ehdotettu sivu"
+
+#: inc/czr-front.php:3695
+msgid "Customizer screen"
+msgstr "Customizr-ikkuna"
+
+#: inc/czr-front.php:3381
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "kommentti"
+msgstr[1] "kommentit"
+
+#: inc/czr-front.php:3362
+msgid "Comment(s) on"
+msgstr "Kommentit aiheesta"
+
+#: inc/czr-front.php:3339
+msgid "Leave a comment"
+msgstr "Jätä kommentti"
+
+#: inc/czr-front.php:3304
+msgid "Comments are closed."
+msgstr "Kommentointi on suljettu."
+
+#: inc/czr-front.php:3272
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Uudemmat kommentit <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:3264
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vanhemmat kommentit"
+
+#: inc/czr-front.php:3258
+msgid "Comment navigation"
+msgstr "Kommenttien navigointi"
+
+#: inc/czr-front.php:3223
+msgid "Your comment is awaiting moderation."
+msgstr "Kommenttisi odottaa moderointia."
+
+#. translators: 1: date, 2: time
+#: inc/czr-front.php:3218
+msgid "%1$s at %2$s"
+msgstr "%1$s, %2$s"
+
+#: inc/czr-front.php:3211
+msgid "Post author"
+msgstr "Artikkelin kirjoittaja"
+
+#: inc/czr-front.php:3198
+msgid "Reply"
+msgstr "Vastaa"
+
+#: inc/czr-front.php:3170
+msgid "(Edit)"
+msgstr "(Muokkaa)"
+
+#: inc/czr-front.php:3169
+msgid "Pingback:"
+msgstr "Paluuviitteet:"
+
+#: inc/czr-front.php:3109
+msgid "thoughts on"
+msgstr "ajatuksia aiheesta"
+
+#: inc/czr-front.php:3107
+msgid "One thought on"
+msgstr "Ajatus aiheesta"
+
+#: inc/czr-front.php:2805
+msgid "F j, Y"
+msgstr "j.n.Y"
+
+#: inc/czr-front.php:2801
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:2650
+msgid "Merge"
+msgstr "Yhdistä"
+
+#: inc/czr-front.php:2646
+msgid "Split"
+msgstr "Jaa"
+
+#: inc/czr-front.php:2575 inc/czr-front.php:2577
+msgid "Page %d"
+msgstr "Sivu %d"
+
+#: inc/czr-front.php:2570
+msgid "404 Not Found"
+msgstr "404 Ei löytynyt"
+
+#: inc/czr-front.php:2563 inc/czr-front.php:2565
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Hakutulokset  &quot;%1$s&quot;"
+
+#: inc/czr-front.php:2535 inc/czr-front.php:2537
+msgid "W"
+msgstr "W"
+
+#: inc/czr-front.php:2535 inc/czr-front.php:2537
+msgid "Week %1$s"
+msgstr "Viikko %1$s"
+
+#: inc/czr-front.php:2526 inc/czr-front.php:2528 inc/czr-front.php:2805
+msgid "d"
+msgstr "d"
+
+#: inc/czr-front.php:2523 inc/czr-front.php:2544 inc/czr-front.php:2546
+#: inc/czr-front.php:2801
+msgid "F"
+msgstr "F"
+
+#: inc/czr-front.php:2522 inc/czr-front.php:2532 inc/czr-front.php:2541
+#: inc/czr-front.php:2552 inc/czr-front.php:2554 inc/czr-front.php:2797
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:2506
+msgid "g a"
+msgstr "g a"
+
+#: inc/czr-front.php:2503
+msgid "i"
+msgstr "i"
+
+#: inc/czr-front.php:2503
+msgid "Minute %1$s"
+msgstr "Minuutti %1$s"
+
+#: inc/czr-front.php:2500
+msgid "g:i a"
+msgstr "g:i a"
+
+#: inc/czr-front.php:2020
+msgid "Browse:"
+msgstr "Selaa:"
+
+#: inc/czr-front.php:1474 inc/czr-front.php:2011 inc/czr-front.php:2023
+msgid "Home"
+msgstr "Etusivu"
+
+#: inc/czr-front.php:1860
+msgid "Next &rarr;"
+msgstr "Seuraava &rarr;"
+
+#: inc/czr-front.php:1859
+msgid "&larr; Previous"
+msgstr "&larr; Edellinen"
+
+#: inc/czr-init.php:4128
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "Aseta ruudukossa olevan artikkelin esikatselukuvan maksimikorkeus pikseleissä"
+
+#: inc/czr-init.php:4127
+msgid "Thumbnails max height for the grid layout"
+msgstr "Esikatselukuvan maksimikorkeus Ruudukko-asettelussa"
+
+#: inc/czr-init.php:4116
+msgid "Max. length for post titles (in words)"
+msgstr "Maksimipituus artikkelin otsikolle (sanojen määrä)"
+
+#: inc/czr-init.php:4106
+msgid "Display post format icons in the background"
+msgstr "Lisää artikkelin muodon kuvakkeet taustalle"
+
+#: inc/czr-init.php:4097
+msgid "Apply a colored bottom border to each grid items"
+msgstr "Lisää Ruudukon kohteisiin väritetty alareuna"
+
+#: inc/czr-init.php:4088
+msgid "Apply a shadow to each grid items"
+msgstr "Lisää Ruudukon kohteisiin varjo"
+
+#: inc/czr-init.php:4083
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr "Valitsematta jääneet kontekstit esitetään käyttömällä asetteluna Vaihtelevaa esikatselukuvaa."
+
+#: inc/czr-init.php:4079
+msgid "Apply the grid layout to Search results"
+msgstr "Käytä ruudukkoasettelua hakutuloksiin"
+
+#: inc/czr-init.php:4071
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr "Käytä ruudukkoasettelua arkistossa (arkistot, kategoriat, kirjoittaja)"
+
+#: inc/czr-init.php:4063
+msgid "Apply the grid layout to Home/Blog"
+msgstr "Käytä ruudukkoasettelua etusivulla/blogissa"
+
+#: inc/czr-init.php:4055
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr "Laajenna viimeisin kiinnitetty julkaisu (vain etusivu ja blogisivu)"
+
+#: inc/czr-init.php:4050
+msgid "Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts."
+msgstr "Huomaa: sarakkeiden määrä on rajoitettu kolmeen yhden sivupalkin asettelussa ja kahteen kahden sivupalkin asettelussa."
+
+#: inc/czr-init.php:4047
+msgid "4"
+msgstr "4"
+
+#: inc/czr-init.php:4046
+msgid "3"
+msgstr "3"
+
+#: inc/czr-init.php:4045
+msgid "2"
+msgstr "2"
+
+#: inc/czr-init.php:4044
+msgid "1"
+msgstr "1"
+
+#: inc/czr-init.php:4040
+msgid "Number of columns per row"
+msgstr "Sarakkeiden määrä yhdellä rivillä"
+
+#: inc/czr-init.php:4035
+msgid "When you select the grid Layout, the post content is limited to the excerpt."
+msgstr "Jos valitset Ruudukon, artikkelin sisältö rajoittuu Otteeseen."
+
+#: inc/czr-init.php:4032
+msgid "Grid layout"
+msgstr "Ruudukko"
+
+#: inc/czr-init.php:4031
+msgid "Alternate thumbnails layout"
+msgstr "Vaihteleva esikatselukuva"
+
+#: inc/czr-init.php:4027
+msgid "Select a Layout"
+msgstr "Valitse asettelu"
+
+#: inc/czr-init.php:4026
+msgid "Post List Design"
+msgstr "Artikkelilistan muotoilu"
+
+#: inc/czr-init.php:3743
+msgid "You might want to regenerate your thumbnails."
+msgstr "Esikatselukuvat kannattaisi varmaan generoida uudestaan."
+
+#: inc/czr-init.php:3742
+msgid "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance."
+msgstr "Jos tämä on valittu, uusien kuvien koko muutetaan vastaamaan mukautettu korkeutta latauksen yhteydessä. Tämä nopeuttaa latauksen suoritusta."
+
+#: inc/czr-init.php:3736
+msgid "Replace the default image slider's height"
+msgstr "Korvaa kuvasarjan oletuskorkeus"
+
+#: inc/czr-init.php:3728
+msgid "Apply this height to all sliders"
+msgstr "Käytät tätä korkeutta kaikkiin kuvasarjoihin"
+
+#: inc/czr-init.php:3718
+msgid "Set slider's height in pixels"
+msgstr "Aseta kuvasarja korkeus pikseleissä"
+
+#: inc/czr-init.php:4802
+msgid "Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images."
+msgstr "Valitse tämä ruudun ulkopuolella olevien kuvien lataamisen viivästyttämiseksi; kuvat ladataan dynaamisesti ruudun selaamisen yhteydessä. Tämä voi parantaa suorituskykyä vähentämällä pitkien kuvia sisältävien sivujen kuormitusta."
+
+#: inc/czr-init.php:4797
+msgid "Load images on scroll"
+msgstr "Lataa kuvat rullattaessa"
+
+#: inc/czr-init.php:4689
+msgid "Will be hidden if empty"
+msgstr "Piilotetaan tyhjänä"
+
+#: inc/czr-init.php:4683
+msgid "Social link title in sidebars"
+msgstr "Sosiaalisten linkkien otsikko sivupalkeissa"
+
+#: inc/czr-init.php:4727 inc/czr-init.php:4735
+msgid "Display a back to top arrow on scroll"
+msgstr "Näytä \"takaisin ylös\"-nuoli rullattaessa"
+
+#: inc/czr-init.php:4642
+msgid "Display posts navigation in post lists (archives, blog page, categories, search results ..)"
+msgstr "Näytä artikkelien navigointi artikkelilistauksissa (arkistot, blogisivu, kategoriat, hakutulokset, ...)"
+
+#: inc/czr-init.php:4633
+msgid "Display posts navigation in single posts"
+msgstr "Näytä artikkelien navigointi yksittäisissä artikkeleissa"
+
+#: inc/czr-init.php:4624
+msgid "Display navigation in pages"
+msgstr "Näytä navigointi sivunäkymässä"
+
+#: inc/czr-init.php:4615
+msgid "When this option is checked, the posts navigation is displayed below the posts"
+msgstr "Kun tämä on valittuna, artikkelien navigointi näytetään artikkelien alapuolella"
+
+#: inc/czr-init.php:4612
+msgid "Display posts navigation"
+msgstr "Näytä artikkelien navigointi"
+
+#: inc/czr-init.php:4597
+msgid "By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history."
+msgstr "Oletuksena Wordpress näyttää menneet kommentit riippumatta siitä, onko niitä hyväksytty sivuilla tai artikkeleissa. Poistamalla tämän asetuksen kommenttihistorian näyttäminen voidaan estää."
+
+#: inc/czr-init.php:4593
+msgid "Display the comment list"
+msgstr "Näytä kommenttilista"
+
+#: inc/czr-init.php:4587
+msgid "discussion settings page."
+msgstr "keskusteluasetusten sivulla."
+
+#: inc/czr-init.php:4585
+msgid "You can also change other comments settings in the"
+msgstr "Voit myös muuttaa muita kommentoinnin asetuksia"
+
+#: inc/czr-init.php:4584
+msgid "post screen"
+msgstr "artikkelisivu"
+
+#: inc/czr-init.php:4582
+msgid "If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the"
+msgstr "Jos tämä on valittu, kommentointi on sallittu kaikentyyppisissä artikkeleissa. Voit estää yksittäisten artikkeleiden kommentoinnin pikamuokkaus-tilassa"
+
+#: inc/czr-init.php:4577
+msgid "Enable comments on posts"
+msgstr "Ota kommentit käyttöön sivuilla"
+
+#: inc/czr-init.php:4571
+msgid "the discussion settings page."
+msgstr "keskusteluasetusten sivulla"
+
+#: inc/czr-init.php:4569
+msgid "You can also change other comments settings in :"
+msgstr "Voit myös vaihtaa muita kommentointiasetuksia"
+
+#: inc/czr-init.php:4568
+msgid "If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen."
+msgstr "Jos tämä on valittu, sivujen kommentointi on sallittu. Voit estää yksittäisten sivujen kommentoinnin pikamuokkaus-tilassa sivulistauksessa."
+
+#: inc/czr-init.php:4562
+msgid "Other comments settings"
+msgstr "Muut kommenttien asetukset"
+
+#: inc/czr-init.php:4544
+msgid "Custom"
+msgstr "Mukautettu"
+
+#: inc/czr-init.php:4543
+msgid "Skin color"
+msgstr "Skinin väri"
+
+#: inc/czr-init.php:4539 inc/czr-init.php:4551
+msgid "Comments bubble color"
+msgstr "Kommenttikuplan väri"
+
+#: inc/czr-init.php:4531
+msgid "Large bubbles"
+msgstr "Suuret kuplat"
+
+#: inc/czr-init.php:4530
+msgid "Small bubbles"
+msgstr "Pienet kuplat"
+
+#: inc/czr-init.php:4526
+msgid "Comments bubble shape"
+msgstr "Kommenttikuplan muoto"
+
+#: inc/czr-init.php:4517
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "Näytä kommenttien määrä artikkelin otsikon vieressä olevassa kuplassa"
+
+#: inc/czr-init.php:4515
+msgid "Comments bubbles"
+msgstr "Kommenttikuplat"
+
+#: inc/czr-init.php:4498
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr "Käytä suurennettua alkukirjainta sivun ensimmäisessä kappaleessa"
+
+#: inc/czr-init.php:4496
+msgid "Enable drop caps in pages"
+msgstr "Ota suurennettu alkukirjain käyttöön sivuilla"
+
+#: inc/czr-init.php:4489
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr "Käytä suurennettua alkukirjainta yksittäisen artikkelin ensimmäisessä kappaleessa"
+
+#: inc/czr-init.php:4487
+msgid "Enable drop caps in posts"
+msgstr "Ota suurennettu alkukirjain käyttöön artikkeleissa"
+
+#: inc/czr-init.php:4481
+msgid "Simple black"
+msgstr "Yksinkertainen musta"
+
+#: inc/czr-init.php:4480
+msgid "Skin color with shadow"
+msgstr "Skinin väri varjolla"
+
+#: inc/czr-init.php:4476
+msgid "Drop cap style"
+msgstr "Suurennetun alkukirjaimen tyyli"
+
+#: inc/czr-init.php:4466
+msgid "(number of words)"
+msgstr "(sanojen määrä)"
+
+#: inc/czr-init.php:4465
+msgid "Apply a drop cap when the paragraph includes at least the following number of words :"
+msgstr "Käytä suurennettua alkukirjainta, kun kappaleessa on vähintään näin monta sanaa:"
+
+#: inc/czr-init.php:4456
+msgid "Apply a drop cap to the first paragraph of your post / page content"
+msgstr "Käytä suurennettua alkukirjainta artikkelin tai sivun ensimmäisessä tekstikappaleessa"
+
+#: inc/czr-init.php:4454
+msgid "Enable drop caps"
+msgstr "Ota suurennettu alkukirjain käyttöön"
+
+#: inc/czr-init.php:4453
+msgid "Drop caps"
+msgstr "Suurennettu alkukirjain"
+
+#: inc/czr-init.php:4435
+msgid "Apply nice on hover expansion effect to the galleries images"
+msgstr "Lisää tyylikkään laajennustehosteen kursorin alla oleville gallerian kuville"
+
+#: inc/czr-init.php:4433
+msgid "Enable Customizr effects on hover"
+msgstr "Käytä Customizr-tehostetta kursorin alla oleville kuville"
+
+#: inc/czr-init.php:4426
+msgid "Apply lightbox effects to galleries images"
+msgstr "Gallerian kuvissa käytetään Lightbox-tehostetta"
+
+#: inc/czr-init.php:4424
+msgid "Enable Lightbox effect in galleries"
+msgstr "Ota käyttöön Lightbox-tehoste galleriassa"
+
+#: inc/czr-init.php:4417
+msgid "Apply Customizr effects to galleries images"
+msgstr "Käytä gallerian kuvissa Customizr-tehosteita"
+
+#: inc/czr-init.php:4415
+msgid "Enable Customizr galleries"
+msgstr "Ota käyttöön Customizr-galleriat"
+
+#: inc/czr-init.php:4156
+msgid "After the title"
+msgstr "Otsikon jälkeen"
+
+#: inc/czr-init.php:4155
+msgid "Before the title boxed"
+msgstr "Ennen otsikkoa laatikossa"
+
+#: inc/czr-init.php:4154
+msgid "Before the title in full width"
+msgstr "Ennen otsikkoa täydellä leveydellä"
+
+#: inc/czr-init.php:4153
+msgid "Don't display"
+msgstr "Älä näytä"
+
+#: inc/czr-init.php:4149
+msgid "Post thumbnail position"
+msgstr "Artikkelin esikatselukuvan sijainti"
+
+#: inc/czr-init.php:4015
+msgid "Search results page titles"
+msgstr "Hakutulosten otsikot"
+
+#: inc/czr-front.php:4289 inc/czr-init.php:4014
+msgid "Search Results for :"
+msgstr "Hakusi tulokset :"
+
+#: inc/czr-init.php:4006
+msgid "Author pages titles"
+msgstr "Kirjoittaja-sivujen otsikot"
+
+#: inc/czr-init.php:3997
+msgid "Tag pages titles"
+msgstr "Tagisivujen otsikot"
+
+#: inc/czr-init.php:3988
+msgid "Category pages titles"
+msgstr "Kategoriasivun otsikot"
+
+#: inc/czr-init.php:3987
+msgid "Archive titles"
+msgstr "Arkiston otsikot"
+
+#: inc/czr-init.php:3978
+msgid "Alternate thumbnail/content"
+msgstr "Vaihteleva esikatselukuva/sisältö"
+
+#: inc/czr-init.php:3971 inc/czr-init.php:4739
+msgid "Left"
+msgstr "Vasemmalla"
+
+#: inc/czr-init.php:3970
+msgid "Bottom"
+msgstr "Alhaalla"
+
+#: inc/czr-init.php:3969 inc/czr-init.php:4740
+msgid "Right"
+msgstr "Oikealla"
+
+#: inc/czr-init.php:3968
+msgid "Top"
+msgstr "Ylhäällä"
+
+#: inc/czr-init.php:3964
+msgid "Thumbnails position"
+msgstr "Esikatselukuvan sijainti"
+
+#: inc/czr-init.php:3952 inc/czr-init.php:4170
+msgid "Set the thumbnail's max height in pixels"
+msgstr "Aseta esikatselukuvan suurin korkeus pikseleinä"
+
+#: inc/czr-init.php:3944
+msgid "Rectangular with unblur effect on hover"
+msgstr "Suorakaide, sumennuksen poisto kursorilla"
+
+#: inc/czr-init.php:3943
+msgid "Rectangular with blur effect on hover"
+msgstr "Suorakaide, sumennusefekti kursorilla"
+
+#: inc/czr-init.php:3942
+msgid "Rectangular with no effect"
+msgstr "Suorakaide ilman efektiä"
+
+#: inc/czr-init.php:3941
+msgid "Squared, no expansion"
+msgstr "Neliö, ei laajennusta"
+
+#: inc/czr-init.php:3940
+msgid "Squared, expand on hover"
+msgstr "Neliö, laajennus kursorilla"
+
+#: inc/czr-init.php:3939
+msgid "Rounded, no expansion"
+msgstr "Pyöristetty, ei laajennusta"
+
+#: inc/czr-init.php:3938
+msgid "Rounded, expand on hover"
+msgstr "Pyöristetty, laajennus kursorilla"
+
+#: inc/czr-init.php:3934
+msgid "Thumbnails shape"
+msgstr "Esikatselukuvien muoto"
+
+#: inc/czr-init.php:3933
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "Esikatselukuvien valinnat vaihtuvalle asettelulle"
+
+#: inc/czr-init.php:3915
+msgid "Upload a default thumbnail"
+msgstr "Lataa esikatselun oletuskuva"
+
+#: inc/czr-init.php:3907
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "Jos artikkelikuvaa ei ole asetettu, käytetään viimeisintä artikkeliin liitettyä kuvaa."
+
+#: inc/czr-init.php:3902
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr "Huomio: jos asetteluksi on valittu ruudukko, esikatselukuvat näytetään aina."
+
+#: inc/czr-init.php:3902
+msgid "When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ..."
+msgstr "Kun tämä on valittu, artikkelin esikatselukuvat näytetään kaikissa artikkelilistoissa: blogit, arkistot, kirjoittajasivu, hakusivut, ..."
+
+#: inc/czr-init.php:3898
+msgid "Display the post thumbnails"
+msgstr "Näytä artikkeliden esikatselukuvat"
+
+#: inc/czr-init.php:3897
+msgid "Thumbnails options"
+msgstr "Esikatselukuvien valinnat"
+
+#: inc/czr-init.php:3887
+msgid "Set the excerpt length (in number of words) "
+msgstr "Aseta Otteen pituus (sanojen määrä)"
+
+#: inc/czr-init.php:4398
+msgid "Info (blue)"
+msgstr "Info (sininen)"
+
+#: inc/czr-init.php:4397
+msgid "Important (red)"
+msgstr "Tärkeä (punainen)"
+
+#: inc/czr-init.php:4396
+msgid "Alert (orange)"
+msgstr "Huomio (oranssi)"
+
+#: inc/czr-init.php:4395
+msgid "Success (green)"
+msgstr "Onnistuminen (vihreä)"
+
+#: inc/czr-init.php:4394
+msgid "Default (grey)"
+msgstr "Oletus (harmaa)"
+
+#: inc/czr-init.php:4390
+msgid "Update notice style"
+msgstr "Muokkaushuomautuksen tyyli"
+
+#: inc/czr-init.php:4381
+msgid "Update notice text"
+msgstr "Muokkaushuomautuksen teksti"
+
+#: inc/czr-init.php:4379
+msgid "Recently updated !"
+msgstr "Vasta muokattu!"
+
+#: inc/czr-init.php:4376
+msgid "Set a maximum interval (in days) during which the last update notice will be displayed."
+msgstr "Aseta suurin aikaväli (päivinä), jolloin huomautus viimeaikaisesta muokkauksesta näytetään."
+
+#: inc/czr-init.php:4370
+msgid "Display the notice if the last update is less (strictly) than n days old"
+msgstr "Näytä huomautus, jos viimeisin muokkaus on (tarkalleen) vähemmän kuin n päivää vanha"
+
+#: inc/czr-init.php:4364
+msgid "If this option is checked, a customizable recent update notice is displayed next to the post title."
+msgstr "Jos tämä on valittu, mukautettava huomautus viimeaikaisesta muokkauksesta esitetään otsikon vieressä."
+
+#: inc/czr-init.php:4360
+msgid "Display a recent update notice"
+msgstr "Näytä huomautus viimeaikaisesta muokkauksesta"
+
+#: inc/czr-init.php:4359
+msgid "Recent update notice after post titles"
+msgstr "Huomautus viimeaikaisesta muokkauksesta artikkelin otsikon jälkeen"
+
+#: inc/czr-init.php:4351
+msgid "Date of the last update"
+msgstr "Edellisen muokkauksen päivämäärä"
+
+#: inc/czr-init.php:4350
+msgid "Nb of days since last update"
+msgstr "Montako päivää edellisestä muokkauksesta"
+
+#: inc/czr-init.php:4346
+msgid "Select the last update format"
+msgstr "Valitse viimeisimmän muokkauksen formaatti"
+
+#: inc/czr-init.php:4340
+msgid "If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated)."
+msgstr "Jos tämä on valittuna, ylimääräinen päivämäärätieto artikkelin edellisestä muokkauksesta voidaan näyttää (mitään ei näytetä, jos artikkelia ei ole koskaan muokattu)."
+
+#: inc/czr-init.php:4336
+msgid "Display the update date"
+msgstr "Näytä muokkauspäivämäärä"
+
+#: inc/czr-init.php:4328
+msgid "Display the author"
+msgstr "Näytä kirjoittaja"
+
+#: inc/czr-init.php:4320
+msgid "Display the publication date"
+msgstr "Näytä julkaisupäivämäärä"
+
+#: inc/czr-init.php:4311
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr "Näytä ei-hierarkiset jäsentelyt (kuten tagit)"
+
+#: inc/czr-init.php:4302
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr "Näytä hierarkiset jäsentelyt (kuten kategoriat)"
+
+#: inc/czr-init.php:4301
+msgid "Select the metas to display"
+msgstr "Valitse esitettävät metatiedot"
+
+#: inc/czr-init.php:4291
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr "Näytä artikkelien metatiedot artikkelilistauksissa (arkistot, blogi)"
+
+#: inc/czr-init.php:4282
+msgid "Display posts metas for single posts"
+msgstr "Näytä artikkelien metatiedot yksittäisissä artikkeleissa"
+
+#: inc/czr-init.php:4273
+msgid "Display posts metas on home"
+msgstr "Näytä artikkelien metatiedot etusivulla"
+
+#: inc/czr-init.php:4272 inc/czr-init.php:4623
+msgid "Select the contexts"
+msgstr "Valitse kontekstit"
+
+#: inc/czr-init.php:4265
+msgid "Text only"
+msgstr "Pelkkä teksti"
+
+#: inc/czr-init.php:4264
+msgid "Buttons and text"
+msgstr "Painikkeet ja teksti"
+
+#: inc/czr-init.php:4260
+msgid "Select a design for the post metas"
+msgstr "Valitse artikkelin metatietojen rakenne"
+
+#: inc/czr-init.php:4259
+msgid "Metas Design"
+msgstr "Metatietojen rakenne"
+
+#: inc/czr-init.php:4252
+msgid "When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles."
+msgstr "Kun tämä on valittu, artikkeleiden metatiedot (kuten jäsentelyt, päivämäärä ja kirjoittaja) näytetään otsikon alapuolella"
+
+#: inc/czr-init.php:4249
+msgid "Display posts metas"
+msgstr "Näytä artikkeleiden metatiedot"
+
+#: inc/czr-init.php:3028
+msgid "WP footer widgets : display icons next to titles"
+msgstr "WP alatunnisteen vimpaimet: näytä kuvakkeet otsikoiden vierellä"
+
+#: inc/czr-init.php:3019
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr "WP sivupalkin vimpaimet: näytä kuvakkeet otsikoiden vierellä"
+
+#: inc/czr-init.php:3012
+msgid "When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Kun tämä on valittu, artikkelin tyyppiä oleva kuvake näytetään jokaisen artikkelin otsikon vasemmalla puolella arkistosivulla. Arkistosivu voi olla: kategoria, tagi, kirjoittaja, päivämääräarkisto, mukautettu jäsennys, hakutulos."
+
+#: inc/czr-init.php:3009
+msgid "Display an icon next to each post title in an archive page"
+msgstr "Näytä kuvake jokaisen artikkelin otsikon vieressä arkistosivulla"
+
+#: inc/czr-init.php:3002
+msgid "When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Kun tämä on valittu, arkiston tyyppiä oleva kuvake näytetään kunkintyyppisen arkiston otsikon vasemmalla puolella. Arkistosivu voi olla: kategoria, tagi, kirjoittaja, päivämääräarkisto, mukautettu jäsennys, hakutulos."
+
+#: inc/czr-init.php:2999
+msgid "Display an icon next to the archive title"
+msgstr "Näytä kuvake arkiston otsikon vierellä"
+
+#: inc/czr-init.php:2990
+msgid "Display a post icon next to the single post title"
+msgstr "Näytä artikkelikuvake yksittäisen artikkelin otsikon vierellä"
+
+#: inc/czr-init.php:2981
+msgid "Display a page icon next to the page title"
+msgstr "Näytä sivukuvake sivun otsikon vierellä"
+
+#: inc/czr-init.php:2975
+msgid "When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets."
+msgstr "Kun tämä on valittu, kontekstiin liittyvä kuvake esitetään sivuilla, artikkeleissa, arkistoissa ja WP:n sisänrakennetuissa vimpaimissa olevien otsikoiden vierellä."
+
+#: inc/czr-init.php:2971
+msgid "Display icons next to titles"
+msgstr "Näytä kuvakkeet otsikoiden vierellä"
+
+#: inc/czr-init.php:4230
+msgid "Display the breadcrumb in posts lists : blog page, archives, search results..."
+msgstr "Näytä navigointipalkki artikkelilistauksissa: blogisivu, arkistot, hakutulokset..."
+
+#: inc/czr-init.php:4221
+msgid "Display the breadcrumb in single posts"
+msgstr "Näytä navigointipalkki yksittäisillä sivuilla"
+
+#: inc/czr-init.php:4212
+msgid "Display the breadcrumb in pages"
+msgstr "Näytä navigointipalkki sivuilla"
+
+#: inc/czr-init.php:4204
+msgid "Display the breadcrumb on home page"
+msgstr "Näytä navigointipalkki etusivulla"
+
+#: inc/czr-init.php:2951
+msgid "Open external links in a new tab"
+msgstr "Avaa ulkoiset linkit uudessa välilehdessä"
+
+#: inc/czr-init.php:2944 inc/czr-init.php:2955
+msgid "This will be applied to the links included in post or page content only."
+msgstr "Tämä pätee ainoastaan artikkeleissa ja sivuilla oleviin linkkeihin."
+
+#: inc/czr-init.php:2940
+msgid "Display an icon next to external links"
+msgstr "Näytä kuvake ulkoisten linkkien vierellä"
+
+#: inc/czr-init.php:2930
+msgid "Fade effect on link hover"
+msgstr "Häive efekti kursorin alla olevalle linkille"
+
+#: inc/czr-init.php:3473
+msgid "Hover move effect for the sub menu items"
+msgstr "Liikauta alivalikon kohteita kursorin alla"
+
+#: inc/czr-init.php:3464
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "Paljasta alivalikot häive-efektillä"
+
+#: inc/czr-init.php:3417 inc/czr-init.php:3442
+msgid "Menu on the right"
+msgstr "Otsikko oikealla"
+
+#: inc/czr-init.php:3416 inc/czr-init.php:3441
+msgid "Menu on the left"
+msgstr "Otsikko vasemmalla"
+
+#: inc/czr-init.php:3353
+msgid "the z-index"
+msgstr "z-indeksi"
+
+#: inc/czr-init.php:3351
+msgid "What is"
+msgstr "Mikä on"
+
+#: inc/czr-init.php:3343
+msgid "Set the header z-index"
+msgstr "Aseta otsakkeen z-indeksi"
+
+#: inc/czr-init.php:3333
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "Kiinnitetty otsake: osittain läpinäkyvä rullattaessa"
+
+#: inc/czr-init.php:3323
+msgid "Sticky header : display the menu"
+msgstr "Kiinnitetty otsake : näytä valikko"
+
+#: inc/czr-init.php:3314
+msgid "Sticky header : shrink title / logo"
+msgstr "Kiinnitetty otsake: kutista otsikko / logo"
+
+#: inc/czr-init.php:3305
+msgid "Sticky header : display the title / logo"
+msgstr "Kiinnitetty otsake: näytä otsikko / logo"
+
+#: inc/czr-init.php:3285
+msgid "Sticky header : display the tagline"
+msgstr "Kiinnitetty otsake: näytä kuvaus"
+
+#: inc/czr-init.php:3280
+msgid "If checked, this option makes the header stick to the top of the page on scroll down."
+msgstr "Valittuna tämä asetus kiinnittää otsakkeen ruudun ylälaitaan alaspäin rullattaessa."
+
+#: inc/czr-init.php:3275
+msgid "Sticky on scroll"
+msgstr "Kiinnitä rullaukseen"
+
+#: inc/czr-init.php:3274
+msgid "Sticky header settings"
+msgstr "Kiinnitetyt otsikon asetukset"
+
+#: inc/czr-init.php:3218
+msgid "Logo / title on the right"
+msgstr "Logo / otsikko oikealla"
+
+#: inc/czr-init.php:3217
+msgid "Logo / title centered"
+msgstr "Logo / otsikko keskitetty"
+
+#: inc/czr-init.php:3216
+msgid "Logo / title on the left"
+msgstr "Logo / otsikko vasemmalla"
+
+#: inc/czr-init.php:3269
+msgid "If checked, this option wraps the header menu/tagline/social in a light grey box."
+msgstr "Valittuna tämä asetus kietoo otsikon valikon/kuvauksen/sosiaaliset linkit vaaleanharmaaseen laatikkoon."
+
+#: inc/czr-init.php:3264
+msgid "Display menu in a box"
+msgstr "Näytä valikko laatikossa"
+
+#: inc/czr-init.php:3236
+msgid "Display the tagline"
+msgstr "Näytä kuvaus"
+
+#: inc/czr-init.php:2900
+msgid "This option sets the default font size applied to any text element of your website, when no font size is already applied."
+msgstr "Tämä valinta asettaa fonttikoon oletusarvon, jota käytetään kaikissa teksteissä, joille ei ole erikseen määritelty fonttikokoa."
+
+#: inc/czr-init.php:2892
+msgid "Set your website default font size in pixels."
+msgstr "Valitse oletusfontin koko pikseleissä."
+
+#: inc/czr-init.php:2887
+msgid "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs."
+msgstr "Tämä fonttivalitsija näyttää esikatselun ja auttaa valitsemaan suosikin kätevästä fonttiparien ja yksittäisten fonttien valikoimasta. Jos valitset parin, ensimmäistä fonttia käytetään sivun pääotsikoissa: sivun nimi, kuvaus, otsikot h1, h2, h3, ja toisesta tulee oletusfontti sivun teksteille ja kappaleille."
+
+#: inc/czr-init.php:2880
+msgid "Select a beautiful font pair (headings &amp; default fonts) or single font for your website."
+msgstr "Valitse sivustollesi kaunis fonttipari (otsikko &amp; oletusfontit) tai yksittäinen fontti."
+
+#: inc/czr-init.php:3171
+msgid "Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile."
+msgstr "Valitse tämä näyttääksesi kirjoittajasta infolaatikot jokaisen artikkelin sisällön perässä. Huomaa: kirjoittajan infokentät tulee täyttää käyttäjän profiilissa."
+
+#: inc/czr-init.php:3167
+msgid "Display an author box after each single post content"
+msgstr "Näytä kirjoittaja-laatikko jokaisen erillisen artikkelin perässä"
+
+#: inc/czr-init.php:3833
+msgid "Global Post Lists Settings"
+msgstr "Yleiset artikkelilistojen asetukset"
+
+#: inc/czr-init.php:3803
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr "Huomio: etusivun asettelu valitaan etusivu-osiossa"
+
+#: inc/czr-init.php:5190
+msgid "On the web, speed is key ! Improve the load time of your pages with those options."
+msgstr "Verkossa nopeus on valttia! Paranna sivujesi latausaikoja näillä valinnoilla."
+
+#: inc/czr-init.php:5188
+msgid "Website Performances"
+msgstr "Sivuston suorituskyky"
+
+#: inc/czr-init.php:5174
+msgid "Set up footer global options"
+msgstr "Säädä alaviitteen yleisiä asetuksia"
+
+#: inc/czr-init.php:5172
+msgid "Footer global settings"
+msgstr "Alaviitteen yleiset asetukset"
+
+#: inc/czr-init.php:5146
+msgid "Set up post/page navigation options"
+msgstr "Muuta navigoiniin asetuksia artikkeleissa/sivuilla"
+
+#: inc/czr-init.php:5144
+msgid "Post/Page Navigation"
+msgstr "Navigointi artikkeleissa/sivuilla"
+
+#: inc/czr-init.php:5134
+msgid "Set up paragraphs options"
+msgstr "Säädä kappaleiden valintoja"
+
+#: inc/czr-init.php:5132
+msgid "Paragraphs"
+msgstr "Kappaleet"
+
+#: inc/czr-init.php:5128
+msgid "Set up gallery options"
+msgstr "Muuta gallerian asetuksia"
+
+#: inc/czr-init.php:5126
+msgid "Galleries"
+msgstr "Galleriat"
+
+#: inc/czr-init.php:5122
+msgid "Set up post metas options"
+msgstr "Säädä artikkelin lisätietojen asetuksia"
+
+#: inc/czr-init.php:5120
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr "Artikkelin lisätiedot (kategoria, tagit, mukautetut jäsentelyt)"
+
+#: inc/czr-init.php:5108
+msgid "Set up breadcrumb options"
+msgstr "Säädä navigointipalkin asetuksia"
+
+#: inc/czr-init.php:5106
+msgid "Breadcrumb"
+msgstr "Navigointipalkki"
+
+#: inc/czr-init.php:5102
+msgid "Set up single posts options"
+msgstr "Säädä yksittäisen artikkelin asetuksia"
+
+#: inc/czr-init.php:5100
+msgid "Single posts"
+msgstr "Yksittäinen artikkeli"
+
+#: inc/czr-init.php:5096
+msgid "Set up post lists options"
+msgstr "Säädä artikkelilistan asetuksia"
+
+#: inc/czr-init.php:5094
+msgid "Post lists : blog, archives, ..."
+msgstr "Artikkelilistat: blogi, arkistot, ..."
+
+#: inc/czr-init.php:4973
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
+msgstr[0] "Teemasi tukee %s valikkoa. Valitse, mitä valikkoa haluaisit käyttää."
+msgstr[1] "Teemasi tukee %s valikkoa. Valitse, mitä valikkoja haluaisit käyttää."
+
+#: inc/czr-init.php:5063
+msgid "Design and layout"
+msgstr "Muotoilu ja asettelu"
+
+#: inc/czr-init.php:3210 inc/czr-init.php:5063
+msgid "Header design and layout"
+msgstr "Otsakkeen muoto ja asettelu"
+
+#: inc/czr-init.php:5049
+msgid "Post authors settings"
+msgstr "Artikkelin kirjoittajan asetukset"
+
+#: inc/czr-init.php:5047
+msgid "Authors"
+msgstr "Kirjoittajat"
+
+#: inc/czr-init.php:5041
+msgid "Image settings"
+msgstr "Kuva-asetukset"
+
+#: inc/czr-init.php:5037
+msgid "Set up the titles icons options"
+msgstr "Säädä otsikon kuvakkeiden asetuksia"
+
+#: inc/czr-init.php:5035
+msgid "Titles icons settings"
+msgstr "Otsikon kuvakkeiden asetukset"
+
+#: inc/czr-init.php:5029
+msgid "Links style and effects"
+msgstr "Linkkien tyyli ja efektit"
+
+#: inc/czr-init.php:5019
+msgid "Set up the font global settings"
+msgstr "Aseta yleiset fonttiasetukset"
+
+#: inc/czr-init.php:5017
+msgid "Fonts"
+msgstr "Fontit"
+
+#: inc/czr-init.php:5000
+msgid "Site Title & Tagline"
+msgstr "Sivuston otsikko & kuvaus"
+
+#: inc/czr-init.php:4773
+msgid "How to create and use a child theme ?"
+msgstr "Miten aliteemoja luodaan ja käytetään?"
+
+#: inc/czr-init.php:4772
+msgid "child theme."
+msgstr "alateemassa."
+
+#: inc/czr-init.php:4771
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a"
+msgstr "Käytä tätä kenttää pienten CSS-koodinpätkien testaamiseen. Tärkeitä CSS-muokkauksia varten kannattaa muokata style.css-tiedostoa"
+
+#: inc/czr-init.php:4767
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Lisää mukautettu CSS tähän ja kehitä livenä! (edistyneille käyttäjille)"
+
+#: inc/czr-init.php:3152
+msgid "Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport."
+msgstr "Aktivoi tämä asetus siirtääksesi sivupalkit (jos niitä on) pääasiallisen sisällön perään älypuhelimien tai tablettien näytöillä."
+
+#: inc/czr-init.php:3149
+msgid "Dynamic sidebar reordering on small devices"
+msgstr "Dynaaminen sivupalkkien uudelleenjärjestäminen pienillä laitteilla"
+
+#: inc/czr-init.php:2925
+msgid "If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page."
+msgstr "Jos tämä on valittuna, samalle sivulla osoittavan ankkurin klikkaaminen aktivoi pehmeä rullauksen sivua pitkin."
+
+#: inc/czr-init.php:2922
+msgid "Smooth scroll on click"
+msgstr "Pehmeä vieritys klikkauksesta"
+
+#: inc/czr-init.php:3108
+msgid "This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio."
+msgstr "Tämä valinta keskittää kuvat dynaamisesti millä tahansa laitteella vaaka- tai pystysuoraan riippuen niiden kuvasuhteesta."
+
+#: inc/czr-init.php:3105
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "Denaaminen esikatselukuvien keskittäminen millä tahansa laitteella"
+
+#: inc/czr-init.php:3097
+msgid "Dynamic slider images centering on any devices"
+msgstr "Dynaaminen kuvasarjan keskittäminen millä tahansa laitteella"
+
+#: inc/czr-init.php:3091
+msgid "When checked, this option displays a loading icon when the slides are being setup."
+msgstr "Kun tämä on valittu, kuvien asettamisen ajan näytetään latausikonia."
+
+#: inc/czr-init.php:3088
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr "Kuvasarjat: näytä latausikoni ennen kuvien näyttämistä"
+
+#: inc/czr-init.php:3074
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr "Avaa Regenerate thumbnails-lisäosan kuvaus"
+
+#: inc/czr-init.php:3072
+msgid "regenerate thumbnails"
+msgstr "uudelleengeneroi esikatselukuvat"
+
+#: inc/czr-init.php:3071
+msgid "It is strongly recommended to regenerate your media library images in high definition with this free plugin"
+msgstr "On erityisen suositeltavaa uudelleengeneroida mediakirjaston kuvat korkealla resoluutiolla tämän ilmaisen lisäosan avulla"
+
+#: inc/czr-init.php:3070
+msgid "If enabled, your website will include support for high resolution devices."
+msgstr "Jos tämä on valittu, verkkosivusi tukee korkean resoluution laitteita."
+
+#: inc/czr-init.php:3066
+msgid "High resolution (Retina) support"
+msgstr "Korkean resoluution (Retina) tuki"
+
+#: inc/czr-init.php:3060
+msgid "If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "Jos tämä on valittu, kuvat pakotetaan mahtumaan Lightboxin ruutuun."
+
+#: inc/czr-init.php:3057
+msgid "Autoscale images on zoom"
+msgstr "Skaalaa zoomatut kuvat automaattisesti"
+
+#: inc/czr-init.php:3051
+msgid "If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File."
+msgstr "Jos tämä on valittu, kuvan klikkaaminen aktivoi korostetut ikkunan zoom-efektillä. Huomio: jotta tämä efekti toimii artikkeleissa ja sivuilla, kuvien täytyy olla linkitettyinä alkuperäiseen mediatiedostoon."
+
+#: inc/czr-init.php:3048
+msgid "Lightbox effect on images"
+msgstr "Lightbox-efektit kuvissa"
+
+#: inc/czr-init.php:4708
+msgid "Social links in footer"
+msgstr "Sosiaaliset linkit alaviitteessä"
+
+#: inc/czr-init.php:4674
+msgid "Social links in right sidebar"
+msgstr "Sosiaaliset linkit oikeassa sivupalkissa"
+
+#: inc/czr-init.php:4664
+msgid "Social links in left sidebar"
+msgstr "Sosiaaliset linkit vasemmassa sivupalkissa"
+
+#: inc/czr-init.php:3254
+msgid "Social links in header"
+msgstr "Sosiaaliset linkit otsakkeessa"
+
+#: inc/czr-init.php:4563
+msgid "Enable comments on pages"
+msgstr "Salli sivujen kommentointi"
+
+#: inc/czr-init.php:3858
+msgid "Choose the pages default layout"
+msgstr "Valitse sivujen oletusasettelu"
+
+#: inc/czr-init.php:3850
+msgid "Display the full content"
+msgstr "Näytä koko sisältö"
+
+#: inc/czr-init.php:3662 inc/czr-init.php:3849
+msgid "Display the excerpt"
+msgstr "Näytä Ote"
+
+#: inc/czr-init.php:3845
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Valitse listoissa esiintyvien artikkelien pituus (etusivu, haku, arkistot, ...)"
+
+#: inc/czr-init.php:3834
+msgid "Maximum number of posts per page"
+msgstr "Suurin määrä artikkeleita sivulla"
+
+#: inc/czr-init.php:3821
+msgid "Choose the posts default layout"
+msgstr "Valitse artikkelien oletusasettelu"
+
+#: inc/czr-init.php:3814
+msgid "This option will override the specific layouts on all posts/pages, including the front page."
+msgstr "Tämä valinta kumoaa erillisen asettelun valinnan kaikissa artikkeleissa ja sivuilla, myös etusivulla."
+
+#: inc/czr-init.php:3811
+msgid "Force default layout everywhere"
+msgstr "Pakota oletusasettelu kaikkialle"
+
+#: inc/czr-init.php:3799
+msgid "Choose the global default layout"
+msgstr "Valitse yleinen oletusasettelu"
+
+#: inc/czr-init.php:4195
+msgid "Display Breadcrumb"
+msgstr "Näytä navigointipalkki"
+
+#: inc/czr-init.php:3684 inc/czr-init.php:3777
+msgid "Button text"
+msgstr "Painikkeen teksti"
+
+#: inc/czr-init.php:3683 inc/czr-init.php:3775
+msgid "Read more &raquo;"
+msgstr "Lue lisää %raque;"
+
+#: inc/czr-init.php:3769
+msgid "The images are set with the \"featured image\" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images."
+msgstr "Kuvat asetetaan sivukohtaisesti \"korostettu kuva\"-valinnalla kullakin sivulla (sivun muokkausnäkymässä). Poista valinta, jos haluat poistaa korostetut kuvat käytöstä."
+
+#: inc/czr-init.php:3766
+msgid "Show images"
+msgstr "Näytä kuvat"
+
+#: inc/czr-init.php:3757
+msgid "Disable"
+msgstr "Pois käytöstä"
+
+#: inc/czr-init.php:3756
+msgid "Enable"
+msgstr "Käytössä"
+
+#: inc/czr-init.php:3752
+msgid "Display home featured pages area"
+msgstr "Näytä korostetut sivut etusivulla"
+
+#: inc/czr-init.php:3751
+msgid "Featured pages options"
+msgstr "Korostettujen sivujen valinnat"
+
+#: inc/czr-init.php:3711
+msgid "in ms : 1000ms = 1s"
+msgstr "millisekunteina: 10000ms= 1s"
+
+#: inc/czr-init.php:3706
+msgid "Delay between each slides"
+msgstr "Viive kuvien välillä"
+
+#: inc/czr-init.php:3694
+msgid "Full width slider"
+msgstr "Koko sivun levyinen kuvasarja"
+
+#: inc/czr-init.php:3620
+msgid "Select front page slider"
+msgstr "Valitse kuvasarja etusivulle"
+
+#: inc/czr-init.php:3619
+msgid "Slider options"
+msgstr "Kuvasarjan asetukset"
+
+#: inc/czr-init.php:3607
+msgid "Set up the front page layout"
+msgstr "Valitse etusivun asettelu"
+
+#: inc/czr-init.php:3580
+msgid "Posts page"
+msgstr "Artikkelisivu"
+
+#: inc/czr-init.php:3572
+msgid "Front page"
+msgstr "Etusivu"
+
+#: inc/czr-init.php:3566
+msgid "A static page"
+msgstr "Staattinen sivu"
+
+#: inc/czr-init.php:3565
+msgid "Your latest posts"
+msgstr "Uusimmat artikkelit"
+
+#: inc/czr-init.php:3564
+msgid "Don't show any posts or page"
+msgstr "Älä näytä mitään artikkelia tai sivua"
+
+#: inc/czr-init.php:3559
+msgid "Front page displays"
+msgstr "Etusivulla näytetään"
+
+#: inc/czr-init.php:3551
+msgid "Choose content and layout"
+msgstr "Valitse sisältö ja asettelu"
+
+#: inc/czr-init.php:2836
+msgid "FAVICON"
+msgstr "FAVICON"
+
+#: inc/czr-init.php:2835
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Favicon-lataus (tuetut formaatit: .ico, .png, .gif)"
+
+#: inc/czr-init.php:2829
+msgid "Use this upload control to specify a different logo on sticky header mode."
+msgstr "Tästä voit lisätä eri logon kiinnitetylle otsakkeelle."
+
+#: inc/czr-init.php:2818
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Kiinnitetyn logon lataus (tuetut formaatit: .jpg, .png, .gif, .svg, .svgz)"
+
+#: inc/czr-init.php:2814
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "Tyhjennä tämä valinta säilyttääksesi logon alkuperäisen koon."
+
+#: inc/czr-init.php:2810
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Pakota logo kokoon max-leveys:250px, max-korkeus: 100px"
+
+#: inc/czr-init.php:2795
+msgid "LOGO"
+msgstr "LOGO"
+
+#: inc/czr-init.php:2794
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Logon lataus (tuetut formaatit: .jpg, .png, .gif, .svg, .svgz)"
+
+#: inc/czr-init.php:3230
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Tyhjennä tämä valinta poistaaksesi väritetyn yläreunuksen."
+
+#: inc/czr-init.php:3226
+msgid "Display top border"
+msgstr "Näytä yläreunus"
+
+#: inc/czr-init.php:4793
+msgid "Using the minified version of the stylesheets will speed up your webpage load time."
+msgstr "Typistetyn tyylitiedoston käyttö nopeuttaa sivuston latausaikaa."
+
+#: inc/czr-init.php:4790
+msgid "Performance : use the minified CSS stylesheets"
+msgstr "Suorituskyky: käytä typistettyä CSS-tyylitiedostoa"
+
+#: inc/czr-init.php:2866
+msgid "Apply a random color skin on each page load."
+msgstr "Väriteema valitaan satunnaisesti joka kerta, kun sivu ladataan."
+
+#: inc/czr-init.php:2863
+msgid "Randomize the skin"
+msgstr "Valitse sattumanvarainen väriteema"
+
+#: inc/czr-init.php:2853
+msgid "Choose a predefined skin"
+msgstr "Valitse etukäteen valittu skini"
+
+#: inc/czr-init.php:3457
+msgid "Expand submenus on hover"
+msgstr "Alavalikko laajenee, kun hiiri siirretään sen päälle"
+
+#: inc/czr-init.php:3456
+msgid "Expand submenus on click"
+msgstr "Alavalikko laajenee klikkaamalla"
+
+#: inc/czr-init.php:3452
+msgid "Select a submenu expansion option"
+msgstr "Valitse alavalikon laajentaminen"
+
+#: inc/czr-init.php:5163
+msgid "Various settings for responsive display"
+msgstr "Erilaisia responsiivisia asetuksia"
+
+#: inc/czr-init.php:3117 inc/czr-init.php:5161
+msgid "Responsive settings"
+msgstr "Responsiiviset asetukset"
+
+#: inc/czr-init.php:5183
+msgid "Custom CSS"
+msgstr "Oma CSS"
+
+#: inc/czr-init.php:5031
+msgid "Various links settings"
+msgstr "Erilaisia linkkiasetuksia"
+
+#: inc/czr-init.php:5043
+msgid "Various images settings"
+msgstr "Erilaisia kuva-asetuksia"
+
+#: inc/czr-init.php:5025
+msgid "Set up your social links"
+msgstr "Aseta sosiaaliset linkit"
+
+#: inc/czr-init.php:4682 inc/czr-init.php:5023
+msgid "Social links"
+msgstr "Sosiaaliset linkit"
+
+#: inc/czr-init.php:5140
+msgid "Set up comments options"
+msgstr "Aseta kommentit"
+
+#: inc/czr-init.php:5138
+msgid "Comments"
+msgstr "Kommentit"
+
+#: inc/czr-init.php:5089
+msgid "Set up layout options"
+msgstr "Aseta sivupohjat"
+
+#: inc/czr-init.php:5087
+msgid "Pages &amp; Posts Layout"
+msgstr "Sivut &amp; artikkelit"
+
+#: inc/czr-init.php:5082
+msgid "Set up front page options"
+msgstr "Aseta etusivu"
+
+#: inc/czr-init.php:5080
+msgid "Front Page"
+msgstr "Etusivu"
+
+#: inc/czr-init.php:5007
+msgid "Set up logo and favicon options"
+msgstr "Aseta logon ja faviconin asetukset"
+
+#: inc/czr-init.php:5005
+msgid "Logo &amp; Favicon"
+msgstr "Logo &mp; favicon"
+
+#: inc/czr-init.php:5013
+msgid "Select a skin for Customizr"
+msgstr "Valitse Customizr-skini"
+
+#: inc/czr-init.php:5011
+msgid "Skin"
+msgstr "Skini"
+
+#: inc/czr-init.php:4899
+msgid "Advanced settings for the Customizr theme."
+msgstr "Customizr-teeman edistyneet valinnat."
+
+#: inc/czr-init.php:4898
+msgid "Advanced options"
+msgstr "Edistyneen valinnat"
+
+#: inc/czr-init.php:4893
+msgid "Footer settings for the Customizr theme."
+msgstr "Customizr-teeman alaviitteen asetukset"
+
+#: inc/czr-init.php:4892
+msgid "Footer"
+msgstr "Alaviite"
+
+#: inc/czr-init.php:4881
+msgid "Content settings for the Customizr theme."
+msgstr "Customizr-teeman sisällön asetukset."
+
+#: inc/czr-init.php:4880
+msgid "Content : home, posts, ..."
+msgstr "Sisällys: etusivu, artikkelit, ..."
+
+#: inc/czr-init.php:4875
+msgid "Header settings for the Customizr theme."
+msgstr "Customizr-teeman otsakkeen asetukset."
+
+#: inc/czr-init.php:4874
+msgid "Header"
+msgstr "Otsake"
+
+#: inc/czr-init.php:4869
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Customizr-teeman yleiset asetukset: skini, some, linkit..."
+
+#: inc/czr-init.php:4868
+msgid "Global settings"
+msgstr "Yleiset asetukset"
+
+#: inc/czr-init.php:5396
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Demo &mdash;"
+
+#: inc/czr-init.php:5395
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Ei kuvasarjaa &mdash;"
+
+#: inc/czr-init.php:5269
+msgid "You need to select a page first. Leave this field empty if you want to use the page excerpt."
+msgstr "Valitse ensin sivu. Jos haluat käyttää sivun Otetta, jätä tämä kenttä tyhjäksi."
+
+#: inc/czr-init.php:5266
+msgid "Featured text %1$s (200 char. max)"
+msgstr "Korostettu kuvaus %1$s (enintään 200 merkkiä)"
+
+#: inc/czr-init.php:5250
+msgid "Custom featured page %1$s"
+msgstr "Kustomoitu korostettu sivu %1$s"
+
+#: inc/czr-init.php:5234
+msgid "Featured text three (200 char. max)"
+msgstr "Korostettu kuvaus 3 (enintään 200 merkkiä)"
+
+#: inc/czr-init.php:5233
+msgid "Featured text two (200 char. max)"
+msgstr "Korostettu kuvaus 2 (enintään 200 merkkiä)"
+
+#: inc/czr-init.php:5232
+msgid "Featured text one (200 char. max)"
+msgstr "Korostettu kuvaus 1 (enintään 200 merkkiä)"
+
+#: inc/czr-init.php:5229
+msgid "Home featured page three"
+msgstr "Etusivun korostettu sivu 3"
+
+#: inc/czr-init.php:5228
+msgid "Home featured page two"
+msgstr "Etusivun korostettu sivu 2"
+
+#: inc/czr-init.php:5227
+msgid "Home featured page one"
+msgstr "Etusivun korostettu sivu 1"
+
+#: inc/czr-init.php:6033
+msgid "Page %s"
+msgstr "Sivu %s"
+
+#: inc/czr-init.php:1221
+msgid "Need help with Customizr? Click here!"
+msgstr "Tarvitsetko apua Customizrin kanssa? Klikkaa täältä!"
+
+#: inc/czr-init.php:1218
+msgid "Help"
+msgstr "Apua"
+
+#: inc/czr-init.php:1033
+msgid "Main Menu"
+msgstr "Päävalikko"
+
+#: inc/czr-init.php:858 inc/czr-init.php:8601
+msgid "Many layout and design options are available from the WordPress customizer screen : see your changes live !"
+msgstr "Monien asettelu- ja suunnitteluvalintojen säätäminen tapahtuu suoraan WordPressin kustomointi-ikkunasta: näet vaikutuksen välittömästi!"
+
+#: inc/czr-init.php:844 inc/czr-init.php:8595 inc/czr-init.php:8607
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr on siisti ja mukautuva teema"
+
+#: inc/czr-init.php:829
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Valitettavasti hakukriteereilläsi ei löytynyt yhtään tulosta. Yriteä uudelleen erilaisilla hakusanoilla."
+
+#: inc/czr-init.php:828
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: inc/czr-init.php:827
+msgid "Success is the ability to go from one failure to another with no loss of enthusiasm..."
+msgstr "Menestystä on kyky epäonnistua kerta toisensa jälkeen intohimoa  menettämättä..."
+
+#: inc/czr-init.php:822
+msgid "Sorry, but the requested page is not found. You might try a search below."
+msgstr "Valitettavasti pyydettyä sivua ei löytynyt. Yritä alla olevaa hakua."
+
+#: inc/czr-init.php:821
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: inc/czr-init.php:820
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Yleisen petoksen aikoina totuuden kertomisesta tulee vallankumouksellinen teko"
+
+#: inc/czr-init.php:802
+msgid "Footer Widget Area Three"
+msgstr "Alatunnisteen vimpainalue 3"
+
+#: inc/czr-init.php:798
+msgid "Footer Widget Area Two"
+msgstr "Alatunnisteen vimpainalue 2"
+
+#: inc/czr-init.php:795 inc/czr-init.php:799 inc/czr-init.php:803
+msgid "Just use it as you want !"
+msgstr "Käytä sitä niin kuin haluat!"
+
+#: inc/czr-init.php:794
+msgid "Footer Widget Area One"
+msgstr "Alatunnisteen vimpainalue 1"
+
+#: inc/czr-init.php:782
+msgid "Left Sidebar"
+msgstr "Vasen sivupalkki"
+
+#: inc/czr-init.php:783 inc/czr-init.php:787
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Näkyy artikkeleissa, staattisilla sivuilla, arkistoissa ja haku-sivuilla"
+
+#: inc/czr-init.php:786
+msgid "Right Sidebar"
+msgstr "Oikea sivupalkki"
+
+#: inc/czr-init.php:758
+msgid "LinkedIn profile url"
+msgstr "LinkedIn-profiilin osoite"
+
+#: inc/czr-init.php:757
+msgid "Follow me on LinkedIn"
+msgstr "Seuraa minua LinkedInissä"
+
+#: inc/czr-init.php:753
+msgid "Dribbble profile url"
+msgstr "Dribbble-profiilin osoite"
+
+#: inc/czr-init.php:752
+msgid "Follow me on Dribbble"
+msgstr "Seuraa minua Dribbblessä"
+
+#: inc/czr-init.php:748
+msgid "Github profile url"
+msgstr "Github-profiilin osoite"
+
+#: inc/czr-init.php:747
+msgid "Follow me on Github"
+msgstr "Seuraa minua Githubissa"
+
+#: inc/czr-init.php:743
+msgid "Pinterest profile url"
+msgstr "Pinterest-profiilin osoite"
+
+#: inc/czr-init.php:742
+msgid "Pin me on Pinterest"
+msgstr "Pinnaa minut Pinterestissä"
+
+#: inc/czr-init.php:738
+msgid "Youtube profile url"
+msgstr "Youtube-profiilin osoite"
+
+#: inc/czr-init.php:737
+msgid "Follow me on Youtube"
+msgstr "Seuraa minua Youtubessa"
+
+#: inc/czr-init.php:733
+msgid "WordPress profile url"
+msgstr "Wordpress-profiilin osoite"
+
+#: inc/czr-init.php:732
+msgid "Follow me on WordPress"
+msgstr "Seuraa meitä WordPressissä"
+
+#: inc/czr-init.php:728
+msgid "Flickr url"
+msgstr "Flickr-osoite"
+
+#: inc/czr-init.php:727
+msgid "Follow me on Flickr"
+msgstr "Seuraa meitä Flickr:issä"
+
+#: inc/czr-init.php:723
+msgid "Tumblr url"
+msgstr "Tumblr-osoite"
+
+#: inc/czr-init.php:722
+msgid "Follow me on Tumblr"
+msgstr "Seuraa minua Tumblrissa"
+
+#: inc/czr-init.php:718
+msgid "Instagram profile url"
+msgstr "Instagram-profiilin osoite"
+
+#: inc/czr-init.php:717
+msgid "Follow me on Instagram"
+msgstr "Seuraa minua Instagramissa"
+
+#: inc/czr-init.php:713
+msgid "Google+ profile url"
+msgstr "Google+-profiilin url"
+
+#: inc/czr-init.php:712
+msgid "Follow me on Google+"
+msgstr "Seuraa meitä Google+:ssa"
+
+#: inc/czr-init.php:708
+msgid "Facebook profile url"
+msgstr "Facebook-profiilin url"
+
+#: inc/czr-init.php:707
+msgid "Follow me on Facebook"
+msgstr "Seuraa meitä Facebookissa"
+
+#: inc/czr-init.php:703
+msgid "Twitter profile url"
+msgstr "Twitter-profiilin url"
+
+#: inc/czr-init.php:702
+msgid "Follow me on Twitter"
+msgstr "Seuraa meitä Twitterissä"
+
+#: inc/czr-init.php:692
+msgid "RSS feed (default is the wordpress feed)"
+msgstr "RSS-syöte (Wordpressin syöte on oletus)"
+
+#: inc/czr-init.php:691
+msgid "Subscribe to my rss feed"
+msgstr "Tilaa RSS-syöte"
+
+#: inc/czr-init.php:653
+msgid "Single fonts"
+msgstr "Yksittäiset fontit"
+
+#: inc/czr-init.php:644
+msgid "Web safe fonts pairs"
+msgstr "Turvalliset web-fonttiparit"
+
+#: inc/czr-init.php:624
+msgid "Google fonts pairs"
+msgstr "Google-fonttiparit"
+
+#: inc/czr-init.php:597
+msgid "Light blue "
+msgstr "Vaaleansininen"
+
+#: inc/czr-init.php:596
+msgid "Green blue"
+msgstr "Vihreä ja sininen"
+
+#: inc/czr-init.php:595
+msgid "Light green"
+msgstr "Vaaleanvihreä"
+
+#: inc/czr-init.php:594
+msgid "Green"
+msgstr "Vihreä"
+
+#: inc/czr-init.php:593
+msgid "Flat yellow"
+msgstr "Tasainen keltainen"
+
+#: inc/czr-init.php:592
+msgid "Yellow"
+msgstr "Keltainen"
+
+#: inc/czr-init.php:591
+msgid "Flat orange"
+msgstr "Tasainen oranssi"
+
+#: inc/czr-init.php:590
+msgid "Orange"
+msgstr "Oranssi"
+
+#: inc/czr-init.php:589
+msgid "Red"
+msgstr "Punainen"
+
+#: inc/czr-init.php:588
+msgid "Flat red"
+msgstr "Tasainen punainen"
+
+#: inc/czr-init.php:587
+msgid "Purple"
+msgstr "Violetti"
+
+#: inc/czr-init.php:586
+msgid "Flat purple"
+msgstr "Tasainen violetti"
+
+#: inc/czr-init.php:585
+msgid "Ligth grey"
+msgstr "Vaaleanharmaa"
+
+#: inc/czr-init.php:584
+msgid "Grey"
+msgstr "Harmaa"
+
+#: inc/czr-init.php:583
+msgid "Flat black"
+msgstr "Tasainen musta"
+
+#: inc/czr-init.php:582
+msgid "Black"
+msgstr "Musta"
+
+#: inc/czr-init.php:581
+msgid "Blue"
+msgstr "Sininen"
+
+#: inc/czr-init.php:566 inc/czr-init.php:567
+msgid "No sidebars : full width layout"
+msgstr "Ei sivupalkkeja: täysi leveys"
+
+#: inc/czr-init.php:560 inc/czr-init.php:561
+msgid "2 sidebars : Right and Left"
+msgstr "2 sivupalkkia: oikea ja vasen"
+
+#: inc/czr-init.php:554 inc/czr-init.php:555
+msgid "Left sidebar"
+msgstr "Vasen sivupalkki"
+
+#: inc/czr-init.php:548 inc/czr-init.php:549
+msgid "Right sidebar"
+msgstr "Oikea sivupalkki"
+
+#: inc/czr-customize.php:1282
+msgid "Remove"
+msgstr "Poista"
+
+#: inc/czr-customize.php:1281
+msgid "Upload"
+msgstr "Lataa"
+
+#: inc/czr-customize.php:845
+msgid "Check the documentation"
+msgstr "Katso dokumentaatio"
+
+#: inc/czr-customize.php:843
+msgid "Need help to create a slider ?"
+msgstr "Tarvitsetko apua kuvasarjan tekemiseen?"
+
+#: inc/czr-customize.php:842
+msgid "Create a slider"
+msgstr "Luo kuvasarja"
+
+#: inc/czr-admin.php:732
+msgid "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr "Kopioidaksesi järjestelmää koskevat informaatiot klikkaa alta ja paina Ctrl + C (PC) tai Cmd + C (Mac)"
+
+#: inc/czr-admin.php:731
+msgid "Please include the following informations when posting support requests"
+msgstr "Kerrothan seuraavat tiedot lähettäessäsi tukipyynnön"
+
+#: inc/czr-admin.php:730
+msgid "System Informations"
+msgstr "Järjestelmän tiedot"
+
+#: inc/czr-admin.php:655
+msgid "Go to Dashboard"
+msgstr "Mene ohjauspaneeliin"
+
+#: inc/czr-admin.php:655
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Mene ohjauspaneeliin &rarr; Koti"
+
+#: inc/czr-admin.php:713
+msgid "Changelog in version %1$s"
+msgstr "Muutosloki, versio %1$s"
+
+#: inc/czr-admin.php:643
+msgid "Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do."
+msgstr "Oletko tehnyt upean nettisivun, joka voi inspiroida ihmisiä? Sivuston lähettäminen tarkastettavaksi onnistuu helposti ja nopeasti."
+
+#: inc/czr-admin.php:641
+msgid "This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design."
+msgstr "Tämän näytesivun tarkoituksena on näyttää, mihin kaikkeen Customizr pystyy, ja auttaa toisia käyttäjiä löytämään ideoita web-suunnitteluun."
+
+#: inc/czr-admin.php:640
+msgid "Find inspiration for your next Customizr based website!"
+msgstr "Löydä inspiraatiota seuraavalle Customizr-pohjaiselle sivullesi!"
+
+#: inc/czr-admin.php:639 inc/czr-admin.php:646
+msgid "Visit the showcase"
+msgstr "Käy näytesivulla"
+
+#: inc/czr-admin.php:636
+msgid "Customizr Showcase"
+msgstr "Customizr näytesivu"
+
+#: inc/czr-admin.php:624
+msgid "Easily take your web design one step further"
+msgstr "Ota web-suunnittelussa helppo askel eteenpäin"
+
+#: inc/czr-admin.php:623
+msgid "Visit the extension's page"
+msgstr "Vieraile laajennusten sivulla"
+
+#: inc/czr-admin.php:610
+msgid "Follow us"
+msgstr "Seuraa meitä"
+
+#: inc/czr-admin.php:605
+msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr "Jos olet tyytyväinen teemaan, tuo se ilmi osoitteessa wordpress.org ja kirjoita Customizrista mukava arvostelu! <br/> (Olemme addiktoituneet palautteen saamiseen...)"
+
+#: inc/czr-admin.php:604
+msgid "Happy user of Customizr?"
+msgstr "Tyytyväinen Customizrin käyttäjä?"
+
+#: inc/czr-admin.php:597
+msgid "<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it's continued development with a donation of $20, $50, or even $100."
+msgstr "<strong>Teemme parhaamme, jotta Customizr olisi sinulle paras mahdollinen ilmainen teema!</strong><br/> Ole ystävällinen ja tue sen jatkuvaa kehitystyötä lahjoittamalla $20, $50 tai jopa $100."
+
+#: inc/czr-admin.php:596
+msgid "We need sponsors!"
+msgstr "Tarvitsemme tukijoita!"
+
+#: inc/czr-admin.php:579
+msgid "You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated."
+msgstr "Käytät Customizriin pohjautuvaa aliteemaa %1$s: varmista %2$s aina päivityksen jälkeen, ettei käyttämäsi funktio tai malline ole vanhentunut."
+
+#: inc/czr-admin.php:536
+msgid "Check the FAQ"
+msgstr "Lue FAQ"
+
+#: inc/czr-admin.php:532
+msgid "Read the documentation"
+msgstr "Lue dokumentaatio"
+
+#: inc/czr-admin.php:466
+msgid "About Customizr"
+msgstr "Lisätietoa Customizr-teemasta"
+
+#: inc/czr-admin.php:1847
+msgid "Current slide"
+msgstr "Nykyinen kuva"
+
+#: inc/czr-admin.php:1845
+msgid "Edit this slide"
+msgstr "Muokkaa tätä kuvaa"
+
+#: inc/czr-admin.php:1819
+msgid "No Image Selected"
+msgstr "Ei kuvaa valittuna"
+
+#: inc/czr-admin.php:1777 inc/czr-front.php:2621 inc/czr-front.php:2654
+#: inc/czr-front.php:2669 inc/czr-front.php:2697 inc/czr-front.php:3212
+#: inc/czr-front.php:3786 inc/czr-front.php:4191 inc/czr-front.php:8875
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: inc/czr-admin.php:1775
+msgid "Button Text"
+msgstr "Painikkeen teksti"
+
+#: inc/czr-admin.php:1774
+msgid "Slide Text"
+msgstr "Kuvasarjan teksti"
+
+#: inc/czr-admin.php:1773
+msgid "Title"
+msgstr "Otsikko"
+
+#: inc/czr-admin.php:1772
+msgid "Slide Image"
+msgstr "Kuvasarjan kuva"
+
+#: inc/czr-admin.php:1762
+msgid "This slider has not slides to show. Go to the media library and start adding images to it."
+msgstr "Tässä kuvasarjassa ei ole ainuttakaan kuvaa. Mene mediakirjastoon ja lisää siihen kuvia."
+
+#: inc/czr-admin.php:1634
+msgid "You haven't create any slider yet. Write a slider name and click on the button to add you first slider."
+msgstr "Et ole lisännyt ainuttakaan kuvasarjaa. Kirjoita kuvasarjalle nimi ja klikkaa painiketta lisätäksesi ensimmäisen kuvasarjan."
+
+#: inc/czr-admin.php:1607 inc/czr-admin.php:1636
+msgid "Add a slider"
+msgstr "Lisää kuvasarja"
+
+#: inc/czr-admin.php:1557
+msgid "No link"
+msgstr "Ei linkkiä"
+
+#: inc/czr-admin.php:1552
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Valitse linkitettävä sivu tai artikkeli (viimeisten 100 joukosta)"
+
+#: inc/czr-admin.php:1545
+msgid "Button text (80 char. max length)"
+msgstr "Painikkeen teksti (max 80 merkkiä)"
+
+#: inc/czr-admin.php:1537
+msgid "Title and text color"
+msgstr "Otsikko ja tekstin väri"
+
+#: inc/czr-admin.php:1530
+msgid "Description text (below the title, 250 char. max length)"
+msgstr "Kuvausteksti (Otsikon alla, max 250 merkkiä)"
+
+#: inc/czr-admin.php:1523
+msgid "Title text (80 char. max length)"
+msgstr "Otsikon teksti (max 80 merkkiä)"
+
+#: inc/czr-admin.php:1377
+msgid "Add to a slider (create one if needed)"
+msgstr "Lisää kuvasarjaan (tarvittaessa luo uusi)"
+
+#: inc/czr-admin.php:1375
+msgid "Add to a slider"
+msgstr "Lisää kuvasarjaan"
+
+#: inc/czr-admin.php:1223 inc/czr-customize.php:840
+msgid "You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders."
+msgstr "Et ole vielä luonut ainuttakaan kuvasarjaa. Avaa Mediakirjasto, valitse kuviasi muokattavaksi ja lisää niitä kuvasarjoihin."
+
+#: inc/czr-admin.php:1212 inc/czr-admin.php:1617
+msgid "Delete slider"
+msgstr "Poista kuvasarja"
+
+#: inc/czr-admin.php:1209 inc/czr-admin.php:1614
+msgid "The slider will be deleted permanently (images, call to actions and link will be kept)."
+msgstr "Kuvasarja poistetaan kokonaan (kuvat, toimintokutsut ja linkitys säilyvät)"
+
+#: inc/czr-admin.php:1204 inc/czr-admin.php:1610
+msgid "Delete this slider"
+msgstr "Poista tämä kuvasarja"
+
+#: inc/czr-admin.php:1187
+msgid "Slider Layout : set the slider in full width"
+msgstr "Kuvasarjan asettelu: venytä kuva koko ruudun leveydelle"
+
+#: inc/czr-admin.php:1180
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Viive kuvasarjan kuvien välillä millisekunteina (oletus: 5000ms)"
+
+#: inc/czr-admin.php:1176
+msgid "To create a new slider : open the media library, edit your images and add them to your new slider."
+msgstr "Luo uusi kuvasarja näin: avaa Mediakirjasto, valitse kuviasi muokattavaksi ja lisää ne uuteen kuvasarjaasi."
+
+#: inc/czr-admin.php:1153 inc/czr-admin.php:1601
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Valitse kuvasarja  &mdash; "
+
+#: inc/czr-admin.php:1147 inc/czr-admin.php:1586
+msgid "Choose a slider"
+msgstr "Valitse kuvasarja"
+
+#: inc/czr-admin.php:1081
+msgid "Add a slider to this post/page"
+msgstr "Lisää kuvasarja tähän artikkeliin/sivuun"
+
+#: inc/czr-admin.php:1038
+msgid "Default layout %1s"
+msgstr "Oletusasettelu %1s"
+
+#: inc/czr-admin.php:1034
+msgid "Select a specific layout for %1$s"
+msgstr "Valitse erillinen asettelu kohteelle %1$s"
+
+#: inc/czr-admin.php:1031 inc/czr-init.php:3535 inc/czr-init.php:3540
+#: inc/czr-init.php:4849
+msgid "here"
+msgstr "täällä"
+
+#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+msgid "this post"
+msgstr "tämä artikkeli"
+
+#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+msgid "this page"
+msgstr "tämä sivu"
+
+#: inc/czr-admin.php:1029
+msgid "You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />"
+msgstr "Voit valita erillisen asettelun kohteelle %1$s käyttämällä määriteltyjä vasenta ja oikeaa sivupalkkia. Oletusasettelu voidaan valita Wordpressin kustomointi-ikkunasta %2$s.<br/>"
+
+#: inc/czr-admin.php:1025
+msgid "Change layout options"
+msgstr "Muuta asettelun asetuksia"
+
+#: inc/czr-admin.php:1024
+msgid "You have checked the <i>\"Force global default layout for all posts and pages\"</i>, you must unchecked this option to enable a specific layout for this post."
+msgstr "Olet valinnut <i>\"Pakota yleiset asettelun asetukset kaikkiin artikkeleihin ja sivuille\"</i>. Sinun täytyy poistaa tämä valinta voidaksesi asettaa erillisen asettelun tälle artikkelille."
+
+#: inc/czr-admin.php:1019
+msgid "posts"
+msgstr "artikkelit"
+
+#: inc/czr-admin.php:1019
+msgid "pages"
+msgstr "sivut"
+
+#: inc/czr-admin.php:1019
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Oletus %1$s asettelun valinta on: %2$s"
+
+#: inc/czr-admin.php:950 inc/czr-admin.php:1346
+msgid "Slider Options"
+msgstr "Kuvasarjan asetukset"
+
+#: inc/czr-admin.php:942
+msgid "Layout Options"
+msgstr "Ulkoasun asetukset"
+
+#: inc/czr-customize.php:672 inc/czr-customize.php:673
+msgid "Upgrade Wordpress Now"
+msgstr "Päivitä Wordpress nyt"
+
+#: inc/czr-customize.php:669
+msgid "This theme requires WordPress 3.4+"
+msgstr "Tämä teema vaatii Wordpressin version 3.4+"
+
+#: inc/czr-customize.php:649 inc/czr-customize.php:650
+msgid "Upgrade WP"
+msgstr "Päivitä WP"
+
+#: inc/czr-customize.php:633
+msgid "rating. Thanks :) !"
+msgstr "arvostelun. Kiitos :) !"
+
+#: inc/czr-customize.php:631
+msgid "Review the Customizr theme"
+msgstr "Arvostele Customizr-teema"
+
+#: inc/czr-customize.php:629
+msgid "we would love to receive a"
+msgstr "arvostamme valtavasti, jos annat meille"
+
+#: inc/czr-customize.php:628
+msgid "the Customizr pro theme"
+msgstr "Customizr Pro:sta"
+
+#: inc/czr-customize.php:628
+msgid "the Customizr theme"
+msgstr "Customizr:sta"
+
+#: inc/czr-customize.php:627
+msgid "If you like"
+msgstr "Jos pidät"
+
+#: inc/czr-customize.php:616
+msgid "Customize your footer credits with Customizr Pro."
+msgstr "Customizr Pro:ssa voit mukauttaa alaviitteen tunnustustekstit."
+
+#: inc/czr-customize.php:576
+msgid "Add unlimited featured pages with Customizr Pro."
+msgstr "Lisää rajattomasti korostettuja sivuja Customizr Pro:ssa."
+
+#: inc/czr-customize.php:565
+msgid "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro."
+msgstr "Haluatko paremman fonttienhallinnan? Customizr Pro:n avulla voit tyylitellä fontteja (koko, väri, fonttiperhe, tehosteet, ...) suorassa esikatselussa."
+
+#: inc/czr-admin.php:629
+msgid "Discover Customizr Pro"
+msgstr "Tutustu Customizr Pro:hon"
+
+#: inc/czr-customize.php:546
+msgid "Let me think twice"
+msgstr "Haluan vielä harkita asiaa"
+
+#: inc/czr-customize.php:545
+msgid "Hide forever"
+msgstr "Piilota lopullisesti"
+
+#: inc/czr-customize.php:544
+msgid "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>"
+msgstr "Kun klikkaat 'Piilota lopullisesti'-painiketta, tätä lahjoituskehotusta ei enää näytetä.<br/>Käytitpä Customizr-teemaa sitten yksityisesti tai liiketoimintaan, mitä tahansa lahjoitusta arvostetaan tämän ilmaisen teeman tukemiseksi.<br/><strong>Oletko jo lahjoittaja? Kiitos, olet huippu!<br/><br/> Elä pitkään ja menesty Customizr:in kanssa!<strong>"
+
+#: inc/czr-customize.php:541
+msgid "Make a donation for Customizr"
+msgstr "Tee lahjoitus Customizr:lle"
+
+#: inc/czr-customize.php:533
+msgid ", developer of the Customizr theme"
+msgstr ", Customizr-teeman kehittäjä"
+
+#: inc/czr-customize.php:531
+msgid "Hi! This is"
+msgstr "Hi! Tässä"
+
+#: inc/czr-init.php:3538
+msgid "Jump to the blog design options"
+msgstr "Siirry blogia koskeviin asetuksiin"
+
+#: inc/czr-customize.php:363
+msgid "More grid design options"
+msgstr "Lisää Ruudukkoon liittyviä asetuksia"
+
+#. Author URI of the plugin/theme
+msgid "http://presscustomizr.com/"
+msgstr "http://presscustomizr.com/"
+
+#. Author of the plugin/theme
+msgid "nikeo"
+msgstr "nikeo"
+
+#. Theme URI of the plugin/theme
+msgid "http://presscustomizr.com/customizr"
+msgstr "http://presscustomizr.com/customizr"
