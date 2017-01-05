@@ -7343,6 +7343,11 @@ ul {
 .woocommerce div.product form.cart .variations select {
   margin-bottom: 0;
 }
+/* do not break woocommerce product labels */
+.woocommerce .product label {
+  word-break: break-all;
+  white-space: normal;
+}
 /* FOOTER
     -------------------------------------------------- */
 footer#footer {
