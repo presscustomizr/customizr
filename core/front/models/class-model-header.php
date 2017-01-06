@@ -96,7 +96,7 @@ class CZR_header_model_class extends CZR_Model {
       $_css = sprintf("%s%s",
         $_css,
         "
-        .tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+        .navbar-sticky, .header-absolute .topnav_navbars__wrapper {
           z-index:{$_custom_z_index}
         }"
       );
