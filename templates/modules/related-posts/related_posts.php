@@ -14,7 +14,7 @@
       </div>
     <?php endif ?>
   </header>
-  <div class="row grid-container__square-mini carousel-inner">
+  <div class="row grid-container__square-mini <?php echo $wp_query->post_count > 1 ? 'carousel-inner' : '' ?>">
   <?php
     while ( have_posts() ):
       the_post();

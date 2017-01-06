@@ -140,7 +140,7 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'click tap czr-slider.next', '.slider-next', slider_next );
 
       /* Test only RELATED POSTS !!!!!! */
-      $('.grid-container__square-mini').flickity({
+      $('.grid-container__square-mini.carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
           imagesLoaded: true,
