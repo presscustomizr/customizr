@@ -52,8 +52,8 @@
           <a class="tc-grid-bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
           <?php
 
-          /* additional effect for not expanded grid items with no img */
-        if( czr_fn_get( 'has_fade_expt' ) /* ! ( czr_fn_get( 'is_expanded' ) || czr_fn_get( 'thumb_img' ) ) */ ):
+          /* additional effect for not expanded grid items */
+        if( czr_fn_get( 'has_fade_expt' ) ):
 
           ?>
           <span class="tc-grid-fade_expt"></span>

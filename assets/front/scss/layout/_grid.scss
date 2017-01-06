@@ -276,27 +276,19 @@ WP classes
 
 /* CLASSIC */
 .grid-container__classic {
-  .tc-content { @extend .small; }
-  &.tc-grid-shadow .grid__item { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) ); }
-  .no-thumb .tc-grid-fade_expt {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    text-align: center;
-    margin: 0;
-    @include bg-gradient-t2b($white, $grey);
+  .tc-content {
+    @extend .small
+  }
+  &.tc-grid-shadow .grid__item {
+    @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) );
   }
 
   .tc-grid-figure {
     position: relative;
     overflow:hidden;
-    &::before {
-      //golden ratio for the height
-      content: '';
-      display: block;
+    @at-root .grid-container__classic .entry-media__wrapper {
       position: relative;
+      //golden ratio for the height
       padding-bottom: 100 / 1.618 * 1%;//the golden ratio
       height: 0;
     }
@@ -306,30 +298,35 @@ WP classes
       top: 0;
       left: 0;
     }
-    @at-root .grid-container__classic .entry-media__wrapper,
-    .grid-container__classic .tc-grid-caption {
-        display:block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
     @at-root .grid-container__classic .tc-grid-caption {
-      width: 100%;
+      display:block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       text-align: center;
       background: $black;
       padding: 1.25em $base-line-height;
       @include opacity(0);
       @include transition(all .3s ease-in-out);
-      a.tc-grid-bg-link {
+
+      @at-root .grid-container__classic .no-thumb .tc-grid-caption {
+        @include opacity(0.5);
+      }
+      @at-root .grid-container__classic .hover .tc-grid-caption {
+        @include opacity(0.75);
+      }
+
+      .tc-grid-bg-link {
         position: absolute;
-        z-index: 12;
+        z-index: 2;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
       }
+
       .entry-summary {
         position: relative;
         height:100%;
@@ -341,7 +338,8 @@ WP classes
         @extend .small;
         text-rendering: geometricPrecision;
       }
-       .tc-g-cont {
+
+      .tc-g-cont {
         max-height: 100%;
         overflow: hidden;
         p { margin: 0 }
@@ -356,22 +354,34 @@ WP classes
             &::before { background: $white; width: $base-line-height*2; }
           }
         }
-      }
-    }
-  }
+      }//tc-g-cont
+
+      @at-root .tc-grid-fade_expt {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 50%;
+          text-align: center;
+          margin: 0;
+          @include bg-gradient-t2b_fade($white, $grey);
+          .hover & {
+            background: none;
+          }
+      }//.tc-grid-fade_expt
+
+     .btn-edit {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+      }//btn-edit in caption (mainly for expanded)
+
+    }//tc-grid-caption
+
+  }//tc-grid-figure
 
 
-
-
-
-  .hover .tc-grid-fade_expt { background: none; }
-  .tc-grid-figure.no-thumb .tc-grid-caption {
-    @include opacity(0.5);
-    .tc-grid-fade_expt { background: none; }
-   }
-  .hover .tc-grid-figure .tc-grid-caption   {
-    @include opacity(0.75);
-  }
   .format-link .tc-grid-caption .entry-summary  {
     @extend .bold;
   }
@@ -394,12 +404,7 @@ WP classes
     @include transform(scale(1));
     @include opacity(1);
   }
-  .expanded .btn-edit {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 2;
-  }
+
 }
 /* END CLASSIC */
 
