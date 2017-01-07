@@ -17,7 +17,7 @@ class CZR_btt_arrow_model_class extends CZR_Model {
     );
 
     if ( ! array_key_exists( $direction, $dir_opposites ) )
-      return array();
+      $direction = 'right';
 
     $_preset = array (
       'element_class'         => is_rtl() ? $dir_opposites[$direction] : $direction

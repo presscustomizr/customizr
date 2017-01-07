@@ -206,7 +206,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
 
   /**
-  * Limits the length of the post titles in grids to a custom number of characters
+  * Limits the length of the post titles in grids to a custom number of words
   * @return string
   */
   function czr_fn_get_grid_item_title( $_title, $is_expanded ) {
@@ -214,15 +214,17 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
+
     if ( empty($_title) || ! is_string($_title) )
       return $_title;
 
     if ( count( explode( ' ', $_title ) ) > $_max ) {
       $_words = array_slice( explode( ' ', $_title ), 0, $_max );
-      $_title = sprintf( '%s ...',
+      $_title = sprintf( '%s &hellip;',
         implode( ' ', $_words )
       );
     }
+
     return $_title;
   }
 

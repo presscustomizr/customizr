@@ -88,7 +88,13 @@
 
   ?>
     <div class="tc-content">
-      <?php czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header' ) ?>
+      <?php czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header',
+        array(
+          'model_args' => array(
+            'the_title' => czr_fn_get('title')
+          )
+        )
+      )?>
       <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
         array(
           'model_args' => array(

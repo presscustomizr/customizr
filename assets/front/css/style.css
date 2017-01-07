@@ -2082,7 +2082,6 @@ a.external {
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
-  right: 0;
 }
 
 .czr-btta.show.left {
@@ -4042,6 +4041,10 @@ WP classes
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+}
+
+.grid-container__classic.tc-grid-border .grid__item {
+  border-bottom: 3px solid #202020;
 }
 
 .grid-container__classic .tc-grid-figure {

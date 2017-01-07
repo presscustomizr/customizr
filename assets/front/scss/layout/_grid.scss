@@ -283,7 +283,9 @@ WP classes
   &.tc-grid-shadow .grid__item {
     @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) );
   }
-
+  &.tc-grid-border .grid__item {
+    border-bottom: 3px solid $primary-color;
+  }
   .tc-grid-figure {
     position: relative;
     overflow:hidden;

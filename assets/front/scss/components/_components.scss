@@ -154,7 +154,6 @@ a[target="_blank"]:hover:after {
   &.show {
     cursor: pointer;
     @include opacity(1);
-    right: 0;
     &.left {
       left: -1px
     }
