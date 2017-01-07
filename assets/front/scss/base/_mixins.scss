@@ -1,3 +1,10 @@
+// box-sizing
+@mixin box-sizing( $what ) {
+  -webkit-box-sizing: $what;
+  -moz-box-sizing: $what;
+  box-sizing: $what;
+}
+
 // example pxtoem(14, 16);
 @function pxtoem($target, $context){
   @return ($target/$context)+0em;
@@ -183,4 +190,10 @@
   -moz-transform: $transforms;
   -ms-transform: $transforms;
   transform: $transforms;
+}
+
+@mixin czr__responsive-wrapper( $width, $height ) {
+  &::before {
+    padding-top: percentage( $height / $width );
+  }
 }

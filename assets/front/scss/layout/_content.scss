@@ -189,17 +189,6 @@ dl {
     max-width: 350px; /* this actually depends on the thumb size */
     margin: auto;
     position: relative;
-    &::after {
-      /* Ensure square thumb-wrappers*/
-      width: 100%;
-      /*
-      * this refers to the parent width, allowing us to have a perfect square
-      * as it has the same element's width percentage value.
-      */
-      padding-bottom: 100%;
-      content: '';
-      display: block;
-    }
   }
   .no-effect .czr-thumb-wrapper {
     margin-bottom: $base-line-height*2
@@ -211,12 +200,12 @@ dl {
     * https://github.com/presscustomizr/customizr/issues/632
     * https://github.com/presscustomizr/customizr/issues/474
     */
-    transform: translateZ(0);
+    @include transform( translateZ(0) );
   }
   .center-images-disabled & img {
     /* temporary CSS centering */
-    transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
-    transform: translate3d(-50%, -50%, 0);
+    @include transform( translate(-50%, -50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
     position: absolute;

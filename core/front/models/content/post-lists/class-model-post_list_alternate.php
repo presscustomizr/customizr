@@ -258,6 +258,11 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $content_cols      = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
     $media_cols        = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
 
+    //add the aspect ratio class for the full image types
+    if ( $is_full_image )
+      array_push( $media_cols, 'czr__r-w16by9' );
+
+
     $show_comment_meta = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     $post_list_item = array(

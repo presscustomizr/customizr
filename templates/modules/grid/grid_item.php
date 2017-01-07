@@ -11,7 +11,7 @@
 <article <?php czr_fn_echo( 'article_selectors' ) ?> >
   <section class="grid__item" <?php czr_fn_echo('element_attributes') ?>>
     <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
-      <div class="entry-media__wrapper">
+      <div class="entry-media__wrapper czr__r-i">
         <?php
 
         if ( czr_fn_get( 'icon_enabled' ) ):

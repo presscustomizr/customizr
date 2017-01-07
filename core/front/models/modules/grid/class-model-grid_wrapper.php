@@ -162,6 +162,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
+    //add the aspect ratio class for the figure
+    array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
+
     //update the model
     return array_merge(
         $icon_visibility,

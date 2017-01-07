@@ -520,7 +520,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   width: 100%;
   .slider-control {
     position: absolute;
-    z-index: 1046;
+    z-index: 2;
     top: calc((100% - 60px)/2);
     text-align: center;
     margin-top: 0px;
@@ -626,15 +626,18 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     /* Centering */
     left: 50%;
     top: 50%;
-    transform: translate2d(-50%,-50%); /* fallback for those browsers w/o translate3d transform property*/
-    transform: translate3d(-50%,-50%, 0);
+    @include transform ( translate2d(-50%,-50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    @include transform ( translate3d(-50%,-50%, 0) );
     /* end of centering */
     border: 150px solid;
     border-color: white;
-    box-sizing: content-box;
+    @include box-sizing( content-box );
     transition: all .3s ease;
     .no-effect & { border: transparent }
     .round & { border-radius: 50% }
-    .hover & { transform: translate3d(-50%,-50%, 0) scale(1.4) }
+    .hover & {
+      @include transform ( translate2d(-50%,-50%) scale(1.4) ); /* fallback for those browsers w/o translate3d transform property*/
+      @include transform ( translate3d(-50%,-50%, 0) scale(1.4) );
+    }
   }
 }

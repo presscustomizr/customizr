@@ -64,6 +64,7 @@ WP classes
 }
 
 [class*=grid-container__] article { margin-bottom: 40px }
+[class*=grid-container__masonry] article { margin-bottom: 20px }
 .comments__link { white-space: nowrap; }
 .grid-title_size {
   line-height:1.4;
@@ -286,12 +287,6 @@ WP classes
   .tc-grid-figure {
     position: relative;
     overflow:hidden;
-    @at-root .grid-container__classic .entry-media__wrapper {
-      position: relative;
-      //golden ratio for the height
-      padding-bottom: 100 / 1.618 * 1%;//the golden ratio
-      height: 0;
-    }
     img {
       width: 100%;
       height: auto;
@@ -429,7 +424,6 @@ WP classes
   a:not(.bg-link) { z-index: 2; position: relative; }
 
   .tc-thumbnail {
-    max-height: 600px; /* Use padding instead ?*/
     .bg-link { @include filter($black, $white, 0.25); }
   }
 
@@ -501,12 +495,6 @@ WP classes
     @include transform(translate(0, -4px));
   }
 
-
-  .format-video {
-    .video-container {
-      height: 233px;
-    }
-  }
   .format-audio .audio-container iframe { height: 80px; }
 }
 
@@ -576,7 +564,6 @@ WP classes
 .grid-container__plain {
   section { padding:0 }
   section:last-of-type { padding:$base-line-height*2; }
-  .tc-thumbnail { max-height: 600px; overflow: hidden; }
   .post-tags { margin-top: 1.5em; }
   .post-share .socials { margin-top: 1.1em }
   .post-info {
@@ -658,18 +645,13 @@ WP classes
     }
     .tax__container { display: none }
   }//&.narrow
-
-  .post.format-video {
-    .tc-thumbnail {
-      min-height: 640px;
-      height: 640px;
-      overflow: auto;
-      .video-container {
-        height: 100%;
-      }
-    }
-  }//.post.format-video
 }//.grid-container__plain
+
+.entry-media__holder {
+  .video-container {
+      height: 100%;
+  }
+}//.post.format-video
 
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
@@ -686,15 +668,9 @@ WP classes
   }
   section {
     padding: 0;
-    &::after {
-      content: '';
-      padding-bottom: 100%; /* this will ensure always a square thumbnail and content*/
-      display: block;
-      width: 100%;
-    }
-    &.entry-content__holder::after {
+    &.entry-content__holder::before {
       @media screen and (max-width: 575px) {
-        padding-bottom: 50%
+        padding-top: 50%
       }
     }
   }
@@ -721,14 +697,6 @@ WP classes
     @extend .small;
     display: none;
     @media screen and ( min-width: 769px) { display: block }
-  }
-  .entry-media__wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
   }
   .entry-content__wrapper {
     position: absolute;

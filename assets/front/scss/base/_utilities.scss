@@ -1,6 +1,3 @@
-.clearfix {
-  clear: both
-}
 .bg-transparent { background: transparent }
 .big-text-10 { font-size: 10em }
 .m-t-05 { margin-top: 0.5em }
@@ -169,3 +166,47 @@
   }
 }
 .czr-valign { @include czr-valign() }
+
+/* Responsive ratios */
+[class*=czr__r-w] {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: "";
+  }
+
+  .czr__r-i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Various responsive ratios */
+
+.czr__r-w16by9 {
+  @include czr__responsive-wrapper( 16, 9 );
+}
+
+.czr__r-wGR {
+  @include czr__responsive-wrapper( $golden, 1 );
+}
+
+.czr__r-w10by15 {
+  @include czr__responsive-wrapper( 10, 15 );
+}
+
+.czr__r-w4by3 {
+  @include czr__responsive-wrapper( 4, 3 );
+}
+
+.czr__r-w1by1 {
+  @include czr__responsive-wrapper( 1, 1 );
+}

@@ -93,6 +93,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'content_inner_class' );
   }
 
+  function czr_fn_get_media_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'media_class' );
+  }
+
   function czr_fn_get_show_comment_meta() {
     return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
   }
@@ -125,7 +129,13 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
     $show_comment_meta           = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
+    //add the aspect ratio class for all media types (except audio )
+    $media_class                 = 'audio' == $current_post_format ? '' : 'czr__r-w16by9';
+
+
     return array(
+      //add the aspect ratio class for all images types
+      'media_class'              => $media_class,
       'article_selectors'        => $article_selectors,
       'has_post_media'           => $has_post_media,
       'cat_list'                 => $cat_list,

@@ -234,7 +234,7 @@ var czrapp = czrapp || {};
       // previous
       function slider_previous(evt) {
         evt.preventDefault();
-console.log('am I here');
+
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 
@@ -250,7 +250,7 @@ console.log('am I here');
       // next
       function slider_next(evt) {
         evt.preventDefault();
-console.log('am I here');
+
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 

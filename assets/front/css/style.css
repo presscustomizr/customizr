@@ -263,10 +263,6 @@ blockquote p {
   text-decoration: underline;
 }
 
-.clearfix {
-  clear: both;
-}
-
 .bg-transparent {
   background: transparent;
 }
@@ -361,6 +357,49 @@ blockquote p {
   transform: translate3d(0, -50%, 0);
 }
 
+/* Responsive ratios */
+[class*=czr__r-w] {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+[class*=czr__r-w]::before {
+  display: block;
+  content: "";
+}
+
+[class*=czr__r-w] .czr__r-i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Various responsive ratios */
+.czr__r-w16by9::before {
+  padding-top: 56.25%;
+}
+
+.czr__r-wGR::before {
+  padding-top: 61.803398%;
+}
+
+.czr__r-w10by15::before {
+  padding-top: 150%;
+}
+
+.czr__r-w4by3::before {
+  padding-top: 75%;
+}
+
+.czr__r-w1by1::before {
+  padding-top: 100%;
+}
+
 *,
 *::after,
 *::before {
@@ -385,16 +424,6 @@ img {
   height: auto;
 }
 
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before, .clearfix:after {
-  content: " ";
-  display: table;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
 a, button, button:focus {
   outline: 0;
 }
@@ -403,11 +432,6 @@ a {
   transition: color ease 0.3s;
 }
 
-/* end clearfix
-/*
-* > :first-child { margin-top: 0 !important; margin-left: 0 !important; }
-* > :last-child  { margin-bottom: 0 !important; margin-right: 0 !important; }
-*/
 a,
 a:hover,
 a:focus,
@@ -2508,7 +2532,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .slider-nav .slider-control, .mfp-gallery .slider-control, .tc-gallery-nav .slider-control {
   position: absolute;
-  z-index: 1046;
+  z-index: 2;
   top: calc((100% - 60px)/2);
   text-align: center;
   margin-top: 0px;
@@ -2643,12 +2667,20 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   /* Centering */
   left: 50%;
   top: 50%;
+  -webkit-transform: translate2d(-50%, -50%);
+  -moz-transform: translate2d(-50%, -50%);
+  -ms-transform: translate2d(-50%, -50%);
   transform: translate2d(-50%, -50%);
   /* fallback for those browsers w/o translate3d transform property*/
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
   /* end of centering */
   border: 150px solid;
   border-color: white;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   transition: all .3s ease;
 }
@@ -2662,6 +2694,14 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 }
 
 .hover .czr-link-mask::before {
+  -webkit-transform: translate2d(-50%, -50%) scale(1.4);
+  -moz-transform: translate2d(-50%, -50%) scale(1.4);
+  -ms-transform: translate2d(-50%, -50%) scale(1.4);
+  transform: translate2d(-50%, -50%) scale(1.4);
+  /* fallback for those browsers w/o translate3d transform property*/
+  -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4);
+  -moz-transform: translate3d(-50%, -50%, 0) scale(1.4);
+  -ms-transform: translate3d(-50%, -50%, 0) scale(1.4);
   transform: translate3d(-50%, -50%, 0) scale(1.4);
 }
 
@@ -3473,18 +3513,6 @@ dl dd {
   position: relative;
 }
 
-.featured .czr-thumb-wrapper::after {
-  /* Ensure square thumb-wrappers*/
-  width: 100%;
-  /*
-      * this refers to the parent width, allowing us to have a perfect square
-      * as it has the same element's width percentage value.
-      */
-  padding-bottom: 100%;
-  content: '';
-  display: block;
-}
-
 .featured .no-effect .czr-thumb-wrapper {
   margin-bottom: 2.5em;
 }
@@ -3495,13 +3523,22 @@ dl dd {
     * https://github.com/presscustomizr/customizr/issues/632
     * https://github.com/presscustomizr/customizr/issues/474
     */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
 
 .center-images-disabled .featured img {
   /* temporary CSS centering */
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   /* fallback for those browsers w/o translate3d transform property*/
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
@@ -3639,6 +3676,10 @@ WP classes
 
 [class*=grid-container__] article {
   margin-bottom: 40px;
+}
+
+[class*=grid-container__masonry] article {
+  margin-bottom: 20px;
 }
 
 .comments__link {
@@ -4008,12 +4049,6 @@ WP classes
   overflow: hidden;
 }
 
-.grid-container__classic .entry-media__wrapper {
-  position: relative;
-  padding-bottom: 61.804697%;
-  height: 0;
-}
-
 .grid-container__classic .tc-grid-figure img {
   width: 100%;
   height: auto;
@@ -4217,12 +4252,6 @@ WP classes
   position: relative;
 }
 
-.grid-container__alternate .full-image .tc-thumbnail,
-.grid-container__masonry .full-image .tc-thumbnail {
-  max-height: 600px;
-  /* Use padding instead ?*/
-}
-
 .grid-container__alternate .full-image .tc-thumbnail .bg-link,
 .grid-container__masonry .full-image .tc-thumbnail .bg-link {
   color: #fff;
@@ -4391,10 +4420,6 @@ WP classes
   transform: translate(0, -4px);
 }
 
-.grid-container__masonry .format-video .video-container {
-  height: 233px;
-}
-
 .grid-container__masonry .format-audio .audio-container iframe {
   height: 80px;
 }
@@ -4471,11 +4496,6 @@ WP classes
 
 .grid-container__plain section:last-of-type {
   padding: 2.5em;
-}
-
-.grid-container__plain .tc-thumbnail {
-  max-height: 600px;
-  overflow: hidden;
 }
 
 .grid-container__plain .post-tags {
@@ -4591,13 +4611,7 @@ WP classes
   display: none;
 }
 
-.grid-container__plain .post.format-video .tc-thumbnail {
-  min-height: 640px;
-  height: 640px;
-  overflow: auto;
-}
-
-.grid-container__plain .post.format-video .tc-thumbnail .video-container {
+.entry-media__holder .video-container {
   height: 100%;
 }
 
@@ -4621,17 +4635,9 @@ WP classes
   padding: 0;
 }
 
-.grid-container__square-mini section::after {
-  content: '';
-  padding-bottom: 100%;
-  /* this will ensure always a square thumbnail and content*/
-  display: block;
-  width: 100%;
-}
-
 @media screen and (max-width: 575px) {
-  .grid-container__square-mini section.entry-content__holder::after {
-    padding-bottom: 50%;
+  .grid-container__square-mini section.entry-content__holder::before {
+    padding-top: 50%;
   }
 }
 
@@ -4667,15 +4673,6 @@ WP classes
   .grid-container__square-mini .entry-meta {
     display: block;
   }
-}
-
-.grid-container__square-mini .entry-media__wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
 }
 
 .grid-container__square-mini .entry-content__wrapper {

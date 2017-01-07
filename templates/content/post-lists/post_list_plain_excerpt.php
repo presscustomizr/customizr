@@ -19,7 +19,7 @@
               'content/post-lists/singles/post_list_single_media',
                array(
                 'model_args' => array(
-                  'element_class'            => '',
+                  'element_class'            => czr_fn_get('media_class'),
                   'has_post_media'           => $has_post_media,
                   'has_format_icon_media'    => false,
                   'is_full_image'            => false

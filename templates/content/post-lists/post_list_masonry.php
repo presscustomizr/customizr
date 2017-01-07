@@ -19,6 +19,7 @@
                array(
                 'model_args' => array(
                   'has_post_media'           => $has_post_media,
+                  'element_class'            => czr_fn_get( 'media_class' ),
                   'is_full_image'            => czr_fn_get( 'is_full_image' ),
                   'allow_css_centering'      => czr_fn_get( 'allow_css_centering' )
                 )
