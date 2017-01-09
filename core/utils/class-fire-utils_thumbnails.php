@@ -13,10 +13,13 @@
 * @package Customizr
 * @since Customizr 1.0
 */
-function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null, $_filtered_thumb_size_name = null ) {
-    if ( ! czr_fn_has_thumb( $_post_id, $_custom_thumb_id ) )
-      return array();
-
+function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null, $_filtered_thumb_size_name = null, $_placeholder = false ) {
+    if ( ! czr_fn_has_thumb( $_post_id, $_custom_thumb_id ) ) {
+      if ( ! $_placeholder )
+        return array();
+      else
+        return array( 'tc_thumb' => czr_fn_get_placeholder_thumb() );
+    }
     $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
     $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 
@@ -273,6 +276,55 @@ function czr_fn_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = t
 
 
 
+/* ------------------------------------------------------------------------- *
+*  Placeholder thumbs for preview demo mode
+/* ------------------------------------------------------------------------- */
+/* Echoes the <img> tag of the placeholder thumbnail
+*  + an animated svg icon
+*  the src property can be filtered
+/* ------------------------------------ */
+if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
+  function czr_fn_get_placeholder_thumb( $_requested_size = 'thumb-standard' ) {
+    $_unique_id = uniqid();
+    $filter = false;
+
+    $_sizes = array( 'thumb-medium', 'thumb-small', 'thumb-standard' );
+    if ( ! in_array($_requested_size, $_sizes) )
+      $_requested_size = 'thumb-medium';
+
+    //default $img_src
+    $_img_src = get_template_directory_uri() . "/assets/front/img/{$_requested_size}.png";
+    if ( apply_filters( 'czr-use-svg-thumb-placeholder', true ) ) {
+        $_size = $_requested_size . '-empty';
+        $_img_src = get_stylesheet_directory_uri() . "/assets/front/img/{$_size}.png";
+        $_svg_height = in_array($_size, array( 'thumb-medium', 'thumb-standard' ) ) ? 100 : 60;
+        ob_start();
+        ?>
+        <svg class="czr-svg-placeholder <?php echo $_size; ?>" id="<?php echo $_unique_id; ?>" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z"/></svg>
+
+        <script type="text/javascript">
+          jQuery( function($){
+            $( '#<?php echo $_unique_id; ?>' ).animateSvg( { svg_opacity : 0.3, filter_opacity : 0.5 } );
+          });
+        </script>
+        <?php
+        $_svg_placeholder = ob_get_clean();
+    }
+    $_img_src = apply_filters( 'hu_placeholder_thumb_src', $_img_src, $_requested_size );
+    $filter = apply_filters( 'hu_placeholder_thumb_filter', false );
+    //make sure we did not lose the img_src
+    if ( false == $_img_src )
+      $_img_src = get_stylesheet_directory_uri() . "/assets/front/img/{$_requested_size}.png";
+    return sprintf( '%1$s%2$s<img class="czr-img-placeholder" src="%3$s" alt="%4$s" data-czr-post-id="%5$s" />',
+      isset($_svg_placeholder) ? $_svg_placeholder : '',
+      false !== $filter ? $filter : '',
+      $_img_src,
+      get_the_title(),
+      $_unique_id
+    );
+  }
+}
+
 /**********************
 * HELPER CALLBACK
 **********************/
@@ -294,3 +346,5 @@ function czr_fn_remove_srcset_attr( $attr ) {
     }
     return $attr;
 }
+
+

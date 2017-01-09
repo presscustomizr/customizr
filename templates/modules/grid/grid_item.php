@@ -12,6 +12,8 @@
   <section class="grid__item" <?php czr_fn_echo('element_attributes') ?>>
     <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
       <div class="entry-media__wrapper czr__r-i">
+        <a class="bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
+
         <?php
 
         if ( czr_fn_get( 'icon_enabled' ) ):
@@ -29,8 +31,8 @@
       </div>
       <div class="tc-grid-caption">
         <!--div class="entry-summary-wrapper"-->
-          <div class="entry-summary czr-valign">
-            <div class="tc-g-cont czr-valign-child"><?php the_excerpt() ?></div>
+          <div class="entry-summary <?php czr_fn_echo('entry_summary_class') ?> ">
+            <div class="tc-g-cont <?php czr_fn_echo('gcont_class') ?>"><?php the_excerpt() ?></div>
             <?php
 
             /* The expanded grid item has the title inside the caption */
@@ -49,7 +51,6 @@
 
             ?>
           </div>
-          <a class="tc-grid-bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
           <?php
 
           /* additional effect for not expanded grid items */

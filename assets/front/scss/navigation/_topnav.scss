@@ -354,9 +354,10 @@
     .primary-nav__container {
       li { position: relative; width:100% }
       .primary-nav__search {
+        input { height: 4em }
         .czr-form .form-group.in-focus label {
           @include transform(translateY(-50%));
-          .icn-close { @include transform(translateY(200%)); }
+          .icn-close { @include transform(translateY(265%)); }
         }
         .czr-form .form-group { margin: $base-line-height 0;  }
       }

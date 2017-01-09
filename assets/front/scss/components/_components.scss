@@ -640,3 +640,16 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     }
   }
 }
+
+svg.czr-svg-placeholder {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 50px;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  top: 25%;
+  @include transition(opacity .5s ease)
+}

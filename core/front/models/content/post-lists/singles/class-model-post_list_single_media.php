@@ -6,7 +6,8 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
   public $media_content;
   public $original_thumb_url;
   public $is_full_image;
-  public $allow_css_centering = true;
+
+  public $defaults = array( 'use_placeholder' => false, 'allow_css_centering' => true, 'original_thumb_url' => '' );
 
   function czr_fn_get_element_class() {
     $post_format           = get_post_format();
@@ -124,16 +125,16 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
           return false;
 
       default:
-          $_the_thumb = czr_fn_get_thumbnail_model( 'normal' );
+          $_the_thumb = czr_fn_get_thumbnail_model( 'normal', null, null, null, null, $this -> use_placeholder );
 
           if ( empty ( $_the_thumb['tc_thumb']) ) {
-            $this -> czr_fn_set_property( 'original_thumb_url', '');
             return ' ';
           }
 
           //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
           /* use utils tc thumb to retrieve the original image size */
-          $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
+          if ( isset($_the_thumb[ '_thumb_id' ]) )
+            $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
 
           $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
           $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );

@@ -21,6 +21,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      'use_thumb_placeholder' => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false
     );
@@ -162,6 +163,12 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
+    $use_thumb_placeholder  = $this -> use_thumb_placeholder;
+
+
+    //various depending on whether is expanded
+    $entry_summary_class    = $is_expanded ? 'czr-talign' : '';
+    $gcont_class            = ! $is_expanded ? 'czr-talign' : '';
     //add the aspect ratio class for the figure
     array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
 
@@ -178,6 +185,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'has_edit_in_caption',
           'section_cols',
           'article_selectors',
+          'use_thumb_placeholder',
+          'gcont_class',
+          'entry_summary_class',
           'show_comment_meta'
         )
     );
@@ -240,7 +250,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $thumb_model                   = czr_fn_get_thumbnail_model(
           $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
           null, null, null,
-          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols )
+          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
+          $_placehoder               = $this -> use_thumb_placeholder
       );
 
       if ( ! isset( $thumb_model['tc_thumb'] ) )
@@ -315,7 +326,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   }
 
   private function czr_fn_show_thumb() {
-    return 0 != $this -> show_thumb && czr_fn_has_thumb();
+    return 0 != $this -> show_thumb;
   }
 
   /******************************

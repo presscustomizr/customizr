@@ -12,7 +12,8 @@
           'model_args' => array(
             'element_class' => czr_fn_get('media_cols'),
             'only_thumb'    => true,
-            'has_post_media' => true
+            'has_post_media' => true,
+            'use_placeholder' => true
           )
         )
       );
