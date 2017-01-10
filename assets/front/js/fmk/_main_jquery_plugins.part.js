@@ -60,8 +60,13 @@ var czrapp = czrapp || {};
     },//center_images
 
     parallax : function() {
-      //slider parallax
-      $( '.czr-parallax-slider' ).czrParallax();
+      /*
+      * slider parallax on flickity ready
+      * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
+      */
+      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', function( evt ) {
+        $(evt.target).children('.flickity-viewport').czrParallax();
+      });
 
       $( '.parallax-item' ).czrParallax();
       /* Refresh waypoints when mobile menu button is toggled as
@@ -131,6 +136,18 @@ var czrapp = czrapp || {};
     * flickity slider:
     */
     czr_slider : function() {
+      /* Flickity ready
+      * see https://github.com/metafizzy/flickity/issues/493#issuecomment-262658287
+      */
+      var activate = Flickity.prototype.activate;
+      Flickity.prototype.activate = function() {
+        if ( this.isActive ) {
+          return;
+        }
+        activate.apply( this, arguments );
+        this.dispatchEvent('czr-flickity-ready');
+      };
+
       /* Disable controllers when the first or the latest slide is in the viewport */
       czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', czr_controls_disabling );
       /*Handle custom nav */
@@ -138,6 +155,7 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'click tap czr-slider.prev', '.slider-prev', slider_previous );
       // next
       czrapp.$_body.on( 'click tap czr-slider.next', '.slider-next', slider_next );
+
 
       /* Test only RELATED POSTS !!!!!! */
       $('.grid-container__square-mini.carousel-inner').flickity({
@@ -169,13 +187,34 @@ var czrapp = czrapp || {};
       /* Test only !!!!!! MAIN SLIDER */
       $('.carousel-inner', '[id^="customizr-slider-main"]').flickity({
           prevNextButtons: false,
-          pageDots: false,
+          pageDots: true,
+          /*
+          * From flickity docs
+          * At the end of cells, wrap-around to the other end for infinite scrolling.
+          */
           wrapAround: true,
           imagesLoaded: true,
+          //lazyLoad ?
+          /*
+          * From flickity docs
+          * Sets the height of the carousel to the height of the tallest cell. Enabled by default setGallerySize: true.
+          */
           setGallerySize: false,
           cellSelector: '.carousel-cell',
+          /*
+          * From flickity docs
+          * The number of pixels a mouse or touch has to move before dragging begins.
+          * Increase dragThreshold to allow for more wiggle room for vertical page scrolling on touch devices.
+          * Default dragThreshold: 3.
+          */
           dragThreshold: 10,
-          autoPlay: true,
+          /*
+          * From flickity docs
+          * Auto-playing will pause when mouse is hovered over,
+          * and resume when mouse is hovered off. Auto-playing will stop when
+          * the carousel is clicked or a cell is selected.
+          */
+          autoPlay: true, // {Number in milliseconds }
           /*
           * Set accessibility to false as it produces the following issue:
           * - flickity, when accessibiity is set to true, sets the "carousel" tabindex property
@@ -188,7 +227,6 @@ var czrapp = czrapp || {};
           * very weird behavior to investigate on :/
           */
           accessibility: false,
-          draggable: true
       });
 
       /* Handle sliders nav */
@@ -249,7 +287,7 @@ var czrapp = czrapp || {};
 
       // next
       function slider_next(evt) {
-        evt.preventDefault();
+        //evt.preventDefault();
 
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );

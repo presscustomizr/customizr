@@ -290,7 +290,7 @@ cite {
           }
           .dropdown-menu {
               left: 100%;
-              top: 100%;
+              top: 50%;
               text-transform: none;
               font-size:ms(0);
           }
@@ -498,8 +498,10 @@ nav li.dropdown-item:before {
 }
 
 /*  slider/gallery */
+
 /* Loader */
 html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
+
 /* Gif Loader if center slide option is checked */
 .czr-slider-loader-wrapper {
   height: 100%;
@@ -509,7 +511,17 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   /*less than the default sticky-header z-index */
   background: #ffffff;
 }
+/* end loader */
 
+/* Carousel dots for the main slider */
+[id^=customizr-slider-] {
+  .flickity-page-dots {
+    bottom: 30px;
+    .dot {
+      &::before { content: none; }
+    }
+  }
+}
 
 /* slider/gallery arrows  */
 .mfp-gallery { @extend .slider-nav }
@@ -523,7 +535,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     top: calc((100% - 60px)/2);
     text-align: center;
     margin-top: 0px;
-    -webkit-backface-visibility: hidden;
+    @include backface-visibility(hidden);
     display: block;
     color: $white;
     height: 60px;
@@ -533,7 +545,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     line-height: 60px;
     cursor: pointer;
     &:hover{
-      transform: translateY(0px);
+      @include transform( translateY(0px) );
       background-color: rgba($black, 0.9);
       opacity: 1;
       width: 100px;

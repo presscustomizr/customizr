@@ -2272,7 +2272,7 @@ cite::first-child {
 
 .dropdown-menu .dropdown-menu {
   left: 100%;
-  top: 100%;
+  top: 50%;
   text-transform: none;
   font-size: 1em;
 }
@@ -2543,6 +2543,16 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   background: #ffffff;
 }
 
+/* end loader */
+/* Carousel dots for the main slider */
+[id^=customizr-slider-] .flickity-page-dots {
+  bottom: 30px;
+}
+
+[id^=customizr-slider-] .flickity-page-dots .dot::before {
+  content: none;
+}
+
 /* slider/gallery arrows  */
 .slider-nav, .mfp-gallery, .tc-gallery-nav {
   display: block;
@@ -2556,6 +2566,10 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   text-align: center;
   margin-top: 0px;
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
   display: block;
   color: #fff;
   height: 60px;
@@ -2568,6 +2582,9 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 }
 
 .slider-nav .slider-control:hover, .mfp-gallery .slider-control:hover, .tc-gallery-nav .slider-control:hover {
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
   transform: translateY(0px);
   background-color: rgba(32, 32, 32, 0.9);
   opacity: 1;
@@ -3290,6 +3307,10 @@ form.czr-form .czr-search-field {
   color: #fff;
 }
 
+.header-skin-dark .section-slider .flickity-page-dots .dot {
+  background: #fff;
+}
+
 .header-skin-dark .image__header {
   color: #fff;
 }
@@ -3320,6 +3341,10 @@ form.czr-form .czr-search-field {
 
 .header-skin-light .section-slider .filter + .slider-text, .header-skin-light .section-slider .header-skin-dark .image__header + .slider-text, .header-skin-light .section-slider .image__header + .slider-text {
   color: #202020;
+}
+
+.header-skin-light .section-slider .flickity-page-dots .dot {
+  background: #202020;
 }
 
 .header-skin-light .image__header {
@@ -4067,9 +4092,9 @@ WP classes
 
 /* CLASSIC */
 .grid-container__classic.tc-grid-shadow .grid__item {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.075);
 }
 
 .grid-container__classic.tc-grid-border .grid__item {
@@ -4096,7 +4121,6 @@ WP classes
   right: 0;
   bottom: 0;
   text-align: center;
-  background: #202020;
   padding: 1.25em 1.25em;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -4121,6 +4145,8 @@ WP classes
   -moz-opacity: 0.75;
   -khtml-opacity: 0.75;
   opacity: 0.75;
+  background: #202020;
+  color: #fff;
 }
 
 .grid-container__classic .entry-summary {
@@ -4130,7 +4156,6 @@ WP classes
   padding: 0;
   width: 100%;
   text-align: left;
-  color: #fff;
   text-rendering: geometricPrecision;
   overflow: hidden;
 }
@@ -4209,6 +4234,8 @@ WP classes
   height: 50%;
   text-align: center;
   margin: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #b4b4b4 100%);
   /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #b4b4b4));
@@ -4224,10 +4251,10 @@ WP classes
 }
 
 .hover .tc-grid-fade_expt {
-  background: none;
+  background: 0 0;
 }
 
-.grid-container__classic .tc-grid-caption .btn-edit {
+.grid-container__classic .tc-grid-figure .btn-edit {
   position: absolute;
   bottom: 10px;
   right: 10px;

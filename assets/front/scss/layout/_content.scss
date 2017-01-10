@@ -18,9 +18,14 @@
 //header skins
 
 &.header-skin-dark  {
-  .section-slider .filter {
-    @include filter($black, $white, 0.5);
-    + .slider-text { color: $white; }
+  .section-slider {
+    .filter {
+      @include filter($black, $white, 0.5);
+      + .slider-text { color: $white; }
+    }
+    .flickity-page-dots .dot {
+      background: $white;
+    }
   }
   .image__header {
     @extend .filter;
@@ -29,9 +34,14 @@
 }
 
 &.header-skin-light {
-  .section-slider .filter {
-    @include filter($white, $black, 0.75);
-    + .slider-text { color: $black; }
+  .section-slider {
+    .filter {
+      @include filter($white, $black, 0.75);
+      + .slider-text { color: $black; }
+    }
+    .flickity-page-dots .dot {
+        background: $black;
+    }
   }
   .image__header {
     @extend .filter;
