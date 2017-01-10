@@ -279,7 +279,7 @@ WP classes
     @extend .small
   }
   &.tc-grid-shadow .grid__item {
-    @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.075) );
+    @include box-shadow( 0, 0, 6px, rgba(0, 0, 0, 0.075), false, 2px );
   }
   &.tc-grid-border .grid__item {
     border-bottom: 3px solid $primary-color;
@@ -301,18 +301,21 @@ WP classes
       right: 0;
       bottom: 0;
       text-align: center;
-      background: $black;
+      color: $black;
       padding: 1.25em $base-line-height;
       @include opacity(0);
       @include transition(all .3s ease-in-out);
 
+
       @at-root .grid-container__classic .no-thumb .tc-grid-caption {
         @include opacity(0.5);
       }
+
       @at-root .grid-container__classic .hover .tc-grid-caption {
         @include opacity(0.75);
+        background: $black;
+        color: $white;
       }
-
 
       @at-root .grid-container__classic .entry-summary {
         position: relative;
@@ -321,7 +324,6 @@ WP classes
         padding: 0;
         width:100%;
         text-align: left;
-        color: $white;
         @extend .small;
         text-rendering: geometricPrecision;
         overflow: hidden;
@@ -337,7 +339,7 @@ WP classes
             margin-left: 8%;
             text-align: left;
           }
-        }
+        }//.tc-grid-caption
         .entry-summary {
           position: absolute;
           left: 0;
@@ -350,9 +352,9 @@ WP classes
             top: 0;
             @include transform( translate3d(0,0,0));
             .tc-g-cont { max-height: 70%; }
-          }
-        }
-      }
+          }//@media
+        }//entry-summary
+      }//.grid-container__classic .expanded
 
 
       .tc-g-cont {
@@ -381,21 +383,22 @@ WP classes
           height: 50%;
           text-align: center;
           margin: 0;
+          @include transition(all .5s ease-in-out);
           @include bg-gradient-t2b_fade($white, $grey);
           .hover & {
-            background: none;
+            background: 0 0;
           }
       }//.tc-grid-fade_expt
 
-     .btn-edit {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        z-index: 2;
-      }//btn-edit in caption (mainly for expanded)
 
     }//tc-grid-caption
 
+   .btn-edit {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 2;
+    }//btn-edit in figure (mainly for expanded)
   }//tc-grid-figure
 
 

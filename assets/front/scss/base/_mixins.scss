@@ -99,16 +99,22 @@
     border-bottom-left-radius:$right;
 }
 
-@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
-  @if $inset {
-    -webkit-box-shadow:inset $top $left $blur $color;
-    -moz-box-shadow:inset $top $left $blur $color;
-    box-shadow:inset $top $left $blur $color;
-  } @else {
-    -webkit-box-shadow: $top $left $blur $color;
-    -moz-box-shadow: $top $left $blur $color;
-    box-shadow: $top $left $blur $color;
+@mixin box-shadow($top, $left, $blur, $color, $inset: false, $spread_radius: false ) {
+  $params : $top $left $blur;
+
+  @if $spread_radius {
+    $params : $params $spread_radius;
   }
+  @if $inset {
+    $params : inset $params;
+  }
+
+  $params : $params $color;
+
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+
 }
 
 @mixin backface-visibility ($arguments) {

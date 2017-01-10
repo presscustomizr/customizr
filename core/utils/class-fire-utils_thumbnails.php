@@ -18,7 +18,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
       if ( ! $_placeholder )
         return array();
       else
-        return array( 'tc_thumb' => czr_fn_get_placeholder_thumb() );
+        return array( 'tc_thumb' => czr_fn_get_placeholder_thumb(), 'is_placeholder' => true );
     }
     $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
     $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;

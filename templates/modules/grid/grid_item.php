@@ -30,7 +30,6 @@
         <?php czr_fn_echo( 'thumb_img' ) ?>
       </div>
       <div class="tc-grid-caption">
-        <!--div class="entry-summary-wrapper"-->
           <div class="entry-summary <?php czr_fn_echo('entry_summary_class') ?> ">
             <div class="tc-g-cont <?php czr_fn_echo('gcont_class') ?>"><?php the_excerpt() ?></div>
             <?php
@@ -63,12 +62,12 @@
         endif
 
           ?>
-        <!--/div-->
+      </div>
 
       <?php
 
-      /* Edit link in the figure for the expanded item */
-        if( czr_fn_get( 'has_edit_in_caption' ) )
+      /* Edit link above the thumb for the expanded item */
+        if( czr_fn_get( 'has_edit_above_thumb' ) )
           if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
             czr_fn_render_template(
               'modules/edit_button',
@@ -80,12 +79,11 @@
               )
             );
       ?>
-      </div>
     </div>
   <?php
 
     /* Header in the bottom for not expanded */
-    if( ! czr_fn_get( 'is_expanded' ) ) :
+    if( ! czr_fn_get( 'has_title_in_caption' ) ) :
 
   ?>
     <div class="tc-content">

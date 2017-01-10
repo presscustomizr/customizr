@@ -155,7 +155,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $has_title_in_caption   = $this -> czr_fn_grid_item_has_title_in_caption( $is_expanded );
 
-    $has_edit_in_caption    = $this -> czr_fn_grid_item_has_edit_in_caption( $is_expanded );
+    $has_edit_above_thumb   = $this -> czr_fn_grid_item_has_edit_above_thumb( $is_expanded );
 
     $has_fade_expt          = $this -> czr_fn_grid_item_has_fade_expt( $is_expanded, $thumb_img );
 
@@ -182,7 +182,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'title',
           'has_title_in_caption',
           'has_fade_expt',
-          'has_edit_in_caption',
+          'has_edit_above_thumb',
           'section_cols',
           'article_selectors',
           'use_thumb_placeholder',
@@ -196,7 +196,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /*
   * has edit in caption
   */
-  function czr_fn_grid_item_has_edit_in_caption( $is_expanded ) {
+  function czr_fn_grid_item_has_edit_above_thumb( $is_expanded ) {
     return $is_expanded;
   }
 
@@ -618,19 +618,20 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $_h_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'p' );
       $_css .= "
-          .tc-post-list-grid .grid-cols-1 .entry-title {{$_h_one_col}}
-          .tc-post-list-grid .grid-cols-1 .tc-g-cont {{$_p_one_col}}
+          .grid-container__classic .grid-cols-1 .entry-title {{$_h_one_col}}
+          .grid-container__classic .grid-cols-1 .tc-g-cont {{$_p_one_col}}
       ";
     }
     $_h = $_css_prop['h'];
     $_p = $_css_prop['p'];
     $_css .= "
-        .tc-post-list-grid article .entry-title {{$_h}}
-        .tc-post-list-grid .tc-g-cont {{$_p}}
+        .grid-container__classic article .entry-title {{$_h}}
+        .grid-container__classic .tc-g-cont {{$_p}}
     ";
     return $_css;
   }
 
+  /* Not used anymore !!! */
   /**
   * @return css string
   * @param column layout (string)
@@ -659,6 +660,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       }";
     return $_css;
   }
+
 
   /**
   * @return string
@@ -724,8 +726,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_user_options_style_cb( $_css ){
     $_col_nb  = $this -> czr_fn_get_grid_cols();
+    // Not used anymore:
     //GENERATE THE FIGURE HEIGHT CSS
-    $_current_col_figure_css  = $this -> czr_fn_grid_get_figure_css( $_col_nb );
+    //$_current_col_figure_css  = $this -> czr_fn_grid_get_figure_css( $_col_nb );
     //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
     $_current_col_media_css   = $this -> czr_fn_get_grid_font_css( $_col_nb );
     $_css = sprintf("%s\n%s\n%s\n",
