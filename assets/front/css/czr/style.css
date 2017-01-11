@@ -29,20 +29,7 @@ img.post-thumbnail {
   width: 100%;
 }
 
-/* JS IMAGE CENTERING */
-img.h-centered {
-  width: auto!important;
-  max-width: none!important;
-  position: relative;
-  transform: translateZ(0) !important;
-}
-img.v-centered {
-  height: auto!important;
-  max-height: none!important;
-  vertical-align: top;
-  position: relative;
-  transform: translateZ(0) !important;
-}
+
 
 /* FLICKITY SLIDER  */
 /*.carousel { z-index: 4;}*/

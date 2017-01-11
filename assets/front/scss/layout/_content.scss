@@ -204,21 +204,23 @@ dl {
     margin-bottom: $base-line-height*2
   }
 
-  .center-images-enabled & img {
-    /* should help avoiding undesired visible line
-    * see:
-    * https://github.com/presscustomizr/customizr/issues/632
-    * https://github.com/presscustomizr/customizr/issues/474
-    */
-    @include transform( translateZ(0) );
-  }
+//included in h/v-centered
+//  .center-images-enabled & img {
+//    /* should help avoiding undesired visible line
+//    * see:
+//    * https://github.com/presscustomizr/customizr/issues/632
+//    * https://github.com/presscustomizr/customizr/issues/474
+//    */
+//    @include transform( translate3d(0,0,0) );
+//  }
+
   .center-images-disabled & img {
     /* temporary CSS centering */
     @include transform( translate(-50%, -50%) ); /* fallback for those browsers w/o translate3d transform property*/
     @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
-    position: absolute;
+    position: relative;
   }
 
   @at-root .fp-title {
@@ -238,7 +240,7 @@ dl {
       right: 0;
       margin: $base-line-height/4 auto 0;
       @include transition (all 0.6s ease);
-      @at-root .hover & {
+      @at-root .widget-front.hover & {
         background: $grey-dark;
         width: $base-line-height*2;
       }
@@ -264,7 +266,7 @@ dl {
       @extend .small;
     }
   }
-  & .hover {
+  & .widget-front.hover {
     color: $grey-dark;
   }
 }

@@ -28,9 +28,22 @@
     background: $grey-light;
   }
 }
-.img-centered {
-  @extend .centered;
-  margin: 0 auto;
+
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto!important;
+  max-width: none!important;
+  position: relative;
+  @include transform( translate(0,0) !important );
+  @include transform( translate3d(0,0,0) !important );
+}
+img.v-centered {
+  height: auto!important;
+  max-height: none!important;
+  vertical-align: top;
+  position: relative;
+  @include transform( translate(0,0) !important );
+  @include transform( translate3d(0,0,0) !important );
 }
 
 .filter {

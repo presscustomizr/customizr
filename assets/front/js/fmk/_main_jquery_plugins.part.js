@@ -152,9 +152,9 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', czr_controls_disabling );
       /*Handle custom nav */
       // previous
-      czrapp.$_body.on( 'click tap czr-slider.prev', '.slider-prev', slider_previous );
+      czrapp.$_body.on( 'click tap prev.czr-slider', '.slider-prev', slider_previous );
       // next
-      czrapp.$_body.on( 'click tap czr-slider.next', '.slider-next', slider_next );
+      czrapp.$_body.on( 'click tap next.czr-slider', '.slider-next', slider_next );
 
 
       /* Test only RELATED POSTS !!!!!! */

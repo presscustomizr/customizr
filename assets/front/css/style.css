@@ -226,7 +226,7 @@ blockquote p {
   text-align: left;
 }
 
-.centered, .img-centered, .parallax {
+.centered, .parallax {
   text-align: center;
 }
 
@@ -301,8 +301,34 @@ blockquote p {
   box-shadow: 0px 2px 2px rgba(102, 102, 102, 0.08);
 }
 
-.img-centered {
-  margin: 0 auto;
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto !important;
+  max-width: none !important;
+  position: relative;
+  -webkit-transform: translate(0, 0) !important;
+  -moz-transform: translate(0, 0) !important;
+  -ms-transform: translate(0, 0) !important;
+  transform: translate(0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+img.v-centered {
+  height: auto !important;
+  max-height: none !important;
+  vertical-align: top;
+  position: relative;
+  -webkit-transform: translate(0, 0) !important;
+  -moz-transform: translate(0, 0) !important;
+  -ms-transform: translate(0, 0) !important;
+  transform: translate(0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 .filter, .header-skin-dark .image__header, .header-skin-light .image__header {
@@ -2729,7 +2755,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   border-radius: 50%;
 }
 
-.hover .czr-link-mask::before {
+.czr-link-mask-p.hover .czr-link-mask::before {
   -webkit-transform: translate2d(-50%, -50%) scale(1.4);
   -moz-transform: translate2d(-50%, -50%) scale(1.4);
   -ms-transform: translate2d(-50%, -50%) scale(1.4);
@@ -3575,18 +3601,6 @@ dl dd {
   margin-bottom: 2.5em;
 }
 
-.center-images-enabled .featured img {
-  /* should help avoiding undesired visible line
-    * see:
-    * https://github.com/presscustomizr/customizr/issues/632
-    * https://github.com/presscustomizr/customizr/issues/474
-    */
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
 .center-images-disabled .featured img {
   /* temporary CSS centering */
   -webkit-transform: translate(-50%, -50%);
@@ -3600,7 +3614,7 @@ dl dd {
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
-  position: absolute;
+  position: relative;
 }
 
 .fp-title {
@@ -3624,7 +3638,7 @@ dl dd {
   transition: all 0.6s ease;
 }
 
-.hover .fp-title::after {
+.widget-front.hover .fp-title::after {
   background: #777;
   width: 2.5em;
 }
@@ -3653,7 +3667,7 @@ dl dd {
   color: #777;
 }
 
-.featured .hover {
+.featured .widget-front.hover {
   color: #777;
 }
 
@@ -4121,6 +4135,7 @@ WP classes
   right: 0;
   bottom: 0;
   text-align: center;
+  color: #202020;
   padding: 1.25em 1.25em;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -4162,6 +4177,7 @@ WP classes
 
 .grid-container__classic .expanded .tc-grid-caption {
   background: 0 0;
+  color: #fff;
   opacity: 1;
 }
 
@@ -4187,6 +4203,10 @@ WP classes
   .grid-container__classic .expanded .entry-summary {
     bottom: 0;
     top: 0;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
@@ -4194,6 +4214,9 @@ WP classes
   }
   .grid-container__classic .expanded .entry-summary .tc-g-cont {
     max-height: 70%;
+  }
+  .grid-container__classic .expanded .entry-summary .entry-title {
+    margin-top: 0.625em;
   }
 }
 
@@ -4303,6 +4326,21 @@ WP classes
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .grid-container__classic .tc-content {
+    padding: 1.25em;
+  }
+  .grid-container__classic .tc-content .entry-header {
+    font-size: .9em;
+  }
+  .grid-container__classic .tc-content .entry-header .entry-meta {
+    margin-bottom: 0.714286em;
+  }
+  .grid-container__classic .tc-content .entry-footer .post-info {
+    padding-top: 1.25em;
+  }
 }
 
 /* END CLASSIC */
