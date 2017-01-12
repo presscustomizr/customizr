@@ -557,9 +557,8 @@ Limit to desktop
 /* nav with tables */
 @media (min-width: 992px) {
   .primary-navbar__wrapper {
-    display: table !important;
+    /*display: table !important;*/
     min-width: 100% !important;
-    white-space: nowrap;
   }
   .primary-nav__container .primary-nav__nav {
     width: 100%;
@@ -601,6 +600,66 @@ Limit to desktop
     text-align: right;
   }
 }
+/* nav with tables logo right */
+.logo-right .primary-navbar__wrapper {
+  direction: rtl;
+}
+.logo-right .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
+  direction: ltr;
+}
+.logo-right .primary-nav__container .primary-nav__nav { text-align: left; }
+.logo-right .primary-nav__container .primary-nav__utils { direction: rtl;}
+.logo-right .primary-nav__container .primary-nav__utils * { direction: ltr; }
+.logo-right .primary-nav__container .primary-nav__utils .utils { display: inline-block;}
+.logo-right .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+  margin-left: 0; padding-left: 0; /*reset */
+  margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+}
+.logo-right.tc-header .primary-nav__utils .utils li {
+  margin-left: 0; padding-left: 0; /*reset */
+  margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+}
+
+
+.logo-right.tc-header .primary-nav__utils .utils li + li {
+  margin-left: 0; margin-right: 0;
+}
+.logo-right .primary-nav__utils .nav.utils > li:first-of-type {
+  position: relative;
+}
+       /* to-do mobile logo */
+@media (min-width: 992px){
+   .tc-header.logo-right .primary-nav__utils .primary-nav__socials .socials:before {
+    left: auto;
+    right: 0;
+  }
+  .tc-header.logo-right .primary-nav__utils .utils li:before {
+    left: auto;
+    right: 0;
+  }
+}
+        @media (max-width: 992px){
+          .branding__container .branding {
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 1.25em;
+            text-align: left;
+          }
+          .branding__container { text-align: right; }
+          .mobile-utils__wrapper { float: left;}
+          .hamburger-toggler__container, .mobile-woocart__container {
+            float: right;
+            padding-left: 0 !important;
+            margin-right: 0 !important;
+            padding-right: 1.25em;
+            margin-left: 1.25em;
+          }
+          .mobile-woocart__container:before,
+          .hamburger-toggler__container:before {
+            left: auto !important;
+            right: 0;
+          }
+        }
 
 /* Give borders to the articles */
 .grid__item { outline: 1px solid #efefef; outline-offset: -1px;}

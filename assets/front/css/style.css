@@ -2701,6 +2701,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   * https://github.com/presscustomizr/customizr/issues/474
   * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
   */
+  border-color: white;
   left: 2px;
   right: 2px;
   top: 2px;
@@ -2740,7 +2741,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   transform: translate3d(-50%, -50%, 0);
   /* end of centering */
   border: 150px solid;
-  border-color: white;
+  border-color: inherit;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
