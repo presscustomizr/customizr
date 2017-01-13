@@ -905,6 +905,18 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+      //Helper
+      function czr_fn_woocommerce_shop_page_id( $id = null ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id( 'shop' ) : $id;
+      }
+      //Helper
+      function czr_fn_woocommerce_shop_enable( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
+      }
+
+      //when in the woocommerce shop page use the "shop" id
+      add_filter( 'tc_id', 'czr_fn_woocommerce_shop_page_id' );
+
       // use Customizr title
       // initially used to display the edit button
       add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
@@ -915,21 +927,16 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title' );
       function czr_fn_woocommerce_disable_tax_archive_title( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
       //allow slider in the woocommerce shop page
-      add_filter('tc_show_slider', 'czr_fn_woocommerce_enable_shop_slider');
-      function czr_fn_woocommerce_enable_shop_slider( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
-      }
-      //to allow the slider in the woocommerce shop page we need the shop page id
-      add_filter('tc_slider_get_real_id', 'czr_fn_woocommerce_shop_page_id');
-      function czr_fn_woocommerce_shop_page_id( $id ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id('shop') : $id;
-      }
+      add_filter( 'tc_show_slider', 'czr_fn_woocommerce_shop_enable' );
+
+      //allow page layout post meta in 'shop'
+      add_filter( 'tc_is_page_layout', 'czr_fn_woocommerce_shop_enable' );
 
       //handles the woocomerce sidebar : removes action if sidebars not active
       if ( !is_active_sidebar( 'shop') ) {
