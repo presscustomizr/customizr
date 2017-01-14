@@ -1138,7 +1138,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                  position: relative; float: left; top: auto; margin-right: 0.2em;
                }
                .tc-wc-menu .widget_shopping_cart .product_list_widget {
-                 max-height: 10em;
+                 max-height: 40vh;
                  overflow-y: auto;
                  padding: 1em 0;
                }
