@@ -293,10 +293,10 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
       $_requested_size = 'thumb-medium';
 
     //default $img_src
-    $_img_src = get_template_directory_uri() . "/assets/front/img/{$_requested_size}.png";
+    $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
     if ( apply_filters( 'czr-use-svg-thumb-placeholder', true ) ) {
         $_size = $_requested_size . '-empty';
-        $_img_src = get_stylesheet_directory_uri() . "/assets/front/img/{$_size}.png";
+        $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_size}.png" );
         $_svg_height = in_array($_size, array( 'thumb-medium', 'thumb-standard' ) ) ? 100 : 60;
         ob_start();
         ?>
@@ -314,7 +314,7 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
     $filter = apply_filters( 'hu_placeholder_thumb_filter', false );
     //make sure we did not lose the img_src
     if ( false == $_img_src )
-      $_img_src = get_stylesheet_directory_uri() . "/assets/front/img/{$_requested_size}.png";
+      $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
     return sprintf( '%1$s%2$s<img class="czr-img-placeholder" src="%3$s" alt="%4$s" data-czr-post-id="%5$s" />',
       isset($_svg_placeholder) ? $_svg_placeholder : '',
       false !== $filter ? $filter : '',
