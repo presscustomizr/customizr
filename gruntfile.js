@@ -3,6 +3,7 @@
 //@todo add customizr.pot in replace version file list
 module.exports = function(grunt) {
   var path = require('path');
+
   var global_config = {
     // path to task.js files, defaults to grunt dir
         configPath: path.join(process.cwd(), 'grunt-tasks-config/'),
@@ -14,6 +15,7 @@ module.exports = function(grunt) {
       paths : {
         sass4 : 'assets/**/scss/',
         front_css4 : 'assets/front/css/',
+        theme_assets : 'assets/',
         less : 'inc/assets/less/',
         front_css : 'inc/assets/css/',
         front_js_4_source : 'assets/front/js/',
@@ -22,7 +24,10 @@ module.exports = function(grunt) {
         admin_js : 'inc/admin/js/',
         dev_php : 'inc/_dev/',
         inc_php : 'inc/',
-        lang : 'inc/lang/'
+        lang : 'inc/lang/',
+
+        // New customizer
+        czr_assets : 'assets/czr/',
       },
       //default less modifiers
       is_rtl: 'true',
@@ -34,20 +39,29 @@ module.exports = function(grunt) {
       credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
-        'customizr4_dev': ['clean' ,'watch' ],
+        'customizr4_dev': ['clean:free' ,'watch' ],
         'customizr_dev': ['clean' ,'watch'],
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
+
+        //CZR
+        'pre_czr' : ['concat:czr_control_css', 'concat:czr_control_js', 'comments:czr_control_js', 'lineending:czr_js', 'uglify:czr_control_js', 'uglify:czr_preview_js', 'cssmin:czr_css'],
 
         //PROD
         'prod_php' : ['concat:init_php', 'concat:front_php', 'concat:admin_php'],
         'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'lineending:front_css4', 'cssmin:prod_common_rtl'],
         'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
         'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:admin_control_js', 'uglify:prod_admin_js'],
+        //CZR
+        'prod_czr'          : [ 'pre_czr', 'copy:pre_czr' ],
+
         //https://www.npmjs.org/package/grunt-gitinfo
         //Get Git info from a working copy and populate grunt.config with the data
         'prod_build':  [ 'gitinfo', 'replace', 'clean:free', 'clean:in_customizr_pro', 'copy', 'clean:customizr_pro_lang', 'compress'],
         //final build meta task
         'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+
+        //BUILD CZR
+        'customizr_build_czr':  [ 'prod_php', 'prod_front_css', 'prod_front_js', 'pre_czr', 'prod_buid' ],
 
         //TRAVIS ci virtual machine build check on js @todo check other resources?
         'travis' : ['jshint'],

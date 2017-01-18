@@ -44,6 +44,39 @@ module.exports = {
 		files : ['<%= paths.admin_css %>*.css'],
 		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
 	},
+//CZR
+  czr_concat_control_css : {
+    files : ['<%= paths.czr_assets %>fmk/css/parts/*.css'],
+    tasks : ['concat:czr_control_css', 'cssmin:czr_css', 'copy:czr_css' ],
+  },
+  // czr_min_copy_control_css : {
+  //   files : ['<%= paths.czr_assets %>fmk/css/czr-control.css'],
+  //   tasks : ['cssmin:czr_css', 'copy:czr_css'],
+  // },
+  czr_control_js : {
+    files : ['<%= paths.czr_assets %>fmk/js/control_dev/**/*.js'],
+    tasks : [
+    'jshint:those' ,
+    'concat:czr_core_control_js',
+    'concat:czr_pro_modules_control_js',
+    'concat:czr_pro_control_js',
+
+    // 'comments:czr_core_control_js',
+    // 'comments:czr_pro_control_js',
+    // 'uglify:czr_control_js',
+    // 'uglify:czr_pro_control_js',
+    'copy:czr_js',
+    // 'copy:czr_js_in_hueman_addons',
+    // 'copy:czr_js_in_hueman_theme',
+    // 'copy:czr_js_in_hueman_pro_theme'
+    ],
+  },
+  //Other admin js assets are jshinted on change
+  czr_preview_js : {
+    files : ['<%= paths.czr_assets %>fmk/js/czr-preview.js'],
+    tasks : ['jshint:those', 'uglify:czr_preview_js', 'copy:czr_js'],
+  },
+//end CZR
 	push_php : {
 		files: ['**/*.php' , '!build/**.*.php', '! <%= paths.inc_php %>czr-admin.php', '! <%= paths.inc_php %>czr-customize.php', '! <%= paths.inc_php %>czr-front.php', '! <%= paths.inc_php %>czr-init.php'],
 		tasks: ['gitinfo' , 'replace:readme', 'wait:pause', 'concat:init_php', 'concat:front_php', 'concat:admin_php', 'concat:customize_php']
