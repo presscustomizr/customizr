@@ -50,7 +50,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
+      //add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
       add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
       //CACHE THE GLOBAL CUSTOMIZER MAP
@@ -261,10 +261,20 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function czr_fn_social_option_map( $get_default = null ) {
-      return array();//end of social layout map
+    function czr_fn_social_option_map( $get_default = null  ) {
+      return array(
+          'tc_social_links' => array(
+                'default'   => array(),//empty array by default
+                'control'   => 'CZR_Customize_Modules',
+                'label'     => __('Create and organize your social links', 'customizr'),
+                'section'   => 'socials_sec',
+                'type'      => 'czr_module',
+                'module_type' => 'czr_social_module',
+                'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                'priority'  => 10
+          )
+      );
     }
-
 
     /*-----------------------------------------------------------------------------------------------------
                                    LINKS SECTION
@@ -952,7 +962,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'CZR_Customize_Multipicker_Categories_Control',
-                                'type'        => 'tc_multiple_picker',
+                                'type'        => 'czr_multiple_picker',
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),

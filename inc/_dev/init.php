@@ -87,6 +87,13 @@ if ( ! class_exists( 'CZR___' ) ) :
       //CZR_WEBSITE is the home website of Customizr
       if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
+      //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
+      if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
+      //MAIN OPTIONS NAME
+      if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+
+      if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , array( CZR_utils::$inst, 'czr_fn_opt' ) );
+
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -411,4 +418,29 @@ if ( ! class_exists( 'CZR___' ) ) :
     }
   }//end of class
 endif;
+
+/* HELPERS */
+//@return boolean
+if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
+  function czr_fn_is_partial_refreshed_on() {
+    return apply_filters( 'czr_partial_refresh_on', false );
+  }
+}
+/* HELPER FOR CHECKBOX OPTIONS */
+//used in the customizer
+//replace wp checked() function
+if ( ! function_exists( 'czr_fn_checked' ) ) {
+  function czr_fn_checked( $val ) {
+    echo $val ? 'checked="checked"' : '';
+  }
+}
+/**
+* helper
+* @return  bool
+*/
+if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
+  function czr_fn_has_social_links() {
+    return ! empty ( czr_fn_get_opt('tc_social_links') );
+  }
+}
 ?>

@@ -52,9 +52,36 @@ module.exports = {
     ],
     dest: '<%= paths.inc_php %>czr-admin.php',
   },
+  //
+  //customize_php : {
+  //  src: [
+  //    '<%= paths.dev_php %>admin/class-admin-customize.php'
+  //  ],
+  //  dest: '<%= paths.inc_php %>czr-customize.php',
+  //},
+  //
+  //NEW
   customize_php : {
     src: [
-      '<%= paths.dev_php %>admin/class-admin-customize.php'
+      '<%= paths.dev_php %>czr/class-czr-init.php',
+      '<%= paths.dev_php %>czr/class-czr-resources.php',
+      //parts
+      '<%= paths.dev_php %>czr/controls/class-base-control.php',
+      '<%= paths.dev_php %>czr/controls/class-cropped-image-control.php',
+      '<%= paths.dev_php %>czr/controls/class-multipicker-control.php',
+      '<%= paths.dev_php %>czr/controls/class-modules-control.php',
+
+//      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
+
+      '<%= paths.dev_php %>czr/settings/class-settings.php',
+      //modules data
+      '<%= paths.dev_php %>czr/modules/modules-data.php',
+      '<%= paths.dev_php %>czr/modules/modules-resources.php',
+
+      //templates
+      '<%= paths.dev_php %>czr/tmpl/modules/all-modules-tmpl.php',
+      '<%= paths.dev_php %>czr/tmpl/modules/social-module-tmpl.php',
+      '<%= paths.dev_php %>czr/tmpl/inputs/img-uploader-tmpl.php',
     ],
     dest: '<%= paths.inc_php %>czr-customize.php',
   },
@@ -131,6 +158,7 @@ module.exports = {
       '<%= paths.czr_assets %>fmk/js/lib/selecter.min.js',
       '<%= paths.czr_assets %>fmk/js/lib/stepper.min.js',
       '<%= paths.czr_assets %>fmk/js/lib/select2.min.js',
+      '<%= paths.czr_assets %>fmk/js/lib/rangeslider.min.js',
 
       '<%= paths.czr_assets %>fmk/js/control_dev/_0_pre_base.js',
 
@@ -184,14 +212,13 @@ module.exports = {
       '<%= paths.czr_assets %>fmk/js/control_dev/1_0_input/_0_0_1_input_4_content_picker.js',
       '<%= paths.czr_assets %>fmk/js/control_dev/1_0_input/_0_0_1_input_5_text_editor.js',
 
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item/_0_0_2_item_0_init.js',
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item/_0_0_2_item_1_collection.js',
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item/_0_0_2_item_2_model.js',
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item/_0_0_2_item_3_view.js',
+      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item_and_modopt/1_1_0_item/_0_0_2_item_0_init.js',
+      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item_and_modopt/1_1_0_item/_0_0_2_item_2_model.js',
+      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item_and_modopt/1_1_0_item/_0_0_2_item_3_view.js',
 
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_2_module_options/_0_0_2_mod_opt_0_init.js',
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_2_module_options/_0_0_2_mod_opt_1_collection.js',
-      '<%= paths.czr_assets %>fmk/js/control_dev/1_2_module_options/_0_0_2_mod_opt_2_view.js',
+
+      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item_and_modopt/1_1_1_module_options/_0_0_2_mod_opt_0_init.js',
+      '<%= paths.czr_assets %>fmk/js/control_dev/1_1_item_and_modopt/1_1_1_module_options/_0_0_2_mod_opt_2_view.js',
 
       '<%= paths.czr_assets %>fmk/js/control_dev/1_3_module/_0_0_3_module_0_init.js',
       '<%= paths.czr_assets %>fmk/js/control_dev/1_3_module/_0_0_3_module_1_collection.js',
