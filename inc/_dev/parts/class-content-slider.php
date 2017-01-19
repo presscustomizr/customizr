@@ -744,7 +744,7 @@ class CZR_slider {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
 
-    $slide_classes = implode( ' ', apply_filters( 'tc_single_slide_item_classes', array( 'item', $data['active'], "slide-{$id}" ) ) );
+    $slide_classes = implode( ' ', apply_filters( 'tc_single_slide_item_classes', array( 'czr-item', $data['active'], "slide-{$id}" ) ) );
     ?>
     <div class="<?php echo $slide_classes; ?>">
       <?php
@@ -752,7 +752,7 @@ class CZR_slider {
         $this -> czr_fn_render_slide_caption_view( $_view_model );
         $this -> czr_fn_render_slide_edit_link_view( $_view_model );
       ?>
-    </div><!-- /.item -->
+    </div><!-- /.czr-item -->
     <?php
   }
 
@@ -1292,7 +1292,7 @@ class CZR_slider {
     );
 
     $_slider_inline_css = "
-      .carousel .item {
+      .carousel .czr-item {
         line-height: {$_custom_height}px;
         min-height:{$_custom_height}px;
         max-height:{$_custom_height}px;
@@ -1313,12 +1313,12 @@ class CZR_slider {
       $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
-          .carousel .item {
+          .carousel .czr-item {
             line-height: {$_item_dyn_height}px;
             max-height:{$_item_dyn_height}px;
             min-height:{$_item_dyn_height}px;
           }
-          .item .carousel-caption {
+          .czr-item .carousel-caption {
             max-height: {$_caption_dyn_height}px;
             overflow: hidden;
           }

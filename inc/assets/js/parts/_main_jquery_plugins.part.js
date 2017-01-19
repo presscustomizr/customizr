@@ -124,8 +124,8 @@ var czrapp = czrapp || {};
         $.each( $( '.carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == TCParams.centerSliderImg,
-            imgSel : '.item .carousel-image img',
-            oncustom : ['slid', 'simple_load'],
+            imgSel : '.czr-item .carousel-image img',
+            oncustom : ['customizr.slid', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
             useImgAttr : true
           });
