@@ -22,7 +22,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );
 
       //Add the control dependencies
-      //add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'czr_fn_extend_ctrl_dependencies' ), 10 );
+      add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'czr_fn_extend_ctrl_dependencies' ), 10 );
 
       //Add various dom ready
       add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'czr_fn_add_various_dom_ready_actions' ), 10 );
@@ -146,7 +146,13 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     }
 
     function czr_fn_get_inline_control_css() {
-      return "
+      return '
+      /* temporary */
+li[id*="customize-control-"] {
+  border: none;
+  box-shadow: none;-webkit-box-shadow: none;
+}
+
 /* SELECT 2 SPECIFICS */
 body .select2-dropdown {
   z-index: 999999;
@@ -199,6 +205,7 @@ body .select2-results {
   -moz-box-shadow:none;
   box-shadow: none;
 }
+/* FONTS */
 .tc-select2-font {
   padding: 7px 7px 4px;
   line-height: 20px;
@@ -230,12 +237,94 @@ body .select2-results {
   position: relative;
   top: 6px;
 }
+/* Call to actions block */
+.tc-grid-control-section {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-bottom: 8px;
+}
+
+.tc-grid-toggle-controls {
+    font-size: 15px;
+    text-transform: uppercase;
+    clear: both;
+    width: 100%;
+    display: block;
+    float: left;
+    margin: 15px 0;
+    cursor: pointer;
+    color: #000;
+}
+.tc-grid-toggle-controls::before {
+  content: "+";
+  font-size: 18px;
+  display: block;
+  float: left;
+  background: #000;
+  padding: 5px;
+  line-height: 11px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: #FFF;
+  margin-right: 5px;
+  bottom: 2px;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.tc-grid-toggle-controls.open::before {
+  content: "-";
+  line-height: 11px;
+}
+
+li[id*="customize-control-"].tc-grid-design {
+  border-left: 2px dotted #008ec2;
+  margin-left: 3%;
+  padding-left: 3%;
+  width: 93%;
+  font-style: italic;
+}
+.customize-control .tc-navigate-to-post-list {
+  color: #008ec2;
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.tc-sub-control {
+  padding-left: 13%;
+  max-width: 87%;
+  position: relative;
+}
+
+.tc-sub-control:before {
+  content: "";
+  height: 116%;
+  background: #008ec2;
+  width: 2%;
+  position: absolute;
+  left: 7%;
+}
+/* Maybe nove into common css */
+/*
+* Fix: wp 4.7 sticky section title and footer actions z-index
+*/
+.expanded .wp-full-overlay-footer,
+#customize-controls .customize-section-title.is-in-view.is-sticky {
+  z-index: 999;
+}
 
 /* ROOT PANEL : SEPARATE MENUS, WIDGETS AND ADVANCED OPTIONS */
 .control-panel-nav_menus > .accordion-section-title, .control-panel-widgets > .accordion-section-title {
   margin: 0 0 10px;
 }
-      ";
+      ';
     }
 
     //hook : customize_preview_init
@@ -936,158 +1025,28 @@ body .select2-results {
                 api.CZR_ctrlDependencies.prototype.dominiDeps,
                 [
                     {
-                            dominus : 'show_on_front',
-                            servi : ['show_on_front', 'page_for_posts' ],
-                            visibility : function( to, servusShortId ) {
-                                  if ( 'show_on_front' == servusShortId )
-                                    return 'unchanged';
-                                  return 'page' == to;
-                            },
-                            actions : function( to, servusShortId ) {
-                                  var wpServusId = api.CZR_Helpers.build_setId( servusShortId ),
-                                        _class = 'hu-front-posts-notice',
-                                        _maybe_print_html = function() {
-                                            if ( $( '.' + _class , api.control(wpServusId).container ).length )
-                                              return;
-                                            var _html = '<span class="description customize-control-description ' + _class +'"><?php echo html_entity_decode( $_front_page_content_notice ); ?></span>';
-                                            api.control(wpServusId).container.find('.customize-control-title').after( $.parseHTML( _html ) );
-                                        };
-
-                                  if ( 'show_on_front' == servusShortId ) {
-                                        if ( 'posts' != to && $( '.' + _class , api.control(wpServusId).container ).length ) {
-                                              $('.' + _class, api.control(wpServusId).container ).remove();
-                                        } else if ( 'posts' == to ) {
-                                              _maybe_print_html();
-                                        }
-                                  } else if ( 'page_for_posts' == servusShortId ) {
-                                        if ( 'page' != to && $( '.' + _class , api.control(wpServusId).container ).length ) {
-                                              $('.' + _class, api.control(wpServusId).container ).remove();
-                                        } else if ( 'page' == to ) {
-                                              _maybe_print_html();
-                                        }
-                                  }
-                            }
-                    },
-                    {
-                            dominus : 'display-header-logo',
-                            servi : ['logo-max-height', 'custom_logo', 'custom-logo' ],//depending on the WP version, the custom logo option is different.
+                          //we have to show restrict blog/home posts when
+                          //1. show page on front and a page of posts is selected
+                          //2, show posts on front
+                            dominus : 'pages_for_posts',
+                            servi   : ['tc_blog_restrict_by_cat'],
                             visibility : function( to ) {
-                                  return _is_checked(to);
-                            }
-                    },
-                    {
-                            dominus : 'use-header-image',
-                            onSectionExpand : false,
-                            servi : ['header_image', 'display-header-logo', 'custom_logo', 'custom-logo', 'logo-max-height', 'blogname', 'blogdescription', 'header-ads'],
-                            visibility : function( to, servusShortId ) {
-                                  if ( 'header_image' != servusShortId )
-                                    return 'unchanged';
-                                  return _is_checked(to);
+                              return _is_checked( to );
                             },
-                            actions : function( to, servusShortId ) {
-                                  var wpServusId = api.CZR_Helpers.build_setId( servusShortId ),
-                                      shortServusId = api.CZR_Helpers.getOptionName( servusShortId ),
-                                      _return = api.control(wpServusId).active();
+                      },
+                      {
+                            dominus : 'show_on_front',
+                            servi   : ['tc_blog_restrict_by_cat', 'tc_show_post_navigation_home'],
+                            visibility : function( to, servusShortId ) {
+                              if ( 'posts' == to )
+                                return true;
+                              if ( 'page' == to && 'tc_blog_restrict_by_cat' == servusShortId ) //show cat picker also if a page for posts is set
+                                return '0' !== api.CZR_Helpers.build_setId( 'page_for_posts' );
+                              return false;
 
-                                  //print a notice
-                                  switch( shortServusId ) {
-                                        case 'display-header-logo' :
-                                        case 'custom_logo' :
-                                        case 'blogname' :
-                                        case 'blogdescription' :
-                                        case 'custom-logo' :
-                                        case 'header-ads' :
-                                            if ( ! api.control.has(wpServusId) )
-                                              return;
+                            },
+                    },
 
-                                            if ( ! _is_checked(to) && $( '.hu-header-image-notice', api.control(wpServusId).container ).length ) {
-                                                  $('.hu-header-image-notice', api.control(wpServusId).container ).remove();
-                                            } else if ( _is_checked(to) ) {
-                                                  if ( $( '.hu-header-image-notice', api.control(wpServusId).container ).length )
-                                                    return;
-                                                  var _html = [
-                                                        '<span class="description customize-control-description hu-header-image-notice">',
-                                                        '<?php echo html_entity_decode( $_header_img_notice ); ?>',
-                                                        '</span>'
-                                                  ].join('');
-                                                  api.control(wpServusId).container.find('.customize-control-title').after( $.parseHTML( _html ) );
-                                            }
-                                        break;
-                                  }
-
-                                  //change opacity
-                                  switch( shortServusId ) {
-                                        case 'display-header-logo' :
-                                        case 'logo-max-height' :
-                                        case 'custom_logo' :
-                                        case 'custom-logo' :
-                                        case 'header-ads' :
-                                            if ( ! api.control.has(wpServusId) )
-                                              return;
-                                            if ( ! _is_checked(to) ) {
-                                                  $(api.control(wpServusId).container ).css('opacity', 1);
-                                            } else {
-                                                  $(api.control(wpServusId).container ).css('opacity', 0.6);
-                                            }
-                                        break;
-                                  }
-                            }//actions()
-                      },
-                      {
-                            dominus : 'dynamic-styles',
-                            servi : [
-                                  'boxed',
-                                  'font',
-                                  'container-width',
-                                  'sidebar-padding',
-                                  'color-1',
-                                  'color-2',
-                                  'color-topbar',
-                                  'color-header',
-                                  'color-header-menu',
-                                  'image-border-radius',
-                                  'body-background',
-                                  'color-footer'
-                            ],
-                            visibility : function ( to ) {
-                                  return _is_checked(to);
-                            }
-                      },
-                      {
-                            dominus : 'blog-heading-enabled',
-                            servi : [ 'blog-heading', 'blog-subheading' ],
-                            visibility : function ( to ) {
-                                  return _is_checked(to);
-                            }
-                      },
-                      {
-                            dominus : 'featured-posts-enabled',
-                            servi : [
-                                  'featured-category',
-                                  'featured-posts-count',
-                                  'featured-posts-full-content',
-                                  'featured-slideshow',
-                                  'featured-slideshow-speed',
-                                  'featured-posts-include'
-                            ],
-                            visibility : function ( to ) {
-                                  return _is_checked(to);
-                            }
-                      },
-                      {
-                            dominus : 'featured-slideshow',
-                            servi : [ 'featured-slideshow-speed' ],
-                            visibility : function ( to ) {
-                                  return _is_checked(to);
-                            }
-                      },
-                      {
-                            dominus : 'about-page',
-                            servi : [ 'help-button' ],
-                            visibility : function ( to ) {
-                                  return _is_checked( to );
-                            }
-                      }
                 ]//dominiDeps {}
           );//_.extend()
 

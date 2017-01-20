@@ -2231,37 +2231,43 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                   'priority'       => 10,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Global settings' , 'customizr' ),
-                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' )
+                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-header-panel' => array(
                   'priority'       => 20,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Header' , 'customizr' ),
-                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-content-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Content : home, posts, ...' , 'customizr' ),
-                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-sidebars-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Sidebars' , 'customizr' ),
-                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-footer-panel' => array(
                   'priority'       => 40,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Footer' , 'customizr' ),
-                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-advanced-panel' => array(
                   'priority'       => 1000,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Advanced options' , 'customizr' ),
-                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         )
       );
       return array_merge( $panel_map, $_new_panels );

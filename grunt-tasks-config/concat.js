@@ -73,6 +73,7 @@ module.exports = {
 
 //      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
 
+      '<%= paths.dev_php %>czr/panels/class-panels.php',
       '<%= paths.dev_php %>czr/settings/class-settings.php',
       //modules data
       '<%= paths.dev_php %>czr/modules/modules-data.php',
