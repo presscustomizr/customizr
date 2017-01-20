@@ -1611,6 +1611,9 @@ var TCParams = TCParams || {};
   var Collapse = function (element, options) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.collapse.defaults, options)
+    //@tc adddon
+    //to avoid conflicts with bootstrap>2.3.2 mobile menu
+    this._collapsed = true;
 
     if (this.options.parent) {
       this.$parent = $(this.options.parent)
@@ -1629,12 +1632,13 @@ var TCParams = TCParams || {};
     }
 
   , show: function () {
+
       var dimension
         , scroll
         , actives
         , hasData
-
-      if (this.transitioning || this.$element.hasClass('in')) return
+//( this._collapsed && !this.$element.hasClass('in') )
+      if (this.transitioning || this.$element.hasClass('in') ) return
 
       dimension = this.dimension()
       scroll = $.camelCase(['scroll', dimension].join('-'))
@@ -1650,6 +1654,10 @@ var TCParams = TCParams || {};
       this.$element[dimension](0)
       this.transition('addClass', $.Event('show'), 'shown')
       $.support.transition && this.$element[dimension](this.$element[0][scroll])
+
+    //@tc adddon
+    //to avoid conflicts with bootstrap>2.3.2 mobile menu
+      this._collapsed = false;
 
       //@tc adddon
       //give the revealed sub menu the height of the visible viewport
@@ -1681,13 +1689,22 @@ var TCParams = TCParams || {};
 
   , hide: function () {
       var dimension
-      if (this.transitioning || !this.$element.hasClass('in')) return
+      //@tc adddon
+      //( this._collapsed
+      if (this.transitioning || ( this._collapsed && !this.$element.hasClass('in') ) ) return
       dimension = this.dimension()
       this.reset(this.$element[dimension]())
       this.transition('removeClass', $.Event('hide'), 'hidden')
       this.$element[dimension](0)
 
+    //@tc adddon
+    //to avoid conflicts with bootstrap>2.3.2 mobile menu
+      this._collapsed = true;
+
       //@tc adddon
+      if ( ! this.$element.hasClass('nav-collapse') )
+          return;
+
       if ( TCParams && 1 != TCParams.dropdowntoViewport && 1 == TCParams.stickyHeader ) {
         $('body').addClass('tc-sticky-header');
       }
@@ -1728,9 +1745,9 @@ var TCParams = TCParams || {};
     }
 
   , toggle: function () {
-      //@tc adddon
-      // add || this.$element.height() to solve conflicts with bootstrap>2.3.2 on mobile menu
-      this[this.$element.hasClass('in') || this.$element.height() ? 'hide' : 'show']()
+    //@tc adddon || ! this._collapsed
+    //to avoid conflicts with bootstrap>2.3.2 mobile menu
+      this[this.$element.hasClass('in') || ! this._collapsed ? 'hide' : 'show']();
     }
 
   }
