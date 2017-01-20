@@ -50,13 +50,27 @@ if ( ! class_exists( 'CZR_controls' ) ) :
               <?php endif; ?>
               <label>
                 <span class="customize-control-title"><?php echo $this->label; ?></span>
-                <?php $this -> czr_print_select_control( '' ) ?>
+                <?php $this -> czr_fn_print_select_control( in_array( $this->id, array( 'tc_theme_options[tc_fonts]', 'tc_theme_options[tc_skin]' ) ) ? 'select2 no-selecter-js' : '' ) ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="czr-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
               </label>
               <?php
+              if ( 'tc_theme_options[tc_front_slider]' == $this -> id ) {
+                //retrieve all sliders in option array
+                $sliders          = CZR_utils::$inst -> czr_fn_opt( 'tc_sliders' );
 
+                if ( empty( $sliders ) ) {
+                  printf('<div class="tc-notice" style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+                    __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
+                    admin_url( 'upload.php?mode=list' ),
+                    __( 'Create a slider' , 'customizr' ),
+                    __( 'Need help to create a slider ?' , 'customizr' ),
+                    esc_url( "http://docs.presscustomizr.com/article/3-creating-a-slider-with-customizr-wordpress-theme" ),
+                    __( 'Check the documentation' , 'customizr' )
+                  );
+                }
+              }
             break;
 
 
@@ -155,18 +169,54 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
 
 
-    private function czr_print_select_control($class) {
+    private function czr_fn_print_select_control($class) {
       printf('<select %1$s class="%2$s">%3$s</select>',
         call_user_func( array( $this, 'get'.'_'.'link' ) ),
         $class,
-        $this -> czr_get_select_options()
+        $this -> czr_fn_get_select_options()
       );
     }
 
 
-    private function czr_get_select_options() {
+    private function czr_fn_get_select_options() {
       $_options_html = '';
       switch ( $this -> id ) {
+        case 'tc_theme_options[tc_fonts]':
+          foreach ( $this -> choices as $_opt_group => $_opt_list ) {
+            $_options = array();
+            foreach ( $_opt_list['list'] as $label => $value ) {
+              $_options[] = sprintf('<option value="%1$s" %2$s>%3$s</option>',
+                esc_attr( $label ),
+                selected( $this->value(), $value, false ),
+                $value
+              );
+            }
+            $_options_html .= sprintf('<optgroup label="%1$s">%2$s</optgroup>',
+              $_opt_list['name'],
+              implode($_options)
+            );
+          }
+        break;
+
+        case 'tc_theme_options[tc_skin]':
+          $_data_hex  = '';
+          $_color_map = CZR_utils::$inst -> czr_fn_get_skin_color( 'all' );
+          //Get the color map array structured as follow
+          // array(
+          //       'blue.css'        =>  array( '#08c', '#005580' ),
+          //       ...
+          // )
+          foreach ( $this->choices as $value => $label ) {
+            if ( is_array($_color_map) && isset( $_color_map[esc_attr( $value )] ) )
+              $_data_hex       = isset( $_color_map[esc_attr( $value )][0] ) ? $_color_map[esc_attr( $value )][0] : '';
+            $_options_html .= sprintf('<option value="%1$s" %2$s data-hex="%4$s">%3$s</option>',
+              esc_attr( $value ),
+              selected( $this->value(), $value, false ),
+              $label,
+              $_data_hex
+            );
+          }
+        break;
         default:
           foreach ( $this->choices as $value => $label ) {
             $_options_html .= sprintf('<option value="%1$s" %2$s>%3$s</option>',
