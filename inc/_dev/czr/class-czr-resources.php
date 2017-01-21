@@ -124,10 +124,13 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
           array(
             'FPControls'      => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
             'AjaxUrl'         => admin_url( 'admin-ajax.php' ),
+            'docURL'          => esc_url('docs.presscustomizr.com/'),
+
             'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'       => CZR___::$theme_name,
             'HideDonate'      => CZR_customize::$instance -> czr_fn_get_hide_donate_status(),
             'ShowCTA'         => ( true == CZR_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
+
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'   => $this -> czr_fn_get_translated_strings(),
 
@@ -135,10 +138,13 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'optionAjaxAction' => CZR_OPT_AJAX_ACTION,
 
             'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('TC_DEV') && true === TC_DEV ),
-            'themeSettingList' => CZR_utils::$_theme_setting_list,
+
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
             'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
-            'isThemeSwitchOn'  => isset( $_GET['theme'])
+            'isThemeSwitchOn'  => isset( $_GET['theme']),
+            'themeSettingList' => CZR_utils::$_theme_setting_list,
+
+            'faviconOptionName' => 'tc_fav_upload'
           )
         )
       );
@@ -151,11 +157,16 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 li[id*="customize-control-"] {
   border: none;
   box-shadow: none;-webkit-box-shadow: none;
+  padding: 0
 }
 
+.customize-control span.customize-control-title:first-child {
+  padding-left: 0;
+}
+   /* end temporary */
 /* SELECT 2 SPECIFICS */
 body .select2-dropdown {
-  z-index: 999999;
+  z-index: 998;
 }
 body .select2-container--open .select2-dropdown--below {
     border: 1px solid #008ec2;
@@ -311,6 +322,180 @@ li[id*="customize-control-"].tc-grid-design {
   position: absolute;
   left: 7%;
 }
+/* DONATE BLOCK*/
+#czr-donate-customizer {
+  background-color: #FFF;
+  color: #666;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid #EEE;
+  margin: 0;
+  padding: 4px 15px 4px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    left: 0;
+    -webkit-transition: left ease-in-out .18s;
+    transition: left ease-in-out .18s;
+}
+.wp-customizer #czr-donate-customizer h3 {
+  font-size: 13px;
+  margin-bottom: 1px;
+  margin-top: 0px;
+  width: 94%;
+  font-weight: 600;
+}
+#czr-donate-customizer .czr-notice {
+  padding-bottom: 4px;
+}
+#czr-donate-customizer p {
+  margin: 0px;
+}
+#czr-donate-customizer .czr-donate-link {
+  display: block;
+  text-align: center;
+}
+#czr-donate-customizer .donate-alert {
+  display: none;
+  clear: both;
+  background-color: #008ec2;
+  border-color: 1px solid #D6E9C6;
+  color: #FFF;
+  padding: 10px;
+  margin-top: 0px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#czr-donate-customizer .donate-alert p {
+  font-size: 12px;
+}
+#czr-donate-customizer .donate-alert .button {
+  padding: 0 9px 1px;
+}
+
+#czr-donate-customizer .czr-close-request{
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  font-size: 14px;
+  line-height: 19px;
+  height: 21px;
+  margin: 0;
+  padding: 1px 6px 0;
+  background-color: #008ec2;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+.rtl #czr-donate-customizer .czr-close-request {
+  left: 8px;
+  right: inherit;
+}
+#czr-donate-customizer .donate-alert .czr-hide-donate, #czr-donate-customizer .donate-alert .czr-cancel-hide-donate {
+  padding: 0 5px 1px;
+}
+
+.czr-cancel-hide-donate {
+  float: right;
+}
+
+/* Call to actions block */
+.czr-cta-wrap {
+  background-color: #FFF;
+  color: #666;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid #EEE;
+  margin: 0;
+  padding: 4px 15px 4px;
+  position: relative;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  left: 0;
+  -webkit-transition: left ease-in-out .18s;
+  transition: left ease-in-out .18s;
+}
+
+.czr-in-control-cta-wrap {
+  background-color: #8C8C8C;
+  color: #fff;
+  border-left: 0;
+  border-right: 0;
+  margin: 10px 0;
+  padding: 10px 2%;
+  position: relative;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float: left;
+  clear: both;
+  width: 96%;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+  box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
+}
+
+.czr-in-control-cta-wrap .czr-notice {
+  font-weight: bold;
+  color: #fff;
+}
+.czr-in-control-cta-wrap .czr-notice-ext-icon {
+  font-size: 17px;
+  text-decoration: none;
+}
+.czr-in-control-cta-wrap .czr-notice-inline-link {
+  color: #fff;
+  text-decoration: underline!important;
+}
+.czr-cta .czr-cta-btn:hover {
+  color: #fff;
+  background: #ed9c28;
+  border-color: #d58512;
+}
+
+.czr-cta .czr-cta-btn {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 2px;
+  padding: 4px 14px;
+  display: inline-block;
+  color: #fff;
+  background: #f0ad4e;
+  border: 1px solid #eea236;
+  -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 24px;
+}
+
+.czr-cta .czr-cta-btn:active {
+  -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 /* Maybe nove into common css */
 /*
 * Fix: wp 4.7 sticky section title and footer actions z-index
@@ -517,7 +702,6 @@ li[id*="customize-control-"].tc-grid-design {
                       $_body.removeClass('no-navbar');
                   },
                   'tc_header_layout' : function( to ) {
-
                           var _current_header_class = $_header.attr('class').match(/logo-(left|right|centered)/),
                               _current_bmenu_class, _current_brand_class;
 
@@ -534,7 +718,6 @@ li[id*="customize-control-"].tc-grid-design {
                           if ( "centered" != to ){
                             _current_brand_class = 'logo-right' == _current_header_class ? 'pull-right' : 'pull-left';
                             $_brand.removeClass( _current_brand_class ).addClass( 'pull' + to );
-
                     }
 
                     setTimeout( function() {
@@ -542,7 +725,7 @@ li[id*="customize-control-"].tc-grid-design {
                     } , 400);
                   },
                   'tc_menu_position' : function( to ) {
-                    if ( 'aside' != api( _build_setId('tc_menu_style') ).get() ) {
+                    if ( 'aside' != api( api.CZR_preview.prototype._build_setId('tc_menu_style') ).get() ) {
                       if ( 'pull-menu-left' == to )
                         $('.navbar-wrapper').addClass(to).removeClass('pull-menu-right');
                       else
@@ -649,7 +832,6 @@ li[id*="customize-control-"].tc-grid-design {
                     else
                       $_header.addClass('tc-wccart-off').removeClass('tc-wccart-on').trigger('resize');
                   },
-
                 /******************************************
                 * SLIDER
                 ******************************************/
@@ -658,7 +840,6 @@ li[id*="customize-control-"].tc-grid-design {
                     $('.carousel .item').css('line-height' , to + 'px').css('max-height', to + 'px').css('min-height', to + 'px').trigger('resize');
                     $('.tc-slider-controls').css('line-height' , to + 'px').css('max-height', to + 'px').trigger('resize');
                   },
-
                 /******************************************
                 * FEATURED PAGES
                 ******************************************/
@@ -677,7 +858,6 @@ li[id*="customize-control-"].tc-grid-design {
                     else
                         $( '.fp-button' ).addClass( 'hidden' );
                   },
-
                 /******************************************
                 * POST METAS
                 ******************************************/
@@ -717,7 +897,6 @@ li[id*="customize-control-"].tc-grid-design {
                           else if ( ! $_post_nav.hasClass('hide-post-navigation') )
                       $_post_nav.removeClass('hide-all-post-navigation').show('fast');
                   },
-
                 /******************************************
                 * POST THUMBNAILS
                 ******************************************/
@@ -729,7 +908,6 @@ li[id*="customize-control-"].tc-grid-design {
                   'tc_single_post_thumb_height' : function( to ) {
                     $('.tc-rectangular-thumb').css('height' , to + 'px').css('max-height' , to + 'px').trigger('refresh-height');
                   },
-
                 /******************************************
                 * SOCIALS
                 ******************************************/
@@ -801,7 +979,6 @@ li[id*="customize-control-"].tc-grid-design {
                     else
                       $('.tc-grid-icon').each( function() { $(this).fadeIn(); } );
                   },
-
                 /******************************************
                 * GALLERY
                 ******************************************/
@@ -824,7 +1001,6 @@ li[id*="customize-control-"].tc-grid-design {
                     bubble_live_css += '.comments-link .tc-comment-bubble:before {border-color:' + to + '}';
                     $('head').append($style_element.html(bubble_live_css));
                   },
-
                 /******************************************
                 * FOOTER
                 ******************************************/
@@ -838,7 +1014,6 @@ li[id*="customize-control-"].tc-grid-design {
                     $_el = $( '#tc-footer-btt-wrapper' );
                     $_el.removeClass( "left right" ).addClass( to );
                   },
-
                 /******************************************
                 * CUSTOM CSS
                 ******************************************/
@@ -854,7 +1029,6 @@ li[id*="customize-control-"].tc-grid-design {
                       $style_element.html(to);
                   }
               };
-
               /** DYNAMIC CALLBACKS **/
               var _post_metas_context = [
                 { _context : 'home', _container : '.home' },
@@ -994,24 +1168,6 @@ li[id*="customize-control-"].tc-grid-design {
 
     //hook : 'customize_controls_enqueue_scripts':10
     function czr_fn_extend_ctrl_dependencies() {
-      $_header_img_notice = esc_js( sprintf( __( "When the %s, this element will not be displayed in your header.", 'hueman'),
-          sprintf('<a href="%1$s" title="%2$s">%2$s</a>',
-            "javascript:wp.customize.section(\'header_design_sec\').focus();",
-            __('header image is enabled', 'hueman')
-          )
-      ) );
-      $_front_page_content_notice = esc_js( sprintf( __( "Jump to the %s.", 'hueman'),
-          sprintf('<a href="%1$s" title="%2$s">%2$s</a>',
-            "javascript:wp.customize.section(\'content_blog_sec\').focus();",
-            __('blog design panel', 'hueman')
-          )
-      ) );
-      $_header_menu_notice = esc_js( sprintf( __( "The menu currently displayed in your header is a default page menu, you can disable it in the %s.", 'hueman'),
-          sprintf('<a href="%1$s" title="%2$s">%2$s</a>',
-            "javascript:wp.customize.section(\'header_menu_sec\').focus();",
-            __('Header Panel', 'hueman')
-          )
-      ) );
       ?>
       <script id="control-dependencies" type="text/javascript">
         (function (api, $, _) {
@@ -1028,103 +1184,459 @@ li[id*="customize-control-"].tc-grid-design {
                           //we have to show restrict blog/home posts when
                           //1. show page on front and a page of posts is selected
                           //2, show posts on front
-                            dominus : 'pages_for_posts',
+                            dominus : 'page_for_posts',
                             servi   : ['tc_blog_restrict_by_cat'],
                             visibility : function( to ) {
-                              return _is_checked( to );
+                                  return _is_checked( to );
                             },
-                      },
-                      {
+                    },
+                    {
                             dominus : 'show_on_front',
                             servi   : ['tc_blog_restrict_by_cat', 'tc_show_post_navigation_home'],
                             visibility : function( to, servusShortId ) {
-                              if ( 'posts' == to )
-                                return true;
-                              if ( 'page' == to && 'tc_blog_restrict_by_cat' == servusShortId ) //show cat picker also if a page for posts is set
-                                return '0' !== api.CZR_Helpers.build_setId( 'page_for_posts' );
-                              return false;
-
+                                  //not sure the cross dependency actually works ... :/
+                                  //otherwise this shouldn't be needed ... right?
+                                  if ( 'tc_show_post_navigation_home' == servusShortId ) {
+                                    return ( 'posts' == to  ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_show_post_navigation' ) ).get() );
+                                  }
+                                  if ( 'posts' == to ) {
+                                    return true;
+                                  }
+                                  if ( 'page' == to && 'tc_blog_restrict_by_cat' == servusShortId ) { //show cat picker also if a page for posts is set
+                                    return _is_checked( api( api.CZR_Helpers.build_setId( 'page_for_posts' ) ).get() );
+                                  }
+                                  return false;
                             },
                     },
+                    {
+                            dominus : 'tc_logo_upload',
+                            servi   : ['tc_logo_resize'],
+                            visibility : function( to ) {
+                                  return _.isNumber( to );
+                            },
+                    },
+                    {
+                            dominus : 'tc_show_featured_pages',
+                            servi   : serverControlParams.FPControls,
+                            visibility : function( to ) {
+                                  return _is_checked( to );
+                            },
+                    },
+                    {
+                            dominus : 'tc_front_slider',
+                            servi   : [
+                              'tc_slider_width',
+                              'tc_slider_delay',
+                              'tc_slider_default_height',
+                              'tc_slider_default_height_apply_all',
+                              'tc_slider_change_default_img_size',
+                              'tc_posts_slider_number',
+                              'tc_posts_slider_stickies',
+                              'tc_posts_slider_title',
+                              'tc_posts_slider_text',
+                              'tc_posts_slider_link',
+                              'tc_posts_slider_button_text',
+                              'tc_posts_slider_restrict_by_cat' //pro-bundle
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  //posts slider options must be hidden when the posts slider not choosen
+                                  if ( servusShortId.indexOf('tc_posts_slider_') > -1 ) {
+                                    return 'tc_posts_slider' == to;
+                                  }
 
+                                  return _is_checked( to );
+                            },
+                            actions : function( to, servusShortId ) {
+                                 //if user selects the post slider option, append a notice in the label element
+                                 //and hide the notice when no sliders have been created yet
+                                 var $_front_slider_container = api.control( api.CZR_Helpers.build_setId('tc_front_slider') ).container,
+                                     $_label = $( 'label' , $_front_slider_container ),
+                                     $_empty_sliders_notice = $( 'div.czr-notice', $_front_slider_container);
+
+                                  if ( 'tc_posts_slider' == to ) {
+                                    if ( 0 !== $_label.length && ! $('.czr-notice' , $_label ).length ) {
+                                      var $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.translatedStrings.postSliderNote || '' } );
+                                      $_label.append( $_notice );
+                                    }
+                                    else {
+                                      $('.czr-notice' , $_label ).show();
+                                    }
+
+                                    //hide no sliders created notice
+                                    if ( 0 !== $_empty_sliders_notice.length ) {
+                                      $_empty_sliders_notice.hide();
+                                    }
+                                  }
+                                  else {
+                                    if ( 0 !== $( '.czr-notice' , $_label ).length )
+                                      $( '.czr-notice' , $_label ).hide();
+                                    if ( 0 !== $_empty_sliders_notice.length )
+                                      $_empty_sliders_notice.show();
+                                  }
+                            }
+                    },
+                    {
+                            dominus : 'tc_slider_default_height',
+                            servi   : ['tc_slider_default_height_apply_all', 'tc_slider_change_default_img_size'],
+                            visibility : function( to ) {
+                                  //slider height options must be hidden is height = default height (500px), unchanged by user
+                                  var _defaultHeight = serverControlParams.defaultSliderHeight || 500;
+                                  return _defaultHeight != to;
+                            },
+                    },
+                    {
+                            dominus : 'tc_posts_slider_link',
+                            servi   : ['tc_posts_slider_button_text'],
+                            visibility : function( to ) {
+                                  return to.indexOf('cta') > -1;
+                            },
+                    },
+                    {
+                            dominus : 'tc_post_list_thumb_shape',
+                            servi   : ['tc_post_list_thumb_height'],
+                            visibility : function( to ) {
+                                  return to.indexOf('rectangular') > -1;
+                            },
+                    },
+                    {
+                            dominus : 'tc_post_list_thumb_position',
+                            servi   : ['tc_post_list_thumb_alternate'],
+                            visibility : function( to ) {
+                                  return _.contains( [ 'left', 'right'], to );
+                            },
+                    },
+                    {
+                            dominus : 'tc_post_list_show_thumb',
+                            servi   : [
+                              'tc_post_list_use_attachment_as_thumb',
+                              'tc_post_list_default_thumb',
+                              'tc_post_list_thumb_shape',
+                              'tc_post_list_thumb_alternate',
+                              'tc_post_list_thumb_position',
+                              'tc_post_list_thumb_height',
+                              'tc_grid_thumb_height'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_post_list_grid',
+                            servi   : [
+                              'tc_grid_columns',
+                              'tc_grid_expand_featured',
+                              'tc_grid_in_blog',
+                              'tc_grid_in_archive',
+                              'tc_grid_in_search',
+                              'tc_grid_thumb_height',
+                              'tc_grid_bottom_border',
+                              'tc_grid_shadow',
+                              'tc_grid_icons',
+                              'tc_grid_num_words',
+                              'tc_post_list_grid', //trick to fire actions on dominus change
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  if ( 'tc_post_list_grid' != servusShortId )
+                                    return 'grid' == to;
+                            },
+                            actions : function( to, servusShortId ) {
+                              if ( 'tc_post_list_grid' == servusShortId ) {
+                                  $('.tc-grid-toggle-controls').toggle('grid' == to).removeClass('open');
+                              }else {
+                                //hide grid-design options
+                                $_el = api.control( api.CZR_Helpers.build_setId(servusShortId) ).container;
+                                if ( $_el.hasClass('tc-grid-desing') )
+                                  $_el.hide();
+                              }
+                            }
+                    },
+                    {
+                            dominus : 'tc_breadcrumb',
+                            servi   : [
+                              'tc_show_breadcrumb_home',
+                              'tc_show_breadcrumb_in_pages',
+                              'tc_show_breadcrumb_in_single_posts',
+                              'tc_show_breadcrumb_in_post_lists'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_show_title_icon',
+                            servi   : [
+                              'tc_show_page_title_icon',
+                              'tc_show_post_title_icon',
+                              'tc_show_archive_title_icon',
+                              'tc_show_post_list_title_icon',
+                              'tc_show_sidebar_widget_icon',
+                              'tc_show_footer_widget_icon'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_show_post_metas',
+                            servi   : [
+                              'tc_show_post_metas_home',
+                              'tc_post_metas_design',
+                              'tc_show_post_metas_single_post',
+                              'tc_show_post_metas_post_lists',
+                              'tc_show_post_metas_categories',
+                              'tc_show_post_metas_tags',
+                              'tc_show_post_metas_publication_date',
+                              'tc_show_post_metas_update_date',
+                              'tc_post_metas_update_notice_text',
+                              'tc_post_metas_update_notice_interval',
+                              'tc_show_post_metas_author'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_show_post_metas_update_date',
+                            servi   : ['tc_post_metas_update_date_format'],
+                            visibility: function (to) {
+                                  return _is_checked(to);
+                            }
+                    },
+                    {
+                            dominus : 'tc_post_metas_update_notice_in_title',
+                            servi   : [
+                              'tc_post_metas_update_notice_text',
+                              'tc_post_metas_update_notice_format',
+                              'tc_post_metas_update_notice_interval'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_post_list_length',
+                            servi   : ['tc_post_list_excerpt_length'],
+                            visibility: function (to) {
+                                  return 'excerpt' == to;
+                            }
+                    },
+                    {
+                            dominus : 'tc_sticky_show_title_logo',
+                            servi   : ['tc_sticky_logo_upload'],
+                            visibility: function (to) {
+                                  return _is_checked(to);
+                            }
+                    },
+                    {
+                            dominus : 'tc_sticky_header',
+                            servi   : [
+                              'tc_sticky_show_tagline',
+                              'tc_sticky_show_title_logo',
+                              'tc_sticky_shrink_title_logo',
+                              'tc_sticky_show_menu',
+                              'tc_sticky_transparent_on_scroll',
+                              'tc_sticky_logo_upload',
+                              'tc_woocommerce_header_cart_sticky'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_woocommerce_header_cart',
+                            servi   : ['tc_woocommerce_header_cart_sticky'],
+                            visibility: function (to) {
+                                  return _is_checked(to);
+                            }
+                    },
+                    {
+                            dominus : 'tc_comment_bubble_color_type',
+                            servi   : ['tc_comment_bubble_color'],
+                            visibility: function (to) {
+                                  return 'custom' == to;
+                            }
+                    },
+                    {
+                            dominus : 'tc_comment_show_bubble',
+                            servi   : [
+                              'tc_comment_bubble_shape',
+                              'tc_comment_bubble_color_type',
+                              'tc_comment_bubble_color'
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  if ( 'tc_comment_bubble_color' == servusShortId ) {
+                                    return _is_checked(to) && 'custom' == api( api.CZR_Helpers.build_setId( 'tc_comment_bubble_color_type' ) ).get();
+                                  }
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_enable_dropcap',
+                            servi   : [
+                              'tc_dropcap_minwords',
+                              'tc_dropcap_design',
+                              'tc_post_dropcap',
+                              'tc_page_dropcap'
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_enable_gallery',
+                            servi   : [
+                              'tc_gallery_fancybox',
+                              'tc_gallery_style',
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_skin_random',
+                            servi   : [
+                              'tc_skin',
+                            ],
+                            visibility: function() {
+                              return true;
+                            },
+                            actions : function( to, servusShortId ) {
+                                  var $_skin_select = api.control( api.CZR_Helpers.build_setId(servusShortId) ).container;
+                                  $_skin_select.find('select').prop('disabled', '1' == to ? 'disabled' : '' );
+                            },
+                    },
+                    {
+                            dominus : 'tc_show_post_navigation',
+                            servi   : [
+                              'tc_show_post_navigation_page',
+                              'tc_show_post_navigation_home',
+                              'tc_show_post_navigation_single',
+                              'tc_show_post_navigation_archive'
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_display_second_menu',
+                            servi   : [
+                              'nav_menu_locations[secondary]',
+                              'tc_second_menu_position',
+                              'tc_second_menu_resp_setting',
+                              'tc_menu_type',
+                              'tc_menu_submenu_fade_effect',
+                              'tc_menu_submenu_item_move_effect'
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  var _menu_style_val = api( api.CZR_Helpers.build_setId( 'tc_menu_style' )).get();
+                                  if ( _.contains( ['nav_menu_locations[secondary]', 'tc_second_menu_resp_setting'], servusShortId ) )
+                                    return _is_checked(to) && 'aside' == _menu_style_val;
+                                  //effects common to regular menu and second horizontal menu
+                                  if ( _.contains( ['tc_menu_submenu_fade_effect', 'tc_menu_submenu_item_move_effect'], servusShortId ) )
+                                    return ( _is_checked(to) && 'aside' == _menu_style_val ) || ( !_is_checked(to) && 'aside' != _menu_style_val );
+                                  return _is_checked(to);
+                            },
+                    },
+                    {
+                            dominus : 'tc_menu_style',
+                            servi   : [
+                              'tc_menu_type',
+                              'tc_menu_submenu_fade_effect',
+                              'tc_menu_submenu_item_move_effect',
+                              'tc_menu_resp_dropdown_limit_to_viewport',
+                              'tc_display_menu_label',
+                              'tc_display_second_menu',
+                              'tc_second_menu_position',
+                              'nav_menu_locations[secondary]',
+                              'tc_second_menu_resp_setting',
+                              'tc_menu_position', /* used to perform actions on menu position */
+                              'tc_mc_effect', /* pro */
+                            ],
+                            //if the second menu is activated, only the tc_menu_resp_dropdown_limit_to_viewport is hidden
+                            //otherwise all of them are hidden
+                            visibility : function( to, servusShortId ) {
+                                  //CASE 1 : regular menu choosen
+                                  if ( 'aside' != to ) {
+                                    if ( _.contains([
+                                        'tc_display_menu_label',
+                                        'tc_display_second_menu',
+                                        'nav_menu_locations[secondary]',
+                                        'tc_second_menu_position',
+                                        'tc_second_menu_resp_setting',
+                                        'tc_mc_effect'] , servusShortId ) ) {
+                                      return false;
+                                    } else {
+                                      return true;
+                                    }
+                                  }
+                                  //CASE 2 : side menu choosen
+                                  else {
+                                    if ( _.contains([
+                                      'tc_menu_type',
+                                      'tc_menu_submenu_fade_effect',
+                                      'tc_menu_submenu_item_move_effect',
+                                      'nav_menu_locations[secondary]',
+                                      'tc_second_menu_position',
+                                      'tc_second_menu_resp_setting'],
+                                      servusShortId ) ) {
+                                        return _is_checked( api( api.CZR_Helpers.build_setId('tc_display_second_menu') ).get() );
+                                    }
+                                    else if ( 'tc_menu_resp_dropdown_limit_to_viewport' == servusShortId ){
+                                      return false;
+                                    }
+                                    return true;
+                                  }
+                            },
+                            actions : function( to, servusShortId ) {
+                                  if ( 'tc_menu_position' == servusShortId ) {
+                                      var _header_layout            = api(api.CZR_Helpers.build_setId('tc_header_layout')).get();
+                                          wpMenuPositionSettingID   = api.CZR_Helpers.build_setId(servusShortId);
+
+                                      api( wpMenuPositionSettingID ).set( 'right' == _header_layout ? 'pull-menu-left' : 'pull-menu-right' );
+                                      //refresh the selecter
+                                      api.control(wpMenuPositionSettingID).container.find('select').selecter('destroy').selecter({});
+                                  }
+                            }
+                    },
+                    {
+                            //when user switches layout, make sure the menu is correctly aligned by default.
+                            dominus : 'tc_header_layout',
+                            servi   : ['tc_menu_position'],
+                            visibility: function (to) {
+                                  return true;
+                            },
+                            actions : function( to, servusShortId ) {
+                                  var wpMenuPositionSettingID = api.CZR_Helpers.build_setId(servusShortId);
+                                  api( wpMenuPositionSettingID ).set( 'right' == to ? 'pull-menu-left' : 'pull-menu-right' );
+                                  //refresh the selecter
+                                  api.control(wpMenuPositionSettingID).container.find('select').selecter('destroy').selecter({});
+                            }
+                    },
+                    {
+                            //when user switches layout, make sure the menu is correctly aligned by default.
+                            dominus : 'tc_hide_all_menus',
+                            servi   : ['tc_hide_all_menus'],
+                            visibility: function (to) {
+                                  return true;
+                            },
+                            actions : function( to, servusShortId ) {
+                                  var $_nav_section_container = api.section('nav').container,
+                                      $_controls = $_nav_section_container.find('li.customize-control').not( api.control(api.CZR_Helpers.build_setId(servusShortId)).container );
+                                  $_controls.each( function() {
+                                    if ( $(this).is(':visible') )
+                                      $(this).fadeTo( 500 , true === to ? 0.5 : 1); //.fadeTo() duration, opacity, callback
+                                  });//$.each()
+                            }
+                    },
+                    {
+                            dominus : 'tc_show_back_to_top',
+                            servi   : ['tc_back_to_top_position'],
+                            visibility: function (to) {
+                                  return 'custom' == to;
+                            }
+                    },
                 ]//dominiDeps {}
           );//_.extend()
-
-
-          //add a notice in the Menus panel to easily disable the default page menu in the header
-          <?php if ( ! is_multisite() ) : //no default menu for multisite installs ?>
-            api.when('nav_menu_locations[header]', function( header_menu_loc_settting ) {
-                  //bail for old version of WP
-                  if ( ! _.has( api, 'section' ) || ! _.has( api, 'panel') )
-                    return;
-
-                  var _notice_selector = 'hu-menu-notice',
-                      _toggle_menu_notice = function( show ) {
-                        var $menu_panel_content = api.panel('nav_menus').container.find('.control-panel-content'),
-                            notice_rendered = 0 !== $menu_panel_content.find( '.' + _notice_selector ).length,
-                            _html = '<p class="description customize-control-description ' + _notice_selector +'"><?php echo html_entity_decode( $_header_menu_notice ); ?></p>',
-                            _render_notice = function() {
-                                  //defer the rendering when all sections of this panel have been embedded
-                                  $.when.apply(
-                                        null,
-                                        ( function() {
-                                              var _promises = [];
-                                              //build the promises array
-                                              api.section.each( function( _sec ){
-                                                    if ( 'nav_menus' == _sec.panel() ) {
-                                                          _promises.push( _sec.deferred.embedded );
-                                                    }
-                                              });
-                                              return _promises;
-                                        })
-                                        )
-                                  .then( function() {
-                                        $menu_panel_content.append( $.parseHTML( _html ) );
-                                  });
-                            },
-                            _toggle_notice = function() {
-                                  if ( ! notice_rendered ) {
-                                    _render_notice();
-                                  };
-                                  $('.' + _notice_selector, $menu_panel_content).toggle( show );
-                            };
-
-                        //bail if the menu panel is still not yet rendered
-                        if ( ! $menu_panel_content.length )
-                          return;
-
-                        if ( api.topics && api.topics.ready && api.topics.ready.fired() ) {
-                              _toggle_notice();
-                        } else {
-                              api.bind('ready', _toggle_notice );
-                        }
-                  };//_toggle_menu_notice
-
-                  //API based toggling : maybe toggle the notice when nav_menu panel has been registered AND embedded
-                  api.panel.when('nav_menus', function( panel_instance ){
-                        panel_instance.deferred.embedded.then( function() {
-                              _toggle_menu_notice( 0 == header_menu_loc_settting() );
-                        });
-                  });
-
-                  //User action based toggling : Maybe toggle the notice when user changes the related settings
-                  api.bind('ready', function() {
-                        //bail if the [default-menu-header] has been removed
-                        if ( ! api.has('czr_fn_theme_options[default-menu-header]') )
-                          return;
-
-                        //react to header menu location changes
-                        header_menu_loc_settting.bind( function( to, from ) {
-                              _toggle_menu_notice( 0 == to && _is_checked( api('czr_fn_theme_options[default-menu-header]')() ) );
-                        } );
-                        //react to czr_fn_theme_options[default-menu-header]
-                        api('czr_fn_theme_options[default-menu-header]').bind( function( to ) {
-                              _toggle_menu_notice( _is_checked( to ) && 0 == header_menu_loc_settting() );
-                        });
-                  });
-
-            });
-          <?php endif; ?>
 
         }) ( wp.customize, jQuery, _);
       </script>
@@ -1166,7 +1678,7 @@ li[id*="customize-control-"].tc-grid-design {
                 //hide design controls on load
                 $( _get_grid_design_controls() ).addClass('tc-grid-design').hide();
 
-                $('.tc-grid-toggle-controls').click( function() {
+                $('.tc-grid-toggle-controls').on( 'click', function() {
                   $( _get_grid_design_controls() ).slideToggle('fast');
                   $(this).toggleClass('open');
                 } );
@@ -1198,7 +1710,6 @@ li[id*="customize-control-"].tc-grid-design {
                     templateSelection: paintFontOptionElement,
                     escapeMarkup: function(m) { return m; },
                 }).on("select2-highlight", function(e) {//<- doesn't work with recent select2 and it doesn't provide alternatives :(
-                  console.log('ever-here');
                   //triggerChange = true @see val method doc here http://ivaynberg.github.io/select2/#documentation
                   $(this).select2("val" , e.val, true );
                 });
@@ -1210,6 +1721,138 @@ li[id*="customize-control-"].tc-grid-design {
                       return state.text;// optgroup different than google font
                     return '<span class="tc-select2-font">' + state.text + '</span>';
                 }
+
+
+//CALL TO ACTIONS
+                /* CONTRIBUTION TO CUSTOMIZR */
+                var donate_displayed  = false,
+                    is_pro            = 'customizr-pro' == serverControlParams.themeName;
+                if (  ! serverControlParams.HideDonate && ! is_pro ) {
+                  _render_donate_block();
+                  donate_displayed = true;
+                }
+
+                //Main call to action
+                if ( serverControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
+                 _render_main_cta();
+                }
+
+                //In controls call to action
+                if ( ! is_pro ) {
+                  _render_wfc_cta();
+                  _render_fpu_cta();
+                  _render_footer_cta();
+                  _render_gc_cta();
+                  _render_mc_cta();
+                }
+                //_render_rate_czr();
+
+                function _render_rate_czr() {
+                  var _cta = _.template(
+                      $( "script#rate-czr" ).html()
+                  );
+                  $('#customize-footer-actions').append( _cta() );
+                }
+
+                function _render_donate_block() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var donate_template = _.template(
+                      $( "script#donate_template" ).html()
+                  );
+
+                  $('#customize-info').after( donate_template() );
+
+                   //BIND EVENTS
+                  $('.tc-close-request').click( function(e) {
+                    e.preventDefault();
+                    $('.donate-alert').slideToggle("fast");
+                    $(this).hide();
+                  });
+
+                  $('.tc-hide-donate').click( function(e) {
+                    _ajax_save();
+                    setTimeout(function(){
+                        $('#tc-donate-customizer').slideToggle("fast");
+                    }, 200);
+                  });
+
+                  $('.tc-cancel-hide-donate').click( function(e) {
+                    $('.donate-alert').slideToggle("fast");
+                    setTimeout(function(){
+                        $('.tc-close-request').show();
+                    }, 200);
+                  });
+                }//end of donate block
+
+
+                function _render_main_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#main_cta" ).html()
+                  );
+                  $('#customize-info').after( _cta() );
+                }
+
+                function _render_wfc_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#wfc_cta" ).html()
+                  );
+                  $('li[id*="tc_body_font_size"]').append( _cta() );
+                }
+
+                function _render_fpu_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#fpu_cta" ).html()
+                  );
+                  $('li[id*="tc_featured_text_three"]').append( _cta() );
+                }
+
+                function _render_gc_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#gc_cta" ).html()
+                  );
+                  $('li[id*="tc_post_list_show_thumb"] > .tc-customizr-title').before( _cta() );
+                }
+
+                function _render_mc_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#mc_cta" ).html()
+                  );
+                  $('li[id*="tc_theme_options-tc_display_menu_label"]').append( _cta() );
+                }
+
+                function _render_footer_cta() {
+                  // Grab the HTML out of our template tag and pre-compile it.
+                  var _cta = _.template(
+                      $( "script#footer_cta" ).html()
+                  );
+                  $('li[id*="tc_show_back_to_top"]').closest('ul').append( _cta() );
+                }
+
+                function _ajax_save() {
+                    var AjaxUrl         = serverControlParams.AjaxUrl,
+                    query = {
+                        action  : 'hide_donate',
+                        TCnonce :  serverControlParams.TCNonce,
+                        wp_customize : 'on'
+                    },
+                    request = $.post( AjaxUrl, query );
+                    request.done( function( response ) {
+                        // Check if the user is logged out.
+                        if ( '0' === response ) {
+                            return;
+                        }
+                        // Check for cheaters.
+                        if ( '-1' === response ) {
+                            return;
+                        }
+                    });
+                }//end of function
+//END OF CTA
             });
         }) ( wp, jQuery );
       </script>

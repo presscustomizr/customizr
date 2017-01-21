@@ -34,33 +34,55 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function czr_fn_get_customizer_map( $get_default = null ) {
-      if ( ! empty( $this -> customizer_map ) )
-        return $this -> customizer_map;
+    public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
+      if ( ! empty( $this -> customizer_map ) ) {
+        $_customizer_map = $this -> customizer_map;
+      }
+      else {
+        //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
+        add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
+        //theme switcher's enabled when user opened the customizer from the theme's page
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
+        add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
+        //add controls to the map
+        add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
+        //$this -> tc_populate_setting_control_map();
 
-      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
-      //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
-      //add controls to the map
-      add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
-      //$this -> tc_populate_setting_control_map();
+        //FILTER SPECIFIC SETTING-CONTROL MAPS
+        //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+        //add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
+        add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
-      //FILTER SPECIFIC SETTING-CONTROL MAPS
-      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      //add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
-      add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
+        //CACHE THE GLOBAL CUSTOMIZER MAP
+        $_customizer_map = array_merge(
+          array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
+          array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
+          array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
+          array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
+        );
+        $this -> customizer_map = $_customizer_map;
+      }
+      if ( is_null($what) ) {
+        return apply_filters( 'tc_customizer_map', $_customizer_map );
+      }
 
-      //CACHE THE GLOBAL CUSTOMIZER MAP
-      $this -> customizer_map = array_merge(
-        array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-        array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-        array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-        array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
-      );
-      return apply_filters( 'tc_customizer_map', $this -> customizer_map );
+      $_to_return = $_customizer_map;
+      switch ( $what ) {
+          case 'add_panel':
+            $_to_return = $_customizer_map['add_panel'];
+          break;
+          case 'remove_section':
+            $_to_return = $_customizer_map['remove_section'];
+          break;
+          case 'add_section':
+            $_to_return = $_customizer_map['add_section'];
+          break;
+          case 'add_setting_control':
+            $_to_return = $_customizer_map['add_setting_control'];
+          break;
+      }
+      return $_to_return;
     }
 
 
