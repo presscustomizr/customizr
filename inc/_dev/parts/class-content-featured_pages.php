@@ -58,12 +58,12 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     * FP WRAPPER VIEW
     *******************************/
     /**
-  	* The template displaying the front page featured page block.
-  	* hook : __before_main_container
-  	*
-  	* @package Customizr
-  	* @since Customizr 3.0
-  	*/
+    * The template displaying the front page featured page block.
+    * hook : __before_main_container
+    *
+    * @package Customizr
+    * @since Customizr 3.0
+    */
     function czr_fn_fp_block_display() {
 
       if ( ! $this -> czr_fn_show_featured_pages()  )
@@ -71,8 +71,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
       $tc_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
-  		//gets the featured pages array and sets the fp layout
-  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+      //gets the featured pages array and sets the fp layout
+      $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
       $fp_nb                          = count($fp_ids);
       $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
 
@@ -93,11 +93,11 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       //save $args for filter
       $args = array($fp_ids, $fp_nb, $fp_per_row, $span_value);
 
-  		?>
+      ?>
 
       <?php ob_start(); ?>
 
-			<div class="container marketing">
+      <div class="container marketing">
 
         <?php
           do_action ('__before_fp') ;
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
           do_action ('__after_fp') ;
         ?>
 
-			</div><!-- .container -->
+      </div><!-- .container -->
 
       <?php  echo ! czr_fn__f( '__is_home_empty') ? apply_filters( 'tc_after_fp_separator', '<hr class="featurette-divider '.current_filter().'">' ) : ''; ?>
 
@@ -129,7 +129,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       $html = ob_get_contents();
       if ($html) ob_end_clean();
       echo apply_filters( 'tc_fp_block_display' , $html, $args );
-	   }
+     }
 
 
 
@@ -137,7 +137,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       /******************************
       * SINGLE FP VIEW
       *******************************/
-	   /**
+     /**
       * The template displaying one single featured page
       * fired in : czr_fn_fp_block_display()
       *
@@ -240,7 +240,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                    ( $fp_img == $fp_holder_img ) ? 'tc-holder' : '',
                    apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s" title="%2$s"></a>',
                                                     $featured_page_link,
-                                                    $featured_page_title
+                                                    esc_attr( strip_tags( $featured_page_title ) )
                                                   ) ,
                                 $fp_single_id,
                                 $featured_page_id
@@ -277,7 +277,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                 $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
                                     $tc_fp_button_class,
                                     $featured_page_link,
-                                    $featured_page_title,
+                                    esc_attr( strip_tags( $featured_page_title ) ),
                                     $tc_fp_button_text
 
                 );
@@ -315,7 +315,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
 
       return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
     }
