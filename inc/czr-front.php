@@ -598,15 +598,6 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_boxed_navbar') ) )
           $_classes = array_merge( $_classes , array('no-navbar' ) );
 
-      //SKIN CLASS
-      $_skin = sprintf( 'skin-%s' , basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-      array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
-
-      //IMAGE CENTERED
-      if ( (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ) ){
-        $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
-      }
-
       return $_classes;
     }
 
@@ -1633,7 +1624,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a data-test="joie"' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -1690,15 +1681,28 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
     * hook : page_css_class
     */
     function czr_fn_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
-      if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
-        if ( 0 === $depth) {
-          $css_class[] = 'dropdown';
-        } elseif ( $depth > 0) {
-          $css_class[] = 'dropdown-submenu';
+      if ( ! is_array($css_class) )
+        return $css_class;
+
+      if ( ! empty( $args['has_children'] ) ) {
+        if ( 0 === $depth ) {
+          if ( ! in_array( 'dropdown', $css_class ) )
+            $css_class[] = 'dropdown';
+        } elseif ( $depth > 0 ) {
+          if ( ! in_array( 'dropdown-submenu', $css_class ) )
+            $css_class[] = 'dropdown-submenu';
         }
+        /*
+        * unify menu items with children whether displaying a standard menu or a page menu
+        * (useful for javascript menu related code)
+        */
+        if ( ! in_array( 'menu-item-has-children' , $css_class ) )
+          $css_class[] = 'menu-item-has-children';
       }
+
       if ( ! in_array( 'menu-item' , $css_class ) )
         $css_class[] = 'menu-item';
+
       return $css_class;
     }
 
@@ -1714,17 +1718,17 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
 
-      if ( $args['has_children'] ) {
+      if ( ! empty( $args['has_children'] ) ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
+        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, isset($args['theme_location']) ? $args['theme_location'] : null);
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
         if ( $depth === 0 )
-          $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
+            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);      
       }
 
       elseif (stristr( $item_html, 'li class="divider' )) {
@@ -3567,12 +3571,12 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     * FP WRAPPER VIEW
     *******************************/
     /**
-  	* The template displaying the front page featured page block.
-  	* hook : __before_main_container
-  	*
-  	* @package Customizr
-  	* @since Customizr 3.0
-  	*/
+    * The template displaying the front page featured page block.
+    * hook : __before_main_container
+    *
+    * @package Customizr
+    * @since Customizr 3.0
+    */
     function czr_fn_fp_block_display() {
 
       if ( ! $this -> czr_fn_show_featured_pages()  )
@@ -3580,8 +3584,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
       $tc_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
-  		//gets the featured pages array and sets the fp layout
-  		$fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+      //gets the featured pages array and sets the fp layout
+      $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
       $fp_nb                          = count($fp_ids);
       $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
 
@@ -3602,11 +3606,11 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       //save $args for filter
       $args = array($fp_ids, $fp_nb, $fp_per_row, $span_value);
 
-  		?>
+      ?>
 
       <?php ob_start(); ?>
 
-			<div class="container marketing">
+      <div class="container marketing">
 
         <?php
           do_action ('__before_fp') ;
@@ -3630,7 +3634,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
           do_action ('__after_fp') ;
         ?>
 
-			</div><!-- .container -->
+      </div><!-- .container -->
 
       <?php  echo ! czr_fn__f( '__is_home_empty') ? apply_filters( 'tc_after_fp_separator', '<hr class="featurette-divider '.current_filter().'">' ) : ''; ?>
 
@@ -3638,7 +3642,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       $html = ob_get_contents();
       if ($html) ob_end_clean();
       echo apply_filters( 'tc_fp_block_display' , $html, $args );
-	   }
+     }
 
 
 
@@ -3646,7 +3650,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       /******************************
       * SINGLE FP VIEW
       *******************************/
-	   /**
+     /**
       * The template displaying one single featured page
       * fired in : czr_fn_fp_block_display()
       *
@@ -3749,7 +3753,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                    ( $fp_img == $fp_holder_img ) ? 'tc-holder' : '',
                    apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s" title="%2$s"></a>',
                                                     $featured_page_link,
-                                                    $featured_page_title
+                                                    esc_attr( strip_tags( $featured_page_title ) )
                                                   ) ,
                                 $fp_single_id,
                                 $featured_page_id
@@ -3786,7 +3790,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
                 $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
                                     $tc_fp_button_class,
                                     $featured_page_link,
-                                    $featured_page_title,
+                                    esc_attr( strip_tags( $featured_page_title ) ),
                                     $tc_fp_button_text
 
                 );
@@ -3824,7 +3828,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
 
       return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
     }
@@ -8674,7 +8678,7 @@ class CZR_slider {
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
 
-    $slide_classes = implode( ' ', apply_filters( 'tc_single_slide_item_classes', array( 'item', $data['active'], "slide-{$id}" ) ) );
+    $slide_classes = implode( ' ', apply_filters( 'tc_single_slide_item_classes', array( 'czr-item', $data['active'], "slide-{$id}" ) ) );
     ?>
     <div class="<?php echo $slide_classes; ?>">
       <?php
@@ -8682,7 +8686,7 @@ class CZR_slider {
         $this -> czr_fn_render_slide_caption_view( $_view_model );
         $this -> czr_fn_render_slide_edit_link_view( $_view_model );
       ?>
-    </div><!-- /.item -->
+    </div><!-- /.czr-item -->
     <?php
   }
 
@@ -9098,8 +9102,9 @@ class CZR_slider {
   */
   private function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id                   = get_queried_object_id();
-    return apply_filters( 'tc_slider_get_real_id', ( ! czr_fn__f('__is_home') && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    $queried_id                   = CZR_utils::czr_fn_id();
+
+    return apply_filters( 'tc_slider_get_real_id', ( ! czr_fn__f('__is_home') && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
 
 
@@ -9222,7 +9227,7 @@ class CZR_slider {
     );
 
     $_slider_inline_css = "
-      .carousel .item {
+      .carousel .czr-item {
         line-height: {$_custom_height}px;
         min-height:{$_custom_height}px;
         max-height:{$_custom_height}px;
@@ -9243,12 +9248,12 @@ class CZR_slider {
       $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
-          .carousel .item {
+          .carousel .czr-item {
             line-height: {$_item_dyn_height}px;
             max-height:{$_item_dyn_height}px;
             min-height:{$_item_dyn_height}px;
           }
-          .item .carousel-caption {
+          .czr-item .carousel-caption {
             max-height: {$_caption_dyn_height}px;
             overflow: hidden;
           }

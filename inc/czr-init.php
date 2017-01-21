@@ -1255,6 +1255,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'f' == $_layout ? 'no' : $_layout
           ) );
         }
+
+        //IMAGE CENTERED
+        if ( (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ) ){
+          $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
+        }
+
+        //SKIN CLASS
+        $_skin = sprintf( 'skin-%s' , basename( $this -> czr_fn_get_style_src() ) );
+        array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+
         return $_classes;
       }
 
@@ -2168,6 +2178,18 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+      //Helper
+      function czr_fn_woocommerce_shop_page_id( $id = null ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id( 'shop' ) : $id;
+      }
+      //Helper
+      function czr_fn_woocommerce_shop_enable( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
+      }
+
+      //when in the woocommerce shop page use the "shop" id
+      add_filter( 'tc_id', 'czr_fn_woocommerce_shop_page_id' );
+
       // use Customizr title
       // initially used to display the edit button
       add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
@@ -2178,21 +2200,16 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title' );
       function czr_fn_woocommerce_disable_tax_archive_title( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
       //allow slider in the woocommerce shop page
-      add_filter('tc_show_slider', 'czr_fn_woocommerce_enable_shop_slider');
-      function czr_fn_woocommerce_enable_shop_slider( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
-      }
-      //to allow the slider in the woocommerce shop page we need the shop page id
-      add_filter('tc_slider_get_real_id', 'czr_fn_woocommerce_shop_page_id');
-      function czr_fn_woocommerce_shop_page_id( $id ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id('shop') : $id;
-      }
+      add_filter( 'tc_show_slider', 'czr_fn_woocommerce_shop_enable' );
+
+      //allow page layout post meta in 'shop'
+      add_filter( 'tc_is_page_layout', 'czr_fn_woocommerce_shop_enable' );
 
       //handles the woocomerce sidebar : removes action if sidebars not active
       if ( !is_active_sidebar( 'shop') ) {
@@ -2394,7 +2411,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                  position: relative; float: left; top: auto; margin-right: 0.2em;
                }
                .tc-wc-menu .widget_shopping_cart .product_list_widget {
-                 max-height: 10em;
+                 max-height: 40vh;
                  overflow-y: auto;
                  padding: 1em 0;
                }
@@ -5621,7 +5638,27 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         if ( apply_filters( 'tc_disable_img_smart_load', $_bool, current_filter() ) )
           return $_html;
 
-        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( $this , 'czr_fn_regex_callback' ) , $_html);
+        $allowed_image_extentions = apply_filters( 'tc_smartload_allowed_img_extensions', array(
+          'bmp',
+          'gif',
+          'jpeg',
+          'jpg',
+          'jpe',
+          'tif',
+          'tiff',
+          'ico',
+          'png',
+          'svg',
+          'svgz'
+        ) );
+
+        if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
+          return $_html;
+        }
+
+        $img_extensions_pattern = sprintf( "[%s]", implode( '|', $allowed_image_extentions ) );
+
+        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i', array( $this , 'czr_fn_regex_callback' ) , $_html);
       }
 
 
@@ -5636,10 +5673,9 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       private function czr_fn_regex_callback( $matches ) {
         $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-        if ( false !== strpos( $matches[0], 'data-src' ) ||
-            preg_match('/ data-smartload *= *"false" */', $matches[0]) )
+        if ( false !== strpos( $matches[0], 'data-src' ) || preg_match('/ data-smartload *= *"false" */', $matches[0]) ) {
           return $matches[0];
-        else
+        } else {
           return apply_filters( 'tc_img_smartloaded',
             str_replace( array('srcset=', 'sizes='), array('data-srcset=', 'data-sizes='),
                 sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
@@ -5650,6 +5686,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
                 )
             )
           );
+        }
       }
 
 
@@ -5903,7 +5940,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
           $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
         }
-        return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        $tc_id  = ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        return apply_filters( 'tc_id', $tc_id );
       }
 
 
@@ -5917,7 +5955,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       public static function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = czr_fn__f ( '__options' );
-          global $post;
+ 
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
 
@@ -5936,11 +5974,19 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             return $tc_screen_layout[$sidebar_or_class];
           }
 
+          global $wp_query, $post;
+          $tc_specific_post_layout    = false;
+          $is_singular_layout         = false;
 
-          if ( is_single() )
+          if ( apply_filters( 'tc_is_post_layout', is_single( $post_id ), $post_id ) ) {
             $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_post_layout'] );
-          if ( is_page() )
+            $is_singular_layout = true;
+          }
+          elseif ( apply_filters( 'tc_is_page_layout', is_page( $post_id ), $post_id ) ) {
             $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_page_layout'] );
+            $is_singular_layout = true;
+          }
+
 
           //builds the default layout option array including layout and article class
           $class_tab  = $global_layout[$tc_sidebar_default_layout];
@@ -5952,18 +5998,18 @@ if ( ! class_exists( 'CZR_utils' ) ) :
 
           //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
           $tc_specific_post_layout    = false;
-          global $wp_query;
+
           //if we are displaying an attachement, we use the parent post/page layout
-          if ( $post && 'attachment' == $post -> post_type ) {
+          if ( isset($post) && is_singular() && 'attachment' == $post->post_type ) {
             $tc_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
           }
           //for a singular post or page OR for the posts page
-          elseif ( is_singular() || $wp_query -> is_posts_page ) {
+          elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page )
             $tc_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
-          }
+        
 
           //checks if we display home page, either posts or static page and apply the customizer option
-          if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
+          if( ( is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page() ) {
              $tc_specific_post_layout = $__options['tc_front_layout'];
           }
 
@@ -5976,7 +6022,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             );
           }
 
-        return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+          return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
 
@@ -6986,7 +7032,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         ?>
         @font-face {
           font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' ) );
+          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' );
           src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
               url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),

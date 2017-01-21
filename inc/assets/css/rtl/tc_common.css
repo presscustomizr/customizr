@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.37
+ * Customizr v3.4.38
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4151,7 +4151,7 @@ input[type="submit"].btn.btn-mini {
   width: 100%;
   position: relative;
 }
-.carousel-inner > .item {
+.carousel-inner > .czr-item {
   display: none;
   position: relative;
   -webkit-transition: 0.6s ease-in-out right;
@@ -4159,8 +4159,8 @@ input[type="submit"].btn.btn-mini {
   -o-transition: 0.6s ease-in-out right;
   transition: 0.6s ease-in-out right;
 }
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
+.carousel-inner > .czr-item > img,
+.carousel-inner > .czr-item > a > img {
   display: block;
   line-height: 1;
 }
@@ -5199,11 +5199,6 @@ body:not(.tc-sticky-header) #tc-reset-margin-top {
 .navbar.resp {
   display: none;
 }
-.navbar.notresp {
-  display: block;
-  min-width: 690px\9;
-  /* IE 8 and below */
-}
 .navbar {
   float: left;
   margin-bottom: 0px;
@@ -5319,6 +5314,10 @@ h2.site-description {
 .navbar .btn-navbar:active,
 .navbar .btn-navbar.active {
   outline: 0;
+}
+/* Fix bootstrap>2.3.2 plugin conflicts*/
+.tc-header .nav-collapse.collapse.in {
+  height: auto;
 }
 /* REGULAR MENU
     -------------------------------------------------- */
@@ -6015,13 +6014,13 @@ footer#footer .colophon .credits a[class*=icon-] {
   *line-height: 72px;
 }
 */
-.carousel .item {
+.carousel .czr-item {
   line-height: 500px;
   overflow: hidden;
   min-height: 500px;
   max-height: 500px;
 }
-.carousel .item > span {
+.carousel .czr-item > span {
   *zoom: 1;
   /* layout hack IE7 and below */
 }
@@ -6060,6 +6059,7 @@ footer#footer .colophon .credits a[class*=icon-] {
   display: inline-block;
   position: relative;
   margin-left: 11%;
+  text-align: left;
   /*display:inline; IE7 and below */
 }
 .carousel-caption h1,
@@ -6083,7 +6083,7 @@ footer#footer .colophon .credits a[class*=icon-] {
   bottom: 20px;
 }
 /* If automatic centering is enabled */
-.carousel > .center-slides-enabled > .item > .carousel-image img {
+.carousel > .center-slides-enabled > .czr-item > .carousel-image img {
   display: block;
   position: relative;
 }
@@ -6176,7 +6176,7 @@ footer#footer .colophon .credits a[class*=icon-] {
   animation: tc-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
 }
 /* CUSTOM SLIDER HEIGHT */
-.custom-slider-height .carousel-inner .item {
+.custom-slider-height .carousel-inner .czr-item {
   /*min-height:inherit;*/
 }
 /* FEATURED PAGES
@@ -8701,6 +8701,7 @@ li#wp-admin-bar-tc-customizr-help a {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
+    display: block;
   }
 }
 /*********************************************************************************
@@ -8736,7 +8737,7 @@ li#wp-admin-bar-tc-customizr-help a {
     width: 100%;
   }
   /*Other*/
-  .carousel .item {
+  .carousel .czr-item {
     line-height: 385px;
     overflow: hidden;
     min-height: 385px;
@@ -8948,7 +8949,7 @@ li#wp-admin-bar-tc-customizr-help a {
   .social-block.widget {
     float: none;
   }
-  .carousel .item {
+  .carousel .czr-item {
     line-height: 309px;
     overflow: hidden;
     min-height: 309px;
@@ -9234,13 +9235,13 @@ li#wp-admin-bar-tc-customizr-help a {
     /* margin-left: -20px;
     margin-right: -20px; */
   }
-  .carousel .item {
+  .carousel .czr-item {
     line-height: 308px;
     overflow: hidden;
     min-height: 308px;
     max-height: 308px;
   }
-  .item .carousel-caption h1 {
+  .czr-item .carousel-caption h1 {
     font-size: 22px;
   }
   .carousel-caption .btn {
@@ -9346,7 +9347,7 @@ li#wp-admin-bar-tc-customizr-help a {
   .social-block a {
     padding-right: 10px;
   }
-  .carousel .item {
+  .carousel .czr-item {
     line-height: 190px;
     overflow: hidden;
     min-height: 190px;
@@ -9359,7 +9360,7 @@ li#wp-admin-bar-tc-customizr-help a {
     max-height: 130px;
     overflow: hidden;
   }
-  .item .carousel-caption h1 {
+  .czr-item .carousel-caption h1 {
     font-size: 20px;
   }
   .carousel-caption .lead,
@@ -9428,7 +9429,7 @@ li#wp-admin-bar-tc-customizr-help a {
   /*end prevent overflows in mobiles */
 }
 @media (max-width: 320px) {
-  .carousel .item {
+  .carousel .czr-item {
     line-height: 140px;
     overflow: hidden;
     min-height: 140px;
@@ -9437,7 +9438,7 @@ li#wp-admin-bar-tc-customizr-help a {
   .carousel-caption {
     padding: 2%;
   }
-  .item .carousel-caption h1 {
+  .czr-item .carousel-caption h1 {
     font-size: 16px;
   }
   .carousel-caption .btn {

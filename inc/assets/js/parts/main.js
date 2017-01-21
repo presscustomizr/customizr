@@ -442,8 +442,8 @@ var czrapp = czrapp || {};
         $.each( $( '.carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == TCParams.centerSliderImg,
-            imgSel : '.item .carousel-image img',
-            oncustom : ['slid', 'simple_load'],
+            imgSel : '.czr-item .carousel-image img',
+            oncustom : ['customizr.slid', 'simple_load'],
             defaultCSSVal : { width : '100%' , height : 'auto' },
             useImgAttr : true
           });
@@ -1798,7 +1798,7 @@ var czrapp = czrapp || {};
           _offset = -20 - _dropdown_overflow; //add some space (20px) on the right(rtl-> left)
           // when is dropdown first level we need to move the top arrow
           // we need the menu-item-{id} class to build the css rule
-          var _menu_id = $_parent_dropdown.attr('class').match(/menu-item-\d+/);
+          var _menu_id = $_parent_dropdown.attr('class').match(/(menu|page)-item-\d+/);
           _menu_id = _menu_id ? _menu_id[0] : null;
           if ( _menu_id )
             this._set_dropdown_arrow_style( _menu_id, _offset );

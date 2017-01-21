@@ -1,4 +1,4 @@
-# Customizr v3.4.37 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.4.38 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -43,6 +43,17 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.4.38 January 21st 2017 =
+* Fix: fix default page menu behavior when dropdown on click submenu open #730
+* Imp: fix plugin php7 checker (wrong) compatibility issue #727 , #719
+* Imp: improve WooCommerce compatibility + allow shop layout selection #733
+* Fix: small tweak to the header cart WooCommerce CSS #733
+* Fix: add tc-center-images body class only when tc_center_img option true #735
+* Fix: fix superfluous bracket in font-awesome icons inline style #739
+* Fix: escape title attributes used in fp round-div and readmore button #743
+* Imp: various bootstrap>2.3.2 compatibility improvements fix #742 #737 #746
+* Imp: img to smartload must have an src which matches an allowed ext #747
+
 = 3.4.37 January 5th 2017 =
 * fixed : correctly handle sizes attribute when smartloading resp imgs
 * fixed : back to top arrow position option
