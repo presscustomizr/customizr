@@ -758,6 +758,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'f' == $_layout ? 'no' : $_layout
           ) );
         }
+
+        //IMAGE CENTERED
+        if ( (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ) ){
+          $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
+        }
+
+        //SKIN CLASS
+        $_skin = sprintf( 'skin-%s' , basename( $this -> czr_fn_get_style_src() ) );
+        array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+
         return $_classes;
       }
 
