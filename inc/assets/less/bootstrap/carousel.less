@@ -16,8 +16,8 @@
 }
 
 .carousel-inner {
-
-  > .item {
+  //tc-addon to avoid conflicts with other bootstrap versions we define our own item class
+  > .czr-item {
     display: none;
     position: relative;
     .transition(.6s ease-in-out @floatDirection);
