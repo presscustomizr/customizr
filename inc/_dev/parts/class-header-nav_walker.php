@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a data-test="joie"' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -110,15 +110,28 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
     * hook : page_css_class
     */
     function czr_fn_add_bootstrap_classes($css_class, $page = null, $depth = 0, $args = array(), $current_page = 0) {
-      if ( is_array($css_class) && in_array('page_item_has_children', $css_class ) ) {
-        if ( 0 === $depth) {
-          $css_class[] = 'dropdown';
-        } elseif ( $depth > 0) {
-          $css_class[] = 'dropdown-submenu';
+      if ( ! is_array($css_class) )
+        return $css_class;
+
+      if ( ! empty( $args['has_children'] ) ) {
+        if ( 0 === $depth ) {
+          if ( ! in_array( 'dropdown', $css_class ) )
+            $css_class[] = 'dropdown';
+        } elseif ( $depth > 0 ) {
+          if ( ! in_array( 'dropdown-submenu', $css_class ) )
+            $css_class[] = 'dropdown-submenu';
         }
+        /*
+        * unify menu items with children whether displaying a standard menu or a page menu
+        * (useful for javascript menu related code)
+        */
+        if ( ! in_array( 'menu-item-has-children' , $css_class ) )
+          $css_class[] = 'menu-item-has-children';
       }
+
       if ( ! in_array( 'menu-item' , $css_class ) )
         $css_class[] = 'menu-item';
+
       return $css_class;
     }
 
@@ -134,17 +147,17 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
 
-      if ( $args['has_children'] ) {
+      if ( ! empty( $args['has_children'] ) ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? $search : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
-        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search );
+        $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, isset($args['theme_location']) ? $args['theme_location'] : null);
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
         if ( $depth === 0 )
-          $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
+            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);      
       }
 
       elseif (stristr( $item_html, 'li class="divider' )) {
