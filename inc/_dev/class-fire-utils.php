@@ -405,7 +405,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
           $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
         }
-        return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        $tc_id  = ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
+        return apply_filters( 'tc_id', $tc_id );
       }
 
 
@@ -419,7 +420,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       public static function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = czr_fn__f ( '__options' );
-          global $post;
+ 
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
 
@@ -438,11 +439,19 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             return $tc_screen_layout[$sidebar_or_class];
           }
 
+          global $wp_query, $post;
+          $tc_specific_post_layout    = false;
+          $is_singular_layout         = false;
 
-          if ( is_single() )
+          if ( apply_filters( 'tc_is_post_layout', is_single( $post_id ), $post_id ) ) {
             $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_post_layout'] );
-          if ( is_page() )
+            $is_singular_layout = true;
+          }
+          elseif ( apply_filters( 'tc_is_page_layout', is_page( $post_id ), $post_id ) ) {
             $tc_sidebar_default_layout  = esc_attr( $__options['tc_sidebar_page_layout'] );
+            $is_singular_layout = true;
+          }
+
 
           //builds the default layout option array including layout and article class
           $class_tab  = $global_layout[$tc_sidebar_default_layout];
@@ -454,18 +463,18 @@ if ( ! class_exists( 'CZR_utils' ) ) :
 
           //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
           $tc_specific_post_layout    = false;
-          global $wp_query;
+
           //if we are displaying an attachement, we use the parent post/page layout
-          if ( $post && 'attachment' == $post -> post_type ) {
+          if ( isset($post) && is_singular() && 'attachment' == $post->post_type ) {
             $tc_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
           }
           //for a singular post or page OR for the posts page
-          elseif ( is_singular() || $wp_query -> is_posts_page ) {
+          elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page )
             $tc_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
-          }
+        
 
           //checks if we display home page, either posts or static page and apply the customizer option
-          if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
+          if( ( is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page() ) {
              $tc_specific_post_layout = $__options['tc_front_layout'];
           }
 
@@ -478,7 +487,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
             );
           }
 
-        return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+          return apply_filters( 'tc_screen_layout' , $tc_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
 
