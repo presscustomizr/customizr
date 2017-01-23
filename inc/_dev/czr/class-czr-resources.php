@@ -144,7 +144,9 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'isThemeSwitchOn'  => isset( $_GET['theme']),
             'themeSettingList' => CZR_utils::$_theme_setting_list,
 
-            'faviconOptionName' => 'tc_fav_upload'
+            'faviconOptionName' => 'tc_fav_upload',
+
+            'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls()
           )
         )
       );
@@ -159,11 +161,11 @@ li[id*="customize-control-"] {
   box-shadow: none;-webkit-box-shadow: none;
   padding: 0
 }
-
 .customize-control span.customize-control-title:first-child {
   padding-left: 0;
 }
-   /* end temporary */
+    /* end temporary */
+
 /* SELECT 2 SPECIFICS */
 body .select2-dropdown {
   z-index: 998;
@@ -175,7 +177,7 @@ body .select2-container--open .select2-dropdown--above {
     border-top: 1px solid #008ec2;
 }
 
-body .select2-container .select2-selection--single .select2-selection__rendered {
+[id*=tc_theme_options-tc_skin] .select2-container .select2-selection--single .select2-selection__rendered {
   padding-left: 0;
 }
 body .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -1316,8 +1318,14 @@ li[id*="customize-control-"].tc-grid-design {
                               'tc_post_list_thumb_height',
                               'tc_grid_thumb_height'
                             ],
-                            visibility : function( to ) {
-                                  return _is_checked(to);
+                            visibility : function( to, servusShortId ) {
+                                  if ( 'tc_grid_thumb_height' == servusShortId ) {
+                                    //cross
+                                    return _is_checked(to)
+                                        && $('.tc-grid-toggle-controls').hasClass('open')
+                                        && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) ).get();
+                                  }
+                                  return _is_checked(to) ;
                             },
                     },
                     {
@@ -1333,21 +1341,27 @@ li[id*="customize-control-"].tc-grid-design {
                               'tc_grid_shadow',
                               'tc_grid_icons',
                               'tc_grid_num_words',
-                              'tc_post_list_grid', //trick to fire actions on dominus change
+                              'tc_post_list_grid',//trick, see the actions
                             ],
                             visibility : function( to, servusShortId ) {
-                                  if ( 'tc_post_list_grid' != servusShortId )
-                                    return 'grid' == to;
+                                  if ( 'tc_post_list_grid' == servusShortId )
+                                      return true;
+
+                                  if ( _.contains( serverControlParams.gridDesignControls, servusShortId ) ) {
+                                      _bool =  $('.tc-grid-toggle-controls').hasClass('open') && 'grid' == to;
+
+                                      if ( 'tc_grid_thumb_height' == servusShortId ) {
+                                        //cross
+                                          return _bool && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) ).get() );
+                                      }
+                                      return _bool;
+                                  }
+                                  return 'grid' == to;
                             },
                             actions : function( to, servusShortId ) {
-                              if ( 'tc_post_list_grid' == servusShortId ) {
-                                  $('.tc-grid-toggle-controls').toggle('grid' == to).removeClass('open');
-                              }else {
-                                //hide grid-design options
-                                $_el = api.control( api.CZR_Helpers.build_setId(servusShortId) ).container;
-                                if ( $_el.hasClass('tc-grid-desing') )
-                                  $_el.hide();
-                              }
+                                  if ( 'tc_post_list_grid' == servusShortId ) {
+                                      $('.tc-grid-toggle-controls').toggle( 'grid' == to );
+                                  }
                             }
                     },
                     {
@@ -1438,7 +1452,10 @@ li[id*="customize-control-"].tc-grid-design {
                               'tc_sticky_logo_upload',
                               'tc_woocommerce_header_cart_sticky'
                             ],
-                            visibility : function( to ) {
+                            visibility : function( to, servusShortId ) {
+                                  if ( 'tc_woocommerce_header_cart_sticky' == servusShortId ) {
+                                    return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_woocommerce_header_cart' ) ).get() );
+                                  }
                                   return _is_checked(to);
                             },
                     },
@@ -1446,7 +1463,7 @@ li[id*="customize-control-"].tc-grid-design {
                             dominus : 'tc_woocommerce_header_cart',
                             servi   : ['tc_woocommerce_header_cart_sticky'],
                             visibility: function (to) {
-                                  return _is_checked(to);
+                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_sticky_header' ) ).get() );
                             }
                     },
                     {
@@ -1632,7 +1649,7 @@ li[id*="customize-control-"].tc-grid-design {
                             dominus : 'tc_show_back_to_top',
                             servi   : ['tc_back_to_top_position'],
                             visibility: function (to) {
-                                  return 'custom' == to;
+                                  return _is_checked(to);
                             }
                     },
                 ]//dominiDeps {}
@@ -1648,29 +1665,13 @@ li[id*="customize-control-"].tc-grid-design {
       <script id="control-various-dom-ready" type="text/javascript">
         (function (wp, $) {
             $( function($) {
-
-                var api = wp.customize || api;
                 /* GRID */
-                var _build_setId = function ( name ) {
-                  return -1 == name.indexOf( 'tc_theme_options') ? [ 'tc_theme_options[' , name  , ']' ].join('') : name;
-                };
-                var _grid_design_controls = [
-                  'tc_grid_in_blog',
-                  'tc_grid_in_archive',
-                  'tc_grid_in_search',
-                  'tc_grid_thumb_height',
-                  'tc_grid_shadow',
-                  'tc_grid_bottom_border',
-                  'tc_grid_icons',
-                  'tc_grid_num_words'
-                ];
-
                 var _build_control_id = function( _control ) {
                   return [ '#' , 'customize-control-tc_theme_options-', _control ].join('');
                 };
 
                 var _get_grid_design_controls = function() {
-                  return $( _grid_design_controls.map( function( _control ) {
+                  return $( serverControlParams.gridDesignControls.map( function( _control ) {
                     return _build_control_id( _control );
                   }).join(',') );
                 };
@@ -1866,22 +1867,11 @@ li[id*="customize-control-"].tc-grid-design {
                 'edit' => __('Edit', 'customizr'),
                 'close' => __('Close', 'customizr'),
                 'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr'),
-                /*'locations' => __('Location(s)', 'customizr'),
-                'contexts' => __('Context(s)', 'customizr'),*/
                 'notset' => __('Not set', 'customizr'),
                 'rss' => __('Rss', 'customizr'),
                 'selectSocialIcon' => __('Select a social icon', 'customizr'),
                 'followUs' => __('Follow us on', 'customizr'),
                 'successMessage' => __('Done !', 'customizr'),
-                'socialLinkAdded' => __('New Social Link created ! Scroll down to edit it.', 'customizr'),
-                /*'selectBgRepeat'  => __('Select repeat property', 'customizr'),
-                'selectBgAttachment'  => __('Select attachment property', 'customizr'),
-                'selectBgPosition'  => __('Select position property', 'customizr'),
-                'widgetZone' => __('Widget Zone', 'customizr'),
-                'widgetZoneAdded' => __('New Widget Zone created ! Scroll down to edit it.', 'customizr'),
-                'inactiveWidgetZone' => __('Inactive in current context/location', 'customizr'),
-                'unavailableLocation' => __('Unavailable location. Some settings must be changed.', 'customizr'),
-                'locationWarning' => __('A selected location is not available with the current settings.', 'customizr'),*/
                 'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
                 //WP TEXT EDITOR MODULE
                 'textEditorOpen' => __('Edit', 'customizr'),
@@ -1889,14 +1879,11 @@ li[id*="customize-control-"].tc-grid-design {
                 //SLIDER MODULE
                 'slideAdded'   => __('New Slide created ! Scroll down to edit it.', 'customizr'),
                 'slideTitle'   => __( 'Slide', 'customizr'),
-
                 'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
-
           )
       );
     }
 
   }
 endif;
-
 ?>

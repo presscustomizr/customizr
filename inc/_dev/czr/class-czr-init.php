@@ -540,8 +540,19 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       );
     }
 
-
-
+    //@return array of grid design options
+    function czr_fn_get_grid_design_controls() {
+      return apply_filters( 'tc_grid_design_controls', array(
+        'tc_grid_in_blog',
+        'tc_grid_in_archive',
+        'tc_grid_in_search',
+        'tc_grid_thumb_height',
+        'tc_grid_shadow',
+        'tc_grid_bottom_border',
+        'tc_grid_icons',
+        'tc_grid_num_words'
+      ) );
+    }
 
     /**
     * hook __before_setting_control (declared in class-tc-controls-settings.php)

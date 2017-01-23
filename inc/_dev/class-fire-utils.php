@@ -1074,6 +1074,12 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( is_null($autofocus) )
         return $_customize_url;
 
+      $_ordered_keys = array( 'control', 'section', 'panel');
+
+      // $autofocus must contain at least one key among (control,section,panel)
+      if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) )
+        return $_customize_url;
+
       // $autofocus must contain at least one key among (control,section,panel)
       if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) )
         return $_customize_url;
@@ -1082,8 +1088,15 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
-      // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-      return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );
+      //Since wp 4.6.1 we order the params following the $_ordered_keys order
+      $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+
+      if ( ! empty( $autofocus ) ) {
+        //here we pass the first element of the array
+        // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
+        return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
+      } else
+        return $_customize_url;
     }
 
 
