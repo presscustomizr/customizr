@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'FontAwesome';
-  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot');
-  src:url('../../assets/css/fonts/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff2') format('woff2'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.woff') format('woff'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.ttf') format('truetype'),
-      url('../../assets/css/fonts/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  src:url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.eot');
+  src:url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.woff2') format('woff2'),
+      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.woff') format('woff'),
+      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.ttf') format('truetype'),
+      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
 }
 
 .about-wrap h3 {

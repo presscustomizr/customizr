@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
         //CZR
-        'pre_czr' : ['concat:czr_control_css', 'concat:czr_control_js', 'comments:czr_control_js', 'lineending:czr_js', 'uglify:czr_control_js', 'uglify:czr_preview_js', 'cssmin:czr_css'],
+        'pre_czr' : ['concat:czr_control_css', 'concat:czr_control_js', /*'comments:czr_control_js',*/ 'lineending:czr_js', 'uglify:czr_control_js', 'uglify:czr_preview_js', 'cssmin:czr_css'],
 
         //PROD
         'prod_php' : ['concat:init_php', 'concat:front_php', 'concat:admin_php'],
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
 
         //BUILD CZR
-        'customizr_build_czr':  [ 'prod_php', 'prod_front_css', 'prod_front_js', 'pre_czr', 'prod_buid' ],
+        'customizr_build_czr':  [ 'prod_php', 'prod_front_css', 'prod_front_js', 'pre_czr', 'prod_admin_css_js', 'prod_build' ],
 
         //TRAVIS ci virtual machine build check on js @todo check other resources?
         'travis' : ['jshint'],

@@ -42,7 +42,7 @@ module.exports = {
 	},
 	admin_css : {
 		files : ['<%= paths.admin_css %>*.css'],
-		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
+		tasks : ['gitinfo' , 'replace:readme', 'cssmin:prod_admin_css', 'wait:pause'],
 	},
 //CZR
   czr_concat_control_css : {
@@ -61,14 +61,12 @@ module.exports = {
     'concat:czr_pro_modules_control_js',
     'concat:czr_pro_control_js',
 
-    // 'comments:czr_core_control_js',
-    // 'comments:czr_pro_control_js',
-    // 'uglify:czr_control_js',
-    // 'uglify:czr_pro_control_js',
+   // 'comments:czr_core_control_js',
+    //'comments:czr_pro_control_js',
+    //'uglify:czr_control_js',
+    //'uglify:czr_pro_control_js',
     'copy:czr_js',
-    // 'copy:czr_js_in_hueman_addons',
-    // 'copy:czr_js_in_hueman_theme',
-    // 'copy:czr_js_in_hueman_pro_theme'
+
     ],
   },
   //Other admin js assets are jshinted on change

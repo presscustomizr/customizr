@@ -16,9 +16,10 @@ function czr_fn_print_social_pre_add_view_template() {
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
       <div class="customize-control-title"><?php _e('Social link url', 'customizr'); ?></div>
       <div class="czr-input">
-        <input data-type="social-link" type="text" value="" placeholder="<?php _e('http://...', 'customizr'); ?>"></input>
+        <input data-type="social-link" type="text" value="" placeholder="<?php _e('http://...,mailto:...,...', 'customizr'); ?>"></input>
       </div>
-      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be valid url).', 'customizr'); ?></span>
+      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be valid url).', 'customizr'); ?>
+      </span>
     </div>
   </script>
   <?php
@@ -54,9 +55,9 @@ function czr_fn_print_social_item_content_template() {
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
       <div class="customize-control-title"><?php _e('Social link', 'customizr'); ?></div>
       <div class="czr-input">
-        <input data-type="social-link" type="text" value="{{ data['social-link'] }}" placeholder="<?php _e('http://...', 'customizr'); ?>"></input>
+        <input data-type="social-link" type="text" value="{{ data['social-link'] }}" placeholder="<?php _e('http://...,mailto:...,...', 'customizr'); ?>"></input>
       </div>
-      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be a valid url).', 'customizr'); ?></span>
+      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be valid url).', 'customizr'); ?></span>
     </div>
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
       <div class="customize-control-title"><?php _e('Title', 'customizr'); ?></div>
@@ -66,13 +67,13 @@ function czr_fn_print_social_item_content_template() {
       <span class="czr-notice"><?php _e('This is the text displayed on mouse over.', 'customizr'); ?></span>
     </div>
 
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color">
+    <!-- div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color">
       <div class="customize-control-title"><?php _e('Icon color', 'customizr'); ?></div>
       <div class="czr-input">
         <input data-type="social-color" type="text" value="{{ data['social-color'] }}"></input>
       </div>
       <span class="czr-notice"><?php _e('Set a unique color for your icon.', 'customizr'); ?></span>
-    </div>
+    </div -->
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="check">
       <# //the previous hueman option system was storing this option in an array
         data['social-target'] = _.isArray( data['social-target'] ) ? data['social-target'][0] : data['social-target'];

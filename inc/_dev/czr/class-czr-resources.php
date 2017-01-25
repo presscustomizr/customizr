@@ -146,7 +146,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'faviconOptionName' => 'tc_fav_upload',
 
-            'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls()
+            'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
           )
         )
       );
@@ -1641,7 +1641,7 @@ li[id*="customize-control-"].tc-grid-design {
                                       $_controls = $_nav_section_container.find('li.customize-control').not( api.control(api.CZR_Helpers.build_setId(servusShortId)).container );
                                   $_controls.each( function() {
                                     if ( $(this).is(':visible') )
-                                      $(this).fadeTo( 500 , true === to ? 0.5 : 1); //.fadeTo() duration, opacity, callback
+                                      $(this).fadeTo( 500 , true === to ? 0.5 : 1).css('pointerEvents', true === to ? 'none' : ''); //.fadeTo() duration, opacity, callback
                                   });//$.each()
                             }
                     },
@@ -1688,6 +1688,7 @@ li[id*="customize-control-"].tc-grid-design {
                 $g_logo = $('<img>' , {class : 'tc-title-google-logo' , src : '//www.google.com/images/logos/google_logo_41.png' , height : 20 });
                 $('#accordion-section-fonts_sec').prepend($g_logo);
 
+
                 //http://ivaynberg.github.io/select2/#documentation
                 $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').select2({
                     minimumResultsForSearch: -1, //no search box needed
@@ -1696,7 +1697,7 @@ li[id*="customize-control-"].tc-grid-design {
                     escapeMarkup: function(m) { return m; }
                 }).on("select2-highlight", function(e) { //<- doesn't work with recent select2 and it doesn't provide alternatives :(
                   //triggerChange = true @see val method doc here http://ivaynberg.github.io/select2/#documentation
-                  $(this).select2("val" , e.val, true );
+                 $(this).select2("val" , e.val, true );
                 });
                 //Skins handled with select2
                 function paintSkinOptionElement(state) {
@@ -1764,23 +1765,23 @@ li[id*="customize-control-"].tc-grid-design {
                   $('#customize-info').after( donate_template() );
 
                    //BIND EVENTS
-                  $('.tc-close-request').click( function(e) {
+                  $('.czr-close-request').click( function(e) {
                     e.preventDefault();
                     $('.donate-alert').slideToggle("fast");
                     $(this).hide();
                   });
 
-                  $('.tc-hide-donate').click( function(e) {
+                  $('.czr-hide-donate').click( function(e) {
                     _ajax_save();
                     setTimeout(function(){
-                        $('#tc-donate-customizer').slideToggle("fast");
+                        $('#czr-donate-customizer').slideToggle("fast");
                     }, 200);
                   });
 
-                  $('.tc-cancel-hide-donate').click( function(e) {
+                  $('.czr-cancel-hide-donate').click( function(e) {
                     $('.donate-alert').slideToggle("fast");
                     setTimeout(function(){
-                        $('.tc-close-request').show();
+                        $('.czr-close-request').show();
                     }, 200);
                   });
                 }//end of donate block
@@ -1815,7 +1816,7 @@ li[id*="customize-control-"].tc-grid-design {
                   var _cta = _.template(
                       $( "script#gc_cta" ).html()
                   );
-                  $('li[id*="tc_post_list_show_thumb"] > .tc-customizr-title').before( _cta() );
+                  $('li[id*="tc_post_list_show_thumb"] > .czr-customizr-title').before( _cta() );
                 }
 
                 function _render_mc_cta() {
@@ -1872,6 +1873,7 @@ li[id*="customize-control-"].tc-grid-design {
                 'selectSocialIcon' => __('Select a social icon', 'customizr'),
                 'followUs' => __('Follow us on', 'customizr'),
                 'successMessage' => __('Done !', 'customizr'),
+                'socialLinkAdded' => __('New Social Link created ! Scroll down to edit it.', 'customizr'),
                 'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
                 //WP TEXT EDITOR MODULE
                 'textEditorOpen' => __('Edit', 'customizr'),

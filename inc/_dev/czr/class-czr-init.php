@@ -271,6 +271,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'setting_type'    =>  'option' ,
                 'sanitize_callback' =>  null,
                 'sanitize_js_callback'  =>  null,
+                'validate_callback'  =>  null,
                 'transport'     =>  null
           ),
           'controls' => array(
@@ -286,8 +287,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
                 'choices' ,
                 'priority' ,
-                'sanitize_callback',
-                'sanitize_js_callback',
+
                 'notice' ,
                 'buttontext' ,//button specific
                 'link' ,//button specific
@@ -639,7 +639,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 esc_url('paypal.com/en_US/i/btn/btn_donate_LG.gif'),
                 __( "Make a donation for Customizr" , 'customizr' )
               );
-              printf('<div class="donate-alert"><p class="czr-notice">%1$s</p><span class="czr-hide-donate button">%2$s</span><span class="tc-cancel-hide-donate button">%3$s</span></div>',
+              printf('<div class="donate-alert"><p class="czr-notice">%1$s</p><span class="czr-hide-donate button">%2$s</span><span class="czr-cancel-hide-donate button">%3$s</span></div>',
                 __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
                 __( "Hide forever" , 'customizr' ),
                 sprintf( '%s <span style="font-size:20px">%s</span>', __( "Let me think twice" , 'customizr' ), convert_smilies( ':roll:') )
@@ -683,10 +683,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       <script type="text/template" id="gc_cta">
         <div class="czr-cta czr-in-control-cta-wrap">
           <?php
-            printf('<span class="czr-notice">%1$s %2$s</span><a class="czr-cta-btn" href="%3$s" title="%4$s" target="_blank">%4$s &raquo;</a>',
+            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
-               sprintf('<a href="%1$s" class="czr-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="czr-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=demo_grid_customizer'), __("Try it in the demo" , "customizr" )
-              ),
               sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );
@@ -697,10 +695,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
        <script type="text/template" id="mc_cta">
         <div class="czr-cta czr-in-control-cta-wrap">
           <?php
-            printf('<span class="czr-notice">%1$s %2$s</span><a class="czr-cta-btn" href="%3$s" title="%4$s" target="_blank">%4$s &raquo;</a>',
+            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
               __( "Add creative and engaging reveal animations to your side menu." , 'customizr' ),
-              sprintf('<a href="%1$s" class="czr-notice-inline-link" title="%2$s" target="_blank">%2$s<span class="czr-notice-ext-icon dashicons dashicons-external"></span></a>' , esc_url('demo.presscustomizr.com/?design=nav'), __("Side menu animation demo" , "customizr" )
-              ),
               sprintf('%scustomizr-pro/', CZR_WEBSITE ),
               __( "Upgrade to Customizr Pro" , 'customizr' )
             );

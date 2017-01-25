@@ -9,6 +9,7 @@ module.exports = {
       '<%= paths.dev_php %>class-fire-init.php',
       '<%= paths.dev_php %>class-fire-plugins_compat.php',
       '<%= paths.dev_php %>class-fire-utils_settings_map.php',
+      '<%= paths.dev_php %>class-fire-init_retro_compat.php',
       '<%= paths.dev_php %>class-fire-utils.php',
       '<%= paths.dev_php %>class-fire-resources.php',
       '<%= paths.dev_php %>class-fire-widgets.php',
@@ -70,8 +71,7 @@ module.exports = {
       '<%= paths.dev_php %>czr/controls/class-cropped-image-control.php',
       '<%= paths.dev_php %>czr/controls/class-multipicker-control.php',
       '<%= paths.dev_php %>czr/controls/class-modules-control.php',
-
-//      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
+      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
 
       '<%= paths.dev_php %>czr/panels/class-panels.php',
       '<%= paths.dev_php %>czr/settings/class-settings.php',

@@ -51,7 +51,6 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
         //FILTER SPECIFIC SETTING-CONTROL MAPS
         //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-        //add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
         add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
         //CACHE THE GLOBAL CUSTOMIZER MAP
@@ -293,7 +292,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                 'type'      => 'czr_module',
                 'module_type' => 'czr_social_module',
                 'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
-                'priority'  => 10
+                'priority'  => 10,
           )
       );
     }
@@ -2215,25 +2214,17 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_font_awesome_icons'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome set of icons", 'customizr' ),
+                                'label'       => __( "Load Font Awesome resources", 'customizr' ),
                                 'section'     => 'extresources_sec',
                                 'type'        => 'checkbox',
-                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s',
+                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s</br>%3$s',
                                     __( 'Use with caution' , 'customizr'),
-                                    __( 'When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' )
-                                )
-              ),
-              'tc_font_awesome_css'  =>  array(
-                                'default'       => 0,
-                                'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome CSS", 'customizr' ),
-                                'section'     => 'extresources_sec',
-                                'type'        => 'checkbox',
-                                'notice'      => sprintf('%1$s </br>%2$s <a href="%3$s" target="_blank">%4$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
-                                    __( "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS.", 'customizr' ),
-                                    __( "Check out some example of uses", 'customizr'),
-                                    esc_url('http://fontawesome.io/examples/'),
-                                    __('here', 'customizr')
+                                    __( 'When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' ),
+                                    sprintf('%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
+                                                                        __( "Check out some example of uses", 'customizr'),
+                                                                        esc_url('http://fontawesome.io/examples/'),
+                                                                        __('here', 'customizr')
+                                    )
                                 )
               )
 

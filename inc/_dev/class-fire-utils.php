@@ -56,7 +56,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         add_filter( '__article_selectors'     , array( $this , 'czr_fn_article_selectors' ) );
 
         //social networks
-        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
+        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ), 10, 0 );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -108,7 +108,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           foreach ( $_settings_map as $_id => $data ) {
               $_settings[] = $_id;
           }
-          //$default_options = HU_utils::$inst -> hu_get_default_options();
+
           self::$_theme_setting_list = $_settings;
       }
 
@@ -763,7 +763,13 @@ if ( ! class_exists( 'CZR_utils' ) ) :
 
           $_social_links = array();
           foreach( $_socials as $key => $item ) {
-            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon" %1$s title="%2$s" href="%3$s" %4$s style="color:%5$s"><i class="fa %6$s"></i></a>',
+            //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+            $icon_class      = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+            $link_icon_class = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                    ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                    '';
+
+            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s" %4$s><i class="fa %5$s"></i></a>',
             //do we have an id set ?
             //Typically not if the user still uses the old options value.
             //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
@@ -773,8 +779,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
               isset($item['title']) ? esc_attr( $item['title'] ) : '',
               ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
               ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
-              isset($item['social-color']) ? esc_attr($item['social-color']) : '#000',
-              isset($item['social-icon']) ? esc_attr($item['social-icon']) : ''
+              $icon_class,
+              $link_icon_class
             ) );
           }
 
@@ -1036,7 +1042,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           'tc_social_links',
           'tc_blog_restrict_by_cat',
           'last_update_notice',
-          'last_update_notice_pro'
+          'last_update_notice_pro',
+          '__moved_opts'
         )
       );
     }

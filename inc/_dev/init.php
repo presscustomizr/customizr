@@ -103,6 +103,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               array('inc' , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
               array('inc' , 'utils_settings_map'),//customizer setting map
               array('inc' , 'utils'),//helpers used everywhere
+              array('inc' , 'init_retro_compat'),
               array('inc' , 'resources'),//loads front stylesheets (skins) and javascripts
               array('inc' , 'widgets'),//widget factory
               array('inc' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
