@@ -774,5 +774,4 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     }
   }//end class
 endif;
-
 ?>

@@ -37,10 +37,18 @@ if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
       $this->json['module_type'] = $this->module_type;
     }
 
-    /** Social Module sanitization/validation **/
+    /***
+    * Social Module sanitization/validation
+    **/
     public function sanitize_callback__czr_social_module( $socials ) {
+      if ( empty( $socials ) )
+        return array();
+
       //sanitize urls and titles for the db
       foreach ( $socials as $index => &$social ) {
+        if ( ! is_array( $social ) || ! ( array_key_exists( 'social-link', $social) &&  array_key_exists( 'title', $social) ) )
+          continue;
+
         $social['social-link']  = esc_url_raw( $social['social-link'] );
         $social['title']        = esc_attr( $social['title'] );
       }
@@ -49,16 +57,24 @@ if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
 
     public function validate_callback__czr_social_module( $validity, $socials ) {
       $ids_malformed_url = array();
+      $malformed_message = __( 'An error occurred: malformed social links', 'customizr' );
+
+      if ( empty( $socials ) )
+        return new WP_Error( 'required', $malformed_message );
+
       //validate urls
       foreach ( $socials as $index => $social ) {
-        if ( empty($social['social-link']) || $social['social-link'] != esc_url_raw( $social['social-link'] ) )
+        if ( ! is_array( $social ) || ! ( array_key_exists( 'social-link', $social) &&  array_key_exists( 'id', $social) ) )
+          return new WP_Error( 'required', $malformed_message );
+
+        if ( $social['social-link'] != esc_url_raw( $social['social-link'] ) )
           array_push( $ids_malformed_url, $social[ 'id' ] );
       }
 
       if ( empty( $ids_malformed_url) )
         return null;
 
-      return new WP_Error( 'required', __( 'Please fill the social link inputs with valid URLs', 'customizr' ), $ids_malformed_url );
+      return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', 'customizr' ), $ids_malformed_url );
     }
   }
 endif;

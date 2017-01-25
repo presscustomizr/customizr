@@ -268,5 +268,4 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
   }//end of class
 endif;
-
 ?>

@@ -15,13 +15,15 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
   class CZR_init_retro_compat {
     static $instance;
 
-
+    /*
+    * This is fired very early, before the new defaults are generated
+    */
     function __construct () {
       self::$instance =& $this;
 
-      //copy old options from option tree framework into new option raw 'hu_theme_options'
-      //copy logo from previous to custom_logo introduced in wp 4.5
+      //copy old options in the new framework
       //only if user is logged in
+      //then each routine has to decide what to do also depending on the user started before
       if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
         $theme_options       = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
 
@@ -47,6 +49,10 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
     function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
       $_options = $theme_options;
 
+      //nothing t do if already moved
+      if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+        return array();
+
       //nothing to do if already moved
       if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_socials', $_options[ '__moved_opts' ] ) ) {
         return array();
@@ -62,7 +68,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       * rss needs a special treatment for old users, it was a default
       * If it's not set in the options we have to set it with the default value
       */
-      if ( ! isset( $theme_options[ 'tc_rss' ] ) && CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) ) {
+      if ( ! isset( $theme_options[ 'tc_rss' ] ) ) {
         $_options[ 'tc_rss' ] = $_old_socials[ 'tc_rss' ][ 'default' ];
       }
 

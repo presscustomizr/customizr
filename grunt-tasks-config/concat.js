@@ -77,7 +77,6 @@ module.exports = {
       '<%= paths.dev_php %>czr/settings/class-settings.php',
       //modules data
       '<%= paths.dev_php %>czr/modules/modules-data.php',
-      '<%= paths.dev_php %>czr/modules/modules-resources.php',
 
       //templates
       '<%= paths.dev_php %>czr/tmpl/modules/all-modules-tmpl.php',

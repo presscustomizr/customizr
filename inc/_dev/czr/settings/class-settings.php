@@ -59,5 +59,4 @@ if ( ! class_exists( 'CZR_Customize_Setting') ) :
       }
   }
 endif;
-
 ?>

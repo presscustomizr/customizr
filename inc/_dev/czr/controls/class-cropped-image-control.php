@@ -64,5 +64,4 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'CZR_
     }
   }//end class
 endif;
-
 ?>
