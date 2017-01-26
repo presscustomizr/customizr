@@ -51,13 +51,4 @@ module.exports = {
     dest: 'custom-skins/',
     ext: '.min.css'
   },
-//CZR
-  czr_css: {
-    expand: true,
-    cwd: '<%= paths.czr_assets %>fmk/css',
-    src: ['*.css', '!*.min.css'],
-    dest: '<%= paths.czr_assets %>css',
-    ext: '.min.css'
-  }
-//end CZR
 };

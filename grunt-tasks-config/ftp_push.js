@@ -42,7 +42,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.admin_js %>theme-customizer-control.js']
+				src: ['<%= paths.czr_assets %>js/czr-control.js']
 			}
 		]
 	},
@@ -70,7 +70,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.admin_css %>*.css']
+				src: ['<%= paths.admin_css %>*.css', '<%= paths.czr_assets %>css/*.css']
 			}
 		]
 	},
@@ -79,7 +79,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.admin_js %>*.js']
+				src: ['<%= paths.admin_js %>*.js', '<%= paths.czr_assets %>js/*.js']
 			}
 		]
 	}

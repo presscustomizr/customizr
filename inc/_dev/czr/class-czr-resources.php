@@ -92,7 +92,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       wp_enqueue_script(
         'tc-customizer-controls',
         //need the full because as of now
-        sprintf('%1$sassets/czr/js/czr-control-full%2$s.js' , TC_BASE_URL, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+        sprintf('%1$sassets/czr/js/czr-control%2$s.js' , TC_BASE_URL, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
         array( 'customize-controls' , 'underscore'),
         ( defined('WP_DEBUG') && true === WP_DEBUG ) ? time() : CUSTOMIZR_VER,
         true
@@ -504,7 +504,7 @@ li[id*="customize-control-"].tc-grid-design {
 */
 .expanded .wp-full-overlay-footer,
 #customize-controls .customize-section-title.is-in-view.is-sticky {
-  z-index: 999;
+  z-index: 10000001;
 }
 
 /* ROOT PANEL : SEPARATE MENUS, WIDGETS AND ADVANCED OPTIONS */

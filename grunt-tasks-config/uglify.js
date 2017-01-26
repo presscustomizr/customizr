@@ -40,35 +40,6 @@ module.exports = {
 			ext: '.min.js'
 		}]
 	},
-  //CZR
-  czr_control_js : {
-    files: [{
-      expand: true,
-      cwd: '<%= paths.czr_assets %>fmk/js/',
-      src: ['czr-control.js'],
-      dest: '<%= paths.czr_assets %>js',
-      ext: '.min.js'
-    }]
-  },
-  czr_pro_control_js : {
-    files: [{
-      expand: true,
-      cwd: '<%= paths.czr_assets %>fmk/js/',
-      src: ['czr-control-full.js'],
-      dest: '<%= paths.czr_assets %>js',
-      ext: '.min.js'
-    }]
-  },
-  czr_preview_js : {
-    files: [{
-      expand: true,
-      cwd: '<%= paths.czr_assets %>fmk/js/',
-      src: ['czr-preview.js'],
-      dest: '<%= paths.czr_assets %>js',
-      ext: '.min.js'
-    }]
-  },
-  //end CZR
 	any_file : {
 		files: { '<%= uglify_requested_paths.dest %>': ['<%= uglify_requested_paths.src %>']
       }

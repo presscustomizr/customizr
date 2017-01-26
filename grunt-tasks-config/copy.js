@@ -61,25 +61,4 @@ module.exports = {
     ],
     dest: '../customizr-pro/inc/'
   },
-//CZR
-  czr_js : {
-    expand: true,
-    flatten: true,
-    filter:'isFile',
-    src: [
-      '<%= paths.czr_assets %>fmk/js/**',
-      '! <%= paths.czr_assets %>fmk/js/control_dev/**',
-      '! <%= paths.czr_assets %>fmk/js/lib/**',
-      '! <%= paths.czr_assets %>fmk/js/czr-pro-modules-control.js'
-    ],
-    dest: '<%= paths.czr_assets %>js/'
-  },
-  czr_css : {
-    expand: true,
-    flatten: true,
-    filter:'isFile',
-    src: [ '<%= paths.czr_assets %>fmk/css/*.css', '! <%= paths.czr_assets %>fmk/css/lib/**', '! <%= paths.czr_assets %>fmk/js/img/**' ],
-    dest: '<%= paths.czr_assets %>css/'
-  },
-//end CZR
 };
