@@ -576,7 +576,7 @@ li[id*="customize-control-"].tc-grid-design {
                   },
                   'tc_body_font_size' : function( to ) {
                     var fontSelectors  = CZRPreviewParams.fontSelectors;
-                    $( fontSelectors.body ).not('.social-icon').css( {
+                    $( fontSelectors.body )/*.not('.social-icon')*/.css( {
                       'font-size' : to + 'px',
                       'line-height' : Number((to * 19 / 14).toFixed()) + 'px'
                     });
@@ -839,7 +839,7 @@ li[id*="customize-control-"].tc-grid-design {
                 ******************************************/
                   'tc_slider_default_height' : function( to ) {
                     $('#customizr-slider').addClass('custom-slider-height');
-                    $('.carousel .item').css('line-height' , to + 'px').css('max-height', to + 'px').css('min-height', to + 'px').trigger('resize');
+                    $('.carousel > .item').css('line-height' , to + 'px').css('max-height', to + 'px').css('min-height', to + 'px').trigger('resize');
                     $('.tc-slider-controls').css('line-height' , to + 'px').css('max-height', to + 'px').trigger('resize');
                   },
                 /******************************************

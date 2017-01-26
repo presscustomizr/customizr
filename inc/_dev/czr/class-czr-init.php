@@ -83,28 +83,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     */
     function czr_fn_augment_customizer( $manager ) {
       /* Concatenated with grunt  */
-  /*
-      $_classes = array(
-        'controls/class-base-control.php',
-        //'controls/class-background-control.php',
-        'controls/class-cropped-image-control.php',
 
-        'controls/class-layout-control.php',
-        'controls/class-multipicker-control.php',
-        'controls/class-modules-control.php',
-
-        'controls/class-upload-control.php',
-
-        'panels/class-panels.php',
-
-        'sections/class-widgets-section.php',
-
-        'settings/class-settings.php'
-      );
-      foreach ($_classes as $_path) {
-        locate_template( 'functions/czr/' . $_path , $load = true, $require_once = true );
-      }
-*/
       //Registered types are eligible to be rendered via JS and created dynamically.
       if ( class_exists('CZR_Customize_Cropped_Image_Control') )
         $manager -> register_control_type( 'CZR_Customize_Cropped_Image_Control' );

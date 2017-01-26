@@ -8,7 +8,7 @@ function czr_fn_add_social_module_data( $params ) {
     array(
         'social_el_params' => array(
             //Social Module
-            'defaultSocialColor' => 'rgb(0,0,0,0)',
+            'defaultSocialColor' => 'rgb(90,90,90)',
         )
     )
   );
