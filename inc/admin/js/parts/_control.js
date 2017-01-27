@@ -557,10 +557,11 @@
         return '1' == to;
       },
       cross: {
-        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to, tID, changedSetId ) {
-          return to &&  //api.control.active is available since wp 4.0 as the php active_callback
-            //so let's skip this for older wp versions
-            ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
+        tc_woocommerce_header_cart_sticky : { master : 'tc_woocommerce_header_cart' , callback : function (to) {
+          //api.control.active is available since wp 4.0 as the php active_callback
+          //so let's skip this for older wp versions
+          var _wpTCWCControl = api.control( _build_setId( 'tc_woocommerce_header_cart' ) );          
+          return to && ( 'function' == typeof _wpTCWCControl.active ? _wpTCWCControl.active() : true );
         } }
       }
     },
@@ -713,10 +714,11 @@
       controls: [
         'tc_woocommerce_header_cart_sticky'
       ],
-      callback: function (to, tID , changedSetId) {
-        return to &&  //api.control.active is available since wp 4.0 as the php active_callback
+      callback: function (to) {
+        //api.control.active is available since wp 4.0 as the php active_callback
         //so let's skip this for older wp versions
-        ( 'function' == typeof api.control.active ? api.control( _build_setId( changedSetId ) ).active() : true );
+        var _wpTCWCControl = api.control( _build_setId( 'tc_woocommerce_header_cart' ) );          
+        return to && ( 'function' == typeof _wpTCWCControl.active ? _wpTCWCControl.active() : true );
       },
       //display dependant if master setting value == value
       cross: {
