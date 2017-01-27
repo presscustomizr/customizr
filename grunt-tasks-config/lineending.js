@@ -7,5 +7,5 @@ module.exports = {
       files: { // Files to process: $dest : $source
         '': ['<%= paths.front_css4 %>style.css']
       }
-    }
+    },
 };

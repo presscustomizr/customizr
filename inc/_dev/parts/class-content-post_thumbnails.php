@@ -53,7 +53,7 @@ class CZR_post_thumbnails {
 
       //try to extract $_thumb_id and $_thumb_type
       extract( $this -> czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
-      if ( ! apply_filters( 'czr_fn_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
+      if ( ! apply_filters( 'tc_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
         return array();
 
       //Try to get the image
@@ -148,7 +148,7 @@ class CZR_post_thumbnails {
       $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
       //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
       extract( $this -> czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
-      return apply_filters( 'czr_fn_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
+      return apply_filters( 'tc_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
     }
 
 
