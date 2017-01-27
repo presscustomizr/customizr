@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
-        'customizr4_dev': ['clean:free' ,'watch' ],
+        'customizr4_dev': ['clean:free' , 'watch'],
         'customizr_dev': ['clean' ,'watch'],
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         'prod_php' : ['concat:init_php', 'concat:front_php', 'concat:admin_php', 'concat:customize_php'],
         'prod_front_css': ['multi:prod_skins', 'less:prod_common' , 'less:prod_common_rtl', 'cssmin:prod_skins' , 'cssmin:prod_common', 'lineending:front_css4', 'cssmin:prod_common_rtl'],
         'prod_front_js': ['jshint', 'concat:front_main_parts_js', 'concat:front_js',  'uglify:part_front_js' , 'uglify:main_front_js'],
-        'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'uglify:prod_admin_js'],
+        'prod_admin_css_js' : ['cssmin:prod_admin_css' , 'concat:czr_css', 'cssmin:prod_czr_css', 'concat:czr_control_js', 'concat:czr_preview_js', 'uglify:prod_admin_js', 'uglify:prod_czr_js'],
 
         //https://www.npmjs.org/package/grunt-gitinfo
         //Get Git info from a working copy and populate grunt.config with the data
