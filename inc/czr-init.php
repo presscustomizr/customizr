@@ -87,6 +87,13 @@ if ( ! class_exists( 'CZR___' ) ) :
       //CZR_WEBSITE is the home website of Customizr
       if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
+      //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
+      if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
+      //MAIN OPTIONS NAME
+      if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+
+      if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , array( CZR_utils::$inst, 'czr_fn_opt' ) );
+
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -96,6 +103,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               array('inc' , 'plugins_compat'),//handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
               array('inc' , 'utils_settings_map'),//customizer setting map
               array('inc' , 'utils'),//helpers used everywhere
+              array('inc' , 'init_retro_compat'),
               array('inc' , 'resources'),//loads front stylesheets (skins) and javascripts
               array('inc' , 'widgets'),//widget factory
               array('inc' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
@@ -411,6 +419,31 @@ if ( ! class_exists( 'CZR___' ) ) :
     }
   }//end of class
 endif;
+
+/* HELPERS */
+//@return boolean
+if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
+  function czr_fn_is_partial_refreshed_on() {
+    return apply_filters( 'czr_partial_refresh_on', false );
+  }
+}
+/* HELPER FOR CHECKBOX OPTIONS */
+//used in the customizer
+//replace wp checked() function
+if ( ! function_exists( 'czr_fn_checked' ) ) {
+  function czr_fn_checked( $val ) {
+    echo $val ? 'checked="checked"' : '';
+  }
+}
+/**
+* helper
+* @return  bool
+*/
+if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
+  function czr_fn_has_social_links() {
+    return ! empty ( czr_fn_get_opt('tc_social_links') );
+  }
+}
 ?><?php
 /**
 * Fires the pro theme : constants definition, core classes loading
@@ -689,94 +722,58 @@ if ( ! class_exists( 'CZR_init' ) ) :
           $this -> socials            = array(
             'tc_rss'            => array(
                                     'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                    'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
-                                    'default'       => get_bloginfo( 'rss_url' )
+                                    'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
                                 ),
             'tc_email'          => array(
                                     'link_title'    => __( 'E-mail' , 'customizr' ),
-                                    'option_label'  => __( 'Contact E-mail address' , 'customizr' ),
-                                    'default'       => null,
-                                    'type'          => 'email'
                                   ),
             'tc_twitter'        => array(
                                     'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                                    'option_label'  => __( 'Twitter profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_facebook'       => array(
                                     'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                                    'option_label'  => __( 'Facebook profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_google'         => array(
                                     'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                                    'option_label'  => __( 'Google+ profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_instagram'      => array(
                                     'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                                    'option_label'  => __( 'Instagram profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_tumblr'       => array(
                                     'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                                    'option_label'  => __( 'Tumblr url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_flickr'       => array(
                                     'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                                    'option_label'  => __( 'Flickr url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_wordpress'      => array(
                                     'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                                    'option_label'  => __( 'WordPress profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_youtube'        => array(
                                     'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                                    'option_label'  => __( 'Youtube profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_pinterest'      => array(
                                     'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                                    'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_github'         => array(
                                     'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                                    'option_label'  => __( 'Github profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_dribbble'       => array(
                                     'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                                    'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_linkedin'       => array(
                                     'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                                    'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_vk'             => array(
                                     'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
-                                    'option_label'  => __( 'VKontakte profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_yelp'           => array(
                                     'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
-                                    'option_label'  => __( 'Yelp profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_xing'           => array(
                                     'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
-                                    'option_label'  => __( 'Xing profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_snapchat'       => array(
                                     'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
-                                    'option_label'  => __( 'Snapchat profile url' , 'customizr' ),
-                                    'default'       => null
                                   )
           );//end of social array
 
@@ -845,7 +842,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  'active',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
@@ -859,7 +856,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  '',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-customizer.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-customizer.png',
                                           __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                   )
             )
@@ -2697,33 +2694,54 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function czr_fn_get_customizer_map( $get_default = null ) {
-      if ( ! empty( $this -> customizer_map ) )
-        return $this -> customizer_map;
+    public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
+      if ( ! empty( $this -> customizer_map ) ) {
+        $_customizer_map = $this -> customizer_map;
+      }
+      else {
+        //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
+        add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
+        //theme switcher's enabled when user opened the customizer from the theme's page
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
+        add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
+        //add controls to the map
+        add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
+        //$this -> tc_populate_setting_control_map();
 
-      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
-      //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
-      //add controls to the map
-      add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
-      //$this -> tc_populate_setting_control_map();
+        //FILTER SPECIFIC SETTING-CONTROL MAPS
+        //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+        add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
-      //FILTER SPECIFIC SETTING-CONTROL MAPS
-      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
-      add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
+        //CACHE THE GLOBAL CUSTOMIZER MAP
+        $_customizer_map = array_merge(
+          array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
+          array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
+          array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
+          array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
+        );
+        $this -> customizer_map = $_customizer_map;
+      }
+      if ( is_null($what) ) {
+        return apply_filters( 'tc_customizer_map', $_customizer_map );
+      }
 
-      //CACHE THE GLOBAL CUSTOMIZER MAP
-      $this -> customizer_map = array_merge(
-        array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-        array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-        array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-        array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
-      );
-      return apply_filters( 'tc_customizer_map', $this -> customizer_map );
+      $_to_return = $_customizer_map;
+      switch ( $what ) {
+          case 'add_panel':
+            $_to_return = $_customizer_map['add_panel'];
+          break;
+          case 'remove_section':
+            $_to_return = $_customizer_map['remove_section'];
+          break;
+          case 'add_section':
+            $_to_return = $_customizer_map['add_section'];
+          break;
+          case 'add_setting_control':
+            $_to_return = $_customizer_map['add_setting_control'];
+          break;
+      }
+      return $_to_return;
     }
 
 
@@ -2924,10 +2942,20 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function czr_fn_social_option_map( $get_default = null ) {
-      return array();//end of social layout map
+    function czr_fn_social_option_map( $get_default = null  ) {
+      return array(
+          'tc_social_links' => array(
+                'default'   => array(),//empty array by default
+                'control'   => 'CZR_Customize_Modules',
+                'label'     => __('Create and organize your social links', 'customizr'),
+                'section'   => 'socials_sec',
+                'type'      => 'czr_module',
+                'module_type' => 'czr_social_module',
+                'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                'priority'  => 10,
+          )
+      );
     }
-
 
     /*-----------------------------------------------------------------------------------------------------
                                    LINKS SECTION
@@ -3615,7 +3643,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'CZR_Customize_Multipicker_Categories_Control',
-                                'type'        => 'tc_multiple_picker',
+                                'type'        => 'czr_multiple_picker',
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),
@@ -4846,25 +4874,17 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_font_awesome_icons'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome set of icons", 'customizr' ),
+                                'label'       => __( "Load Font Awesome resources", 'customizr' ),
                                 'section'     => 'extresources_sec',
                                 'type'        => 'checkbox',
-                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s',
+                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s</br>%3$s',
                                     __( 'Use with caution' , 'customizr'),
-                                    __( 'When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' )
-                                )
-              ),
-              'tc_font_awesome_css'  =>  array(
-                                'default'       => 0,
-                                'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome CSS", 'customizr' ),
-                                'section'     => 'extresources_sec',
-                                'type'        => 'checkbox',
-                                'notice'      => sprintf('%1$s </br>%2$s <a href="%3$s" target="_blank">%4$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
-                                    __( "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS.", 'customizr' ),
-                                    __( "Check out some example of uses", 'customizr'),
-                                    esc_url('http://fontawesome.io/examples/'),
-                                    __('here', 'customizr')
+                                    __( 'When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' ),
+                                    sprintf('%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
+                                                                        __( "Check out some example of uses", 'customizr'),
+                                                                        esc_url('http://fontawesome.io/examples/'),
+                                                                        __('here', 'customizr')
+                                    )
                                 )
               )
 
@@ -4884,37 +4904,43 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                   'priority'       => 10,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Global settings' , 'customizr' ),
-                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' )
+                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-header-panel' => array(
                   'priority'       => 20,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Header' , 'customizr' ),
-                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-content-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Content : home, posts, ...' , 'customizr' ),
-                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-sidebars-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Sidebars' , 'customizr' ),
-                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-footer-panel' => array(
                   'priority'       => 40,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Footer' , 'customizr' ),
-                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-advanced-panel' => array(
                   'priority'       => 1000,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Advanced options' , 'customizr' ),
-                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         )
       );
       return array_merge( $panel_map, $_new_panels );
@@ -5520,6 +5546,128 @@ endif;
 *
 * @package      Customizr
 * @subpackage   classes
+* @since        3.4.39
+* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com> - Rocco ALIBERTI <rocco@presscustomizr.com>
+* @copyright    Copyright (c) 2013-2017, Nicolas GUILLAUME, Rocco ALIBERTI
+* @link         http://presscustomizr.com/customizr
+* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+*/
+if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
+  class CZR_init_retro_compat {
+    static $instance;
+
+    /*
+    * This is fired very early, before the new defaults are generated
+    */
+    function __construct () {
+      self::$instance =& $this;
+
+      //copy old options in the new framework
+      //only if user is logged in
+      //then each routine has to decide what to do also depending on the user started before
+      if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
+        $theme_options       = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
+
+        if ( ! empty( $theme_options ) ) {
+
+          $_new_options_w_socials = $this -> czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
+
+          $_to_update             = ! empty( $_new_options_w_socials );
+          $theme_options          = $_to_update ? $_new_options_w_socials : $theme_options;
+
+          if ( $_to_update ) {
+
+            update_option( CZR_THEME_OPTIONS, $theme_options );
+
+          }
+        }
+      }
+    }//construct
+
+    /*
+    * returns array() the new set of options or empty if there's nothing to move
+    */
+    function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
+      $_options = $theme_options;
+
+      //nothing t do if already moved
+      if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+        return array();
+
+      //nothing to do if already moved
+      if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_socials', $_options[ '__moved_opts' ] ) ) {
+        return array();
+      }
+
+      $_old_socials = CZR_init::$instance -> socials;
+
+      $_to_update   = false;
+      $_new_socials = array();
+      $_index       = 0;
+
+      /*
+      * rss needs a special treatment for old users, it was a default
+      * If it's not set in the options we have to set it with the default value
+      */
+      if ( ! isset( $theme_options[ 'tc_rss' ] ) ) {
+        $_options[ 'tc_rss' ] = $_old_socials[ 'tc_rss' ][ 'default' ];
+      }
+
+      foreach ( $_old_socials as $_old_social_id => $attributes ) {
+
+        if ( isset( $_options[ $_old_social_id ] ) ) {
+          if ( ! empty( $_options[ $_old_social_id ] ) ) {
+
+            //build new attributes
+            $_title       = isset( $attributes[ 'link_title' ] ) ? esc_attr( $attributes[ 'link_title' ] ) :  '';
+            $_social_icon = str_replace( array( 'tc_email', 'tc_'), array( 'fa-envelope', 'fa-' ), $_old_social_id );
+
+            // email needs a special treatment
+            $_social_link = esc_url_raw( 'tc_email' == $_old_social_id  ? sprintf( 'mailto:%s', $_options[ $_old_social_id ] ) : $_options[ $_old_social_id ] );
+
+            if ( empty( $_social_link ) ) {
+              continue;
+            }
+
+            //create module
+            array_push( $_new_socials, array(
+                'id'            => "czr_social_module_{$_index}",
+                'title'         => $_title,
+                'social-icon'   => $_social_icon,
+                'social-link'   => $_social_link,
+                'social-target' => 1,
+                'social-color'  => "rgb(0,0,0)"
+              )
+            );
+            $_index++;
+          }
+
+          $_to_update = true;
+        }
+      }
+
+      if ( $_to_update ) {
+        $theme_options[ 'tc_social_links' ] = $_new_socials;
+
+        //save the state in the options
+        $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+
+        array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+
+        return $theme_options;
+      }
+
+      return array();
+    }
+  }
+endif;
+?><?php
+/**
+* Defines filters and actions used in several templates/classes
+*
+*
+* @package      Customizr
+* @subpackage   classes
 * @since        3.0
 * @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
 * @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
@@ -5538,12 +5686,17 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       public $is_customizing;
       public $tc_options_prefixes;
 
+      public static $_theme_setting_list;
+
       function __construct () {
         self::$inst =& $this;
         self::$instance =& $this;
 
         //init properties
         add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
+
+        //IMPORTANT : this callback needs to be ran AFTER hu_init_properties.
+        add_action( 'after_setup_theme'       , array( $this, 'czr_fn_cache_theme_setting_list' ), 100 );
 
         //Various WP filters for
         //content
@@ -5566,7 +5719,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         add_filter( '__article_selectors'     , array( $this , 'czr_fn_article_selectors' ) );
 
         //social networks
-        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
+        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ), 10, 0 );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -5604,6 +5757,23 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         }
       }
 
+
+      /* ------------------------------------------------------------------------- *
+       *  CACHE THE LIST OF THEME SETTINGS ONLY
+      /* ------------------------------------------------------------------------- */
+      //Fired in __construct()
+      //Note : the 'sidebar-areas' setting is not listed in that list because registered specifically
+      function czr_fn_cache_theme_setting_list() {
+          if ( is_array(self::$_theme_setting_list) && ! empty( self::$_theme_setting_list ) )
+            return;
+          $_settings_map = CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( null, 'add_setting_control' );
+          $_settings = array();
+          foreach ( $_settings_map as $_id => $data ) {
+              $_settings[] = $_id;
+          }
+
+          self::$_theme_setting_list = $_settings;
+      }
 
 
       /**
@@ -6223,7 +6393,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.0.10
       */
-      function czr_fn_get_social_networks() {
+      /* Old version */
+  /*    function czr_fn_get_social_networks() {
         $__options    = czr_fn__f( '__options' );
 
         //gets the social network array
@@ -6263,8 +6434,56 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         }
         return $html;
       }
+*/
 
+      /**
+      * Gets the social networks list defined in customizer options
+      *
+      *
+      * @package Customizr
+      * @since Customizr 3.0.10
+      *
+      * @since Customizr 3.4.55 Added the ability to retrieve them as array
+      * @param $output_type optional. Return type "string" or "array"
+      */
+      function czr_fn_get_social_networks( $output_type = 'string' ) {
 
+          $_socials = $this -> czr_fn_opt('tc_social_links');
+
+          if ( empty( $_socials ) )
+            return;
+
+          $_social_links = array();
+          foreach( $_socials as $key => $item ) {
+            //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+            $icon_class      = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+            $link_icon_class = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                    ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                    '';
+
+            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s" %4$s><i class="fa %5$s"></i></a>',
+            //do we have an id set ?
+            //Typically not if the user still uses the old options value.
+            //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+
+            // Put them together
+              ! CZR___::$instance -> czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+              isset($item['title']) ? esc_attr( $item['title'] ) : '',
+              ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+              ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
+              $icon_class,
+              $link_icon_class
+            ) );
+          }
+
+          /*
+          * return
+          */
+          switch ( $output_type ) :
+            case 'array' : return $_social_links;
+            default      : return implode( '', $_social_links );
+          endswitch;
+      }
 
 
     /**
@@ -6512,9 +6731,11 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         array(
           'defaults',
           'tc_sliders',
+          'tc_social_links',
           'tc_blog_restrict_by_cat',
           'last_update_notice',
-          'last_update_notice_pro'
+          'last_update_notice_pro',
+          '__moved_opts'
         )
       );
     }
@@ -6552,6 +6773,12 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( is_null($autofocus) )
         return $_customize_url;
 
+      $_ordered_keys = array( 'control', 'section', 'panel');
+
+      // $autofocus must contain at least one key among (control,section,panel)
+      if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) )
+        return $_customize_url;
+
       // $autofocus must contain at least one key among (control,section,panel)
       if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) )
         return $_customize_url;
@@ -6560,8 +6787,15 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
-      // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-      return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );
+      //Since wp 4.6.1 we order the params following the $_ordered_keys order
+      $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+
+      if ( ! empty( $autofocus ) ) {
+        //here we pass the first element of the array
+        // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
+        return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
+      } else
+        return $_customize_url;
     }
 
 
@@ -6693,9 +6927,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_styles' ) );
           add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_scripts' ) );
-          //Custom Stylesheets
-          //Write font icon
-          add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
+
 	        //Custom CSS
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
@@ -6718,12 +6950,12 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.1
 		*/
-        function czr_fn_enqueue_front_styles() {
+    function czr_fn_enqueue_front_styles() {
           //Enqueue FontAwesome CSS
-          if ( true == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_css' ) ) {
-            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+          if ( true == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) ) {
+            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
             wp_enqueue_style( 'customizr-fa',
-                $_path . '/fonts/' . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+                $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
 
@@ -6991,61 +7223,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
 		}
 
-
-
-		/**
-    * Write the font icon in the custom stylesheet at the very beginning
-    * hook : tc_user_options_style
-    * @package Customizr
-    * @since Customizr 3.2.3
-    */
-		function czr_fn_write_inline_font_icons_css( $_css = null ) {
-      $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'tc_write_inline_font_icons',
-        $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
-        $_css
-      );
-    }//end of function
-
-
-
-    /**
-    * @return string of css font icons
-    *
-    * @package Customizr
-    * @since Customizr 3.3.2
-    */
-    public function czr_fn_get_inline_font_icons_css() {
-      if ( false == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) )
-        return;
-
-      /*
-      * Not using add_query_var here in order to keep the code simple
-      */
-      $_path            = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
-      $_version         = apply_filters( 'tc_font_icons_version', true ) ? '4.7.0' : '';
-      $_ie_query_var    = $_version ? "&v={$_version}" : '';
-      $_query_var       = $_version ? "?v={$_version}" : '';
-
-
-      ob_start();
-        ?>
-        @font-face {
-          font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' );
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf<?php echo $_query_var ?>') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg<?php echo $_query_var ?>#fontawesomeregular') format('svg');
-          font-weight: normal;
-          font-style: normal;
-        }
-        <?php
-      $_font_css = ob_get_contents();
-      if ($_font_css) ob_end_clean();
-      return $_font_css;
-    }
 
 
     /**
@@ -8451,8 +8628,8 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
 
       //THUMBNAILS
-      add_filter('czr_fn_has_thumb', '__return_true');
-      add_filter('czr_fn_has_thumb_info', '__return_true');
+      add_filter('tc_has_thumb', '__return_true');
+      add_filter('tc_has_thumb_info', '__return_true');
       add_filter('tc_has_wp_thumb_image', '__return_true');
       add_filter('tc_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
 
@@ -8608,7 +8785,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
             'slider' => '1170x500'
         );
         $requested_size = isset( $sizes_suffix_map[$_size] ) ? $sizes_suffix_map[$_size] : '570x350';
-        $path = TC_BASE . 'inc/assets/img/demo/';
+        $path = TC_BASE . '/assets/front/img/demo/';
 
         //Build or re-build the global dem img array
         if ( ! isset( $GLOBALS['prevdem_img'] ) || empty( $GLOBALS['prevdem_img'] ) ) {
@@ -8658,7 +8835,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           }
         }
         $GLOBALS['prevdem_img'] = $new_candidates;
-        return get_template_directory_uri() . '/inc/assets/img/demo/' . $requested_size_img_name;
+        return get_template_directory_uri() . '/assets/front/img/demo/' . $requested_size_img_name;
     }
 
 
@@ -8696,7 +8873,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
             ),
             3 => array(
               'slide_background'  =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                        TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                        TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
                                         __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             )

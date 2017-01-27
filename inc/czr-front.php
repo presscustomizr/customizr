@@ -7430,7 +7430,7 @@ class CZR_post_thumbnails {
 
       //try to extract $_thumb_id and $_thumb_type
       extract( $this -> czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
-      if ( ! apply_filters( 'czr_fn_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
+      if ( ! apply_filters( 'tc_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
         return array();
 
       //Try to get the image
@@ -7525,7 +7525,7 @@ class CZR_post_thumbnails {
       $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
       //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
       extract( $this -> czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
-      return apply_filters( 'czr_fn_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
+      return apply_filters( 'tc_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
     }
 
 
@@ -9179,7 +9179,7 @@ class CZR_slider {
     //custom css for the slider loader
     if ( $this -> czr_fn_is_slider_loader_active( $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ) ) {
 
-      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s/%2$s' , TC_BASE_URL , 'inc/assets/img/slider-loader.gif') );
+      $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s%2$s' , TC_BASE_URL , 'assets/front/img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
       if ( ! apply_filters( 'tc_slider_loader_gif_only', false ) ) {
         $_slider_loader_gif_class  = '.no-csstransforms3d';

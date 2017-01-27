@@ -219,7 +219,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_add_editor_style() {
       $_stylesheets = array(
-          TC_BASE_URL.'inc/admin/css/editor-style.css',
+          TC_BASE_URL.'inc/admin/css/editor-style.min.css',
           CZR_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
       );
 
@@ -251,14 +251,14 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //in this case, the CZR_resource class has to be loaded
       if ( ! class_exists('CZR_resources') || ! is_object(CZR_resources::$instance) ) {
         CZR___::$instance -> czr_fn_req_once( 'inc/czr-init.php' );
-        $instance = new CZR_resources();
+        new CZR_resources();
       }
+
 
       //fonts
       $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
-      //icons
-      $_css .= CZR_resources::$instance -> czr_fn_get_inline_font_icons_css();
-      $init['content_style'] =  trim(preg_replace('/\s+/', ' ', $_css ) );
+
+      $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
       return $init;
     }
