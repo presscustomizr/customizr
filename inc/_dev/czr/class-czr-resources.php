@@ -26,12 +26,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       //control scripts and style
       add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );
 
-      //Add the control dependencies
-      //add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'czr_fn_extend_ctrl_dependencies' ), 10 );
-
-      //Add various dom ready
-      add_action( 'customize_controls_print_footer_scripts'   , array( $this, 'czr_fn_add_various_dom_ready_actions' ), 10 );
-
       //preview scripts
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt in HU_utils
       add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_customize_preview_js' ), 20 );
