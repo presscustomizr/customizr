@@ -830,9 +830,9 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
     * @return void
     */
     function czr_fn_fix_wp_footer_link_style() {
-      /* if ( is_array(get_current_screen()) )
-        array_walk_recursive(get_current_screen(), function(&$v) { $v = htmlspecialchars($v); }); */
       $screen = get_current_screen();
+      if ( ! is_object($screen) )
+        return;
       if ( 'appearance_page_welcome' != $screen-> id )
         return;
       ?>
