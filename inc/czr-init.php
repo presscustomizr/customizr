@@ -656,6 +656,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'gfont' => array(
               'name'  => __('Google fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'tc_gfont_pairs' , array(
+                '_g_sintony_poppins'              => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
                 '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -685,6 +686,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
            'default' => array(
             'name'  => __('Single fonts' , 'customizr'),
             'list'  => apply_filters( 'tc_single_fonts' , array(
+                  '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
                   '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
                   '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
                   '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
@@ -2919,7 +2921,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
               'tc_fonts'      => array(
-                                'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
+                                'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_poppins',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'CZR_controls',
                                 'section'       => 'fonts_sec',
@@ -7305,12 +7307,12 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         }
       }//end if
 
-      if ( 14 != $_body_font_size ) {
-        $_line_height = round( $_body_font_size * 19 / 14 );
+      if ( 15 != $_body_font_size ) {
+        $_line_height = apply_filters('tc_body_line_height_ratio', 1.6 );
         $_css .= "
           {$body} {
             font-size : {$_body_font_size}px;
-            line-height : {$_line_height}px;
+            line-height : {$_line_height}em;
           }\n";
         }
 
