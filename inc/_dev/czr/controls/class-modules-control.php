@@ -60,7 +60,7 @@ if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
       $malformed_message = __( 'An error occurred: malformed social links', 'customizr' );
 
       if ( empty( $socials ) )
-        return new WP_Error( 'required', $malformed_message );
+        return array();
 
       //validate urls
       foreach ( $socials as $index => $social ) {

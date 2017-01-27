@@ -22,6 +22,7 @@ module.exports = {
       '!inc/init-pro.php',
       '!custom-skins/**',
       '!inc/_dev/**',
+      '!assets/czr/_dev/**',
       '!lang_pro/**'
 		],
 		dest: 'build/free/<%= pkg.name %>/'
@@ -51,6 +52,7 @@ module.exports = {
       '!style.css',
       '!custom-skins/**',
       '!inc/_dev/**',
+      '!assets/czr/_dev/**',
       '!inc/lang/**'
     ],
     dest: '../customizr-pro/'
