@@ -436,12 +436,12 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         }
       }//end if
 
-      if ( 14 != $_body_font_size ) {
-        $_line_height = round( $_body_font_size * 19 / 14 );
+      if ( 15 != $_body_font_size ) {
+        $_line_height = apply_filters('tc_body_line_height_ratio', 1.6 );
         $_css .= "
           {$body} {
             font-size : {$_body_font_size}px;
-            line-height : {$_line_height}px;
+            line-height : {$_line_height}em;
           }\n";
         }
 

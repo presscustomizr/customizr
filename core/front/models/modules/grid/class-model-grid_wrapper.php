@@ -647,14 +647,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * returns the font-size and line-height css rules
   */
   private function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
-    $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.28 ); //line-height / font-size
+    $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.5 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
     $_bs = esc_attr( czr_fn_get_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
-    return sprintf( 'font-size:%spx;line-height:%spx;' ,
+    return sprintf( 'font-size:%spx;line-height:%sem;' ,
       ceil( $_bs * $_ratio ),
-      ceil( $_bs * $_ratio * $_lh_ratio )
+      ceil( $_ratio * $_lh_ratio )
     );
   }
 

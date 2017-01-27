@@ -578,7 +578,7 @@ li[id*="customize-control-"].tc-grid-design {
                     var fontSelectors  = CZRPreviewParams.fontSelectors;
                     $( fontSelectors.body )/*.not('.social-icon')*/.css( {
                       'font-size' : to + 'px',
-                      'line-height' : Number((to * 19 / 14).toFixed()) + 'px'
+                      'line-height' : '1.6em'
                     });
                   },
                   'tc_link_hover_effect' : function( to ) {
