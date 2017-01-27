@@ -34,33 +34,54 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * @package Customizr
     * @since Customizr 3.0
     */
-    public function czr_fn_get_customizer_map( $get_default = null ) {
-      if ( ! empty( $this -> customizer_map ) )
-        return $this -> customizer_map;
+    public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
+      if ( ! empty( $this -> customizer_map ) ) {
+        $_customizer_map = $this -> customizer_map;
+      }
+      else {
+        //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
+        add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
+        //theme switcher's enabled when user opened the customizer from the theme's page
+        add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
+        add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
+        //add controls to the map
+        add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
+        //$this -> tc_populate_setting_control_map();
 
-      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'tc_add_panel_map'        , array( $this, 'czr_fn_popul_panels_map'));
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_popul_remove_section_map'));
-      //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'tc_remove_section_map'   , array( $this, 'czr_fn_set_theme_switcher_visibility'));
-      add_filter( 'tc_add_section_map'      , array( $this, 'czr_fn_popul_section_map' ));
-      //add controls to the map
-      add_filter( 'tc_add_setting_control_map' , array( $this , 'czr_fn_popul_setting_control_map' ), 10, 2 );
-      //$this -> tc_populate_setting_control_map();
+        //FILTER SPECIFIC SETTING-CONTROL MAPS
+        //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+        add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
-      //FILTER SPECIFIC SETTING-CONTROL MAPS
-      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_fn_social_option_map'     , array( $this, 'czr_fn_generates_socials' ));
-      add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
+        //CACHE THE GLOBAL CUSTOMIZER MAP
+        $_customizer_map = array_merge(
+          array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
+          array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
+          array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
+          array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
+        );
+        $this -> customizer_map = $_customizer_map;
+      }
+      if ( is_null($what) ) {
+        return apply_filters( 'tc_customizer_map', $_customizer_map );
+      }
 
-      //CACHE THE GLOBAL CUSTOMIZER MAP
-      $this -> customizer_map = array_merge(
-        array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-        array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-        array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-        array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
-      );
-      return apply_filters( 'tc_customizer_map', $this -> customizer_map );
+      $_to_return = $_customizer_map;
+      switch ( $what ) {
+          case 'add_panel':
+            $_to_return = $_customizer_map['add_panel'];
+          break;
+          case 'remove_section':
+            $_to_return = $_customizer_map['remove_section'];
+          break;
+          case 'add_section':
+            $_to_return = $_customizer_map['add_section'];
+          break;
+          case 'add_setting_control':
+            $_to_return = $_customizer_map['add_setting_control'];
+          break;
+      }
+      return $_to_return;
     }
 
 
@@ -261,10 +282,20 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     /*-----------------------------------------------------------------------------------------------------
                              SOCIAL NETWORKS + POSITION SECTION
     ------------------------------------------------------------------------------------------------------*/
-    function czr_fn_social_option_map( $get_default = null ) {
-      return array();//end of social layout map
+    function czr_fn_social_option_map( $get_default = null  ) {
+      return array(
+          'tc_social_links' => array(
+                'default'   => array(),//empty array by default
+                'control'   => 'CZR_Customize_Modules',
+                'label'     => __('Create and organize your social links', 'customizr'),
+                'section'   => 'socials_sec',
+                'type'      => 'czr_module',
+                'module_type' => 'czr_social_module',
+                'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                'priority'  => 10,
+          )
+      );
     }
-
 
     /*-----------------------------------------------------------------------------------------------------
                                    LINKS SECTION
@@ -952,7 +983,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'label'       =>  __( 'Apply a category filter to your home / blog posts' , 'customizr'  ),
                                 'section'     => 'frontpage_sec',
                                 'control'     => 'CZR_Customize_Multipicker_Categories_Control',
-                                'type'        => 'tc_multiple_picker',
+                                'type'        => 'czr_multiple_picker',
                                 'priority'    => 1,
                                 'notice'      => $_cat_picker_notice
               ),
@@ -2183,25 +2214,17 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_font_awesome_icons'  =>  array(
                                 'default'       => 1,
                                 'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome set of icons", 'customizr' ),
+                                'label'       => __( "Load Font Awesome resources", 'customizr' ),
                                 'section'     => 'extresources_sec',
                                 'type'        => 'checkbox',
-                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s',
+                                'notice'      => sprintf('<strong>%1$s</strong>. %2$s</br>%3$s',
                                     __( 'Use with caution' , 'customizr'),
-                                    __( 'When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' )
-                                )
-              ),
-              'tc_font_awesome_css'  =>  array(
-                                'default'       => 0,
-                                'control'   => 'CZR_controls',
-                                'label'       => __( "Load Font Awesome CSS", 'customizr' ),
-                                'section'     => 'extresources_sec',
-                                'type'        => 'checkbox',
-                                'notice'      => sprintf('%1$s </br>%2$s <a href="%3$s" target="_blank">%4$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
-                                    __( "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS.", 'customizr' ),
-                                    __( "Check out some example of uses", 'customizr'),
-                                    esc_url('http://fontawesome.io/examples/'),
-                                    __('here', 'customizr')
+                                    __( 'When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you.', 'customizr' ),
+                                    sprintf('%1$s <a href="%2$s" target="_blank">%3$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>.',
+                                                                        __( "Check out some example of uses", 'customizr'),
+                                                                        esc_url('http://fontawesome.io/examples/'),
+                                                                        __('here', 'customizr')
+                                    )
                                 )
               )
 
@@ -2221,37 +2244,43 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                   'priority'       => 10,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Global settings' , 'customizr' ),
-                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' )
+                  'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-header-panel' => array(
                   'priority'       => 20,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Header' , 'customizr' ),
-                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Header settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-content-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Content : home, posts, ...' , 'customizr' ),
-                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Content settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-sidebars-panel' => array(
                   'priority'       => 30,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Sidebars' , 'customizr' ),
-                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-footer-panel' => array(
                   'priority'       => 40,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Footer' , 'customizr' ),
-                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Footer settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         ),
         'tc-advanced-panel' => array(
                   'priority'       => 1000,
                   'capability'     => 'edit_theme_options',
                   'title'          => __( 'Advanced options' , 'customizr' ),
-                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' )
+                  'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' ),
+                  'type'           => 'czr_panel'
         )
       );
       return array_merge( $panel_map, $_new_panels );

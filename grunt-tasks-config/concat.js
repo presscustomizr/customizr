@@ -9,6 +9,7 @@ module.exports = {
       '<%= paths.dev_php %>class-fire-init.php',
       '<%= paths.dev_php %>class-fire-plugins_compat.php',
       '<%= paths.dev_php %>class-fire-utils_settings_map.php',
+      '<%= paths.dev_php %>class-fire-init_retro_compat.php',
       '<%= paths.dev_php %>class-fire-utils.php',
       '<%= paths.dev_php %>class-fire-resources.php',
       '<%= paths.dev_php %>class-fire-widgets.php',
@@ -54,7 +55,24 @@ module.exports = {
   },
   customize_php : {
     src: [
-      '<%= paths.dev_php %>admin/class-admin-customize.php'
+      '<%= paths.dev_php %>czr/class-czr-init.php',
+      '<%= paths.dev_php %>czr/class-czr-resources.php',
+      //parts
+      '<%= paths.dev_php %>czr/controls/class-base-control.php',
+      '<%= paths.dev_php %>czr/controls/class-cropped-image-control.php',
+      '<%= paths.dev_php %>czr/controls/class-multipicker-control.php',
+      '<%= paths.dev_php %>czr/controls/class-modules-control.php',
+      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
+
+      '<%= paths.dev_php %>czr/panels/class-panels.php',
+      '<%= paths.dev_php %>czr/settings/class-settings.php',
+      //modules data
+      '<%= paths.dev_php %>czr/modules/modules-data.php',
+
+      //templates
+      '<%= paths.dev_php %>czr/tmpl/modules/all-modules-tmpl.php',
+      '<%= paths.dev_php %>czr/tmpl/modules/social-module-tmpl.php',
+      '<%= paths.dev_php %>czr/tmpl/inputs/img-uploader-tmpl.php',
     ],
     dest: '<%= paths.inc_php %>czr-customize.php',
   },
@@ -93,17 +111,4 @@ module.exports = {
     ],
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
-	admin_control_js:{
-		src: [
-      '<%= paths.front_js %>parts/oldBrowserCompat.js',
-      '<%= paths.admin_js %>lib/icheck.min.js',
-      '<%= paths.admin_js %>lib/selecter.min.js',
-      '<%= paths.admin_js %>lib/stepper.min.js',
-      '<%= paths.admin_js %>lib/select2.min.js',
-      '<%= paths.admin_js %>parts/_control.js',
-      '<%= paths.admin_js %>parts/_call_to_actions.js' ,
-      '<%= paths.admin_js %>parts/_various_dom_ready.js'
-    ],
-		dest: '<%= paths.admin_js %>theme-customizer-control.js',
-	}
 };

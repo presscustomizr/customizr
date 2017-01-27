@@ -23,12 +23,17 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       public $is_customizing;
       public $tc_options_prefixes;
 
+      public static $_theme_setting_list;
+
       function __construct () {
         self::$inst =& $this;
         self::$instance =& $this;
 
         //init properties
         add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
+
+        //IMPORTANT : this callback needs to be ran AFTER hu_init_properties.
+        add_action( 'after_setup_theme'       , array( $this, 'czr_fn_cache_theme_setting_list' ), 100 );
 
         //Various WP filters for
         //content
@@ -51,7 +56,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         add_filter( '__article_selectors'     , array( $this , 'czr_fn_article_selectors' ) );
 
         //social networks
-        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ) );
+        add_filter( '__get_socials'           , array( $this , 'czr_fn_get_social_networks' ), 10, 0 );
 
         //refresh the theme options right after the _preview_filter when previewing
         add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -89,6 +94,23 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         }
       }
 
+
+      /* ------------------------------------------------------------------------- *
+       *  CACHE THE LIST OF THEME SETTINGS ONLY
+      /* ------------------------------------------------------------------------- */
+      //Fired in __construct()
+      //Note : the 'sidebar-areas' setting is not listed in that list because registered specifically
+      function czr_fn_cache_theme_setting_list() {
+          if ( is_array(self::$_theme_setting_list) && ! empty( self::$_theme_setting_list ) )
+            return;
+          $_settings_map = CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( null, 'add_setting_control' );
+          $_settings = array();
+          foreach ( $_settings_map as $_id => $data ) {
+              $_settings[] = $_id;
+          }
+
+          self::$_theme_setting_list = $_settings;
+      }
 
 
       /**
@@ -708,7 +730,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @package Customizr
       * @since Customizr 3.0.10
       */
-      function czr_fn_get_social_networks() {
+      /* Old version */
+  /*    function czr_fn_get_social_networks() {
         $__options    = czr_fn__f( '__options' );
 
         //gets the social network array
@@ -748,8 +771,56 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         }
         return $html;
       }
+*/
 
+      /**
+      * Gets the social networks list defined in customizer options
+      *
+      *
+      * @package Customizr
+      * @since Customizr 3.0.10
+      *
+      * @since Customizr 3.4.55 Added the ability to retrieve them as array
+      * @param $output_type optional. Return type "string" or "array"
+      */
+      function czr_fn_get_social_networks( $output_type = 'string' ) {
 
+          $_socials = $this -> czr_fn_opt('tc_social_links');
+
+          if ( empty( $_socials ) )
+            return;
+
+          $_social_links = array();
+          foreach( $_socials as $key => $item ) {
+            //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+            $icon_class      = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+            $link_icon_class = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                    ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                    '';
+
+            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s" %4$s><i class="fa %5$s"></i></a>',
+            //do we have an id set ?
+            //Typically not if the user still uses the old options value.
+            //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+
+            // Put them together
+              ! CZR___::$instance -> czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+              isset($item['title']) ? esc_attr( $item['title'] ) : '',
+              ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+              ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
+              $icon_class,
+              $link_icon_class
+            ) );
+          }
+
+          /*
+          * return
+          */
+          switch ( $output_type ) :
+            case 'array' : return $_social_links;
+            default      : return implode( '', $_social_links );
+          endswitch;
+      }
 
 
     /**
@@ -997,9 +1068,11 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         array(
           'defaults',
           'tc_sliders',
+          'tc_social_links',
           'tc_blog_restrict_by_cat',
           'last_update_notice',
-          'last_update_notice_pro'
+          'last_update_notice_pro',
+          '__moved_opts'
         )
       );
     }
@@ -1037,6 +1110,12 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( is_null($autofocus) )
         return $_customize_url;
 
+      $_ordered_keys = array( 'control', 'section', 'panel');
+
+      // $autofocus must contain at least one key among (control,section,panel)
+      if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) )
+        return $_customize_url;
+
       // $autofocus must contain at least one key among (control,section,panel)
       if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) )
         return $_customize_url;
@@ -1045,8 +1124,15 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
-      // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-      return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );
+      //Since wp 4.6.1 we order the params following the $_ordered_keys order
+      $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+
+      if ( ! empty( $autofocus ) ) {
+        //here we pass the first element of the array
+        // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
+        return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
+      } else
+        return $_customize_url;
     }
 
 

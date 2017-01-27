@@ -21,8 +21,8 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
 
       //THUMBNAILS
-      add_filter('czr_fn_has_thumb', '__return_true');
-      add_filter('czr_fn_has_thumb_info', '__return_true');
+      add_filter('tc_has_thumb', '__return_true');
+      add_filter('tc_has_thumb_info', '__return_true');
       add_filter('tc_has_wp_thumb_image', '__return_true');
       add_filter('tc_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
 
@@ -178,7 +178,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
             'slider' => '1170x500'
         );
         $requested_size = isset( $sizes_suffix_map[$_size] ) ? $sizes_suffix_map[$_size] : '570x350';
-        $path = TC_BASE . 'inc/assets/img/demo/';
+        $path = TC_BASE . '/assets/front/img/demo/';
 
         //Build or re-build the global dem img array
         if ( ! isset( $GLOBALS['prevdem_img'] ) || empty( $GLOBALS['prevdem_img'] ) ) {
@@ -228,7 +228,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
           }
         }
         $GLOBALS['prevdem_img'] = $new_candidates;
-        return get_template_directory_uri() . '/inc/assets/img/demo/' . $requested_size_img_name;
+        return get_template_directory_uri() . '/assets/front/img/demo/' . $requested_size_img_name;
     }
 
 
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
             ),
             3 => array(
               'slide_background'  =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                        TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                        TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
                                         __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             )

@@ -30,19 +30,14 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'jshint:part_front_js', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},
-	//The customizer control has a special treatment => concatenation + FTP transfer of the built file
-	admin_customizer_control_js : {
-		files : ['<%= paths.admin_js %>parts/_control.js', '<%= paths.admin_js %>parts/_call_to_actions.js', '<%= paths.admin_js %>parts/_various_dom_ready.js'],
-		tasks : ['gitinfo' , 'replace:readme', 'jshint:those' , 'concat:admin_control_js'],
-	},
 	//Other admin js assets are jshinted on change
 	admin_js : {
-		files : ['<%= paths.admin_js %>theme-customizer-preview.js','<%= paths.admin_js %>tc_ajax_slider.js'],
+		files : ['<%= paths.admin_js %>tc_ajax_slider.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'jshint:those', 'uglify:prod_admin_js'],
 	},
 	admin_css : {
 		files : ['<%= paths.admin_css %>*.css'],
-		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
+		tasks : ['gitinfo' , 'replace:readme', 'cssmin:prod_admin_css', 'wait:pause'],
 	},
 	push_php : {
 		files: ['**/*.php' , '!build/**.*.php', '! <%= paths.inc_php %>czr-admin.php', '! <%= paths.inc_php %>czr-customize.php', '! <%= paths.inc_php %>czr-front.php', '! <%= paths.inc_php %>czr-init.php'],

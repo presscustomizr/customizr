@@ -23,9 +23,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_styles' ) );
           add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_scripts' ) );
-          //Custom Stylesheets
-          //Write font icon
-          add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'tc_font_icon_priority', 999 ) );
+
 	        //Custom CSS
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'tc_custom_css_priority', 9999 ) );
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
@@ -48,12 +46,12 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 		* @package Customizr
 		* @since Customizr 1.1
 		*/
-        function czr_fn_enqueue_front_styles() {
+    function czr_fn_enqueue_front_styles() {
           //Enqueue FontAwesome CSS
-          if ( true == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_css' ) ) {
-            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
+          if ( true == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) ) {
+            $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
             wp_enqueue_style( 'customizr-fa',
-                $_path . '/fonts/' . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+                $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
                 array() , CUSTOMIZR_VER, 'all' );
           }
 
@@ -321,61 +319,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
 		}
 
-
-
-		/**
-    * Write the font icon in the custom stylesheet at the very beginning
-    * hook : tc_user_options_style
-    * @package Customizr
-    * @since Customizr 3.2.3
-    */
-		function czr_fn_write_inline_font_icons_css( $_css = null ) {
-      $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'tc_write_inline_font_icons',
-        $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
-        $_css
-      );
-    }//end of function
-
-
-
-    /**
-    * @return string of css font icons
-    *
-    * @package Customizr
-    * @since Customizr 3.3.2
-    */
-    public function czr_fn_get_inline_font_icons_css() {
-      if ( false == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) )
-        return;
-
-      /*
-      * Not using add_query_var here in order to keep the code simple
-      */
-      $_path            = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'inc/assets/css' );
-      $_version         = apply_filters( 'tc_font_icons_version', true ) ? '4.7.0' : '';
-      $_ie_query_var    = $_version ? "&v={$_version}" : '';
-      $_query_var       = $_version ? "?v={$_version}" : '';
-
-
-      ob_start();
-        ?>
-        @font-face {
-          font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' );
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf<?php echo $_query_var ?>') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg<?php echo $_query_var ?>#fontawesomeregular') format('svg');
-          font-weight: normal;
-          font-style: normal;
-        }
-        <?php
-      $_font_css = ob_get_contents();
-      if ($_font_css) ob_end_clean();
-      return $_font_css;
-    }
 
 
     /**

@@ -192,94 +192,58 @@ if ( ! class_exists( 'CZR_init' ) ) :
           $this -> socials            = array(
             'tc_rss'            => array(
                                     'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                    'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
-                                    'default'       => get_bloginfo( 'rss_url' )
+                                    'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
                                 ),
             'tc_email'          => array(
                                     'link_title'    => __( 'E-mail' , 'customizr' ),
-                                    'option_label'  => __( 'Contact E-mail address' , 'customizr' ),
-                                    'default'       => null,
-                                    'type'          => 'email'
                                   ),
             'tc_twitter'        => array(
                                     'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                                    'option_label'  => __( 'Twitter profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_facebook'       => array(
                                     'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                                    'option_label'  => __( 'Facebook profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_google'         => array(
                                     'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                                    'option_label'  => __( 'Google+ profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_instagram'      => array(
                                     'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                                    'option_label'  => __( 'Instagram profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_tumblr'       => array(
                                     'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                                    'option_label'  => __( 'Tumblr url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_flickr'       => array(
                                     'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                                    'option_label'  => __( 'Flickr url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_wordpress'      => array(
                                     'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                                    'option_label'  => __( 'WordPress profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_youtube'        => array(
                                     'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                                    'option_label'  => __( 'Youtube profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_pinterest'      => array(
                                     'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                                    'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_github'         => array(
                                     'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                                    'option_label'  => __( 'Github profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_dribbble'       => array(
                                     'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                                    'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_linkedin'       => array(
                                     'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                                    'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_vk'             => array(
                                     'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
-                                    'option_label'  => __( 'VKontakte profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_yelp'           => array(
                                     'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
-                                    'option_label'  => __( 'Yelp profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_xing'           => array(
                                     'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
-                                    'option_label'  => __( 'Xing profile url' , 'customizr' ),
-                                    'default'       => null
                                   ),
             'tc_snapchat'       => array(
                                     'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
-                                    'option_label'  => __( 'Snapchat profile url' , 'customizr' ),
-                                    'default'       => null
                                   )
           );//end of social array
 
@@ -348,7 +312,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  'active',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-responsive.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
@@ -362,7 +326,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  '',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'inc/assets/img/customizr-theme-customizer.png',
+                                          TC_BASE_URL.'assets/front/img/customizr-theme-customizer.png',
                                           __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                   )
             )

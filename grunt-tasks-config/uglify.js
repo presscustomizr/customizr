@@ -5,7 +5,12 @@ module.exports = {
 				"DEBUG": false
 		},
 		dead_code: true
-		}
+		},
+    //not sure about this, see how many comments it leaves in the flickity.min.js
+    preserveComments: function(node, comment) {
+      // preserve comments that start with a bang
+      return /^!/.test( comment.value );
+    },
 	},
 	main_front_js: {
 		files: [{

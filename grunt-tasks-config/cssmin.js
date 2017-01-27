@@ -50,5 +50,5 @@ module.exports = {
     src: ['*.css', '!*.min.css'],
     dest: 'custom-skins/',
     ext: '.min.css'
-  }
+  },
 };
