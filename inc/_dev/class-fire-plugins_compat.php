@@ -49,7 +49,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'optimize-press' );
-      add_theme_support( 'sensei' );
+      add_theme_support( 'woo-sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
       add_theme_support( 'disqus' );
       add_theme_support( 'uris' );
@@ -119,7 +119,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $this -> czr_fn_set_woocomerce_compat();
 
       /* Sensei woocommerce addon */
-      if ( current_theme_supports( 'sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+      if ( current_theme_supports( 'woo-sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> czr_fn_set_sensei_compat();
 
       /* Visual Composer */
@@ -857,7 +857,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'czr_fn_sensei_disable_tax_archive_title');
       function czr_fn_sensei_disable_tax_archive_title( $bool ){
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && ( is_sensei() || is_post_type_archive('sensei_message') ) ) ? false : $bool;
       }
 
       //disables post navigation
@@ -868,7 +868,14 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //removes post comment action on after_loop hook
       add_filter( 'tc_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
       function czr_fn_sensei_disable_comments($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && ( is_sensei() || is_single('sensei_message') ) ) ? false : $bool;
+      }
+
+      //in my courses page avoid displaying both page and single content
+      //add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
+      function czr_fn_sensei_disable_single_content_in_my_courses( $bool ) {
+        global $post;
+        return is_page() && 'course' === $post->post_type ? false : $bool;
       }
     }//end sensei compat
 
