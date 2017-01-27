@@ -252,7 +252,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
               'tc_fonts'      => array(
-                                'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.2.9' , '1.0.1') ? 'helvetica_arial' : '_g_fjalla_cantarell',
+                                'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_poppins',
                                 'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                                 'control'       =>  'CZR_controls',
                                 'section'       => 'fonts_sec',

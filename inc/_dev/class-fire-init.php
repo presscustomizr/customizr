@@ -126,6 +126,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'gfont' => array(
               'name'  => __('Google fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'tc_gfont_pairs' , array(
+                '_g_sintony_poppins'              => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
                 '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -155,6 +156,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
            'default' => array(
             'name'  => __('Single fonts' , 'customizr'),
             'list'  => apply_filters( 'tc_single_fonts' , array(
+                  '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
                   '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
                   '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
                   '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
