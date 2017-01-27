@@ -462,7 +462,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       public static function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
           $__options                    = czr_fn__f ( '__options' );
- 
+
           //Article wrapper class definition
           $global_layout                = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
 
@@ -513,7 +513,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           //for a singular post or page OR for the posts page
           elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page )
             $tc_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
-        
+
 
           //checks if we display home page, either posts or static page and apply the customizer option
           if( ( is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page() ) {
@@ -724,54 +724,6 @@ if ( ! class_exists( 'CZR_utils' ) ) :
 
 
 
-      /**
-      * Gets the social networks list defined in customizer options
-      *
-      * @package Customizr
-      * @since Customizr 3.0.10
-      */
-      /* Old version */
-  /*    function czr_fn_get_social_networks() {
-        $__options    = czr_fn__f( '__options' );
-
-        //gets the social network array
-        $socials      = apply_filters( 'tc_default_socials' , CZR_init::$instance -> socials );
-
-        //declares some vars
-        $html         = '';
-
-        foreach ( $socials as $key => $data ) {
-          if ( $__options[$key] != '' ) {
-              //gets height and width from image, we check if getimagesize can be used first with the error control operator
-              $width = $height = '';
-              if ( isset($data['custom_icon_url']) && @getimagesize($data['custom_icon_url']) ) { list( $width, $height ) = getimagesize($data['custom_icon_url']); }
-              $type = isset( $data['type'] ) && ! empty( $data['type'] ) ? $data['type'] : 'url';
-              $link = 'email' == $type ? 'mailto:' : '';
-              $link .=  call_user_func( array( CZR_utils_settings_map::$instance, 'czr_fn_sanitize_'.$type ), $__options[$key] );
-              //there is one exception : rss feed has no target _blank and special icon title
-              $html .= sprintf('<a class="%1$s" href="%2$s" title="%3$s" %4$s %5$s>%6$s</a>',
-                  apply_filters( 'tc_social_link_class',
-                                sprintf('social-icon icon-%1$s' ,
-                                  ( $key == 'tc_rss' ) ? 'feed' : str_replace('tc_', '', $key)
-                                ),
-                                $key
-                  ),
-                  $link,
-                  isset($data['link_title']) ?  call_user_func( '__' , $data['link_title'] , 'customizr' ) : '' ,
-                  ( in_array( $key, array('tc_rss', 'tc_email') ) ) ? '' : apply_filters( 'tc_socials_target', 'target=_blank', $key ),
-                  apply_filters( 'tc_additional_social_attributes', '' , $key),
-                  ( isset($data['custom_icon_url']) && !empty($data['custom_icon_url']) ) ? sprintf('<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"/>',
-                                                          $data['custom_icon_url'],
-                                                          $width,
-                                                          $height,
-                                                          isset($data['link_title']) ? call_user_func( '__' , $data['link_title'] , 'customizr' ) : ''
-                                                        ) : ''
-              );
-          }
-        }
-        return $html;
-      }
-*/
 
       /**
       * Gets the social networks list defined in customizer options
@@ -785,7 +737,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_fn_get_social_networks( $output_type = 'string' ) {
 
-          $_socials = $this -> czr_fn_opt('tc_social_links');
+          $_socials         = $this -> czr_fn_opt('tc_social_links');
+          $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
 
           if ( empty( $_socials ) )
             return;
@@ -793,12 +746,16 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           $_social_links = array();
           foreach( $_socials as $key => $item ) {
             //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
-            $icon_class      = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
-            $link_icon_class = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+            $icon_class            = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+            $link_icon_class       = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
                     ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
                     '';
 
-            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s" %4$s><i class="fa %5$s"></i></a>',
+            $color_style_attr      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
+            //if the color is the default one, do not print the inline style
+            $color_style_attr      = in_array( $color_style_attr, $_default_color ) ? '' : sprintf(' style="color:%s"', $color_style_attr );
+
+            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
             //do we have an id set ?
             //Typically not if the user still uses the old options value.
             //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
@@ -807,9 +764,10 @@ if ( ! class_exists( 'CZR_utils' ) ) :
               ! CZR___::$instance -> czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
               isset($item['title']) ? esc_attr( $item['title'] ) : '',
               ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
-              ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
+              ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
               $icon_class,
-              $link_icon_class
+              $link_icon_class,
+              $color_style_attr
             ) );
           }
 
