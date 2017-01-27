@@ -172,18 +172,23 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //get option from current hook
         $option               = ( false != strpos(current_filter(), 'left') ) ? 'tc_social_in_left-sidebar' : 'tc_social_in_right-sidebar';
 
-        //when do we display these blocks ?
-        //1) if customizing always. (is hidden if empty of disabled)
-        //2) if not customizing : must be enabled and have social networks set.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option) ) ) || ! czr_fn__f( '__get_socials' );
-        if ( ! CZR___::$instance -> czr_fn_is_customizing() && $_nothing_to_render )
-            return;
+        //when do we display this block ?
+        //1) if customizing: must be enabled
+        //2) if not customizing : must be enabled and have social networks.
+        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option ) );
+
+        $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
+
+        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() ? $_nothing_to_render : $_nothing_to_render_front;
+
+        if ( $_nothing_to_render )
+          return;
+
         $_title = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_sidebar_title') );
-        $html = sprintf('<aside class="%1$s" %2$s>%3$s%4$s</aside>',
+        $html = sprintf('<aside class="%1$s">%2$s<div class="social-links">%3$s</div></aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
-            $_nothing_to_render ? 'style="display:none"' : '',
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
-            czr_fn__f( '__get_socials' )
+            $_socials
         );
         echo apply_filters( 'tc_social_in_sidebar', $html, current_filter() );
       }

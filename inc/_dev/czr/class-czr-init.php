@@ -22,13 +22,17 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //check if WP version >= 3.4 to include customizer functions
       //Shall we really keep this ?
       if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
-        add_action( 'admin_menu'                    , array( $this , 'czr_fn_add_fallback_page' ));
+        add_action( 'admin_menu'                             , array( $this , 'czr_fn_add_fallback_page' ));
         return;
       }
 
       self::$instance =& $this;
+
       //add control class
-      add_action( 'customize_register'                       , array( $this , 'czr_fn_augment_customizer' ),10,1);
+      add_action( 'customize_register'                       , array( $this , 'czr_fn_augment_customizer' ),10, 1);
+
+      //Partial refreshs
+      add_action( 'customize_register'                       , array( $this,  'czr_fn_register_partials' ) );
 
       //add the customizer built with the builder below
       add_action( 'customize_register'                       , array( $this , 'czr_fn_customize_register' ), 20, 1 );
@@ -36,29 +40,18 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //modify some WP built-in settings / controls / sections
       add_action( 'customize_register'                       , array( $this , 'czr_fn_alter_wp_customizer_settings' ), 1000, 1 );
 
+
       //add grid/post list buttons in the control views
-      add_action( '__before_setting_control'                  , array( $this , 'czr_fn_render_grid_control_link') );
+      add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
 
-      //preview scripts
-      //set with priority 20 to be fired after tc_customize_store_db_opt in CZR_utils
-      //add_action ( 'customize_preview_init'                   , array( $this , 'czr_fn_customize_preview_js' ), 20 );
+
       //Hide donate button
-      add_action ( 'wp_ajax_hide_donate'                      , array( $this , 'czr_fn_hide_donate' ) );
+      add_action ( 'wp_ajax_hide_donate'                     , array( $this , 'czr_fn_hide_donate' ) );
 
-      add_action ( 'customize_controls_print_footer_scripts'  , array( $this, 'czr_fn_print_js_templates' ) );
+      add_action ( 'customize_controls_print_footer_scripts' , array( $this, 'czr_fn_print_js_templates' ) );
 
-      //Partial refreshs
-      //add_action( 'customize_register'                       , array( $this,  'czr_fn_register_partials' ) );
 
-      //CONCATENATED WITH GRUNT
-      //
-      //Print modules and inputs templates
-      //$this -> czr_fn_load_tmpl();
 
-      //Add the module data server side generated + additional resources (like the WP text editor)
-      //$this -> czr_fn_load_module_data_resources();
-      // end CONCATENATED WITH GRUNT
-      //
       //populate the css_attr property, used both server side and on the customize panel (passed via serverControlParams )
       $this -> css_attr = $this -> czr_fn_get_controls_css_attr();
 
@@ -92,6 +85,24 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         $manager -> register_panel_type( 'CZR_Customize_Panels');
     }
 
+
+    /* ------------------------------------------------------------------------- *
+     *  PARTIALS
+    /* ------------------------------------------------------------------------- */
+    //hook : customize_register
+    function czr_fn_register_partials( WP_Customize_Manager $wp_customize ) {
+        //Bail if selective refresh is not available (old versions) or disabled (for skope for example)
+        if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
+            return;
+        }
+
+        $wp_customize->selective_refresh->add_partial( 'social_links', array(
+            'selector'            => '.social-links',
+            'settings'            => array( CZR_THEME_OPTIONS . '[tc_social_links]' ),
+            'render_callback'     => 'czr_fn_print_social_links',
+            'fallback_refresh'    => false,
+        ) );
+    }
 
     /*
     * Since the WP_Customize_Manager::$controls and $settings are protected properties, one way to alter them is to use the get_setting and get_control methods
