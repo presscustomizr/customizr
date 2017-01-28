@@ -6987,7 +6987,7 @@ $.extend( CZRSkopeMths, {
               //creates the inputs based on the rendered item or mod opt
               $( '.' + module.control.css_attr.sub_set_wrapper, inputParentInst.container).each( function( _index ) {
                     var _id = $(this).find('[data-type]').attr( 'data-type' ),
-                        _value = _.has( inputParentInst_model, _id) ? inputParentInst_model[ _id ] : '';
+                        _value = _.has( inputParentInst_model, _id ) ? inputParentInst_model[ _id ] : '';
                     //skip if no valid input data-type is found in this node
                     if ( _.isUndefined( _id ) || _.isEmpty( _id ) ) {
                           api.consoleLog( 'setupInputCollectionFromDOM : missing data-type for ' + module.id );
@@ -7432,6 +7432,36 @@ $.extend( CZRInputMths , {
     /*-----------------------------------------
     SOME DEFAULT CALLBACKS
     ------------------------------------------*/
+    setupColorPicker : function() {
+        var input  = this;
+
+        input.container.find('input').wpColorPicker( {
+            change : function( e, o ) {
+                  //if the input val is not updated here, it's not detected right away.
+                  //weird
+                  //is there a "change complete" kind of event for iris ?
+                  //$(this).val($(this).wpColorPicker('color'));
+                  //input.container.find('[data-type]').trigger('colorpickerchange');
+
+                  //synchronizes with the original input
+                  $(this).val( $(this).wpColorPicker('color') ).trigger('colorpickerchange').trigger('change');
+            }
+        });
+    },
+
+    setupSelect : function() {
+        var input = this;
+        $('select', input.container ).not('.no-selecter-js')
+              .each( function() {
+                    $(this).selecter({
+                    //triggers a change event on the view, passing the newly selected value + index as parameters.
+                    // callback : function(value, index) {
+                    //   self.triggerSettingChange( window.event || {} , value, index); // first param is a null event.
+                    // }
+                    });
+        });
+    },
+
     setupIcheck : function( obj ) {
             var input      = this;
 
@@ -7696,38 +7726,6 @@ $.extend( CZRInputMths , {
 
         return _map;
   }
-});//$.extendvar CZRInputMths = CZRInputMths || {};
-$.extend( CZRInputMths , {
-    setupColorPicker : function() {
-        var input  = this;
-
-        input.container.find('input').wpColorPicker( {
-            change : function( e, o ) {
-                  //if the input val is not updated here, it's not detected right away.
-                  //weird
-                  //is there a "change complete" kind of event for iris ?
-                  //$(this).val($(this).wpColorPicker('color'));
-                  //input.container.find('[data-type]').trigger('colorpickerchange');
-
-                  //synchronizes with the original input
-                  $(this).val( $(this).wpColorPicker('color') ).trigger('colorpickerchange').trigger('change');
-            }
-        });
-    }
-});//$.extendvar CZRInputMths = CZRInputMths || {};
-$.extend( CZRInputMths , {
-    setupSelect : function() {
-        var input = this;
-        $('select', input.container ).not('.no-selecter-js')
-              .each( function() {
-                    $(this).selecter({
-                    //triggers a change event on the view, passing the newly selected value + index as parameters.
-                    // callback : function(value, index) {
-                    //   self.triggerSettingChange( window.event || {} , value, index); // first param is a null event.
-                    // }
-                    });
-        });
-    }
 });//$.extend/* Fix caching, select2 default one seems to not correctly work, or it doesn't what I think it should */
 // the content_picker options are set in the module with :
 // $.extend( module.inputOptions, {
@@ -8452,7 +8450,7 @@ $.extend( CZRItemMths , {
                                   //toggle on view state change
                                   item.toggleItemExpansion(to, from );
                             } else {
-                                  $.when( item.renderItemContent( item_model ) ).done( function( $_item_content ) {
+                                  $.when( item.renderItemContent( item() || item.initial_item_model ) ).done( function( $_item_content ) {
                                         //introduce a small delay to give some times to the modules to be printed.
                                         //@todo : needed ?
                                         _updateItemContentDeferred = _.debounce(_updateItemContentDeferred, 50 );
@@ -8463,9 +8461,14 @@ $.extend( CZRItemMths , {
                             //toggle on view state change
                             item.toggleItemExpansion( to, from ).done( function() {
                                   if ( _.isObject( item.contentContainer ) && false !== item.contentContainer.length ) {
+                                        item.trigger( 'beforeContenRemoved' );
+                                        //Removes DOM input nodes
                                         $( '.' + module.control.css_attr.item_content, item.container ).children().each( function() {
                                               $(this).remove();
                                         });
+                                        //clean any other content like a commented html markup
+                                        $( '.' + module.control.css_attr.item_content, item.container ).html('');
+                                        //reset the contentContainer property
                                         item.contentContainer = null;
                                         //will remove the input collection values
                                         item.trigger( 'contentRemoved' );
@@ -9076,9 +9079,9 @@ $.extend( CZRModuleMths, {
                                 module.itemCollection.callbacks.add( function() { return module.itemCollectionReact.apply(module, arguments ); } );
 
                                 //it can be overridden by a module in its initialize method
-                                if ( module.isMultiItem() )
-                                  module._makeItemsSortable();
-
+                                if ( module.isMultiItem() ) {
+                                      module._makeItemsSortable();
+                                }
                                 //api.consoleLog('SAVED ITEM COLLECTION OF MODULE ' + module.id + ' IS READY');
                           });
 
@@ -9131,7 +9134,6 @@ $.extend( CZRModuleMths, {
 
 
   //cb of : module.itemCollection.callbacks
-  //@o can pass object params like {item_collection_sorted: true}
   itemCollectionReact : function( to, from, o ) {
         var module = this,
             _current_model = module(),
@@ -9145,35 +9147,15 @@ $.extend( CZRModuleMths, {
 
 
   //cb of module.callbacks
-  //@o can pass object params like {item_collection_sorted: true}
   moduleReact : function( to, from, o ) {
         //cb of : module.callbacks
         var module            = this,
             control           = module.control,
-            is_item_update    = ( _.size(from.items) == _.size(to.items) ) && ! _.isEmpty( _.difference(to.items, from.items) ),
-            is_column_update  = to.column_id != from.column_id,
-            is_item_collection_sorted = _.has( o, 'item_collection_sorted' ) && o.item_collection_sorted,
+            isItemUpdate    = ( _.size(from.items) == _.size(to.items) ) && ! _.isEmpty( _.difference(to.items, from.items) ),
+            isColumnUpdate  = to.column_id != from.column_id,
             refreshPreview    = function() {
-                module.control.previewer.refresh();
+                  module.control.previewer.refresh();
             };
-
-        //Sorted collection case
-        if ( is_item_collection_sorted ) {
-              if ( _.has(module, 'preItem') ) {
-                module.preItemExpanded.set(false);
-              }
-              module.closeAllItems();
-              module.closeAllAlerts();
-        }
-
-        //refreshes the preview frame  :
-        //1) only needed if transport is postMessage, because is triggered by wp otherwise
-        //2) only needed when : add, remove, sort item(s).
-        //var is_item_update = ( _.size(from) == _.size(to) ) && ! _.isEmpty( _.difference(from, to) );
-        if ( 'postMessage' == api(module.control.id).transport && is_item_collection_sorted && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
-              refreshPreview = _.debounce( refreshPreview, 500 );//500ms are enough
-              refreshPreview();
-        }
 
         //update the collection + pass data
         control.updateModulesCollection( {
@@ -9502,7 +9484,7 @@ $.extend( CZRModuleMths, {
           //=> typically used when reordering the collection item with sortable or when a item is removed
           if ( _.has( obj, 'collection' ) ) {
                 //reset the collection
-                module.itemCollection.set(obj.collection);
+                module.itemCollection.set( obj.collection );
                 return;
           }
 
@@ -9537,7 +9519,8 @@ $.extend( CZRModuleMths, {
   _getSortedDOMItemCollection : function( ) {
           var module = this,
               _old_collection = _.clone( module.itemCollection() ),
-              _new_collection = [];
+              _new_collection = [],
+              dfd = $.Deferred();
 
           //re-build the collection from the DOM
           $( '.' + module.control.css_attr.single_item, module.container ).each( function( _index ) {
@@ -9552,7 +9535,7 @@ $.extend( CZRModuleMths, {
           if ( _old_collection.length != _new_collection.length ) {
               throw new Error('There was a problem when re-building the item collection from the DOM in module : ' + module.id );
           }
-          return _new_collection;
+          return dfd.resolve( _new_collection ).promise();
   },
 
 
@@ -9799,13 +9782,34 @@ $.extend( CZRModuleMths, {
                         api.czrSekSettingsPanelState.set(false);
                 },
                 update: function( event, ui ) {
-                      module.itemCollection.set( module._getSortedDOMItemCollection(), { item_collection_sorted : true } );
+                      var _sortedCollectionReact = function() {
+                            if ( _.has(module, 'preItem') ) {
+                                  module.preItemExpanded.set(false);
+                            }
+                            module.closeAllItems();
+                            module.closeAllAlerts();
 
+                            //refreshes the preview frame  :
+                            //1) only needed if transport is postMessage, because is triggered by wp otherwise
+                            //2) only needed when : add, remove, sort item(s).
+                            //var isItemUpdate = ( _.size(from) == _.size(to) ) && ! _.isEmpty( _.difference(from, to) );
+                            if ( 'postMessage' == api(module.control.id).transport  && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                                  refreshPreview = _.debounce( refreshPreview, 500 );//500ms are enough
+                                  refreshPreview();
+                            }
+                      };
+                      module._getSortedDOMItemCollection()
+                            .done( function( _collection_ ) {
+                                  module.itemCollection.set( _collection_ );
+                            })
+                            .then( function() {
+                                  _sortedCollectionReact();
+                            });
                       //refreshes the preview frame, only if the associated setting is a postMessage transport one, with no partial refresh
-                      if ( 'postMessage' == api( module.control.id ).transport && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
-                              _.delay( function() { api.previewer.refresh(); }, 100 );
-                      }
-                }
+                      // if ( 'postMessage' == api( module.control.id ).transport && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                      //         _.delay( function() { api.previewer.refresh(); }, 100 );
+                      // }
+                }//update
               }
           );
   }
@@ -9845,14 +9849,14 @@ $.extend( CZRDynModuleMths, {
                     trigger   : 'click keydown',
                     selector  : [ '.' + module.control.css_attr.open_pre_add_btn, '.' + module.control.css_attr.cancel_pre_add_btn ].join(','),
                     name      : 'pre_add_item',
-                    actions   : ['renderPreItemView','setPreItemViewVisibility'],
+                    actions   : [ 'closeAllItems', 'closeAllAlerts', 'renderPreItemView','setPreItemViewVisibility' ],
                 },
                 //add new item
                 {
                     trigger   : 'click keydown',
                     selector  : '.' + module.control.css_attr.add_new_btn, //'.czr-add-new',
                     name      : 'add_item',
-                    actions   : ['closeAllItems', 'addItem'],
+                    actions   : [ 'closeAllAlerts', 'closeAllItems', 'addItem' ],
                 }
           ]);//module.userEventMap
   },
@@ -10017,8 +10021,6 @@ $.extend( CZRDynModuleMths, {
   //@param : obj = { event : {}, item : {}, view : ${} }
   setPreItemViewVisibility : function(obj) {
           var module = this;
-
-          module.closeAllItems();
           module.preItemExpanded.set( ! module.preItemExpanded() );
   },
 
@@ -10423,6 +10425,7 @@ $.extend( CZRSocialModuleMths, {
                 item.bind('social-icon:changed', function(){
                       item.module.updateItemModel( item );
                 });
+
           },
 
 
@@ -11583,6 +11586,7 @@ $.extend( CZRBodyBgModuleMths, {
             czr_social_module : {
                   mthds : CZRSocialModuleMths,
                   crud : true,
+                  sortable : true,
                   name : 'Social Icons'
             },
             czr_background : {
@@ -11736,6 +11740,7 @@ $.extend( CZRBaseModuleControlMths, {
                 items   : [],//$.extend( true, {}, module.items ),
                 crud : false,
                 multi_item : false,
+                sortable : false,//<= a module can be multi-item but not necessarily sortable
                 control : {},//control,
           };
 
@@ -11987,91 +11992,101 @@ $.extend( CZRBaseModuleControlMths, {
               switch( _key ) {
                     //PROPERTIES COMMON TO ALL MODULES IN ALL CONTEXTS
                     case 'id' :
-                        if ( _.isEmpty( _candidate_val ) ) {
-                            api_ready_module[_key] = control.generateModuleId( module_candidate.module_type );
-                        } else {
-                            api_ready_module[_key] = _candidate_val;
-                        }
+                          if ( _.isEmpty( _candidate_val ) ) {
+                                api_ready_module[_key] = control.generateModuleId( module_candidate.module_type );
+                          } else {
+                                api_ready_module[_key] = _candidate_val;
+                          }
                     break;
                     case 'module_type' :
-                        if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
-                            throw new Error('prepareModuleForAPI : a module type must a string not empty');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
+                                throw new Error('prepareModuleForAPI : a module type must a string not empty');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case 'items' :
-                        if ( ! _.isArray( _candidate_val )  ) {
-                            throw new Error('prepareModuleForAPI : a module item list must be an array');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isArray( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : a module item list must be an array');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case 'modOpt' :
-                        if ( ! _.isObject( _candidate_val )  ) {
-                            throw new Error('prepareModuleForAPI : a module modOpt property must be an object');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isObject( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : a module modOpt property must be an object');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case 'crud' :
-                        //get the value from the czrModuleMap
-                        if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
-                          _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud;
-                        } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
-                            throw new Error('prepareModuleForAPI : the module param "crud" must be a boolean');
-                        }
-                        api_ready_module[_key] = _candidate_val || false;
+                          //get the value from the czrModuleMap
+                          if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
+                                _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud;
+                          } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : the module param "crud" must be a boolean');
+                          }
+                          api_ready_module[_key] = _candidate_val || false;
                     break;
                     case 'multi_item' :
-                        //get the value from the czrModuleMap
-                        if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
-                          _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud || api.czrModuleMap[ module_candidate.module_type ].multi_item;
-                        } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
-                            throw new Error('prepareModuleForAPI : the module param "multi_item" must be a boolean');
-                        }
-                        api_ready_module[_key] = _candidate_val || false;
+                          //get the value from the czrModuleMap
+                          if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
+                                _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud || api.czrModuleMap[ module_candidate.module_type ].multi_item;
+                          } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : the module param "multi_item" must be a boolean');
+                          }
+                          api_ready_module[_key] = _candidate_val || false;
+                    break;
+                    //if the sortable property is not set, then check if crud or multi-item
+                    case 'sortable' :
+                          //get the value from the czrModuleMap
+                          if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
+                                _candidate_val = api.czrModuleMap[ module_candidate.module_type ].sortable || api.czrModuleMap[ module_candidate.module_type ].crud || api.czrModuleMap[ module_candidate.module_type ].multi_item;
+                          } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : the module param "sortable" must be a boolean');
+                          }
+                          api_ready_module[_key] = _candidate_val || false;
                     break;
                     case  'control' :
-                        api_ready_module[_key] = control;//this
+                          api_ready_module[_key] = control;//this
                     break;
 
 
 
                     //PROPERTIES FOR MODULE EMBEDDED IN A CONTROL
                     case  'section' :
-                        if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
-                            throw new Error('prepareModuleForAPI : a module section must be a string not empty');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
+                                throw new Error('prepareModuleForAPI : a module section must be a string not empty');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
 
 
 
                     //PROPERTIES FOR MODULE EMBEDDED IN A SEKTION
                     case  'column_id' :
-                        if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
-                            throw new Error('prepareModuleForAPI : a module column id must a string not empty');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
+                                throw new Error('prepareModuleForAPI : a module column id must a string not empty');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case  'sektion' :
-                        if ( ! _.isObject( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
-                            throw new Error('prepareModuleForAPI : a module sektion must be an object not empty');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isObject( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
+                                throw new Error('prepareModuleForAPI : a module sektion must be an object not empty');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case  'sektion_id' :
-                        if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
-                            throw new Error('prepareModuleForAPI : a module sektion id must be a string not empty');
-                        }
-                        api_ready_module[_key] = _candidate_val;
+                          if ( ! _.isString( _candidate_val ) || _.isEmpty( _candidate_val ) ) {
+                                throw new Error('prepareModuleForAPI : a module sektion id must be a string not empty');
+                          }
+                          api_ready_module[_key] = _candidate_val;
                     break;
                     case 'is_added_by_user' :
-                        if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
-                            throw new Error('prepareModuleForAPI : the module param "is_added_by_user" must be a boolean');
-                        }
+                          if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
+                                throw new Error('prepareModuleForAPI : the module param "is_added_by_user" must be a boolean');
+                          }
                         api_ready_module[_key] = _candidate_val || false;
                     break;
                     case 'dirty' :
-                        api_ready_module[_key] = _candidate_val || false;
+                          api_ready_module[_key] = _candidate_val || false;
                     break;
               }//switch
         });
