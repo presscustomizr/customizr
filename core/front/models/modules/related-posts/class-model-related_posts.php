@@ -78,7 +78,7 @@ class CZR_related_posts_model_class extends CZR_model {
 
 
   function czr_fn_setup_query() {
-    /* Tqken from hueman */
+    /* Taken from hueman */
     global $wp_query;
 
     /* Query setup */
