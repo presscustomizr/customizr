@@ -63,7 +63,8 @@ module.exports = function(grunt) {
           'jshint',
           'concat:front_main_parts_js',
           'concat:front_js',
-          'uglify:part_front_js' ,
+          'lineending:front_js',
+          'uglify:part_front_js',
           'uglify:main_front_js'
         ],
         'prod_admin_css_js' : [
@@ -73,6 +74,7 @@ module.exports = function(grunt) {
           'concat:czr_control_js',
           'comments:czr_control_js',
           'concat:czr_preview_js',
+          'lineending:czr_js',
           'uglify:prod_admin_js',
           'uglify:prod_czr_js'
         ],
