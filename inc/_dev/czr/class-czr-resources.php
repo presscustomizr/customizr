@@ -135,6 +135,14 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
         );
 
         wp_enqueue_script(
+          'tc-customizer-controls-deps',
+          sprintf('%1$sassets/czr/_dev/js/czr-control-deps.js' , TC_BASE_URL),
+          array( 'tc-customizer-controls' ),
+          time(),
+          true
+        );
+
+        wp_enqueue_script(
           'tc-customizer-controls-vdr',
           sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready.js' , TC_BASE_URL),
           array( 'tc-customizer-controls' ),
