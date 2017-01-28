@@ -44,6 +44,7 @@
     "grunt-lineending": "^1.0.0",
     "grunt-multi": "0.0.6",
     "grunt-sass": "^1.2.1",
+    "grunt-stripcomments": "^0.6.0",
     "grunt-text-replace": "^0.3.12",
     "grunt-wait": "^0.1.0",
     "grunt-wp-i18n": "^0.4.9",
