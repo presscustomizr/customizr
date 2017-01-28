@@ -1,6 +1,6 @@
 <?php
 add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_pre_add_view_template' , 1 );
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_item_content_template' , 1 );
+add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_item_mod_opt_template' , 1 );
 
 function czr_fn_print_social_pre_add_view_template() {
   $css_attr = CZR_customize::$instance -> css_attr;
@@ -29,7 +29,7 @@ function czr_fn_print_social_pre_add_view_template() {
 
 
 
-function czr_fn_print_social_item_content_template() {
+function czr_fn_print_social_item_mod_opt_template() {
   $css_attr = CZR_customize::$instance -> css_attr;
     //the following template is a "sub view"
     //it's rendered :
@@ -37,6 +37,14 @@ function czr_fn_print_social_item_content_template() {
     //2) dynamically when designing from the customizer
     //data looks like : { id : 'sidebar-one', title : 'A Title One' }
   ?>
+  <script type="text/html" id="tmpl-czr-module-social-mod-opt">
+    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number">
+      <div class="customize-control-title"><?php _e('Size in px', 'customizr'); ?></div>
+      <div class="czr-input">
+        <input data-type="social-size" type="number" step="1" min="5" value="{{ data['social-size'] }}" />
+      </div>
+    </div>
+  </script>
 
   <script type="text/html" id="tmpl-czr-module-social-item-content">
     <!-- <div class="czr-sub-set">

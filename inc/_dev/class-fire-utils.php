@@ -729,46 +729,79 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * Gets the social networks list defined in customizer options
       *
       *
+      *
       * @package Customizr
       * @since Customizr 3.0.10
       *
       * @since Customizr 3.4.55 Added the ability to retrieve them as array
       * @param $output_type optional. Return type "string" or "array"
       */
+      //MODEL LOOKS LIKE THIS
+      //(
+      //     [0] => Array
+      //         (
+      //             [is_mod_opt] => 1
+      //             [module_id] => tc_social_links_czr_module
+      //             [social-size] => 15
+      //         )
+
+      //     [1] => Array
+      //         (
+      //             [id] => czr_social_module_0
+      //             [title] => Follow us on Renren
+      //             [social-icon] => fa-renren
+      //             [social-link] => http://customizr-dev.dev/feed/rss/
+      //             [social-color] => #6d4c8e
+      //             [social-target] => 1
+      //         )
+      // )
       function czr_fn_get_social_networks( $output_type = 'string' ) {
 
           $_socials         = $this -> czr_fn_opt('tc_social_links');
+          $_social_opts     = array( 'social-size' => 'inherit' );
           $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
 
           if ( empty( $_socials ) )
             return;
 
+          //get the social mod opts
+          foreach( $_socials as $key => $item ) {
+            if ( ! array_key_exists( 'is_mod_opt', $item ) )
+              continue;
+            $_social_opts = wp_parse_args( $item, $_social_opts );
+          }
+
           $_social_links = array();
           foreach( $_socials as $key => $item ) {
-            //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
-            $icon_class            = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
-            $link_icon_class       = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
-                    ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
-                    '';
+              //skip if mod_opt
+              if ( array_key_exists( 'is_mod_opt', $item ) )
+                continue;
 
-            $color_style_attr      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
-            //if the color is the default one, do not print the inline style
-            $color_style_attr      = in_array( $color_style_attr, $_default_color ) ? '' : sprintf(' style="color:%s"', $color_style_attr );
+              //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+              $icon_class            = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+              $link_icon_class       = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                      ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                      '';
 
-            array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
-            //do we have an id set ?
-            //Typically not if the user still uses the old options value.
-            //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+              $color_style_attr      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
+              //if the color is the default one, do not print the inline style
+              $color_style_attr      = in_array( $color_style_attr, $_default_color ) ? 'inherit' : $color_style_attr;
+              $style_attrs           = sprintf(' style="color:%1$s;font-size:%2$spx"', $color_style_attr, $_social_opts['social-size'] );
 
-            // Put them together
-              ! CZR___::$instance -> czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
-              isset($item['title']) ? esc_attr( $item['title'] ) : '',
-              ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
-              ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
-              $icon_class,
-              $link_icon_class,
-              $color_style_attr
-            ) );
+              array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
+                //do we have an id set ?
+                //Typically not if the user still uses the old options value.
+                //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+
+                // Put them together
+                  ! CZR___::$instance -> czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+                  isset($item['title']) ? esc_attr( $item['title'] ) : '',
+                  ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+                  ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
+                  $icon_class,
+                  $link_icon_class,
+                  $style_attrs
+              ) );
           }
 
           /*

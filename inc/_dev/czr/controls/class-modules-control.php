@@ -62,13 +62,40 @@ if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
       if ( empty( $socials ) )
         return array();
 
+
+      //(
+      //     [0] => Array
+      //         (
+      //             [is_mod_opt] => 1
+      //             [module_id] => tc_social_links_czr_module
+      //             [social-size] => 15
+      //         )
+
+      //     [1] => Array
+      //         (
+      //             [id] => czr_social_module_0
+      //             [title] => Follow us on Renren
+      //             [social-icon] => fa-renren
+      //             [social-link] => http://customizr-dev.dev/feed/rss/
+      //             [social-color] => #6d4c8e
+      //             [social-target] => 1
+      //         )
+      // )
       //validate urls
-      foreach ( $socials as $index => $social ) {
-        if ( ! is_array( $social ) || ! ( array_key_exists( 'social-link', $social) &&  array_key_exists( 'id', $social) ) )
+      foreach ( $socials as $index => $item_or_modopt ) {
+        if ( ! is_array( $item_or_modopt ) )
           return new WP_Error( 'required', $malformed_message );
 
-        if ( $social['social-link'] != esc_url_raw( $social['social-link'] ) )
-          array_push( $ids_malformed_url, $social[ 'id' ] );
+        //should be an item or a mod opt
+        if ( ! array_key_exists( 'is_mod_opt', $item_or_modopt ) && ! array_key_exists( 'id', $item_or_modopt ) )
+          return new WP_Error( 'required', $malformed_message );
+
+        //if modopt case, skip
+        if ( array_key_exists( 'is_mod_opt', $item_or_modopt ) )
+          continue;
+
+        if ( $item_or_modopt['social-link'] != esc_url_raw( $item_or_modopt['social-link'] ) )
+          array_push( $ids_malformed_url, $item_or_modopt[ 'id' ] );
       }
 
       if ( empty( $ids_malformed_url) )

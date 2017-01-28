@@ -9122,6 +9122,7 @@ $.extend( CZRModuleMths, {
                           //When the module has modOpt :
                           //=> Instantiate the modOpt and setup listener
                           if ( module.hasModOpt() ) {
+                              console.log('INSTANTIATE MOD OPT ?');
                               module.instantiateModOpt();
                           }
                     });
@@ -9238,6 +9239,7 @@ $.extend( CZRModuleMths, {
         var module = this;
         //Prepare the modOpt and instantiate it
         var modOpt_candidate = module.prepareModOptForAPI( module().modOpt || {} );
+        console.log('modOpt_candidate', modOpt_candidate);
         module.czr_ModOpt = new module.modOptConstructor( modOpt_candidate );
         module.czr_ModOpt.ready();
         //update the module model on modOpt change
@@ -10121,7 +10123,8 @@ $.extend( CZRSocialModuleMths, {
           //extend the module with new template Selectors
           $.extend( module, {
                 itemPreAddEl : 'czr-module-social-pre-add-view-content',
-                itemInputList : 'czr-module-social-item-content'
+                itemInputList : 'czr-module-social-item-content',
+                modOptInputList : 'czr-module-social-mod-opt'
           } );
 
 
@@ -10277,6 +10280,13 @@ $.extend( CZRSocialModuleMths, {
           module.inputConstructor = api.CZRInput.extend( module.CZRSocialsInputMths || {} );
           //EXTEND THE DEFAULT CONSTRUCTORS FOR MONOMODEL
           module.itemConstructor = api.CZRItem.extend( module.CZRSocialsItem || {} );
+
+          //declares a default ModOpt model
+          this.defaultModOptModel = {
+              is_mod_opt : true,
+              module_id : module.id,
+              'social-size' : 14
+          };
 
           //declares a default model
           this.defaultItemModel = {
@@ -11626,7 +11636,8 @@ $.extend( CZRBodyBgModuleMths, {
                   mthds : CZRSocialModuleMths,
                   crud : true,
                   sortable : true,
-                  name : 'Social Icons'
+                  name : 'Social Icons',
+                  has_mod_opt : true
             },
             czr_background : {
                   mthds : CZRBodyBgModuleMths,
@@ -11915,7 +11926,7 @@ $.extend( CZRBaseModuleControlMths, {
                     if ( api.CZR_Helpers.hasModuleModOpt( _module_type ) && 0*0 === key ) {
                           // a saved module mod_opt object should not have an id
                           if ( _.has( item_or_mod_opt_candidate, 'id') ) {
-                                throw new Error( 'getSavedModules : the module ' + _module_type + ' in control ' + control.id + ' has no mod_opt defined while it should.' );
+                                api.consoleLog( 'getSavedModules : the module ' + _module_type + ' in control ' + control.id + ' has no mod_opt defined while it should.' );
                           } else {
                                 _saved_modOpt = item_or_mod_opt_candidate;
                           }

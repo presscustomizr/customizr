@@ -490,6 +490,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             'sub_set_input'       => 'czr-input',
             'img_upload_container' => 'czr-imgup-container',
 
+            'edit_modopt_icon'    => 'czr-toggle-modopt',
+            'close_modopt_icon'   => 'czr-close-modopt',
+            'mod_opt_wrapper'     => 'czr-mod-opt-wrapper',
+
+
             'items_wrapper'     => 'czr-items-wrapper',
             'single_item'        => 'czr-single-item',
             'item_content'      => 'czr-item-content',
@@ -1582,13 +1587,40 @@ if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
       if ( empty( $socials ) )
         return array();
 
+
+      //(
+      //     [0] => Array
+      //         (
+      //             [is_mod_opt] => 1
+      //             [module_id] => tc_social_links_czr_module
+      //             [social-size] => 15
+      //         )
+
+      //     [1] => Array
+      //         (
+      //             [id] => czr_social_module_0
+      //             [title] => Follow us on Renren
+      //             [social-icon] => fa-renren
+      //             [social-link] => http://customizr-dev.dev/feed/rss/
+      //             [social-color] => #6d4c8e
+      //             [social-target] => 1
+      //         )
+      // )
       //validate urls
-      foreach ( $socials as $index => $social ) {
-        if ( ! is_array( $social ) || ! ( array_key_exists( 'social-link', $social) &&  array_key_exists( 'id', $social) ) )
+      foreach ( $socials as $index => $item_or_modopt ) {
+        if ( ! is_array( $item_or_modopt ) )
           return new WP_Error( 'required', $malformed_message );
 
-        if ( $social['social-link'] != esc_url_raw( $social['social-link'] ) )
-          array_push( $ids_malformed_url, $social[ 'id' ] );
+        //should be an item or a mod opt
+        if ( ! array_key_exists( 'is_mod_opt', $item_or_modopt ) && ! array_key_exists( 'id', $item_or_modopt ) )
+          return new WP_Error( 'required', $malformed_message );
+
+        //if modopt case, skip
+        if ( array_key_exists( 'is_mod_opt', $item_or_modopt ) )
+          continue;
+
+        if ( $item_or_modopt['social-link'] != esc_url_raw( $item_or_modopt['social-link'] ) )
+          array_push( $ids_malformed_url, $item_or_modopt[ 'id' ] );
       }
 
       if ( empty( $ids_malformed_url) )
@@ -1954,7 +1986,7 @@ function czr_fn_print_sektion_module_templates() {
 }
 ?><?php
 add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_pre_add_view_template' , 1 );
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_item_content_template' , 1 );
+add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_item_mod_opt_template' , 1 );
 
 function czr_fn_print_social_pre_add_view_template() {
   $css_attr = CZR_customize::$instance -> css_attr;
@@ -1983,7 +2015,7 @@ function czr_fn_print_social_pre_add_view_template() {
 
 
 
-function czr_fn_print_social_item_content_template() {
+function czr_fn_print_social_item_mod_opt_template() {
   $css_attr = CZR_customize::$instance -> css_attr;
     //the following template is a "sub view"
     //it's rendered :
@@ -1991,6 +2023,14 @@ function czr_fn_print_social_item_content_template() {
     //2) dynamically when designing from the customizer
     //data looks like : { id : 'sidebar-one', title : 'A Title One' }
   ?>
+  <script type="text/html" id="tmpl-czr-module-social-mod-opt">
+    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number">
+      <div class="customize-control-title"><?php _e('Size in px', 'customizr'); ?></div>
+      <div class="czr-input">
+        <input data-type="social-size" type="number" step="1" min="5" value="{{ data['social-size'] }}" />
+      </div>
+    </div>
+  </script>
 
   <script type="text/html" id="tmpl-czr-module-social-item-content">
     <!-- <div class="czr-sub-set">
