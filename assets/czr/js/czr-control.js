@@ -9468,7 +9468,8 @@ content_picker:"setupContentPicker",text_editor:"setupTextEditor",password:"",ra
                               'tc_show_breadcrumb_home',
                               'tc_show_breadcrumb_in_pages',
                               'tc_show_breadcrumb_in_single_posts',
-                              'tc_show_breadcrumb_in_post_lists'
+                              'tc_show_breadcrumb_in_post_lists',
+                              'tc_breadcrumb_yoast'
                             ],
                             visibility : function( to ) {
                                   return _is_checked(to);

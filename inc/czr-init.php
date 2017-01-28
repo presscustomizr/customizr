@@ -4287,7 +4287,23 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'type'          => 'checkbox' ,
                                 'priority'      => 50
 
-              )
+              ),
+              'tc_breadcrumb_yoast' => array(
+                                'default'   => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39' , '1.2.39' ) ? 0 : 1,
+                                'label'     => __( "Use Yoast SEO breadcrumbs" , "customizr" ),
+                                'control'   => 'CZR_controls' ,
+                                'section'   => 'breadcrumb_sec',
+                                'notice'    => sprintf( __( "Jump to the Yoast SEO breadcrumbs %s" , "customizr"),
+                                                sprintf( '<a href="%1$s" title="%3$s">%2$s &raquo;</a>',
+                                                  "javascript:wp.customize.section('wpseo_breadcrumbs_customizer_section').focus();",
+                                                  __("customization panel" , "customizr"),
+                                                  esc_attr__("Yoast SEO breadcrumbs settings", "customizr")
+                                                )
+                                              ),
+                                'type'      => 'checkbox' ,
+                                'priority'  => 60,
+                                'active_callback' => apply_filters( 'tc_yoast_breadcrumbs_option_enabled', '__return_false' )
+              ),
       );
 
     }
