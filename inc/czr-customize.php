@@ -977,7 +977,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'translatedStrings'   => $this -> czr_fn_get_translated_strings(),
 
             'themeOptions'     => CZR_THEME_OPTIONS,
-            'optionAjaxAction' => CZR_OPT_AJAX_ACTION,
 
             'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('TC_DEV') && true === TC_DEV ),
 

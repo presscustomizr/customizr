@@ -92,9 +92,6 @@ if ( ! class_exists( 'CZR___' ) ) :
       //MAIN OPTIONS NAME
       if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
 
-      if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , array( CZR_utils::$inst, 'czr_fn_opt' ) );
-
-
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
         array(
