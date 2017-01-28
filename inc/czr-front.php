@@ -438,20 +438,25 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		*/
     function czr_fn_social_in_header($resp = null) {
         //when do we display this block ?
-        //1) if customizing always. (is hidden if empty of disabled)
+        //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_header') ) ) || ! czr_fn__f( '__get_socials' );
-        if ( ! CZR___::$instance -> czr_fn_is_customizing() && $_nothing_to_render )
+        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_header' ) );
+
+        $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
+
+        //only when partial refresh enabled, otherwise we fall back on refresh
+        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
+
+        if ( $_nothing_to_render )
         	return;
 
         //class added if not resp
         $social_header_block_class 	=  ('resp' == $resp) ? '' : 'span5';
         $social_header_block_class	=	apply_filters( 'tc_social_header_block_class', $social_header_block_class , $resp );
 
-        $html = sprintf('<div class="social-block %1$s" %3$s>%2$s</div>',
+        $html = sprintf('<div class="social-block %1$s"><div class="social-links">%2$s</div></div>',
         		$social_header_block_class,
-        		czr_fn__f( '__get_socials' ),
-        		$_nothing_to_render ? 'style="display:none"' : ''
+        		$_socials
         );
 
         echo apply_filters( 'tc_social_in_header', $html, $resp );
@@ -7908,18 +7913,24 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //get option from current hook
         $option               = ( false != strpos(current_filter(), 'left') ) ? 'tc_social_in_left-sidebar' : 'tc_social_in_right-sidebar';
 
-        //when do we display these blocks ?
-        //1) if customizing always. (is hidden if empty of disabled)
-        //2) if not customizing : must be enabled and have social networks set.
-        $_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option) ) ) || ! czr_fn__f( '__get_socials' );
-        if ( ! CZR___::$instance -> czr_fn_is_customizing() && $_nothing_to_render )
-            return;
+        //when do we display this block ?
+        //1) if customizing: must be enabled
+        //2) if not customizing : must be enabled and have social networks.
+        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option ) );
+
+        $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
+
+        //only when partial refresh enabled, otherwise we fall back on refresh
+        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
+
+        if ( $_nothing_to_render )
+          return;
+
         $_title = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_sidebar_title') );
-        $html = sprintf('<aside class="%1$s" %2$s>%3$s%4$s</aside>',
+        $html = sprintf('<aside class="%1$s">%2$s<div class="social-links">%3$s</div></aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
-            $_nothing_to_render ? 'style="display:none"' : '',
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
-            czr_fn__f( '__get_socials' )
+            $_socials
         );
         echo apply_filters( 'tc_social_in_sidebar', $html, current_filter() );
       }
@@ -9685,22 +9696,18 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		 * @since Customizr 3.0.10
 		 */
 	    function czr_fn_colophon_left_block() {
-	    	//when do we display this block ?
-	        //1) if customizing always. (is hidden if empty of disabled)
-	        //2) if not customizing : must be enabled and have social networks.
-	    	$_nothing_to_render = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_footer') ) ) || ! czr_fn__f( '__get_socials' );
-	    	$_hide_socials = $_nothing_to_render && CZR___::$instance -> czr_fn_is_customizing();
-	    	$_nothing_to_render = $_nothing_to_render && ! CZR___::$instance -> czr_fn_is_customizing();
+        //when do we display the socials?
+        //1) must be enabled
+        //the whole block will be always displayed for a matter of structure (columns)
+	    	$_hide_socials = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_footer') ) );
+
 
 	      	echo apply_filters(
 	      		'tc_colophon_left_block',
 	      		sprintf('<div class="%1$s">%2$s</div>',
 	      			implode( ' ', apply_filters( 'tc_colophon_left_block_class', array( 'span3', 'social-block', is_rtl() ? 'pull-right' : 'pull-left' ) ) ),
-	      			( ! $_nothing_to_render ) ? sprintf('<span class="tc-footer-social-links-wrapper" %1$s>%2$s</span>',
-	      				( $_hide_socials ) ? 'style="display:none"' : '',
-	      				czr_fn__f( '__get_socials' )
-	      			) : ''
-	      		)
+	      			( ! $_hide_socials ) ? sprintf('<span class="social-links">%1$s</span>',	czr_fn__f( '__get_socials' ) ) : ''
+            )
 	      	);
 	    }
 
