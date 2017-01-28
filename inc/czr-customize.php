@@ -2097,13 +2097,13 @@ function czr_fn_print_image_uploader_template() {
 add_filter( 'controls_translated_strings', 'czr_fn_add_translated_strings');
 function czr_fn_add_translated_strings( $strings) {
       return array_merge( $strings, array(
-              'select_image'        => __( 'Select Image', 'hueman' ),
-              'change_image'        => __( 'Change Image', 'hueman' ),
-              'remove_image'        => __( 'Remove', 'hueman' ),
-              'default_image'       => __( 'Default', 'hueman'  ),
-              'placeholder_image'   => __( 'No image selected', 'hueman' ),
-              'frame_title_image'   => __( 'Select Image', 'hueman' ),
-              'frame_button_image'  => __( 'Choose Image', 'hueman' )
+              'select_image'        => __( 'Select Image', 'customizr' ),
+              'change_image'        => __( 'Change Image', 'customizr' ),
+              'remove_image'        => __( 'Remove', 'customizr' ),
+              'default_image'       => __( 'Default', 'customizr'  ),
+              'placeholder_image'   => __( 'No image selected', 'customizr' ),
+              'frame_title_image'   => __( 'Select Image', 'customizr' ),
+              'frame_button_image'  => __( 'Choose Image', 'customizr' )
       ));
 }
 ?>
