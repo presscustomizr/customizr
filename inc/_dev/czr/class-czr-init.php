@@ -296,7 +296,10 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'flex_width',
                 'flex_height',
                 'dst_width',
-                'dst_height'
+                'dst_height',
+
+                'ubq_section'
+
           )
       );
       return apply_filters( 'tc_customizer_arguments', $args );

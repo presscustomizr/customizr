@@ -18,9 +18,12 @@ if ( ! class_exists( 'CZR_controls' ) ) :
       public $min;
       public $icon;
 
+      public $ubq_section;
+
       static $enqueued_resources;
 
       public function render_content()  {
+
         do_action( '__before_setting_control' , $this -> id );
 
         switch ( $this -> type) {
@@ -265,7 +268,18 @@ if ( ! class_exists( 'CZR_controls' ) ) :
         );
     }
 
-
+    /**
+    * Refresh the parameters passed to the JavaScript via JSON.
+    *
+    *
+    * @Override
+    * @see WP_Customize_Control::to_json()
+    */
+    public function to_json() {
+      parent::to_json();
+      if ( is_array( $this->ubq_section ) && array_key_exists( 'section', $this->ubq_section ) )
+        $this->json['ubq_section'] = $this->ubq_section;
+    }
   }//end of class
 endif;
 ?>

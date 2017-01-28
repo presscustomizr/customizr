@@ -424,7 +424,7 @@ endif;
 //@return boolean
 if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
   function czr_fn_is_partial_refreshed_on() {
-    return apply_filters( 'czr_partial_refresh_on', true );
+    return apply_filters( 'tc_partial_refresh_on', true );
   }
 }
 /* HELPER FOR CHECKBOX OPTIONS */
@@ -444,6 +444,12 @@ if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
     return ! empty ( czr_fn_get_opt('tc_social_links') );
   }
 }
+
+/**
+* helper
+* Prints the social links
+* @return  void
+*/
 if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
   function czr_fn_print_social_links() {
     echo CZR_utils::$inst->czr_fn_get_social_networks();

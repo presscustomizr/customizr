@@ -642,6 +642,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'header_layout_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 20,
+                                'ubq_section'   => array(
+                                                    'section' => 'socials_sec',
+                                                    'priority' => '1'
+                                                 )
               ),
               'tc_display_boxed_navbar'  =>  array(
                                 'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
@@ -2051,6 +2055,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'sidebar_socials_sec',
                                 'type'        => 'checkbox' ,
                                 'priority'       => 20,
+                                'ubq_section'   => array(
+                                                    'section' => 'socials_sec',
+                                                    'priority' => '2'
+                                                 )
               ),
 
               'tc_social_in_right-sidebar'  =>  array(
@@ -2060,6 +2068,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'sidebar_socials_sec',
                                 'type'        => 'checkbox' ,
                                 'priority'       => 25,
+                                'ubq_section'   => array(
+                                                    'section' => 'socials_sec',
+                                                    'priority' => '3'
+                                                 )
               ),
               'tc_social_in_sidebar_title'  =>  array(
                                 'default'       => __( 'Social links' , 'customizr' ),
@@ -2093,6 +2105,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'footer_global_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'       => 0,
+                                'ubq_section'   => array(
+                                                    'section' => 'socials_sec',
+                                                    'priority' => '4'
+                                                 )
               ),
               'tc_sticky_footer'  =>  array(
                                 'default'       => CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,

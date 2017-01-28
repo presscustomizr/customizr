@@ -444,7 +444,8 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
         $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
 
-        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() ? $_nothing_to_render : $_nothing_to_render_front;
+        //only when partial refresh enabled, otherwise we fall back on refresh
+        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
 
         if ( $_nothing_to_render )
         	return;
