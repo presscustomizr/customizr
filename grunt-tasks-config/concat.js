@@ -112,21 +112,15 @@ module.exports = {
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
   czr_css : {
-    src: [
-      '<%= paths.czr_assets %>/_dev/css/czr-control-*.css',
-    ],
+    src: [ '<%= paths.czr_assets %>/_dev/css/czr-control-*.css', '! <%= paths.czr_assets %>/_dev/css/*.min.css', ],
     dest: '<%= paths.czr_assets %>css/czr-control.css'
   },
   czr_control_js : {
-    src: [
-      '<%= paths.czr_assets %>/_dev/js/czr-control-*.js',
-    ],
+    src: [ '<%= paths.czr_assets %>/_dev/js/czr-control-*.js', ' ! <%= paths.czr_assets %>/_dev/js/*.min.js'],
     dest: '<%= paths.czr_assets %>js/czr-control.js'
   },
   czr_preview_js : {
-    src: [
-      '<%= paths.czr_assets %>/_dev/js/czr-preview-*.js',
-    ],
+    src: ['<%= paths.czr_assets %>/_dev/js/czr-preview-*.js', '<%= paths.czr_assets %>/_dev/js/*.min.js'],
     dest: '<%= paths.czr_assets %>js/czr-preview.js'
   },
 };
