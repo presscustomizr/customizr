@@ -108,7 +108,26 @@
   // .tc-is-mobile .navbar .nav li > ul ul {
   //   display: block;
   // }
+  /* btn-toggle-nav edge case positioning*/
+  /* when on the right */
 
+  body:not(.sticky-enabled) .tc-header .btn-toggle-nav.pull-right {
+    clear: both;
+  }
+  /* if only socials + btn-nav in navbar (no tagline), do not drop on a new line */
+  body:not(.sticky-enabled) .tc-header .social-block + .btn-toggle-nav.pull-right {
+    clear: none;
+  }
+
+  /* when on the left */
+  /* drop on a new line only when socials are present */
+  body:not(.sticky-enabled) .tc-header .social-block + .btn-toggle-nav.pull-left,
+  body:not(.sticky-enabled) .tc-header .social-block + [class*=span] + [class*=span] + .btn-toggle-nav.pull-left,
+  body:not(.sticky-enabled) .tc-header .social-block + [class*=span] + .btn-toggle-nav.pull-left {
+    clear: both;
+  }
+
+  /* btn-toggle-nav edge case positioning END */
 }
 
 
@@ -381,6 +400,7 @@
   .sticky-enabled .navbar .navbar-inner {
     margin: 0px;
   }
+
 
   .tc-header .navbar .btn-toggle-nav,
   .navbar .btn-navbar {
