@@ -95,14 +95,28 @@ class CZR_breadcrumb {
 	  		return;
 
 	  	//set the args properties
-        $this -> args = $this -> _get_args();
+	  	$this -> args = $this -> _get_args();
+
+	  	/**
+	  	* Filter the default breadcrumb trails output (like the wp gallery shortcode does).
+	  	*
+	  	* If the filtered output isn't empty, it will be used instead of generating
+	  	* the default breadcrumbs html.
+	  	*
+	  	* @since 3.4.38
+	  	*
+	  	* @param string $output The breadcrumbs output. Default empty.
+	  	* @param array  $args   The computed attributes of the theme's breadcrumbs
+	  	*/
+	  	$breadcrumbs = apply_filters( 'tc_breadcrumbs', '', $this->args );
+	  	$breadcrumbs  = $breadcrumbs ? $breadcrumbs : $this -> czr_fn_breadcrumb_trail( $this -> args );
 
 	  	echo apply_filters(
-	  			'tc_breadcrumb_display' ,
-				sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
-					apply_filters( 'tc_breadcrumb_class', 'span12' ),
-					$this -> czr_fn_breadcrumb_trail( $this -> args )
-				)
+	  		'tc_breadcrumb_display' ,
+	  			sprintf('<div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="%1$s">%2$s</div></div></div>',
+	  				apply_filters( 'tc_breadcrumb_class', 'span12' ),
+	  				$breadcrumbs
+	  			)
 	  	);
     }
 
