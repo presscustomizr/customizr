@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.4.39-beta
+ * Customizr v3.5-beta
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -5333,9 +5333,6 @@ li.dropdown.active > .dropdown-toggle,
 .navbar .nav {
   margin-right: 0px;
 }
-.tc-header .btn-toggle-nav.pull-left {
-  clear: both;
-}
 .tc-header .btn-toggle-nav.pull-left,
 .pull-menu-left .navbar div > ul.nav > .menu-item:first-child > a {
   padding-right: 5px;
@@ -8739,6 +8736,23 @@ li#wp-admin-bar-tc-customizr-help a {
     height: 100% !important;
     overflow: auto !important;
   }
+  /* btn-toggle-nav edge case positioning*/
+  /* when on the right */
+  body:not(.sticky-enabled) .tc-header .btn-toggle-nav.pull-right {
+    clear: both;
+  }
+  /* if only socials + btn-nav in navbar (no tagline), do not drop on a new line */
+  body:not(.sticky-enabled) .tc-header .social-block + .btn-toggle-nav.pull-right {
+    clear: none;
+  }
+  /* when on the left */
+  /* drop on a new line only when socials are present */
+  body:not(.sticky-enabled) .tc-header .social-block + .btn-toggle-nav.pull-left,
+  body:not(.sticky-enabled) .tc-header .social-block + [class*=span] + [class*=span] + .btn-toggle-nav.pull-left,
+  body:not(.sticky-enabled) .tc-header .social-block + [class*=span] + .btn-toggle-nav.pull-left {
+    clear: both;
+  }
+  /* btn-toggle-nav edge case positioning END */
 }
 @media (max-width: 979px) {
   .tc-header .outside {

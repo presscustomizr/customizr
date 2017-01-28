@@ -73,6 +73,36 @@ var api = api || wp.customize, $ = $ || jQuery;
       api.czr_activeSectionId = new api.Value('');
       api.czr_activePanelId = new api.Value('');
 
+      /*****************************************************************************
+      * OBSERVE UBIQUE CONTROL'S SECTIONS EXPANSION
+      *****************************************************************************/
+      if ( 'function' === typeof api.Section ) {
+            //move controls back and forth in declared ubique sections
+            //=> implemented in the customizr theme for the social links boolean visibility controls ( socials in header, sidebar, footer )
+            api.control.bind( 'add', function( _ctrl ) {
+                  if ( _ctrl.params.ubq_section && _ctrl.params.ubq_section.section ) {
+                        //save original state
+                        _ctrl.params.original_priority = _ctrl.params.priority;
+                        _ctrl.params.original_section  = _ctrl.params.section;
+
+                        api.section.when( _ctrl.params.ubq_section.section, function( _section_instance ) {
+                                _section_instance.expanded.bind( function( expanded ) {
+                                      if ( expanded ) {
+                                            if ( _ctrl.params.ubq_section.priority ) {
+                                                  _ctrl.priority( _ctrl.params.ubq_section.priority );
+                                            }
+                                            _ctrl.section( _ctrl.params.ubq_section.section );
+                                      }
+                                      else {
+                                            _ctrl.priority( _ctrl.params.original_priority );
+                                            _ctrl.section( _ctrl.params.original_section );
+                                      }
+                                });
+
+                        } );
+                  }
+            });
+      }
 
       /*****************************************************************************
       * CLOSE THE MOD OPTION PANEL ( if exists ) ON : section change, panel change, skope switch
@@ -118,34 +148,6 @@ var api = api || wp.customize, $ = $ || jQuery;
             });
             api.panel.bind( 'add', function( panel_instance ) {
                   panel_instance.expanded.bind( function( expanded ) { _storeCurrentPanel( expanded, panel_instance.id ); } );
-            });
-
-
-            //observe ubique control's sections
-            //move controls back and forth in declared ubique sections
-            //=> implemented in the customizr theme for the social links boolean visibility controls ( socials in header, sidebar, footer )
-            api.control.each( function( _ctrl ) {
-                  if ( _ctrl.params.ubq_section && _ctrl.params.ubq_section.section ) {
-                        //save original state
-                        _ctrl.params.original_priority = _ctrl.params.priority;
-                        _ctrl.params.original_section  = _ctrl.params.section;
-
-                        api.section.when( _ctrl.params.ubq_section.section, function( _section_instance ) {
-                                _section_instance.expanded.bind( function( expanded ) {
-                                      if ( expanded ) {
-                                            if ( _ctrl.params.ubq_section.priority ) {
-                                                  _ctrl.priority( _ctrl.params.ubq_section.priority );
-                                            }
-                                            _ctrl.section( _ctrl.params.ubq_section.section );
-                                      }
-                                      else {
-                                            _ctrl.priority( _ctrl.params.original_priority );
-                                            _ctrl.section( _ctrl.params.original_section );
-                                      }
-                                });
-
-                        } );
-                  }
             });
       });
 
@@ -8681,7 +8683,7 @@ $.extend( CZRItemMths , {
           module.closeAllItems();
 
           if ( _.has(module, 'preItem') ) {
-              module.preItemExpanded.set(false);
+              module.preItemExpanded(false);
           }
 
           //then close any other open remove alert in the module containuer
@@ -9123,7 +9125,7 @@ $.extend( CZRModuleMths, {
                               module.instantiateModOpt();
                           }
                     });
-        });
+        });//module.isReady.done()
   },
 
 
@@ -9737,15 +9739,16 @@ $.extend( CZRModuleMths, {
 
   //fired on add_item
   //fired on views_sorted
-  closeAllItems : function(id) {
+  closeAllItems : function( id ) {
           var module = this,
               _current_collection = _.clone( module.itemCollection() ),
               _filtered_collection = _.filter( _current_collection , function( mod) { return mod.id != id; } );
 
-          _.each( _filtered_collection, function(_item) {
+          _.each( _filtered_collection, function( _item ) {
                 if ( module.czr_Item.has(_item.id) && 'expanded' == module.czr_Item(_item.id)._getViewState(_item.id) )
                   module.czr_Item(_item.id).czr_ItemState.set( 'closed' ); // => will fire the cb toggleItemExpansion
            } );
+          return this;
   },
 
 
@@ -9790,6 +9793,7 @@ $.extend( CZRModuleMths, {
                       } );
                 }
           });
+          return this;
   },
 
 
@@ -9813,8 +9817,8 @@ $.extend( CZRModuleMths, {
                             if ( _.has(module, 'preItem') ) {
                                   module.preItemExpanded.set(false);
                             }
-                            module.closeAllItems();
-                            module.closeAllAlerts();
+
+                            module.closeAllItems().closeAllAlerts();
 
                             //refreshes the preview frame  :
                             //1) only needed if transport is postMessage, because is triggered by wp otherwise
@@ -10289,14 +10293,16 @@ $.extend( CZRSocialModuleMths, {
 
           //fired ready :
           //1) on section expansion
-          //2) or in the case of a module embedded in a regular control, if the module section is alreay opened => typically when skope is enabled
+          //2) or in the case of a module embedded in a regular control, if the module section is already opened => typically when skope is enabled
           if ( _.has( api, 'czr_activeSectionId' ) && module.control.section() == api.czr_activeSectionId() && 'resolved' != module.isReady.state() ) {
-             module.ready();
-          }
-          api.section( module.control.section() ).expanded.bind(function(to) {
-                if ( 'resolved' == module.isReady.state() )
-                  return;
                 module.ready();
+          }
+
+          api.section( module.control.section() ).expanded.bind(function(to) {
+                //set module ready on section expansion
+                if ( 'resolved' != module.isReady.state() ) {
+                      module.ready();
+                }
           });
 
           module.isReady.then( function() {
@@ -10324,22 +10330,26 @@ $.extend( CZRSocialModuleMths, {
           if ( ! _.has( item(), 'social-icon') || _.isEmpty( item()['social-icon'] ) )
             return;
 
-          var _new_model  = $.extend( true, {}, item() ),//always safer to deep clone ( alternative to _.clone() ) => we don't know how nested this object might be in the future.
-              _new_title  = this.getTitleFromIcon( _new_model['social-icon'] ),
-              _new_color  = serverControlParams.social_el_params.defaultSocialColor;
+          var _new_model, _new_title, _new_color;
+
+          _new_model  = $.extend( true, {}, item() );//always safer to deep clone ( alternative to _.clone() ) => we don't know how nested this object might be in the future
+          _new_title  = this.getTitleFromIcon( _new_model['social-icon'] );
+          _new_color  = serverControlParams.social_el_params.defaultSocialColor;
+          if ( ! is_preItem && item.czr_Input.has( 'social-color' ) )
+            _new_color = item.czr_Input('social-color')();
 
           //add text follow us... to the title
           _new_title = [ serverControlParams.translatedStrings.followUs, _new_title].join(' ');
 
           if ( is_preItem ) {
-              _new_model = $.extend( _new_model, { title : _new_title, 'social-color' : _new_color } );
-              item.set( _new_model );
+                _new_model = $.extend( _new_model, { title : _new_title, 'social-color' : _new_color } );
+                item.set( _new_model );
           } else {
-              item.czr_Input('title').set( _new_title );
-              item.czr_Input('social-link').set( '' );
-              if ( item.czr_Input('social-color') ) { //optional
-                item.czr_Input('social-color').set( _new_color );
-              }
+                item.czr_Input('title').set( _new_title );
+                //item.czr_Input('social-link').set( '' );
+                if ( item.czr_Input('social-color') ) { //optional
+                  item.czr_Input('social-color').set( _new_color );
+                }
           }
   },
 
@@ -10406,9 +10416,12 @@ $.extend( CZRSocialModuleMths, {
         setupColorPicker : function( obj ) {
                 var input      = this,
                     item       = input.input_parent,
-                    module     = input.module;
+                    module     = input.module,
+                    $el        = $( 'input[data-type="social-color"]', input.container );
 
-                $( 'input[data-type="social-color"]', input.container ).wpColorPicker( {
+                $el.iris( {
+                          palettes: true,
+                          hide:false,
                           defaultColor : serverControlParams.social_el_params.defaultSocialColor || 'rgba(255,255,255,0.7)',
                           change : function( e, o ) {
                                 //if the input val is not updated here, it's not detected right away.
@@ -10426,7 +10439,7 @@ $.extend( CZRSocialModuleMths, {
 
                 //when the picker opens, it might be below the visible viewport.
                 //No built-in event available to react on this in the wpColorPicker unfortunately
-                $( 'input[data-type="social-color"]', input.container ).closest('div').on('click keydown', function() {
+                $el.closest('div').on('click keydown', function() {
                       module._adjustScrollExpandedBlock( input.container );
                 });
         }
@@ -10452,7 +10465,6 @@ $.extend( CZRSocialModuleMths, {
                 item.bind('social-icon:changed', function(){
                       item.module.updateItemModel( item );
                 });
-
           },
 
 
@@ -11267,7 +11279,7 @@ $.extend( CZRWidgetAreaModuleMths, {
           }, 150 ) );
 
           //Close all views on widget panel expansion/clos
-          module.closeAllItems();
+          module.closeAllItems().closeAllAlerts();
           //Close preItem dialog box if exists
           if ( _.has( module, 'preItemExpanded' ) )
             module.preItemExpanded.set(false);
@@ -11295,7 +11307,7 @@ $.extend( CZRWidgetAreaModuleMths, {
             container.scrollTop( 0 );
           }
 
-          module.closeAllItems();
+          module.closeAllItems().closeAllAlerts();
 
           content.slideToggle();
   },
@@ -11695,6 +11707,16 @@ $.extend( CZRBaseModuleControlMths, {
           // api(this.id).bind( function( to, from) {
           //     api.consoleLog( 'SETTING ', control.id, ' HAS CHANGED : ', to, from );
           // });
+
+          //close any open item and dialog boxes on section expansion
+          api.section( control.section() ).expanded.bind(function(to) {
+                control.czr_Module.each( function( _mod ){
+                      _mod.closeAllItems().closeAllAlerts();
+                      if ( _.has( _mod, 'preItem' ) ) {
+                            _mod.preItemExpanded(false);
+                      }
+                });
+          });
 
   },
 
