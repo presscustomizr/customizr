@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
                 'social-icon'   => $_social_icon,
                 'social-link'   => $_social_link,
                 'social-target' => 1,
-                'social-color'  => "rgb(0,0,0)"
+                'social-color'  => "rgb(90,90,90)"
               )
             );
             $_index++;
