@@ -6335,7 +6335,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * returns the font-size and line-height css rules
         */
         private function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
-          $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.28 ); //line-height / font-size
+          $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.55 ); //line-height / font-size
           $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
           //body font size
           $_bs = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_body_font_size') );
