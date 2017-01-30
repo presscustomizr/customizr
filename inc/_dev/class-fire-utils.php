@@ -758,8 +758,10 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       function czr_fn_get_social_networks( $output_type = 'string' ) {
 
           $_socials         = $this -> czr_fn_opt('tc_social_links');
-          $_social_opts     = array( 'social-size' => 'inherit' );
           $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
+          $_default_size    = '14'; //px
+
+          $_social_opts     = array( 'social-size' => $_default_size );
 
           if ( empty( $_socials ) )
             return;
@@ -770,6 +772,9 @@ if ( ! class_exists( 'CZR_utils' ) ) :
               continue;
             $_social_opts = wp_parse_args( $item, $_social_opts );
           }
+
+          //if the size is the default one, do not add the inline style css
+          $social_size_css  = empty( $_social_opts['social-size'] ) || $_default_size == $_social_opts['social-size'] ? '' : "font-size:{$_social_opts['social-size']}px";
 
           $_social_links = array();
           foreach( $_socials as $key => $item ) {
@@ -783,10 +788,13 @@ if ( ! class_exists( 'CZR_utils' ) ) :
                       ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
                       '';
 
-              $color_style_attr      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
-              //if the color is the default one, do not print the inline style
-              $color_style_attr      = in_array( $color_style_attr, $_default_color ) ? 'inherit' : $color_style_attr;
-              $style_attrs           = sprintf(' style="color:%1$s;font-size:%2$spx"', $color_style_attr, $_social_opts['social-size'] );
+              /* Maybe build inline style */
+              $social_color_css      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
+              //if the color is the default one, do not print the inline style css
+              $social_color_css      = in_array( $social_color_css, $_default_color ) ? '' : "color:{$social_color_css}";
+              $style_props           = implode( ';', array_filter( array( $social_color_css, $social_size_css ) ) );
+
+              $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
 
               array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
                 //do we have an id set ?
@@ -800,7 +808,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
                   ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
                   $icon_class,
                   $link_icon_class,
-                  $style_attrs
+                  $style_attr
               ) );
           }
 
