@@ -9122,7 +9122,6 @@ $.extend( CZRModuleMths, {
                           //When the module has modOpt :
                           //=> Instantiate the modOpt and setup listener
                           if ( module.hasModOpt() ) {
-                              console.log('INSTANTIATE MOD OPT ?');
                               module.instantiateModOpt();
                           }
                     });
@@ -9239,7 +9238,6 @@ $.extend( CZRModuleMths, {
         var module = this;
         //Prepare the modOpt and instantiate it
         var modOpt_candidate = module.prepareModOptForAPI( module().modOpt || {} );
-        console.log('modOpt_candidate', modOpt_candidate);
         module.czr_ModOpt = new module.modOptConstructor( modOpt_candidate );
         module.czr_ModOpt.ready();
         //update the module model on modOpt change
