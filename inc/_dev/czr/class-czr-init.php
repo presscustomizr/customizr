@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
         }
-
+        /* Social links*/
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',
             'settings'            => array( CZR_THEME_OPTIONS . '[tc_social_links]' ),

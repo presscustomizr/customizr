@@ -159,16 +159,6 @@
         /******************************************
         * HEADER
         ******************************************/
-          'tc_show_tagline' : function( to ) {
-            if ( false === to ) {
-              $('.site-description').hide('slow');
-              $(window).trigger('resize');
-            }
-            else {
-              $('.site-description').show('fast');
-              $(window).trigger('resize');
-            }
-          },
           'tc_display_boxed_navbar' : function( to ) {
             if ( false === to )
               $_body.addClass('no-navbar');
@@ -385,52 +375,8 @@
         /******************************************
         * SOCIALS
         ******************************************/
-          'tc_social_in_header' : function( to ) {
-            if ( false === to ) {
-              $('.tc-header .social-block').hide('slow');
-              $(window).trigger('resize');
-            }
-            else {
-              $('.tc-header .social-block').show('fast');
-              $(window).trigger('resize');
-            }
-          },
-          'tc_social_in_footer' : function( to ) {
-            if ( false === to ) {
-              $('.tc-footer-social-links-wrapper' , '#footer').hide('slow');
-              $(window).trigger('resize');
-            }
-            else {
-              $('.tc-footer-social-links-wrapper' , '#footer').show('fast');
-              $(window).trigger('resize');
-            }
-          },
-          'tc_social_in_left-sidebar' : function( to ) {
-            if ( false === to ) {
-              $('#left .social-block' , '.tc-sidebar').hide('slow');
-              $(window).trigger('resize');
-            }
-            else {
-              $('#left .social-block' , '.tc-sidebar').show('fast');
-              $(window).trigger('resize');
-            }
-          },
-          'tc_social_in_right-sidebar' : function( to ) {
-            if ( false === to ) {
-              $('#right .social-block' , '.tc-sidebar').hide('slow');
-              $(window).trigger('resize');
-            }
-            else {
-              $('#right .social-block' , '.tc-sidebar').show('fast');
-              $(window).trigger('resize');
-            }
-          },
           'tc_social_in_sidebar_title' : function( to ) {
             $( '.social-block .widget-title' , '.tc-sidebar' ).html( to );
-            if ( ! to )
-              $('.social-block' , '.tc-sidebar').hide('slow');
-            else
-              $('.social-block' , '.tc-sidebar').show('fast');
           },
         /******************************************
         * GRID

@@ -682,7 +682,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_sidenav_body_class( $_classes ){
-      $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
+      $_where = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
       array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;

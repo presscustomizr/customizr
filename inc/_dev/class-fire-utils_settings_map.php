@@ -623,7 +623,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,
-                                'transport'     => 'postMessage'
+                                'ubq_section'   => array(
+                                                    'section' => 'title_tagline',
+                                                    'priority' => '30'
+                                                 )
               ),
               'tc_woocommerce_header_cart' => array(
                                'default'   => 1,
@@ -807,17 +810,6 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
-                                'notice'        => sprintf( '%1$s<br/><br/>%2$s',
-                                  __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' ),
-                                  sprintf( __("To change the global header layout, %s" , "customizr"),
-                                    sprintf( '<a href="%1$s" title="%3$s">%2$s &raquo;</a>',
-                                      "javascript:wp.customize.section('header_layout_sec').focus();",
-                                      __("jump to the Design and Layout section" , "customizr"),
-                                      __("Change the header layout", "customizr")
-                                    )
-                                  )
-                                )
-
               ),
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
