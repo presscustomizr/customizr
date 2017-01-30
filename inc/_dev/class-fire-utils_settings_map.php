@@ -623,7 +623,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,
-                                'transport'     => 'postMessage'
+                                'ubq_section'   => array(
+                                                    'section' => 'title_tagline',
+                                                    'priority' => '30'
+                                                 )
               ),
               'tc_woocommerce_header_cart' => array(
                                'default'   => 1,

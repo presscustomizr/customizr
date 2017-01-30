@@ -3,11 +3,52 @@
           var _is_checked = function( to ) {
                   return 0 !== to && '0' !== to && false !== to && 'off' !== to;
           };
+          var _tagline_text;
+
           //when a dominus object define both visibility and action callbacks, the visibility can return 'unchanged' for non relevant servi
           //=> when getting the visibility result, the 'unchanged' value will always be checked and resumed to the servus control current active() state
           api.CZR_ctrlDependencies.prototype.dominiDeps = _.extend(
                 api.CZR_ctrlDependencies.prototype.dominiDeps,
                 [
+                    {
+                            dominus : 'blogdescription',
+                            servi   : ['tc_show_tagline', 'tc_sticky_show_tagline'],
+                            visibility : function( to, servusShortId ) {
+                                var _to_return = !_.isEmpty( to );
+                                //cross dependency
+                                if ( 'tc_sticky_show_tagline' == servusShortId ) {
+                                  _to_return = _to_return && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_sticky_header' ) ).get() ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_show_tagline' ) ).get() );
+                                }
+                                return _to_return;
+                            },
+                            actions : function( to, servusShortId ) {
+                                //save initial state of tagline text
+                                if ( typeof undefined === typeof _tagline_text ) {
+                                  _tagline_text = to;
+                                }
+
+                                var _servus            = api( api.CZR_Helpers.build_setId( servusShortId ) ),
+                                    _debounced_refresh = _.debounce( function() {
+                                      api.previewer.refresh();
+                                    }, 600 );
+
+                                /*
+                                *  trigger preview refresh when tagline text passes from empty to something and vice-versa
+                                *  only if tc_show_tagline is checked
+                                */
+                                if ( to != _tagline_text && 'tc_show_tagline' == servusShortId && _is_checked( _servus.get() ) ) {
+                                  /*
+                                  * 1. tagline was empty
+                                  * 2. new tagline is empty
+                                  */
+                                  if ( _.isEmpty( _tagline_text ) || _.isEmpty( to ) ) {
+                                    _debounced_refresh();
+                                  }
+                                }
+                                //save new state
+                                _tagline_text = to;
+                            }
+                    },
                     {
                           //we have to show restrict blog/home posts when
                           //1. show page on front and a page of posts is selected
@@ -283,6 +324,11 @@
                                   if ( 'tc_woocommerce_header_cart_sticky' == servusShortId ) {
                                     return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_woocommerce_header_cart' ) ).get() );
                                   }
+                                  //cross dependency
+                                  if ( 'tc_sticky_show_tagline' == servusShortId ) {
+                                    return !_.isEmpty( api( api.CZR_Helpers.build_setId( 'blogdescription' ) ).get() ) && _is_checked( to ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_show_tagline' ) ).get() );
+                                  }
+
                                   return _is_checked(to);
                             },
                     },
@@ -455,6 +501,21 @@
                                   //refresh the selecter
                                   api.control(wpMenuPositionSettingID).container.find('select').selecter('destroy').selecter({});
                             }
+                    },
+                    {
+                            //when user switches layout, make sure the menu is correctly aligned by default.
+                            dominus : 'tc_show_tagline',
+                            servi   : ['tc_sticky_show_tagline', 'tc_show_tagline'],
+                            visibility: function (to, servusShortId ) {
+                                  //since a tc_show_tagline dominus is in another section its visibility might not be processed
+                                  //if that section has not been awekened before tc_show_tagline one
+                                  var _to_return = !_.isEmpty( api( api.CZR_Helpers.build_setId( 'blogdescription' ) ).get() );
+                                  //cross dependency
+                                  if ( 'tc_sticky_show_tagline' == servusShortId ) {
+                                    _to_return  = _to_return && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_sticky_header' ) ).get() ) && _is_checked( to );
+                                  }
+                                  return _to_return;
+                            },
                     },
                     {
                             //when user switches layout, make sure the menu is correctly aligned by default.
