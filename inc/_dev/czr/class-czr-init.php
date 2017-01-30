@@ -178,7 +178,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           'title'   => "main" == $location ? __( 'Assign menus to locations' , 'customizr') : false,
           'type'    => 'select',
           'choices' => $choices,
-          'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority
+          'priority' => isset($_priorities[$location]) ? $_priorities[$location] : $_priority,
+          'notice' => __('If your freshly created menu is not listed, please refresh the customizer panel.', 'customizr')
         );
 
         //add a notice property if no menu created yet.
