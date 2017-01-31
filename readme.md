@@ -37,8 +37,7 @@ The exceptions to this license are as follows:
 * Hammer.JS - v2.0.4 - Copyright (c) 2014 Jorik Tangelder, MIT license
 * SmoothScroll - v1.3.8 (Balazs Galambosi), MIT license
 * Icon Set: Font Awesome is licensed under SIL OFL 1.1 and MIT License
-* The images screenshot.png, inc/assets/img/customizr-theme-customizer.png, inc/assets/img/customizr-theme-responsive.png, inc/admin/img/ are creations of Nicolas Guillaume and licensed under GPL v2+
-* All images in inc/assets/img/demo are licensed under CC0 in pixabay.com
+* The images screenshot.png, and all images under inc/admin/img/ are creations of Nicolas Guillaume and licensed under GPL v2+, or licensed under CC0 and found on pixabay.com or unsplash.com
 * The image slider-loader.gif is released under the WTFPL license (http://www.wtfpl.net/, GPL compatible), generated on http://ajaxload.info/
 
 

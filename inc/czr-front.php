@@ -3746,10 +3746,10 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
             //allow user to specify a custom image id
             $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
 
-            $fp_img = $this -> czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id);
-            $fp_img = $fp_img ? $fp_img : $fp_holder_img;
+            $fp_img                         = $this -> czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id);
+            $fp_img                         = $fp_img ? $fp_img : $fp_holder_img;
 
-            $fp_img                 = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
+            $fp_img                         = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
           }//end if
 
           //Let's render this
