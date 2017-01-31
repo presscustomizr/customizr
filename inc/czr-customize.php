@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
         }
-
+        /* Social links*/
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',
             'settings'            => array( CZR_THEME_OPTIONS . '[tc_social_links]' ),
@@ -1052,6 +1052,16 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                 'slideAdded'   => __('New Slide created ! Scroll down to edit it.', 'customizr'),
                 'slideTitle'   => __( 'Slide', 'customizr'),
                 'postSliderNote' => __( "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any.", "customizr" ),
+                'sidenavNote'  => sprintf( '%1$s<br/>%2$s',
+                                    __( 'The side on which the menu is revealed depends on the choosen header layout.', 'customizr'),
+                                    sprintf( __("To change the global header layout, %s" , "customizr"),
+                                      sprintf( '<a href="%1$s" title="%3$s">%2$s &raquo;</a>',
+                                        "javascript:wp.customize.section('header_layout_sec').focus();",
+                                        __("jump to the Design and Layout section" , "customizr"),
+                                        __("Change the header layout", "customizr")
+                                      )
+                                    )
+                                  )
           )
       );
     }

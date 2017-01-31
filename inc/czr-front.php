@@ -95,8 +95,6 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       add_filter( 'body_class'               , array( $this , 'czr_fn_add_body_classes') );
       //Set header classes from options
       add_filter( 'tc_header_classes'        , array( $this , 'czr_fn_set_header_classes') );
-      //Set tagline visibility with a customizer option (since 3.2.0)
-      add_filter( 'tc_tagline_display'       , array( $this , 'czr_fn_set_tagline_visibility') );
       //Set logo layout with a customizer option (since 3.2.0)
       add_filter( 'tc_logo_class'            , array( $this , 'czr_fn_set_logo_title_layout') );
     }
@@ -472,11 +470,20 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @since Customizr 3.0
 		*/
 		function czr_fn_tagline_display() {
+      //do not display tagline if the related option is false or no tagline available
+      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_tagline' ) ) )
+        return;
+
+      $_tagline_text  = apply_filters( 'tc_tagline_text', esc_attr__( get_bloginfo( 'description' ) ) );
+
+      if ( ! $_tagline_text )
+        return;
+
 			if ( '__header' == current_filter() ) { //when hooked on  __header
 
 				$html = sprintf('<div class="container outside"><%1$s class="site-description">%2$s</%1$s></div>',
 						apply_filters( 'tc_tagline_tag', 'h2' ),
-						apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ) )
+            $_tagline_text
 				);
 
 
@@ -484,11 +491,11 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				$html = sprintf('<%1$s class="%2$s inside site-description">%3$s</%1$s>',
 						apply_filters( 'tc_tagline_tag', 'h2' ),
 						apply_filters( 'tc_tagline_class', 'span7' ),
-						apply_filters( 'tc_tagline_text', __( esc_attr( get_bloginfo( 'description' ) ) ) )
+						$_tagline_text
 				);
 
 			}
-	        echo apply_filters( 'tc_tagline_display', $html );
+      echo apply_filters( 'tc_tagline_display', $html );
 		}//end of fn
 
 
@@ -656,22 +663,6 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         return true;
     }
 
-
-		/**
-   	* Callback for tagline view, filter : tc_tagline_display
-   	*
-   	* @package Customizr
-   	* @since Customizr 3.2.0
-   	*/
-		function czr_fn_set_tagline_visibility($html) {
-			//if customizing just hide it
-			if ( CZR___::$instance -> czr_fn_is_customizing() && 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_tagline') ) )
-				return str_replace('site-description"', 'site-description" style="display:none"', $html);
-			//live context, don't paint it at all
-			if ( ! CZR___::$instance -> czr_fn_is_customizing() && 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_tagline') ) )
-				return '';
-			return $html;
-		}
 
 
 		/**
@@ -1388,7 +1379,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_sidenav_body_class( $_classes ){
-      $_where = str_replace( 'pull-menu-', '', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
+      $_where = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
       array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;

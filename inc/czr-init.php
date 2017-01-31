@@ -3300,7 +3300,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,
-                                'transport'     => 'postMessage'
+                                'ubq_section'   => array(
+                                                    'section' => 'title_tagline',
+                                                    'priority' => '30'
+                                                 )
               ),
               'tc_woocommerce_header_cart' => array(
                                'default'   => 1,
@@ -3484,17 +3487,6 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
-                                'notice'        => sprintf( '%1$s<br/><br/>%2$s',
-                                  __( 'When the menu style is set to "Side Menu", the menu position is the side on which the menu will be revealed.' , 'customizr' ),
-                                  sprintf( __("To change the global header layout, %s" , "customizr"),
-                                    sprintf( '<a href="%1$s" title="%3$s">%2$s &raquo;</a>',
-                                      "javascript:wp.customize.section('header_layout_sec').focus();",
-                                      __("jump to the Design and Layout section" , "customizr"),
-                                      __("Change the header layout", "customizr")
-                                    )
-                                  )
-                                )
-
               ),
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
@@ -5336,6 +5328,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       foreach ( $fp_ids as $id ) {
         $priority = $priority + $incr;
         $fp_setting_control['tc_featured_page_'. $id]    =  array(
+                      'default'     => 0,
                       'label'       => isset($default['dropdown'][$id]) ? $default['dropdown'][$id] :  sprintf( __('Custom featured page %1$s' , 'customizr' ) , $id ),
                       'section'     => 'frontpage_sec' ,
                       'type'        => 'dropdown-pages' ,
@@ -5611,7 +5604,8 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       //only if user is logged in
       //then each routine has to decide what to do also depending on the user started before
       if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
-        $theme_options       = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
+        $theme_options            = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
+
 
         if ( ! empty( $theme_options ) ) {
 
@@ -5621,9 +5615,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
           $theme_options          = $_to_update ? $_new_options_w_socials : $theme_options;
 
           if ( $_to_update ) {
-
             update_option( CZR_THEME_OPTIONS, $theme_options );
-
           }
         }
       }
@@ -5635,6 +5627,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
     function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
       $_options = $theme_options;
 
+
       //nothing t do if already moved
       if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
         return array();
@@ -5644,7 +5637,26 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
         return array();
       }
 
-      $_old_socials = CZR_init::$instance -> socials;
+      $_old_socials          = CZR_init::$instance -> socials;
+      $_old_filtered_socials = apply_filters( 'tc_default_socials', $_old_socials );
+
+      /*
+      * old socials were in the form
+      * array( 'tc_twitter' => array( .., default=>'[url]' ,..) )
+      * need to be ported in the form
+      * array( 'tc_twitter' => '[url]' )
+      * before parse them in the options.
+      */
+      $_social_options       = array();
+      foreach ( $_old_filtered_socials as $social => $attrs ) {
+        if ( isset( $attrs['default'] ) ) {
+          $_social_options[$social] = $attrs['default'];
+        }
+      }
+
+      //merge options with the defaults socials
+      $_options     = wp_parse_args( $_options, $_social_options );
+
 
       $_to_update   = false;
       $_new_socials = array();
@@ -5652,40 +5664,33 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
 
       /*
       * rss needs a special treatment for old users, it was a default
-      * If it's not set in the options we have to set it with the default value
+      * If it doesn't exist in the options we have to set it with the default value
+      * if it exists but is null it will be skipped
       */
-      if ( ! isset( $theme_options[ 'tc_rss' ] ) ) {
-        $_options[ 'tc_rss' ] = $_old_socials[ 'tc_rss' ][ 'default' ];
-      }
+      foreach ( $_old_filtered_socials as $_old_social_id => $attributes ) {
+        if ( ! empty( $_options[ $_old_social_id ] ) ) {
 
-      foreach ( $_old_socials as $_old_social_id => $attributes ) {
+          //build new attributes
+          $_title       = isset( $attributes[ 'link_title' ] ) ? esc_attr( $attributes[ 'link_title' ] ) :  '';
+          $_social_icon = str_replace( array( 'tc_email', 'tc_'), array( 'fa-envelope', 'fa-' ), $_old_social_id );
 
-        if ( isset( $_options[ $_old_social_id ] ) ) {
-          if ( ! empty( $_options[ $_old_social_id ] ) ) {
+          // email needs a special treatment
+          $_social_link = esc_url_raw( 'tc_email' == $_old_social_id  ? sprintf( 'mailto:%s', $_options[ $_old_social_id ] ) : $_options[ $_old_social_id ] );
 
-            //build new attributes
-            $_title       = isset( $attributes[ 'link_title' ] ) ? esc_attr( $attributes[ 'link_title' ] ) :  '';
-            $_social_icon = str_replace( array( 'tc_email', 'tc_'), array( 'fa-envelope', 'fa-' ), $_old_social_id );
-
-            // email needs a special treatment
-            $_social_link = esc_url_raw( 'tc_email' == $_old_social_id  ? sprintf( 'mailto:%s', $_options[ $_old_social_id ] ) : $_options[ $_old_social_id ] );
-
-            if ( empty( $_social_link ) ) {
-              continue;
-            }
-
-            //create module
-            array_push( $_new_socials, array(
-                'id'            => "czr_social_module_{$_index}",
-                'title'         => $_title,
-                'social-icon'   => $_social_icon,
-                'social-link'   => $_social_link,
-                'social-target' => 1,
-                'social-color'  => "rgb(90,90,90)"
-              )
-            );
-            $_index++;
+          if ( empty( $_social_link ) ) {
+            continue;
           }
+
+          //create module
+          array_push( $_new_socials, array(
+              'id'            => "czr_social_module_{$_index}",
+              'title'         => $_title,
+              'social-icon'   => $_social_icon,
+              'social-link'   => $_social_link,
+              'social-target' => 1,
+            )
+          );
+          $_index++;
 
           $_to_update = true;
         }
@@ -5696,7 +5701,6 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
 
         //save the state in the options
         $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-
         array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
 
         return $theme_options;

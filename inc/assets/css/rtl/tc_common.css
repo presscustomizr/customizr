@@ -6790,6 +6790,8 @@ article .no-thumb figcaption {
   margin: 0 8%;
   padding: 0;
   overflow: hidden;
+  mask-image: linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 90%);
+  -webkit-mask-image: -webkit-linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 90%);
 }
 /*.tc-post-list-grid article:not(.expanded) .entry-summary{
   max-height: 75%;
