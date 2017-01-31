@@ -140,8 +140,8 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- */
     //@param img :array (url, width, height, is_intermediate), or false, if no image is available.
     function czr_fn_filter_thumb_src( $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id, $_img_attr, $tc_thumb_size ) {
-      // if ( ! empty($tc_thumb) )
-      //   return $tc_thumb;
+      if ( ! empty($tc_thumb) )
+        return $tc_thumb;
 
       $new_img_src = $this -> czr_fn_get_prevdem_img_src( $tc_thumb_size );
       if ( ! is_string($new_img_src) || empty($new_img_src) )

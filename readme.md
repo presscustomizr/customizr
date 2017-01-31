@@ -1,4 +1,4 @@
-# Customizr v3.5-beta [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.0 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,18 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.0 January 31st 2017 =
+* fixed : Trying to get property of non-object php notice when setting up WooCommerce
+* Imp : introduced Poppins as the new default Google font
+* Imp : changed default body line-height in pixelds to 1.6em
+* Imp: new screenshot
+* Imp: implemented an enhanced social links module in the customizer
+* Imp: improved compatibility with Woothemes Sensei plugin fixes #759
+* Imp: use lower tc-page-wrap and tc-sn z-index for compatibility reasons fixes #762
+* Imp: button toggle nav positioning improvments
+* Imp : added a notice for for freshly created menu not yet visible in the header main location
+* Imp: improve side menu positioning depending on the header layout
+
 = 3.4.38 January 21st 2017 =
 * Fix: fix default page menu behavior when dropdown on click submenu open #730
 * Imp: fix plugin php7 checker (wrong) compatibility issue #727 , #719
