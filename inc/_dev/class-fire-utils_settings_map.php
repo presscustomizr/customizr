@@ -604,6 +604,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                       'right'     => __( 'Logo / title on the right' , 'customizr' )
                               ),
                               'priority'      => 5,
+                              'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                               'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
               ),
               //enable/disable top border
@@ -619,10 +620,11 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_show_tagline'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'CZR_controls' ,
-                                'label'         => __( "Display the tagline" , "customizr" ),
+                                'label'         => __( "Display the tagline in the header" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,
+                                'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                                 'ubq_section'   => array(
                                                     'section' => 'title_tagline',
                                                     'priority' => '30'
@@ -645,6 +647,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'header_layout_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 20,
+                                'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                                 'ubq_section'   => array(
                                                     'section' => 'socials_sec',
                                                     'priority' => '1'
