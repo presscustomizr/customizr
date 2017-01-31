@@ -10201,6 +10201,7 @@ $.extend( CZRSocialModuleMths, {
             'meanpath',
             'medium',
             'mixcloud',
+            'mobile',
             'modx',
             'odnoklassniki',
             'odnoklassniki-square',
@@ -10210,6 +10211,8 @@ $.extend( CZRSocialModuleMths, {
             'optin-monster',
             'pagelines',
             'paypal',
+            'phone',
+            'phone-square',
             'pied-piper',
             'pied-piper-alt',
             'pinterest',
@@ -10283,7 +10286,7 @@ $.extend( CZRSocialModuleMths, {
           this.defaultModOptModel = {
               is_mod_opt : true,
               module_id : module.id,
-              'social-size' : 14
+              'social-size' : serverControlParams.social_el_params.defaultSocialSize || 14
           };
 
           //declares a default model
