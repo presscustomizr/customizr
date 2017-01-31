@@ -2651,6 +2651,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       foreach ( $fp_ids as $id ) {
         $priority = $priority + $incr;
         $fp_setting_control['tc_featured_page_'. $id]    =  array(
+                      'default'     => 0,
                       'label'       => isset($default['dropdown'][$id]) ? $default['dropdown'][$id] :  sprintf( __('Custom featured page %1$s' , 'customizr' ) , $id ),
                       'section'     => 'frontpage_sec' ,
                       'type'        => 'dropdown-pages' ,
