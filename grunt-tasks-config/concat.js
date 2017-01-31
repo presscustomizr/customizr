@@ -116,11 +116,18 @@ module.exports = {
     dest: '<%= paths.czr_assets %>css/czr-control.css'
   },
   czr_control_js : {
-    src: [ '<%= paths.czr_assets %>/_dev/js/czr-control-*.js', ' ! <%= paths.czr_assets %>/_dev/js/*.min.js'],
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-control-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-deps.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-dom_ready.js'
+    ],
     dest: '<%= paths.czr_assets %>js/czr-control.js'
   },
   czr_preview_js : {
-    src: ['<%= paths.czr_assets %>/_dev/js/czr-preview-*.js', '<%= paths.czr_assets %>/_dev/js/*.min.js'],
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-post_message.js',
+    ],
     dest: '<%= paths.czr_assets %>js/czr-preview.js'
   },
 };
