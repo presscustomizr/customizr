@@ -1097,14 +1097,14 @@ class CZR_slider {
 
     switch ( $id ) {
       case 1 :
-        $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
-        $data['link_url']     = esc_url( 'http://docs.presscustomizr.com/article/102-customizr-theme-options-front-page/#front-page-slider' );
-        $data['button_text']  = __( 'Check the front page slider doc &raquo;' , 'customizr');
+        //$data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
+        $data['link_url']     = esc_url( 'http://presscustomizr.com/customizr' );
+        $data['button_text']  = __( 'Discover the Customizr WordPress theme &raquo;' , 'customizr');
       break;
 
       case 2 :
-        $data['title']        = __( 'Easily create sliders and add them in any posts or pages.', 'customizr' );
-        $data['link_url']     = esc_url( 'http://docs.presscustomizr.com/article/3-creating-a-slider-with-customizr-wordpress-theme' );
+        $data['title']        = __( 'Discover how to replace or remove this demo slider.', 'customizr' );
+        $data['link_url']     = esc_url( 'http://presscustomizr.com/article/102-customizr-theme-options-front-page/#front-page-slider' );
         $data['button_text']  = __( 'Check the slider doc now &raquo;' , 'customizr');
       break;
     };
