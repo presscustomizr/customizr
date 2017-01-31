@@ -314,7 +314,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  'active',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'assets/front/img/customizr-theme.png',
+                                          TC_BASE_URL.'assets/front/img/demo_slide_1.png',
                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
@@ -328,7 +328,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  '',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'assets/front/img/customizr-theme-customizer.png',
+                                          TC_BASE_URL.'assets/front/img/demo_slide_2.png',
                                           __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                   )
             )

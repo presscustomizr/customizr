@@ -852,7 +852,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  'active',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
+                                          TC_BASE_URL.'assets/front/img/demo_slide_1.png',
                                           __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
@@ -866,7 +866,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'active'        =>  '',
               'color_style'   =>  '',
               'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                          TC_BASE_URL.'assets/front/img/customizr-theme-customizer.png',
+                                          TC_BASE_URL.'assets/front/img/demo_slide_2.png',
                                           __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                   )
             )
@@ -8685,6 +8685,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
       //adds infos in the caption data of the demo slider
       add_filter('tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+      add_filter('tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
 
       //SINGLE POSTS
       add_filter('tc_show_single_post_thumbnail', '__return_true');
@@ -8794,8 +8795,8 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- */
     //@param img :array (url, width, height, is_intermediate), or false, if no image is available.
     function czr_fn_filter_thumb_src( $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id, $_img_attr, $tc_thumb_size ) {
-      if ( ! empty($tc_thumb) )
-        return $tc_thumb;
+      // if ( ! empty($tc_thumb) )
+      //   return $tc_thumb;
 
       $new_img_src = $this -> czr_fn_get_prevdem_img_src( $tc_thumb_size );
       if ( ! is_string($new_img_src) || empty($new_img_src) )
@@ -8908,22 +8909,22 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
         $slides = array(
             1 => array(
               'active'        =>  'active',
+              'slide_background'  =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                        TC_BASE_URL.'assets/front/img/customizr-theme.png',
+                                        __( 'Customizr is a clean responsive theme' , 'customizr' )
+                                  )
+            ),
+            2 => array(
               'slide_background' => sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
                                     $this -> czr_fn_get_prevdem_img_src( 'slider', '4' ),
                                     __( 'Customizr is a clean responsive theme' , 'customizr' )
                                 )
             ),
-            2 => array(
+            3 => array(
               'slide_background' => sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
                                         $this -> czr_fn_get_prevdem_img_src( 'slider' ),
                                         __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                 )
-            ),
-            3 => array(
-              'slide_background'  =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                        TC_BASE_URL.'assets/front/img/customizr-theme-responsive.png',
-                                        __( 'Customizr is a clean responsive theme' , 'customizr' )
-                                  )
             )
         );
         $new_slides = array();
@@ -8940,12 +8941,18 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
 
         switch ( $id ) {
           case 1 :
-            $data['title']        = __( 'The Customizr theme fits nicely on any mobile devices.', 'customizr' );
+            $data['title']        = '';
             $data['link_url']     = 'javascript:void(0)';
             $data['button_text']  = '';//__( 'Call to action' , 'customizr');
           break;
 
           case 2 :
+            $data['title']        = __( 'The Customizr theme fits nicely on any mobile devices.', 'customizr' );
+            $data['link_url']     = 'javascript:void(0)';
+            $data['button_text']  = '';//__( 'Call to action' , 'customizr');
+          break;
+
+          case 3 :
             $data['title']        = __( 'Engage your visitors with a carousel in any pages.', 'customizr' );
             $data['link_url']     = 'javascript:void(0)';
             $data['button_text']  = __( 'Call to action' , 'customizr');
@@ -8954,6 +8961,11 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
 
         $data['link_target'] = '_blank';
         return $data;
+    }
+
+
+    function czr_fn_set_demo_slider_delay() {
+      return 6000;
     }
 
 

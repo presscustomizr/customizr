@@ -286,7 +286,7 @@ class CZR_slider_model_class extends CZR_Model {
         'link_target'   =>  '_blank',
         'color_style'   =>  '',
         'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/customizr-theme.png',
+                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/demo_slide_1.png',
                                     __( 'Customizr is a clean responsive theme' , 'customizr' )
                             )
       ),
@@ -299,7 +299,7 @@ class CZR_slider_model_class extends CZR_Model {
         'link_target'   =>  '_blank',
         'color_style'   =>  '',
         'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/customizr-theme-customizer.png',
+                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/demo_slide_2.png',
                                     __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                             )
       )
