@@ -95,6 +95,26 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
         }
+        /* Header */
+        $wp_customize->selective_refresh->add_partial( 'main_header', array(
+            'selector'            => 'header.tc-header',
+            'settings'            => array(
+              CZR_THEME_OPTIONS . '[tc_header_layout]',
+              CZR_THEME_OPTIONS . '[tc_show_tagline]',
+              CZR_THEME_OPTIONS . '[tc_social_in_header]',
+            ),
+            'container_inclusive' => true,
+            'render_callback'     => 'czr_fn_render_main_header',
+            'fallback_refresh'    => false,
+        ) );
+        /* Tagline text */
+        $wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+            'selector'            => '.site-description',
+            'settings'            => array( 'blogdescription' ),
+            'container_inclusive' => false,
+            'render_callback'     => 'czr_fn_get_tagline_text',
+            'fallback_refresh'    => false,
+        ) );
         /* Social links*/
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',
@@ -803,14 +823,16 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
       //preview scripts
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt in HU_utils
-      add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_customize_preview_js' ), 20 );
+      add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_customize_preview_js_css' ), 20 );
       //exports some wp_query informations. Updated on each preview refresh.
       add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_add_preview_footer_action' ), 20 );
+
+
     }
 
 
     //hook : customize_preview_init
-    function czr_fn_customize_preview_js() {
+    function czr_fn_customize_preview_js_css() {
       global $wp_version;
 
       //DEV MODE
@@ -858,12 +880,30 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' ),
                 'blogname' => get_bloginfo('name'),
               )
-             )
-          );
+            )
+      );
+
+      add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style' ) );
     }
 
 
+    function czr_fn_write_preview_style( $_css ) {
+      //specific preview style
+      return sprintf( "%s\n%s",
+          $_css,
+          '/* Fix partial edit shortcut conflict with bootstrap .span first child of a .row */
+.row [class*=customize-partial-edit-shortcut]:first-child + [class*=span],
+.row-fluid [class*=customize-partial-edit-shortcut]:first-child + [class*=span] {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* Fine tune pencil icon in the header */
+.tc-header > .customize-partial-edit-shortcut > button {
+  left: 0
+}'
+      );
 
+    }
     /**
      * Add script to controls
      * Dependency : customize-controls located in wp-includes/script-loader.php

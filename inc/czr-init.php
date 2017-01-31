@@ -452,6 +452,39 @@ if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
     echo CZR_utils::$inst->czr_fn_get_social_networks();
   }
 }
+
+/**
+* helper
+* Renders the main header
+* @return  void
+*/
+if ( ! function_exists( 'czr_fn_render_main_header' ) ) {
+  function czr_fn_render_main_header() {
+    CZR_header_main::$instance->czr_fn_set_header_options();
+  ?>
+    <header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>" role="banner">
+    <?php
+      // The '__header' hook is used with the following callback functions (ordered by priorities) :
+      //CZR_header_main::$instance->tc_logo_title_display(), CZR_header_main::$instance->czr_fn_tagline_display(), CZR_header_main::$instance->czr_fn_navbar_display()
+      do_action( '__header' );
+    ?>
+    </header>
+  <?php
+  }
+}
+/**
+* helper
+* Renders or returns the filtered and escaped tagline
+* @return  void
+*/
+if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
+  function czr_fn_get_tagline_text( $echo = true ) {
+    $tagline_text = apply_filters( 'tc_tagline_text', esc_attr__( get_bloginfo( 'description' ) ) );
+    if ( ! $echo )
+      return $tagline_text;
+    echo $tagline_text;
+  }
+}
 ?><?php
 /**
 * Fires the pro theme : constants definition, core classes loading
@@ -3281,6 +3314,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                       'right'     => __( 'Logo / title on the right' , 'customizr' )
                               ),
                               'priority'      => 5,
+                              'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                               'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
               ),
               //enable/disable top border
@@ -3296,10 +3330,11 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               'tc_show_tagline'  =>  array(
                                 'default'       => 1,
                                 'control'       => 'CZR_controls' ,
-                                'label'         => __( "Display the tagline" , "customizr" ),
+                                'label'         => __( "Display the tagline in the header" , "customizr" ),
                                 'section'       => 'header_layout_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 15,
+                                'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                                 'ubq_section'   => array(
                                                     'section' => 'title_tagline',
                                                     'priority' => '30'
@@ -3322,6 +3357,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'     => 'header_layout_sec' ,
                                 'type'        => 'checkbox' ,
                                 'priority'      => 20,
+                                'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                                 'ubq_section'   => array(
                                                     'section' => 'socials_sec',
                                                     'priority' => '1'

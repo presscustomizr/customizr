@@ -5572,6 +5572,7 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
 /* Adjustment when tagline off */
 .sticky-enabled .tc-tagline-off .btn-toggle-nav {
   margin-top: 8px;
+  margin-bottom: 8px;
 }
 .navbar .btn-toggle-nav .btn {
   -webkit-border-radius: 0px;
@@ -6790,8 +6791,8 @@ article .no-thumb figcaption {
   margin: 0 8%;
   padding: 0;
   overflow: hidden;
-  mask-image: linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 90%);
-  -webkit-mask-image: -webkit-linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 90%);
+  mask-image: linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: -webkit-linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 100%);
 }
 /*.tc-post-list-grid article:not(.expanded) .entry-summary{
   max-height: 75%;

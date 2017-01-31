@@ -9371,14 +9371,12 @@ b.extend(a.controlConstructor,{czr_cropped_image:a.CZRCroppedImageControl})),a.c
                                   _tagline_text = to;
                                 }
 
-                                var _servus            = api( api.CZR_Helpers.build_setId( servusShortId ) ),
-                                    _debounced_refresh = _.debounce( function() {
-                                      api.previewer.refresh();
-                                    }, 600 );
-                                if ( to != _tagline_text && 'tc_show_tagline' == servusShortId && _is_checked( _servus.get() ) ) {
+                                var _servus            = api( api.CZR_Helpers.build_setId( servusShortId ) );
+                                if ( to != _tagline_text && 'tc_show_tagline' == servusShortId ) {
                                   if ( _.isEmpty( _tagline_text ) || _.isEmpty( to ) ) {
-                                    _debounced_refresh();
+                                    _servus( ! _.isEmpty( to ) );
                                   }
+
                                 }
                                 _tagline_text = to;
                             }

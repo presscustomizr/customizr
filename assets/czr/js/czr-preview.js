@@ -295,10 +295,6 @@
 
 } )( wp.customize, jQuery, _ );(function (api, $, _ ) {
       var $_body    = $( 'body' ),
-          $_brand   = $( '.brand' ),
-          $_header  = $( '.tc-header' ),
-          $_bmenu   = $_header.find('.btn-toggle-nav'),
-          $_sidenav = $( '#tc-sn' ),
           setting_cbs = api.CZR_preview.prototype.setting_cbs || {},
           subsetting_cbs = api.CZR_preview.prototype.subsetting_cbs || {},
           _settings_cbs;
@@ -313,6 +309,9 @@
             $( 'a.site-title' ).text( to );
           },
           'blogdescription' : function(to) {
+            //do nothing if this setting has partial refresh
+            if ( _customizePartialRefreshExports && 'undefined' !== typeof _customizePartialRefreshExports.partials && 'undefined' !== typeof _customizePartialRefreshExports.partials.blogdescription )
+              return;
             $( 'h2.site-description' ).text( to );
           },
           'tc_skin' : function( to ) {
@@ -461,27 +460,23 @@
               $_body.removeClass('no-navbar');
           },
           'tc_header_layout' : function( to ) {
-                  var _current_header_class = $_header.attr('class').match(/logo-(left|right|centered)/),
-                      _current_bmenu_class, _current_brand_class;
+                //sidenav
+                /*
+                * move the sidenav from the current position to the new one,
+                * this means change the sidenav class sn-left|right(-eventual_effect)
+                */
+                if (  $( '#tc-sn' ).length > 0 ) {
+                  var _refresh            = false,
+                      _current_class      = $_body.attr('class').match(/sn-(left|right)(-\w+|$|\s)/),
+                      _new_class          = 'right' != to ? 'right' : 'left';
 
-                  if ( ! ( _current_header_class && _current_header_class[0] ) )
+                  if ( ! ( _current_class && _current_class.length > 2 ) )
                     return;
 
-                  _current_header_class = _current_header_class[0];
+                  $_body.removeClass( _current_class[0] ).
+                         addClass( _current_class[0].replace( _current_class[1] , _new_class ) );
+                }
 
-                  _current_bmenu_class  = 'logo-right' == _current_header_class ? 'pull-left' : 'pull-right';
-
-                  $_header.removeClass( _current_header_class ).addClass( 'logo-' + to );
-                  $_bmenu.removeClass( _current_bmenu_class ).addClass( 'right' == to ? 'pull-left' : 'pull-right');
-
-                  if ( "centered" != to ){
-                    _current_brand_class = 'logo-right' == _current_header_class ? 'pull-right' : 'pull-left';
-                    $_brand.removeClass( _current_brand_class ).addClass( 'pull' + to );
-            }
-
-            setTimeout( function() {
-              $('.brand').trigger('resize');
-            } , 400);
           },
           'tc_menu_position' : function( to ) {
             if ( 'aside' != api( api.CZR_preview.prototype._build_setId('tc_menu_style') ).get() ) {
@@ -489,33 +484,6 @@
                 $('.navbar-wrapper').addClass(to).removeClass('pull-menu-right');
               else
                 $('.navbar-wrapper').addClass(to).removeClass('pull-menu-left');
-            }
-
-            //sidenav
-            /*
-            * move the sidenav from the current position to the new one,
-            * this means change the sidenav class sn-left|right(-eventual_effect)
-            * If already open, before the replacement takes place, we close the sidenav,
-            * and simulate a click(touchstart) to re-open it afterwards
-            */
-            if (  $_sidenav.length > 0 ){
-              var _refresh            = false,
-                  _current_class      = $_body.attr('class').match(/sn-(left|right)(-\w+|$|\s)/);
-
-              if ( ! ( _current_class && _current_class.length > 2 ) )
-                return;
-
-              if ( $_body.hasClass('tc-sn-visible') ) {
-                  $_body.removeClass('tc-sn-visible');
-                  _refresh = true;
-              }
-              $_body.removeClass( _current_class[0] ).
-                     addClass( _current_class[0].replace( _current_class[1] , to.substr(10) ) ); // 10 = length of 'pull-menu-'
-              if ( _refresh ) {
-                setTimeout( function(){
-                    $_bmenu.trigger('click').trigger('touchstart');
-                }, 200);
-              }
             }
           },
           'tc_second_menu_position' : function(to) {
@@ -548,29 +516,29 @@
           },
           'tc_sticky_show_tagline' : function( to ) {
             if ( false !== to )
-              $_header.addClass('tc-tagline-on').removeClass('tc-tagline-off').trigger('resize');
+              $( '.tc-header' ).addClass('tc-tagline-on').removeClass('tc-tagline-off').trigger('resize');
             else
-              $_header.addClass('tc-tagline-off').removeClass('tc-tagline-on').trigger('resize');
+              $( '.tc-header' ).addClass('tc-tagline-off').removeClass('tc-tagline-on').trigger('resize');
           },
           'tc_sticky_show_title_logo' : function( to ) {
             if ( false !== to ) {
-              $_header.addClass('tc-title-logo-on').removeClass('tc-title-logo-off').trigger('resize');
+              $( '.tc-header' ).addClass('tc-title-logo-on').removeClass('tc-title-logo-off').trigger('resize');
             }
             else {
-              $_header.addClass('tc-title-logo-off').removeClass('tc-title-logo-on').trigger('resize');
+              $( '.tc-header' ).addClass('tc-title-logo-off').removeClass('tc-title-logo-on').trigger('resize');
             }
           },
           'tc_sticky_shrink_title_logo' : function( to ) {
             if ( false !== to )
-              $_header.addClass('tc-shrink-on').removeClass('tc-shrink-off').trigger('resize');
+              $( '.tc-header' ).addClass('tc-shrink-on').removeClass('tc-shrink-off').trigger('resize');
             else
-              $_header.addClass('tc-shrink-off').removeClass('tc-shrink-on').trigger('resize');
+              $( '.tc-header' ).addClass('tc-shrink-off').removeClass('tc-shrink-on').trigger('resize');
           },
           'tc_sticky_show_menu' : function( to ) {
             if ( false !== to )
-              $_header.addClass('tc-menu-on').removeClass('tc-menu-off').trigger('resize');
+              $( '.tc-header' ).addClass('tc-menu-on').removeClass('tc-menu-off').trigger('resize');
             else
-              $_header.addClass('tc-menu-off').removeClass('tc-menu-on').trigger('resize');
+              $( '.tc-header' ).addClass('tc-menu-off').removeClass('tc-menu-on').trigger('resize');
           },
           'tc_sticky_z_index' : function( to ) {
             $('.tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header').css('z-index' , to);
@@ -587,9 +555,9 @@
           },
           'tc_woocommerce_header_cart_sticky' : function( to ) {
             if ( false !== to )
-              $_header.addClass('tc-wccart-on').removeClass('tc-wccart-off').trigger('resize');
+              $( '.tc-header' ).addClass('tc-wccart-on').removeClass('tc-wccart-off').trigger('resize');
             else
-              $_header.addClass('tc-wccart-off').removeClass('tc-wccart-on').trigger('resize');
+              $( '.tc-header' ).addClass('tc-wccart-off').removeClass('tc-wccart-on').trigger('resize');
           },
         /******************************************
         * SLIDER
