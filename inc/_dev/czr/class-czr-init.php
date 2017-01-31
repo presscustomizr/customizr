@@ -95,6 +95,26 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
         }
+        /* Header */
+        $wp_customize->selective_refresh->add_partial( 'main_header', array(
+            'selector'            => 'header.tc-header',
+            'settings'            => array(
+              CZR_THEME_OPTIONS . '[tc_header_layout]',
+              CZR_THEME_OPTIONS . '[tc_show_tagline]',
+              CZR_THEME_OPTIONS . '[tc_social_in_header]',
+            ),
+            'container_inclusive' => true,
+            'render_callback'     => 'czr_fn_render_main_header',
+            'fallback_refresh'    => false,
+        ) );
+        /* Tagline text */
+        $wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+            'selector'            => '.site-description',
+            'settings'            => array( 'blogdescription' ),
+            'container_inclusive' => false,
+            'render_callback'     => 'czr_fn_get_tagline_text',
+            'fallback_refresh'    => false,
+        ) );
         /* Social links*/
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',

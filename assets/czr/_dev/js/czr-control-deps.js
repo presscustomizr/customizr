@@ -27,23 +27,20 @@
                                   _tagline_text = to;
                                 }
 
-                                var _servus            = api( api.CZR_Helpers.build_setId( servusShortId ) ),
-                                    _debounced_refresh = _.debounce( function() {
-                                      api.previewer.refresh();
-                                    }, 600 );
+                                var _servus            = api( api.CZR_Helpers.build_setId( servusShortId ) );
 
                                 /*
-                                *  trigger preview refresh when tagline text passes from empty to something and vice-versa
-                                *  only if tc_show_tagline is checked
+                                *  trigger partial refresh when tagline text passes from empty to something and vice-versa
                                 */
-                                if ( to != _tagline_text && 'tc_show_tagline' == servusShortId && _is_checked( _servus.get() ) ) {
+                                if ( to != _tagline_text && 'tc_show_tagline' == servusShortId ) {
                                   /*
                                   * 1. tagline was empty
                                   * 2. new tagline is empty
                                   */
                                   if ( _.isEmpty( _tagline_text ) || _.isEmpty( to ) ) {
-                                    _debounced_refresh();
+                                    _servus( ! _.isEmpty( to ) );
                                   }
+
                                 }
                                 //save new state
                                 _tagline_text = to;
