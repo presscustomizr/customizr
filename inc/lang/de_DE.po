@@ -2827,7 +2827,7 @@ msgstr "Glauben Sie, dass Sie eine außerordentliche Website erstellt haben, die
 
 #: inc/czr-admin.php:641
 msgid "This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design."
-"Project-Id-Version: * Customizr v3.5.0\n"
+"Project-Id-Version: * Customizr v3.5.1\n"
 
 #: inc/czr-admin.php:640
 msgid "Find inspiration for your next Customizr based website!"

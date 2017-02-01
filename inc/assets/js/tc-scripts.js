@@ -5109,17 +5109,29 @@ var czrapp = czrapp || {};
         $_window         : $(window),
         $_html           : $('html'),
         $_body           : $('body'),
-        $_tcHeader       : $('.tc-header'),
         $_wpadminbar     : $('#wpadminbar'),
-
         //various properties definition
         localized        : TCParams || {},
         is_responsive    : this.isResponsive(),//store the initial responsive state of the window
         current_device   : this.getDevice()//store the initial device
       });
+
+      this.cacheInnerElements();
+
       return czrapp;
     },
 
+    /**
+    * Cache those jQuery elements which are inside the body
+    * @return {[type]} [description]
+    */
+    cacheInnerElements : function() {
+      $.extend( czrapp, {
+        //cache various jQuery body inner el in czrapp obj
+        $_tcHeader       : $('.tc-header')
+      });
+      return czrapp;
+    },
 
     /***************************************************************************
     * CUSTOM EVENTS
@@ -5141,6 +5153,15 @@ var czrapp = czrapp || {};
         czrapp.current_device = _to;
         czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
       } );//resize();
+
+      /*-----------------------------------------------------
+      - > CUSTOM REFRESH CACHE EVENT on partial content rendered (customizer preview)
+      ------------------------------------------------------*/
+      if ( 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
+        wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function(placement) {
+          czrapp.cacheInnerElements().$_body.trigger('partialRefresh.czr', placement);
+        });
+      }
 
       return czrapp;
     },
@@ -5217,6 +5238,7 @@ var czrapp = czrapp || {};
     },
 
     bind: function( id ) {
+      //'partial-content-rendered'
       this.topics = this.topics || {};
       this.topics[ id ] = this.topics[ id ] || $.Callbacks();
       this.topics[ id ].add.apply( this.topics[ id ], slice.call( arguments, 1 ) );
@@ -6050,12 +6072,12 @@ var czrapp = czrapp || {};
   var _methods =  {
     init : function() {
       //cache jQuery el
-      this.$_sticky_logo    = $('img.sticky', '.site-logo');
-      this.$_resetMarginTop = $('#tc-reset-margin-top');
+      this.stickyHeaderCacheElements();
+
       //subclass properties
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
       this.customOffset     = TCParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
-      this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
@@ -6072,6 +6094,12 @@ var czrapp = czrapp || {};
       czrapp.$_body.trigger( 'sticky-enabled-on-load' , { on : 'load' } );
     },
 
+    stickyHeaderCacheElements : function() {
+      //cache jQuery el
+      this.$_resetMarginTop = $('#tc-reset-margin-top');
+      this.$_sticky_logo    = $('img.sticky', '.site-logo');
+      this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+    },
 
     stickyHeaderEventListener : function() {
       //LOADING ACTIONS
@@ -6083,6 +6111,14 @@ var czrapp = czrapp || {};
       //RESIZING ACTIONS
       czrapp.$_window.on( 'tc-resize', function() {
         self.stickyHeaderEventHandler('resize');
+      });
+
+      //PARTIAL REFRESH ACTIONS
+      czrapp.$_body.on( 'partialRefresh.czr', function( e, placement ) {
+        if ( placement.container.hasClass('tc-header') ) {
+          self.stickyHeaderCacheElements();
+          self.stickyHeaderEventHandler('resize');
+        }
       });
 
       //SCROLLING ACTIONS
@@ -6636,15 +6672,26 @@ var czrapp = czrapp || {};
       this._place_dropdowns();
     },//init()
 
+
+    dropdownPlaceCacheElements : function() {
+      //cache jQuery el
+      this.$_nav_collapse           = czrapp.$_tcHeader.length > 0 ? czrapp.$_tcHeader.find( '.navbar-wrapper .nav-collapse' ) : [];
+      this.$_nav                    = this.$_nav_collapse.length ? this.$_nav_collapse.find( '.nav' ) : [];
+      this.$_navbar_wrapper         = this.$_nav_collapse.length ? this.$_nav_collapse.closest( '.navbar-wrapper' ) : [];
+    },
+
     /***********************************************
     * DOM EVENT LISTENERS AND HANDLERS
     ***********************************************/
     dropdownPlaceEventListener : function() {
       var self    = this,
-          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns';
+          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
 
       //Any event which may have resized the header
-      czrapp.$_body.on( _events, function( evt ) {
+      czrapp.$_body.on( _events, function( evt, data ) {
+        if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container.hasClass('tc-header')  ) {
+          self.dropdownPlaceCacheElements();
+        }
         self.dropdownPlaceEventHandler( evt, 'resize' );
       });
     },

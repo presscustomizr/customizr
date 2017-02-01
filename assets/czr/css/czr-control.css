@@ -3018,13 +3018,13 @@ li[id*="customize-control-"].tc-grid-design {
   margin-bottom: 8px;
 }
 
-.tc-sub-control {
+li[id*="customize-control-"].tc-sub-control {
   padding-left: 13%;
   max-width: 87%;
   position: relative;
 }
 
-.tc-sub-control:before {
+li[id*="customize-control-"].tc-sub-control:before {
   content: "";
   height: 116%;
   background: #008ec2;

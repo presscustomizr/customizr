@@ -510,7 +510,7 @@
               //$('#tc-reset-margin-top').css('margin-top' , '');
             }
             else {
-              $_body.removeClass('tc-sticky-header').trigger('resize');
+              $_body.removeClass('tc-sticky-header sticky-enabled').trigger('resize');
               $('#tc-reset-margin-top').css('margin-top' , '' );
             }
           },

@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.1 February 1st 2017 =
+* fixed : compatibility issue with PHP<5.5
+* fixed: customizer header partial refresh not correctly working
+
 = 3.5.0 January 31st 2017 =
 * fixed : Trying to get property of non-object php notice when setting up WooCommerce
 * Imp : introduced Poppins as the new default Google font
