@@ -6430,7 +6430,7 @@ article .author-info h2,
   min-height: 18px;
   display: inline-block;
   font-size: 10px;
-  line-height: 17px;
+  line-height: 18px;
   text-align: center;
   background: none;
   -webkit-transition: bottom .3s ease;
@@ -6781,6 +6781,8 @@ article .no-thumb figcaption {
   margin: 0 8%;
   padding: 0;
   overflow: hidden;
+}
+.mask .entry-summary {
   mask-image: linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-image: -webkit-linear-gradient(top, #000000 70%, rgba(0, 0, 0, 0) 100%);
 }

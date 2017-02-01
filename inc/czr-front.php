@@ -5743,7 +5743,11 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           $_thumb_html = apply_filters( 'tc-grid-thumb-html' , $_thumb_html );
 
           // CONTENT : get the figcaption content => post content
-          $_post_content_html               = $this -> czr_fn_grid_get_single_post_html( isset( $_layout['content'] ) ? $_layout['content'] : 'span6' );
+          $post_list_content_class          = array(
+              isset( $_layout['content'] ) ? $_layout['content'] : 'span6',
+              CZR___::czr_fn_is_pro() ? '' : 'mask'//no css mask for the pro grid
+          );
+          $_post_content_html               = $this -> czr_fn_grid_get_single_post_html( implode( ' ', $post_list_content_class ) );
 
           // ADD A WRAPPER CLASS : build single grid post wrapper class
           $_classes  = array('tc-grid-figure');
@@ -5993,6 +5997,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
 
         /**
         * @return the figcation content as a string
+        * @param  $post_list_content_class string
         * inside loop
         */
         private function czr_fn_grid_get_single_post_html( $post_list_content_class ) {
