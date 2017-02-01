@@ -75,17 +75,29 @@ var czrapp = czrapp || {};
         $_window         : $(window),
         $_html           : $('html'),
         $_body           : $('body'),
-        $_tcHeader       : $('.tc-header'),
         $_wpadminbar     : $('#wpadminbar'),
-
         //various properties definition
         localized        : TCParams || {},
         is_responsive    : this.isResponsive(),//store the initial responsive state of the window
         current_device   : this.getDevice()//store the initial device
       });
+
+      this.cacheInnerElements();
+
       return czrapp;
     },
 
+    /**
+    * Cache those jQuery elements which are inside the body
+    * @return {[type]} [description]
+    */
+    cacheInnerElements : function() {
+      $.extend( czrapp, {
+        //cache various jQuery body inner el in czrapp obj
+        $_tcHeader       : $('.tc-header')
+      });
+      return czrapp;
+    },
 
     /***************************************************************************
     * CUSTOM EVENTS
@@ -107,6 +119,15 @@ var czrapp = czrapp || {};
         czrapp.current_device = _to;
         czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
       } );//resize();
+
+      /*-----------------------------------------------------
+      - > CUSTOM REFRESH CACHE EVENT on partial content rendered (customizer preview)
+      ------------------------------------------------------*/
+      if ( 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
+        wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function(placement) {
+          czrapp.cacheInnerElements().$_body.trigger('partialRefresh.czr', placement);
+        });
+      }
 
       return czrapp;
     },
@@ -183,6 +204,7 @@ var czrapp = czrapp || {};
     },
 
     bind: function( id ) {
+      //'partial-content-rendered'
       this.topics = this.topics || {};
       this.topics[ id ] = this.topics[ id ] || $.Callbacks();
       this.topics[ id ].add.apply( this.topics[ id ], slice.call( arguments, 1 ) );
