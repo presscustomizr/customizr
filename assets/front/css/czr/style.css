@@ -12,19 +12,6 @@
   overflow: hidden;
 }*/
 
-/*
-* In desktops when resizing below the "collapsing mobil menu" treshold
-* always expand submenus when .tc-open-on-hover
-*/
-@media (max-width: 991px){
-  body:not(.tc-is-mobile) .tc-open-on-hover .dropdown-menu {
-    display: block !important;
-  }
-  body:not(.tc-is-mobile) .tc-open-on-hover .caret__dropdown-toggler {
-    display: none !important;
-  }
-}
-
 /* end HEADER HACK */
 
 /* VARIOUS */
@@ -42,20 +29,7 @@ img.post-thumbnail {
   width: 100%;
 }
 
-/* JS IMAGE CENTERING */
-img.h-centered {
-  width: auto!important;
-  max-width: none!important;
-  position: relative;
-  transform: translateZ(0) !important;
-}
-img.v-centered {
-  height: auto!important;
-  max-height: none!important;
-  vertical-align: top;
-  position: relative;
-  transform: translateZ(0) !important;
-}
+
 
 /* FLICKITY SLIDER  */
 /*.carousel { z-index: 4;}*/
@@ -106,8 +80,6 @@ embed, iframe, object, video { max-width: 100%;}
 /* TO BE MERGED */
 .grid-container__classic .post-info .v-separator,
 .grid-container__masonry .post-info .v-separator { display: none; }
-
-.grid .grid__item .entry-footer .post-info a:first-of-type { float: none; }
 /* think about this */
 .entry-header .entry-title { word-wrap: break-word;}
 
@@ -267,7 +239,7 @@ Replace
   }
 
 }
-/*Comments patches */
+
 
 /*
 Apply this to the form elements
@@ -351,157 +323,6 @@ input[type="submit"] {
 }
 
 
-
-/* Comment text height */
-
-
-/*
-* Related posts
-*/
-/*
-section.post-related-articles header ul li a {
-    color: #202020;
-}*/
-section.post-related-articles header ul li a {
-  display: block;
-}
-
-/*
-replace:
-.grid-container__square-mini .col-xs-12 {
-    padding: 0;
-}
-*/
-/*
-.grid.grid-container__square-mini {
-  font-size: .72em;
-}*/
-/*
-remove:
-.grid-container__square-mini .entry-summary {
-    margin-top: 2.5em;
-}
-*/
-.grid[class*=grid-container__square-mini] .tc-content {
-    margin-top: 0;
-}
-
-/*
-remove .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small
-.grid-container__square-mini .format-standard .entry-summary
-*/
-.grid[class*=grid-container__square-mini] article .tc-content-inner {
-  font-size: 1.5em;
-  margin-top: 1.5em;
-}
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote{
-  font-size: 0.8em;
-  margin: 0 !important;
-  padding: 0;
-}
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote cite,
-.grid[class*=grid-container__square-mini] .tc-content-inner blockquote p {
-  font-size: 1em;
-}
-[class*=grid-container__square-mini] section {
-  padding: 0;
-}
-[class*=grid-container__square-mini] section.entry-media__holder {
-  padding-bottom: 50%;
-  height: 0;
-  overflow: hidden;
-}
-.row.grid[class*=grid-container__square-mini] .entry-meta {
-  display: none;
-}
-.row.grid[class*=grid-container__square-mini] {
-  height: 0;
-  padding-bottom: 50%; /* Only 1 item shown */
-  overflow: hidden;
-}
-@media ( min-width: 769px ) {
-  .row.grid[class*=grid-container__square-mini] .entry-meta{
-    display: block;
-  }
-}
-@media ( min-width: 992px ) {
-  .row.grid[class*=grid-container__square-mini] {
-    padding-bottom: 25%; /* 2 items shown */
-  }
-  .grid[class*=grid-container__square-mini] article .tc-content-inner {
-    font-size: 1.25em;
-  }
-}
-
-/*
-replace:
-.grid-container__square-mini .grid__item .tc-content {
-    max-width: 50%;
-    padding: 2em;
-    display: inline-block;
-    background: #f7f8f9;
-    height: 277.5px;
-}
-*/
-
-.grid[class*=grid-container__square-mini] .grid__item .tc-content {
-  max-width: 50%; /* can be removed */
-  padding: 0; /* can be removed */
-  display: block; /* can be removed */
-  background: transparent; /* can be removed */
-  height: 0; /*can be removed */
-  padding-bottom: 50%;
-  float: right;
-  margin-top: 0
-}
-.grid-container__square-mini .entry-content__wrapper {
-  position: absolute;
-  left: 2em;
-  right: 2em;
-  top: 2em;
-  bottom: 2em;
-  overflow: hidden;
-}
-/*
-replace:
-section.post-related-articles .grid .grid__item {
-    background: #f7f8f9;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-*/
-section.post-related-articles .grid .grid__item {
-  background: #f7f8f9;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  display: inline-block;
-  width: 100%;
-  position: relative;
-  vertical-align: middle;
-}
-
-
-/*
-* Extend this to all post formats
-.small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
-    font-size: 0.83333em;
-}
-
-.grid-container__square-mini .format-standard .entry-header .entry-title::after {
-    content: "";
-    position: absolute;
-    top: 45px;
-    left: 0;
-    width: 2.5em;
-    height: 2px;
-    background: #202020;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-*/
-
-
 /* header secondary menu font-size fix
 replace
 .small, .tabs a, .nav-pills a, .czr-form .form-group label, .gallery-item .tc-content, .post-entry table th, .post-entry table td, .featured .tc-content p, .featured .pre-header, .grid-container__plain .post .post-info, .grid-container__plain .post .author-info, .grid-container__plain .post .post-tags, .grid-container__plain .post .entry-header .entry-meta, .footer__wrapper .copyright, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .tc-grid-excerpt .entry-summary, .grid-container__masonry .tc-content, .grid-container__square-mini .format-standard .entry-header .entry-meta, .grid-container__square-mini .format-standard .entry-summary, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .comment-meta time, .post-pagination, .comment-cancel-link, .post-content figcaption, .sidebar, .sidebar .widget_calendar thead tr, .sidebar .widget_calendar caption, .sidebar .widget_calendar tfoot, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__container .primary-nav__utils .socials, small {
@@ -557,19 +378,7 @@ Remove
     width: 50%;
     }
 */
-  .article-container .grid-container__plain article.style-01 .post-info {
-    float: initial; /* set with the bs columns parent*/
-    text-align: right; /*keep*/
-    width: auto;
-  }
 
-  .article-container .grid-container__plain article.style-01 .author-info {
-    float: initial;
-    width: auto;
-  }
-  .grid-container__plain .post.format-video .tc-thumbnail .entry-media__wrapper {
-    height: 100%;
-  }
 
 /*
 Limit to desktop
@@ -584,15 +393,7 @@ Limit to desktop
   }
 }
 
-/*
-Replace
-*/
-.entry-content,
-.entry-summary {
-    color: #777;
-}
 
-*/
 
 
 /* Some thumbnail container sizes ideas */
@@ -616,15 +417,31 @@ Replace
 .full-image .tc-thumbnail {
   background: #B4B4B4 ;
 }
+[class*=grid-container__] .carousel-inner {
+  height: 100%;
+}/*
 .article-container [class*=grid-container__alternate] .full-image .czr-carousel  .carousel,
 .article-container [class*=grid-container__alternate] .full-image .tc-thumbnail:not(.czr-carousel),
 .article-container [class*=grid-container__plain] .post .czr-carousel  .carousel,
 .article-container [class*=grid-container__plain] .post.format-image .tc-thumbnail,
+.article-container [class*=grid-container__plain] .post.format-video    .tc-thumbnail,
 .article-container [class*=grid-container__plain] .post.format-standard .tc-thumbnail {
     position: relative;
     height: 0;
+    min-height: 0;
     padding-bottom: 53.5%;
+    overflow: hidden;
 }
+
+.article-container [class*=grid-container__plain] .post.format-image .tc-thumbnail .entry-media__wrapper,
+.article-container [class*=grid-container__plain] .post.format-video    .tc-thumbnail .entry-media__wrapper,
+.article-container [class*=grid-container__plain] .post.format-standard .tc-thumbnail .entry-media__wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}*/
 /* viewport inherit size from carousel */
 
 .article-container [class*=grid-container__] .flickity-viewport {
@@ -736,18 +553,20 @@ Replace
     display: none;
   }
 }
-
+/* Fix space between inline-block elements */
+/*.mobile-utils__wrapper,
+.primary-nav__container .primary-nav__utils {
+    word-spacing: -.5em;
+}*/
 /* nav with tables */
 @media (min-width: 992px) {
   .primary-navbar__wrapper {
-    display: table !important;
+    /*display: table !important;*/
     min-width: 100% !important;
-    white-space: nowrap;
-    padding-right: 1.25em;
-    padding-left: 1.25em;
   }
   .primary-nav__container .primary-nav__nav {
     width: 100%;
+    display: table !important;
     text-align: initial !important;
   }
   .branding__container {
@@ -786,105 +605,95 @@ Replace
   }
 }
 
+/* Logo on the right */
+@media (min-width: 992px) {
+    /* nav with tables logo right */
+    .logo-right .primary-navbar__wrapper {
+      direction: rtl;
+    }
+    .logo-right .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
+      direction: ltr;
+    }
+    .logo-right .primary-nav__container .primary-nav__nav { text-align: left; }
+    .logo-right .primary-nav__container .primary-nav__utils { direction: rtl;}
+    .logo-right .primary-nav__container .primary-nav__utils * { direction: ltr; }
+    .logo-right .primary-nav__container .primary-nav__utils .utils { display: inline-block;}
+    .logo-right .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+      padding-left: 0; /*reset */
+      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+    }
+    .logo-right.tc-header .primary-nav__utils .utils li {
+      margin-left: 0; padding-left: 0; /*reset */
+      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+    }
+
+
+    .logo-right.tc-header .primary-nav__utils .utils li + li {
+      margin-left: 0; margin-right: 0;
+    }
+    .logo-right .primary-nav__utils .nav.utils > li:first-of-type {
+      position: relative;
+    }
+
+    .tc-header.logo-right .primary-nav__utils .primary-nav__socials .socials:before {
+      left: auto;
+      right: 0;
+    }
+    .tc-header.logo-right .primary-nav__utils .utils li:before {
+      left: auto;
+      right: 0;
+    }
+}
+@media (max-width: 991px) {
+  .tc-header.logo-right .branding__container .branding {
+    float: right;
+    margin-right: 1.25em;
+    margin-left: 0;
+  }
+  .tc-header.logo-right .mobile-utils__wrapper {
+    float: left;
+  }
+  .tc-header.logo-right .hamburger-toggler__container:before, .tc-header.logo-right .mobile-woocart__container:before {
+    left: auto;
+    right: 0;
+  }
+  .tc-header.logo-right .hamburger-toggler__container, .tc-header.logo-right .mobile-woocart__container {
+    padding-left: 0;
+    padding-right: 1.25em;
+    margin-left: 0;
+    margin-right: 1.25em;
+  }
+  .tc-header.logo-right .mobile-woocart__container {
+    padding-left: 1.25em;
+  }
+}
+/*
+        @media (max-width: 992px){
+          .branding__container .branding {
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 1.25em;
+            text-align: left;
+          }
+          .branding__container { text-align: right; }
+          .mobile-utils__wrapper { float: left;}
+          .hamburger-toggler__container, .mobile-woocart__container {
+            float: right;
+            padding-left: 0 !important;
+            margin-right: 0 !important;
+            padding-right: 1.25em;
+            margin-left: 1.25em;
+          }
+          .mobile-woocart__container:before,
+          .hamburger-toggler__container:before {
+            left: auto !important;
+            right: 0;
+          }
+        }*/
+
 /* Give borders to the articles */
 .grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
 .grid-container__square-mini .grid__item { outline: none }
-
-/*
-*
-* Featured Pages
-*
-*/
-.featured .czr-thumb-wrapper {
-  overflow: hidden;
-  max-width: 350px; /* this actually depends on the thumb size */
-  margin: auto;
-  position: relative
-}
-.featured .czr-thumb-wrapper::after {
-  /* Ensure square thumb-wrappers*/
-  width: 100%;
-  /*
-  * this refers to the parent width, allowing us to have a perfect square
-  * as it has the same element's width percentage value.
-  */
-  padding-bottom: 100%;
-  content: '';
-  display: block;
-}
-
-.czr-link-mask {
-  position: absolute;
-  /*
-  * left/right/top/bottom values set to avoid (hopefully) visible line
-  * see:
-  * https://github.com/presscustomizr/customizr/issues/632
-  * https://github.com/presscustomizr/customizr/issues/474
-  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
-  */
-  left: 2px;
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
-  overflow: hidden;
-  z-index: 1;
-}
-.czr-link-mask::before {
-  position: absolute;
-  width: 60%;
-  /*
-  * this refers to the parent width, allowing us to have a perfect square despite the parent
-  * as it has the same element's width percentage value.
-  */
-  padding-bottom: 60%;
-  content: '';
-  z-index: 1;
-  /* Centering */
-  left: 50%;
-  top: 50%;
-  transform: translate2d(-50%,-50%); /* fallback for those browsers w/o translate3d transform property*/
-  transform: translate3d(-50%,-50%, 0);
-  /* end of centering */
-  border: 150px solid;
-  border-color: white;
-  box-sizing: content-box;
-  transition: all .3s ease;
-}
-.round .czr-link-mask::before {
-  border-radius: 50%;
-}
-.no-effect .czr-link-mask {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.no-effect .czr-link-mask::before {
-  border: transparent;
-}
-.fp-title {
-  margin-top: 0;
-}
-.hover .czr-link-mask:before {
-  transform: translate3d(-50%,-50%, 0) scale(1.4);
-}
-.center-images-enabled .widget-front img {
-  /* should help avoiding undesired visible line
-  * see:
-  * https://github.com/presscustomizr/customizr/issues/632
-  * https://github.com/presscustomizr/customizr/issues/474
-  */
-  transform: translateZ(0);
-}
-.center-images-disabled .widget-front img {
-  /* temporary CSS centering */
-  transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
-  transform: translate3d(-50%, -50%, 0);
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-
 /*
 Headings images
 */
@@ -904,11 +713,18 @@ Headings images
   height: auto;
 }
 /* general */
+.no-js-media-centering.entry-media__holder .entry-media__wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 .no-js-media-centering.entry-media__holder img {
   /* temporary CSS centering */
   transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
-  position: absolute;
+  position: relative;
 }

@@ -18,9 +18,14 @@
 //header skins
 
 &.header-skin-dark  {
-  .section-slider .filter {
-    @include filter($black, $white, 0.5);
-    + .slider-text { color: $white; }
+  .section-slider {
+    .filter {
+      @include filter($black, $white, 0.5);
+      + .slider-text { color: $white; }
+    }
+    .flickity-page-dots .dot {
+      background: $white;
+    }
   }
   .image__header {
     @extend .filter;
@@ -29,9 +34,14 @@
 }
 
 &.header-skin-light {
-  .section-slider .filter {
-    @include filter($white, $black, 0.75);
-    + .slider-text { color: $black; }
+  .section-slider {
+    .filter {
+      @include filter($white, $black, 0.75);
+      + .slider-text { color: $black; }
+    }
+    .flickity-page-dots .dot {
+        background: $black;
+    }
   }
   .image__header {
     @extend .filter;
@@ -111,7 +121,6 @@
 }
 
 //formatting
-/*.tc-content-inner {*/
 ol {
   li li {
     margin-left: $base-line-height;
@@ -177,19 +186,47 @@ dl {
     padding-left : $base-line-height;
   }
 }
-/*}*/
+
 
 /* featured pages*/
-.marketing { margin-bottom: $base-line-height + 2 }
+.marketing { margin-bottom: $base-line-height * 4 }
 .featured {
   margin-top: $base-line-height * 2;
   position: relative;
-  text-align: center;
-  .widget-front { background: $white; }
-  img { max-width: 100%; }
-  .fp-title {
+
+  .czr-thumb-wrapper {
+    overflow: hidden;
+    max-width: 350px; /* this actually depends on the thumb size */
+    margin: auto;
+    position: relative;
+  }
+  .no-effect .czr-thumb-wrapper {
+    margin-bottom: $base-line-height*2
+  }
+
+//included in h/v-centered
+//  .center-images-enabled & img {
+//    /* should help avoiding undesired visible line
+//    * see:
+//    * https://github.com/presscustomizr/customizr/issues/632
+//    * https://github.com/presscustomizr/customizr/issues/474
+//    */
+//    @include transform( translate3d(0,0,0) );
+//  }
+
+  .center-images-disabled & img {
+    /* temporary CSS centering */
+    @include transform( translate(-50%, -50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    @include transform( translate3d(-50%, -50%, 0) );
+    top: 50%;
+    left: 50%;
+    position: relative;
+  }
+
+  @at-root .fp-title {
     @extend .semi-bold;
     line-height: $base-line-height;
+    margin-top : 0;
     margin-bottom: $base-line-height;
     word-break: break-word;
     &::after {
@@ -203,29 +240,34 @@ dl {
       right: 0;
       margin: $base-line-height/4 auto 0;
       @include transition (all 0.6s ease);
+      @at-root .widget-front.hover & {
+        background: $grey-dark;
+        width: $base-line-height*2;
+      }
     }
   }
+
   .btn-edit { margin: -1em 0 0 }
-  a.btn-more { margin-bottom: $base-line-height*2 }
-  .fp-button { display: block}
+
+  @at-root .fp-button {
+    display: block;
+    .btn-more {
+      margin-bottom: $base-line-height*2
+    }
+  }
   .tc-content {
     width: 90%;
-    text-align: center;
     margin:0 auto;
-    [class*=fp-text-] {
+    text-align:center;
+    @at-root [class*=fp-text-] {
       width: 90%;
       margin: $base-line-height*2 auto;
       color: $grey-dark;
       @extend .small;
     }
-
   }
-  .widget-front.hover {
+  & .widget-front.hover {
     color: $grey-dark;
-    .fp-title::after {
-      background: $grey-dark;
-      width: $base-line-height*2;
-    }
   }
 }
 

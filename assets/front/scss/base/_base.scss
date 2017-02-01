@@ -2,9 +2,7 @@
 *,
 *::after,
 *::before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box-sizing( border-box );
 }
 
 body, html {
@@ -20,20 +18,14 @@ img {
   max-width: 100%;
   height: auto;
 }
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before, .clearfix:after { content: " "; display: table; }
-.clearfix:after { clear: both; }
+
 a, button, button:focus { outline:0 }
 
 a {
   transition: color ease 0.3s;
 }
 
-/* end clearfix
-/*
-* > :first-child { margin-top: 0 !important; margin-left: 0 !important; }
-* > :last-child  { margin-bottom: 0 !important; margin-right: 0 !important; }
-*/
+
 a,
 a:hover,
 a:focus,
@@ -170,3 +162,7 @@ body {
 p {
   word-wrap: break-word;
 }
+/*
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $skin inset !important;
+}*/

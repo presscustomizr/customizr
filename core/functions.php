@@ -317,7 +317,7 @@ function czr_fn_is_customizing() {
 //@return boolean
 if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
   function czr_fn_is_partial_refreshed_on() {
-    return apply_filters( 'czr_partial_refresh_on', true );
+    return apply_filters( 'czr_partial_refresh_on', false );
   }
 }
 

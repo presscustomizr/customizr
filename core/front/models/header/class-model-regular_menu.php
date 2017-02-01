@@ -6,8 +6,15 @@ class CZR_regular_menu_model_class extends CZR_menu_model_class {
   * @override
   */
   protected function get_element_class() {
+    $element_class        =  parent::get_element_class();
     $_menu_position_class =  esc_attr( czr_fn_get_opt( 'tc_menu_position') );
-    return array_merge( parent::get_element_class(), array( 'primary-nav__menu-wrapper', $_menu_position_class ) );
+    array_push( $element_class,
+      'primary-nav__menu-wrapper',
+      $_menu_position_class
+    );
+
+
+    return $element_class;
   }
 
   /*

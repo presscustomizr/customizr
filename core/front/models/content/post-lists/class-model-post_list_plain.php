@@ -19,6 +19,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'show_comment_meta'         => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false
     );
@@ -92,6 +93,14 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'content_inner_class' );
   }
 
+  function czr_fn_get_media_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'media_class' );
+  }
+
+  function czr_fn_get_show_comment_meta() {
+    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
+
   /*
   * Private/protected getters
   */
@@ -104,9 +113,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $current_post_format         = in_the_loop() ? get_post_format() : '';
 
     $has_post_media              = $this -> czr_fn__get_has_post_media( $current_post_format );
-
-
-
 
     /* retrieve category list */
     $cat_list                    = $this -> czr_fn__get_cat_list();
@@ -121,13 +127,21 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
+    $show_comment_meta           = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
+
+    //add the aspect ratio class for all media types (except audio )
+    $media_class                 = 'audio' == $current_post_format ? '' : 'czr__r-w16by9';
+
 
     return array(
+      //add the aspect ratio class for all images types
+      'media_class'              => $media_class,
       'article_selectors'        => $article_selectors,
       'has_post_media'           => $has_post_media,
       'cat_list'                 => $cat_list,
       'entry_header_inner_class' => $entry_header_inner_class,
-      'content_inner_class'      => $content_inner_class
+      'content_inner_class'      => $content_inner_class,
+      'show_comment_meta'        => $show_comment_meta
     );
   }
 
@@ -151,7 +165,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     * Using the excerpt filter here can cause some compatibility issues
     * See: Super Socializer plugin
     */
-    $_has_excerpt            = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
+    $_has_excerpt              = (bool) apply_filters( 'the_excerpt', get_the_excerpt() );
 
     array_push( $post_class,
       ! $_has_excerpt   ? 'no-text' : '',
@@ -169,7 +183,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     if ( ! $this->show_thumb )
       return false;
 
-    if ( in_array( $post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
+    if ( in_array( $post_format, array( 'gallery', 'audio', 'video' ) ) )
       return true;
 
     if ( in_array( $post_format, array( 'quote', 'link', 'status', 'aside' ) ) )

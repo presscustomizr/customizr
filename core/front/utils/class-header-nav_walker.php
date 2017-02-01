@@ -68,9 +68,6 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if ( $depth > 0 ) {
         if ( ! in_array( 'dropdown-item', $classes ) )
           $classes[] = 'dropdown-item';
-      } else {
-        if ( ! in_array( 'nav-item', $classes ) )
-          $classes[] = 'nav-item';
       }
 
       if ( ! empty( array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) ) )
@@ -181,9 +178,6 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       if ( $depth > 0 ) {
         if ( ! in_array( 'dropdown-item', $classes ) )
           $classes[] = 'dropdown-item';
-      } else {
-        if ( ! in_array( 'nav-item', $classes ) )
-          $classes[] = 'nav-item';
       }
 
       if ( ! in_array( 'menu-item' , $classes ) )

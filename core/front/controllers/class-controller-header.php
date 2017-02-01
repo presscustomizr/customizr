@@ -2,16 +2,6 @@
 if ( ! class_exists( 'CZR_controller_header' ) ) :
   class CZR_controller_header extends CZR_controllers {
     static $instance;
-    private $_cache;
-
-    function __construct( $_args = array()) {
-          self::$instance =& $this;
-          //why we don't call CZR_controllers constructor?
-          //why this class extends CZR_controllers?
-
-          //init the cache
-          $this -> _cache = array();
-    }
 
     function czr_fn_display_view_head() {
       return true;
@@ -58,10 +48,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //1) not in customizer preview (we just hide it in the model)
     //2) the user choose to not display it
     function czr_fn_display_view_tagline() {
-      $CZR            = CZR();
-      if ( ! isset( $this -> _cache[ 'view_tagline' ] ) )
-        $this -> _cache[ 'view_tagline' ] = czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
-      return $this -> _cache[ 'view_tagline' ];
+      return czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
     }
 
     function czr_fn_display_view_title() {
@@ -74,17 +61,17 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_logo() {
-      if ( ! isset( $this -> _cache[ 'view_logo' ] ) )
-        $this -> _cache[ 'view_logo' ] = ! empty( czr_fn_get_logo_atts() );
-
-      return $this -> _cache[ 'view_logo' ];
+      $_logo_atts = czr_fn_get_logo_atts();
+      return ! empty( $_logo_atts );
     }
 
     function czr_fn_display_view_sticky_logo() {
-      if ( ! isset( $this -> _cache[ 'view_sticky_logo' ] ) )
-        $this -> _cache[ 'view_sticky_logo' ] = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) && ! empty( czr_fn_get_logo_atts( 'sticky', $backward_compat = false ) );
-
-      return $this -> _cache[ 'view_sticky_logo' ];
+      if ( esc_attr( czr_fn_get_opt( "tc_sticky_header" ) ) ) {
+        /*sticky logo is quite new no bc needed*/
+        $_logo_atts = czr_fn_get_logo_atts( 'sticky', $backward_compat = false );
+        return ! empty( $_logo_atts );
+      }
+      return;
     }
 
     //when the 'main' navbar menu is allowed?
@@ -92,10 +79,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_menu() {
-      if ( ! isset( $this -> _cache[ 'view_navbar_menu' ] ) )
-        $this -> _cache[ 'view_navbar_menu' ] = $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav();
-
-      return $this -> _cache[ 'view_navbar_menu' ];
+      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
     }
 
     //when the secondary navbar menu is allowed?
@@ -103,9 +87,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is sidenav but a secondary menu is chosen
     function czr_fn_display_view_navbar_secondary_menu() {
-      if ( ! isset( $this -> _cache[ 'view_navbar_secondary_menu' ] ) )
-        $this -> _cache[ 'view_navbar_secondary_menu' ] = $this -> czr_fn_display_view_menu() &&  ( /*$this -> czr_fn_display_view_sidenav() && */czr_fn_is_secondary_menu_enabled() ) ;
-      return $this -> _cache[ 'view_navbar_secondary_menu' ];
+      return $this -> czr_fn_display_view_menu() &&  czr_fn_is_secondary_menu_enabled();
     }
 
     //when the sidenav menu is allowed?
@@ -113,15 +95,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu style is aside
     function czr_fn_display_view_sidenav() {
-      if ( ! isset( $this -> _cache[ 'view_sidenav' ] ) )
-        $this -> _cache[ 'view_sidenav' ] = $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
-      return $this -> _cache[ 'view_sidenav' ];
+      return $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
     }
 
     function czr_fn_display_view_menu() {
-      if ( ! isset( $this -> _cache[ 'view_menu' ] ) )
-        $this -> _cache[ 'view_menu' ] =  ! ( (bool) czr_fn_get_opt('tc_hide_all_menus') );
-      return $this -> _cache[ 'view_menu' ];
+      return ! czr_fn_get_opt('tc_hide_all_menus');
     }
 
     //when the 'sidevan menu button' is allowed?
@@ -130,24 +108,28 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //==
     //czr_fn_display_view_sidenav
     function czr_fn_display_view_sidenav_menu_button() {
-      return $this -> czr_fn_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_sidenav();
     }
     function czr_fn_display_view_sidenav_navbar_menu_button() {
-      return $this -> czr_fn_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_sidenav();
     }
 
     //when the 'mobile menu button' is allowed?
     //1) menu button allowed
     //2) menu style is not aside (no sidenav)
     function czr_fn_display_view_mobile_menu_button() {
-      return $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav(); //already cached
+      return $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav();
     }
 
     //when the 'menu button' is allowed?
     //1) menu allowed
     function czr_fn_display_view_menu_button() {
-      return $this -> czr_fn_display_view_menu(); /* already cached */
+      return $this -> czr_fn_display_view_menu();
     }
 
+
+    function czr_fn_display_view_nav_search()  {
+      return czr_fn_get_opt( 'tc_search_in_header' );
+    }
   }//end of class
 endif;

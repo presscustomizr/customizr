@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'title',
               'logo_wrapper',
               'logo',
-              'sticky_logo', /*'logo_title', */
+              'sticky_logo',
               'tagline',
               'mobile_tagline',
               'favicon',
@@ -31,7 +31,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'mobile_menu_button',
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
-              'header_social_block'
+              'header_social_block',
+              'nav_search'
             ),
             'content' => array(
               'post_list',
@@ -53,12 +54,10 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
             ),
             'footer' => array(
               'btt_arrow',
-              'footer_btt',
               'footer_push',
               'footer_widgets',
               'colophon',
               'footer_social_block'
-          //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
               'social_block',
@@ -68,7 +67,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'edit_button'
+              'edit_button',
+              'search_full_page'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),

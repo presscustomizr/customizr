@@ -10,6 +10,9 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //why this class extends CZR_controllers?
     }
 
+    function czr_fn_display_view_search_full_page () {
+      return czr_fn_has( 'nav_search' );
+    }
 
     function czr_fn_display_view_social_block() {
       return czr_fn_has_social_links();
@@ -42,34 +45,45 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     /* BREADCRUMB */
+    // /**
+    // * Old version: NOT USED ANYMORE: context skopified
+    // */
+    // function czr_fn_display_view_breadcrumb() {
+
+    //   if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
+    //     if ( is_search() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
+
+    //     elseif ( is_404() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
+
+    //     elseif ( czr_fn_is_home() )
+    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+
+    //     elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+    //       $to_return = false;
+
+    //     elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+    //       $to_return = false;
+
+    //     elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+    //       $to_return = false;
+    //   }
+
+    //   return apply_filters( 'czr_show_breadcrumb', $to_return );
+    // }
+
+    /* BREADCRUMB */
     function czr_fn_display_view_breadcrumb() {
-
       if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
-        if ( is_search() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
-
-        elseif ( is_404() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
-
-        elseif ( czr_fn_is_home() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
-
-        elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
-          $to_return = false;
-
-        elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
-          $to_return = false;
-
-        elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
-          $to_return = false;
+        if ( czr_fn_is_home() )
+          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_hide_breadcrumb_home' ) ) ? true : false;
       }
-
       return apply_filters( 'czr_show_breadcrumb', $to_return );
     }
 
-
     function czr_fn_display_view_comment_info() {
-      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_info' ) )
+      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) )
           && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) );
 
       if ( ! $_allow_comment_info )
@@ -134,31 +148,38 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
 
+    // /**
+    // * Old version: NOT USED ANYMORE: context skopified
+    // */
+    // function czr_fn_display_view_post_list_grid() {
+    //   return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+    // }
 
-    /* returns the type of post list we're in if any, an empty string otherwise */
-    private function czr_fn_get_grid_context() {
-      global $wp_query;
 
-      if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
-              $wp_query->is_posts_page )
-          return 'blog';
-      else if ( is_search() && $wp_query->post_count > 0 )
-          return 'search';
-      else if ( is_archive() )
-          return 'archive';
-      return '';
-    }
+    // /* returns the type of post list we're in if any, an empty string otherwise */
+    // private function czr_fn_get_grid_context() {
+    //   global $wp_query;
 
-    /* performs the match between the option where to use post list grid
-     * and the post list we're in */
-    private function czr_fn_is_grid_context_matching() {
-      $_type = $this -> czr_fn_get_grid_context();
-      $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
-      return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
-    }
+    //   if ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
+    //           $wp_query->is_posts_page )
+    //       return 'blog';
+    //   else if ( is_search() && $wp_query->post_count > 0 )
+    //       return 'search';
+    //   else if ( is_archive() )
+    //       return 'archive';
+    //   return '';
+    // }
+
+    // /* performs the match between the option where to use post list grid
+    //  * and the post list we're in */
+    // private function czr_fn_is_grid_context_matching() {
+    //   $_type = $this -> czr_fn_get_grid_context();
+    //   $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
+    //   return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
+    // }
 
   }//end of class
 endif;

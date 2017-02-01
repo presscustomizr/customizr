@@ -19,7 +19,7 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on hover via js
     dropdownMenuOnHover : function() {
-      var _dropdown_selector = '.tc-open-on-hover .menu-item-has-children, .primary-nav__woocart',
+      var _dropdown_selector = '.czr-open-on-hover .menu-item-has-children, .primary-nav__woocart',
           self               = this;
 
       function _addOpenClass () {
@@ -53,7 +53,7 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on click for multi-tier menus
     dropdownMenuOnClick : function() {
-      var _dropdown_menu_container_selector  = '.tc-open-on-click',
+      var _dropdown_menu_container_selector  = '.czr-open-on-click',
           _dropdown_menu_selector            = '.dropdown-menu',
           _dropdown_submenu_selector         = '.dropdown-submenu',
           _dropdown_toggler_selector         = '[data-toggle="dropdown"]',
@@ -61,7 +61,7 @@ var czrapp = czrapp || {};
           _open_class                        = this.openClass,
           self                               = this;
 
-          //_dropdown_link_selector            = '.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
+          //_dropdown_link_selector            = '.czr-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
 
       /* TODO: Better handling with bootstrap events */
       /* Test */
