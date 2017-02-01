@@ -6,12 +6,12 @@ var czrapp = czrapp || {};
   var _methods =  {
     init : function() {
       //cache jQuery el
-      this.$_sticky_logo    = $('img.sticky', '.site-logo');
-      this.$_resetMarginTop = $('#tc-reset-margin-top');
+      this.stickyHeaderCacheElements();
+
       //subclass properties
       this.elToHide         = []; //[ '.social-block' , '.site-description' ],
       this.customOffset     = TCParams.stickyCustomOffset || {};// defaults : { _initial : 0, _scrolling : 0 }
-      this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+
       this.timer            = 0;
       this.increment        = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
       this.triggerHeight    = 20; //0.5 * windowHeight;
@@ -28,6 +28,12 @@ var czrapp = czrapp || {};
       czrapp.$_body.trigger( 'sticky-enabled-on-load' , { on : 'load' } );
     },
 
+    stickyHeaderCacheElements : function() {
+      //cache jQuery el
+      this.$_resetMarginTop = $('#tc-reset-margin-top');
+      this.$_sticky_logo    = $('img.sticky', '.site-logo');
+      this.logo             = 0 === this.$_sticky_logo.length ? { _logo: $('img:not(".sticky")', '.site-logo') , _ratio: '' }: false;
+    },
 
     stickyHeaderEventListener : function() {
       //LOADING ACTIONS
@@ -39,6 +45,14 @@ var czrapp = czrapp || {};
       //RESIZING ACTIONS
       czrapp.$_window.on( 'tc-resize', function() {
         self.stickyHeaderEventHandler('resize');
+      });
+
+      //PARTIAL REFRESH ACTIONS
+      czrapp.$_body.on( 'partialRefresh.czr', function( e, placement ) {
+        if ( placement.container.hasClass('tc-header') ) {
+          self.stickyHeaderCacheElements();
+          self.stickyHeaderEventHandler('resize');
+        }
       });
 
       //SCROLLING ACTIONS
