@@ -43,15 +43,26 @@ var czrapp = czrapp || {};
       this._place_dropdowns();
     },//init()
 
+
+    dropdownPlaceCacheElements : function() {
+      //cache jQuery el
+      this.$_nav_collapse           = czrapp.$_tcHeader.length > 0 ? czrapp.$_tcHeader.find( '.navbar-wrapper .nav-collapse' ) : [];
+      this.$_nav                    = this.$_nav_collapse.length ? this.$_nav_collapse.find( '.nav' ) : [];
+      this.$_navbar_wrapper         = this.$_nav_collapse.length ? this.$_nav_collapse.closest( '.navbar-wrapper' ) : [];
+    },
+
     /***********************************************
     * DOM EVENT LISTENERS AND HANDLERS
     ***********************************************/
     dropdownPlaceEventListener : function() {
       var self    = this,
-          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns';
+          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
 
       //Any event which may have resized the header
-      czrapp.$_body.on( _events, function( evt ) {
+      czrapp.$_body.on( _events, function( evt, data ) {
+        if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container.hasClass('tc-header')  ) {
+          self.dropdownPlaceCacheElements();
+        }
         self.dropdownPlaceEventHandler( evt, 'resize' );
       });
     },
