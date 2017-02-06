@@ -168,12 +168,13 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return boolean
     //@walks the controllers setup array until a match is found
     private function czr_fn_has_default_controller( $controller_ids ) {
-          foreach ( $this -> controllers as $group => $views_id )
-            foreach( $controller_ids as $id )
-              if ( in_array($id, $views_id) )
+          foreach ( $this -> controllers as $group => $views_id ) {
+            foreach( $controller_ids as $id ) {
+              if ( in_array($id, $views_id) ) {
                 return true;
-            //foreach
-          //foreach
+              }
+            }//foreach
+          }//foreach
           return false;
     }
 

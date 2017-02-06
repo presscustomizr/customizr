@@ -70,8 +70,9 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
           $classes[] = 'dropdown-item';
       }
 
-      if ( ! empty( array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) ) )
-          && ! in_array( 'current-active' , $classes ) )
+      $_active     = array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) );
+
+      if ( ! empty( $_active ) && ! in_array( 'current-active' , $classes ) )
         $classes[] = 'current-active';
 
       return $classes;
@@ -183,8 +184,8 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       if ( ! in_array( 'menu-item' , $classes ) )
         $classes[] = 'menu-item';
 
-      if ( ! empty( array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) ) )
-          && ! in_array( 'current-active' , $classes ) )
+      $_active     = array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) );
+      if ( ! empty( $_active ) && ! in_array( 'current-active' , $classes ) )
         $classes[] = 'current-active';
 
        return $classes;

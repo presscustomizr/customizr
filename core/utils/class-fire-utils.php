@@ -850,3 +850,27 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
 
     return $_logo_atts;
 }
+//back compat
+if ( ! class_exists( 'CZR_utils' ) ) :
+  class CZR_utils {
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $inst;
+    static $instance;
+
+    function __construct () {
+      self::$inst =& $this;
+      self::$instance =& $this;
+    }
+
+    /**
+    * Returns an option from the options array of the theme.
+    *
+    * @package Customizr
+    * @since Customizr 1.0
+    */
+    function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
+      return czr_fn_opt( $option_name, $option_group, $use_default );
+    }
+  }
+endif;
+new CZR_utils;
