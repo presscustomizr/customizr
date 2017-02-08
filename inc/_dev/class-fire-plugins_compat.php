@@ -863,20 +863,17 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'czr_fn_sensei_disable_post_navigation' );
       function czr_fn_sensei_disable_post_navigation($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
-      }
-      //removes post comment action on after_loop hook
-      add_filter( 'tc_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
-      function czr_fn_sensei_disable_comments($bool) {
-        return ( function_exists('is_sensei') && ( is_sensei() || is_single('sensei_message') ) ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_singular('sensei_message') ) ? false : $bool;
       }
 
+
       //in my courses page avoid displaying both page and single content
-      //add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
+      add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
       function czr_fn_sensei_disable_single_content_in_my_courses( $bool ) {
         global $post;
         return is_page() && 'course' === $post->post_type ? false : $bool;
       }
+
     }//end sensei compat
 
 

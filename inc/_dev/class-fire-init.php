@@ -40,6 +40,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
+      public static $comments_rendered = false;
+
       function __construct () {
 
           self::$instance =& $this;
@@ -350,6 +352,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
 
+          //prevent rendering the comments template more than once
+          add_filter( 'tc_render_comments_template'            , array( $this,  'czr_fn_control_coments_template_rendering' ) );
       }//end of constructor
 
 
@@ -494,7 +498,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
         add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
         //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
+        add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
+
       }
 
 
@@ -735,6 +740,21 @@ if ( ! class_exists( 'CZR_init' ) ) :
         array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
         return $_classes;
+      }
+
+
+      /**
+      * Controls the rendering of the comments template
+      *
+      * @param bool $bool
+      * @return bool $bool
+      * hook : tc_render_comments_template
+      *
+      */
+      function czr_fn_control_coments_template_rendering( $bool ) {
+        $_to_return = !self::$comments_rendered && $bool;
+        self::$comments_rendered = true;
+        return $_to_return;
       }
 
   }//end of class
