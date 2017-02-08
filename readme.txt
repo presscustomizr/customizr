@@ -41,6 +41,7 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.5.2 February 8th 2017 =
+* Fix: second menu responsive actions on header partial refresh
 * Imp: improve overall plugins compatibility : do not render the comments template more than once should fix #774
 * Imp: customizer - fonts/skins select on focus
 * Imp: customizer - improve slider control dependencies some controls should not be displayed when demo slider is selected
