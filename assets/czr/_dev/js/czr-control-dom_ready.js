@@ -1,4 +1,25 @@
 (function (wp, $) {
+        /* Pro section init */
+        var api = api || wp.customize,
+            proSectionConstructor;
+
+        if ( 'function' === typeof api.Section ) {
+            proSectionConstructor = api.Section.extend( {
+                  active : true,
+                  // No events for this type of section.
+                  attachEvents: function () {},
+                  // Always make the section active.
+                  isContextuallyActive: function () {
+                    return this.active();
+                  },
+                  _toggleActive: function(){ return true; },
+
+            } );
+
+            $.extend( api.sectionConstructor, {
+                  'czr-customize-section-pro' : proSectionConstructor
+            });
+        }
         $( function($) {
                 /* GRID */
                 var _build_control_id = function( _control ) {
@@ -58,137 +79,5 @@
                       return state.text;// optgroup different than google font
                     return '<span class="tc-select2-font">' + state.text + '</span>';
                 }
-
-
-//CALL TO ACTIONS
-                /* CONTRIBUTION TO CUSTOMIZR */
-                var donate_displayed  = false,
-                    is_pro            = 'customizr-pro' == serverControlParams.themeName;
-                if (  ! serverControlParams.HideDonate && ! is_pro ) {
-                  _render_donate_block();
-                  donate_displayed = true;
-                }
-
-                //Main call to action
-                if ( serverControlParams.ShowCTA && ! donate_displayed && ! is_pro ) {
-                 _render_main_cta();
-                }
-
-                //In controls call to action
-                if ( ! is_pro ) {
-                  _render_wfc_cta();
-                  _render_fpu_cta();
-                  _render_footer_cta();
-                  _render_gc_cta();
-                  _render_mc_cta();
-                }
-                //_render_rate_czr();
-
-                function _render_rate_czr() {
-                  var _cta = _.template(
-                      $( "script#rate-czr" ).html()
-                  );
-                  $('#customize-footer-actions').append( _cta() );
-                }
-
-                function _render_donate_block() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var donate_template = _.template(
-                      $( "script#donate_template" ).html()
-                  );
-
-                  $('#customize-info').after( donate_template() );
-
-                   //BIND EVENTS
-                  $('.czr-close-request').click( function(e) {
-                    e.preventDefault();
-                    $('.donate-alert').slideToggle("fast");
-                    $(this).hide();
-                  });
-
-                  $('.czr-hide-donate').click( function(e) {
-                    _ajax_save();
-                    setTimeout(function(){
-                        $('#czr-donate-customizer').slideToggle("fast");
-                    }, 200);
-                  });
-
-                  $('.czr-cancel-hide-donate').click( function(e) {
-                    $('.donate-alert').slideToggle("fast");
-                    setTimeout(function(){
-                        $('.czr-close-request').show();
-                    }, 200);
-                  });
-                }//end of donate block
-
-
-                function _render_main_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#main_cta" ).html()
-                  );
-                  $('#customize-info').after( _cta() );
-                }
-
-                function _render_wfc_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#wfc_cta" ).html()
-                  );
-                  $('li[id*="tc_body_font_size"]').append( _cta() );
-                }
-
-                function _render_fpu_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#fpu_cta" ).html()
-                  );
-                  $('li[id*="tc_featured_text_three"]').append( _cta() );
-                }
-
-                function _render_gc_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#gc_cta" ).html()
-                  );
-                  $('li[id*="tc_post_list_show_thumb"] > .czr-customizr-title').before( _cta() );
-                }
-
-                function _render_mc_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#mc_cta" ).html()
-                  );
-                  $('li[id*="tc_theme_options-tc_display_menu_label"]').append( _cta() );
-                }
-
-                function _render_footer_cta() {
-                  // Grab the HTML out of our template tag and pre-compile it.
-                  var _cta = _.template(
-                      $( "script#footer_cta" ).html()
-                  );
-                  $('li[id*="tc_show_back_to_top"]').closest('ul').append( _cta() );
-                }
-
-                function _ajax_save() {
-                    var AjaxUrl         = serverControlParams.AjaxUrl,
-                    query = {
-                        action  : 'hide_donate',
-                        TCnonce :  serverControlParams.TCNonce,
-                        wp_customize : 'on'
-                    },
-                    request = $.post( AjaxUrl, query );
-                    request.done( function( response ) {
-                        // Check if the user is logged out.
-                        if ( '0' === response ) {
-                            return;
-                        }
-                        // Check for cheaters.
-                        if ( '-1' === response ) {
-                            return;
-                        }
-                    });
-                }//end of function
-//END OF CTA
         });
 }) ( wp, jQuery );
