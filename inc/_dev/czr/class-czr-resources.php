@@ -221,8 +221,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'       => CZR___::$theme_name,
-            'HideDonate'      => CZR_customize::$instance -> czr_fn_get_hide_donate_status(),
-            'ShowCTA'         => ( true == CZR_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'   => $this -> czr_fn_get_translated_strings(),

@@ -66,6 +66,8 @@ module.exports = {
 
       '<%= paths.dev_php %>czr/panels/class-panels.php',
       '<%= paths.dev_php %>czr/settings/class-settings.php',
+      '<%= paths.dev_php %>czr/sections/class-pro-section.php',
+
       //modules data
       '<%= paths.dev_php %>czr/modules/modules-data.php',
 
