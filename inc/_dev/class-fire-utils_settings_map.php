@@ -2608,6 +2608,22 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                             'panel'   => 'tc-advanced-panel'
         )
       );
+
+      if ( ! CZR___::czr_fn_is_pro() ) {
+        $_new_sections = array_merge( $_new_sections, array(
+            /*---------------------------------------------------------------------------------------------
+            -> SECTION : GO-PRO
+            ----------------------------------------------------------------------------------------------*/
+            'customizr_go_pro'   => array(
+                                'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
+                                'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
+                                'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
+                                'priority'      => 0,
+                                'section_class' => 'CZR_Customize_Section_Pro'
+            ),
+        ) );
+      }
+
       return array_merge( $_sections, $_new_sections );
     }
 
