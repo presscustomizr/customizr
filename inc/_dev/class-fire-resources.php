@@ -31,6 +31,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
           /* See: https://github.com/presscustomizr/customizr/issues/605 */
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_apply_media_upload_front_patch' ) );
+          /* See: https://github.com/presscustomizr/customizr/issues/787 */
+          add_filter('tc_user_options_style'          , array( $this , 'czr_fn_maybe_avoid_double_social_icon' ) );
 
           //set random skin
           add_filter ('tc_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
@@ -353,7 +355,17 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       return $_css;
     }
 
-
+    /*
+    * Use the dynamic style to fix server side caching issue,
+    * which is the main reason why we needed this patch
+    * We don't subordinate this to the user_started_before a certain version
+    * as it also fixes potential plugin compatibility (plugins which style .icon-* before)
+    * https://github.com/presscustomizr/customizr/issues/787
+    * ( all this will be removed in c4 )
+    */
+    function czr_fn_maybe_avoid_double_social_icon( $_css ) {
+      return sprintf( "%s\n%s", $_css, '.social-links .social-icon:before { content: none } ');
+    }
 
     /*
     * Callback of wp_enqueue_scripts
