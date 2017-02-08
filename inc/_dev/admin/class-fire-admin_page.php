@@ -165,15 +165,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
           <?php if ( ! CZR___::czr_fn_is_pro() ) : ?>
             <div class="changelog">
 
-                <div class="feature-section col three-col">
-
-                  <div class="col">
-                    <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
-                    <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
-
-                      <a href="<?php echo esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU'); ?>" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
-                    </p>
-                  </div>
+                <div class="feature-section col two-col">
 
                   <div class="col">
                     <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
