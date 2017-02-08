@@ -8731,9 +8731,9 @@ li#wp-admin-bar-tc-customizr-help a {
     height: 100% !important;
     overflow: auto !important;
   }
-  /* btn-toggle-nav edge case positioning*/
+  /* btn-toggle-nav edge case positioning */
   /* when on the right */
-  body:not(.sticky-enabled) .tc-header .btn-toggle-nav.pull-right {
+  body .tc-header .btn-toggle-nav.pull-right {
     clear: both;
   }
   /* if only socials + btn-nav in navbar (no tagline), do not drop on a new line */

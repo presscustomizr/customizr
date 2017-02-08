@@ -42,8 +42,9 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.5.2 February 8th 2017 =
 * Fix: second menu responsive actions on header partial refresh
+* Imp: fix btn-toggle-nav positioning when sticky enabled and no socials
 * Imp: improve overall plugins compatibility : do not render the comments template more than once should fix #774
-* Imp: customizer - fonts/skins select on focus
+* Imp: customizer - fonts/skins select on focus instead of on click
 * Imp: customizer - improve slider control dependencies some controls should not be displayed when demo slider is selected
 * Imp: try to avoid double social icons see #787
 * Imp: compliancy with WP theme guidelines : one customizr pro link in the customizer, a simpler screenshot, no donate button in the customizer
