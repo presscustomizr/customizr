@@ -295,14 +295,41 @@ var czrapp = czrapp || {};
       //Enable reordering if option is checked in the customizer.
       var userOption = TCParams.secondMenuRespSet || false,
           that = this;
+
       //if not a relevant option, abort
       if ( ! userOption || -1 == userOption.indexOf('in-sn') )
         return;
 
+      /* Utils */
+      var _cacheElements = function() {
+            //cache some $
+            that.$_sec_menu_els  = $('.nav > li', '.tc-header .nav-collapse');
+            that.$_sn_wrap       = $('.sn-nav', '.sn-nav-wrapper');
+            that.$_sec_menu_wrap = $('.nav', '.tc-header .nav-collapse');
+          },
+          _maybeClean = function() {
+            var $_sep = $( '.secondary-menu-separator' );
+
+            if ( $_sep.length ) {
+
+              switch(userOption) {
+                  //maybe clean menu items before the separator in sn
+                  case 'in-sn-before' :
+                    $_sep.prevAll('.menu-item').remove();
+                  break;
+                  //maybe clean menu items after the separator in sn
+                  case 'in-sn-after' :
+                    $_sep.nextAll('.menu-item').remove();
+                  break;
+              }
+              //remove separator
+              $_sep.remove();
+            }
+          };
+      /* end utils */
+
       //cache some $
-      this.$_sec_menu_els  = this.$_sec_menu_els || $('.nav > li', '.tc-header .nav-collapse');
-      this.$_sn_wrap       = this.$_sn_wrap || $('.sn-nav', '.sn-nav-wrapper');
-      this.$_sec_menu_wrap = this.$_sec_menu_wrap || $('.nav', '.tc-header .nav-collapse');
+      _cacheElements();
 
       //fire on DOM READY
       var _locationOnDomReady = 'desktop' == this.getDevice() ? 'navbar' : 'side_nav';
@@ -311,16 +338,30 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      czrapp.$_body.on( 'tc-resize', function( e, param ) {
+      czrapp.$_body.on( 'tc-resize partialRefresh.czr', function( e, param ) {
+        var _force = false;
+
+        if ( 'partialRefresh' == e.type && 'czr' === e.namespace && param.container.hasClass('tc-header')  ) {
+          //clean old moved elements and separator
+          _maybeClean();
+          //re-cache elements
+          _cacheElements();
+          //setup params for the move to
+          param   = { to: czrapp.current_device, current: czrapp.current_device };
+          //force actions
+          _force  = true;
+        }
+
         param = _.isObject(param) ? param : {};
         var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
             _current = 'desktop' != param.current ? 'side_nav' : 'navbar';
 
-        if ( _current == _to )
+        if ( _current == _to && !_force )
           return;
 
         that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
       } );//.on()
+
     },
 
     _manageMenuSeparator : function( _to, userOption ) {
