@@ -1466,10 +1466,17 @@ footer#footer .colophon .credits a[class*=icon-] {
   *top: 25%;/*hack IE7 and below */
   display: inline-block;
   position: relative;
-  margin-left: 11%;
-  text-align: left;
+  & when (@is_rtl = true) {
+    margin-right: 11%;
+    text-align: right;
+  }
+  & when (@is_rtl = false) {
+    margin-left: 11%;
+    text-align: left;
+  }
   /*display:inline; IE7 and below */
 }
+
 .carousel-caption h1,
 .carousel-caption .lead {
   margin: 0;
