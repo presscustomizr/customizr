@@ -590,25 +590,17 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
           <?php if ( ! CZR___::czr_fn_is_pro() ) : ?>
             <div class="changelog">
 
-                <div class="feature-section col three-col">
+                <div class="feature-section col two-col">
 
                   <div class="col">
-                    <h3><?php _e( 'We need sponsors!','customizr' ); ?></h3>
-                    <p><?php  _e( '<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it\'s continued development with a donation of $20, $50, or even $100.','customizr' ) ?></br>
-
-                      <a href="<?php echo esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8CTH6YFDBQYGU'); ?>" target="_blank" rel="nofollow"><img class="tc-donate" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Make a donation for Customizr" /></a>
-                    </p>
-                  </div>
-
-                  <div class="col">
-                    <h3><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
+                    <h3 style="font-size:1.3em;"><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
                     <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
                     <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
                   </div>
 
                   <div class="last-feature col">
-                    <h3><?php _e( 'Follow us','customizr' ); ?></h3>
-                    <p class="tc-follow"><a href="<?php echo CZR_WEBSITE.'blog' ?>" target="_blank"><img src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
+                    <h3 style="font-size:1.3em;"><?php _e( 'Follow us','customizr' ); ?></h3>
+                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none" src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
                     <!-- Place this tag where you want the widget to render. -->
 
                   </div><!-- .feature-section -->
@@ -617,36 +609,20 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             </div><!-- .changelog -->
 
             <div id="extend" class="changelog">
-              <h3 style="text-align:left"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
+              <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
 
               <div class="feature-section images-stagger-right">
-                <a class="" title="<?php _e("Visit the extension's page",'customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr-pro/" target="_blank"><img alt="Customizr'extensions" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
-                <h4 style="text-align: left"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
+                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro/' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
+                <h4 style="text-align: left;max-width:inherit"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
-                <p style="text-align: left"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones." , 'customizr') ?>
+                <p style="text-align: lef;max-width:inherit"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones." , 'customizr') ?>
                 </p>
-                <p style="text-align:left">
-                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr-pro/" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
+                <p style="text-align:left;max-width:inherit">
+                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro/' ); ?>" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
                 </p>
               </div>
             </div>
           <?php endif; //end if ! is_pro ?>
-
-        <div id="showcase" class="changelog">
-          <h3 style="text-align:right"><?php _e('Customizr Showcase' ,'customizr') ?></h3>
-
-          <div class="feature-section images-stagger-left">
-             <a class="" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr/showcase/" target="_blank"><img alt="Customizr Showcase" src="<?php echo TC_BASE_URL.'inc/admin/img/mu2.png' ?>" class=""></a>
-            <h4 style="text-align: right"><?php _e('Find inspiration for your next Customizr based website!' ,'customizr') ?></h4>
-            <p style="text-align: right"><?php _e('This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design.' , 'customizr') ?>
-            </p>
-            <p style="text-align: right"><?php _e('Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do.' , 'customizr') ?></br>
-            </p>
-            <p style="text-align:right">
-                <a class="button-primary review-customizr" title="<?php _e('Visit the showcase','customizr') ?>" href="<?php echo CZR_WEBSITE ?>customizr/showcase/" target="_blank"><?php _e('Visit the showcase','customizr') ?> &raquo;</a>
-            </p>
-          </div>
-        </div>
 
         <?php do_action( '__after_welcome_panel' ); ?>
 

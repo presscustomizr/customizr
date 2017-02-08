@@ -44,14 +44,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //add grid/post list buttons in the control views
       add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
 
-
-      //Hide donate button
-      add_action ( 'wp_ajax_hide_donate'                     , array( $this , 'czr_fn_hide_donate' ) );
-
-      add_action ( 'customize_controls_print_footer_scripts' , array( $this, 'czr_fn_print_js_templates' ) );
-
-
-
       //populate the css_attr property, used both server side and on the customize panel (passed via serverControlParams )
       $this -> css_attr = $this -> czr_fn_get_controls_css_attr();
 
@@ -83,6 +75,10 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
+
+      if ( ! CZR___::czr_fn_is_pro() && class_exists('CZR_Customize_Section_Pro') ) {
+        $manager -> register_section_type( 'CZR_Customize_Section_Pro');
+      }
     }
 
 
@@ -274,7 +270,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'panel',
                 'theme_supports',
                 'type',
-                'active_callback'
+                'active_callback',
+                'pro_text',
+                'pro_url'
           ),
           'settings' => array(
                 'default'     =>  null,
@@ -596,161 +594,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     }
 
 
-    /**
-    * Donate visibility
-    * callback of wp_ajax_hide_donate*
-    * @package Customizr
-    * @since Customizr 3.1.14
-    */
-    function czr_fn_get_hide_donate_status() {
-      //is customizr the current active theme?
-      //=> check the existence of is_theme_active for backward compatibility (may be useless because introduced in 3.4... )
-      $_is_customizr_active = method_exists( $GLOBALS['wp_customize'], 'is_theme_active' ) && $GLOBALS['wp_customize'] -> is_theme_active();
-      $_options = get_option('tc_theme_options');
-      $_user_started_customize = false !== $_options || ! empty( $_options );
-
-      //shall we hide donate ?
-      return ! $_user_started_customize || ! $_is_customizr_active || CZR_utils::$inst->czr_fn_opt('tc_hide_donate');
-    }
-
-
-
-    /**
-    * Update donate options handled in ajax
-    * callback of wp_ajax_hide_donate*
-    * @package Customizr
-    * @since Customizr 3.1.14
-    */
-    function czr_fn_hide_donate() {
-      check_ajax_referer( 'tc-customizer-nonce', 'TCnonce' );
-      $options = get_option('tc_theme_options');
-      $options['tc_hide_donate'] = true;
-      update_option( 'tc_theme_options', $options );
-      set_transient( 'tc_cta', 'cta_waiting' , 60*60*24 );
-      wp_die();
-    }
-
-
-
-
-
-    /*
-    * Renders the underscore templates for the call to actions
-    * callback of 'customize_controls_print_footer_scripts'
-    *@since v3.2.9
-    */
-    function czr_fn_print_js_templates() {
-      ?>
-      <script type="text/template" id="donate_template">
-        <div id="czr-donate-customizer">
-          <a href="#" class="czr-close-request button" title="<?php _e('dismiss' , 'customizr'); ?>">X</a>
-            <?php
-              printf('<h3>%1$s <a href="%2$s" target="_blank">Nicolas</a>%3$s :).</h3>',
-                __( "Hi! This is" , 'customizr' ),
-                esc_url('twitter.com/presscustomizr'),
-                __( ", developer of the Customizr theme", 'customizr' )
-              );
-              printf('<span class="czr-notice">%1$s</span>',
-                __( "I'm doing my best to make Customizr the perfect free theme for you. If you think it helped you in any way to build a better web presence, please support its continued development with a donation of $20, $50..." , 'customizr' )
-              );
-              printf('<a class="czr-donate-link" href="%1$s" target="_blank" rel="nofollow"><img src="%2$s" alt="%3$s"></a>',
-                esc_url('paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=8CTH6YFDBQYGU'),
-                esc_url('paypal.com/en_US/i/btn/btn_donate_LG.gif'),
-                __( "Make a donation for Customizr" , 'customizr' )
-              );
-              printf('<div class="donate-alert"><p class="czr-notice">%1$s</p><span class="czr-hide-donate button">%2$s</span><span class="czr-cancel-hide-donate button">%3$s</span></div>',
-                __( "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>" , 'customizr'),
-                __( "Hide forever" , 'customizr' ),
-                sprintf( '%s <span style="font-size:20px">%s</span>', __( "Let me think twice" , 'customizr' ), convert_smilies( ':roll:') )
-              );
-            ?>
-        </div>
-      </script>
-      <script type="text/template" id="main_cta">
-        <div class="czr-cta czr-cta-wrap">
-          <?php
-            printf('<a class="czr-cta-btn" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-      <script type="text/template" id="wfc_cta">
-        <div class="czr-cta czr-in-control-cta-wrap">
-          <?php
-            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-      <script type="text/template" id="fpu_cta">
-        <div class="czr-cta czr-in-control-cta-wrap">
-          <?php
-            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Add unlimited featured pages with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-
-      <script type="text/template" id="gc_cta">
-        <div class="czr-cta czr-in-control-cta-wrap">
-          <?php
-            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer." , 'customizr' ),
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-
-       <script type="text/template" id="mc_cta">
-        <div class="czr-cta czr-in-control-cta-wrap">
-          <?php
-            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Add creative and engaging reveal animations to your side menu." , 'customizr' ),
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-
-      <script type="text/template" id="footer_cta">
-        <div class="czr-cta czr-in-control-cta-wrap">
-          <?php
-            printf('<span class="czr-notice">%1$s</span><a class="czr-cta-btn" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>',
-              __( "Customize your footer credits with Customizr Pro." , 'customizr' ),
-              sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-              __( "Upgrade to Customizr Pro" , 'customizr' )
-            );
-          ?>
-        </div>
-      </script>
-      <script type="text/template" id="rate-czr">
-        <?php
-        $_is_pro = 'customizr-pro' == CZR___::$theme_name;
-          printf( '<span class="czr-rate-link">%1$s %2$s, <br/>%3$s <a href="%4$s" title="%5$s" class="czr-stars" target="_blank">%6$s</a> %7$s</span>',
-            __( 'If you like' , 'customizr' ),
-            ! $_is_pro ? __( 'the Customizr theme' , 'customizr') : __( 'the Customizr pro theme' , 'customizr'),
-            __( 'we would love to receive a' , 'customizr' ),
-            ! $_is_pro ? 'https://' . 'wordpress.org/support/view/theme-reviews/customizr?filter=5' : sprintf('%scustomizr-pro/#comments', CZR_WEBSITE ),
-            __( 'Review the Customizr theme' , 'customizr' ),
-            '&#9733;&#9733;&#9733;&#9733;&#9733;',
-            __( 'rating. Thanks :) !' , 'customizr')
-          );
-        ?>
-      </script>
-      <?php
-    }
-
 
 
     /**
@@ -793,7 +636,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     }
   }//end class
 endif;
-?><?php
+?>
+<?php
 /**
 * Customizer actions and filters
 *
@@ -1016,8 +860,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
             'themeName'       => CZR___::$theme_name,
-            'HideDonate'      => CZR_customize::$instance -> czr_fn_get_hide_donate_status(),
-            'ShowCTA'         => ( true == CZR_utils::$inst->czr_fn_opt('tc_hide_donate') && ! get_transient ('tc_cta') ) ? true : false,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'translatedStrings'   => $this -> czr_fn_get_translated_strings(),
@@ -1891,6 +1733,61 @@ if ( ! class_exists( 'CZR_Customize_Setting') ) :
   }
 endif;
 ?><?php
+/**
+ * Pro customizer section.
+ * highly based on
+ * https://github.com/justintadlock/trt-customizer-pro/blob/master/example-1/section-pro.php
+ */
+class CZR_Customize_Section_Pro extends WP_Customize_Section {
+
+    /**
+     * The type of customize section being rendered.
+     *
+     * @var    string
+     */
+    public $type ='czr-customize-section-pro';
+
+    /**
+     * Custom button text to output.
+     *
+     * @var    string
+     */
+
+    public $pro_text = '';
+    /**
+     *
+     * @var    string
+     */
+    public $pro_url = '';
+
+
+    /**
+     * Add custom parameters to pass to the JS via JSON.
+     *
+     * @return void
+     * @override
+     */
+    public function json() {
+      $json = parent::json();
+      $json['pro_text'] = $this->pro_text;
+      $json['pro_url']  = esc_url( $this->pro_url );
+      return $json;
+    }
+
+    //overrides the default template
+    protected function render_template() { ?>
+      <li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
+          <h3 class="accordion-section-title">
+            {{ data.title }}
+            <# if ( data.pro_text && data.pro_url ) { #>
+              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
+            <# } #>
+          </h3>
+        </li>
+    <?php }
+}
+?>
+<?php
 add_filter('czr_js_customizer_control_params', 'czr_fn_add_social_module_data');
 
 

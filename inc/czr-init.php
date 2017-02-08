@@ -612,6 +612,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
+      public static $comments_rendered = false;
+
       function __construct () {
 
           self::$instance =& $this;
@@ -922,6 +924,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
 
+          //prevent rendering the comments template more than once
+          add_filter( 'tc_render_comments_template'            , array( $this,  'czr_fn_control_coments_template_rendering' ) );
       }//end of constructor
 
 
@@ -1066,7 +1070,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
         add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
         //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'          , array( $this , 'czr_fn_add_help_button' ));
+        add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
+
       }
 
 
@@ -1307,6 +1312,21 @@ if ( ! class_exists( 'CZR_init' ) ) :
         array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
 
         return $_classes;
+      }
+
+
+      /**
+      * Controls the rendering of the comments template
+      *
+      * @param bool $bool
+      * @return bool $bool
+      * hook : tc_render_comments_template
+      *
+      */
+      function czr_fn_control_coments_template_rendering( $bool ) {
+        $_to_return = !self::$comments_rendered && $bool;
+        self::$comments_rendered = true;
+        return $_to_return;
       }
 
   }//end of class
@@ -2177,20 +2197,17 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //disables post navigation
       add_filter( 'tc_show_post_navigation', 'czr_fn_sensei_disable_post_navigation' );
       function czr_fn_sensei_disable_post_navigation($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
-      }
-      //removes post comment action on after_loop hook
-      add_filter( 'tc_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
-      function czr_fn_sensei_disable_comments($bool) {
-        return ( function_exists('is_sensei') && ( is_sensei() || is_single('sensei_message') ) ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_singular('sensei_message') ) ? false : $bool;
       }
 
+
       //in my courses page avoid displaying both page and single content
-      //add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
+      add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
       function czr_fn_sensei_disable_single_content_in_my_courses( $bool ) {
         global $post;
         return is_page() && 'course' === $post->post_type ? false : $bool;
       }
+
     }//end sensei compat
 
 
@@ -5319,6 +5336,22 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                             'panel'   => 'tc-advanced-panel'
         )
       );
+
+      if ( ! CZR___::czr_fn_is_pro() ) {
+        $_new_sections = array_merge( $_new_sections, array(
+            /*---------------------------------------------------------------------------------------------
+            -> SECTION : GO-PRO
+            ----------------------------------------------------------------------------------------------*/
+            'customizr_go_pro'   => array(
+                                'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
+                                'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
+                                'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
+                                'priority'      => 0,
+                                'section_class' => 'CZR_Customize_Section_Pro'
+            ),
+        ) );
+      }
+
       return array_merge( $_sections, $_new_sections );
     }
 
@@ -7020,6 +7053,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
           /* See: https://github.com/presscustomizr/customizr/issues/605 */
           add_filter('tc_user_options_style'          , array( $this , 'czr_fn_apply_media_upload_front_patch' ) );
+          /* See: https://github.com/presscustomizr/customizr/issues/787 */
+          add_filter('tc_user_options_style'          , array( $this , 'czr_fn_maybe_avoid_double_social_icon' ) );
 
           //set random skin
           add_filter ('tc_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
@@ -7342,7 +7377,17 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       return $_css;
     }
 
-
+    /*
+    * Use the dynamic style to fix server side caching issue,
+    * which is the main reason why we needed this patch
+    * We don't subordinate this to the user_started_before a certain version
+    * as it also fixes potential plugin compatibility (plugins which style .icon-* before)
+    * https://github.com/presscustomizr/customizr/issues/787
+    * ( all this will be removed in c4 )
+    */
+    function czr_fn_maybe_avoid_double_social_icon( $_css ) {
+      return sprintf( "%s\n%s", $_css, '.social-links .social-icon:before { content: none } ');
+    }
 
     /*
     * Callback of wp_enqueue_scripts

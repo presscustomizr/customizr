@@ -1,4 +1,4 @@
-# Customizr v3.5.1 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.2 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,13 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.2 February 8th 2017 =
+* Imp: improve overall plugins compatibility : do not render the comments template more than once should fix #774
+* Imp: customizer - fonts/skins select on focus
+* Imp: customizer - improve slider control dependencies some controls should not be displayed when demo slider is selected
+* Imp: try to avoid double social icons see #787
+* Imp: compliancy with WP theme guidelines : one customizr pro link in the customizer, a simpler screenshot, no donate button in the customizer
+
 = 3.5.1 February 1st 2017 =
 * fixed : compatibility issue with PHP<5.5
 * fixed: customizer header partial refresh not correctly working
