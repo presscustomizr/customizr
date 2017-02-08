@@ -109,7 +109,9 @@
                                   if ( servusShortId.indexOf('tc_posts_slider_') > -1 ) {
                                     return 'tc_posts_slider' == to;
                                   }
-
+                                  if ( _.contains( [ 'tc_slider_default_height_apply_all', 'tc_slider_change_default_img_size' ], servusShortId ) ) {
+                                    return _is_checked( to ) && 'demo' != to;
+                                  }
                                   return _is_checked( to );
                             },
                             actions : function( to, servusShortId ) {
@@ -146,15 +148,16 @@
                             servi   : ['tc_slider_default_height_apply_all', 'tc_slider_change_default_img_size'],
                             visibility : function( to ) {
                                   //slider height options must be hidden is height = default height (500px), unchanged by user
+                                  //and slider is not the demo one
                                   var _defaultHeight = serverControlParams.defaultSliderHeight || 500;
-                                  return _defaultHeight != to;
+                                  return _defaultHeight != to && 'demo' != api( api.CZR_Helpers.build_setId( 'tc_front_slider' ) ).get();
                             },
                     },
                     {
                             dominus : 'tc_posts_slider_link',
                             servi   : ['tc_posts_slider_button_text'],
                             visibility : function( to ) {
-                                  return to.indexOf('cta') > -1;
+                                  return ( to.indexOf('cta') > -1 ) && ( 'tc_posts_slider' == api( api.CZR_Helpers.build_setId( 'tc_front_slider' ) ).get() );
                             },
                     },
                     {
