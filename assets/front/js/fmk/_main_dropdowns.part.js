@@ -10,6 +10,7 @@ var czrapp = czrapp || {};
       this.openClass = 'active';
       this.dropdownMenuOnClick();
       this.dropdownMenuOnHover();
+      this.dropdownPlacement();
     },
 
 
@@ -100,6 +101,34 @@ var czrapp = czrapp || {};
 
         return false;
       });//.on()
+    },
+
+    dropdownPlacement : function() {
+      var self = this;
+      //TODO: on resize??? re-calculate in cascade?
+      // edge-case, I wouldn't do it
+
+      /*
+      * Snake Prototype
+      */
+      czrapp.$_body.on( 'li-open.'+this.namespace, '.tc-header .menu-item-has-children', function(evt) {
+        var $_dropdown = $(this).children('.dropdown-menu');
+
+        //stage
+        $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
+        //reset
+        $_dropdown.removeClass( 'open-left, open-right' );
+        _maybe_move( $_dropdown );
+        //unstage
+        $_dropdown.css( 'zIndex', '').css('display', '');
+      } );
+
+      function _maybe_move( $_dropdown ){
+        if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() )
+          $_dropdown.addClass( 'open-left' );
+        if ( $_dropdown.offset().left < 0 )
+          $_dropdown.addClass( 'open-right' );
+      }
     }
 
   };//_methods{}

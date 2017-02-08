@@ -1,20 +1,19 @@
 <?php
 class CZR_woocommerce_cart_model_class extends CZR_Model {
 
-  public $display_widget;
-  public $defaults = array( 'element_tag' => 'div' );
+  public $defaults = array( 'element_tag' => 'div', 'display_widget' => true );
 
   public function __construct( $model ) {
     parent::__construct( $model);
     add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'czr_fn_woocommerce_add_to_cart_fragment' ) );
   }
 
-  function czr_fn_extend_params( $model = array() ) {
-    $_model = array(
-      'display_widget' => function_exists( 'czr_fn_wc_is_checkout_cart' ) ? ! czr_fn_wc_is_checkout_cart() : true,
-    );
+  function czr_fn_get_display_widget() {
+    if ( $this->display_widget ) {
+      return function_exists( 'czr_fn_wc_is_checkout_cart' ) ? ! czr_fn_wc_is_checkout_cart() : true;
+    }
 
-    return array_merge( $model, $_model );
+    return false;
   }
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)

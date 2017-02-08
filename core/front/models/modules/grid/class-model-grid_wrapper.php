@@ -731,10 +731,10 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     //$_current_col_figure_css  = $this -> czr_fn_grid_get_figure_css( $_col_nb );
     //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
     $_current_col_media_css   = $this -> czr_fn_get_grid_font_css( $_col_nb );
-    $_css = sprintf("%s\n%s\n%s\n",
+    $_css = sprintf("%s\n%s\n",
         $_css,
-        $_current_col_media_css,
-        $_current_col_figure_css
+        $_current_col_media_css
+       // $_current_col_figure_css
     );
     return $_css;
   }

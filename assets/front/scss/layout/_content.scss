@@ -250,7 +250,7 @@ dl {
   .btn-edit { margin: -1em 0 0 }
 
   @at-root .fp-button {
-    display: block;
+    display: inline-block;
     .btn-more {
       margin-bottom: $base-line-height*2
     }

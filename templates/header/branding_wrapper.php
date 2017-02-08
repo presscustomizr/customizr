@@ -19,7 +19,8 @@
         <?php
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
-              'element_class' => array('mobile-woocart__container')
+              'element_class'  => array('mobile-woocart__container'),
+              'display_widget' => false
             )
           ) );
         ?>

@@ -297,6 +297,7 @@ Apply this to the form elements
 }
 */
 /* add also woocommerce style */
+/*
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
 .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
 .woocommerce #respond input#submit,
@@ -321,7 +322,10 @@ input[type="submit"] {
   padding: 0.5rem 1rem;
   font-size: 1rem;
 }
-
+*/
+form.czr-form .coupon.czr-focus:not(.in-focus) input {
+  color: inherit;
+}
 
 /* header secondary menu font-size fix
 replace
@@ -546,7 +550,7 @@ Limit to desktop
     width: 100%;
     left: 0;
   }
-  .semi-narrow .czr-center-sections .entry-media__wrapper img {
+  .semi-narrow .czr-center-sections .entry-media__holder:not(.js-media-centering) img {
     height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
   }
   .grid-container__alternate.semi-narrow .post-type__icon {

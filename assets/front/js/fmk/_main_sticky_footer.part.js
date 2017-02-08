@@ -16,6 +16,9 @@ var czrapp = czrapp || {};
                 self._apply_sticky_footer(); }, 50
         );
       }*/
+      setTimeout( function() {
+        czrapp.$_body.trigger('refresh-sticky-footer');
+      }, 50 );
     },
 
     /***********************************************
@@ -25,7 +28,7 @@ var czrapp = czrapp || {};
       var self = this;
 
       // maybe apply sticky footer on window resize
-      czrapp.$_window.on( 'resize', function() {
+      czrapp.$_window.on( 'tc-resize', function() {
         self.stickyFooterEventHandler('resize');
       });
 
@@ -50,17 +53,17 @@ var czrapp = czrapp || {};
       switch ( evt ) {
         case 'resize':
           if ( !self.doingAnimation ) {
-            self.doingAnimation = true;
-
-            window.requestAnimationFrame(function() {
+              self.doingAnimation = true;
+              window.requestAnimationFrame(function() {
               //to avoid the creation of a function inside a loop
               //but still allow the access to "this"
-              var func = function() { return self._apply_sticky_footer(); };
-              for ( var i = 0; i<5; i++ ) /* inspired by twentyfifteen js */
-                setTimeout( func, 50 * i);
-
-              self.doingAnimation = false;
-            });
+              //var func = function() { return self._apply_sticky_footer(); };
+              //for ( var i = 0; i<5; i++ ) {/* inspired by twentyfifteen js */
+              //    setTimeout( func, 50 * i);
+              //  }
+                self._apply_sticky_footer();
+                self.doingAnimation = false;
+              });
           }
         break;
         case 'refresh':

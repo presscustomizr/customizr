@@ -19,8 +19,9 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
     function czr_fn_display_view_footer_widgets() {
       $footer_widgets = apply_filters( 'czr_footer_widgets', CZR_init::$instance -> footer_widgets );
       foreach ( $footer_widgets as $key => $area ) {
-        if ( is_active_sidebar( $key ) )
+        if ( is_active_sidebar( $key ) ) {
           return true;
+        }
       }
 
       return false;
