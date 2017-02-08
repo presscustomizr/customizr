@@ -42,6 +42,8 @@ The exceptions to this license are as follows:
 #######################  Changelog ######################
 = 3.5.2 February 8th 2017 =
 * Fix: second menu responsive actions on header partial refresh
+* Fix: fix rtl carousel-caption positioning and text alignment. fixes #797
+* Fix: fix btn-toggle-nav position on sticky-enabled when tagline-off #799
 * Imp: fix btn-toggle-nav positioning when sticky enabled and no socials
 * Imp: improve overall plugins compatibility : do not render the comments template more than once should fix #774
 * Imp: customizer - fonts/skins select on focus instead of on click

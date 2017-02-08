@@ -5982,8 +5982,8 @@ footer#footer .colophon .credits a[class*=icon-] {
   /*hack IE7 and below */
   display: inline-block;
   position: relative;
-  margin-left: 11%;
-  text-align: left;
+  margin-right: 11%;
+  text-align: right;
   /*display:inline; IE7 and below */
 }
 .carousel-caption h1,
@@ -8746,7 +8746,11 @@ li#wp-admin-bar-tc-customizr-help a {
   body .tc-header .btn-toggle-nav.pull-right {
     clear: both;
   }
-  /* if only socials + btn-nav in navbar (no tagline), do not drop on a new line */
+  /* do not drop on a new line if:
+  - only socials + btn-nav in navbar (no tagline), do not drop on a new line when sticky disabled 
+  - tagline-off (socials are never displayed as of now) when sticky enabled
+  */
+  .sticky-enabled .tc-tagline-off .btn-toggle-nav.pull-right,
   body:not(.sticky-enabled) .tc-header .social-block + .btn-toggle-nav.pull-right {
     clear: none;
   }
