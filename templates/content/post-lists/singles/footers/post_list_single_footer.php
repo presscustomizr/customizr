@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the footer of a post in a post list
- * In WP loop
+ * In CZR loop
  *
  * @package Customizr
  */
@@ -15,12 +15,12 @@
       </ul>
     </div>
   <?php endif; ?>
-    <div class="post-info">
+    <div class="post-info clearfix">
     <?php
       if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) )
         echo $date;
 
-      if ( czr_fn_is_possible( 'comment_info' ) ) :
+      if ( czr_fn_get('show_comment_meta') ) :
         if ( $date ) : ?> <span class="v-separator">|</span> <?php endif;
         czr_fn_render_template( 'modules/comment_info' );
       endif

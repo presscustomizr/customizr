@@ -60,8 +60,13 @@ var czrapp = czrapp || {};
     },//center_images
 
     parallax : function() {
-      //slider parallax
-      $( '.czr-parallax-slider' ).czrParallax();
+      /*
+      * slider parallax on flickity ready
+      * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
+      */
+      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', function( evt ) {
+        $(evt.target).children('.flickity-viewport').czrParallax();
+      });
 
       $( '.parallax-item' ).czrParallax();
       /* Refresh waypoints when mobile menu button is toggled as
@@ -74,9 +79,11 @@ var czrapp = czrapp || {};
     },
 
     lightbox : function() {
+      var _arrowMarkup = '<span class="slider-control mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+
       /* The magnificPopup delegation is very good
-      * not even works when clicking on a dynamically added a.expand-img
-      * but clicking on an another a.expand-img the image speficied in the
+      * it works when clicking on a dynamically added a.expand-img
+      * but also when clicking on an another a.expand-img the image speficified in the
       * dynamically added a.expang-img href is added to the gallery
       */
       $( '[class*="grid-container__"]' ).magnificPopup({
@@ -90,10 +97,22 @@ var czrapp = czrapp || {};
           delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
           type: 'image',
           gallery: {
-           enabled: true
+           enabled: true,
+           arrowMarkup: _arrowMarkup
           }
           // other options
         });
+      });
+      /*
+      * in singles when former tc_fancybox enabled
+      */
+      $('#content').magnificPopup({
+        delegate: '.expand-img-grouped',
+        type: 'image',
+        gallery: {
+         enabled: true,
+         arrowMarkup: _arrowMarkup
+        }
       });
       //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
@@ -104,7 +123,8 @@ var czrapp = czrapp || {};
             delegate: '.gallery-img', // child items selector, by clicking on it popup will open
             type: 'image',
             gallery: {
-              enabled: true
+              enabled: true,
+              arrowMarkup: _arrowMarkup
             },
         }).magnificPopup('open');
       });
@@ -116,45 +136,41 @@ var czrapp = czrapp || {};
     * flickity slider:
     */
     czr_slider : function() {
+      /* Flickity ready
+      * see https://github.com/metafizzy/flickity/issues/493#issuecomment-262658287
+      */
+      var activate = Flickity.prototype.activate;
+      Flickity.prototype.activate = function() {
+        if ( this.isActive ) {
+          return;
+        }
+        activate.apply( this, arguments );
+        this.dispatchEvent('czr-flickity-ready');
+      };
+
+      /* Disable controllers when the first or the latest slide is in the viewport */
+      czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', czr_controls_disabling );
+      /*Handle custom nav */
+      // previous
+      czrapp.$_body.on( 'click tap prev.czr-slider', '.slider-prev', slider_previous );
+      // next
+      czrapp.$_body.on( 'click tap next.czr-slider', '.slider-next', slider_next );
+
+
       /* Test only RELATED POSTS !!!!!! */
-      $('.grid-container__square-mini').flickity({
+      $('.grid-container__square-mini.carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
-          groupCells: "50%",
           imagesLoaded: true,
-          cellSelector: '.post',
+          cellSelector: 'article',
+          groupCells: true,
           cellAlign: 'left',
           dragThreshold: 10,
           accessibility: false,
           contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
       });
 
-      /*
-      * Disable controllers when the first or the latest slide is in the viewport
-      */
-      $('.grid-container__square-mini', '.czr-carousel').on( 'settle.flickity', function( evt ) {
-        var $_this             = $(this),
-            flkty              = $_this.data('flickity'),
-            $_carousel_wrapper = $_this.closest('.czr-carousel'),
-            $_prev             = $_carousel_wrapper.find('.slider-prev'),
-            $_next             = $_carousel_wrapper.find('.slider-next');
 
-        //Reset
-        $_prev.removeClass('disabled');
-        $_next.removeClass('disabled');
-
-        //selected index is 0, disable prev or
-        //first slide shown but not selected
-        if ( ( 0 == flkty.selectedIndex ) || ( Math.abs(flkty.x ) < .1 ) )
-          $_prev.addClass('disabled');
-
-        //console.log(Math.abs( flkty.slidesWidth + flkty.x ) );
-        //selected index is latest, disable next or
-        //latest slide shown but not selected
-        if ( ( flkty.slides.length - 1 == flkty.selectedIndex ) || ( Math.abs( flkty.slidesWidth + flkty.x ) < .1 ) )
-          $_next.addClass('disabled');
-
-      })
 
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
       $('[class*="grid-container__"] .format-gallery .carousel-inner').flickity({
@@ -169,15 +185,36 @@ var czrapp = czrapp || {};
       });
 
       /* Test only !!!!!! MAIN SLIDER */
-      $('.czr-carousel .carousel-inner').flickity({
+      $('.carousel-inner', '[id^="customizr-slider-main"]').flickity({
           prevNextButtons: false,
-          pageDots: false,
+          pageDots: true,
+          /*
+          * From flickity docs
+          * At the end of cells, wrap-around to the other end for infinite scrolling.
+          */
           wrapAround: true,
           imagesLoaded: true,
+          //lazyLoad ?
+          /*
+          * From flickity docs
+          * Sets the height of the carousel to the height of the tallest cell. Enabled by default setGallerySize: true.
+          */
           setGallerySize: false,
           cellSelector: '.carousel-cell',
+          /*
+          * From flickity docs
+          * The number of pixels a mouse or touch has to move before dragging begins.
+          * Increase dragThreshold to allow for more wiggle room for vertical page scrolling on touch devices.
+          * Default dragThreshold: 3.
+          */
           dragThreshold: 10,
-          autoPlay: true,
+          /*
+          * From flickity docs
+          * Auto-playing will pause when mouse is hovered over,
+          * and resume when mouse is hovered off. Auto-playing will stop when
+          * the carousel is clicked or a cell is selected.
+          */
+          autoPlay: true, // {Number in milliseconds }
           /*
           * Set accessibility to false as it produces the following issue:
           * - flickity, when accessibiity is set to true, sets the "carousel" tabindex property
@@ -190,12 +227,50 @@ var czrapp = czrapp || {};
           * very weird behavior to investigate on :/
           */
           accessibility: false,
-          draggable: true
       });
 
-      /* Handle custom nav */
+      /* Handle sliders nav */
+
+
+      /*
+      * Disable controllers when the first or the latest slide is in the viewport
+      * when wrapAround //off
+      */
+      function czr_controls_disabling() {
+        var $_this             = $(this),
+            flkty              = $_this.data('flickity');
+
+        if ( ! flkty )//maybe not ready
+          return;
+
+        if ( flkty.options.wrapAround )
+          $_this.off( 'select.flickity', czr_controls_disabling );
+
+        //console.log(flkty);
+        var $_carousel_wrapper = $_this.closest('.czr-carousel'),
+            $_prev             = $_carousel_wrapper.find('.slider-prev'),
+            $_next             = $_carousel_wrapper.find('.slider-next');
+
+        //Reset
+        $_prev.removeClass('disabled');
+        $_next.removeClass('disabled');
+
+        //selected index is 0, disable prev or
+        //first slide shown but not selected
+        if ( ( 0 == flkty.selectedIndex ) )
+          $_prev.addClass('disabled');
+
+        //console.log(Math.abs( flkty.slidesWidth + flkty.x ) );
+        //selected index is latest, disable next or
+        //latest slide shown but not selected
+        if ( ( flkty.slides.length - 1 == flkty.selectedIndex ) )
+          $_next.addClass('disabled');
+
+      };
+
+      /*Handle custom nav */
       // previous
-      czrapp.$_body.on( 'click', '.slider-prev', function(evt) {
+      function slider_previous(evt) {
         evt.preventDefault();
 
         var $_this    = $(this),
@@ -208,11 +283,11 @@ var czrapp = czrapp || {};
         }
 
         _flickity.previous();
-      });
+      };
 
       // next
-      czrapp.$_body.on( 'click', '.slider-next', function(evt) {
-        evt.preventDefault();
+      function slider_next(evt) {
+        //evt.preventDefault();
 
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
@@ -224,7 +299,7 @@ var czrapp = czrapp || {};
         }
 
         _flickity.next();
-      });
+      };
     }
   };//_methods{}
 

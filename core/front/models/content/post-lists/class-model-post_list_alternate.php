@@ -38,6 +38,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'thumb_alternate'       => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ),
       'thumb_position'        => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) ),
       'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'content_width'         => $content_width,
       'has_format_icon_media' => ! in_array( 'narrow', $content_width ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
@@ -155,6 +156,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
   }
 
+  function czr_fn_get_show_comment_meta() {
+    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
 
   /*
   * Private/protected getters
@@ -182,7 +186,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $has_format_icon_media   = $this->czr_fn_has_format_icon_media( $has_thumb, $_current_post_format );
 
     //setup article selectors;
-    $article_selectors = $this -> czr_fn__get_article_selectors($is_full_image, $has_format_icon_media);
+    $article_selectors       = $this -> czr_fn__get_article_selectors($is_full_image, $has_format_icon_media);
 
 
     $_sections_wrapper_class = array();
@@ -251,8 +255,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       $_layout[ 'content' ] = array('', '', '', '', '12');
     }
 
-    $content_cols = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
-    $media_cols   = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+    $content_cols      = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
+    $media_cols        = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+
+    //add the aspect ratio class for the full image types
+    if  ( $is_full_image || 'video' == $_current_post_format ) {
+      array_push( $media_cols, 'czr__r-w16by9' );
+    } elseif ( $has_post_media && ! $has_format_icon_media ) {
+      array_push( $media_cols, 'czr__r-w1by1' );
+    }
+
+    $show_comment_meta = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     $post_list_item = array(
       'content_cols'            => $content_cols,
@@ -262,7 +275,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'sections_wrapper_class'  => $_sections_wrapper_class,
       'article_selectors'       => $article_selectors,
       'is_full_image'           => $is_full_image,
-      'has_format_icon_media'   => $has_format_icon_media
+      'has_format_icon_media'   => $has_format_icon_media,
+      'show_comment_meta'       => $show_comment_meta
     );
 
     return $post_list_item;
@@ -306,11 +320,11 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $_layout                       = self::$default_post_list_layout;
 
     $_layout[ 'position' ]         = $model[ 'thumb_position' ];
-    $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
+
     $narrow_layout                 = $model[ 'has_narrow_layout' ];
     //since 4.5 top/bottom positions will not be optional but will be forced in narrow layouts
     if ( $narrow_layout )
-      $_layout['position']         = $_layout[ 'show_thumb_first' ] ? 'top' : 'bottom';
+      $_layout['position']         = 'top';
     else {
       if ( 'top' == $_layout[ 'position' ] )
         $_layout[ 'position' ] = 'left';
@@ -318,8 +332,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
         $_layout[ 'position' ] = 'right';
     }
 
+    $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ! ( 0 == $model[ 'thumb_alternate' ]  || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
+    $_layout['alternate']          = ! ( 0 == $model[ 'thumb_alternate' ]  || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
 
     $_content_width       = $model[ 'content_width' ];
     $_content_width       = is_array( $_content_width ) && in_array( $_content_width[0], array( 'full', 'semi-narrow', 'narrow' ) ) ?
@@ -385,7 +400,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
   /**
-  * @return array() of bootstrap classed defining the responsive widths
+  * @return array() of bootstrap classes defining the responsive widths
   *
   */
   function czr_fn_build_cols( $_widths, $_push = array(), $_pull = array() ) {

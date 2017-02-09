@@ -19,7 +19,7 @@
               'content/post-lists/singles/post_list_single_media',
                array(
                 'model_args' => array(
-                  'element_class'            => '',
+                  'element_class'            => czr_fn_get('media_class'),
                   'has_post_media'           => $has_post_media,
                   'has_format_icon_media'    => false,
                   'is_full_image'            => false
@@ -42,8 +42,10 @@
           ?>
           <div class="entry-content__wrapper row">
             <?php if ( $cat_list = czr_fn_get( 'cat_list' ) ) : ?>
-              <div class="entry-meta tax__container small caps <?php czr_fn_echo( 'cat_list_class' ) ?>">
-                <?php echo $cat_list ?>
+              <div class="entry-meta">
+                <div class="tax__container small caps <?php czr_fn_echo( 'cat_list_class' ) ?>">
+                  <?php echo $cat_list ?>
+                </div>
               </div>
 
             <?php endif; ?>
@@ -61,7 +63,16 @@
               ?>
             </div>
           </div>
-          <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer_author' ) ?>
+          <?php
+              /* footer */
+              czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer_author',
+                      array(
+                        'model_args' => array(
+                          'show_comment_meta' => czr_fn_get('show_comment_meta')
+                        )
+                      )
+              )
+          ?>
         </section>
       </div>
     </article>

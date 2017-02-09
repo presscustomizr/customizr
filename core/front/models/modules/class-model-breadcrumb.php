@@ -157,8 +157,9 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     global $wp_rewrite;
 
     /* Set up an empty trail array and empty path. */
-    $trail = array();
-    $path = '';
+    $trail        = array();
+    $path         = '';
+    $maybe_paged  = true;
 
     /* tc addon */
     $page_for_posts         = ( 'posts' != get_option('show_on_front') ) ? get_option('page_for_posts') : false;
@@ -176,7 +177,8 @@ class CZR_breadcrumb_model_class extends CZR_Model {
 
     /* If bbPress is installed and we're on a bbPress page. */
     if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
-      $trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_bbpress_items() );
+      $trail        = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_bbpress_items() );
+      $maybe_paged  = false; //czr_fn_breadcrumb_trail_get_woocommerce_items already gives us the page
     }
 
     /* If WooCommerce is installed and we're on a WooCommerce page. */
@@ -554,10 +556,12 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     }
 
     /* Check for pagination. */
-    if ( is_paged() )
-      $trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'paged' ) ) );
-    elseif ( is_singular() && 1 < get_query_var( 'page' ) )
-      $trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'page' ) ) );
+    if ( $maybe_paged ) {
+      if ( is_paged() )
+        $trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'paged' ) ) );
+      elseif ( is_singular() && 1 < get_query_var( 'page' ) )
+        $trail[] = sprintf( __( 'Page %d' , 'customizr' ), absint( get_query_var( 'page' ) ) );
+    }
 
     /* Allow devs to step in and filter the $trail array. */
     return apply_filters( 'czr_breadcrumb_trail_items' , $trail, $args );

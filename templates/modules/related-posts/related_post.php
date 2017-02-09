@@ -12,7 +12,8 @@
           'model_args' => array(
             'element_class' => czr_fn_get('media_cols'),
             'only_thumb'    => true,
-            'has_post_media' => true
+            'has_post_media' => true,
+            'use_placeholder' => true
           )
         )
       );
@@ -23,9 +24,9 @@
         <?php
           /* header */
           czr_fn_render_template(
-            'content/post-lists/singles/headings/post_list_single_header',
+            'content/post-lists/singles/headings/post_list_single_header-no_metas',
             array(
-              'model_args' => array( 'cat_limit'  => 2 )
+              'model_class' => 'content/post-lists/singles/headings/post_list_single_header'
             )
           );
           /* content inner */

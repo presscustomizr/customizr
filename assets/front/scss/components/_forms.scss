@@ -52,7 +52,7 @@ form.czr-form {
   .czr-focus label {
     display: block;
     position: absolute;
-    @include transition(all, .3s ease);
+    @include transition(transform 0.3s ease);
     span { float: left; }
 
     i.icn-close {
@@ -62,7 +62,7 @@ form.czr-form {
       width:2em;
       line-height: 2em;
       @include opacity(0);
-      @include transition(all 0.3s ease);
+      @include transition(transform 0.3s ease);
       @include transform(translateY(-110%));
     }
   }

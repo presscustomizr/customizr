@@ -6,8 +6,6 @@
 *
 */
 
-
-
     /**
     * Defines sections, settings and function of customizer and return and array
     * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop)
@@ -27,8 +25,8 @@
 
       //FILTER SPECIFIC SETTING-CONTROL MAPS
       //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_social_option_map'     , 'czr_fn_generates_socials' );
-      add_filter( 'czr_front_page_option_map' , 'czr_fn_generates_featured_pages' );
+      //add_filter( 'czr_social_option_map'     , 'czr_fn_generates_socials' );
+      //add_filter( 'czr_front_page_option_map' , 'czr_fn_generates_featured_pages' );
 
       //ALLOW FILTERING FOR THE GLOBAL CUSTOMIZER MAP
       return apply_filters( 'czr_customizer_map', array_merge(
@@ -89,13 +87,15 @@
         'czr_fn_external_resources_option_map'
       );
 
+      $_settings_sections = apply_filters( 'czr_settings_sections', $_settings_sections );
+
       foreach ( $_settings_sections as $_section_cb ) {
         if ( ! function_exists( $_section_cb ) )
           continue;
         //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
         //each section map takes one boolean param : $get_default
         $_section_map = apply_filters(
-          str_replace( '_fn_', '_', $_section_cb ),
+          $_section_cb,
           call_user_func_array( $_section_cb, array( $get_default ) )
         );
 
@@ -430,6 +430,7 @@
                                 'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
               )
       );//end of images options
+
       //add responsive image settings for wp >= 4.4
       if ( version_compare( $wp_version, '4.4', '>=' ) )
         $_image_options = array_merge( $_image_options, array(

@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the header of a post in a post list
- * In WP loop
+ * In CZR loop
  *
  * @package Customizr
  */
@@ -14,11 +14,13 @@
     <?php endif; ?>
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get('cat_limit') ) ) ) : ?>
       <div class="entry-meta">
-        <?php echo $cat ?>
+        <div class="tax__container">
+          <?php echo $cat ?>
+        </div>
       </div>
     <?php endif; ?>
     <h2 class="entry-title ">
-      <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php the_title() ?></a>
+      <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
     <?php
       if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )

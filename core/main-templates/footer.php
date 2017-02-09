@@ -14,7 +14,7 @@
     <?php
       do_action('__after_page_wrapper');
 
-      if ( czr_fn_has('saerch_full_page') )
+      if ( czr_fn_has('search_full_page') )
         czr_fn_render_template( 'modules/search_full_page' );
 
       if ( czr_fn_has('btt_arrow') )

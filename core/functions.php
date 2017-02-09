@@ -317,7 +317,7 @@ function czr_fn_is_customizing() {
 //@return boolean
 if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
   function czr_fn_is_partial_refreshed_on() {
-    return apply_filters( 'czr_partial_refresh_on', true );
+    return apply_filters( 'czr_partial_refresh_on', false );
   }
 }
 
@@ -336,6 +336,7 @@ if ( ! function_exists( 'czr_fn_checked' ) ) {
 */
 if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
   function czr_fn_has_social_links() {
-    return ! empty ( czr_fn_get_opt('tc_social_links') );
+    $_socials = czr_fn_get_opt('tc_social_links');
+    return ! empty( $_socials );
   }
 }

@@ -17,9 +17,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
       'grid_expand_featured'  => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
       'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      'use_thumb_placeholder' => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false
     );
@@ -153,11 +155,22 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $has_title_in_caption   = $this -> czr_fn_grid_item_has_title_in_caption( $is_expanded );
 
-    $has_edit_in_caption    = $this -> czr_fn_grid_item_has_edit_in_caption( $is_expanded );
+    $has_edit_above_thumb   = $this -> czr_fn_grid_item_has_edit_above_thumb( $is_expanded );
 
     $has_fade_expt          = $this -> czr_fn_grid_item_has_fade_expt( $is_expanded, $thumb_img );
 
     $article_selectors      = $this -> czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded );
+
+    $show_comment_meta      = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
+
+    $use_thumb_placeholder  = $this -> use_thumb_placeholder;
+
+
+    //various depending on whether is expanded
+    $entry_summary_class    = $is_expanded ? 'czr-talign' : '';
+    $gcont_class            = ! $is_expanded ? 'czr-talign' : '';
+    //add the aspect ratio class for the figure
+    array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
 
     //update the model
     return array_merge(
@@ -169,9 +182,13 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'title',
           'has_title_in_caption',
           'has_fade_expt',
-          'has_edit_in_caption',
+          'has_edit_above_thumb',
           'section_cols',
-          'article_selectors'
+          'article_selectors',
+          'use_thumb_placeholder',
+          'gcont_class',
+          'entry_summary_class',
+          'show_comment_meta'
         )
     );
   }
@@ -179,7 +196,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /*
   * has edit in caption
   */
-  function czr_fn_grid_item_has_edit_in_caption( $is_expanded ) {
+  function czr_fn_grid_item_has_edit_above_thumb( $is_expanded ) {
     return $is_expanded;
   }
 
@@ -199,7 +216,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
 
   /**
-  * Limits the length of the post titles in grids to a custom number of characters
+  * Limits the length of the post titles in grids to a custom number of words
   * @return string
   */
   function czr_fn_get_grid_item_title( $_title, $is_expanded ) {
@@ -207,15 +224,17 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
     $_max = $_max <= 0 ? 1 : $_max;
 
+
     if ( empty($_title) || ! is_string($_title) )
       return $_title;
 
     if ( count( explode( ' ', $_title ) ) > $_max ) {
       $_words = array_slice( explode( ' ', $_title ), 0, $_max );
-      $_title = sprintf( '%s ...',
+      $_title = sprintf( '%s &hellip;',
         implode( ' ', $_words )
       );
     }
+
     return $_title;
   }
 
@@ -231,7 +250,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $thumb_model                   = czr_fn_get_thumbnail_model(
           $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
           null, null, null,
-          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols )
+          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
+          $_placehoder               = $this -> use_thumb_placeholder
       );
 
       if ( ! isset( $thumb_model['tc_thumb'] ) )
@@ -306,7 +326,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   }
 
   private function czr_fn_show_thumb() {
-    return 0 != $this -> show_thumb && czr_fn_has_thumb();
+    return 0 != $this -> show_thumb;
   }
 
   /******************************
@@ -598,19 +618,20 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $_h_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'p' );
       $_css .= "
-          .tc-post-list-grid .grid-cols-1 .entry-title {{$_h_one_col}}
-          .tc-post-list-grid .grid-cols-1 .tc-g-cont {{$_p_one_col}}
+          .grid-container__classic .grid-cols-1 .entry-title {{$_h_one_col}}
+          .grid-container__classic .grid-cols-1 .tc-g-cont {{$_p_one_col}}
       ";
     }
     $_h = $_css_prop['h'];
     $_p = $_css_prop['p'];
     $_css .= "
-        .tc-post-list-grid article .entry-title {{$_h}}
-        .tc-post-list-grid .tc-g-cont {{$_p}}
+        .grid-container__classic article .entry-title {{$_h}}
+        .grid-container__classic .tc-g-cont {{$_p}}
     ";
     return $_css;
   }
 
+  /* Not used anymore !!! */
   /**
   * @return css string
   * @param column layout (string)
@@ -639,6 +660,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       }";
     return $_css;
   }
+
 
   /**
   * @return string
@@ -704,14 +726,15 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_user_options_style_cb( $_css ){
     $_col_nb  = $this -> czr_fn_get_grid_cols();
+    // Not used anymore:
     //GENERATE THE FIGURE HEIGHT CSS
-    $_current_col_figure_css  = $this -> czr_fn_grid_get_figure_css( $_col_nb );
+    //$_current_col_figure_css  = $this -> czr_fn_grid_get_figure_css( $_col_nb );
     //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
     $_current_col_media_css   = $this -> czr_fn_get_grid_font_css( $_col_nb );
-    $_css = sprintf("%s\n%s\n%s\n",
+    $_css = sprintf("%s\n%s\n",
         $_css,
-        $_current_col_media_css,
-        $_current_col_figure_css
+        $_current_col_media_css
+       // $_current_col_figure_css
     );
     return $_css;
   }

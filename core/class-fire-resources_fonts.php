@@ -12,14 +12,13 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
 	    function __construct () {
 	        self::$instance =& $this;
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
 
-          //Custom Stylesheets
-          //Write font icon
-          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'czr_font_icon_priority', 999 ) );
+          //Font awesome
+          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons') );
 
           //add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
-          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_dropcap_inline_css') );
+          add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 	    }
 
 
@@ -29,17 +28,24 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
 		/**
     * Write the font icon in the custom stylesheet at the very beginning
-    * hook : czr_user_options_style
+    * hook : wp_enqueue_scripts
     * @package Customizr
     * @since Customizr 3.2.3
     */
-		function czr_fn_write_inline_font_icons_css( $_css = null ) {
-      $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'czr_write_inline_font_icons',
-        $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
-        $_css
-      );
-    }//end of function
+		function czr_fn_maybe_enqueue_fa_icons() {
+
+      //Enqueue FontAwesome CSS
+      if ( true == czr_fn_get_opt( 'tc_font_awesome_icons' ) ) {
+        $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
+        wp_enqueue_style( 'customizr-fa',
+          $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+          array(),
+          CUSTOMIZR_VER,
+          'all'
+        );
+      }
+
+    }
 
 
 

@@ -10,6 +10,7 @@ var czrapp = czrapp || {};
       this.openClass = 'active';
       this.dropdownMenuOnClick();
       this.dropdownMenuOnHover();
+      this.dropdownPlacement();
     },
 
 
@@ -19,7 +20,7 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on hover via js
     dropdownMenuOnHover : function() {
-      var _dropdown_selector = '.tc-open-on-hover .menu-item-has-children, .primary-nav__woocart',
+      var _dropdown_selector = '.czr-open-on-hover .menu-item-has-children, .primary-nav__woocart',
           self               = this;
 
       function _addOpenClass () {
@@ -53,7 +54,7 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on click for multi-tier menus
     dropdownMenuOnClick : function() {
-      var _dropdown_menu_container_selector  = '.tc-open-on-click',
+      var _dropdown_menu_container_selector  = '.czr-open-on-click',
           _dropdown_menu_selector            = '.dropdown-menu',
           _dropdown_submenu_selector         = '.dropdown-submenu',
           _dropdown_toggler_selector         = '[data-toggle="dropdown"]',
@@ -61,7 +62,7 @@ var czrapp = czrapp || {};
           _open_class                        = this.openClass,
           self                               = this;
 
-          //_dropdown_link_selector            = '.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
+          //_dropdown_link_selector            = '.czr-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
 
       /* TODO: Better handling with bootstrap events */
       /* Test */
@@ -100,6 +101,34 @@ var czrapp = czrapp || {};
 
         return false;
       });//.on()
+    },
+
+    dropdownPlacement : function() {
+      var self = this;
+      //TODO: on resize??? re-calculate in cascade?
+      // edge-case, I wouldn't do it
+
+      /*
+      * Snake Prototype
+      */
+      czrapp.$_body.on( 'li-open.'+this.namespace, '.tc-header .menu-item-has-children', function(evt) {
+        var $_dropdown = $(this).children('.dropdown-menu');
+
+        //stage
+        $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
+        //reset
+        $_dropdown.removeClass( 'open-left, open-right' );
+        _maybe_move( $_dropdown );
+        //unstage
+        $_dropdown.css( 'zIndex', '').css('display', '');
+      } );
+
+      function _maybe_move( $_dropdown ){
+        if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() )
+          $_dropdown.addClass( 'open-left' );
+        if ( $_dropdown.offset().left < 0 )
+          $_dropdown.addClass( 'open-right' );
+      }
     }
 
   };//_methods{}

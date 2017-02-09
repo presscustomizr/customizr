@@ -19,7 +19,9 @@
                array(
                 'model_args' => array(
                   'has_post_media'           => $has_post_media,
-                  'is_full_image'            => czr_fn_get( 'is_full_image'  )
+                  'element_class'            => czr_fn_get( 'media_class' ),
+                  'is_full_image'            => czr_fn_get( 'is_full_image' ),
+                  'allow_css_centering'      => czr_fn_get( 'allow_css_centering' )
                 )
               )
             );
@@ -39,8 +41,15 @@
             );
             /* content inner */
             czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
+
             /* footer */
-            czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer' );
+            czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
+                    array(
+                      'model_args' => array(
+                        'show_comment_meta' => czr_fn_get('show_comment_meta')
+                      )
+                    )
+            )
           ?>
           </div>
         </section>

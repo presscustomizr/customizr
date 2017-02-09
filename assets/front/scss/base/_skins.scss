@@ -29,7 +29,7 @@ $secondary-color-dark   : $grey;
     .nav__container {
       nav {
         .primary-nav__menu > li { border-bottom: 0.5px solid rgba($secondary-color-light, 0.25); }
-      a {  @include underlined ( $primary-color, 1px ); }
+        a {  @include underlined ( $primary-color, 1px ); }
       }
     }
   }
@@ -41,7 +41,7 @@ $secondary-color-dark   : $grey;
          background: $primary-color;
       }
     }
-
+/*
     .secondary-navbar__wrapper
   {
 
@@ -50,63 +50,55 @@ $secondary-color-dark   : $grey;
     ul.secondary-nav__menu > li > a {
         @include underlined ( $primary-color, 1px );
     }
-  }
+  }*/
   #sticky-placeholder,
-  .secondary-navbar__wrapper, .primary-navbar__wrapper  {
+  .topnav_navbars__wrapper  {
     background: $background-color;
   }
 
   .header-transparent {
     #sticky-placeholder { background: transparent }
-    @media (min-width: 993px) {
-      .secondary-navbar__wrapper, .primary-navbar__wrapper  {
+    @media (min-width: 992px) {
+      .topnav_navbars__wrapper {
         background: transparent;
       }
     }
-    @media (min-width: 993px) {
-      .primary-navbar__wrapper  {
+    @media (min-width: 992px) {
+      .topnav_navbars__wrapper {
         border-bottom: 1px solid rgba($primary-color, 0.09);
-      }
-    }
-    & > div:not(.navbar-sticky) {
-      @media (max-width: 992px) {
-        .primary-navbar__wrapper  {
-          @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
-        }
       }
     }
   }
 
 
-  .secondary-navbar__wrapper  {
+  .secondary-navbar__wrapper {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
 
   header:not(.header-transparent) {
-    .primary-navbar__wrapper {
-      @extend .shadow;
+    .topnav_navbars__wrapper {
+      @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
     }
-
   }
 
-    .image__header .header-content {
-      .post-info a,  .category-info a { color:$primary-color; }
-      .post-info a:hover,  .category-info a:hover { color:$secondary-color-light; }
-      .category-info:after { background-color:$primary-color; }
-    }
+  .image__header .header-content {
+    a { color:$primary-color; }
+    a:hover { color:$secondary-color-light; }
+    .entry-meta .tax__container:after { background-color:$primary-color }
+  }
 
 
   .primary-nav__utils {
      color: $primary-color;
     a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
-    a:hover, a.current-active    { color: $secondary-color-light;   }
+    a:hover, a.current-active { color: $secondary-color-light;   }
 
-       @media (min-width: 993px) {
+       @media (min-width: 992px) {
          .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
          .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
 
        }
-        @media (max-width: 992px) {
+        @media (max-width: 991px) {
          .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
        }
   }
@@ -143,7 +135,7 @@ $secondary-color-dark   : $grey;
 
      }
 
-  .primary-nav__menu {
+  [class*=-nav__menu] {
 
     & > li >  a, .caret__dropdown-toggler {
       color: $primary-color;
@@ -151,12 +143,13 @@ $secondary-color-dark   : $grey;
     }
     & > li:not(.dropdown-item) > a {
       & > span:first-of-type { @include underlined ($primary-color, 2px); }
+      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }
     }
     & > li.active > a, &  li.current-active > a {
       color: $secondary-color;
-        & > span:first-of-type { @include underlined_simple ($secondary-color, 2px); }
+      & > span:first-of-type { @include underlined_highlight_before($primary-color) }
     }
-      &  li.active {
+    &  li.active {
       .caret__dropdown-toggler__span:after,
       .caret__dropdown-toggler__span:before  {
         background: $secondary-color-dark;
@@ -169,9 +162,9 @@ $secondary-color-dark   : $grey;
 
   }
 
-        .dropdown-item:not(:last-of-type) {
-           border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
-        }
+  .dropdown-item:not(:last-of-type) {
+     border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
+  }
 
   @media (max-width: 991px) {
     .primary-navbar__wrapper .primary-nav__container nav {
@@ -209,9 +202,9 @@ $secondary-color-dark   : $grey;
 }
 /* end mixin */
 
-  .header-skin-light  {
-    @include headerskin($white, $black);
-  }
-  .header-skin-dark  {
-    @include headerskin($black, $white);
-  }
+.header-skin-light  {
+  @include headerskin($white, $black);
+}
+.header-skin-dark  {
+  @include headerskin($black, $white);
+}

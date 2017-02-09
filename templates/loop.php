@@ -1,6 +1,6 @@
 <?php
 /*
-* Related posts wrapper template
+* Loop template
 */
 
 if ( have_posts() ) {

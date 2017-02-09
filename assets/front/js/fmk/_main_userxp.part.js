@@ -8,7 +8,7 @@ var czrapp = czrapp || {};
     },
     disableHoverOnScroll: function() {
       //While scrolling we don' want to trigger hover actions
-      if ( ! czrapp.$_body.hasClass( 'tc-is-mobile' ) ) {
+      if ( ! czrapp.$_body.hasClass( 'czr-is-mobile' ) ) {
         var timer;
 
         czrapp.$_window.on('scroll', function() {
@@ -25,7 +25,7 @@ var czrapp = czrapp || {};
 
     //VARIOUS HOVERACTION
     variousHoverActions : function() {
-      if ( czrapp.$_body.hasClass( 'tc-is-mobile' ) )
+      if ( czrapp.$_body.hasClass( 'czr-is-mobile' ) )
         return;
 
       /* Grid */
@@ -315,8 +315,54 @@ var czrapp = czrapp || {};
           }//endfor
         }//endfor
       }//endfunction
-    }//endmethod
+    },//endmethod
 
+    //Btt arrow visibility
+    bttArrow : function() {
+      var doingAnimation = false,
+        $_btt_arrow      = $('.czr-btta');
+
+      if ( 0 === $_btt_arrow.length )
+        return;
+
+      czrapp.$_window.on( 'scroll', bttArrowVisibility );
+      bttArrowVisibility();
+
+      function bttArrowVisibility() {
+        if ( ! doingAnimation ) {
+          doingAnimation = true;
+
+          window.requestAnimationFrame( function() {
+            if ( czrapp.$_window.scrollTop() > 100 )
+              $_btt_arrow.addClass('show');
+            else
+              $_btt_arrow.removeClass('show');
+
+            doingAnimation = false;
+          });
+        }
+      }//bttArrowVisibility
+
+    },//bttArrow
+
+    //BACK TO TOP
+    backToTop : function() {
+      var $_html = $("html, body"),
+          _backToTop = function( evt ) {
+            return ( evt.which > 0 || "mousedown" === evt.type || "mousewheel" === evt.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+          };
+
+      czrapp.$_body.on( 'click touchstart touchend czr-btt', '.czr-btt', function ( evt ) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+        $_html.animate({
+            scrollTop: 0
+        }, 1e3, function () {
+            $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+        });
+      });
+    },
   };//_methods{}
 
   czrapp.methods.Czr_UserExperience = {};
