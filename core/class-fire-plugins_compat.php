@@ -24,6 +24,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_action ('after_setup_theme'          , array( $this , 'czr_fn_set_plugins_supported'), 20 );
       add_action ('after_setup_theme'          , array( $this , 'czr_fn_plugins_compatibility'), 30 );
       // remove qtranslateX theme options filter
+      // TODO: check, might be not needed anymore as we don't re-store filtered options anymore in front
       remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
     }//end of constructor
 
@@ -48,7 +49,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'optimize-press' );
-      add_theme_support( 'sensei' );
+      add_theme_support( 'woo-sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
       add_theme_support( 'disqus' );
       add_theme_support( 'uris' );
@@ -112,7 +113,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $this -> czr_fn_set_woocomerce_compat();
 
       /* Sensei woocommerce addon */
-      if ( current_theme_supports( 'sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+      if ( current_theme_supports( 'woo-sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> czr_fn_set_sensei_compat();
 
       /* Visual Composer */
@@ -816,19 +817,22 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'czr_show_tax_archive_title', 'czr_fn_sensei_disable_tax_archive_title');
       function czr_fn_sensei_disable_tax_archive_title( $bool ){
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_post_type_archive('sensei_message') ) ? false : $bool;
       }
 
       //disables post navigation
       add_filter( 'czr_show_post_navigation', 'czr_fn_sensei_disable_post_navigation' );
       function czr_fn_sensei_disable_post_navigation($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_singular('sensei_message') ) ? false : $bool;
       }
-      //removes post comment action on after_loop hook
-      add_filter( 'czr_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
-      function czr_fn_sensei_disable_comments($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+
+      //in my courses page avoid displaying both page and single content
+      //add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
+      function czr_fn_sensei_disable_single_content_in_my_courses( $bool ) {
+        global $post;
+        return is_page() && 'course' === $post->post_type ? false : $bool;
       }
+
     }//end sensei compat
 
 
@@ -866,24 +870,38 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+      //Helper
+      function czr_fn_woocommerce_shop_page_id( $id = null ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id( 'shop' ) : $id;
+      }
+      //Helper
+      function czr_fn_woocommerce_shop_enable( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
+      }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
         return 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) );
       }
 
+      //when in the woocommerce shop page use the "shop" id
+      add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
+
+
+      /* OPTION NOT USED ANYMORE: TO REMOVE */
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
-      function czr_fn_woocommerce_disable_title_icon($bool) {
-        return ( function_exists('czr_fn_wc_is_checkout_cart') && czr_fn_wc_is_checkout_cart() ) ? false : $bool;
-      }
+      // add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
+      // function czr_fn_woocommerce_disable_title_icon($bool) {
+      //   return ( function_exists('czr_fn_wc_is_checkout_cart') && czr_fn_wc_is_checkout_cart() ) ? false : $bool;
+      // }
+
       // use Customizr title
       // initially used to display the edit button
     //  add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
-      function czr_fn_woocommerce_the_title( $_title ){
-        if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
-          return apply_filters( 'czr_title_text', $_title );
-        return $_title;
-      }
+      // function czr_fn_woocommerce_the_title( $_title ){
+      //   if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
+      //     return apply_filters( 'czr_title_text', $_title );
+      //   return $_title;
+      // }
 
       // hide tax archive title
       add_filter( 'czr_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
@@ -892,17 +910,19 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //allow slider in the woocommerce shop page
-      add_filter('czr_show_slider', 'czr_fn_woocommerce_enable_shop_slider');
-      function czr_fn_woocommerce_enable_shop_slider( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
-      }
+      add_filter( 'czr_show_slider', 'czr_fn_woocommerce_shop_enable');
 
+      //TODO:
+      //allow page layout post meta in 'shop'
+      add_filter( 'czr_is_page_layout', 'czr_fn_woocommerce_shop_enable' );
+
+/*
       //to allow the slider in the woocommerce shop page we need the shop page id
       add_filter('czr_slider_get_real_id', 'czr_fn_woocommerce_shop_page_id');
       function czr_fn_woocommerce_shop_page_id( $id ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id('shop') : $id;
       }
-
+*/
       //handles the woocomerce sidebar : removes action if sidebars not active
       if ( !is_active_sidebar( 'shop') ) {
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -914,12 +934,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
-
+      //NOT NEEDED ANYMORE AS WE PRINT THE COMMENTS TEMPLATE ONLY ONCE
       //removes post comment action on after_loop hook
-      add_filter( 'czr_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
-      function czr_fn_woocommerce_disable_comments($bool) {
-         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
-      }
+      // add_filter( 'czr_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
+      // function czr_fn_woocommerce_disable_comments($bool) {
+      //    return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+      // }
 
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'czr_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );

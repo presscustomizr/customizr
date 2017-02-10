@@ -127,6 +127,33 @@ function czr_fn_is_home_empty() {
     return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
 }
 
+
+
+
+
+/**
+* Returns the "real" queried post ID or if !isset, get_the_ID()
+* Checks some contextual booleans
+*
+* @package Customizr
+* @since Customizr 1.0
+*/
+function czr_fn_get_id()  {
+    if ( in_the_loop() ) {
+
+      $czr_id           = get_the_ID();
+    } else {
+      global $post;
+      $queried_object   = get_queried_object();
+      $czr_id           = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
+      $czr_id           = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $czr_id;
+    }
+
+    $czr_id = ( is_404() || is_search() || is_archive() ) ? null : $czr_id;
+
+    return apply_filters( 'czr_id', $czr_id );
+}
+
 /**
 * helper
 * returns the actual page id if we are displaying the posts page
@@ -135,8 +162,8 @@ function czr_fn_is_home_empty() {
 */
 function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id  = get_queried_object_id();
-    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    $queried_id  = czr_fn_get_id();
+    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
 }
 
 

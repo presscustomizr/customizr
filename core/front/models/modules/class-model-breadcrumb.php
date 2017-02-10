@@ -20,7 +20,20 @@ class CZR_breadcrumb_model_class extends CZR_Model {
 
   function czr_fn_extend_params( $model = array() ) {
     $this -> _args       = $this -> _get_args();
-    $this -> breadcrumb = $this -> czr_fn_breadcrumb_trail( $this -> _args );
+
+    /**
+    * Filter the default breadcrumb trails output (like the wp gallery shortcode does).
+    *
+    * If the filtered output isn't empty, it will be used instead of generating
+    * the default breadcrumbs html.
+    *
+    * @since 3.4.38
+    *
+    * @param string $output The breadcrumbs output. Default empty.
+    * @param array  $args   The computed attributes of the theme's breadcrumbs
+    */
+    $breadcrumb        = apply_filters( 'czr_breadcrumbs', '', $this->_args );
+    $this->breadcrumb  = $breadcrumb ? $breadcrumb : $this->czr_fn_breadcrumb_trail( $this -> _args );
 
     return $model;
   }
@@ -178,13 +191,13 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     /* If bbPress is installed and we're on a bbPress page. */
     if ( function_exists( 'is_bbpress' ) && is_bbpress() ) {
       $trail        = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_bbpress_items() );
-      $maybe_paged  = false; //czr_fn_breadcrumb_trail_get_woocommerce_items already gives us the page
     }
-
     /* If WooCommerce is installed and we're on a WooCommerce page. */
     elseif ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
       $trail = array_merge( $trail, $this -> czr_fn_breadcrumb_trail_get_woocommerce_items() );
+      $maybe_paged  = false; //czr_fn_breadcrumb_trail_get_woocommerce_items already gives us the page
     }
+
     /* If viewing the front page of the site. */
     elseif ( is_front_page() ) {
 

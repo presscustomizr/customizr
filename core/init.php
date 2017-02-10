@@ -249,7 +249,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options_move.php' );
+            $this -> czr_fn_require_once( CZR_CORE_PATH  . 'class-fire-init_retro_compat.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
 

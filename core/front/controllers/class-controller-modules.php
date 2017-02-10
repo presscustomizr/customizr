@@ -38,9 +38,9 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider     = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
-      $_show_slider     = $_show_slider && czr_fn_is_slider_active();
+      $_show_slider     = apply_filters( 'czr_show_slider' , $_show_slider ) && czr_fn_is_slider_active();
 
-      return apply_filters( 'czr_show_slider' , $_show_slider );
+      return $_show_slider;
     }
 
 

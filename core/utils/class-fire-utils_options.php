@@ -45,7 +45,7 @@
         $def_options['ver']   =  CUSTOMIZR_VER;
 
         //writes the new value in db (merging raw options with the new defaults ).
-        czr_fn_set_option( 'defaults', $def_options, 'tc_theme_options' );
+        czr_fn_set_option( 'defaults', $def_options, CZR_THEME_OPTIONS );
       }
 
       return apply_filters( 'czr_default_options', $def_options );
@@ -62,7 +62,7 @@
   */
   function czr_fn_generate_default_options( $map, $option_group = null ) {
       //do we have to look in a specific group of option (plugin?)
-      $option_group   = is_null($option_group) ? 'tc_theme_options' : $option_group;
+      $option_group   = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
 
       //initialize the default array with the sliders options
       $defaults = array();

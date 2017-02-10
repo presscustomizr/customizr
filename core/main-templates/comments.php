@@ -6,6 +6,10 @@
  * and the comment form. The actual display of comments is
  * handled by a callback to tc_comment_callback()
  */
+
+// Print once : plugins compatibility
+if ( ! apply_filters( 'czr_render_comments_template', true ) )
+  return;
 ?>
 <div id="comments" class="comments_container">
   <section class="post-comments">

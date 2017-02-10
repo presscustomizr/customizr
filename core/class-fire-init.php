@@ -36,6 +36,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
+      //print comments template once : plugins compatibility
+      public static $comments_rendered = false;
+
       function __construct () {
           self::$instance =& $this;
 
@@ -62,6 +65,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //may be filter the thumbnail inline style
           add_filter( 'czr_post_thumb_inline_style'            , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
 
+          //prevent rendering the comments template more than once
+          add_filter( 'czr_render_comments_template'           , array( $this,  'czr_fn_control_coments_template_rendering' ) );
 
           //Default layout settings
           $this -> global_layout      = array(
@@ -152,6 +157,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'gfont' => array(
               'name'  => __('Google fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'czr_gfont_pairs' , array(
+                '_g_sintony_poppins'               => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
                 '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -181,6 +187,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
            'default' => array(
             'name'  => __('Single fonts' , 'customizr'),
             'list'  => apply_filters( 'czr_single_fonts' , array(
+                  '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
                   '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
                   '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
                   '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
@@ -762,6 +769,15 @@ if ( ! class_exists( 'CZR_init' ) ) :
               'f' == $_layout ? 'no' : $_layout
             ) );
           }
+          //IMAGE CENTERED
+          if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_img') ) ){
+            $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
+          }
+
+          //SKIN CLASS
+          //$_skin = sprintf( 'skin-%s' , basename( czr_fn_get_style_src() ) );
+          //array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+
           return $_classes;
       }
 
@@ -837,6 +853,19 @@ if ( ! class_exists( 'CZR_init' ) ) :
         return $form;
       }
 
+      /**
+      * Controls the rendering of the comments template
+      *
+      * @param bool $bool
+      * @return bool $bool
+      * hook : czr_render_comments_template
+      *
+      */
+      function czr_fn_control_coments_template_rendering( $bool ) {
+        $_to_return = !self::$comments_rendered && $bool;
+        self::$comments_rendered = true;
+        return $_to_return;
+      }
 
   }//end of class
 endif;

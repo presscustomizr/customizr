@@ -17,6 +17,7 @@ class CZR_slider_model_class extends CZR_Model {
   public $right_control_class = '';
 
   public $has_controls        = false;
+  public $has_dots            = false;
   public $has_loader          = false;
 
   public $pure_css_loader     = '';
@@ -72,6 +73,10 @@ class CZR_slider_model_class extends CZR_Model {
       $right_control_class = ! is_rtl() ? 'control-right' : 'control-left';
       $has_controls        = true;
     }
+    //set-up dots
+    if ( apply_filters('czr_show_slider_dots' , count( $slides ) > 1 ) ) {
+      $has_dots        = true;
+    }
 
     //set-up loader
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
@@ -93,6 +98,7 @@ class CZR_slider_model_class extends CZR_Model {
         'inner_class',
         'inner_attrs',
         //'img_size',
+        'has_dots',
         'has_controls',
         'layout',
         'left_control_class',

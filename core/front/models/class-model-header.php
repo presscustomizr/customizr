@@ -31,7 +31,7 @@ class CZR_header_model_class extends CZR_Model {
 
     //regular menu
     if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )
-      array_push( $element_class, 'tc-regular-menu' );
+      array_push( $element_class, 'czr-regular-menu' );
 
 
     //header class for the secondary menu
