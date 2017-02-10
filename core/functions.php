@@ -313,6 +313,14 @@ function czr_fn_is_customizing() {
     czr_fn_doing_customizer_ajax();
 }
 
+/**
+* @return  boolean
+* @since  3.4+
+*/
+function czr_fn_is_pro() {
+  return class_exists( 'CZR_init_pro' ) && "customizr-pro" == CZR_THEMENAME;
+}
+
 
 //@return boolean
 if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {

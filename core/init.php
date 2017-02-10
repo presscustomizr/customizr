@@ -22,6 +22,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         static $db_options;
         static $options;//not used in customizer context only
 
+        static $customizer_map;
+        static $theme_setting_list;
+
         public $collection;
         public $views;//object, stores the views
         public $controllers;//object, stores the controllers
@@ -34,8 +37,11 @@ if ( ! class_exists( 'CZR___' ) ) :
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
+            //IMPORTANT : this callback needs to be ran AFTER czr_fn_init_properties.
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
+
             //this action callback is the one responsible to load new czr main templates
-            add_action( 'czr_four_template'       , array( $this, 'czr_fn_four_template_redirect' ), 10 , 1 );
+            add_action( 'czr_four_template'       , array( $this , 'czr_fn_four_template_redirect' ), 10 , 1 );
 
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -92,8 +98,16 @@ if ( ! class_exists( 'CZR___' ) ) :
               }
         }
 
+        /* ------------------------------------------------------------------------- *
+         *  CACHE THE LIST OF THEME SETTINGS ONLY
+        /* ------------------------------------------------------------------------- */
+        //Fired in __construct()
+        function czr_fn_cache_theme_setting_list() {
+          if ( is_array(self::$theme_setting_list) && ! empty( self::$theme_setting_list ) )
+            return;
 
-
+          self::$theme_setting_list = czr_fn_generate_theme_setting_list();
+        }
 
 
         /**
@@ -182,10 +196,12 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
               if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+              //CZR_CZR_PATH is the relative path where the Customizer php is located
+              if( ! defined( 'CZR_CZR_PATH' ) )             define( 'CZR_CZR_PATH' , 'core/czr/' );
 
               //if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );//DEPRECATED
               //IS PRO
-              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
+              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
 
         }//setup_contants()
 
@@ -257,6 +273,11 @@ if ( ! class_exists( 'CZR___' ) ) :
             //Alternative to date_diff for php version < 5.3.0
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_date.php' );
 
+            if ( czr_fn_is_customizing() ) {
+              $this -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-init.php' );
+              new CZR_customize();
+            }
+
             //do we apply a filter ? optional boolean can force no filter
             $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
             if ( empty($_to_load) )
@@ -266,6 +287,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               foreach ($files as $path_suffix ) {
                 $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
                 $classname = 'CZR_' . $path_suffix[1];
+
                 if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
                   continue;
                 //instantiates
@@ -386,7 +408,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           if ( ! czr_fn_is_customizing() )
             {
               if ( is_admin() )
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
+                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back' ) );
               else
                 //Skips all admin classes
                 $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );

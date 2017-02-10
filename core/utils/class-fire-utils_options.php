@@ -103,7 +103,18 @@
   }
 
 
+  /* ------------------------------------------------------------------------- *
+   *  GENERATES THE LIST OF THEME SETTINGS ONLY
+  /* ------------------------------------------------------------------------- */
+  function czr_fn_generate_theme_setting_list() {
+      $_settings_map = czr_fn_get_customizer_map( null, 'add_setting_control' );
+      $_settings = array();
+      foreach ( $_settings_map as $_id => $data ) {
+          $_settings[] = $_id;
+      }
 
+      return $_settings;
+  }
 
   /**
   * Returns an option from the options array of the theme.
