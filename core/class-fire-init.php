@@ -366,10 +366,12 @@ if ( ! class_exists( 'CZR_init' ) ) :
             || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
           )
             return;
+
          // categories
          // we have to ignore sticky posts (do not prepend them)
          // disable grid sticky post expansion
          $cats = czr_fn_get_opt('tc_blog_restrict_by_cat');
+
          $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
          if ( is_array( $cats ) && ! empty( $cats ) ){

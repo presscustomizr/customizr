@@ -208,6 +208,9 @@
                               'tc_grid_shadow',
                               'tc_grid_icons',
                               'tc_grid_num_words',
+                              //alternate options
+                              'tc_post_list_thumb_position',
+                              'tc_post_list_thumb_alternate',
                               'tc_post_list_grid',//trick, see the actions
                             ],
                             visibility : function( to, servusShortId ) {
@@ -222,6 +225,11 @@
                                           return _bool && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) ).get() );
                                       }
                                       return _bool;
+                                  }
+                                  console.log( servusShortId.indexOf('grid') + ' ' + servusShortId);
+                                  if ( 0 > servusShortId.indexOf('grid') ) {
+
+                                    return 'grid' != to;
                                   }
                                   return 'grid' == to;
                             },

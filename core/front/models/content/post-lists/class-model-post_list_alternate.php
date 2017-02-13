@@ -261,7 +261,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     //add the aspect ratio class for the full image types
     if  ( $is_full_image || 'video' == $_current_post_format ) {
       array_push( $media_cols, 'czr__r-w16by9' );
-    } elseif ( $has_post_media && ! $has_format_icon_media ) {
+    } elseif ( $has_post_media && ! $has_format_icon_media && ! $this->has_narrow_layout) {
       array_push( $media_cols, 'czr__r-w1by1' );
     }
 

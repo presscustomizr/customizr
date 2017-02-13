@@ -38,7 +38,7 @@ class CZR_header_model_class extends CZR_Model {
     if ( czr_fn_is_secondary_menu_enabled() )
       array_push(  $element_class,
         'czr-second-menu-on',
-        'czr-second-menu-' . esc_attr( czr_fn_get_opt( 'czr_second_menu_resp_setting' ) ) . '-when-mobile'
+        'czr-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
       );
 
 

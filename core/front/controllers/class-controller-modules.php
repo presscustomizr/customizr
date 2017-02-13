@@ -77,7 +77,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     function czr_fn_display_view_breadcrumb() {
       if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
         if ( czr_fn_is_home() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_hide_breadcrumb_home' ) ) ? true : false;
+          $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) );
       }
       return apply_filters( 'czr_show_breadcrumb', $to_return );
     }
