@@ -39,6 +39,14 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
         ( czr_fn_is_customize_preview_frame()  || czr_fn_is_possible('social_block') );
     }
 
+    function czr_fn_display_view_social_in_topnav() {
+      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) ) );
+    }
+
+    function czr_fn_display_view_topnav() {
+      return ( 1 == esc_attr( czr_fn_get_opt( 'tc_header_topnav' ) ) );
+    }
+
 
     function czr_fn_display_view_mobile_tagline() {
       return $this -> czr_fn_display_view_tagline();

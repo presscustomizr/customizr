@@ -592,6 +592,14 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                           'priority'      => 5,
                           'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
           ),
+          'tc_header_topnav'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Display the topnav" , "customizr" ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'checkbox' ,
+                            'priority'      => 10,
+          ),
           /* removed in c4
           //enable/disable top border
           'tc_top_border' => array(
@@ -635,6 +643,14 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'        => 'checkbox' ,
                             'priority'      => 20,
                             'transport'   => 'postMessage'
+          ),
+          'tc_social_in_topnav' =>  array(
+                            'default'       => 1,
+                            'label'       => __( 'Social links in topnav' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'     => 'header_layout_sec' ,
+                            'type'        => 'checkbox' ,
+                            'priority'      => 20,
           ),
           'tc_search_in_header' => array(
                             'default'   => 1,

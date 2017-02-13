@@ -310,6 +310,23 @@
                                   return 'excerpt' == to;
                             }
                     },
+                    /* new */
+                    {
+                            dominus : 'tc_header_topnav',
+                            servi   : ['tc_social_in_topnav'],
+                            visibility: function (to) {
+                                  //cross
+                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_social_in_header' ) ).get() );
+                            }
+                    },
+                    {
+                            dominus : 'tc_social_in_header',
+                            servi   : ['tc_social_in_topnav'],
+                            visibility: function (to) {
+                                  //cross
+                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_topnav' ) ).get() );
+                            }
+                    },/* end */
                     {
                             dominus : 'tc_sticky_show_title_logo',
                             servi   : ['tc_sticky_logo_upload'],
