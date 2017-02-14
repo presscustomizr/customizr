@@ -51,6 +51,7 @@ $secondary-color-dark   : $grey;
         @include underlined ( $primary-color, 1px );
     }
   }*/
+  .primary-nav__container .primary-nav__utils,
   #sticky-placeholder,
   .topnav_navbars__wrapper  {
     background: $background-color;

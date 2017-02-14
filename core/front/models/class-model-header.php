@@ -1,6 +1,7 @@
 <?php
 class CZR_header_model_class extends CZR_Model {
   public $elements_container_class;
+  public $navbar_template;
 
   /**
   * @override
@@ -9,8 +10,36 @@ class CZR_header_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
+    /*
+    * New layouts
+    * 1) left           => sl-logo_left   //sl stays for single-line : backward compatibility
+    * 2) right          => sl-logo_right  //sl stays for single-line : backward compatibility
+    * 3) centered       => logo_centered  //backward compatibility
+    * 4) v-left         => v-logo_left    //v stays for "vertical"
+    * 5) v-right        => v-logo_right   //v stays for "vertical"
+    */
+    $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
 
-    $element_class            = array( 'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) ) );
+    switch ( $header_layouts ) {
+
+      case 'right'    : $navbar_template = 'single_line';
+                        $element_class   = 'sl-logo_right';
+                        break;
+      case 'centered' : $navbar_template = 'logo_centered';
+                        $element_class   = 'logo_centered';
+                        break;
+      case 'v-left'   : $navbar_template = 'vertical';
+                        $element_class   = 'v-logo_left';
+                        break;
+      case 'v-right'  : $navbar_template = 'vertical';
+                        $element_class   = 'v-logo_right';
+                        break;
+
+      default         : $navbar_template = 'single_line';
+                        $element_class   = 'sl-logo_left';
+    }
+
+    $element_class            = array( $element_class );
     $elements_container_class = array();
 
 
@@ -59,7 +88,8 @@ class CZR_header_model_class extends CZR_Model {
 
     return array_merge( $model, array(
       'element_class'            => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
-      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) )
+      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) ),
+      'navbar_template'          => $navbar_template
      ) );
   }
 

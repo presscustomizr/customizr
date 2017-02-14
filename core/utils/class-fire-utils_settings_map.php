@@ -585,9 +585,11 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                           'section'       => 'header_layout_sec' ,
                           'type'          =>  'select' ,
                           'choices'       => array(
-                                  'left'      => __( 'Logo / title on the left' , 'customizr' ),
+                                  'left'      => __( 'One line: Logo / title on the left' , 'customizr' ),
+                                  'right'     => __( 'One line: Logo / title on the right' , 'customizr' ),
                                   'centered'  => __( 'Logo / title centered' , 'customizr'),
-                                  'right'     => __( 'Logo / title on the right' , 'customizr' )
+                                  'v-left'    => __( 'Logo / title on the left' , 'customizr' ),
+                                  'v-right'   => __( 'Logo / title on the right' , 'customizr' )
                           ),
                           'priority'      => 5,
                           'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),

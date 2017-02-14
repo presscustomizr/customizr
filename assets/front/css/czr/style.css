@@ -569,62 +569,11 @@ Limit to desktop
     display: none;
   }
 }
-/* Fix space between inline-block elements */
-/*.mobile-utils__wrapper,
-.primary-nav__container .primary-nav__utils {
-    word-spacing: -.5em;
-}*/
-/* nav with tables */
-@media (min-width: 992px) {
-  .primary-navbar__wrapper {
-    /*display: table !important;*/
-    min-width: 100% !important;
-  }
-  .primary-nav__container .primary-nav__nav {
-    width: 100%;
-    display: table !important;
-    text-align: initial !important;
-  }
-  .branding__container {
-    left: 0 !important;
-    display: table-cell !important;
-    float: none !important;
-    vertical-align: middle;
-  }
-  .primary-nav__container {
-    margin: 0 !important;
-    padding-left: 0 !important;
-    width: 100% !important;
-    display: table-cell !important;
-  }
-  .primary-nav__menu-wrapper {
-    display: table-cell !important;
-    width: 100% !important;
-    padding-right: 2.5em;
-    padding-left: 2.5em;
-    margin: 0 !important;
-    vertical-align: middle;
-  }
-  .primary-nav__container .primary-nav__utils {
-    display: table-cell !important;
-    white-space: nowrap !important;
-  }
-  .primary-nav__container .primary-nav__utils .primary-nav__socials {
-    float: none !important;
-    display: inline-block !important;
-  }
-  .primary-nav__menu-wrapper.pull-menu-left {
-    text-align: left;
-  }
-  .primary-nav__menu-wrapper.pull-menu-right {
-    text-align: right;
-  }
-}
 
 /* Logo on the right */
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     /* nav with tables logo right */
-    .logo-right .primary-navbar__wrapper {
+ /*   .logo-right .primary-navbar__wrapper {
       direction: rtl;
     }
     .logo-right .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
@@ -636,14 +585,14 @@ Limit to desktop
     .logo-right .primary-nav__container .primary-nav__utils .utils { display: inline-block;}
     .logo-right .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
       padding-left: 0; /*reset */
-      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
-    }
+/*      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+/*    }
     .logo-right.tc-header .primary-nav__utils .utils li {
       margin-left: 0; padding-left: 0; /*reset */
-      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
-    }
+/*      margin-right: 1.25em; padding-right: 1.25em; /* mirror */
+/*    }
 
-
+/*
     .logo-right.tc-header .primary-nav__utils .utils li + li {
       margin-left: 0; margin-right: 0;
     }
@@ -683,6 +632,7 @@ Limit to desktop
     padding-left: 1.25em;
   }
 }
+*/
 /*
         @media (max-width: 992px){
           .branding__container .branding {

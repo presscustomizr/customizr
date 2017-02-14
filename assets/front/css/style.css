@@ -682,6 +682,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #202020;
 }
 
+.header-skin-light .primary-nav__container .primary-nav__utils,
 .header-skin-light #sticky-placeholder,
 .header-skin-light .topnav_navbars__wrapper {
   background: #fff;
@@ -1037,6 +1038,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #fff;
 }
 
+.header-skin-dark .primary-nav__container .primary-nav__utils,
 .header-skin-dark #sticky-placeholder,
 .header-skin-dark .topnav_navbars__wrapper {
   background: #202020;
@@ -1914,6 +1916,142 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   .czr-open-on-hover .caret__dropdown-toggler {
     display: none !important;
+  }
+}
+
+[class*=sl-] {
+  /* Fix space between inline-block elements */
+  /*.mobile-utils__wrapper,
+.primary-nav__container .primary-nav__utils {
+    word-spacing: -.5em;
+}*/
+  /* nav with tables */
+}
+
+@media (min-width: 992px) {
+  [class*=sl-] .primary-navbar__wrapper {
+    display: block !important;
+    /* table !important; */
+    height: auto;
+    line-height: 1em;
+    /*min-width: 100% !important;
+    min-height: 70px;*/
+  }
+  [class*=sl-] .primary-navbar__container {
+    display: table;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    min-height: 70px;
+  }
+  [class*=sl-] .branding {
+    height: auto;
+    line-height: 1em;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__nav {
+    width: 100%;
+    display: table !important;
+    text-align: initial !important;
+    height: 100%;
+  }
+  [class*=sl-] .branding__container {
+    left: 0 !important;
+    display: table-cell !important;
+    float: none !important;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  [class*=sl-] .primary-nav__container {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    display: table-cell !important;
+    height: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+    white-space: nowrap;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper {
+    display: table-cell !important;
+    width: 100% !important;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+    margin: 0 !important;
+    vertical-align: middle;
+    height: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+    white-space: nowrap;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular {
+    vertical-align: middle;
+    height: 100%;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
+    height: 100%;
+    /* float: left; */
+  }
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li span.caret__dropdown-toggler {
+    height: 100%;
+    display: table !important;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li span, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li i {
+    display: table-cell !important;
+    float: none !important;
+    vertical-align: middle !important;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    z-index: 3000;
+    padding-right: 15px;
+    height: 100%;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__utils-container {
+    display: table;
+    height: 100%;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils li {
+    display: table;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils {
+    height: 100%;
+    display: table-cell;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li {
+    height: 100%;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li > a {
+    height: 100%;
+    display: table !important;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li span, [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li i {
+    display: table-cell !important;
+    float: none !important;
+    vertical-align: middle !important;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
+    /*float: none !important;
+    display: inline-block !important;*/
+    height: 100%;
+    margin-left: 1.25em;
+    display: table;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials li {
+    display: inline-block;
+    height: auto;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper.pull-menu-left {
+    text-align: left;
+  }
+  [class*=sl-] .primary-nav__menu-wrapper.pull-menu-right {
+    text-align: right;
   }
 }
 

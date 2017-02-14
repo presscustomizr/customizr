@@ -1,0 +1,122 @@
+[class*=sl-] {
+/* Fix space between inline-block elements */
+/*.mobile-utils__wrapper,
+.primary-nav__container .primary-nav__utils {
+    word-spacing: -.5em;
+}*/
+
+/* nav with tables */
+@media (min-width: 992px) {
+  .primary-navbar__wrapper {
+    display: block !important; /* table !important; */
+    height: auto;
+    line-height: 1em;
+    /*min-width: 100% !important;
+    min-height: 70px;*/
+  }
+  .primary-navbar__container {
+    display: table;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    min-height: 70px;
+  }
+  .branding {
+  height: auto;
+  line-height: 1em;
+  }
+  .primary-nav__container .primary-nav__nav {
+    width: 100%;
+    display: table !important;
+    text-align: initial !important;
+    height: 100%;
+  }
+  .branding__container {
+    left: 0 !important;
+    display: table-cell !important;
+    float: none !important;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .primary-nav__container {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    display: table-cell !important;
+    height: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+    white-space: nowrap;
+  }
+  .primary-nav__menu-wrapper {
+    display: table-cell !important;
+    width: 100% !important;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+    margin: 0 !important;
+    vertical-align: middle;
+    height: 100%;
+    padding-bottom: 0;
+    padding-top: 0;
+    white-space: nowrap;
+    .primary-nav__menu.regular {
+      vertical-align: middle;
+      height: 100%;
+      > li { height : 100%; /* float: left; */
+        &> a, span.caret__dropdown-toggler {
+          height: 100%;
+          display: table!important;
+
+        }
+        span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
+
+      }
+    }
+
+  }
+  .primary-nav__container .primary-nav__utils {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    z-index: 3000;
+    padding-right: 15px;
+    height: 100%;
+    .primary-nav__utils-container {
+      display: table;
+      height: 100%;
+    }
+    li { display: table }
+    .utils {
+      height: 100%;
+      display: table-cell;
+      > li { height : 100%;
+        &> a {
+          height: 100%;
+          display: table!important;
+
+        }
+        span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
+
+      }
+    }
+  }
+  .primary-nav__container .primary-nav__utils .primary-nav__socials {
+    /*float: none !important;
+    display: inline-block !important;*/
+    height: 100%;
+    margin-left: 1.25em;
+    display: table;
+    .socials { display: table-cell; vertical-align: middle; li {display: inline-block; height: auto}}
+
+  }
+  .primary-nav__menu-wrapper.pull-menu-left {
+    text-align: left;
+  }
+  .primary-nav__menu-wrapper.pull-menu-right {
+    text-align: right;
+  }
+}
+
+
+}
