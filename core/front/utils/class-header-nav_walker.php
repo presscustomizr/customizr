@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
         if ( ! apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
           if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
             $atts[ 'href' ]          = '#';
-            $atts[ 'data-toggle' ]   = "dropdown";
+            $atts[ 'data-toggle' ]   = "czr-dropdown";
             $atts[ 'role' ]          = "button";
             $atts[ 'aria-haspopup' ] = "true";
             $atts[ 'aria-expanded' ] = "false";
@@ -55,11 +55,11 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       //this is_dropdown property has been added in the the display_element() override method
       if ( $item -> is_dropdown ) {
         if ( $depth === 0 ) {
-          if ( ! in_array( 'dropdown', $classes ) )
-            $classes[] = 'dropdown';
+          if ( ! in_array( 'czr-dropdown', $classes ) )
+            $classes[] = 'czr-dropdown';
         } elseif ( $depth > 0 ) {
-          if ( ! in_array( 'dropdown-submenu', $classes ) )
-            $classes[] = 'dropdown-submenu';
+          if ( ! in_array( 'czr-dropdown-submenu', $classes ) )
+            $classes[] = 'czr-dropdown-submenu';
         }
         if ( ! in_array( 'btn-group', $classes ) )
           $classes[] = 'btn-group';
@@ -80,7 +80,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<ul class=\"dropdown-menu\">\n";
+      $output .= "\n<ul class=\"czr-dropdown-menu dropdown-menu\">\n";
     }
 
 
@@ -96,7 +96,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
         if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
           $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
         elseif ( ! $_dropdown_on_hover && $_is_link )
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
 
@@ -163,11 +163,11 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //check if the current menu item is a dropdown (has children)
       if ( in_array('page_item_has_children', $classes ) ) {
         if ( $depth === 0 ) {
-          if ( ! in_array( 'dropdown', $classes ) )
-            $classes[] = 'dropdown';
+          if ( ! in_array( 'czr-dropdown', $classes ) )
+            $classes[] = 'czr-dropdown';
         } elseif ( $depth > 0 ) {
-          if ( ! in_array( 'dropdown-submenu', $classes ) )
-            $classes[] = 'dropdown-submenu';
+          if ( ! in_array( 'czr-dropdown-submenu', $classes ) )
+            $classes[] = 'czr-dropdown-submenu';
         }
         if ( ! in_array( 'btn-group', $classes ) )
           $classes[] = 'btn-group';
@@ -193,7 +193,7 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<ul class=\"dropdown-menu\">\n";
+      $output .= "\n<ul class=\"czr-dropdown-menu dropdown-menu\">\n";
     }
 
 
@@ -210,7 +210,7 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
         if ( $_dropdown_on_hover )
           $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
         else
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
 

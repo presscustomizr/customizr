@@ -61,3 +61,7 @@
        @include transform(rotateZ(0));
     }
 }
+/* Dropdowns */
+.active > .czr-dropdown-menu {
+  display: block;
+}

@@ -367,12 +367,12 @@
 /**
 * Dropdown menu direction [SNAKE]
 */
-.dropdown-menu {
+.czr-dropdown-menu {
   &.open-right {
     left: 0;
     right: auto;
-    @at-root .open-right .dropdown-menu:not(.open-left),
-             .dropdown-menu .dropdown-menu.open-right {
+    @at-root .open-right .czr-dropdown-menu:not(.open-left),
+             .czr-dropdown-menu .czr-dropdown-menu.open-right {
       left: 100%;
       right: auto;
     }
@@ -381,8 +381,8 @@
   &.open-left {
     left: auto;
     right: 0;
-    @at-root .open-left .dropdown-menu:not(.open-right),
-            .dropdown-menu .dropdown-menu.open-left {
+    @at-root .open-left .czr-dropdown-menu:not(.open-right),
+            .czr-dropdown-menu .czr-dropdown-menu.open-left {
       right: 100%;
       left: auto;
    }
@@ -394,7 +394,7 @@
 * always expand submenus when .tc-open-on-hover (which is not available in mobiles )
 */
 @media (max-width: 991px){
-  .czr-open-on-hover .dropdown-menu {
+  .czr-open-on-hover .czr-dropdown-menu {
     display: block !important;
   }
   .czr-open-on-hover .caret__dropdown-toggler {
