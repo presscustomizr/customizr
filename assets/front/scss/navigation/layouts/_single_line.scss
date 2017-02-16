@@ -30,6 +30,7 @@
     display: table !important;
     text-align: initial !important;
     height: 100%;
+    overflow: visible;
   }
   .branding__container {
     left: 0 !important;
@@ -50,7 +51,7 @@
   }
   .primary-nav__menu-wrapper {
     display: table-cell !important;
-    width: 100% !important;
+   /* width: 100% !important;*/
     padding-right: 2.5em;
     padding-left: 2.5em;
     margin: 0 !important;
@@ -62,18 +63,53 @@
     .primary-nav__menu.regular {
       vertical-align: middle;
       height: 100%;
-      > li { height : 100%; /* float: left; */
-        &> a, span.caret__dropdown-toggler {
+      overflow: hidden;
+      > li { height : 100%; position: static; float: left;
+        span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
+        &> a, &> span, &>span.caret__dropdown-toggler {
           height: 100%;
           display: table!important;
-
+          position: relative;
+          padding: 0;
         }
-        span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
-
+        &> span{
+          height: 100%;
+          display: table!important;
+          position: relative;
+          padding: 0;
+          > a { display: table; height: 100% }
+        }
       }
     }
 
   }
+  .primary-nav__container .primary-nav__utils {
+    display: table-cell !important;
+    white-space: nowrap !important;
+    .utils, .primary-nav__socials {
+      position: relative;
+      display : inline-block;
+      float: none !important;
+      height: 100%;
+      vertical-align: middle;
+      li {
+        display:inline-table;
+        /*float: left;*/
+        a {
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .primary-nav__container .primary-nav__utils .primary-nav__socials ul{
+    display: inline-block !important;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  /*
   .primary-nav__container .primary-nav__utils {
     display: block;
     position: absolute;
@@ -101,15 +137,16 @@
       }
     }
   }
-  .primary-nav__container .primary-nav__utils .primary-nav__socials {
+  .primary-nav__container .primary-nav__utils .primary-nav__socials {*/
     /*float: none !important;
     display: inline-block !important;*/
+    /*
     height: 100%;
     margin-left: 1.25em;
     display: table;
     .socials { display: table-cell; vertical-align: middle; li {display: inline-block; height: auto}}
 
-  }
+  }*/
   .primary-nav__menu-wrapper.pull-menu-left {
     text-align: left;
   }

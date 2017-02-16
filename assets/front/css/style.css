@@ -682,7 +682,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #202020;
 }
 
-.header-skin-light .primary-nav__container .primary-nav__utils,
 .header-skin-light #sticky-placeholder,
 .header-skin-light .topnav_navbars__wrapper {
   background: #fff;
@@ -833,15 +832,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-light [class*=-nav__menu] > li > a, .header-skin-light [class*=-nav__menu] .caret__dropdown-toggler {
+.header-skin-light [class*=-nav__menu] > li > span > a, .header-skin-light [class*=-nav__menu] .caret__dropdown-toggler {
   color: #202020;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type {
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type {
   position: relative;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:before {
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -858,7 +857,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:hover::before {
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:hover::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -867,11 +866,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type {
   position: relative;
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:before {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -888,7 +887,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:hover::before {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:hover::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -897,11 +896,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-light [class*=-nav__menu] > li.active > a, .header-skin-light [class*=-nav__menu] li.current-active > a {
+.header-skin-light [class*=-nav__menu] > li.active > span > a, .header-skin-light [class*=-nav__menu] li.current-active > span > a {
   color: #777;
 }
 
-.header-skin-light [class*=-nav__menu] > li.active > a > span:first-of-type::before, .header-skin-light [class*=-nav__menu] li.current-active > a > span:first-of-type::before {
+.header-skin-light [class*=-nav__menu] > li.active > span > a > span:first-of-type::before, .header-skin-light [class*=-nav__menu] li.current-active > span > a > span:first-of-type::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -919,7 +918,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #202020;
 }
 
-.header-skin-light [class*=-nav__menu] .dropdown-menu a:hover, .header-skin-light [class*=-nav__menu] li.active > a {
+.header-skin-light [class*=-nav__menu] .dropdown-menu a:hover, .header-skin-light [class*=-nav__menu] li.active > span > a {
   color: #777;
 }
 
@@ -1038,7 +1037,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #fff;
 }
 
-.header-skin-dark .primary-nav__container .primary-nav__utils,
 .header-skin-dark #sticky-placeholder,
 .header-skin-dark .topnav_navbars__wrapper {
   background: #202020;
@@ -1189,15 +1187,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-dark [class*=-nav__menu] > li > a, .header-skin-dark [class*=-nav__menu] .caret__dropdown-toggler {
+.header-skin-dark [class*=-nav__menu] > li > span > a, .header-skin-dark [class*=-nav__menu] .caret__dropdown-toggler {
   color: #fff;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type {
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type {
   position: relative;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:before {
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -1214,7 +1212,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:hover::before {
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:hover::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1223,11 +1221,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type {
   position: relative;
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:before {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -1244,7 +1242,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a > span:first-of-type:hover::before {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a > span:first-of-type:hover::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1253,11 +1251,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-dark [class*=-nav__menu] > li.active > a, .header-skin-dark [class*=-nav__menu] li.current-active > a {
+.header-skin-dark [class*=-nav__menu] > li.active > span > a, .header-skin-dark [class*=-nav__menu] li.current-active > span > a {
   color: #eceeef;
 }
 
-.header-skin-dark [class*=-nav__menu] > li.active > a > span:first-of-type::before, .header-skin-dark [class*=-nav__menu] li.current-active > a > span:first-of-type::before {
+.header-skin-dark [class*=-nav__menu] > li.active > span > a > span:first-of-type::before, .header-skin-dark [class*=-nav__menu] li.current-active > span > a > span:first-of-type::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1275,7 +1273,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #fff;
 }
 
-.header-skin-dark [class*=-nav__menu] .dropdown-menu a:hover, .header-skin-dark [class*=-nav__menu] li.active > a {
+.header-skin-dark [class*=-nav__menu] .dropdown-menu a:hover, .header-skin-dark [class*=-nav__menu] li.active > span > a {
   color: #eceeef;
 }
 
@@ -1407,6 +1405,23 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   -moz-transform: rotateZ(0);
   -ms-transform: rotateZ(0);
   transform: rotateZ(0);
+}
+
+/* Dropdowns */
+.active > .czr-dropdown-menu > .dropdown-menu {
+  display: block;
+}
+
+/* Test */
+@media (min-width: 992px) {
+  .czr-dropdown-menu {
+    position: absolute;
+    width: 100%;
+  }
+  .dropdown-menu .czr-dropdown-menu {
+    top: 50%;
+    margin-left: -1.5rem;
+  }
 }
 
 /* NEW */
@@ -1929,6 +1944,46 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 @media (min-width: 992px) {
+  [class*=sl-] {
+    /*
+  .primary-nav__container .primary-nav__utils {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    z-index: 3000;
+    padding-right: 15px;
+    height: 100%;
+    .primary-nav__utils-container {
+      display: table;
+      height: 100%;
+    }
+    li { display: table }
+    .utils {
+      height: 100%;
+      display: table-cell;
+      > li { height : 100%;
+        &> a {
+          height: 100%;
+          display: table!important;
+
+        }
+        span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
+
+      }
+    }
+  }
+  .primary-nav__container .primary-nav__utils .primary-nav__socials {*/
+    /*float: none !important;
+    display: inline-block !important;*/
+    /*
+    height: 100%;
+    margin-left: 1.25em;
+    display: table;
+    .socials { display: table-cell; vertical-align: middle; li {display: inline-block; height: auto}}
+
+  }*/
+  }
   [class*=sl-] .primary-navbar__wrapper {
     display: block !important;
     /* table !important; */
@@ -1953,6 +2008,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: table !important;
     text-align: initial !important;
     height: 100%;
+    overflow: visible;
   }
   [class*=sl-] .branding__container {
     left: 0 !important;
@@ -1973,7 +2029,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   [class*=sl-] .primary-nav__menu-wrapper {
     display: table-cell !important;
-    width: 100% !important;
+    /* width: 100% !important;*/
     padding-right: 2.5em;
     padding-left: 2.5em;
     margin: 0 !important;
@@ -1986,66 +2042,57 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular {
     vertical-align: middle;
     height: 100%;
+    overflow: hidden;
   }
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
     height: 100%;
-    /* float: left; */
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li span.caret__dropdown-toggler {
-    height: 100%;
-    display: table !important;
+    position: static;
+    float: left;
   }
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li span, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li i {
     display: table-cell !important;
     float: none !important;
     vertical-align: middle !important;
   }
-  [class*=sl-] .primary-nav__container .primary-nav__utils {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: -15px;
-    z-index: 3000;
-    padding-right: 15px;
-    height: 100%;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__utils-container {
-    display: table;
-    height: 100%;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils li {
-    display: table;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils {
-    height: 100%;
-    display: table-cell;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li {
-    height: 100%;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li > a {
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span.caret__dropdown-toggler {
     height: 100%;
     display: table !important;
+    position: relative;
+    padding: 0;
   }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li span, [class*=sl-] .primary-nav__container .primary-nav__utils .utils > li i {
-    display: table-cell !important;
-    float: none !important;
-    vertical-align: middle !important;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
-    /*float: none !important;
-    display: inline-block !important;*/
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span {
     height: 100%;
-    margin-left: 1.25em;
-    display: table;
+    display: table !important;
+    position: relative;
+    padding: 0;
   }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a {
+    display: table;
+    height: 100%;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils {
+    display: table-cell !important;
+    white-space: nowrap !important;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
+    position: relative;
+    display: inline-block;
+    float: none !important;
+    height: 100%;
+    vertical-align: middle;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils li, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials li {
+    display: inline-table;
+    /*float: left;*/
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .utils li a, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials li a {
     display: table-cell;
     vertical-align: middle;
   }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials li {
-    display: inline-block;
-    height: auto;
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials ul {
+    display: inline-block !important;
+    height: 100%;
+    vertical-align: middle;
   }
   [class*=sl-] .primary-nav__menu-wrapper.pull-menu-left {
     text-align: left;

@@ -5,7 +5,6 @@
  * --------------------------------------------------------------------------
  */
 +function () {
-
   var _createClass = function () {
    function defineProperties(target, props) {
      for (var i = 0; i < props.length; i++) {
@@ -94,14 +93,9 @@
 
         var parent = czrDropdown._getParentFromElement(this);
         var isActive = $(parent).hasClass(ClassName.ACTIVE);
+        var _parentsToNotClear = $.makeArray( $(parent).parents(Selector.PARENTS) );
 
-        var _menusToClear = $.makeArray($(Selector.DATA_TOGGLE).not(
-          $(parent).parents(Selector.PARENTS).find(Selector.DATA_TOGGLE)
-            .not(this)
-            .not( $(this).closest( Selector.PARENTS ).find(Selector.DATA_TOGGLE) )
-        ) ); //exclude this and this toggle ancestors
-
-        czrDropdown._clearMenus('', _menusToClear );
+        czrDropdown._clearMenus('', _parentsToNotClear );
 
         if (isActive) {
           return false;
@@ -113,7 +107,7 @@
           var dropdown = document.createElement('div');
           dropdown.className = ClassName.BACKDROP;
           $(dropdown).insertBefore(this);
-          $(dropdown).on('click', function() { czrDropdown._clearMenus( '', _menusToClear ) } );
+          $(dropdown).on('click', function() { czrDropdown._clearMenus( '', _parentsToNotClear  ) } );
         }
 
         var relatedTarget = { relatedTarget: this };
@@ -165,7 +159,7 @@
         });
       };
 
-      czrDropdown._clearMenus = function _clearMenus(event, _toggles) {
+      czrDropdown._clearMenus = function _clearMenus(event, _parentsToNotClear ) {
         if (event && event.which === RIGHT_MOUSE_BUTTON_WHICH) {
           return;
         }
@@ -175,14 +169,14 @@
           backdrop.parentNode.removeChild(backdrop);
         }
 
-        var toggles = _toggles || $.makeArray($(Selector.DATA_TOGGLE));
+        var toggles = $.makeArray($(Selector.DATA_TOGGLE));
 
 
         for (var i = 0; i < toggles.length; i++) {
           var parent = czrDropdown._getParentFromElement(toggles[i]);
           var relatedTarget = { relatedTarget: toggles[i] };
 
-          if (!$(parent).hasClass(ClassName.ACTIVE)) {
+          if (!$(parent).hasClass(ClassName.ACTIVE) || $.inArray(parent, _parentsToNotClear ) > -1 ){
             continue;
           }
 
@@ -329,9 +323,10 @@ var czrapp = czrapp || {};
       }
 
       this.ClassName = {
-        DROPDOWN: 'czr-dropdown-menu',
-        ACTIVE:   'active',
-        PARENTS:  'menu-item-has-children'
+        DROPDOWN         : 'dropdown-menu',
+        DROPDOWN_WRAPPER : 'czr-dropdown-menu',
+        ACTIVE           : 'active',
+        PARENTS          : 'menu-item-has-children'
       };
 
       //Integrated
@@ -353,9 +348,8 @@ var czrapp = czrapp || {};
       function _addOpenClass () {
         $_el = $(this);
         if ( ! $_el.hasClass(self.ClassName.ACTIVE) ) {
-          $_el.trigger(self.Event.SHOWN);
-          console.log($_el);
           $_el.addClass(self.ClassName.ACTIVE);
+          $_el.trigger(self.Event.SHOWN);
         }
       };
 
@@ -366,10 +360,8 @@ var czrapp = czrapp || {};
 
         _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-            //test
-            console
-            $_el.trigger( self.Event.SHOWN );
             $_el.removeClass(self.ClassName.ACTIVE);
+            $_el.trigger( self.Event.HIDDEN );
           }
 
         }, 150);
@@ -437,6 +429,16 @@ var czrapp = czrapp || {};
     dropdownPlacement : function() {
       var self = this,
           doingAnimation = false;
+          _is_visible    = function( _el ) {
+            var $_this        = $(_el),
+                _this_offset  = $_this.offset();
+
+            if( _this_offset.left + $_this.outerWidth() > czrapp.$_window.width() ||
+                _this_offset.top >= $_this.closest('.navbar-nav').offset().top + $_this.closest('.navbar-nav').outerHeight() ) {
+              return false;
+            }
+
+          }
       /*
       * Snake Prototype
       */
@@ -444,24 +446,44 @@ var czrapp = czrapp || {};
         if ( ! doingAnimation ) {
           doingAnimation = true;
           window.requestAnimationFrame(function() {
-            $( '.'+self.ClassName.DROPDOWN, '.'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE).trigger(self.Event.PLACE);
+            var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE),
+                $_active_first_menu_items = $( '.tc-header .navbar-nav > .'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE );
+
+            //close the non visible
+            $_active_first_menu_items.each( function() {
+              var $_this = $(this);
+              if ( !_is_visible( this ) ) {
+                $_this.removeClass(self.ClassName.ACTIVE);
+              }
+            });
+
+            $_active_menu_items.trigger(self.Event.PLACE);
             doingAnimation = false;
           });
         }
       });
 
       czrapp.$_body.on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
+        var $_this       = $(this);
 
-        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) )
+        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.ACTIVE) )
           return;
 
-        var $_dropdown = $(this).children( '.'+self.ClassName.DROPDOWN );
+        var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER );
+            $_dropdown         = $_dropdown_wrapper.length ? $_dropdown_wrapper.children('.'+self.ClassName.DROPDOWN ) : $_this.children( '.'+self.ClassName.DROPDOWN );
 
-        //stage
+        if ( !$_dropdown.length )
+          return;
+
+        //wrapper's width must be at maximum the li width
+         if ( $_dropdown_wrapper.length )
+          $_dropdown_wrapper.css( 'width', $_this.outerWidth() );
+
+        //stage: if not visible $ isn't able to get width, offset
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 
         _maybe_move( $_dropdown );
-        //unstage
+        //unstage if staged
         $_dropdown.css( 'zIndex', '').css('display', '');
       } );
 

@@ -62,6 +62,17 @@
     }
 }
 /* Dropdowns */
-.active > .czr-dropdown-menu {
+.active > .czr-dropdown-menu > .dropdown-menu {
   display: block;
+}
+/* Test */
+@media (min-width: 992px){
+  .czr-dropdown-menu {
+    position: absolute;
+    width: 100%;
+  }
+  .dropdown-menu .czr-dropdown-menu {
+      top: 50%;
+      margin-left: -1.5rem;
+  }
 }

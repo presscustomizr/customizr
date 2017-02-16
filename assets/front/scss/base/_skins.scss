@@ -51,7 +51,7 @@ $secondary-color-dark   : $grey;
         @include underlined ( $primary-color, 1px );
     }
   }*/
-  .primary-nav__container .primary-nav__utils,
+
   #sticky-placeholder,
   .topnav_navbars__wrapper  {
     background: $background-color;
@@ -138,15 +138,15 @@ $secondary-color-dark   : $grey;
 
   [class*=-nav__menu] {
 
-    & > li >  a, .caret__dropdown-toggler {
+    & > li > span > a, .caret__dropdown-toggler {
       color: $primary-color;
 
     }
-    & > li:not(.dropdown-item) > a {
+    & > li:not(.dropdown-item) > span > a {
       & > span:first-of-type { @include underlined ($primary-color, 2px); }
       .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }
     }
-    & > li.active > a, &  li.current-active > a {
+    & > li.active > span > a, &  li.current-active > span > a {
       color: $secondary-color;
       & > span:first-of-type { @include underlined_highlight_before($primary-color) }
     }
@@ -157,7 +157,7 @@ $secondary-color-dark   : $grey;
       }
     }
     .dropdown-menu a { color: $primary-color; }
-    .dropdown-menu a:hover, li.active > a  { color: $secondary-color;  }
+    .dropdown-menu a:hover, li.active > span > a  { color: $secondary-color;  }
     .dropdown-item  a { color: $secondary-color; }
     .dropdown-item:hover a { color: $primary-color; }
 

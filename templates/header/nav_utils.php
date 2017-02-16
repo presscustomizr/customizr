@@ -8,7 +8,6 @@
  */
 ?>
 <div class="primary-nav__utils" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="primary-nav__utils-container">
     <ul class="nav navbar-nav utils inline-list">
       <?php
       if ( czr_fn_has( 'nav_search' ) ) czr_fn_render_template( 'header/nav_search' );
@@ -17,7 +16,7 @@
         <?php
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
-              'element_class' => array('primary-nav__woocart', 'hidden-md-down'),
+              'element_class' => array('primary-nav__woocart', 'hidden-md-down', 'menu-item-has-children'),
               'element_tag' => 'li'
             )
           ) );
@@ -30,5 +29,4 @@
         <?php czr_fn_render_template('modules/social_block' ) ?>
       </div>
     <?php endif ?>
-  </div>
 </div>
