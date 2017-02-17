@@ -45,6 +45,8 @@ The exceptions to this license are as follows:
 * Imp: rtl - fix update notice positioning in admin. fixes #800
 * Imp: improve bootstrap plugin compatibility with the slider. fixes #737
 * Removed : Swedish translations sv_SE, now part of the translation pack automatically downloaded from wordpress.org.
+* Imp : add Array.from js polyfill for customizer control js
+* Fix : IE11 (at least) : potential customizer breaks when trying log in the console
 
 = 3.5.2 February 8th 2017 =
 * Fix: second menu responsive actions on header partial refresh
