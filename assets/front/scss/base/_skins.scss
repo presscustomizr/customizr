@@ -37,10 +37,10 @@ $secondary-color-dark   : $grey;
 
   .ham__navbar-toggler.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
   .ham-toggler-menu__span, .caret__dropdown-toggler__span {
-       &:before, &:after {
+      &:before, &:after {
          background: $primary-color;
       }
-    }
+  }
 /*
     .secondary-navbar__wrapper
   {

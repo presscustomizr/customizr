@@ -52,7 +52,7 @@
 .mobile-woocart__container
 {
     position: relative;
-    float:none;
+    float:left;
     display:inline-block;
     vertical-align:middle;
     margin:0 auto;
@@ -325,10 +325,10 @@
             float:none;
             width:100%;
             max-width:100%;
-            .primary-nav__menu  {
+            @at-root .primary-nav__menu  {
                   width:100%;
                   & > li + li { display: block; margin-left: 0 }
-                  & > li a    { display: block; line-height: 30px; height:30px; }
+                  & > li a    { display: block; line-height: 3em; height:3em; }
                   & > li  {
                     padding: $base-line-height $base-line-height*2;
                     margin-left:0;

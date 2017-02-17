@@ -437,7 +437,7 @@ var czrapp = czrapp || {};
                 _this_offset.top >= $_this.closest('.navbar-nav').offset().top + $_this.closest('.navbar-nav').outerHeight() ) {
               return false;
             }
-
+            return true;
           }
       /*
       * Snake Prototype
@@ -469,16 +469,20 @@ var czrapp = czrapp || {};
         if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.ACTIVE) )
           return;
 
-        var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER );
+        var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER ).not('.'+self.ClassName.DROPDOWN);
             $_dropdown         = $_dropdown_wrapper.length ? $_dropdown_wrapper.children('.'+self.ClassName.DROPDOWN ) : $_this.children( '.'+self.ClassName.DROPDOWN );
 
         if ( !$_dropdown.length )
           return;
 
-        //wrapper's width must be at maximum the li width
-         if ( $_dropdown_wrapper.length )
-          $_dropdown_wrapper.css( 'width', $_this.outerWidth() );
-
+        //wrapper's (first-level) width must be at maximum the li width, and not in mobiles
+         if (  $_dropdown_wrapper.length && $_dropdown_wrapper.closest('.menu-item-has-children').not('.czr-dropdown-submenu').length ) {
+          if ( 'static' != $_dropdown.css('position') ) {
+            //use of getBoundingClientRect because outerWidth rounds
+            $_dropdown_wrapper.css( 'width', $_this[0].getBoundingClientRect().width );
+          }else
+            $_dropdown_wrapper.css( 'width', '');
+         }
         //stage: if not visible $ isn't able to get width, offset
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 

@@ -202,11 +202,11 @@ Replace
    /* top: 0;
     /*right: -1.5em;*/
 }
-/*@media (max-width: 971px){
+@media (max-width: 971px){
   .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
-    right: 1em;
+    position: absolute;
   }
-}*/
+}
 .secondary-navbar__wrapper .czr-open-on-click li.menu-item-has-children {
   margin-right: 0;
 }
@@ -218,7 +218,7 @@ Replace
 }
 .dropdown-menu .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
   padding: 0;
-  line-height: 4.3em;
+  /*line-height: 4.3em;*/
  /* right: 1em;*/
 }
 .secondary-nav__menu-wrapper .dropdown-menu .dropdown-item .caret__dropdown-toggler i {

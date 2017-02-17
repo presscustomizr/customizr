@@ -69,10 +69,10 @@
 @media (min-width: 992px){
   .czr-dropdown-menu {
     position: absolute;
-    width: 100%;
   }
   .dropdown-menu .czr-dropdown-menu {
       top: 50%;
-      margin-left: -1.5rem;
+      left: 0;
+      width: 100%;
   }
 }

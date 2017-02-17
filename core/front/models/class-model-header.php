@@ -22,10 +22,10 @@ class CZR_header_model_class extends CZR_Model {
 
     switch ( $header_layouts ) {
 
-      case 'right'    : $navbar_template = 'single_line';
+      case 'right'    : $navbar_template = 'default';
                         $element_class   = 'sl-logo_right';
                         break;
-      case 'centered' : $navbar_template = 'logo_centered';
+      case 'centered' : $navbar_template = 'default';
                         $element_class   = 'logo_centered';
                         break;
       case 'v-left'   : $navbar_template = 'vertical';
@@ -35,7 +35,7 @@ class CZR_header_model_class extends CZR_Model {
                         $element_class   = 'v-logo_right';
                         break;
 
-      default         : $navbar_template = 'single_line';
+      default         : $navbar_template = 'default';
                         $element_class   = 'sl-logo_left';
     }
 
