@@ -16,6 +16,16 @@ function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
     return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
 }
 
+//@return an array of options
+function czr_fn_get_admin_theme_options() {
+  //here we could hook a callback to remove all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( 'tc_before_getting_theme_options' );
+  $options = get_option( CZR_THEME_OPTIONS, array() );
+  //here we could hook a callback to re-add all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( 'tc_after_getting_theme_options' );
+
+  return $options;
+}
 
 //@return bool
 function czr_fn_isprevdem() {
