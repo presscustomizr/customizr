@@ -2186,50 +2186,50 @@ var TCParams = TCParams || {};
  /* CAROUSEL PLUGIN DEFINITION
   * ========================== */
 
-  var old = $.fn.carousel
+  var old = $.fn.czrCarousel
 
-  $.fn.carousel = function (option) {
+  $.fn.czrCarousel = function (option) {
     return this.each(function () {
       var $this = $(this)
-        , data = $this.data('carousel')
-        , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
+        , data = $this.data('czr-carousel')
+        , options = $.extend({}, $.fn.czrCarousel.defaults, typeof option == 'object' && option)
         , action = typeof option == 'string' ? option : options.slide
-      if (!data) $this.data('carousel', (data = new Carousel(this, options)))
+      if (!data) $this.data('czr-carousel', (data = new Carousel(this, options)))
       if (typeof option == 'number') data.to(option)
       else if (action) data[action]()
       else if (options.interval) data.pause().cycle()
     })
   }
 
-  $.fn.carousel.defaults = {
+  $.fn.czrCarousel.defaults = {
     interval: 5000
   , pause: 'hover'
   }
 
-  $.fn.carousel.Constructor = Carousel
+  $.fn.czrCarousel.Constructor = Carousel
 
 
  /* CAROUSEL NO CONFLICT
   * ==================== */
 
-  $.fn.carousel.noConflict = function () {
-    $.fn.carousel = old
+  $.fn.czrCarousel.noConflict = function () {
+    $.fn.czrCarousel = old
     return this
   }
 
  /* CAROUSEL DATA-API
   * ================= */
 
-  $(document).on('click.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+  $(document).on('click.czr-carousel.data-api', '.customizr-slide [data-slide], .customizr-slide [data-slide-to]', function (e) {
     var $this = $(this), href
       , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       , options = $.extend({}, $target.data(), $this.data())
       , slideIndex
 
-    $target.carousel(options)
+    $target.czrCarousel(options);
 
     if (slideIndex = $this.attr('data-slide-to')) {
-      $target.data('carousel').pause().to(slideIndex).cycle()
+      $target.data('czr-carousel').pause().to(slideIndex).cycle()
     }
 
     e.preventDefault()
@@ -5611,16 +5611,16 @@ var czrapp = czrapp || {};
         return;
 
       if ( 0 !== _delay.length && ! _hover ) {
-        this.$_sliders.carousel({
+        this.$_sliders.czrCarousel({
             interval: _delay,
             pause: "false"
         });
       } else if ( 0 !== _delay.length ) {
-        this.$_sliders.carousel({
+        this.$_sliders.czrCarousel({
             interval: _delay
         });
       } else {
-        this.$_sliders.carousel();
+        this.$_sliders.czrCarousel();
       }
     },
 
@@ -5659,10 +5659,10 @@ var czrapp = czrapp || {};
       var _is_rtl = czrapp.$_body.hasClass('rtl');
       this.$_sliders.each( function() {
           $(this).hammer().on('swipeleft', function() {
-              $(this).carousel( ! _is_rtl ? 'next' : 'prev' );
+              $(this).czrCarousel( ! _is_rtl ? 'next' : 'prev' );
           });
           $(this).hammer().on('swiperight', function(){
-              $(this).carousel( ! _is_rtl ? 'prev' : 'next' );
+              $(this).czrCarousel( ! _is_rtl ? 'prev' : 'next' );
           });
       });
     },

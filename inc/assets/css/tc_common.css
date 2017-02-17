@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.5.2
+ * Customizr v3.5.3-beta
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -8737,7 +8737,7 @@ li#wp-admin-bar-tc-customizr-help a {
     clear: both;
   }
   /* do not drop on a new line if:
-  - only socials + btn-nav in navbar (no tagline), do not drop on a new line when sticky disabled 
+  - only socials + btn-nav in navbar (no tagline), do not drop on a new line when sticky disabled
   - tagline-off (socials are never displayed as of now) when sticky enabled
   */
   .sticky-enabled .tc-tagline-off .btn-toggle-nav.pull-right,
@@ -9300,8 +9300,8 @@ li#wp-admin-bar-tc-customizr-help a {
   }
   .carousel-caption .lead,
   .carousel-caption .btn {
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 0.75em;
+    line-height: 1.4em;
     max-height: 50px;
     overflow: hidden;
   }

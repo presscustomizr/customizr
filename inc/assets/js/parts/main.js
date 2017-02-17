@@ -577,16 +577,16 @@ var czrapp = czrapp || {};
         return;
 
       if ( 0 !== _delay.length && ! _hover ) {
-        this.$_sliders.carousel({
+        this.$_sliders.czrCarousel({
             interval: _delay,
             pause: "false"
         });
       } else if ( 0 !== _delay.length ) {
-        this.$_sliders.carousel({
+        this.$_sliders.czrCarousel({
             interval: _delay
         });
       } else {
-        this.$_sliders.carousel();
+        this.$_sliders.czrCarousel();
       }
     },
 
@@ -625,10 +625,10 @@ var czrapp = czrapp || {};
       var _is_rtl = czrapp.$_body.hasClass('rtl');
       this.$_sliders.each( function() {
           $(this).hammer().on('swipeleft', function() {
-              $(this).carousel( ! _is_rtl ? 'next' : 'prev' );
+              $(this).czrCarousel( ! _is_rtl ? 'next' : 'prev' );
           });
           $(this).hammer().on('swiperight', function(){
-              $(this).carousel( ! _is_rtl ? 'prev' : 'next' );
+              $(this).czrCarousel( ! _is_rtl ? 'prev' : 'next' );
           });
       });
     },

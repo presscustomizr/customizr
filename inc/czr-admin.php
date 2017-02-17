@@ -344,7 +344,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
               )
             );
           ?>
-          <p style="text-align:right;position: absolute;right: 7px;bottom: -5px;">
+          <p style="text-align:right;position: absolute;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
             <?php printf('<em>%1$s <strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s x ) </a></strong></em>',
                 __("I already know what's new thanks !", "customizr" ),
                 __('close' , 'customizr')

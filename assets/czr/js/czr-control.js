@@ -643,7 +643,7 @@ $.extend( CZRSkopeBaseMths, {
                         skope_id;
 
                     if ( ! _.has( api, 'czr_activeSkopeId') || _.isUndefined( api.czr_activeSkopeId() ) ) {
-                      api.consoleLog( 'The api.czr_activeSkopeId() is undefined in the api.previewer._new_refresh() method.');
+                      api.consoleLog( 'The api.czr_activeSkopeId() is undefined in the api.czr_skopeBase.bindAPISettings method.');
                     }
                     if ( api( setId )._dirty ) {
                           skope_id = self.isSettingSkopeEligible( setId ) ? api.czr_activeSkopeId() : self.getGlobalSkopeId();
@@ -3860,12 +3860,16 @@ $.extend( CZRSkopeMths, {
 
         to = this._setter.apply( this, arguments );
         to = this.validate( to );
+        args = _.extend( { silent : false }, _.isObject( o ) ? o : {} );
         if ( null === to || _.isEqual( from, to ) ) {
           return this;
         }
 
         this._value = to;
         this._dirty = true;
+        if ( true === args.silent ) {
+              return this;
+        }
 
         if ( this._deferreds ) {
               _.each( self._deferreds, function( _prom ) {
@@ -4464,27 +4468,54 @@ $.extend( CZRSkopeMths, {
 })( wp.customize , jQuery, _ );
 (function (api, $, _) {
   if ( serverControlParams.isSkopOn ) {
+        api.Setting.prototype.initialize = function( id, value, options ) {
+              var setting = this;
+              api.Value.prototype.initialize.call( setting, value, options );
+
+              setting.id = id;
+              setting.transport = setting.transport || 'refresh';
+              setting._dirty = options.dirty || false;
+              setting.notifications = new api.Values({ defaultConstructor: api.Notification });
+              setting.bind( function( to, from , data ) {
+                    return setting.preview( to, from , data );
+              }, { deferred : true } );
+        };
         api.Setting.prototype.preview = function( to, from , data ) {
-              var setting = this, transport;
-                  transport = setting.transport;
+              var setting = this, transport, dfd = $.Deferred();
 
-              if ( _.has( api, 'czr_isPreviewerSkopeAware' ) && 'pending' == api.czr_isPreviewerSkopeAware.state() )
-                this.previewer.refresh();
-              if ( _.isObject( data ) && true === data.not_preview_sent ) {
-                    return;
+              transport = setting.transport;
+
+              if ( _.has( api, 'czr_isPreviewerSkopeAware' ) && 'pending' == api.czr_isPreviewerSkopeAware.state() ) {
+                    this.previewer.refresh();
+                    return dfd.resolve( arguments ).promise();
               }
-
+              if ( ! _.isUndefined( from ) && ! _.isEmpty( from ) && ! _.isNull( from ) ) {
+                    if ( _.isObject( data ) && true === data.not_preview_sent ) {
+                          return dfd.resolve( arguments ).promise();
+                    }
+              }
               if ( ! _.has( data, 'silent' ) || false === data.silent ) {
                     if ( 'postMessage' === transport && ! api.state( 'previewerAlive' ).get() ) {
                           transport = 'refresh';
                     }
 
                     if ( 'postMessage' === transport ) {
+                          setting.previewer.send( 'pre_setting', {
+                                set_id : setting.id,
+                                data   : data,//<= { module_id : 'string', module : {} } which typically includes the module_id and the module model ( items, mod options )
+                                value  : to
+                          });
                           setting.previewer.send( 'setting', [ setting.id, setting() ] );
+
+                          dfd.resolve( arguments );
+
                     } else if ( 'refresh' === transport ) {
-                          setting.previewer.refresh();
+                          setting.previewer.refresh().always( function() {
+                                dfd.resolve( arguments );
+                          });
                     }
               }
+              return dfd.promise();
         };
   }
 
@@ -4517,16 +4548,19 @@ $.extend( CZRSkopeMths, {
         getControlSettingId : function( control_id, setting_type ) {
               setting_type = 'default' || setting_type;
               if ( ! api.control.has( control_id ) ) {
-                    throw new Error( 'The requested control_id is not registered in the api yet : ' + control_id );
+                    api.consoleLog( 'getControlSettingId : The requested control_id is not registered in the api yet : ' + control_id );
+                    return control_id;
               }
               if ( ! _.has( api.control( control_id ), 'settings' ) || _.isEmpty( api.control( control_id ).settings ) )
-                return;
+                return control_id;
 
               if ( ! _.has( api.control( control_id ).settings, setting_type ) ) {
-                    throw new Error( 'The requested control_id does not have the requested setting type : ' + control_id + ' , ' + setting_type );
+                    api.consoleLog( 'getControlSettingId : The requested control_id does not have the requested setting type : ' + control_id + ' , ' + setting_type );
+                    return control_id;
               }
               if ( _.isUndefined( api.control( control_id ).settings[setting_type].id ) ) {
-                    throw new Error( 'The requested control_id has no setting id assigned : ' + control_id );
+                    api.consoleLog( 'getControlSettingId : The requested control_id has no setting id assigned : ' + control_id );
+                    return control_id;
               }
               return api.control( control_id ).settings[setting_type].id;
         },
@@ -4713,7 +4747,35 @@ $.extend( CZRSkopeMths, {
                     api.control.add( wpSetId,  new _constructor( wpSetId, { params : _control_data, previewer : api.previewer }) );
               });
 
+        },
+        hexToRgb : function( hex ) {
+              var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+              try{
+                  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                      return r + r + g + g + b + b;
+                  });
+              } catch(e) {
+                  api.consoleLog('Error in Helpers::hexToRgb');
+                  return hex;
+              }
+
+              var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec( hex );
+              result = result ? [
+                    parseInt(result[1], 16),//r
+                    parseInt(result[2], 16),//g
+                    parseInt(result[3], 16)//b
+              ] : [];
+              return 'rgb(' + result.join(',') + ')';
+        },
+
+        rgbToHex : function ( r, g, b ) {
+              var componentToHex = function(c) {
+                    var hex = c.toString(16);
+                    return hex.length == 1 ? "0" + hex : hex;
+              };
+              return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
+
   });//$.extend
 })( wp.customize , jQuery, _);
 (function (api, $, _) {
@@ -4825,8 +4887,19 @@ $.extend( CZRSkopeMths, {
                     api.czr_wpQueryDataReady.resolve( data );
               }
         });
-        api.previewer.bind( 'czr-partial-refresh', function( data ) {
+        api.previewer.bind( 'czr-partial-refresh-data', function( data ) {
               api.czr_partials.set( data );
+        });
+        api.previewer.bind( 'czr-partial-refresh-done', function( data ) {
+              if ( ! _.has( data, 'set_id' ) )
+                return;
+              var setId = api.CZR_Helpers.build_setId( data.set_id );
+              if ( ! api.has( setId ) )
+                return;
+              var ctrlId = api.CZR_Helpers.getControlSettingId( setId );
+              if ( ! api.control.has( ctrlId ) )
+                return;
+              api.control( ctrlId ).trigger( 'czr-partial-refresh-done' );
         });
   });//api.bind('ready')
 })( wp.customize , jQuery, _ );var CZRInputMths = CZRInputMths || {};
@@ -4875,6 +4948,16 @@ $.extend( CZRInputMths , {
                     }//was 'updateInput'
                   }
           ];
+          input.visible = new api.Value( true );
+          input.isReady.done( function() {
+                input.visible.bind( function( visible ) {
+                      if ( visible )
+                        input.container.stop( true, true ).slideDown( 200 );
+                      else
+                        input.container.stop( true, true ).slideUp( 200 );
+                });
+          });
+
     },
     ready : function() {
             var input = this;
@@ -4903,7 +4986,8 @@ $.extend( CZRInputMths , {
     inputReact : function( to, from, data ) {
             var input = this,
                 _current_input_parent = input.input_parent(),
-                _new_model        = _.clone( _current_input_parent );//initialize it to the current value
+                _new_model        = _.clone( _current_input_parent ),//initialize it to the current value
+                _isPreItemInput = input.is_preItemInput;
             _new_model =  ( ! _.isObject(_new_model) || _.isEmpty(_new_model) ) ? {} : _new_model;
             _new_model[input.id] = to;
             input.input_parent.set( _new_model, {
@@ -4911,35 +4995,26 @@ $.extend( CZRInputMths , {
                   input_transport   : input.transport,
                   not_preview_sent  : 'postMessage' === input.transport//<= this parameter set to true will prevent the setting to be sent to the preview ( @see api.Setting.prototype.preview override ). This is useful to decide if a specific input should refresh or not the preview.
             } );
-
-            if ( ! _.has( input, 'is_preItemInput' ) ) {
+            if ( ! _isPreItemInput ) {
                   input.input_parent.trigger( input.id + ':changed', to );
+                  if ( ! _.isEmpty( from ) || ! _.isUndefined( from ) && 'postMessage' === input.transport ) {
+                        input.module.sendInputToPreview( {
+                              input_id        : input.id,
+                              input_parent_id : input.input_parent.id,
+                              to              : to,
+                              from            : from
+                        } );
+                  }
             }
-            if ( ! _.isEmpty( from ) || ! _.isUndefined( from ) && 'postMessage' === input.transport ) {
-                  input._sendInput( to, from );
-            }
-    },
-    _sendInput : function( to, from ) {
-          var input = this,
-              module = input.module;
-
-          if ( _.isEqual( to, from ) )
-            return;
-
-          module.control.previewer.send( 'czr_input', {
-                set_id        : module.control.id,
-                module_id     : module.id,//<= will allow us to target the right dom element on front end
-                input_id      : input.id,
-                value         : to
-          });
-          module.trigger( 'input_sent', { input : to , dom_el: input.container } );
     },
     setupColorPicker : function() {
         var input  = this;
 
-        input.container.find('input').wpColorPicker( {
+        input.container.find('input').iris( {
+            palettes: true,
+            hide:false,
             change : function( e, o ) {
-                  $(this).val( $(this).wpColorPicker('color') ).trigger('colorpickerchange').trigger('change');
+                  $(this).val( o.color.toString() ).trigger('colorpickerchange').trigger('change');
             }
         });
     },
@@ -5189,11 +5264,13 @@ $.extend( CZRInputMths , {
                                 return;
                             }
                             _.each( _default, function( val, k ){
-                                  if ( ! _.has( _raw_val, k ) || _.isEmpty( _raw_val[k] ) ) {
-                                        api.consoleLog( 'content_picker : missing input param : ' + k );
-                                        return;
+                                  if ( '_custom_' !== _raw_val.id ) {
+                                        if ( ! _.has( _raw_val, k ) || _.isEmpty( _raw_val[ k ] ) ) {
+                                              api.consoleLog( 'content_picker : missing input param : ' + k );
+                                              return;
+                                        }
                                   }
-                                  _val_candidate[k] = _raw_val[k];
+                                  _val_candidate[ k ] = _raw_val[ k ];
                             } );
                             input.set( _val_candidate );
                       }
@@ -5232,11 +5309,13 @@ $.extend( CZRInputMths , {
                             };
                       },
                       processResults: function ( data, params ) {
+                            input.defaultContentPickerOption = input.defaultContentPickerOption || [];
+
                             if ( ! data.success )
-                              return { results: [] };
+                              return { results: input.defaultContentPickerOption };
 
                             var items   = data.data.items,
-                                _results = [];
+                                _results = _.clone( input.defaultContentPickerOption );
 
                             _.each( items, function( item ) {
                                   _results.push({
@@ -5567,7 +5646,7 @@ $.extend( CZRItemMths , {
                 trigger   : 'click keydown',
                 selector  : [ '.' + item.module.control.css_attr.edit_view_btn, '.' + item.module.control.css_attr.item_title ].join(','),
                 name      : 'edit_view',
-                actions   : ['setViewVisibility']
+                actions   : [ 'setViewVisibility' ]
               }
         ]);
         item.isReady.done( function() {
@@ -5595,11 +5674,14 @@ $.extend( CZRItemMths , {
   ready : function() {
         this.isReady.resolve();
   },
-  itemReact : function( to, from ) {
+  itemReact : function( to, from, data ) {
         var item = this,
             module = item.module;
-        module.updateItemsCollection( {item : to });
-        item.writeItemViewTitle(to);
+
+        data = data || {};
+        module.updateItemsCollection( { item : to, data : data } ).done( function() {
+              item.writeItemViewTitle( to, data );
+        });
   },
 
 
@@ -5758,7 +5840,7 @@ $.extend( CZRItemMths , {
             _model = item_model || item(),
             _title = _.has( _model, 'title')? api.CZR_Helpers.capitalize( _model.title ) : _model.id;
 
-        _title = api.CZR_Helpers.truncate(_title, 20);
+        _title = api.CZR_Helpers.truncate( _title, 20 );
         $( '.' + module.control.css_attr.item_title , item.container ).text(_title );
         api.CZR_Helpers.doActions('after_writeViewTitle', item.container , _model, item );
   },
@@ -5809,10 +5891,12 @@ $.extend( CZRItemMths , {
               module = this.module,
               $_alert_el = $( '.' + module.control.css_attr.remove_alert_wrapper, item.container ).first(),
               $_clicked = obj.dom_event;
-          module.closeAllItems();
-
+          module.closeAllItems().closeAllAlerts();
+          if ( module.hasModOpt() ) {
+                api.czr_ModOptVisible( false );
+          }
           if ( _.has(module, 'preItem') ) {
-              module.preItemExpanded(false);
+                module.preItemExpanded(false);
           }
           $('.' + module.control.css_attr.remove_alert_wrapper, item.container ).not($_alert_el).each( function() {
                 if ( $(this).hasClass('open') ) {
@@ -5870,6 +5954,8 @@ $.extend( CZRModOptMths , {
         api.czr_ModOptVisible = new api.Value( false );
         api.czr_ModOptVisible.bind( function( visible ) {
               if ( visible ) {
+                    modOpt.module.closeAllAlerts();
+
                     modOpt.modOptWrapperViewSetup( _initial_model ).done( function( $_container ) {
                           modOpt.container = $_container;
                           try {
@@ -5943,6 +6029,14 @@ $.extend( CZRModOptMths , {
                                       actions   : function() {
                                             api.czr_ModOptVisible( false );
                                       }
+                                },
+                                {
+                                      trigger   : 'click keydown',
+                                      selector  : '.tabs nav li',
+                                      name      : 'tab_nav',
+                                      actions   : function( args ) {
+                                          modOpt.toggleTabVisibility( args );
+                                      }
                                 }
                           ],//actions to execute
                           { dom_el: $_container },//model + dom scope
@@ -5951,16 +6045,44 @@ $.extend( CZRModOptMths , {
               };
 
           modOpt_model = modOpt() || modOpt.initial_modOpt_model;//could not be set yet
-          $.when( modOpt.renderModOptContent( modOpt_model ) ).done( function( $_container ) {
-                if ( ! _.isUndefined( $_container ) && false !== $_container.length ) {
-                      _setupDOMListeners( $_container );
-                      dfd.resolve( $_container );
-                }
-                else {
-                      throw new Error( 'Module : ' + modOpt.module.id + ', the modOpt content has not been rendered' );
-                }
-          });
+          $.when( modOpt.renderModOptContent( modOpt_model ) )
+                .done( function( $_container ) {
+                      if ( ! _.isUndefined( $_container ) && false !== $_container.length ) {
+                            _setupDOMListeners( $_container );
+                            dfd.resolve( $_container );
+                      }
+                      else {
+                            throw new Error( 'Module : ' + modOpt.module.id + ', the modOpt content has not been rendered' );
+                      }
+                })
+                .then( function() {
+                      $( '.tabs nav li', modOpt.container ).first().addClass( 'tab-current' );
+                      $( 'section', modOpt.container ).first().addClass( 'content-current' );
+                      var _nb = $( '.tabs nav li', modOpt.container ).length;
+                      $( '.tabs nav li', modOpt.container ).each( function() {
+                            $(this).addClass( _nb > 0 ? 'cols-' + _nb : '' );
+                      });
+                });
+
           return dfd.promise();
+  },
+
+
+  toggleTabVisibility : function( args ) {
+        var modOpt = this,
+            tabs = $( modOpt.container ).find('li'),
+            content_items = $( modOpt.container ).find('section'),
+            tabIdSwitchedTo = $( args.dom_event.currentTarget, args.dom_el ).attr('data-tab-id');
+
+        $( '.tabs nav li', modOpt.container ).each( function() {
+                $(this).removeClass('tab-current');
+        });
+        $( modOpt.container ).find('li[data-tab-id="' + tabIdSwitchedTo + '"]').addClass('tab-current');
+
+        $( 'section', modOpt.container ).each( function() {
+                $(this).removeClass('content-current');
+        });
+        $( modOpt.container ).find('section[id="' + tabIdSwitchedTo + '"]').addClass('content-current');
   },
   renderModOptContent : function( modOpt_model ) {
           var modOpt = this,
@@ -6077,13 +6199,13 @@ $.extend( CZRModuleMths, {
                     })
                     .fail( function( response ){ api.consoleLog( 'Module : ' + module.id + ' initialize module model failed : ', response ); })
                     .always( function( initialModuleValue ) {
-                          module.callbacks.add( function() { return module.moduleReact.apply(module, arguments ); } );
+                          module.callbacks.add( function() { return module.moduleReact.apply( module, arguments ); } );
                           if (  ! module.control.isModuleRegistered( module.id ) ) {
                               module.control.updateModulesCollection( { module : constructorOptions, is_registered : false } );
                           }
 
                           module.bind('items-collection-populated', function( collection ) {
-                                module.itemCollection.callbacks.add( function() { return module.itemCollectionReact.apply(module, arguments ); } );
+                                module.itemCollection.callbacks.add( function() { return module.itemCollectionReact.apply( module, arguments ); } );
                                 if ( module.isMultiItem() ) {
                                       module._makeItemsSortable();
                                 }
@@ -6111,15 +6233,15 @@ $.extend( CZRModuleMths, {
         }
         return dfd.resolve( constructorOptions ).promise();
   },
-  itemCollectionReact : function( to, from, o ) {
+  itemCollectionReact : function( to, from, data ) {
         var module = this,
             _current_model = module(),
             _new_model = $.extend( true, {}, _current_model );
         _new_model.items = to;
         module.isDirty.set(true);
-        module.set( _new_model, o || {} );
+        module.set( _new_model, data || {} );
   },
-  moduleReact : function( to, from, o ) {
+  moduleReact : function( to, from, data ) {
         var module            = this,
             control           = module.control,
             isItemUpdate    = ( _.size(from.items) == _.size(to.items) ) && ! _.isEmpty( _.difference(to.items, from.items) ),
@@ -6129,7 +6251,7 @@ $.extend( CZRModuleMths, {
             };
         control.updateModulesCollection( {
               module : $.extend( true, {}, to ),
-              data : o//useful to pass contextual info when a change happens
+              data : data//useful to pass contextual info when a change happens
         } );
   },
   getModuleSection : function() {
@@ -6192,8 +6314,55 @@ $.extend( CZRModuleMths, {
         return api_ready_modOpt;
   },
   getDefaultModOptModel : function( id ) {
-          var module = this;
-          return $.extend( _.clone( module.defaultModOptModel ), { is_mod_opt : true } );
+        var module = this;
+        return $.extend( _.clone( module.defaultModOptModel ), { is_mod_opt : true } );
+  },
+  sendInputToPreview : function( args ) {
+        var module = this;
+        args = _.extend(
+          {
+                input_id        : '',
+                input_parent_id : '',//<= can be the mod opt or an item
+                to              : null,
+                from            : null
+          } , args );
+
+        if ( _.isEqual( args.to, args.from ) )
+          return;
+        module.control.previewer.send( 'czr_input', {
+              set_id        : api.CZR_Helpers.getControlSettingId( module.control.id ),
+              module_id     : module.id,//<= will allow us to target the right dom element on front end
+              module        : { items : $.extend( true, {}, module().items) , modOpt : module.hasModOpt() ?  $.extend( true, {}, module().modOpt ): {} },
+              input_parent_id : args.input_parent_id,//<= can be the mod opt or the item
+              input_id      : args.input_id,
+              value         : args.to
+        });
+        module.trigger( 'input_sent', { input : args.to , dom_el: module.container } );
+  },
+  sendModuleInputsToPreview : function() {
+        var module = this,
+            _sendInputData = function() {
+                  var inputParent = this,//this is the input parent : item or modOpt
+                      inputParentModel = $.extend( true, {}, inputParent() );
+                  inputParentModel = _.omit( inputParentModel, 'id' );
+
+                  _.each( inputParentModel, function( inputVal, inputId ) {
+                        module.sendInputToPreview( {
+                              input_id : inputId,
+                              input_parent_id : inputParent.id,
+                              to : inputVal,
+                              from : null
+                        });
+                  });
+            };
+
+        module.czr_Item.each( function( _itm_ ) {
+              _sendInputData.call( _itm_ );
+        });
+
+        if ( module.hasModOpt() ) {
+              _sendInputData.call( module.czr_ModOpt );
+        }
   }
 });//$.extend//CZRBaseControlMths//MULTI CONTROL CLASS
 
@@ -6302,13 +6471,21 @@ $.extend( CZRModuleMths, {
   },
   _getNextItemKeyInCollection : function() {
           var module = this,
-            _max_mod_key = {},
+            _maxItem = {},
             _next_key = 0;
-          if ( ! _.isEmpty( module.itemCollection() ) ) {
-              _max_mod_key = _.max( module.itemCollection(), function( _mod ) {
-                  return parseInt( _mod.id.replace(/[^\/\d]/g,''), 10 );
-              });
-              _next_key = parseInt( _max_mod_key.id.replace(/[^\/\d]/g,''), 10 ) + 1;
+          if ( _.isEmpty( module.itemCollection() ) )
+            return _next_key;
+          if ( _.isArray( module.itemCollection() ) && 1 === _.size( module.itemCollection() ) ) {
+                _maxItem = module.itemCollection()[0];
+          } else {
+                _maxItem = _.max( module.itemCollection(), function( _item ) {
+                      if ( ! _.isNumber( _item.id.replace(/[^\/\d]/g,'') ) )
+                        return 0;
+                      return parseInt( _item.id.replace( /[^\/\d]/g, '' ), 10 );
+                });
+          }
+          if ( ! _.isUndefined( _maxItem ) && _.isNumber( _maxItem.id.replace(/[^\/\d]/g,'') ) ) {
+                _next_key = parseInt( _maxItem.id.replace(/[^\/\d]/g,''), 10 ) + 1;
           }
           return _next_key;
   },
@@ -6316,19 +6493,22 @@ $.extend( CZRModuleMths, {
         var module = this;
         return ! _.isUndefined( _.findWhere( module.itemCollection(), { id : id_candidate}) );
   },
-  updateItemsCollection : function( obj ) {
+  updateItemsCollection : function( args ) {
           var module = this,
-              _current_collection = module.itemCollection();
-              _new_collection = _.clone(_current_collection);
-          if ( _.has( obj, 'collection' ) ) {
-                module.itemCollection.set( obj.collection );
+              _current_collection = module.itemCollection(),
+              _new_collection = _.clone(_current_collection),
+              dfd = $.Deferred();
+          if ( _.has( args, 'collection' ) ) {
+                module.itemCollection.set( args.collection );
                 return;
           }
 
-          if ( ! _.has(obj, 'item') ) {
+          if ( ! _.has( args, 'item' ) ) {
               throw new Error('updateItemsCollection, no item provided ' + module.control.id + '. Aborting');
           }
-          var item = _.clone(obj.item);
+          args = _.extend( { data : {} }, args );
+
+          var item = _.clone( args.item );
           if ( _.findWhere( _new_collection, { id : item.id } ) ) {
                 _.each( _current_collection , function( _item, _ind ) {
                       if ( _item.id != item.id )
@@ -6339,7 +6519,8 @@ $.extend( CZRModuleMths, {
           else {
               _new_collection.push(item);
           }
-          module.itemCollection.set( _new_collection );
+          module.itemCollection.set( _new_collection, args.data );
+          return dfd.resolve( { collection : _new_collection, data : args.data } ).promise();
   },
   _getSortedDOMItemCollection : function( ) {
           var module = this,
@@ -6530,6 +6711,8 @@ $.extend( CZRModuleMths, {
                                   refreshPreview = _.debounce( refreshPreview, 500 );//500ms are enough
                                   refreshPreview();
                             }
+
+                            module.trigger( 'item-collection-sorted' );
                       };
                       module._getSortedDOMItemCollection()
                             .done( function( _collection_ ) {
@@ -6997,7 +7180,7 @@ $.extend( CZRSocialModuleMths, {
                           hide:false,
                           defaultColor : serverControlParams.social_el_params.defaultSocialColor || 'rgba(255,255,255,0.7)',
                           change : function( e, o ) {
-                                if ( _.has(o, 'color') && 16777215 == o.color._color )
+                                if ( _.has( o, 'color') && 16777215 == o.color._color )
                                   $(this).val( serverControlParams.social_el_params.defaultSocialColor || 'rgba(255,255,255,0.7)' );
                                 else
                                   $(this).val( o.color.toString() );
@@ -7795,6 +7978,16 @@ $.extend( CZRBaseControlMths, {
           var control = this;
           control.css_attr = _.has( serverControlParams , 'css_attr') ? serverControlParams.css_attr : {};
           api.Control.prototype.initialize.call( control, id, options );
+          control.bind( 'czr-partial-refresh-done', function() {
+                if ( _.has( control, 'czr_moduleCollection' ) ) {
+                      _.each( control.czr_moduleCollection(), function( _mod_ ) {
+                            if ( ! control.czr_Module( _mod_.id ) )
+                              return;
+
+                            control.czr_Module( _mod_.id ).sendModuleInputsToPreview();
+                      });
+                }
+          });
   },
   refreshPreview : function( obj ) {
           this.previewer.refresh();
@@ -8204,13 +8397,16 @@ $.extend( CZRBaseModuleControlMths, {
               control.czr_Module.remove( _to_remove.id );
         }
         if ( _.isObject( data  ) && _.has( data, 'module' ) ) {
+              data.module_id = data.module.id;
               data.module = control.prepareModuleForDB( $.extend( true, {}, data.module  ) );
         }
         if ( ! control.isMultiModuleControl() && is_module_added ) {
               return;
         }
         else {
-              api(this.id).set( control.filterModuleCollectionBeforeAjax( to ), data );
+              api(this.id)
+                    .set( control.filterModuleCollectionBeforeAjax( to ), data )
+                    .done( function( to, from, o ) {});
         }
   },
   filterModuleCollectionBeforeAjax : function( collection ) {

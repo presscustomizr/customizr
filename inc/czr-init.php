@@ -5674,7 +5674,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       //only if user is logged in
       //then each routine has to decide what to do also depending on the user started before
       if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
-        $theme_options            = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
+        $theme_options            = czr_fn_get_admin_option(CZR_THEME_OPTIONS);
 
 
         if ( ! empty( $theme_options ) ) {
@@ -6190,7 +6190,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         * avoid filtering
         * avoid merging with defaults
         */
-        $_options               = czr_fn_get_raw_option( $option_group );
+        $_options               = czr_fn_get_admin_option( $option_group );
         $_options[$option_name] = $option_value;
 
         update_option( $option_group, $_options );
@@ -9191,6 +9191,18 @@ function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
     return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
 }
 
+//@return an array of options
+function czr_fn_get_admin_option( $option_group = null ) {
+  $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
+
+  //here we could hook a callback to remove all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( "tc_before_getting_option_{$option_group}" );
+  $options = get_option( $option_group, array() );
+  //here we could hook a callback to re-add all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( "tc_after_getting_option_{$option_group}" );
+
+  return $options;
+}
 
 //@return bool
 function czr_fn_isprevdem() {
