@@ -16,6 +16,18 @@ function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
     return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
 }
 
+//@return an array of options
+function czr_fn_get_admin_option( $option_group = null ) {
+  $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
+
+  //here we could hook a callback to remove all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( "tc_before_getting_option_{$option_group}" );
+  $options = get_option( $option_group, array() );
+  //here we could hook a callback to re-add all the filters on "option_{CZR_THEME_OPTIONS}"
+  do_action( "tc_after_getting_option_{$option_group}" );
+
+  return $options;
+}
 
 //@return bool
 function czr_fn_isprevdem() {

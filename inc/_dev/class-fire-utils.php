@@ -408,7 +408,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         * avoid filtering
         * avoid merging with defaults
         */
-        $_options               = czr_fn_get_raw_option( $option_group );
+        $_options               = czr_fn_get_admin_option( $option_group );
         $_options[$option_name] = $option_value;
 
         update_option( $option_group, $_options );
