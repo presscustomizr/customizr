@@ -1780,7 +1780,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
           <h3 class="accordion-section-title">
             {{ data.title }}
             <# if ( data.pro_text && data.pro_url ) { #>
-              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
+              <a href="{{ data.pro_url }}" title="{{ data.title }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
             <# } #>
           </h3>
         </li>
