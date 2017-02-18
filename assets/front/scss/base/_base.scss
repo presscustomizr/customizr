@@ -28,11 +28,13 @@ a {
 
 a,
 a:hover,
-a:focus,
 a:active,
 a.current-active {
   text-decoration: none;
   outline: none;
+}
+a:focus {
+  text-decoration: none;
 }
 
 a {

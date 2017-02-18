@@ -205,6 +205,11 @@ Replace
 @media (max-width: 971px){
   .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
     position: absolute;
+
+  }
+  .menu-item:not(.dropdown-item) > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
+    top: 0;
+    right: 1.25em;
   }
 }
 .secondary-navbar__wrapper .czr-open-on-click li.menu-item-has-children {

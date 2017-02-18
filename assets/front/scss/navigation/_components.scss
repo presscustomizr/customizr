@@ -23,11 +23,11 @@
     vertical-align: middle;
     z-index: inherit;
     cursor: pointer;
+    i {
+      @include transition (all, .3s);
+    }
+}
 
-}
-.caret__dropdown-toggler i {
-  @include transition (all, .3s);
-}
 .ham-toggler-menu__span {
   background: transparent;
   display: block;

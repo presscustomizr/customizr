@@ -19,7 +19,10 @@
     .branding {
       height: auto;
       line-height: 1;
-      .navbar-logo { height: auto; line-height: 1.5em }
+      padding-top: $base-line-height*3/2;
+      padding-bottom: $base-line-height*3/2;
+      max-height: none;
+      .navbar-logo { height: auto; }
     }
     .primary-nav__container .primary-nav__nav {
       width: auto;
@@ -27,6 +30,7 @@
       text-align: initial !important;
       height: 100%;
       overflow: visible;
+      min-height: 70px;
     }
     .branding__container {
       display: block !important;
@@ -50,7 +54,7 @@
       padding-bottom: 0;
       padding-top: 0;
       white-space: normal;
-      min-height: 70px;
+
     }
     .primary-nav__menu-wrapper {
       display: table-cell !important;
@@ -58,7 +62,7 @@
       padding-right: 2.5em;
      /*padding-left: 2.5em;*/
       margin: 0 !important;
-      vertical-align: middle;
+      vertical-align: bottom;
       height: 100%;
       padding-bottom: 0;
       padding-top: 0;
@@ -89,10 +93,11 @@
           }
           &> span{
             height: 100%;
-            display: table-row!important;
+            /* display: table-row!important; */
             position: relative;
-            padding: 0;
-            > a { display: table; min-height: 70px; vertical-align: middle; }
+            /* padding: 0; */
+            padding: $base-line-height 0;
+            > a { display: table; padding: 1em 0; /*min-height: 70px; */vertical-align: middle; }
           }
         }
       }
@@ -110,6 +115,7 @@
         vertical-align: middle;
         li {
           display:inline-table;
+          vertical-align: middle;
           /*float: left;*/
           a {
             display: table-cell;

@@ -1,0 +1,77 @@
+@media (max-width: 991px) {
+  .primary-navbar__wrapper {
+    height: auto;
+
+    @at-root .branding__container {
+      display: table;
+      table-layout: fixed;
+      min-height: 70px;
+      [class*=logo_right] & {
+        direction: rtl;
+      }
+      @at-root .branding {
+        max-height: none;
+        height: auto;
+        line-height: 1;
+        display: table-cell;
+        max-width: 50%;
+        padding-left: 1.25em;
+        vertical-align: middle;
+        [class*=logo_right] & {
+          padding-left: 0;
+          padding-right: 1.25em;
+          text-align: right;
+        }
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      @at-root .mobile-utils__wrapper {
+        display: table-cell;
+        height: 100%;
+        float: initial;
+        text-align: right;
+        [class*=logo_right] & {
+          text-align: left;
+          direction: ltr;
+        }
+        @at-root .hamburger-toggler__container, .mobile-woocart__container {
+          float: right;
+          [class*=logo_right] & {
+            float: left;
+          }
+          height: 100%;
+          vertical-align: middle;
+          display: inline-table;
+          margin-left: 0;
+          margin-right: 0;
+          padding-right: 1.25em;
+          padding-left: 1.25em;
+          [class*=logo_right] &::before {
+            left: auto;
+            right: 0;
+          }
+        }
+        @at-root .mobile-woocart__container .woocart {
+          display: table-cell;
+          vertical-align: middle;
+          height: 100%;
+        }
+        @at-root .mobile-utils__wrapper .ham__navbar-toggler {
+          height: 100%
+        }
+      }
+    }
+  }
+}
+/* Fix */
+@media screen and (min-width: 992px) {
+  .primary-nav__menu-wrapper .primary-nav__menu.regular {
+    margin-left: $base-line-height * -1;
+    margin-right: $base-line-height * -1;
+  }
+  .tc-header .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu > li {
+      margin-left: $base-line-height;
+      margin-right: $base-line-height;
+  }
+}

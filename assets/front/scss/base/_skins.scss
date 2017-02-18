@@ -143,12 +143,15 @@ $secondary-color-dark   : $grey;
 
     }
     & > li:not(.dropdown-item) > span > a {
-      & > span:first-of-type { @include underlined ($primary-color, 2px); }
-      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }
+     /* & > span:first-of-type { @include underlined ($primary-color, 2px); }
+      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }*/
+      @include underlined ($primary-color, 2px);
+      .secondary-nav__nav & { @include underlined ($primary-color, 1px); }
     }
     & > li.active > span > a, &  li.current-active > span > a {
       color: $secondary-color;
-      & > span:first-of-type { @include underlined_highlight_before($primary-color) }
+      /* & > span:first-of-type { @include underlined_highlight_before($primary-color) } */
+      @include underlined_highlight_before($primary-color);
     }
     &  li.active {
       .caret__dropdown-toggler__span:after,

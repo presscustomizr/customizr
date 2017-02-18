@@ -35,8 +35,8 @@
   ?>
   <?php if ( czr_fn_get( 'has_controls' ) ) : ?>
         <div class="slider-nav">
-          <span class="slider-control slider-prev <?php czr_fn_echo( 'left_control_class' ) ?> icn-left-open-big"></span>
-          <span class="slider-control slider-next <?php czr_fn_echo( 'right_control_class' ) ?> icn-right-open-big"></span>
+          <span class="slider-control slider-prev <?php czr_fn_echo( 'left_control_class' ) ?> icn-left-open-big" tabindex="0"></span>
+          <span class="slider-control slider-next <?php czr_fn_echo( 'right_control_class' ) ?> icn-right-open-big" tabindex="0"></span>
         </div>
   <?php endif ?>
 </div><!-- /#customizr-slider -->

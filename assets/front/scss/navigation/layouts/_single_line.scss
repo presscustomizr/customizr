@@ -24,6 +24,7 @@
     }*/
     .branding {
     height: auto;
+    max-height: none;
     line-height: 1;
     .navbar-logo { height: auto; line-height: 1.5em }
     }
@@ -110,6 +111,7 @@
         vertical-align: middle;
         li {
           display:inline-table;
+          vertical-align: middle;
           /*float: left;*/
           a {
             display: table-cell;
@@ -211,7 +213,7 @@
       right: 0;
     }
   }
-  @media (max-width: 991px) {
+  /*@media (max-width: 991px) {
     .branding__container .branding {
       float: right;
       margin-right: 1.25em;
@@ -230,5 +232,5 @@
       margin-left: 0;
       margin-right: 0;
     }
-  }
+  }*/
 }

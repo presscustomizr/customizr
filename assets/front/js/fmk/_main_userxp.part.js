@@ -6,6 +6,13 @@ var czrapp = czrapp || {};
     init : function() {
 
     },
+
+    //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
+    outline: function() {
+      if ( 'function' == typeof( tcOutline ) )
+          tcOutline();
+    },
+
     disableHoverOnScroll: function() {
       //While scrolling we don' want to trigger hover actions
       if ( ! czrapp.$_body.hasClass( 'czr-is-mobile' ) ) {

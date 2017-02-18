@@ -102,7 +102,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
         if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
           $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
         elseif ( ! $_dropdown_on_hover && $_is_link )
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
         //close span
@@ -223,7 +223,7 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
         if ( $_dropdown_on_hover )
           $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
         else
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
         //close span
