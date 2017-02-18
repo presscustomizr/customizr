@@ -1972,7 +1972,7 @@ function czr_fn_print_social_item_mod_opt_template() {
     //data looks like : { id : 'sidebar-one', title : 'A Title One' }
   ?>
   <script type="text/html" id="tmpl-czr-module-social-mod-opt">
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number">
+    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number" data-transport="postMessage">
       <div class="customize-control-title"><?php _e('Size in px', 'customizr'); ?></div>
       <div class="czr-input">
         <input data-type="social-size" type="number" step="1" min="5" value="{{ data['social-size'] }}" />
@@ -2009,7 +2009,7 @@ function czr_fn_print_social_item_mod_opt_template() {
       <span class="czr-notice"><?php _e('This is the text displayed on mouse over.', 'customizr'); ?></span>
     </div>
 
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color">
+    <div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color" data-transport="postMessage">
       <div class="customize-control-title"><?php _e('Icon color', 'customizr'); ?></div>
       <div class="czr-input">
         <input data-type="social-color" type="text" value="{{ data['social-color'] }}"></input>
