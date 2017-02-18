@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.4 February 18th 2017 =
+* Fix: customizer javascript error when customizing the social links
+* Improved: customizer social links module user interface
+
 = 3.5.3 February 17th 2017 =
 * Fix: fix potential option inconsistencies with some hosts. fixes #810
 * Imp: rtl - fix update notice positioning in admin. fixes #800

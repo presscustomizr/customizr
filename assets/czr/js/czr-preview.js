@@ -356,12 +356,28 @@
 } )( wp.customize, jQuery, _ );(function (api, $, _ ) {
       var $_body    = $( 'body' ),
           setting_cbs = api.CZR_preview.prototype.setting_cbs || {},
-          subsetting_cbs = api.CZR_preview.prototype.subsetting_cbs || {},
-          _settings_cbs;
+          input_cbs = api.CZR_preview.prototype.input_cbs || {},
+          _settingsCbsExtend = {},
+          _inputCbsExtend = {};
 
+    _inputCbsExtend = {
+          'tc_social_links' : {
+                'social-size' : function( data ) {
+                      if ( ! _.isObject( data ) || _.isUndefined( data.value ) || ! $('.social-icon', '.social-block').length )
+                        return;
+                      $('.social-icon', '.social-block').css( 'font-size', data.value + 'px');
+                },
+                'social-color' : function( data ) {
+                      if ( ! _.isObject( data ) || _.isUndefined( data.value ) || _.isUndefined( data.input_parent_id ) )
+                        return;
+                      if ( ! $('.social-block').find('.social-icon[data-model-id=' + data.input_parent_id +']').length )
+                        return;
+                      $('.social-block').find('.social-icon[data-model-id=' + data.input_parent_id +']').css( 'color', data.value );
+                }
+          }
+    };
 
-
-    _settings_cbs = {
+    _settingsCbsExtend = {
         /******************************************
         * GLOBAL SETTINGS
         ******************************************/
@@ -786,7 +802,7 @@
         if ( false === $_post_metas.length > 0 )
           return;
 
-        _settings_cbs['tc_show_post_metas_' + this._context] = function( to ) {
+        _settingsCbsExtend['tc_show_post_metas_' + this._context] = function( to ) {
           if ( false === to ){
             $_post_metas.hide('slow');
             $_body.addClass('hide-post-metas');
@@ -813,7 +829,7 @@
         if ( false === $_post_nav.length > 0 )
           return;
 
-        _settings_cbs[ 'tc_show_post_navigation_' + this._context ] = function( to ) {
+        _settingsCbsExtend[ 'tc_show_post_navigation_' + this._context ] = function( to ) {
           if ( false === to )
             $_post_nav.hide('slow').addClass('hide-post-navigation');
           else
@@ -823,7 +839,8 @@
       });
 
       $.extend( api.CZR_preview.prototype, {
-          setting_cbs : $.extend( setting_cbs, _settings_cbs )
+          setting_cbs : $.extend( setting_cbs, _settingsCbsExtend ),
+          input_cbs : $.extend( input_cbs, _inputCbsExtend )
       });
 
     /******************************************
