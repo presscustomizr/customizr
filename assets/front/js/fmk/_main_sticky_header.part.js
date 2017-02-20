@@ -14,7 +14,7 @@ var czrapp = czrapp || {};
   *
   * In both cases the placeholder will be our reference to switch from sticky to un-sticky mode
   * and the reference to switch from un-sticky to sticky ONLY in the "overlapping" case. 'Cause in that
-  * case the trigger point dynamic computation cannto rely the sticky candidate as its position is
+  * case the trigger point dynamic computation cannot rely the sticky candidate as its position is
   * fixed or absolute
   * (see _toggleStickyAt() )
   */
@@ -22,22 +22,43 @@ var czrapp = czrapp || {};
   var _methods =  {
     init : function() {
       this.namespace                  = 'tc-sticky-header';
+      this._sticky_candidate_sel      = '.navbar-to-stick';
       //cache jQuery el
-      this.$_sticky_candidate         = czrapp.$_tcHeader.find('.navbar-to-stick');
+      this._cache_els();
 
       //additional state props
       this._didScroll                 = false;
-      this._sticky_candidate_overlap  = czrapp.$_tcHeader.hasClass( 'header-absolute' );
-      this._sticky_candidate_push     = !  this._sticky_candidate_overlap;
-      this._fixed_classes             = 'navbar-sticky';
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
       this._sticky_trigger            = false;
+      this._toggleable_vp             = 992;
 
-      this.debounced_resize_actions   = _.debounce( this.stickyHeaderMaybeToggling, 300 );
+      this.debounced_resize_actions   = _.debounce( function() {
+          this.stickyHeaderMaybeToggling();
+          this._stickyHeaderLimitMobileMenu( 'resize' );
+        }, 300
+      );
+
+      /* Cross browser support for CSS "transition end" event */
+      this.transitionEnd            = 'transitionend webkitTransitionEnd otransitionend oTransitionEnd MSTransitionEnd';
 
       //set some props depending on the desired sticky behavior
-      this._sticky_trigger  = 300;
+      //this._sticky_trigger  = 300;
+    },
+
+    _cache_els : function() {
+      //cache jQuery el
+      this.$_sticky_candidate         = czrapp.$_tcHeader.find( this._sticky_candidate_sel );
+      this._d_sticky_candidate        = czrapp.$_tcHeader.hasClass( 'header-absolute' ) ? 'overlaps' : 'pushes';
+      this._sticky_candidate          = this._dsticky_candidate;
+
+      this.is_sticky_mobile           = czrapp.$_tcHeader.hasClass( 'czr-sticky-mobile' );
+
+      this._fixed_classes             = 'navbar-sticky';
+
+      this._lastScroll                = 0;
+      this.$_sticky_placeholder       = null;
+      this._navbar_toggleable_sel     = '.czr-sticky-mobile .nav-collapse[class*=navbar-toggleable-]';
     },
 
     triggerStickyHeaderLoad : function() {
@@ -77,19 +98,31 @@ var czrapp = czrapp || {};
       czrapp.$_window.on( 'tc-resize', function() {
         self.debounced_resize_actions();
       });
+
+      //ON BOOTSTRAP COLLAPSE SHOW/HIDE limit collapse to viewport
+      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse ', this._navbar_toggleable_sel, function(evt) {
+        self._stickyHeaderLimitMobileMenu(evt);
+      });
+
+      czrapp.$_body.on( this.transitionEnd , this._sticky_candidate_sel, function(evt) {
+        if ( self.$_sticky_candidate[0] == evt.target )
+          self._stickyHeaderLimitMobileMenu();
+      });
     },
 
     stickyHeaderMaybeToggling : function () {
-
-      /* We meed an alternative for ie<10*/
-      if ( window.matchMedia("(max-width: 991px)").matches) {
+      if ( czrapp.matchMedia(this._toggleable_vp) ) {
+        if ( this.is_sticky_mobile ) {
+          this._sticky_candidate = 'pushes';
         /* the viewport is less 992 pixels wide */
-        if ( this._is_sticky_enabled() )
+        }else if ( this._is_sticky_enabled() )
           czrapp.$_body.trigger( 'sticky-disable' )
                        .removeClass( 'tc-sticky-header' );
       } else {
-        /* the viewport is at least 992 pixels wide */
-        if ( ! this._is_sticky_enabled() )
+        if ( this.is_sticky_mobile ) {
+          this._sticky_candidate = this._d_sticky_candidate;
+          /* the viewport is at least 992 pixels wide */
+        }else if ( ! this._is_sticky_enabled() )
           czrapp.$_body.addClass( 'tc-sticky-header' );
         this.stickyHeaderEventHandler('scroll');
       }
@@ -143,7 +176,7 @@ var czrapp = czrapp || {};
         return this._sticky_trigger;
 
       var $_trigger_element = this.$_sticky_placeholder && this.$_sticky_placeholder.height() ? this.$_sticky_placeholder : this.$_sticky_candidate;
-      console.log($_trigger_element.outerHeight() + $_trigger_element.offset().top + 50);
+
       return $_trigger_element.outerHeight() + $_trigger_element.offset().top + 50;
     },
 
@@ -166,7 +199,7 @@ var czrapp = czrapp || {};
     _sticky_header_scrolling_actions : function () {
       var _scroll = this._get_scroll();
 
-      if ( this._sticky_candidate_overlap && this._isScrollingDown() && ! this._isStickyOn() )
+      if ( 'overlaps' == this._sticky_candidate && this._isScrollingDown() && ! this._isStickyOn() )
         this._set_sticky_placeholder();
 
       if ( ! this._isStickyOn() && _scroll >= this._toggleStickyAt() )
@@ -181,11 +214,13 @@ var czrapp = czrapp || {};
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _on_sticky_enable : function() {
-      if ( this._sticky_candidate_push )
+      var self = this;
+      if ( 'pushes' == this._sticky_candidate )
         this._set_sticky_placeholder();
 
       this.$_sticky_candidate.addClass('animating').addClass( this._fixed_classes );
       czrapp.$_body.addClass( 'sticky-enabled' ).removeClass( 'sticky-disabled' ).trigger('sticky-enabled');
+
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -193,6 +228,7 @@ var czrapp = czrapp || {};
       this._reset_sticky_placeholder();
       this.$_sticky_candidate.removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
+      this._stickyHeaderLimitMobileMenu();
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -208,7 +244,52 @@ var czrapp = czrapp || {};
     _reset_sticky_placeholder: function(){
       if ( this.$_sticky_placeholder && this.$_sticky_placeholder.length )
         this.$_sticky_placeholder.css('height', '0');
+    },
+
+    //STICKY HEADER SUB CLASS HELPER (private like)
+    _stickyHeaderLimitMobileMenu : function(evt) {
+
+      //NEW: allow sticky on mobiles
+      if ( !this.is_sticky_mobile )
+        return;
+
+      $_el = $(this._navbar_toggleable_sel);
+
+      if ( !$_el.length ) {
+        return;
+      }
+
+      if ( 'resize' == evt && !$_el.hasClass('active') )
+        return;
+
+      if ( evt && 'hide' == evt.type ) {
+        this._resetHeaderLimitMobileMenu( $_el );
+        return;
+      }
+
+      if ( czrapp.matchMedia(this._toggleable_vp) ) {
+        //fallback on jQuery height() if window.innerHeight isn't defined (e.g. ie<9)
+        var winHeight    = 'undefined' === typeof window.innerHeight ? window.innerHeight : czrapp.$_window.height(),
+            newMaxHeight = winHeight - $_el.closest('div').offset().top + this._get_scroll();
+
+        $_el.css('max-height' , newMaxHeight + 'px').addClass('limited-height');
+      }else {
+        this._resetHeaderLimitMobileMenu( $_el );
+      }
+    },
+
+    //STICKY HEADER SUB CLASS HELPER (private like)
+    _resetHeaderLimitMobileMenu : function( $_el ) {
+      $_el = $_el || $(this._navbar_toggleable_sel);
+
+      if ( !$_el.length ) {
+        return;
+      }
+
+      $_el.removeClass('limited-height');
+      $_el.css('max-height', '' );
     }
+
   };//_methods{}
 
   czrapp.methods.Czr_StickyHeader = {};

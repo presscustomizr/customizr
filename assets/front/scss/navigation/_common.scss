@@ -24,22 +24,25 @@
         }
         padding-top: 5px;
         padding-bottom: 5px;
+        img {
+          max-width: 100% !important;
+          max-height: 50px !important;
+        }
       }
 
       @at-root .mobile-utils__wrapper {
         display: table-cell;
         height: 100%;
-        float: initial;
+        float: none;
         text-align: right;
+        white-space: nowrap;
+
         [class*=logo_right] & {
           text-align: left;
           direction: ltr;
         }
         @at-root .hamburger-toggler__container, .mobile-woocart__container {
-          float: right;
-          [class*=logo_right] & {
-            float: left;
-          }
+          float: none;
           height: 100%;
           vertical-align: middle;
           display: inline-table;
@@ -52,17 +55,34 @@
             right: 0;
           }
         }
+        @at-root .hamburger-toggler__container {
+          display: inline-block;
+          @at-root .mobile-utils__wrapper .ham__navbar-toggler {
+            height: 100%
+          }
+        }
         @at-root .mobile-woocart__container .woocart {
           display: table-cell;
           vertical-align: middle;
           height: 100%;
         }
-        @at-root .mobile-utils__wrapper .ham__navbar-toggler {
-          height: 100%
-        }
       }
     }
   }
+}
+/* Fix space between inline-block elements */
+.mobile-utils__wrapper,
+.primary-nav__utils {
+  font-size: 0.001px;
+}
+.tc-header .primary-nav__utils {
+    .utils {
+      margin: 0 -1.25rem;
+      li {
+        padding: 0 1.25em;
+        margin: 0;
+      }
+    }
 }
 /* Fix */
 @media screen and (min-width: 992px) {
@@ -73,5 +93,73 @@
   .tc-header .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu > li {
       margin-left: $base-line-height;
       margin-right: $base-line-height;
+  }
+}
+
+/* Limit nav-collpase height to the viewport when sticky mobile */
+.czr-sticky-mobile .nav-collapse {
+  &::before, &::after {
+    display: table;
+    content: '';
+    line-height: 0;
+  }
+  &.active.limited-height {
+    position: absolute;
+    overflow: auto;
+    background: inherit;
+  }
+}
+/* WooCart */
+.primary-nav__woocart {
+   position: relative;
+   ul li {
+    display: block !important;
+    /* float: left; */
+    width: 100%;
+    padding: $base-line-height/2 !important;
+    margin-left: 0 !important;
+    white-space: normal;
+    position: relative;
+    &::before {
+      content: none !important;
+    }
+  }
+  .widget_shopping_cart {
+    width: 320px;
+    max-width: 50vw;
+    li,
+    p.buttons,
+    p.total {
+      padding: 1em $base-line-height;
+    }
+    li a {
+      white-space: normal;
+      display: block !important;
+      &::before {
+        content: none !important;
+      }
+    }
+    p.buttons,
+    p.total {
+      text-align: center;
+      .button {
+        display: block;
+         &:nth-child(odd) {
+            margin-bottom: .6180469716em;
+        }
+      }
+    }
+    .product_list_widget li a.remove {
+      position: relative;
+      float: left;
+      top: auto;
+      display: block;
+      text-align: left;
+      line-height: 1.3;
+    }
+    .product_list_widget img {
+      margin-left: 1em;
+      float: right;
+    }
   }
 }

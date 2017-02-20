@@ -1,4 +1,66 @@
-[class*=logo_center] {
+[class*=v-logo_] {
+  .branding__container .primary-nav__utils {
+    display: none;
+  }
+  @media (min-width: 992px) {
+    .branding {
+      height: auto;
+      line-height: 1;
+      padding-top: $base-line-height*3/2;
+      padding-bottom: $base-line-height*3/2;
+      max-height: none;
+      float: left;
+      .navbar-logo { height: auto; }
+    }
+
+    .primary-nav__utils {
+      display: table!important;
+      height: 100%;
+      min-height: 70px;
+      float: right;
+      white-space: nowrap !important;
+      .utils, .primary-nav__socials {
+        position: relative;
+        display : table-cell;
+        float: none !important;
+        height: 100%;
+        vertical-align: middle;
+        li {
+          display:inline-table;
+          vertical-align: middle;
+          height:100%;
+          a {
+            display: table-cell;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    .primary-nav__socials ul{
+      display: inline-block !important;
+      height: 100%;
+      vertical-align: middle;
+      margin-left: 1.25em;
+      position: relative;
+    }
+
+    .primary-nav__utils .utils li:before,
+    .primary-nav__utils .primary-nav__socials .socials:before {
+      content: none !important;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
   /* nav with tables */
   @media (min-width: 992px) {
     .primary-navbar__wrapper {
@@ -9,14 +71,8 @@
       width: 100%;
       white-space: normal;
     }
-    .branding {
-      height: auto;
-      line-height: 1;
-      padding-top: $base-line-height*3/2;
-      padding-bottom: $base-line-height*3/2;
-      max-height: none;
-      .navbar-logo { height: auto; }
-    }
+
+
     .primary-nav__container .primary-nav__nav {
       width: auto;
       display: inline-table !important;
@@ -38,7 +94,7 @@
       left: 0;
     }
     .primary-nav__container {
-      text-align: center;
+      text-align: left;
       margin: 0 !important;
       padding-left: 0 !important;
       width: 100% !important;
@@ -52,14 +108,19 @@
     .primary-nav__menu-wrapper {
       display: table-cell !important;
       width: auto;
-      padding-right: 2.5em;
+      padding: 0 !important;
       margin: 0 !important;
       vertical-align: bottom;
       height: 100%;
       padding-bottom: 0;
       padding-top: 0;
+     /* white-space: nowrap;
+      overflow: hidden;
+      position: static !important;*/ /* override */
       .primary-nav__menu.regular {
         vertical-align: middle;
+        /*height: 100%;
+        overflow: hidden;*/
         display: inline-block;
         > li {
           height : 100%;
@@ -80,9 +141,11 @@
           }
           &> span{
             height: 100%;
+            /* display: table-row!important; */
             position: relative;
+            /* padding: 0; */
             padding: $base-line-height 0;
-            > a { display: table; padding: 1em 0; vertical-align: middle; }
+            > a { display: table; padding: 1em 0; /*min-height: 70px; */vertical-align: middle; }
           }
         }
       }
@@ -121,6 +184,45 @@
       height: 100%;
       vertical-align: middle;
     }
+
+    /*
+    .primary-nav__container .primary-nav__utils {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -15px;
+      z-index: 3000;
+      padding-right: 15px;
+      height: 100%;
+      .primary-nav__utils-container {
+        display: table;
+        height: 100%;
+      }
+      li { display: table }
+      .utils {
+        height: 100%;
+        display: table-cell;
+        > li { height : 100%;
+          &> a {
+            height: 100%;
+            display: table!important;
+
+          }
+          span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
+
+        }
+      }
+    }
+    .primary-nav__container .primary-nav__utils .primary-nav__socials {*/
+      /*float: none !important;
+      display: inline-block !important;*/
+      /*
+      height: 100%;
+      margin-left: 1.25em;
+      display: table;
+      .socials { display: table-cell; vertical-align: middle; li {display: inline-block; height: auto}}
+
+    }*/
     .primary-nav__menu-wrapper {
       text-align: center;
     }

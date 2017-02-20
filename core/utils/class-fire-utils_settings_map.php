@@ -164,7 +164,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'sanitize_callback' => 'czr_fn_sanitize_number',
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                             'width'     => 250,
-                            'height'    => 100,
+                            'height'    => 70,
                             'flex_width' => true,
                             'flex_height' => true,
                             //to keep the selected cropped size
@@ -174,7 +174,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
           //force logo resize 250 * 85
           'tc_logo_resize'  => array(
                             'default'   =>  1,
-                            'label'     =>  __( 'Force logo dimensions to max-width:250px and max-height:100px' , 'customizr' ),
+                            'label'     =>  __( 'Force logo height to max-height:70px' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'logo_sec' ,
                             'type'        => 'checkbox' ,
@@ -708,6 +708,15 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 30,
                             'transport'     => 'postMessage',
                             'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
+          ),
+          'tc_sticky_mobile'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Sticky on scroll in mobiles" , "customizr" ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'checkbox' ,
+                            'priority'      => 30,
+                            'transport'     => 'postMessage',
           ),
           'tc_sticky_show_tagline'  =>  array(
                             'default'       => 0,

@@ -337,6 +337,7 @@
                     {
                             dominus : 'tc_sticky_header',
                             servi   : [
+                              'tc_sticky_mobile',
                               'tc_sticky_show_tagline',
                               'tc_sticky_show_title_logo',
                               'tc_sticky_shrink_title_logo',

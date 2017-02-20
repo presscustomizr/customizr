@@ -58,9 +58,13 @@
     margin:0 auto;
     text-align:center;
     margin-right:$base-line-height;
+}
+.primary-nav__utils .utils li {
+    font-size: 1rem;
+}
+.hamburger-toggler__container, .mobile-woocart__container {
     font-size: 17px;
 }
-
  /* BRANDING */
 
 .branding__container {
@@ -106,7 +110,7 @@
             margin-top: 4px;
             display: none;
             width: 100%;
-            @media screen and (min-width: 668px) {
+            @media screen and (min-width: 992px) {
               display: block;
             }
 
@@ -189,36 +193,36 @@
 
   }
 
-.primary-nav__utils {
-    position:relative;
-    display: inline-block;
-    float:none;
-    text-align:right;
-    .utils {
-      display: inline;
-      height: inherit;
-      vertical-align: bottom;
-     /* li a { height:60px; line-height:60px }*/
-    }
-    .primary-nav__socials {
-       @extend .small;
-       position: relative;
-       & .socials { margin-left: $base-line-height; position: relative }
-       /* padding-left: $base-line-height*2; */
-       @media (max-width: 992px) {
-         width: 100%;
-         float:none;
-         text-align:  left;
-         & .socials { margin-left: $base-line-height*2 }
-         li { display: inline-block; width: auto }
-       }
-       @media (min-width: 993px) {
-
-          li + li { margin-left: $base-line-height; }
-      }
-    }
 }
 
+.primary-nav__utils {
+  position:relative;
+  display: inline-block;
+  float:none;
+  text-align:right;
+  .utils {
+    display: inline;
+    height: inherit;
+    vertical-align: bottom;
+   /* li a { height:60px; line-height:60px }*/
+  }
+  .primary-nav__socials {
+     font-size: 1rem;
+     position: relative;
+     & .socials {  margin-left: $base-line-height; @extend .small; position: relative; }
+     /* padding-left: $base-line-height*2; */
+     @media (max-width: 992px) {
+       width: 100%;
+       float:none;
+       text-align:  left;
+       & .socials { margin-left: $base-line-height*2 }
+       li { display: inline-block; width: auto }
+     }
+     @media (min-width: 993px) {
+
+        li + li { margin-left: $base-line-height; }
+    }
+  }
 }
 /*
 * Header types: Absolute or Standard(pushing) and Sticky
@@ -255,7 +259,14 @@
   position: fixed;
   &:not(.animating) {
     top: 0;
-    .admin-bar & { top: 30px }
+    .admin-bar & {
+      @media screen and ( min-width: 783px ) {
+        top: 30px;
+      }
+      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
+        top: 46px;
+      }
+    }
   }
   @include transition(all 0.5s ease-in-out);
   //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );

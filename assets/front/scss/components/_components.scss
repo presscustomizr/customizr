@@ -256,7 +256,7 @@ cite {
             line-height:  30px;
             height: 30px;
             vertical-align: middle;
-            padding: 0 !important;
+            [class*=nav__menu] & { padding: 0 }
             width: 100%;
           }
           @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );

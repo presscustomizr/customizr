@@ -29,8 +29,8 @@
     color: $secondary-colour;
     &:hover, .socials a:hover { color: $primary-color; }
   }
-  .widget a {
-      @include underlined(rgba($primary-color, 0.5), 1px );
+  .widget {
+      &:not(.widget_tag_cloud):not(.widget_shopping_cart) a { @include underlined(rgba($primary-color, 0.5), 1px ) }
   }
   .colophon__row {
     background: $background-dark;

@@ -76,6 +76,7 @@ class CZR_header_model_class extends CZR_Model {
 
     if ( $_sticky_header ) {
       array_push( $element_class,
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_mobile' ) ) ? 'czr-sticky-mobile' : '',
         0 != esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
         0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
         0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',

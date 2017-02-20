@@ -8,8 +8,6 @@
     <?php
       if ( czr_fn_has('logo_wrapper') ){
         czr_fn_render_template( 'header/logo_wrapper' );
-        if ( czr_fn_has( 'tagline' ) )
-          czr_fn_render_template( 'header/tagline' );
       } else
         czr_fn_render_template( 'header/title' );
     ?>
@@ -27,4 +25,5 @@
       <?php endif ?>
       <?php czr_fn_render_template( 'header/menu_button' ) ?>
     </div>
+    <?php if ( czr_fn_get('with_nav_utils') && czr_fn_has('nav_utils') ) czr_fn_render_template( 'header/nav_utils' ) ?>
   </div>
