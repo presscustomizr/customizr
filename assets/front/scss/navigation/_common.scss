@@ -14,7 +14,6 @@
         height: auto;
         line-height: 1;
         display: table-cell;
-        max-width: 50%;
         padding-left: 1.25em;
         vertical-align: middle;
         [class*=logo_right] & {
@@ -55,17 +54,14 @@
             right: 0;
           }
         }
-        @at-root .hamburger-toggler__container {
-          display: inline-block;
-          @at-root .mobile-utils__wrapper .ham__navbar-toggler {
-            height: 100%
-          }
-        }
-        @at-root .mobile-woocart__container .woocart {
+
+        @at-root .hamburger-toggler__container .ham__navbar-toggler,
+       .mobile-woocart__container .woocart {
           display: table-cell;
           vertical-align: middle;
           height: 100%;
         }
+
       }
     }
   }
@@ -77,7 +73,9 @@
 }
 .tc-header .primary-nav__utils {
     .utils {
-      margin: 0 -1.25rem;
+      @media screen and (min-width: 992px) {
+        margin: 0 -1.25rem;
+      }
       li {
         padding: 0 1.25em;
         margin: 0;
@@ -94,6 +92,14 @@
       margin-left: $base-line-height;
       margin-right: $base-line-height;
   }
+
+  .primary-nav__menu-wrapper.pull-menu-left {
+    text-align: left;
+  }
+  .primary-nav__menu-wrapper.pull-menu-right {
+    text-align: right;
+  }
+
 }
 
 /* Limit nav-collpase height to the viewport when sticky mobile */

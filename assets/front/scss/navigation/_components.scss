@@ -3,14 +3,15 @@
 .ham__navbar-toggler {
   position: relative;
   text-align: center;
-  z-index: 10001;
+  /*z-index: 10001;
   margin: 0;
   background: none;
-  border: none;
+  border: none;*/
   vertical-align: middle;
   cursor: pointer;
-  height: 1.33em;
+  /*height: 1.33em;*/
   display: inline-block;
+  -webkit-appearance: initial !important;
   @include transition (all, .3s)
 }
 

@@ -36,6 +36,9 @@ img.h-centered {
   position: relative;
   @include transform( translate(0,0) !important );
   @include transform( translate3d(0,0,0) !important );
+  &.tc-holder-img {
+    transform: none !important;
+  }
 }
 img.v-centered {
   height: auto!important;
@@ -44,6 +47,9 @@ img.v-centered {
   position: relative;
   @include transform( translate(0,0) !important );
   @include transform( translate3d(0,0,0) !important );
+  &.tc-holder-img {
+    transform: none !important;
+  }
 }
 
 .filter {

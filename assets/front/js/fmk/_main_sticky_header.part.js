@@ -31,9 +31,10 @@ var czrapp = czrapp || {};
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
       this._sticky_trigger            = false;
-      this._toggleable_vp             = 992;
+      this._mobile_viewport             = 992;
 
       this.debounced_resize_actions   = _.debounce( function() {
+          this._maybe_move_utils();
           this.stickyHeaderMaybeToggling();
           this._stickyHeaderLimitMobileMenu( 'resize' );
         }, 300
@@ -52,13 +53,20 @@ var czrapp = czrapp || {};
       this._d_sticky_candidate        = czrapp.$_tcHeader.hasClass( 'header-absolute' ) ? 'overlaps' : 'pushes';
       this._sticky_candidate          = this._dsticky_candidate;
 
-      this.is_sticky_mobile           = czrapp.$_tcHeader.hasClass( 'czr-sticky-mobile' );
+      this._sticky_mobile_class       = 'czr-sticky-mobile';
+      this.is_sticky_mobile           = czrapp.$_tcHeader.hasClass( this._sticky_mobile_class );
 
       this._fixed_classes             = 'navbar-sticky';
 
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
-      this._navbar_toggleable_sel     = '.czr-sticky-mobile .nav-collapse[class*=navbar-toggleable-]';
+      this._sticky_mobile_selector    = '.'+this._sticky_mobile_class;
+      this._sticky_navbar_toggleable_selector = this._sticky_mobile_selector+ ' .nav-collapse[class*=navbar-toggleable-]';
+
+      this._utils_selector            = '.primary-nav__utils';
+      this._branding_selector         = '.branding__container';
+      this._main_nav_selector         = '.primary-navbar__wrapper .primary-nav__nav';
+      this._to_move_utils_selector    = '.tc-header[class*=v-logo_]';
     },
 
     triggerStickyHeaderLoad : function() {
@@ -100,7 +108,7 @@ var czrapp = czrapp || {};
       });
 
       //ON BOOTSTRAP COLLAPSE SHOW/HIDE limit collapse to viewport
-      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse ', this._navbar_toggleable_sel, function(evt) {
+      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse ', this._sticky_navbar_toggleable_selector, function(evt) {
         self._stickyHeaderLimitMobileMenu(evt);
       });
 
@@ -111,25 +119,25 @@ var czrapp = czrapp || {};
     },
 
     stickyHeaderMaybeToggling : function () {
-      if ( czrapp.matchMedia(this._toggleable_vp) ) {
+      if ( czrapp.matchMedia(this._mobile_viewport) ) {
         if ( this.is_sticky_mobile ) {
           this._sticky_candidate = 'pushes';
         /* the viewport is less 992 pixels wide */
-        }else if ( this._is_sticky_enabled() )
+        }else if ( this._isStickyEnabled() )
           czrapp.$_body.trigger( 'sticky-disable' )
                        .removeClass( 'tc-sticky-header' );
       } else {
         if ( this.is_sticky_mobile ) {
           this._sticky_candidate = this._d_sticky_candidate;
           /* the viewport is at least 992 pixels wide */
-        }else if ( ! this._is_sticky_enabled() )
+        }else if ( ! this._isStickyEnabled() )
           czrapp.$_body.addClass( 'tc-sticky-header' );
         this.stickyHeaderEventHandler('scroll');
       }
     },
 
     stickyHeaderEventHandler : function( evt ) {
-      if ( ! this._is_sticky_enabled() ){
+      if ( ! this._isStickyEnabled() ){
         return;
       }
 
@@ -166,7 +174,7 @@ var czrapp = czrapp || {};
 
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _is_sticky_enabled : function() {
+    _isStickyEnabled : function() {
       return czrapp.$_body.hasClass('tc-sticky-header') ? true : false;
     },
 
@@ -186,18 +194,18 @@ var czrapp = czrapp || {};
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _get_scroll : function() {
+    _getScroll : function() {
       return window.pageYOffset || czrapp.$_window.scrollTop();
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _isScrollingDown : function(){
-      return this._lastScroll < this._get_scroll();
+      return this._lastScroll < this._getScroll();
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _sticky_header_scrolling_actions : function () {
-      var _scroll = this._get_scroll();
+      var _scroll = this._getScroll();
 
       if ( 'overlaps' == this._sticky_candidate && this._isScrollingDown() && ! this._isStickyOn() )
         this._set_sticky_placeholder();
@@ -209,7 +217,7 @@ var czrapp = czrapp || {};
         czrapp.$_body.trigger('sticky-disable');
 
       this._didScroll = false;
-      this._lastScroll = this._get_scroll();
+      this._lastScroll = this._getScroll();
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -217,7 +225,7 @@ var czrapp = czrapp || {};
       var self = this;
       if ( 'pushes' == this._sticky_candidate )
         this._set_sticky_placeholder();
-
+      this._maybe_move_utils( this._main_nav_selector );
       this.$_sticky_candidate.addClass('animating').addClass( this._fixed_classes );
       czrapp.$_body.addClass( 'sticky-enabled' ).removeClass( 'sticky-disabled' ).trigger('sticky-enabled');
 
@@ -226,6 +234,7 @@ var czrapp = czrapp || {};
     //STICKY HEADER SUB CLASS HELPER (private like)
     _on_sticky_disable : function() {
       this._reset_sticky_placeholder();
+      this._maybe_move_utils( this._branding_selector );
       this.$_sticky_candidate.removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
       this._stickyHeaderLimitMobileMenu();
@@ -246,6 +255,22 @@ var czrapp = czrapp || {};
         this.$_sticky_placeholder.css('height', '0');
     },
 
+    _maybe_move_utils : function( _where ) {
+      /* When to do this?
+      *  1) on sticky-enabled toggle in desktop with vertical logo
+      *  2) on resize in destkop when _where not specified :
+      *  a) move in the branding container if sticky-disabled
+      *  b) move in the nav if sticky-enabled
+      */
+      if (  !czrapp.matchMedia(this._mobile_viewport) ) {
+        if ( _where ) {
+          $(_where, this._to_move_utils_selector ).append($(this._utils_selector));
+        } else {
+          $( !this._isStickyOn() ? this._branding_selector : this._main_nav_selector , this._to_move_utils_selector ).append($(this._utils_selector));
+        }
+      }
+    },
+
     //STICKY HEADER SUB CLASS HELPER (private like)
     _stickyHeaderLimitMobileMenu : function(evt) {
 
@@ -253,7 +278,7 @@ var czrapp = czrapp || {};
       if ( !this.is_sticky_mobile )
         return;
 
-      $_el = $(this._navbar_toggleable_sel);
+      $_el = $(this._sticky_navbar_toggleable_selector);
 
       if ( !$_el.length ) {
         return;
@@ -267,10 +292,10 @@ var czrapp = czrapp || {};
         return;
       }
 
-      if ( czrapp.matchMedia(this._toggleable_vp) ) {
+      if ( czrapp.matchMedia(this._mobile_viewport) ) {
         //fallback on jQuery height() if window.innerHeight isn't defined (e.g. ie<9)
         var winHeight    = 'undefined' === typeof window.innerHeight ? window.innerHeight : czrapp.$_window.height(),
-            newMaxHeight = winHeight - $_el.closest('div').offset().top + this._get_scroll();
+            newMaxHeight = winHeight - $_el.closest('div').offset().top + this._getScroll();
 
         $_el.css('max-height' , newMaxHeight + 'px').addClass('limited-height');
       }else {
@@ -280,7 +305,7 @@ var czrapp = czrapp || {};
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _resetHeaderLimitMobileMenu : function( $_el ) {
-      $_el = $_el || $(this._navbar_toggleable_sel);
+      $_el = $_el || $(this._sticky_navbar_toggleable_selector);
 
       if ( !$_el.length ) {
         return;

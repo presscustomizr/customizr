@@ -135,19 +135,4 @@ class CZR_header_model_class extends CZR_Model {
     return $_css;
   }
 
-
-  function czr_fn_body_class( $_classes/*array*/ ) {
-    //STICKY HEADER
-    if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
-
-      /* WHICH OPTIONS SHOULD BE KEPT HERE ???? */
-      //STICKY TRANSPARENT ON SCROLL
-      if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_transparent_on_scroll' ) ) )
-        array_push( $_classes, 'tc-transparent-on-scroll' );
-      else
-        array_push( $_classes, 'tc-solid-color-on-scroll' );
-    }
-
-    return $_classes;
-  }
 }//end of class

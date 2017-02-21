@@ -3,9 +3,9 @@
   @media (min-width: 992px) {
     .primary-navbar__wrapper {
       display: block;
-      line-height: 1;
+      line-height: 0;
       height: auto;
-      min-height: 70px;
+      /*min-height: 70px;*/
       width: 100%;
       white-space: normal;
     }
@@ -23,7 +23,8 @@
       text-align: initial !important;
       height: 100%;
       overflow: visible;
-      min-height: 70px;
+      line-height: 1;
+      /*min-height: 70px;*/
     }
     .branding__container {
       display: block !important;
@@ -58,18 +59,20 @@
       height: 100%;
       padding-bottom: 0;
       padding-top: 0;
+      body:not(.sticky-enabled) & {
+        text-align: center;
+      }
       .primary-nav__menu.regular {
         vertical-align: middle;
         display: inline-block;
         > li {
           height : 100%;
-          position: static;
           float: left;
-          display: table;
+          /*display: table;*/
           > span > .caret__dropdown-toggler,
           > span > a > span, i {
             display: table-cell!important;
-            float: none!important;
+            /*float: none!important;*/
             vertical-align: middle!important
           }
           &> a, &> span, &>span.caret__dropdown-toggler {
@@ -81,8 +84,7 @@
           &> span{
             height: 100%;
             position: relative;
-            padding: $base-line-height 0;
-            > a { display: table; padding: 1em 0; vertical-align: middle; }
+            > a { display: table; padding: $base-line-height 0; vertical-align: middle; }
           }
         }
       }
@@ -92,6 +94,7 @@
       display: table-cell !important;
       height: 100%;
       white-space: nowrap !important;
+      vertical-align: middle;
       .utils, .primary-nav__socials {
         position: relative;
         display : inline-block;
@@ -107,11 +110,11 @@
             vertical-align: middle;
           }
         }
-        .socials:before {
+        body:not(.sticky-enabled) & .socials:before {
           content: none;
         }
       }
-      li:before {
+      body:not(.sticky-enabled) & li:before {
         content : none;
       }
     }
@@ -121,8 +124,41 @@
       height: 100%;
       vertical-align: middle;
     }
-    .primary-nav__menu-wrapper {
-      text-align: center;
+
+
+
+
+
+
+
+    /* sticky enabled */
+    .sticky-enabled & {
+      .primary-navbar__wrapper {
+          display: table;
+      }
+      .primary-nav__container,
+      .branding__container {
+          clear: none;
+          text-align: left;
+          width: auto;
+          display: table-cell !important;
+          vertical-align: middle;
+          height: 100%;
+          white-space: nowrap;
+          float: none !important;
+      }
+      .branding {
+        padding: 0;
+        img { max-height: 70px; }
+      }
+      .primary-navbar__wrapper .primary-nav__nav {
+          width: 100%;
+          display: table !important;
+          .primary-nav__menu-wrapper {
+            vertical-align: middle;
+          }
+      }
     }
   }
+
 }

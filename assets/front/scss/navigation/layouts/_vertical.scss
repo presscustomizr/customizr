@@ -17,6 +17,7 @@
       display: table!important;
       height: 100%;
       min-height: 70px;
+      height: 70px;
       float: right;
       white-space: nowrap !important;
       .utils, .primary-nav__socials {
@@ -41,13 +42,80 @@
       display: inline-block !important;
       height: 100%;
       vertical-align: middle;
-      margin-left: 1.25em;
       position: relative;
     }
 
     .primary-nav__utils .utils li:before,
     .primary-nav__utils .primary-nav__socials .socials:before {
-      content: none !important;
+      body:not(.sticky-enabled) & { content: none !important; }
+    }
+
+
+
+
+    /* sticky enabled */
+    .sticky-enabled & {
+      .primary-navbar__wrapper {
+          display: table;
+      }
+      .primary-nav__container,
+      .branding__container {
+          clear: none;
+          text-align: left;
+          width: auto;
+          display: table-cell !important;
+          vertical-align: middle;
+          height: 100%;
+          white-space: nowrap;
+          float: none !important;
+      }
+      .branding {
+        padding: 0;
+        img { max-height: 70px; }
+      }
+      .primary-navbar__wrapper .primary-nav__nav {
+          width: 100%;
+          display: table !important;
+          .primary-nav__menu-wrapper {
+            vertical-align: middle;
+            padding-left : $base-line-height*2!important;
+            padding-right: $base-line-height*2!important;
+          }
+          .primary-nav__utils {
+            min-height: inherit;
+          }
+      }
+      /* sticky logo right */
+      &.v-logo_right {
+        .branding__container {
+          text-align: right;
+        }
+        .primary-navbar__wrapper {
+          direction: rtl;
+        }
+        .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
+          direction: ltr;
+          width: 100%;
+        }
+        .primary-nav__container .primary-nav__nav { text-align: left; }
+        .primary-nav__container .primary-nav__utils { direction: rtl;}
+        .primary-nav__container .primary-nav__utils * { direction: ltr; }
+
+        .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+          padding-left: 0; padding-right: 1.25em;
+          margin-left: 0;  margin-right: 1.25em;
+        }
+
+        .primary-nav__utils .nav.utils > li:first-of-type {
+          position: relative;
+        }
+
+        .primary-nav__utils .utils li:before,
+        .primary-nav__utils .primary-nav__socials .socials:before {
+          left: auto;
+          right: 0;
+        }
+      }
     }
   }
 
@@ -65,9 +133,8 @@
   @media (min-width: 992px) {
     .primary-navbar__wrapper {
       display: block;
-      line-height: 1;
+      line-height: 0;
       height: auto;
-      min-height: 70px;
       width: 100%;
       white-space: normal;
     }
@@ -79,13 +146,14 @@
       text-align: initial !important;
       height: 100%;
       overflow: visible;
-      min-height: 70px;
+      width: 100%;
+      line-height: 1;
     }
     .branding__container {
       display: block !important;
       float: left !important;
       width: 100%;
-      text-align: center;
+      text-align: left;
       clear: both;
       height: auto;
       max-height: none;
@@ -114,19 +182,12 @@
       height: 100%;
       padding-bottom: 0;
       padding-top: 0;
-     /* white-space: nowrap;
-      overflow: hidden;
-      position: static !important;*/ /* override */
       .primary-nav__menu.regular {
         vertical-align: middle;
-        /*height: 100%;
-        overflow: hidden;*/
         display: inline-block;
         > li {
           height : 100%;
-          position: static;
           float: left;
-          display: table;
           > span > .caret__dropdown-toggler,
           > span > a > span, i {
             display: table-cell!important;
@@ -141,11 +202,9 @@
           }
           &> span{
             height: 100%;
-            /* display: table-row!important; */
             position: relative;
-            /* padding: 0; */
-            padding: $base-line-height 0;
-            > a { display: table; padding: 1em 0; /*min-height: 70px; */vertical-align: middle; }
+
+            > a { display: table; padding: 1em 0; vertical-align: middle; }
           }
         }
       }
@@ -170,12 +229,6 @@
             vertical-align: middle;
           }
         }
-        .socials:before {
-          content: none;
-        }
-      }
-      li:before {
-        content : none;
       }
     }
 
@@ -185,46 +238,29 @@
       vertical-align: middle;
     }
 
-    /*
-    .primary-nav__container .primary-nav__utils {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: -15px;
-      z-index: 3000;
-      padding-right: 15px;
-      height: 100%;
-      .primary-nav__utils-container {
-        display: table;
-        height: 100%;
+  }
+
+
+
+}
+
+/* Logo on the right */
+@media (min-width: 992px) {
+  .v-logo_right {
+    /* nav with tables logo right */
+    .branding__container {
+      text-align: right;
+      .branding {
+        float: right;
       }
-      li { display: table }
-      .utils {
-        height: 100%;
-        display: table-cell;
-        > li { height : 100%;
-          &> a {
-            height: 100%;
-            display: table!important;
-
-          }
-          span, i { display: table-cell!important; float: none!important; vertical-align: middle!important}
-
+      .primary-nav__utils   {
+        direction: rtl; float: left;
+        .socials {
+             padding-left: 0; padding-right: 1.25em;
+             margin-left: 0;
         }
       }
-    }
-    .primary-nav__container .primary-nav__utils .primary-nav__socials {*/
-      /*float: none !important;
-      display: inline-block !important;*/
-      /*
-      height: 100%;
-      margin-left: 1.25em;
-      display: table;
-      .socials { display: table-cell; vertical-align: middle; li {display: inline-block; height: auto}}
-
-    }*/
-    .primary-nav__menu-wrapper {
-      text-align: center;
+      .primary-nav__utils * { direction: ltr; }
     }
   }
 }
