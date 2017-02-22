@@ -4,5 +4,5 @@
  */
 ?>
 <div class="hamburger-toggler__container" <?php czr_fn_echo('element_attributes') ?>>
-  <a class="ham__navbar-toggler collapsed" data-toggle="collapse" data-target="#collapse-nav" type="button"><span class="ham-toggler-menu__span"></span></a>
+  <a class="ham__navbar-toggler collapsed" <?php czr_fn_echo('data_attributes') ?> type="button"><span class="ham-toggler-menu__span"></span></a>
 </div>

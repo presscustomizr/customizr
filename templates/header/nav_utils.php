@@ -23,6 +23,17 @@
         ?>
       <?php
       endif ?>
+      <?php
+      if ( czr_fn_has( 'sidenav' ) ) : ?>
+        <?php
+          czr_fn_render_template( 'header/menu_button', array(
+            'model_args' => array(
+              'data_attributes' => 'data-toggle="sidenav"',
+            )
+          ) );
+        ?>
+      <?php
+      endif ?>
     </ul>
     <?php if ( ( !czr_fn_has('topnav') ||  !czr_fn_has('social_in_topnav') ) && czr_fn_has('header_social_block') ) : ?>
       <div class="primary-nav__socials social-links">

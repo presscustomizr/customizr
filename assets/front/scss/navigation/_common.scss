@@ -67,6 +67,29 @@
     }
   }
 }
+
+.hamburger-toggler__container {
+  float: none;
+  height: 100%;
+  vertical-align: middle;
+  display: inline-table;
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 1.25em;
+  padding-left: 1.25em;
+  [class*=logo_right] &::before {
+    left: auto;
+    right: 0;
+  }
+  .ham__navbar-toggler {
+
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+  }
+}
+
+
 .primary-nav__wrapper {
   height: 100%;
   background: inherit;

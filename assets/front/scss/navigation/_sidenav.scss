@@ -1,0 +1,35 @@
+#tc-sn {
+  position: fixed;
+  right: -100%;
+  z-index: 0;
+  height: 100vh;
+  background: white;
+  width: 350px;
+  max-width: 100vw;
+
+  .hamburger-toggler__container {
+    height: 70px;
+    float: right;
+    clear: both;
+    top: 0;
+    span::before, span::after, span { background: black }
+  }
+  .nav__menu-wrapper {
+    width: 100%;
+    float: left;
+  }
+  .hamburger-toggler__container, .nav__menu-wrapper {
+    &:before, &:after {
+      display: table;
+      content: ' ';
+      position: relative
+    }
+  }
+}
+.opened {
+  #tc-sn {
+    right: 0;
+    z-index: 2;
+    @include transition( right,left 0.3s ease-in-out );
+  }
+}

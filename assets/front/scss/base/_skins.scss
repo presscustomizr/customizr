@@ -88,16 +88,22 @@ $secondary-color-dark   : $grey;
   .primary-nav__utils {
      color: $primary-color;
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
-      a:hover, a.current-active { color: $secondary-color-light;   }
-
-        @include media-breakpoint-up(lg) {
-          .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
-          .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
-
+      .ham__navbar-toggler.collapsed:hover {
+        span::after,
+        span::before,
+        span {
+          background-color: $secondary-color-light;
         }
-        @include media-breakpoint-down(md) {
-          .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
-        }
+      }
+      .ham-toggler-menu__span, a:hover, a.current-active { color: $secondary-color-light; }
+
+      @include media-breakpoint-up(lg) {
+        .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
+        .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
+      }
+      @include media-breakpoint-down(md) {
+        .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
+      }
   }
   .dropdown-item:before {
     background-color: rgba( $primary-color-inverted, 0.15);
