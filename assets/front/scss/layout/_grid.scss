@@ -249,11 +249,13 @@ WP classes
     .tc-content { padding:$base-line-height*3 $base-line-height*2; }
   }
   .post-type__icon { display:none; }
-  @media (max-width: 992px) {
+
+  @include media-breakpoint-down(md) {
     .entry-content__holder { padding:0 $base-line-height*2; }
     .entry-header { margin-top: $base-line-height*2; }
   }
-  @media (min-width: 768px) {
+
+  @include media-breakpoint-up(md) {
     .post-type__icon { display:block; }
   }
 }
@@ -335,7 +337,8 @@ WP classes
           background: 0 0;
           color: $white;
           opacity: 1;
-          @media screen and (min-width: 768px) {
+          //@media screen and (min-width: 768px)
+          @include media-breakpoint-up(md) {
             max-width: 65%;
             height: auto;
             margin-left: 8%;
@@ -349,7 +352,8 @@ WP classes
           background: rgba(0,0,0,.4);
           padding: 8%;
           height: auto;
-          @media screen and (max-width: 767px) {
+          //@media screen and (max-width: 767px)
+          @include media-breakpoint-down(sm) {
             bottom: 0;
             top: 0;
             @include transform( translate(0, 0));
@@ -426,7 +430,8 @@ WP classes
     @include transform(scale(1));
     @include opacity(1);
   }
-  @media (min-width: 768px) {
+  //@media (min-width: 768px)
+  @include media-breakpoint-up(md) {
     .tc-content {
       padding: $base-line-height;
       .entry-header {
@@ -639,7 +644,8 @@ WP classes
       clear:both;
       position: relative;
       span { position: relative }
-      @media (min-width: 992px) {
+      //@media (min-width: 992px)
+      @include media-breakpoint-up(lg)  {
         margin: 0;
         text-align: right;
         line-height: 3em;
@@ -710,7 +716,8 @@ WP classes
   section {
     padding: 0;
     &.entry-content__holder::before {
-      @media screen and (max-width: 575px) {
+      //@media screen and (max-width: 575px)
+      @include media-breakpoint-down(xs)  {
         padding-top: 50%
       }
     }
@@ -737,7 +744,10 @@ WP classes
   .entry-meta {
     @extend .small;
     display: none;
-    @media screen and ( min-width: 769px) { display: block }
+    //@media screen and ( min-width: 768px)
+    @include media-breakpoint-up(md) {
+     display: block
+    }
   }
   .entry-content__wrapper {
     position: absolute;
@@ -749,7 +759,10 @@ WP classes
   }
   .tc-content-inner {
     font-size: 1.5em; margin-top: $base-line-height;
-    @media screen and ( min-width: 992px ) { font-size: $base-line-height }
+    //@media screen and ( min-width: 992px )
+    @include media-breakpoint-up(lg) {
+      font-size: $base-line-height
+    }
   }
   blockquote{
     @extend .small;

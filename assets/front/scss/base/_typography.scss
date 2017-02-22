@@ -10,9 +10,10 @@ $serviceFont  : "Roboto", sans-serif;
 
 $ms-base: 1em;
 $ms-ratio: 1.2;
-
+$ms-base-root: 1rem;
 
 $base-line-height: $ms-base * 1.25;
+$base-line-height-root: $ms-base-root * 1.25;
 
 $ms-range:
   1   20em,

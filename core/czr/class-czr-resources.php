@@ -21,7 +21,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       self::$instance =& $this;
 
       $this->_is_debug_mode = ( defined('WP_DEBUG') && true === WP_DEBUG );
-      $this->_is_dev_mode   = ( defined('TC_DEV') && true === TC_DEV );
+      $this->_is_dev_mode   = ( defined('CZR_DEV') && true === CZR_DEV );
 
       //control scripts and style
       add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );

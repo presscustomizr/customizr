@@ -14,7 +14,7 @@
   .tax__container {
     position: relative;
     &::after {
-      @media screen and (min-width: 576px) {
+      @include media-breakpoint-up(md) {
         content: "";
         position: absolute;
         width: $base-line-height*3;
@@ -89,7 +89,8 @@
   padding: $base-line-height*1.5 0;
   margin-top: $base-line-height;
   margin-bottom: $base-line-height;
-  @media (min-width: 768px) {
+
+  @include media-breakpoint-up(md) {
     [class^="col-"] { padding:0; }
   }
   .breadcrumb {
@@ -201,7 +202,7 @@ section[class^="post-"] {
 
   .meta-nav-title { display:none; color: $black; }
 
-  @media (min-width: 992px) {/*md*/
+  @include media-breakpoint-up(lg) {/*lg*/
       .meta-nav-title { display: inline-block;}
       .post-prev a {
         left: $base-line-height;
@@ -237,7 +238,8 @@ section[class^="post-"] {
       width:120px;
       height: 120px;
       top: calc((100% - 120px)/2);
-      @media (max-width: 992px) {
+      //@media (max-width: 992px)
+      @include media-breakpoint-down(md) {
         width:60px;
         height: 60px;
         clear: both;
@@ -257,7 +259,8 @@ section[class^="post-"] {
       text-align: left;
       margin-left: 120px;
       p { color: $grey-dark; }
-      @media (max-width: 992px) {
+      //@media (max-width: 992px)
+      @include media-breakpoint-down(md) {
         margin-left: 0;
         text-align: left;
         padding-left: 0;
@@ -414,7 +417,8 @@ section.post-related-articles {
   height: 116px;
 }
 
-@media (min-width: 992px) {
+
+@include media-breakpoint-up(lg) {
   .comment-form-author, .comment-form-email, .comment-form-url {
     width: calc((100% - 2.5em - 12px)/3);
     display: inline-block;
@@ -460,8 +464,8 @@ section.post-related-articles {
     margin-bottom: 0
   }
 }
-
-@media (max-width: 768px) {
+//@media (max-width: 768px)
+@include media-breakpoint-down(sm) {
   .comment-list ul.children { margin-left: $base-line-height;  }
   .comment-author, time.comment-date { width: 100% }
 }

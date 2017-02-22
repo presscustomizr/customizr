@@ -1,4 +1,4 @@
-@media (max-width: 991px) {
+@include media-breakpoint-down(md) {
   .primary-navbar__wrapper {
     height: auto;
 
@@ -6,6 +6,7 @@
       display: table;
       table-layout: fixed;
       min-height: 70px;
+      height: 100%;
       [class*=logo_right] & {
         direction: rtl;
       }
@@ -66,6 +67,10 @@
     }
   }
 }
+.primary-nav__wrapper {
+  height: 100%;
+  background: inherit;
+}
 /* Fix space between inline-block elements */
 .mobile-utils__wrapper,
 .primary-nav__utils {
@@ -73,7 +78,8 @@
 }
 .tc-header .primary-nav__utils {
     .utils {
-      @media screen and (min-width: 992px) {
+      //@media screen and (min-width: 992px)
+      @include media-breakpoint-up(lg) {
         margin: 0 -1.25rem;
       }
       li {
@@ -83,7 +89,8 @@
     }
 }
 /* Fix */
-@media screen and (min-width: 992px) {
+//@media screen and (min-width: 992px)
+@include media-breakpoint-up(lg) {
   .primary-nav__menu-wrapper .primary-nav__menu.regular {
     margin-left: $base-line-height * -1;
     margin-right: $base-line-height * -1;
@@ -113,6 +120,7 @@
     position: absolute;
     overflow: auto;
     background: inherit;
+    z-index: 100
   }
 }
 /* WooCart */

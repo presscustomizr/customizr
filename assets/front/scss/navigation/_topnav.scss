@@ -80,10 +80,13 @@
    /* max-height: 70px;
     line-height: 70px;
     height:70px;*/
-   @media screen and (min-width: 480px) and (max-width: 667 px) {
+   //@media screen and (min-width: 480px) and (max-width: 667 px) ??
+   //@media screen and (min-width: 480px) and (max-width: 667 px)
+   /* @include media-breakpoint-between( xs, sm ) {
       max-width: 100px;
       width: 100px;
-   }
+    }
+    */
     .navbar-logo {
         font-size: 1.75em;
         margin-top:0;
@@ -110,7 +113,8 @@
             margin-top: 4px;
             display: none;
             width: 100%;
-            @media screen and (min-width: 992px) {
+            //@media screen and (min-width: 992px)
+            @include media-breakpoint-up(lg) {
               display: block;
             }
 
@@ -131,12 +135,14 @@
 
 }
 .primary-navbar__wrapper {
-    position: relative;
+    /* position: relative; */
     line-height:69px;
     /* height:69px; */
     z-index:190;
+    /*
     min-height: 1px;
-    .ie[class*=ie1] & { min-height: 0px } /* hack */
+    .ie[class*=ie1] & { min-height: 0px } */
+
  }
 
 .primary-nav__container {
@@ -147,8 +153,8 @@
   .primary-nav__nav {
       width: 100%;
       /*text-align: right;*/
-      min-height: 1px;
-      .ie[class*=ie1] & { min-height: 0px } /* hack */
+     /* min-height: 1px;
+      .ie[class*=ie1] & { min-height: 0px } */
       .primary-nav__menu-wrapper
       {
         padding-left: 2.5em;
@@ -158,7 +164,8 @@
         left: 0;*/
         /*max-width:calc(100% - 200px); */
         /*width: auto;*/
-        @media (min-width: 993px) {  margin-right: $base-line-height*2; }
+        //@media (min-width: 992px)
+        @include media-breakpoint-up(lg) {  margin-right: $base-line-height*2; }
 
        @at-root .primary-nav__nav .primary-nav__menu {
           text-align:center;
@@ -171,7 +178,8 @@
           @extend .letter-spacing-1;
 
           & > li {
-            @media screen and ( min-width: 992px) {
+            //@media screen and ( min-width: 992px)
+            @include media-breakpoint-up(lg) {
                float:none;
                position: relative;
                vertical-align:initial;
@@ -215,17 +223,14 @@
      position: relative;
      & .socials {  margin-left: $base-line-height;  position: relative; }
      /* padding-left: $base-line-height*2; */
-     @media (max-width: 992px) {
+     //@media (max-width: 992px)
+     @include media-breakpoint-down(md) {
        width: 100%;
        float:none;
        text-align:  left;
        & .socials { margin-left: 0; padding-left: $base-line-height }
        li { display: inline-block; width: auto }
      }
-     @media (min-width: 993px) {
-
-        li + li { margin-left: $base-line-height; }
-    }
   }
 }
 }
@@ -252,7 +257,7 @@
   right: 0;
   z-index: 100
 }
-@media screen and (min-width: 992px ) {
+@include media-breakpoint-up(lg) {
   .header-absolute {
     .topnav_navbars__wrapper,
     #sticky-placeholder {
@@ -284,7 +289,7 @@
   .secondary-navbar__wrapper  { display:none; }
 }
 
-@media (min-width: 992px) {
+@include media-breakpoint-up(lg) {
   .branding__container { left:$base-line-height; }
   .hamburger-menu .mobile-utils__wrapper { display:inherit !important; }
   .primary-navbar__wrapper {
@@ -308,7 +313,8 @@
   width: 100%;
   cursor: pointer;
 }
-@media (max-width: 991px) {
+//@media (max-width: 991px)
+@include media-breakpoint-down(md){
     .primary-nav__container { width: 100%; }
     .primary-nav__container .primary-nav__utils {
       position: relative;
@@ -414,7 +420,8 @@
 * In desktops when resizing below the "collapsing mobile menu" treshold
 * always expand submenus when .tc-open-on-hover (which is not available in mobiles )
 */
-@media (max-width: 991px){
+//@media (max-width: 991px)
+@include media-breakpoint-down(md){
   .czr-open-on-hover .dropdown-menu {
     display: block !important;
   }
@@ -422,4 +429,3 @@
     display: none !important;
   }
 }
-

@@ -67,7 +67,8 @@
   display: block;
 }
 /* Test */
-@media (min-width: 992px){
+//@media (min-width: 992px)
+@include media-breakpoint-up(lg){
   .czr-dropdown-menu {
     position: absolute;
   }

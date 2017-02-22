@@ -10,7 +10,7 @@
 }
 #tc-page-wrap {
   position: relative;
-  @media (min-width: 992px){
+  @include media-breakpoint-up(lg) {
     overflow: hidden;
   }
 }

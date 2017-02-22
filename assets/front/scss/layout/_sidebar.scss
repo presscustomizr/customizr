@@ -1,4 +1,6 @@
+
 @media screen and (min-width: 480px) and (max-width: 667px) {
+//what and why
   .sidebar {
     padding: 0 $base-line-height*2;
   }
@@ -69,7 +71,8 @@
   }
 }
 
-@media screen and (min-width: 768px) { /*md*/
+//@media screen and (min-width: 768px)
+@include media-breakpoint-up(md) {
   .sidebar.left  { padding-right:$base-line-height*2; }
   .sidebar.right {
     padding-left:$base-line-height*2;

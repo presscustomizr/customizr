@@ -53,11 +53,11 @@ class CZR_logo_model_class extends CZR_Model {
     //2.1) the shrink title_logo option is enabled
     if ( czr_fn_is_customizing() ||
         ( 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_header') ) && 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
-      $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:30px!important","width:auto!important") ) );
+      $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:60px!important","width:auto!important") ) );
       $_css = sprintf("%s%s",
           $_css,
           "
-      .sticky-enabled .czr-shrink-on .navbar-logo img {
+      .sticky-enabled .czr-shrink-on .branding__container img {
         {$_logo_shrink}
       }"
       );

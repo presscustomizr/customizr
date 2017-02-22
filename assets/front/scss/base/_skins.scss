@@ -59,13 +59,9 @@ $secondary-color-dark   : $grey;
 
   .header-transparent {
     #sticky-placeholder { background: transparent }
-    @media (min-width: 992px) {
+    @include media-breakpoint-up(lg) {
       .topnav_navbars__wrapper {
         background: transparent;
-      }
-    }
-    @media (min-width: 992px) {
-      .topnav_navbars__wrapper {
         border-bottom: 1px solid rgba($primary-color, 0.09);
       }
     }
@@ -91,17 +87,17 @@ $secondary-color-dark   : $grey;
 
   .primary-nav__utils {
      color: $primary-color;
-    a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
-    a:hover, a.current-active { color: $secondary-color-light;   }
+      a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
+      a:hover, a.current-active { color: $secondary-color-light;   }
 
-       @media (min-width: 992px) {
-         .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
-         .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
+        @include media-breakpoint-up(lg) {
+          .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
+          .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
 
-       }
-        @media (max-width: 991px) {
-         .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
-       }
+        }
+        @include media-breakpoint-down(md) {
+          .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
+        }
   }
   .dropdown-item:before {
     background-color: rgba( $primary-color-inverted, 0.15);
@@ -170,7 +166,7 @@ $secondary-color-dark   : $grey;
      border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
   }
 
-  @media (max-width: 991px) {
+  @include media-breakpoint-down(md) {
     .primary-navbar__wrapper .primary-nav__container nav {
         border-top: 1px solid rgba($primary-color, 0.075);
      }
@@ -184,7 +180,7 @@ $secondary-color-dark   : $grey;
     .primary-nav__menu {
       & > li {
           border-bottom: 1px solid rgba($primary-color, 0.075);
-    }
+      }
     }
 
    }

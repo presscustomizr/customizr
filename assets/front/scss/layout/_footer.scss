@@ -86,7 +86,8 @@
       }
     }
 
-    @media (max-width: 991px) {
+
+    @include media-breakpoint-down(md) {
       @at-root .footer__wrapper .widget  { padding: $base-line-height;  }
     }
   }//.widget__wrapper
