@@ -331,6 +331,15 @@ if ( ! class_exists( 'CZR_resources' ) ) :
     */
     function czr_fn_write_custom_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
+
+      $_moved_opts        = CZR_utils::$inst->czr_fn_opt(  '__moved_opts' ) ;
+
+      /*
+      * Do not print old custom css if moved in the WP Custom CSS
+      */
+      if ( !empty( $_moved_opts ) && is_array( $_moved_opts ) && in_array( 'custom_css', $_moved_opts) )
+        return $_css;
+
       $tc_custom_css      = esc_html( CZR_utils::$inst->czr_fn_opt( 'tc_custom_css') );
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;
