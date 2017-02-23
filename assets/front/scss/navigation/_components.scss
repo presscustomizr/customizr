@@ -69,10 +69,10 @@
 /* Test */
 //@media (min-width: 992px)
 @include media-breakpoint-up(lg){
-  .czr-dropdown-menu {
+  .regular .czr-dropdown-menu {
     position: absolute;
   }
-  .dropdown-menu .czr-dropdown-menu {
+  .regular .dropdown-menu .czr-dropdown-menu {
       top: 50%;
       left: 0;
       width: 100%;

@@ -342,7 +342,7 @@
       }
     }
 
-    .primary-navbar__wrapper, .primary-nav__container { padding:0 ; }
+    .primary-navbar__wrapper, .primary-nav__container { padding:0 }
     .primary-nav__container  .primary-nav__nav  {
           padding:0;
           & > .primary-nav__menu-wrapper {
@@ -381,7 +381,7 @@
     .primary-nav__container {
       li { position: relative; width:100% }
       .primary-nav__search {
-        input { height: 4em }
+        input { height: 3em }
         .czr-form .form-group.in-focus label {
           @include transform(translateY(-50%));
           .icn-close { @include transform(translateY(265%)); }
@@ -390,6 +390,7 @@
       }
    }
 }
+
 
 /**
 * Dropdown menu direction [SNAKE]

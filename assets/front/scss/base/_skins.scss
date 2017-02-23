@@ -52,6 +52,7 @@ $secondary-color-dark   : $grey;
     }
   }*/
 
+  #tc-sn.primary-nav__container,
   #sticky-placeholder,
   .topnav_navbars__wrapper  {
     background: $background-color;
@@ -170,6 +171,12 @@ $secondary-color-dark   : $grey;
 
   .dropdown-item:not(:last-of-type) {
      border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
+  }
+
+  .tc-sn .primary-nav__menu {
+    & > li {
+        border-bottom: 1px solid rgba($primary-color, 0.075);
+    }
   }
 
   @include media-breakpoint-down(md) {

@@ -3,29 +3,106 @@
   right: -100%;
   z-index: 0;
   height: 100vh;
-  background: white;
   width: 350px;
   max-width: 100vw;
+  padding: 0;
+  line-height: 69px;
+  /* test */
+  .nav__menu-wrapper {
+    height: 85vh;
+    overflow-y: auto;
+  }
 
   .hamburger-toggler__container {
     height: 70px;
     float: right;
     clear: both;
     top: 0;
-    span::before, span::after, span { background: black }
   }
   .nav__menu-wrapper {
     width: 100%;
     float: left;
   }
-  .hamburger-toggler__container, .nav__menu-wrapper {
-    &:before, &:after {
+  .hamburger-toggler__container {
+    &::before, &::after {
+      content: none;
+    }
+  }
+
+  .nav__menu-wrapper {
+    &::before, &::after {
       display: table;
       content: ' ';
       position: relative
     }
   }
+
+  .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
+      position: absolute;
+      top: 0;
+      right: 1.25em;
+  }
+
+
+
+  .primary-nav__nav  {
+    .dropdown-menu {
+      background: transparent;
+      -webkit-box-shadow: 0 0 0 transparent;
+      -moz-box-shadow: 0 0 0 transparent;
+      box-shadow: 0 0 0 transparent;
+      position: relative;
+      float: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .dropdown-menu .dropdown-item {
+        padding: 0.625em 0 0.625em 1.25em;
+    }
+    .dropdown-menu .dropdown-item:first-of-type {
+        margin-top: 1.25em;
+    }
+    .dropdown-menu .dropdown-item:last-of-type {
+        margin-bottom: 0.625em;
+    }
+    .dropdown-menu .dropdown-item.menu-item-has-children {
+        padding-right: 2.5em;
+    }
+
+    width:100%;
+    text-align:left;
+    padding:0;
+
+    li { display: block; width:100%; position: relative; height: auto }
+
+    .primary-nav__menu-wrapper {
+      display: block;
+      padding:0;
+      width:100%;
+      max-width:100%;
+      .primary-nav__menu  {
+        width:100%;
+        display: block;
+        & > li + li { display: block; margin-left: 0 }
+        & > li a    {
+          display: block;
+          line-height: 3em;
+          height:3em;
+          min-height: 3em;
+          height: auto;
+          white-space: normal;
+        }
+        & > li  {
+          padding: $base-line-height $base-line-height*2;
+          margin-left:0;
+       }
+      }
+    }
+
+  }
 }
+
 .opened {
   #tc-sn {
     right: 0;

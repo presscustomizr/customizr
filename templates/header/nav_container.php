@@ -7,7 +7,15 @@
   <div class="primary-nav__wrapper">
      <nav class="collapse nav-collapse navbar-toggleable-md primary-nav__nav" id="collapse-nav">
       <?php
-        if ( czr_fn_has('navbar_menu') ) czr_fn_render_template( 'header/menu', array( 'model_id' => 'navbar_menu') );
+        if ( czr_fn_has('navbar_menu') ) {
+          czr_fn_render_template( 'header/menu', array(
+            'model_id'   => 'navbar_menu',
+            'model_args' => array(
+              'element_class' => 'primary-nav__menu-wrapper',
+              'menu_class'    => array( 'primary-nav__menu', 'regular' )
+            )
+          ));
+        };
         if ( czr_fn_get('with_nav_utils') && czr_fn_has('nav_utils') ) czr_fn_render_template( 'header/nav_utils' )
       ?>
     </nav>

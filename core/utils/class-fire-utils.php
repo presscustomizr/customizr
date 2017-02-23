@@ -713,8 +713,9 @@ function czr_fn_get_customizer_url( $autofocus = null, $control_wrapper = 'tc_th
       $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
     }
 
-    //Since wp 4.6.1
-    $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+    //Since wp 4.6.1 we order the params following the $_ordered_keys order
+    $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
+
     if ( false !== $autofocus = reset($autofocus) )
       // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
       return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );

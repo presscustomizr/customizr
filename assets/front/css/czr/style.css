@@ -212,9 +212,10 @@ Replace
     right: 1.25em;
   }
 }
+/*
 .secondary-navbar__wrapper .czr-open-on-click li.menu-item-has-children {
   margin-right: 0;
-}
+}*/
 .secondary-nav__menu-wrapper .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
   padding: 0.425em 0;
 }

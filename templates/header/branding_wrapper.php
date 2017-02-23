@@ -13,17 +13,26 @@
     ?>
     </div>
     <div class="mobile-utils__wrapper hidden-lg-up">
-      <?php if ( czr_fn_has('woocommerce_cart', null, $only_registered = true ) ) : ?>
-        <?php
+      <?php
+      if ( czr_fn_has('woocommerce_cart', null, $only_registered = true ) ) :
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
               'element_class'  => array('mobile-woocart__container'),
               'display_widget' => false
             )
           ) );
-        ?>
-      <?php endif ?>
-      <?php czr_fn_render_template( 'header/menu_button' ) ?>
+      endif;
+
+      if ( czr_fn_has( 'sidenav' ) ) :
+          czr_fn_render_template( 'header/menu_button', array(
+            'model_args' => array(
+              'data_attributes' => 'data-toggle="sidenav"',
+            )
+          ) );
+      else :
+          czr_fn_render_template( 'header/menu_button' );
+      endif;
+      ?>
     </div>
     <?php if ( czr_fn_get('with_nav_utils') && czr_fn_has('nav_utils') ) czr_fn_render_template( 'header/nav_utils' ) ?>
   </div>

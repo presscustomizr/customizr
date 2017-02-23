@@ -6,13 +6,27 @@
  * Sidenav Menu
  */
 ?>
-<nav id="tc-sn" class="tc-sn navbar" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="tc-sn-inner nav-collapse">
-    <?php
-      if ( czr_fn_has('sidenav_menu_button') )
-        czr_fn_render_template('header/menu_button', 'sidenav_menu_button');
-      if ( czr_fn_has('sidenav_menu') )
-        czr_fn_render_template('header/menu', 'sidenav_menu');
-    ?>
-  </div><!-- /.tc-sn-inner  -->
-</nav>
+<div id="tc-sn" class="tc-sn primary-nav__container" <?php czr_fn_echo('element_attributes') ?>>
+    <nav class="tc-sn primary-nav__nav" <?php czr_fn_echo('element_attributes') ?>>
+      <div class="tc-sn-inner">
+        <?php
+          if ( czr_fn_has('sidenav_menu_button') ) {
+            czr_fn_render_template( 'header/menu_button', array(
+              'model_args' => array(
+                'data_attributes' => 'data-toggle="sidenav"',
+              )
+            ) );
+          }
+          if ( czr_fn_has('sidenav_menu') ) {
+            czr_fn_render_template( 'header/menu', array(
+              'model_id'   => 'sidenav_menu',
+              'model_args' => array(
+                'element_class' => 'primary-nav__menu-wrapper',
+                'menu_class'    => array( 'primary-nav__menu', 'side' )
+              )
+            ));
+          };
+        ?>
+      </div><!-- /.tc-sn-inner  -->
+    </nav>
+</div>

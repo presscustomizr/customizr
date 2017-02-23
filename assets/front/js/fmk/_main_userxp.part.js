@@ -124,11 +124,41 @@ var czrapp = czrapp || {};
       });
 
 
-      /* TO FIX: doesn't work */
-    /*  $( '.hamburger-menu .nav__container > nav' ).mCustomScrollbar({
-        theme:"minimal"
-      });
-    */
+
+      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+        var $_sn = $( '#tc-sn .nav__menu-wrapper' ),
+            doingAnimation = false,
+
+            _resizeHeight   = function() {
+              //fallback on jQuery height() if window.innerHeight isn't defined (e.g. ie<9)
+              var winHeight    = 'undefined' === typeof window.innerHeight ? window.innerHeight : czrapp.$_window.height(),
+                  newMaxHeight = winHeight - $_sn.offset().top + czrapp.$_window.scrollTop();
+
+              $_sn.css('height' , newMaxHeight + 'px');
+            };
+
+        if ( ! $_sn.length )
+          return;
+
+        czrapp.$_body.on( 'tc-resize', function(){
+          if ( ! doingAnimation ) {
+            doingAnimation = true;
+            window.requestAnimationFrame( function() {
+              _resizeHeight();
+              //We should handle the font sizing I think
+              doingAnimation = false;
+            });
+          }
+
+        } );
+
+        _resizeHeight();
+        $_sn.mCustomScrollbar({
+          theme:"minimal"
+        });
+
+      }
+
       /* header search button */
       czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function(evt) {
         evt.preventDefault();

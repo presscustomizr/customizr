@@ -1,9 +1,10 @@
 <?php
 class CZR_menu_model_class extends CZR_Model {
-  public $theme_location = 'main';
-  public $menu_class;
-  public $menu_id;
-  public $element_class;
+  public $theme_location     = 'main';
+  public $def_menu_class     = array('nav', 'navbar-nav');
+  public $menu_class         = array();
+  public $menu_id            = 'main-menu';
+  public $element_class      = '';
   public $fallback_cb;
   public $walker;
 
@@ -14,34 +15,36 @@ class CZR_menu_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $model[ 'menu_class' ]     = $this -> get_menu_class();
-    $model[ 'element_class' ]  = $this -> get_element_class();
-    $model[ 'theme_location' ] = $this -> theme_location;
-    $model[ 'walker' ]         = ! czr_fn_has_location_menu( $model['theme_location'] ) ? '' : new CZR_nav_walker( $model['theme_location'] );
     $model[ 'fallback_cb' ]    = array( $this, 'czr_fn_page_menu' );
 
     return $model;
   }
 
-  protected function get_menu_class() {
-    return array( 'nav', 'navbar-nav' );
+  public function czr_fn_get_walker() {
+    return ! czr_fn_has_location_menu( $this -> theme_location ) ? '' : new CZR_nav_walker( $this -> theme_location );
   }
 
-  protected function get_element_class() {
-    return array(
-      ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ) ?  'czr-open-on-hover' : 'czr-open-on-click'
+
+  public function czr_fn_get_menu_class() {
+    if ( !is_array($this->menu_class) )
+      $this->menu_class = array($this->menu_class);
+
+    return czr_fn_stringify_array( array_merge( $this->menu_class, $this->def_menu_class ) );
+  }
+
+
+  public function czr_fn_get_element_class() {
+    $_element_class = $this->czr_fn__get_element_class();
+
+    return czr_fn_stringify_array( $_element_class );
+  }
+
+  protected function czr_fn__get_element_class() {
+    return array( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ?  'czr-open-on-hover' : 'czr-open-on-click',
+      $this->element_class //maybe passed
     );
   }
 
-
-  /**
-  * @override
-  * parse this model properties for rendering
-  */
-  function czr_fn_sanitize_model_properties( $model ) {
-    parent::czr_fn_sanitize_model_properties( $model );
-    $model -> menu_class = $this -> czr_fn_stringify_model_property( 'menu_class' );
-  }
 
 
 
