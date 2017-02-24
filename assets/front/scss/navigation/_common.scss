@@ -1,16 +1,19 @@
 @include media-breakpoint-down(md) {
   .primary-navbar__wrapper {
     height: auto;
-
+    .nav-collapse {
+      padding: $base-line-height 0;
+    }
     @at-root .branding__container {
       display: table;
-      table-layout: fixed;
+      /*table-layout: fixed;*/
       min-height: 70px;
       height: 100%;
       [class*=logo_right] & {
         direction: rtl;
       }
       @at-root .branding {
+        max-width: 50vw;
         max-height: none;
         height: auto;
         line-height: 1;
@@ -64,6 +67,7 @@
         }
 
       }
+
     }
   }
 }
@@ -140,10 +144,10 @@
     line-height: 0;
   }
   &.active.limited-height {
-    position: absolute;
+    position: absolute!important;
     overflow: auto;
     background: inherit;
-    z-index: 100
+    z-index: 100;
   }
 }
 /* WooCart */

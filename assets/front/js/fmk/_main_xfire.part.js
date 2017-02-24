@@ -20,7 +20,7 @@ jQuery(function ($) {
 //    Czr_UserExperience : [ 'dropdownMenuEventsHandler'/*, eventListener', 'outline','smoothScroll', 'anchorSmoothScroll', 'backToTop', 'widgetsHoverActions', 'attachmentsFadeEffect', 'clickableCommentButton', 'dynSidebarReorder', 'dropdownMenuEventsHandler', 'menuButtonHover', 'secondMenuRespActions'*/],
 //    Czr_StickyHeader : [/*'stickyHeaderEventListener', 'triggerStickyHeaderLoad' */],
 //
-//    Czr_SideNav : []
+    Czr_SideNav : []
   };
   czrapp.cacheProp().emitCustomEvents().loadCzr(toLoad);
 });

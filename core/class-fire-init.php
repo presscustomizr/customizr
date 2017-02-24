@@ -773,12 +773,14 @@ if ( ! class_exists( 'CZR_init' ) ) :
           }
           //IMAGE CENTERED
           if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_img') ) ){
-            $_classes = array_merge( $_classes , array( 'tc-center-images' ) );
+            array_push( $_classes, 'tc-center-images' );
           }
 
           //SKIN CLASS
           //$_skin = sprintf( 'skin-%s' , basename( czr_fn_get_style_src() ) );
           //array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+          $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+          array_push( $_classes, strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
 
           return $_classes;
       }

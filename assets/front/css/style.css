@@ -701,11 +701,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #fff;
 }
 
-.header-skin-light .header-transparent #sticky-placeholder {
-  background: transparent;
-}
-
 @media (min-width: 992px) {
+  .header-skin-light .header-transparent #sticky-placeholder {
+    background: transparent;
+  }
   .header-skin-light .header-transparent .topnav_navbars__wrapper {
     background: transparent;
     border-bottom: 1px solid rgba(32, 32, 32, 0.09);
@@ -1065,11 +1064,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: #202020;
 }
 
-.header-skin-dark .header-transparent #sticky-placeholder {
-  background: transparent;
-}
-
 @media (min-width: 992px) {
+  .header-skin-dark .header-transparent #sticky-placeholder {
+    background: transparent;
+  }
   .header-skin-dark .header-transparent .topnav_navbars__wrapper {
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
@@ -1704,7 +1702,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .primary-nav__container .primary-nav__utils .primary-nav__socials {
   font-size: 1rem;
   position: relative;
-  /* padding-left: $base-line-height*2; */
 }
 
 .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
@@ -1714,17 +1711,14 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 @media (max-width: 991px) {
   .primary-nav__container .primary-nav__utils .primary-nav__socials {
-    width: 100%;
-    float: none;
-    text-align: left;
-  }
-  .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-    margin-left: 0;
-    padding-left: 1.25em;
-  }
-  .primary-nav__container .primary-nav__utils .primary-nav__socials li {
-    display: inline-block;
-    width: auto;
+    display: none;
+    /*
+       width: 100%;
+       float:none;
+       text-align:  left;
+       & .socials { margin-left: 0; padding-left: $base-line-height }
+       li { display: inline-block; width: auto }
+      */
   }
 }
 
@@ -1769,8 +1763,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* Sticky header */
 .navbar-to-stick.navbar-sticky {
   position: fixed;
-  -webkit-transition: top 0.2s, down 0.2s, height 0.2s, background 0.5s ease-in-out;
-  transition: top 0.2s, down 0.2s, height 0.2s, background 0.5s ease-in-out;
+  -webkit-transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
+  transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
 }
 
 .navbar-to-stick.navbar-sticky:not(.animating) {
@@ -1873,7 +1867,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .primary-nav__container .primary-nav__nav {
     padding: 0;
   }
-  .primary-nav__container .primary-nav__nav > .primary-nav__menu-wrapper {
+  .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
     display: block;
     padding: 0;
     float: none;
@@ -1981,26 +1975,35 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .czr-open-on-hover .dropdown-menu {
     display: block !important;
   }
-  .czr-open-on-hover .caret__dropdown-toggler {
+  /*.czr-open-on-hover .caret__dropdown-toggler {
     display: none !important;
-  }
+  }*/
 }
 
 #tc-sn {
   position: fixed;
-  right: -100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
   z-index: 0;
   height: 100vh;
   width: 350px;
-  max-width: 100vw;
+  max-width: 100%;
   padding: 0;
   line-height: 69px;
   /* test */
+  /* Animation stuff */
 }
 
 #tc-sn .nav__menu-wrapper {
   height: 85vh;
   overflow-y: auto;
+}
+
+#tc-sn .czr-open-on-hover .dropdown-menu {
+  display: block !important;
 }
 
 #tc-sn .hamburger-toggler__container {
@@ -2010,13 +2013,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   top: 0;
 }
 
+#tc-sn .hamburger-toggler__container::before, #tc-sn .hamburger-toggler__container::after {
+  content: none;
+}
+
 #tc-sn .nav__menu-wrapper {
   width: 100%;
   float: left;
-}
-
-#tc-sn .hamburger-toggler__container::before, #tc-sn .hamburger-toggler__container::after {
-  content: none;
 }
 
 #tc-sn .nav__menu-wrapper::before, #tc-sn .nav__menu-wrapper::after {
@@ -2074,7 +2077,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 #tc-sn .primary-nav__nav .primary-nav__menu-wrapper {
   display: block;
-  padding: 0;
+  padding: 1.25em 0;
   width: 100%;
   max-width: 100%;
 }
@@ -2103,16 +2106,46 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   margin-left: 0;
 }
 
-.opened #tc-sn {
-  right: 0;
+.animating #tc-sn {
+  -webkit-transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   z-index: 2;
-  -webkit-transition: right 0.2s, left 0.3s ease-in-out;
-  transition: right 0.2s, left 0.3s ease-in-out;
+}
+
+.tc-sn-visible:not(.animating) #tc-sn,
+.animating.sn-open #tc-sn {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+}
+
+.sn-left #tc-sn {
+  left: 0;
+}
+
+.sn-close.sn-left #tc-sn, .sn-left #tc-sn {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+.sn-right #tc-sn {
+  right: 0;
+}
+
+.sn-close.sn-right #tc-sn, .sn-right #tc-sn {
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
 }
 
 /* nav with tables */
 @media (min-width: 992px) {
-  [class*=sl-] .navbar-logo .navbar-brand-tagline {
+  [class*=sl-] .navbar-brand-sitelogo .navbar-brand-tagline {
     display: none;
   }
   [class*=sl-] .primary-navbar__wrapper {
@@ -2652,9 +2685,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .primary-navbar__wrapper {
     height: auto;
   }
+  .primary-navbar__wrapper .nav-collapse {
+    padding: 1.25em 0;
+  }
   .branding__container {
     display: table;
-    table-layout: fixed;
+    /*table-layout: fixed;*/
     min-height: 70px;
     height: 100%;
   }
@@ -2662,6 +2698,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     direction: rtl;
   }
   .branding {
+    max-width: 50vw;
     max-height: none;
     height: auto;
     line-height: 1;
@@ -2783,7 +2820,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .czr-sticky-mobile .nav-collapse.active.limited-height {
-  position: absolute;
+  position: absolute !important;
   overflow: auto;
   background: inherit;
   z-index: 100;

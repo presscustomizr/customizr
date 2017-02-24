@@ -116,58 +116,50 @@ var czrapp = czrapp || {};
     },
 
     variousHeaderActions : function() {
+      var _mobile_viewport             = 992,
+          doingAnimation               = false;
+
+      /* header search button */
+      czrapp.$_body.on( 'click tap', '.desktop_search__link', function(evt) {
+        evt.preventDefault();
+        czrapp.$_body.toggleClass('full-search-opened');
+      });
+      czrapp.$_body.on( 'click tap', '.search-close_btn', function(evt) {
+        evt.preventDefault();
+        czrapp.$_body.removeClass('full-search-opened');
+      });
+
+      function _moveSearch() {
+        //width<992px
+        if ( czrapp.matchMedia(_mobile_viewport) ) {
+          $('.primary-navbar__wrapper .primary-nav__menu-wrapper').before( $('.primary-nav__utils') );
+        }else {
+          $('.primary-navbar__wrapper .primary-nav__menu-wrapper').after( $('.primary-nav__utils') );
+        }
+      }
+      //only for regular menu for now
+      _moveSearch();
+
+      /* Move search before menu in mobiles */
+      czrapp.$_body.on( 'tc-resize', function(){
+        if ( ! doingAnimation ) {
+          doingAnimation = true;
+          window.requestAnimationFrame( function() {
+            _moveSearch();
+            doingAnimation = false;
+          });
+        }
+      } );
       /* ham navbar */
-      czrapp.$_body.on( 'click', '.ham__navbar-toggler', function() {
+      /*
+      czrapp.$_body.on( 'click tap', '.ham__navbar-toggler', function() {
         if ( ! $(this).parent( '.mobile-utils__wrapper' ) )
           $(this).toggleClass('collapsed');
         czrapp.$_body.toggleClass('opened');
       });
+*/
 
 
-
-      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-        var $_sn = $( '#tc-sn .nav__menu-wrapper' ),
-            doingAnimation = false,
-
-            _resizeHeight   = function() {
-              //fallback on jQuery height() if window.innerHeight isn't defined (e.g. ie<9)
-              var winHeight    = 'undefined' === typeof window.innerHeight ? window.innerHeight : czrapp.$_window.height(),
-                  newMaxHeight = winHeight - $_sn.offset().top + czrapp.$_window.scrollTop();
-
-              $_sn.css('height' , newMaxHeight + 'px');
-            };
-
-        if ( ! $_sn.length )
-          return;
-
-        czrapp.$_body.on( 'tc-resize', function(){
-          if ( ! doingAnimation ) {
-            doingAnimation = true;
-            window.requestAnimationFrame( function() {
-              _resizeHeight();
-              //We should handle the font sizing I think
-              doingAnimation = false;
-            });
-          }
-
-        } );
-
-        _resizeHeight();
-        $_sn.mCustomScrollbar({
-          theme:"minimal"
-        });
-
-      }
-
-      /* header search button */
-      czrapp.$_tcHeader.on( 'click', '.desktop_search__link', function(evt) {
-        evt.preventDefault();
-        czrapp.$_body.toggleClass('full-search-opened');
-      });
-      czrapp.$_body.on( 'click', '.search-close_btn', function(evt) {
-        evt.preventDefault();
-        czrapp.$_body.removeClass('full-search-opened');
-      });
     },
 
     //SMOOTH SCROLL

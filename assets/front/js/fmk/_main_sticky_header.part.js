@@ -31,7 +31,7 @@ var czrapp = czrapp || {};
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
       this._sticky_trigger            = false;
-      this._mobile_viewport             = 992;
+      this._mobile_viewport           = 991;
 
       this.debounced_resize_actions   = _.debounce( function() {
           this._maybe_move_utils();
@@ -45,6 +45,10 @@ var czrapp = czrapp || {};
 
       //set some props depending on the desired sticky behavior
       //this._sticky_trigger  = 300;
+
+     /* $(this._sticky_navbar_toggleable_selector).mCustomScrollbar({
+        theme:"minimal",
+      });*/
     },
 
     _cache_els : function() {
@@ -108,8 +112,16 @@ var czrapp = czrapp || {};
       });
 
       //ON BOOTSTRAP COLLAPSE SHOW/HIDE limit collapse to viewport
-      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse ', this._sticky_navbar_toggleable_selector, function(evt) {
+      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse', this._sticky_navbar_toggleable_selector, function(evt) {
         self._stickyHeaderLimitMobileMenu(evt);
+      });
+
+      czrapp.$_body.on( 'shown.bs.collapse', this._sticky_navbar_toggleable_selector, function() {
+        if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+          $(this).mCustomScrollbar({
+            theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+          });
+        }
       });
 
       czrapp.$_body.on( this.transitionEnd , this._sticky_candidate_sel, function(evt) {
@@ -125,13 +137,13 @@ var czrapp = czrapp || {};
         /* the viewport is less 992 pixels wide */
         }else if ( this._isStickyEnabled() )
           czrapp.$_body.trigger( 'sticky-disable' )
-                       .removeClass( 'tc-sticky-header' );
+                       .removeClass( 'tc-sticky-header' ).addClass( 'tc-sticky-suspended' );
       } else {
         if ( this.is_sticky_mobile ) {
           this._sticky_candidate = this._d_sticky_candidate;
           /* the viewport is at least 992 pixels wide */
-        }else if ( ! this._isStickyEnabled() )
-          czrapp.$_body.addClass( 'tc-sticky-header' );
+        }else if ( ! this._isStickyEnabled() && czrapp.$_body.hasClass( 'tc-sticky-suspended' ) )
+          czrapp.$_body.addClass( 'tc-sticky-header' ).removeClass( 'tc-sticky-suspended' );
         this.stickyHeaderEventHandler('scroll');
       }
     },
@@ -298,6 +310,11 @@ var czrapp = czrapp || {};
             newMaxHeight = winHeight - $_el.closest('div').offset().top + this._getScroll();
 
         $_el.css('max-height' , newMaxHeight + 'px').addClass('limited-height');
+        if ( $_el.is('[class*=mCustomScrollbar]') ) {
+          $_el.mCustomScrollbar("update");
+        }
+
+
       }else {
         this._resetHeaderLimitMobileMenu( $_el );
       }
@@ -311,8 +328,11 @@ var czrapp = czrapp || {};
         return;
       }
 
-      $_el.removeClass('limited-height');
-      $_el.css('max-height', '' );
+      $_el.removeClass('limited-height').css('max-height', '' );
+      if ( $_el.is('[class*=mCustomScrollbar]') ) {
+        $_el.mCustomScrollbar("destroy");
+      }
+
     }
 
   };//_methods{}

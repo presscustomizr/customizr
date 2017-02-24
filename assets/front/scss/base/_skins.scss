@@ -52,15 +52,16 @@ $secondary-color-dark   : $grey;
     }
   }*/
 
+
   #tc-sn.primary-nav__container,
   #sticky-placeholder,
   .topnav_navbars__wrapper  {
     background: $background-color;
   }
 
-  .header-transparent {
-    #sticky-placeholder { background: transparent }
-    @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(lg) {
+    .header-transparent {
+      #sticky-placeholder { background: transparent }
       .topnav_navbars__wrapper {
         background: transparent;
         border-bottom: 1px solid rgba($primary-color, 0.09);

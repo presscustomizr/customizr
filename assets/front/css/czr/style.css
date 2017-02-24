@@ -493,7 +493,7 @@ Limit to desktop
     transform: translate(0); /* revert */
     display: table-cell;
     vertical-align: middle;
-    float: initial !important;/*overwrite*/
+    float: none;/*overwrite*/
     overflow: hidden;
   }
 

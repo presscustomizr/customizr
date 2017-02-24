@@ -100,7 +100,7 @@ class CZR_header_model_class extends CZR_Model {
       //* Registered as children here as they need to filter the header class and add custom style css */
       array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
       array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
-
+      array( 'model_class' => 'header/title', 'id' => 'title' ),
       //secondary and primary menu registered here because of the extending
       array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ) ),
       array( 'id' => 'secondary_menu', 'model_class' => 'header/menu' ),

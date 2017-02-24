@@ -1,7 +1,7 @@
 /* nav with tables */
 @include media-breakpoint-up(lg) {
   [class*=sl-] {
-    .navbar-logo .navbar-brand-tagline {
+    .navbar-brand-sitelogo .navbar-brand-tagline {
       display: none;
     }
     .primary-navbar__wrapper {
