@@ -241,14 +241,14 @@ cite {
           margin: 0;
           padding: 0;
           font-size: inherit;
-          @extend .letter-spacing-1;
-          @extend .caps;
           li {
             clear:both;
             min-width: 100%;
           }
           a {
-            @extend .bold;
+            .primary-nav__menu & {
+              @extend .bold;
+            }
             float:none;
             position: relative;
             display:  inline-block !important;

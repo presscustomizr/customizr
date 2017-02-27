@@ -31,12 +31,12 @@
 
 .ham-toggler-menu__span {
   background: transparent;
-  display: block;
+  display: inline-block;
   width: 1rem;
   height: 2px;
   position: relative;
   top: 0;
-  vertical-align: bottom;
+  vertical-align: middle;
   @include transition (all ease 0.3s);
   &:before, &:after {
       position: absolute;

@@ -171,7 +171,7 @@ if ( ! function_exists('czr_fn_render_template') ) {
         $model_instance -> czr_fn_set_property('template' , $_t );
       }
       //update model with the one passed
-      if ( ! empty ( $_model_args ) )
+      if ( is_array($args) && array_key_exists( 'model_args', $args) )
         $model_instance -> czr_fn_update( $_model_args );
 
       czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();

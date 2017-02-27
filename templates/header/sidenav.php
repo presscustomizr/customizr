@@ -17,6 +17,9 @@
               )
             ) );
           }
+          if ( czr_fn_has( 'nav_search' ) ) {
+            czr_fn_render_template( 'header/mobile_search_container' );
+          }
           if ( czr_fn_has('sidenav_menu') ) {
             czr_fn_render_template( 'header/menu', array(
               'model_id'   => 'sidenav_menu',

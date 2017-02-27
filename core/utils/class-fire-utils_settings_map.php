@@ -602,6 +602,14 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 10,
           ),
+          'tc_header_topnav_collapse'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "In mobiles collapse the topnav" , "customizr" ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'checkbox' ,
+                            'priority'      => 10,
+          ),
           /* removed in c4
           //enable/disable top border
           'tc_top_border' => array(

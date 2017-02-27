@@ -1,27 +1,31 @@
 <?php
 class CZR_menu_model_class extends CZR_Model {
-  public $theme_location     = 'main';
-  public $def_menu_class     = array('nav', 'navbar-nav');
-  public $menu_class         = array();
-  public $menu_id            = 'main-menu';
-  public $element_class      = '';
-  public $fallback_cb;
-  public $walker;
 
   /**
   * @override
   * fired before the model properties are parsed
   *
-  * return model params array()
+  * return model preset array()
   */
-  function czr_fn_extend_params( $model = array() ) {
-    $model[ 'fallback_cb' ]    = array( $this, 'czr_fn_page_menu' );
+  function czr_fn_get_preset_model() {
 
-    return $model;
+    $_preset = array(
+        'element_class'       => '',
+        'theme_location'      => 'main',
+        'menu_id'             => 'main-menu',
+        'def_menu_class'      => array('nav', 'navbar-nav', 'nav__menu'),
+        'menu_class'          => array(),
+        'fallback_cb'         => array( $this, 'czr_fn_page_menu' ),
+        'walker'              => ''
+    );
+
+    return $_preset;
   }
 
+
+
   public function czr_fn_get_walker() {
-    return ! czr_fn_has_location_menu( $this -> theme_location ) ? '' : new CZR_nav_walker( $this -> theme_location );
+    return ! czr_fn_has_location_menu( $this -> theme_location ) ? $this->walker : new CZR_nav_walker( $this -> theme_location );
   }
 
 
@@ -95,7 +99,7 @@ class CZR_menu_model_class extends CZR_Model {
     //$menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
 
     if ( $menu )
-      $menu = '<ul class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>';
+      $menu = '<ul id="' . $this->menu_id . '" class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>';
 
     //$menu = apply_filters( 'wp_page_menu', $menu, $args );
     if ( $args['echo'] )

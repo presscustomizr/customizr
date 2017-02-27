@@ -44,34 +44,54 @@
           text-align: left;
           direction: ltr;
         }
-        @at-root .hamburger-toggler__container, .mobile-woocart__container {
-          float: none;
-          height: 100%;
-          vertical-align: middle;
-          display: inline-table;
-          margin-left: 0;
-          margin-right: 0;
-          padding-right: 1.25em;
-          padding-left: 1.25em;
-          [class*=logo_right] &::before {
-            left: auto;
-            right: 0;
-          }
-        }
-
-        @at-root .hamburger-toggler__container .ham__navbar-toggler,
-       .mobile-woocart__container .woocart {
-          display: table-cell;
-          vertical-align: middle;
-          height: 100%;
-        }
-
       }
+    }
+  }
+  /* togglelable secondary */
+  .secondary-navbar__wrapper[class*=menu-toggleable-] {
+    padding: 0;
+    border: none;
+    z-index: 200;
+    .hamburger-toggler__container {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      padding-left: 0;
+      text-align: right;
+      &:before {
+        content: none
+      }
+      .ham__navbar-toggler {
+        display: inline-block;
+        @at-root .secondary-navbar__wrapper .ham-toggler-menu__span {
+          height: 1px;
+          display: inline-block;
+          vertical-align: middle
+        }
+      }
+    }
+  }
 
+  /* Limit nav-collpase height to the viewport when sticky mobile */
+  .czr-sticky-mobile .nav-collapse {
+    position: absolute!important;
+    background: inherit;
+    z-index: 100;
+    left: 0;
+    &::before, &::after {
+      display: table;
+      content: '';
+      line-height: 0;
+    }
+    &.active.limited-height {
+      overflow: auto;
     }
   }
 }
 
+
+.mobile-woocart__container,
 .hamburger-toggler__container {
   float: none;
   height: 100%;
@@ -85,12 +105,13 @@
     left: auto;
     right: 0;
   }
-  .ham__navbar-toggler {
+}
 
+.mobile-woocart__container .woocart,
+.hamburger-toggler__container .ham__navbar-toggler {
     display: table-cell;
     vertical-align: middle;
     height: 100%;
-  }
 }
 
 
@@ -103,18 +124,25 @@
 .primary-nav__utils {
   font-size: 0.001px;
 }
-.tc-header .primary-nav__utils {
-    .utils {
-      //@media screen and (min-width: 992px)
-      @include media-breakpoint-up(lg) {
-        margin: 0 -1.25rem;
-      }
-      li {
-        padding: 0 1.25em;
-        margin: 0;
-      }
+
+.primary-nav__nav  {
+  //@media screen and (min-width: 992px)
+  @include media-breakpoint-up(lg) {
+    .primary-nav__utils .utils {
+      margin: 0 -$base-line-height-root;
     }
+  }
+  .mobile-search__container {
+    padding: 0 $base-line-height-root;
+    margin: 0;
+  }
+  .primary-nav__utils .utils li {
+    padding: 0 $base-line-height-root;
+    margin: 0;
+  }
 }
+
+
 /* Fix */
 //@media screen and (min-width: 992px)
 @include media-breakpoint-up(lg) {
@@ -136,20 +164,8 @@
 
 }
 
-/* Limit nav-collpase height to the viewport when sticky mobile */
-.czr-sticky-mobile .nav-collapse {
-  &::before, &::after {
-    display: table;
-    content: '';
-    line-height: 0;
-  }
-  &.active.limited-height {
-    position: absolute!important;
-    overflow: auto;
-    background: inherit;
-    z-index: 100;
-  }
-}
+
+
 /* WooCart */
 .primary-nav__woocart {
    position: relative;

@@ -29,14 +29,16 @@ var czrapp = czrapp || {};
       //additional state props
       this._didScroll                 = false;
       this._lastScroll                = 0;
-      this.$_sticky_placeholder       = null;
       this._sticky_trigger            = false;
       this._mobile_viewport           = 991;
 
       this.debounced_resize_actions   = _.debounce( function() {
+          var self = this;
           this._maybe_move_utils();
           this.stickyHeaderMaybeToggling();
-          this._stickyHeaderLimitMobileMenu( 'resize' );
+          $.each( $(self._sticky_navbar_toggleable_selector+'.active'), function(){
+            self._stickyHeaderLimitMobileMenu( 'resize', $(this) );
+          })
         }, 300
       );
 
@@ -45,17 +47,13 @@ var czrapp = czrapp || {};
 
       //set some props depending on the desired sticky behavior
       //this._sticky_trigger  = 300;
-
-     /* $(this._sticky_navbar_toggleable_selector).mCustomScrollbar({
-        theme:"minimal",
-      });*/
     },
 
     _cache_els : function() {
       //cache jQuery el
       this.$_sticky_candidate         = czrapp.$_tcHeader.find( this._sticky_candidate_sel );
       this._d_sticky_candidate        = czrapp.$_tcHeader.hasClass( 'header-absolute' ) ? 'overlaps' : 'pushes';
-      this._sticky_candidate          = this._dsticky_candidate;
+      this._sticky_candidate          = this._d_sticky_candidate;
 
       this._sticky_mobile_class       = 'czr-sticky-mobile';
       this.is_sticky_mobile           = czrapp.$_tcHeader.hasClass( this._sticky_mobile_class );
@@ -112,7 +110,7 @@ var czrapp = czrapp || {};
       });
 
       //ON BOOTSTRAP COLLAPSE SHOW/HIDE limit collapse to viewport
-      czrapp.$_body.on( 'show.bs.collapse hide.bs.collapse', this._sticky_navbar_toggleable_selector, function(evt) {
+      czrapp.$_body.on( 'show.bs.collapse hidden.bs.collapse', this._sticky_navbar_toggleable_selector, function(evt) {
         self._stickyHeaderLimitMobileMenu(evt);
       });
 
@@ -126,22 +124,25 @@ var czrapp = czrapp || {};
 
       czrapp.$_body.on( this.transitionEnd , this._sticky_candidate_sel, function(evt) {
         if ( self.$_sticky_candidate[0] == evt.target )
-          self._stickyHeaderLimitMobileMenu();
+          self._stickyHeaderLimitMobileMenu($(evt.target));
       });
     },
 
     stickyHeaderMaybeToggling : function () {
+      /* the viewport is less 992 pixels wide */
       if ( czrapp.matchMedia(this._mobile_viewport) ) {
         if ( this.is_sticky_mobile ) {
           this._sticky_candidate = 'pushes';
-        /* the viewport is less 992 pixels wide */
-        }else if ( this._isStickyEnabled() )
+        }else if ( this._isStickyEnabled() ) {
           czrapp.$_body.trigger( 'sticky-disable' )
                        .removeClass( 'tc-sticky-header' ).addClass( 'tc-sticky-suspended' );
-      } else {
+        }
+      }
+      else {
+        /* the viewport is at least 992 pixels wide */
         if ( this.is_sticky_mobile ) {
           this._sticky_candidate = this._d_sticky_candidate;
-          /* the viewport is at least 992 pixels wide */
+
         }else if ( ! this._isStickyEnabled() && czrapp.$_body.hasClass( 'tc-sticky-suspended' ) )
           czrapp.$_body.addClass( 'tc-sticky-header' ).removeClass( 'tc-sticky-suspended' );
         this.stickyHeaderEventHandler('scroll');
@@ -196,7 +197,6 @@ var czrapp = czrapp || {};
         return this._sticky_trigger;
 
       var $_trigger_element = this.$_sticky_placeholder && this.$_sticky_placeholder.height() ? this.$_sticky_placeholder : this.$_sticky_candidate;
-
       return $_trigger_element.outerHeight() + $_trigger_element.offset().top + 50;
     },
 
@@ -221,12 +221,15 @@ var czrapp = czrapp || {};
 
       if ( 'overlaps' == this._sticky_candidate && this._isScrollingDown() && ! this._isStickyOn() )
         this._set_sticky_placeholder();
+      var _toggleStickyAt = this._toggleStickyAt();
 
-      if ( ! this._isStickyOn() && _scroll >= this._toggleStickyAt() )
+      if ( ! this._isStickyOn() && _scroll >= _toggleStickyAt ) {
         czrapp.$_body.trigger('sticky-enable');
-
-      else if ( this._isStickyOn() && _scroll < this._toggleStickyAt() )
+      }
+      else if ( this._isStickyOn() && _scroll < _toggleStickyAt ) {
         czrapp.$_body.trigger('sticky-disable');
+      }
+
 
       this._didScroll = false;
       this._lastScroll = this._getScroll();
@@ -249,13 +252,17 @@ var czrapp = czrapp || {};
       this._maybe_move_utils( this._branding_selector );
       this.$_sticky_candidate.removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
-      this._stickyHeaderLimitMobileMenu();
+      $.each( $(self._sticky_navbar_toggleable_selector), function(){
+        self._stickyHeaderLimitMobileMenu( 'resize', $(this) );
+      })
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _set_sticky_placeholder : function() {
+
       if ( ! this.$_sticky_placeholder ) {
-        czrapp.$_tcHeader.append('<div id="sticky-placeholder"></div>');
+        czrapp.$_tcHeader.prepend('<div id="sticky-placeholder"></div>');
+
         this.$_sticky_placeholder = $('#sticky-placeholder');
       }
       this.$_sticky_placeholder.css('height', this.$_sticky_candidate.outerHeight() );
@@ -284,13 +291,14 @@ var czrapp = czrapp || {};
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
-    _stickyHeaderLimitMobileMenu : function(evt) {
+    _stickyHeaderLimitMobileMenu : function(evt, $_el) {
 
       //NEW: allow sticky on mobiles
       if ( !this.is_sticky_mobile )
         return;
 
-      $_el = $(this._sticky_navbar_toggleable_selector);
+      $_el = $_el ? $_el : [];
+      $_el = !$_el.length && 'undefined' != typeof evt && evt.target ? $(evt.target) : $_el;
 
       if ( !$_el.length ) {
         return;
@@ -299,7 +307,7 @@ var czrapp = czrapp || {};
       if ( 'resize' == evt && !$_el.hasClass('active') )
         return;
 
-      if ( evt && 'hide' == evt.type ) {
+      if ( evt && 'hidden' == evt.type ) {
         this._resetHeaderLimitMobileMenu( $_el );
         return;
       }
@@ -328,11 +336,10 @@ var czrapp = czrapp || {};
         return;
       }
 
-      $_el.removeClass('limited-height').css('max-height', '' );
+      $_el.removeClass('limited-height').css('max-height', '' ).css('overflow', '');
       if ( $_el.is('[class*=mCustomScrollbar]') ) {
         $_el.mCustomScrollbar("destroy");
       }
-
     }
 
   };//_methods{}

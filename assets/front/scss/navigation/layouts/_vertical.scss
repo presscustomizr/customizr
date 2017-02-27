@@ -58,34 +58,42 @@
     /* sticky enabled */
     .sticky-enabled & {
       .primary-navbar__wrapper {
-          display: table;
+        display: table;
+        min-height: 70px;
+      }
+      .primary-nav__utils {
+        vertical-align: middle;
+        float: none !important;
+        @at-root .sticky-enabled .branding__container .primary-nav__utils {
+          display: none !important;
+        }
       }
       .primary-nav__container,
       .branding__container {
-          clear: none;
-          text-align: left;
-          width: auto;
-          display: table-cell !important;
-          vertical-align: middle;
-          height: 100%;
-          white-space: nowrap;
-          float: none !important;
+        clear: none;
+        text-align: left;
+        width: auto;
+        display: table-cell !important;
+        vertical-align: middle;
+        height: 100%;
+        white-space: nowrap;
+        float: none !important;
       }
       .branding {
         padding: 0;
         /*img { max-height: 70px; }*/
       }
       .primary-navbar__wrapper .primary-nav__nav {
-          width: 100%;
-          display: table !important;
-          .primary-nav__menu-wrapper {
-            vertical-align: middle;
-            padding-left : $base-line-height*2!important;
-            padding-right: $base-line-height*2!important;
-          }
-          .primary-nav__utils {
-            min-height: inherit;
-          }
+        width: 100%;
+        display: table !important;
+        .primary-nav__menu-wrapper {
+          vertical-align: middle;
+          padding-left : $base-line-height*2!important;
+          padding-right: $base-line-height*2!important;
+        }
+        .primary-nav__utils {
+          min-height: inherit;
+        }
       }
       /* sticky logo right */
       &.v-logo_right {

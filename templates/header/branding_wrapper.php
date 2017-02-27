@@ -30,7 +30,7 @@
             )
           ) );
       else :
-          czr_fn_render_template( 'header/menu_button' );
+          czr_fn_render_template( 'header/menu_button', array( 'model_args' => array() ) );
       endif;
       ?>
     </div>

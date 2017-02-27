@@ -24,13 +24,12 @@
       endif;
 
       if ( czr_fn_has( 'sidenav' ) ) :
-
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(
               'data_attributes' => 'data-toggle="sidenav"',
+              'element_tag'     => 'li'
             )
           ) );
-
       endif;
       ?>
     </ul>

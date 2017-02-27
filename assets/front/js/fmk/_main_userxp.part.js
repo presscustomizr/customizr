@@ -129,36 +129,6 @@ var czrapp = czrapp || {};
         czrapp.$_body.removeClass('full-search-opened');
       });
 
-      function _moveSearch() {
-        //width<992px
-        if ( czrapp.matchMedia(_mobile_viewport) ) {
-          $('.primary-navbar__wrapper .primary-nav__menu-wrapper').before( $('.primary-nav__utils') );
-        }else {
-          $('.primary-navbar__wrapper .primary-nav__menu-wrapper').after( $('.primary-nav__utils') );
-        }
-      }
-      //only for regular menu for now
-      _moveSearch();
-
-      /* Move search before menu in mobiles */
-      czrapp.$_body.on( 'tc-resize', function(){
-        if ( ! doingAnimation ) {
-          doingAnimation = true;
-          window.requestAnimationFrame( function() {
-            _moveSearch();
-            doingAnimation = false;
-          });
-        }
-      } );
-      /* ham navbar */
-      /*
-      czrapp.$_body.on( 'click tap', '.ham__navbar-toggler', function() {
-        if ( ! $(this).parent( '.mobile-utils__wrapper' ) )
-          $(this).toggleClass('collapsed');
-        czrapp.$_body.toggleClass('opened');
-      });
-*/
-
 
     },
 

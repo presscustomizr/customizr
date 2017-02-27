@@ -121,10 +121,14 @@
     /* sticky enabled */
     .sticky-enabled & {
       .primary-navbar__wrapper {
-          display: table;
+        display: table;
+        min-height: 70px;
       }
       .branding__container {
         width: auto
+      }
+      .primary-nav__utils {
+        vertical-align: middle;
       }
       .primary-nav__container,
       .branding__container {

@@ -12,7 +12,8 @@
     padding: $base-line-height/2 $base-line-height;
     position: relative;
     & > div {
-      padding:0
+      padding:0;
+      background: inherit;
     }
     li {
       @extend .small;
@@ -348,7 +349,7 @@
       }
     }
 
-    .primary-navbar__wrapper, .primary-nav__container { padding:0 }
+    .primary-navbar__wrapper, .primary-nav__container { padding:0;  position: relative; }
     .primary-nav__container  .primary-nav__nav  {
           padding:0;
           & .primary-nav__menu-wrapper {
@@ -357,7 +358,9 @@
             float:none;
             width:100%;
             max-width:100%;
-            @at-root .primary-nav__nav .primary-nav__menu  {
+
+            @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu,
+            .primary-nav__nav .nav__menu {
                   width:100%;
                   display: block;
                   & > li + li { display: block; margin-left: 0 }
@@ -370,9 +373,14 @@
           }
 
     }
+    @at-root .secondary-navbar__wrapper[class*=menu-toggleable-] .secondary-nav__container,
     .primary-nav__container .primary-nav__nav  { width:100%; text-align:left;}
+
+    @at-root .secondary-navbar__wrapper[class*=menu-toggleable-] .secondary-nav__nav .nav__menu li,
     .primary-nav__container .primary-nav__nav  li { display: block; width:100%; text-align:left; }
+
     .primary-nav__container .primary-nav__utils .socials { margin-left:0; margin-top: $base-line-height*2; }
+
     .primary-nav__container .primary-nav__utils .utils {
       display:block;
         li { padding:0 $base-line-height*2; display:block; }
@@ -384,6 +392,8 @@
             }
         }
     }
+
+    @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu,
     .primary-nav__container {
       li { position: relative; width:100% }
       .primary-nav__search {
@@ -392,7 +402,7 @@
           @include transform(translateY(-50%));
           .icn-close { @include transform(translateY(265%)); }
         }
-        .czr-form .form-group { margin: $base-line-height 0;  }
+        .czr-form .form-group { margin: $base-line-height-root/2 0 $base-line-height-root*2 0;  }
       }
    }
 }
