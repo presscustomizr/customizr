@@ -53,6 +53,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
         //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
         add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
+        //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
+        add_filter( 'tc_add_section_map'           , array( $this, 'czr_fn_force_remove_section_map' ));
+
+
         //CACHE THE GLOBAL CUSTOMIZER MAP
         $_customizer_map = array_merge(
           array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
@@ -2168,7 +2172,8 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                    CUSTOM CSS SECTION
     ------------------------------------------------------------------------------------------------------*/
     function czr_fn_custom_css_option_map( $get_default = null ) {
-      return array(
+      global $wp_version;
+      return version_compare( $wp_version, '4.7', '>=' ) ? array() : array(
               'tc_custom_css' =>  array(
                                 'sanitize_callback' => 'wp_filter_nohtml_kses',
                                 'sanitize_js_callback' => 'wp_filter_nohtml_kses',
@@ -2629,6 +2634,16 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
 
 
+    function czr_fn_force_remove_section_map( $_sections ) {
+      global $wp_version;
+
+      // FORCE REMOVE SECTIONS
+      // CUSTOM CSS section for wp >= 4.7
+      if ( version_compare( $wp_version, '4.7', '>=' ) )
+        unset( $_sections[ 'custom_sec' ] );
+
+      return $_sections;
+    }
 
 
 

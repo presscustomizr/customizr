@@ -1123,8 +1123,9 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
+
       //Since wp 4.6.1 we order the params following the $_ordered_keys order
-      $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+      $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
 
       if ( ! empty( $autofocus ) ) {
         //here we pass the first element of the array
