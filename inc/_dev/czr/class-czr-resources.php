@@ -223,7 +223,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'themeName'       => CZR___::$theme_name,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
-            'translatedStrings'   => $this -> czr_fn_get_translated_strings(),
+            'i18n'   => $this -> czr_fn_get_translated_strings(),
 
             'themeOptions'     => CZR_THEME_OPTIONS,
 
@@ -282,15 +282,17 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                 'close' => __('Close', 'customizr'),
                 'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr'),
                 'notset' => __('Not set', 'customizr'),
+
                 'rss' => __('Rss', 'customizr'),
                 'selectSocialIcon' => __('Select a social icon', 'customizr'),
                 'followUs' => __('Follow us on', 'customizr'),
                 'successMessage' => __('Done !', 'customizr'),
                 'socialLinkAdded' => __('New Social Link created ! Scroll down to edit it.', 'customizr'),
-                'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
+
                 //WP TEXT EDITOR MODULE
                 'textEditorOpen' => __('Edit', 'customizr'),
                 'textEditorClose' => __('Close Editor', 'customizr'),
+
                 //SLIDER MODULE
                 'slideAdded'   => __('New Slide created ! Scroll down to edit it.', 'customizr'),
                 'slideTitle'   => __( 'Slide', 'customizr'),
@@ -304,7 +306,11 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                                         __("Change the header layout", "customizr")
                                       )
                                     )
-                                  )
+                                  ),
+
+                'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
+                'Settings' => __('Settings', 'customizr'),
+                'Options for' => __('Options for', 'hueman')
           )
       );
     }

@@ -1,8 +1,7 @@
 <?php
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_pre_add_view_template' , 1 );
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_item_mod_opt_template' , 1 );
+add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_tmpls' , 1 );
 
-function czr_fn_print_social_pre_add_view_template() {
+function czr_fn_print_social_tmpls() {
   $css_attr = CZR_customize::$instance -> css_attr;
   ?>
 
@@ -22,21 +21,7 @@ function czr_fn_print_social_pre_add_view_template() {
       </span>
     </div>
   </script>
-  <?php
-}
 
-
-
-
-
-function czr_fn_print_social_item_mod_opt_template() {
-  $css_attr = CZR_customize::$instance -> css_attr;
-    //the following template is a "sub view"
-    //it's rendered :
-    //1) on customizer start, depending on what is fetched from the db
-    //2) dynamically when designing from the customizer
-    //data looks like : { id : 'sidebar-one', title : 'A Title One' }
-  ?>
   <script type="text/html" id="tmpl-czr-module-social-mod-opt">
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number" data-transport="postMessage">
       <div class="customize-control-title"><?php _e('Size in px', 'customizr'); ?></div>
@@ -76,7 +61,7 @@ function czr_fn_print_social_item_mod_opt_template() {
     </div>
 
     <div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color" data-transport="postMessage">
-      <div class="customize-control-title"><?php _e('Icon color', 'customizr'); ?></div>
+      <div class="customize-control-title width-100"><?php _e('Icon color', 'customizr'); ?> <i><?php _e('default:', 'hueman'); ?> rgba(255,255,255,0.7)</i></div>
       <div class="czr-input">
         <input data-type="social-color" type="text" value="{{ data['social-color'] }}"></input>
       </div>
@@ -97,4 +82,3 @@ function czr_fn_print_social_item_mod_opt_template() {
   </script>
   <?php
 }
-?>

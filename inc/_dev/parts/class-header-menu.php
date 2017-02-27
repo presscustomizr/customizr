@@ -165,7 +165,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       $_button_label = sprintf( '<span class="menu-label">%s</span>',
         '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Menu' , 'customizr')
       );
-      $_button = sprintf( '<div class="%1$s"><button type="button" class="btn menu-btn" %2$s title="%5$s">%3$s%3$s%3$s </button>%4$s</div>',
+      $_button = sprintf( '<div class="%1$s"><button type="button" class="btn menu-btn" %2$s title="%5$s" aria-label="%5$s">%3$s%3$s%3$s </button>%4$s</div>',
         implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
         apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
         '<span class="icon-bar"></span>',

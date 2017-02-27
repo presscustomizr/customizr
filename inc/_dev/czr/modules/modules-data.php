@@ -9,6 +9,7 @@ function czr_fn_add_social_module_data( $params ) {
         'social_el_params' => array(
             //Social Module
             'defaultSocialColor' => 'rgb(90,90,90)',
+            'defaultSocialSize'  => 14
         )
     )
   );

@@ -393,6 +393,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
     /**
     * Callback of tc_user_options_style hook
+    * + Fired in czr_fn_user_defined_tinymce_css => add the user defined font style to the wp editor
     * @return css string
     *
     * @package Customizr
