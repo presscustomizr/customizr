@@ -2351,20 +2351,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       if ( CZR___::$instance -> czr_fn_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
         return $_sections;
 
-      //when user access the theme switcher from the admin bar
-      $_theme_switcher_requested = false;
-      if ( isset( $_GET['autofocus'] ) ) {
-        $autofocus = wp_unslash( $_GET['autofocus'] );
-        if ( is_array( $autofocus ) && isset($autofocus['section']) ) {
-          $_theme_switcher_requested = 'themes' == $autofocus['section'];
-        }
-      }
-
-      if ( isset($_GET['theme']) || ! is_array($_sections) || $_theme_switcher_requested )
+      if ( ! CZR___::czr_fn_is_pro() )
         return $_sections;
-
-      array_push( $_sections, 'themes');
-      return $_sections;
+      else {
+        array_push( $_sections, 'themes');
+        return $_sections;
+      }
     }
 
 

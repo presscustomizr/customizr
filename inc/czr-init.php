@@ -2781,6 +2781,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
         //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
         add_filter( 'czr_fn_front_page_option_map' , array( $this, 'czr_fn_generates_featured_pages' ));
 
+        //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
+        add_filter( 'tc_add_section_map'           , array( $this, 'czr_fn_force_remove_section_map' ));
+
+
         //CACHE THE GLOBAL CUSTOMIZER MAP
         $_customizer_map = array_merge(
           array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
@@ -4896,7 +4900,8 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                    CUSTOM CSS SECTION
     ------------------------------------------------------------------------------------------------------*/
     function czr_fn_custom_css_option_map( $get_default = null ) {
-      return array(
+      global $wp_version;
+      return version_compare( $wp_version, '4.7', '>=' ) ? array() : array(
               'tc_custom_css' =>  array(
                                 'sanitize_callback' => 'wp_filter_nohtml_kses',
                                 'sanitize_js_callback' => 'wp_filter_nohtml_kses',
@@ -5074,20 +5079,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
       if ( CZR___::$instance -> czr_fn_is_customize_preview_frame() || ! version_compare( $wp_version, '4.2', '>=') )
         return $_sections;
 
-      //when user access the theme switcher from the admin bar
-      $_theme_switcher_requested = false;
-      if ( isset( $_GET['autofocus'] ) ) {
-        $autofocus = wp_unslash( $_GET['autofocus'] );
-        if ( is_array( $autofocus ) && isset($autofocus['section']) ) {
-          $_theme_switcher_requested = 'themes' == $autofocus['section'];
-        }
-      }
-
-      if ( isset($_GET['theme']) || ! is_array($_sections) || $_theme_switcher_requested )
+      if ( ! CZR___::czr_fn_is_pro() )
         return $_sections;
-
-      array_push( $_sections, 'themes');
-      return $_sections;
+      else {
+        array_push( $_sections, 'themes');
+        return $_sections;
+      }
     }
 
 
@@ -5357,6 +5354,16 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
 
 
+    function czr_fn_force_remove_section_map( $_sections ) {
+      global $wp_version;
+
+      // FORCE REMOVE SECTIONS
+      // CUSTOM CSS section for wp >= 4.7
+      if ( version_compare( $wp_version, '4.7', '>=' ) )
+        unset( $_sections[ 'custom_sec' ] );
+
+      return $_sections;
+    }
 
 
 
@@ -5675,14 +5682,24 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       //then each routine has to decide what to do also depending on the user started before
       if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
         $theme_options            = czr_fn_get_admin_option(CZR_THEME_OPTIONS);
-
+        $_to_update               = false;
 
         if ( ! empty( $theme_options ) ) {
+          //Socials
+          $_new_options_w_socials     = $this -> czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
 
-          $_new_options_w_socials = $this -> czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
+          if ( ! empty( $_new_options_w_socials ) ) {
+            $theme_options              = $_new_options_w_socials;
+            $_to_update                 = true;
+          }
 
-          $_to_update             = ! empty( $_new_options_w_socials );
-          $theme_options          = $_to_update ? $_new_options_w_socials : $theme_options;
+          //Custom css
+          $_new_options_w_custom_css  = $this -> czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
+
+          if ( ! empty( $_new_options_w_custom_css ) ) {
+            $theme_options              = $_new_options_w_custom_css;
+            $_to_update                 = true;
+          }
 
           if ( $_to_update ) {
             update_option( CZR_THEME_OPTIONS, $theme_options );
@@ -5698,12 +5715,25 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       $_options = $theme_options;
 
 
-      //nothing t do if already moved
-      if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
-        return array();
+      /*
+      * When Memcached is active transients (object cached) might be not persistent
+      * we cannot really rely on them :/
+      */
+      //nothing to do if new user
+      //if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+      //  return array();
 
       //nothing to do if already moved
       if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_socials', $_options[ '__moved_opts' ] ) ) {
+        return array();
+      }
+
+      /*
+      * In theme versions < 3.5.5  we didn't use store the __moved_opts['old_socials'] in the options
+      * if there was anything to move, so we need another check here to see if new socials have been already
+      * set
+      */
+      if ( isset( $_options[ 'tc_social_links' ] ) && !empty($_options[ 'tc_social_links' ] ) ) {
         return array();
       }
 
@@ -5727,8 +5757,6 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       //merge options with the defaults socials
       $_options     = wp_parse_args( $_options, $_social_options );
 
-
-      $_to_update   = false;
       $_new_socials = array();
       $_index       = 0;
 
@@ -5761,24 +5789,67 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
             )
           );
           $_index++;
-
-          $_to_update = true;
         }
       }
 
-      if ( $_to_update ) {
+      if ( !empty( $_new_socials ) ) {
         $theme_options[ 'tc_social_links' ] = $_new_socials;
+      }
+
+      //save the state in the options
+      $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+      array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+
+      return $theme_options;
+    }
+
+
+    /*
+    * returns array() the new set of options or empty if there's nothing to move
+    */
+    function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
+      $_options = $theme_options;
+
+
+      /*
+      * When Memcached is active transients (object cached) might be not persistent
+      * we cannot really rely on them :/
+      */
+      //if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.5.5', '1.3.3' ) )
+      //  return array();
+
+      //nothing to do if already moved
+      if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'custom_css', $_options[ '__moved_opts' ] ) ) {
+        return array();
+      }
+
+      /*
+      * FROM
+      * https://make.wordpress.org/core/2016/11/26/extending-the-custom-css-editor/
+      */
+      if ( function_exists( 'wp_update_custom_css_post' ) ) {
+        // Migrate any existing theme CSS to the core option added in WordPress 4.7.
+        $css = array_key_exists( 'tc_custom_css', $_options ) ?  html_entity_decode( esc_html( $_options['tc_custom_css'] ) ) : '';
+
+        if ( $css ) {
+          $core_css = wp_get_custom_css(); // Preserve any CSS already added to the core option.
+          //avoid duplications
+          $core_css = str_replace( $css, '', $core_css );
+          $return = wp_update_custom_css_post( $core_css . "\n" . $css );
+        }
+
 
         //save the state in the options
         $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-        array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+        array_push( $theme_options[ '__moved_opts' ], 'custom_css' );
 
         return $theme_options;
       }
 
       return array();
     }
-  }
+
+  }//end class
 endif;
 ?><?php
 /**
@@ -6905,8 +6976,9 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
         $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
       }
+
       //Since wp 4.6.1 we order the params following the $_ordered_keys order
-      $autofocus = array_merge( array_flip( $_ordered_keys ), $autofocus );
+      $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
 
       if ( ! empty( $autofocus ) ) {
         //here we pass the first element of the array
@@ -7353,6 +7425,15 @@ if ( ! class_exists( 'CZR_resources' ) ) :
     */
     function czr_fn_write_custom_css( $_css = null ) {
       $_css               = isset($_css) ? $_css : '';
+
+      $_moved_opts        = CZR_utils::$inst->czr_fn_opt(  '__moved_opts' ) ;
+
+      /*
+      * Do not print old custom css if moved in the WP Custom CSS
+      */
+      if ( !empty( $_moved_opts ) && is_array( $_moved_opts ) && in_array( 'custom_css', $_moved_opts) )
+        return $_css;
+
       $tc_custom_css      = esc_html( CZR_utils::$inst->czr_fn_opt( 'tc_custom_css') );
       if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
         return $_css;

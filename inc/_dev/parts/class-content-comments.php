@@ -393,7 +393,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
             border: 2px solid {$_custom_bubble_color};
           }
           .comments-link .tc-comment-bubble:before {
-            border-color: {$_custom_bubble_color};
+            border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
           }
         ";
       }

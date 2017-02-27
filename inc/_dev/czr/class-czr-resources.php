@@ -231,7 +231,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
             'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
-            'isThemeSwitchOn'  => isset( $_GET['theme']),
+            'isThemeSwitchOn'  => ! CZR___::czr_fn_is_pro(),
             'themeSettingList' => CZR_utils::$_theme_setting_list,
 
             'faviconOptionName' => 'tc_fav_upload',
