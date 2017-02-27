@@ -197,8 +197,10 @@ class CZR_post_thumbnails {
       //1) must be a non single post context
       //2) user option should be checked in customizer
       $_bool = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
-      if ( ! is_admin() )
-        $_bool == ! CZR_post::$instance -> czr_fn_single_post_display_controller() && $_bool;
+      if ( ! is_admin() ) {
+        $_bool = !CZR_post::$instance -> czr_fn_single_post_display_controller() && $_bool;
+      }
+
       if ( ! apply_filters( 'tc_use_attachement_as_thumb' , $_bool ) )
         return;
 
