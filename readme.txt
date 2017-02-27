@@ -40,6 +40,14 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.5 February 26th 2017 =
+* Fix: do not show first attachment as thumb in single context fixes #815
+* Fix: fix reference to maybe undefined wp in front js fixes #820
+* Fix: fix comment bubble bottom arrow when custom color selected fixes #822
+* Imp : added aria-label to button - support accessibility
+* Imp : enabled accessibility for social icons
+* Imp: move theme Custom CSS option to WordPress embedded one fixes #818
+
 = 3.5.4 February 18th 2017 =
 * Fix: customizer javascript error when customizing the social links
 * Improved: customizer social links module user interface

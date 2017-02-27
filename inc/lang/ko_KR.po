@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v3.5.4\n"
+"Project-Id-Version: * Customizr v3.5.5\n"
 "POT-Creation-Date: 2015-08-22 17:04+0200\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"

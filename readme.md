@@ -1,4 +1,4 @@
-# Customizr v3.5.4 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.5 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,14 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.5 February 26th 2017 =
+* Fix: do not show first attachment as thumb in single context fixes #815
+* Fix: fix reference to maybe undefined wp in front js fixes #820
+* Fix: fix comment bubble bottom arrow when custom color selected fixes #822
+* Imp : added aria-label to button - support accessibility
+* Imp : enabled accessibility for social icons
+* Imp: move theme Custom CSS option to WordPress embedded one fixes #818
+
 = 3.5.4 February 18th 2017 =
 * Fix: customizer javascript error when customizing the social links
 * Improved: customizer social links module user interface

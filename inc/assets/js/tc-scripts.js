@@ -5157,7 +5157,7 @@ var czrapp = czrapp || {};
       /*-----------------------------------------------------
       - > CUSTOM REFRESH CACHE EVENT on partial content rendered (customizer preview)
       ------------------------------------------------------*/
-      if ( undefined !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
+      if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
         wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function(placement) {
           czrapp.cacheInnerElements().$_body.trigger('partialRefresh.czr', placement);
         });
