@@ -49,23 +49,28 @@
                 height : 100%;
                 float: left;
                 /*display: table;*/
-                > span > .caret__dropdown-toggler,
-                > span > a > span, i {
-                  display: table-cell!important;
-                  /*float: none!important;*/
-                  vertical-align: middle!important
-                }
-                &> a, &> span, &>span.caret__dropdown-toggler {
-                  height: 100%;
-                  display: table!important;
-                  position: relative;
-                  padding: 0;
-                }
-                &> span{
-                  height: 100%;
-                  position: relative;
-                  > a { display: table; padding: $base-line-height 0; vertical-align: middle; }
-                }
+
+
+                > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
+                          > span > a > span:not(.caret__dropdown-toggler) {
+                            display: table-cell!important;
+                            //float: none!important;
+                            vertical-align: middle!important
+                          }
+                          &> a, &> span, &>span.caret__dropdown-toggler {
+                            height: 100%;
+                            display: table!important;
+                            position: relative;
+                            padding: 0;
+                          }
+                          &> span{
+                            height: 100%;
+                            /*display: table-row!important;*/
+                            position: relative;
+                            padding: 0;
+                            > a { display: table; padding-top: 1em; padding-bottom: 1em; vertical-align: middle; }
+                          }
+
               }
             }
 
@@ -123,6 +128,7 @@
       .primary-navbar__wrapper {
         display: table;
         min-height: 70px;
+        height: 70px;
       }
       .branding__container {
         width: auto

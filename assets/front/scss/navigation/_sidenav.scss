@@ -8,7 +8,6 @@
   width: 350px;
   max-width: 100%;
   padding: 0;
-  line-height: 69px;
 
   /* test */
   .nav__menu-wrapper {
@@ -23,6 +22,9 @@
   .hamburger-toggler__container {
     height: 70px;
     float: right;
+    .sn-left & {
+      float: left;
+    }
     clear: both;
     top: 0;
     &::before, &::after {
@@ -48,13 +50,17 @@
       position: relative
     }
   }
+  /* test */
 
-  .caret__dropdown-toggler[data-toggle="czr-dropdown"] {
-    position: absolute;
-    top: 0;
-    right: 1.25em;
+  .nav__menu-wrapper .nav__menu li > span {
+    display: table;
+    width: 100%;
+    a, span { display: table-cell !important; vertical-align: middle; position: relative; right: 0 !important }
+    a, a > span:first-of-type { width: 100%; padding-right: 0 }
+    a > span:first-of-type { float: none !important;}
   }
 
+  /* test */
 
   .primary-nav__nav  {
     width:100%;
@@ -73,16 +79,13 @@
       width: 100%;
     }
     .dropdown-menu .dropdown-item {
-        padding: 0.625em 0 0.625em 1.25em;
+        padding: $base-line-height/2 $base-line-height-root/2;
     }
     .dropdown-menu .dropdown-item:first-of-type {
-        margin-top: 1.25em;
+        margin-top: $base-line-height;
     }
     .dropdown-menu .dropdown-item:last-of-type {
-        margin-bottom: 0.625em;
-    }
-    .dropdown-menu .dropdown-item.menu-item-has-children {
-        padding-right: 2.5em;
+        margin-bottom: $base-line-height/2;
     }
 
     li { display: block; width:100%; position: relative; height: auto }
@@ -95,19 +98,14 @@
       .primary-nav__menu  {
         width:100%;
         display: block;
-        & > li + li { display: block; margin-left: 0 }
+        text-align: left;
         & > li a    {
-          display: block;
-          line-height: 3em;
-          height:3em;
-          min-height: 3em;
-          height: auto;
           white-space: normal;
         }
         & > li  {
-          padding: $base-line-height $base-line-height*2;
-          margin-left:0;
-       }
+          padding: $base-line-height $base-line-height-root*2;
+          margin-right: 0; margin-left:0;
+        }
       }
     }
   }

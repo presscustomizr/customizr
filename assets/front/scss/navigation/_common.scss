@@ -1,3 +1,80 @@
+.topnav-navbars__container {
+  padding: 0 $base-line-height-root;
+}
+/* test */
+/*a > .caret__dropdown-toggler {
+    position: absolute;
+
+    display: inline-block !important;
+}
+a[data-toggle="czr-dropdown"] {
+  padding-right: 1.2em;
+}
+.dropdown-menu a > .caret__dropdown-toggler {
+    right: -1.5em;
+}*/
+/* test */
+
+/* test */
+/* This should be for all */
+.nav__menu li {
+  > span {
+    display: inline-table;
+    width: 100%;
+    vertical-align: middle;
+    a, span {
+      display: table-cell !important;
+      vertical-align: middle;
+      position: relative;
+    }
+    a, a > span:first-of-type {
+      width: 100%; padding-right: 0
+    }
+    a > span:first-of-type {
+      float: none !important;
+    }
+    @at-root .primary-nav__menu li a {
+      height: 3em;
+      line-height: 3em;
+    }
+  }
+  @at-root .not-hidden-md-down.secondary-navbar__wrapper {
+    .dropdown-item {
+      .caret__dropdown-toggler {
+        right: -.75rem
+      }
+    }
+    .nav__menu > li {
+      > span > a, > span > a > span:first-of-type {
+        width: auto
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    @at-root .tc-header {
+      .dropdown-item {
+        .caret__dropdown-toggler {
+          right: -.75rem
+        }
+      }
+      .nav__menu > li {
+        > span > a, > span > a > span:first-of-type {
+          width: auto
+        }
+      }
+    }
+  }
+}
+.secondary-nav__menu.regular {
+  margin-left: -1/2*$base-line-height-root;
+  margin-right: -1/2*$base-line-height-root;
+  > li {
+        margin-left: 1/2*$base-line-height-root;
+        margin-right: 1/2*$base-line-height-root;
+  }
+}
+/* test */
+
 @include media-breakpoint-down(md) {
   .primary-navbar__wrapper {
     height: auto;
@@ -125,34 +202,34 @@
   font-size: 0.001px;
 }
 
-.primary-nav__nav  {
+
   //@media screen and (min-width: 992px)
   @include media-breakpoint-up(lg) {
     .primary-nav__utils .utils {
-      margin: 0 -$base-line-height-root;
+      margin: 0px -1*$base-line-height-root;
     }
   }
   .mobile-search__container {
-    padding: 0 $base-line-height-root;
+    padding: 0px $base-line-height-root;
     margin: 0;
   }
   .primary-nav__utils .utils li {
-    padding: 0 $base-line-height-root;
+    padding: 0px $base-line-height-root;
     margin: 0;
   }
-}
+
 
 
 /* Fix */
 //@media screen and (min-width: 992px)
 @include media-breakpoint-up(lg) {
-  .primary-nav__menu-wrapper .primary-nav__menu.regular {
-    margin-left: $base-line-height * -1;
-    margin-right: $base-line-height * -1;
-  }
-  .tc-header .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu > li {
-      margin-left: $base-line-height;
-      margin-right: $base-line-height;
+  .primary-nav__menu.regular {
+    margin-left: -1em;
+    margin-right: -1em;
+    > li {
+          margin-left: 1em;
+          margin-right: 1em;
+    }
   }
 
   .primary-nav__menu-wrapper.pull-menu-left {

@@ -1,4 +1,5 @@
 /* nav with tables */
+
 @include media-breakpoint-up(lg) {
   [class*=sl-] {
     .navbar-brand-sitelogo .navbar-brand-tagline {
@@ -12,6 +13,7 @@
       min-height: 70px;
       width: 100%;
       height: 100%;
+      .sticky-enabled & { height: 70px }
     }
     .branding {
       height: auto;
@@ -66,11 +68,12 @@
           height : 100%;
           position: static;
           float: left;
-         /* display: table; */
-          > span > .caret__dropdown-toggler,
-          > span > a > span, i {
+          display: inline-table;
+          .ie[class*=ie1] & { display: inline-block !important}
+          > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
+          > span > a > span:not(.caret__dropdown-toggler) {
             display: table-cell!important;
-            float: none!important;
+            //float: none!important;
             vertical-align: middle!important
           }
           &> a, &> span, &>span.caret__dropdown-toggler {

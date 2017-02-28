@@ -17,7 +17,7 @@
             //do nothing if this setting has partial refresh
             if ( _customizePartialRefreshExports && 'undefined' !== typeof _customizePartialRefreshExports.partials && 'undefined' !== typeof _customizePartialRefreshExports.partials.blogdescription )
               return;
-            $( 'h2.site-description' ).text( to );
+            $( '.navbar-brand-tagline ' ).text( to );
           },
           'tc_skin' : function( to ) {
             if ( CZRPreviewParams && CZRPreviewParams.themeFolder ) {
@@ -186,9 +186,9 @@
           'tc_menu_position' : function( to ) {
             if ( 'aside' != api( api.CZR_preview.prototype._build_setId('tc_menu_style') ).get() ) {
               if ( 'pull-menu-left' == to )
-                $('.navbar-wrapper').addClass(to).removeClass('pull-menu-right');
+                $('.primary-navbar__wrapper .primary-nav__menu-wrapper').addClass(to).removeClass('pull-menu-right');
               else
-                $('.navbar-wrapper').addClass(to).removeClass('pull-menu-left');
+                $('.primary-navbar__wrapper .primary-nav__menu-wrapper').addClass(to).removeClass('pull-menu-left');
             }
           },
           'tc_second_menu_position' : function(to) {

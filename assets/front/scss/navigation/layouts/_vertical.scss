@@ -15,7 +15,7 @@
       .navbar-logo { height: auto; }
     }
 
-    .primary-nav__utils {
+    .branding__container .primary-nav__utils {
       display: table!important;
       height: 100%;
       min-height: 70px;
@@ -60,6 +60,7 @@
       .primary-navbar__wrapper {
         display: table;
         min-height: 70px;
+        height: 70px;
       }
       .primary-nav__utils {
         vertical-align: middle;
@@ -202,7 +203,7 @@
             height: 100%;
             position: relative;
 
-            > a { display: table; padding: 1em 0; vertical-align: middle; }
+            > a { display: table; padding-top: 1em; padding-bottom: 1em; vertical-align: middle; }
           }
         }
       }

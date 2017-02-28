@@ -87,6 +87,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_menu() {
+      return true;
       return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
     }
 

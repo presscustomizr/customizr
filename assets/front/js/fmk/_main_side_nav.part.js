@@ -21,7 +21,7 @@ var czrapp = czrapp || {};
       this.$_sidenav_menu           = $( '.nav__menu-wrapper' , this.$_sidenav );
 
 
-      this._toggle_event            = czrapp.$_body.hasClass('czr-is-mobile') ? 'tap' : 'click';
+      this._toggle_event            = 'click';
 
       this._browser_can_translate3d = ! czrapp.$_html.hasClass('no-csstransforms3d');
 

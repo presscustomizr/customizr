@@ -1,6 +1,8 @@
 
 /* NEW */
-
+.primary-navbar__wrapper {
+  margin: 0 -1*$base-line-height-root;
+}
 .secondary-navbar__wrapper .menu-item a {
   padding-top: .425rem;
   padding-bottom: .425rem;
@@ -9,7 +11,8 @@
 .secondary-navbar__wrapper {
     display:block;
     vertical-align: middle;
-    padding: $base-line-height/2 $base-line-height;
+    padding: $base-line-height/2 $base-line-height-root;
+    margin: 0 -1*$base-line-height-root;
     position: relative;
     & > div {
       padding:0;
@@ -21,9 +24,7 @@
       float:left;
       position: relative;
       vertical-align: middle;
-      &.menu-item-has-children { margin-right:$base-line-height; }
     }
-    li + li { margin-left:$base-line-height; }
 }
 .secondary-nav__nav {
     ul a {
@@ -137,12 +138,13 @@
 }
 .primary-navbar__wrapper {
     /* position: relative; */
-    line-height:69px;
+    //line-height:69px;
     /* height:69px; */
     z-index:190;
     /*
-    min-height: 1px;
-    .ie[class*=ie1] & { min-height: 0px } */
+    min-height: 1px;*/
+    /*ie10 fix?*/
+    .ie[class*=ie1] & { min-height: 70px !important}
 
  }
 
@@ -185,8 +187,6 @@
                position: relative;
                vertical-align:initial;
                display:inline-block;
-               & + li { margin-left: $base-line-height*2; }
-
                & > a {
                     position:relative;
                     display:inline-block;
@@ -359,17 +359,25 @@
             width:100%;
             max-width:100%;
 
-            @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu,
-            .primary-nav__nav .nav__menu {
+            @at-root .primary-nav__nav .nav__menu {
                   width:100%;
                   display: block;
-                  & > li + li { display: block; margin-left: 0 }
-                  & > li a    { display: block; line-height: 3em; height:3em; }
+                  & > li + li { display: block; margin-left: 0; margin-right: 0 }
+                  /* & > li a    { display: block; line-height: 3em; height:3em; } */
                   & > li  {
-                    padding: $base-line-height $base-line-height*2;
-                    margin-left:0;
+                    padding: $base-line-height $base-line-height-root*2;
+                    margin-right:0; margin-left:0;
                  }
              }
+             @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu {
+                   width:100%;
+                   display: block;
+                   & > li + li { display: block; margin-left: 0; margin-right: 0 }
+                   & > li  {
+                     padding: 1em 1.5rem;
+                     margin-right:0; margin-left:0;
+                  }
+              }
           }
 
     }
@@ -396,13 +404,15 @@
     @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu,
     .primary-nav__container {
       li { position: relative; width:100% }
+    }
+    @at-root .primary-nav__container {
       .primary-nav__search {
-        input { height: 3em }
+        line-height: 2*$base-line-height;
         .czr-form .form-group.in-focus label {
-          @include transform(translateY(-50%));
-          .icn-close { @include transform(translateY(265%)); }
+          @include transform(translateY(-100%));
+          .icn-close { @include transform(translateY(200%)); }
         }
-        .czr-form .form-group { margin: $base-line-height-root/2 0 $base-line-height-root*2 0;  }
+        .czr-form .form-group { margin: 2rem 0 $base-line-height-root*2 0;  }
       }
    }
 }
