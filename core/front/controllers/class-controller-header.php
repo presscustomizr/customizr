@@ -87,7 +87,6 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_menu() {
-      return true;
       return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
     }
 
@@ -95,7 +94,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //1) menu allowed
     //and
     //2) menu type is sidenav but a secondary menu is chosen
-    function czr_fn_display_view_navbar_secondary_menu() {
+    function czr_fn_display_view_secondary_menu() {
       return $this -> czr_fn_display_view_menu() &&  czr_fn_is_secondary_menu_enabled();
     }
 

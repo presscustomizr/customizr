@@ -318,7 +318,7 @@ var czrapp = czrapp || {};
       this.Selector = {
         DATA_TOGGLE        : '[data-toggle="czr-dropdown"]',
         DATA_HOVER_PARENT  : '.czr-open-on-hover .menu-item-has-children, .primary-nav__woocart',
-        DATA_CLICK_PARENT  : '.czr-open-on-click .menu-item-has-children, .primary-nav__woocart',
+        DATA_CLICK_PARENT  : '.czr-open-on-click .menu-item-has-children',
         DATA_PARENTS       : '.tc-header .menu-item-has-children'
       }
 

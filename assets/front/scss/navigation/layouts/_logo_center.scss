@@ -26,7 +26,7 @@
         width: 100%;
         display: table;
         white-space: normal  /* overrides white-space: nowrap  in topnav.scss*/;
-
+        /*height: 70px;*/
         .primary-nav__nav {
           width: auto;
           display: inline-table !important;
@@ -48,37 +48,40 @@
               > li {
                 height : 100%;
                 float: left;
-                /*display: table;*/
-
 
                 > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
-                          > span > a > span:not(.caret__dropdown-toggler) {
-                            display: table-cell!important;
-                            //float: none!important;
-                            vertical-align: middle!important
-                          }
-                          &> a, &> span, &>span.caret__dropdown-toggler {
-                            height: 100%;
-                            display: table!important;
-                            position: relative;
-                            padding: 0;
-                          }
-                          &> span{
-                            height: 100%;
-                            /*display: table-row!important;*/
-                            position: relative;
-                            padding: 0;
-                            > a { display: table; padding-top: 1em; padding-bottom: 1em; vertical-align: middle; }
-                          }
-
-              }
-            }
+                > span > a > span:not(.caret__dropdown-toggler) {
+                  display: table-cell!important;
+                  vertical-align: middle!important
+                }
+                &> a, &> span, &>span.caret__dropdown-toggler {
+                  height: 100%;
+                  display: table !important;
+                  position: relative;
+                  padding: 0;
+                }
+                &> span{
+                  height: 100%;
+                  /*display: table-row!important;*/
+                  position: relative;
+                  padding: 0;
+                  > a {
+                    display: table;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    vertical-align: middle;
+                  }
+                }
+              }//>li
+            }//.primary-nav__menu.regular
 
           }
 
           .primary-nav__utils {
-            body:not(.sticky-enabled) & {
+            @at-root [class*=logo_center] .primary-nav__menu-wrapper + .primary-nav__utils {
               padding-left: 2*$base-line-height-root; /* balances what is in topnav.scss */
+            }
+            body:not(.sticky-enabled) & {
               li:before,
               .socials:before {
                 content: none;
@@ -138,13 +141,14 @@
       }
       .primary-nav__container,
       .branding__container {
-          clear: none;
-          text-align: left;
-          display: table-cell !important;
-          vertical-align: middle;
-          height: 100%;
-          white-space: nowrap;
-          float: none !important;
+        clear: none;
+        text-align: left;
+        display: table-cell !important;
+        vertical-align: middle;
+        min-height: 100%;
+        height: 100%;
+        white-space: nowrap;
+        float: none !important;
       }
       .branding {
         padding: 0;

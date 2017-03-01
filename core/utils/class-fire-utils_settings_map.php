@@ -829,7 +829,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'section'       => 'nav' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 15,//must be located between the two menus
-                            'notice'        => __( "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header." , 'customizr' ),
+                            'notice'        => __( 'Displayed in the topnav if enabled' , 'customizr' ),
           ),
           'tc_menu_style'  =>  array(
                           'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
@@ -844,6 +844,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                           ),
                           'priority'      => 30
           ),
+          /* by default now
           'tc_menu_resp_dropdown_limit_to_viewport'  =>  array(
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
@@ -852,7 +853,8 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 35,
                             //'transport'     => 'postMessage',
-          ),
+          ),*/
+          /* not anymore
           'tc_display_menu_label'  =>  array(
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
@@ -862,10 +864,11 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'priority'      => 45,
                             'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
           ),
+          */
           'tc_menu_position'  =>  array(
                             'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
+                            'label'         => __( 'Menu position (for "main" horizontal menu)' , "customizr" ),
                             'section'       => 'nav' ,
                             'type'          =>  'select' ,
                             'choices'       => array(

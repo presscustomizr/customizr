@@ -2,7 +2,7 @@
 
 @include media-breakpoint-up(lg) {
   [class*=sl-] {
-    .navbar-brand-sitelogo .navbar-brand-tagline {
+    .navbar-brand-sitelogo + .navbar-brand-tagline {
       display: none;
     }
     .primary-navbar__wrapper {

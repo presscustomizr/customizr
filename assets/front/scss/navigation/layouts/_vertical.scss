@@ -5,6 +5,17 @@
 }
 @include media-breakpoint-up(lg) {
   [class*=v-logo_] {
+    .primary-navbar__wrapper {
+      line-height: 0;
+      white-space: normal;
+    }
+    .branding__container {
+      width: 100%;
+      text-align: left;
+      clear: both;
+      left: 0;
+    }
+
     .branding {
       height: auto;
       line-height: 1;
@@ -52,126 +63,21 @@
       body:not(.sticky-enabled) & { content: none !important; }
     }
 
-
-
-
-    /* sticky enabled */
-    .sticky-enabled & {
-      .primary-navbar__wrapper {
-        display: table;
-        min-height: 70px;
-        height: 70px;
-      }
-      .primary-nav__utils {
-        vertical-align: middle;
-        float: none !important;
-        @at-root .sticky-enabled .branding__container .primary-nav__utils {
-          display: none !important;
-        }
-      }
-      .primary-nav__container,
-      .branding__container {
-        clear: none;
-        text-align: left;
-        width: auto;
-        display: table-cell !important;
-        vertical-align: middle;
-        height: 100%;
-        white-space: nowrap;
-        float: none !important;
-      }
-      .branding {
-        padding: 0;
-        /*img { max-height: 70px; }*/
-      }
-      .primary-navbar__wrapper .primary-nav__nav {
-        width: 100%;
-        display: table !important;
-        .primary-nav__menu-wrapper {
-          vertical-align: middle;
-          padding-left : $base-line-height*2!important;
-          padding-right: $base-line-height*2!important;
-        }
-        .primary-nav__utils {
-          min-height: inherit;
-        }
-      }
-      /* sticky logo right */
-      &.v-logo_right {
-        .branding__container {
-          text-align: right;
-        }
-        .primary-navbar__wrapper {
-          direction: rtl;
-        }
-        .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
-          direction: ltr;
-          width: 100%;
-        }
-        .primary-nav__container .primary-nav__nav { text-align: left; }
-        .primary-nav__container .primary-nav__utils { direction: rtl;}
-        .primary-nav__container .primary-nav__utils * { direction: ltr; }
-
-        .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-          padding-left: 0; padding-right: $base-line-height;
-          margin-left: 0;  margin-right: $base-line-height;
-        }
-
-        .primary-nav__utils .nav.utils > li:first-of-type {
-          position: relative;
-        }
-
-        .primary-nav__utils .utils li:before,
-        .primary-nav__utils .primary-nav__socials .socials:before {
-          left: auto;
-          right: 0;
-        }
-      }
-    }
-
-
-    .primary-navbar__wrapper {
-      display: block;
-      line-height: 0;
-      height: 100%;
-      width: 100%;
-      white-space: normal;
-    }
-
-
     .primary-nav__container .primary-nav__nav {
-      width: auto;
       display: inline-table !important;
-      text-align: initial !important;
       height: 100%;
       overflow: visible;
       width: 100%;
-      line-height: 1;
     }
-    .branding__container {
-      display: block !important;
-      float: left !important;
-      width: 100%;
-      text-align: left;
-      clear: both;
-      height: auto;
-      max-height: none;
-      line-height: 1;
-      white-space: normal;
-      left: 0;
-    }
+
     .primary-nav__container {
-      text-align: left;
-      margin: 0 !important;
       padding-left: 0 !important;
       width: 100% !important;
       display: table !important;
       height: auto;
-      padding-bottom: 0;
-      padding-top: 0;
       white-space: normal;
-
     }
+
     .primary-nav__menu-wrapper {
       display: table-cell !important;
       width: auto;
@@ -230,18 +136,84 @@
         }
       }
     }
+    /* sticky enabled */
+    .sticky-enabled & {
+      .primary-navbar__wrapper {
+        display: table;
+        min-height: 70px;
+        height: 70px;
+      }
+      .primary-nav__utils {
+        vertical-align: middle;
+        float: none !important;
+        @at-root .sticky-enabled .branding__container .primary-nav__utils {
+          display: none !important;
+        }
+      }
+      .primary-nav__container,
+      .branding__container {
+        clear: none;
+        text-align: left;
+        width: auto;
+        display: table-cell !important;
+        vertical-align: middle;
+        min-height: 100%;
+        height: 100%;
+        white-space: nowrap;
+        float: none !important;
+      }
+      .branding {
+        padding: 0;
+        /*img { max-height: 70px; }*/
+      }
+      .primary-navbar__wrapper .primary-nav__nav {
+        width: 100%;
+        display: table !important;
+        .primary-nav__menu-wrapper {
+          vertical-align: middle;
+          padding-left : $base-line-height*2!important;
+          padding-right: $base-line-height*2!important;
+        }
+        .primary-nav__utils {
+          min-height: inherit;
+        }
+      }
+      /* sticky logo right */
+      &.v-logo_right {
+        .branding__container {
+          text-align: right;
+        }
+        .primary-navbar__wrapper {
+          direction: rtl;
+        }
+        .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
+          direction: ltr;
+          width: 100%;
+        }
+        .primary-nav__container .primary-nav__nav { text-align: left; }
+        .primary-nav__container .primary-nav__utils { direction: rtl;}
+        .primary-nav__container .primary-nav__utils * { direction: ltr; }
 
-    .primary-nav__container .primary-nav__utils .primary-nav__socials ul{
-      display: inline-block !important;
-      height: 100%;
-      vertical-align: middle;
+        .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+          padding-left: 0; padding-right: $base-line-height;
+          margin-left: 0;  margin-right: $base-line-height;
+        }
+
+        .primary-nav__utils .nav.utils > li:first-of-type {
+          position: relative;
+        }
+
+        .primary-nav__utils .utils li:before,
+        .primary-nav__utils .primary-nav__socials .socials:before {
+          left: auto;
+          right: 0;
+        }
+      }
     }
 
   }
 
-
 /* Logo on the right */
-
   .v-logo_right {
     /* nav with tables logo right */
     .branding__container {

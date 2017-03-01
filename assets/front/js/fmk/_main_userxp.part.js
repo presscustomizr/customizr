@@ -116,8 +116,7 @@ var czrapp = czrapp || {};
     },
 
     variousHeaderActions : function() {
-      var _mobile_viewport             = 992,
-          doingAnimation               = false;
+      var _mobile_viewport             = 992;
 
       /* header search button */
       czrapp.$_body.on( 'click tap', '.desktop_search__link', function(evt) {
@@ -129,7 +128,11 @@ var czrapp = czrapp || {};
         czrapp.$_body.removeClass('full-search-opened');
       });
 
-
+      //go to opened on click element when mCustomScroll active
+      czrapp.$_body.on( 'shown.czr.czrDropdown', '.mCustomScrollbar', function( evt ) {
+        //http://manos.malihu.gr/jquery-custom-content-scroller/
+        $(this).mCustomScrollbar( 'scrollTo', $(evt.target) );
+      });
     },
 
     //SMOOTH SCROLL
@@ -188,6 +191,7 @@ var czrapp = czrapp || {};
       };
 
     },
+
     /* Find a way to make this smaller but still effective */
     featuredPages_test : function() {
 

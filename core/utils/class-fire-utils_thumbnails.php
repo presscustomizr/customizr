@@ -310,8 +310,8 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
         <?php
         $_svg_placeholder = ob_get_clean();
     }
-    $_img_src = apply_filters( 'hu_placeholder_thumb_src', $_img_src, $_requested_size );
-    $filter = apply_filters( 'hu_placeholder_thumb_filter', false );
+    $_img_src = apply_filters( 'czr_placeholder_thumb_src', $_img_src, $_requested_size );
+    $filter = apply_filters( 'czr_placeholder_thumb_filter', false );
     //make sure we did not lose the img_src
     if ( false == $_img_src )
       $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );

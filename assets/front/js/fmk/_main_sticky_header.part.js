@@ -115,16 +115,13 @@ var czrapp = czrapp || {};
       });
 
       czrapp.$_body.on( 'shown.bs.collapse', this._sticky_navbar_toggleable_selector, function() {
-        if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-          $(this).mCustomScrollbar({
-            theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
-          });
-        }
+        self._initCustomScrollbar( $(this) );
       });
 
       czrapp.$_body.on( this.transitionEnd , this._sticky_candidate_sel, function(evt) {
-        if ( self.$_sticky_candidate[0] == evt.target )
-          self._stickyHeaderLimitMobileMenu($(evt.target));
+        if ( self.$_sticky_candidate[0] == evt.target ) {
+          self._stickyHeaderLimitMobileMenu( 'resize', $(self._sticky_navbar_toggleable_selector+'.active'));
+        }
       });
     },
 
@@ -248,13 +245,17 @@ var czrapp = czrapp || {};
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _on_sticky_disable : function() {
+      var self = this;
+
       this._reset_sticky_placeholder();
       this._maybe_move_utils( this._branding_selector );
       this.$_sticky_candidate.removeClass( this._fixed_classes );
       czrapp.$_body.removeClass( 'sticky-enabled' ).addClass( 'sticky-disabled' ).trigger('sticky-disabled');
+
       $.each( $(self._sticky_navbar_toggleable_selector), function(){
         self._stickyHeaderLimitMobileMenu( 'resize', $(this) );
       })
+
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -292,6 +293,7 @@ var czrapp = czrapp || {};
 
     //STICKY HEADER SUB CLASS HELPER (private like)
     _stickyHeaderLimitMobileMenu : function(evt, $_el) {
+      var self = this;
 
       //NEW: allow sticky on mobiles
       if ( !this.is_sticky_mobile )
@@ -318,8 +320,14 @@ var czrapp = czrapp || {};
             newMaxHeight = winHeight - $_el.closest('div').offset().top + this._getScroll();
 
         $_el.css('max-height' , newMaxHeight + 'px').addClass('limited-height');
+
+       //update mCustomScrollbar if active
         if ( $_el.is('[class*=mCustomScrollbar]') ) {
           $_el.mCustomScrollbar("update");
+        }
+        //re-init if temporary destroyed and active
+        else if ( $_el.hasClass('active') && $_el.hasClass('mCS_destroyed') ) {
+          self._initCustomScrollbar($_el);
         }
 
 
@@ -340,7 +348,16 @@ var czrapp = czrapp || {};
       if ( $_el.is('[class*=mCustomScrollbar]') ) {
         $_el.mCustomScrollbar("destroy");
       }
-    }
+    },
+
+    //STICKY HEADER SUB CLASS HELPER (private like)
+    _initCustomScrollbar : function( $_el ) {
+      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+        $_el.mCustomScrollbar({
+          theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+        });
+      }
+    },
 
   };//_methods{}
 

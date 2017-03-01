@@ -1,19 +1,6 @@
 .topnav-navbars__container {
   padding: 0 $base-line-height-root;
 }
-/* test */
-/*a > .caret__dropdown-toggler {
-    position: absolute;
-
-    display: inline-block !important;
-}
-a[data-toggle="czr-dropdown"] {
-  padding-right: 1.2em;
-}
-.dropdown-menu a > .caret__dropdown-toggler {
-    right: -1.5em;
-}*/
-/* test */
 
 /* test */
 /* This should be for all */
@@ -38,18 +25,22 @@ a[data-toggle="czr-dropdown"] {
       line-height: 3em;
     }
   }
-  @at-root .not-hidden-md-down.secondary-navbar__wrapper {
-    .dropdown-item {
-      .caret__dropdown-toggler {
-        right: -.75rem
-      }
-    }
-    .nav__menu > li {
-      > span > a, > span > a > span:first-of-type {
-        width: auto
+
+  //In mobiles do not allow dropdowns for the secondary menu when shown as is
+  @include media-breakpoint-down(md) {
+    @at-root .not-hidden-md-down.secondary-navbar__wrapper {
+
+      .caret__dropdown-toggler { display: none !important; }
+      .czr-dropdown-menu { display: none !important; }
+      .nav__menu > li {
+        border: none;
+        >span, > span > a, > span > a > span:first-of-type {
+          width: auto
+        }
       }
     }
   }
+
   @include media-breakpoint-up(lg) {
     @at-root .tc-header {
       .dropdown-item {
@@ -65,12 +56,33 @@ a[data-toggle="czr-dropdown"] {
     }
   }
 }
-.secondary-nav__menu.regular {
-  margin-left: -1/2*$base-line-height-root;
-  margin-right: -1/2*$base-line-height-root;
-  > li {
-        margin-left: 1/2*$base-line-height-root;
-        margin-right: 1/2*$base-line-height-root;
+
+.secondary-navbar__wrapper {
+  @at-root .secondary-nav__menu.regular {
+    margin-left: -1/2*$base-line-height-root;
+    margin-right: -1/2*$base-line-height-root;
+    > li {
+          margin-left: 1/2*$base-line-height-root;
+          margin-right: 1/2*$base-line-height-root;
+    }
+  }
+
+  &.pull-menu-right {
+    .secondary-nav__container {
+      float: right;
+    }
+    .secondary-nav__socials {
+      float: left;
+    }
+  }
+
+  &.pull-menu-left {
+    .secondary-nav__container {
+      float: left;
+    }
+    .secondary-nav__socials {
+      float: right;
+    }
   }
 }
 /* test */
@@ -193,9 +205,10 @@ a[data-toggle="czr-dropdown"] {
 
 
 .primary-nav__wrapper {
-  height: 100%;
+  height: inherit;
   background: inherit;
 }
+
 /* Fix space between inline-block elements */
 .mobile-utils__wrapper,
 .primary-nav__utils {

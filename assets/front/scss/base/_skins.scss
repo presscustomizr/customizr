@@ -113,11 +113,11 @@ $secondary-color-dark   : $grey;
   }
 
   .branding {
-      a { color:$primary-color; }
-           .has_tagline {
-             .navbar-brand-tagline { color: $secondary-color }
-        a {
-            span::after {
+    a { color:$primary-color; }
+    .navbar-brand-tagline { color: $secondary-color }
+    .has_tagline {
+      a {
+        span::after {
           content: "";
           position: absolute;
           width: 33%;
@@ -126,9 +126,10 @@ $secondary-color-dark   : $grey;
           left: 0;
           background: $primary-color;
         }
-           }
-         }
+      }
+    }
   }
+
    .mobile-woocart__container a { color:$primary-color; }
    .hamburger-toggler__container,
      .mobile-woocart__container {
