@@ -703,15 +703,15 @@ WP classes
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
   margin-top: $base-line-height*2 !important;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
   article {
     margin-bottom: 0;
     padding: 0;
     display: inline-block;
     float: none;
     background: $grey-lightest;
-    white-space: initial
+    white-space: normal;
   }
   section {
     padding: 0;
@@ -736,9 +736,13 @@ WP classes
     @include text-truncate();
     font-weight: 600;
     margin-top: $base-line-height/2;
+    padding-bottom: $base-line-height/2;
   }
-  .entry-header.no-title .entry-title::after {
-    content: none
+  .entry-header.no-title .entry-title{
+    padding-bottom: 0;
+    &::after {
+      content: none
+    }
   }
   .entry-header { @extend .small }
   .entry-meta {

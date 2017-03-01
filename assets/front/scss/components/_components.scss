@@ -341,6 +341,9 @@ nav li.dropdown-item:before {
 
 .tags {
     @extend .inline-list;
+    a {
+      text-decoration: none !important;
+    }
 }
 .tagcloud a,
 .tags li {

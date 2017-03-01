@@ -226,7 +226,6 @@
                                       }
                                       return _bool;
                                   }
-                                  console.log( servusShortId.indexOf('grid') + ' ' + servusShortId);
                                   if ( 0 > servusShortId.indexOf('grid') ) {
 
                                     return 'grid' != to;

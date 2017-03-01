@@ -160,10 +160,14 @@ var czrapp = czrapp || {};
 
         case 'scroll' :
           if( ! this._didScroll ) {
+
             this._didScroll = true;
-            setTimeout( function() {
+            //setTimeout( function() {
+            window.requestAnimationFrame(function() {
               self._sticky_header_scrolling_actions();
-            }, 250 );
+            }
+            //, 250
+            );
           }
         break;
 
@@ -224,12 +228,12 @@ var czrapp = czrapp || {};
         czrapp.$_body.trigger('sticky-enable');
       }
       else if ( this._isStickyOn() && _scroll < _toggleStickyAt ) {
+
         czrapp.$_body.trigger('sticky-disable');
       }
 
-
-      this._didScroll = false;
       this._lastScroll = this._getScroll();
+      this._didScroll = false;
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
@@ -329,7 +333,6 @@ var czrapp = czrapp || {};
         else if ( $_el.hasClass('active') && $_el.hasClass('mCS_destroyed') ) {
           self._initCustomScrollbar($_el);
         }
-
 
       }else {
         this._resetHeaderLimitMobileMenu( $_el );

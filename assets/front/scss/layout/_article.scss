@@ -8,6 +8,12 @@
   }
 }*/
 
+.entry-header .entry-title {
+  word-wrap: break-word;
+}
+article .entry-content a {
+  text-decoration: underline;
+}
 .page__header {
   text-align: center;
   min-height: 300px;

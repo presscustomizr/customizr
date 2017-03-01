@@ -21,7 +21,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'xl', 'lg', 'md', 'sm', 'xs'
   );
   private $post_class     = array('col-xs-12');
-
+  public $place_1 = 'media';//thumb always printed first
+  public $place_2 = 'content';//thumb always printed first
   public $post_list_items = array();
 
 
@@ -60,19 +61,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     //build properties depending on merged defaults and args
 
-    $model['has_narrow_layout']       = in_array( 'narrow', $model['content_width'] );
+    $model[ 'has_narrow_layout' ]       = in_array( 'narrow', $model['content_width'] );
 
     $model[ 'post_list_layout' ]      = $this -> czr_fn__get_post_list_layout( $model );
 
     $model[ 'has_post_media']         = $model[ 'show_thumb' ];
     array_push( $this->post_class, $model[ 'show_thumb' ] ? 'has-media' : 'no-media');
-
-    /*
-    * In the new theme the places are defined just by the option show_thumb_first,
-    * we handle the alternate with bootstrap classes
-    */
-    $model[ 'def_place_1' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'media' : 'content';
-    $model[ 'def_place_2' ]           = 'show_thumb_first' == $model[ 'post_list_layout' ]['show_thumb_first'] ? 'content' : 'media';
 
     return $model;
   }
@@ -130,16 +124,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'media_cols' );
   }
 
-
-  function czr_fn_get_place_1() {
-    return $this -> czr_fn__get_post_list_item_property( 'place_1' );
-  }
-
-
-  function czr_fn_get_place_2() {
-    return $this -> czr_fn__get_post_list_item_property( 'place_2' );
-  }
-
   function czr_fn_get_sections_wrapper_class() {
     return $this -> czr_fn__get_post_list_item_property( 'sections_wrapper_class' );
   }
@@ -192,8 +176,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $_sections_wrapper_class = array();
 
     /* Structural */
-    $place_1                 = $this -> def_place_1;
-    $place_2                 = $this -> def_place_2;
+    $place_1                 = $this->place_1;
+    $place_2                 = $this->place_2;
+
 
     $_push                   = array(
       $place_1 => array(),
@@ -227,9 +212,18 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
           $_layout[ 'content' ]    = $_t_l;
         }
 
+
       // conditions to swap place_1 with place_2 are:
-      // alternate on and current post number is odd (1,3,..). (First post is 0 )
-      if (  $_layout[ 'alternate' ] &&  ( 0 == ( $wp_query -> current_post + 1 ) % 2 ) ) {
+      // 1) show_thumb_first is false && alternate not on
+      // or
+      // 2) show_thumb_first is false && alternate on and current post number is odd (1,3,..). (First post is 0 )
+      // or
+      // 3) show_thumb_first is true && alternate on and current post number is even (2,4,..). (First post is 0 )
+      $swap = !$_layout['show_thumb_first'] && !$_layout[ 'alternate' ];
+      $swap = $swap || $_layout[ 'alternate' ] &&  0 == ( $wp_query -> current_post + (int)$_layout['show_thumb_first'] ) % 2 ;
+
+      if ( $swap ) {
+        //build complementar
         /* the slice is to avoid push/pull in xs */
         $_push[ $place_1 ]        = array_slice( $_layout[ $place_2 ], 0, count($_layout[ $place_2 ]) - 1);
         $_pull[ $place_2 ]        = array_slice( $_layout[ $place_1 ], 0, count($_layout[ $place_1 ]) - 1);
@@ -246,9 +240,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       * - media comes first, content will overlap
       */
       $_layout[ 'content' ] = $_layout[ 'media' ] = array();
-
-      $place_1 = 'media';
-      $place_2 = 'content';
     }
     elseif ( ! $has_post_media ) {
       //full width content
@@ -261,7 +252,13 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     //add the aspect ratio class for the full image types
     if  ( $is_full_image || 'video' == $_current_post_format ) {
       array_push( $media_cols, 'czr__r-w16by9' );
-    } elseif ( $has_post_media && ! $has_format_icon_media && ! $this->has_narrow_layout) {
+    }
+    elseif (
+        $has_post_media &&
+        !$has_format_icon_media &&
+        ! $this->has_narrow_layout &&
+        !in_array( $_current_post_format, array( 'image', 'audio' ) ) ) {
+
       array_push( $media_cols, 'czr__r-w1by1' );
     }
 
@@ -270,8 +267,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $post_list_item = array(
       'content_cols'            => $content_cols,
       'media_cols'              => $media_cols,
-      'place_1'                 => $place_1,
-      'place_2'                 => $place_2,
       'sections_wrapper_class'  => $_sections_wrapper_class,
       'article_selectors'       => $article_selectors,
       'is_full_image'           => $is_full_image,

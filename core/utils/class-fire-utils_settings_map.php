@@ -1487,6 +1487,7 @@ function czr_fn_classical_grid_option_map( $map, $get_default = null ) {
 
 function czr_fn_alternate_option_map( $map, $get_default = null ) {
   return array_merge( $map, array(
+          //Since Customizr4 you can only have thumb first/second
           'tc_post_list_thumb_position'  =>  array(
                             'default'       => 'right',
                             'control'     => 'CZR_controls',
@@ -1495,10 +1496,10 @@ function czr_fn_alternate_option_map( $map, $get_default = null ) {
                             'section'       => 'post_lists_sec' ,
                             'type'      =>  'select' ,
                             'choices'     => array(
-                                    'top'     => __( 'Top' , 'customizr' ),
-                                    'right'   => __( 'Right' , 'customizr' ),
-                                    'bottom'    => __( 'Bottom' , 'customizr' ),
-                                    'left'    => __( 'Left' , 'customizr' ),
+                                    //'top'     => __( 'Top' , 'customizr' ),
+                                    'left'   => __( 'First' , 'customizr' ),
+                                   // 'bottom'    => __( 'Bottom' , 'customizr' ),
+                                    'right'  => __( 'Second' , 'customizr' ),
                             ),
                             'priority'      => 90
           ),
