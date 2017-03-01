@@ -42,7 +42,7 @@ class CZR_breadcrumb_model_class extends CZR_Model {
   function _get_args() {
     $args =  array(
       'container'  => 'nav' , // div, nav, p, etc.
-      'separator'  => '' ,
+      'separator'  => !is_rtl() ? '&raquo;' : '&laquo;' ,
       'before'     => false,
       'after'      => false,
       'front_page' => true,

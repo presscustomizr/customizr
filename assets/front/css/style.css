@@ -181,7 +181,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs .breadcrumb, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -6064,85 +6064,10 @@ WP classes
   margin-top: 1.25em;
 }
 
-.bg .page-breadcrumbs {
-  border: none;
-  background: #fff;
-}
-
 .page-breadcrumbs {
-  position: relative;
   padding: 1.875em 0;
   margin-top: 1.25em;
   margin-bottom: 1.25em;
-}
-
-@media (min-width: 768px) {
-  .page-breadcrumbs [class^="col-"] {
-    padding: 0;
-  }
-}
-
-.page-breadcrumbs .breadcrumb {
-  *zoom: 1;
-  color: #777;
-  position: relative;
-}
-
-.page-breadcrumbs .breadcrumb:before, .page-breadcrumbs .breadcrumb:after {
-  content: "";
-  display: table;
-}
-
-.page-breadcrumbs .breadcrumb:after {
-  clear: both;
-}
-
-.page-breadcrumbs .breadcrumb .trail-end, .page-breadcrumbs .breadcrumb a {
-  background: #fff;
-  padding: 6px;
-  float: left;
-  margin-left: 2.5em;
-}
-
-.page-breadcrumbs .breadcrumb a {
-  position: relative;
-  position: relative;
-  color: #202020;
-}
-
-.page-breadcrumbs .breadcrumb a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: #202020;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-}
-
-.page-breadcrumbs .breadcrumb a:hover::before {
-  background-color: #202020;
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
-  transform: scaleX(1);
-}
-
-.page-breadcrumbs .breadcrumb .trail-begin {
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.page-breadcrumbs .breadcrumb .active, .page-breadcrumbs .breadcrumb .trail-end {
-  float: right;
 }
 
 .post-comments .tabs a, .post-comments .nav-pills a {

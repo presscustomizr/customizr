@@ -82,33 +82,13 @@
     margin-top: $base-line-height;
   }
 }
-
-.bg .page-breadcrumbs { border: none; background: $white; }
 .page-breadcrumbs {
-  position: relative;
   padding: $base-line-height*1.5 0;
   margin-top: $base-line-height;
   margin-bottom: $base-line-height;
-
-  @include media-breakpoint-up(md) {
-    [class^="col-"] { padding:0; }
-  }
-  .breadcrumb {
-    @include clearfix();
-    .trail-end, a {
-      background: $white;
-      padding: 6px;
-      float:left;
-      margin-left: $base-line-height*2;
-    }
-    @extend .small;
-    color: $grey-dark;
-    a { @include underlined( $black, 1px ); position: relative; color: $black; }
-    .trail-begin { padding-left:0; margin-left: 0 }
-    position: relative;
-    .active, .trail-end {  float:right; }
-  }
+  @extend .small;
 }
+
 
 .post-comments {
   .tabs a { font-size: ms(1); }
