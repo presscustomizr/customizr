@@ -5,6 +5,11 @@
  * --------------------------------------------------------------------------
  */
 +function () {
+  //Util
+  jQuery.fn.czrReverse = function() {
+    return this.pushStack(this.get().reverse(), arguments);
+  };
+
   var _createClass = function () {
    function defineProperties(target, props) {
      for (var i = 0; i < props.length; i++) {
@@ -374,46 +379,77 @@ var czrapp = czrapp || {};
     },
 
 
+    /*
+    * Snake Prototype
+    */
     dropdownPlacement : function() {
       var self = this,
           doingAnimation = false;
-          _is_visible    = function( _el ) {
-            var $_this        = $(_el),
-                _this_offset  = $_this.offset();
 
-            if( _this_offset.left + $_this.outerWidth() > czrapp.$_window.width() ||
-                _this_offset.top >= $_this.closest('.nav__menu').offset().top + $_this.closest('.nav__menu').outerHeight() ) {
-              return false;
-            }
-            return true;
+      _handle_visibility();
+
+      //Util
+      function _is_visible( _el ) {
+        var $_this        = $(_el),
+            _this_offset  = $_this.offset(),
+            $_parent      = $_this.closest('.nav__menu');
+
+        if ( !$_this.is(':visible') ) {
+          return false;
+        }
+
+        if( _this_offset.left + $_this.outerWidth() > czrapp.$_window.width() ||
+            _this_offset.top >= $_parent.offset().top + $_parent.outerHeight() - 5 ) {
+          return false;
+        }
+        return true;
+      }
+
+      function _handle_visibility() {
+        var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE),
+            $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE );
+            $_elements_to_hide        = $( '[class*=sl-] .primary-nav__menu > .menu-item').czrReverse();
+
+        //Hide the non visible
+        //Needed only when single line
+        $_elements_to_hide.each( function() {
+          var $_this = $(this);
+          $_this.removeClass( 'hidden-lg-up' );
+          if ( !_is_visible( this ) ) {
+            $_this.addClass( 'hidden-lg-up' );
           }
-      /*
-      * Snake Prototype
-      */
+        });
+
+        //close the non visible
+        //Needed only when single line
+        $_active_first_menu_items.each( function() {
+          var $_this = $(this);
+          if ( !_is_visible( this ) ) {
+            $_this.removeClass(self.ClassName.ACTIVE);
+          }
+        });
+        //this will trigger the snake
+        $_active_menu_items.trigger(self.Event.PLACE);
+      }
+
       czrapp.$_body.on( 'tc-resize', function() {
         if ( ! doingAnimation ) {
           doingAnimation = true;
           window.requestAnimationFrame(function() {
-            var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE),
-                $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE );
-
-            //close the non visible
-            //Needed only when single line
-            $_active_first_menu_items.each( function() {
-              var $_this = $(this);
-              if ( !_is_visible( this ) ) {
-                $_this.removeClass(self.ClassName.ACTIVE);
-              }
-            });
-
-            $_active_menu_items.trigger(self.Event.PLACE);
+            _handle_visibility();
             doingAnimation = false;
           });
         }
       });
 
+      //snake bound on menu-item shown and "resize" (see _handle_visibility)
       czrapp.$_body.on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
-        var $_this       = $(this);
+        _do_snake( $(this), evt );
+      });
+
+      //snake
+      function _do_snake( $_el, evt ) {
+        var $_this       = $_el;
 
         if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.ACTIVE) )
           return;
@@ -440,8 +476,7 @@ var czrapp = czrapp || {};
 
         //unstage if staged
         $_dropdown.css( 'zIndex', '').css('display', '');
-
-      } );
+      }
 
       function _maybe_move( $_dropdown ){
         //reset

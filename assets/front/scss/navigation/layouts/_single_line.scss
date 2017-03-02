@@ -6,7 +6,7 @@
       display: none;
     }
     .primary-navbar__wrapper {
-      display: table; /* block !important; /* table !important; */
+      display: table; /* block !important;
       /*height: auto;*/
       line-height: 1;
       /*min-width: 100% !important;*/
@@ -14,6 +14,10 @@
       width: 100%;
       height: 100%;
       .sticky-enabled & { height: 70px }
+      /*ie10 fix?*/
+      .ie[class*=ie1] & { min-height: 70px !important;
+        & .primary-nav__container  { height: 100% !important; }
+      }
     }
     .branding {
       height: auto;
@@ -64,12 +68,20 @@
         height: 100%;
         /*overflow: hidden;*/
         display: inline-block;
+        /*@at-root  .tc-header[class*=sl-] .primary-nav__menu-wrapper {
+          &.pull-menu-left .nav__menu {
+            float: left;
+          }
+          &.pull-menu-right .nav__menu {
+            float: right;
+          }
+        }*/
         > li {
           height : 100%;
           position: static;
           float: left;
-          display: inline-table;
-          .ie[class*=ie1] & { display: inline-block !important}
+          display: inline-table; /* firefox needs this */
+          .ie[class*=ie1] & { display: inline-block }
           > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
           > span > a > span:not(.caret__dropdown-toggler) {
             display: table-cell!important;
@@ -87,7 +99,7 @@
             /*display: table-row!important;*/
             position: relative;
             padding: 0;
-            > a { display: table-cell; height: 100%; vertical-align: middle; }
+            > a { display: table-cell; height: 100%; vertical-align: middle; line-height: inherit }
           }
         }
       }

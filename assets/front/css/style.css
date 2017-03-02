@@ -1604,6 +1604,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .primary-navbar__wrapper {
   /* position: relative; */
+  line-height: 70px;
   /* height:69px; */
   z-index: 190;
   /*
@@ -2189,16 +2190,23 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   [class*=sl-] .primary-navbar__wrapper {
     display: table;
-    /* block !important; /* table !important; */
-    /*height: auto;*/
+    /* block !important;
+      /*height: auto;*/
     line-height: 1;
     /*min-width: 100% !important;*/
     min-height: 70px;
     width: 100%;
     height: 100%;
+    /*ie10 fix?*/
   }
   .sticky-enabled [class*=sl-] .primary-navbar__wrapper {
     height: 70px;
+  }
+  .ie[class*=ie1] [class*=sl-] .primary-navbar__wrapper {
+    min-height: 70px !important;
+  }
+  .ie[class*=ie1] [class*=sl-] .primary-navbar__wrapper .primary-nav__container {
+    height: 100% !important;
   }
   [class*=sl-] .branding {
     height: auto;
@@ -2251,15 +2259,24 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     height: 100%;
     /*overflow: hidden;*/
     display: inline-block;
+    /*@at-root  .tc-header[class*=sl-] .primary-nav__menu-wrapper {
+          &.pull-menu-left .nav__menu {
+            float: left;
+          }
+          &.pull-menu-right .nav__menu {
+            float: right;
+          }
+        }*/
   }
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
     height: 100%;
     position: static;
     float: left;
     display: inline-table;
+    /* firefox needs this */
   }
   .ie[class*=ie1] [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
-    display: inline-block !important;
+    display: inline-block;
   }
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
   [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a > span:not(.caret__dropdown-toggler) {
@@ -2282,6 +2299,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: table-cell;
     height: 100%;
     vertical-align: middle;
+    line-height: inherit;
   }
   [class*=sl-] .primary-nav__container .primary-nav__utils {
     display: table-cell !important;

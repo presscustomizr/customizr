@@ -700,7 +700,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 26,
           ),
           'tc_header_type'  => array(
-                            'default'       => 'absolute',
+                            'default'       => 'standard',
                             'control'       => 'CZR_controls' ,
                             'label'         => __( "Header type" , "customizr" ),
                             'section'       => 'header_layout_sec' ,
