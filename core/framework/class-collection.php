@@ -302,7 +302,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
         //A model class has been defined, let's try to load it and instantiate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
-        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ) {
+        if ( 'model_class' == $_model_class && array_key_exists( 'name', $model['model_class'] ) ) {
           $this -> czr_fn_require_model_class( $model['model_class']['parent'] );
           $model_class     = $model[ $_model_class ]['name'];
 

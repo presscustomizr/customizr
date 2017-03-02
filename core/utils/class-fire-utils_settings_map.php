@@ -821,6 +821,8 @@ function czr_fn_header_design_option_map( $get_default = null ) {
 ------------------------------------------------------------------------------------------------------*/
 //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
 function czr_fn_navigation_option_map( $get_default = null ) {
+  $menu_style = czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside';
+  $menu_style = czr_fn_user_started_before_version( '4.0', '2.0' ) ? $menu_style : 'navbar';
   return array(
           'tc_display_second_menu'  =>  array(
                             'default'       => 0,
@@ -832,7 +834,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'notice'        => __( 'Displayed in the topnav if enabled' , 'customizr' ),
           ),
           'tc_menu_style'  =>  array(
-                          'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside',
+                          'default'       => $menu_style,
                           'control'       => 'CZR_controls' ,
                           'title'         => __( 'Main menu design' , 'customizr'),
                           'label'         => __( 'Select a design : side menu (vertical) or regular (horizontal)' , 'customizr' ),
