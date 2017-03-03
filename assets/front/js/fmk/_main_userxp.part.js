@@ -129,9 +129,12 @@ var czrapp = czrapp || {};
       });
 
       //go to opened on click element when mCustomScroll active
-      czrapp.$_body.on( 'shown.czr.czrDropdown', '.mCustomScrollbar', function( evt ) {
-        //http://manos.malihu.gr/jquery-custom-content-scroller/
-        $(this).mCustomScrollbar( 'scrollTo', $(evt.target) );
+      czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
+        var $_this            = $( this ),
+            $_customScrollbar = $_this.hasClass('mCustomScrollbar') ? $_this : $_this.closest('.mCustomScrollbar');
+        if ( $_customScrollbar.length )
+          //http://manos.malihu.gr/jquery-custom-content-scroller/
+          $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
       });
     },
 

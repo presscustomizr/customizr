@@ -15,7 +15,7 @@ var czrapp = czrapp || {};
       //cache jQuery el
       this.$_page_wrapper           = $('#tc-page-wrap');
       this.$_page_wrapper_node      = this.$_page_wrapper.get(0);
-      this.$_page_wrapper_btn       = $('.btn-toggle-nav', '#tc-page-wrap');
+      this.$_page_wrapper_btn       = $('[data-toggle="sidenav"]', '#tc-page-wrap');
 
       this.$_sidenav_inner          = $( '.tc-sn-inner', this.$_sidenav);
       this.$_sidenav_menu           = $( '.nav__menu-wrapper' , this.$_sidenav );
