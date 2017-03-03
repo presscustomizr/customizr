@@ -6,7 +6,7 @@
  *
  */
 ?>
-<?php if ( czr_fn_is_loop_start() ) : ?>
+<?php if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
 <div class="grid grid-container__masonry <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
   <div class="masonry__wrapper row">
 <?php endif ?>
@@ -55,7 +55,7 @@
         </section>
       </div>
     </article>
-<?php if ( czr_fn_is_loop_end() ) : ?>
+<?php if ( czr_fn_get( 'print_end_wrapper' ) ) : ?>
   </div>
 </div>
 <?php endif ?>

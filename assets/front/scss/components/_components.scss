@@ -648,6 +648,9 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     /* end of centering */
     border: 150px solid;
     border-color: inherit;
+    .ie9 & {
+      border-color: transparent !important;
+    }
     @include box-sizing( content-box );
     transition: all .3s ease;
     .no-effect & { border: transparent }

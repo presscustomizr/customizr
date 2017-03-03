@@ -1,3 +1,6 @@
+@include make-grid-smart-rows();
+@include make-grid-smart-rows($grid-columns, 1);//case sticky expanded
+
 /*
 POST TYPE classes:
   .standard-post -> .format-standard

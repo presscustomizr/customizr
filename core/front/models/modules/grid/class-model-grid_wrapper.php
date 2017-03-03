@@ -20,9 +20,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
-      'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      //'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
+      'grid_thumb_shape'      => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_shape') ),
       'use_thumb_placeholder' => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'wrapped'               => true,
       'contained'             => false
     );
 
@@ -63,6 +65,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     if ( czr_fn_is_loop_end() )
       //all post lists do this
       $this -> czr_fn_reset_text_hooks();
+  }
+
+  function czr_fn_get_print_start_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_start();
+  }
+
+  function czr_fn_get_print_end_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_end();
   }
 
 
@@ -121,14 +131,18 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * returns if the current post is the expanded one
   */
   private function czr_fn_force_current_post_expansion(){
-    global $wp_query;
-    $is_expanded = $this -> czr_fn_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky() ;
+    $is_expanded = $this->czr_fn_is_sticky_expanded();
+
     //set expanded sticky flag
     if ( ! isset( $this -> expanded_sticky ) )
       $this -> czr_fn_set_property( 'expanded_sticky', $is_expanded );
     return $is_expanded;
   }
 
+  private function czr_fn_is_sticky_expanded() {
+    global $wp_query;
+    return $this -> czr_fn_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky();
+  }
 
 
   /******************************
@@ -294,10 +308,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   }
 
   function czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded ) {
-    $post_class = sprintf( '%1$s tc-grid col-xs-12 col-md-%2$s',
-      apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) ? 'expanded' : '',
-      is_numeric( $section_cols ) ? 12 / $section_cols : 6
-    );
+    if ( apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) )
+      $post_class = 'col-xs-12 expanded';
+    else
+      $post_class = sprintf( 'rgrid__item col-xs-12 col-sm-6 col-md-%1$s col-lg-%1$s col-xl-%1$s',
+                              is_numeric( $section_cols ) ? 12 / $section_cols : 6 );
 
     $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
     return czr_fn_get_the_post_list_article_selectors( $post_class, $id_suffix );
@@ -360,6 +375,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       array_push( $_classes, 'tc-grid-border' );
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
+    //test smart rows
+    array_push($_classes, sprintf("czr-smart-row%s", $this -> czr_fn_is_sticky_expanded() ? '-1' : '' ) );
+
     return $_classes;
   }
 
@@ -385,9 +403,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $_map = apply_filters(
         'tc_grid_col_layout_map',
         array(
-          'col-md-12'  => '3',//no sidebars
-          'col-md-11'  => '3',
-          'col-md-10'  => '3',
+          'col-md-12'  => '4',//no sidebars
+          'col-md-11'  => '4',
+          'col-md-10'  => '4',
           'col-md-9'   => '3',//one sidebar right or left
           'col-md-8'   => '3',
           'col-md-7'   => '2',

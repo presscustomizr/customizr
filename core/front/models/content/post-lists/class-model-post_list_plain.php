@@ -21,7 +21,8 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'show_comment_meta'         => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
-      'contained'                 => false
+      'contained'                 => false,
+      'wrapped'                   => true,
     );
 
     return $_preset;
@@ -99,6 +100,14 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
   function czr_fn_get_show_comment_meta() {
     return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
+  }
+
+  function czr_fn_get_print_start_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_start();
+  }
+
+  function czr_fn_get_print_end_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_end();
   }
 
   /*

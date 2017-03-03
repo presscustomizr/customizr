@@ -300,3 +300,27 @@
     @content;
   }
 }
+
+// Rows CSS based
+// This will be not needed anymore with the flex :D
+@mixin make-grid-smart-rows( $items: $grid-columns, $offset : 0, $breakpoints: $grid-breakpoints ) {
+  @each $breakpoint in map-keys($breakpoints) {
+
+    $infix    : breakpoint-infix($breakpoint, $breakpoints);
+    $suffix   : if($offset == 0, "", "-#{$offset}");
+    $n_offset : if($offset == 0, "1", "#{$offset+1}");
+
+    //case sticky expanded
+    @include media-breakpoint-only($breakpoint, $breakpoints) {
+
+      @for $i from 1 through $items {
+        $nth_child : $grid-columns/$i;
+        @if ( round($nth-child) == $nth_child ) {
+          .czr-smart-row#{$suffix} .col#{$infix}-#{$i}:nth-child(#{$nth-child}n+#{$n_offset}) {
+            clear: left; //will be right for RTL
+          }
+        }
+      }
+    }
+  }
+}

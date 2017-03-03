@@ -198,7 +198,8 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
               //CZR_CZR_PATH is the relative path where the Customizer php is located
               if( ! defined( 'CZR_CZR_PATH' ) )             define( 'CZR_CZR_PATH' , 'core/czr/' );
-
+              //CZR_FRONT_ASSETS_URL http url of the front assets
+              if( ! defined( 'CZR_FRONT_ASSETS_URL' ) )     define( 'CZR_FRONT_ASSETS_URL' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/' );
               //if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );//DEPRECATED
               //IS PRO
               if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );

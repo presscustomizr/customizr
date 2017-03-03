@@ -145,7 +145,7 @@
     /*
     min-height: 1px;*/
     /*ie10 fix?*/
-    .ie[class*=ie1] & { min-height: 70px !important;
+    .ie & { min-height: 70px !important;
       & .primary-nav__container  { height: auto !important; }
     }
 

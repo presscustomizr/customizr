@@ -6,9 +6,7 @@
  *
  * @package Customizr
  */
-?>
-<?php
-  if ( czr_fn_is_loop_start() ) : ?>
+if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
 <div class="grid-container__alternate <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
   <div class="alternate__wrapper row">
 <?php endif ?>
@@ -57,7 +55,7 @@
         </div>
       </div>
     </article>
-<?php if ( czr_fn_is_loop_end() ) : ?>
+<?php if ( czr_fn_get( 'print_end_wrapper' ) ) : ?>
   </div>
 </div>
 <?php endif;

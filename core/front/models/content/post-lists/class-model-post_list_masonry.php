@@ -27,7 +27,8 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
       'show_thumb'        => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'show_comment_meta' => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'content_width'     => czr_fn_get_in_content_width_class(),
-      'contained'         => false
+      'contained'         => false,
+      'wrapped'           => true,
     );
     return $_preset;
   }
@@ -118,6 +119,14 @@ class CZR_post_list_masonry_model_class extends CZR_Model {
 
   function czr_fn_get_media_class() {
     return $this -> czr_fn__get_post_list_item_property( 'media_class' );
+  }
+
+  function czr_fn_get_print_start_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_start();
+  }
+
+  function czr_fn_get_print_end_wrapper() {
+    return $this -> wrapped && czr_fn_is_loop_end();
   }
   /*
   * Private/protected getters
