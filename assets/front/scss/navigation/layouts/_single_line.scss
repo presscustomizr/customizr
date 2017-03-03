@@ -78,10 +78,10 @@
         }*/
         > li {
           height : 100%;
-          position: static;
+          position: static; /* to allow the dropdown show when overflow hidden set by the parent*/
           float: left;
           display: inline-table; /* firefox needs this */
-          .ie[class*=ie1] & { display: inline-block }
+          .ie & { display: inline-block }
           > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
           > span > a > span:not(.caret__dropdown-toggler) {
             display: table-cell!important;

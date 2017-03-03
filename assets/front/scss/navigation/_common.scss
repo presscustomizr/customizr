@@ -97,6 +97,7 @@
       display: table;
       /*table-layout: fixed;*/
       min-height: 70px;
+      line-height: 70px;
       height: 100%;
       [class*=logo_right] & {
         direction: rtl;
