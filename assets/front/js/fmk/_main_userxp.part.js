@@ -25,7 +25,7 @@ var czrapp = czrapp || {};
 
             timer = setTimeout(function() {
               czrapp.$_body.removeClass('no-hover')
-            }, 150);
+            }, 100);
         });
       }
     },

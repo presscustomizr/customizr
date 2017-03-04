@@ -26,7 +26,7 @@ var czrapp = czrapp || {};
       * - use delegation for images (think about infinite scroll)
       * - use jQuery deferred (think about infinite scroll)
       */
-      this.$_grid = $('.grid-container__masonry .masonry__wrapper' );
+      this.$_grid = $('.masonry__wrapper' );
       this.$_images = this.$_grid.find('img');
 
       this._loaded_counter = 0;
