@@ -20,7 +20,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   private static $_col_bp = array(
       'xl', 'lg', 'md', 'sm', 'xs'
   );
-  private $post_class     = array('col-xs-12');
+  private $post_class     = array('col-12');
   public $place_1 = 'media';//thumb always printed first
   public $place_2 = 'content';//thumb always printed first
   public $post_list_items = array();
@@ -129,6 +129,10 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'sections_wrapper_class' );
   }
 
+  function czr_fn_get_grid_item_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'grid_item_class' );
+  }
+
   function czr_fn_get_article_selectors() {
     return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
   }
@@ -183,6 +187,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
     $_sections_wrapper_class = array();
+    $_grid_item_class        = array();
 
     /* Structural */
     $place_1                 = $this->place_1;
@@ -271,12 +276,18 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $media_cols, 'czr__r-w1by1' );
     }
 
+    if ( ! $is_full_image ) {
+      array_push( $_sections_wrapper_class, 'row' );
+      array_push( $_grid_item_class, 'col' );
+    }
+
     $show_comment_meta = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     $post_list_item = array(
       'content_cols'            => $content_cols,
       'media_cols'              => $media_cols,
       'sections_wrapper_class'  => $_sections_wrapper_class,
+      'grid_item_class'         => $_grid_item_class,
       'article_selectors'       => $article_selectors,
       'is_full_image'           => $is_full_image,
       'has_format_icon_media'   => $has_format_icon_media,

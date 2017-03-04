@@ -7,7 +7,7 @@
  */
 ?>
 <div class="czr-hot-crumble row page-breadcrumbs" role="navigation" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="col-xs-12">
+  <div class="col-12">
     <?php /* or do not use a model but a tc function (template tag) */ ?>
     <?php czr_fn_echo( 'breadcrumb' ) ?>
   </div>

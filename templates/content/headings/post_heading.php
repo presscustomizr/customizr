@@ -18,7 +18,7 @@
     endif
 ?>
   <div class="container header-content">
-    <div class="header-content-inner col-xs-12">
+    <div class="header-content-inner col-12">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
         <div class="entry-meta">
           <div class="tax__container">
@@ -40,7 +40,7 @@
     ?>
     </div>
     <div class="header-content-bottom">
-      <div class="post-info col-xs-12">
+      <div class="post-info col-12">
         <?php
           if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) ) :
         ?>

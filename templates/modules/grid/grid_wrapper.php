@@ -11,13 +11,13 @@
 /* Are we at the start of the loop? in this case print a section wrapper element */
 if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
 <div class="grid-container__classic <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="grid__wrapper grid row">
+  <div class="grid__wrapper grid">
 <?php
 endif;
   /* Is the item we're about to display the first of a grid section (the expanded sticky is both a first and last of a grid section)*/
   if ( czr_fn_get( 'is_first_of_grid' ) ) :
   ?>
-  <section class="<?php czr_fn_echo('grid_section_class') ?>">
+  <section class="row <?php czr_fn_echo('grid_section_class') ?>">
   <?php
   endif;
     czr_fn_render_template(

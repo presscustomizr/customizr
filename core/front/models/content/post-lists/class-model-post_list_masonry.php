@@ -6,10 +6,10 @@
 class CZR_post_list_masonry_model_class extends CZR_Model {
   //Default post list layout
   private static $default_post_list_layout   = array(
-            'b'         => array('col-xs-12'),
-            'f'         => array('col-xs-12', 'col-md-6', 'col-lg-4'),
-            'l'         => array('col-xs-12', 'col-md-6'),
-            'r'         => array('col-xs-12', 'col-md-6')
+            'b'         => array('col-12'),
+            'f'         => array('col-12', 'col-md-6', 'col-lg-4'),
+            'l'         => array('col-12', 'col-md-6'),
+            'r'         => array('col-12', 'col-md-6')
           );
   public $post_class    = array( 'grid-item' );
 

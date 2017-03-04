@@ -11,7 +11,7 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
   <div class="alternate__wrapper row">
 <?php endif ?>
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >
-      <div class="grid__item">
+      <div class="grid__item <?php czr_fn_echo('grid_item_class') ?>">
         <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
         <?php
 

@@ -42,8 +42,8 @@
           ?>
           <div class="entry-content__wrapper row">
             <?php if ( $cat_list = czr_fn_get( 'cat_list' ) ) : ?>
-              <div class="entry-meta">
-                <div class="tax__container small caps <?php czr_fn_echo( 'cat_list_class' ) ?>">
+              <div class="entry-meta  <?php czr_fn_echo( 'cat_list_class' ) ?>">
+                <div class="tax__container small caps">
                   <?php echo $cat_list ?>
                 </div>
               </div>

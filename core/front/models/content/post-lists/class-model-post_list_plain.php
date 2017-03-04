@@ -5,9 +5,9 @@
 */
 class CZR_post_list_plain_model_class extends CZR_Model {
 
-  public $post_class               = array( 'col-xs-12' );
+  public $post_class               = array( 'col-12' );
   public $post_list_items          = array();
-  public $cat_list_class           = array( 'col-lg-3', 'col-xs-12' );
+  public $cat_list_class           = array( 'col-lg-3', 'col-12' );
   /**
   * @override
   * fired before the model properties are parsed
@@ -127,7 +127,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $cat_list                    = $this -> czr_fn__get_cat_list();
 
     /* Build inner elements classes */
-    $entry_header_inner_class    = $content_inner_class = array( 'col-xs-12' );
+    $entry_header_inner_class    = $content_inner_class = array( 'col-12' );
     if ( $cat_list ) {
       /* the header inner class (width) depends on the presence of the category list */
       array_push( $entry_header_inner_class, 'col-lg-7', 'offset-lg-4' );

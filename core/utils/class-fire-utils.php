@@ -172,7 +172,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       if ( is_404() ) {
         $czr_screen_layout = array(
           'sidebar' => false,
-          'class'   => 'col-xs-12 col-md-8 push-md-2'
+          'class'   => 'col-12 col-md-8 push-md-2'
         );
         return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }

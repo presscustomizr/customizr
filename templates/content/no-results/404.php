@@ -9,7 +9,7 @@
 </header>
 <hr class='featurette-divider'>
 <article id="post-0" class="post error404 no-results not-found row text-xs-center">
-  <div class="tc-content col-xs-12">
+  <div class="tc-content col-12">
     <div class="entry-content">
       <p><?php _e( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' ) ?></p>
       <?php get_search_form() ?>

@@ -19,7 +19,7 @@
 
       foreach ( $_footer_widgets as $key => $area ):
       ?>
-        <div id="<?php echo $key ?>" class="<?php echo $class ?> col-xs-12">
+        <div id="<?php echo $key ?>" class="<?php echo $class ?> col-12">
           <?php dynamic_sidebar( $key ) ?>
         </div>
       <?php

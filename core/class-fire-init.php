@@ -71,28 +71,28 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //Default layout settings
           $this -> global_layout      = array(
                                         'r' => array(
-                                            'content'       => 'col-xs-12 col-md-9',
+                                            'content'       => 'col-12 col-md-9',
                                             'l-sidebar'     => false,
-                                            'r-sidebar'     => 'col-xs-12 col-md-3',
+                                            'r-sidebar'     => 'col-12 col-md-3',
                                             'customizer'    => __( 'Right sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Right sidebar' , 'customizr' ),
                                         ),
                                         'l' => array(
-                                            'content'       => 'col-xs-12 col-md-9 push-md-3',
-                                            'l-sidebar'     => 'col-xs-12 col-md-3 pull-md-9',
+                                            'content'       => 'col-12 col-md-9 push-md-3',
+                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-9',
                                             'r-sidebar'     => false,
                                             'customizer'    => __( 'Left sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Left sidebar' , 'customizr' ),
                                         ),
                                         'b' => array(
-                                            'content'       => 'col-xs-12 col-md-6 push-md-3',
-                                            'l-sidebar'     => 'col-xs-12 col-md-3 pull-md-6',
-                                            'r-sidebar'     => 'col-xs-12 col-md-3',
+                                            'content'       => 'col-12 col-md-6 push-md-3',
+                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-6',
+                                            'r-sidebar'     => 'col-12 col-md-3',
                                             'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
                                             'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
                                         ),
                                         'f' => array(
-                                            'content'       => 'col-xs-12',
+                                            'content'       => 'col-12',
                                             'l-sidebar'     => false,
                                             'r-sidebar'     => false,
                                             'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),

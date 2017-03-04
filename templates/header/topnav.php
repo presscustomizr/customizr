@@ -6,26 +6,26 @@
 <div class="secondary-navbar__wrapper row <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
   <?php if ( czr_fn_has( 'secondary_menu' ) ) :?>
     <?php if ( czr_fn_get( 'has_mobile_button' ) ) :?>
-      <div class="col-xs-12 float-left">
+      <div class="hamburger-toggler__wrapper col-12 float-left hidden-lg-up">
         <?php
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(
               'data_attributes' => 'data-toggle="collapse" data-target="#secondary-nav"',
-              'element_class'   => 'hidden-lg-up float-right'
+              'element_class'   => 'float-right'
             )
           ));
         ?>
       </div>
     <?php endif ?>
     <div class="secondary-nav__container">
-      <nav id="secondary-nav" class="secondary-nav__nav <?php czr_fn_echo('nav_class') ?>">
+      <nav id="secondary-nav" class="secondary-nav__nav float-left <?php czr_fn_echo('nav_class') ?>">
         <?php
           czr_fn_render_template( 'header/menu', array(
             'model_id' => 'secondary_menu',
             'model_args' => array(
               'theme_location' => 'secondary',
               'element_class' => 'secondary-nav__menu-wrapper',
-              'menu_class'    => array( 'secondary-nav__menu', 'regular', 'list__menu' ),
+              'menu_class'    => czr_fn_get('menu_class'),
               'menu_id'       => 'secondary-menu'
             )
           ));

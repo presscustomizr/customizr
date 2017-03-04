@@ -12,8 +12,9 @@ class CZR_topnav_model_class extends CZR_Model {
 
     switch ( $mobile_topnav ) {
       case 'collapse' : $_preset = array(
-                          'element_class'       => array('menu-toggleable-md', $secondary_menu_position ),
-                          'nav_class'           => array('collapse', 'nav-collapse', 'navbar-toggleable-md' ),
+                          'element_class'       => array( 'navbar-toggleable-md', $secondary_menu_position ),
+                          'nav_class'           => array( 'collapse', 'navbar-collapse'),
+                          'menu_class'          => array( 'secondary-nav__menu', 'regular', 'navbar-nav' ),
                           'has_mobile_button'   => true,
                         );
                         break;
@@ -21,6 +22,7 @@ class CZR_topnav_model_class extends CZR_Model {
       case 'show'     : $_preset = array(
                           'element_class'       => array('not-hidden-md-down', $secondary_menu_position ),
                           'nav_class'           => '',
+                          'menu_class'          => array( 'secondary-nav__menu', 'regular' ),
                           'has_mobile_button'   => false,
                         );
                         break;
@@ -28,6 +30,7 @@ class CZR_topnav_model_class extends CZR_Model {
       default         : $_preset = array(
                           'element_class'       => array('hidden-md-down', $secondary_menu_position ),
                           'nav_class'           => '',
+                          'menu_class'          => array( 'secondary-nav__menu', 'regular' ),
                           'has_mobile_button'   => false,
                         );
                         break;

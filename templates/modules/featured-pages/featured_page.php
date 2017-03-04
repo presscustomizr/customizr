@@ -6,7 +6,7 @@
 if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
 <div class="row widget-area" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
 <?php endif ?>
-  <div class="featured col-xs-12 col-md-<?php czr_fn_echo( 'fp_col' ) ?> fp-<?php czr_fn_echo( 'fp_id' ) ?>">
+  <div class="featured col-12 col-md-<?php czr_fn_echo( 'fp_col' ) ?> fp-<?php czr_fn_echo( 'fp_id' ) ?>">
     <div class="widget-front czr-link-mask-p grid__item round" <?php czr_fn_echo('element_attributes') ?>>
     <?php if ( czr_fn_get( 'fp_img' ) ) : /* FP IMAGE */?>
       <div class="tc-thumbnail czr-thumb-wrapper czr__r-w1by1 <?php czr_fn_echo( 'thumb_wrapper_class' ) ?>">

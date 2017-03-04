@@ -13,7 +13,7 @@ class CZR_menu_model_class extends CZR_Model {
         'element_class'       => '',
         'theme_location'      => 'main',
         'menu_id'             => 'main-menu',
-        'def_menu_class'      => array('nav', 'navbar-nav', 'nav__menu'),
+        'def_menu_class'      => array('nav', 'nav__menu'),
         'menu_class'          => array(),
         'fallback_cb'         => array( $this, 'czr_fn_page_menu' ),
         'walker'              => ''

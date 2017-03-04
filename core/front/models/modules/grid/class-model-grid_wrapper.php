@@ -317,9 +317,9 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
   function czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded ) {
     if ( apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) )
-      $post_class = 'col-xs-12 expanded';
+      $post_class = 'col-12 expanded';
     else
-      $post_class = sprintf( 'grid-item col-xs-12 col-sm-6 col-md-%1$s col-lg-%1$s col-xl-%1$s',
+      $post_class = sprintf( 'grid-item col-12 col-sm-6 col-md-%1$s col-lg-%1$s col-xl-%1$s',
                               is_numeric( $section_cols ) ? 12 / $section_cols : 6 );
 
     $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
