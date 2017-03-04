@@ -32,11 +32,13 @@ var czrapp = czrapp || {};
       this._sticky_trigger            = false;
       this._mobile_viewport           = 991;
 
+      this.collapse_show_selector     = "show";
+
       this.debounced_resize_actions   = _.debounce( function() {
           var self = this;
           this._maybe_move_utils();
           this.stickyHeaderMaybeToggling();
-          $.each( $(self._sticky_navbar_toggleable_selector+'.active'), function(){
+          $.each( $(self._sticky_navbar_toggleable_selector+'.'+self.collapse_show_selector), function(){
             self._stickyHeaderLimitMobileMenu( 'resize', $(this) );
           })
         }, 300
@@ -63,7 +65,7 @@ var czrapp = czrapp || {};
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
       this._sticky_mobile_selector    = '.'+this._sticky_mobile_class;
-      this._sticky_navbar_toggleable_selector = this._sticky_mobile_selector+ ' .nav-collapse[class*=navbar-toggleable-]';
+      this._sticky_navbar_toggleable_selector = this._sticky_mobile_selector+ ' [class*=navbar-toggleable-] .nav-collapse';
 
       this._utils_selector            = '.primary-nav__utils';
       this._branding_selector         = '.branding__container';
@@ -120,7 +122,7 @@ var czrapp = czrapp || {};
 
       czrapp.$_body.on( this.transitionEnd , this._sticky_candidate_sel, function(evt) {
         if ( self.$_sticky_candidate[0] == evt.target ) {
-          self._stickyHeaderLimitMobileMenu( 'resize', $(self._sticky_navbar_toggleable_selector+'.active'));
+          self._stickyHeaderLimitMobileMenu( 'resize', $(self._sticky_navbar_toggleable_selector+'.'+self.collapse_show_selector));
         }
       });
     },
@@ -310,7 +312,7 @@ var czrapp = czrapp || {};
         return;
       }
 
-      if ( 'resize' == evt && !$_el.hasClass('active') )
+      if ( 'resize' == evt && !$_el.hasClass('show') )
         return;
 
       if ( evt && 'hidden' == evt.type ) {
@@ -325,12 +327,12 @@ var czrapp = czrapp || {};
 
         $_el.css('max-height' , newMaxHeight + 'px').addClass('limited-height');
 
-       //update mCustomScrollbar if active
+       //update mCustomScrollbar if show
         if ( $_el.is('[class*=mCustomScrollbar]') ) {
           $_el.mCustomScrollbar("update");
         }
-        //re-init if temporary destroyed and active
-        else if ( $_el.hasClass('active') && $_el.hasClass('mCS_destroyed') ) {
+        //re-init if temporary destroyed and show
+        else if ( $_el.hasClass('show') && $_el.hasClass('mCS_destroyed') ) {
           self._initCustomScrollbar($_el);
         }
 

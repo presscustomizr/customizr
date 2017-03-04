@@ -35,15 +35,17 @@
      */
 
     var NAME = 'czrDropdown';
-    var VERSION = '1';
+    var VERSION = '1'; // '4.0.0-alpha.6';
     var DATA_KEY = 'czr.czrDropdown';
     var EVENT_KEY = '.' + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+    var SPACE_KEYCODE = 32; // KeyboardEvent.which value for space key
     var ARROW_UP_KEYCODE = 38; // KeyboardEvent.which value for up arrow key
     var ARROW_DOWN_KEYCODE = 40; // KeyboardEvent.which value for down arrow key
     var RIGHT_MOUSE_BUTTON_WHICH = 3; // MouseEvent.which value for the right button (assuming a right-handed mouse)
+    var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + '|' + ARROW_DOWN_KEYCODE + '|' + ESCAPE_KEYCODE + '|' + SPACE_KEYCODE);
 
     var Event = {
       HIDE: 'hide' + EVENT_KEY,
@@ -52,13 +54,14 @@
       SHOWN: 'shown' + EVENT_KEY,
       CLICK: 'click' + EVENT_KEY,
       CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY,
+      FOCUSIN_DATA_API: 'focusin' + EVENT_KEY + DATA_API_KEY,
       KEYDOWN_DATA_API: 'keydown' + EVENT_KEY + DATA_API_KEY
     };
 
     var ClassName = {
       BACKDROP: 'czr-dropdown-backdrop',
       DISABLED: 'disabled',
-      ACTIVE: 'active'
+      SHOW: 'show'
     };
 
     var Selector = {
@@ -97,7 +100,7 @@
         }
 
         var parent = czrDropdown._getParentFromElement(this);
-        var isActive = $(parent).hasClass(ClassName.ACTIVE);
+        var isActive = $(parent).hasClass(ClassName.SHOW);
         var _parentsToNotClear = $.makeArray( $(parent).parents(Selector.PARENTS) );
 
         czrDropdown._clearMenus('', _parentsToNotClear );
@@ -115,7 +118,9 @@
           $(dropdown).on('click', function() { czrDropdown._clearMenus( '', _parentsToNotClear  ) } );
         }
 
-        var relatedTarget = { relatedTarget: this };
+        var relatedTarget = {
+          relatedTarget: this
+        };
         var showEvent = $.Event(Event.SHOW, relatedTarget);
 
         $(parent).trigger(showEvent);
@@ -127,7 +132,7 @@
         this.focus();
         this.setAttribute('aria-expanded', 'true');
 
-        $(parent).toggleClass(ClassName.ACTIVE);
+        $(parent).toggleClass(ClassName.SHOW);
         $(parent).trigger($.Event(Event.SHOWN, relatedTarget));
 
         return false;
@@ -152,7 +157,8 @@
           var data = $(this).data(DATA_KEY);
 
           if (!data) {
-            $(this).data(DATA_KEY, data = new czrDropdown(this));
+            data = new czrDropdown(this);
+            $(this).data(DATA_KEY, data);
           }
 
           if (typeof config === 'string') {
@@ -181,11 +187,11 @@
           var parent = czrDropdown._getParentFromElement(toggles[i]);
           var relatedTarget = { relatedTarget: toggles[i] };
 
-          if (!$(parent).hasClass(ClassName.ACTIVE) || $.inArray(parent, _parentsToNotClear ) > -1 ){
+          if (!$(parent).hasClass(ClassName.SHOW) || $.inArray(parent, _parentsToNotClear ) > -1 ){
             continue;
           }
 
-          if (event && event.type === 'click' && /input|textarea/i.test(event.target.tagName) && $.contains(parent, event.target)) {
+          if (event && ( event.type === 'click' && /input|textarea/i.test(event.target.tagName) || event.type === 'focusin') && $.contains(parent, event.target)) {
             continue;
           }
 
@@ -197,7 +203,7 @@
 
           toggles[i].setAttribute('aria-expanded', 'false');
 
-          $(parent).removeClass(ClassName.ACTIVE).trigger($.Event(Event.HIDDEN, relatedTarget));
+          $(parent).removeClass(ClassName.SHOW).trigger($.Event(Event.HIDDEN, relatedTarget));
         }
       };
 
@@ -214,7 +220,7 @@
       };
 
       czrDropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
-        if (!/(38|40|27|32)/.test(event.which) || /input|textarea/i.test(event.target.tagName)) {
+        if (!REGEXP_KEYDOWN.test(event.which) || /input|textarea/i.test(event.target.tagName)) {
           return;
         }
 
@@ -226,7 +232,7 @@
         }
 
         var parent = czrDropdown._getParentFromElement(this);
-        var isActive = $(parent).hasClass(ClassName.ACTIVE);
+        var isActive = $(parent).hasClass(ClassName.SHOW);
 
         if (!isActive && event.which !== ESCAPE_KEYCODE || isActive && event.which === ESCAPE_KEYCODE) {
 
@@ -239,11 +245,12 @@
           return;
         }
 
-        var items = $.makeArray($(Selector.VISIBLE_ITEMS));
+       /* var items = $.makeArray($(Selector.VISIBLE_ITEMS));
 
         items = items.filter(function (item) {
           return item.offsetWidth || item.offsetHeight;
-        });
+        });*/
+        var items = $(parent).find(Selector.VISIBLE_ITEMS).get();
 
         if (!items.length) {
           return;
@@ -284,7 +291,7 @@
      * ------------------------------------------------------------------------
      */
 
-    $(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_MENU, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_LISTBOX, czrDropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API, czrDropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
+    $(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_MENU, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_LISTBOX, czrDropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + ' ' + Event.FOCUSIN_DATA_API, czrDropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
       e.stopPropagation();
     });
 
@@ -330,7 +337,7 @@ var czrapp = czrapp || {};
       this.ClassName = {
         DROPDOWN         : 'dropdown-menu',
         DROPDOWN_WRAPPER : 'czr-dropdown-menu',
-        ACTIVE           : 'active',
+        SHOW           : 'show',
         PARENTS          : 'menu-item-has-children'
       };
 
@@ -352,8 +359,8 @@ var czrapp = czrapp || {};
 
       function _addOpenClass () {
         $_el = $(this);
-        if ( ! $_el.hasClass(self.ClassName.ACTIVE) ) {
-          $_el.addClass(self.ClassName.ACTIVE);
+        if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
+          $_el.addClass(self.ClassName.SHOW);
           $_el.trigger(self.Event.SHOWN);
         }
       };
@@ -365,7 +372,7 @@ var czrapp = czrapp || {};
 
         _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-            $_el.removeClass(self.ClassName.ACTIVE);
+            $_el.removeClass(self.ClassName.SHOW);
             $_el.trigger( self.Event.HIDDEN );
           }
 
@@ -406,8 +413,8 @@ var czrapp = czrapp || {};
       }
 
       function _handle_visibility() {
-        var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE),
-            $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.ACTIVE );
+        var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW),
+            $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW );
             $_elements_to_hide        = $( '[class*=sl-] .primary-nav__menu > .menu-item').czrReverse();
 
         //Hide the non visible
@@ -425,7 +432,7 @@ var czrapp = czrapp || {};
         $_active_first_menu_items.each( function() {
           var $_this = $(this);
           if ( !_is_visible( this ) ) {
-            $_this.removeClass(self.ClassName.ACTIVE);
+            $_this.removeClass(self.ClassName.SHOW);
           }
         });
         //this will trigger the snake
@@ -451,7 +458,7 @@ var czrapp = czrapp || {};
       function _do_snake( $_el, evt ) {
         var $_this       = $_el;
 
-        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.ACTIVE) )
+        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.SHOW) )
           return;
 
         var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER ).not('.'+self.ClassName.DROPDOWN);
