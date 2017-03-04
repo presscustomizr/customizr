@@ -149,19 +149,19 @@ $secondary-color-dark   : $grey;
       @include underlined ($primary-color, 2px);
       .secondary-nav__nav & { @include underlined ($primary-color, 1px); }
     }
-    & > li.active > span > a, &  li.current-active > span > a {
+    & > li.show > span > a, &  li.current-active > span > a {
       color: $secondary-color;
       /* & > span:first-of-type { @include underlined_highlight_before($primary-color) } */
       @include underlined_highlight_before($primary-color);
     }
-    &  li.active {
+    &  li.show {
       .caret__dropdown-toggler__span:after,
       .caret__dropdown-toggler__span:before  {
         background: $secondary-color-dark;
       }
     }
     .dropdown-menu a { color: $primary-color; }
-    .dropdown-menu a:hover, li.active > span > a  { color: $secondary-color;  }
+    .dropdown-menu a:hover, li.show > span > a  { color: $secondary-color;  }
     .dropdown-item  a { color: $secondary-color; }
     .dropdown-item:hover a { color: $primary-color; }
 

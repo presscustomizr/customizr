@@ -401,12 +401,12 @@ nav li.dropdown-item:before {
       padding-left: $base-line-height;
       margin-left: 0 !important;
   }
-  a:hover, a.active, a.active:hover {
+  a:hover, a.active, a.show, a.show:hover, a.active:hover {
       color:$black;
       background-color: transparent;
   }
-  .nav-link.active, .nav-link:hover, .nav-link.active:hover, .nav-link.active:focus { background: none; color:$black; }
-  .active::before {
+  .nav-link.show, .nav-link:hover, .nav-link.show:hover, .nav-link.show:focus { background: none; color:$black; }
+  .show:before, .active::before {
       background-color: $black;
       @include transform(scale(1));
   }

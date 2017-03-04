@@ -1,0 +1,111 @@
+/* Alternate sections centering */
+@media ( min-width: 768px) {
+  .czr-center-sections{transform: translateY(50%) }
+  .czr-center-sections section {transform: translateY(-50%) }
+  .no-thumb .czr-center-sections .post-type__icon{ padding: 0 }
+}
+.grid-container__alternate .sections-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; vertical-align: middle;}
+
+/* Alternate cards - thumb should cover the wrapper height */
+/* large-full */
+@media (min-width: 992px) {
+  /* Use table system */
+  .full .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    display: table !important; /*overwrite*/
+    table-layout: fixed !important; /* will give us problems with safari ?!?! */
+  }
+
+  .full .czr-center-sections section {
+    transform: translate(0); /* revert */
+    display: table-cell;
+    vertical-align: middle;
+    float: none;/*overwrite*/
+    overflow: hidden;
+  }
+
+  .full .czr-center-sections .entry-media__wrapper {
+    position: relative;
+  }
+  .full .czr-center-sections .js-media-centering .entry-media__wrapper {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  }
+  /*.grid-container__alternate .tc-thumbnail {
+    position:absolute;
+    height: 100%;
+  }*/
+}
+@media (max-width: 991px) {
+    /* revert */
+  .full .czr-center-sections section,
+  .full .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    left: 0;
+  }
+  .grid-container__alternate.full .czr__r-w1by1::before {
+    content: none;
+  }
+  .grid-container__alternate.full [class*=czr__r-w] .czr__r-i {
+    position: static;
+  }
+  .grid-container__alternate.full .post-type__icon {
+    display: none;
+  }
+  .full .czr-center-sections .entry-media__wrapper img {
+    height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
+  }
+}
+
+/* Alternate cards - thumb should cover the wrapper height */
+/* semi-narrow */
+@media (min-width: 1201px) {
+  /* Use table system */
+  .semi-narrow .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    display: table !important; /*overwrite*/
+    table-layout: fixed !important; /* will give us problems with safari ?!?! */
+  }
+
+  .semi-narrow .czr-center-sections section {
+    transform: translate(0); /* revert */
+    display: table-cell;
+    vertical-align: middle;
+    float: initial !important;/*overwrite*/
+    overflow: hidden;
+  }
+
+  .semi-narrow .czr-center-sections .entry-media__wrapper {
+    position: relative;
+  }
+  .semi-narrow .czr-center-sections .js-media-centering .entry-media__wrapper {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  }
+  /*.grid-container__alternate .tc-thumbnail {
+    position:absolute;
+    height: 100%;
+  }*/
+}
+@media (max-width: 1200px) {
+  /* revert */
+  .semi-narrow .czr-center-sections section,
+  .semi-narrow .czr-center-sections {
+    transform: translate(0); /* revert */
+    width: 100%;
+    left: 0;
+  }
+  .grid-container__alternate.semi-narrow .czr__r-w1by1::before {
+    content: none;
+  }
+  .grid-container__alternate.semi-narrow [class*=czr__r-w] .czr__r-i {
+    position: static;
+  }
+  .semi-narrow .czr-center-sections .entry-media__holder:not(.js-media-centering) img {
+    height: auto !important; width: 100% !important; max-width: 100% !important; position: static !important;
+  }
+  .grid-container__alternate.semi-narrow .post-type__icon {
+    display: none;
+  }
+}

@@ -9,16 +9,15 @@
 }
 
 .secondary-navbar__wrapper {
-    display:block;
+   // display:block; //flex-hurt
     vertical-align: middle;
     padding: 0 $base-line-height-root;
     margin: 0 -1*$base-line-height-root;
     position: relative;
     & > div {
-      padding-top: $base-line-height/2;
-      padding-bottom: $base-line-height/2;
       background: inherit;
     }
+
     li {
       @extend .small;
       display: inline-block;
@@ -28,6 +27,8 @@
     }
 }
 .secondary-nav__nav {
+  padding-top: $base-line-height/2;
+  padding-bottom: $base-line-height/2;
     ul a {
          display:inline-block;
          position: relative;
@@ -372,7 +373,7 @@
                     margin-right:0; margin-left:0;
                  }
              }
-             @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu {
+             @at-root [class*=navbar-toggleable-] .secondary-nav__nav .nav__menu {
                    width:100%;
                    display: block;
                    & > li + li { display: block; margin-left: 0; margin-right: 0 }
@@ -384,10 +385,10 @@
           }
 
     }
-    @at-root .secondary-navbar__wrapper[class*=menu-toggleable-] .secondary-nav__container,
+    @at-root .secondary-navbar__wrapper[class*=navbar-toggleable-] .secondary-nav__container,
     .primary-nav__container .primary-nav__nav  { width:100%; text-align:left;}
 
-    @at-root .secondary-navbar__wrapper[class*=menu-toggleable-] .secondary-nav__nav .nav__menu li,
+    @at-root .secondary-navbar__wrapper[class*=navbar-toggleable-] .secondary-nav__nav .nav__menu li,
     .primary-nav__container .primary-nav__nav  li { display: block; width:100%; text-align:left; }
 
     .primary-nav__container .primary-nav__utils .socials { margin-left:0; margin-top: $base-line-height*2; }
@@ -404,7 +405,7 @@
         }
     }
 
-    @at-root [class*=navbar-toggleable-].secondary-nav__nav .nav__menu,
+    @at-root [class*=navbar-toggleable-] .secondary-nav__nav .nav__menu,
     .primary-nav__container {
       li { position: relative; width:100% }
     }
