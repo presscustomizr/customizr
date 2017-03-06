@@ -2,7 +2,7 @@
 class CZR_grid_wrapper_model_class extends CZR_Model {
   public $expanded_sticky;
 
-  private $queried_id;
+  protected $queried_id;
 
   /**
   * @override
@@ -114,7 +114,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
 
   /* retrieves number of cols option, and wrap it into a filter */
-  private function czr_fn_get_grid_cols() {
+  function czr_fn_get_grid_cols() {
     if ( ! isset( $this -> grid_cols ) )
       $grid_cols = $this -> czr_fn_set_grid_cols( $this -> grid_columns, czr_fn_get_layout( $this -> queried_id , 'class' ) );
     else
@@ -138,7 +138,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return bool
   * returns if the current post is the expanded one
   */
-  private function czr_fn_force_current_post_expansion(){
+  protected function czr_fn_force_current_post_expansion(){
     $is_expanded = $this->czr_fn_is_sticky_expanded();
 
     //set expanded sticky flag
@@ -147,7 +147,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return $is_expanded;
   }
 
-  private function czr_fn_is_sticky_expanded() {
+  protected function czr_fn_is_sticky_expanded() {
     global $wp_query;
     return $this -> czr_fn_maybe_has_sticky_expanded() && 0 == $wp_query -> current_post && get_query_var( 'paged' ) < 2 && is_sticky();
   }
@@ -348,7 +348,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
 
-  private function czr_fn_show_thumb() {
+  protected function czr_fn_show_thumb() {
     return 0 != $this -> show_thumb;
   }
 
@@ -359,7 +359,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return bool
   * check if we have to expand the first sticky post
   */
-  private function czr_fn_maybe_has_sticky_expanded(){
+  protected function czr_fn_maybe_has_sticky_expanded(){
     global $wp_query;
 
     if ( ! $wp_query -> is_main_query() )
@@ -438,7 +438,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return string
   *
   */
-  private function czr_fn_get_grid_column_height( $_cols_nb = '3' ) {
+  protected function czr_fn_get_grid_column_height( $_cols_nb = '3' ) {
     $_h               = $this -> czr_fn_grid_get_thumb_height();
     $_current_layout  = czr_fn_get_layout( $this -> queried_id , 'sidebar' );
     $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
@@ -475,7 +475,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return string
   *
   */
-  private function czr_fn_set_max_col_height( $_heights ,$_h ) {
+  protected function czr_fn_set_max_col_height( $_heights ,$_h ) {
     $_return = array();
     foreach ($_heights as $_value) {
       $_return[] = $_value >= $_h ? $_h : $_value;
@@ -494,7 +494,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return css media query string
   * Returns the paragraph and title media queries for a given layout
   */
-  private function czr_fn_get_grid_font_css( $_col_nb = '3' ) {
+  protected function czr_fn_get_grid_font_css( $_col_nb = '3' ) {
     $_media_queries     = $this -> czr_fn_get_grid_media_queries();//returns the simple array of media queries
     $_grid_font_sizes = $this -> czr_fn_get_grid_font_sizes( $_col_nb );//return the array of sizes (ordered by @media queries) for a given column layout
     $_col_rules         = array();
@@ -519,7 +519,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /**
   * @return simple array of media queries
   */
-  private function czr_fn_get_grid_media_queries() {
+  protected function czr_fn_get_grid_media_queries() {
     return apply_filters( 'czr_grid_media_queries' ,  array(
              '(min-width: 1200px)', '(max-width: 1199px) and (min-width: 992px)', '(max-width: 991px) and (min-width: 768px)', '(max-width: 767px)', '(max-width: 575px)'
            ));
@@ -534,7 +534,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * Note : When all sizes are requested (default case), the returned array can be filtered with the current layout param
   * Size array must have the same length of the media query array
   */
-  private function czr_fn_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
+  protected function czr_fn_get_grid_font_sizes( $_col_nb = '3', $_requested_media_size = null ) {
     $_col_media_matrix = apply_filters( 'czr_grid_font_matrix' , array(
       //=> matrix col nb / media queries
       //            1200 | 1199-980 | 979-768 | 767   | 480
@@ -607,7 +607,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @param selector type string
   * returns ratio of size / body size for a given selector type ( headings or paragraphs )
   */
-  private function czr_fn_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
+  protected function czr_fn_get_grid_font_ratios( $_size = 'xl' , $_sel = 'h' ) {
     $_ratios =  apply_filters( 'czr_get_grid_font_ratios' , array(
         'xxxl' => array( 'h' => 2.10, 'p' => 1 ),
         'xxl' => array( 'h' => 1.86, 'p' => 1 ),
@@ -634,7 +634,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * 1) there's a sticky post
   * 2) user layout is one column
   */
-  private function czr_fn_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
+  protected function czr_fn_grid_assign_css_rules_to_selectors( $_media_query, $_css_prop, $_col_nb ) {
     $_css = '';
     //Add one column font rules if there's a sticky post
     if ( $this -> czr_fn_maybe_has_sticky_expanded() || '1' == $_col_nb ) {
@@ -662,7 +662,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @param selector type string
   * returns the font-size and line-height css rules
   */
-  private function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
+  protected function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
     $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.6 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
@@ -677,7 +677,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /**
   * @return (number) customizer user defined height for the grid thumbnails
   */
-  private function czr_fn_grid_get_thumb_height() {
+  protected function czr_fn_grid_get_thumb_height() {
     $_opt = $this -> grid_thumb_height;
     return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
   }
