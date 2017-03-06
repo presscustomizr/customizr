@@ -424,17 +424,16 @@ section.post-related-articles {
 .comment-respond {
   background: $grey-lightest;
   padding: $base-line-height*2;
-  margin-top: $base-line-height*2;
+  margin-top: $base-line-height*4;
   .comment-notes, .logged-in-as { @extend .small }
 }
-
 
 
 .comment-list li.comment { margin-top:$base-line-height*2; padding-top:$base-line-height*2; border-top:1px solid $grey-light; }
 .comment-list li.comment.depth-1:first-of-type { border:0 }
 .comment-list ul.children    { margin-left: calc(3em + #{$base-line-height});   }
 .pingback-list li.pingback {
-  padding: $base-line-height 0;
+  margin-top:$base-line-height*2; padding-top:$base-line-height*2;
   &:not(:last-of-type) { border-bottom: 1px solid $grey-lightest; }
   strong { font-weight: 600; border-bottom: 1px solid;}
   sup {

@@ -385,38 +385,41 @@ nav li.dropdown-item:before {
       position: relative;
       font-size: ms(2);
       margin-bottom: -2px;
-      texl-align: left;
+      text-align: left;
 
   }
-  a {
+  .nav-link {
       color: $grey;
       position: relative;
       @include underlined_simple (transparent, 2px);
       @extend .small;
       text-align: left;
-      padding: $base-line-height/2 0 $base-line-height !important;
+      padding: $base-line-height/2 0;
+
+      &::before {
+        @include transition(all, .3s ease);
+        @include transform(scale(0));
+      }
+      &:hover, &.active, &.active:hover, &.active:focus {
+        color:$black;
+        background-color: transparent;
+      }
+      &.active::before {
+        background-color: $black;
+        @include transform(scale(1));
+      }
   }
-  a::before { @include transition(all, .3s ease); @include transform(scale(0)); }
+  //.nav-link
   li + li {
       padding-left: $base-line-height;
       margin-left: 0 !important;
   }
-  a:hover, a.active, a.show, a.show:hover, a.active:hover {
-      color:$black;
-      background-color: transparent;
-  }
-  .nav-link.show, .nav-link:hover, .nav-link.show:hover, .nav-link.show:focus { background: none; color:$black; }
-  .show:before, .active::before {
-      background-color: $black;
-      @include transform(scale(1));
-  }
 }
+
 .tab-content {
     margin-top: $base-line-height;
 }
-.nav-pills {
-  @extend .tabs;
-}
+
 /* end tabs */
 
 /* CSS Loader */

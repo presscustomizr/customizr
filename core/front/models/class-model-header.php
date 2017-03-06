@@ -45,13 +45,15 @@ class CZR_header_model_class extends CZR_Model {
 
     /* Is the header absolute ? add absolute and header-transparent classes
     * The header is absolute when:
-    * a) the header_type option is 'absolute'
+    * a) not 404
+    *
+    * b) the header_type option is 'absolute'
     * or
-    * b) we display a full heading (with background) AND
-    * b.1) not in front page
+    * c) we display a full heading (with background) AND
+    * c.1) not in front page
     */
-    if ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) ||
-        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) )
+    if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) ||
+        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() )  ) )
       array_push( $element_class, 'header-absolute', 'header-transparent' );
 
     //No navbar box

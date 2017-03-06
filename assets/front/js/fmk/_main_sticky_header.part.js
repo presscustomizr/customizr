@@ -65,7 +65,7 @@ var czrapp = czrapp || {};
       this._lastScroll                = 0;
       this.$_sticky_placeholder       = null;
       this._sticky_mobile_selector    = '.'+this._sticky_mobile_class;
-      this._sticky_navbar_toggleable_selector = this._sticky_mobile_selector+ ' [class*=navbar-toggleable-] .nav-collapse';
+      this._sticky_navbar_toggleable_selector = this._sticky_mobile_selector+ ' [class*=navbar-toggleable-] .navbar-collapse';
 
       this._utils_selector            = '.primary-nav__utils';
       this._branding_selector         = '.branding__container';

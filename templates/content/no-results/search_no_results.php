@@ -3,7 +3,7 @@
  * The template for displaying the search no results content
  */
 ?>
-<header class="entry-header text-xs-center"<?php czr_fn_echo('element_attributes') ?>>
+<header class="entry-header text-center"<?php czr_fn_echo('element_attributes') ?>>
   <h1 class="entry-title"><?php _e('Nothing Found', 'customizr') ?></h1>
 </header>
 <hr class='featurette-divider'>

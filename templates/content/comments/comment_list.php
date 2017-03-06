@@ -11,7 +11,7 @@
   comments_number( false, __( 'One thought on', 'customizr'), '% ' . __( 'thoughts on', 'customizr' ) )
 ?> &ldquo;</span><?php the_title() ?></span>&rdquo;</h2>
 
-<ul class="nav nav-pills">
+<ul class="nav nav-pills tabs">
   <?php if ( ! empty ( $wp_query->comments_by_type['comment'] ) ) :
     $comments_number = count($wp_query->comments_by_type['comment']);
   ?>

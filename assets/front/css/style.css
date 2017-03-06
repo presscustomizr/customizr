@@ -181,7 +181,7 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, .tabs a, .nav-pills a, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, .tabs .nav-link, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -201,7 +201,7 @@ blockquote p {
   font-weight: 500;
 }
 
-.bold, .navbar-brand-tagline, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .primary-nav__menu .dropdown-menu a, .tabs, .nav-pills, .grid-container__classic .format-link .tc-grid-caption .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.bold, .navbar-brand-tagline, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .primary-nav__menu .dropdown-menu a, .tabs, .grid-container__classic .format-link .tc-grid-caption .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   font-weight: 600;
 }
 
@@ -2914,18 +2914,18 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     vertical-align: middle;
   }
   /* Limit nav-collpase height to the viewport when sticky mobile */
-  .czr-sticky-mobile .nav-collapse {
+  .czr-sticky-mobile .navbar-collapse {
     position: absolute !important;
     background: inherit;
     z-index: 100;
     left: 0;
   }
-  .czr-sticky-mobile .nav-collapse::before, .czr-sticky-mobile .nav-collapse::after {
+  .czr-sticky-mobile .navbar-collapse::before, .czr-sticky-mobile .navbar-collapse::after {
     display: table;
     content: '';
     line-height: 0;
   }
-  .czr-sticky-mobile .nav-collapse.show.limited-height {
+  .czr-sticky-mobile .navbar-collapse.show.limited-height {
     overflow: auto;
   }
 }
@@ -3546,26 +3546,26 @@ nav li.dropdown-item:before {
 }
 
 /* tabs */
-.tabs, .nav-pills {
+.tabs {
   border-bottom: 2px solid #eceeef;
 }
 
-.tabs li, .nav-pills li {
+.tabs li {
   position: relative;
   font-size: 1.44em;
   margin-bottom: -2px;
-  texl-align: left;
+  text-align: left;
 }
 
-.tabs a, .nav-pills a {
+.tabs .nav-link {
   color: #B4B4B4;
   position: relative;
   position: relative;
   text-align: left;
-  padding: 0.625em 0 1.25em !important;
+  padding: 0.625em 0;
 }
 
-.tabs a:before, .nav-pills a:before {
+.tabs .nav-link:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -3580,7 +3580,7 @@ nav li.dropdown-item:before {
   transform: scaleX(1);
 }
 
-.tabs a::before, .nav-pills a::before {
+.tabs .nav-link::before {
   -webkit-transition: all 0.2s, 0.3s ease;
   transition: all 0.2s, 0.3s ease;
   -webkit-transform: scale(0);
@@ -3589,27 +3589,22 @@ nav li.dropdown-item:before {
   transform: scale(0);
 }
 
-.tabs li + li, .nav-pills li + li {
-  padding-left: 1.25em;
-  margin-left: 0 !important;
-}
-
-.tabs a:hover, .nav-pills a:hover, .tabs a.active, .nav-pills a.active, .tabs a.show, .nav-pills a.show, .tabs a.show:hover, .nav-pills a.show:hover, .tabs a.active:hover, .nav-pills a.active:hover {
+.tabs .nav-link:hover, .tabs .nav-link.active, .tabs .nav-link.active:hover, .tabs .nav-link.active:focus {
   color: #202020;
   background-color: transparent;
 }
 
-.tabs .nav-link.show, .nav-pills .nav-link.show, .tabs .nav-link:hover, .nav-pills .nav-link:hover, .tabs .nav-link.show:hover, .nav-pills .nav-link.show:hover, .tabs .nav-link.show:focus, .nav-pills .nav-link.show:focus {
-  background: none;
-  color: #202020;
-}
-
-.tabs .show:before, .nav-pills .show:before, .tabs .active::before, .nav-pills .active::before {
+.tabs .nav-link.active::before {
   background-color: #202020;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+}
+
+.tabs li + li {
+  padding-left: 1.25em;
+  margin-left: 0 !important;
 }
 
 .tab-content {
@@ -5914,6 +5909,20 @@ WP classes
   margin-top: 2.5em !important;
   overflow: hidden;
   white-space: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.grid-container__square-mini .flickity-viewport {
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
 }
 
 .grid-container__square-mini article {
@@ -5925,7 +5934,29 @@ WP classes
   white-space: normal;
 }
 
+.grid-container__square-mini .grid__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  background: inherit;
+}
+
+@media (min-width: 576px) {
+  .grid-container__square-mini .grid__item {
+    white-space: nowrap;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
 .grid-container__square-mini section {
+  background: inherit;
   padding: 0;
 }
 
@@ -6125,7 +6156,7 @@ article .entry-content a {
   margin-bottom: 1.25em;
 }
 
-.post-comments .tabs a, .post-comments .nav-pills a {
+.post-comments .tabs a {
   font-size: 1.2em;
 }
 
@@ -6633,7 +6664,7 @@ section.post-related-articles .grid .grid__item h3 {
 .comment-respond {
   background: #f7f8f9;
   padding: 2.5em;
-  margin-top: 2.5em;
+  margin-top: 5em;
 }
 
 .comment-list li.comment {
@@ -6651,7 +6682,8 @@ section.post-related-articles .grid .grid__item h3 {
 }
 
 .pingback-list li.pingback {
-  padding: 1.25em 0;
+  margin-top: 2.5em;
+  padding-top: 2.5em;
 }
 
 .pingback-list li.pingback:not(:last-of-type) {

@@ -708,6 +708,22 @@ WP classes
   margin-top: $base-line-height*2 !important;
   overflow: hidden;
   white-space: nowrap;
+
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+
+  .flickity-viewport {
+      -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      max-width: 100%;
+  }
+
   article {
     margin-bottom: 0;
     padding: 0;
@@ -716,7 +732,26 @@ WP classes
     background: $grey-lightest;
     white-space: normal;
   }
+
+  .grid__item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    white-space: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    background: inherit;
+    @include media-breakpoint-up(sm) {
+      white-space: nowrap;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+    }
+  }
   section {
+    background: inherit;
     padding: 0;
     &.entry-content__holder::before {
       //@media screen and (max-width: 575px)
