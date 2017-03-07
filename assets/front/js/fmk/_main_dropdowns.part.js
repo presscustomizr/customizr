@@ -191,7 +191,9 @@
             continue;
           }
 
-          if (event && ( event.type === 'click' && /input|textarea/i.test(event.target.tagName) || event.type === 'focusin') && $.contains(parent, event.target)) {
+          if (event && ( event.type === 'click' &&
+              /input|textarea/i.test(event.target.tagName) || event.type === 'focusin')
+              && $.contains(parent, event.target)) {
             continue;
           }
 
@@ -234,7 +236,8 @@
         var parent = czrDropdown._getParentFromElement(this);
         var isActive = $(parent).hasClass(ClassName.SHOW);
 
-        if (!isActive && event.which !== ESCAPE_KEYCODE || isActive && event.which === ESCAPE_KEYCODE) {
+        if (!isActive && event.which !== ESCAPE_KEYCODE ||
+             isActive && event.which === ESCAPE_KEYCODE) {
 
           if (event.which === ESCAPE_KEYCODE) {
             var toggle = $(parent).find(Selector.DATA_TOGGLE)[0];
@@ -291,8 +294,14 @@
      * ------------------------------------------------------------------------
      */
 
-    $(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_MENU, czrDropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.ROLE_LISTBOX, czrDropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + ' ' + Event.FOCUSIN_DATA_API, czrDropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
-      e.stopPropagation();
+    $(document)
+      .on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler)
+      .on(Event.KEYDOWN_DATA_API, Selector.ROLE_MENU, czrDropdown._dataApiKeydownHandler)
+      .on(Event.KEYDOWN_DATA_API, Selector.ROLE_LISTBOX, czrDropdown._dataApiKeydownHandler)
+      .on(Event.CLICK_DATA_API/* + ' ' + Event.FOCUSIN_DATA_API*/, czrDropdown._clearMenus)
+      .on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle)
+      .on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
+        e.stopPropagation();
     });
 
     /**
