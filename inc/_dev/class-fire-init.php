@@ -500,9 +500,12 @@ if ( ! class_exists( 'CZR_init' ) ) :
         //add help button to admin bar
         add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
 
+        //add js  detection
+        add_action( 'wp_head'                             , array( $this, 'czr_fn_js_detection' ), 0 );
       }
 
 
+      
 
       /*
       * hook : after_setup_theme
@@ -746,15 +749,26 @@ if ( ! class_exists( 'CZR_init' ) ) :
       /**
       * Controls the rendering of the comments template
       *
+      * hook : tc_render_comments_template
+      *
       * @param bool $bool
       * @return bool $bool
-      * hook : tc_render_comments_template
       *
       */
       function czr_fn_control_coments_template_rendering( $bool ) {
         $_to_return = !self::$comments_rendered && $bool;
         self::$comments_rendered = true;
         return $_to_return;
+      }
+
+      /**
+      * hook : wp_head
+      *
+      * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+      *
+      */
+      function czr_fn_js_detection() {
+        echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
 
   }//end of class

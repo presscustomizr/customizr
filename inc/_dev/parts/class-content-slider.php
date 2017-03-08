@@ -759,7 +759,7 @@ class CZR_slider {
 
   /**
   * Slider loader view
-  * This feature is only fired in browser with js enabled => cf the embedded script
+  * This feature is only fired in browser with js enabled
   * @param (string) $slider_name_id
   *
   * @package Customizr
@@ -778,14 +778,10 @@ class CZR_slider {
     else
       $_pure_css_loader = '';
     ?>
-      <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper" style="display:none;">
+      <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper">
         <div class="tc-img-gif-loader"></div>
         <?php echo $_pure_css_loader; ?>
       </div>
-
-      <script type="text/javascript">
-        document.getElementById("tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>").style.display="block";
-      </script>
     <?php
   }
 
@@ -1244,6 +1240,7 @@ class CZR_slider {
   function czr_fn_write_slider_inline_css( $_css ) {
     //custom css for the slider loader
     if ( $this -> czr_fn_is_slider_loader_active( $this -> czr_fn_get_current_slider( $this -> czr_fn_get_real_id() ) ) ) {
+      $_slider_loader_visibility_css = ".tc-slider-loader-wrapper{ display:none }\nhtml.js .tc-slider-loader-wrapper { display: block }";
 
       $_slider_loader_src = apply_filters( 'tc_slider_loader_src' , sprintf( '%1$s%2$s' , TC_BASE_URL , 'assets/front/img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
@@ -1270,7 +1267,8 @@ class CZR_slider {
                                          $_slider_loader_gif_class,
                                          $_slider_loader_src
                                      ) : '';
-      $_css = sprintf( "$_css\n%s%s",
+      $_css = sprintf( "$_css\n%s%s%s",
+                          $_slider_loader_visibility_css,
                           $_slider_loader_gif_css,
                           $_pure_css_loader_css
       );

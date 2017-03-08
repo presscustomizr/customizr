@@ -14,13 +14,13 @@ if ( apply_filters( 'czr_four_do', false ) ) {
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
+<html class="ie ie7 no-js" <?php language_attributes(); ?>>
 <![endif]-->
 <!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
+<html class="ie ie8 no-js" <?php language_attributes(); ?>>
 <![endif]-->
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html <?php language_attributes(); ?>>
+<html class="no-js" <?php language_attributes(); ?>>
 <!--<![endif]-->
 	<?php
 		//the '__before_body' hook is used by CZR_header_main::$instance->czr_fn_head_display()
