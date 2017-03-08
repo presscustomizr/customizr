@@ -1,9 +1,14 @@
 <?php
 class CZR_grid_wrapper_model_class extends CZR_Model {
   public $expanded_sticky;
+  public $id_base = 'czr_grid';
 
   protected $queried_id;
 
+  function __construct( $model ) {
+    parent::__construct( $model );
+    $this -> element_id = uniqid("{$this->id_base}-");
+  }
   /**
   * @override
   * fired before the model properties are parsed
@@ -12,21 +17,22 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'grid_columns'          => esc_attr( czr_fn_get_opt( 'tc_grid_columns') ),
-      'grid_title_num_words'  => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
-      'grid_icons'            => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
-      'grid_expand_featured'  => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
-      'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
-      'grid_bottom_border'    => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
-      'grid_shadow'           => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
+      'grid_columns'           => esc_attr( czr_fn_get_opt( 'tc_grid_columns') ),
+      'grid_title_num_words'   => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
+      'grid_icons'             => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
+      'grid_expand_featured'   => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
+      'show_thumb'             => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_comment_meta'      => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
+      'grid_bottom_border'     => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
+      'grid_shadow'            => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
       //'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
-      'grid_thumb_shape'      => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_shape') ),
-      'use_thumb_placeholder' => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
-      'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'wrapped'               => true,
-      'masonry'               => false,
-      'contained'             => false
+      'grid_thumb_shape'       => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_shape') ),
+      'use_thumb_placeholder'  => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
+      'excerpt_length'         => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'wrapped'                => true,
+      'masonry'                => false,
+      'contained'              => false,
+      'title_in_caption_below' => true
     );
 
     return $_preset;
@@ -162,13 +168,15 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
     $is_expanded            = $this -> czr_fn_force_current_post_expansion();
 
+    $text                   = $this -> czr_fn_get_grid_item_text();
+
     //thumb
     $thumb_properties       = $this -> czr_fn_get_grid_item_thumb_properties( $section_cols );
     $has_thumb              = isset( $thumb_properties[ 'has_thumb' ] ) ? $thumb_properties[ 'has_thumb' ] : false;
     $thumb_img              = isset( $thumb_properties[ 'thumb_img' ] ) ? $thumb_properties[ 'thumb_img' ] : '';
 
     //figure class
-    $figure_class           = $this -> czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols );
+    $figure_class           = $this -> czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols, $is_expanded );
 
     //array
     $icon_visibility        = $this -> czr_fn_get_grid_item_icon_visibility();
@@ -176,6 +184,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $title                  = $this -> czr_fn_get_grid_item_title( get_the_title(), $is_expanded );
 
     $has_title_in_caption   = $this -> czr_fn_grid_item_has_title_in_caption( $is_expanded );
+    $title_in_caption_below = $this -> title_in_caption_below;
 
     $has_edit_above_thumb   = $this -> czr_fn_grid_item_has_edit_above_thumb( $is_expanded );
 
@@ -189,10 +198,10 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
 
     //various depending on whether is expanded
-    $entry_summary_class    = $is_expanded ? 'czr-talign' : '';
-    $gcont_class            = ! $is_expanded ? 'czr-talign' : '';
-    //add the aspect ratio class for the figure
-    array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
+    $entry_summary_class    = $this -> czr_fn_get_grid_item_entry_summary_class($is_expanded);
+    $gcont_class            = $this -> czr_fn_get_grid_item_gcont_class($is_expanded);
+
+
 
     //update the model
     return array_merge(
@@ -203,6 +212,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'is_expanded',
           'title',
           'has_title_in_caption',
+          'title_in_caption_below',
           'has_fade_expt',
           'has_edit_above_thumb',
           'section_cols',
@@ -210,9 +220,23 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'use_thumb_placeholder',
           'gcont_class',
           'entry_summary_class',
-          'show_comment_meta'
+          'show_comment_meta',
+          'text'
         )
     );
+  }
+
+  function czr_fn_get_grid_item_entry_summary_class( $is_expanded ) {
+    return $is_expanded ? 'czr-talign' : '';
+  }
+
+  function czr_fn_get_grid_item_gcont_class( $is_expanded ) {
+    return ! $is_expanded ? 'czr-talign' : '';
+  }
+
+  function czr_fn_get_grid_item_text() {
+    $_the_excerpt = get_the_excerpt();
+    return $_the_excerpt ? sprintf( '<p>%s</p>', $_the_excerpt ) : '';
   }
 
   /*
@@ -265,7 +289,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * thumb properties
   */
   function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> czr_fn_show_thumb();
+    $has_thumb           = $this -> czr_fn_show_thumb() && czr_fn_has_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {
@@ -289,12 +313,13 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   /*
   * figure class
   */
-  function czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols ) {
+  function czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols, $is_expanded ) {
     $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
-    //if 1 col layout or current post is the expanded => golden ratio should be disabled
-    if ( ( '1' == $section_cols ) && ! wp_is_mobile() )
-      array_push( $figure_class, 'no-gold-ratio' );
+    //if current post is the expanded => golden ratio should be disabled
+    //add the aspect ratio class for the figure
+    array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
+
     return $figure_class;
   }
 
@@ -315,9 +340,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     return compact( 'icon_enabled', 'icon_attributes' );
   }
 
+
+
   function czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded ) {
     if ( apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) )
-      $post_class = 'col-12 expanded';
+      $post_class = 'col-12 expanded grid-item';
     else
       $post_class = sprintf( 'grid-item col-12 col-sm-6 col-md-%1$s col-lg-%1$s col-xl-%1$s',
                               is_numeric( $section_cols ) ? 12 / $section_cols : 6 );
@@ -347,6 +374,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   function czr_fn_get_filtered_thumb_size_name( $section_cols ){
     return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
   }
+
 
   protected function czr_fn_show_thumb() {
     return 0 != $this -> show_thumb;
@@ -642,8 +670,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $_h_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'h' );
       $_p_one_col = $this -> czr_fn_grid_build_css_rules( $_size , 'p' );
       $_css .= "
-          .grid-container__classic .grid-cols-1 .entry-title {{$_h_one_col}}
-          .grid-container__classic .grid-cols-1 .tc-g-cont {{$_p_one_col}}
+          .grid-container__classic .cols-1 .entry-title {{$_h_one_col}}
+          .grid-container__classic .cols-1 .tc-g-cont {{$_p_one_col}}
       ";
     }
     $_h = $_css_prop['h'];
@@ -663,14 +691,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * returns the font-size and line-height css rules
   */
   protected function czr_fn_grid_build_css_rules( $_size = 'xl', $_wot = 'h' ) {
-    $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.6 ); //line-height / font-size
+    $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.55 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
     $_bs = esc_attr( czr_fn_get_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
-    return sprintf( 'font-size:%spx;line-height:%sem;' ,
+    return sprintf( 'font-size:%spx;line-height:%spx;' ,
       ceil( $_bs * $_ratio ),
-      ceil( $_ratio * $_lh_ratio )
+      ceil( $_bs * $_ratio * $_lh_ratio )
     );
   }
 

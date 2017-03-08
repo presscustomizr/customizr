@@ -30,19 +30,32 @@
         <?php czr_fn_echo( 'thumb_img' ) ?>
       </div>
       <div class="tc-grid-caption">
-          <div class="entry-summary <?php czr_fn_echo('entry_summary_class') ?> ">
-            <div class="tc-g-cont <?php czr_fn_echo('gcont_class') ?>"><?php the_excerpt() ?></div>
+          <div class="entry-summary <?php czr_fn_echo('entry_summary_class') ?>">
             <?php
 
             /* The expanded grid item has the title inside the caption */
-            if( czr_fn_get( 'has_title_in_caption' ) ):
+            if( czr_fn_get( 'has_title_in_caption' ) && !czr_fn_get( 'title_in_caption_below' ) ):
 
             ?>
-
             <h2 class="entry-title">
               <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
             </h2>
+            <?php
 
+            /* end expanded title */
+            endif
+
+            ?>
+            <div class="tc-g-cont <?php czr_fn_echo('gcont_class') ?>"><?php czr_fn_echo( 'text' ) ?></div>
+            <?php
+
+            /* The expanded grid item has the title inside the caption */
+            if( czr_fn_get( 'has_title_in_caption' ) && czr_fn_get( 'title_in_caption_below' ) ):
+
+            ?>
+            <h2 class="entry-title">
+              <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
+            </h2>
             <?php
 
             /* end expanded title */

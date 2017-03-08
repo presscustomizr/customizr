@@ -159,7 +159,7 @@ section[class^="post-"] {
     @include transition(all, 0.6s ease);
     @include opacity(0);
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
   }
   a i.arrow { font-size: $base-line-height; }
   .page-numbers, a {
