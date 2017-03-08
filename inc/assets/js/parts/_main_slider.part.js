@@ -45,6 +45,12 @@ var czrapp = czrapp || {};
       }
     },
 
+    parallaxSliders : function() {
+      if ( 'function' == typeof $.fn.czrParallax ) {
+        $( '.czr-parallax-slider' ).czrParallax();
+      }
+    },
+
     manageHoverClass : function() {
       //add a class to the slider on hover => used to display the navigation arrow
       this.$_sliders.hover( function() {
