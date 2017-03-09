@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         //Prepare the headings for post, page, attachment
         add_action ( '__before_content'         , array( $this , 'czr_fn_render_headings_view' ) );
         //Populate heading with default content
-        add_filter ( 'tc_headings_content_html' , array( $this , 'czr_fn_post_page_title_callback'), 10, 2 );
+        add_filter ( 'tc_headings_content_html' , array( $this , 'czr_fn_post_page_title_callback'), 10 );
         //Create the Customizr title
         add_filter( 'tc_the_title'              , array( $this , 'czr_fn_content_heading_title' ) , 0 );
         //Add edit link
@@ -115,7 +115,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
           <?php
             do_action( "__before_{$_heading_type}_title" );
-            echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
+            echo apply_filters( "tc_headings_{$_heading_type}_html", '');
             do_action( "__after_{$_heading_type}_title" );
 
             echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function czr_fn_post_page_title_callback( $_content = null , $_heading_type = null ) {
+      function czr_fn_post_page_title_callback() {
         $_title = apply_filters( 'tc_title_text', get_the_title() );
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
@@ -293,7 +293,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       function czr_fn_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
         //declares variables to return
         $content          = false;
-        $_header_class    = false;
+        $_header_class    = is_array($_title) ? $_title : array();
 
         //case page for posts but not on front
         global $wp_query;
