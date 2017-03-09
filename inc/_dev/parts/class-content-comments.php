@@ -383,22 +383,28 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
+      $_bubble_color_type   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) );
+      $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
+
+      $_bubble_shape        = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) );
+
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
-      if ( 'skin' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) ) ) {
-        $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
+      if ( 'skin' != $_bubble_color_type ) {
+        $_border_before_color = 'default' == $_bubble_shape ? $_custom_bubble_color : "{$_custom_bubble_color} rgba(0, 0, 0, 0)";
+
         $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
             border: 2px solid {$_custom_bubble_color};
           }
           .comments-link .tc-comment-bubble:before {
-            border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
+            border-color: {$_border_before_color};
           }
         ";
       }
 
-      if ( 'default' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) ) )
+      if ( 'default' == $_bubble_shape )
         return $_css;
 
       $_css .= "
