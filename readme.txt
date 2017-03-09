@@ -40,6 +40,20 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.6 March 8th 2017 =
+* Fix: fix preview demo content should fix #785
+* Fix: fix wrong text domain in customizer files fixes #832
+* Fix: fix passing a non array to implode in the headings rendering fixes #830
+* Fix: fix small comment bubble borders issue introduced fixes #833
+* Fix: serverControlParams.translatedStrings by serverControlParams.i18n
+* Imp: improve slider loader visibility handling. Add javascript detection inline script in wp_head (ref. twentyseventeen and below)
+* Imp: init parallax slider in js files
+* Imp: WordPress theme guidelines, moved all hardcoded scripts in enqueued js file
+* Imp: in the customizer, display the front page layout control in the post layout section
+* Changed : moved translated languages on polyglots : pt_BR, uk, tr_TR to lang_pro
+* Changed : the demo slider is now the posts slider
+* Added : a default thumbnail for posts slides with no thumbnails
+
 = 3.5.5 February 26th 2017 =
 * Fix: do not show first attachment as thumb in single context fixes #815
 * Fix: fix reference to maybe undefined wp in front js fixes #820

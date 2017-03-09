@@ -3753,7 +3753,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
               ),
               //posts slider
               'tc_posts_slider_number' => array(
-                                'default'     => 1 ,
+                                'default'     => 4,
                                 'control'     => 'CZR_controls',
                                 'label'       => __('Number of posts to display', 'customizr'),
                                 'section'     => 'frontpage_sec' ,

@@ -1,4 +1,4 @@
-# Customizr v3.5.5 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.6 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,20 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.6 March 8th 2017 =
+* Fix: fix preview demo content should fix #785
+* Fix: fix wrong text domain in customizer files fixes #832
+* Fix: fix passing a non array to implode in the headings rendering fixes #830
+* Fix: fix small comment bubble borders issue introduced fixes #833
+* Fix: serverControlParams.translatedStrings by serverControlParams.i18n
+* Imp: improve slider loader visibility handling. Add javascript detection inline script in wp_head (ref. twentyseventeen and below)
+* Imp: init parallax slider in js files
+* Imp: WordPress theme guidelines, moved all hardcoded scripts in enqueued js file
+* Imp: in the customizer, display the front page layout control in the post layout section
+* Changed : moved translated languages on polyglots : pt_BR, uk, tr_TR to lang_pro
+* Changed : the demo slider is now the posts slider
+* Added : a default thumbnail for posts slides with no thumbnails
+
 = 3.5.5 February 26th 2017 =
 * Fix: do not show first attachment as thumb in single context fixes #815
 * Fix: fix reference to maybe undefined wp in front js fixes #820
