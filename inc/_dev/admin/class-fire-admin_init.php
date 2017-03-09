@@ -27,11 +27,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
       add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_thumbnail') , 10, 2);
 
-      //refresh the posts slider transient on save_post. Since v3.4.9.
-      add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_posts_slider'), 20, 2 );
-      //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
-      add_action ( 'deleted_post'         , array( $this , 'czr_fn_refresh_posts_slider') );
-
       //refresh the terms array (categories/tags pickers options) on term deletion
       add_action ( 'delete_term'          , array( $this, 'czr_fn_refresh_terms_pickers_options_cb'), 10, 3 );
 
@@ -64,33 +59,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       }
 
       CZR_post_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
-    }
-
-    /*
-    * @return void
-    * updates the posts slider transient
-    * @package Customizr
-    * @since Customizr 3.4.9
-    */
-    function czr_fn_refresh_posts_slider( $post_id, $post = array() ) {
-      // no need to build up/refresh the transient it we don't use the posts slider
-      // since we always delete the transient when entering the preview.
-      if ( 'tc_posts_slider' != CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) || ! apply_filters('tc_posts_slider_use_transient' , true ) )
-        return;
-
-      if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
-        return;
-
-      if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
-        CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
-        new CZR_post_thumbnails();
-      }
-      if ( ! class_exists( 'CZR_slider' ) || ! is_object(CZR_slider::$instance) ) {
-        CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
-        new CZR_slider();
-      }
-      if ( class_exists( 'CZR_slider' ) && is_object( CZR_slider::$instance ) )
-        CZR_slider::$instance -> czr_fn_cache_posts_slider();
     }
 
 

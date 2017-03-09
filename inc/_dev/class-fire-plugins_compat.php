@@ -322,8 +322,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_polylang_compat() {
-      // Disable posts slider transient caching
-      add_filter('tc_posts_slider_use_transient', '__return_false');
 
       // If Polylang is active, hook function on the admin pages
       if ( function_exists( 'pll_register_string' ) )
@@ -394,28 +392,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'czr_fn_pll_translate_tax');
         /*end tax filtering*/
 
-        /* Slider of posts */
-        if ( function_exists( 'pll_current_language') ) {
-        // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join'      , 'czr_fn_pll_posts_slider_join' );
-          add_filter( 'tc_query_posts_slider_join_where', 'czr_fn_pll_posts_slider_join' );
-        }
-        function czr_fn_pll_posts_slider_join( $join ) {
-          global $wpdb;
-          switch ( current_filter() ){
-            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
-                                                       break;
-            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
-                                                                                pll_current_language( 'term_taxonomy_id' )
-                                                       );
-                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
-                                                       break;
-          }
-
-          return $join;
-        }
-        /*end Slider of posts */
-
         //Featured pages ids "translation"
         // Substitute any page id with the equivalent page in current language (if found)
         add_filter( 'tc_fp_id', 'czr_fn_pll_page_id', 20 );
@@ -437,8 +413,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       $this->default_language = apply_filters( 'wpml_default_language', null );
       $this->current_language = apply_filters( 'wpml_current_language', null );
 
-      // Disable posts slider transient caching
-      add_filter('tc_posts_slider_use_transient', '__return_false');
       //define the CONSTANT wpml context. This means that user have to set the translations again when switching from Customizr, to Customizr-Pro.
       //If we don't want to do this, let's go with 'Customizr-option' in any case.
       //Also I choose to use "-option" suffix to avoid confusions as with WPML you can also translate theme's strings ( gettexted -> __() ) and WPML by default assigns to theme the context 'customizr' (textdomain)
@@ -672,29 +646,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter('tc_opt_tc_blog_restrict_by_cat', 'czr_fn_wpml_translate_cat');
         /*end tax filtering*/
 
-        /* Slider of posts */
-        if ( defined( 'ICL_LANGUAGE_CODE') ) {
-        // Filter the posts query for the current language
-          add_filter( 'tc_query_posts_slider_join'      , 'czr_fn_wpml_posts_slider_join' );
-          add_filter( 'tc_query_posts_slider_join_where', 'czr_fn_wpml_posts_slider_join' );
-        }
-        function czr_fn_wpml_posts_slider_join( $join ) {
-          global $wpdb;
-          switch ( current_filter() ){
-            case 'tc_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
-                                                       break;
-            case 'tc_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
-                                                                    ICL_LANGUAGE_CODE,
-                                                                    'post_post'
-                                                       );
-                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
-                                                       break;
-          }
-
-          return $join;
-        }
-        /*end Slider of posts */
-        /*end Slider*/
       }//end Front
     }//end wpml compat
 
