@@ -400,7 +400,7 @@ class CZR_slider {
       'show_title'          => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_title' ) ),
       'show_excerpt'        => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_text' ) ),
       'button_text'         => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_button_text' ) ),
-      'limit'               => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ),
+      'posts_per_page'      => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ), //limit
       'link_type'           => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_link') ),
     );
 
@@ -520,6 +520,7 @@ class CZR_slider {
       'order'           => 'DESC',
       'posts_per_page'  => 5,
       'offset'          => 0,
+      'suppress_filters' => false, // <- for language plugins
     );
 
     $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
@@ -531,6 +532,8 @@ class CZR_slider {
       if ( ! empty( $_sticky_posts ) ) {
         $args = array_merge( $args, array( 'post__in' => $_sticky_posts  ) );
       }
+      else
+        return apply_filters( 'tc_query_posts_slider', false, $args );
     }
 
     $_posts = get_posts( $args );
