@@ -89,7 +89,8 @@ module.exports = {
       '<%= paths.front_js %>parts/_main_sticky_footer.part.js',
       '<%= paths.front_js %>parts/_main_side_nav.part.js',
       '<%= paths.front_js %>parts/_main_dropdown_placement.part.js',
-      '<%= paths.front_js %>parts/_main_xfire.part.js'
+      '<%= paths.front_js %>parts/_main_xfire.part.js',
+      '<%= paths.front_js %>parts/_various_former_hardcoded.part.js'
     ],
     dest: '<%= paths.front_js %>parts/main.js',
   },
