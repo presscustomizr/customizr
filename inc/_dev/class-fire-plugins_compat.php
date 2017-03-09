@@ -322,8 +322,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_polylang_compat() {
-      // Disable posts slider transient caching
-      add_filter('tc_posts_slider_use_transient', '__return_false');
 
       // If Polylang is active, hook function on the admin pages
       if ( function_exists( 'pll_register_string' ) )
@@ -437,8 +435,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       $this->default_language = apply_filters( 'wpml_default_language', null );
       $this->current_language = apply_filters( 'wpml_current_language', null );
 
-      // Disable posts slider transient caching
-      add_filter('tc_posts_slider_use_transient', '__return_false');
       //define the CONSTANT wpml context. This means that user have to set the translations again when switching from Customizr, to Customizr-Pro.
       //If we don't want to do this, let's go with 'Customizr-option' in any case.
       //Also I choose to use "-option" suffix to avoid confusions as with WPML you can also translate theme's strings ( gettexted -> __() ) and WPML by default assigns to theme the context 'customizr' (textdomain)
