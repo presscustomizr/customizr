@@ -1220,24 +1220,6 @@ class CZR_slider {
   }
 
 
-  /**
-  * Setter
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  */
-  function czr_fn_cache_posts_slider( $args = array() ) {
-    $defaults = array (
-      //use the home slider_width
-      'img_size'        => 1 == CZR_utils::$inst->czr_fn_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
-      'load_transient'  => false,
-      'store_transient' => true,
-      'transient_name'  => 'tc_posts_slides'
-    );
-    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults ) );
-  }
-
-
 
   /**
   * Getter
