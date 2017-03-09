@@ -2620,7 +2620,8 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
                                 'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
                                 'priority'      => 0,
-                                'section_class' => 'CZR_Customize_Section_Pro'
+                                'section_class' => 'CZR_Customize_Section_Pro',
+                                'active_callback' => array( $this, 'czr_fn_pro_section_active_cb' )
             ),
         ) );
       }
@@ -2925,6 +2926,14 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fn_sanitize_uploads( $url ) {
       $upload_dir = wp_upload_dir();
       return str_replace($upload_dir['baseurl'], '', $url);
+    }
+
+    /**
+    * active callback of section 'customizr_go_pro'
+    * @return  bool
+    */
+    function czr_fn_pro_section_active_cb() {
+        return ! czr_fn_isprevdem();
     }
 
   }//end of class

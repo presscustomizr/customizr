@@ -5355,7 +5355,8 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
                                 'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
                                 'priority'      => 0,
-                                'section_class' => 'CZR_Customize_Section_Pro'
+                                'section_class' => 'CZR_Customize_Section_Pro',
+                                'active_callback' => array( $this, 'czr_fn_pro_section_active_cb' )
             ),
         ) );
       }
@@ -5660,6 +5661,14 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fn_sanitize_uploads( $url ) {
       $upload_dir = wp_upload_dir();
       return str_replace($upload_dir['baseurl'], '', $url);
+    }
+
+    /**
+    * active callback of section 'customizr_go_pro'
+    * @return  bool
+    */
+    function czr_fn_pro_section_active_cb() {
+        return ! czr_fn_isprevdem();
     }
 
   }//end of class
@@ -8971,12 +8980,7 @@ function czr_fn_get_admin_option( $option_group = null ) {
 
 //@return bool
 function czr_fn_isprevdem() {
-  $_active_theme = czr_fn_get_raw_option( 'template' );
-  //get WP_Theme object
-  $czr_theme                     = wp_get_theme();
-  //Get infos from parent theme if using a child theme
-  $czr_theme = $czr_theme -> parent() ? $czr_theme -> parent() : $czr_theme;
-  return apply_filters( 'czr_fn_isprevdem', ( $_active_theme != strtolower( $czr_theme -> name ) && ! is_child_theme() && ! CZR___::czr_fn_is_pro() ) );
+  return apply_filters( 'czr_fn_isprevdem', ( czr_fn_get_raw_option( 'template' ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() ) );
 }
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
