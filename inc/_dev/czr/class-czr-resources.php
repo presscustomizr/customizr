@@ -310,7 +310,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
                 'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
                 'Settings' => __('Settings', 'customizr'),
-                'Options for' => __('Options for', 'hueman')
+                'Options for' => __('Options for', 'customizr')
           )
       );
     }
