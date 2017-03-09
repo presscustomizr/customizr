@@ -698,19 +698,20 @@ class CZR_slider {
 
     self::$rendered_sliders++ ;
 
-    //define carousel inner classes
-    $_inner_classes  = implode( ' ' , apply_filters( 'tc_carousel_inner_classes' , array( 'carousel-inner' ) ) );
-    $_layout_classes = implode( " " , apply_filters( 'tc_slider_layout_class' , $layout_class ) );
+    //define carousel inner classes and attributes
+    $_inner_classes    = implode( ' ' , apply_filters( 'tc_carousel_inner_classes' , array( 'carousel-inner' ) ) );
+    $_layout_classes   = implode( ' ' , apply_filters( 'tc_slider_layout_class' , $layout_class ) );
+    $_inner_attributes = implode( ' ' , apply_filters( 'tc_carousel_inner_attributes' , array() ) );
 
     ob_start();
     ?>
-    <div id="customizr-slider-<?php echo self::$rendered_sliders ?>" class="<?php echo $_layout_classes ?> ">
+    <div id="customizr-slider-<?php echo self::$rendered_sliders ?>" class="<?php echo $_layout_classes ?>">
 
       <?php $this -> czr_fn_render_slider_loader_view( $slider_name_id ); ?>
 
       <?php do_action( '__before_carousel_inner' , $slides, $slider_name_id )  ?>
 
-      <div class="<?php echo $_inner_classes?>">
+      <div class="<?php echo $_inner_classes?>" <?php echo $_inner_attributes ?>>
         <?php
           foreach ($slides as $id => $data) {
             $_view_model = compact( "id", "data" , "slider_name_id", "img_size" );
@@ -1042,10 +1043,11 @@ class CZR_slider {
   function czr_fn_maybe_setup_parallax() {
     if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_parallax') ) )
       return;
-    add_filter('tc_slider_layout_class'     , array( $this, 'czr_fn_add_parallax_wrapper_class' ) );
-    add_filter('tc_carousel_inner_classes'  , array( $this, 'czr_fn_add_parallax_item_class' ) );
-  }
 
+    add_filter( 'tc_slider_layout_class'       , array( $this, 'czr_fn_add_parallax_wrapper_class' ) );
+    add_filter( 'tc_carousel_inner_classes'    , array( $this, 'czr_fn_add_parallax_item_class' ) );
+    add_filter( 'tc_carousel_inner_attributes' , array( $this, 'czr_fn_add_parallax_item_data_attributes' ) );
+  }
 
   //hook : tc_carousel_inner_classes
   function czr_fn_add_parallax_item_class ( $classes ) {
@@ -1060,7 +1062,10 @@ class CZR_slider {
   }
 
 
-
+  function czr_fn_add_parallax_item_data_attributes ( $attributes ) {
+    array_push( $attributes, sprintf( 'data-parallax-ratio="%s"', apply_filters('tc_parallax_speed', 0.55 ) ) );
+    return $attributes;
+  }
 
 
   /******************************
