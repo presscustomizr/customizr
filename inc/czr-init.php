@@ -1072,6 +1072,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
         //add help button to admin bar
         add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
 
+        //Javascript detection
+        add_action( 'wp_head'                             , array( $this, 'czr_fn_javascript_detection'), 0 );
       }
 
 
@@ -1327,6 +1329,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
         $_to_return = !self::$comments_rendered && $bool;
         self::$comments_rendered = true;
         return $_to_return;
+      }
+
+
+      /**
+       * Handles JavaScript detection.
+       * hook : wp_head
+       * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+       */
+      function czr_fn_javascript_detection() {
+          echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
 
   }//end of class
@@ -7132,9 +7144,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> czr_fn_get_script_map();
-
-          //Javascript detection
-          add_action( 'wp_head'                       , array( $this, 'czr_fn_javascript_detection'), 0 );
 	    }//construct
 
 
@@ -7173,89 +7182,89 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since Customizr 3.3+
       */
       private function czr_fn_get_script_map( $_handles = array() ) {
-        $_map = array(
-          'tc-js-params' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'tc-js-params.js' ),
-            'dependencies' => array( 'jquery' )
-          ),
-          //adds support for map method in array prototype for old ie browsers <ie9
-          'tc-js-arraymap-proto' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'oldBrowserCompat.min.js' ),
-            'dependencies' => array()
-          ),
-          'tc-bootstrap' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
-          ),
-          'tc-img-original-sizes' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryimgOriginalSizes.js' ),
-            'dependencies' => array('jquery')
-          ),
-          'tc-smoothscroll' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'smoothScroll.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
-          ),
-          'tc-outline' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'outline.js' ),
-            'dependencies' => array()
-          ),
-          'tc-waypoints' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'waypoints.js' ),
-            'dependencies' => array('jquery')
-          ),
-          'tc-dropcap' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryaddDropCap.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-          ),
-          'tc-img-smartload' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryimgSmartLoad.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-          ),
-          'tc-ext-links' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryextLinks.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-          ),
-          'tc-parallax' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryParallax.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-          ),
-          'tc-center-images' => array(
-            'path' => 'assets/front/js/jquery-plugins/',
-            'files' => array( 'jqueryCenterImages.js' ),
-            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-          ),
-          //!!no fancybox dependency if fancybox not required!
-          'tc-main-front' => array(
-            'path' => 'inc/assets/js/parts/',
-            'files' => array( 'main.js' , 'main.min.js' ),
-            'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
-          ),
-          //loaded separately => not included in tc-script.js
-          'tc-fancybox' => array(
-            'path' => 'inc/assets/js/fancybox/',
-            'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
-            'dependencies' => $this -> czr_fn_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
-          ),
-          //concats all scripts except fancybox
-          'tc-scripts' => array(
-            'path' => 'inc/assets/js/',
-            'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-            'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
-          )
-        );//end of scripts map
+          $_map = array(
+              'tc-js-params' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'tc-js-params.js' ),
+                'dependencies' => array( 'jquery' )
+              ),
+              //adds support for map method in array prototype for old ie browsers <ie9
+              'tc-js-arraymap-proto' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'oldBrowserCompat.min.js' ),
+                'dependencies' => array()
+              ),
+              'tc-bootstrap' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'bootstrap.js' , 'bootstrap.min.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
+              ),
+              'tc-img-original-sizes' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryimgOriginalSizes.js' ),
+                'dependencies' => array('jquery')
+              ),
+              'tc-smoothscroll' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'smoothScroll.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
+              ),
+              'tc-outline' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'outline.js' ),
+                'dependencies' => array()
+              ),
+              'tc-waypoints' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'waypoints.js' ),
+                'dependencies' => array('jquery')
+              ),
+              'tc-dropcap' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryaddDropCap.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+              ),
+              'tc-img-smartload' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryimgSmartLoad.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+              ),
+              'tc-ext-links' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryextLinks.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+              ),
+              'tc-parallax' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryParallax.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+              ),
+              'tc-center-images' => array(
+                'path' => 'assets/front/js/jquery-plugins/',
+                'files' => array( 'jqueryCenterImages.js' ),
+                'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
+              ),
+              //!!no fancybox dependency if fancybox not required!
+              'tc-main-front' => array(
+                'path' => 'inc/assets/js/parts/',
+                'files' => array( 'main.js' , 'main.min.js' ),
+                'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
+              ),
+              //loaded separately => not included in tc-script.js
+              'tc-fancybox' => array(
+                'path' => 'inc/assets/js/fancybox/',
+                'files' => array( 'jquery.fancybox-1.3.4.min.js' ),
+                'dependencies' => $this -> czr_fn_load_concatenated_front_scripts() ? array( 'jquery' ) : array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap' )
+              ),
+              //concats all scripts except fancybox
+              'tc-scripts' => array(
+                'path' => 'inc/assets/js/',
+                'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
+                'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'jquery', 'tc-fancybox' ) : array( 'jquery' )
+              )
+          );//end of scripts map
 
-        return apply_filters('tc_get_script_map' , $_map, $_handles );
+          return apply_filters('tc_get_script_map' , $_map, $_handles );
       }
 
 
@@ -7744,7 +7753,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since v3.3+
       */
       function czr_fn_load_concatenated_front_scripts() {
-        return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+          return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
       }
 
       /**
@@ -7781,15 +7790,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           }
         }
         return $bool;
-      }
-
-      /**
-       * Handles JavaScript detection.
-       * hook : wp_head
-       * Adds a `js` class to the root `<html>` element when JavaScript is detected.
-       */
-      function czr_fn_javascript_detection() {
-          echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
   }//end of CZR_ressources
 endif;
@@ -8454,7 +8454,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         wp_die(0);
       //20 years transient
       set_transient( "tc_widget_placehold_{$_pos}", 'disabled' , 60*60*24*365*20 );
-      wp_send_json_success('WIDGET DISMISS DONE !');
       wp_die();
     }
 

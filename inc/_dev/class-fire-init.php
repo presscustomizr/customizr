@@ -500,6 +500,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
         //add help button to admin bar
         add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
 
+        //Javascript detection
+        add_action( 'wp_head'                             , array( $this, 'czr_fn_javascript_detection'), 0 );
       }
 
 
@@ -755,6 +757,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
         $_to_return = !self::$comments_rendered && $bool;
         self::$comments_rendered = true;
         return $_to_return;
+      }
+
+
+      /**
+       * Handles JavaScript detection.
+       * hook : wp_head
+       * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+       */
+      function czr_fn_javascript_detection() {
+          echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
 
   }//end of class

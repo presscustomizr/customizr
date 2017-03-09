@@ -39,9 +39,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> czr_fn_get_script_map();
-
-          //Javascript detection
-          add_action( 'wp_head'                       , array( $this, 'czr_fn_javascript_detection'), 0 );
 	    }//construct
 
 
@@ -688,15 +685,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           }
         }
         return $bool;
-      }
-
-      /**
-       * Handles JavaScript detection.
-       * hook : wp_head
-       * Adds a `js` class to the root `<html>` element when JavaScript is detected.
-       */
-      function czr_fn_javascript_detection() {
-          echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
   }//end of CZR_ressources
 endif;
