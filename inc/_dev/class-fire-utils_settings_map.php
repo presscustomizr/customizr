@@ -1006,7 +1006,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
               //select slider
               'tc_front_slider' => array(
-                                'default'     => 'demo' ,
+                                'default'     => 'tc_posts_slider',
                                 'control'     => 'CZR_controls' ,
                                 'title'       => __( 'Slider options' , 'customizr' ),
                                 'label'       => __( 'Select front page slider' , 'customizr' ),
@@ -2824,20 +2824,20 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * @since Customizr 3.0.1
     */
     private function czr_fn_slider_choices() {
-      $__options    =   get_option('tc_theme_options');
-      $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
+        $__options    =   get_option('tc_theme_options');
+        $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
 
-      $slider_choices = array(
-        0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
-        'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
-        'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
+        $slider_choices = array(
+            0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
+            'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
+            'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
         );
-      if ( $slider_names ) {
-        foreach( $slider_names as $tc_name => $slides) {
-          $slider_choices[$tc_name] = $tc_name;
+        if ( $slider_names ) {
+            foreach( $slider_names as $tc_name => $slides) {
+              $slider_choices[$tc_name] = $tc_name;
+            }
         }
-      }
-      return $slider_choices;
+        return $slider_choices;
     }
 
 

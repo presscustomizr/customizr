@@ -187,11 +187,18 @@ class CZR_slider {
     $ID                     = $_post->ID;
 
     //attachment image
-    $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
+    $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
-    // we don't want to show slides with no image
-    if ( ! $slide_background )
-      return false;
+    // we assign a default thumbnail if needed.
+    if ( ! $slide_background ) {
+        if ( file_exists( TC_BASE . 'inc/assets/img/slide-thumbnail.jpg' ) ) {
+            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                TC_BASE_URL . 'inc/assets/img/slide-thumbnail.jpg'
+            );
+        } else {
+          return false;
+        }
+    }
 
     //title
     $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
@@ -1372,7 +1379,7 @@ class CZR_slider {
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'
     );
-    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
+    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults ) );
   }
 
 

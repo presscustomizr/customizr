@@ -3387,22 +3387,28 @@ if ( ! class_exists( 'CZR_comments' ) ) :
       if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
+      $_bubble_color_type   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) );
+      $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
+
+      $_bubble_shape        = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) );
+
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
-      if ( 'skin' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) ) ) {
-        $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
+      if ( 'skin' != $_bubble_color_type ) {
+        $_border_before_color = 'default' == $_bubble_shape ? $_custom_bubble_color : "{$_custom_bubble_color} rgba(0, 0, 0, 0)";
+
         $_css .= "
           .comments-link .tc-comment-bubble {
             color: {$_custom_bubble_color};
             border: 2px solid {$_custom_bubble_color};
           }
           .comments-link .tc-comment-bubble:before {
-            border-color: {$_custom_bubble_color} rgba(0, 0, 0, 0);
+            border-color: {$_border_before_color};
           }
         ";
       }
 
-      if ( 'default' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) ) )
+      if ( 'default' == $_bubble_shape )
         return $_css;
 
       $_css .= "
@@ -4014,7 +4020,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         //Prepare the headings for post, page, attachment
         add_action ( '__before_content'         , array( $this , 'czr_fn_render_headings_view' ) );
         //Populate heading with default content
-        add_filter ( 'tc_headings_content_html' , array( $this , 'czr_fn_post_page_title_callback'), 10, 2 );
+        add_filter ( 'tc_headings_content_html' , array( $this , 'czr_fn_post_page_title_callback'), 10 );
         //Create the Customizr title
         add_filter( 'tc_the_title'              , array( $this , 'czr_fn_content_heading_title' ) , 0 );
         //Add edit link
@@ -4055,7 +4061,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         <header class="<?php echo implode( ' ' , apply_filters( "tc_{$_heading_type}_header_class", array('entry-header'), $_return_class = true ) ); ?>">
           <?php
             do_action( "__before_{$_heading_type}_title" );
-            echo apply_filters( "tc_headings_{$_heading_type}_html", '' , $_heading_type );
+            echo apply_filters( "tc_headings_{$_heading_type}_html", '');
             do_action( "__after_{$_heading_type}_title" );
 
             echo apply_filters( "tc_{$_heading_type}_headings_separator", '<hr class="featurette-divider '.current_filter(). '">' );
@@ -4096,7 +4102,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @package Customizr
       * @since Customizr 3.2.6
       */
-      function czr_fn_post_page_title_callback( $_content = null , $_heading_type = null ) {
+      function czr_fn_post_page_title_callback() {
         $_title = apply_filters( 'tc_title_text', get_the_title() );
         return sprintf('<%1$s class="entry-title %2$s">%3$s</%1$s>',
               apply_filters( 'tc_content_title_tag' , is_singular() ? 'h1' : 'h2' ),
@@ -4233,7 +4239,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       function czr_fn_archive_title_and_class_callback( $_title = null, $_return_class = false ) {
         //declares variables to return
         $content          = false;
-        $_header_class    = false;
+        $_header_class    = is_array($_title) ? $_title : array();
 
         //case page for posts but not on front
         global $wp_query;
@@ -8138,11 +8144,18 @@ class CZR_slider {
     $ID                     = $_post->ID;
 
     //attachment image
-    $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
+    $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
-    // we don't want to show slides with no image
-    if ( ! $slide_background )
-      return false;
+    // we assign a default thumbnail if needed.
+    if ( ! $slide_background ) {
+        if ( file_exists( TC_BASE . 'inc/assets/img/slide-thumbnail.jpg' ) ) {
+            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                TC_BASE_URL . 'inc/assets/img/slide-thumbnail.jpg'
+            );
+        } else {
+          return false;
+        }
+    }
 
     //title
     $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
@@ -9323,7 +9336,7 @@ class CZR_slider {
       'store_transient' => true,
       'transient_name'  => 'tc_posts_slides'
     );
-    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
+    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults ) );
   }
 
 
