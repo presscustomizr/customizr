@@ -8729,14 +8729,10 @@ class CZR_slider {
     else
       $_pure_css_loader = '';
     ?>
-      <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper" style="display:none;">
+      <div id="tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>" class="tc-slider-loader-wrapper">
         <div class="tc-img-gif-loader"></div>
         <?php echo $_pure_css_loader; ?>
       </div>
-
-      <script type="text/javascript">
-        document.getElementById("tc-slider-loader-wrapper-<?php echo self::$rendered_sliders ?>").style.display="block";
-      </script>
     <?php
   }
 
@@ -8999,20 +8995,8 @@ class CZR_slider {
       return;
     add_filter('tc_slider_layout_class'     , array( $this, 'czr_fn_add_parallax_wrapper_class' ) );
     add_filter('tc_carousel_inner_classes'  , array( $this, 'czr_fn_add_parallax_item_class' ) );
-    add_action('wp_head'                    , array( $this, 'czr_fn_add_parallax_slider_script' ) );
   }
 
-
-  //hook : wp_head
-  function czr_fn_add_parallax_slider_script() {
-    ?>
-      <script type="text/javascript" id="do-parallax-sliders">
-        jQuery( function($){
-          $( '.czr-parallax-slider' ).czrParallax( { parallaxRatio : <?php echo apply_filters('tc_parallax_speed', 0.55 ); ?> } );
-        });
-      </script>
-    <?php
-  }
 
   //hook : tc_carousel_inner_classes
   function czr_fn_add_parallax_item_class ( $classes ) {
@@ -9252,6 +9236,7 @@ class CZR_slider {
       .tc-slider-loader-wrapper {
         line-height: {$_custom_height}px;
         height:{$_custom_height}px;
+        display: block;
       }
       .carousel .tc-slider-controls {
         line-height: {$_custom_height}px;

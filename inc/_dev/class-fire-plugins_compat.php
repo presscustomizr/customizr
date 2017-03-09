@@ -814,15 +814,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       /* Remove fancybox loading icon*/
-      add_action('wp_footer','czr_fn_op_remove_fancyboxloading');
-      function czr_fn_op_remove_fancyboxloading(){
-        echo "<script>
-                if (typeof(opjq) !== 'undefined') {
-                  opjq(document).ready(function(){
-                    opjq('#fancybox-loading').remove();
-                  });
-                }
-             </script>";
+      add_filter('tc_js_params_plugin_compat', 'czr_fn_op_remove_fancyboxloading' );
+      //@params = array() of js params
+      function czr_fn_op_remove_fancyboxloading( $params ){
+          return array_merge( $params, array( 'optimizepress_compat' => array( 'remove_fancybox_loading' => true ) ) );
       }
     }//end optimizepress compat
 

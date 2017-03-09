@@ -998,6 +998,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'type'        => 'select' ,
                                 'choices'     => $this -> czr_fn_layout_choices(),
                                 'priority'    => 2,
+                                'ubq_section'   => array(
+                                    'section' => 'post_layout_sec',
+                                    'priority' => '0'
+                                )
               ),
 
               //select slider

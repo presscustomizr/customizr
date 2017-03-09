@@ -383,7 +383,7 @@ class CZR_slider_model_class extends CZR_Model {
   protected function czr_fn_get_slider_inner_attrs() {
     if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
       return sprintf( 'data-parallax-ratio="%s"',
-        apply_filters('tc_parallax_speed', 0.55 )
+        apply_filters('tc_parallax_ratio', 0.55 )
       );
   }
 

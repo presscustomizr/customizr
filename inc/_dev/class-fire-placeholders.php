@@ -19,7 +19,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     function __construct () {
       self::$instance =& $this;
       add_action( 'init'           , array( $this, 'czr_fn_placeholders_ajax_setup') );
-      add_action( 'wp'             , array( $this, 'czr_fn_placeholders_write_ajax_js_in_footer') );
+      add_filter( 'tc_js_params_front_placeholders' , array( $this, 'czr_fn_localize_placeholders_js') );
     }
 
 
@@ -49,34 +49,82 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     * MAYBE WRITE AJAX SCRIPTS IN FOOTER FOR ALL PLACEHOLDERS / NOTICES
     *****************************************************/
     /**
-    * hook : wp => because we need to access some conditional tags like is_home when checking if the placeholder / notice are enabled
-    * @since v3.4+
+    * hook : 'tc_js_params_front_placeholders'
+    * => we need to access some conditional tags like is_home when checking if the placeholder / notice are enabled
+    * @params = array() of placeholder params
     */
-    function czr_fn_placeholders_write_ajax_js_in_footer() {
+    function czr_fn_localize_placeholders_js( $params ) {
       if ( ! $this -> czr_fn_is_front_help_enabled() )
-        return;
-      if ( $this -> czr_fn_is_thumbnail_help_on() )
-          add_action( 'wp_footer'   , array( $this, 'czr_fn_write_thumbnail_help_js'), 100 );
+        return $params;
 
-      /* The actual printing of the js is controlled with a filter inside the callback */
-      add_action( 'wp_footer'     , array( $this, 'czr_fn_maybe_write_img_sarmtload_help_js'), 100 );
-      if ( $this -> czr_fn_is_sidenav_help_on() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_write_sidenav_help_js'), 100 );
+      return array_merge( $params, array(
+          //SIMPLE NOTICE WITHOUT BLOCK REMOVAL
+          'thumbnail' => array(
+              'active'    => $this -> czr_fn_is_thumbnail_help_on(),
+              'args'  => array(
+                  'action' => 'dismiss_thumbnail_help',
+                  'nonce' => array( 'id' => 'thumbnailNonce', 'handle' => wp_create_nonce( 'tc-thumbnail-help-nonce' ) ),
+                  'class' => 'tc-thumbnail-help'
+              )
+          ),
+          'smartload' => array(
+              'active'    => apply_filters( 'tc_write_img_smartload_help_js', true ),
+              'args'  => array(
+                  'action' => 'dismiss_img_smartload_help',
+                  'nonce' => array( 'id' => 'imgSmartLoadNonce', 'handle' => wp_create_nonce( 'tc-img-smartload-help-nonce' ) ),
+                  'class' => 'tc-img-smartload-help'
+              )
+          ),
+          'sidenav' => array(
+              'active'    => $this -> czr_fn_is_sidenav_help_on(),
+              'args'  => array(
+                  'action' => 'dismiss_sidenav_help',
+                  'nonce' => array( 'id' => 'sideNavNonce', 'handle' => wp_create_nonce( 'tc-sidenav-help-nonce' ) ),
+                  'class' => 'tc-sidenav-help'
+              )
+          ),
+          'secondMenu' => array(
+              'active'    => $this -> czr_fn_is_second_menu_placeholder_on(),
+              'args'  => array(
+                  'action' => 'dismiss_second_menu_notice',
+                  'nonce' => array( 'id' => 'secondMenuNonce', 'handle' => wp_create_nonce( 'tc-second-menu-placeholder-nonce' ) ),
+                  'class' => 'tc-menu-placeholder'
+              )
+          ),
+          'mainMenu' => array(
+              'active'    => $this -> czr_fn_is_main_menu_notice_on(),
+              'args'  => array(
+                  'action' => 'dismiss_main_menu_notice',
+                  'nonce' => array( 'id' => 'mainMenuNonce', 'handle' => wp_create_nonce( 'tc-main-menu-notice-nonce' ) ),
+                  'class' => 'tc-main-menu-notice'
+              )
+          ),
 
-      if ( $this -> czr_fn_is_second_menu_placeholder_on() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_write_second_menu_placeholder_js'), 100 );
-
-      if ( $this -> czr_fn_is_main_menu_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_write_main_menu_notice_js'), 100 );
-
-      if ( $this -> czr_fn_is_slider_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_write_slider_notice_js'), 100 );
-
-      if ( $this -> czr_fn_is_fp_notice_on() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_write_fp_notice_js'), 100 );
-
-      if ( $this -> czr_fn_is_widget_placeholder_enabled() )
-        add_action( 'wp_footer'   , array( $this, 'czr_fn_widget_placeholder_script'), 100 );
+          //BLOCK REMOVAL NOTICES
+          'slider' => array(
+              'active'    => $this -> czr_fn_is_slider_notice_on(),
+              'args'  => array(
+                  'action' => 'slider_notice_actions',
+                  'nonce' => array( 'id' => 'sliderNoticeNonce', 'handle' => wp_create_nonce( 'tc-slider-notice-nonce' ) ),
+                  'class' => 'tc-slider-notice'
+              )
+          ),
+          'fp' => array(
+              'active'    => $this -> czr_fn_is_fp_notice_on(),
+              'args'  => array(
+                  'action' => 'fp_notice_actions',
+                  'nonce' => array( 'id' => 'fpNoticeNonce', 'handle' => wp_create_nonce( 'tc-fp-notice-nonce' ) ),
+                  'class' => 'tc-fp-notice'
+              )
+          ),
+          'widget' => array(
+              'active'    => $this -> czr_fn_is_widget_placeholder_enabled(),
+              'args'  => array(
+                  'action' => 'dismiss_widget_notice',
+                  'nonce' => array( 'id' => 'WidgetNonce', 'handle' => wp_create_nonce( 'tc-widget-placeholder-nonce' ) )
+              )
+          ),
+      ) );
     }
 
 
@@ -95,51 +143,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       check_ajax_referer( 'tc-thumbnail-help-nonce', 'thumbnailNonce' );
       set_transient( 'tc_thumbnail_help', 'disabled' , 60*60*24*365*20 );//20 years of peace
       wp_die();
-    }
-
-
-    /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_thumbnail_help_js() {
-      ?>
-      <script type="text/javascript" id="thumbnail-help">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_thumbnail_help',
-                    thumbnailNonce :  "<?php echo wp_create_nonce( 'tc-thumbnail-help-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-thumbnail-help').slideToggle('fast');
-            }).always(function() {console.log(arguments);});
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-thumbnail-help').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
     }
 
 
@@ -228,52 +231,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
 
     /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_maybe_write_img_sarmtload_help_js() {
-      if ( ! apply_filters( 'tc_write_img_smartload_help_js', false ) ) return;
-      ?>
-      <script type="text/javascript" id="img-smartload-help">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_img_smartload_help',
-                    imgSmartLoadNonce :  "<?php echo wp_create_nonce( 'tc-img-smartload-help-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-img-smartload-help').slideToggle('fast');
-            }).always(function() {console.log(arguments);});
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-img-smartload-help').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
-    /**
     *
     * @return  bool
     * @since Customizr 3.4+
@@ -330,51 +287,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
 
     /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_sidenav_help_js() {
-      ?>
-      <script type="text/javascript" id="sidenav-help">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_sidenav_help',
-                    sideNavNonce :  "<?php echo wp_create_nonce( 'tc-sidenav-help-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-sidenav-help').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-sidenav-help').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
-    /**
     *
     * @return  bool
     * @since Customizr 3.3+
@@ -426,51 +338,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
 
     /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_second_menu_placeholder_js() {
-      ?>
-      <script type="text/javascript" id="second-menu-placeholder">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_second_menu_notice',
-                    secondMenuNonce :  "<?php echo wp_create_nonce( 'tc-second-menu-placeholder-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-menu-placeholder').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-menu-placeholder').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
-    /**
     *
     * @return  bool
     * @since Customizr 3.3+
@@ -514,50 +381,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       wp_die();
     }
 
-
-    /**
-    * Prints dismiss notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_main_menu_notice_js() {
-      ?>
-      <script type="text/javascript" id="main-menu-placeholder">
-        ( function( $ ) {
-          var dismiss_request = function( $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_main_menu_notice',
-                    mainMenuNonce :  "<?php echo wp_create_nonce( 'tc-main-menu-notice-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              $_el.closest('.tc-main-menu-notice').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-main-menu-notice').click( function( e ) {
-              e.preventDefault();
-              dismiss_request( $(this) );
-            } );
-          } );
-        }) (jQuery)
-      </script>
-      <?php
-    }
 
 
     /**
@@ -624,63 +447,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
 
     /**
-    * Prints dismiss notice js in the footer
-    * Two cases :
-    * 1) dismiss notice
-    * 2) remove demo slider
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_slider_notice_js() {
-      ?>
-      <script type="text/javascript" id="slider-notice-actions">
-        ( function( $ ) {
-          var slider_ajax_request = function( remove_action, $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'slider_notice_actions',
-                    remove_action : remove_action,
-                    sliderNoticeNonce :  "<?php echo wp_create_nonce( 'tc-slider-notice-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              if ( 'remove_slider' == remove_action )
-                $('div[id*="customizr-slider"]').fadeOut('slow');
-              else
-                $_el.closest('.tc-slider-notice').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-slider-notice').click( function( e ) {
-              e.preventDefault();
-              slider_ajax_request( 'remove_notice', $(this) );
-            } );
-            $('.tc-inline-remove', '.tc-slider-notice').click( function( e ) {
-              e.preventDefault();
-              slider_ajax_request( 'remove_slider', $(this) );
-            } );
-          } );
-
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
-    /**
     * Do we display the slider notice ?
     * @return  bool
     * @since Customizr 3.4+
@@ -743,64 +509,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       wp_die();
     }
 
-
-    /**
-    * Prints dismiss notice js in the footer
-    * Two cases :
-    * 1) dismiss notice
-    * 2) remove fp
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_write_fp_notice_js() {
-      ?>
-      <script type="text/javascript" id="fp-notice-actions">
-        ( function( $ ) {
-          var fp_ajax_request = function( remove_action, $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'fp_notice_actions',
-                    remove_action : remove_action,
-                    fpNoticeNonce :  "<?php echo wp_create_nonce( 'tc-fp-notice-nonce' ); ?>"
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                return;
-
-              if ( 'remove_fp' == remove_action )
-                $('#main-wrapper > .marketing').fadeOut('slow');
-              else
-                $_el.closest('.tc-fp-notice').slideToggle('fast');
-            });
-          };//end of fn
-
-          //DOM READY
-          $( function($) {
-            $('.tc-dismiss-notice', '.tc-fp-notice').click( function( e ) {
-              e.preventDefault();
-              fp_ajax_request( 'remove_notice', $(this) );
-            } );
-            $('.tc-inline-remove', '.tc-fp-notice').click( function( e ) {
-              e.preventDefault();
-              fp_ajax_request( 'remove_fp', $(this) );
-            } );
-          } );
-
-        }) (jQuery)
-      </script>
-      <?php
-    }
-
-
     /**
     * Do we display the featured page notice ?
     * @return  bool
@@ -856,53 +564,6 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     /************************************************************
     * WIDGET PLACEHOLDERS AJAX JS AND CALLBACK : FOR SIDEBARS AND FOOTER
     ************************************************************/
-    /**
-    * Prints dismiss widget notice javascript in the footer
-    * hook : wp_footer
-    *
-    * @package Customizr
-    * @since Customizr 3.3+
-    */
-    function czr_fn_widget_placeholder_script() {
-      ?>
-      <script type="text/javascript" id="widget-placeholders">
-        var tc_dismiss_widget_notice = function( _position, $_el ) {
-            var AjaxUrl         = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                _query = {
-                    action  : 'dismiss_widget_notice',
-                    WidgetNonce :  "<?php echo wp_create_nonce( 'tc-widget-placeholder-nonce' ); ?>",
-                    position : _position
-                },
-                $ = jQuery,
-                request = $.post( AjaxUrl, _query );
-
-            request.done( function( response ) {
-              // Check if the user is logged out.
-              if ( '0' === response )
-                  return;
-              // Check for cheaters.
-              if ( '-1' === response )
-                  return;
-              if ( 'sidebar' == _position )
-                $('.tc-widget-placeholder' , '.tc-sidebar').slideToggle('fast');
-              else
-                $_el.closest('.tc-widget-placeholder').slideToggle('fast');
-            });
-        };//end of fn
-        jQuery( function($) {
-          $('.tc-dismiss-notice, .tc-inline-dismiss-notice').click( function( e ) {
-            e.preventDefault();
-            var _position = $(this).attr('data-position');
-            if ( ! _position || ! _position.length )
-              return;
-            czr_fn_dismiss_widget_notice( _position, $(this) );
-          } );
-        } );
-      </script>
-      <?php
-    }
-
-
     /**
     * Dismiss widget notice ajax callback
     * hook : wp_ajax_dismiss_widget_notice
