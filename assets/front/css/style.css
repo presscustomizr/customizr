@@ -1716,7 +1716,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-  margin-left: 1.25em;
+  /*margin-left: $base-line-height;  */
   position: relative;
 }
 
@@ -2308,19 +2308,26 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     line-height: inherit;
   }
   [class*=sl-] .primary-nav__container .primary-nav__utils {
-    display: table-cell !important;
+    display: table !important;
     height: 100%;
     white-space: nowrap !important;
     vertical-align: middle;
+    table-layout: initial;
+    float: right;
+  }
+  .ie [class*=sl-] .primary-nav__container .primary-nav__utils {
+    display: table-cell !important;
   }
   [class*=sl-] .primary-nav__container .primary-nav__utils .utils, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
     position: relative;
-    display: inline-block;
+    /* display : inline-block; */
+    display: table-cell;
     float: none !important;
     height: 100%;
     vertical-align: middle;
   }
   [class*=sl-] .primary-nav__container .primary-nav__utils .utils li, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials li {
+    display: inline-block;
     display: inline-table;
     vertical-align: middle;
     /*float: left;*/
@@ -2349,6 +2356,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .sl-logo_right .primary-nav__container .primary-nav__utils {
     direction: rtl;
     text-align: left;
+    float: left;
   }
   .sl-logo_right .primary-nav__container .primary-nav__utils * {
     direction: ltr;
@@ -2357,8 +2365,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding-left: 0;
     padding-right: 1.25em;
     /* mirror */
-    margin-left: 0;
-    margin-right: 1.25em;
+    /* margin-left: 0;  margin-right: 1.25em; */
   }
   .sl-logo_right .primary-nav__utils .nav.utils > li:first-of-type {
     position: relative;
@@ -2452,7 +2459,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     white-space: nowrap !important;
     vertical-align: middle;
   }
-  [class*=logo_center] .primary-nav__menu-wrapper + .primary-nav__utils {
+  body:not(.sticky-enabled) [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils {
     padding-left: 2.5rem;
     /* balances what is in topnav.scss */
   }
@@ -2475,7 +2482,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: table-cell;
     vertical-align: middle;
   }
-  .primary-nav__socials ul {
+  [class*=logo_center] .primary-nav__socials ul {
     display: inline-block !important;
     height: 100%;
     vertical-align: middle;
@@ -2484,15 +2491,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: table;
     min-height: 70px;
     height: 70px;
-  }
-  .sticky-enabled [class*=logo_center] .branding__container {
-    width: auto;
-  }
-  .sticky-enabled [class*=logo_center] .primary-nav__utils {
-    vertical-align: middle;
+    width: 100%;
   }
   .sticky-enabled [class*=logo_center] .primary-nav__container,
   .sticky-enabled [class*=logo_center] .branding__container {
+    width: auto;
     clear: none;
     text-align: left;
     display: table-cell !important;
@@ -2506,9 +2509,41 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding: 0;
     /*img { max-height: 70px; } */
   }
+  .sticky-enabled [class*=logo_center] .primary-nav__menu-wrapper {
+    width: 100%;
+  }
   .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav {
     width: 100%;
     display: table !important;
+  }
+  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__menu-wrapper {
+    vertical-align: middle;
+    padding-left: 2.5em !important;
+    padding-right: 2.5em !important;
+  }
+  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
+    display: table !important;
+    height: 100%;
+    white-space: nowrap !important;
+    float: right;
+    vertical-align: middle;
+    min-height: inherit;
+    width: auto;
+  }
+  .ie .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
+    display: table-cell !important;
+  }
+  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils, .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials {
+    display: table-cell;
+    float: none !important;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils li, .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials li {
+    display: inline-table;
+  }
+  .sticky-enabled .branding__container .primary-nav__utils {
+    display: none !important;
   }
 }
 
@@ -2540,6 +2575,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   [class*=v-logo_] .branding .navbar-logo {
     height: auto;
+  }
+  [class*=v-logo_] .primary-nav__utils {
+    float: right;
   }
   [class*=v-logo_] .branding__container .primary-nav__utils {
     display: table !important;
@@ -2656,10 +2694,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: table;
     min-height: 70px;
     height: 70px;
+    width: 100%;
   }
   .sticky-enabled [class*=v-logo_] .primary-nav__utils {
     vertical-align: middle;
-    float: none !important;
   }
   .sticky-enabled .branding__container .primary-nav__utils {
     display: none !important;
@@ -2680,6 +2718,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding: 0;
     /*img { max-height: 70px; }*/
   }
+  .sticky-enabled [class*=v-logo_] .primary-nav__menu-wrapper {
+    width: 100%;
+  }
   .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav {
     width: 100%;
     display: table !important;
@@ -2690,7 +2731,28 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding-right: 2.5em !important;
   }
   .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
+    display: table !important;
+    height: 100%;
+    float: right;
+    white-space: nowrap !important;
+    vertical-align: middle;
     min-height: inherit;
+    width: auto;
+  }
+  .ie .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
+    display: table-cell !important;
+  }
+  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils, .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials {
+    display: table-cell;
+    float: none !important;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils li, .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials li {
+    display: inline-table;
+  }
+  .sticky-enabled .branding__container .primary-nav__utils {
+    display: none !important;
   }
   .sticky-enabled [class*=v-logo_].v-logo_right .branding__container {
     text-align: right;
@@ -2707,6 +2769,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__utils {
     direction: rtl;
+    float: left;
   }
   .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__utils * {
     direction: ltr;
@@ -2715,7 +2778,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding-left: 0;
     padding-right: 1.25em;
     margin-left: 0;
-    margin-right: 1.25em;
   }
   .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__utils .nav.utils > li:first-of-type {
     position: relative;

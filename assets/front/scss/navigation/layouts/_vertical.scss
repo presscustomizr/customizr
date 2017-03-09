@@ -25,7 +25,9 @@
       float: left;
       .navbar-logo { height: auto; }
     }
-
+    .primary-nav__utils {
+      float: right;
+    }
     .branding__container .primary-nav__utils {
       display: table!important;
       height: 100%;
@@ -142,10 +144,10 @@
         display: table;
         min-height: 70px;
         height: 70px;
+        width: 100%;
       }
       .primary-nav__utils {
         vertical-align: middle;
-        float: none !important;
         @at-root .sticky-enabled .branding__container .primary-nav__utils {
           display: none !important;
         }
@@ -166,6 +168,9 @@
         padding: 0;
         /*img { max-height: 70px; }*/
       }
+      .primary-nav__menu-wrapper {
+        width: 100%;
+      }
       .primary-navbar__wrapper .primary-nav__nav {
         width: 100%;
         display: table !important;
@@ -175,7 +180,26 @@
           padding-right: $base-line-height*2!important;
         }
         .primary-nav__utils {
+          display: table !important;
+          .ie &{ display: table-cell !important; }
+          height: 100%;
+          float: right;
+          white-space: nowrap !important;
+          .utils, .primary-nav__socials {
+            display: table-cell;
+            float: none !important;
+            height: 100%;
+            vertical-align: middle;
+            li {
+              display: inline-table;
+            }
+          }
+          vertical-align: middle;
+          @at-root .sticky-enabled .branding__container .primary-nav__utils {
+            display: none !important;
+          }
           min-height: inherit;
+          width: auto;
         }
       }
       /* sticky logo right */
@@ -191,12 +215,12 @@
           width: 100%;
         }
         .primary-nav__container .primary-nav__nav { text-align: left; }
-        .primary-nav__container .primary-nav__utils { direction: rtl;}
-        .primary-nav__container .primary-nav__utils * { direction: ltr; }
+        .primary-nav__container .primary-nav__utils { direction: rtl;  float: left;}
+        .primary-nav__container .primary-nav__utils * { direction: ltr;}
 
         .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
           padding-left: 0; padding-right: $base-line-height;
-          margin-left: 0;  margin-right: $base-line-height;
+          margin-left: 0;  //margin-right: $base-line-height;
         }
 
         .primary-nav__utils .nav.utils > li:first-of-type {

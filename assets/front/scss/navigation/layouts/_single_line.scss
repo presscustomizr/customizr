@@ -106,18 +106,23 @@
 
     }
     .primary-nav__container .primary-nav__utils {
-      display: table-cell !important;
+      display: table !important;
+      .ie &{ display: table-cell !important; }
       height: 100%;
       white-space: nowrap !important;
       vertical-align: middle;
+      table-layout: initial;
+      float: right;
       .utils, .primary-nav__socials {
         position: relative;
-        display : inline-block;
+        /* display : inline-block; */
+        display: table-cell;
         float: none !important;
         height: 100%;
         vertical-align: middle;
         li {
-          display:inline-table;
+          display:inline-block;
+          display: inline-table;
           vertical-align: middle;
           /*float: left;*/
           a {
@@ -144,14 +149,14 @@
         direction: ltr;
       }
       .primary-nav__container .primary-nav__nav { text-align: left; }
-      .primary-nav__container .primary-nav__utils { direction: rtl; text-align: left }
+      .primary-nav__container .primary-nav__utils { direction: rtl; text-align: left; float:left }
       .primary-nav__container .primary-nav__utils * { direction: ltr; }
 
 
 
       .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
         padding-left: 0; padding-right: 1.25em; /* mirror */
-        margin-left: 0;  margin-right: 1.25em;
+       /* margin-left: 0;  margin-right: 1.25em; */
       }
 
       .primary-nav__utils .nav.utils > li:first-of-type {
