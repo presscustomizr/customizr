@@ -65,7 +65,7 @@ class CZR_slider {
     add_filter( 'tc_slide_background'       , array( $this, 'czr_fn_link_whole_slide'), 5, 5 );
 
     //display a notice for first time users
-    if ( 'demo' == $slider_name_id ) {
+    if ( 'tc_posts_slider' == $slider_name_id ) {
       //display a notice for first time users
       add_action( '__after_carousel_inner'   , array( $this, 'czr_fn_maybe_display_dismiss_notice') );
     }

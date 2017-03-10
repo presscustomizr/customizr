@@ -8300,7 +8300,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! is_admin() && ! CZR_utils::$inst-> czr_fn_is_home(),
-        'demo' != CZR_utils::$inst->czr_fn_opt('tc_front_slider'),
+        'tc_posts_slider' != CZR_utils::$inst->czr_fn_opt('tc_front_slider'),
         'disabled' == get_transient("tc_slider_notice"),
         ! self::$instance -> czr_fn_is_front_help_enabled()
       );

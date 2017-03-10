@@ -52,8 +52,9 @@ The exceptions to this license are as follows:
 * Imp: init parallax slider in js files
 * Imp: WordPress theme guidelines, moved all hardcoded scripts in enqueued js file
 * Imp: in the customizer, display the front page layout control in the post layout section
+* Imp: posts slider, prevent get_posts if asking for n<1 posts
 * Changed : moved translated languages on polyglots : pt_BR, uk, tr_TR to lang_pro
-* Changed : the demo slider is now the posts slider
+* Changed : the default slider is now the posts slider
 * Added : a default thumbnail for posts slides with no thumbnails
 
 = 3.5.5 February 26th 2017 =

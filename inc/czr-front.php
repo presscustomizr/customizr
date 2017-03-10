@@ -8022,7 +8022,7 @@ class CZR_slider {
     add_filter( 'tc_slide_background'       , array( $this, 'czr_fn_link_whole_slide'), 5, 5 );
 
     //display a notice for first time users
-    if ( 'demo' == $slider_name_id ) {
+    if ( 'tc_posts_slider' == $slider_name_id ) {
       //display a notice for first time users
       add_action( '__after_carousel_inner'   , array( $this, 'czr_fn_maybe_display_dismiss_notice') );
     }
@@ -8467,7 +8467,6 @@ class CZR_slider {
   *
   */
   private function czr_fn_query_posts_slider( $args = array() ) {
-    global $wpdb;
 
     $defaults       = array(
       'stickies_only'   => 0,
@@ -8481,19 +8480,25 @@ class CZR_slider {
     );
 
     $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
+    $_posts         = false;
 
-    // Do we have to show only sticky posts?
-    if ( array_key_exists( 'stickies_only', $args) && $args['stickies_only'] ) {
-      // Are there sticky posts?
-      $_sticky_posts  = get_option('sticky_posts');
-      if ( ! empty( $_sticky_posts ) ) {
-        $args = array_merge( $args, array( 'post__in' => $_sticky_posts  ) );
+    if ( is_array($args) && !empty($args) && array_key_exists( 'posts_per_page', $args) && $args['posts_per_page'] > 0 ) {
+
+      // Do we have to show only sticky posts?
+      if ( array_key_exists( 'stickies_only', $args) && $args['stickies_only'] ) {
+        // Are there sticky posts?
+        $_sticky_posts  = get_option('sticky_posts');
+        if ( ! empty( $_sticky_posts ) ) {
+          $args = array_merge( $args, array( 'post__in' => $_sticky_posts  ) );
+        }
+        else {
+          $args = false;
+        }
       }
-      else
-        return apply_filters( 'tc_query_posts_slider', false, $args );
-    }
 
-    $_posts = get_posts( $args );
+      if ( !empty($args) )
+        $_posts = get_posts( $args );
+    }
 
     return apply_filters( 'tc_query_posts_slider', $_posts, $args );
   }
