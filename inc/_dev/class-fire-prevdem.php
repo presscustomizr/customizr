@@ -5,6 +5,9 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //SKIN
       add_filter('tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
 
+      //FONT
+      add_filter('tc_opt_tc_fonts', array( $this, 'czr_fn_set_font') );
+
       //HEADER
       //add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
       add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
@@ -47,20 +50,6 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter('tc_has_sidebar_widgets', '__return_true');
     }//construct
 
-    /* ------------------------------------------------------------------------- *
-     *  Socials
-    /* ------------------------------------------------------------------------- */
-    function czr_fn_set_socials( $options ) {
-      if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
-        return $options;
-
-      $to_display = array('tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');
-      foreach ($to_display as $social) {
-         $options[$social] = 'javascript:void()';
-      }
-      $options['tc_rss'] = '';
-      return $options;
-    }
 
     /* ------------------------------------------------------------------------- *
      *  Skin
@@ -76,6 +65,13 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     }
 
 
+    /* ------------------------------------------------------------------------- *
+     *  Font
+    /* ------------------------------------------------------------------------- */
+    //hook : tc_opt_tc_fonts
+    function czr_fn_set_font() {
+      return '_g_poppins';
+    }
 
 
     /* ------------------------------------------------------------------------- *
@@ -324,6 +320,24 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     function czr_fn_set_single_post_thumb_height() {
       return 350;
     }
+
+
+
+    /* ------------------------------------------------------------------------- *
+     *  Socials
+    /* ------------------------------------------------------------------------- */
+    function czr_fn_set_socials( $options ) {
+      if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
+        return $options;
+
+      $to_display = array('tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');
+      foreach ($to_display as $social) {
+         $options[$social] = 'javascript:void()';
+      }
+      $options['tc_rss'] = '';
+      return $options;
+    }
+
 
     /* ------------------------------------------------------------------------- *
      *  Widgets

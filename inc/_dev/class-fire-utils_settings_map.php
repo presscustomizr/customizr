@@ -19,10 +19,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     public $customizer_map = array();
 
     function __construct () {
-      self::$instance =& $this;
-      //declare a private property to check wp version >= 4.0
-      global $wp_version;
-      $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
+        self::$instance =& $this;
+        //declare a private property to check wp version >= 4.0
+        global $wp_version;
+        $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
     }//end of construct
 
 
@@ -59,10 +59,10 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
         //CACHE THE GLOBAL CUSTOMIZER MAP
         $_customizer_map = array_merge(
-          array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
-          array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
-          array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
-          array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
+            array( 'add_panel'           => apply_filters( 'tc_add_panel_map', array() ) ),
+            array( 'remove_section'      => apply_filters( 'tc_remove_section_map', array() ) ),
+            array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
+            array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
         );
         $this -> customizer_map = $_customizer_map;
       }
@@ -102,56 +102,56 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
       $_new_map = array();
       $_settings_sections = array(
-        //GLOBAL SETTINGS
-        'czr_fn_logo_favicon_option_map',
-        'czr_fn_skin_option_map',
-        'czr_fn_fonts_option_map',
-        'czr_fn_social_option_map',
-        'czr_fn_icons_option_map',
-        'czr_fn_links_option_map',
-        'czr_fn_images_option_map',
-        'czr_fn_responsive_option_map',
-        'czr_fn_authors_option_map',
-        'czr_fn_smoothscroll_option_map',
-        //HEADER
-        'czr_fn_header_design_option_map',
-        'czr_fn_navigation_option_map',
-        //CONTENT
-        'czr_fn_front_page_option_map',
-        'czr_fn_layout_option_map',
-        'czr_fn_comment_option_map',
-        'czr_fn_breadcrumb_option_map',
-        'czr_fn_post_metas_option_map',
-        'czr_fn_post_list_option_map',
-        'czr_fn_single_post_option_map',
-        'czr_fn_gallery_option_map',
-        'czr_fn_paragraph_option_map',
-        'czr_fn_post_navigation_option_map',
-        //SIDEBARS
-        'czr_fn_sidebars_option_map',
-        //FOOTER
-        'czr_fn_footer_global_settings_option_map',
-        //ADVANCED OPTIONS
-        'czr_fn_custom_css_option_map',
-        'czr_fn_performance_option_map',
-        'czr_fn_placeholders_notice_map',
-        'czr_fn_external_resources_option_map'
+          //GLOBAL SETTINGS
+          'czr_fn_logo_favicon_option_map',
+          'czr_fn_skin_option_map',
+          'czr_fn_fonts_option_map',
+          'czr_fn_social_option_map',
+          'czr_fn_icons_option_map',
+          'czr_fn_links_option_map',
+          'czr_fn_images_option_map',
+          'czr_fn_responsive_option_map',
+          'czr_fn_authors_option_map',
+          'czr_fn_smoothscroll_option_map',
+          //HEADER
+          'czr_fn_header_design_option_map',
+          'czr_fn_navigation_option_map',
+          //CONTENT
+          'czr_fn_front_page_option_map',
+          'czr_fn_layout_option_map',
+          'czr_fn_comment_option_map',
+          'czr_fn_breadcrumb_option_map',
+          'czr_fn_post_metas_option_map',
+          'czr_fn_post_list_option_map',
+          'czr_fn_single_post_option_map',
+          'czr_fn_gallery_option_map',
+          'czr_fn_paragraph_option_map',
+          'czr_fn_post_navigation_option_map',
+          //SIDEBARS
+          'czr_fn_sidebars_option_map',
+          //FOOTER
+          'czr_fn_footer_global_settings_option_map',
+          //ADVANCED OPTIONS
+          'czr_fn_custom_css_option_map',
+          'czr_fn_performance_option_map',
+          'czr_fn_placeholders_notice_map',
+          'czr_fn_external_resources_option_map'
       );
 
       foreach ( $_settings_sections as $_section_cb ) {
-        if ( ! method_exists( $this , $_section_cb ) )
-          continue;
-        //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
-        //each section map takes one boolean param : $get_default
-        $_section_map = apply_filters(
-          $_section_cb,
-          call_user_func_array( array( $this, $_section_cb ), array( $get_default ) )
-        );
+          if ( ! method_exists( $this , $_section_cb ) )
+            continue;
+          //applies a filter to each section settings map => allows plugins (featured pages for ex.) to add/remove settings
+          //each section map takes one boolean param : $get_default
+          $_section_map = apply_filters(
+            $_section_cb,
+            call_user_func_array( array( $this, $_section_cb ), array( $get_default ) )
+          );
 
-        if ( ! is_array( $_section_map) )
-          continue;
+          if ( ! is_array( $_section_map) )
+            continue;
 
-        $_new_map = array_merge( $_new_map, $_section_map );
+          $_new_map = array_merge( $_new_map, $_section_map );
       }//foreach
       return array_merge( $_map, $_new_map );
     }
@@ -288,16 +288,16 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     ------------------------------------------------------------------------------------------------------*/
     function czr_fn_social_option_map( $get_default = null  ) {
       return array(
-          'tc_social_links' => array(
-                'default'   => array(),//empty array by default
-                'control'   => 'CZR_Customize_Modules',
-                'label'     => __('Create and organize your social links', 'customizr'),
-                'section'   => 'socials_sec',
-                'type'      => 'czr_module',
-                'module_type' => 'czr_social_module',
-                'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
-                'priority'  => 10,
-          )
+            'tc_social_links' => array(
+                              'default'   => array(),//empty array by default
+                              'control'   => 'CZR_Customize_Modules',
+                              'label'     => __('Create and organize your social links', 'customizr'),
+                              'section'   => 'socials_sec',
+                              'type'      => 'czr_module',
+                              'module_type' => 'czr_social_module',
+                              'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                              'priority'  => 10,
+            )
       );
     }
 
