@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.7 March 8th 2017 =
+* improved : li+li list style with 0.25em top margin
+* fix : default slider should show the demo slides when previewing
+
 = 3.5.6 March 8th 2017 =
 * Fix: fix preview demo content should fix #785
 * Fix: fix wrong text domain in customizer files fixes #832

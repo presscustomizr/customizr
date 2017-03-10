@@ -8467,51 +8467,52 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
   final class CZR_prevdem {
     function __construct() {
       //SKIN
-      add_filter('tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
+      add_filter( 'tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
 
       //FONT
-      add_filter('tc_opt_tc_fonts', array( $this, 'czr_fn_set_font') );
+      add_filter( 'tc_opt_tc_fonts', array( $this, 'czr_fn_set_font') );
 
       //HEADER
-      //add_filter('option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
-      add_filter('tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
-      add_filter('tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
+      //add_filter( 'option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
+      add_filter( 'tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
+      add_filter( 'tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
 
       //FRONT PAGE
-      add_filter('option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
-      add_filter('pre_option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+      add_filter( 'option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
+      add_filter( 'pre_option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
 
       //FEATURED PAGES
-      add_filter('fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
-      add_filter('tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
-      add_filter('tc_fp_text', array( $this, 'czr_fn_set_fp_text'), 100 );
-      add_filter('tc_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
+      add_filter( 'fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
+      add_filter( 'tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
+      add_filter( 'tc_fp_text', array( $this, 'czr_fn_set_fp_text'), 100 );
+      add_filter( 'tc_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
 
       //THUMBNAILS
-      add_filter('tc_has_thumb', '__return_true');
-      add_filter('tc_has_thumb_info', '__return_true');
-      add_filter('tc_has_wp_thumb_image', '__return_true');
-      add_filter('tc_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
+      add_filter( 'tc_has_thumb', '__return_true');
+      add_filter( 'tc_has_thumb_info', '__return_true');
+      add_filter( 'tc_has_wp_thumb_image', '__return_true');
+      add_filter( 'tc_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
 
       //SLIDER
-      add_filter('tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
+      add_filter( 'tc_opt_tc_front_slider', array( $this, 'czr_fn_set_slider') );
+      add_filter( 'tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
       //adds infos in the caption data of the demo slider
-      add_filter('tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
-      add_filter('tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
+      add_filter( 'tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+      add_filter( 'tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
 
       //SINGLE POSTS
-      add_filter('tc_show_single_post_thumbnail', '__return_true');
-      add_filter('tc_single_post_thumb_hook', array( $this, 'czr_fn_set_single_post_thumb_hook') );
-      add_filter('tc_single_post_thumb_height', array( $this, 'czr_fn_set_single_post_thumb_height') );
+      add_filter( 'tc_show_single_post_thumbnail', '__return_true');
+      add_filter( 'tc_single_post_thumb_hook', array( $this, 'czr_fn_set_single_post_thumb_hook') );
+      add_filter( 'tc_single_post_thumb_height', array( $this, 'czr_fn_set_single_post_thumb_height') );
 
       //SOCIALS
-      add_filter('option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
+      add_filter( 'option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
 
       //WIDGETS
-      add_action('dynamic_sidebar_before', array( $this, 'czr_fn_set_widgets'), 10, 2 );
-      add_filter('tc_has_footer_widgets', '__return_true');
-      add_filter('tc_has_footer_widgets_zone', '__return_true');
-      add_filter('tc_has_sidebar_widgets', '__return_true');
+      add_action( 'dynamic_sidebar_before', array( $this, 'czr_fn_set_widgets'), 10, 2 );
+      add_filter( 'tc_has_footer_widgets', '__return_true');
+      add_filter( 'tc_has_footer_widgets_zone', '__return_true');
+      add_filter( 'tc_has_sidebar_widgets', '__return_true');
     }//construct
 
 
@@ -8573,15 +8574,15 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     function czr_fn_set_fp_title( $text, $fp_single_id, $featured_page_id ) {
       switch ($fp_single_id) {
         case 'one':
-          $text = __('Who We Are', 'customizr');
+          $text = __( 'Who We Are', 'customizr');
           break;
 
         case 'two':
-          $text = __('What We Do', 'customizr');
+          $text = __( 'What We Do', 'customizr');
           break;
 
         case 'three':
-          $text = __('Contact Us', 'customizr');
+          $text = __( 'Contact Us', 'customizr');
           break;
       }
       return $text;
@@ -8609,7 +8610,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
 
       $_img_attr = is_array($_img_attr) ? $_img_attr : array();
       if ( false == $tc_thumb || empty( $tc_thumb ) ) {
-        $tc_thumb = sprintf('<img src="%1$s" class="%2$s">',
+        $tc_thumb = sprintf( '<img src="%1$s" class="%2$s">',
           $new_img_src,
           isset($_img_attr['class']) ? $_img_attr['class'] : ''
         );
@@ -8698,6 +8699,11 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- *
      *  Slider
     /* ------------------------------------------------------------------------- */
+    //hook : tc_opt_tc_front_slider
+    function czr_fn_set_slider() {
+      return 'demo';
+    }
+
     //hook : tc_default_slides
     //@return array of default slides
     function czr_fn_set_default_slides() {
@@ -8714,19 +8720,19 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
         $slides = array(
             1 => array(
               'active'        =>  'active',
-              'slide_background'  =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+              'slide_background'  =>  sprintf( '<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
                                         TC_BASE_URL.'assets/front/img/customizr-theme.jpg',
                                         __( 'Customizr is a clean responsive theme' , 'customizr' )
                                   )
             ),
             2 => array(
-              'slide_background' => sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+              'slide_background' => sprintf( '<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
                                     $this -> czr_fn_get_prevdem_img_src( 'slider', '4' ),
                                     __( 'Customizr is a clean responsive theme' , 'customizr' )
                                 )
             ),
             3 => array(
-              'slide_background' => sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+              'slide_background' => sprintf( '<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
                                         $this -> czr_fn_get_prevdem_img_src( 'slider', '16' ),
                                         __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
                                 )
@@ -8794,7 +8800,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
         return $options;
 
-      $to_display = array('tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');
+      $to_display = array( 'tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');
       foreach ($to_display as $social) {
          $options[$social] = 'javascript:void()';
       }

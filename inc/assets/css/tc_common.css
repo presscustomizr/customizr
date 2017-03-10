@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.5.6
+ * Customizr v3.5.7
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4688,6 +4688,10 @@ body {
   color: #5a5a5a;
   background: #fafafa;
   background-image: none;
+}
+/* LISTS */
+body li + li {
+  margin-top: 0.25em;
 }
 /* LINKS HOVER EFFECT */
 .tc-fade-hover-links a:not([class*=round-div]),
