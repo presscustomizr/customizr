@@ -68,10 +68,7 @@
     &.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
   }
 }
- .parallax {
-  @include centered;
-  @extend %vertical-align-parent;
-}
+
 
 .section-slider .container {
   z-index: 3;
@@ -192,7 +189,7 @@ dl {
 
 /* featured pages*/
 .marketing { margin-bottom: $base-line-height * 4 }
-.featured {
+.featured-page {
   margin-top: $base-line-height * 2;
   position: relative;
 

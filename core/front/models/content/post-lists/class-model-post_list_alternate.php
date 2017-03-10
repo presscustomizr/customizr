@@ -44,6 +44,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'has_format_icon_media' => ! in_array( 'narrow', $content_width ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false,
+      'cover_sections'        => true,
       'wrapped'               => true,
     );
 
@@ -171,7 +172,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     /* Define variables */
     $_layout                 = apply_filters( 'czr_post_list_layout', $this -> post_list_layout );
-    $maybe_center_sections   = apply_filters( 'czr_alternate_sections_centering', true );
 
     $_current_post_format    = get_post_format();
 
@@ -245,7 +245,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
       if ( ! $this->has_narrow_layout )
         //allow centering sections
-        array_push( $_sections_wrapper_class, apply_filters( 'czr_alternate_sections_centering', true ) ? 'czr-center-sections' : 'a');
+        array_push( $_sections_wrapper_class, !$this->cover_sections ? 'czr-center-sections' : 'czr-cover-sections');
     }
     elseif ( $is_full_image && $has_post_media ){
       /*
@@ -268,9 +268,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $media_cols, 'czr__r-w16by9' );
     }
     elseif (
-        $has_post_media &&
-        !$has_format_icon_media &&
-        ! $this->has_narrow_layout &&
+        $has_thumb &&
         !in_array( $_current_post_format, array( 'image', 'audio' ) ) ) {
 
       array_push( $media_cols, 'czr__r-w1by1' );
@@ -419,7 +417,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   *
   */
   function czr_fn_build_cols( $_widths, $_push = array(), $_pull = array() ) {
-    $_col_bp = self::$_col_bp;
+    $_col_bps = self::$_col_bp;
 
     $_widths = array_filter( $_widths );
     $_push   = array_filter( $_push );
@@ -430,14 +428,15 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
     $_push_class = $_pull_class = '';
 
     foreach ( $_widths as $i => $val ) {
+      $_col_bp_prefix = 'xs' == $_col_bps[$i] ? '-' : "-{$_col_bps[$i]}-";
 
       if ( isset($_push[$i]) )
-        $_push_class    = "push-{$_col_bp[$i]}-{$_push[$i]}";
+        $_push_class    = "push{$_col_bp_prefix}{$_push[$i]}";
 
       if ( isset($_pull[$i]) )
-        $_pull_class    = "pull-{$_col_bp[$i]}-{$_pull[$i]}";
+        $_pull_class    = "pull{$_col_bp_prefix}{$_pull[$i]}";
 
-      $_width_class  = "col-{$_col_bp[$i]}-$val";
+      $_width_class  = "col{$_col_bp_prefix}$val";
       array_push( $_cols, $_width_class, $_push_class, $_pull_class );
     }
     return array_filter( array_unique( $_cols ) );

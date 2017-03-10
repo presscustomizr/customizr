@@ -289,7 +289,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * thumb properties
   */
   function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> czr_fn_show_thumb() && czr_fn_has_thumb();
+    $has_thumb           = $this -> czr_fn_show_thumb();
     $thumb_img           = '';
 
     if ( $has_thumb ) {
@@ -345,12 +345,48 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   function czr_fn_get_grid_item_article_selectors( $section_cols, $is_expanded ) {
     if ( apply_filters( 'czr_grid_add_expanded_class', $is_expanded ) )
       $post_class = 'col-12 expanded grid-item';
-    else
-      $post_class = sprintf( 'grid-item col-12 col-sm-6 col-md-%1$s col-lg-%1$s col-xl-%1$s',
-                              is_numeric( $section_cols ) ? 12 / $section_cols : 6 );
-
+    else {
+      $cols       = $this -> _build_cols($section_cols ? $section_cols : 2 );
+      $post_class = sprintf( 'grid-item col-12 %1$s',
+                              implode( ' ', $cols )
+                    );
+    }
     $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
     return czr_fn_get_the_post_list_article_selectors( $post_class, $id_suffix );
+
+  }
+
+  function _build_cols( $section_cols ) {
+
+    $cols = array ();
+
+    if ( $section_cols > 1 ) {
+      array_push( $cols,
+        "col-md-6"
+      );
+
+      if ( $section_cols > 2 ) {
+        $_cols = 12/$section_cols;
+        array_push( $cols,
+          "col-xl-{$_cols}"
+        );
+
+        if ( $section_cols > 3 ) {
+          $section_cols = $section_cols-1;
+          $_cols = 12/$section_cols;
+          array_push( $cols,
+            "col-lg-{$_cols}"
+          );
+        }else {
+          $_cols = 12/$section_cols;
+          array_push( $cols,
+            "col-lg-{$_cols}"
+          );
+        }
+      }
+    }
+
+    return array_filter( array_unique( $cols ) );
 
   }
 
@@ -443,8 +479,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'col-md-9'   => '3',//one sidebar right or left
           'col-md-8'   => '3',
           'col-md-7'   => '2',
-          'col-md-6'   => '2',//two sidebars
-          'col-md-5'   => '2',
+          'col-md-6'   => '1',//two sidebars
+          'col-md-5'   => '1',
           'col-md-4'   => '1',
           'col-md-3'   => '1',
           'col-md-2'   => '1',
@@ -458,60 +494,6 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       return (string) $_col_nb;
     return (string) $_map[$_current_layout];
   }
-
-
-
-  /**
-  * @param (string) $col_layout
-  * @return string
-  *
-  */
-  protected function czr_fn_get_grid_column_height( $_cols_nb = '3' ) {
-    $_h               = $this -> czr_fn_grid_get_thumb_height();
-    $_current_layout  = czr_fn_get_layout( $this -> queried_id , 'sidebar' );
-    $_layouts         = array('b', 'l', 'r' , 'f');//both, left, right, full (no sidebar)
-    $_key             = 3;//default value == full
-    if ( in_array( $_current_layout, $_layouts ) )
-      //get the key = position of requested size in the current layout
-      $_key = array_search( $_current_layout , $_layouts );
-    $_grid_col_height_map =  apply_filters(
-        'tc_grid_col_height_map',
-        array(        // 'b'  'l'  'r'  'f'
-          '1' => array( 225 , 225, 225, $_h ),
-          '2' => array( 225 , $_h, $_h, $_h ),
-          '3' => array( 225 , 225, 225, 225 ),
-          '4' => array( 165 , 165, 165, 165 )
-        )
-    );
-    //are we ok ?
-    if ( ! isset( $_grid_col_height_map[$_cols_nb] ) )
-      return $_h;
-    //parse the array to ensure that all values are <= user height
-    foreach ( $_grid_col_height_map as $_c => $_heights ) {
-      $_grid_col_height_map[$_c] = $this -> czr_fn_set_max_col_height ( $_heights ,$_h );
-    }
-    $_h = isset( $_grid_col_height_map[$_cols_nb][$_key] ) ? $_grid_col_height_map[$_cols_nb][$_key] : $_h;
-    return apply_filters( 'czr_get_grid_column_height' , $_h, $_cols_nb, $_current_layout );
-  }
-
-
-
-  /**
-  * parse the array to ensure that all values are <= user height
-  * @param (array) grid_col_height_map
-  * @param  (num) user defined max height in pixel
-  * @return string
-  *
-  */
-  protected function czr_fn_set_max_col_height( $_heights ,$_h ) {
-    $_return = array();
-    foreach ($_heights as $_value) {
-      $_return[] = $_value >= $_h ? $_h : $_value;
-    }
-    return $_return;
-  }
-
-
 
 
   /******************************

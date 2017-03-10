@@ -73,44 +73,21 @@
             <?php
 
               do_action( '__before_loop' );
+
               if ( ! czr_fn_is_home_empty() ) {
                 if ( have_posts() ) {
-                  while ( have_posts() ) {
-                    the_post();
 
-                    // Render list of posts based on the options
-                    if ( czr_fn_is_list_of_posts() ) {
-                      if ( czr_fn_has('post_list_grid') ) {
-                        czr_fn_render_template( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) );
-                      }
-                      elseif ( czr_fn_has('post_list') ){
-                        czr_fn_render_template( 'content/post-lists/post_list_alternate' );
-                      }elseif ( czr_fn_has('post_list_masonry') ) {
-                        czr_fn_render_template( 'content/post-lists/post_list_masonry' );
-                      }elseif ( czr_fn_has('post_list_plain') ) {
-                        czr_fn_render_template( 'content/post-lists/post_list_plain' );
-                      }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                        czr_fn_render_template( 'content/post-lists/post_list_plain_excerpt', array( 'model_class' => 'content/post-lists/post_list_plain', 'model_args' => array( 'show_full_content' => 0 ) ) );
-                      } else { //fallback
-                        czr_fn_render_template( 'content/singular/page_content' );
-                      }
-                    } else {
+                  czr_fn_render_template( 'loop', array( 'model_args' => czr_fn_get( 'content_to_render', 'main_content') ) );
 
-                      if( is_single() )
-                        czr_fn_render_template( 'content/singular/post_content' );
-                      else
-                        //fallback
-                        czr_fn_render_template( 'content/singular/page_content' );
-
-                    }
-                  }//endwhile;
                 }else {//no results
+
                   if ( is_search() )
                     czr_fn_render_template( 'content/no-results/search_no_results' );
                   else
                     czr_fn_render_template( 'content/no-results/404' );
                 }
               }//not home empty
+              do_action( '__after_loop' );
             ?>
           </div>
 

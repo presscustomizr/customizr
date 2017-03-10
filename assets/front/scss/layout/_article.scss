@@ -25,9 +25,8 @@ article .entry-content a {
         position: absolute;
         width: $base-line-height*3;
         height: 3px;
-        top: $base-line-height*2;
+        bottom: -1 * $base-line-height;
         margin:0 auto;
-        bottom: 0;
         left: 0;
         right:0;
       }

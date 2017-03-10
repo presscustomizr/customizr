@@ -1358,9 +1358,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'choices'       => array(
                                     'alternate'       => __( 'Alternate thumbnails layout' , 'customizr'),
                                     'grid'            => __( 'Grid layout' , 'customizr'),
-                                 //   'masonry'         => __( 'Masonry grid layout' , 'customizr'), //pro
                                     'plain'           => __( 'Plain full layout' , 'customizr'),
-                                 //   'plain_excerpt'   => __( 'Plain excerpt layout' , 'customizr'),//pro
                             ),
                             'priority'      => 40,
                             'notice'    => __( 'When you select the plain Layout, the whole post content will be displayed' , 'customizr' ),

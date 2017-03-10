@@ -81,21 +81,21 @@
 
             body:not(.sticky-enabled) & {
               padding-left: 2*$base-line-height-root; /* balances what is in topnav.scss */
-
-              li:before,
-              .socials:before {
-                content: none;
-              }
+            }
+            li:before,
+            .socials:before {
+              content: none;
             }
 
-            display: table-cell !important;
+
+            display: table !important;
             height: 100%;
             white-space: nowrap !important;
             vertical-align: middle;
 
             .utils, .primary-nav__socials {
               position: relative;
-              display : inline-block;
+              display : table-cell;
               float: none !important;
               height: 100%;
               vertical-align: middle;

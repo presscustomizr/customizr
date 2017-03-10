@@ -62,7 +62,7 @@
 
     .primary-nav__utils .utils li:before,
     .primary-nav__utils .primary-nav__socials .socials:before {
-      body:not(.sticky-enabled) & { content: none !important; }
+      content: none !important;
     }
 
     .primary-nav__container .primary-nav__nav {

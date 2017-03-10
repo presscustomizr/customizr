@@ -111,7 +111,9 @@ $secondary-color-dark   : $grey;
   .dropdown-item:hover {
     background: $background-color;
   }
-
+  .dropdown-menu {
+    color: $primary-color;
+  }
   .branding {
     a { color:$primary-color; }
     .navbar-brand-tagline { color: $secondary-color }
@@ -141,8 +143,8 @@ $secondary-color-dark   : $grey;
 
     & > li > span > a, .caret__dropdown-toggler {
       color: $primary-color;
-
     }
+
     & > li:not(.dropdown-item) > span > a {
      /* & > span:first-of-type { @include underlined ($primary-color, 2px); }
       .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }*/

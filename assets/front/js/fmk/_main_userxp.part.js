@@ -198,7 +198,7 @@ var czrapp = czrapp || {};
     /* Find a way to make this smaller but still effective */
     featuredPages_test : function() {
 
-      var $_featured_pages  = $('.featured .widget-front'),
+      var $_featured_pages  = $('.featured-page .widget-front'),
           _n_featured_pages = $_featured_pages.length,
           doingAnimation    = false,
           _lastWinWidth     = '';

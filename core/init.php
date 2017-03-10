@@ -328,6 +328,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               array(
                 'hook' => 'wp_head' ,
                 'template' => 'header/favicon',
+                'id'       => 'favicon'
               ),
 
 
