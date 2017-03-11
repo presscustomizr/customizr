@@ -26,44 +26,29 @@ class CZR_content_model_class extends CZR_Model {
     return $children;
   }
 
-  /*
-  * Callback of body_class hook
-  *
-  * @package Customizr
-  * @since Customizr 3.2.0
-  */
-  function czr_fn_body_class($_classes) {
-    //SKIN CLASS
-    $_skin = sprintf( 'skin-%s' , basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-    array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
-
-    return $_classes;
-  }
 
   /*
   * @override
   */
   function czr_fn_get_content_to_render() {
     //fallback
-    $model = array( 'loop_item' => array('content/singular/page_content' ) );
+    $to_render = array( 'loop_item' => array('content/singular/page_content' ) );
 
     if ( czr_fn_is_list_of_posts() ) {
 
-      $model = array( 'loop_item' => array( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) ) );
+      $to_render = array( 'loop_item' => array( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) ) );
 
       if ( czr_fn_has('post_list') ) {
-        $model = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
+        $to_render = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
       }elseif ( czr_fn_has('post_list_plain') ) {
-        $model = array( 'loop_item' => array('content/post-lists/post_list_plain' ));
+        $to_render = array( 'loop_item' => array('content/post-lists/post_list_plain' ));
       }
-    } else {
-
-      if( is_single() )
-        $model = array( 'loop_item' => array('content/singular/post_content' ));
-
+    }
+    elseif( is_single() ) {
+      $to_render = array( 'loop_item' => array('content/singular/post_content' ));
     }
 
-    return $model;
+    return $to_render;
   }
 
 }

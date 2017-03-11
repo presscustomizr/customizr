@@ -777,9 +777,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
           }
 
           //SKIN CLASS
-          //$_skin = sprintf( 'skin-%s' , basename( czr_fn_get_style_src() ) );
-          //array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
+          $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
+          array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
           $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+
           array_push( $_classes, strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
 
           return $_classes;

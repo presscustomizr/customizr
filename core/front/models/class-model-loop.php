@@ -63,6 +63,7 @@ class CZR_loop_model_class extends CZR_Model {
     if ( ! $this -> reset_query )
       return;
 
+    echo "sono qui";
     wp_reset_query();
     wp_reset_postdata();
   }
