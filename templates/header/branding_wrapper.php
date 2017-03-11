@@ -13,7 +13,7 @@
     ?>
     </div>
     <div class="mobile-utils__wrapper hidden-lg-up">
-      <?php
+<?php
       if ( czr_fn_has('woocommerce_cart', null, $only_registered = true ) ) :
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
@@ -22,7 +22,6 @@
             )
           ) );
       endif;
-
       if ( czr_fn_has( 'sidenav' ) ) :
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(

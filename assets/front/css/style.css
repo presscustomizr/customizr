@@ -1537,10 +1537,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   margin-right: 1.25em;
 }
 
+/*
 .primary-nav__utils .utils li {
-  font-size: 1rem;
-}
-
+    font-size: 1rem;
+}*/
 .hamburger-toggler__container, .mobile-woocart__container {
   font-size: 17px;
 }
@@ -1720,7 +1720,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .primary-nav__container .primary-nav__utils .primary-nav__socials {
-  font-size: 1rem;
+  /*font-size: 1rem;*/
   position: relative;
 }
 
@@ -1746,10 +1746,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   position: relative;
 }
 
-.primary-nav__socials .socials {
-  font-size: 1rem;
-}
-
+/*.primary-nav__socials .socials { font-size: 1rem; }*/
 /*
 * Header types: Absolute or Standard(pushing) and Sticky
 */
@@ -2323,9 +2320,14 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     vertical-align: middle;
     table-layout: initial;
     float: right;
+    margin: 0 -1.25rem;
   }
   .ie [class*=sl-] .primary-nav__container .primary-nav__utils {
     display: table-cell !important;
+  }
+  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
+    padding-right: 1.25em;
+    padding-left: 1.25em;
   }
   [class*=sl-] .primary-nav__container .primary-nav__utils .utils, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
     position: relative;
@@ -2369,12 +2371,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   .sl-logo_right .primary-nav__container .primary-nav__utils * {
     direction: ltr;
-  }
-  .sl-logo_right .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-    padding-left: 0;
-    padding-right: 1.25em;
-    /* mirror */
-    /* margin-left: 0;  margin-right: 1.25em; */
   }
   .sl-logo_right .primary-nav__utils .nav.utils > li:first-of-type {
     position: relative;
@@ -3031,25 +3027,19 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background: inherit;
 }
 
-/* Fix space between inline-block elements */
-.mobile-utils__wrapper,
-.primary-nav__utils {
-  font-size: 0.001px;
-}
-
 @media (min-width: 992px) {
   .primary-nav__utils .utils {
-    margin: 0px -1.25rem;
+    margin: 0px -1.25em;
   }
 }
 
 .mobile-search__container {
-  padding: 0px 1.25rem;
+  padding: 0px 1.25em;
   margin: 0;
 }
 
 .primary-nav__utils .utils li {
-  padding: 0px 1.25rem;
+  padding: 0px 1.25em;
   margin: 0;
 }
 

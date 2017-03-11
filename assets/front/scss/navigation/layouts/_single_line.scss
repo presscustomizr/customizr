@@ -113,6 +113,11 @@
       vertical-align: middle;
       table-layout: initial;
       float: right;
+      margin: 0 -1*$base-line-height-root;
+      .primary-nav__socials .socials{
+        padding-right: $base-line-height;
+        padding-left: $base-line-height;
+      }
       .utils, .primary-nav__socials {
         position: relative;
         /* display : inline-block; */
@@ -152,12 +157,6 @@
       .primary-nav__container .primary-nav__utils { direction: rtl; text-align: left; float:left }
       .primary-nav__container .primary-nav__utils * { direction: ltr; }
 
-
-
-      .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-        padding-left: 0; padding-right: 1.25em; /* mirror */
-       /* margin-left: 0;  margin-right: 1.25em; */
-      }
 
       .primary-nav__utils .nav.utils > li:first-of-type {
         position: relative;

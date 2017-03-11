@@ -51,8 +51,6 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
           $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
-          ?>
-          <?php
           if ( $czr_fn_print_debug ) {
             echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
 
