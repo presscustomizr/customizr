@@ -7,8 +7,6 @@
     }
     .primary-navbar__wrapper {
       display: table; /* block !important;
-      /*height: auto;*/
-      line-height: 1;
       /*min-width: 100% !important;*/
       min-height: 70px;
       width: 100%;
@@ -22,8 +20,6 @@
     .branding {
       height: auto;
       max-height: none;
-      line-height: 1;
-      /*.sticky-enabled & img { max-height: 70px }*/
     }
     .primary-nav__container .primary-nav__nav {
       width: 100%;

@@ -18,7 +18,7 @@
     endif
 ?>
   <div class="container header-content">
-    <div class="header-content-inner col-12">
+    <div class="header-content-inner">
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
         <div class="entry-meta">
           <div class="tax__container">
@@ -37,45 +37,51 @@
               )
             )
           );
+
+        $pub_date     = czr_fn_has('post_metas') ? czr_fn_get( 'publication_date', 'post_metas' ) : false;
+        $comment_info = czr_fn_has( 'comment_info' );
+        $author       = czr_fn_has('post_metas') ? czr_fn_get( 'author', 'post_metas' ) : false;
+
+        if ( $pub_date || $comment_info || $author ) :
     ?>
-    </div>
-    <div class="header-content-bottom">
-      <div class="post-info col-12">
-        <?php
-          if ( czr_fn_has('post_metas') && $pub_date = czr_fn_get( 'publication_date', 'post_metas' ) ) :
-        ?>
-          <div class="date-info">
-            <?php echo $pub_date; ?>
-          </div>
-        <?php
-          endif;
-
-          if ( czr_fn_has( 'comment_info' ) ) :
-            $comment_info = true;
-            if ( $pub_date ):
-          ?>
-              <span class="v-separator">|</span>
+      <div class="header-content-bottom">
+        <div class="post-info">
           <?php
-            endif
+            if ( $pub_date ) :
           ?>
-            <div class="comment-info">
-              <?php czr_fn_render_template( 'modules/comment_info' ) ?>
+            <div class="date-info">
+              <?php echo $pub_date; ?>
             </div>
-        <?php
-          endif;
+          <?php
+            endif;
 
-          if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) ) :
-            if ( $pub_date || $comment_info ):
+            if ( $comment_info ) :
+              if ( $pub_date ):
             ?>
-              <span class="v-separator">|</span>
+                <span class="v-separator">|</span>
             <?php
               endif
             ?>
-            <div class="author-info">
-              <?php echo $author ?>
-            </div>
-        <?php endif ?>
+              <div class="comment-info">
+                <?php czr_fn_render_template( 'modules/comment_info' ) ?>
+              </div>
+          <?php
+            endif;
+
+            if ( $author ) :
+              if ( $pub_date || $comment_info ):
+              ?>
+                <span class="v-separator">|</span>
+              <?php
+                endif
+              ?>
+              <div class="author-info">
+                <?php echo $author ?>
+              </div>
+          <?php endif ?>
+        </div>
       </div>
+    <?php endif ?>
     </div>
   </div>
 </header>

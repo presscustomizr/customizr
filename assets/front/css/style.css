@@ -2202,9 +2202,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   [class*=sl-] .primary-navbar__wrapper {
     display: table;
     /* block !important;
-      /*height: auto;*/
-    line-height: 1;
-    /*min-width: 100% !important;*/
+      /*min-width: 100% !important;*/
     min-height: 70px;
     width: 100%;
     height: 100%;
@@ -2222,8 +2220,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   [class*=sl-] .branding {
     height: auto;
     max-height: none;
-    line-height: 1;
-    /*.sticky-enabled & img { max-height: 70px }*/
   }
   [class*=sl-] .primary-nav__container .primary-nav__nav {
     width: 100%;
@@ -2387,7 +2383,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     /* sticky enabled */
   }
   [class*=logo_center] .primary-navbar__wrapper {
-    line-height: 0;
     height: 100%;
     width: 100%;
     white-space: normal;
@@ -2416,7 +2411,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     width: auto;
     display: inline-table !important;
     height: 100%;
-    line-height: 1;
   }
   [class*=logo_center] .primary-nav__menu-wrapper {
     display: table-cell !important;
@@ -2561,7 +2555,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     /* sticky enabled */
   }
   [class*=v-logo_] .primary-navbar__wrapper {
-    line-height: 0;
     white-space: normal;
   }
   [class*=v-logo_] .branding__container {
@@ -2572,7 +2565,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   }
   [class*=v-logo_] .branding {
     height: auto;
-    line-height: 1;
     padding-top: 1.875em;
     padding-bottom: 1.875em;
     max-height: none;
@@ -2623,6 +2615,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     height: 100%;
     overflow: visible;
     width: 100%;
+    vertical-align: bottom;
   }
   [class*=v-logo_] .primary-nav__container {
     padding-left: 0 !important;
@@ -4756,6 +4749,12 @@ table {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  table {
+    table-layout: fixed;
+  }
+}
+
 table:not([id^=wp-calendar]) {
   border: 2px solid #f7f8f9;
 }
@@ -6184,13 +6183,16 @@ article .entry-content a {
   height: 100%;
 }
 
+@media (max-width: 575px) {
+  .page__header .header-content {
+    width: 100%;
+  }
+}
+
 .page__header .header-content .header-content-bottom {
-  position: absolute;
-  bottom: 2.5em;
+  margin-top: 2.5em;
   width: 100%;
   text-align: center;
-  left: 0;
-  right: 0;
 }
 
 .page__header .header-content .header-content-bottom div {
@@ -6244,7 +6246,12 @@ section[class^="post-"] {
 }
 
 section[class^="post-"] .row {
-  margin: 5em 0 2.5em 0;
+  margin-top: 5em;
+  margin-bottom: 2.5em;
+}
+
+section[class^="post-"] .entry-meta {
+  margin: 5em -15px;
 }
 
 .pagination {

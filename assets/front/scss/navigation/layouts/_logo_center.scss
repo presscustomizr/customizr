@@ -1,8 +1,6 @@
 @include media-breakpoint-up(lg){
   [class*=logo_center] {
     .primary-navbar__wrapper {
-
-      line-height: 0;
       height: 100%;
       width: 100%;
       white-space: normal; /* overrides white-space: nowrap  in topnav.scss*/
@@ -31,8 +29,6 @@
           width: auto;
           display: inline-table !important;
           height: 100%;
-          line-height: 1;
-
           @at-root [class*=logo_center] .primary-nav__menu-wrapper {
             display: table-cell !important; /* overrides topnav.scss */
             vertical-align: middle;

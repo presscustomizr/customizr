@@ -6,7 +6,6 @@
 @include media-breakpoint-up(lg) {
   [class*=v-logo_] {
     .primary-navbar__wrapper {
-      line-height: 0;
       white-space: normal;
     }
     .branding__container {
@@ -18,7 +17,6 @@
 
     .branding {
       height: auto;
-      line-height: 1;
       padding-top: $base-line-height*3/2;
       padding-bottom: $base-line-height*3/2;
       max-height: none;
@@ -70,6 +68,7 @@
       height: 100%;
       overflow: visible;
       width: 100%;
+      vertical-align: bottom;
     }
 
     .primary-nav__container {

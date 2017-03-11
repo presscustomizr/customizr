@@ -156,7 +156,12 @@ ol, ul {
     margin-left: $base-line-height * .8;
   }
 }
-table { width: 100% }
+table {
+  width: 100%;
+  @include media-breakpoint-down(sm) {
+    table-layout: fixed;
+  }
+}
 table:not([id^=wp-calendar]) {
   border: 2px solid $grey-lightest;
   th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }

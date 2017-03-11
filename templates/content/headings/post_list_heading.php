@@ -5,7 +5,7 @@
 ?>
 <header class="row page__header image__header archive-header" <?php czr_fn_echo('element_attributes') ?>>
   <div class="container header-content">
-    <div class="header-content-inner col-12">
+    <div class="header-content-inner">
       <h1 class="archive-title">
         <?php
           if( (bool) $pre_title = czr_fn_get( 'pre_title' ) )
@@ -23,13 +23,13 @@
       <?php
       endif
       ?>
-    </div>
-    <?php if ( (bool) $description = czr_fn_get( 'description' ) )  : ?>
-    <div class="header-content-bottom">
-      <div class="archive-meta col-12">
-        <?php echo $description ?>
+      <?php if ( (bool) $description = czr_fn_get( 'description' ) )  : ?>
+      <div class="header-content-bottom">
+        <div class="archive-meta">
+          <?php echo $description ?>
+        </div>
       </div>
+      <?php endif ?>
     </div>
-    <?php endif ?>
   </div>
 </header>

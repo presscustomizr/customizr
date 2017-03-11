@@ -52,8 +52,8 @@ class CZR_header_model_class extends CZR_Model {
     * c) we display a full heading (with background) AND
     * c.1) not in front page
     */
-    if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) ||
-        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() )  ) )
+    if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) /*||
+        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) */ ) )
       array_push( $element_class, 'header-absolute', 'header-transparent' );
 
     //No navbar box

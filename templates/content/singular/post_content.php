@@ -24,9 +24,9 @@
             )
           );
         ?>
-        <div class="entry-meta row clearfix">
+        <div class="entry-meta clearfix">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-          <div class="post-tags float-md-left">
+          <div class="post-tags float-sm-left">
             <ul class="tags">
               <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
             </ul>
@@ -35,7 +35,7 @@
         <?php
           if ( czr_fn_has('social_share') ) :
         ?>
-          <div class="post-share float-md-right">
+          <div class="post-share float-sm-right">
               <!-- fake need to have social links somewhere -->
               <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
           </div>

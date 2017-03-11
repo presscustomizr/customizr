@@ -55,13 +55,13 @@ article .entry-content a {
     position: relative;
     z-index:5;
     height: 100%;
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+    }
     .header-content-bottom {
-      position: absolute;
-      bottom: $base-line-height*2;
+      margin-top: $base-line-height*2;
       width:100%;
       text-align: center;
-      left:0;
-        right:0;
       div { display: inline-block; }
     }
     .post-info {
@@ -103,7 +103,8 @@ article .entry-content a {
 }
 section[class^="post-"] {
   margin: $base-line-height*4 0 $base-line-height*2 0;
-  .row { margin: $base-line-height*4 0 $base-line-height*2 0; }
+  .row { margin-top: $base-line-height*4; margin-bottom: $base-line-height*2 }
+  .entry-meta { margin: 5em -15px }
 }
 
 

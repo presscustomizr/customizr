@@ -18,10 +18,10 @@
     endif
 ?>
   <div class="container header-content">
-    <div class="header-content-inner col-12">
+    <div class="header-content-inner">
       <h1 class="entry-title"><?php the_title() ?></h1>
-      <?php
-        if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+    <?php
+      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
           czr_fn_render_template(
             'modules/edit_button',
             array( 'model_args' => array(
@@ -30,16 +30,16 @@
               )
             )
           );
-      ?>
-    </div>
-    <?php if ( czr_fn_has( 'comment_info' ) ) : ?>
-      <div class="header-content-bottom">
-        <div class="post-info col-12">
-          <div class="comment-info">
-            <?php czr_fn_render_template( 'modules/comment_info' ) ?>
+      if ( czr_fn_has( 'comment_info' ) ) : ?>
+        <div class="header-content-bottom">
+          <div class="post-info">
+            <div class="comment-info">
+              <?php czr_fn_render_template( 'modules/comment_info' ) ?>
+            </div>
           </div>
         </div>
-      </div>
     <?php endif ?>
+  </div>
+
   </div>
 </header>

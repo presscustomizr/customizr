@@ -28,8 +28,8 @@
         <?php
           if ( czr_fn_has('social_share') ) :
         ?>
-          <div class="entry-meta row clearfix">
-            <div class="post-share float-md-right">
+          <div class="entry-meta clearfix">
+            <div class="post-share float-sm-right">
               <!-- fake need to have social links somewhere -->
               <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
             </div>
