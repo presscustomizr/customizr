@@ -344,7 +344,7 @@ class CZR_slider {
   private function czr_fn_get_the_posts_slides( $slider_name_id, $img_size ) {
 
 
-    $pre_slides      = $this -> czr_fn_get_pre_posts_slides( $img_size );
+    $pre_slides      = $this -> czr_fn_get_pre_posts_slides( array( 'img_size' => $img_size ) );
 
     //filter the pre_model
     $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides );
