@@ -190,12 +190,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       global $wp_version;
       if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
         $tc_option_group = CZR_THEME_OPTIONS;
-        $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
         $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
 
-        //add a favicon title after the logo upload
-        add_action( '__after_setting_control' , array( $this , 'czr_fn_add_favicon_title') );
       }//end ALTER SITE ICON
 
 
@@ -627,20 +624,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         printf('<span class="tc-grid-toggle-controls" title="%1$s">%1$s</span>' , __('More grid design options' , 'customizr'));
       }
     }
-
-
-
-
-    /*
-    * hook : '__after_setting_control' (declared in class-tc-controls-settings.php)
-    * Display a title for the favicon control, after the logo
-    */
-    function czr_fn_add_favicon_title($set_id) {
-      if ( false !== strpos( $set_id, 'tc_sticky_logo_upload' ) )
-        printf( '<h3 class="czr-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
-    }
-
-
 
 
     /**

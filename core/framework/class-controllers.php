@@ -22,7 +22,6 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'sticky_logo',
               'tagline',
               'mobile_tagline',
-              'favicon',
               'menu',
               'sidenav',
               'topnav',

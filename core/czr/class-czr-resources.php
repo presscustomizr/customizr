@@ -228,8 +228,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'isThemeSwitchOn'  => isset( $_GET['theme']),
             'themeSettingList' => CZR___::$theme_setting_list,
 
-            'faviconOptionName' => 'tc_fav_upload',
-
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
           )
         )
@@ -274,7 +272,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
           array(
                 'edit' => __('Edit', 'customizr'),
                 'close' => __('Close', 'customizr'),
-                'faviconNote' => __( "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below." , 'customizr'),
                 'notset' => __('Not set', 'customizr'),
                 'rss' => __('Rss', 'customizr'),
                 'selectSocialIcon' => __('Select a social icon', 'customizr'),

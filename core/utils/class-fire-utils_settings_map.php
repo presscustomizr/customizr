@@ -195,16 +195,6 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'dst_height'  => false,
                             'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
           ),
-
-          //favicon
-          'tc_fav_upload' => array(
-                            'control'   =>  'CZR_Customize_Upload_Control' ,
-                            'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
-                            'title'     => __( 'FAVICON' , 'customizr'),
-                            'section'   =>  'logo_sec' ,
-                            'type'      => 'czr_upload',
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-          )
   );
 }
 
