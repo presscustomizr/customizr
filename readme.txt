@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.8 March 11th 2017 =
+* Fix: amend img_size param passed the wrong way to the posts slider builder fixes #840
+* Fix : removed li+li list style with 0.25em top margin
+
 = 3.5.7 March 8th 2017 =
 * improved : li+li list style with 0.25em top margin
 * fix : default slider should show the demo slides when previewing
