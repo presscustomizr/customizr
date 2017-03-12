@@ -185,9 +185,24 @@ class CZR_slider {
   */
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
+    $slide_background_attr  = array( 'class' => 'slide' );
+    //allow responsive images?
+    if ( isset ( $args['slider_responsive_images'] ) && !$args['slider_responsive_images'] ) {
+      $slide_background_attr['srcset'] = " ";
+      //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
+      //only when the passed srcset attr is not empty. This will avoid us to:
+      //a) add a filter to get rid of already computed srcset
+      // or
+      //b) use preg_replace to get rid of srcset and sizes attributes from the generated html
+      //Side effect:
+      //we'll see an empty ( or " " depending on the browser ) srcset attribute in the html
+      //to avoid this we filter the attributes getting rid of the srcset if any.
+      //Basically this trick, even if ugly, will avoid the srcset attr computation
+      add_filter( 'wp_get_attachment_image_attributes', array( CZR_post_thumbnails::$instance, 'czr_fn_remove_srcset_attr' ) );
+    }
 
     //attachment image
-    $slide_background                  = get_the_post_thumbnail( $ID, $img_size );
+    $slide_background                  = get_the_post_thumbnail( $ID, $img_size, $slide_background_attr );
 
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
