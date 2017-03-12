@@ -1,7 +1,6 @@
 <?php
 /**
-* The czr_fn__f() function is an extension of WP built-in apply_filters() where the $value param becomes optional.
-* It is shorter than the original apply_filters() and only used on already defined filters.
+* The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
 *
 * By convention in Customizr, filter hooks are used as follow :
 * 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
