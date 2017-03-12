@@ -5,30 +5,76 @@ do_action('czr_load');
 
 //@return an array of unfiltered options
 //=> all options or a single option val
-function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
-    $alloptions = wp_cache_get( 'alloptions', 'options' );
-    $alloptions = maybe_unserialize( $alloptions );
-    //is there any option group requested ?
-    if ( ! is_null( $opt_group ) && array_key_exists( $opt_group, $alloptions ) ) {
-      $alloptions = maybe_unserialize( $alloptions[ $opt_group ] );
-    }
-    //shall we return a specific option ?
-    if ( is_null( $opt_name ) ) {
-        return $alloptions;
-    } else {
-        $opt_value = array_key_exists( $opt_name, $alloptions ) ? maybe_unserialize( $alloptions[ $opt_name ] ) : false;//fallback on cache option val
-        //do we need to get the db value instead of the cached one ? <= might be safer with some user installs not properly handling the wp cache
-        //=> typically used to checked the template name for czr_fn_isprevdem()
-        if ( ! $from_cache ) {
-            global $wpdb;
-            //@see wp-includes/option.php : get_option()
-            $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $opt_name ) );
-            if ( is_object( $row ) ) {
-                $opt_value = $row->option_value;
+//modified version of wp get_option, to avoid filtering and being able to retrieve a "suboption"
+function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $default = false ) {
+    $option = is_null( $opt_group ) ? $opt_name : $opt_group;   
+
+    global $wpdb;
+    $option = trim( $option );
+
+    if ( defined( 'WP_SETUP_CONFIG' ) )
+        return false;
+
+    if ( ! wp_installing() ) {
+        // prevent non-existent options from triggering multiple queries
+        $notoptions = wp_cache_get( 'notoptions', 'options' );
+        if ( isset( $notoptions[ $option ] ) ) {
+            return $default;
+        }
+
+        $alloptions = wp_load_alloptions();      
+
+        if ( is_null( $option ) )
+            return maybe_unserialize( $alloptions );
+
+        if ( isset( $alloptions[$option] ) ) {
+            $value = $alloptions[$option];
+        } 
+        else {
+            $value = wp_cache_get( $option, 'options' );
+            if ( false === $value ) {
+                $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
+
+                // Has to be get_row instead of get_var because of funkiness with 0, false, null values
+                if ( is_object( $row ) ) {
+                    $value = $row->option_value;
+                    wp_cache_add( $option, $value, 'options' );
+                } else { // option does not exist, so we must cache its non-existence
+                    if ( ! is_array( $notoptions ) ) {
+                        $notoptions = array();
+                    }
+                    $notoptions[$option] = true;
+                    wp_cache_set( 'notoptions', $notoptions, 'options' );
+                    return $default; //<- do we want to return alloptions here?
+                }
             }
         }
-        return $opt_value;
+    } else {
+        $suppress = $wpdb->suppress_errors();
+        $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
+      
+        $wpdb->suppress_errors( $suppress );
+        if ( is_object( $row ) ) {
+            $value = $row->option_value;
+        } else {
+            return $default;
+        }
     }
+    
+    // If home is not set use siteurl.
+    if ( 'home' == $option && '' == $value )
+        return get_option( 'siteurl' );
+    
+    if ( in_array( $option, array('siteurl', 'home', 'category_base', 'tag_base') ) )
+        $value = untrailingslashit( $value );
+
+    $value = maybe_unserialize( $value );
+   
+    if ( !is_null( $opt_group ) && !is_null( $opt_name ) && is_array($value) && isset($value[$opt_name]) ) {
+        $value = maybe_unserialize($value[$opt_name]);
+    }
+    
+    return $value; 
 }
 
 //@return an array of options
