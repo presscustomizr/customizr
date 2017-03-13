@@ -23,7 +23,7 @@
         if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
 
       if ( czr_fn_get('show_comment_meta') ) :
-        if ( $date ) : ?><span class="v-separator">|</span><?php endif;
+        if ( $author || $date ) : ?><span class="v-separator">|</span><?php endif;
         czr_fn_render_template( 'modules/comment_info' );
       endif
     ?>

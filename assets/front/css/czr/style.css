@@ -71,11 +71,6 @@ embed, iframe, object, video { max-width: 100%;}
 }
 
 
-/* TO BE MERGED */
-.grid-container__classic .post-info .v-separator,
-.grid-container__masonry .post-info .v-separator { display: none; }
-
-
 .entry-media__holder .post-type__icon i {
     position: relative;
 }

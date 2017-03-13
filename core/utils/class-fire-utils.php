@@ -230,7 +230,8 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       }
 
       //checks if we display home page, either posts or static page and apply the customizer option
-      if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
+      global $wp_the_query;
+      if( ($wp_the_query->is_home() && 'posts' == get_option( 'show_on_front' ) ) || $wp_the_query->is_front_page()) {
          $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
       }
 

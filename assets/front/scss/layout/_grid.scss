@@ -175,6 +175,7 @@ WP classes
   p a { color: $grey-dark; }
 }
 .entry-footer {
+    align-items: center;
     @extend .service-font;
     .post-info  {
       color: $grey;
@@ -182,7 +183,7 @@ WP classes
       a {
         @extend .semi-bold;
       }
-     }
+    }
 }
 .grid__item {
   position: relative;
@@ -218,10 +219,13 @@ WP classes
     .post-info {
       padding-top:$base-line-height*2;
       @include border_b_t();
+      text-align: right;
+      .v-separator {
+        visibility: hidden;
+      }
     }
-    .post-info a {
-      &:last-of-type { float:right; }
-      &:first-of-type { float:left; }
+    .post-info > * {
+      &:first-child { float:left; }
     }
     .post-tags {
       margin-bottom:$base-line-height;
@@ -426,6 +430,7 @@ WP classes
       right: 10px;
       z-index: 2;
     }//btn-edit in figure (mainly for expanded)
+
   }//tc-grid-figure
 
 
@@ -450,6 +455,7 @@ WP classes
     @include transform(scale(1));
     @include opacity(1);
   }
+
   //@media (min-width: 768px)
   @include media-breakpoint-up(md) {
     .tc-content {
@@ -656,8 +662,15 @@ WP classes
     .avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
-  .tax__container{ margin-top:$base-line-height; .tax__link {  overflow: hidden; text-overflow: ellipsis; } }
-  &:not(.narrow) .tax__container {
+  .tax__container{
+    margin-top:$base-line-height;
+   /* .tax__link {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }*/
+  }
+
+  &.split .tax__container {
     overflow:hidden;
     a[class*=tax__link] {
       letter-spacing: 3px;
@@ -667,7 +680,6 @@ WP classes
       //@media (min-width: 992px)
       @include media-breakpoint-up(lg)  {
         margin: 0;
-        text-align: right;
         line-height: 3em;
         display: block;
         & span::before {
@@ -715,9 +727,10 @@ WP classes
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
   margin-top: $base-line-height*2 !important;
+  margin-left: 0;
+  margin-right: 0;
   overflow: hidden;
   white-space: nowrap;
-
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;

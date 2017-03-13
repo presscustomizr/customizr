@@ -5176,6 +5176,10 @@ WP classes
   color: #777;
 }
 
+.entry-footer {
+  align-items: center;
+}
+
 .entry-footer .post-info {
   color: #B4B4B4;
   position: relative;
@@ -5213,6 +5217,7 @@ WP classes
 .grid .entry-footer .post-info {
   padding-top: 2.5em;
   position: relative;
+  text-align: right;
 }
 
 .grid .entry-footer .post-info::before {
@@ -5225,11 +5230,11 @@ WP classes
   background: #eceeef;
 }
 
-.grid .entry-footer .post-info a:last-of-type {
-  float: right;
+.grid .entry-footer .post-info .v-separator {
+  visibility: hidden;
 }
 
-.grid .entry-footer .post-info a:first-of-type {
+.grid .entry-footer .post-info > *:first-child {
   float: left;
 }
 
@@ -5899,35 +5904,33 @@ WP classes
 
 .grid-container__plain .tax__container {
   margin-top: 1.25em;
+  /* .tax__link {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }*/
 }
 
-.grid-container__plain .tax__container .tax__link {
+.grid-container__plain.split .tax__container {
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.grid-container__plain:not(.narrow) .tax__container {
-  overflow: hidden;
-}
-
-.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] {
+.grid-container__plain.split .tax__container a[class*=tax__link] {
   letter-spacing: 3px;
   clear: both;
   position: relative;
 }
 
-.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] span {
+.grid-container__plain.split .tax__container a[class*=tax__link] span {
   position: relative;
 }
 
 @media (min-width: 992px) {
-  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] {
+  .grid-container__plain.split .tax__container a[class*=tax__link] {
     margin: 0;
-    text-align: right;
     line-height: 3em;
     display: block;
   }
-  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link] span::before {
+  .grid-container__plain.split .tax__container a[class*=tax__link] span::before {
     content: "";
     position: absolute;
     top: calc(50% + 2px);
@@ -5938,12 +5941,12 @@ WP classes
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
-  .grid-container__plain:not(.narrow) .tax__container a[class*=tax__link]::after {
+  .grid-container__plain.split .tax__container a[class*=tax__link]::after {
     content: none;
   }
 }
 
-.grid-container__plain:not(.narrow) .tax__container a[class*=tax__link]:hover span::before {
+.grid-container__plain.split .tax__container a[class*=tax__link]:hover span::before {
   width: 0.625em;
 }
 
@@ -5973,6 +5976,8 @@ WP classes
 .grid-container__square-mini {
   font-size: 0.75em;
   margin-top: 2.5em !important;
+  margin-left: 0;
+  margin-right: 0;
   overflow: hidden;
   white-space: nowrap;
   -webkit-flex-wrap: nowrap;

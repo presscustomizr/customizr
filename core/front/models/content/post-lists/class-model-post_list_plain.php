@@ -22,6 +22,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'show_comment_meta'         => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false,
+      'split_layout'              => true, //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
       'wrapped'                   => true,
     );
 
@@ -35,8 +36,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   function czr_fn_get_element_class() {
     $_classes = is_array($this->content_width) ? $this->content_width : array();
 
+    if ( $this->split_layout && !in_array('narrow', $_classes) )
+      array_push( $_classes, 'split' );
+
     if ( ! empty( $this->contained ) )
       array_push( $_classes, 'container' );
+
     return $_classes;
   }
   /*
@@ -133,14 +138,14 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     /* Build inner elements classes */
     $cat_list_class = $entry_header_inner_class = $content_inner_class = array( 'col-12' );
 
-    if ( $cat_list && is_array($this->content_width) && !in_array( 'full', $this->content_width ) ) {
+    if ( $this->split_layout && $cat_list && is_array($this->content_width) && !in_array( 'narrow', $this->content_width ) ) {
       $bp = in_array( 'narrow', $this->content_width ) ? 'xl' : 'lg';
 
       /* the header inner class (width) depends on the presence of the category list */
       array_push( $entry_header_inner_class, "col-{$bp}-7", "offset-{$bp}-4" );
       /* the content inner class (width) depends on the presence of the category list */
       array_push( $content_inner_class, "col-{$bp}-7", "offset-{$bp}-1" );
-      array_push( $cat_list_class, "col-{$bp}-3" );
+      array_push( $cat_list_class, "col-{$bp}-3 text-{$bp}-right" );
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
