@@ -17,11 +17,13 @@
   <?php endif; ?>
     <div class="post-info clearfix">
     <?php
+      if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) )
+        echo $author;
       if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) )
-        echo $date;
+        if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
 
       if ( czr_fn_get('show_comment_meta') ) :
-        if ( $date ) : ?> <span class="v-separator">|</span> <?php endif;
+        if ( $date ) : ?><span class="v-separator">|</span><?php endif;
         czr_fn_render_template( 'modules/comment_info' );
       endif
     ?>
