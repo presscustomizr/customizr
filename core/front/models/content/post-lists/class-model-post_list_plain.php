@@ -7,7 +7,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
   public $post_class               = array( 'col-12' );
   public $post_list_items          = array();
-  public $cat_list_class           = array( 'col-lg-3', 'col-12' );
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -86,6 +86,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'cat_list' );
   }
 
+  function czr_fn_get_cat_list_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'cat_list_class' );
+  }
+
   function czr_fn_get_entry_header_inner_class() {
     return $this -> czr_fn__get_post_list_item_property( 'entry_header_inner_class' );
   }
@@ -127,12 +131,16 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $cat_list                    = $this -> czr_fn__get_cat_list();
 
     /* Build inner elements classes */
-    $entry_header_inner_class    = $content_inner_class = array( 'col-12' );
-    if ( $cat_list ) {
+    $cat_list_class = $entry_header_inner_class = $content_inner_class = array( 'col-12' );
+
+    if ( $cat_list && is_array($this->content_width) && !in_array( 'full', $this->content_width ) ) {
+      $bp = in_array( 'narrow', $this->content_width ) ? 'xl' : 'lg';
+
       /* the header inner class (width) depends on the presence of the category list */
-      array_push( $entry_header_inner_class, 'col-lg-7', 'offset-lg-4' );
+      array_push( $entry_header_inner_class, "col-{$bp}-7", "offset-{$bp}-4" );
       /* the content inner class (width) depends on the presence of the category list */
-      array_push( $content_inner_class, 'col-lg-7', 'offset-lg-1' );
+      array_push( $content_inner_class, "col-{$bp}-7", "offset-{$bp}-1" );
+      array_push( $cat_list_class, "col-{$bp}-3" );
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $has_post_media, $cat_list );
@@ -148,6 +156,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'article_selectors'        => $article_selectors,
       'has_post_media'           => $has_post_media,
       'cat_list'                 => $cat_list,
+      'cat_list_class'           => $cat_list_class,
       'entry_header_inner_class' => $entry_header_inner_class,
       'content_inner_class'      => $content_inner_class,
       'show_comment_meta'        => $show_comment_meta

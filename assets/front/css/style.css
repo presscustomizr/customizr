@@ -5901,6 +5901,11 @@ WP classes
   margin-top: 1.25em;
 }
 
+.grid-container__plain .tax__container .tax__link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .grid-container__plain:not(.narrow) .tax__container {
   overflow: hidden;
 }
@@ -5959,19 +5964,6 @@ WP classes
 
 .grid-container__plain .entry-footer .socials {
   float: right;
-}
-
-.grid-container__plain.narrow .entry-header-inner,
-.grid-container__plain.narrow .entry-content__wrapper > .entry-meta,
-.grid-container__plain.narrow .entry-content__wrapper > .tc-content-inner-wrapper, .grid-container__plain .no-cat-list .entry-header-inner,
-.grid-container__plain .no-cat-list .entry-content__wrapper > .entry-meta,
-.grid-container__plain .no-cat-list .entry-content__wrapper > .tc-content-inner-wrapper {
-  width: 100%;
-  margin-left: 0;
-}
-
-.grid-container__plain.narrow .tax__container, .grid-container__plain .no-cat-list .tax__container {
-  display: none;
 }
 
 .entry-media__holder .video-container {
