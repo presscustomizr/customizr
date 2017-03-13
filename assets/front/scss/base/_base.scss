@@ -27,20 +27,15 @@ a {
 
 
 a {
-  test-decoration: none;
+  text-decoration: none;
+  //color: $skin;
+  color: $skin-link-color;
 }
 a:hover,
 a:active,
 a.current-active {
   text-decoration: none;
   outline: none;
-}
-a:focus {
-  text-decoration: none;
-}
-
-a {
-  color: $skin;
 }
 
 a img {
@@ -51,7 +46,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: darken($skin, 70%); /* previously 25%*/
+  color: $skin-link-color-hover;
 }
 
 

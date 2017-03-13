@@ -21,7 +21,7 @@ form  {
   input[type="text"], input[type="url"], input[type="password"], input[type="email"],  input[type="number"], textarea {
     outline: none;
     border: none;
-    border-bottom: 2px solid #202020;
+    border-bottom: 2px solid $skin-link-color;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;

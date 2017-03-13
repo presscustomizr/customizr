@@ -1,4 +1,4 @@
-%socials {
+.socials {
   @extend .inline-list;
   li + li { margin-left:$base-line-height; }
   a {
@@ -6,22 +6,73 @@
     height:$base-line-height*2;
     line-height: $base-line-height*2;
   }
-  .icon-twitter:hover   { color: #00aced !important; }
-  .icon-facebook:hover   { color: #3b5998 !important; }
-  .icon-instagram:hover   { color: #517fa4 !important; }
-  .icon-linkedin:hover   { color: #007bb6 !important; }
-  .icon-google-plus:hover   { color: #dd4b39 !important; }
-  .icon-pinterest:hover   { color: #cb2027 !important; }
-  .icon-flickr:hover   { color: #ff0084 !important; }
-  .icon-dribbble:hover   { color: #ea4c89 !important; }
-  .icon-tumblr:hover   { color: #32506d !important; }
-  .icon-youtube:hover   { color: #bb0000 !important; }
 }
 
-.socials { @extend %socials }
-.btn {
+%btn_base {
   border-radius: 2px;
+  border-width: 2px;
+  border-style: solid;
   @extend .service-font;
+  cursor: pointer;
+  @include transition (all, 0.3s ease);
+}
+
+.btn {
+  @extend %btn_base;
+//previously $black;
+  background-color: $skin-link-color;
+  color: $white;
+//previously $black;
+  border-color: $skin-link-color;
+
+  &:hover, &:focus, &:active {
+//previously $black;
+    color: $skin-link-color;
+    background-color: transparent;
+//previously $black;
+    border-color: $skin-link-color;
+  }
+}
+
+/* .btn modifier */
+.btn-dark {
+  background-color: $skin-link-color;
+  color: $white;
+  border-color: $skin-link-color;
+
+  &:hover, &:focus, &:active {
+    color: $skin-link-color;
+    background-color: transparent;
+    border-color: $skin-link-color;
+  }
+}
+
+/* .btn modifier */
+.btn-light {
+  background-color: $skin;
+  border-color: $skin;
+  color: $white;
+
+  &:hover, &:focus, &:active {
+    color: $skin;
+    background-color: transparent;
+    border-color: $skin;
+  }
+}
+
+.btn-light-border {
+  border-width: 1px;
+  border-color: $grey-lightest;
+}
+
+/* .btn modifier */
+.btn-inverted {
+  background-color: transparent;
+  color: $skin-link-color;//$black;
+  &:hover, &:focus, &:active {
+    color: $white;
+    background-color: $skin-link-color;//previously $black;
+  }
 }
 
 .readmore-holder {
@@ -30,24 +81,19 @@
   border-bottom: 0;
   border-bottom: none;
 }
+
 .btn-more {
-  background: $black;
-  color: $white;
   font-size: 0.75em;
   @extend .caps;
   @extend .semi-bold;
-  border: 2px solid $black;
   line-height: $base-line-height*2;
   padding: 0 $base-line-height*2;
   span {
     display: inline-block;
     vertical-align: middle;
   }
-  &:hover, &:focus, &:active {
-    color: $black;
-    background: $white;
-  }
 }
+
 .btn-large {
   @extend .bold;
   letter-spacing: 3px;
@@ -66,11 +112,6 @@
   padding: 0.65em 1.3em;
   @include transition (all 0.3s ease);
   &:hover { color: $black; border-color: transparent; background: $grey-light; }
-}
-.btn-skin {
-  color: $white;
-  background-color: $skin;
-  &:hover { color: $grey-light; }
 }
 .btn-edit {
     @extend .btn-small;
@@ -95,6 +136,20 @@
 
 a.external { position: relative; @extend .semi-bold; }
 a[target="_blank"]:hover:after {
+}
+
+%table {
+  width: 100%;
+  border-collapse: collapse;
+  @include media-breakpoint-down(sm) {
+    table-layout: fixed;
+  }
+  &:not([id^=wp-calendar]) {
+    border: 2px solid $grey-lightest;
+    th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
+    th, td { @extend .small; padding: $base-line-height; border: 1px solid $grey-lightest; }
+    td { color: $grey-dark; }
+  }
 }
 
 %categories  {
@@ -129,23 +184,17 @@ a[target="_blank"]:hover:after {
   bottom: 100px;
   cursor: pointer;
   @include opacity(0);
-  z-index: 99999999;
   z-index: 100;
-  color: $white;
-  background: rgba($black, 0.75);
-  border: 1px solid $grey;
-  text-align: center;
-  @include transition (all 0.3s ease-in-out,  right .6s ease-in-out,  left .6s ease-in-out);
+  border-width: 1px;
+  padding: 0;
   &.right {
     right: -50px;
-    border-radius: 2px 0px 0px 2px;
   }
   &.left {
     left: -50px;
-    border-radius: 0 2px 2px 0;
   }
   i {
-    line-height: 50px;
+    line-height: 49px;
     display: inline-block;
     &:before {
       font-weight: 700;
@@ -153,7 +202,7 @@ a[target="_blank"]:hover:after {
   }
   &.show {
     cursor: pointer;
-    @include opacity(1);
+    @include opacity(0.7);
     &.left {
       left: -1px
     }
@@ -161,11 +210,8 @@ a[target="_blank"]:hover:after {
       right: -1px
     }
   }
-  &:hover {
-    color: $black;
-    background: rgba($white, 0.75);
-  }
 }
+
 /* Blockquotes and cites */
 blockquote {
   position: relative;

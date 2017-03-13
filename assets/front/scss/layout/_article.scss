@@ -288,22 +288,17 @@ section.post-related-articles {
     header {
       @include clearfix;
       .related-posts_title { float:left; font-weight: 600; margin-top: $base-line-height*2; }
-      .related-posts_nav {
+      @at-root .related-posts_nav {
         float: right;
         margin-top: $base-line-height*4;
+        margin-right: 2px;
         .slider-control {
+          font-family: inherit;
           width: 3em;
           height: 3em;
           line-height: 3em;
-          display: inline-block;
-          vertical-align: middle;
-          text-align: center;
-          border: 2px solid $grey-lightest;
-          @include transition (all, 0.3s ease);
-          color: $black;
-          &:hover { background: $black; border-color: $black; color: $white; }
-          cursor: pointer;
-          &.disabled { pointer-events: none; color: $grey-lightest; }
+          padding: 0;
+          &.disabled { color: $grey-lightest; background: transparent; border-color: transparent; }
         }
       }
     }

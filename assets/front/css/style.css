@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* Taken from bootstrap */
+/* Custom mixins */
 /*
 $skin          : #076cf2;
 $alert         : #e74c3c;
@@ -181,7 +182,13 @@ blockquote p {
   font-family: "Poppins", sans-serif;
 }
 
-.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, .tabs .nav-link, form label, .gallery-item .tc-content, table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.small, .secondary-navbar__wrapper li, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .primary-nav__socials .socials li, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .gallery-item .tc-content, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini .entry-meta, .grid-container__square-mini blockquote, .page__header .header-content .post-info, .page-breadcrumbs, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -209,13 +216,20 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .tax__container a, .tagcloud a,
+.service-font, .btn, .woocommerce input.button,
+.woocommerce a.button,
+.woocommerce .button.add_to_cart_button input.button.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt, .tax__container a, .tagcloud a,
 .tags li, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
 
-.caps, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-more, .btn-large, .tax__container a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.caps, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-more, .btn-large, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce table.shop_table:not([id^=wp-calendar]) th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   text-transform: uppercase;
 }
 
@@ -247,7 +261,10 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, .tax__container a, form label, .overlay .overlay-content .nav__container nav, table:not([id^=wp-calendar]) th, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
+.letter-spacing-2, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce table.shop_table:not([id^=wp-calendar]) th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -264,8 +281,6 @@ blockquote p {
   text-decoration: underline;
 }
 
-/* Taken from bootstrap */
-/* Custom mixins */
 .bg-transparent {
   background: transparent;
 }
@@ -483,7 +498,8 @@ a {
 }
 
 a {
-  test-decoration: none;
+  text-decoration: none;
+  color: #353535;
 }
 
 a:hover,
@@ -491,14 +507,6 @@ a:active,
 a.current-active {
   text-decoration: none;
   outline: none;
-}
-
-a:focus {
-  text-decoration: none;
-}
-
-a {
-  color: #B4B4B4;
 }
 
 a img {
@@ -509,8 +517,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #020202;
-  /* previously 25%*/
+  color: #747474;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3133,48 +3140,87 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   line-height: 2.5em;
 }
 
-.socials .icon-twitter:hover {
-  color: #00aced !important;
-}
-
-.socials .icon-facebook:hover {
-  color: #3b5998 !important;
-}
-
-.socials .icon-instagram:hover {
-  color: #517fa4 !important;
-}
-
-.socials .icon-linkedin:hover {
-  color: #007bb6 !important;
-}
-
-.socials .icon-google-plus:hover {
-  color: #dd4b39 !important;
-}
-
-.socials .icon-pinterest:hover {
-  color: #cb2027 !important;
-}
-
-.socials .icon-flickr:hover {
-  color: #ff0084 !important;
-}
-
-.socials .icon-dribbble:hover {
-  color: #ea4c89 !important;
-}
-
-.socials .icon-tumblr:hover {
-  color: #32506d !important;
-}
-
-.socials .icon-youtube:hover {
-  color: #bb0000 !important;
+.btn, .woocommerce input.button,
+.woocommerce a.button,
+.woocommerce .button.add_to_cart_button input.button.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt {
+  border-radius: 2px;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  -webkit-transition: all 0.2s, 0.3s ease;
+  transition: all 0.2s, 0.3s ease;
 }
 
 .btn {
-  border-radius: 2px;
+  background-color: #353535;
+  color: #fff;
+  border-color: #353535;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+  color: #353535;
+  background-color: transparent;
+  border-color: #353535;
+}
+
+/* .btn modifier */
+.btn-dark, .woocommerce input.button.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt {
+  background-color: #353535;
+  color: #fff;
+  border-color: #353535;
+}
+
+.btn-dark:hover, .woocommerce input.button.alt:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover, .btn-dark:focus, .woocommerce input.button.alt:focus,
+.woocommerce a.button.alt:focus,
+.woocommerce button.button.alt:focus, .btn-dark:active, .woocommerce input.button.alt:active,
+.woocommerce a.button.alt:active,
+.woocommerce button.button.alt:active {
+  color: #353535;
+  background-color: transparent;
+  border-color: #353535;
+}
+
+/* .btn modifier */
+.btn-light, .woocommerce input.button,
+.woocommerce a.button,
+.woocommerce .button.add_to_cart_button {
+  background-color: #B4B4B4;
+  border-color: #B4B4B4;
+  color: #fff;
+}
+
+.btn-light:hover, .woocommerce input.button:hover,
+.woocommerce a.button:hover,
+.woocommerce .button.add_to_cart_button:hover, .btn-light:focus, .woocommerce input.button:focus,
+.woocommerce a.button:focus,
+.woocommerce .button.add_to_cart_button:focus, .btn-light:active, .woocommerce input.button:active,
+.woocommerce a.button:active,
+.woocommerce .button.add_to_cart_button:active {
+  color: #B4B4B4;
+  background-color: transparent;
+  border-color: #B4B4B4;
+}
+
+.btn-light-border {
+  border-width: 1px;
+  border-color: #f7f8f9;
+}
+
+/* .btn modifier */
+.btn-inverted {
+  background-color: transparent;
+  color: #353535;
+}
+
+.btn-inverted:hover, .btn-inverted:focus, .btn-inverted:active {
+  color: #fff;
+  background-color: #353535;
 }
 
 .readmore-holder {
@@ -3185,10 +3231,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .btn-more {
-  background: #202020;
-  color: #fff;
   font-size: 0.75em;
-  border: 2px solid #202020;
   line-height: 2.5em;
   padding: 0 2.5em;
 }
@@ -3196,11 +3239,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .btn-more span {
   display: inline-block;
   vertical-align: middle;
-}
-
-.btn-more:hover, .btn-more:focus, .btn-more:active {
-  color: #202020;
-  background: #fff;
 }
 
 .btn-large {
@@ -3225,15 +3263,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #202020;
   border-color: transparent;
   background: #eceeef;
-}
-
-.btn-skin {
-  color: #fff;
-  background-color: #B4B4B4;
-}
-
-.btn-skin:hover {
-  color: #eceeef;
 }
 
 .btn-edit {
@@ -3264,6 +3293,55 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 a.external {
   position: relative;
+}
+
+table, #add_payment_method .cart-collaterals .cart_totals table,
+.woocommerce-cart .cart-collaterals .cart_totals table,
+.woocommerce-checkout .cart-collaterals .cart_totals table,
+.woocommerce table.shop_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@media (max-width: 767px) {
+  table, #add_payment_method .cart-collaterals .cart_totals table,
+  .woocommerce-cart .cart-collaterals .cart_totals table,
+  .woocommerce-checkout .cart-collaterals .cart_totals table,
+  .woocommerce table.shop_table {
+    table-layout: fixed;
+  }
+}
+
+table:not([id^=wp-calendar]), #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
+.woocommerce table.shop_table:not([id^=wp-calendar]) {
+  border: 2px solid #f7f8f9;
+}
+
+table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce table.shop_table:not([id^=wp-calendar]) th {
+  font-family: "Roboto", sans-serif;
+}
+
+table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce table.shop_table:not([id^=wp-calendar]) td {
+  padding: 1.25em;
+  border: 1px solid #f7f8f9;
+}
+
+table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
+.woocommerce table.shop_table:not([id^=wp-calendar]) td {
+  color: #777;
 }
 
 .tax__container a {
@@ -3298,28 +3376,21 @@ a.external {
   -moz-opacity: 0;
   -khtml-opacity: 0;
   opacity: 0;
-  z-index: 99999999;
   z-index: 100;
-  color: #fff;
-  background: rgba(32, 32, 32, 0.75);
-  border: 1px solid #B4B4B4;
-  text-align: center;
-  -webkit-transition: all 0.3s ease-in-out, right 0.6s ease-in-out, left 0.6s ease-in-out;
-  transition: all 0.3s ease-in-out, right 0.6s ease-in-out, left 0.6s ease-in-out;
+  border-width: 1px;
+  padding: 0;
 }
 
 .czr-btta.right {
   right: -50px;
-  border-radius: 2px 0px 0px 2px;
 }
 
 .czr-btta.left {
   left: -50px;
-  border-radius: 0 2px 2px 0;
 }
 
 .czr-btta i {
-  line-height: 50px;
+  line-height: 49px;
   display: inline-block;
 }
 
@@ -3329,11 +3400,11 @@ a.external {
 
 .czr-btta.show {
   cursor: pointer;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: alpha(opacity=100);
-  -moz-opacity: 1;
-  -khtml-opacity: 1;
-  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
 }
 
 .czr-btta.show.left {
@@ -3342,11 +3413,6 @@ a.external {
 
 .czr-btta.show.right {
   right: -1px;
-}
-
-.czr-btta:hover {
-  color: #202020;
-  background: rgba(255, 255, 255, 0.75);
 }
 
 /* Blockquotes and cites */
@@ -4027,7 +4093,7 @@ form .form-control,
 form input[type="text"], form input[type="url"], form input[type="password"], form input[type="email"], form input[type="number"], form textarea {
   outline: none;
   border: none;
-  border-bottom: 2px solid #202020;
+  border-bottom: 2px solid #353535;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
@@ -4743,33 +4809,6 @@ ul:not(.socials):not(.tags).dash li::before, ul:not(.socials):not(.tags).dash ul
 
 ol ol, ol ul, ul ol, ul ul {
   margin-left: 1em;
-}
-
-table {
-  width: 100%;
-}
-
-@media (max-width: 767px) {
-  table {
-    table-layout: fixed;
-  }
-}
-
-table:not([id^=wp-calendar]) {
-  border: 2px solid #f7f8f9;
-}
-
-table:not([id^=wp-calendar]) th {
-  font-family: "Roboto", sans-serif;
-}
-
-table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td {
-  padding: 1.25em;
-  border: 1px solid #f7f8f9;
-}
-
-table:not([id^=wp-calendar]) td {
-  color: #777;
 }
 
 dl {
@@ -6514,34 +6553,24 @@ section.post-related-articles header .related-posts_title {
   margin-top: 2.5em;
 }
 
-section.post-related-articles header .related-posts_nav {
+.related-posts_nav {
   float: right;
   margin-top: 5em;
+  margin-right: 2px;
 }
 
-section.post-related-articles header .related-posts_nav .slider-control {
+.related-posts_nav .slider-control {
+  font-family: inherit;
   width: 3em;
   height: 3em;
   line-height: 3em;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border: 2px solid #f7f8f9;
-  -webkit-transition: all 0.2s, 0.3s ease;
-  transition: all 0.2s, 0.3s ease;
-  color: #202020;
-  cursor: pointer;
+  padding: 0;
 }
 
-section.post-related-articles header .related-posts_nav .slider-control:hover {
-  background: #202020;
-  border-color: #202020;
-  color: #fff;
-}
-
-section.post-related-articles header .related-posts_nav .slider-control.disabled {
-  pointer-events: none;
+.related-posts_nav .slider-control.disabled {
   color: #f7f8f9;
+  background: transparent;
+  border-color: transparent;
 }
 
 section.post-related-articles .grid {
@@ -6847,7 +6876,7 @@ section.post-content {
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #202020;
+  background-color: #747474;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -6858,7 +6887,7 @@ section.post-content {
 }
 
 .widget-area .widget:not(.widget_tag_cloud):not(.widget_shopping_cart) a:hover::before {
-  background-color: #202020;
+  background-color: #747474;
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
@@ -6883,12 +6912,12 @@ section.post-content {
   background: #202020;
 }
 
-.widget_recent_comments .comment-author-link {
-  color: #B4B4B4;
+.sidebar .widget_search input[type="text"] {
+  border-bottom-color: #202020;
 }
 
-.widget_categories .cat-item.on a {
-  color: #202020;
+.widget_recent_comments .comment-author-link {
+  color: #B4B4B4;
 }
 
 .widget_calendar table {
@@ -7112,6 +7141,12 @@ section.post-content {
 .colophon__row .footer__credits,
 .colophon__row .social-links {
   margin: 1em 0;
+}
+
+/* Woocommerce */
+.woocommerce #content [class*=col],
+#content .woocommerce [class*=col] {
+  max-width: none;
 }
 
 /*# sourceMappingURL=style.css.map */

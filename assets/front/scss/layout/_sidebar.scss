@@ -11,7 +11,9 @@
     li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
     li::before { content: none }
     a { display: inline-block; }
-    &:not(.widget_tag_cloud):not(.widget_shopping_cart) a { @include underlined ($black, 1px) }
+    &:not(.widget_tag_cloud):not(.widget_shopping_cart) a {
+      @include underlined( $skin-link-color-hover, 1px)
+    }
   }
 }
 .sidebar {
@@ -33,6 +35,9 @@
       background: $black;
     }
   }
+  .widget_search input[type="text"] {
+    border-bottom-color: $black;
+  }
 }
 
 .widget_recent_comments {
@@ -44,9 +49,6 @@
   @extend .caps;
   @extend .bold;
   @extend .letter-spacing-1;
-  .cat-item.on {
-    a { color: $black }
-  }
 }
 
 .widget_calendar {

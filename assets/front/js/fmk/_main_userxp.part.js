@@ -87,8 +87,10 @@ var czrapp = czrapp || {};
       //consider the exclude?!
       if ( _maybe_fire ) {
         $_focusable_inputs.each( function() {
-          $(this).parent().addClass(_focusable_class)
-                 .closest('form').addClass(_czr_form_class);
+          var $_this = $(this);
+          if ( !$_this.attr('placeholder') )
+            $(this).parent().addClass(_focusable_class)
+                   .closest('form').addClass(_czr_form_class);
         });
       }else
         return;

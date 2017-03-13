@@ -1,6 +1,10 @@
 
 
-$skin          : #B4B4B4;
+$skin                     : #B4B4B4;
+
+$skin-link-color          : darken( $skin, 50% );
+$skin-link-color-hover    : darken( $skin, 25% );
+
 $alert         : #e74c3c;
 $black         : #202020;
 $white         : #fff;

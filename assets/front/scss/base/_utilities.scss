@@ -72,12 +72,7 @@ img.v-centered {
   transform: translateY(-50%);
 }
 
-
-
-
 .czr-valign { @include czr-valign() }
-
-
 .czr-talign { @include czr-talign() }
 
 /* Responsive ratios */

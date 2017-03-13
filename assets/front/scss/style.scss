@@ -1,7 +1,8 @@
+@import 'base/mixins';
 @import 'base/variables';
 @import 'base/colours';
 @import 'base/typography';
-@import 'base/mixins';
+
 @import 'base/utilities';
 
 @import 'base/base';
@@ -27,4 +28,6 @@
 @import 'layout/article';
 @import 'layout/sidebar';
 @import 'layout/footer';
+
+@import 'components/plugins';
 
