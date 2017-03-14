@@ -336,6 +336,8 @@ section.post-related-articles {
 
 .pagination {
   text-align: center;
+  //SKINNED
+  color: $skin-darkest;
 
   ul {
     display: inline-block;
@@ -345,8 +347,6 @@ section.post-related-articles {
   }
 
   &.post-pagination {
-    //SKINNED
-    color: $skin-darkest;
     @extend .small;
   }
 

@@ -221,7 +221,18 @@ function czr_fn_skin_option_map( $get_default = null ) {
                             'section'   => 'skins_sec',
                             'type'      => 'checkbox',
                             'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
-          )
+          ),
+          'tc_skin_color' => array(
+                            'default'     => '#626768',
+                            'control'     => 'WP_Customize_Color_Control',
+                            'label'       => __( 'Skin color' , 'customizr' ),
+                            'section'     => 'skins_sec',
+                            'type'        =>  'color' ,
+                            'priority'    => 30,
+                            'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
+                            'sanitize_js_callback' => 'maybe_hash_hex_color',
+                            'transport'   => 'refresh' //postMessage
+          ),
     );//end of skin options
 }
 

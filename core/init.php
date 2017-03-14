@@ -214,7 +214,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               $this -> czr_core = apply_filters( 'czr_core',
                 array(
                     'fire'      =>   array(
- //                       array('core'       , 'resources_styles'),
+                        array('core'       , 'resources_styles'),
                         array('core'       , 'resources_fonts'),
  //                       array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
@@ -269,6 +269,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_CORE_PATH  . 'class-fire-init_retro_compat.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_colors.php' );
 
             //Helper class to build a simple date diff object
             //Alternative to date_diff for php version < 5.3.0
