@@ -107,6 +107,7 @@ module.exports = {
       '<%= paths.front_js_4_source %>jquery-plugins/jqueryCenterImages.js',
       '<%= paths.front_js_4_source %>jquery-plugins/jqueryParallax.js',
       '<%= paths.front_js %>parts/requestAnimationFramePolyfill.js',
+      '<%= paths.front_js %>parts/matchMediaPolyfill.js',
       '<%= paths.front_js %>parts/smoothScroll.js',
       '<%= paths.front_js %>parts/outline.js',
       '<%= paths.front_js %>parts/waypoints.js',
