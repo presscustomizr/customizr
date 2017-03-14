@@ -80,6 +80,7 @@ $secondary-color-dark   : $grey;
     a { color:$primary-color; }
     a:hover { color:$secondary-color-light; }
     .entry-meta .tax__container:after { background-color:$primary-color }
+    .entry-meta .tax__container a:after { color:$primary-color }
   }
 
 

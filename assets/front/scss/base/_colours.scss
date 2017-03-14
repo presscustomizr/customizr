@@ -1,9 +1,17 @@
 
 
-$skin                     : #B4B4B4;
+//$skin                     : #B4B4B4;
+//$skin                     : #292b2c;
+$skin                     : #626768;
 
-$skin-link-color          : darken( $skin, 50% );
-$skin-link-color-hover    : darken( $skin, 25% );
+$skin-dark                : darken( $skin, 20% );
+$skin-darkest             : darken( $skin, 50% );
+$skin-light               : lighten( $skin, 20% );
+$skin-lightest            : lighten( $skin, 50% );
+
+$skin-link-color          : $skin;
+$skin-link-color-hover    : $skin-darkest;
+
 
 $alert         : #e74c3c;
 $black         : #202020;
@@ -16,24 +24,24 @@ $grey-dark     : #777;
 
 $hamburger-bg-color: darken($black, 10%);
 
-/*
-$skin          : #076cf2;
-$alert         : #e74c3c;
-$black         : #273238;
-$white         : #fff;
 
-$grey          : #c9cacc;
-$grey-light    : #eeeff1;
-$grey-lightest : #F8F8F8;
-$grey-dark     : #777;
+//$skin          : #076cf2;
+//$alert         : #e74c3c;
+//$black         : #273238;
+//$white         : #fff;
+
+//$grey          : #c9cacc;
+//$grey-light    : #eeeff1;
+//$grey-lightest : #F8F8F8;
+//$grey-dark     : #777;
 
 
-$hamburger-bg-color: darken($black, 10%);
-*/
-/* potential colours for skins */
-$skin_01       : #414b57;
-$skin_02       : #323db0;
-$skin_03       : #76c3c9;
-$skin_04       : #a7cfe6;
-$skin_05       : #284AFF;
+//$hamburger-bg-color: darken($black, 10%);
+
+// potential colours for skins
+//$skin_01       : #414b57;
+//$skin_02       : #323db0;
+//$skin_03       : #76c3c9;
+//$skin_04       : #a7cfe6;
+//$skin_05       : #284AFF;
 

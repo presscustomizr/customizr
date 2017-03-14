@@ -533,7 +533,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //tag cloud - same font size
           add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
-
+          //tag cloud add button classes
+          add_filter( 'wp_generate_tag_cloud_data'          , array( $this, 'czr_fn_add_tag_cloud_button_classes') );
       }
 
 
@@ -837,10 +838,33 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @return array modified arguments.
       */
       function czr_fn_add_widget_tag_cloud_args( $args ) {
-        $args['largest'] = 1;
-        $args['smallest'] = 1;
-        $args['unit'] = 'em';
+        if ( is_array( $args ) ) {
+          $args['largest'] = 1;
+          $args['smallest'] = 1;
+          $args['unit'] = 'em';
+        }
+
         return $args;
+      }
+
+      /**
+      * Add button classes tp tag cloud links
+      *
+      *
+      * @since Customizr 4.0
+      *
+      * @param array $args arguments for tag cloud widget.
+      * @return array modified arguments.
+      */
+      function czr_fn_add_tag_cloud_button_classes( $tags_data ) {
+        if ( is_array( $tags_data ) ) {
+          foreach ( $tags_data as &$tag_data ) {
+            if ( is_array( $tag_data ) ) {
+              $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-skin inverted" : "btn btn-skin inverted";
+            }
+          }
+        }
+        return $tags_data;
       }
 
 

@@ -198,13 +198,28 @@
   transform: $transforms;
 }
 
+@mixin transform-style ($transforms-style) {
+  -webkit-transform-style: $transforms-style;
+  -moz-transform-style: $transforms-style;
+  -ms-transform-style: $transforms-style;
+  transform-style: $transforms-style;
+}
+
+@mixin transform-origin ($transforms-origin) {
+  -webkit-transform-origin: $transforms-origin;
+  -moz-transform-origin: $transforms-origin;
+  -ms-transform-origin: $transforms-origin;
+  transform-origin: $transforms-origin;
+}
+
+
 @mixin czr__responsive-wrapper( $width, $height ) {
   &::before {
     padding-top: percentage( $height / $width );
   }
 }
 
-/* Taken from bootstrap */
+// Taken from bootstrap
 
 @mixin _assert-ascending($map, $map-name) {
   $prev-key: null;

@@ -45,7 +45,7 @@ WP classes
   width: 3em;
   height: 3em;
   line-height: 3em;
-  background: $skin;
+  background-color: $skin-link-color;
   position:absolute;
   right:$base-line-height;
   top:$base-line-height;
@@ -58,12 +58,24 @@ WP classes
   z-index:99;
   font-size: 1em;
 }
-.post-type__icon i {
-  font-size: 1.33em;
+.post-type__icon {
+  .icn-format {
+    font-size: 1.33em;
+    color: $skin-link-color-hover;
+  }
+  &:hover {
+    .icn-format {
+      color: $skin-link-color;
+    }
+    background-color: $skin-link-color-hover;
+  }
 }
-.entry-media__holder .post-type__icon i {
-  position: relative;
-  font-size: 1em;
+.entry-media__holder .post-type__icon {
+  background-color: transparent;
+  .icn-format {
+    position: relative;
+    font-size: 1em;
+  }
 }
 
 [class*=grid-container__] article { margin-bottom: 40px }
@@ -150,14 +162,26 @@ WP classes
 
 .tax__container { @extend %categories; }
 .entry-meta a, .post-info a { @include transition(color, 0.3s ease);  }
-.tc-content-inner a.external { display:inline-block; @include underlined ( $primary-color, 1px ); }
+// SKINNED
+.tc-content-inner a.external { display:inline-block; text-decoration: none; @include underlined ( $skin-link-color-hover, 1px ); }
 .entry-header {
     .entry-title {
-        a { color: $black; }
+        /* a { color: $black; } */
+        a { color: $skin-link-color-hover }
+        /* #122c2e */
         line-height: 1.1;
         margin-bottom:$base-line-height/4;
+    }
+    .hover & .entry-title a {
+      /* color: $grey-dark; */
+      color: $skin-link-color;
+      &:hover {
+        color: $skin-link-color-hover
       }
-      .hover & .entry-title a { color: $grey-dark; }
+    }
+    .entry-title a:hover {
+      color: $skin-link-color;
+    }
 }
 .tc-content-inner {
   color: $grey-dark;
@@ -599,11 +623,11 @@ WP classes
   .czr-l-sidebar & { padding: 0 0 0 $base-line-height*2 }*/
   .tc-content { padding:$base-line-height*2; font-size: 90%; }
   .no-thumb .tc-content { padding: $base-line-height*2; }
-  .format-video .video-container  {
+  /*.format-video .video-container  {
     iframe {
       height: 305px;
     }
-  }
+  }*/
   .format-audio .audio-container  {
     iframe {
       height: auto;
@@ -649,7 +673,7 @@ WP classes
   .post-info, .author-info, .post-tags, .entry-header .entry-meta {  @extend .small;  }
   .author-info {
     a {
-      color: $black;
+      //color: $black;
       @extend .semi-bold;
       line-height: 48px;
       margin-right: $base-line-height;
@@ -688,7 +712,9 @@ WP classes
           top: calc(50% + 2px);
           width: $base-line-height*2;
           height: 2px;
-          background: $black;
+          //SKINNED
+          background: $skin-link-color;
+          //background: $black;
           left:-3em;
           @include transition (all 0.3s ease);
         }
@@ -753,6 +779,8 @@ WP classes
     float: none;
     background: $grey-lightest;
     white-space: normal;
+    @include transform(translateZ(0));
+    @include transform-style(preserve-3d);
   }
 
   .grid__item {
@@ -771,10 +799,15 @@ WP classes
       -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
     }
+    @include transform(translateZ(0));
+    @include transform-style(preserve-3d);
   }
   section {
     background: inherit;
     padding: 0;
+    z-index: 1;
+    @include transform(translateZ(0));
+    @include transform-style(preserve-3d);
     &.entry-content__holder::before {
       //@media screen and (max-width: 575px)
       @include media-breakpoint-down(xs)  {
@@ -789,11 +822,14 @@ WP classes
     left:0;
     width: $base-line-height*2;
     height: 2px;
-    background: $black;
-    @include transition (all 0.3s ease);
+    //SKINNED
+    background: $skin-link-color-hover;
+    //background: black;
+    //@include transition (all 0.3s ease);
   }
   .entry-title {
-    @include text-truncate();
+    //@include text-truncate();
+    white-space: normal;
     font-weight: 600;
     margin-top: $base-line-height/2;
     padding-bottom: $base-line-height/2;

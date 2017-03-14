@@ -12,43 +12,41 @@
   border-radius: 2px;
   border-width: 2px;
   border-style: solid;
+  font-size: 1em;
   @extend .service-font;
   cursor: pointer;
-  @include transition (all, 0.3s ease);
 }
 
+// SKINNED
 .btn {
   @extend %btn_base;
-//previously $black;
-  background-color: $skin-link-color;
-  color: $white;
-//previously $black;
-  border-color: $skin-link-color;
-
-  &:hover, &:focus, &:active {
-//previously $black;
-    color: $skin-link-color;
-    background-color: transparent;
-//previously $black;
-    border-color: $skin-link-color;
-  }
 }
 
-/* .btn modifier */
+// .btn modifier
 .btn-dark {
-  background-color: $skin-link-color;
+  background-color: $skin-dark;
   color: $white;
-  border-color: $skin-link-color;
+  border-color: $skin-dark;
 
   &:hover, &:focus, &:active {
-    color: $skin-link-color;
+    color: $skin-dark;
     background-color: transparent;
-    border-color: $skin-link-color;
+    border-color: $skin-dark;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: transparent;
+    color: $skin-dark;//$black;
+    &:hover, &:focus, &:active {
+      color: $white;
+      background-color: $skin-dark;//previously $black;
+    }
   }
 }
 
-/* .btn modifier */
-.btn-light {
+// .btn modifier
+.btn-skin {
   background-color: $skin;
   border-color: $skin;
   color: $white;
@@ -58,22 +56,47 @@
     background-color: transparent;
     border-color: $skin;
   }
-}
 
-.btn-light-border {
-  border-width: 1px;
-  border-color: $grey-lightest;
-}
+  // .btn modifier
+  &.inverted {
+    background-color: transparent;
+    color: $skin;
 
-/* .btn modifier */
-.btn-inverted {
-  background-color: transparent;
-  color: $skin-link-color;//$black;
-  &:hover, &:focus, &:active {
-    color: $white;
-    background-color: $skin-link-color;//previously $black;
+    &:hover, &:focus, &:active {
+      color: $white;
+      background-color: $skin;
+    }
   }
 }
+
+.btn-light {
+  background-color: $skin-light;
+  border-color: $skin-light;
+  color: $white;
+
+  &:hover, &:focus, &:active {
+    color: $skin-light;
+    background-color: transparent;
+    border-color: $skin-light;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: transparent;
+    color: $skin-light;
+
+    &:hover, &:focus, &:active {
+      color: $white;
+      background-color: $skin-light;
+    }
+  }
+}
+
+input[type=submit] {
+  @extend .btn-dark;
+}
+
+//end buttons
 
 .readmore-holder {
   padding-top: $base-line-height;
@@ -166,7 +189,9 @@ a[target="_blank"]:hover:after {
     margin-right: 1.5em;
     &::after{
       content: '/';
-      color: $grey;
+      //SKINNED
+      //color: $grey;
+      color: $skin-light;
       z-index: 1;
       pointer-events: none;
       position: absolute;
@@ -280,13 +305,7 @@ cite {
   }
 }
 /* Blockquotes and cites END */
-.caret__dropdown-toggler i{
-  display: block;
-  @include transition (all 0.3s ease);
-  .show:not(.dropdown-item) > span & {
-    @include transform( rotate(-180deg));
-  }
-}
+
 .dropdown-menu {
           border-radius: 0;
           border:0;
@@ -322,7 +341,8 @@ cite {
               vertical-align: middle;
               @include media-breakpoint-up(lg) {
                   @at-root .regular .dropdown-menu .caret__dropdown-toggler i {
-                    @include transform( rotate(-90deg));
+                    @include transform( translateZ(0) rotate(-90deg));
+                    @include transform-style( preserve-3d );
                     //transform-origin:100% 100%;
                     position: relative;
                     display: inline-block;
@@ -351,6 +371,13 @@ cite {
 
 }
 
+.caret__dropdown-toggler i{
+  display: block;
+  @include transition (all 0.3s ease);
+  .menu-item.show > span & {
+    @include transform( translateZ(0) rotate(-180deg));
+  }
+}
 @include media-breakpoint-down(md) { //max-width: 992px
      .dropdown-menu {
          background: transparent;
@@ -397,35 +424,39 @@ nav li.dropdown-item:before {
     }
 }
 .tagcloud a,
+.tag__link {
+  padding: $base-line-height/4 $base-line-height/2;
+  border-width: 1px;
+  @extend .service-font;
+  @include transition (all 0.3s ease);
+  line-height: 1em;
+}
+
+.tagcloud a,
 .tags li {
-      padding: 0 $base-line-height/2 0 $base-line-height/2;
-      margin:$base-line-height/4 0;
-      border:1px solid $grey-light;
-      border-radius: 2px;
-      margin-right:  $base-line-height/4;
-      color: $grey-dark;
-      @extend .service-font;
-      @include transition (all 0.3s ease);
+  margin:$base-line-height/4 0;
+  margin-right:  $base-line-height/4;
 }
 
 .tagcloud a + a,
 .tags li + li {
-      margin-left:0;
-      margin-right:$base-line-height/4;
+  margin-left:0;
 }
 
+/*
 .tagcloud a:hover,
 .tags li:hover {
     border-color: $black;
     background-color: $black;
 }
-
+*/
+/*
 .widget .tagcloud a:hover,
 .tagcloud a:hover,
 .tags li:hover a {
   color: white;
 }
-
+*/
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
 
 /* tabs */

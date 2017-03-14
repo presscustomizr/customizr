@@ -282,6 +282,8 @@
 /* Sticky header */
 .navbar-to-stick.navbar-sticky {
   position: fixed;
+  @include transform(translateZ(0));
+  @include transform-style(preserve-3d);
   &:not(.animating) {
     top: 0;
     .admin-bar & {

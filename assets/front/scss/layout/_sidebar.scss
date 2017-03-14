@@ -12,6 +12,7 @@
     li::before { content: none }
     a { display: inline-block; }
     &:not(.widget_tag_cloud):not(.widget_shopping_cart) a {
+      //SKINNED
       @include underlined( $skin-link-color-hover, 1px)
     }
   }

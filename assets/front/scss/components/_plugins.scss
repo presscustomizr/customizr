@@ -1,0 +1,58 @@
+/* Woocommerce */
+//buttons
+.woocommerce {
+
+  #respond input#submit,
+  input#submit,
+  input.button,
+  a.button,
+  .button.add_to_cart_button,
+  input#submit.alt.disabled,
+  input.button.alt.disabled,
+  button.button.alt.disabled,
+  a.button.alt.disabled,
+  input#submit.alt,
+  input.button.alt,
+  a.button.alt,
+  button.button.alt {
+    @extend %btn_base;
+  }
+
+  #respond input#submit,
+  input#submit,
+  input.button,
+  a.button,
+  .button.add_to_cart_button {
+    @extend .btn-skin;
+  }
+
+
+
+  input#submit[class*=alt],
+  input.button[class*=alt],
+  a.button[class*=alt],
+  button.button[class*=alt] {
+    @extend .btn-dark;
+  }
+
+  input#submit.alt.disabled,
+  input.button.alt.disabled,
+  button.button.alt.disabled,
+  a.button.alt.disabled {
+    @extend .btn-dark;
+  }
+}
+
+//cols conflicting with bootstrap
+.woocommerce #content [class*=col],
+#content .woocommerce [class*=col] {
+  max-width: none;
+}
+
+//table
+#add_payment_method .cart-collaterals .cart_totals table,
+.woocommerce-cart .cart-collaterals .cart_totals table,
+.woocommerce-checkout .cart-collaterals .cart_totals table,
+.woocommerce table.shop_table {
+  @extend %table;
+}

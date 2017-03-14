@@ -1,21 +1,5 @@
 @charset "UTF-8";
-/* Taken from bootstrap */
 /* Custom mixins */
-/*
-$skin          : #076cf2;
-$alert         : #e74c3c;
-$black         : #273238;
-$white         : #fff;
-
-$grey          : #c9cacc;
-$grey-light    : #eeeff1;
-$grey-lightest : #F8F8F8;
-$grey-dark     : #777;
-
-
-$hamburger-bg-color: darken($black, 10%);
-*/
-/* potential colours for skins */
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
@@ -216,12 +200,20 @@ blockquote p {
   font-weight: 700;
 }
 
-.service-font, .btn, .woocommerce input.button,
+.service-font, .btn, .woocommerce #respond input#submit,
+.woocommerce input#submit,
+.woocommerce input.button,
 .woocommerce a.button,
-.woocommerce .button.add_to_cart_button input.button.alt,
+.woocommerce .button.add_to_cart_button,
+.woocommerce input#submit.alt.disabled,
+.woocommerce input.button.alt.disabled,
+.woocommerce button.button.alt.disabled,
+.woocommerce a.button.alt.disabled,
+.woocommerce input#submit.alt,
+.woocommerce input.button.alt,
 .woocommerce a.button.alt,
 .woocommerce button.button.alt, .tax__container a, .tagcloud a,
-.tags li, .entry-footer, .comment-meta time, .widget_calendar thead tr {
+.tag__link, .entry-footer, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
 }
@@ -499,7 +491,7 @@ a {
 
 a {
   text-decoration: none;
-  color: #353535;
+  color: #626768;
 }
 
 a:hover,
@@ -517,7 +509,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #747474;
+  color: black;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -585,13 +577,13 @@ figcaption {
 
 ::-moz-selection {
   text-shadow: none;
-  background: #B4B4B4;
+  background: #626768;
   color: #fff;
 }
 
 ::selection {
   text-shadow: none;
-  background: #B4B4B4;
+  background: #626768;
   color: #fff;
 }
 
@@ -604,7 +596,7 @@ img::-moz-selection {
 }
 
 body {
-  webkit-tap-highlight-color: #B4B4B4;
+  webkit-tap-highlight-color: #626768;
 }
 
 .alignleft {
@@ -743,6 +735,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .header-skin-light .image__header .header-content .entry-meta .tax__container:after {
   background-color: #202020;
+}
+
+.header-skin-light .image__header .header-content .entry-meta .tax__container a:after {
+  color: #202020;
 }
 
 .header-skin-light .primary-nav__utils {
@@ -1115,6 +1111,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .header-skin-dark .image__header .header-content .entry-meta .tax__container:after {
   background-color: #fff;
+}
+
+.header-skin-dark .image__header .header-content .entry-meta .tax__container a:after {
+  color: #fff;
 }
 
 .header-skin-dark .primary-nav__utils {
@@ -1787,6 +1787,14 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* Sticky header */
 .navbar-to-stick.navbar-sticky {
   position: fixed;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
   transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
 }
@@ -3140,87 +3148,170 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   line-height: 2.5em;
 }
 
-.btn, .woocommerce input.button,
+.btn, .woocommerce #respond input#submit,
+.woocommerce input#submit,
+.woocommerce input.button,
 .woocommerce a.button,
-.woocommerce .button.add_to_cart_button input.button.alt,
+.woocommerce .button.add_to_cart_button,
+.woocommerce input#submit.alt.disabled,
+.woocommerce input.button.alt.disabled,
+.woocommerce button.button.alt.disabled,
+.woocommerce a.button.alt.disabled,
+.woocommerce input#submit.alt,
+.woocommerce input.button.alt,
 .woocommerce a.button.alt,
 .woocommerce button.button.alt {
   border-radius: 2px;
   border-width: 2px;
   border-style: solid;
+  font-size: 1em;
   cursor: pointer;
-  -webkit-transition: all 0.2s, 0.3s ease;
-  transition: all 0.2s, 0.3s ease;
 }
 
-.btn {
-  background-color: #353535;
+.btn-dark, input[type=submit], .woocommerce input#submit[class*=alt],
+.woocommerce input.button[class*=alt],
+.woocommerce a.button[class*=alt],
+.woocommerce button.button[class*=alt], .woocommerce input#submit.alt.disabled,
+.woocommerce input.button.alt.disabled,
+.woocommerce button.button.alt.disabled,
+.woocommerce a.button.alt.disabled {
+  background-color: #313333;
   color: #fff;
-  border-color: #353535;
+  border-color: #313333;
 }
 
-.btn:hover, .btn:focus, .btn:active {
-  color: #353535;
+.btn-dark:hover, input[type=submit]:hover, .woocommerce input#submit[class*=alt]:hover,
+.woocommerce input.button[class*=alt]:hover,
+.woocommerce a.button[class*=alt]:hover,
+.woocommerce button.button[class*=alt]:hover, .woocommerce input#submit.alt.disabled:hover,
+.woocommerce input.button.alt.disabled:hover,
+.woocommerce button.button.alt.disabled:hover,
+.woocommerce a.button.alt.disabled:hover, .btn-dark:focus, input[type=submit]:focus, .woocommerce input#submit[class*=alt]:focus,
+.woocommerce input.button[class*=alt]:focus,
+.woocommerce a.button[class*=alt]:focus,
+.woocommerce button.button[class*=alt]:focus, .woocommerce input#submit.alt.disabled:focus,
+.woocommerce input.button.alt.disabled:focus,
+.woocommerce button.button.alt.disabled:focus,
+.woocommerce a.button.alt.disabled:focus, .btn-dark:active, input[type=submit]:active, .woocommerce input#submit[class*=alt]:active,
+.woocommerce input.button[class*=alt]:active,
+.woocommerce a.button[class*=alt]:active,
+.woocommerce button.button[class*=alt]:active, .woocommerce input#submit.alt.disabled:active,
+.woocommerce input.button.alt.disabled:active,
+.woocommerce button.button.alt.disabled:active,
+.woocommerce a.button.alt.disabled:active {
+  color: #313333;
   background-color: transparent;
-  border-color: #353535;
+  border-color: #313333;
 }
 
-/* .btn modifier */
-.btn-dark, .woocommerce input.button.alt,
-.woocommerce a.button.alt,
-.woocommerce button.button.alt {
-  background-color: #353535;
+.btn-dark.inverted, input.inverted[type=submit], .woocommerce input.inverted#submit[class*=alt],
+.woocommerce input.inverted.button[class*=alt],
+.woocommerce a.inverted.button[class*=alt],
+.woocommerce button.inverted.button[class*=alt], .woocommerce input.inverted#submit.alt.disabled,
+.woocommerce input.inverted.button.alt.disabled,
+.woocommerce button.inverted.button.alt.disabled,
+.woocommerce a.inverted.button.alt.disabled {
+  background-color: transparent;
+  color: #313333;
+}
+
+.btn-dark.inverted:hover, input.inverted[type=submit]:hover, .woocommerce input.inverted#submit[class*=alt]:hover,
+.woocommerce input.inverted.button[class*=alt]:hover,
+.woocommerce a.inverted.button[class*=alt]:hover,
+.woocommerce button.inverted.button[class*=alt]:hover, .woocommerce input.inverted#submit.alt.disabled:hover,
+.woocommerce input.inverted.button.alt.disabled:hover,
+.woocommerce button.inverted.button.alt.disabled:hover,
+.woocommerce a.inverted.button.alt.disabled:hover, .btn-dark.inverted:focus, input.inverted[type=submit]:focus, .woocommerce input.inverted#submit[class*=alt]:focus,
+.woocommerce input.inverted.button[class*=alt]:focus,
+.woocommerce a.inverted.button[class*=alt]:focus,
+.woocommerce button.inverted.button[class*=alt]:focus, .woocommerce input.inverted#submit.alt.disabled:focus,
+.woocommerce input.inverted.button.alt.disabled:focus,
+.woocommerce button.inverted.button.alt.disabled:focus,
+.woocommerce a.inverted.button.alt.disabled:focus, .btn-dark.inverted:active, input.inverted[type=submit]:active, .woocommerce input.inverted#submit[class*=alt]:active,
+.woocommerce input.inverted.button[class*=alt]:active,
+.woocommerce a.inverted.button[class*=alt]:active,
+.woocommerce button.inverted.button[class*=alt]:active, .woocommerce input.inverted#submit.alt.disabled:active,
+.woocommerce input.inverted.button.alt.disabled:active,
+.woocommerce button.inverted.button.alt.disabled:active,
+.woocommerce a.inverted.button.alt.disabled:active {
   color: #fff;
-  border-color: #353535;
+  background-color: #313333;
 }
 
-.btn-dark:hover, .woocommerce input.button.alt:hover,
-.woocommerce a.button.alt:hover,
-.woocommerce button.button.alt:hover, .btn-dark:focus, .woocommerce input.button.alt:focus,
-.woocommerce a.button.alt:focus,
-.woocommerce button.button.alt:focus, .btn-dark:active, .woocommerce input.button.alt:active,
-.woocommerce a.button.alt:active,
-.woocommerce button.button.alt:active {
-  color: #353535;
-  background-color: transparent;
-  border-color: #353535;
-}
-
-/* .btn modifier */
-.btn-light, .woocommerce input.button,
+.btn-skin, .woocommerce #respond input#submit,
+.woocommerce input#submit,
+.woocommerce input.button,
 .woocommerce a.button,
 .woocommerce .button.add_to_cart_button {
-  background-color: #B4B4B4;
-  border-color: #B4B4B4;
+  background-color: #626768;
+  border-color: #626768;
   color: #fff;
 }
 
-.btn-light:hover, .woocommerce input.button:hover,
+.btn-skin:hover, .woocommerce #respond input#submit:hover,
+.woocommerce input#submit:hover,
+.woocommerce input.button:hover,
 .woocommerce a.button:hover,
-.woocommerce .button.add_to_cart_button:hover, .btn-light:focus, .woocommerce input.button:focus,
+.woocommerce .button.add_to_cart_button:hover, .btn-skin:focus, .woocommerce #respond input#submit:focus,
+.woocommerce input#submit:focus,
+.woocommerce input.button:focus,
 .woocommerce a.button:focus,
-.woocommerce .button.add_to_cart_button:focus, .btn-light:active, .woocommerce input.button:active,
+.woocommerce .button.add_to_cart_button:focus, .btn-skin:active, .woocommerce #respond input#submit:active,
+.woocommerce input#submit:active,
+.woocommerce input.button:active,
 .woocommerce a.button:active,
 .woocommerce .button.add_to_cart_button:active {
-  color: #B4B4B4;
+  color: #626768;
   background-color: transparent;
-  border-color: #B4B4B4;
+  border-color: #626768;
 }
 
-.btn-light-border {
-  border-width: 1px;
-  border-color: #f7f8f9;
-}
-
-/* .btn modifier */
-.btn-inverted {
+.btn-skin.inverted, .woocommerce #respond input.inverted#submit,
+.woocommerce input.inverted#submit,
+.woocommerce input.inverted.button,
+.woocommerce a.inverted.button,
+.woocommerce .inverted.button.add_to_cart_button {
   background-color: transparent;
-  color: #353535;
+  color: #626768;
 }
 
-.btn-inverted:hover, .btn-inverted:focus, .btn-inverted:active {
+.btn-skin.inverted:hover, .woocommerce #respond input.inverted#submit:hover,
+.woocommerce input.inverted#submit:hover,
+.woocommerce input.inverted.button:hover,
+.woocommerce a.inverted.button:hover,
+.woocommerce .inverted.button.add_to_cart_button:hover, .btn-skin.inverted:focus, .woocommerce #respond input.inverted#submit:focus,
+.woocommerce input.inverted#submit:focus,
+.woocommerce input.inverted.button:focus,
+.woocommerce a.inverted.button:focus,
+.woocommerce .inverted.button.add_to_cart_button:focus, .btn-skin.inverted:active, .woocommerce #respond input.inverted#submit:active,
+.woocommerce input.inverted#submit:active,
+.woocommerce input.inverted.button:active,
+.woocommerce a.inverted.button:active,
+.woocommerce .inverted.button.add_to_cart_button:active {
   color: #fff;
-  background-color: #353535;
+  background-color: #626768;
+}
+
+.btn-light {
+  background-color: #959a9b;
+  border-color: #959a9b;
+  color: #fff;
+}
+
+.btn-light:hover, .btn-light:focus, .btn-light:active {
+  color: #959a9b;
+  background-color: transparent;
+  border-color: #959a9b;
+}
+
+.btn-light.inverted {
+  background-color: transparent;
+  color: #959a9b;
+}
+
+.btn-light.inverted:hover, .btn-light.inverted:focus, .btn-light.inverted:active {
+  color: #fff;
+  background-color: #959a9b;
 }
 
 .readmore-holder {
@@ -3356,7 +3447,7 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
 
 .tax__container a:not(:last-of-type)::after {
   content: '/';
-  color: #B4B4B4;
+  color: #959a9b;
   z-index: 1;
   pointer-events: none;
   position: absolute;
@@ -3499,19 +3590,6 @@ cite::first-child {
 }
 
 /* Blockquotes and cites END */
-.caret__dropdown-toggler i {
-  display: block;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.show:not(.dropdown-item) > span .caret__dropdown-toggler i {
-  -webkit-transform: rotate(-180deg);
-  -moz-transform: rotate(-180deg);
-  -ms-transform: rotate(-180deg);
-  transform: rotate(-180deg);
-}
-
 .dropdown-menu {
   border-radius: 0;
   border: 0;
@@ -3555,10 +3633,14 @@ cite::first-child {
 
 @media (min-width: 992px) {
   .regular .dropdown-menu .caret__dropdown-toggler i {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+    -webkit-transform: translateZ(0) rotate(-90deg);
+    -moz-transform: translateZ(0) rotate(-90deg);
+    -ms-transform: translateZ(0) rotate(-90deg);
+    transform: translateZ(0) rotate(-90deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     position: relative;
     display: inline-block;
     top: -0.1em;
@@ -3587,6 +3669,19 @@ cite::first-child {
   top: 55%;
   text-transform: none;
   font-size: 1em;
+}
+
+.caret__dropdown-toggler i {
+  display: block;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.menu-item.show > span .caret__dropdown-toggler i {
+  -webkit-transform: translateZ(0) rotate(-180deg);
+  -moz-transform: translateZ(0) rotate(-180deg);
+  -ms-transform: translateZ(0) rotate(-180deg);
+  transform: translateZ(0) rotate(-180deg);
 }
 
 @media (max-width: 991px) {
@@ -3638,35 +3733,39 @@ nav li.dropdown-item:before {
 }
 
 .tagcloud a,
-.tags li {
-  padding: 0 0.625em 0 0.625em;
-  margin: 0.3125em 0;
-  border: 1px solid #eceeef;
-  border-radius: 2px;
-  margin-right: 0.3125em;
-  color: #777;
+.tag__link {
+  padding: 0.3125em 0.625em;
+  border-width: 1px;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  line-height: 1em;
+}
+
+.tagcloud a,
+.tags li {
+  margin: 0.3125em 0;
+  margin-right: 0.3125em;
 }
 
 .tagcloud a + a,
 .tags li + li {
   margin-left: 0;
-  margin-right: 0.3125em;
 }
 
+/*
 .tagcloud a:hover,
 .tags li:hover {
-  border-color: #202020;
-  background-color: #202020;
+    border-color: $black;
+    background-color: $black;
 }
-
+*/
+/*
 .widget .tagcloud a:hover,
 .tagcloud a:hover,
 .tags li:hover a {
   color: white;
 }
-
+*/
 .v-separator {
   margin: 0 0.625em;
   text-align: center;
@@ -4085,7 +4184,7 @@ input:not([type="submit"]), textarea {
 }
 
 form label {
-  color: #202020;
+  color: #626768;
   font-family: "Roboto", sans-serif;
 }
 
@@ -4093,7 +4192,7 @@ form .form-control,
 form input[type="text"], form input[type="url"], form input[type="password"], form input[type="email"], form input[type="number"], form textarea {
   outline: none;
   border: none;
-  border-bottom: 2px solid #353535;
+  border-bottom: 2px solid #626768;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
@@ -4169,7 +4268,7 @@ form.czr-form .czr-focus.in-focus > label {
   -moz-transform: translateY(-110%);
   -ms-transform: translateY(-110%);
   transform: translateY(-110%);
-  color: #B4B4B4;
+  color: #313333;
 }
 
 form.czr-form .czr-focus.in-focus > label i.icn-search {
@@ -4983,7 +5082,7 @@ WP classes
   width: 3em;
   height: 3em;
   line-height: 3em;
-  background: #B4B4B4;
+  background-color: #626768;
   position: absolute;
   right: 1.25em;
   top: 1.25em;
@@ -4997,11 +5096,24 @@ WP classes
   font-size: 1em;
 }
 
-.post-type__icon i {
+.post-type__icon .icn-format {
   font-size: 1.33em;
+  color: black;
 }
 
-.entry-media__holder .post-type__icon i {
+.post-type__icon:hover {
+  background-color: black;
+}
+
+.post-type__icon:hover .icn-format {
+  color: #626768;
+}
+
+.entry-media__holder .post-type__icon {
+  background-color: transparent;
+}
+
+.entry-media__holder .post-type__icon .icn-format {
   position: relative;
   font-size: 1em;
 }
@@ -5151,6 +5263,7 @@ WP classes
 
 .tc-content-inner a.external {
   display: inline-block;
+  text-decoration: none;
   position: relative;
 }
 
@@ -5161,7 +5274,7 @@ WP classes
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #202020;
+  background-color: black;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -5172,7 +5285,7 @@ WP classes
 }
 
 .tc-content-inner a.external:hover::before {
-  background-color: #202020;
+  background-color: black;
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
@@ -5181,16 +5294,27 @@ WP classes
 }
 
 .entry-header .entry-title {
+  /* a { color: $black; } */
+  /* #122c2e */
   line-height: 1.1;
   margin-bottom: 0.3125em;
 }
 
 .entry-header .entry-title a {
-  color: #202020;
+  color: black;
 }
 
 .hover .entry-header .entry-title a {
-  color: #777;
+  /* color: $grey-dark; */
+  color: #626768;
+}
+
+.hover .entry-header .entry-title a:hover {
+  color: black;
+}
+
+.entry-header .entry-title a:hover {
+  color: #626768;
 }
 
 .tc-content-inner {
@@ -5853,6 +5977,11 @@ WP classes
 .grid-container__alternate.semi-narrow {
   /*.czr-r-sidebar & { padding: 0 $base-line-height*2 0 0  }
   .czr-l-sidebar & { padding: 0 0 0 $base-line-height*2 }*/
+  /*.format-video .video-container  {
+    iframe {
+      height: 305px;
+    }
+  }*/
 }
 
 .grid-container__alternate.semi-narrow .tc-content {
@@ -5862,10 +5991,6 @@ WP classes
 
 .grid-container__alternate.semi-narrow .no-thumb .tc-content {
   padding: 2.5em;
-}
-
-.grid-container__alternate.semi-narrow .format-video .video-container iframe {
-  height: 305px;
 }
 
 .grid-container__alternate.semi-narrow .format-audio .audio-container iframe {
@@ -5925,7 +6050,6 @@ WP classes
 }
 
 .grid-container__plain .author-info a {
-  color: #202020;
   line-height: 48px;
   margin-right: 1.25em;
   width: auto;
@@ -5975,7 +6099,7 @@ WP classes
     top: calc(50% + 2px);
     width: 2.5em;
     height: 2px;
-    background: #202020;
+    background: #626768;
     left: -3em;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -6042,6 +6166,14 @@ WP classes
   float: none;
   background: #f7f8f9;
   white-space: normal;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .grid-container__square-mini .grid__item {
@@ -6054,6 +6186,14 @@ WP classes
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   background: inherit;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 @media (min-width: 576px) {
@@ -6068,6 +6208,15 @@ WP classes
 .grid-container__square-mini section {
   background: inherit;
   padding: 0;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 @media (max-width: 575px) {
@@ -6083,15 +6232,11 @@ WP classes
   left: 0;
   width: 2.5em;
   height: 2px;
-  background: #202020;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  background: black;
 }
 
 .grid-container__square-mini .entry-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
   font-weight: 600;
   margin-top: 0.625em;
   padding-bottom: 0.625em;
@@ -6290,11 +6435,6 @@ section[class^="post-"] .entry-meta {
   margin: 5em -15px;
 }
 
-.pagination {
-  text-align: center;
-  margin: 0 auto;
-}
-
 .post-section-title {
   position: relative;
   text-align: center;
@@ -6328,7 +6468,7 @@ section[class^="post-"] .entry-meta {
 }
 
 .post-navigation {
-  background: #f7f8f9;
+  background: #e4e5e5;
   padding: 1.25em;
   margin: 0;
 }
@@ -6367,7 +6507,6 @@ section[class^="post-"] .entry-meta {
 }
 
 .post-navigation .page-numbers, .post-navigation a {
-  color: #B4B4B4;
   font-family: "Roboto", sans-serif;
   line-height: 3.75em;
   height: 3.75em;
@@ -6391,12 +6530,19 @@ section[class^="post-"] .entry-meta {
 }
 
 .post-navigation a:hover i {
-  color: #202020;
+  color: black;
+}
+
+.post-navigation .meta-nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .post-navigation .meta-nav-title {
   display: none;
-  color: #202020;
+  color: black;
 }
 
 @media (min-width: 992px) {
@@ -6565,6 +6711,7 @@ section.post-related-articles header .related-posts_title {
   height: 3em;
   line-height: 3em;
   padding: 0;
+  border-width: 1px;
 }
 
 .related-posts_nav .slider-control.disabled {
@@ -6588,18 +6735,18 @@ section.post-related-articles .grid .grid__item h3 {
   font-weight: 600;
 }
 
+.pagination {
+  text-align: center;
+}
+
 .pagination ul {
   display: inline-block;
   vertical-align: middle;
   margin: 0;
 }
 
-.pagination.post-pagination a {
-  color: #B4B4B4;
-}
-
-.pagination a:hover, .pagination .active a, .pagination .show a, .pagination .current {
-  color: #202020;
+.pagination.post-pagination {
+  color: black;
 }
 
 .pagination .current {
@@ -6614,11 +6761,6 @@ section.post-related-articles .grid .grid__item h3 {
 
 .pagination li:first-of-type {
   margin-left: 0;
-}
-
-.pagination > * > span {
-  color: #202020;
-  font-weight: 600;
 }
 
 .action-link, .comment-reply-link {
@@ -6876,7 +7018,7 @@ section.post-content {
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #747474;
+  background-color: black;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -6887,7 +7029,7 @@ section.post-content {
 }
 
 .widget-area .widget:not(.widget_tag_cloud):not(.widget_shopping_cart) a:hover::before {
-  background-color: #747474;
+  background-color: black;
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
