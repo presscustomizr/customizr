@@ -87,7 +87,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
                 'black.css'       =>  __( 'Black' , 'customizr' ),
                 'black2.css'      =>  __( 'Flat black' , 'customizr' ),
                 'grey.css'        =>  __( 'Grey' , 'customizr' ),
-                'grey2.css'       =>  __( 'Ligth grey' , 'customizr' ),
+                'grey2.css'       =>  __( 'Light grey' , 'customizr' ),
                 'purple2.css'     =>  __( 'Flat purple' , 'customizr' ),
                 'purple.css'      =>  __( 'Purple' , 'customizr' ),
                 'red2.css'        =>  __( 'Flat red' , 'customizr' ),

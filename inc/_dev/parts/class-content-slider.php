@@ -191,9 +191,9 @@ class CZR_slider {
 
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
-        if ( file_exists( TC_BASE . 'inc/assets/img/slide-placeholder.png' ) ) {
+        if ( file_exists( TC_BASE_CHILD . 'inc/assets/img/slide-placeholder.png' ) ) {
             $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                TC_BASE_URL . 'inc/assets/img/slide-placeholder.png'
+                TC_BASE_URL_CHILD . 'inc/assets/img/slide-placeholder.png'
             );
         } else {
           return false;
