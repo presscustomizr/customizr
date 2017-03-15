@@ -187,7 +187,8 @@ class CZR_slider {
     $ID                     = $_post->ID;
 
     //attachment image
-    $slide_background                  = get_the_post_thumbnail( $ID, $img_size );
+    $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null );
+    $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
