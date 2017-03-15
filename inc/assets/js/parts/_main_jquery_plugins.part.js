@@ -166,8 +166,8 @@ var czrapp = czrapp || {};
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
-      //SINGLE POST THUMBNAILS
-      $('.tc-rectangular-thumb' , '.single').centerImages( {
+      //SINGLE POST/PAGE THUMBNAILS
+      $('.tc-rectangular-thumb' , '.tc-singular-thumbnail-wrapper').centerImages( {
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
