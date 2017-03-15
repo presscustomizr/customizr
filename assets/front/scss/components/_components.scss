@@ -23,29 +23,6 @@
 }
 
 // .btn modifier
-.btn-dark {
-  background-color: $skin-dark;
-  color: $white;
-  border-color: $skin-dark;
-
-  &:hover, &:focus, &:active {
-    color: $skin-dark;
-    background-color: transparent;
-    border-color: $skin-dark;
-  }
-
-  // .btn modifier
-  &.inverted {
-    background-color: transparent;
-    color: $skin-dark;//$black;
-    &:hover, &:focus, &:active {
-      color: $white;
-      background-color: $skin-dark;//previously $black;
-    }
-  }
-}
-
-// .btn modifier
 .btn-skin {
   background-color: $skin;
   border-color: $skin;
@@ -69,7 +46,53 @@
   }
 }
 
-.btn-light {
+// .btn modifier
+.btn-skin-dark {
+  background-color: $skin-dark;
+  color: $white;
+  border-color: $skin-dark;
+
+  &:hover, &:focus, &:active {
+    color: $skin-dark;
+    background-color: transparent;
+    border-color: $skin-dark;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: transparent;
+    color: $skin-dark;//$black;
+    &:hover, &:focus, &:active {
+      color: $white;
+      background-color: $skin-dark;//previously $black;
+    }
+  }
+}
+
+// .btn modifier
+.btn-skin-darkest {
+  background-color: $skin-darkest;
+  color: $white;
+  border-color: $skin-darkest;
+
+  &:hover, &:focus, &:active {
+    color: $skin-darkest;
+    background-color: transparent;
+    border-color: $skin-darkest;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: transparent;
+    color: $skin-darkest;//$black;
+    &:hover, &:focus, &:active {
+      color: $white;
+      background-color: $skin-darkest;//previously $black;
+    }
+  }
+}
+
+.btn-skin-light {
   background-color: $skin-light;
   border-color: $skin-light;
   color: $white;
@@ -92,8 +115,33 @@
   }
 }
 
+.btn-dark {
+  background-color: $black;
+  border-color: $black;
+  color: $white;
+
+  &:hover, &:focus, &:active {
+    color: $grey-dark;
+    background-color: transparent;
+    border-color: $grey-light;
+  }
+
+  // .btn modifier
+  &.inverted {
+    color: $grey-dark;
+    background-color: transparent;
+    border-color: $grey-light;
+
+    &:hover, &:focus, &:active {
+      background-color: $black;
+      border-color: $black;
+      color: $white;
+    }
+  }
+}
+
 input[type=submit] {
-  @extend .btn-dark;
+  @extend .btn-skin-darkest;
 }
 
 //end buttons
@@ -189,9 +237,7 @@ a[target="_blank"]:hover:after {
     margin-right: 1.5em;
     &::after{
       content: '/';
-      //SKINNED
-      //color: $grey;
-      color: $skin-light;
+      color: $grey;
       z-index: 1;
       pointer-events: none;
       position: absolute;
@@ -342,7 +388,6 @@ cite {
               @include media-breakpoint-up(lg) {
                   @at-root .regular .dropdown-menu .caret__dropdown-toggler i {
                     @include transform( translateZ(0) rotate(-90deg));
-                    @include transform-style( preserve-3d );
                     //transform-origin:100% 100%;
                     position: relative;
                     display: inline-block;
@@ -374,6 +419,7 @@ cite {
 .caret__dropdown-toggler i{
   display: block;
   @include transition (all 0.3s ease);
+  @include transform-style( preserve-3d );
   .menu-item.show > span & {
     @include transform( translateZ(0) rotate(-180deg));
   }
@@ -728,7 +774,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     /* Centering */
     left: 50%;
     top: 50%;
-    @include transform ( translate2d(-50%,-50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    @include transform ( translate(-50%,-50%) ); /* fallback for those browsers w/o translate3d transform property*/
     @include transform ( translate3d(-50%,-50%, 0) );
     /* end of centering */
     border: 150px solid;

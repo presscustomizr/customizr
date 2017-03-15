@@ -65,7 +65,18 @@ var czrapp = czrapp || {};
       * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
       */
       czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', function( evt ) {
-        $(evt.target).children('.flickity-viewport').czrParallax();
+            var $_parallax_slider  = $(evt.target),
+        //extrapolate data from the parallax slider and pass them to the flickity viewport
+            _parallax_data_map = ['parallaxRatio', 'parallaxDirection', 'parallaxOverflowHidden', 'backgroundClass', 'matchMedia'];
+            _parallax_data     = _.object( _.chain(_parallax_data_map).map( function( key ) {
+                                          var _data = $_parallax_slider.data( key );
+                                          return _data ? [ key, _data ] : '';
+                                        })
+                                        .compact()
+                                        .value()
+                                  );
+
+            $_parallax_slider.children('.flickity-viewport').czrParallax(_parallax_data);
       });
 
       $( '.parallax-item' ).czrParallax();

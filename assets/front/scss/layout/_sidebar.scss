@@ -5,18 +5,22 @@
     padding: 0 $base-line-height*2;
   }
 }
+
 .widget-area {
   .widget {
     margin-bottom: $base-line-height*3;
     li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
     li::before { content: none }
-    a { display: inline-block; }
-    &:not(.widget_tag_cloud):not(.widget_shopping_cart) a {
-      //SKINNED
-      @include underlined( $skin-link-color-hover, 1px)
+    @at-root .widget-area a {
+      display: inline-block;
+      color: $grey;
+    }
+    @at-root .widget-area .widget:not(.widget_shopping_cart) a:not(.btn) {
+      @include underlined_nocolor( 1px)
     }
   }
 }
+
 .sidebar {
   @extend .small;
   .widget-title {

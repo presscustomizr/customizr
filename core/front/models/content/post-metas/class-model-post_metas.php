@@ -103,7 +103,7 @@ class CZR_post_metas_model_class extends CZR_Model {
     if ( $_is_hierarchical )
       array_push( $_classes , 'tax__link' );
     else
-      array_push( $_classes , 'tag__link btn btn-skin inverted' );
+      array_push( $_classes , 'tag__link btn btn-dark inverted' );
 
     return $_classes;
   }

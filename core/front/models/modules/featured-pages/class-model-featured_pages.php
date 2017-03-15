@@ -245,7 +245,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         if ( $fp_button_text || czr_fn_is_customizing() ){
           $fp_button_text  = '<span>' . $fp_button_text . '</span>';
-          $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-more btn-dark', $fp_single_id );
+          $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-more btn-skin-darkest', $fp_single_id );
           $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
         }
         return compact( 'fp_button_class', 'fp_button_text' );

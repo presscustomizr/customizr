@@ -1,0 +1,51 @@
+/* Skinify the entry-metas on hover */
+.entry-meta a:not(.btn) {
+    &:hover {
+      color: $skin-link-color-hover;
+      span::after, span::before {
+        background-color: $skin-link-color-hover;
+      }
+    }
+}
+
+//All grids Icons
+
+//specific for classical
+.grid-container__classic .post-type__icon {
+    //SKINNED
+    background-color: $skin-link-color;
+    .icn-format {
+      color: $skin-link-color-hover;
+    }
+    &:hover {
+      background-color: $skin-link-color-hover;
+    }
+}
+
+.post-type__icon {
+    &:hover {
+      .icn-format {
+        color: $skin-link-color;
+      }
+    }
+}
+
+//Post list titles
+.entry-header {
+    [class*="grid-container__"] .hover & .entry-title a {
+      color: $skin-link-color;
+    }
+     [class*="grid-container__"] & .entry-title a:hover {
+      color: $skin-link-color-hover;
+    }
+}
+
+//Widget areas
+.widget-area {
+    a:not(.btn):hover {
+      color: $skin-link-color-hover;
+    }
+    .widget:not(.widget_shopping_cart) a:not(.btn):before {
+      background-color: $skin-link-color-hover;
+    }
+}

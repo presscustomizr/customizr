@@ -1,33 +1,7 @@
 //not needed with flexbox
 //@include make-grid-smart-rows();
 
-/*
-POST TYPE classes:
-  .standard-post -> .format-standard
-  .image-post   -> .format-image
-  .gallery-post -> .format-gallery
-  .video-post   -> .format-video
-  .audio-post   -> .format-audio
-  .link-post    -> .format-link
-  .quote-post   -> .format-quote
-
-*/
-/* custom classes
-
-  .czr-thumb-wrapper -> .entry-media__holder
-  .post-thumbnail
-  .action-buttons
-  .post-info    -
-  .no-thumb
-*/
-
-/*
-WP classes
-  .post
-  .format-quote
-  .format-image
-*/
-/*Format icons */
+// Format icons
 
 %icn-post:before { content: '\e81c'; }
 %icn-link:before { content: '\e812'; }
@@ -39,13 +13,16 @@ WP classes
 .format-link .icn-format  { @extend %icn-link;  }
 .format-image .icn-format { @extend %icn-img; }
 
-.post-type__icon { font-size: ms(6); margin:0 auto; text-align:center; }
+.post-type__icon {
+  font-size: ms(6);
+  margin:0 auto;
+  text-align:center;
+}
 
 .grid .post-type__icon {
   width: 3em;
   height: 3em;
   line-height: 3em;
-  background-color: $skin-link-color;
   position:absolute;
   right:$base-line-height;
   top:$base-line-height;
@@ -58,19 +35,14 @@ WP classes
   z-index:99;
   font-size: 1em;
 }
+
 .post-type__icon {
   .icn-format {
-    font-size: 1.33em;
-    color: $skin-link-color-hover;
-  }
-  &:hover {
-    .icn-format {
-      color: $skin-link-color;
-    }
-    background-color: $skin-link-color-hover;
+    color: $black;
   }
 }
-.entry-media__holder .post-type__icon {
+
+[class*=grid-container__alternate] .entry-media__wrapper .post-type__icon {
   background-color: transparent;
   .icn-format {
     position: relative;
@@ -78,8 +50,13 @@ WP classes
   }
 }
 
-[class*=grid-container__] article { margin-bottom: 40px }
-[class*=grid-container__masonry] article { margin-bottom: 20px }
+[class*=grid-container__] article {
+  margin-bottom: 40px
+
+}
+[class*=grid-container__masonry] article {
+  margin-bottom: 20px
+}
 .comments__link { white-space: nowrap; }
 .grid-title_size {
   line-height:1.4;
@@ -160,29 +137,36 @@ WP classes
 
 /* GLOBAL */
 
-.tax__container { @extend %categories; }
-.entry-meta a, .post-info a { @include transition(color, 0.3s ease);  }
-// SKINNED
-.tc-content-inner a.external { display:inline-block; text-decoration: none; @include underlined ( $skin-link-color-hover, 1px ); }
+.tax__container {
+  @extend %categories;
+}
+.entry-meta a {
+  @include transition(color, 0.3s ease);
+
+  &:not(.btn) {
+    color: $grey;
+    span::after, span::before {
+      background-color: $black;
+    }
+  }
+}
+
+.tc-content-inner a.external {
+  display:inline-block;
+  text-decoration: none;
+  @include underlined ( $black, 1px );
+}
+
 .entry-header {
     .entry-title {
-        /* a { color: $black; } */
-        a { color: $skin-link-color-hover }
-        /* #122c2e */
+        a {
+          color: $black;
+        }
         line-height: 1.1;
         margin-bottom:$base-line-height/4;
     }
-    .hover & .entry-title a {
-      /* color: $grey-dark; */
-      color: $skin-link-color;
-      &:hover {
-        color: $skin-link-color-hover
-      }
-    }
-    .entry-title a:hover {
-      color: $skin-link-color;
-    }
 }
+
 .tc-content-inner {
   color: $grey-dark;
 }
@@ -577,7 +561,6 @@ WP classes
 .grid-container__masonry {
   .post-type__icon {
     background: transparent;
-    color: $black;
     right:$base-line-height;
     width: $base-line-height*3;
     height:$base-line-height*3;
@@ -686,7 +669,7 @@ WP classes
     .avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
-  .tax__container{
+  .tax__container {
     margin-top:$base-line-height;
    /* .tax__link {
       overflow: hidden;
@@ -712,9 +695,6 @@ WP classes
           top: calc(50% + 2px);
           width: $base-line-height*2;
           height: 2px;
-          //SKINNED
-          background: $skin-link-color;
-          //background: $black;
           left:-3em;
           @include transition (all 0.3s ease);
         }
@@ -724,7 +704,9 @@ WP classes
         width: $base-line-height/2;
       }
     }//a[class*=tax__link]
+
   }//&:not(.narrow) .tax__container
+
   .entry-footer {
     clear: both;
     border-top: 1px solid $grey-light;
@@ -823,8 +805,7 @@ WP classes
     width: $base-line-height*2;
     height: 2px;
     //SKINNED
-    background: $skin-link-color-hover;
-    //background: black;
+    background: $black;
     //@include transition (all 0.3s ease);
   }
   .entry-title {

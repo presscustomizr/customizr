@@ -4,7 +4,7 @@
  */
 
 if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
-<div class="row widget-area" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
+<div class="row fp-widget-area" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
 <?php endif ?>
   <div class="featured-page col-12 col-md-<?php czr_fn_echo( 'fp_col' ) ?> fp-<?php czr_fn_echo( 'fp_id' ) ?>">
     <div class="widget-front czr-link-mask-p grid__item round" <?php czr_fn_echo('element_attributes') ?>>

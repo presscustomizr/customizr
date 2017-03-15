@@ -6,7 +6,7 @@
  * @package Customizr
  */
 ?>
-<footer class="entry-footer row" <?php czr_fn_echo('element_attributes') ?>>
+<footer class="entry-footer row entry-meta" <?php czr_fn_echo('element_attributes') ?>>
   <div class="col-md-6 col-12">
     <?php czr_fn_render_template( 'content/authors/author_info_small' ) ?>
   </div>

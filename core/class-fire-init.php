@@ -860,7 +860,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
         if ( is_array( $tags_data ) ) {
           foreach ( $tags_data as &$tag_data ) {
             if ( is_array( $tag_data ) ) {
-              $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-skin inverted" : "btn btn-skin inverted";
+              $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-dark inverted" : "btn btn-dark inverted";
             }
           }
         }

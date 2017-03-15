@@ -42,7 +42,7 @@
       left: $base-line-height;
       right: $base-line-height;
       top: 50%;
-      transform: translate2d(0,-50%);//fallback
+      transform: translate(0,-50%);//fallback
       transform: translate3d(0,-50%,0);
       position: absolute;
     }

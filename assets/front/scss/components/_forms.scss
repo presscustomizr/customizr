@@ -10,9 +10,8 @@ input:not([type="submit"]), textarea {
 
 form  {
   label {
-    // SKINNED
-    //color: $black;
-    color: $skin;
+    color: $black;
+
     font-family: $serviceFont;
     @extend .small;
     @extend .caps;
@@ -23,8 +22,7 @@ form  {
   input[type="text"], input[type="url"], input[type="password"], input[type="email"],  input[type="number"], textarea {
     outline: none;
     border: none;
-    // SKINNED
-    border-bottom: 2px solid $skin-link-color;
+    border-bottom: 2px solid $black;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
@@ -76,9 +74,7 @@ form.czr-form {
     &.in-focus > label {
       z-index: 1;
       @include transform(translateY(-110%));
-      //SKINNED
-      //color: $grey;
-      color: $skin-dark;
+      color: $grey;
       i.icn-search { @include opacity(0); }
       i.icn-close {
         @include opacity(1);
