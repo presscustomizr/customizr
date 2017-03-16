@@ -40,6 +40,20 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.9 March 16th 2017 =
+* fix : prevdem mode should be turned off when user starts customizing
+* fix : user defined WP core settings like show_on_front should be preserved if customizing in prevdem mode
+* fix: slider of posts revert - show post attachment if no featured image fixes #850
+* fix : bugs on partialRefresh.czr. some placement have no containers
+* fix: allow using first attachment as thumb for slider of posts in pages
+* improved czr_fn_get_raw_option : added an option to retrieve the not cached option value from database. Typically used when getting the template name. Should fix #844
+* added match Media polyfill.
+* Updated the parallax jquery plugin => added a matchMedia option set to 'only screen and (max-width: 768px)' by default
+* imp : allow child theme user to override the slide-placeholder image
+* updated it_IT translation fix #842
+* Imp: display thumbnail in single pages like we do in single posts fixes #738
+* added : theme support for selective refresh for widgets
+
 = 3.5.8 March 11th 2017 =
 * Fix: amend img_size param passed the wrong way to the posts slider builder fixes #840
 * Fix : removed li+li list style with 0.25em top margin
