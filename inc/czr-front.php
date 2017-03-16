@@ -4547,6 +4547,14 @@ if ( ! class_exists( 'CZR_page' ) ) :
     function __construct () {
       self::$instance =& $this;
       add_action( 'wp'                , array( $this , 'czr_fn_set_page_hooks' ) );
+      //Set single post thumbnail with customizer options (since 3.5+)
+      add_action( 'wp'                , array( $this , 'czr_fn_set_single_page_thumbnail_hooks' ));
+
+      //append inline style to the custom stylesheet
+      //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
+      //fired on hook : wp_enqueue_scripts
+      //Set thumbnail specific design based on user options
+      add_filter( 'tc_user_options_style'    , array( $this , 'czr_fn_write_thumbnail_inline_css') );
     }
 
 
@@ -4562,10 +4570,40 @@ if ( ! class_exists( 'CZR_page' ) ) :
     */
     function czr_fn_set_page_hooks() {
       //add page content and footer to the __loop
-      add_action( '__loop'           , array( $this , 'czr_fn_page_content' ) );
-      //page help blocks
-      add_filter( 'the_content'       , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
+      add_action( '__loop'              , array( $this , 'czr_fn_page_content' ) );
+      //smartload help block
+      add_filter( 'the_content'         , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
     }
+
+
+
+    /**
+    * hook : wp
+    *
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    function czr_fn_set_single_page_thumbnail_hooks() {
+      if ( $this -> czr_fn_page_display_controller() ) {
+        add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
+      }
+
+      //__before_main_wrapper, 200
+      //__before_content 0
+      //__before_content 20
+      if ( ! $this -> czr_fn_show_single_page_thumbnail() )
+        return;
+
+      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' )) );
+      $_hook                = apply_filters( 'tc_single_page_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
+      $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
+
+      //Hook post view
+      add_action( $_hook, array($this , 'czr_fn_single_page_prepare_thumb') , $_priority );
+      //Set thumb shape with customizer options (since 3.2.0)
+      add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'czr_fn_set_thumb_shape'), 10 , 2 );
+    }
+
 
 
 
@@ -4607,6 +4645,78 @@ if ( ! class_exists( 'CZR_page' ) ) :
     }
 
 
+    /***************************
+    * SINGLE PAGE THUMBNAIL VIEW
+    ****************************/
+    /**
+    * Get Single page thumb model + view
+    * Inject it in the view
+    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) || '__before_content'
+    * @return  void
+    * @package Customizr
+    * @since Customizr 3.2.3
+    */
+    function czr_fn_single_page_prepare_thumb() {
+      $_size_to_request = apply_filters( 'tc_single_page_thumb_size' , $this -> czr_fn_get_current_thumb_size() );
+      //get the thumbnail data (src, width, height) if any
+      //array( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" )
+      $_thumb_model   = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $_size_to_request ) ;
+      //may be render
+      if ( CZR_post_thumbnails::$instance -> czr_fn_has_thumb() ) {
+        $_thumb_class   = implode( " " , apply_filters( 'tc_single_page_thumb_class' , array( 'row-fluid', 'tc-single-page-thumbnail-wrapper', 'tc-singular-thumbnail-wrapper', current_filter() ) ) );
+        $this -> czr_fn_render_single_page_thumb_view( $_thumb_model , $_thumb_class );
+      }
+    }
+
+
+    /**
+    * @return html string
+    * @package Customizr
+    * @since Customizr 3.2.3
+    */
+    private function czr_fn_render_single_page_thumb_view( $_thumb_model , $_thumb_class ) {
+      echo apply_filters( 'tc_render_single_page_thumb_view',
+        sprintf( '<div class="%1$s">%2$s</div>' ,
+          $_thumb_class,
+          CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
+        )
+      );
+    }
+
+
+
+
+    /***************************
+    * SINGLE PAGE THUMBNAIL HELP VIEW
+    ****************************/
+    /**
+    * Displays a help block about featured images for single pages
+    * hook : __before_content
+    * @since Customizr 3.5+
+    */
+    function czr_fn_maybe_display_featured_image_help() {
+      if ( ! CZR_placeholders::czr_fn_is_thumbnail_help_on() )
+        return;
+      ?>
+      <div class="tc-placeholder-wrap tc-thumbnail-help">
+        <?php
+          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
+              __( "You can display your page's featured image here if you have set one.", "customizr" ),
+              sprintf( __("%s to display a featured image here.", "customizr"),
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_pages_sec") ), __( "Jump to the customizer now", "customizr") )
+              ),
+              sprintf( __( "Don't know how to set a featured image to a page? Learn how in the %s.", "customizr" ),
+                sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+              )
+          );
+          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
+                __( 'dismiss notice', 'customizr')
+          );
+        ?>
+      </div>
+      <?php
+    }
+
 
     /***************************
     * Page IMG SMARTLOAD HELP VIEW
@@ -4614,7 +4724,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     /**
     * Displays a help block about images smartload for single posts prepended to the content
     * hook : the_content
-    * @since Customizr 3.4+
+    * @since Customizr 3.5+
     */
     function czr_fn_maybe_display_img_smartload_help( $the_content ) {
       if ( ! ( $this -> czr_fn_page_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $the_content ) ) )
@@ -4640,6 +4750,75 @@ if ( ! class_exists( 'CZR_page' ) ) :
           && ! czr_fn__f( '__is_home_empty');
 
       return apply_filters( 'tc_show_page_content', $tc_show_page_content );
+    }
+
+    /**
+    * HELPER
+    * @return boolean
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    function czr_fn_show_single_page_thumbnail() {
+      return $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+    }
+
+
+    /**
+    * HELPER
+    * @return size string
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    private function czr_fn_get_current_thumb_size() {
+      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
+      return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
+    }
+
+
+    /**
+    * hook : tc_page_thumb_wrapper
+    * @return html string
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
+      return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2$s">%3$s</a></div>',
+            get_permalink( get_the_ID() ),
+            esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
+            $thumb_img,
+            implode( " ", apply_filters( 'tc_thumb_wrapper_class', array() ) )
+      );
+    }
+
+
+    /**
+    * hook : tc_user_options_style
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    function czr_fn_write_thumbnail_inline_css( $_css ) {
+      if ( ! $this -> czr_fn_show_single_page_thumbnail() )
+        return $_css;
+      $_single_thumb_height   = apply_filters('tc_single_page_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_height' ) ) );
+      $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
+      return sprintf("%s\n%s",
+        $_css,
+        ".tc-single-page-thumbnail-wrapper .tc-rectangular-thumb {
+          max-height: {$_single_thumb_height}px;
+          height :{$_single_thumb_height}px
+        }\n
+        .tc-center-images .tc-single-page-thumbnail-wrapper .tc-rectangular-thumb img {
+          opacity : 0;
+          -webkit-transition: opacity .5s ease-in-out;
+          -moz-transition: opacity .5s ease-in-out;
+          -ms-transition: opacity .5s ease-in-out;
+          -o-transition: opacity .5s ease-in-out;
+          transition: opacity .5s ease-in-out;
+        }\n"
+      );
     }
 
   }//end of class
@@ -4814,8 +4993,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
       $_thumb_model   = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $_size_to_request ) ;
       //may be render
       if ( CZR_post_thumbnails::$instance -> czr_fn_has_thumb() ) {
-        $_thumb_class   = implode( " " , apply_filters( 'tc_single_post_thumb_class' , array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() ) ) );
-        $this -> czr_fn_render_single_post_view( $_thumb_model , $_thumb_class );
+        $_thumb_class   = implode( " " , apply_filters( 'tc_single_post_thumb_class' , array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', 'tc-singular-thumbnail-wrapper', current_filter() ) ) );
+        $this -> czr_fn_render_single_post_thumb_view( $_thumb_model , $_thumb_class );
       }
     }
 
@@ -4825,8 +5004,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    private function czr_fn_render_single_post_view( $_thumb_model , $_thumb_class ) {
-      echo apply_filters( 'tc_render_single_post_view',
+    private function czr_fn_render_single_post_thumb_view( $_thumb_model , $_thumb_class ) {
+      echo apply_filters( 'tc_render_single_post_thumb_view',
         sprintf( '<div class="%1$s">%2$s</div>' ,
           $_thumb_class,
           CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
@@ -4959,11 +5138,11 @@ if ( ! class_exists( 'CZR_post' ) ) :
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
-        ".single .tc-rectangular-thumb {
+        ".tc-single-post-thumbnail-wrapper .tc-rectangular-thumb {
           max-height: {$_single_thumb_height}px;
           height :{$_single_thumb_height}px
         }\n
-        .tc-center-images.single .tc-rectangular-thumb img {
+        .tc-center-images .tc-single-post-thumbnail-wrapper .tc-rectangular-thumb img {
           opacity : 0;
           -webkit-transition: opacity .5s ease-in-out;
           -moz-transition: opacity .5s ease-in-out;
@@ -7586,11 +7765,12 @@ class CZR_post_thumbnails {
 
     private function czr_fn_get_id_from_attachment( $post_id ) {
       //define a filtrable boolean to set if attached images can be used as thumbnails
-      //1) must be a non single post context
+      //1) must be a non single and non page post context
       //2) user option should be checked in customizer
       $_bool = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
       if ( ! is_admin() ) {
         $_bool = !CZR_post::$instance -> czr_fn_single_post_display_controller() && $_bool;
+        $_bool = !CZR_page::$instance -> czr_fn_page_display_controller() && $_bool;
       }
 
       if ( ! apply_filters( 'tc_use_attachement_as_thumb' , $_bool ) )
@@ -8141,29 +8321,37 @@ class CZR_slider {
   *
   */
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
-    $ID                     = $_post->ID;
+      $ID                     = $_post->ID;
 
-    //attachment image
-    $slide_background                  = get_the_post_thumbnail( $ID, $img_size );
+      //attachment image
+      $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model(
+          $img_size,//$requested_size
+          $ID,//post ID
+          null,//$_custom_thumb_id
+          isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null//$_enable_wp_responsive_imgs
+      );
 
-    // we assign a default thumbnail if needed.
-    if ( ! $slide_background ) {
-        if ( file_exists( TC_BASE_CHILD . 'inc/assets/img/slide-placeholder.png' ) ) {
-            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                TC_BASE_URL_CHILD . 'inc/assets/img/slide-placeholder.png'
-            );
-        } else {
-          return false;
-        }
-    }
 
-    //title
-    $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
+      $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 
-    //lead text
-    $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> czr_fn_get_post_slide_excerpt( $_post, $ID) : '';
+      // we assign a default thumbnail if needed.
+      if ( ! $slide_background ) {
+          if ( file_exists( TC_BASE_CHILD . 'inc/assets/img/slide-placeholder.png' ) ) {
+              $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                  TC_BASE_URL_CHILD . 'inc/assets/img/slide-placeholder.png'
+              );
+          } else {
+              return false;
+          }
+      }
 
-    return compact( 'ID', 'title', 'text', 'slide_background' );
+      //title
+      $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
+
+      //lead text
+      $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> czr_fn_get_post_slide_excerpt( $_post, $ID) : '';
+
+      return compact( 'ID', 'title', 'text', 'slide_background' );
   }
 
 
@@ -8370,6 +8558,15 @@ class CZR_slider {
     if ( empty ( $queried_posts ) )
       return array();
 
+    /*** tc_thumb setup filters ***/
+    // remove smart load img parsing if any
+    $smart_load_enabled = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    if ( $smart_load_enabled )
+      remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_fn_parse_imgs') );
+
+    // prevent adding thumb inline style when no center img is added
+    add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    /*** end tc_thumb setup ***/
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -8387,6 +8584,14 @@ class CZR_slider {
       $pre_slides_posts[] = $pre_slide_model;
     }
 
+    /* tc_thumb reset filters */
+    // re-add smart load parsing if removed
+    if ( $smart_load_enabled )
+      add_filter('tc_thumb_html', array(CZR_utils::$instance, 'czr_fn_parse_imgs') );
+
+    // remove thumb style reset
+    remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    /* end tc_thumb reset filters */
 
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/

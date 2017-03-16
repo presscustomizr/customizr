@@ -451,57 +451,63 @@ if ( ! class_exists( 'CZR_init' ) ) :
        */
 
       function czr_fn_customizr_setup() {
-        /* Set default content width for post images and media. */
-        global $content_width;
-        if (! isset( $content_width ) )
-          $content_width = apply_filters( 'tc_content_width' , 1170 );
+          /* Set default content width for post images and media. */
+          global $content_width;
+          if (! isset( $content_width ) )
+            $content_width = apply_filters( 'tc_content_width' , 1170 );
 
-        /*
-         * Makes Customizr available for translation.
-         * Translations can be added to the /inc/lang/ directory.
-         */
-        load_theme_textdomain( 'customizr' , CZR___::czr_fn_is_pro() ? TC_BASE . '/inc/lang_pro' : TC_BASE . '/inc/lang' );
+          /*
+           * Makes Customizr available for translation.
+           * Translations can be added to the /inc/lang/ directory.
+           */
+          load_theme_textdomain( 'customizr' , CZR___::czr_fn_is_pro() ? TC_BASE . '/inc/lang_pro' : TC_BASE . '/inc/lang' );
 
-        /* Adds RSS feed links to <head> for posts and comments. */
-        add_theme_support( 'automatic-feed-links' );
+          /* Adds RSS feed links to <head> for posts and comments. */
+          add_theme_support( 'automatic-feed-links' );
 
-        /*  This theme supports nine post formats. */
-        $post_formats   = apply_filters( 'tc_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
-        add_theme_support( 'post-formats' , $post_formats );
+          /*  This theme supports nine post formats. */
+          $post_formats   = apply_filters( 'tc_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+          add_theme_support( 'post-formats' , $post_formats );
 
-        /* support for page excerpt (added in v3.0.15) */
-        add_post_type_support( 'page', 'excerpt' );
+          /* support for page excerpt (added in v3.0.15) */
+          add_post_type_support( 'page', 'excerpt' );
 
-        /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
-        add_theme_support( 'post-thumbnails' );
-          //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+          /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
+          add_theme_support( 'post-thumbnails' );
+            //set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 
-        /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
-        add_theme_support( 'title-tag' );
-        //remove theme support => generates notice in admin @todo fix-it!
-         /* remove_theme_support( 'custom-background' );
-          remove_theme_support( 'custom-header' );*/
+          /* @since v3.2.3 see : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/ */
+          add_theme_support( 'title-tag' );
+          //remove theme support => generates notice in admin @todo fix-it!
+           /* remove_theme_support( 'custom-background' );
+            remove_theme_support( 'custom-header' );*/
 
-        //post thumbnails for featured pages and post lists (archive, search, ...)
-        $tc_thumb_size    = apply_filters( 'tc_thumb_size' , $this -> tc_thumb_size );
-        add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
+          //post thumbnails for featured pages and post lists (archive, search, ...)
+          $tc_thumb_size    = apply_filters( 'tc_thumb_size' , $this -> tc_thumb_size );
+          add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
-        //slider full width
-        $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> slider_full_size );
-        add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
+          //slider full width
+          $slider_full_size = apply_filters( 'tc_slider_full_size' , $this -> slider_full_size );
+          add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
-        //slider boxed
-        $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
-        add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+          //slider boxed
+          $slider_size      = apply_filters( 'tc_slider_size' , $this -> slider_size );
+          add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
-        //add support for svg and svgz format in media upload
-        add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
+          //add support for svg and svgz format in media upload
+          add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
-        //add help button to admin bar
-        add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
+          //add help button to admin bar
+          add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
 
-        //Javascript detection
-        add_action( 'wp_head'                             , array( $this, 'czr_fn_javascript_detection'), 0 );
+          //Javascript detection
+          add_action( 'wp_head'                             , array( $this, 'czr_fn_javascript_detection'), 0 );
+          // Add theme support for selective refresh for widgets.
+          // Only add if the link manager is not enabled
+          // cf WP core ticket #39451
+          if ( ! get_option( 'link_manager_enabled' ) ) {
+            add_theme_support( 'customize-selective-refresh-widgets' );
+          }
       }
 
 

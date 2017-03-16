@@ -194,6 +194,7 @@ class CZR_slider {
           isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null//$_enable_wp_responsive_imgs
       );
 
+
       $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 
       // we assign a default thumbnail if needed.
