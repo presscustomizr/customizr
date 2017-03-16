@@ -202,7 +202,7 @@ class CZR_post_thumbnails {
         $_bool = !CZR_page::$instance -> czr_fn_page_display_controller() && $_bool;
       }
 
-      if ( ! apply_filters( 'tc_use_attachement_as_thumb' , $_bool ) )
+      if ( ! apply_filters( 'tc_use_attachment_as_thumb' , $_bool ) )
         return;
 
       //Case if we display a post or a page
