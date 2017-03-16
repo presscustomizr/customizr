@@ -127,8 +127,8 @@ var czrapp = czrapp || {};
                   - > CUSTOM REFRESH CACHE EVENT on partial content rendered (customizer preview)
                   ------------------------------------------------------*/
                   if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
-                        wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function(placement) {
-                              czrapp.cacheInnerElements().$_body.trigger('partialRefresh.czr', placement);
+                        wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+                              czrapp.cacheInnerElements().$_body.trigger( 'partialRefresh.czr', placement );
                         });
                   }
 
@@ -569,8 +569,8 @@ var czrapp = czrapp || {};
         oncustom : ['smartload', 'refresh-height', 'simple_load'] //bind 'refresh-height' event (triggered to the the customizer preview frame)
       });
 
-      //SINGLE POST THUMBNAILS
-      $('.tc-rectangular-thumb' , '.single').centerImages( {
+      //SINGLE POST/PAGE THUMBNAILS
+      $('.tc-rectangular-thumb' , '.tc-singular-thumbnail-wrapper').centerImages( {
         enableCentering : 1 == TCParams.centerAllImg,
         enableGoldenRatio : false,
         disableGRUnder : 0,//<= don't disable golden ratio when responsive
@@ -1052,28 +1052,28 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      czrapp.$_body.on( 'tc-resize partialRefresh.czr', function( e, param ) {
-        var _force = false;
+      czrapp.$_body.on( 'tc-resize partialRefresh.czr', function( ev, param ) {
+            var _force = false;
 
-        if ( 'partialRefresh' == e.type && 'czr' === e.namespace && param.container.hasClass('tc-header')  ) {
-          //clean old moved elements and separator
-          _maybeClean();
-          //re-cache elements
-          _cacheElements();
-          //setup params for the move to
-          param   = { to: czrapp.current_device, current: czrapp.current_device };
-          //force actions
-          _force  = true;
-        }
+            if ( 'partialRefresh' == ev.type && 'czr' === ev.namespace && param.container && param.container.hasClass('tc-header')  ) {
+                  //clean old moved elements and separator
+                  _maybeClean();
+                  //re-cache elements
+                  _cacheElements();
+                  //setup params for the move to
+                  param   = { to: czrapp.current_device, current: czrapp.current_device };
+                  //force actions
+                  _force  = true;
+            }
 
-        param = _.isObject(param) ? param : {};
-        var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
-            _current = 'desktop' != param.current ? 'side_nav' : 'navbar';
+            param = _.isObject(param) ? param : {};
+            var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
+                _current = 'desktop' != param.current ? 'side_nav' : 'navbar';
 
-        if ( _current == _to && !_force )
-          return;
+            if ( _current == _to && !_force )
+              return;
 
-        that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
+            that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
       } );//.on()
 
     },
@@ -1191,10 +1191,10 @@ var czrapp = czrapp || {};
 
       //PARTIAL REFRESH ACTIONS
       czrapp.$_body.on( 'partialRefresh.czr', function( e, placement ) {
-        if ( placement.container.hasClass('tc-header') ) {
-          self.stickyHeaderCacheElements();
-          self.stickyHeaderEventHandler('resize');
-        }
+            if ( placement.container && placement.container.hasClass( 'tc-header' )  ) {
+                  self.stickyHeaderCacheElements();
+                  self.stickyHeaderEventHandler('resize');
+            }
       });
 
       //SCROLLING ACTIONS
@@ -1760,16 +1760,16 @@ var czrapp = czrapp || {};
     * DOM EVENT LISTENERS AND HANDLERS
     ***********************************************/
     dropdownPlaceEventListener : function() {
-      var self    = this,
-          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
+          var self    = this,
+              _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
 
-      //Any event which may have resized the header
-      czrapp.$_body.on( _events, function( evt, data ) {
-        if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container.hasClass('tc-header')  ) {
-          self.dropdownPlaceCacheElements();
-        }
-        self.dropdownPlaceEventHandler( evt, 'resize' );
-      });
+          //Any event which may have resized the header
+          czrapp.$_body.on( _events, function( evt, data ) {
+                if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container && data.container.hasClass( 'tc-header' )  ) {
+                      self.dropdownPlaceCacheElements();
+                }
+                self.dropdownPlaceEventHandler( evt, 'resize' );
+          });
     },
 
 

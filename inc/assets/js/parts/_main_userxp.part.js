@@ -338,28 +338,28 @@ var czrapp = czrapp || {};
         this._manageMenuSeparator( _locationOnDomReady , userOption)._moveSecondMenu( _locationOnDomReady , userOption );
 
       //fire on custom resize event
-      czrapp.$_body.on( 'tc-resize partialRefresh.czr', function( e, param ) {
-        var _force = false;
+      czrapp.$_body.on( 'tc-resize partialRefresh.czr', function( ev, param ) {
+            var _force = false;
 
-        if ( 'partialRefresh' == e.type && 'czr' === e.namespace && param.container.hasClass('tc-header')  ) {
-          //clean old moved elements and separator
-          _maybeClean();
-          //re-cache elements
-          _cacheElements();
-          //setup params for the move to
-          param   = { to: czrapp.current_device, current: czrapp.current_device };
-          //force actions
-          _force  = true;
-        }
+            if ( 'partialRefresh' == ev.type && 'czr' === ev.namespace && param.container && param.container.hasClass('tc-header')  ) {
+                  //clean old moved elements and separator
+                  _maybeClean();
+                  //re-cache elements
+                  _cacheElements();
+                  //setup params for the move to
+                  param   = { to: czrapp.current_device, current: czrapp.current_device };
+                  //force actions
+                  _force  = true;
+            }
 
-        param = _.isObject(param) ? param : {};
-        var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
-            _current = 'desktop' != param.current ? 'side_nav' : 'navbar';
+            param = _.isObject(param) ? param : {};
+            var _to = 'desktop' != param.to ? 'side_nav' : 'navbar',
+                _current = 'desktop' != param.current ? 'side_nav' : 'navbar';
 
-        if ( _current == _to && !_force )
-          return;
+            if ( _current == _to && !_force )
+              return;
 
-        that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
+            that._manageMenuSeparator( _to, userOption)._moveSecondMenu( _to, userOption );
       } );//.on()
 
     },

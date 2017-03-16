@@ -35,11 +35,11 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       */
       function czr_fn_set_sidebar_hooks() {
         //displays left sidebar
-    		add_action ( '__before_article_container'  , array( $this , 'czr_fn_sidebar_display' ) );
+    		add_action ( '__before_article_container'  , array( $this , 'czr_fn_render_sidebar' ) );
     		add_action ( '__before_left_sidebar'       , array( $this , 'czr_fn_social_in_sidebar' ) );
 
         //displays right sidebar
-    		add_action ( '__after_article_container'   , array( $this , 'czr_fn_sidebar_display' ) );
+    		add_action ( '__after_article_container'   , array( $this , 'czr_fn_render_sidebar' ) );
     		add_action ( '__before_right_sidebar'      , array( $this , 'czr_fn_social_in_sidebar' ) );
 
         //since 3.2.0 show/hide the WP built-in widget icons
@@ -55,12 +55,12 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       /**
       * Displays the sidebar or the front page featured pages area
       * If no widgets are set, displays a placeholder
-      *
+      * hook : '__before_article_container'
       * @param Name of the widgetized area
       * @package Customizr
       * @since Customizr 1.0
       */
-      function czr_fn_sidebar_display() {
+      function czr_fn_render_sidebar() {
         //first check if home and no content option is choosen
         if ( czr_fn__f( '__is_home_empty') )
           return;
@@ -94,10 +94,11 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
               <?php
                 do_action( "__before_{$position}_sidebar" );##hook of social icons
 
-                if ( apply_filters( 'tc_has_sidebar_widgets', is_active_sidebar( $position ), $position ) )
-                  get_sidebar( $position );
-                else
-                  $this -> czr_fn_display_sidebar_placeholder($position);
+                if ( apply_filters( 'tc_has_sidebar_widgets', is_active_sidebar( $position ), $position ) ) {
+                    get_sidebar( $position );
+                } else {
+                    $this -> czr_fn_display_sidebar_placeholder( $position );
+                }
 
                 do_action( "__after_{$position}_sidebar" );
               ?>
@@ -114,6 +115,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
 
 
       /**
+      * fired in a callback of hook : '__before_article_container'
       * When do we display this placeholder ?
       * User logged in
       * + Admin
@@ -136,12 +138,16 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
             );
 
             printf('<p><strong>%1$s</strong></p>',
-              sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
-                sprintf('<a class="tc-inline-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s</a>',
-                  __( 'dismiss this notice', 'customizr')
+                sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
+                    sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+                        CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ),
+                        __( "Add widgets", "customizr"),
+                        __("now", "customizr")
+                    ),
+                    sprintf('<a class="tc-inline-dismiss-notice" data-position="sidebar" href="#" title="%1$s">%1$s</a>',
+                      __( 'dismiss this notice', 'customizr')
+                    )
                 )
-              )
             );
 
             printf('<p><i>%1s <a href="http:%2$s" title="%3$s" target="blank">%4$s</a></i></p>',

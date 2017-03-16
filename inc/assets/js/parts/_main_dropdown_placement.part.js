@@ -55,16 +55,16 @@ var czrapp = czrapp || {};
     * DOM EVENT LISTENERS AND HANDLERS
     ***********************************************/
     dropdownPlaceEventListener : function() {
-      var self    = this,
-          _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
+          var self    = this,
+              _events = 'tc-resize sn-open sn-close tc-sticky-enabled tc-place-dropdowns partialRefresh.czr';
 
-      //Any event which may have resized the header
-      czrapp.$_body.on( _events, function( evt, data ) {
-        if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container.hasClass('tc-header')  ) {
-          self.dropdownPlaceCacheElements();
-        }
-        self.dropdownPlaceEventHandler( evt, 'resize' );
-      });
+          //Any event which may have resized the header
+          czrapp.$_body.on( _events, function( evt, data ) {
+                if ( 'partialRefresh' === evt.type && 'czr' === evt.namespace && data.container && data.container.hasClass( 'tc-header' )  ) {
+                      self.dropdownPlaceCacheElements();
+                }
+                self.dropdownPlaceEventHandler( evt, 'resize' );
+          });
     },
 
 

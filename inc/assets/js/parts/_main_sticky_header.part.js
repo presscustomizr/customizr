@@ -49,10 +49,10 @@ var czrapp = czrapp || {};
 
       //PARTIAL REFRESH ACTIONS
       czrapp.$_body.on( 'partialRefresh.czr', function( e, placement ) {
-        if ( placement.container.hasClass('tc-header') ) {
-          self.stickyHeaderCacheElements();
-          self.stickyHeaderEventHandler('resize');
-        }
+            if ( placement.container && placement.container.hasClass( 'tc-header' )  ) {
+                  self.stickyHeaderCacheElements();
+                  self.stickyHeaderEventHandler('resize');
+            }
       });
 
       //SCROLLING ACTIONS

@@ -591,8 +591,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_widget_placeholder_enabled( $_position = null ) {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
-        return;
+      // if ( CZR___::$instance -> czr_fn_is_customizing() )
+      //   return;
 
       //always display in DEV mode
       if ( defined('CZR_DEV') && true === CZR_DEV )
