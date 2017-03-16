@@ -36,10 +36,13 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter( 'tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
       add_filter( 'tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
 
-      //SINGLE POSTS
+      //SINGLE POSTS AND PAGES
       add_filter( 'tc_show_single_post_thumbnail', '__return_true');
-      add_filter( 'tc_single_post_thumb_hook', array( $this, 'czr_fn_set_single_post_thumb_hook') );
-      add_filter( 'tc_single_post_thumb_height', array( $this, 'czr_fn_set_single_post_thumb_height') );
+      add_filter( 'tc_show_single_page_thumbnail', '__return_true');
+      add_filter( 'tc_single_post_thumb_hook', array( $this, 'czr_fn_set_singular_thumb_hook') );
+      add_filter( 'tc_single_page_thumb_hook', array( $this, 'czr_fn_set_singular_thumb_hook') );
+      add_filter( 'tc_single_post_thumb_height', array( $this, 'czr_fn_set_singular_thumb_height') );
+      add_filter( 'tc_single_page_thumb_height', array( $this, 'czr_fn_set_singular_thumb_height') );
 
       //SOCIALS
       add_filter( 'option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
@@ -321,11 +324,10 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- *
      *  Single Posts
     /* ------------------------------------------------------------------------- */
-    function czr_fn_set_single_post_thumb_hook() {
+    function czr_fn_set_singular_thumb_hook() {
       return '__before_main_wrapper';
     }
-
-    function czr_fn_set_single_post_thumb_height() {
+    function czr_fn_set_singular_thumb_height() {
       return 350;
     }
 
