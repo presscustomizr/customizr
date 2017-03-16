@@ -2579,7 +2579,7 @@ msgstr "Questa è la civiltà : hai tutto quello che vuoi quando non ti serve."
 
 #: inc/czr-init.php:822
 msgid "Sorry, but the requested page is not found. You might try a search below."
-msgstr "Siamo spiacenti, non abbiamo trovato nessuna pagina corrispondente. Vuoi provare a cercarlo?"
+msgstr "Siamo spiacenti, non abbiamo trovato nessuna pagina corrispondente. Vuoi provare a cercarla?"
 
 #: inc/czr-init.php:821
 msgid "George Orwell"
