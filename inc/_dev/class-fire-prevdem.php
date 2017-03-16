@@ -92,9 +92,11 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
 
 
     /* ------------------------------------------------------------------------- *
-     *  Front page
+     *  Front page : WP Core
     /* ------------------------------------------------------------------------- */
     function czr_fn_set_front_page_content( $value ) {
+        if ( CZR___::$instance -> czr_fn_is_customizing() )
+          return $value;
         return 'posts';
     }
 

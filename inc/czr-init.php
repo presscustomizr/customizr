@@ -658,7 +658,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
                 'black.css'       =>  __( 'Black' , 'customizr' ),
                 'black2.css'      =>  __( 'Flat black' , 'customizr' ),
                 'grey.css'        =>  __( 'Grey' , 'customizr' ),
-                'grey2.css'       =>  __( 'Ligth grey' , 'customizr' ),
+                'grey2.css'       =>  __( 'Light grey' , 'customizr' ),
                 'purple2.css'     =>  __( 'Flat purple' , 'customizr' ),
                 'purple.css'      =>  __( 'Purple' , 'customizr' ),
                 'red2.css'        =>  __( 'Flat red' , 'customizr' ),
@@ -8555,9 +8555,11 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
 
 
     /* ------------------------------------------------------------------------- *
-     *  Front page
+     *  Front page : WP Core
     /* ------------------------------------------------------------------------- */
     function czr_fn_set_front_page_content( $value ) {
+        if ( CZR___::$instance -> czr_fn_is_customizing() )
+          return $value;
         return 'posts';
     }
 
@@ -8967,7 +8969,17 @@ function czr_fn_get_admin_option( $option_group = null ) {
 
 //@return bool
 function czr_fn_isprevdem() {
-    return apply_filters( 'czr_fn_isprevdem', ( czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() ) );
+    global $wp_customize;
+    $is_dirty = false;
+    if ( is_object( $wp_customize ) && method_exists( $wp_customize, 'unsanitized_post_values' ) ) {
+        $real_cust            = $wp_customize -> unsanitized_post_values( array( 'exclude_changeset' => true ) );
+        $_preview_index       = array_key_exists( 'customize_messenger_channel' , $_POST ) ? $_POST['customize_messenger_channel'] : '';
+        $_is_first_preview    = false !== strpos( $_preview_index ,'-0' );
+        $_doing_ajax_partial  = array_key_exists( 'wp_customize_render_partials', $_POST );
+        //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
+        $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
+    }
+    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() );
 }
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
