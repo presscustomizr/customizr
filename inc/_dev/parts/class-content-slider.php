@@ -429,6 +429,9 @@ class CZR_slider {
 
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+
+    //Allow retrieving first attachment as thumb
+    add_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
     /*** end tc_thumb setup ***/
 
     //allow responsive images?
@@ -454,6 +457,9 @@ class CZR_slider {
 
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+
+    // remove forced retrieval first attachment as thumb;
+    remove_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
     /* end tc_thumb reset filters */
 
     if ( ! empty( $pre_slides_posts ) ) {
