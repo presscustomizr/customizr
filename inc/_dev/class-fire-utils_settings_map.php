@@ -124,6 +124,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
           'czr_fn_post_metas_option_map',
           'czr_fn_post_list_option_map',
           'czr_fn_single_post_option_map',
+          'czr_fn_single_page_option_map',
           'czr_fn_gallery_option_map',
           'czr_fn_paragraph_option_map',
           'czr_fn_post_navigation_option_map',
@@ -1574,7 +1575,46 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     }
 
 
+    /*-----------------------------------------------------------------------------------------------------
+                                   SINGLE PAGESS SECTION
+    ------------------------------------------------------------------------------------------------------*/
+    function czr_fn_single_page_option_map( $get_default = null ) {
+      return array(
+          'tc_single_page_thumb_location'  =>  array(
+                            'default'       => 'hide',
+                            'control'     => 'CZR_controls' ,
+                            'label'         => __( "Post thumbnail position" , "customizr" ),
+                            'section'       => 'single_pages_sec' ,
+                            'type'      =>  'select' ,
+                            'choices'     => array(
+                                    'hide'                    => __( "Don't display" , 'customizr' ),
+                                    '__before_main_wrapper|200'   => __( 'Before the title in full width' , 'customizr' ),
+                                    '__before_content|0'     => __( 'Before the title boxed' , 'customizr' ),
+                                    '__after_content_title|10'    => __( 'After the title' , 'customizr' ),
+                            ),
+                            'priority'      => 10,
+                            'notice'    => sprintf( '%s<br/>%s',
+                              __( 'You can display the featured image (also called the post thumbnail) of your pages before their content, when they are displayed individually.' , 'customizr' ),
+                              sprintf( __( "Don't know how to set a featured image to a page? Learn how in the %s.", "customizr" ),
+                                  sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+                              )
+                            )
+          ),
+          'tc_single_page_thumb_height' => array(
+                            'default'       => 250,
+                            'sanitize_callback' => array( $this , 'czr_fn_sanitize_number' ),
+                            'control'   => 'CZR_controls' ,
+                            'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
+                            'section'     => 'single_pages_sec' ,
+                            'type'        => 'number' ,
+                            'step'        => 1,
+                            'min'         => 0,
+                            'priority'      => 20,
+                            'transport'   => 'postMessage'
+          )
+      );
 
+    }
 
 
 
@@ -2510,6 +2550,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                             'title'     =>  __( 'Single posts' , 'customizr' ),
                             'priority'    =>  $this -> is_wp_version_before_4_0 ? 17 : 24,
                             'description' =>  __( 'Set up single posts options' , 'customizr' ),
+                            'panel'   => 'tc-content-panel'
+        ),
+        'single_pages_sec'        => array(
+                            'title'     =>  __( 'Single pages' , 'customizr' ),
+                            'priority'    =>  $this -> is_wp_version_before_4_0 ? 17 : 24,
+                            'description' =>  __( 'Set up single pages options' , 'customizr' ),
                             'panel'   => 'tc-content-panel'
         ),
         'breadcrumb_sec'        => array(

@@ -163,8 +163,9 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         'disabled' == get_transient("tc_thumbnail_help"),
-        'hide' != CZR_utils::$inst->czr_fn_opt('tc_single_post_thumb_location'),
-        ! is_admin() && ! is_single(),
+        ( is_single() && 'hide' != CZR_utils::$inst->czr_fn_opt('tc_single_post_thumb_location') ),
+        ( is_page() && 'hide' != CZR_utils::$inst->czr_fn_opt('tc_single_page_thumb_location') ),
+        ! is_admin() && ! is_singular(),
         ! self::$instance -> czr_fn_is_front_help_enabled()
       );
 
