@@ -25,9 +25,6 @@
       @include filter($black, $white, 0.5);
       + .slider-text { color: $white; }
     }
-    .flickity-page-dots .dot {
-      background: $white;
-    }
   }
   .image__header {
     @extend .filter;
@@ -40,9 +37,6 @@
     .filter {
       @include filter($white, $black, 0.75);
       + .slider-text { color: $black; }
-    }
-    .flickity-page-dots .dot {
-        background: $black;
     }
   }
   .image__header {

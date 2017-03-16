@@ -31,13 +31,11 @@
 }
 
 //Post list titles
-.entry-header {
-    [class*="grid-container__"] .hover & .entry-title a {
-      color: $skin-link-color;
-    }
-     [class*="grid-container__"] & .entry-title a:hover {
-      color: $skin-link-color-hover;
-    }
+[class*="grid-container__"] .hover .entry-title a {
+  color: $skin-link-color;
+}
+ [class*="grid-container__"] .entry-title a:hover {
+  color: $skin-link-color-hover;
 }
 
 //Widget areas
@@ -48,4 +46,17 @@
     .widget:not(.widget_shopping_cart) a:not(.btn):before {
       background-color: $skin-link-color-hover;
     }
+}
+
+.pagination {
+  color: $skin-darkest;
+}
+
+.post-navigation {
+  background-color:  rgba($skin-lightest, 0.7);
+}
+
+//slider dots
+.flickity-page-dots .dot {
+  background-color: $skin-dark;
 }

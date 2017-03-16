@@ -1,17 +1,14 @@
 
 
 $skin                     : #B4B4B4;
-//$skin                     : #292b2c;
-//$skin                     : #626768;
 
-$skin-dark                : darken( $skin, 10% );
+$skin-dark                : darken( $skin, 15% );
 $skin-darkest             : darken( $skin, 25% );
-$skin-light               : lighten( $skin, 10% );
+$skin-light               : lighten( $skin, 15% );
 $skin-lightest            : lighten( $skin, 25% );
 
 $skin-link-color          : $skin;
 $skin-link-color-hover    : $skin-darkest;
-
 
 $alert         : #e74c3c;
 $black         : #202020;

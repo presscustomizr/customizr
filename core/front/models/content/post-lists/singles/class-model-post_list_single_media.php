@@ -108,8 +108,8 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
             $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
 
             $_gallery_nav    = count($gallery['src']) < 2 ? '' : '<div class="tc-gallery-nav">
-                          <span class="slider-control slider-prev icn-left-open-big"></span>
-                          <span class="slider-control slider-next icn-right-open-big"></span>
+                          <span class="slider-control btn btn-skin-darkest-shaded inverted slider-prev icn-left-open-big"></span>
+                          <span class="slider-control btn btn-skin-darkest-shaded inverted slider-next icn-right-open-big"></span>
                         </div>';
 
             $_post_action     = '<div class="post-action"><a href="#" class="expand-img-gallery icn-expand"></a></div>';

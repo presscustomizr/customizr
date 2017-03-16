@@ -143,7 +143,7 @@ section[class^="post-"] {
 .post-navigation {
   //background:  $grey-lightest;
   // SKINNED
-  background:  $skin-lightest;
+  //background:  $skin-lightest;
 
   padding: $base-line-height;
   margin:0;
@@ -192,7 +192,7 @@ section[class^="post-"] {
   }
   a:hover i {
     // SKINNED
-    color: $skin-link-color-hover;
+    //color: $skin-link-color-hover;
     //color:$black;
   }
   .meta-nav {
@@ -205,7 +205,7 @@ section[class^="post-"] {
     display:none;
     // SKINNED
     //color: $black;
-    color: $skin-link-color-hover;
+    //color: $skin-link-color-hover;
   }
 
   @include media-breakpoint-up(lg) {/*lg*/
@@ -313,7 +313,6 @@ section.post-related-articles {
         margin-top: $base-line-height*4;
         margin-right: 2px;
         .slider-control {
-          font-family: inherit;
           width: 3em;
           height: 3em;
           line-height: 3em;
@@ -337,7 +336,7 @@ section.post-related-articles {
 .pagination {
   text-align: center;
   //SKINNED
-  color: $skin-darkest;
+  //color: $skin-darkest;
 
   ul {
     display: inline-block;

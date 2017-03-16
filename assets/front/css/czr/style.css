@@ -43,7 +43,7 @@ img.post-thumbnail {
 embed, iframe, object, video { max-width: 100%;}
 /* Alternate and Masonry special formats patch*/
 .format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{ display: block;}
-.article-container .post-action { left: auto; }
+
 
 
 

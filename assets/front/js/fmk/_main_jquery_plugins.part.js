@@ -90,7 +90,7 @@ var czrapp = czrapp || {};
     },
 
     lightbox : function() {
-      var _arrowMarkup = '<span class="slider-control mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+      var _arrowMarkup = '<span class="slider-control btn btn-skin-darkest-shaded mfp-arrow-%dir% icn-%dir%-open-big"></span>';
 
       /* The magnificPopup delegation is very good
       * it works when clicking on a dynamically added a.expand-img

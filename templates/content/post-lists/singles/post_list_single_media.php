@@ -13,7 +13,7 @@
   <?php if ( $media_content ): ?>
     <?php echo $media_content ?>
     <?php if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ): ?>
-      <div class="post-action">
+      <div class="post-action btn btn-skin-darkest-shaded">
         <a href="<?php echo esc_url( $original_thumb_url ) ?>" class="expand-img icn-expand"></a>
       </div>
     <?php endif ?>

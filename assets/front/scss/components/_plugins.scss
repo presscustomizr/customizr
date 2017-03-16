@@ -1,4 +1,7 @@
-/* Woocommerce */
+//
+// Woocommerce
+//
+
 //buttons
 .woocommerce {
 
@@ -55,4 +58,69 @@
 .woocommerce-checkout .cart-collaterals .cart_totals table,
 .woocommerce table.shop_table {
   @extend %table;
+}
+
+
+
+// WooCart
+.primary-nav__woocart {
+  position: relative;
+  .product_list_widget {
+    min-height: 300px;
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  ul li {
+    display: block !important;
+    width: 100%;
+    padding: $base-line-height/2 !important;
+    margin-left: 0 !important;
+    white-space: normal;
+    position: relative;
+    &::before {
+      content: none !important;
+    }
+  }
+  .widget_shopping_cart {
+    min-width: 320px;
+    max-width: 50vw;
+    li,
+    p.buttons,
+    p.total {
+      padding: 1em $base-line-height;
+
+    }
+    li a {
+      white-space: normal;
+      display: block !important;
+      &::before {
+        content: none !important;
+      }
+    }
+
+    p.buttons,
+    p.total {
+      margin: 0 $base-line-height/2;
+      text-align: center;
+      .button {
+        display: block;
+         &:nth-child(odd) {
+            margin-bottom: .6180469716em;
+        }
+      }
+    }
+    .product_list_widget li a.remove {
+      position: relative;
+      float: left;
+      top: auto;
+      display: block;
+      line-height: 1.15;
+      left: -.25em;
+      z-index: 9;
+    }
+    .product_list_widget img {
+      margin-left: 1em;
+      float: right;
+    }
+  }
 }

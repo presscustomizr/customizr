@@ -130,6 +130,18 @@ var czrapp = czrapp || {};
         czrapp.$_body.removeClass('full-search-opened');
       });
 
+      //custom scrollbar for woocommerce list
+      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+        czrapp.$_body.on( 'shown.czr.czrDropdown', '.primary-nav__woocart', function() {
+          var $_to_scroll = $(this).find('.product_list_widget');
+          if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
+            $_to_scroll.mCustomScrollbar({
+              theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+            });
+          }
+        });
+      }
+
       //go to opened on click element when mCustomScroll active
       czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
         var $_this            = $( this ),
@@ -138,6 +150,8 @@ var czrapp = czrapp || {};
           //http://manos.malihu.gr/jquery-custom-content-scroller/
           $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
       });
+
+
     },
 
     //SMOOTH SCROLL

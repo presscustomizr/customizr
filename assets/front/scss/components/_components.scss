@@ -91,7 +91,7 @@
     }
   }
 }
-
+// .btn modifier
 .btn-skin-light {
   background-color: $skin-light;
   border-color: $skin-light;
@@ -115,6 +115,26 @@
   }
 }
 
+// .btn modifier
+.btn-skin-darkest-shaded {
+  background-color: rgba($skin-darkest, 0.2);
+  border-color: transparent;
+  color: $skin-lightest;
+
+  &:hover, &:focus, &:active {
+    background-color: rgba($skin-darkest, 0.7);
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: rgba($skin-darkest, 0.7);
+    &:hover, &:focus, &:active {
+      background-color: rgba($skin-darkest, 0.2);
+    }
+  }
+}
+
+// .btn modifier
 .btn-dark {
   background-color: $black;
   border-color: $black;
@@ -265,7 +285,7 @@ a[target="_blank"]:hover:after {
     left: -50px;
   }
   i {
-    line-height: 49px;
+    line-height: 47px;
     display: inline-block;
     &:before {
       font-weight: 700;
@@ -273,7 +293,7 @@ a[target="_blank"]:hover:after {
   }
   &.show {
     cursor: pointer;
-    @include opacity(0.7);
+    @include opacity(1);
     &.left {
       left: -1px
     }
@@ -660,8 +680,17 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 }
 
 /* slider/gallery arrows  */
-.mfp-gallery { @extend .slider-nav }
-.tc-gallery-nav { @extend .slider-nav }
+.mfp-gallery {
+  @extend .slider-nav
+}
+.tc-gallery-nav {
+  @extend .slider-nav
+}
+.slider-control {
+ letter-spacing: 0;
+ font-family: inherit;
+}
+
 .slider-nav {
   display:block;
   width: 100%;
@@ -670,22 +699,18 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     z-index: 2;
     top: calc((100% - 60px)/2);
     text-align: center;
-    margin-top: 0px;
+    padding: 0px;
     @include backface-visibility(hidden);
     display: block;
-    color: $white;
     height: 60px;
     width: 50px;
-    background-color: rgba($black, 0.2);
     @include transition (all  0.3s cubic-bezier(0.39, 0.575, 0.565, 1));
     line-height: 60px;
-    cursor: pointer;
+    border: none;
     &:hover{
       @include transform( translateY(0px) );
-      background-color: rgba($black, 0.9);
       opacity: 1;
       width: 100px;
-      & .slider-count { @include opacity(0.5); }
     }
   }
   [class*=mfp-arrow-]::before { border: none }
