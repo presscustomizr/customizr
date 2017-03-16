@@ -184,29 +184,36 @@ class CZR_slider {
   *
   */
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
-    $ID                     = $_post->ID;
+      $ID                     = $_post->ID;
 
-    //attachment image
-    $slide_background                  = get_the_post_thumbnail( $ID, $img_size );
+      //attachment image
+      $thumb                  = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model(
+          $img_size,//$requested_size
+          $ID,//post ID
+          null,//$_custom_thumb_id
+          isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null//$_enable_wp_responsive_imgs
+      );
 
-    // we assign a default thumbnail if needed.
-    if ( ! $slide_background ) {
-        if ( file_exists( TC_BASE_CHILD . 'inc/assets/img/slide-placeholder.png' ) ) {
-            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                TC_BASE_URL_CHILD . 'inc/assets/img/slide-placeholder.png'
-            );
-        } else {
-          return false;
-        }
-    }
+      $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 
-    //title
-    $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
+      // we assign a default thumbnail if needed.
+      if ( ! $slide_background ) {
+          if ( file_exists( TC_BASE_CHILD . 'inc/assets/img/slide-placeholder.png' ) ) {
+              $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                  TC_BASE_URL_CHILD . 'inc/assets/img/slide-placeholder.png'
+              );
+          } else {
+              return false;
+          }
+      }
 
-    //lead text
-    $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> czr_fn_get_post_slide_excerpt( $_post, $ID) : '';
+      //title
+      $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
 
-    return compact( 'ID', 'title', 'text', 'slide_background' );
+      //lead text
+      $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> czr_fn_get_post_slide_excerpt( $_post, $ID) : '';
+
+      return compact( 'ID', 'title', 'text', 'slide_background' );
   }
 
 
@@ -413,6 +420,15 @@ class CZR_slider {
     if ( empty ( $queried_posts ) )
       return array();
 
+    /*** tc_thumb setup filters ***/
+    // remove smart load img parsing if any
+    $smart_load_enabled = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    if ( $smart_load_enabled )
+      remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_fn_parse_imgs') );
+
+    // prevent adding thumb inline style when no center img is added
+    add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    /*** end tc_thumb setup ***/
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
@@ -430,6 +446,14 @@ class CZR_slider {
       $pre_slides_posts[] = $pre_slide_model;
     }
 
+    /* tc_thumb reset filters */
+    // re-add smart load parsing if removed
+    if ( $smart_load_enabled )
+      add_filter('tc_thumb_html', array(CZR_utils::$instance, 'czr_fn_parse_imgs') );
+
+    // remove thumb style reset
+    remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
+    /* end tc_thumb reset filters */
 
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
