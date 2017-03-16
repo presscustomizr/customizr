@@ -354,7 +354,10 @@
               $('.tc-rectangular-thumb').find('img').trigger('refresh-height');//listened by the jsimgcentering $ plugin
           },
           'tc_single_post_thumb_height' : function( to ) {
-            $('.tc-rectangular-thumb').css('height' , to + 'px').css('max-height' , to + 'px').trigger('refresh-height');
+            $('.tc-rectangular-thumb', '.tc-single-post-thumbnail-wrapper').css('height' , to + 'px').css('max-height' , to + 'px').trigger('refresh-height');
+          },
+          'tc_single_page_thumb_height' : function( to ) {
+            $('.tc-rectangular-thumb', '.tc-single-page-thumbnail-wrapper').css('height' , to + 'px').css('max-height' , to + 'px').trigger('refresh-height');
           },
         /******************************************
         * SOCIALS

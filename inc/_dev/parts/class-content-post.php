@@ -167,8 +167,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
       $_thumb_model   = CZR_post_thumbnails::$instance -> czr_fn_get_thumbnail_model( $_size_to_request ) ;
       //may be render
       if ( CZR_post_thumbnails::$instance -> czr_fn_has_thumb() ) {
-        $_thumb_class   = implode( " " , apply_filters( 'tc_single_post_thumb_class' , array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', current_filter() ) ) );
-        $this -> czr_fn_render_single_post_view( $_thumb_model , $_thumb_class );
+        $_thumb_class   = implode( " " , apply_filters( 'tc_single_post_thumb_class' , array( 'row-fluid', 'tc-single-post-thumbnail-wrapper', 'tc-singular-thumbnail-wrapper', current_filter() ) ) );
+        $this -> czr_fn_render_single_post_thumb_view( $_thumb_model , $_thumb_class );
       }
     }
 
@@ -178,8 +178,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @package Customizr
     * @since Customizr 3.2.3
     */
-    private function czr_fn_render_single_post_view( $_thumb_model , $_thumb_class ) {
-      echo apply_filters( 'tc_render_single_post_view',
+    private function czr_fn_render_single_post_thumb_view( $_thumb_model , $_thumb_class ) {
+      echo apply_filters( 'tc_render_single_post_thumb_view',
         sprintf( '<div class="%1$s">%2$s</div>' ,
           $_thumb_class,
           CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
@@ -312,11 +312,11 @@ if ( ! class_exists( 'CZR_post' ) ) :
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
-        ".single .tc-rectangular-thumb {
+        ".tc-single-post-thumbnail-wrapper .tc-rectangular-thumb {
           max-height: {$_single_thumb_height}px;
           height :{$_single_thumb_height}px
         }\n
-        .tc-center-images.single .tc-rectangular-thumb img {
+        .tc-center-images .tc-single-post-thumbnail-wrapper .tc-rectangular-thumb img {
           opacity : 0;
           -webkit-transition: opacity .5s ease-in-out;
           -moz-transition: opacity .5s ease-in-out;
