@@ -6475,18 +6475,14 @@ if ( ! class_exists( 'CZR_utils' ) ) :
 
 
       /**
-      * Check if we are displaying posts lists or front page
-      *
-      * @since Customizr 3.0.6
-      *
+      * Check if we are really on home, all cases covered
       */
       function czr_fn_is_home() {
-        //get info whether the front page is a list of last posts or a page
-        return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page();
+          //get info whether the front page is a list of last posts or a page
+          return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) )
+            || ( 0 == get_option( 'page_on_front' ) && 'page' == get_option( 'show_on_front' ) )//<= this is the case when the user want to display a page on home but did not pick a page yet
+            || is_front_page();
       }
-
-
-
 
 
       /**

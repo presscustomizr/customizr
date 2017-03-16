@@ -4584,7 +4584,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_set_single_page_thumbnail_hooks() {
-      if ( $this -> czr_fn_page_display_controller() ) {
+      if ( $this -> czr_fn_page_display_controller() && ! CZR_utils::$inst->czr_fn_is_home() ) {
         add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
       }
 
@@ -4722,7 +4722,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * Page IMG SMARTLOAD HELP VIEW
     ****************************/
     /**
-    * Displays a help block about images smartload for single posts prepended to the content
+    * Displays a help block about images smartload for single pages prepended to the content
     * hook : the_content
     * @since Customizr 3.5+
     */
@@ -4759,7 +4759,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_show_single_page_thumbnail() {
-      return $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      return ! CZR_utils::$inst->czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
     }
 
 
