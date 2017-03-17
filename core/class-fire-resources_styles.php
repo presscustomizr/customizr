@@ -9,11 +9,102 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
    class CZR_resources_styles {
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
+      private $_is_dev_mode   = false;
+      private $_is_debug_mode = false;
 
       function __construct () {
          self::$instance =& $this;
+         
+         $this->_is_debug_mode = ( defined('WP_DEBUG') && true === WP_DEBUG );
+         $this->_is_dev_mode   = ( defined('CZR_DEV') && true === CZR_DEV );
+
+         add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_front_styles' ) );
+
+         add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
 
          add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
+      
+      
+      }
+
+      /**
+      * Registers and enqueues Customizr stylesheets
+      * @package Customizr
+      * @since Customizr 1.1
+      */
+      function czr_fn_enqueue_front_styles() {
+
+         $_path    = CZR_ASSETS_PREFIX . 'front/css/';
+         
+         $_ver     = $this->_is_debug_mode || $this->_is_dev_mode ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+
+         $_min     = $this->_is_debug_mode || $this->_is_dev_mode ? '' : '.min';
+
+         wp_enqueue_style( 'customizr-bs'          , czr_fn_get_theme_file_url( "{$_path}custom-bs/custom-bootstrap{$_min}.css") , array(), $_ver, 'all' );
+
+         wp_enqueue_style( 'customizr-flickity'    , czr_fn_get_theme_file_url( "{$_path}flickity{$_min}.css" ), array(), $_ver, 'all' );
+
+         wp_enqueue_style( 'customizr-magnific'    , czr_fn_get_theme_file_url( "{$_path}magnific-popup{$_min}.css" ), array(), $_ver, 'all' );
+
+         wp_enqueue_style( 'customizr-pre-common'  , czr_fn_get_theme_file_url( "{$_path}customizr{$_min}.css" ), array(), $_ver, 'all' );
+
+         wp_enqueue_style( 'customizr-common'      , czr_fn_get_theme_file_url( "{$_path}czr/style{$_min}.css"), array(), $_ver, 'all' );
+
+         //Customizr stylesheet (style.css)
+         wp_enqueue_style( 'customizr-style'       , czr_fn_get_theme_file_url( "{$_path}style{$_min}.css"), array(), $_ver, 'all' );
+
+         
+         //Customizer user defined style options : the custom CSS is written with a high priority here
+         wp_add_inline_style( 'customizr-style'    , apply_filters( 'czr_user_options_style' , '' ) );
+
+      }
+      
+      /**
+      * Writes the sanitized custom CSS from options array into the custom user stylesheet, at the very end (priority 9999)
+      * hook : czr_user_options_style
+      * @package Customizr
+      * @since Customizr 2.0.7
+      */
+      function czr_fn_write_custom_css( $_css = null ) {
+
+         $_css               = isset( $_css ) ? $_css : '';
+         $_moved_opts        = czr_fn_get_opt(  '__moved_opts' ) ;
+        
+         /*
+         * Do not print old custom css if moved in the WP Custom CSS
+         */
+         if ( !empty( $_moved_opts ) && is_array( $_moved_opts ) && in_array( 'custom_css', $_moved_opts) ) {
+            return $_css; 
+         }
+          
+         $tc_custom_css       = czr_fn_opt( 'tc_custom_css');
+         $esc_tc_custom_css   = esc_html( $tc_custom_css );
+
+         if ( ! isset( $esc_tc_custom_css ) || empty( $esc_tc_custom_css ) )
+            return $_css;
+
+         return apply_filters( 'czr_write_custom_css',
+            $_css . "\n" . html_entity_decode( $esc_tc_custom_css ),
+            $_css,
+            $tc_custom_css
+         );
+
+      }//end of function
+            
+
+
+
+      /* See: https://github.com/presscustomizr/customizr/issues/605 */
+      function czr_fn_apply_media_upload_front_patch( $_css ) {
+         global $wp_version;
+         if ( version_compare( '4.5', $wp_version, '<=' ) )
+            $_css = sprintf("%s%s",
+                        $_css,
+                        'table { border-collapse: separate; }
+                        body table { border-collapse: collapse; }
+            ');
+        
+        return $_css;
       }
 
 

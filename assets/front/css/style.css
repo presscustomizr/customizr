@@ -301,7 +301,7 @@ blockquote p {
   content: none;
 }
 
-.no-hover {
+.no-hover, no-hover * {
   pointer-events: none !important;
 }
 
