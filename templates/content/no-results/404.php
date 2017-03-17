@@ -3,7 +3,7 @@
  * The template for displaying the 404 content
  */
 ?>
-<header class="entry-header text-center"<?php czr_fn_echo('element_attributes') ?>>
+<header class="entry-header text-center" <?php czr_fn_echo('element_attributes') ?>>
   <h1 class="entry-title big-text-10 m-t-05"><?php _e( '404', 'customizr') ?></h1>
   <h2><?php _e('Ooops, page not found', 'customizr') ?></h2>
 </header>

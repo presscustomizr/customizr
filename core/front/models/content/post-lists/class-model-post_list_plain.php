@@ -271,8 +271,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   function czr_fn_set_excerpt_more($more) {
     ob_start();
       czr_fn_render_template( 'modules/read_more' );
-      $readmore = ob_get_contents();
-    ob_end_clean();
+    $readmore = ob_get_clean();
     return $more . $readmore;
   }
 

@@ -585,18 +585,8 @@ class CZR_slider_model_class extends CZR_Model {
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
       if ( ! apply_filters( 'czr_slider_loader_gif_only', false ) ) {
         $_slider_loader_gif_class  = '.no-csstransforms3d';
-        // The pure css loader color depends on the skin. Why can we do this here without caring of the live preview?
-        // Basically 'cause the loader is something we see when the page "loads" then it disappears so a live change of the skin
-        // will still have no visive impact on it. This will avoid us to rebuild the custom skins.
-        $_current_skin_colors      = czr_fn_get_skin_color( 'pair' );
-        $_pure_css_loader_css      = apply_filters( 'czr_slider_loader_css', sprintf('
-            .czr-slider-loader-wrapper .czr-css-loader > div { border-color:%s; }',
-            //we can use the primary or the secondary skin color
-            'primary' == apply_filters( 'czr_slider_loader_color', 'primary') ? $_current_skin_colors[0] : $_current_skin_colors[1]
-        ));
       }else {
         $_slider_loader_gif_class = '';
-        $_pure_css_loader_css     = '';
       }
 
       $_slider_loader_gif_css     = $_slider_loader_src ? sprintf('
@@ -606,7 +596,7 @@ class CZR_slider_model_class extends CZR_Model {
                                         $_slider_loader_gif_class,
                                         $_slider_loader_src
                                     ) : '';
-      $_css = $_slider_loader_gif_css . $_pure_css_loader_css;
+      $_css = $_slider_loader_gif_css;
     }//end custom css for the slider loader
 
     return $_css;

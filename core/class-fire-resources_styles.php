@@ -6,265 +6,232 @@
 * @package      Customizr
 */
 if ( ! class_exists( 'CZR_resources_styles' ) ) :
-    class CZR_resources_styles {
-        //Access any method or var of the class with classname::$instance -> var or method():
-        static $instance;
+   class CZR_resources_styles {
+      //Access any method or var of the class with classname::$instance -> var or method():
+      static $instance;
 
-        function __construct () {
-            self::$instance =& $this;
+      function __construct () {
+         self::$instance =& $this;
 
-          add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
-        }
-
-
-        function czr_fn_maybe_write_skin_inline_css( $_css ) {
-            //retrieve the current option
-            $skin_color     = czr_fn_get_opt( 'tc_skin_color' );
-
-            //retrieve the default color
-            $defaults       = czr_fn_get_default_options();
-
-            $def_skin_color = isset( $defaults['tc_skin_color'] ) ? $defaults['tc_skin_color'] : false;
-
-            if ( $skin_color == $def_skin_color )
-                return;
-
-            $skin_dark_color      = czr_fn_sass_darken( $skin_color, '15' );
-            $skin_darkest_color   = czr_fn_sass_darken( $skin_color, '25' );
-            $skin_light_color     = czr_fn_sass_lighten( $skin_color, '15' );
-            $skin_lightest_color  = czr_fn_sass_lighten( $skin_color, '25' );
-
-            //LET'S DANCE
-            //start computing style
-            $styles    = array();
-            $glue      = esc_attr( czr_fn_get_opt('tc_minified_skin') ) ? '' : "\n";
-
-            $skinner   = array(
-                'skin_color' => array(
-                    'color'  => $skin_color,
-                    'rules'  => array(
-                        //prop => selectors
-                        'color'  => array(
-                            'a',
-                            '.btn-skin:hover',
-                            '.btn-skin.inverted',
-                            '.post-type__icon:hover .icn-format',
-                            '[class*="grid-container__"] .hover .entry-title a'
-                        ),
-                        'border-color' => array(
-                            '.btn-skin',
-                            '.btn-skin:hover',
-                        ),
-                        'background-color' => array(
-                            '.btn-skin',
-                            '.btn-skin.inverted:hover'
-                        )
-                    )
-                ),
-
-                'skin_lightest_color_shade_high' => array(
-                    'color'  => czr_fn_hex2rgba( $skin_lightest_color, 0.2, $array=false, $make_prop_value=true),
-                    'rules'  => array(
-                        'background-color' => array(
-                            '.post-navigation',
-                        )
-                    )
-                ),
+         add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
+      }
 
 
-                'skin_dark_color' => array(
-                    'color'  => $skin_darkest_color,
-                    'rules'  => array(
-                        //prop => selectors
-                        'background-color' => array(
-                            '.flickity-page-dots .dot'
-                        )
-                    )
-                ),
+      function czr_fn_maybe_write_skin_inline_css( $_css ) {
+         //retrieve the current option
+         $skin_color     = czr_fn_get_opt( 'tc_skin_color' );
 
-                'skin_darkest_color' => array(
-                    'color'  => $skin_darkest_color,
-                    'rules'  => array(
-                        //prop => selectors
-                        'color'  => array(
-                            '.pagination',
-                            '.btn-skin-darkest:hover',
-                            '.btn-skin-darkest.inverted',
-                            'a:hover',
-                            'a:focus',
-                            'a:active',
-                            '.entry-meta a:not(.btn):hover',
-                            '.grid-container__classic .post-type__icon .icn-format',
-                            '[class*="grid-container__"] .entry-title a:hover',
-                            '.widget-area a:not(.btn):hover',
-                        ),
-                        'border-color' => array(
-                            '.btn-skin-darkest',
-                            '.btn-skin-darkest.inverted',
-                            'input[type=submit]',
-                            '.btn-skin-darkest:hover',
-                            '.btn-skin-darkest.inverted:hover',
-                            'input[type=submit]:hover',
-                        ),
-                        'background-color' => array(
-                            '.btn-skin-darkest',
-                            '.btn-skin-darkest.inverted:hover',
-                            'input[type=submit]',
-                            '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
-                        )
-                    )
-                ),
+         //retrieve the default color
+         $defaults       = czr_fn_get_default_options();
 
-                'skin_darkest_color_shade_high' => array(
-                    'color'  => czr_fn_hex2rgba($skin_darkest_color, 0.2, $array=false, $make_prop_value=true),
-                    'rules'  => array(
-                        //prop => selectors
-                        'background-color' => array(
-                            '.btn-skin-darkest-shaded:hover',
-                            '.btn-skin-darkest-shaded.inverted',
-                            '.slider-nav .slider-control',
-                            '.mfp-gallery .slider-control',
-                            '.tc-gallery-nav .slider-control',
-                        )
-                    )
-                ),
+         $def_skin_color = isset( $defaults['tc_skin_color'] ) ? $defaults['tc_skin_color'] : false;
 
-                'skin_darkest_color_shade_low' => array(
-                    'color'  => czr_fn_hex2rgba($skin_darkest_color, 0.7, $array=false, $make_prop_value=true),
-                    'rules'  => array(
-                        //prop => selectors
-                        'background-color' => array(
-                            '.btn-skin-darkest-shaded',
-                            '.btn-skin-darkest-shaded.inverted:hover',
-                            '.slider-nav .slider-control:hover',
-                            '.mfp-gallery .slider-control:hover',
-                            '.tc-gallery-nav .slider-control:hover',
-                        )
-                    )
-                )
-            );
+         if ( in_array( $def_skin_color, array( $skin_color, strtoupper( $skin_color) ) ) )
+            return;
 
-            //these break the style, let's separate them from the others;
-            $styles[]  = '::-moz-selection { background-color:'. $skin_color .'}';
-            $styles[]  = '::selection { background-color:'. $skin_color .'}';
+         $skin_dark_color      = czr_fn_darken_hex( $skin_color, '12%' );
+         $skin_darkest_color   = czr_fn_darken_hex( $skin_color, '20%' );
+         $skin_light_color     = czr_fn_lighten_hex( $skin_color, '12%' );
+         $skin_lightest_color  = czr_fn_lighten_hex( $skin_color, '20%' );
 
-            foreach ( $skinner as $skin_color => $params ) {
-                foreach ( $params['rules'] as $prop => $selectors ) {
-                    $_selectors = implode( ",{$glue}",
-                        apply_filters( "czr_dynamic_{$skin_color}_{$prop}_prop_selectors", $selectors ) );
+         //LET'S DANCE
+         //start computing style
+         $styles    = array();
+         $glue      = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
-                    if ( $_selectors ) {
-                        $styles[] = sprintf( '%1$s{%2$s:%3$s}',
-                                                $_selectors,
-                                                $prop, //property
-                                                $params['color'] //color
-                                    );
-                    }
+         $skin_style_map = array(
+            'skin_color' => array(
+               'color'  => $skin_color,
+               'rules'  => array(
+                  //prop => selectors
+                  'color'  => array(
+                     'a',
+                     '.btn-skin:hover',
+                     '.btn-skin.inverted',
+                     '.grid-container__classic .post-type__icon',
+                     '.post-type__icon:hover .icn-format',
+                     '.grid-container__classic .post-type__icon:hover .icn-format',
+                     '[class*="grid-container__"] .hover .entry-title a'
+                  ),
+                  'border-color' => array(
+                     '.czr-slider-loader-wrapper .czr-css-loader > div ',
+                     '.btn-skin',
+                     '.btn-skin:hover',
+                  ),
+                  'background-color' => array(
+                     '.grid-container__classic .post-type__icon',
+                     '.btn-skin',
+                     '.btn-skin.inverted:hover'
+                  )
+               )
+            ),
 
-                }
-            }
+            'skin_light_color' => array(
+               'color'  => $skin_light_color,
+               'rules'  => array(
+                  //prop => selectors
+                  'color'  => array(
+                     '.btn-skin-light:hover',
+                     '.btn-skin-light.inverted',
+                  ),
 
-            // $styles[]  = '::selection, ::moz-selection { background-color: '. $skin_color .' }';
+                  'border-color' => array(
+                     '.btn-skin-light',
+                     '.btn-skin-light.inverted',
+                     '.btn-skin-light:hover',
+                     '.btn-skin-light.inverted:hover',
+                  ),
 
-            // //Skin color => color Property
-            // $_skin_color_color_prop_selectors = array(
-            //     'a',
-            //     '.btn-skin:hover',
-            //     '.btn-skin.inverted',
-            //     '.post-type__icon:hover .icn-format',
-            //     '[class*="grid-container__"] .hover .entry-header .entry-title a'
-            // );
+                  'background-color' => array(
+                     '.btn-skin-light',
+                     '.btn-skin-light.inverted:hover',
+                  ),
+               )
+            ),
 
-            // $_skin_color_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_color_color_prop_selectors', $_skin_color_color_prop_selectors ) );
+            'skin_lightest_color' => array(
+               'color'  => $skin_lightest_color,
+               'rules'  => array(
+                  //prop => selectors
+                  'color'  => array(
+                     '.btn-skin-lightest:hover',
+                     '.btn-skin-lightest.inverted',
+                  ),
 
-            // $styles[] = $_skin_color_color_prop_selectors ? $_skin_color_color_prop_selectors . '{ color: '. $skin_color .' }' : '';
+                  'border-color' => array(
+                     '.btn-skin-lightest',
+                     '.btn-skin-lightest.inverted',
+                     '.btn-skin-lightest:hover',
+                     '.btn-skin-lightest.inverted:hover',
+                  ),
 
-            // // Skin color => border-color Property
-            // $_skin_color_border_color_prop_selectors = array(
-            //     '.btn-skin',
-            //     '.btn-skin:hover',
-            // );
+                  'background-color' => array(
+                     '.btn-skin-lightest',
+                     '.btn-skin-lightest.inverted:hover',
+                  ),
+               )
+            ),
 
-            // $_skin_color_border_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_color_border_color_prop_selectors', $_skin_color_border_color_prop_selectors ) );
-
-            // $styles[] = $_skin_color_border_color_prop_selectors ? $_skin_color_border_color_prop_selectors . '{ border-color: '. $skin_color .' }' : '';
+            'skin_light_color_shade_high' => array(
+               'color'  => czr_fn_hex2rgba( $skin_light_color, 0.4, $array=false, $make_prop_value=true),
+               'rules'  => array(
+                  'background-color' => array(
+                     '.post-navigation',
+                  )
+               )
+            ),
 
 
-            // // Skin color => background-color Property
-            // $_skin_color_background_color_prop_selectors = array(
-            //     '.btn-skin',
-            //     '.btn-skin.inverted:hover'
-            // );
+            'skin_dark_color' => array(
+               'color'  => $skin_dark_color,
+               'rules'  => array(
+                  //prop => selectors
+                  'color'  => array(
+                     '.btn-skin-dark:hover',
+                     '.btn-skin-dark.inverted',
+                  ),
 
-            // $_skin_color_background_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_color_background_color_prop_selectors', $_skin_color_background_color_prop_selectors ) );
+                  'border-color' => array(
+                     '.grid-container__classic.tc-grid-border .grid__item',
+                     '.btn-skin-dark',
+                     '.btn-skin-dark.inverted',
+                     '.btn-skin-dark:hover',
+                     '.btn-skin-dark.inverted:hover',
+                  ),
 
-            // $styles[] = $_skin_color_background_color_prop_selectors ? $_skin_color_background_color_prop_selectors . '{ background-color: '. $skin_color .' }' : '';
+                  'background-color' => array(
+                     '.btn-skin-dark',
+                     '.btn-skin-dark.inverted:hover',
+                     '.flickity-page-dots .dot',
+                  ),
+               )
+            ),
 
+            'skin_darkest_color' => array(
+               'color'  => $skin_darkest_color,
+               'rules'  => array(
+                  //prop => selectors
+                  'color'  => array(
+                     '.pagination',
+                     '.btn-skin-darkest:hover',
+                     '.btn-skin-darkest.inverted',
+                     'a:hover',
+                     'a:focus',
+                     'a:active',
+                     '.entry-meta a:not(.btn):hover',
+                     '.grid-container__classic .post-type__icon .icn-format',
+                     '[class*="grid-container__"] .entry-title a:hover',
+                     '.widget-area a:not(.btn):hover',
+                  ),
 
-            // // Skin darkest color => color Property
-            // $_skin_darkest_color_color_prop_selectors = array(
-            //     '.pagination',
-            //     '.btn-skin-darkest:hover',
-            //     '.btn-skin-darkest.inverted',
-            //     'a:hover',
-            //     'a:focus',
-            //     'a:active',
-            //     '.entry-meta a:not(.btn):hover',
-            //     '.grid-container__classic .post-type__icon .icn-format',
-            //     '[class*="grid-container__"] .entry-header .entry-title a:hover',
-            //     '.widget-area a:not(.btn):hover',
+                  'border-color' => array(
+                     '.btn-skin-darkest',
+                     '.btn-skin-darkest.inverted',
+                     'input[type=submit]',
+                     '.btn-skin-darkest:hover',
+                     '.btn-skin-darkest.inverted:hover',
+                     'input[type=submit]:hover',
+                  ),
 
-            // );
+                  'background-color' => array(
+                     '.grid-container__classic .post-type__icon:hover',
+                     '.btn-skin-darkest',
+                     '.btn-skin-darkest.inverted:hover',
+                     'input[type=submit]',
+                     '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
+                  )
+               )
+            ),
 
-            // $_skin_darkest_color_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_darkest_color_color_prop_selectors', $_skin_darkest_color_color_prop_selectors ) );
+            'skin_darkest_color_shade_high' => array(
+               'color'  => czr_fn_hex2rgba($skin_darkest_color, 0.4, $array=false, $make_prop_value=true),
+               'rules'  => array(
+                  //prop => selectors
+                  'background-color' => array(
+                     '.btn-skin-darkest-shaded:hover',
+                     '.btn-skin-darkest-shaded.inverted',
+                  )
+               )
+            ),
 
-            // $styles[] = $_skin_darkest_color_color_prop_selectors ? $_skin_darkest_color_color_prop_selectors . '{ color: '. $skin_darkest_color .'}' : '';
+            'skin_darkest_color_shade_low' => array(
+               'color'  => czr_fn_hex2rgba($skin_darkest_color, 0.7, $array=false, $make_prop_value=true),
+               'rules'  => array(
+                  //prop => selectors
+                  'background-color' => array(
+                     '.btn-skin-darkest-shaded',
+                     '.btn-skin-darkest-shaded.inverted:hover',
+                  )
+               )
+            )
 
+         );
 
-            // // Skin darkest color => border-color Property
-            // $_skin_darkest_color_border_color_prop_selectors = array(
-            //     '.btn-skin-darkest',
-            //     '.btn-skin-darkest.inverted',
-            //     'input[type=submit]',
-            //     '.btn-skin-darkest:hover',
-            //     '.btn-skin-darkest.inverted:hover',
-            //     'input[type=submit]:hover',
-            // );
+         //these break the style, let's separate them from the others;
+         $styles[]  = '::-moz-selection{background-color:'. $skin_color .'}';
+         $styles[]  = '::selection{background-color:'. $skin_color .'}';
 
-            // $_skin_darkest_color_border_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_darkest_color_border_color_prop_selectors', $_skin_darkest_color_border_color_prop_selectors ) );
+         //Builder
+         foreach ( $skin_style_map as $skin_color => $params ) {
+            foreach ( $params['rules'] as $prop => $selectors ) {
+               $_selectors = implode( ",{$glue}", apply_filters( "czr_dynamic_{$skin_color}_{$prop}_prop_selectors", $selectors ) );
 
-            // $styles[] = $_skin_darkest_color_border_color_prop_selectors ? $_skin_darkest_color_border_color_prop_selectors . '{ border-color: '. $skin_darkest_color .' }' : '';
+               if ( $_selectors ) {
+                  $styles[] = sprintf( '%1$s{%2$s:%3$s}',
+                                       $_selectors,
+                                       $prop, //property
+                                       $params['color'] //color
+                  );
+               }//end if $_selectors
+            }//end foreach $param['rules'] as ...
+         }//end foreach $skinner as ...
 
+         // end computing
+         if ( empty ( $styles ) )
+            return;
 
-            // // Skin darkest color => background-color Property
-            // $_skin_darkest_color_background_color_prop_selectors = array(
-            //     '.btn-skin-darkest',
-            //     '.btn-skin-darkest.inverted:hover',
-            //     'input[type=submit]',
-            //     '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
-            // );
-
-            // $_skin_darkest_color_background_color_prop_selectors = implode( ",{$glue}", apply_filters( 'czr_dynamic_skin_darkest_color_background_color_prop_selectors', $_skin_darkest_color_background_color_prop_selectors ) );
-
-            // $styles[] = $_skin_darkest_color_background_color_prop_selectors ? $_skin_darkest_color_background_color_prop_selectors . '{ background-color: '. $skin_darkest_color .' }' : '';
-
-            // end computing
-            if ( empty ( $styles ) )
-              return;
-
-
-
-
-            //LET's GET IT ON
-            // start output
-            $_p_styles   = array();
-            // '<style type="text/css">' );
-            // $_p_styles[] = '/* Dynamic CSS: For no styles in head, copy and put the css below in your child theme\'s style.css, disable dynamic styles */';
-            $_p_styles[] = implode( "{$glue}", $styles );
-            //$_p_styles[] = '</style>'."\n";
-            //end output;
-            //print
-            return implode( "{$glue}", $_p_styles );
-        }
-  }//end of CZR_resources_styles
+         //LET's GET IT ON
+         return implode( "{$glue}{$glue}", $styles );
+      }
+   }//end of CZR_resources_styles
 endif;

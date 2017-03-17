@@ -7,7 +7,7 @@
  * @package Customizr
  */
 if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
-<div class="grid-container__alternate <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
+<div class="grid-container__alternate <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="alternate__wrapper row">
 <?php endif ?>
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >

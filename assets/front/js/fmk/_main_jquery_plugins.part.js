@@ -244,20 +244,21 @@ var czrapp = czrapp || {};
 
 
       /*
-      * Disable controllers when the first or the latest slide is in the viewport
+      * Disable controllers when the first or the latest slide is in the viewport and no wraparound selected
       * when wrapAround //off
       */
-      function czr_controls_disabling() {
+      function czr_controls_disabling(evt) {
         var $_this             = $(this),
             flkty              = $_this.data('flickity');
 
         if ( ! flkty )//maybe not ready
           return;
 
-        if ( flkty.options.wrapAround )
-          $_this.off( 'select.flickity', czr_controls_disabling );
+        if ( flkty.options.wrapAround ) {
+          return;
+        }
 
-        //console.log(flkty);
+
         var $_carousel_wrapper = $_this.closest('.czr-carousel'),
             $_prev             = $_carousel_wrapper.find('.slider-prev'),
             $_next             = $_carousel_wrapper.find('.slider-next');

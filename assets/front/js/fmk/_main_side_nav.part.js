@@ -182,7 +182,7 @@ var czrapp = czrapp || {};
     _init_scrollbar : function() {
       if ( 'function' == typeof $.fn.mCustomScrollbar ) {
         this.$_sidenav_menu.mCustomScrollbar({
-            theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+            theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
         });
       }
     },

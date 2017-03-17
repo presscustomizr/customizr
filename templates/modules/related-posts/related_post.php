@@ -19,7 +19,7 @@
       );
       /* Content */
     ?>
-      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>" <?php czr_fn_echo('element_attributes') ?> >
+      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>">
         <div class="entry-content__wrapper">
         <?php
           /* header */

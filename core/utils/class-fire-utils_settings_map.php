@@ -204,7 +204,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
 function czr_fn_skin_option_map( $get_default = null ) {
   return array(
           //skin select
-          'tc_skin'     => array(
+          /*'tc_skin'     => array(
                             'default'   =>  'blue3.css' ,
                             'control'   => 'CZR_controls' ,
                             'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
@@ -222,6 +222,7 @@ function czr_fn_skin_option_map( $get_default = null ) {
                             'type'      => 'checkbox',
                             'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
           ),
+          */
           'tc_skin_color' => array(
                             'default'     => '#B4B4B4',
                             'control'     => 'WP_Customize_Color_Control',

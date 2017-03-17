@@ -38,6 +38,11 @@
   color: $skin-link-color-hover;
 }
 
+//Grid classic with border bottom
+.grid-container__classic.tc-grid-border .grid__item {
+  border-color: $skin-dark;
+}
+
 //Widget areas
 .widget-area {
     a:not(.btn):hover {
@@ -53,7 +58,7 @@
 }
 
 .post-navigation {
-  background-color:  rgba($skin-lightest, 0.7);
+  background-color:  rgba($skin-light, 0.4);
 }
 
 //slider dots

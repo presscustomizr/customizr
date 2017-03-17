@@ -893,22 +893,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
 
 
-      /* OPTION NOT USED ANYMORE: TO REMOVE */
-      //disable title icons
-      // add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
-      // function czr_fn_woocommerce_disable_title_icon($bool) {
-      //   return ( function_exists('czr_fn_wc_is_checkout_cart') && czr_fn_wc_is_checkout_cart() ) ? false : $bool;
-      // }
-
-      // use Customizr title
-      // initially used to display the edit button
-    //  add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
-      // function czr_fn_woocommerce_the_title( $_title ){
-      //   if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
-      //     return apply_filters( 'czr_title_text', $_title );
-      //   return $_title;
-      // }
-
       // hide tax archive title
       add_filter( 'czr_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
       function czr_fn_woocommerce_disable_tax_archive_title( $bool ){
@@ -981,6 +965,156 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_register_wc_cart() {
         czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'woocommerce_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
       }
+
+      //additional woocommerce skin style
+      foreach ( array(
+                  'skin_color_color',
+                  'skin_color_background-color',
+                  'skin_color_border-color',
+
+                  'skin_darkest_color_color',
+                  'skin_darkest_color_background-color',
+                  'skin_darkest_color_border-color',
+               )  as $filter_key ) {
+
+         add_filter( "czr_dynamic_{$filter_key}_prop_selectors", str_replace('-', '_', "czr_fn_wc_{$filter_key}_prop_selectors") );
+      }
+
+      function czr_fn_wc_skin_color_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit:hover',
+            '.woocommerce input#submit:hover',
+            '.woocommerce input.button:hover',
+            '.woocommerce a.button:hover',
+            '.woocommerce .button.add_to_cart_button:hover',
+            '.woocommerce #respond input#submit:focus',
+            '.woocommerce input#submit:focus',
+            '.woocommerce input.button:focus',
+            '.woocommerce a.button:focus',
+            '.woocommerce .button.add_to_cart_button:focus',
+            '.woocommerce #respond input#submit:active',
+            '.woocommerce input#submit:active',
+            '.woocommerce input.button:active',
+            '.woocommerce a.button:active',
+            '.woocommerce .button.add_to_cart_button:active'
+         ));
+      }
+
+      function czr_fn_wc_skin_color_background_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit',
+            '.woocommerce input#submit',
+            '.woocommerce input.button',
+            '.woocommerce a.button',
+            '.woocommerce .button.add_to_cart_button'
+         ));
+      }
+
+      function czr_fn_wc_skin_color_border_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit',
+            '.woocommerce input#submit',
+            '.woocommerce input.button',
+            '.woocommerce a.button',
+            '.woocommerce .button.add_to_cart_button',
+            '.woocommerce #respond input#submit:hover',
+            '.woocommerce input#submit:hover',
+            '.woocommerce input.button:hover',
+            '.woocommerce a.button:hover',
+            '.woocommerce .button.add_to_cart_button:hover',
+            '.woocommerce #respond input#submit:focus',
+            '.woocommerce input#submit:focus',
+            '.woocommerce input.button:focus',
+            '.woocommerce a.button:focus',
+            '.woocommerce .button.add_to_cart_button:focus',
+            '.woocommerce #respond input#submit:active',
+            '.woocommerce input#submit:active',
+            '.woocommerce input.button:active',
+            '.woocommerce a.button:active',
+            '.woocommerce .button.add_to_cart_button:active'
+         ));
+      }
+
+
+      function czr_fn_wc_skin_darkest_color_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]:hover',
+            '.woocommerce input.button[class*=alt]:hover',
+            '.woocommerce a.button[class*=alt]:hover',
+            '.woocommerce button.button[class*=alt]:hover',
+            '.woocommerce input#submit.alt.disabled:hover',
+            '.woocommerce input.button.alt.disabled:hover',
+            '.woocommerce button.button.alt.disabled:hover',
+            '.woocommerce a.button.alt.disabled:hover',
+            '.woocommerce input#submit[class*=alt]:focus',
+            '.woocommerce input.button[class*=alt]:focus',
+            '.woocommerce a.button[class*=alt]:focus',
+            '.woocommerce button.button[class*=alt]:focus',
+            '.woocommerce input#submit.alt.disabled:focus',
+            '.woocommerce input.button.alt.disabled:focus',
+            '.woocommerce button.button.alt.disabled:focus',
+            '.woocommerce a.button.alt.disabled:focus',
+            '.woocommerce input#submit[class*=alt]:active',
+            '.woocommerce input.button[class*=alt]:active',
+            '.woocommerce a.button[class*=alt]:active',
+            '.woocommerce button.button[class*=alt]:active',
+            '.woocommerce input#submit.alt.disabled:active',
+            '.woocommerce input.button.alt.disabled:active',
+            '.woocommerce button.button.alt.disabled:active',
+            '.woocommerce a.button.alt.disabled:active',
+         ));
+      }
+
+      function czr_fn_wc_skin_darkest_color_background_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]',
+            '.woocommerce input.button[class*=alt]',
+            '.woocommerce a.button[class*=alt]',
+            '.woocommerce button.button[class*=alt]',
+            '.woocommerce input#submit.alt.disabled',
+            '.woocommerce input.button.alt.disabled',
+            '.woocommerce button.button.alt.disabled',
+            '.woocommerce a.button.alt.disabled'
+         ));
+      }
+
+      function czr_fn_wc_skin_darkest_color_border_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]:hover',
+            '.woocommerce input.button[class*=alt]:hover',
+            '.woocommerce a.button[class*=alt]:hover',
+            '.woocommerce button.button[class*=alt]:hover',
+            '.woocommerce input#submit.alt.disabled:hover',
+            '.woocommerce input.button.alt.disabled:hover',
+            '.woocommerce button.button.alt.disabled:hover',
+            '.woocommerce a.button.alt.disabled:hover',
+            '.woocommerce input#submit[class*=alt]:focus',
+            '.woocommerce input.button[class*=alt]:focus',
+            '.woocommerce a.button[class*=alt]:focus',
+            '.woocommerce button.button[class*=alt]:focus',
+            '.woocommerce input#submit.alt.disabled:focus',
+            '.woocommerce input.button.alt.disabled:focus',
+            '.woocommerce button.button.alt.disabled:focus',
+            '.woocommerce a.button.alt.disabled:focus',
+            '.woocommerce input#submit[class*=alt]:active',
+            '.woocommerce input.button[class*=alt]:active',
+            '.woocommerce a.button[class*=alt]:active',
+            '.woocommerce button.button[class*=alt]:active',
+            '.woocommerce input#submit.alt.disabled:active',
+            '.woocommerce input.button.alt.disabled:active',
+            '.woocommerce button.button.alt.disabled:active',
+            '.woocommerce a.button.alt.disabled:active',
+            '.woocommerce input#submit[class*=alt]',
+            '.woocommerce input.button[class*=alt]',
+            '.woocommerce a.button[class*=alt]',
+            '.woocommerce button.button[class*=alt]',
+            '.woocommerce input#submit.alt.disabled',
+            '.woocommerce input.button.alt.disabled',
+            '.woocommerce button.button.alt.disabled',
+            '.woocommerce a.button.alt.disabled'
+         ));
+      }
+
     }//end woocommerce compat
 
 

@@ -117,19 +117,19 @@
 
 // .btn modifier
 .btn-skin-darkest-shaded {
-  background-color: rgba($skin-darkest, 0.2);
+  background-color: rgba($skin-darkest, 0.7);
   border-color: transparent;
-  color: $skin-lightest;
+  color: $white;
 
   &:hover, &:focus, &:active {
-    background-color: rgba($skin-darkest, 0.7);
+    background-color: rgba($skin-darkest, 0.4);
   }
 
   // .btn modifier
   &.inverted {
-    background-color: rgba($skin-darkest, 0.7);
+    background-color: rgba($skin-darkest, 0.4);
     &:hover, &:focus, &:active {
-      background-color: rgba($skin-darkest, 0.2);
+      background-color: rgba($skin-darkest, 0.7);
     }
   }
 }
@@ -681,7 +681,11 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
 /* slider/gallery arrows  */
 .mfp-gallery {
-  @extend .slider-nav
+  @extend .slider-nav;
+  [class*=mfp-arrow]::before,
+  [class*=mfp-arrow]::after {
+    border: none;
+  }
 }
 .tc-gallery-nav {
   @extend .slider-nav
@@ -700,15 +704,16 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     top: calc((100% - 60px)/2);
     text-align: center;
     padding: 0px;
-    @include backface-visibility(hidden);
     display: block;
     height: 60px;
     width: 50px;
-    @include transition (all  0.3s cubic-bezier(0.39, 0.575, 0.565, 1));
+    @include backface-visibility(hidden);
+    @include transition ( width 0.3s cubic-bezier(0.39, 0.575, 0.565, 1));
+    @include transform(translateZ(0));
+    @include transform-style(preserve-3d);
     line-height: 60px;
     border: none;
     &:hover{
-      @include transform( translateY(0px) );
       opacity: 1;
       width: 100px;
     }

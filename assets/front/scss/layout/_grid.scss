@@ -73,8 +73,8 @@
   border: none;
   border-radius: 2px;
   @include opacity(0);
-  @include transition (all, 0.6s ease);
   @include transform(scale(0));
+  @include transform-style(preserve-3d);
   @include transition(all, 0.3s ease-in-out);
   z-index: -1;
 
@@ -95,7 +95,7 @@
   a {
     position:relative;
     display:block;
-    color: inherit;
+    color: inherit!important;
     line-height: $base-line-height*3;
     @include opacity(0);
     @include transition (all, 0.6s ease);
@@ -295,7 +295,7 @@
     @include box-shadow( 0, 0, 6px, rgba(0, 0, 0, 0.075), false, 2px );
   }
   &.tc-grid-border .grid__item {
-    border-bottom: 3px solid $primary-color;
+    border-bottom: 3px solid transparent;
   }
   .tc-grid-figure {
     position: relative;

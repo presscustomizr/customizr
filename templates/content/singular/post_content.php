@@ -5,7 +5,7 @@
  * In WP loop
  */
 ?>
-<article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?> >
+<article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?>>
   <?php do_action( '__before_inner_post_article' ) ?>
   <div class="post-entry tc-content-inner">
     <?php do_action( '__before_post_entry_content' ) ?>

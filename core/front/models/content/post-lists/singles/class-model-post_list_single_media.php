@@ -111,8 +111,10 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
                           <span class="slider-control btn btn-skin-darkest-shaded inverted slider-prev icn-left-open-big"></span>
                           <span class="slider-control btn btn-skin-darkest-shaded inverted slider-next icn-right-open-big"></span>
                         </div>';
-
-            $_post_action     = '<div class="post-action"><a href="#" class="expand-img-gallery icn-expand"></a></div>';
+            //post action;
+            ob_start();
+              czr_fn_render_template( 'modules/post_action_button', array( 'model_args' => array( 'post_action_link' => '#', 'post_action_link_class' => 'expand-img-gallery'  ) ) );
+            $_post_action = ob_get_clean();
 
             $_gallery_html   = sprintf( '%1$s<div class="carousel carousel-inner">%2$s</div>',
                                        $_gallery_nav,

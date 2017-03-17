@@ -3,7 +3,7 @@
  * The template for displaying the topnav
 */
 ?>
-<div class="secondary-navbar__wrapper row <?php czr_fn_echo('element_class') ?>"  <?php czr_fn_echo('element_attributes') ?>>
+<div class="secondary-navbar__wrapper row <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <?php if ( czr_fn_has( 'secondary_menu' ) ) :?>
     <?php if ( czr_fn_get( 'has_mobile_button' ) ) :?>
       <div class="hamburger-toggler__wrapper col-12 float-left hidden-lg-up">

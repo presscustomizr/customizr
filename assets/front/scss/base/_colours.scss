@@ -2,10 +2,10 @@
 
 $skin                     : #B4B4B4;
 
-$skin-dark                : darken( $skin, 15% );
-$skin-darkest             : darken( $skin, 25% );
-$skin-light               : lighten( $skin, 15% );
-$skin-lightest            : lighten( $skin, 25% );
+$skin-dark                : darken( $skin, 12% );
+$skin-darkest             : darken( $skin, 20% );
+$skin-light               : lighten( $skin, 12% );
+$skin-lightest            : lighten( $skin, 20% );
 
 $skin-link-color          : $skin;
 $skin-link-color-hover    : $skin-darkest;
@@ -20,7 +20,6 @@ $grey-lightest : #f7f8f9;
 $grey-dark     : #777;
 
 $hamburger-bg-color: darken($black, 10%);
-
 
 //$skin          : #076cf2;
 //$alert         : #e74c3c;

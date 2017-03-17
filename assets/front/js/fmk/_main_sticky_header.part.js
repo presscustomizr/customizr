@@ -359,7 +359,7 @@ var czrapp = czrapp || {};
     _initCustomScrollbar : function( $_el ) {
       if ( 'function' == typeof $.fn.mCustomScrollbar ) {
         $_el.mCustomScrollbar({
-          theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+          theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
         });
       }
     },
