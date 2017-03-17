@@ -7314,6 +7314,9 @@ footer#footer .colophon {
   background-color: #ffffff;
   padding: 10px 20px;
 }
+footer#footer .colophon .container {
+  max-width: 100%;
+}
 footer#footer .colophon a,
 footer#footer .colophon p {
   color: #5a5a5a;
