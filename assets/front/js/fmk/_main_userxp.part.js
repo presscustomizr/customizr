@@ -22,19 +22,19 @@ var czrapp = czrapp || {};
              timer;
 
          window.addEventListener( 'scroll', function() {
-               
+
             clearTimeout(timer);
 
             if( !body.classList.contains( 'no-hover' ) ) {
                body.classList.add( 'no-hover' )
             }
-               
+
             timer = setTimeout( function(){
                body.classList.remove('no-hover')
             },500);
 
          }, false );
-      }, 
+      },
 
       //VARIOUS HOVERACTION
       variousHoverActions : function() {
@@ -381,6 +381,7 @@ var czrapp = czrapp || {};
                };
 
          czrapp.$_body.on( 'click touchstart touchend czr-btt', '.czr-btt', function ( evt ) {
+
             evt.preventDefault();
             evt.stopPropagation();
             $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
@@ -395,5 +396,5 @@ var czrapp = czrapp || {};
 
    czrapp.methods.Czr_UserExperience = {};
    $.extend( czrapp.methods.Czr_UserExperience , _methods );
-   
+
 })(jQuery, czrapp);
