@@ -384,10 +384,6 @@ img.v-centered.tc-holder-img {
   -moz-transform: translate(0, 50%);
   -ms-transform: translate(0, 50%);
   transform: translate(0, 50%);
-  -webkit-transform: translate3d(0, 50%, 0);
-  -moz-transform: translate3d(0, 50%, 0);
-  -ms-transform: translate3d(0, 50%, 0);
-  transform: translate3d(0, 50%, 0);
 }
 
 .czr-valign .czr-valign-child {
@@ -395,10 +391,6 @@ img.v-centered.tc-holder-img {
   -moz-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
-  -webkit-transform: translate3d(0, -50%, 0);
-  -moz-transform: translate3d(0, -50%, 0);
-  -ms-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
 }
 
 .czr-talign {
@@ -406,10 +398,6 @@ img.v-centered.tc-holder-img {
   -moz-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
-  -webkit-transform: translate3d(0, -50%, 0);
-  -moz-transform: translate3d(0, -50%, 0);
-  -ms-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
   top: 50%;
   position: absolute;
 }

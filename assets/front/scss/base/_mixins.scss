@@ -370,16 +370,16 @@
 
 @mixin czr-valign() {
   @include transform( translate(0, 50%) );
-  @include transform( translate3d(0, 50%, 0) );
+  //@include transform( translate3d(0, 50%, 0) );
   & .czr-valign-child {
     @include transform( translate(0, -50%) );
-    @include transform( translate3d(0, -50%, 0) );
+    //@include transform( translate3d(0, -50%, 0) );
   }
 }
 
 @mixin czr-talign() {
   @include transform( translate(0, -50%) );
-  @include transform( translate3d(0, -50%, 0) );
+  //@include transform( translate3d(0, -50%, 0) );
   top: 50%;
   position: absolute;
 }
