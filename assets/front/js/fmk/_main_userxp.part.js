@@ -142,7 +142,7 @@ var czrapp = czrapp || {};
                var $_to_scroll = $(this).find('.product_list_widget');
                if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
                   $_to_scroll.mCustomScrollbar({
-                     theme: czrapp.$_body.hasClass('header-skin-light') ? 'dark' : 'minimal',
+                     theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
                   });
                }
             });

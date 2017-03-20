@@ -349,7 +349,10 @@ var czrapp = czrapp || {};
         return;
       }
 
-      $_el.removeClass('limited-height').css('max-height', '' ).css('overflow', '');
+      $_el.removeClass('limited-height').css({
+        'max-height': '',
+        'overflow' : '',
+      });
       if ( $_el.is('[class*=mCustomScrollbar]') ) {
         $_el.mCustomScrollbar("destroy");
       }
