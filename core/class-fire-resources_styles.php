@@ -9,14 +9,17 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
    class CZR_resources_styles {
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
-      private $_is_dev_mode   = false;
-      private $_is_debug_mode = false;
+
+      private $_minify_css;
+      private $_resources_version;
 
       function __construct () {
          self::$instance =& $this;
 
-         $this->_is_debug_mode = ( defined('WP_DEBUG') && true === WP_DEBUG );
-         $this->_is_dev_mode   = ( defined('CZR_DEV') && true === CZR_DEV );
+         $this->_resouces_version  = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+
+         $this->_minify_css        = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
+         $this->_minify_css        = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
 
          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_front_styles' ) );
 
@@ -36,9 +39,9 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
          $_path    = CZR_ASSETS_PREFIX . 'front/css/';
 
-         $_ver     = $this->_is_debug_mode || $this->_is_dev_mode ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+         $_ver     = $this->_resouces_version;
 
-         $_ext     = $this->_is_debug_mode || $this->_is_dev_mode ? '.css' : '.min.css';
+         $_ext     = $this->_minify_css ? '.min.css' : '.css';
 
          wp_enqueue_style( 'customizr-bs'          , czr_fn_get_theme_file_url( "{$_path}custom-bs/custom-bootstrap{$_ext}" ) , array(), $_ver, 'all' );
 
@@ -130,7 +133,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          //LET'S DANCE
          //start computing style
          $styles    = array();
-         $glue      = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+         $glue      = $this->_minify_css ? '' : "\n";
 
          $skin_style_map = array(
             'skin_color' => array(

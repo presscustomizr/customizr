@@ -204,6 +204,12 @@ if ( ! class_exists( 'CZR___' ) ) :
               //IS PRO
               if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
 
+              //IS DEBUG MODE
+              if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
+
+              //IS DEV MODE
+              if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
+
         }//setup_contants()
 
 
