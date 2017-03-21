@@ -436,11 +436,18 @@ Headings images
 .czr-center-sections {
   align-items: center;
 }
+.czr-cover-sections  {
+  align-items: center;
+}
 .czr-cover-sections > section {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+/* element to strech class needed */
+.czr-cover-sections > .entry-media__holder {
+  align-self: stretch;
 }
 .no-thumb .czr-cover-sections .entry-media__wrapper {
   margin: auto;

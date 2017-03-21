@@ -3299,6 +3299,30 @@ select:-webkit-autofill {
   color: #fff;
 }
 
+.btn-skin-darkest-oh {
+  background-color: #202020;
+  border-color: #202020;
+  color: #fff;
+}
+
+.btn-skin-darkest-oh:hover, .btn-skin-darkest-oh:focus, .btn-skin-darkest-oh:active {
+  color: #818181;
+  background-color: transparent;
+  border-color: #818181;
+}
+
+.btn-skin-darkest-oh.inverted {
+  color: #777;
+  background-color: transparent;
+  border-color: #eceeef;
+}
+
+.btn-skin-darkest-oh.inverted:hover, .btn-skin-darkest-oh.inverted:focus, .btn-skin-darkest-oh.inverted:active {
+  border-color: #818181;
+  color: #fff;
+  background-color: #818181;
+}
+
 .readmore-holder {
   padding-top: 1.25em;
   padding-bottom: 1.25em;

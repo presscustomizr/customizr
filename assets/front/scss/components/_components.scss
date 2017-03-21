@@ -160,6 +160,32 @@
   }
 }
 
+// .btn modifier
+.btn-skin-darkest-oh {
+  background-color: $black;
+  border-color: $black;
+  color: $white;
+
+  &:hover, &:focus, &:active {
+    color: $skin-darkest;
+    background-color: transparent;
+    border-color: $skin-darkest;
+  }
+
+  // .btn modifier
+  &.inverted {
+    color: $grey-dark;
+    background-color: transparent;
+    border-color: $grey-light;
+
+    &:hover, &:focus, &:active {
+      border-color: $skin-darkest;
+      color: $white;
+      background-color: $skin-darkest;//previously $black;
+    }
+  }
+}
+
 input[type=submit] {
   @extend .btn-skin-darkest;
 }

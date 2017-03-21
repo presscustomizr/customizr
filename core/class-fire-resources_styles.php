@@ -109,7 +109,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                         body table { border-collapse: collapse; }
             ');
 
-        return $_css;
+         return $_css;
       }
 
 
@@ -285,6 +285,9 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      '.btn-skin-darkest:active',
                      '.btn-skin-darkest:focus',
                      '.btn-skin-darkest:hover',
+                     '.btn-skin-darkest-oh:active',
+                     '.btn-skin-darkest-oh:focus',
+                     '.btn-skin-darkest-oh:hover',
                      '.btn-skin-darkest.inverted',
                      '.entry-meta a:not(.btn):hover',
                      '.grid-container__classic .post-type__icon .icn-format',
@@ -299,9 +302,15 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      '.btn-skin-darkest:active',
                      '.btn-skin-darkest:focus',
                      '.btn-skin-darkest:hover',
+                     '.btn-skin-darkest-oh:active',
+                     '.btn-skin-darkest-oh:focus',
+                     '.btn-skin-darkest-oh:hover',
                      '.btn-skin-darkest.inverted:active',
                      '.btn-skin-darkest.inverted:focus',
                      '.btn-skin-darkest.inverted:hover',
+                     '.btn-skin-darkest-oh.inverted:active',
+                     '.btn-skin-darkest-oh.inverted:focus',
+                     '.btn-skin-darkest-oh.inverted:hover',
                      'input[type=submit]:hover',
                   ),
 
@@ -311,6 +320,9 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      '.btn-skin-darkest.inverted:active',
                      '.btn-skin-darkest.inverted:focus',
                      '.btn-skin-darkest.inverted:hover',
+                     '.btn-skin-darkest-oh.inverted:active',
+                     '.btn-skin-darkest-oh.inverted:focus',
+                     '.btn-skin-darkest-oh.inverted:hover',
                      'input[type=submit]',
                      '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
                   )
