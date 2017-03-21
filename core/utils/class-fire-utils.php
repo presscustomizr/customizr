@@ -700,32 +700,41 @@ function czr_fn_is_secondary_menu_enabled() {
 * @since Customizr 3.4+
 */
 function czr_fn_get_customizer_url( $autofocus = null, $control_wrapper = 'tc_theme_options' ) {
-    $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
-    $autofocus  = ( ! is_array($autofocus) || empty($autofocus) ) ? null : $autofocus;
+   $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+   $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
+   $autofocus  = ( ! is_array($autofocus) || empty($autofocus) ) ? null : $autofocus;
 
-    if ( is_null($autofocus) )
+   if ( is_null($autofocus) ) {
       return $_customize_url;
+   }
 
-    $_ordered_keys = array( 'control', 'section', 'panel');
+   $_ordered_keys = array( 'control', 'section', 'panel');
 
-    // $autofocus must contain at least one key among (control,section,panel)
-    if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) )
+   // $autofocus must contain at least one key among (control,section,panel)
+   if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) ) {
       return $_customize_url;
+   }
 
-    // wrap the control in the $control_wrapper if neded
-    if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
+   // $autofocus must contain at least one key among (control,section,panel)
+   if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) ) {
+      return $_customize_url;
+   }
+
+   // wrap the control in the $control_wrapper if neded
+   if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ) {
       $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
-    }
+   }
 
-    //Since wp 4.6.1 we order the params following the $_ordered_keys order
-    $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
+   //Since wp 4.6.1 we order the params following the $_ordered_keys order
+   $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
 
-    if ( false !== $autofocus = reset($autofocus) )
+   if ( ! empty( $autofocus ) ) {
+      //here we pass the first element of the array
       // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-      return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );
-    else
-      return $_customize_url;
+      return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
+   }
+
+   return $_customize_url;
 }
 
 
