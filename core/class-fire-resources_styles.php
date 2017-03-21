@@ -149,7 +149,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      '.grid-container__classic .post-type__icon',
                      '.post-type__icon:hover .icn-format',
                      '.grid-container__classic .post-type__icon:hover .icn-format',
-                     '[class*="grid-container__"] .hover .entry-title a'
+                     '[class*="grid-container__"] .entry-title a:hover'
                   ),
                   'border-color' => array(
                      '.czr-slider-loader-wrapper .czr-css-loader > div ',
@@ -291,7 +291,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      '.btn-skin-darkest.inverted',
                      '.entry-meta a:not(.btn):hover',
                      '.grid-container__classic .post-type__icon .icn-format',
-                     '[class*="grid-container__"] .entry-title a:hover',
+                     '[class*="grid-container__"] .hover .entry-title a',
                      '.widget-area a:not(.btn):hover',
                   ),
 
