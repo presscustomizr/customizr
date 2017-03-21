@@ -47,11 +47,11 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
           $slug =  $post->post_name;
           switch ( $slug ) {
             case 'post-format-video-youtube' :
-                $content = 'https://youtu.be/FAECyLvSCHg';
+                $content = $wp_embed -> autoembed( 'https://youtu.be/FAECyLvSCHg' );
                 $class   = 'youtube';
               break;
             case 'post-format-video-wordpresstv' :
-                $content = 'https://vimeo.com/176587685';
+                $content = $wp_embed -> autoembed( 'https://vimeo.com/176587685' );
                 $class   = 'vimeo';
               break;
             default :
@@ -59,14 +59,29 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
               $class   = '';
           }
 
-          global $wp_embed;
-          $content = $content ? $wp_embed -> autoembed( $content ) : '';
+          /*
           $content = ! $content && 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ?
             '<div class="tc-placeholder-wrap">
                 <p><strong>You need to setup the video post field</strong></p>
             </div>' : $content;
 
-          return $content ? '<div class="video-container '. $class .'">'. $content . '</div>' : ' ';
+          */
+          if ( ! $content ) {
+            $video_instance = czr_fn_register( array( 'id' => 'video', 'render' => false, 'template' => 'content/media/video', 'model_class' => 'content/media/video' ) );
+            $content = czr_fn_get_model_instance( $video_instance )->czr_fn_get_media_embed();
+          }
+          if ( ! $content ) {
+
+            $placeholder = 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ? '<div class="tc-placeholder-wrap">
+                <p><strong>You need to setup the video post field</strong></p>
+            </div>' : '';
+
+            return '<div class="video-container '. $class .'">'. $placeholder . '</div>';
+
+          }else {
+            return '<div class="video-container '. $class .'">'. $content . '</div>';
+          }
+          break;
 
       case 'audio':
           global $post, $wp_embed;
@@ -85,14 +100,24 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
               $class   = '';
           }
 
-          global $wp_embed;
-          $content = $content ? $wp_embed -> autoembed( $content ) : '';
-          $content = ! $content && 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ?
-            '<div class="tc-placeholder-wrap">
-                <p><strong>You need to setup the audio post field</strong></p>
-            </div>' : $content;
+          if ( ! $content ) {
+            $audio_instance = czr_fn_register( array( 'id' => 'audio', 'render' => false, 'template' => 'content/media/audio', 'model_class' => 'content/media/audio' ) );
+            $content = czr_fn_get_model_instance( $audio_instance )->czr_fn_get_media_embed();
+          }
+          if ( ! $content ) {
 
-          return $content ? '<div class="audio-container '. $class .'">'. $content . '</div>' : ' ';
+            $placeholder = 'alternate' == czr_fn_get_opt('tc_post_list_grid') && current_user_can('manage_options') ? '<div class="tc-placeholder-wrap">
+                <p><strong>You need to setup the audio post field</strong></p>
+            </div>' : '';
+
+            return '<div class="audio-container '. $class .'">'. $placeholder . '</div>';
+
+          }else {
+            return '<div class="audio-container '. $class .'">'. $content . '</div>';
+          }
+
+          break;
+
       case 'gallery':
           /* Rough */
           if ( (bool) $gallery = get_post_gallery(get_the_ID(), false) ) {

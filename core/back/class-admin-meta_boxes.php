@@ -40,20 +40,20 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          add_action( 'add_meta_boxes_attachment'          , array( $this , 'czr_fn_attachment_meta_box' ));
 
 
-         add_action( '__post_slider_infos'                 , array( $this , 'czr_fn_get_post_slider_infos' ));
+         add_action( '__post_slider_infos'                , array( $this , 'czr_fn_get_post_slider_infos' ));
 
          add_action( 'save_post'                          , array( $this , 'czr_fn_post_fields_save' ) );
 
-         add_action( '__attachment_slider_infos'           , array( $this , 'czr_fn_get_attachment_slider_infos' ));
+         add_action( '__attachment_slider_infos'          , array( $this , 'czr_fn_get_attachment_slider_infos' ));
 
          add_action( 'edit_attachment'                    , array( $this , 'czr_fn_slide_save' ));
 
          add_action( '__show_slides'                      , array( $this , 'czr_fn_show_slides' ), 10, 2);
 
-         add_action( 'wp_ajax_slider_action'               , array( $this , 'czr_fn_slider_cb' ));
+         add_action( 'wp_ajax_slider_action'              , array( $this , 'czr_fn_slider_cb' ));
 
          //enqueue slider script
-         add_action( 'admin_enqueue_scripts'               , array( $this , 'czr_fn_slider_admin_scripts' ));
+         add_action( 'admin_enqueue_scripts'              , array( $this , 'czr_fn_slider_admin_scripts' ));
 
          //enqueue post format script
          add_action( 'admin_enqueue_scripts'               , array( $this , 'czr_fn_post_formats_admin_scripts' ));

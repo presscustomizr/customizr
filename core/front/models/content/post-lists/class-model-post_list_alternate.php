@@ -268,6 +268,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $media_cols, 'czr__r-w16by9' );
     }
     elseif (
+        !$has_format_icon_media &&
         $has_thumb &&
         !in_array( $_current_post_format, array( 'image', 'audio' ) ) ) {
 

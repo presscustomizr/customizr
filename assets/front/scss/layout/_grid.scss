@@ -119,6 +119,10 @@
   position: relative; overflow: hidden;
 }
 
+.entry-media__wrapper {
+  width: 100%;
+}
+
 .grid-container__alternate .post-tags {
   margin-bottom: $base-line-height;
 }
