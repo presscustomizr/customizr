@@ -2068,26 +2068,26 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $defaults = array(
             'title_tag'     => 'h4',
             'wrapper_class' => 'meta-box-item-title',
-            'wrapper_tag'   => '',
+            'wrapper_tag'   => 'div',
             'title_text'    => '',
             'echo'          => 1,
             'boxed'         => 1,
          );
 
-         $args = wp_parse_args( $args, $defaults );
+         $args    = wp_parse_args( $args, $defaults );
+         extract($args);
 
-         $content = sprintf( '<%1$s>%2$s</%1$s>', $args['title_tag'], $args['title_text'] );
+         $content = sprintf( '<%1$s>%2$s</%1$s>', $title_tag, $title_text );
 
-         $html = $args['boxed'] ? CZR_meta_boxes::czr_fn_wrapper_view( array(
-            'content'        => $content,
-            'wrapper_tag'    => $args[ 'wrapper_tag' ],
-            'wrapper_class'  => $args[ 'wrapper_class' ]
-         ) ) : $content;
+         $html    = $boxed ? CZR_meta_boxes::czr_fn_wrapper_view(
+                        compact( 'content', 'wrapper_tag', 'wrapper_class')
+                    ) : $content;
 
-         if ( ! $args['echo'] )
+         if ( ! $echo )
             return $html;
 
          echo $html;
+
       }
 
 
@@ -2110,10 +2110,11 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          );
 
          $args = wp_parse_args( $args, $defaults );
+         extract( $args );
 
          CZR_meta_boxes::czr_fn_generic_input_view( array_merge( $args, array(
-            'content_before' => $args[ 'content_before' ] . '<input name="'. $args[ 'input_name' ] .'" type="hidden" value = "0" />',
-            'custom_args'    => checked( $args[ 'input_state' ], $current = true, $c_echo = false)
+            'content_before' => $content_before . '<input name="'. $input_name .'" type="hidden" value = "0" />',
+            'custom_args'    => checked( $input_state, $current = true, $c_echo = false)
          )));
 
       }
@@ -2126,50 +2127,50 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
       * @package Customizr
       */
       public static function czr_fn_selectbox_view( $args ) {
-        $defaults = array(
-         'select_name'    => '',
-         'select_class'   => '',
-         'echo'          => 1,
-         'boxed'         => 1,
-         'content_before' => '',
-         'content_after'  => '',
-         'choices'        => array(),
-         'selected'       => '',
-        );
-
-        $args = wp_parse_args( $args, $defaults );
-        extract($args);
-
-        if ( ! $choices ) return;
-
-        $select_id = isset($select_id) ? $select_id : $select_name;
-
-        $options_html = '';
-
-        foreach( $choices as $key => $label )
-         $options_html .= sprintf('<option value=%1$s %2$s>%3$s</option>',
-           esc_attr( $key ),
-           selected( $selected, esc_attr( $key ), $s_echo = false ),
-           $label
+         $defaults = array(
+            'select_name'    => '',
+            'select_class'   => '',
+            'echo'          => 1,
+            'boxed'         => 1,
+            'content_before' => '',
+            'content_after'  => '',
+            'choices'        => array(),
+            'selected'       => '',
          );
 
-        $content = sprintf('<select name="%1$s" id ="%2$s">%3$s</select>',
-           $select_name,
-           $select_id,
-           $options_html
-        );
+         $args = wp_parse_args( $args, $defaults );
+         extract($args);
 
-        $content = $content_before . $content . $content_after;
+         if ( ! $choices ) return;
 
-        $html = $boxed ? CZR_meta_boxes::czr_fn_wrapper_view(
-         compact( 'content', 'wrapper_tag', 'wrapper_class')
-        ) : $content;
+         $select_id = isset($select_id) ? $select_id : $select_name;
 
-        $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
-           sprintf( "%s%s",
-             CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
-             $html
+         $options_html = '';
+
+         foreach( $choices as $key => $label )
+            $options_html .= sprintf('<option value=%1$s %2$s>%3$s</option>',
+            esc_attr( $key ),
+            selected( $selected, esc_attr( $key ), $s_echo = false ),
+            $label
          );
+
+         $content = sprintf('<select name="%1$s" id ="%2$s">%3$s</select>',
+            $select_name,
+            $select_id,
+            $options_html
+         );
+
+         $content = $content_before . $content . $content_after;
+
+         $html    = $boxed ? CZR_meta_boxes::czr_fn_wrapper_view(
+                        compact( 'content', 'wrapper_tag', 'wrapper_class')
+                    ) : $content;
+
+        $html     = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+                        sprintf( "%s%s",
+                           CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
+                           $html
+                        );
 
         if ( ! $echo )
          return $html;
