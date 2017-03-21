@@ -27,6 +27,10 @@ var czrapp = czrapp || {};
       * - use jQuery deferred (think about infinite scroll)
       */
       this.$_grid = $('.masonry__wrapper' );
+
+      if ( !this.$_grid.length )
+        return;
+
       this.$_images = this.$_grid.find('img');
 
       this._loaded_counter = 0;
