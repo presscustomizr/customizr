@@ -1,8 +1,8 @@
 <?php
 class CZR_post_list_single_content_inner_model_class extends CZR_Model {
-  public  $content_cb;
   public  $content;
 
+  public  $defaults = array( 'show_full_content' => false );
 
    function czr_fn_get_the_post_list_content( $show_full_content = false, $more  = null ) {
       do_action( "__before_content_retrieve", $this->id, $this );
@@ -33,7 +33,8 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
       do_action( "__after_content_retrieve", $this->id, $this );
 
     return $to_return;
-   }
+
+  }
 
   /**
   *
@@ -49,7 +50,7 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
 
 
   function czr_fn_get_element_class() {
-    return 'get_the_excerpt' != $this -> czr_fn_get_content_cb( czr_fn_get('show_full_content') ? 'get_the_content' : 'get_the_excerpt' ) ? array( 'entry-content' ) : array( 'entry-summary' );
+    return 'get_the_excerpt' != $this -> czr_fn_get_content_cb( $this->show_full_content ? 'get_the_content' : 'get_the_excerpt' ) ? array( 'entry-content' ) : array( 'entry-summary' );
   }
 
 

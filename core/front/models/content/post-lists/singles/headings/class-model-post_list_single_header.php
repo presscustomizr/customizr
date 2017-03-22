@@ -9,7 +9,7 @@ class CZR_post_list_single_header_model_class extends CZR_Model {
   function czr_fn_get_element_class() {
     $element_class = $this -> element_class;
     $element_class = ! is_array( $element_class ) ? explode( ' ', $element_class ) : $element_class;
-    $title         = get_the_title();
+    $title         = $this -> the_title ? $this -> the_title : get_the_title();
     array_push( $element_class, ! empty( $title ) ? '' : 'no-title' );
     return $element_class;
   }
