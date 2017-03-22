@@ -94,7 +94,7 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
 
       $content = $link_instance->czr_fn_get_content();
 
-      if ( ! ( isset( $content[ 'url' ] ) && $content['url'] ) ) {
+      if ( ! ( isset( $content[ 'url' ] ) && $content[ 'url' ] ) ) {
          return call_user_func( $default );
       }
 

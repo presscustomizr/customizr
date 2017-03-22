@@ -15,9 +15,6 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
     $element_class = ! empty($this-> element_class) ? $this ->element_class : array();
     $element_class = ! is_array( $element_class ) ? explode(' ', $element_class ) : $element_class;
 
-    if ( ! $this -> only_thumb && 'gallery' == $post_format )
-      array_push( $element_class, 'czr-carousel' );
-
     //centering
     if ( $this -> only_thumb || ( ! $this->has_format_icon_media && 'audio' != $post_format ) ) {
       if ( esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) )
@@ -119,37 +116,52 @@ class CZR_post_list_single_media_model_class extends CZR_Model {
           break;
 
       case 'gallery':
-          /* Rough */
-          if ( (bool) $gallery = get_post_gallery(get_the_ID(), false) ) {
 
-            $_gallery_html = '';
-            /* Loop through all the image and output them one by one */
-            foreach( $gallery['src'] as $src )
-              $_gallery_html .= '<div class="carousel-cell"><img class="gallery-img wp-post-image" src="'.$src.'" data-mfp-src="'.$src.'" alt="Gallery image" /></div>';
+        /* Test */
+        $gallery = !czr_fn_is_registered( 'gallery' ) ? czr_fn_register(
+           array(
+              'id'          => 'gallery',
+              'render'      => false,
+              'template'    => 'content/media/gallery',
+              'model_class' => 'content/media/gallery',
+           )
+        ) : 'gallery' ;
 
-            $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
-            $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
+        $gallery_instance = czr_fn_get_model_instance( $gallery );
+        //reset any previous content
+        $gallery_instance->czr_fn_reset();
 
-            $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+        $content = $gallery_instance->czr_fn_get_content();
 
-            $_gallery_nav    = count($gallery['src']) < 2 ? '' : '<div class="tc-gallery-nav">
-                          <span class="slider-control btn btn-skin-darkest-shaded inverted slider-prev icn-left-open-big"></span>
-                          <span class="slider-control btn btn-skin-darkest-shaded inverted slider-next icn-right-open-big"></span>
-                        </div>';
-            //post action;
-            ob_start();
-              czr_fn_render_template( 'modules/post_action_button', array( 'model_args' => array( 'post_action_link' => '#', 'post_action_link_class' => 'expand-img-gallery'  ) ) );
-            $_post_action = ob_get_clean();
+        if ( ! $content ) {
+           //we need to return a placeholder;
+           return false;
+        }
 
-            $_gallery_html   = sprintf( '%1$s<div class="carousel carousel-inner">%2$s</div>',
-                                       $_gallery_nav,
-                                       $_gallery_html
-            );
+        $the_permalink      = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
+        $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
 
-            return sprintf( "%s%s%s", $_bg_link, $_post_action, $_gallery_html);
-          }
-          //we need to return a placeholder;
-          return false;
+
+
+        $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+
+        //post action;
+        ob_start();
+          czr_fn_render_template( 'modules/post_action_button', array( 'model_args' => array( 'post_action_link' => '#', 'post_action_link_class' => 'expand-img-gallery'  ) ) );
+        $_post_action = ob_get_clean();
+
+
+        //gallery
+        ob_start();
+
+          czr_fn_get_view_instance( $gallery ) -> czr_fn_maybe_render();
+
+        $_gallery_html = ob_get_clean();
+
+        return sprintf( "%s%s%s", $_bg_link, $_post_action, $_gallery_html );
+
+        break;
+      ;
 
       default:
           $_the_thumb = czr_fn_get_thumbnail_model( 'normal', null, null, null, null, $this -> use_placeholder );

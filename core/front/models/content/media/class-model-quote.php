@@ -71,7 +71,7 @@ class CZR_quote_model_class extends CZR_Model {
       protected function czr_fn_setup_late_properties() {
 
 
-            $this->czr_fn__set_the_quote( $this->czr_fn__get_the_quote() );
+            $this->czr_fn__set_the_quote();
 
       }
 
