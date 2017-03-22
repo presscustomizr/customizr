@@ -339,6 +339,14 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     }
 
 
+    public function czr_fn_reset_defaults () {
+
+          if ( ! empty( $this -> defaults ) ) {
+
+                $this -> czr_fn_update();
+
+          }
+    }
 
     /***********************************************************************************
     * ACTIONS ON VIEW READY

@@ -155,14 +155,22 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
             if ( czr_fn_is_registered( $_model_id ) ) {
                   $model_instance = czr_fn_get_model_instance( $_model_id );
 
+
                   //sets the template property on the fly based on what's requested
                   if ( ! czr_fn_get_model_property( $_model_id, 'template') ) {
                         $model_instance -> czr_fn_set_property('template' , $_t );
                   }
 
                   //update model with the one passed
-                  if ( is_array($args) && array_key_exists( 'model_args', $args) )
+                  if ( is_array($args) && array_key_exists( 'model_args', $args) ) {
+
                         $model_instance -> czr_fn_update( $_model_args );
+
+                  }
+                  else {
+
+                        $model_instance -> czr_fn_reset_defaults();
+                  }
 
                   czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();
             }
