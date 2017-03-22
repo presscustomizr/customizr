@@ -37,7 +37,7 @@ var czrapp = czrapp || {};
 
       //SLIDER IMG + VARIOUS
       setTimeout( function() {
-        //centering per slider
+        //centering per carousel
         $.each( $( '.czr-carousel .carousel-inner') , function() {
           $( this ).centerImages( {
             enableCentering : 1 == CZRParams.centerSliderImg,
@@ -48,7 +48,7 @@ var czrapp = czrapp || {};
             useImgAttr : true,
             zeroTopAdjust: 0
           });
-          //fade out the loading icon per slider with a little delay
+          //fade out the loading icon per carousel with a little delay
           //mostly for retina devices (the retina image will be downloaded afterwards
           //and this may cause the re-centering of the image)
           var self = this;
@@ -61,22 +61,22 @@ var czrapp = czrapp || {};
 
     parallax : function() {
       /*
-      * slider parallax on flickity ready
+      * carousel parallax on flickity ready
       * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
       */
-      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', function( evt ) {
-            var $_parallax_slider  = $(evt.target),
-        //extrapolate data from the parallax slider and pass them to the flickity viewport
+      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-carousel', function( evt ) {
+            var $_parallax_carousel  = $(evt.target),
+        //extrapolate data from the parallax carousel and pass them to the flickity viewport
             _parallax_data_map = ['parallaxRatio', 'parallaxDirection', 'parallaxOverflowHidden', 'backgroundClass', 'matchMedia'];
             _parallax_data     = _.object( _.chain(_parallax_data_map).map( function( key ) {
-                                          var _data = $_parallax_slider.data( key );
+                                          var _data = $_parallax_carousel.data( key );
                                           return _data ? [ key, _data ] : '';
                                         })
                                         .compact()
                                         .value()
                                   );
 
-            $_parallax_slider.children('.flickity-viewport').czrParallax(_parallax_data);
+            $_parallax_carousel.children('.flickity-viewport').czrParallax(_parallax_data);
       });
 
       $( '.parallax-item' ).czrParallax();
@@ -90,7 +90,7 @@ var czrapp = czrapp || {};
     },
 
     lightbox : function() {
-      var _arrowMarkup = '<span class="slider-control btn btn-skin-darkest-shaded mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-darkest-shaded mfp-arrow-%dir% icn-%dir%-open-big"></span>';
 
       /* The magnificPopup delegation is very good
       * it works when clicking on a dynamically added a.expand-img
@@ -105,7 +105,7 @@ var czrapp = czrapp || {};
       /* galleries in singles Create grouped galleries */
       $( '.post-gallery' ).each(function(){
         $(this).magnificPopup({
-          delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+          delegate: '.expand-img', // child items selector, by clicking on it popup will open
           type: 'image',
           gallery: {
            enabled: true,
@@ -127,7 +127,7 @@ var czrapp = czrapp || {};
       });
       //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
-      czrapp.$_body.on( 'click', '[class*="grid-container__"] .format-gallery .expand-img-gallery', function(e) {
+      czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
         e.preventDefault();
 
         $(this).closest('article').magnificPopup({
@@ -144,9 +144,9 @@ var czrapp = czrapp || {};
 
 
     /*
-    * flickity slider:
+    * flickity carousel:
     */
-    czr_slider : function() {
+    czrCarousels : function() {
       /* Flickity ready
       * see https://github.com/metafizzy/flickity/issues/493#issuecomment-262658287
       */
@@ -163,9 +163,9 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', czr_controls_disabling );
       /*Handle custom nav */
       // previous
-      czrapp.$_body.on( 'click tap prev.czr-slider', '.slider-prev', slider_previous );
+      czrapp.$_body.on( 'click tap prev.czr-carousel', '.czr-carousel-prev', carousel_previous );
       // next
-      czrapp.$_body.on( 'click tap next.czr-slider', '.slider-next', slider_next );
+      czrapp.$_body.on( 'click tap next.czr-carousel', '.czr-carousel-next', carousel_next );
 
 
       /* Test only RELATED POSTS !!!!!! */
@@ -231,16 +231,16 @@ var czrapp = czrapp || {};
           * - flickity, when accessibiity is set to true, sets the "carousel" tabindex property
           * - dragging a slide the carousel is focused with focus(), because of the tabindex the page scrolls to top
           * and flickity re-scrolls to the correct position.
-          * The scroll to top (due to the focus) for some reason conflicts with the #customizr-slider-* overflow:hidden property
+          * The scroll to top (due to the focus) for some reason conflicts with the #customizr-carousel-* overflow:hidden property
           * when parallaxing.
           * Basically the parallaxed item, despite the top property is set to Y <> 0, appears as it had Y = 0.
-          * Plus absoluted elements referring to the #customizr-slider-* seems to be shifted up of -Y
+          * Plus absoluted elements referring to the #customizr-carousel-* seems to be shifted up of -Y
           * very weird behavior to investigate on :/
           */
           accessibility: false,
       });
 
-      /* Handle sliders nav */
+      /* Handle carousels nav */
 
 
       /*
@@ -260,8 +260,8 @@ var czrapp = czrapp || {};
 
 
         var $_carousel_wrapper = $_this.closest('.czr-carousel'),
-            $_prev             = $_carousel_wrapper.find('.slider-prev'),
-            $_next             = $_carousel_wrapper.find('.slider-next');
+            $_prev             = $_carousel_wrapper.find('.czr-carousel-prev'),
+            $_next             = $_carousel_wrapper.find('.czr-carousel-next');
 
         //Reset
         $_prev.removeClass('disabled');
@@ -282,13 +282,13 @@ var czrapp = czrapp || {};
 
       /*Handle custom nav */
       // previous
-      function slider_previous(evt) {
+      function carousel_previous(evt) {
         evt.preventDefault();
 
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 
-        //if not already done, cache the slider this control controls as data-controls attribute
+        //if not already done, cache the carousel this control controls as data-controls attribute
         if ( ! _flickity ) {
           _flickity   = $_this.closest('.czr-carousel').find('.flickity-enabled').data('flickity');
           $_this.data( 'controls', _flickity )
@@ -298,13 +298,13 @@ var czrapp = czrapp || {};
       };
 
       // next
-      function slider_next(evt) {
+      function carousel_next(evt) {
         //evt.preventDefault();
 
         var $_this    = $(this),
             _flickity = $_this.data( 'controls' );
 
-        //if not already done, cache the slider this control controls as data-controls attribute
+        //if not already done, cache the carousel this control controls as data-controls attribute
         if ( ! _flickity ) {
           _flickity   = $_this.closest('.czr-carousel').find('.flickity-enabled').data('flickity');
           $_this.data( 'controls', _flickity )

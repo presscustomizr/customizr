@@ -119,7 +119,6 @@ embed, iframe, object, video { max-width: 100%;}
 }
 /* end took from customizer */
 
-.slider-nav, .tc-gallery-nav { cursor: pointer;}
 .czr-carousel { position: relative; overflow: hidden;}
 .carousel-caption {
   height: auto;
@@ -348,6 +347,7 @@ Limit to desktop
 .full-image .tc-thumbnail {
   background: #B4B4B4 ;
 }
+[class*=grid-container__] .czr-carousel,
 [class*=grid-container__] .carousel-inner {
   height: 100%;
 }/*

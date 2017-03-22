@@ -26,7 +26,7 @@ jQuery(function ($) {
             'centerImagesWithDelay',
             'parallax',
             'lightbox',
-            'czr_slider'
+            'czrCarousels'
          ],
          Czr_StickyFooter : ['stickyFooterEventListener'],
          Czr_SideNav : []
