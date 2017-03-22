@@ -64,7 +64,7 @@ var czrapp = czrapp || {};
       * carousel parallax on flickity ready
       * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
       */
-      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-carousel', function( evt ) {
+      czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', function( evt ) {
             var $_parallax_carousel  = $(evt.target),
         //extrapolate data from the parallax carousel and pass them to the flickity viewport
             _parallax_data_map = ['parallaxRatio', 'parallaxDirection', 'parallaxOverflowHidden', 'backgroundClass', 'matchMedia'];
@@ -156,7 +156,7 @@ var czrapp = czrapp || {};
           return;
         }
         activate.apply( this, arguments );
-        this.dispatchEvent('czr-flickity-ready');
+        this.dispatchEvent( 'czr-flickity-ready', null, this );
       };
 
       /* Disable controllers when the first or the latest slide is in the viewport */
@@ -196,9 +196,20 @@ var czrapp = czrapp || {};
       });
 
       /* Test only !!!!!! MAIN SLIDER */
+
+      //Enable page dots on fly
+      czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function( evt, _flickity ) {
+        if ( $(this).find('.carousel-cell').length > 1 ) {
+          _flickity.options.pageDots = true;
+          _flickity._createPageDots();
+          _flickity.activatePageDots();
+        }
+      });
+
+
       $('.carousel-inner', '[id^="customizr-slider-main"]').flickity({
           prevNextButtons: false,
-          pageDots: true,
+          pageDots: false,
           /*
           * From flickity docs
           * At the end of cells, wrap-around to the other end for infinite scrolling.
@@ -241,8 +252,6 @@ var czrapp = czrapp || {};
       });
 
       /* Handle carousels nav */
-
-
       /*
       * Disable controllers when the first or the latest slide is in the viewport and no wraparound selected
       * when wrapAround //off
