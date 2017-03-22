@@ -78,8 +78,29 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
 
 
   /* Testing purpose */
-  function czr_fn__get_the_post_link() {
-    return '<p><a class="external" target="_blank" href="http://www.google.it">www.google.it</a></p>';
+  function czr_fn__get_the_post_link( $default ) {
+      $link_id = !czr_fn_is_registered( 'link' ) ? czr_fn_register(
+         array(
+            'id'          => 'link',
+            'render'      => false,
+            'template'    => 'content/media/link',
+            'model_class' => 'content/media/link',
+         )
+      ) : 'link' ;
+
+      $link_instance = czr_fn_get_model_instance( $link_id );
+      //reset any previous content
+      $link_instance->czr_fn_reset();
+
+      $content = $link_instance->czr_fn_get_content();
+
+      if ( ! ( isset( $content[ 'url' ] ) && $content['url'] ) ) {
+         return call_user_func( $default );
+      }
+
+
+      czr_fn_get_view_instance( $link_id ) -> czr_fn_maybe_render();
+
   }
 
 
@@ -104,7 +125,6 @@ class CZR_post_list_single_content_inner_model_class extends CZR_Model {
          return call_user_func( $default );
       }
 
-      $quote_instance->czr_fn_update( array( 'content' => $content ) );
       czr_fn_get_view_instance( $quote_id ) -> czr_fn_maybe_render();
 
   }

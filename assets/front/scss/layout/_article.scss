@@ -405,8 +405,12 @@ section.post-related-articles {
   @at-root .comment-meta {
     @at-root .comment-author {
       display: inline-block;
-      a { color: $black; @extend .semi-bold; @include underlined($grey-light, 2px); }
-     }
+      a {
+        color: $black;
+        @extend .semi-bold;
+        @include underlined_nocolor( 2px);
+      }
+    }
     time {
       float:right;
       @extend .small;
@@ -414,7 +418,11 @@ section.post-related-articles {
       span { color: $grey }
     }
   }
-  @at-root .comment-link { color: $black; @extend .semi-bold; @include underlined($grey-light, 2px); }
+  @at-root .comment-link {
+    color: $black;
+    @extend .semi-bold;
+    @include underlined_nocolor( 2px );
+  }
   @at-root .comment-reply-link { @extend .action-link }
   @at-root .comment-edit-btn { padding:0.25em 0.67em 0.25em 0.67em }
 }

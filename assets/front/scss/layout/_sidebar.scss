@@ -16,7 +16,7 @@
       color: $grey;
     }
     @at-root .widget-area .widget:not(.widget_shopping_cart) a:not(.btn) {
-      @include underlined_nocolor( 1px)
+      @include underlined_nocolor( 1px )
     }
   }
 }

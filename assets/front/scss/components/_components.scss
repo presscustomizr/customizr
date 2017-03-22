@@ -15,6 +15,7 @@
   font-size: 1em;
   @extend .service-font;
   cursor: pointer;
+  @include transition( all 0.2s ease-in-out );
 }
 
 // SKINNED
@@ -187,7 +188,9 @@
 }
 
 input[type=submit] {
+  @extend %btn_base;
   @extend .btn-skin-darkest;
+  cursor: pointer;
 }
 
 //end buttons

@@ -11,7 +11,7 @@
       if ( czr_fn_get( 'quote_text' ) ) :
 
 ?>
-<blockquote class="blockquote entry-quote"<?php czr_fn_echo( 'element_attributes' ) ?>>
+<blockquote class="blockquote entry-quote <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo( 'element_attributes' ) ?>>
   <p><?php czr_fn_echo( 'quote_text' ) ?></p>
 <?php
       if ( czr_fn_get( 'quote_source' )  ) :

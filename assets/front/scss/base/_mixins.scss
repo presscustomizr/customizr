@@ -165,6 +165,7 @@
   }
 
   -webkit-transition: $unfoldedTransitions;
+  -o-transition : $unfoldedTransitions;
   transition: $unfoldedTransitions;
 }
 

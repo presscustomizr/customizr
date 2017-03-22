@@ -1,20 +1,20 @@
 <?php
-class CZR_quote_model_class extends CZR_Model {
+class CZR_link_model_class extends CZR_Model {
 
-      private static $meta_key      = 'czr_quote_meta';
+      private static $meta_key      = 'czr_link_meta';
 
       private static $meta_fields   = array(
-                                          'text'            => 'quote_text',
-                                          'source'          => 'quote_author'
+                                          'title'       => 'link_title',
+                                          'url'         => 'link_url'
                                     );
 
       public $defaults              = array(
-                                          'content'         => null,
-                                          'quote_text'      => '',
-                                          'quote_source'    => '',
+                                          'content'     => null,
+                                          'link_url'    => '',
+                                          'link_title'  => '',
                                     );
 
-      private $_quote;
+      private $_link;
 
 
 
@@ -34,30 +34,31 @@ class CZR_quote_model_class extends CZR_Model {
 
       public function czr_fn_reset() {
             unset($this->content);
-            unset($this->_quote);
+            unset($this->_link);
       }
 
 
 
 
-      public function czr_fn_get_quote_text() {
-            if ( ! isset( $this->_quote ) )
-                  $this->_quote = $this->czr_fn__get_the_quote();
+      public function czr_fn_get_link_title() {
+            if ( ! isset( $this->_link ) )
+                  $this->_link = $this->czr_fn__get_the_link();
 
-            return esc_html( $this->_quote[ 'quote_text' ] );
+            return esc_html( $this->_link[ 'link_title' ] );
+
+      }
+
+
+
+
+      public function czr_fn_get_link_url() {
+            if ( ! isset( $this->_link ) )
+                  $this->_link = $this->czr_fn__get_the_link();
+
+            return esc_url( $this->_link[ 'link_url' ] );
 
       }
 
-
-
-
-      public function czr_fn_get_quote_source() {
-            if ( ! isset( $this->_quote ) )
-                  $this->_quote = $this->czr_fn__get_the_quote();
-
-            return esc_html( $this->_quote[ 'quote_source' ] );
-
-      }
 
 
 
@@ -66,39 +67,40 @@ class CZR_quote_model_class extends CZR_Model {
       * @hook: pre_rendering_view_{$this -> id}, 9999
       */
       /*
-      * Each time this model view is rendered setup the current quote
+      * Each time this model view is rendered setup the current link
       */
+      //defined in the model base class
       protected function czr_fn_setup_late_properties() {
 
 
-            $this->czr_fn__set_the_quote( $this->czr_fn__get_the_quote() );
+            $this->czr_fn__set_the_link( $this->czr_fn__get_the_link() );
 
       }
 
 
 
 
-      protected function czr_fn__set_the_quote() {
+      protected function czr_fn__set_the_link() {
             //defined in the model base class
-            $this->_quote = $this->czr_fn__get_the_quote();
+            $this->_link = $this->czr_fn__get_the_link();
       }
 
 
 
 
-      protected function czr_fn__get_the_quote() {
+      protected function czr_fn__get_the_link() {
 
 
-            $_text        = $this->czr_fn__get_quote_text();
+            $_url        = $this->czr_fn__get_link_url();
 
-            if ( ! $_text )
+            if ( ! $_url )
                   return $this -> defaults;
 
-            $_source      = $this->czr_fn__get_quote_source();
+            $_title      = $this->czr_fn__get_link_title();
 
             return array(
-                  'quote_text'       => $_text,
-                  'quote_source'     => $_source,
+                  'link_url'       => $_url,
+                  'link_title'     => $_title,
             );
 
       }
@@ -106,37 +108,37 @@ class CZR_quote_model_class extends CZR_Model {
 
 
 
-      protected function czr_fn__get_quote_text() {
+      protected function czr_fn__get_link_url() {
 
             $_content         = $this->czr_fn_get_content();
 
-            if ( ! isset( $_content[ 'text' ] ) )
+            if ( ! isset( $_content[ 'url' ] ) )
                   return false;
 
 
-            $text             = $_content[ 'text' ];
+            return $_content[ 'url' ];
 
-            $text             = !get_the_title() ? sprintf( '<a title="%1$s" href="%2$s">%3$s</a>',
+            $url             = !get_the_title() ? sprintf( '<a title="%1$s" href="%2$s">%3$s</a>',
                                     the_title_attribute( array( 'before' => __('Permalink to', 'customizr'), 'echo' => false ) ),
                                     esc_url( apply_filters( 'the_permalink', get_the_permalink() ) ),
-                                    $text
-                              ) : $text;
+                                    $url
+                              ) : $url;
 
-            return $text;
+            return $url;
 
       }
 
 
 
 
-      protected function czr_fn__get_quote_source() {
+      protected function czr_fn__get_link_title() {
 
             $_content         = $this->czr_fn_get_content();
 
-            if ( ! isset( $_content[ 'source' ] ) )
+            if ( ! isset( $_content[ 'url' ] ) )
                   return false;
 
-            return $_content[ 'source' ];
+            return $_content[ 'title' ];
 
       }
 

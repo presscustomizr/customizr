@@ -65,3 +65,20 @@
 .flickity-page-dots .dot {
   background-color: $skin-dark;
 }
+
+//link format
+a.czr-format-link {
+  &:hover,
+  .format-link.hover & {
+    color: $skin-link-color-hover;
+  }
+  &::before {
+    background-color: $skin-link-color-hover;
+  }
+}
+
+//comments
+.comment-author a::before,
+.comment-link::before {
+  background-color: $skin-link-color-hover;
+}
