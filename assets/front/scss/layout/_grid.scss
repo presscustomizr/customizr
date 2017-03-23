@@ -492,16 +492,15 @@ a.czr-format-link {
 //
 //full-image = image with no excerpt/gallery
 //IT's AVAILABLE ONLY FOR MASONRY & ALTERNATE
-//
-[class*=grid-container__] .full-image,
 [class*=grid-container__] .full-image {
   a:not(.bg-link) { z-index: 2; position: relative; }
 
-  .tc-thumbnail {
-    .bg-link {
-      background: rgba($black, 0.25);
-      &:hover { background: rgba($black, 0.35); }
-    }
+  .bg-link {
+    background: rgba($black, 0.25);
+  }
+
+  &.hover .bg-link {
+    background: rgba($black, 0.35);
   }
 
   .tc-content {
