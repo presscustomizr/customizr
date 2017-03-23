@@ -33,7 +33,7 @@ img.post-thumbnail {
 
 /* FLICKITY SLIDER  */
 /*.carousel { z-index: 4;}*/
-.carousel-cell { width: 100%;}
+.carousel-cell { width: 100%; overflow: hidden;}
 .carousel img { min-width: 100%;}
 
 
@@ -375,24 +375,16 @@ Limit to desktop
 }*/
 /* viewport inherit size from carousel */
 
-.article-container [class*=grid-container__] .flickity-viewport {
+[class*=grid-container__]:not(.grid-container__square-mini) .flickity-viewport {
   position: absolute;
   width: 100%;
 }
 
 
-.article-container [class*=grid-container__] .tc-thumbnail .carousel-cell {
+[class*=grid-container__] .tc-thumbnail .carousel-cell {
   height: 100%;
   overflow: hidden;
 }
-
-.article-container .grid-container__masonry .full-image .tc-thumbnail:not(.czr-carousel),
-.article-container .grid-container__masonry .full-image .czr-carousel .carousel {
-    position: relative;
-    height: 0;
-    padding-bottom: 150%;
-}
-
 
 /* Give borders to the articles */
 .grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
