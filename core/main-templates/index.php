@@ -72,7 +72,7 @@
           <div id="content" class="<?php czr_fn_article_container_class() ?>">
             <?php
 
-              do_action( '__before_loop' );
+              do_action( '__before_main_loop' );
 
               if ( ! czr_fn_is_home_empty() ) {
                 if ( have_posts() ) {
@@ -87,7 +87,7 @@
                     czr_fn_render_template( 'content/no-results/404' );
                 }
               }//not home empty
-              do_action( '__after_loop' );
+              do_action( '__after_main_loop' );
             ?>
           </div>
 
