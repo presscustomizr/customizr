@@ -420,10 +420,6 @@ a.czr-format-link {
 
     }//tc-grid-caption
 
-    .bg-link::before {
-      background-color: transparent;
-    }
-
     .btn-edit {
       position: absolute;
       bottom: 10px;
@@ -486,9 +482,10 @@ a.czr-format-link {
 }
 .bg-link {
   @include transition(all, 0.6s ease);
+  background: transparent;
 }
 .hover .bg-link {
-  @include filter($black, $white, 0.25);
+  background: rgba($black, 0.25);
   z-index: 2;
 }
 
@@ -501,7 +498,10 @@ a.czr-format-link {
   a:not(.bg-link) { z-index: 2; position: relative; }
 
   .tc-thumbnail {
-    .bg-link { @include filter($black, $white, 0.25); }
+    .bg-link {
+      background: rgba($black, 0.25);
+      &:hover { background: rgba($black, 0.35); }
+    }
   }
 
   .tc-content {
@@ -519,7 +519,12 @@ a.czr-format-link {
     .entry-header a, .entry-footer a {
       color: $white;
     }
-    a:hover { color: $grey-light; &.btn-edit { color: $black; } }
+    a:hover {
+      color: $grey-light;
+      &.btn-edit {
+        color: $black;
+      }
+    }
     .entry-header, .entry-footer  {
       @include opacity(1);
       @include transition(all, 0.3s ease);
@@ -531,27 +536,19 @@ a.czr-format-link {
       @include opacity(0);
       @include transition(all, 0.3s ease);
     }
-    .entry-title { max-width: 80% }
+    .entry-title {
+      max-width: 80%
+    }
     .entry-footer {
       position: absolute;
       width:90%;
       bottom: $base-line-height;
       .post-info {
         padding-top: $base-line-height;
-        &:before { background-color: rgba($grey-lightest, 0.5); }
       }
-
     }
   }
-  &.format-image.hover {
-    cursor: pointer;
-    .tc-thumbnail .bg-link  { @include filter($black, $white, 0.35); }
-  }
-  &.format-gallery.hover {
-    .carousel { @include filter($black, $white, 0.35); }
-  }
 }
-
 
 .grid-container__masonry {
   .post-type__icon {
