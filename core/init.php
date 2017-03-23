@@ -32,6 +32,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         //stack
         public $current_model = array();
 
+        private $existing_files     = array();
+        private $not_existing_files = array();
 
         function __construct( $_args = array()) {
             //init properties
@@ -496,10 +498,29 @@ if ( ! class_exists( 'CZR___' ) ) :
             $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
             $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
-            foreach ( $roots as $root )
-              foreach ( $path_prefixes as $path_prefix )
-                if ( file_exists( $filename = $root . $path_prefix . $path_suffix ) )
+            foreach ( $roots as $root ) {
+              foreach ( $path_prefixes as $path_prefix ) {
+
+                $filename     = $root . $path_prefix . $path_suffix;
+                $_exists      = in_array( $filename, $this->existing_files );
+                $_exists_not  = in_array( $filename, $this->not_existing_files );
+
+                if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
+                  //cache file exists
+                  if ( !$_exists ) {
+                    $this->existing_files[] = $filename;
+                  }
+
                   return $filename;
+
+                }
+                else if ( !$_exists_not ) {
+                  //cache file doesn't exist
+                  $this->not_existing_files[] = $filename;
+                }
+
+              }
+            }
 
             return false;
         }
@@ -513,11 +534,31 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             $combined_roots = array_combine( $roots, $roots_urls );
 
-            foreach ( $roots as $root )
+            foreach ( $roots as $root ) {
+
               foreach ( $url_prefixes as $url_prefix ) {
-                if ( file_exists( $filename = $root . $url_prefix . $url_suffix ) )
+
+                $filename     = $root . $url_prefix . $url_suffix;
+                $_exists      = in_array( $filename, $this->existing_files );
+                $_exists_not  = in_array( $filename, $this->not_existing_files );
+
+                if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
+
+                  //cache file exists
+                  if ( !$_exists ) {
+                    $this->existing_files[] = $filename;
+                  }
                   return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
+                }
+                else if ( !$_exists_not ) {
+                  //cache file doesn't exist
+                  $this->not_existing_files[] = $filename;
+                }
+
               }
+
+            }
+
             return false;
         }
 
