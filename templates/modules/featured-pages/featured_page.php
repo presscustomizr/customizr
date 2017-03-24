@@ -24,7 +24,7 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
         if ( czr_fn_has( 'edit_button' ) && czr_fn_get( 'edit_enabled' ) )
 
           czr_fn_render_template(
-            'modules/edit_button',
+            'modules/common/edit_button',
             array(
               'model_args' => array(
                 'edit_button_link'  => get_edit_post_link( czr_fn_get( 'featured_page_id' ) )

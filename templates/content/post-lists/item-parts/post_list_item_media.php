@@ -15,7 +15,7 @@
 
     if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ):
       czr_fn_render_template(
-        'modules/post_action_button',
+        'modules/common/post_action_button',
         array(
           'model_args' => array(
             'post_action_link'  => $original_thumb_url,

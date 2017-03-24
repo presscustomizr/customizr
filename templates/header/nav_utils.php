@@ -35,7 +35,7 @@
     </ul>
     <?php if ( ( !czr_fn_has('topnav') ||  !czr_fn_has('social_in_topnav') ) && czr_fn_has('header_social_block') ) : ?>
       <div class="primary-nav__socials social-links">
-        <?php czr_fn_render_template('modules/social_block' ) ?>
+        <?php czr_fn_render_template('modules/common/social_block' ) ?>
       </div>
     <?php endif ?>
 </div>

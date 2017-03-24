@@ -24,7 +24,7 @@
 
       if ( czr_fn_get('show_comment_meta') ) :
         if ( $author || $date ) : ?><span class="v-separator">|</span><?php endif;
-        czr_fn_render_template( 'modules/comment_info' );
+        czr_fn_render_template( 'modules/common/comment_info' );
       endif
     ?>
     </div>

@@ -55,7 +55,7 @@
 
       <?php if ( czr_fn_has('breadcrumb') ) : ?>
         <div class="container">
-          <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+          <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
         </div>
       <?php endif ?>
 
@@ -116,7 +116,7 @@
             <div class="col-12">
             <?php
               if ( czr_fn_has('single_author_info') )
-                 czr_fn_render_template( 'content/authors/author_info' );
+                 czr_fn_render_template( 'content/singular/authors/author_info' );
 
               if ( czr_fn_has('related_posts') )
                 czr_fn_render_template( 'modules/related-posts/related_posts' )
@@ -128,7 +128,7 @@
         <?php if ( czr_fn_has('comments') ) : ?>
           <div class="row">
             <div class="col-12">
-              <?php czr_fn_render_template( 'content/comments/comments' ) ?>
+              <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
             </div>
           </div>
         <?php endif ?>

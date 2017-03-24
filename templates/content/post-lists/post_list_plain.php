@@ -16,7 +16,7 @@
         <?php
           if ( $has_post_media = czr_fn_get('has_post_media') )
             czr_fn_render_template(
-              'content/post-lists/singles/post_list_single_media',
+              'content/post-lists/item-parts/post_list_item_media',
                array(
                 'model_args' => array(
                   'element_class'            => czr_fn_get('media_class'),
@@ -30,9 +30,9 @@
         <section class="tc-content entry-content__holder">
           <?php
             czr_fn_render_template(
-              'content/post-lists/singles/headings/post_list_single_header-no_metas',
+              'content/post-lists/item-parts/headings/post_list_item_header-no_metas',
               array(
-                'model_class' => 'content/post-lists/singles/headings/post_list_single_header',
+                'model_class' => 'content/post-lists/item-parts/headings/post_list_item_header',
                 'model_args'  => array(
                   'entry_header_inner_class' => czr_fn_get( 'entry_header_inner_class' ),
                   'element_class'            => array('row')
@@ -53,7 +53,7 @@
               <?php
               /* Content Inner */
               czr_fn_render_template(
-                'content/post-lists/singles/contents/post_list_single_content_inner',
+                'content/post-lists/item-parts/contents/post_list_item_content_inner',
                 array(
                   'model_args' => array(
                     'show_full_content' => czr_fn_get( 'show_full_content' ),
@@ -74,7 +74,7 @@
                 <?php if ( czr_fn_has('social_share') ) : ?>
 
                   <div class="post-share float-md-right">
-                    <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
+                    <?php czr_fn_render_template( 'modules/common/social_block', array( 'model_id' => 'social_share' ) ) ?>
                   </div>
 
                 <?php endif ?>
@@ -83,7 +83,7 @@
           </div>
           <?php
               /* footer */
-              czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer_author',
+              czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer_author',
                       array(
                         'model_args' => array(
                           'show_comment_meta' => czr_fn_get('show_comment_meta')

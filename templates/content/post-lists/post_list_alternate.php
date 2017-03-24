@@ -18,7 +18,7 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
             /* Media */
             if ( $has_post_media = czr_fn_get('has_post_media') ) {
               czr_fn_render_template(
-                'content/post-lists/singles/post_list_single_media',
+                'content/post-lists/item-parts/post_list_item_media',
                 array(
                   'model_args' =>  array(
                     'has_post_media'           => $has_post_media,
@@ -35,11 +35,11 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
               <div class="entry-content__wrapper">
               <?php
                 /* header */
-                czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header' );
+                czr_fn_render_template( 'content/post-lists/item-parts/headings/post_list_item_header' );
                 /* content inner */
-                czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
+                czr_fn_render_template( 'content/post-lists/item-parts/contents/post_list_item_content_inner' );
                 /* footer */
-                czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
+                czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer',
                         array(
                           'model_args' => array(
                             'show_comment_meta' => czr_fn_get('show_comment_meta')

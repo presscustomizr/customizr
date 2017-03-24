@@ -30,7 +30,7 @@
     <?php
         if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
           czr_fn_render_template(
-            'modules/edit_button',
+            'modules/common/edit_button',
             array( 'model_args' => array(
                 'edit_button_class' => 'inverse',
                 'edit_button_link'  => $edit_post_link
@@ -63,7 +63,7 @@
               endif
             ?>
               <div class="comment-info">
-                <?php czr_fn_render_template( 'modules/comment_info' ) ?>
+                <?php czr_fn_render_template( 'modules/common/comment_info' ) ?>
               </div>
           <?php
             endif;

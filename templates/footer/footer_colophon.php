@@ -13,7 +13,7 @@
   <?php if ( czr_fn_has( 'footer_social_block' ) ) : ?>
   <div class="col-sm-6 text-sm-right">
     <div class="social-links">
-      <?php czr_fn_render_template( 'modules/social_block' ) ?>
+      <?php czr_fn_render_template( 'modules/common/social_block' ) ?>
     </div>
   </div>
   <?php endif ?>

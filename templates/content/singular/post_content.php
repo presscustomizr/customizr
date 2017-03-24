@@ -37,7 +37,7 @@
         ?>
           <div class="post-share float-sm-right">
               <!-- fake need to have social links somewhere -->
-              <?php czr_fn_render_template( 'modules/social_block', array( 'model_id' => 'social_share' ) ) ?>
+              <?php czr_fn_render_template( 'modules/common/social_block', array( 'model_id' => 'social_share' ) ) ?>
           </div>
         <?php
           endif

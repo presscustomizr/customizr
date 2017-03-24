@@ -6805,6 +6805,7 @@ section.post-related-articles .grid .grid__item h3 {
 
 .comment-list li.comment.depth-1:first-of-type {
   border: 0;
+  margin-top: 0;
 }
 
 .comment-list ul.children {
@@ -6814,14 +6815,15 @@ section.post-related-articles .grid .grid__item h3 {
 .pingback-list li.pingback {
   margin-top: 2.5em;
   padding-top: 2.5em;
+  border-top: 1px solid #f7f8f9;
 }
 
-.pingback-list li.pingback:not(:last-of-type) {
-  border-bottom: 1px solid #f7f8f9;
+.pingback-list li.pingback:first-of-type {
+  border: none;
+  margin-top: 0;
 }
 
-.pingback-list li.pingback strong {
-  font-weight: 600;
+.pingback-list li.pingback .excerpt {
   border-bottom: 1px solid;
 }
 

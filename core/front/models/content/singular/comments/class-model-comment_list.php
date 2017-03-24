@@ -1,7 +1,7 @@
 <?php
 class CZR_comment_list_model_class extends CZR_Model {
-  public $czr_args = array();
-  public $czr_depth;
+  public $comment_args = array();
+  public $comment_depth;
 
   /*
   * @override
@@ -19,8 +19,8 @@ class CZR_comment_list_model_class extends CZR_Model {
   function czr_fn_extend_params( $model = array() ) {
     //get user defined max comment depth
     $max_comments_depth = get_option('thread_comments_depth');
-    $model[ 'czr_args' ]['max_depth']   = isset( $max_comments_depth ) ? $max_comments_depth : 5 ;
-    $model[ 'czr_args' ]['callback']    = array( $this , 'czr_fn_comments_callback' );
+    $model[ 'comment_args' ]['max_depth']   = isset( $max_comments_depth ) ? $max_comments_depth : 5 ;
+    $model[ 'comment_args' ]['callback']    = array( $this , 'czr_fn_comments_callback' );
 
     return $model;
   }
@@ -36,13 +36,13 @@ class CZR_comment_list_model_class extends CZR_Model {
   */
   function czr_fn_comments_callback( $comment, $args, $depth ) {
     $this -> czr_fn_update( array(
-      'czr_args'  => array_merge( $this -> czr_args, $args ),
-      'czr_depth' => $depth
+      'comment_args'  => array_merge( $this -> comment_args, $args ),
+      'comment_depth' => $depth
     ) );
 
     if ( czr_fn_has( 'comment' ) && isset( $args['type'] ) && 'comment' == $args['type'] )
-      czr_fn_render_template( 'content/comments/comment' );
+      czr_fn_render_template( 'content/singular/comments/comment' );
     elseif ( czr_fn_has( 'trackpingback' ) && isset( $args['type'] ) && 'pings' == $args['type'] )
-      czr_fn_render_template( 'content/comments/trackpingback' );
+      czr_fn_render_template( 'content/singular/comments/trackpingback' );
   }
 }

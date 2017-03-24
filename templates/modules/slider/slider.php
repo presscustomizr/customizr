@@ -27,7 +27,7 @@
     do_action( '__after_carousel_inner__' );
     if ( czr_fn_get( 'has_slider_edit_link' ) ) {
       czr_fn_render_template(
-        'modules/edit_button',
+        'modules/common/edit_button',
          array(
           'model_args' => array(
             'edit_button_class' => 'slider-btn-edit inverse',
@@ -39,7 +39,7 @@
     }
 
     if ( czr_fn_get( 'has_controls' ) ) {
-      czr_fn_render_template( 'modules/carousel_nav' );
+      czr_fn_render_template( 'modules/common/carousel_nav' );
     }
 ?>
 </div><!-- /#customizr-slider -->

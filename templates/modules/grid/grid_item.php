@@ -83,7 +83,7 @@
         if( czr_fn_get( 'has_edit_above_thumb' ) )
           if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
             czr_fn_render_template(
-              'modules/edit_button',
+              'modules/common/edit_button',
               array(
                 'model_args' => array(
                   'edit_button_class' => 'inverse',
@@ -100,14 +100,14 @@
 
   ?>
     <div class="tc-content">
-      <?php czr_fn_render_template( 'content/post-lists/singles/headings/post_list_single_header',
+      <?php czr_fn_render_template( 'content/post-lists/item-parts/headings/post_list_item_header',
         array(
           'model_args' => array(
             'the_title' => czr_fn_get('title')
           )
         )
       )?>
-      <?php czr_fn_render_template( 'content/post-lists/singles/footers/post_list_single_footer',
+      <?php czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer',
         array(
           'model_args' => array(
             'show_comment_meta' => czr_fn_get('show_comment_meta')

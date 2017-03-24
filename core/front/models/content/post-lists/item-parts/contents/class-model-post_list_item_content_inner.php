@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_single_content_inner_model_class extends CZR_Model {
+class CZR_post_list_item_content_inner_model_class extends CZR_Model {
   public  $content;
 
   public  $defaults = array( 'show_full_content' => false );

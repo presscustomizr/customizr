@@ -262,6 +262,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+            do_action( 'czr_load' );
+
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
             new CZR_init();
@@ -505,17 +507,20 @@ if ( ! class_exists( 'CZR___' ) ) :
                 $_exists      = in_array( $filename, $this->existing_files );
                 $_exists_not  = in_array( $filename, $this->not_existing_files );
 
+
                 if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
-                  //cache file exists
+
+                  //cache file existence
                   if ( !$_exists ) {
                     $this->existing_files[] = $filename;
+
                   }
 
                   return $filename;
 
                 }
                 else if ( !$_exists_not ) {
-                  //cache file doesn't exist
+                  //cache file not existence
                   $this->not_existing_files[] = $filename;
                 }
 
@@ -544,14 +549,16 @@ if ( ! class_exists( 'CZR___' ) ) :
 
                 if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
 
-                  //cache file exists
+                  //cache file existence
                   if ( !$_exists ) {
                     $this->existing_files[] = $filename;
                   }
+
                   return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
+
                 }
                 else if ( !$_exists_not ) {
-                  //cache file doesn't exist
+                  //cache file not existence
                   $this->not_existing_files[] = $filename;
                 }
 

@@ -31,7 +31,7 @@
         <?php
 
         /* Comments list */
-        wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'comment' ) ) );
+        wp_list_comments( array_merge( czr_fn_get( 'comment_args' ),  array( 'type' => 'comment' ) ) );
 
         ?>
       </ul>
@@ -45,7 +45,7 @@
         <?php
 
         /* Pings list */
-        wp_list_comments( array_merge( czr_fn_get( 'czr_args' ),  array( 'type' => 'pings' ) ) );
+        wp_list_comments( array_merge( czr_fn_get( 'comment_args' ),  array( 'type' => 'pings' ) ) );
 
         ?>
       </ul>

@@ -7,7 +7,7 @@
   <div class="grid__item">
     <?php
       czr_fn_render_template(
-        'content/post-lists/singles/post_list_single_media',
+        'content/post-lists/item-parts/post_list_item_media',
         array(
           'model_args' => array(
             'element_class' => czr_fn_get('media_cols'),
@@ -24,13 +24,13 @@
         <?php
           /* header */
           czr_fn_render_template(
-            'content/post-lists/singles/headings/post_list_single_header-no_metas',
+            'content/post-lists/item-parts/headings/post_list_item_header-no_metas',
             array(
-              'model_class' => 'content/post-lists/singles/headings/post_list_single_header'
+              'model_class' => 'content/post-lists/item-parts/headings/post_list_item_header'
             )
           );
           /* content inner */
-          czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
+          czr_fn_render_template( 'content/post-lists/item-parts/contents/post_list_item_content_inner' );
         ?>
         </div>
       </section>

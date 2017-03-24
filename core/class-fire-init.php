@@ -876,7 +876,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       */
       function czr_fn_search_form() {
         ob_start();
-         czr_fn_render_template( 'modules/searchform' );
+         czr_fn_render_template( 'modules/search/searchform' );
         $form = ob_get_clean();
 
         return $form;
