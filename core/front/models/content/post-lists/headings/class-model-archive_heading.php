@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_heading_model_class extends CZR_Model {
+class CZR_archive_heading_model_class extends CZR_Model {
   public $pre_title;
   public $title;
   public $description;
@@ -83,7 +83,7 @@ class CZR_post_list_heading_model_class extends CZR_Model {
       return '';
 
     switch ( $context ) {
-      case 'page_for_posts' : return get_the_excerpt( get_option('page_for_posts') ); //use the excerpt as description in blog page?
+      case 'page_for_posts' : return apply_filters( 'the_excerpt', get_the_excerpt( get_option('page_for_posts') ) ); //use the excerpt as description in blog page?
       case 'author'         : return sprintf( '<span class="author-avatar">%1$s</span><p class="author-bio">%2$s</p>',
                                         get_avatar( get_the_author_meta( 'user_email' ), 60 ) , get_the_author_meta( 'description' ) );
       case 'category'       : return category_description();

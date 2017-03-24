@@ -35,7 +35,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_attachment() || ( $this -> czr_fn_display_view_page() && ! is_front_page() );
     }
 
-    function czr_fn_display_view_post_list_heading() {
+    function czr_fn_display_view_archive_heading() {
       return czr_fn_is_list_of_posts() && ! is_search();
     }
 

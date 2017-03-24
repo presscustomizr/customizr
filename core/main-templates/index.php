@@ -32,14 +32,14 @@
       <?php  if ( ! czr_fn_is_home() && ! is_404() ): ?>
         <div class="container-fluid">
           <?php
-            if ( czr_fn_has( 'post_list_heading' ) )
-              $_heading_template = 'content/headings/post_list_heading';
+            if ( czr_fn_has( 'archive_heading' ) )
+              $_heading_template = 'content/post-lists/headings/archive_heading';
             elseif ( czr_fn_has( 'search_heading' ) )
-              $_heading_template = 'content/headings/search_heading';
+              $_heading_template = 'content/post-lists/headings/search_heading';
             elseif ( czr_fn_has('post_heading') )
-              $_heading_template = 'content/headings/post_heading';
+              $_heading_template = 'content/singular/headings/post_heading';
             else //pages and fallback
-              $_heading_template = 'content/headings/page_heading';
+              $_heading_template = 'content/singular/headings/page_heading';
 
             czr_fn_render_template( $_heading_template );
           ?>
@@ -147,8 +147,10 @@
       <div class="container-fluid">
         <div class="row">
         <?php
-          $_pn_template_prefix = ! is_singular() ? 'post_list' : 'singular';
-          czr_fn_render_template( "content/navigation/{$_pn_template_prefix}_posts_navigation", array( 'model_id' => 'posts_navigation', 'model_class' => 'content/navigation/posts_navigation' ) );
+          if ( !is_singular() )
+            czr_fn_render_template( "content/post-lists/navigation/post_list_posts_navigation" );
+          else
+            czr_fn_render_template( "content/singular/navigation/singular_posts_navigation" );
         ?>
         </div>
       </div>
