@@ -80,17 +80,11 @@
       <?php
 
       /* Edit link above the thumb for the expanded item */
-        if( czr_fn_get( 'has_edit_above_thumb' ) )
-          if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
-            czr_fn_render_template(
-              'modules/common/edit_button',
-              array(
-                'model_args' => array(
-                  'edit_button_class' => 'inverse',
-                  'edit_button_link'  => $edit_post_link,
-                )
-              )
-            );
+        if ( czr_fn_get( 'has_edit_above_thumb' ) ) {
+          if ( (bool) $edit_post_link = get_edit_post_link() ) {
+            czr_fn_edit_button( array( 'class' => 'inverse', 'link' => $edit_post_link ) );
+          }
+        }
       ?>
     </div>
   <?php

@@ -44,15 +44,9 @@ if ( czr_fn_get( 'has_caption' ) ) :
 endif;
 
   /* edit link */
-  if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) )
-      czr_fn_render_template(
-        'modules/common/edit_button',
-        array(
-          'model_args' => array(
-            'edit_button_class' => 'slide-btn-edit inverse',
-            'edit_button_link'  => $edit_url
-          )
-        )
-      );
-  ?>
+  if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) ) {
+    czr_fn_edit_button( array( 'class' => 'slide-btn-edit inverse', 'link'  => $edit_url ) );
+  }
+
+?>
 </div><!-- /.item -->

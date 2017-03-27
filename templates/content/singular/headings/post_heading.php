@@ -28,21 +28,14 @@
     <?php endif; ?>
       <h1 class="entry-title"><?php the_title() ?></h1>
     <?php
-        if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
-          czr_fn_render_template(
-            'modules/common/edit_button',
-            array( 'model_args' => array(
-                'edit_button_class' => 'inverse',
-                'edit_button_link'  => $edit_post_link
-              )
-            )
-          );
+        if ( (bool) $edit_post_link = get_edit_post_link() ) {
+          czr_fn_edit_button( array( 'class' => 'inverse', 'link'  => $edit_post_link ) );
+        }
 
         $pub_date     = czr_fn_has('post_metas') ? czr_fn_get( 'publication_date', 'post_metas' ) : false;
-        $comment_info = czr_fn_has( 'comment_info' );
         $author       = czr_fn_has('post_metas') ? czr_fn_get( 'author', 'post_metas' ) : false;
 
-        if ( $pub_date || $comment_info || $author ) :
+
     ?>
       <div class="header-content-bottom">
         <div class="post-info">
@@ -55,33 +48,18 @@
           <?php
             endif;
 
-            if ( $comment_info ) :
-              if ( $pub_date ):
-            ?>
-                <span class="v-separator">|</span>
-            <?php
-              endif
-            ?>
-              <div class="comment-info">
-                <?php czr_fn_render_template( 'modules/common/comment_info' ) ?>
-              </div>
-          <?php
-            endif;
 
-            if ( $author ) :
-              if ( $pub_date || $comment_info ):
-              ?>
-                <span class="v-separator">|</span>
-              <?php
-                endif
-              ?>
+            czr_fn_comment_info( $before = '<div class="comment-info">', $after = '</div>' );
+
+            if ( $author ) : ?>
+
               <div class="author-info">
                 <?php echo $author ?>
               </div>
           <?php endif ?>
         </div>
+
       </div>
-    <?php endif ?>
     </div>
   </div>
 </header>

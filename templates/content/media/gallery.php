@@ -15,7 +15,7 @@
 <div class="czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
         if ( count( $gallery_items ) > 1 ) :
-          czr_fn_render_template( 'modules/common/carousel_nav' );
+          czr_fn_carousel_nav();
         endif;
 
 ?>

@@ -44,56 +44,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     }
 
 
-    /* BREADCRUMB */
-    // /**
-    // * Old version: NOT USED ANYMORE: context skopified
-    // */
-    // function czr_fn_display_view_breadcrumb() {
 
-    //   if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
-    //     if ( is_search() )
-    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
-
-    //     elseif ( is_404() )
-    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
-
-    //     elseif ( czr_fn_is_home() )
-    //       $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
-
-    //     elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
-    //       $to_return = false;
-
-    //     elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
-    //       $to_return = false;
-
-    //     elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
-    //       $to_return = false;
-    //   }
-
-    //   return apply_filters( 'czr_show_breadcrumb', $to_return );
-    // }
-
-    /* BREADCRUMB */
-    function czr_fn_display_view_breadcrumb() {
-      if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
-        if ( czr_fn_is_home() )
-          $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) );
-      }
-      return apply_filters( 'czr_show_breadcrumb', $to_return );
-    }
-
-    function czr_fn_display_view_comment_info() {
-      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) )
-          && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) );
-
-      if ( ! $_allow_comment_info )
-        return false;
-
-      global $post;
-
-      return  $post -> comment_count > 0 && czr_fn_is_possible( 'comment_list' ) &&
-        in_array( get_post_type(), apply_filters('czr_show_comment_infos_for_post_types' , array( 'post' , 'page') ) );
-    }
 
 
     function czr_fn_display_view_featured_pages() {
@@ -105,20 +56,6 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
     function czr_fn_display_view_recently_updated() {
       return 0 != esc_attr( czr_fn_get_opt( 'tc_post_metas_update_notice_in_title' ) );
-    }
-
-    /*
-    * The edit link is allowed when:
-    * 1) user logged in
-    * 2) not customizing
-    * inside the model another check will be done on the user capability to edit the current post
-    * and in the loop
-    */
-    function czr_fn_display_view_edit_button() {
-      return apply_filters( 'czr_edit_in_title',
-          is_user_logged_in()
-          && ! czr_fn_is_customizing()
-      );
     }
 
 

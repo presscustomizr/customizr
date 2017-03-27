@@ -27,16 +27,9 @@
             <a class="comment-time comment-link" href="<?php comment_link() ?>"><?php comment_time() ?></a>
           </time>
         </div>
-        <?php if ( czr_fn_has('edit_button') && (bool) $edit_comment_link = get_edit_comment_link() )
-          czr_fn_render_template(
-            'modules/common/edit_button',
-            array( 'model_args' => array(
-                'edit_button_class' => 'comment-edit-link',
-                'edit_button_text'  => __( 'Edit comment', 'customizr' ),
-                'edit_button_link'  => $edit_comment_link,
-              )
-            )
-          );
+        <?php if ( (bool) $edit_comment_link = get_edit_comment_link() ) {
+            czr_fn_edit_button( array( 'class' => 'comment-edit-link', 'link'  => $edit_comment_link, 'text' =>  __( 'Edit comment', 'customizr' ) ) );
+        }
         ?>
       </header>
       <div class="comment-content tc-content-inner"><?php comment_text() ?></div>

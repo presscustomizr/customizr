@@ -349,7 +349,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       $model_class_dirname  = dirname( $_model_class );
       $CZR                  = CZR();
 
-      return $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+      return $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
     }
 
 

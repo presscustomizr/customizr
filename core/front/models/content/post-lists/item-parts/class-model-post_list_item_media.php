@@ -147,7 +147,7 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
         //post action;
         ob_start();
-          czr_fn_render_template( 'modules/common/post_action_button', array( 'model_args' => array( 'post_action_link' => '#', 'post_action_link_class' => 'expand-img-gallery'  ) ) );
+          czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
         $_post_action = ob_get_clean();
 
 

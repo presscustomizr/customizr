@@ -62,7 +62,16 @@ article .entry-content a {
       margin-top: $base-line-height*2;
       width:100%;
       text-align: center;
-      div { display: inline-block; }
+      div {
+        display: inline-block;
+        &::after {
+            content: '|';
+            margin: 0 0.625em;
+        }
+        &:last-of-type::after {
+            content: none;
+        }
+      }
     }
     .post-info {
       @extend .small;
@@ -88,9 +97,8 @@ article .entry-content a {
   }
 }
 .page-breadcrumbs {
-  padding: $base-line-height*1.5 0;
-  margin-top: $base-line-height;
-  margin-bottom: $base-line-height;
+  margin-top: 2em;
+  margin-bottom: 2em;
   @extend .small;
 }
 

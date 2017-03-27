@@ -180,8 +180,8 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/utils/' );
               //CZR_FRAMEWORK_PATH is the relative path where the framework is located
               if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
-              //CZR_FRAMEWORK_FRONT_PATH is the relative path where the framework front files are located
-              if( ! defined( 'CZR_FRAMEWORK_FRONT_PATH' ) ) define( 'CZR_FRAMEWORK_FRONT_PATH' , 'core/front/' );
+              //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
+              if( ! defined( 'CZR_PHP_FRONT_PATH' ) ) define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
               if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
               //CZR_BASE_CHILD is the root server path of the child theme
@@ -312,6 +312,10 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+
+            //load front templates tags files
+            if ( ! is_admin() )
+              $this -> czr_fn_require_once( CZR_PHP_FRONT_PATH . 'template-tags/template-tags.php' );
         }
 
 

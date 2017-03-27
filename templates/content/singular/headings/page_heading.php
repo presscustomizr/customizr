@@ -21,24 +21,11 @@
     <div class="header-content-inner">
       <h1 class="entry-title"><?php the_title() ?></h1>
     <?php
-      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
-          czr_fn_render_template(
-            'modules/common/edit_button',
-            array( 'model_args' => array(
-                'edit_button_class' => 'inverse',
-                'edit_button_link'  => $edit_post_link
-              )
-            )
-          );
-      if ( czr_fn_has( 'comment_info' ) ) : ?>
-        <div class="header-content-bottom">
-          <div class="post-info">
-            <div class="comment-info">
-              <?php czr_fn_render_template( 'modules/common/comment_info' ) ?>
-            </div>
-          </div>
-        </div>
-    <?php endif ?>
+      if ( (bool) $edit_post_link = get_edit_post_link() ) {
+          czr_fn_edit_button( array( 'class' => 'inverse', 'link'  => $edit_post_link ) );
+      }
+      czr_fn_comment_info( $before = '<div class="header-content-bottom"><div class="post-info"><div class="comment-info">', $after = '</div></div></div>' );
+    ?>
   </div>
 
   </div>

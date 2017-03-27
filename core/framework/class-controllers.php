@@ -37,6 +37,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'nav_search'
             ),
             'content' => array(
+              'breadcrumb',
               'post_list',
               'post_list_masonry',
               'post_list_plain',
@@ -63,13 +64,10 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
             ),
             'modules' => array(
               'social_block',
-              'breadcrumb',
-              'comment_info',
               'post_list_grid',
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'edit_button',
               'search_full_page'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
@@ -239,7 +237,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           $_instance = false;
           $CZR       = CZR();
 
-          $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
+          $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

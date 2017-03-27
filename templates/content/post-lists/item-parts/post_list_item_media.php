@@ -14,15 +14,7 @@
     echo $media_content;
 
     if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ):
-      czr_fn_render_template(
-        'modules/common/post_action_button',
-        array(
-          'model_args' => array(
-            'post_action_link'  => $original_thumb_url,
-            'post_action_link_class' => 'expand-img'
-          )
-        )
-      );
+      czr_fn_post_action( $link = $original_thumb_url, $class = 'expand-img' );
     endif;
 
     elseif ( $has_icon ):

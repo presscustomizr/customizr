@@ -21,16 +21,9 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
         <?php /* END FP TITLE */ ?>
         <?php
         /* FP EDIT BUTTON */
-        if ( czr_fn_has( 'edit_button' ) && czr_fn_get( 'edit_enabled' ) )
-
-          czr_fn_render_template(
-            'modules/common/edit_button',
-            array(
-              'model_args' => array(
-                'edit_button_link'  => get_edit_post_link( czr_fn_get( 'featured_page_id' ) )
-              )
-            )
-          );
+        if ( czr_fn_get( 'edit_enabled' ) ) {
+          czr_fn_edit_button( array( 'link' => get_edit_post_link( czr_fn_get( 'featured_page_id' ) ) ) );
+        }
         /* END FP EDIT BUTTON */
 
         ?>
