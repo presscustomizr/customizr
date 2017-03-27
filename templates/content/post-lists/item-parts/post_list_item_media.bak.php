@@ -6,19 +6,18 @@
  *
  */
 ?>
+<?php if ( ( (bool) $media_content = czr_fn_get('media_content') ) || (bool) $has_icon = czr_fn_get('has_format_icon_media') ) : ?>
 <section class="tc-thumbnail entry-media__holder <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="entry-media__wrapper czr__r-i <?php czr_fn_echo('inner_wrapper_class') ?>">
   <?php
-  if ( czr_fn_get( 'media_template' ) ):
-    if ( czr_fn_get( 'has_bg_link' ) ) : ?>
-      <a class="bg-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
-  <?php
-    endif; //bg-link
+  if ( $media_content ):
+    echo $media_content;
 
-      //render the $media_template;
-      czr_fn_render_template( czr_fn_get( 'media_template' ), czr_fn_get( 'media_args' ) );
+    if ( czr_fn_get('has_media_action') && (bool) ( $original_thumb_url = czr_fn_get( 'original_thumb_url' ) ) ):
+      czr_fn_post_action( $link = $original_thumb_url, $class = 'expand-img' );
+    endif;
 
-    elseif ( czr_fn_get('has_format_icon_media') ):
+    elseif ( $has_icon ):
   ?>
       <div class="post-type__icon">
         <a class="bg-icon-link icn-format" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
@@ -27,3 +26,4 @@
   endif ?>
   </div>
 </section>
+<?php endif;

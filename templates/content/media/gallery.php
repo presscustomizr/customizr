@@ -7,12 +7,13 @@
  */
 ?>
 <?php
-      $gallery_items = czr_fn_get( 'the_gallery_items' );
+      $gallery_items = czr_fn_get( 'gallery_items' );
 
       if ( $gallery_items ) :
 
+      czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
 ?>
-<div class="czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
+<div class="czr-gallery czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
         if ( count( $gallery_items ) > 1 ) :
           czr_fn_carousel_nav();

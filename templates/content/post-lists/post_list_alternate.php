@@ -20,6 +20,7 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
               czr_fn_render_template(
                 'content/post-lists/item-parts/post_list_item_media',
                 array(
+                  'reset_to_defaults' => false,
                   'model_args' =>  array(
                     'has_post_media'           => $has_post_media,
                     'element_class'            => czr_fn_get( 'media_cols' ),

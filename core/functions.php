@@ -147,14 +147,32 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
                   return; /* Fire a notice? */
 
             //extract
-            $_t           =  $template;
-            $_model_id    =  ! empty( $args['model_id'] ) ? $args['model_id'] : basename($_t);
-            $_model_class =  ! empty( $args['model_class'] ) ? $args['model_class'] : '';
-            $_model_args  =  ! empty( $args['model_args'] )  ? $args['model_args']  : array();
+            $_t                  =  $template;
+            $_model_id           =  ! empty( $args['model_id'] )    ? $args['model_id'] : basename($_t);
+            $_model_class        =  ! empty( $args['model_class'] ) ? $args['model_class'] : '';
+            $_model_args         =  ! empty( $args['model_args'] )  ? $args['model_args']  : array();
+
+            /*
+            * Sometimes on rendering we want to reset some model properties to their defaults
+            * declared in the model itself.
+            * E.g. when we re-use "singleton" models, to automatically "re-init" them
+            *
+            * Sometimes, though, we don't want this.
+            * E.g. when we re-use some "singleton" models in specific cases:
+            * Common case, Gallery/Video/Audio... in list of posts:
+            * In the list of posts we retrieve the existence of a media from the post list item model (e.g. inside the post_list_alternate).
+            * In this case we ask (with or without proxies) to (say) the gallery model whether or not the item we want to render has a gallery.
+            * The gallery model, then, is already initalized, and has already retrieved the information,
+            * When rendering the gallery template, through the czr_fn_render_template function, thus, we just want to render what has been already
+            * computed.
+            * Will be care of the "caller" (post_list_alternate model, or the proxy it uses) to reset the gallery model's at each loop before retrieving
+            * the informations it needs.
+            */
+            $_reset_to_defaults  =  is_array( $args ) && array_key_exists( 'reset_to_defaults' , $args) ? $args['reset_to_defaults']  : true;
 
             if ( czr_fn_is_registered( $_model_id ) ) {
-                  $model_instance = czr_fn_get_model_instance( $_model_id );
 
+                  $model_instance = czr_fn_get_model_instance( $_model_id );
 
                   //sets the template property on the fly based on what's requested
                   if ( ! czr_fn_get_model_property( $_model_id, 'template') ) {
@@ -164,12 +182,23 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
                   //update model with the one passed
                   if ( is_array($args) && array_key_exists( 'model_args', $args) ) {
 
+                        if ( $_reset_to_defaults ) {
+                              $model_instance -> czr_fn_reset_to_defaults();
+                              if ( 'video' == $_model_id ) {
+                                    echo "sono qui";
+                              }
+                        }
+
                         $model_instance -> czr_fn_update( $_model_args );
 
                   }
-                  else {
+                  elseif ( $_reset_to_defaults ) {
 
-                        $model_instance -> czr_fn_reset_defaults();
+                        if ( 'video' == $_model_id ) {
+                              echo "sono qui";
+                        }
+
+                        $model_instance -> czr_fn_reset_to_defaults();
                   }
 
                   czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();

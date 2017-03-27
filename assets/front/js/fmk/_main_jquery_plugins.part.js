@@ -184,7 +184,7 @@ var czrapp = czrapp || {};
 
 
       /* Test only GALLERY SLIDER IN POST LISTS !!!!!! */
-      $('[class*="grid-container__"] .format-gallery .carousel-inner').flickity({
+      $('.czr-gallery.czr-carousel .carousel-inner').flickity({
           prevNextButtons: false,
           pageDots: false,
           wrapAround: true,

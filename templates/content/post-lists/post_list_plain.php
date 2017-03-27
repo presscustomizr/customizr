@@ -18,6 +18,7 @@
             czr_fn_render_template(
               'content/post-lists/item-parts/post_list_item_media',
                array(
+                'reset_to_defaults' => false,
                 'model_args' => array(
                   'element_class'            => czr_fn_get('media_class'),
                   'has_post_media'           => $has_post_media,

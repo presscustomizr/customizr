@@ -175,7 +175,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     $_current_post_format    = get_post_format();
 
-    $has_post_media          = $this->show_thumb;
+    $has_post_media          = $this->show_thumb && (bool) $this->czr_fn_has_media();
     $has_thumb               = $this->show_thumb && czr_fn_has_thumb();
 
     $is_full_image           = $this->czr_fn_is_full_image( $_current_post_format );
@@ -280,7 +280,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $_grid_item_class, 'col' );
     }
 
-    $show_comment_meta = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
+    $show_comment_meta = $this -> show_comment_meta;
 
     $post_list_item = array(
       'content_cols'            => $content_cols,
@@ -480,6 +480,40 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   */
   function czr_fn_reset_post_list_items() {
     $this -> post_list_items = array();
+  }
+
+
+
+  function czr_fn_has_media( $post_id = null, $post_format = null, $type = 'all', $use_img_placeholder = false ) {
+
+    //medias are singletons, we just reset them before using them in loops
+    if ( czr_fn_is_registered( 'post_list_item_media' ) ) {
+
+          $_instance = czr_fn_get_model_instance( 'post_list_item_media' );
+
+          //reset any previous content
+          $_instance->czr_fn_reset_to_defaults();
+
+    }
+
+    else {
+          $_id = czr_fn_register(
+            array(
+              'id'          => 'post_list_item_media',
+              'model_class' => 'content/post-list/item-part/post_list_item_media'
+          ) );
+
+          $_instance = czr_fn_get_model_instance( $_id );
+    }
+
+    if ( !$_instance )
+      return false;
+
+    //setup the media
+    $_instance -> czr_fn_setup_media( $post_id, $post_format, $type, $use_img_placeholder );
+
+    return $_instance -> czr_fn_get_raw_media();
+
   }
 
 }//end of class

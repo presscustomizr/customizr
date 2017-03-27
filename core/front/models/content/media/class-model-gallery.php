@@ -2,56 +2,34 @@
 class CZR_gallery_model_class extends CZR_Model {
 
       public   $defaults            = array(
-                                          'content'         => null,
+                                          'media'           => null,
+                                          'gallery_items'   => null,
+                                          'post_id'         => null,
                                     );
 
-      private  $_gallery_items;
 
 
-      /*
-      * TODO: implement better retrieving process
-      * too much automatization can make us die :D
-      */
 
       /* Public api */
-      public function czr_fn_get_content( $post_id = null ) {
+      public function czr_fn_setup_raw_media( $post_id = null ) {
 
-            if ( !isset( $this->content ) || is_null( $this->content ) )
+            $this->post_id  = $post_id ? $post_id : get_the_ID();
+            $this->media    = $this->czr_fn__get_post_gallery( $post_id );
+
+      }
+
+
+
+
+      public function czr_fn_get_raw_media( $post_id = null ) {
+
+            if ( is_null( $this->media ) )
                   return $this->czr_fn__get_post_gallery( $post_id );
 
-            return $this->content;
+            return $this->media;
 
       }
 
-
-      public function czr_fn_set_content( $post_id = null ) {
-
-            $this->content = $this->czr_fn__get_post_gallery( $post_id );
-
-      }
-
-
-      public function czr_fn_reset() {
-
-            unset( $this->content );
-            unset( $this->_gallery_items );
-
-      }
-
-
-
-
-      public function czr_fn_get_the_gallery_items() {
-
-            if ( ! isset( $this->_gallery_items ) ) {
-
-                  $this->czr_fn__set_the_gallery_items();
-
-            }
-
-            return $this->_gallery_items;
-
-      }
 
 
 
@@ -61,38 +39,49 @@ class CZR_gallery_model_class extends CZR_Model {
       * @hook: pre_rendering_view_{$this -> id}, 9999
       */
       /*
-      * Each time this model view is rendered setup the current quote
+      * Each time this model view is rendered setup the current gallery items
       */
-      protected function czr_fn_setup_late_properties() {
-
-            $this -> czr_fn__set_the_gallery_items();
-
-      }
+      function czr_fn_setup_late_properties() {
 
 
+            if ( is_null( $this->media ) ) {
+                  $this -> czr_fn_setup_the_raw_media( $this->post_id );
+            }
 
 
-      protected function czr_fn__set_the_gallery_items() {
-
-            //defined in the model base class
-            $this->_gallery_items = $this->czr_fn__get_the_gallery_items();
+            if ( is_null( $this->gallery_items ) )
+               $this -> czr_fn__setup_the_gallery_items();
 
       }
 
 
 
 
-      function czr_fn__get_the_gallery_items() {
 
-            $_content        = $this -> czr_fn_get_content();
+      protected function czr_fn__setup_the_gallery_items() {
+
+            $this->gallery_items = $this->czr_fn__get_the_gallery_items();
+
+      }
+
+
+
+
+      protected function czr_fn__get_the_gallery_items() {
+
+            $raw_media       = $this -> czr_fn_get_raw_media();
+
+            if ( empty( $raw_media ) )
+               return array();
+
 
             $gallery_items   = array();
 
-            $_gallery_ids    = isset( $_content[ 'ids' ] ) ? explode( ',',  $_content[ 'ids' ] ) : array();
+            $_gallery_ids    = isset( $raw_media[ 'ids' ] ) ? explode( ',',  $raw_media[ 'ids' ] ) : array();
 
             $_index          = 0;
 
-            foreach( $_content['src'] as $src ) {
+            foreach( $raw_media[ 'src' ] as $src ) {
                   $_original_image  = '';
                   $_alt             = '';
 
@@ -125,7 +114,7 @@ class CZR_gallery_model_class extends CZR_Model {
       protected function czr_fn__get_post_gallery( $post_id = null ) {
 
             $post_id          = $post_id ? $post_id : get_the_ID();
-            $post_gallery     = get_post_gallery( get_the_ID(), false );
+            $post_gallery     = get_post_gallery( $post_id, false );
 
             return empty( $post_gallery ) ? false : $post_gallery;
 
