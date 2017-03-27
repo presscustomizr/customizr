@@ -87,16 +87,27 @@ if ( ! function_exists( 'czr_fn_readmore_button' ) ) :
  * generally appended to the excerpt_more
  *
  */
-function czr_fn_readmore_button( $echo = false ) {
-
-
-      $readmore_button = sprintf( '<span class="readmore-holder"><a class="moretag btn btn-more btn-skin-darkest" href="%1$s" title="%2$s">%3$s</a></span>',
-          esc_url( get_permalink() ),
-          the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
-          __('Read more &raquo;', 'customizr' )
+function czr_fn_readmore_button( $args = array() ) {
+      $defaults = array(
+        'class' => '',
+        'link'  => get_permalink(),
+        'title' => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
+        'text'  => __('Read more &raquo;', 'customizr' ),
+        'echo'  => false,
       );
 
-      if ( !$echo )
+      $args             = wp_parse_args( $args, $defaults );
+
+      $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' readmore-holder' : 'readmore-holder';
+
+      $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-darkest" href="%2$s" title="%3$s">%4$s</a></span>',
+          esc_attr( $args[ 'class' ] ),
+          esc_url( $args[ 'link' ] ),
+          esc_attr( $args[ 'title' ] ),
+          $args[ 'text' ]
+      );
+
+      if ( !$args[ 'echo' ] )
         return $readmore_button;
 
       echo $readmore_button;
@@ -132,7 +143,7 @@ function czr_fn_edit_button( $args = array() ) {
       $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' btn btn-edit' : 'btn btn-edit';
 
       ?>
-      <a class="<?php echo $args[ 'class' ] ?>"
+      <a class="<?php esc_attr_e( $args[ 'class' ] ) ?>"
          title="<?php esc_attr_e( $args[ 'title' ] ) ?>"
          href="<?php echo esc_url( $args[ 'link' ] )?>" target="_blank" rel="nofollow">
          <i class="icn-edit"></i><?php echo $args[ 'text' ] ?>

@@ -30,11 +30,15 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
         <?php /* FP TEXT */ ?>
           <p class="fp-text-<?php czr_fn_echo( 'fp_id' ) ?>"><?php czr_fn_echo( 'text' ) ?></p>
         <?php /* END FP TEXT*/ ?>
-        <?php if ( czr_fn_get( 'fp_button_text' ) ): /* FP BUTTON TEXT */ ?>
-          <span class="fp-button">
-            <a class="<?php czr_fn_echo( 'fp_button_class' ) ?>" href="<?php czr_fn_echo( 'featured_page_link' ) ?>" title="<?php echo esc_attr( strip_tags( czr_fn_get( 'featured_page_title' ) ) ) ?>" ><?php czr_fn_echo( 'fp_button_text' ) ?></a>
-          </span>
-        <?php endif;/* END FP BUTTON TEXT*/ ?>
+        <?php if ( czr_fn_get( 'fp_button_text' ) ) {/* FP BUTTON TEXT */
+          czr_fn_readmore_button( array(
+              'class' => 'fp-button'. czr_fn_get( 'fp-button-class' ),
+              'link' => czr_fn_get( 'featured_page_link' ),
+              'title' => strip_tags( czr_fn_get( 'featured_page_title' ) ),
+              'text' => czr_fn_get( 'fp_button_text' ),
+              'echo' => true
+          ) );
+        }/* END FP BUTTON TEXT*/ ?>
       </div>
     </div><!--/.widget-front-->
   </div><!--/.fp-->

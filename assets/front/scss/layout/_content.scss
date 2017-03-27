@@ -249,6 +249,7 @@ dl {
 
   @at-root .fp-button {
     display: inline-block;
+    padding: 0;
     .btn-more {
       margin-bottom: $base-line-height*2
     }
@@ -262,6 +263,7 @@ dl {
       margin: $base-line-height*2 auto;
       color: $grey-dark;
       @extend .small;
+      display: inline-block;
     }
   }
   & .widget-front.hover {

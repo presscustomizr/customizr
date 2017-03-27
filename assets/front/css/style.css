@@ -5054,6 +5054,7 @@ dl dd {
 
 .fp-button {
   display: inline-block;
+  padding: 0;
 }
 
 .fp-button .btn-more {
@@ -5070,6 +5071,7 @@ dl dd {
   width: 90%;
   margin: 2.5em auto;
   color: #777;
+  display: inline-block;
 }
 
 .featured-page .widget-front.hover {
