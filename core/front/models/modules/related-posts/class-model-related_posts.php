@@ -10,11 +10,12 @@ class CZR_related_posts_model_class extends CZR_model {
   function czr_fn_get_preset_model() {
     $_preset = array(
       'excerpt_length'        => 22,
-      'media_cols'            => 'col-12 col-sm-6 czr__r-w1by1',
+      'media_cols'            => 'col-12 col-sm-6 czr__r-w1by1' ,
       'content_cols'          => 'col-12 col-sm-6 czr__r-w1by1',
       'element_width'         => array( 'col-12', 'col-lg-6' ),
     );
 
+    $_preset[ 'media_cols' ] .= esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? ' js-media-centering' : ' no-js-media-centering';
     return $_preset;
   }
   /*

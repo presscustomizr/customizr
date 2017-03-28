@@ -22,17 +22,14 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
                 array(
                   'reset_to_defaults' => false,
                   'model_args' =>  array(
-                    'has_post_media'           => $has_post_media,
-                    'element_class'            => czr_fn_get( 'media_cols' ),
-                    'is_full_image'            => czr_fn_get( 'is_full_image' ),
-                    'has_format_icon_media'    => czr_fn_get( 'has_format_icon_media' ),
+                    'element_class'            => czr_fn_get( 'media_class' ),
                   )
                 )
               );
             }
              /* Content */
             ?>
-            <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>">
+            <section class="tc-content entry-content__holder <?php czr_fn_echo('content_class') ?>">
               <div class="entry-content__wrapper">
               <?php
                 /* header */

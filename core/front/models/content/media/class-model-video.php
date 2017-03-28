@@ -71,7 +71,7 @@ class CZR_video_model_class extends CZR_Model {
                return '';
             }
 
-            return $this->czr_fn__get_media_embed( $raw_video );
+            return do_shortcode( $this->czr_fn__get_media_embed( $raw_video ) );
 
       }
 

@@ -68,8 +68,6 @@ if ( ! class_exists( 'CZR_Model' ) ) :
             return;
           }
 
-          //reset to defaults if any
-          $this -> czr_fn_reset_to_defaults();
 
           //equivalent of wp_parse_args() with default model property values
           $this -> czr_fn_update( $model );
@@ -316,8 +314,23 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //update the model properties with a set of new ones
     //is fired on instantiation
     //@param = array()
-    public function czr_fn_update( $model = array() ) {
-
+    public function czr_fn_update( $model = array(), $merge_defaults = true ) {
+          /*
+          * Parse model into $this->defaults, if not empty
+          * This property will be merged with the array of properties
+          * It allows us, when updating a model, to specify only those properties that need to be different from the defaults.
+          * Specially interesting for those "singleton" models, whose only one instance is used throughout the page.
+          * The fact that the models retain the properties could cause undesired effects.
+          * E.g.
+          * - Edit Button
+          * the edit button model, which feeds the template,
+          * is filled by the slider of posts with a text saying "Customize or remove the posts slider",
+          * this means that if we render the edit button in a list of posts below the slider
+          * we are forced to specify the new text, which, in most of the cases would be just "Edit" (defaults)
+          */
+          if ( $merge_defaults && ! empty( $this -> defaults ) ) {
+                $model = wp_parse_args( $model, $this->defaults );
+          }
 
           foreach ( $model as $key => $value ) {
             if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
@@ -332,24 +345,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     * Reset the defaults properties to their original values
     */
     public function czr_fn_reset_to_defaults () {
-          /*
-          * Parse model into $this->defaults, if not empty
-          * This property will be merged with the array of properties
-          * It allows us, when updating a model, to specify only those properties that need to be different from the defaults.
-          * Specially interesting for those "singleton" models, whose only one instance is used throughout the page.
-          * The fact that the models retain the properties could cause undesired effects.
-          * E.g.
-          * - Edit Button
-          * the edit button model, which feeds the template,
-          * is filled by the slider of posts with a text saying "Customize or remove the posts slider",
-          * this means that if we render the edit button in a list of posts below the slider
-          * we are forced to specify the new text, which, in most of the cases would be just "Edit" (defaults)
-          */
-          if ( ! empty( $this -> defaults ) ) {
-
-                $this -> czr_fn_update( $this->defaults );
-
-          }
+          $this -> czr_fn_update( $this->defaults );
     }
 
 

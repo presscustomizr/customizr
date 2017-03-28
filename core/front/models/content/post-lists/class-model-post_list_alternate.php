@@ -41,11 +41,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'content_width'         => $content_width,
-      'has_format_icon_media' => ! in_array( 'narrow', $content_width ),
+      'format_icon_media'     => ! in_array( 'narrow', $content_width ),
       'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
       'contained'             => false,
       'cover_sections'        => true,
       'wrapped'               => true,
+      'js_image_centering'    => esc_attr( czr_fn_get_opt( 'tc_center_img' ) )
     );
 
     return $_preset;
@@ -118,12 +119,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   /*
   *  Public getters
   */
-  function czr_fn_get_content_cols() {
-    return $this -> czr_fn__get_post_list_item_property( 'content_cols' );
+
+  function czr_fn_get_has_post_media() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
   }
 
-  function czr_fn_get_media_cols() {
-    return $this -> czr_fn__get_post_list_item_property( 'media_cols' );
+  function czr_fn_get_content_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'content_class' );
+  }
+
+  function czr_fn_get_media_class() {
+    return $this -> czr_fn__get_post_list_item_property( 'media_class' );
   }
 
   function czr_fn_get_sections_wrapper_class() {
@@ -136,18 +142,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
   function czr_fn_get_article_selectors() {
     return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
-  }
-
-  function czr_fn_get_has_format_icon_media() {
-    return $this -> czr_fn__get_post_list_item_property( 'has_format_icon_media' );
-  }
-
-  function czr_fn_get_is_full_image() {
-    return $this -> czr_fn__get_post_list_item_property( 'is_full_image' );
-  }
-
-  function czr_fn_get_show_comment_meta() {
-    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
   }
 
   function czr_fn_get_print_start_wrapper() {
@@ -175,16 +169,28 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
     $_current_post_format    = get_post_format();
 
-    $has_post_media          = $this->show_thumb && (bool) $this->czr_fn_has_media();
-    $has_thumb               = $this->show_thumb && czr_fn_has_thumb();
+    $is_full_image                 = $this->czr_fn_is_full_image( $_current_post_format );
 
-    $is_full_image           = $this->czr_fn_is_full_image( $_current_post_format );
+    $maybe_has_format_icon_media   = $this->czr_fn_maybe_has_format_icon_media( $_current_post_format );
 
-    $has_format_icon_media   = $this->czr_fn_has_format_icon_media( $has_thumb, $_current_post_format );
+    $force_format_icon_media       = $this->czr_fn_force_format_icon_media( $_current_post_format );
+
+
+    $post_media                    = $this->czr_fn_has_media (
+        $post_id = null,
+        $post_format = $_current_post_format,
+        $type = 'all',
+        $use_img_placeholder = false,
+        $maybe_has_format_icon_media,
+        $force_format_icon_media
+    );
+
+    $has_post_media          = $this->show_thumb && (bool) $post_media;
+
+    $has_format_icon_media   = $maybe_has_format_icon_media && 'format-icon' == $post_media ;
 
     //setup article selectors;
-    $article_selectors       = $this -> czr_fn__get_article_selectors($is_full_image, $has_format_icon_media);
-
+    $article_selectors       = $this -> czr_fn__get_article_selectors( $is_full_image, $has_post_media, $has_format_icon_media );
 
     $_sections_wrapper_class = array();
     $_grid_item_class        = array();
@@ -247,32 +253,38 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
         //allow centering sections
         array_push( $_sections_wrapper_class, !$this->cover_sections ? 'czr-center-sections' : 'czr-cover-sections');
     }
-    elseif ( $is_full_image && $has_post_media ){
+
+    elseif ( $is_full_image && $has_post_media ) {
+
       /*
       * $is_full_image: Gallery and images (with no text) should
       * - be displayed in full-width
       * - media comes first, content will overlap
       */
       $_layout[ 'content' ] = $_layout[ 'media' ] = array();
+
     }
+
     elseif ( ! $has_post_media ) {
       //full width content
       $_layout[ 'content' ] = array('', '', '', '', '12');
+
     }
 
     $content_cols      = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
-    $media_cols        = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+    $media_class       = $media_cols  = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
 
     //add the aspect ratio class for the full image types
     if  ( $is_full_image || 'video' == $_current_post_format ) {
-      array_push( $media_cols, 'czr__r-w16by9' );
+      array_push( $media_class, 'czr__r-w16by9' );
     }
     elseif (
         !$has_format_icon_media &&
-        $has_thumb &&
+        $has_post_media &&
         !in_array( $_current_post_format, array( 'image', 'audio' ) ) ) {
 
-      array_push( $media_cols, 'czr__r-w1by1' );
+      array_push( $media_class, 'czr__r-w1by1', $this -> js_image_centering ? 'js-media-centering' : 'no-js-media-centering' );
+
     }
 
     if ( ! $is_full_image ) {
@@ -280,22 +292,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       array_push( $_grid_item_class, 'col' );
     }
 
-    $show_comment_meta = $this -> show_comment_meta;
-
     $post_list_item = array(
-      'content_cols'            => $content_cols,
-      'media_cols'              => $media_cols,
+      'content_class'           => $content_cols,
+      'media_class'             => $media_class,
       'sections_wrapper_class'  => $_sections_wrapper_class,
       'grid_item_class'         => $_grid_item_class,
       'article_selectors'       => $article_selectors,
-      'is_full_image'           => $is_full_image,
-      'has_format_icon_media'   => $has_format_icon_media,
-      'show_comment_meta'       => $show_comment_meta
+      'has_post_media'          => $has_post_media
     );
 
     return $post_list_item;
   }
-
 
 
   protected function czr_fn__get_post_list_item_property( $_property ) {
@@ -307,15 +314,15 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
 
-  protected function czr_fn__get_article_selectors( $is_full_image, $has_format_icon_media ) {
+  protected function czr_fn__get_article_selectors( $is_full_image, $has_post_media, $has_format_icon_media ) {
 
     $post_class              = $this->post_class;
-    $has_post_media          = $this->show_thumb;
+
 
     /* Extend article selectors with info about the presence of an excerpt and/or thumb */
     array_push( $post_class,
       $is_full_image && $has_post_media ? 'full-image' : '',
-      ! $has_format_icon_media && $has_post_media  ? 'has-thumb' : 'no-thumb'
+      $has_post_media && !$has_format_icon_media ? 'has-thumb' : 'no-thumb'
     );
 
     $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
@@ -396,19 +403,23 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
   *  or
   * 2b) not 'gallery','image', 'audio', 'video' post format and no thumb
   */
-  function czr_fn_has_format_icon_media( $has_thumb, $current_post_format = null ) {
+  function czr_fn_maybe_has_format_icon_media( $current_post_format ) {
 
-    if ( ! $this -> has_format_icon_media )
+    if ( ! $this -> format_icon_media )
       return false;
 
 
-    if ( in_array( $current_post_format, array( 'gallery', 'image', 'audio', 'video' ) ) )
+    return in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside', '' ) );
+
+  }
+
+
+  function czr_fn_force_format_icon_media( $current_post_format ) {
+
+    if ( ! $this -> format_icon_media )
       return false;
 
-    if ( in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside' ) ) )
-      return true;
-
-    return ! ( $this->show_thumb && $has_thumb );
+    return in_array( $current_post_format, array( 'quote', 'link') );
 
   }
 
@@ -484,7 +495,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
 
-  function czr_fn_has_media( $post_id = null, $post_format = null, $type = 'all', $use_img_placeholder = false ) {
+  function czr_fn_has_media( $post_id = null, $post_format = null, $type = 'all', $use_img_placeholder = false, $has_format_icon_media = false, $force_icon = false ) {
 
     //medias are singletons, we just reset them before using them in loops
     if ( czr_fn_is_registered( 'post_list_item_media' ) ) {
@@ -500,7 +511,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
           $_id = czr_fn_register(
             array(
               'id'          => 'post_list_item_media',
-              'model_class' => 'content/post-list/item-part/post_list_item_media'
+              'model_class' => 'content/post-lists/item-parts/post_list_item_media',
           ) );
 
           $_instance = czr_fn_get_model_instance( $_id );
@@ -510,7 +521,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       return false;
 
     //setup the media
-    $_instance -> czr_fn_setup_media( $post_id, $post_format, $type, $use_img_placeholder );
+    $_instance -> czr_fn_setup_media( $post_id, $post_format, $type, $use_img_placeholder, $has_format_icon_media, $force_icon );
+
 
     return $_instance -> czr_fn_get_raw_media();
 

@@ -18,11 +18,12 @@
       //render the $media_template;
       czr_fn_render_template( czr_fn_get( 'media_template' ), czr_fn_get( 'media_args' ) );
 
-    elseif ( czr_fn_get('has_format_icon_media') ):
+    elseif ( czr_fn_get( 'has_format_icon' ) ):
   ?>
       <div class="post-type__icon">
         <a class="bg-icon-link icn-format" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
       </div>
+
   <?php
   endif ?>
   </div>

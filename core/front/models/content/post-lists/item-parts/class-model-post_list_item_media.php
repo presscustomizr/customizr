@@ -2,36 +2,68 @@
 class CZR_post_list_item_media_model_class extends CZR_Model {
 
       public $defaults = array(
-            'media'             => null,
-            'media_template'    => '',
-            'media_args'        => array(),
+            'media'                 => null,
+            'media_template'        => '',
+            'media_args'            => array(),
 
-            'has_bg_link'       => null,
+            'has_bg_link'           => null,
+            'has_format_icon'       => false,
+
+            'post_id'               => null,
+            'post_format'           => null,
+            'type'                  => 'all',
+            'use_thumb_placeholder' => false,
+            'use_icon'              => false,
+            'force_icon'            => false,
       );
 
 
       public function czr_fn_get_raw_media() {
+
             return $this -> media;
       }
 
 
       public function czr_fn_setup_late_properties() {
-
+            /*
+            * This is if the model is called without setting up the media
+            * but thanks to the merged defaults we have at least the defaults properties
+            *
+            */
             if ( is_null( $this->media ) )
-                  $this -> czr_fn_setup_media();
-
+                  $this -> czr_fn_setup_media( $this->post_id, $this->post_format, $this->type, $this->use_thumb_placeholder, $this->use_icon, $this->force_icon );
       }
 
 
+      /*
+      *     $type can be:
+      * a) all (video/audio/czr_thumb/thumbnail)
+      * b) czr_thumb
+      * c) wp_thumb
+      *
+      *
+      */
+      public function czr_fn_setup_media( $post_id = null, $post_format = null, $type = 'all', $use_thumb_placeholder = false, $use_icon = false, $force_icon = false ) {
 
-      public function czr_fn_setup_media( $post_id = null, $post_format = null, $type = 'all', $use_placeholder = false ) {
+            if ( ! is_null( $this->media ) ) {
+                  return;
+            }
 
-            if ( isset( $this->media ) )
-                  return $this->media;
+
+            $post_id = $post_id ? $post_id : get_the_ID();
+
+            if ( $use_icon && $force_icon ) {
+
+                  $this -> czr_fn__set_icon_media();
+                  return;
+
+            }
 
             $post_format = $post_format ? $post_format : get_post_format( $post_id );
 
-            switch ( $post_format ) {
+            $media_type  = 'all' != $type ? 'thumb' : $post_format;
+
+            switch ( $media_type ) {
 
                   case 'video' :
                         //medias are singletons, we just reset them before using them in loops
@@ -61,9 +93,12 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
                         $this -> media           =  $_instance->czr_fn_get_raw_media();
 
-                        $this -> media_template  =  'content/media/video';
+                        if ( $this -> media ) {
 
-                        $this -> media_args      =  array( 'model_id' => 'media_video', 'model_class' => 'content/media/video', 'reset_to_defaults' => false );
+                              $this -> media_template  =  'content/media/video';
+
+                              $this -> media_args      =  array( 'model_id' => 'media_video', 'model_class' => 'content/media/video', 'reset_to_defaults' => false );
+                        }
 
                   break;
 
@@ -94,13 +129,17 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
                         $this -> media           =  $_instance->czr_fn_get_raw_media();
 
-                        $this -> media_template  =  'content/media/audio';
+                        if ( $this -> media ) {
 
-                        $this -> media_args      =  array( 'model_id' => 'media_audio', 'model_class' => 'content/media/audio', 'reset_to_defaults' => false );
+                              $this -> media_template  =  'content/media/audio';
+
+                              $this -> media_args      =  array( 'model_id' => 'media_audio', 'model_class' => 'content/media/audio', 'reset_to_defaults' => false );
+                        }
 
                   break;
 
                   case 'gallery' :
+
                         //medias are singletons, we just reset them before using them in loops
                         if ( czr_fn_is_registered( 'media_gallery' ) ) {
 
@@ -127,40 +166,74 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
                         $this -> media           =  $_instance->czr_fn_get_raw_media();
 
-                        $this -> media_template  =  'content/media/gallery';
+                        if ( $this -> media ) {
 
-                        $this -> media_args      =  array( 'model_id' => 'media_gallery', 'model_class' => 'content/media/gallery', 'reset_to_defaults' => false );
+                              $this -> media_template  =  'content/media/gallery';
 
-                        $this -> has_bg_link     = true;
+                              $this -> media_args      =  array( 'model_id' => 'media_gallery', 'model_class' => 'content/media/gallery', 'reset_to_defaults' => false );
+
+                              $this -> has_bg_link     =  true;
+                        }
 
                   break;
 
                   default:
-                  //TODO
-                        $_the_thumb = czr_fn_get_thumbnail_model( 'normal', null, null, null, null, $use_placeholder );
+                        //medias are singletons, we just reset them before using them in loops
+                        if ( czr_fn_is_registered( 'media_thumbnail' ) ) {
 
-                        if ( empty ( $_the_thumb['tc_thumb']) ) {
-                              return ' ';
+                              $_instance = czr_fn_get_model_instance( 'media_thumbnail' );
+
+                              //reset any previous content
+                              $_instance->czr_fn_reset_to_defaults();
+
+                        }
+                        else {
+
+                              $_id = czr_fn_register( array(
+
+                                    'id'          => 'media_thumbnail',
+                                    'render'      => false,
+                                    'template'    => 'content/media/thumbnail',
+                                    'model_class' => 'content/media/thumbnail'
+
+                              ) );
+
+                              $_instance = czr_fn_get_model_instance( $_id );
                         }
 
-                        //get_the_post_thumbnail( null, 'normal', array( 'class' => 'post-thumbnail' ) );
-                        /* use utils tc thumb to retrieve the original image size */
-                        if ( isset($_the_thumb[ '_thumb_id' ]) )
-                      $this -> czr_fn_set_property( 'original_thumb_url', wp_get_attachment_image_src( $_the_thumb[ '_thumb_id' ], 'large')[0] );
+                        $_instance->czr_fn_setup_raw_media( $post_id, $size = 'normal', $use_placeholder = $use_thumb_placeholder,  $use_attachment = 'wp_thumb' != $type );
 
-                    $the_permalink       = esc_url( apply_filters( 'the_permalink', get_the_permalink() ) );
-                    $the_title_attribute = the_title_attribute( array( 'before' => __('Permalink to ', 'customizr'), 'echo' => false ) );
+                        $this -> media           =  $_instance->czr_fn_get_raw_media();
+
+                        if ( $this -> media ) {
+
+                              $this -> media_template   =  'content/media/thumbnail';
+
+                              $this -> media_args       =  array( 'model_id' => 'media_thumbnail', 'model_class' => 'content/media/thumbnail', 'reset_to_defaults' => false );
+
+                              $this -> has_bg_link      =  true;
+
+                        }
+
+                        elseif ( $use_icon ) {
+
+                              $this -> czr_fn__set_icon_media();
+
+                        }
 
 
-                    $_bg_link = '<a class="bg-link" rel="bookmark" title="'. $the_title_attribute.'" href="'.$the_permalink.'"></a>';
+                  break;
 
-                    return $_bg_link . $_the_thumb[ 'tc_thumb' ];
             }
 
         }
 
 
+      protected function czr_fn__set_icon_media() {
 
+            $this -> media            = 'format-icon';
 
+            $this -> has_format_icon  = true;
+      }
 
 }

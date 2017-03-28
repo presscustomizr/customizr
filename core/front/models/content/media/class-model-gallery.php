@@ -14,17 +14,17 @@ class CZR_gallery_model_class extends CZR_Model {
       public function czr_fn_setup_raw_media( $post_id = null ) {
 
             $this->post_id  = $post_id ? $post_id : get_the_ID();
-            $this->media    = $this->czr_fn__get_post_gallery( $post_id );
+            $this->media    = $this->czr_fn__get_post_gallery( $this->post_id );
 
       }
 
 
 
 
-      public function czr_fn_get_raw_media( $post_id = null ) {
+      public function czr_fn_get_raw_media() {
 
             if ( is_null( $this->media ) )
-                  return $this->czr_fn__get_post_gallery( $post_id );
+                  return $this->czr_fn__get_post_gallery( $this->post_id );
 
             return $this->media;
 
@@ -87,7 +87,7 @@ class CZR_gallery_model_class extends CZR_Model {
 
                   if ( isset( $_gallery_ids[ $_index ] ) ) {
 
-                        $_original_image = wp_get_attachment_url( $_gallery_ids[ $_index ] ); //'full' );
+                        $_original_image = wp_get_attachment_url( $_gallery_ids[ $_index ] ); //'full';
 
                         $_alt            = get_post_meta( $_gallery_ids[ $_index ], '_wp_attachment_image_alt', true );
 
@@ -96,6 +96,7 @@ class CZR_gallery_model_class extends CZR_Model {
                   $gallery_items[] = array(
 
                         'src'             => $src,
+                        //lightbox
                         'data-mfp-src'    => $_original_image ? $_original_image : $src,
                         'alt'             => $_alt
 

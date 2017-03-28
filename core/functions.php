@@ -182,21 +182,10 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
                   //update model with the one passed
                   if ( is_array($args) && array_key_exists( 'model_args', $args) ) {
 
-                        if ( $_reset_to_defaults ) {
-                              $model_instance -> czr_fn_reset_to_defaults();
-                              if ( 'video' == $_model_id ) {
-                                    echo "sono qui";
-                              }
-                        }
-
-                        $model_instance -> czr_fn_update( $_model_args );
+                        $model_instance -> czr_fn_update( $_model_args, $_reset_to_defaults );
 
                   }
                   elseif ( $_reset_to_defaults ) {
-
-                        if ( 'video' == $_model_id ) {
-                              echo "sono qui";
-                        }
 
                         $model_instance -> czr_fn_reset_to_defaults();
                   }

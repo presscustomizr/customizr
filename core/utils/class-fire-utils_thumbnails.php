@@ -14,12 +14,14 @@
 * @since Customizr 1.0
 */
 function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = null, $_filtered_thumb_size_name = null, $_placeholder = false ) {
+
     if ( ! czr_fn_has_thumb( $_post_id, $_custom_thumb_id ) ) {
       if ( ! $_placeholder )
         return array();
       else
         return array( 'tc_thumb' => czr_fn_get_placeholder_thumb(), 'is_placeholder' => true );
     }
+
     $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
     $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
 

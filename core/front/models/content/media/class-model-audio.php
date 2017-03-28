@@ -72,7 +72,7 @@ class CZR_audio_model_class extends CZR_Model {
                return '';
             }
 
-            return $this->czr_fn__get_media_embed( $raw_audio );
+            return do_shortcode ( $this->czr_fn__get_media_embed( $raw_audio ) );
 
       }
 

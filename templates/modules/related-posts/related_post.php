@@ -10,10 +10,9 @@
         'content/post-lists/item-parts/post_list_item_media',
         array(
           'model_args' => array(
-            'element_class' => czr_fn_get('media_cols'),
-            'only_thumb'    => true,
-            'has_post_media' => true,
-            'use_placeholder' => true
+              'element_class'         => czr_fn_get('media_cols'),
+              'type'                  => 'czr-thumb',
+              'use_thumb_placeholder' => true
           )
         )
       );
