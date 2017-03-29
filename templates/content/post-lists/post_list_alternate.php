@@ -23,6 +23,7 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
                   'reset_to_defaults' => false,
                   'model_args' =>  array(
                     'element_class'            => czr_fn_get( 'media_class' ),
+                    'image_centering'          => czr_fn_get( 'image_centering' ),
                   )
                 )
               );

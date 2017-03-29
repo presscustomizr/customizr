@@ -15,7 +15,6 @@ class CZR_related_posts_model_class extends CZR_model {
       'element_width'         => array( 'col-12', 'col-lg-6' ),
     );
 
-    $_preset[ 'media_cols' ] .= esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? ' js-media-centering' : ' no-js-media-centering';
     return $_preset;
   }
   /*

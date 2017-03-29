@@ -9,6 +9,8 @@
 $thumbnail_item = czr_fn_get( 'thumbnail_item' );
 
 /* Lightbox */
-czr_fn_post_action( $link = $thumbnail_item[ 'lightbox_url' ], $class = 'expand-img' );
+if ( $thumbnail_item[ 'lightbox_url' ] )
+  czr_fn_post_action( $link = $thumbnail_item[ 'lightbox_url' ], $class = 'expand-img' );
+
 /* img */
 echo $thumbnail_item[ 'img' ];

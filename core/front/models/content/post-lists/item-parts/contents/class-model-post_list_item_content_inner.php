@@ -56,6 +56,7 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
 
   /* Should be cached at each loop ??? */
   function czr_fn_get_content_cb( $default ) {
+
     if ( isset( $this->content_cb ) )
       return $this->content_cb;
 
@@ -70,11 +71,12 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
       case 'gallery' :
       case 'audio'   : return 'get_the_excerpt';
 
-      case 'link'   : return array( array( $this, 'czr_fn__get_the_post_link' ), $default );
-      case 'quote'  : return array( array( $this, 'czr_fn__get_the_post_quote' ), $default );
+      case 'link'    : return array( array( $this, 'czr_fn__get_the_post_link' ), $default );
+      case 'quote'   : return array( array( $this, 'czr_fn__get_the_post_quote' ), $default );
 
-      default       : return $default;
+      default        : return $default;
     }
+
   }
 
 
@@ -84,19 +86,21 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
          array(
             'id'          => 'link',
             'render'      => false,
-            'template'    => 'content/media/link',
-            'model_class' => 'content/media/link',
+            'template'    => 'content/common/text/link',
+            //'model_class' => 'content/common/text/link',
          )
       ) : 'link' ;
 
       $link_instance = czr_fn_get_model_instance( $link_id );
-      //reset any previous content
-      $link_instance->czr_fn_reset();
 
-      $content = $link_instance->czr_fn_get_content();
+      $link_instance->czr_fn_setup();
 
-      if ( ! ( isset( $content[ 'url' ] ) && $content[ 'url' ] ) ) {
+      $content = $link_instance->czr_fn_get_raw_content();
+
+      if ( empty( $content) ) {
+
          return call_user_func( $default );
+
       }
 
 
@@ -111,20 +115,22 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
          array(
             'id'          => 'quote',
             'render'      => false,
-            'template'    => 'content/media/quote',
-            'model_class' => 'content/media/quote',
+            'template'    => 'content/common/text/quote',
+            //'model_class' => 'content/common/text/quote',
          )
       ) : 'quote' ;
 
       $quote_instance = czr_fn_get_model_instance( $quote_id );
-      //reset any previous content
-      $quote_instance->czr_fn_reset();
 
-      $content = $quote_instance->czr_fn_get_content();
+      $quote_instance->czr_fn_setup();
 
-      if ( ! ( isset( $content[ 'text' ] ) && $content['text'] ) ) {
+      $content = $quote_instance->czr_fn_get_raw_content();
+
+      if ( empty( $content) ) {
+
          return call_user_func( $default );
       }
+
 
       czr_fn_get_view_instance( $quote_id ) -> czr_fn_maybe_render();
 

@@ -1,7 +1,13 @@
 <?php
 class CZR_gallery_model_class extends CZR_Model {
 
-      public   $defaults            = array(
+      protected      $post_id;
+
+      protected      $media;
+      protected      $gallery_items;
+
+
+      public         $defaults      = array(
                                           'media'           => null,
                                           'gallery_items'   => null,
                                           'post_id'         => null,
@@ -11,10 +17,23 @@ class CZR_gallery_model_class extends CZR_Model {
 
 
       /* Public api */
-      public function czr_fn_setup_raw_media( $post_id = null ) {
+      public function czr_fn_setup( $args = array() ) {
 
-            $this->post_id  = $post_id ? $post_id : get_the_ID();
-            $this->media    = $this->czr_fn__get_post_gallery( $this->post_id );
+            $defaults = array (
+
+                  'post_id'         => null,
+
+            );
+
+            $args = wp_parse_args( $args, $defaults );
+
+            $args[ 'post_id' ]     = $args[ 'post_id' ] ? $args[ 'post_id' ] : get_the_ID();
+
+            /* This will update the model object properties, merging the $model -> defaults too */
+            $this -> czr_fn_update( $args );
+
+            /* Set the media property */
+            $this -> czr_fn__set_raw_media();
 
       }
 
@@ -23,13 +42,9 @@ class CZR_gallery_model_class extends CZR_Model {
 
       public function czr_fn_get_raw_media() {
 
-            if ( is_null( $this->media ) )
-                  return $this->czr_fn__get_post_gallery( $this->post_id );
-
             return $this->media;
 
       }
-
 
 
 
@@ -45,22 +60,31 @@ class CZR_gallery_model_class extends CZR_Model {
 
 
             if ( is_null( $this->media ) ) {
-                  $this -> czr_fn_setup_the_raw_media( $this->post_id );
+                  $this -> czr_fn_setup( array(
+                        'post_id'  => $this->post_id
+                  ) );
             }
 
 
-            if ( is_null( $this->gallery_items ) )
-               $this -> czr_fn__setup_the_gallery_items();
+            $this -> czr_fn__setup_the_gallery_items();
 
       }
 
 
 
 
+      protected function czr_fn__set_raw_media() {
+
+            $this -> czr_fn_set_property( 'media', $this->czr_fn__get_post_gallery() );
+
+      }
+
+
+
 
       protected function czr_fn__setup_the_gallery_items() {
 
-            $this->gallery_items = $this->czr_fn__get_the_gallery_items();
+            $this -> czr_fn_set_property( 'gallery_items', $this->czr_fn__get_the_gallery_items() );
 
       }
 
@@ -69,7 +93,7 @@ class CZR_gallery_model_class extends CZR_Model {
 
       protected function czr_fn__get_the_gallery_items() {
 
-            $raw_media       = $this -> czr_fn_get_raw_media();
+            $raw_media       = $this -> media;
 
             if ( empty( $raw_media ) )
                return array();
@@ -82,6 +106,7 @@ class CZR_gallery_model_class extends CZR_Model {
             $_index          = 0;
 
             foreach( $raw_media[ 'src' ] as $src ) {
+
                   $_original_image  = '';
                   $_alt             = '';
 
@@ -112,9 +137,9 @@ class CZR_gallery_model_class extends CZR_Model {
 
 
 
-      protected function czr_fn__get_post_gallery( $post_id = null ) {
+      protected function czr_fn__get_post_gallery() {
 
-            $post_id          = $post_id ? $post_id : get_the_ID();
+            $post_id          = $this->post_id ? $this->post_id : get_the_ID();
             $post_gallery     = get_post_gallery( $post_id, false );
 
             return empty( $post_gallery ) ? false : $post_gallery;

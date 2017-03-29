@@ -4,6 +4,12 @@ class CZR_video_model_class extends CZR_Model {
       private static $meta_key      = 'czr_video_meta';
       private static $meta_fields   = array( 'url' => 'video_url' );
 
+      protected      $post_id;
+
+      protected      $media;
+      protected      $video;
+
+
       public         $defaults      = array(
                                           'media'           => null,
                                           'video'           => null,
@@ -14,23 +20,36 @@ class CZR_video_model_class extends CZR_Model {
 
 
       /* Public api */
-      public function czr_fn_setup_raw_media( $post_id = null ) {
+      public function czr_fn_setup( $args = array() ) {
 
-            $this->post_id  = $post_id ? $post_id : get_the_ID();
-            $this->media    = $this->czr_fn__get_video_meta( $this->post_id );
+            $defaults = array (
+
+                  'post_id'         => null,
+
+            );
+
+            $args = wp_parse_args( $args, $defaults );
+
+            $args[ 'post_id' ]     = $args[ 'post_id' ] ? $args[ 'post_id' ] : get_the_ID();
+
+            /* This will update the model object properties, merging the $model -> defaults too */
+            $this -> czr_fn_update( $args );
+
+            /* Set the media property */
+            $this -> czr_fn__set_raw_media();
 
       }
+
 
 
 
       public function czr_fn_get_raw_media() {
 
-            if ( is_null( $this->media ) ) {
-                  return $this->czr_fn__get_video_meta( $this->post_id );
-            }
             return $this->media;
 
       }
+
+
 
 
       /*
@@ -38,24 +57,37 @@ class CZR_video_model_class extends CZR_Model {
       * @hook: pre_rendering_view_{$this -> id}, 9999
       */
       /*
-      * Each time this model view is rendered setup the current gallery items
+      * Each time this model view is rendered setup the current thumbnail items
       */
       function czr_fn_setup_late_properties() {
 
+
             if ( is_null( $this->media ) ) {
-                  $this -> czr_fn_setup_the_raw_media( $this->post_id );
+                  $this -> czr_fn_setup( array(
+                        'post_id'         => $this->post_id
+                  ) );
             }
 
-            if ( is_null( $this->video ) ) {
-                  $this -> czr_fn__setup_the_video();
-            }
+
+            $this -> czr_fn__setup_the_video();
+
       }
+
+
+
+
+      protected function czr_fn__set_raw_media() {
+
+            $this -> czr_fn_set_property( 'media', $this->czr_fn__get_video_meta() );
+
+      }
+
 
 
 
       protected function czr_fn__setup_the_video() {
 
-            $this->video = $this->czr_fn__get_the_video();
+            $this -> czr_fn_set_property( 'video', $this->czr_fn__get_the_video() );
 
       }
 
@@ -64,7 +96,7 @@ class CZR_video_model_class extends CZR_Model {
 
       protected function czr_fn__get_the_video() {
 
-            $raw_video = $this->czr_fn_get_raw_media();
+            $raw_video = $this->media;
 
 
             if ( empty( $raw_video ) ) {
@@ -74,6 +106,7 @@ class CZR_video_model_class extends CZR_Model {
             return do_shortcode( $this->czr_fn__get_media_embed( $raw_video ) );
 
       }
+
 
 
 
@@ -95,9 +128,9 @@ class CZR_video_model_class extends CZR_Model {
 
 
 
-      protected function czr_fn__get_video_meta( $post_id = null ) {
+      protected function czr_fn__get_video_meta() {
 
-            $post_id  = $post_id ? $post_id : get_the_ID();
+            $post_id  = $this->post_id ? $this->post_id : get_the_ID();
             $meta     = get_post_meta( $post_id, self::$meta_key, true );
 
             return $this -> czr_fn__validate_media_from_meta( $meta );

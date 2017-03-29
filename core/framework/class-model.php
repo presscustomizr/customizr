@@ -50,6 +50,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
 
           //here is where extension classes can set their preset models
           $_preset = $this -> czr_fn_get_preset_model();
+
           if ( is_array($_preset) && ! empty( $_preset ) )
             $model = wp_parse_args( $_preset, $model );
 
@@ -69,7 +70,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           }
 
 
-          //equivalent of wp_parse_args() with default model property values
+          //inside will make the equivalent of wp_parse_args() with default model property values
           $this -> czr_fn_update( $model );
 
           //at this stage the mode must at least have :

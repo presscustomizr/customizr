@@ -46,7 +46,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       'contained'             => false,
       'cover_sections'        => true,
       'wrapped'               => true,
-      'js_image_centering'    => esc_attr( czr_fn_get_opt( 'tc_center_img' ) )
+      'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering'
     );
 
     return $_preset;
@@ -283,7 +283,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
         $has_post_media &&
         !in_array( $_current_post_format, array( 'image', 'audio' ) ) ) {
 
-      array_push( $media_class, 'czr__r-w1by1', $this -> js_image_centering ? 'js-media-centering' : 'no-js-media-centering' );
+        array_push( $media_class, 'czr__r-w1by1' );
 
     }
 
@@ -521,7 +521,14 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       return false;
 
     //setup the media
-    $_instance -> czr_fn_setup_media( $post_id, $post_format, $type, $use_img_placeholder, $has_format_icon_media, $force_icon );
+    $_instance -> czr_fn_setup( array(
+      'post_id'               => $post_id,
+      'post_format'           => $post_format,
+      'media_type'            => $type,
+      'use_thumb_placeholder' => $use_img_placeholder,
+      'use_icon'              => $has_format_icon_media,
+      'force_icon'            => $force_icon
+    ) );
 
 
     return $_instance -> czr_fn_get_raw_media();
