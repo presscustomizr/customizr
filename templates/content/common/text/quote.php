@@ -6,11 +6,6 @@
  * @package Customizr
  */
 ?>
-<?php
-
-      if ( czr_fn_get( 'quote_text' ) ) :
-
-?>
 <blockquote class="blockquote entry-quote <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo( 'element_attributes' ) ?>>
   <p><?php czr_fn_echo( 'quote_text' ) ?></p>
 <?php
@@ -21,9 +16,4 @@
       endif //czr_fn_get( 'quote_source' )
 ?>
 </blockquote>
-<?php
-
-      endif //czr_fn_get( 'quote_text' )
-
-?>
 

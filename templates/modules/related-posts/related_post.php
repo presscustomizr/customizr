@@ -23,7 +23,7 @@
         <?php
           /* header */
           czr_fn_render_template(
-            'content/post-lists/item-parts/headings/post_list_item_header-no_metas',
+            'content/post-lists/item-parts/headings/post_list_item_header_date',
             array(
               'model_class' => 'content/post-lists/item-parts/headings/post_list_item_header'
             )

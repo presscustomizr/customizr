@@ -14,6 +14,8 @@ class CZR_video_model_class extends CZR_Model {
                                           'media'           => null,
                                           'video'           => null,
                                           'post_id'         => null,
+
+                                          'visiblity'       => true,
                                     );
 
 
@@ -37,6 +39,9 @@ class CZR_video_model_class extends CZR_Model {
 
             /* Set the media property */
             $this -> czr_fn__set_raw_media();
+
+            /* Toggle visibility */
+            $this -> czr_fn_set_property( 'visibility',  (bool) $this->czr_fn_get_raw_media() );
 
       }
 

@@ -54,7 +54,7 @@
                 'content/post-lists/item-parts/contents/post_list_item_content_inner',
                 array(
                   'model_args' => array(
-                    'show_full_content' => czr_fn_get( 'show_full_content' ),
+                    'content_type' => czr_fn_get( 'show_full_content' ) ? 'full' : 'all',
                   )
                 )
               )

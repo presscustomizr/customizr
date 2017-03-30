@@ -16,13 +16,7 @@
       ?>
       <footer class="post-footer container-fluid clearfix">
         <?php
-          wp_link_pages( array(
-            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
-            'after'         => '</div></div>',
-            'link_before'   => '<span>',
-            'link_after'    => '</span>',
-            )
-          );
+          czr_fn_link_pages();
         ?>
         <div class="entry-meta clearfix">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>

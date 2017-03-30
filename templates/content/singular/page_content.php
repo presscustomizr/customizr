@@ -13,17 +13,13 @@
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
       <?php do_action( '__before_inner_post_content' ) ?>
       <?php
+
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
+
       ?>
       <footer class="post-footer container-fluid clearfix">
         <?php
-          wp_link_pages( array(
-            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
-            'after'         => '</div></div>',
-            'link_before'   => '<span>',
-            'link_after'    => '</span>',
-            )
-          );
+          czr_fn_link_pages();
         ?>
         <?php
           if ( czr_fn_has('social_share') ) :

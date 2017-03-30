@@ -20,7 +20,9 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
               czr_fn_render_template(
                 'content/post-lists/item-parts/post_list_item_media',
                 array(
+                  'model_id'   => 'post_list_item_media',
                   'reset_to_defaults' => false,
+
                   'model_args' =>  array(
                     'element_class'            => czr_fn_get( 'media_class' ),
                     'image_centering'          => czr_fn_get( 'image_centering' ),
@@ -36,7 +38,14 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
                 /* header */
                 czr_fn_render_template( 'content/post-lists/item-parts/headings/post_list_item_header' );
                 /* content inner */
-                czr_fn_render_template( 'content/post-lists/item-parts/contents/post_list_item_content_inner' );
+                czr_fn_render_template(
+                    'content/post-lists/item-parts/contents/post_list_item_content_inner',
+                    array(
+                      'model_id'   => 'post_list_item_content_inner',
+                      'reset_to_defaults' => false,
+                    )
+
+                );
                 /* footer */
                 czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer',
                         array(

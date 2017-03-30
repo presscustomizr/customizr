@@ -47,6 +47,10 @@ if ( ! class_exists( 'CZR_View' ) ) :
           do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
           do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
 
+          //re-check visibility
+          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true ) )
+            return;
+
           do_action( "__before_{$this -> model -> id}" );
 
           $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );

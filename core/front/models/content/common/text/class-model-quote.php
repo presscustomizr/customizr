@@ -15,6 +15,9 @@ class CZR_quote_model_class extends CZR_Model {
       public $defaults              = array(
                                           'content'         => null,
                                           'quote_item'      => '',
+
+                                          'post_id'         => null,
+                                          'visiblity'       => true,
                                     );
 
 
@@ -23,6 +26,27 @@ class CZR_quote_model_class extends CZR_Model {
 
 
       /* Public api */
+
+
+
+      public function czr_fn_get_quote_text() {
+
+            return array_key_exists( 'quote_text', $this->quote_item ) ? esc_html( $this->quote_item[ 'quote_text' ] ) : false;
+
+      }
+
+
+
+
+      public function czr_fn_get_quote_source() {
+
+            return array_key_exists( 'quote_source', $this->quote_item ) ? esc_html( $this->quote_item[ 'quote_source' ] ) : false;
+
+      }
+
+
+
+
       public function czr_fn_setup( $args = array() ) {
 
             $defaults = array (
@@ -41,6 +65,9 @@ class CZR_quote_model_class extends CZR_Model {
             /* Set the media property */
             $this -> czr_fn__set_raw_content();
 
+            /* Toggle visibility */
+            $this -> czr_fn_set_property( 'visibility',  (bool) $this->czr_fn_get_raw_content() );
+
       }
 
 
@@ -52,23 +79,6 @@ class CZR_quote_model_class extends CZR_Model {
 
       }
 
-
-
-
-      public function czr_fn_get_quote_text() {
-
-            return array_key_exists( 'quote_text', $this->quote_item ) ? esc_html( $this->quote_item[ 'quote_text' ] ) : false;
-
-      }
-
-
-
-
-      public function czr_fn_get_quote_source() {
-
-            return array_key_exists( 'quote_source', $this->quote_item ) ? esc_html( $this->quote_item[ 'quote_source' ] ) : false;
-
-      }
 
 
 

@@ -20,13 +20,29 @@ class CZR_thumbnail_model_class extends CZR_Model {
                                           'post_id'               => null,
                                           'size'                  => 'full',
                                           'use_placeholder'       => false,
-                                          'use_attachment'        => true
+                                          'use_attachment'        => true,
+
+                                          'visiblity'             => true,
                                     );
 
 
 
 
       /* Public api */
+      public function czr_fn_get_image() {
+
+            return array_key_exists( 'img', $this->thumbnail_item ) ? $this->thumbnail_item[ 'img' ] : null;
+
+      }
+
+      public function czr_fn_get_lightbox_url() {
+
+            return array_key_exists( 'lightbox_url', $this->thumbnail_item ) ? $this->thumbnail_item[ 'lightbox_url' ] : null;
+
+      }
+
+
+
       public function czr_fn_setup( $args = array() ) {
 
             $defaults = array (
@@ -47,6 +63,9 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
             /* Set the media property */
             $this -> czr_fn__set_raw_media();
+
+            /* Toggle visibility */
+            $this -> czr_fn_set_property( 'visibility',  (bool) $this->czr_fn_get_raw_media() );
 
       }
 
@@ -121,7 +140,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
                   'img'           => $raw_media[ 'tc_thumb' ],
                   //lightbox
-                  'lightbox_url'  => $raw_media[ 'is_placeholder' ] ? '' : wp_get_attachment_url( $raw_media[ '_thumb_id' ] ), //full
+                  'lightbox_url'  => array_key_exists( 'is_placeholder', $raw_media ) && $raw_media[ 'is_placeholder' ] ? '' : wp_get_attachment_url( $raw_media[ '_thumb_id' ] ), //full
 
             );
 
@@ -148,8 +167,8 @@ class CZR_thumbnail_model_class extends CZR_Model {
                   //build array
                   $id                                  = get_post_thumbnail_id( $post_id );
                   if ( $id ) {
-                        $post_thumbnail[ '_thumb_id' ] = $id;
-                        $post_thumbnail[ 'tc_thumb' ]  = get_the_post_thumbnail( $post_id, $this->size );
+                        $post_thumbnail[ '_thumb_id' ]       = $id;
+                        $post_thumbnail[ 'tc_thumb' ]        = get_the_post_thumbnail( $post_id, $this->size );
 
                   }
                   else {

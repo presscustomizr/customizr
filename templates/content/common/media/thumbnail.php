@@ -6,11 +6,8 @@
  * @package Customizr
  */
 
-$thumbnail_item = czr_fn_get( 'thumbnail_item' );
-
-/* Lightbox */
-if ( $thumbnail_item[ 'lightbox_url' ] )
-  czr_fn_post_action( $link = $thumbnail_item[ 'lightbox_url' ], $class = 'expand-img' );
+/* Lightbox Button */
+czr_fn_post_action( $link = czr_fn_get( 'lightbox_url' ), $class = 'expand-img' );
 
 /* img */
-echo $thumbnail_item[ 'img' ];
+czr_fn_echo( 'image' );

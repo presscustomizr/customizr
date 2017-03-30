@@ -14,7 +14,11 @@ class CZR_link_model_class extends CZR_Model {
 
       public $defaults              = array(
                                           'content'         => null,
-                                          'link_item'      => '',
+                                          'link_item'       => '',
+
+                                          'post_id'         => null,
+
+                                          'visiblity'       => true,
                                     );
 
 
@@ -23,6 +27,26 @@ class CZR_link_model_class extends CZR_Model {
 
 
       /* Public api */
+
+
+      public function czr_fn_get_link_url() {
+
+            return array_key_exists( 'link_url', $this->link_item ) ? esc_url( $this->link_item[ 'link_url' ] ) : false;
+
+      }
+
+
+
+
+      public function czr_fn_get_link_title() {
+
+            return array_key_exists( 'link_title', $this->link_item ) ? esc_html( $this->link_item[ 'link_title' ] ) : false;
+
+      }
+
+
+
+
       public function czr_fn_setup( $args = array() ) {
 
             $defaults = array (
@@ -41,6 +65,9 @@ class CZR_link_model_class extends CZR_Model {
             /* Set the media property */
             $this -> czr_fn__set_raw_content();
 
+            /* Toggle visibility */
+            $this -> czr_fn_set_property( 'visibility',  (bool) $this->czr_fn_get_raw_content() );
+
       }
 
 
@@ -52,23 +79,6 @@ class CZR_link_model_class extends CZR_Model {
 
       }
 
-
-
-
-      public function czr_fn_get_link_url() {
-
-            return array_key_exists( 'link_url', $this->link_item ) ? esc_url( $this->link_item[ 'link_url' ] ) : false;
-
-      }
-
-
-
-
-      public function czr_fn_get_link_title() {
-
-            return array_key_exists( 'link_title', $this->link_item ) ? esc_html( $this->link_item[ 'link_title' ] ) : false;
-
-      }
 
 
 

@@ -312,10 +312,19 @@ section[class^="post-"] {
 }
 
 section.post-related-articles {
-  margin-top: 0;
-    header {
-      @include clearfix;
-      .related-posts_title { float:left; font-weight: 600; margin-top: $base-line-height*2; }
+    margin-top: 0;
+
+    > header {
+      @include clearfix();
+
+      .related-posts_title {
+        float:left;
+        font-weight: 600;
+        margin-top:
+        $base-line-height*2;
+      }
+
+
       @at-root .related-posts_nav {
         float: right;
         margin-top: $base-line-height*4;
@@ -329,17 +338,14 @@ section.post-related-articles {
           &.disabled { color: $grey-lightest; background: transparent; border-color: transparent; }
         }
       }
+
     }
 
-    .grid { margin-top:$base-line-height;  }
-    .grid .grid__item {
-      h3 { font-weight: 600; }
-      background: $grey-lightest;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
+    .entry-meta {
+      margin: 0;
     }
-  }
+
+}
 
 .pagination {
   text-align: center;

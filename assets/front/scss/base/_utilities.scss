@@ -26,7 +26,6 @@ img.h-centered {
   max-width: none!important;
   position: relative;
   @include transform( translate(0,0) !important );
-  @include transform( translate3d(0,0,0) !important );
   &.tc-holder-img {
     transform: none !important;
   }
@@ -37,7 +36,6 @@ img.v-centered {
   vertical-align: top;
   position: relative;
   @include transform( translate(0,0) !important );
-  @include transform( translate3d(0,0,0) !important );
   &.tc-holder-img {
     transform: none !important;
   }

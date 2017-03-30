@@ -334,8 +334,8 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           }
 
           foreach ( $model as $key => $value ) {
-            if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
-              $this->$key = $model[ $key ];
+               if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
+                      $this->$key = $model[ $key ];
           }
 
           //emit an event when a model is updated

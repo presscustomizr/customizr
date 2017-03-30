@@ -441,6 +441,9 @@ Headings images
 .czr-cover-sections > .entry-media__holder {
   align-self: stretch;
 }
+.no-thumb .czr-cover-sections .entry-media__holder {
+  align-self: center;
+}
 .no-thumb .czr-cover-sections .entry-media__wrapper {
   margin: auto;
 }

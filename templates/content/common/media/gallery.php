@@ -9,7 +9,6 @@
 <?php
       $gallery_items = czr_fn_get( 'gallery_items' );
 
-      if ( $gallery_items ) :
 
       czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
 ?>
@@ -30,9 +29,3 @@
 ?>
     </div>
 </div>
-<?php
-
-      endif; //gallery_items
-
-?>
-

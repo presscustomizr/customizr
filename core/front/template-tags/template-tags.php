@@ -67,6 +67,10 @@ if ( ! function_exists( 'czr_fn_post_action' ) ) :
  * generally shown on thumb hover, will open the lightbox
  */
 function czr_fn_post_action( $link, $class ) {
+
+      if ( !$link )
+            return;
+
       $icon     = 'icn-expand';
       $class    = $class ? $class . ' ' . $icon : $icon;
 
@@ -89,11 +93,11 @@ if ( ! function_exists( 'czr_fn_readmore_button' ) ) :
  */
 function czr_fn_readmore_button( $args = array() ) {
       $defaults = array(
-        'class' => '',
-        'link'  => get_permalink(),
-        'title' => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
-        'text'  => __('Read more &raquo;', 'customizr' ),
-        'echo'  => false,
+            'class' => '',
+            'link'  => get_permalink(),
+            'title' => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
+            'text'  => __('Read more &raquo;', 'customizr' ),
+            'echo'  => false,
       );
 
       $args             = wp_parse_args( $args, $defaults );
@@ -101,10 +105,10 @@ function czr_fn_readmore_button( $args = array() ) {
       $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' readmore-holder' : 'readmore-holder';
 
       $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-darkest" href="%2$s" title="%3$s">%4$s</a></span>',
-          esc_attr( $args[ 'class' ] ),
-          esc_url( $args[ 'link' ] ),
-          esc_attr( $args[ 'title' ] ),
-          $args[ 'text' ]
+            esc_attr( $args[ 'class' ] ),
+            esc_url( $args[ 'link' ] ),
+            esc_attr( $args[ 'title' ] ),
+            $args[ 'text' ]
       );
 
       if ( !$args[ 'echo' ] )
@@ -151,4 +155,23 @@ function czr_fn_edit_button( $args = array() ) {
       <?php
 
 }
+endif;
+
+if ( ! function_exists( 'czr_fn_link_pages' ) ) :
+/**
+ * The template for displaying the edit button
+ * Used everywhere from the slider to the posts to the comment
+ *
+ */
+function czr_fn_link_pages( $echo = true ) {
+
+      wp_link_pages( array(
+            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
+            'after'         => '</div></div>',
+            'link_before'   => '<span>',
+            'link_after'    => '</span>',
+            'echo'          => $echo
+      ));
+}
+
 endif;
