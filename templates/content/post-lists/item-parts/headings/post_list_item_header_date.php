@@ -12,7 +12,7 @@
       if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
         <div class="post-type__icon"><i class="icn-format"></i></div>
     <?php endif ?>
-    <?php if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) ) : ?>
+    <?php if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) ) : ?>
       <div class="entry-meta">
           <?php echo $date ?>
       </div>

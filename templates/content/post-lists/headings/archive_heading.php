@@ -4,6 +4,20 @@
 */
 ?>
 <header class="row page__header image__header archive-header" <?php czr_fn_echo('element_attributes') ?>>
+  <?php
+    //blog page, maybe render its featured image
+    if ( is_home() || is_post_type_archive() ) :
+        czr_fn_render_template( 'content/post-lists/item-parts/post_list_item_media',
+                    array(
+                      //'reset_to_defaults' => false,
+                      'model_args' => array(
+                        'media_type'               => 'wp_thumb',
+                        'post_id'                  => czr_fn_get_real_id()
+                      )
+                    )
+        );
+    endif;
+  ?>
   <div class="container header-content">
     <div class="header-content-inner">
       <h1 class="archive-title">

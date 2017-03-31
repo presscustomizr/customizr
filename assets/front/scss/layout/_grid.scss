@@ -472,22 +472,6 @@ a.czr-format-link {
 }
 /* END CLASSIC */
 
-.bg-link, .bg-icon-link {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-}
-.bg-link {
-  @include transition(all, 0.6s ease);
-  background: transparent;
-}
-.hover .bg-link {
-  background: rgba($black, 0.25);
-  z-index: 2;
-}
 
 //
 //full-image = image with no excerpt/gallery
@@ -777,14 +761,12 @@ a.czr-format-link {
       -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
     }
-    backface-visibility: hidden;
   }
 
   section {
     background: inherit;
     padding: 0;
-    z-index: 1;
-    backface-visibility: hidden;
+    @include transform( translate(0,0) );
     &.entry-content__holder::before {
       //@media screen and (max-width: 575px)
       @include media-breakpoint-down(xs)  {

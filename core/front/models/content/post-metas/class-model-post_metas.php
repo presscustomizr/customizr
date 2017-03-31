@@ -1,41 +1,6 @@
 <?php
 class CZR_post_metas_model_class extends CZR_Model {
-  //protected $_cache = array();
 
-  public    $type   = 'post_metas';
-
-  function __construct( $model = array() ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-    //Since we use only one instance for every post in a post list reset the cache at each loop cycle
-    //add_action( 'the_post', array( $this, 'czr_fn_reset_cache' ) );
-
-  }
-
-
-  /*
-  * @override
-  */
-  /*
-  function czr_fn_maybe_render_this_model_view() {
-
-    if ( ! $this -> visibility )
-      return;
-    if ( is_attachment() )
-        return;
-
-    return $this -> czr_fn_get_cat_list() ||
-          $this -> czr_fn_get_tag_list() ||
-          $this -> czr_fn_get_author() ||
-          $this -> czr_fn_get_publication_date() ||
-          $this -> czr_fn_get_update_date();
-
-  }
-*/
-  public function czr_fn_reset_cache() {
-    $this -> _cache = array();
-  }
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $limit = false, $sep = '' ) {
@@ -50,17 +15,17 @@ class CZR_post_metas_model_class extends CZR_Model {
     return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author' ) : '';
   }
 
-  public function czr_fn_get_publication_date() {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date' ) : '';
+  public function czr_fn_get_publication_date( $permalink = false ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array( '', $permalink ) ) : '';
   }
 
-  public function czr_fn_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
+  public function czr_fn_get_update_date( $permalink = false, $today = '', $yesterday = '', $manydays = '' ) {
     if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = czr_fn_post_has_update() ) {
       if ( 'days' == esc_attr( czr_fn_get_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
         $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
         $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
       }
-      return isset( $_update ) ? $_update : $this -> czr_fn_get_meta( 'up_date' );
+      return isset( $_update ) ? $_update : $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) );
     }
     return false;
   }
@@ -68,11 +33,10 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   /* HELPERS */
   protected function czr_fn_get_meta( $meta, $params = array(), $separator = '' ) {
-    //if ( ! isset( $this -> _cache[ $meta ] ) ) {
+
     $params = is_array( $params ) ? $params : array( $params );
-    $this -> _cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
-    //}
-    return $this -> _cache[ $meta ];
+    return czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
+
   }
 
 
@@ -88,12 +52,12 @@ class CZR_post_metas_model_class extends CZR_Model {
     return $this -> czr_fn_get_meta_author();
   }
 
-  private function czr_fn_meta_generate_pub_date( $format = '' ) {
-    return $this -> czr_fn_get_meta_date( 'publication', $format );
+  private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false ) {
+    return $this -> czr_fn_get_meta_date( 'publication', $format, $permalink );
   }
 
-  private function czr_fn_meta_generate_up_date( $format = '' ) {
-    return $this -> czr_fn_get_meta_date( 'update', $format );
+  private function czr_fn_meta_generate_up_date( $format = '', $permalink = false ) {
+    return $this -> czr_fn_get_meta_date( 'update', $format, $permalink );
   }
 
 
@@ -115,7 +79,7 @@ class CZR_post_metas_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '', $permalink = false ) {
     if ( 'short' == $_format )
       $_format = 'j M, Y';
     $_format = apply_filters( 'czr_meta_date_format' , $_format );
@@ -123,8 +87,8 @@ class CZR_post_metas_model_class extends CZR_Model {
     return apply_filters(
       'tc_date_meta',
         sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
-          esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
-          esc_attr( get_the_time() ),
+          $permalink ? esc_url( get_the_permalink() ) : esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
+          $permalink ? esc_attr( the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ) ) : esc_attr( get_the_time() ),
           $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
           $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
         ),

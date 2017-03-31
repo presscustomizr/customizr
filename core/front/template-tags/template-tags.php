@@ -24,14 +24,16 @@ endif;
 if ( ! function_exists( 'czr_fn_comment_info' ) ) :
 
 /* The template display the comment info */
-function czr_fn_comment_info( $before = '', $after = '' ) {
+function czr_fn_comment_info( $before = '', $after = '', $echo = true ) {
 
       $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ) && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) );
 
       if ( ! $_allow_comment_info )
             return;
 
-      if ( ! ( get_comments_number() > 0 && czr_fn_is_possible( 'comment_list' ) &&
+      $comments_number = get_comments_number();
+
+      if ( ! ( $comments_number > 0 && czr_fn_is_possible( 'comment_list' ) &&
               in_array( get_post_type(), apply_filters('czr_show_comment_infos_for_post_types' , array( 'post' , 'page') ) ) ) )
             return;
 
@@ -44,17 +46,19 @@ function czr_fn_comment_info( $before = '', $after = '' ) {
       //Filter hook used by disqus plugin
       $link_attributes = esc_attr( apply_filters( 'czr_comment_info_link_attributes', '' ) );
 
-      if ( $before )
-        echo $before;
-      ?>
-      <a
-      class="comments__link <?php czr_fn_echo( 'element_class' ) ?>" href="<?php echo $link ?>" title="<?php echo get_comments_number() ?> <?php _e( 'Comment(s) on', 'customizr') ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" <?php echo $link_attributes ?>><span
-      ><?php
-      echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'comment' , 'comments' , get_comments_number(), 'customizr' ) ?></span></a>
-      <?php
+      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s"><span>%4$s</span></a>%5$s',
+            $before,
+            $link,
+            sprintf( "%s %s %s" , number_format_i18n( $comments_number ) , _n( 'Comment on' , 'Comments on' , $comments_number, 'customizr' ) ,  esc_attr( strip_tags( get_the_title() ) ) ),
+            sprintf( "%s %s" , number_format_i18n( $comments_number ) , _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ),
+            $after
+      );
 
-      if ( $after )
-        echo $after;
+      if ( !$echo )
+            return $link;
+
+      echo $link;
+
 }
 endif;
 

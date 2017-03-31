@@ -8,9 +8,6 @@
 ?>
 <?php
       $gallery_items = czr_fn_get( 'gallery_items' );
-
-
-      czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
 ?>
 <div class="czr-gallery czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
@@ -28,4 +25,7 @@
         endforeach;
 ?>
     </div>
+<?php
+    czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
+?>
 </div>

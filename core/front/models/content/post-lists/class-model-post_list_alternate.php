@@ -220,7 +220,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
 
-            $is_full_image                 = $this->czr_fn_is_full_image( $_current_post_format, $has_content );
+            $is_full_image                 = $this->czr_fn_is_full_image( $_current_post_format, (bool)$post_content );
 
             $maybe_has_format_icon_media   = $this->czr_fn_maybe_has_format_icon_media( $_current_post_format );
 

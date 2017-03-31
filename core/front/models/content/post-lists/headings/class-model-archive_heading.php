@@ -83,7 +83,16 @@ class CZR_archive_heading_model_class extends CZR_Model {
       return '';
 
     switch ( $context ) {
-      case 'page_for_posts' : return apply_filters( 'the_excerpt', get_the_excerpt( get_option('page_for_posts') ) ); //use the excerpt as description in blog page?
+      case 'page_for_posts' :
+          //This looks needed for a bug in wp??, get_the_excerpt with a param doesn't seem to work if the page has no post_excerpt field
+          //in that case, in fact, the filter wp_trim_excerpt on the hook get_the_excerpt will compute the excerpt from the content
+          //using get_the_content to which you cannot pass a postID or post object, and will refer to the global $post
+          //:(
+          setup_postdata( get_post( get_option('page_for_posts') ) );
+          $description = apply_filters( 'the_excerpt', get_the_excerpt(); //use the excerpt as description in blog page?
+          wp_reset_postdata();
+          return $description;
+
       case 'author'         : return sprintf( '<span class="author-avatar">%1$s</span><p class="author-bio">%2$s</p>',
                                         get_avatar( get_the_author_meta( 'user_email' ), 60 ) , get_the_author_meta( 'description' ) );
       case 'category'       : return category_description();

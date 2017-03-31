@@ -13,7 +13,8 @@
   <div class="col-md-6 col-12">
     <div class="post-info clearfix">
     <?php
-      if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) )
+
+      if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
         echo $date;
 
       if ( czr_fn_get('show_comment_meta') ) :

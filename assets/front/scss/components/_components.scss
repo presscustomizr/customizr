@@ -883,3 +883,22 @@ svg.czr-svg-placeholder {
   top: 25%;
   @include transition(opacity .5s ease)
 }
+
+
+.bg-link, .bg-icon-link {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    @include transform( translate3d( 0, 0, 0 ) );
+}
+.bg-link {
+  @include transition(all, 0.6s ease);
+  background: transparent;
+}
+.hover .bg-link, .bg-link:hover {
+  background: rgba($black, 0.25);
+  z-index: 2;
+}

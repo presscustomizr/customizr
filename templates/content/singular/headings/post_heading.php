@@ -8,14 +8,26 @@
 ?>
 <header class="row page__header image__header entry-header" <?php czr_fn_echo('element_attributes') ?>>
 <?php
+//TEST
+/*
     $_the_thumb = czr_fn_get_thumbnail_model( 'full' );
     if ( ! empty ( $_the_thumb['tc_thumb']) ) :
 ?>
-  <div class="entry-media__holder <?php echo esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-media-centering' : 'no-js-media-centering' ?>">
+  <div class="entry-media__holder <?php echo esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering' ?>">
       <?php echo $_the_thumb[ 'tc_thumb' ] ?>
   </div>
 <?php
-    endif
+    endif*/
+?>
+<?php
+  czr_fn_render_template( 'content/post-lists/item-parts/post_list_item_media',
+              array(
+                //'reset_to_defaults' => false,
+                'model_args' => array(
+                  'media_type'               => 'wp_thumb'
+                )
+              )
+  );
 ?>
   <div class="container header-content">
     <div class="header-content-inner">

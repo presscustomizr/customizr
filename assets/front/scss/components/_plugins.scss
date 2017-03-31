@@ -66,9 +66,12 @@
 .primary-nav__woocart {
   position: relative;
   .product_list_widget {
-    min-height: 300px;
+    min-height: 3em;
     max-height: 30vh;
     overflow-y: auto;
+    .mCustomScrollBox {
+      min-height: inherit;
+    }
   }
   ul li {
     display: block !important;
