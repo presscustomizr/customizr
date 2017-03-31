@@ -485,4 +485,14 @@ if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
     echo $tagline_text;
   }
 }
+
+
+/**
+* @return  bool
+* @since Customizr 3.4+
+* User option to enabe/disable all notices. Enabled by default.
+*/
+function czr_fn_is_front_help_enabled(){
+  return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_fn_opt('tc_display_front_help') );
+}
 ?>

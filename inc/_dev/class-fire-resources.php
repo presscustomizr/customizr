@@ -295,7 +295,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
                 'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
 
-                'frontHelpNoticesOn'  => CZR_placeholders::$instance -> czr_fn_is_front_help_enabled(),
+                'frontHelpNoticesOn'  => czr_fn_is_front_help_enabled(),
                 'frontHelpNoticeParams' => apply_filters( 'tc_js_params_front_placeholders', array() ),
 
                 'ajaxUrl'           => admin_url( 'admin-ajax.php' ),
