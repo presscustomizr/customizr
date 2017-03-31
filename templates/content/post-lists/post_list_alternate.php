@@ -16,20 +16,19 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
         <?php
 
             /* Media */
-            if ( $has_post_media = czr_fn_get('has_post_media') ) {
-              czr_fn_render_template(
-                'content/post-lists/item-parts/post_list_item_media',
-                array(
-                  'model_id'   => 'post_list_item_media',
-                  'reset_to_defaults' => false,
+            czr_fn_render_template(
+              'content/post-lists/item-parts/post_list_item_media',
+              array(
+                'model_id'   => 'post_list_item_media',
+                'reset_to_defaults' => false,
 
-                  'model_args' =>  array(
-                    'element_class'            => czr_fn_get( 'media_class' ),
-                    'image_centering'          => czr_fn_get( 'image_centering' ),
-                  )
+                'model_args' =>  array(
+                  'element_class'            => czr_fn_get( 'media_class' ),
+                  'image_centering'          => czr_fn_get( 'image_centering' ),
                 )
-              );
-            }
+              )
+            );
+
              /* Content */
             ?>
             <section class="tc-content entry-content__holder <?php czr_fn_echo('content_class') ?>">

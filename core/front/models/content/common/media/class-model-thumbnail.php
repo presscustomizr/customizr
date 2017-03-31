@@ -22,7 +22,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
                                           'use_placeholder'       => false,
                                           'use_attachment'        => true,
 
-                                          'visiblity'             => true,
+                                          'visibility'            => true,
                                     );
 
 
@@ -92,6 +92,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
 
             if ( is_null( $this->media ) ) {
+
                   $this -> czr_fn_setup( array(
 
                         'post_id'         => $this->post_id,
@@ -100,6 +101,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
                         'use_attachment'  => $this->use_attachment,
 
                   ) );
+
             }
 
 

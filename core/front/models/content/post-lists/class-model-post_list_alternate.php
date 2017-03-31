@@ -212,11 +212,11 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             $_current_post_format          = get_post_format();
 
-            $post_content                  = $this->czr_fn_has_content( array(
+            $post_content                  = $this->czr_fn_has_content(
                   $post_id = null,
                   $post_format = $_current_post_format,
-                  $type = 'all',
-            ) );
+                  $type = 'all'
+            );
 
 
 

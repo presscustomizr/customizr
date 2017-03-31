@@ -13,7 +13,7 @@ class CZR_audio_model_class extends CZR_Model {
                                           'media'           => null,
                                           'audio'           => null,
                                           'post_id'         => null,
-                                          'visiblity'       => true,
+                                          'visibility'      => true,
                                     );
 
 

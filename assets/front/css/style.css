@@ -192,7 +192,7 @@ blockquote p {
   font-weight: 500;
 }
 
-.bold, .navbar-brand-tagline, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .primary-nav__menu .dropdown-menu a, .tabs, .grid-container__classic .format-link .tc-grid-caption .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.bold, .navbar-brand-tagline, .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper .primary-nav__menu, .btn-large, blockquote, .entry-link, .primary-nav__menu .dropdown-menu a, .tabs, .grid-container__classic .format-link .tc-grid-caption .entry-summary, .post-author figure .post-author-title, .action-link, .comment-reply-link, #cancel-comment-reply-link, .pingback-list li.pingback sup, .widget_recent_comments, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   font-weight: 600;
 }
 
@@ -3531,8 +3531,8 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
   right: -1px;
 }
 
-/* Blockquotes and cites */
-blockquote {
+/* Quote and link formats */
+blockquote, .entry-link {
   position: relative;
   margin: 2.5em 0;
   padding-top: 2.5em;
@@ -3541,35 +3541,7 @@ blockquote {
   border-bottom: 1px solid #f7f8f9;
 }
 
-blockquote p, blockquote footer {
-  margin-left: 5em;
-  max-width: 90%;
-}
-
-blockquote p {
-  padding-left: 5em;
-  color: #202020;
-}
-
-blockquote p cite {
-  clear: both;
-  display: block;
-  margin-top: 1.5em;
-}
-
-blockquote p cite::before {
-  top: 1em;
-  bottom: auto;
-}
-
-blockquote footer {
-  margin-left: 5em;
-  margin-top: 1.25em;
-  position: relative;
-}
-
-blockquote::before {
-  content: "\e808";
+blockquote::before, .entry-link::before {
   top: 2.5em;
   left: 2.5em;
   position: absolute;
@@ -3588,6 +3560,29 @@ blockquote::before {
   margin-left: .2em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Blockquotes and cites */
+blockquote p {
+  margin-left: 5em;
+  max-width: 90%;
+  padding-left: 5em;
+  color: #202020;
+}
+
+blockquote p cite {
+  clear: both;
+  display: block;
+  margin-top: 1.5em;
+}
+
+blockquote p cite::before {
+  top: 1em;
+  bottom: auto;
+}
+
+blockquote::before {
+  content: "\e808";
 }
 
 cite {
@@ -3615,6 +3610,20 @@ cite::first-child {
 }
 
 /* Blockquotes and cites END */
+/* Link */
+.entry-link a {
+  margin-left: 10em;
+  max-width: 90%;
+  color: #202020;
+  margin-top: 1.25em;
+  margin-bottom: 1em;
+}
+
+.entry-link::before {
+  content: '\e812';
+}
+
+/* link */
 .dropdown-menu {
   border-radius: 0;
   border: 0;
@@ -5849,13 +5858,13 @@ a.czr-format-link:hover::before {
   height: 80px;
 }
 
-.format-video .video-container,
-.format-audio .audio-container {
+[class*=czr__r-w] .video-container,
+[class*=czr__r-w] .audio-container {
   position: relative;
 }
 
-.format-video .video-container iframe,
-.format-audio .audio-container iframe {
+[class*=czr__r-w] .video-container iframe,
+[class*=czr__r-w] .audio-container iframe {
   width: 100%;
   height: 100%;
 }
@@ -5895,20 +5904,28 @@ a.czr-format-link:hover::before {
   height: 80px;
 }
 
-[class*=grid-container__] .entry-quote {
+.grid-container__alternate .entry-quote, .grid-container__alternate .entry-link,
+.grid-container__square-mini .entry-quote,
+.grid-container__square-mini .entry-link {
   border: none;
   margin: 0;
 }
 
-[class*=grid-container__] .entry-quote p, [class*=grid-container__] .entry-quote footer {
+.grid-container__alternate .entry-quote::before, .grid-container__alternate .entry-link::before,
+.grid-container__square-mini .entry-quote::before,
+.grid-container__square-mini .entry-link::before {
+  content: none;
+}
+
+.grid-container__alternate .entry-link a,
+.grid-container__alternate .entry-quote p,
+.grid-container__square-mini .entry-link a,
+.grid-container__square-mini .entry-quote p {
   margin-left: 0;
   margin-bottom: 0;
   padding-left: 0;
   width: auto;
-}
-
-[class*=grid-container__] .entry-quote::before {
-  content: none;
+  max-width: 100%;
 }
 
 /* plain post list */

@@ -14,14 +14,14 @@
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >
       <div class="sections-wrapper grid__item">
         <?php
-          if ( $has_post_media = czr_fn_get('has_post_media') )
             czr_fn_render_template(
               'content/post-lists/item-parts/post_list_item_media',
                array(
                 //'reset_to_defaults' => false,
                 'model_args' => array(
                   'element_class'            => czr_fn_get('media_class'),
-                )
+                  'media_type'               => 'wp_thumb'
+               )
               )
             );
         ?>
@@ -49,12 +49,13 @@
             <?php endif; ?>
             <div class="tc-content-inner-wrapper <?php czr_fn_echo( 'content_inner_class' ) ?>" >
               <?php
+              czr_post_format_part();
               /* Content Inner */
               czr_fn_render_template(
                 'content/post-lists/item-parts/contents/post_list_item_content_inner',
                 array(
                   'model_args' => array(
-                    'content_type' => czr_fn_get( 'show_full_content' ) ? 'full' : 'all',
+                    'content_type' => 'full',
                   )
                 )
               )

@@ -12,6 +12,7 @@
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
       <?php do_action( '__before_inner_post_content' ) ?>
       <?php
+      czr_post_format_part();
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
       <footer class="post-footer container-fluid clearfix">

@@ -17,7 +17,7 @@ class CZR_quote_model_class extends CZR_Model {
                                           'quote_item'      => '',
 
                                           'post_id'         => null,
-                                          'visiblity'       => true,
+                                          'visibility'       => true,
                                     );
 
 
@@ -180,9 +180,9 @@ class CZR_quote_model_class extends CZR_Model {
 
 
 
-      protected function czr_fn__get_post_meta( $post_id = null ) {
+      protected function czr_fn__get_post_meta() {
 
-            $post_id  = $post_id ? $post_id : get_the_ID();
+            $post_id  = $this->post_id ? $this->post_id : get_the_ID();
             $meta     = get_post_meta( $post_id, self::$meta_key, true );
 
             return $this -> czr_fn__validate_media_from_meta( $meta );

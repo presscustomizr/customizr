@@ -15,7 +15,7 @@ class CZR_video_model_class extends CZR_Model {
                                           'video'           => null,
                                           'post_id'         => null,
 
-                                          'visiblity'       => true,
+                                          'visibility'       => true,
                                     );
 
 
@@ -65,7 +65,6 @@ class CZR_video_model_class extends CZR_Model {
       * Each time this model view is rendered setup the current thumbnail items
       */
       function czr_fn_setup_late_properties() {
-
 
             if ( is_null( $this->media ) ) {
                   $this -> czr_fn_setup( array(

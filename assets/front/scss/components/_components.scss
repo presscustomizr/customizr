@@ -332,19 +332,44 @@ a[target="_blank"]:hover:after {
     }
   }
 }
+/* Quote and link formats */
+blockquote, .entry-link {
+    position: relative;
+    margin: $base-line-height*2 0;
+    padding-top: $base-line-height*2;
+    padding-bottom: $base-line-height*2;
+    border-top: 1px solid $grey-lightest;
+    border-bottom: 1px solid $grey-lightest;
+    @extend .bold;
+    &::before{
+      top:$base-line-height*2;
+      left:$base-line-height*2;
+      position: absolute;
+      font-size: ms(2);
+      display: inline-block;
+      vertical-align: top;
+      font-family: "customizr";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      font-variant: normal;
+      text-transform: none;
+      margin-left: .2em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+}
 
 /* Blockquotes and cites */
 blockquote {
-  position: relative;
-  margin: $base-line-height*2 0;
-  @extend .bold;
-  padding-top: $base-line-height*2;
-  padding-bottom: $base-line-height*2;
-  border-top: 1px solid $grey-lightest;
-  border-bottom: 1px solid $grey-lightest;
-  p, footer { margin-left: 5em; max-width: 90% }
   p {
-    padding-left:$base-line-height*4; color: $black;
+    margin-left: 5em;
+    max-width: 90%;
+    padding-left:$base-line-height*4;
+    color: $black;
     cite {
       clear: both;
       display: block;
@@ -355,27 +380,8 @@ blockquote {
       }
     }
   }
-  footer { margin-left:$base-line-height*4; margin-top:  $base-line-height; position: relative; }
   &::before{
     content: "\e808";
-    top:$base-line-height*2;
-    left:$base-line-height*2;
-    position: absolute;
-    font-size: ms(2);
-    display: inline-block;
-    vertical-align: top;
-    font-family: "customizr";
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-    width: 1em;
-    margin-right: .2em;
-    text-align: center;
-    font-variant: normal;
-    text-transform: none;
-    margin-left: .2em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -401,6 +407,21 @@ cite {
   }
 }
 /* Blockquotes and cites END */
+
+/* Link */
+.entry-link {
+  a {
+    margin-left: 10em;
+    max-width: 90%;
+    color: $black;
+    margin-top: $base-line-height;
+    margin-bottom: 1em;
+  }
+  &::before{
+    content: '\e812';
+  }
+}
+/* link */
 
 .dropdown-menu {
           border-radius: 0;

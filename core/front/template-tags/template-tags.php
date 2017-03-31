@@ -175,3 +175,23 @@ function czr_fn_link_pages( $echo = true ) {
 }
 
 endif;
+
+/* Draft */
+if ( ! function_exists( 'czr_post_format_part' ) ) :
+/**
+ * The template for displaying the edit button
+ * Used everywhere from the slider to the posts to the comment
+ *
+ */
+function czr_post_format_part( $post_format = null ) {
+
+      $post_format = is_null( $post_format ) ? get_post_format() : $post_format;
+
+      if ( in_array( $post_format, array( 'quote', 'link' ) ) ) {
+        czr_fn_render_template( "content/common/text/{$post_format}" );
+      }
+      elseif ( in_array( $post_format, array( 'audio', 'video' ) ) )
+        czr_fn_render_template( "content/common/media/{$post_format}" );
+}
+
+endif;

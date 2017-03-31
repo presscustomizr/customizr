@@ -11,7 +11,7 @@ class CZR_gallery_model_class extends CZR_Model {
                                           'media'           => null,
                                           'gallery_items'   => null,
                                           'post_id'         => null,
-                                          'visiblity'       => true,
+                                          'visibility'      => true,
                                     );
 
 

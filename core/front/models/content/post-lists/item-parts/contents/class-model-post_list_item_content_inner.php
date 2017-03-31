@@ -160,7 +160,7 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
 
                         $this->czr_fn__setup_content_to_render( $content = $_instance->czr_fn_get_raw_content(), $content_template = 'content/common/text/quote', $model_id = $_instance->czr_fn_get_property( 'id' ) );
 
-                        break;
+                  break;
 
                   case 'link'   :
 
@@ -177,7 +177,7 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
 
                         $this->czr_fn__setup_content_to_render( $content = $_instance->czr_fn_get_raw_content(), $content_template = 'content/common/text/link', $model_id = $_instance->czr_fn_get_property( 'id' ) );
 
-                        break;
+                  break;
 
                   case 'full'   :
                         $more = __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' );
@@ -188,7 +188,7 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
                   default:
                         $this->czr_fn__setup_content_to_render( apply_filters( 'the_excerpt', get_the_excerpt( $post_id ) ) );
 
-            }
+            }//end switch
 
             //always fallback on the excerpt?
             if ( is_null( $this->content ) )
@@ -203,13 +203,17 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
 
       protected function czr_fn__setup_content_to_render( $content, $content_template = null , $model_id = null ) {
 
-            $this->czr_fn_set_property( 'content',  $content );
+            if ( $content ) {
+
+                  $this->czr_fn_set_property( 'content',  $content );
 
 
-            $this->czr_fn_set_property( 'content_template',  $content_template );
+                  $this->czr_fn_set_property( 'content_template',  $content_template );
 
 
-            $this->czr_fn_set_property( 'content_args',  array( 'model_id' => $model_id, 'reset_to_defaults' => false ) );
+                  $this->czr_fn_set_property( 'content_args',  array( 'model_id' => $model_id, 'reset_to_defaults' => false ) );
+
+            }
 
             return (bool) $content;
 

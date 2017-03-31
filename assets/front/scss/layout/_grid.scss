@@ -574,8 +574,8 @@ a.czr-format-link {
 }
 
 
-.format-video .video-container,
-.format-audio .audio-container {
+[class*=czr__r-w] .video-container,
+[class*=czr__r-w] .audio-container {
     position: relative;
     iframe {
       width:100%;
@@ -621,13 +621,19 @@ a.czr-format-link {
     }
   }
 }
-[class*=grid-container__] {
-  .entry-quote {
+.grid-container__alternate,
+.grid-container__square-mini {
+
+  .entry-quote, .entry-link {
     border: none;
     margin: 0;
-    p, footer { margin-left: 0; margin-bottom: 0; padding-left: 0; width: auto }
     &::before { content: none }
   }
+  .entry-link a,
+  .entry-quote p {
+    margin-left: 0; margin-bottom: 0; padding-left: 0; width: auto; max-width: 100%;
+  }
+
 }
 
 /* plain post list */

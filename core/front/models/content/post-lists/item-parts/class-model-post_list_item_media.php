@@ -279,8 +279,12 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
                   break;
 
-            }
+            }//end switch
 
+            // media has been retrieved, if it's still null let's set it to false
+            // as is null is the condition to retrieve it just before rendering
+            if ( is_null( $this->media ) )
+                  $this->czr_fn_set_property( 'media',  false );
       }
 
 
@@ -288,14 +292,17 @@ class CZR_post_list_item_media_model_class extends CZR_Model {
 
       protected function czr_fn__setup_media_to_render( $media, $media_template = null , $model_id = null ) {
 
+            if ( $media ) {
 
-            $this->czr_fn_set_property( 'media',  $media );
-
-
-            $this->czr_fn_set_property( 'media_template',  $media_template );
+                  $this->czr_fn_set_property( 'media',  $media );
 
 
-            $this->czr_fn_set_property( 'media_args',  array( 'model_id' => $model_id, 'reset_to_defaults' => false ) );
+                  $this->czr_fn_set_property( 'media_template',  $media_template );
+
+
+                  $this->czr_fn_set_property( 'media_args',  array( 'model_id' => $model_id, 'reset_to_defaults' => false ) );
+
+            }
 
             return (bool) $media;
 

@@ -7,13 +7,19 @@
  */
 ?>
 <blockquote class="blockquote entry-quote <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo( 'element_attributes' ) ?>>
-  <p><?php czr_fn_echo( 'quote_text' ) ?></p>
+  <p>
 <?php
-      if ( czr_fn_get( 'quote_source' )  ) :
+
+    czr_fn_echo( 'quote_text' );
+
+    if ( czr_fn_get( 'quote_source' )  ):
 ?>
-  <footer class="blockquote-footer"><cite><?php czr_fn_echo( 'quote_source' ) ?></cite></footer>
+    <cite><?php czr_fn_echo( 'quote_source' ) ?></cite>
 <?php
-      endif //czr_fn_get( 'quote_source' )
+
+    endif //czr_fn_get( 'quote_source' )
+
 ?>
+  </p>
 </blockquote>
 
