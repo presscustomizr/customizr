@@ -598,7 +598,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
        		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
        }
      	else {
-     		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
+     		$_classes = array_merge( $_classes, array('tc-no-sticky-header', 'sticky-disabled' ) );
      	}
 
       //No navbar box

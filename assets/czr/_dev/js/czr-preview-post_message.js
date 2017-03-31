@@ -201,18 +201,20 @@
           },
           'tc_menu_position' : function( to ) {
             if ( 'aside' != api( api.CZR_preview.prototype._build_setId('tc_menu_style') ).get() ) {
-              if ( 'pull-menu-left' == to )
-                $('.navbar-wrapper').addClass(to).removeClass('pull-menu-right');
-              else
-                $('.navbar-wrapper').addClass(to).removeClass('pull-menu-left');
+              if ( 'pull-menu-center' == to ) {
+                to += CZRPreviewParams.isRTL ?  ' pull-menu-left' : ' pull-menu-right';
+              }
+              $('.navbar-wrapper').removeClass('pull-menu-right pull-menu-left pull-menu-center').addClass(to);
+
             }
           },
           'tc_second_menu_position' : function(to) {
-            if ( 'pull-menu-left' == to )
-              $('.navbar-wrapper').addClass(to).removeClass('pull-menu-right');
-            else
-              $('.navbar-wrapper').addClass(to).removeClass('pull-menu-left');
+            if ( 'pull-menu-center' == to ) {
+              to += CZRPreviewParams.isRTL ?  ' pull-menu-left' : ' pull-menu-right';
+            }
+            $('.navbar-wrapper').removeClass('pull-menu-right pull-menu-left pull-menu-center').addClass(to);
           },
+
           'tc_menu_submenu_fade_effect' : function( to ) {
             if ( false !== to )
               $('.navbar-wrapper').addClass('tc-submenu-fade');

@@ -814,10 +814,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                         'pull-menu-left'      => __( 'Menu on the left' , 'customizr' ),
+                                        'pull-menu-center'    => __( 'Menu centered' , 'customizr' ),
                                         'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                                 ),
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
+                                'notice'        => __( 'Note : the menu centered position is available only when the logo is centered' , 'customizr' ),
               ),
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
@@ -828,10 +830,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'type'          =>  'select' ,
                                 'choices'       => array(
                                         'pull-menu-left'      => __( 'Menu on the left' , 'customizr' ),
+                                        'pull-menu-center'    => __( 'Menu centered' , 'customizr' ),
                                         'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                                 ),
                                 'priority'      => 55,
-                                'transport'     => 'postMessage'
+                                'transport'     => 'postMessage',
+                                'notice'        => __( 'Note : the menu centered position is available only when the logo is centered' , 'customizr' ),
               ),
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.

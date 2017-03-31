@@ -119,6 +119,40 @@
                           return state.text;// optgroup different than google font
                         return '<span class="tc-select2-font">' + state.text + '</span>';
                     }
+
+                    /**
+                    * Dependency between the header layout and the menu position, when the menu style is Side Menu
+                    */
+                    !function() {
+                        var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
+
+                            _hm_secondary_position_option  = 'tc_theme_options[tc_second_menu_position]',
+                            _header_layout_setting         = api( 'tc_theme_options[tc_header_layout]' );
+
+
+                        toggle_option( 'centered' == _header_layout_setting.get() );
+
+
+                        //when user switch layout, make sure the menu is correctly aligned by default.
+                        _header_layout_setting.callbacks.add( function(to) {
+                            toggle_option( 'centered' == to );
+                        } );
+
+                        function toggle_option( _what ) {
+                            _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
+
+                              if ( 'pull-menu-center' == api( option ).get() )
+                                  api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
+
+                              var $_select = api.control( option ).container.find("select");
+
+                              $_select.find( 'option[value="pull-menu-center"]' )[ _what ? 'removeAttr': 'attr']('disabled', 'disabled');
+                              $_select.selecter( 'destroy' ).selecter();
+
+                            });
+                        };
+
+                    }();
                 });
         });
 }) ( wp, jQuery );

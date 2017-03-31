@@ -133,6 +133,34 @@
   }
 
   /* btn-toggle-nav edge case positioning END */
+
+  /*
+  *
+  * Center menu
+  *
+  */
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse {
+      width: 100%;
+      text-align: center;
+  }
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav {
+      float: initial;
+      display: inline-block;
+
+      & when (@is_rtl = true) {
+        margin : 0 -15px 0 -10px;
+      }
+      & when (@is_rtl = false) {
+       margin : 0 -10px 0 -15px;
+      }
+
+      text-align: initial;
+  }
+
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav > .menu-item > a {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
 }
 
 
