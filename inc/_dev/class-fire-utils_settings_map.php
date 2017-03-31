@@ -1797,7 +1797,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'section'       => 'post_metas_sec',
                                 'type'          =>  'select' ,
                                 'choices'       => array(
-                                        'days'     => __( 'Nb of days since last update' , 'customizr' ),
+                                        'days'     => __( 'No. of days since last update' , 'customizr' ),
                                         'date'     => __( 'Date of the last update' , 'customizr' )
                                 ),
                                 'priority'      => 55
