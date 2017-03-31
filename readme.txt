@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.10 March 31st 2017 =
+* Imp : allow menu centering when logo/title centered #861
+* Imp : added a utility czr_fn_is_front_help_enabled() in init.php
+
 = 3.5.9 March 17th 2017 =
 * fix : prevdem mode should be turned off when user starts customizing
 * fix : user defined WP core settings like show_on_front should be preserved if customizing in prevdem mode

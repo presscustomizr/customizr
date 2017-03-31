@@ -730,6 +730,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' ),
                 'blogname' => get_bloginfo('name'),
+                'isRTL'           => is_rtl()
               )
             )
       );
@@ -883,6 +884,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'faviconOptionName' => 'tc_fav_upload',
 
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
+            'isRTL'           => is_rtl()
           )
         )
       );

@@ -123,7 +123,7 @@
                     /**
                     * Dependency between the header layout and the menu position, when the menu style is Side Menu
                     */
-                    !function() {
+                    (function() {
                         var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
 
                             _hm_secondary_position_option  = 'tc_theme_options[tc_second_menu_position]',
@@ -138,7 +138,7 @@
                             toggle_option( 'centered' == to );
                         } );
 
-                        function toggle_option( _what ) {
+                        function toggle_option( is_header_centered ) {
                             _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
 
                               if ( 'pull-menu-center' == api( option ).get() )
@@ -146,13 +146,13 @@
 
                               var $_select = api.control( option ).container.find("select");
 
-                              $_select.find( 'option[value="pull-menu-center"]' )[ _what ? 'removeAttr': 'attr']('disabled', 'disabled');
+                              $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
                               $_select.selecter( 'destroy' ).selecter();
 
                             });
-                        };
+                        }
 
-                    }();
+                    })();
                 });
         });
 }) ( wp, jQuery );

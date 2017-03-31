@@ -532,7 +532,26 @@
                             visibility: function (to) {
                                   return _is_checked(to);
                             }
-                    },
+                    }
+                    // {
+                    //         dominus : 'tc_header_layout',
+                    //         servi   : ['tc_menu_position', 'tc_second_menu_position'],
+                    //         visibility: function() { return true; },
+                    //         actions : function( to, servusShortId ) {
+                    //               var servusId = api.CZR_Helpers.build_setId( servusShortId ),
+                    //                   isHeaderCentered = 'centered' == to;
+
+                    //               console.log('ALORS?', to, servusShortId );
+                    //               if ( 'pull-menu-center' == api( servusId ).get() ) {
+                    //                     api( servusId )( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
+                    //               }
+
+                    //               var $_select = api.control( servusId ).container.find("select");
+
+                    //               $_select.find( 'option[value="pull-menu-center"]' )[ isHeaderCentered ? 'removeAttr': 'attr']('disabled', 'disabled');
+                    //               $_select.selecter( 'destroy' ).selecter();
+                    //         }
+                    // },
                 ]//dominiDeps {}
           );//_.extend()
 

@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.5.9
+ * Customizr v3.5.10
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -8759,6 +8759,25 @@ li#wp-admin-bar-tc-customizr-help a {
     clear: both;
   }
   /* btn-toggle-nav edge case positioning END */
+  /*
+  *
+  * Center menu
+  *
+  */
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse {
+    width: 100%;
+    text-align: center;
+  }
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav {
+    float: initial;
+    display: inline-block;
+    margin: 0 -10px 0 -15px;
+    text-align: initial;
+  }
+  .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav > .menu-item > a {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 @media (max-width: 979px) {
   .tc-header .outside {

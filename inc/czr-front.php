@@ -598,7 +598,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
        		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
        }
      	else {
-     		$_classes = array_merge( $_classes, array('tc-no-sticky-header') );
+     		$_classes = array_merge( $_classes, array('tc-no-sticky-header', 'sticky-disabled' ) );
      	}
 
       //No navbar box
@@ -921,8 +921,8 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_regular_menu_display( $_location = 'main' ){
       $type               = 'regular';
-      $where              = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
-      $button_class       = array( 'btn-toggle-nav', $where );
+      $button_where       = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $button_class       = array( 'btn-toggle-nav', $button_where );
       $button_attr        = 'data-toggle="collapse" data-target=".nav-collapse"';
 
       $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
@@ -1111,10 +1111,24 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       //Navbar menus positions (not sidenav)
       //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
       //CASE 2 : second menu ( is_secondary_menu_enabled ?), controled by option 'tc_second_menu_position'
+
+
+      $_menu_position = '';
       if ( ! $this -> czr_fn_is_sidenav_enabled() )
-        array_push( $_classes , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') ) );
+        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') );
       if ( CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() )
-        array_push( $_classes , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_position') ) );
+        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_position') );
+
+      if ( 'pull-menu-center' == $_menu_position ) {
+        //pull-menu-center is possible only when logo-centered
+        if ( 'center' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) ) )
+          array_pop($_classes);
+
+        //this value will determine the beahavior when logo-center and menu center and .sticky-enabled
+        //or
+        //be the fall-back when menu position is center but the logo is not centered
+        $_classes[] = is_rtl() ? 'pull-menu-left' : 'pull-menu-right';
+      }
 
       return $_classes;
     }
@@ -1207,9 +1221,23 @@ if ( ! class_exists( 'CZR_menu' ) ) :
             box-shadow: none;
             background: inherit;
           }
-          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
-            display:none;
+
+          .logo-centered.tc-second-menu-display-in-header-when-mobile .pull-menu-center .navbar .nav-collapse {
+              width: 100%;
+              text-align: center;
           }
+
+          .logo-centered.tc-second-menu-display-in-header-when-mobile .pull-menu-center .navbar .nav-collapse .nav {
+              float: initial;
+              display: inline-block;
+              margin: 0 -12px;
+              text-align: initial;
+          }
+
+          .tc-sticky-header.sticky-enabled #tc-page-wrap .nav-collapse, #tc-page-wrap .tc-second-menu-hide-when-mobile .nav-collapse.collapse .nav {
+            display:none !important;
+          }
+
           .tc-second-menu-on .tc-hover-menu.nav ul.dropdown-menu {
             display:none;
           }

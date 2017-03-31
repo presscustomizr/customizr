@@ -820,6 +820,11 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 'priority'      => 50,
                                 'transport'     => 'postMessage',
                                 'notice'        => __( 'Note : the menu centered position is available only when the logo is centered' , 'customizr' ),
+                                'notice'        => sprintf( '%1$s <a href="%2$s">%3$s</a>.',
+                                    __("Note : the menu centered position is available only when" , "customizr"),
+                                    "javascript:wp.customize.section('header_layout_sec').focus();",
+                                    __("the logo is centered", "customizr")
+                                )
               ),
               'tc_second_menu_position'  =>  array(
                                 'default'       => 'pull-menu-left',
@@ -835,7 +840,11 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
                                 ),
                                 'priority'      => 55,
                                 'transport'     => 'postMessage',
-                                'notice'        => __( 'Note : the menu centered position is available only when the logo is centered' , 'customizr' ),
+                                'notice'        => sprintf( '%1$s <a href="%2$s">%3$s</a>.',
+                                    __("Note : the menu centered position is available only when" , "customizr"),
+                                    "javascript:wp.customize.section('header_layout_sec').focus();",
+                                    __("the logo is centered", "customizr")
+                                )
               ),
               //The hover menu type has been introduced in v3.1.0.
               //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.

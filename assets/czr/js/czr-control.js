@@ -326,6 +326,18 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   _destroy();
             }
       };//toggleSkopeLoadPane
+
+
+      /*****************************************************************************
+      * REACT TO PREVIEW DEVICE SWITCH => send device to preview
+      *****************************************************************************/
+      api.bind( 'ready' , function() {
+          if ( api.previewedDevice ) {
+                api.previewedDevice.bind( function( device ) {
+                      api.previewer.send( 'previewed-device', device );
+                });
+          }
+      });
 })( wp.customize , jQuery, _);
 
 
@@ -10949,7 +10961,7 @@ $.extend( CZRLayoutSelectMths , {
                             visibility: function (to) {
                                   return _is_checked(to);
                             }
-                    },
+                    }
                 ]//dominiDeps {}
           );//_.extend()
 
@@ -11065,6 +11077,37 @@ $.extend( CZRLayoutSelectMths , {
                           return state.text;// optgroup different than google font
                         return '<span class="tc-select2-font">' + state.text + '</span>';
                     }
+
+                    /**
+                    * Dependency between the header layout and the menu position, when the menu style is Side Menu
+                    */
+                    (function() {
+                        var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
+
+                            _hm_secondary_position_option  = 'tc_theme_options[tc_second_menu_position]',
+                            _header_layout_setting         = api( 'tc_theme_options[tc_header_layout]' );
+
+
+                        toggle_option( 'centered' == _header_layout_setting.get() );
+                        _header_layout_setting.callbacks.add( function(to) {
+                            toggle_option( 'centered' == to );
+                        } );
+
+                        function toggle_option( is_header_centered ) {
+                            _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
+
+                              if ( 'pull-menu-center' == api( option ).get() )
+                                  api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
+
+                              var $_select = api.control( option ).container.find("select");
+
+                              $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
+                              $_select.selecter( 'destroy' ).selecter();
+
+                            });
+                        }
+
+                    })();
                 });
         });
 }) ( wp, jQuery );
