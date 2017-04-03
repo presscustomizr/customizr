@@ -55,7 +55,7 @@
 
       <?php if ( czr_fn_has('breadcrumb') ) : ?>
         <div class="container">
-          <?php czr_fn_render_template( 'content/common/breadcrumb' ) ?>
+          <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
         </div>
       <?php endif ?>
 

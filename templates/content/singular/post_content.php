@@ -6,11 +6,8 @@
  */
 ?>
 <article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?>>
-  <?php do_action( '__before_inner_post_article' ) ?>
   <div class="post-entry tc-content-inner">
-    <?php do_action( '__before_post_entry_content' ) ?>
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
-      <?php do_action( '__before_inner_post_content' ) ?>
       <?php
       czr_post_format_part();
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
@@ -39,12 +36,6 @@
         ?>
         </div>
       </footer>
-
-      <?php do_action( '__after_inner_post_content' ) ?>
     </section><!-- .entry-content -->
-
-    <?php do_action( '__after_post_entry_content' ) ?>
-
   </div><!-- .post-entry -->
-  <?php do_action( '__after_inner_post_article' ) ?>
 </article>

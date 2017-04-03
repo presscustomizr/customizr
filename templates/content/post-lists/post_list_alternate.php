@@ -17,9 +17,9 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
 
             /* Media */
             czr_fn_render_template(
-              'content/post-lists/item-parts/post_list_item_media',
+              'content/common/media',
               array(
-                'model_id'   => 'post_list_item_media',
+                'model_id'   => 'media',
                 'reset_to_defaults' => false,
 
                 'model_args' =>  array(

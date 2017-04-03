@@ -1,5 +1,5 @@
 <?php
-class CZR_post_list_item_media_model_class extends CZR_Model {
+class CZR_media_model_class extends CZR_Model {
 
       protected $media                 ;
 

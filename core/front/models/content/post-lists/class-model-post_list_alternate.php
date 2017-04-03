@@ -158,11 +158,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       /*
       *  Public getters
       */
-
-      function czr_fn_get_has_post_media() {
-            return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
-      }
-
       function czr_fn_get_content_class() {
             return $this -> czr_fn__get_post_list_item_property( 'content_class' );
       }
@@ -356,7 +351,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'sections_wrapper_class'  => $_sections_wrapper_class,
                   'grid_item_class'         => $_grid_item_class,
                   'article_selectors'       => $article_selectors,
-                  'has_post_media'          => $has_post_media
             );
 
             return $post_list_item;
@@ -582,8 +576,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             $_id       = czr_fn_maybe_register( array(
 
-                    'id'          => 'post_list_item_media', //this must be the same of the first param used in the render_template
-                    'model_class' => 'content/post-lists/item-parts/post_list_item_media',
+                    'id'          => 'media', //this must be the same of the first param used in the render_template
+                    'model_class' => 'content/common/media',
 
             )  );
 

@@ -37,7 +37,6 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'nav_search'
             ),
             'content' => array(
-              'breadcrumb',
               'post_list',
               'post_list_masonry',
               'post_list_plain',
@@ -63,6 +62,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'footer_social_block'
             ),
             'modules' => array(
+              'breadcrumb',
               'social_block',
               'post_list_grid',
               'main_slider',
