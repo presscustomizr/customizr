@@ -428,9 +428,11 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       if ( CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() )
         $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_position') );
 
+
+
       if ( 'pull-menu-center' == $_menu_position ) {
         //pull-menu-center is possible only when logo-centered
-        if ( 'center' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) ) )
+        if ( 'centered' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) ) )
           array_pop($_classes);
 
         //this value will determine the beahavior when logo-center and menu center and .sticky-enabled
