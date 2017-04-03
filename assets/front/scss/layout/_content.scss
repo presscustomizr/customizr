@@ -211,7 +211,10 @@ dl {
 //    */
 //    @include transform( translate3d(0,0,0) );
 //  }
-
+  & img {
+    @include transform( translate3d(0 ,0, 0) );
+    backface-visibility: hidden;
+  }
   .center-images-disabled & img {
     /* temporary CSS centering */
     @include transform( translate(-50%, -50%) ); /* fallback for those browsers w/o translate3d transform property*/

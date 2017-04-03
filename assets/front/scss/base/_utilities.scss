@@ -36,7 +36,7 @@ img.v-centered {
   vertical-align: top;
   position: relative;
   @include transform( translate(0,0) !important );
-  &.tc-holder-img {
+  body[class*=ie] &.tc-holder-img {
     transform: none !important;
   }
 }

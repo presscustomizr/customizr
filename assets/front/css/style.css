@@ -337,7 +337,7 @@ img.v-centered {
   transform: translate(0, 0) !important;
 }
 
-img.v-centered.tc-holder-img {
+body[class*=ie] img.v-centered.tc-holder-img {
   transform: none !important;
 }
 
@@ -5029,6 +5029,14 @@ dl dd {
 
 .featured-page .no-effect .czr-thumb-wrapper {
   margin-bottom: 2.5em;
+}
+
+.featured-page img {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .center-images-disabled .featured-page img {
