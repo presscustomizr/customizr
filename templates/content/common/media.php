@@ -10,7 +10,7 @@
   <div class="entry-media__wrapper czr__r-i <?php czr_fn_echo('inner_wrapper_class') ?>">
   <?php
   if ( czr_fn_get( 'media_template' ) ):
-    if ( czr_fn_get( 'has_bg_link' ) ) : ?>
+    if ( czr_fn_get( 'has_permalink' ) ) : ?>
       <a class="bg-link" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
   <?php
     endif; //bg-link

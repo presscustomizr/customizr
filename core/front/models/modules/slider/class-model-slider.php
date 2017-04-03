@@ -109,8 +109,6 @@ class CZR_slider_model_class extends CZR_Model {
   }
 
 
-
-
   protected function czr_fn_get_slides( $slider_name_id/*, $img_size*/ ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
@@ -248,6 +246,18 @@ class CZR_slider_model_class extends CZR_Model {
       }
     return array();
   }
+
+
+
+  /*
+  * Fired just after the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    reset( $this -> slides );
+  }
+
+
 
 
   function czr_fn_get_the_slide( $autoadvance = true ) {

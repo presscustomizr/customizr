@@ -599,7 +599,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             ) );
 
 
-            return $_instance -> czr_fn_get_raw_media();
+            return (bool)$_instance -> czr_fn_get_raw_media();
 
       }
 

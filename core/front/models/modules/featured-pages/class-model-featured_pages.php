@@ -227,8 +227,19 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
 
 
+  /*
+  * Fired just after the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    reset( $this -> featured_pages );
+  }
+
+
+
   function czr_fn_get_featured_page( $autoadvance = true ) {
         $fp = current( $this -> featured_pages );
+
         if ( empty( $fp ) )
           return false;
         if ( $autoadvance )

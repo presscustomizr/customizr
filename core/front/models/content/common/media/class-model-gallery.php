@@ -12,6 +12,7 @@ class CZR_gallery_model_class extends CZR_Model {
                                           'gallery_items'   => null,
                                           'post_id'         => null,
                                           'visibility'      => true,
+                                          'has_lightbox'    => true,
                                     );
 
 
@@ -23,6 +24,7 @@ class CZR_gallery_model_class extends CZR_Model {
             $defaults = array (
 
                   'post_id'         => null,
+                  'has_lightbox'    => true,
 
             );
 
@@ -115,8 +117,8 @@ class CZR_gallery_model_class extends CZR_Model {
                   $_alt             = '';
 
                   if ( isset( $_gallery_ids[ $_index ] ) ) {
-
-                        $_original_image = wp_get_attachment_url( $_gallery_ids[ $_index ] ); //'full';
+                        if ( $this->has_lightbox )
+                              $_original_image = wp_get_attachment_url( $_gallery_ids[ $_index ] ); //'full';
 
                         $_alt            = get_post_meta( $_gallery_ids[ $_index ], '_wp_attachment_image_alt', true );
 

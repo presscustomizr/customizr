@@ -9,10 +9,10 @@
     if ( is_home() || is_post_type_archive() ) :
         czr_fn_render_template( 'content/common/media',
                     array(
-                      //'reset_to_defaults' => false,
                       'model_args' => array(
                         'media_type'               => 'wp_thumb',
-                        'post_id'                  => czr_fn_get_real_id()
+                        'has_permalink'            => false,
+                        'has_lightbox'             => false
                       )
                     )
         );

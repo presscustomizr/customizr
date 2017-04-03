@@ -7,7 +7,7 @@
   <div class="grid__item">
     <?php
       czr_fn_render_template(
-        'content/post-lists/item-parts/post_list_item_media',
+        'content/common/media',
         array(
           'model_args' => array(
               'element_class'         => czr_fn_get('media_cols'),

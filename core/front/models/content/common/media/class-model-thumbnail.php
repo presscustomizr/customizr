@@ -23,6 +23,8 @@ class CZR_thumbnail_model_class extends CZR_Model {
                                           'use_attachment'        => true,
 
                                           'visibility'            => true,
+
+                                          'has_lightbox'          => true
                                     );
 
 
@@ -50,7 +52,9 @@ class CZR_thumbnail_model_class extends CZR_Model {
                   'post_id'         => null,
                   'size'            => 'full',
                   'use_placeholder' => false,
-                  'use_attachment'  => true
+                  'use_attachment'  => true,
+
+                  'has_lightbox'    => true
 
             );
 
@@ -99,6 +103,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
                         'size'            => $this->size,
                         'use_placeholder' => $this->use_placeholder,
                         'use_attachment'  => $this->use_attachment,
+                        'has_lightbox'    => $this->has_lightbox,
 
                   ) );
 

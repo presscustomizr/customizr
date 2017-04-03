@@ -499,30 +499,6 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
            //by default we apply the global default layout
            $tc_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_global_layout') );
 
-           //get the lists of eligible post types + normal posts (not pages!)
-           $args                = array(
-           //'public'   => true,
-            '_builtin' => false
-           );
-           $custom_post_types    = get_post_types($args);
-           $add_normal_post      = array(
-              'post' => 'post'
-             );
-           $eligible_posts       = array_merge( $custom_post_types, $add_normal_post );
-
-           //eligible posts (and custom posts types) default layout
-           if ( in_array($post->post_type , $eligible_posts ) ) {
-             $tc_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
-           }
-
-           //page default layout
-           if ( $post->post_type == 'page' ) {
-             $tc_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
-           }
-
-           //check if the 'force default layout' option is checked
-           $force_layout                = esc_attr( czr_fn_get_opt('tc_sidebar_force_layout') );
-
 
            ?>
            <div class="meta-box-item-content">
@@ -530,13 +506,6 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                <p><?php printf(__( 'Default %1$s layout is set to : %2$s' , 'customizr' ), $post -> post_type == 'page' ? __( 'pages' , 'customizr' ):__( 'posts' , 'customizr' ), '<strong>'.$layouts[$tc_sidebar_default_layout].'</strong>' ) ?></p>
              <?php endif; ?>
 
-             <?php if ( $force_layout == 1) :?>
-             <div style="width:99%; padding: 5px;">
-               <p><i><?php _e( 'You have checked the <i>"Force global default layout for all posts and pages"</i>, you must unchecked this option to enable a specific layout for this post.' , 'customizr' ); ?></i></p>
-               <p><a class="button-primary" href="<?php echo admin_url( 'customize.php' ); ?>" target="_blank"><?php _e( 'Change layout options' , 'customizr' ) ?></a></p>
-             </div>
-
-             <?php else : ?>
                  <i><?php printf(__( 'You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />' , 'customizr' ),
                   $post -> post_type == 'page' ? __( 'this page' , 'customizr' ):__( 'this post' , 'customizr' ),
                    '<a href="'.admin_url( 'customize.php' ).'" target="_blank">'.__( 'here' , 'customizr' ).'</a>'
@@ -554,7 +523,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                     <option value="<?php echo $key; ?>" <?php selected( $layout_value, $current = $key, $echo = true ) ?>><?php echo $l; ?></option>
                   <?php endforeach; ?>
                  </select>
-            <?php endif; ?>
+
          </div>
 
          <?php

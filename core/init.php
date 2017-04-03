@@ -340,11 +340,11 @@ if ( ! class_exists( 'CZR___' ) ) :
               /*********************************************
               * ROOT HTML STRUCTURE
               *********************************************/
-              array(
+              /*array(
                 'hook' => 'wp_head' ,
                 'template' => 'header/favicon',
                 'id'       => 'favicon'
-              ),
+              ),*/
 
 
               /*********************************************
@@ -354,21 +354,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                 'model_class'    => 'header',
                 'id'             => 'header'
               ),
-
-              /*********************************************
-              * SLIDER
-              *********************************************/
-              /* Need to be pre-registered because of the custom style*/
-              array(
-                'model_class' => 'modules/slider/slider',
-                'id'          => 'main_slider'
-              ),
-              //slider of posts
-              array(
-                'id'          => 'main_posts_slider',
-                'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' )
-              ),
-              /** end slider **/
 
 
             //   /*********************************************

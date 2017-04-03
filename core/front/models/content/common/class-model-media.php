@@ -6,15 +6,16 @@ class CZR_media_model_class extends CZR_Model {
       protected $media_template        ;
       protected $media_args            ;
 
-      protected $has_bg_link           ;
-
       protected $post_id               ;
       protected $post_format           ;
       protected $media_type            ;
       protected $use_thumb_placeholder ;
       protected $use_icon              ;
       protected $force_icon            ;
-      protected $tumb_size             ;
+      protected $thumb_size            ;
+
+      protected $has_permalink         ;
+      protected $has_lightbox          ;
 
       protected $image_centering       ;
 
@@ -51,6 +52,8 @@ class CZR_media_model_class extends CZR_Model {
 
                   'thumb_size'            => 'full',
                   'use_thumb_placeholder' => false,
+
+                  'has_lightbox'          => true,
 
             );
 
@@ -101,8 +104,6 @@ class CZR_media_model_class extends CZR_Model {
                   'media_template'        => '',
                   'media_args'            => array(),
 
-                  'has_bg_link'           => null,
-
                   'post_id'               => null,
                   'post_format'           => null,
                   'media_type'            => 'all',
@@ -110,6 +111,9 @@ class CZR_media_model_class extends CZR_Model {
                   'use_icon'              => false,
                   'force_icon'            => false,
                   'thumb_size'            => 'full',
+
+                  'has_permalink'         => true,
+                  'has_lightbox'          => true,
 
                   'visibility'            => true,
 
@@ -125,10 +129,10 @@ class CZR_media_model_class extends CZR_Model {
       public function czr_fn_setup_late_properties() {
 
             /*
-            * This is if the model is called without setting up the media
-            *
+            * This is if the model is called without setting up the media (czr_fn_setup)
             */
             if ( is_null( $this->media ) ) {
+
 
                   $this->czr_fn_setup( array(
 
@@ -144,7 +148,11 @@ class CZR_media_model_class extends CZR_Model {
                         'thumb_size'            => $this->thumb_size,
                         'use_thumb_placeholder' => $this->use_thumb_placeholder,
 
+                        'has_permalink'         => $this->has_permalink,
+                        'has_lightbox'          => $this->has_lightbox
+
                   ) );
+
 
             }
             $this->czr_fn__setup_media_wrapper();
@@ -152,15 +160,12 @@ class CZR_media_model_class extends CZR_Model {
 
 
       /*
-      *     $type can be:
-      * a) all (video/audio/czr_thumb/thumbnail)
+      * $type can be:
+      * a) all (video,audio,czr_thumb,wp_thumb)
       * b) czr_thumb
       * c) wp_thumb
-      *
-      *
       */
       public function czr_fn__setup_media() {
-
 
 
             if ( $this->use_icon && $this->force_icon ) {
@@ -239,6 +244,7 @@ class CZR_media_model_class extends CZR_Model {
                         $_instance->czr_fn_setup ( array(
 
                                     'post_id'          => $post_id,
+                                    'has_lightbox'     => $this->has_lightbox
 
                         ));
 
@@ -265,7 +271,8 @@ class CZR_media_model_class extends CZR_Model {
                                           'post_id'           => $post_id,
                                           'size'              => 'normal',
                                           'use_placeholder'   => $this->use_thumb_placeholder,
-                                          'use_attachment'    => 'wp_thumb' != $this->media_type
+                                          'use_attachment'    => 'wp_thumb' != $this->media_type,
+                                          'has_lightbox'     => $this->has_lightbox
 
                               ));
 
@@ -342,10 +349,11 @@ class CZR_media_model_class extends CZR_Model {
 
                   $this->czr_fn_set_property( 'element_class', $element_class );
 
-
+            }else {
 
                   /* Set availability of background link */
-                  $this->czr_fn_set_property( 'has_bg_link', true );
+                  $this->czr_fn_set_property( 'has_permalink', false );
+
             }
 
 

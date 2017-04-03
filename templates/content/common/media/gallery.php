@@ -12,7 +12,7 @@
 <div class="czr-gallery czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
         if ( count( $gallery_items ) > 1 ) :
-          czr_fn_carousel_nav();
+            czr_fn_carousel_nav();
         endif;
 
 ?>
@@ -26,6 +26,8 @@
 ?>
     </div>
 <?php
-    czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
+    if ( czr_fn_get( 'has_lightbox' ) ) :
+        czr_fn_post_action( $link = '#', $class = 'expand-img-gallery' );
+    endif;
 ?>
 </div>
