@@ -147,7 +147,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
                   'img'           => $raw_media[ 'tc_thumb' ],
                   //lightbox
-                  'lightbox_url'  => array_key_exists( 'is_placeholder', $raw_media ) && $raw_media[ 'is_placeholder' ] ? '' : wp_get_attachment_url( $raw_media[ '_thumb_id' ] ), //full
+                  'lightbox_url'  => $this->has_lightbox && array_key_exists( 'is_placeholder', $raw_media ) && $raw_media[ 'is_placeholder' ] ? '' : wp_get_attachment_url( $raw_media[ '_thumb_id' ] ), //full
 
             );
 
