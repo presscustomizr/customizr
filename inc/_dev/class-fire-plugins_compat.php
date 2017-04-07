@@ -47,6 +47,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'polylang' );
       add_theme_support( 'wpml' );
       add_theme_support( 'woocommerce' );
+      add_theme_support( 'wc-product-gallery-zoom' );
+      add_theme_support( 'wc-product-gallery-lightbox' );
+      add_theme_support( 'wc-product-gallery-slider' );
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'optimize-press' );
       add_theme_support( 'woo-sensei' );
