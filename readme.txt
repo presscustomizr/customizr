@@ -40,6 +40,11 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.11 April 7th 2017 =
+* Fix: fix logo centered - menu centered not working non front ( fixes #868 )
+* Imp: add theme support for wc gallery zoom lightbox and slider ( fixes #871
+see: https://woocommerce.wordpress.com/2017/02/28/adding-support-for-woocommerce-2-7s-new-gallery-feature-to-your-theme/ )
+
 = 3.5.10 March 31st 2017 =
 * Imp : allow menu centering when logo/title centered #861
 * Imp : added a utility czr_fn_is_front_help_enabled() in init.php
