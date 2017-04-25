@@ -191,6 +191,7 @@ dl {
 .featured-page {
   margin-top: $base-line-height * 2;
   position: relative;
+  text-align:center;
 
   .czr-thumb-wrapper {
     overflow: hidden;
@@ -223,6 +224,13 @@ dl {
     left: 50%;
     position: relative;
   }
+  @at-root .fp-title,
+           .fp-button,
+    [class*=fp-text-] {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   @at-root .fp-title {
     @extend .semi-bold;
@@ -250,6 +258,12 @@ dl {
 
   .btn-edit { margin: -1em 0 0 }
 
+  @at-root [class*=fp-text-] {
+    margin: $base-line-height*2 auto;
+    color: $grey-dark;
+    @extend .small;
+  }
+
   @at-root .fp-button {
     display: inline-block;
     padding: 0;
@@ -257,18 +271,9 @@ dl {
       margin-bottom: $base-line-height*2
     }
   }
-  .tc-content {
-    width: 90%;
-    margin:0 auto;
-    text-align:center;
-    @at-root [class*=fp-text-] {
-      width: 90%;
-      margin: $base-line-height*2 auto;
-      color: $grey-dark;
-      @extend .small;
-      display: inline-block;
-    }
-  }
+
+
+
   & .widget-front.hover {
     color: $grey-dark;
   }

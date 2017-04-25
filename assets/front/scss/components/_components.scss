@@ -865,7 +865,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     .no-effect & { border: transparent }
     .round & { border-radius: 50% }
     .czr-link-mask-p.hover & {
-      @include transform ( translate2d(-50%,-50%) scale(1.4) ); /* fallback for those browsers w/o translate3d transform property*/
+      @include transform ( translate(-50%,-50%) scale(1.4) ); /* fallback for those browsers w/o translate3d transform property*/
       @include transform ( translate3d(-50%,-50%, 0) scale(1.4) );
     }
   }

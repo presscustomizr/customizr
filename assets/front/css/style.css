@@ -4179,10 +4179,10 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 }
 
 .czr-link-mask-p.hover .czr-link-mask::before {
-  -webkit-transform: translate2d(-50%, -50%) scale(1.4);
-  -moz-transform: translate2d(-50%, -50%) scale(1.4);
-  -ms-transform: translate2d(-50%, -50%) scale(1.4);
-  transform: translate2d(-50%, -50%) scale(1.4);
+  -webkit-transform: translate(-50%, -50%) scale(1.4);
+  -moz-transform: translate(-50%, -50%) scale(1.4);
+  -ms-transform: translate(-50%, -50%) scale(1.4);
+  transform: translate(-50%, -50%) scale(1.4);
   /* fallback for those browsers w/o translate3d transform property*/
   -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4);
   -moz-transform: translate3d(-50%, -50%, 0) scale(1.4);
@@ -5017,6 +5017,7 @@ dl dd {
 .featured-page {
   margin-top: 2.5em;
   position: relative;
+  text-align: center;
 }
 
 .featured-page .czr-thumb-wrapper {
@@ -5055,6 +5056,14 @@ dl dd {
   position: relative;
 }
 
+.fp-title,
+.fp-button,
+[class*=fp-text-] {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .fp-title {
   line-height: 1.25em;
   margin-top: 0;
@@ -5086,6 +5095,11 @@ dl dd {
   margin: -1em 0 0;
 }
 
+[class*=fp-text-] {
+  margin: 2.5em auto;
+  color: #777;
+}
+
 .fp-button {
   display: inline-block;
   padding: 0;
@@ -5093,19 +5107,6 @@ dl dd {
 
 .fp-button .btn-more {
   margin-bottom: 2.5em;
-}
-
-.featured-page .tc-content {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-[class*=fp-text-] {
-  width: 90%;
-  margin: 2.5em auto;
-  color: #777;
-  display: inline-block;
 }
 
 .featured-page .widget-front.hover {
