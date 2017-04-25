@@ -1,5 +1,6 @@
 <?php
 /**
+* Loads front end CSS
 * Inline front end skin
 *
 *
@@ -16,12 +17,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function __construct () {
                self::$instance =& $this;
 
-               $this->_resouces_version  = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+               $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
                $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
                $this->_minify_css              = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
 
-               add_action( 'wp_enqueue_scripts'                        , array( $this , 'czr_fn_enqueue_front_styles' ) );
+               add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
 
                add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
 
