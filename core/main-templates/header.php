@@ -26,4 +26,8 @@
 
     <div id="tc-page-wrap">
 
-      <?php czr_fn_render_template( 'header' ); ?>
+      <?php
+        //will fire do_action( '__before_header' )
+        czr_fn_render_template( 'header' );
+        //will fire do_action( '__after_header' )
+      ?>

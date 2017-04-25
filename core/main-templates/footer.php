@@ -5,9 +5,11 @@
  * Contains the closing of the #tc-page-wrap div and all content after
  */
 
-      do_action( '__before_footer' );
-      if ( czr_fn_has('footer') )
+      if ( czr_fn_has('footer') ) {
+        //will fire do_action( '__before_footer' )
         czr_fn_render_template( 'footer' );
+        //will fire do_action( '__after_footer' )
+      }
     ?>
     </div><!-- end #tc-page-wrap -->
 
@@ -22,7 +24,7 @@
 
       wp_footer();
 
-      do_action( '__after_footer' );
+      do_action( '__after_wp_footer' );
     ?>
   </body>
   <?php do_action( '__after_body' ) ?>
