@@ -195,6 +195,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                      ),
 
+                     'tc-animate-svg' => array(
+
+                           'path' => $_front_path . 'jquery-plugins/',
+                           'files' => array( 'jqueryAnimateSvg.js' ),
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+
+                     ),
+
                      'tc-center-images' => array(
 
                            'path' => $_front_path . 'jquery-plugins/',
@@ -367,18 +375,13 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   'tc-ext-links',
                   'tc-center-images',
                   'tc-parallax',
+                  'tc-animate-svg',
 
                ) );
 
                //part, to concat in 'tc-main-front'
                //plugins
                $this -> czr_fn_enqueue_script( array(
-                  'tc-dropcap' ,
-                  'tc-img-smartload',
-                  'tc-img-original-sizes',
-                  'tc-ext-links',
-                  'tc-center-images',
-                  'tc-parallax',
                   'tc-main-front',
 
                   'tc-outline',
@@ -496,7 +499,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 */
                 //load retina.js in footer if enabled
                 if ( apply_filters('tc_load_retinajs', 1 == czr_fn_get_opt( 'tc_retina_support' ) ) )
-                  wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+                  wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/vendors/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
          }
 
