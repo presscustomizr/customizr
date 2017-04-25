@@ -24,6 +24,7 @@ jQuery(function ($) {
          ],
          Czr_Plugins : [
             'centerImagesWithDelay',
+            'imgSmartLoad',
             'parallax',
             'lightbox',
             'czrCarousels'
