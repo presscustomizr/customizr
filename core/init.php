@@ -36,6 +36,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         private $not_existing_files = array();
 
         function __construct( $_args = array()) {
+            //allow c4 templates
+            add_filter( 'czr_four_do'             , '__return_true' );
+
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
@@ -224,7 +227,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'fire'      =>   array(
                         array('core'       , 'resources_styles'),
                         array('core'       , 'resources_fonts'),
- //                       array('core'       , 'resources_scripts'),
+                        array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
  //                       array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
 //                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config

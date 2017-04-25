@@ -42,7 +42,16 @@
 */
 
 //Fire Customizr
-require_once( apply_filters( 'czr_init', get_template_directory() . '/inc/czr-init.php' ) );
+if ( ! defined( 'CZR_DEV_4' ) ) {
+  define( 'CZR_DEV_4' , FALSE );
+}
+
+if ( CZR_DEV_4 ) {
+  require_once( get_template_directory() . '/core/init.php' );
+}
+else {
+  require_once( get_template_directory() . '/inc/czr-init.php' );
+}
 
 /**
 * THE BEST AND SAFEST WAY TO EXTEND THE CUSTOMIZR THEME WITH YOUR OWN CUSTOM CODE IS TO CREATE A CHILD THEME.
