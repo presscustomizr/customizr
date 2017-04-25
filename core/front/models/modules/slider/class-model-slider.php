@@ -519,9 +519,9 @@ class CZR_slider_model_class extends CZR_Model {
   private function czr_fn_is_slider_loader_active( $slider_name_id ) {
     //The slider loader must be printed when
     //a) we have to render the demo slider
-    //b) display slider loading option is enabled (can be filtered)
+    //b) filter doesn't disable it
     return ( 'demo' == $slider_name_id
-        || apply_filters( 'czr_display_slider_loader', 1 == esc_attr( czr_fn_get_opt( 'tc_display_slide_loader') ), $slider_name_id, $this -> id )
+        || apply_filters( 'czr_display_slider_loader', true , $slider_name_id, $this -> id )
     );
   }
 
