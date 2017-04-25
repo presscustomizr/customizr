@@ -89,7 +89,7 @@ class CZR_archive_heading_model_class extends CZR_Model {
           //using get_the_content to which you cannot pass a postID or post object, and will refer to the global $post
           //:(
           setup_postdata( get_post( get_option('page_for_posts') ) );
-          $description = apply_filters( 'the_excerpt', get_the_excerpt(); //use the excerpt as description in blog page?
+          $description = apply_filters( 'the_excerpt', get_the_excerpt() ); //use the excerpt as description in blog page?
           wp_reset_postdata();
           return $description;
 
