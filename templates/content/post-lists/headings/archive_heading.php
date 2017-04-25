@@ -12,7 +12,8 @@
                       'model_args' => array(
                         'media_type'               => 'wp_thumb',
                         'has_permalink'            => false,
-                        'has_lightbox'             => false
+                        'has_lightbox'             => false,
+                        'post_id'                  => czr_fn_get_id()
                       )
                     )
         );
