@@ -1005,16 +1005,14 @@ if ( ! class_exists( 'CZR_utils' ) ) :
     */
     function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
       $_ispro = CZR___::czr_fn_is_pro();
-
-      if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
-        return false;
-
-      if ( ! $_ispro && ! get_transient( 'started_using_customizr' ) )
-        return false;
-
+      //the transient is set in ::czr_fn_init_properties()
       $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+      if ( ! get_transient( $_trans ) )
+        return false;
+
       $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
-      if ( ! $_ver )
+      if ( ! is_string( $_ver ) )
         return false;
 
       $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
@@ -1025,7 +1023,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       switch ( $_start_version_infos[0] ) {
         //in this case with now exactly what was the starting version (most common case)
         case 'with':
-          return version_compare( $_start_version_infos[1] , $_ver, '<' );
+          return isset( $_start_version_infos[1] ) ? version_compare( $_start_version_infos[1] , $_ver, '<' ) : true;
         break;
         //here the user started to use the theme before, we don't know when.
         //but this was actually before this check was created
