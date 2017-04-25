@@ -31,7 +31,7 @@ var czrapp = czrapp || {};
 
             timer = setTimeout( function(){
                body.classList.remove('no-hover')
-            },500);
+            }, 100);
 
          }, false );
       },
