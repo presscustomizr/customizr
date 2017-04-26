@@ -165,6 +165,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin:hover',
                                  ),
                                  'background-color' => array(
+                                       '[class*="grid-container__"] .entry-title a:hover::after',
                                        '.grid-container__classic .post-type__icon',
                                        '.btn-skin',
                                        '.btn-skin.inverted:active',

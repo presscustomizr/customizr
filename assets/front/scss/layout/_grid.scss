@@ -129,6 +129,9 @@
 
 
 /* GLOBAL */
+.entry-header.no-title .czr-title {
+  display: none;
+}
 
 .tax__container {
   @extend %categories;
@@ -775,7 +778,7 @@ a.czr-format-link {
     }
   }
 
-  .entry-header .entry-title::after {
+  .entry-header .entry-title a::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -784,7 +787,7 @@ a.czr-format-link {
     height: 2px;
     //SKINNED
     background: $black;
-    //@include transition (all 0.3s ease);
+    @include transition (all 0.3s ease);
   }
 
   .entry-title {

@@ -34,8 +34,11 @@
 [class*="grid-container__"] .hover .entry-title a {
   color: $skin-link-color-hover;
 }
- [class*="grid-container__"] .entry-title a:hover {
+[class*="grid-container__"] .entry-title a:hover {
   color: $skin-link-color;
+  &::after {
+    background-color: $skin-link-color;
+  }
 }
 
 //Grid classic with border bottom
