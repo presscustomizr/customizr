@@ -750,39 +750,47 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
-          $CZR = CZR();
+
+          $_classes = is_array( $_classes ) ? $_classes : array();
+
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
-            array_push( $_classes, 'czr-fade-hover-links' );
+            $_classes[] = 'czr-fade-hover-links';
           if ( czr_fn_is_customizing() )
-            array_push( $_classes, 'is-customizing' );
+            $_classes[] = 'is-customizing';
           if ( wp_is_mobile() )
-            array_push( $_classes, 'czr-is-mobile' );
+            $_classes[] = 'czr-is-mobile';
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
-            array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
+            $_classes[] = esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) );
 
 
           //header and footer skins
-          array_push( $_classes, 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_skin' ) ) ) );
-          array_push( $_classes, 'footer-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_footer_skin' ) ) ) );
+          $_classes[] = 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_skin' ) ) );
+          $_classes[] = 'footer-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_footer_skin' ) ) );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
           if ( in_array( $_layout, array('b', 'l', 'r', 'f') ) ) {
-            array_push( $_classes, sprintf( 'czr-%s-sidebar',
+            $_classes[] = sprintf( 'czr-%s-sidebar',
               'f' == $_layout ? 'no' : $_layout
-            ) );
+            );
           }
           //IMAGE CENTERED
           if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_img') ) ){
-            array_push( $_classes, 'tc-center-images' );
+            $_classes[] = 'tc-center-images';
           }
 
           //SKIN CLASS
           $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
-          array_push( $_classes, substr( $_skin , 0 , strpos($_skin, '.') ) );
-          $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+          $_classes[] = substr( $_skin , 0 , strpos($_skin, '.') );
 
-          array_push( $_classes, strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
+          //SIDENAV POSITIONING
+          if ( czr_fn_is_possible('sidenav') ) {
+
+            $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+
+            $_classes[] = apply_filters( 'tc_sidenav_body_class', strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
+
+          }
 
           return $_classes;
       }
