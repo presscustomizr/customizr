@@ -69,8 +69,12 @@
     &.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
   }
 }
-
-
+.czr-slider-holder {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+/*
 .section-slider .container {
   z-index: 3;
   position: relative;
@@ -83,6 +87,7 @@
 .parallax  .content {
   @extend %vertical-align;
 }
+*/
 #main-wrapper .section.custom  { margin: $base-line-height*2; }
 
 .section .image {

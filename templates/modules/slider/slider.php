@@ -5,6 +5,7 @@
  */
 ?>
 <div id="customizr-slider-<?php czr_fn_echo( 'id' ) ?>" class="section-slider <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+  <div class="czr-slider-holder">
 <?php
     if ( czr_fn_get( 'has_loader' ) ) : ?>
         <div id="czr-slider-loader-wrapper-<?php czr_fn_echo( 'id' ) ?>" class="czr-slider-loader-wrapper">
@@ -33,4 +34,5 @@
       czr_fn_carousel_nav();
     }
 ?>
+  </div>
 </div><!-- /#customizr-slider -->

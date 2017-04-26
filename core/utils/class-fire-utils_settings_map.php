@@ -1146,13 +1146,17 @@ function czr_fn_front_page_option_map( $get_default = null ) {
           ),
           //select slider
           'tc_slider_width' => array(
-                            'default'       => 1,
+                            'default'       => '1',
                             'control'   => 'CZR_controls' ,
-                            'label'       => __( 'Full width slider' , 'customizr' ),
+                            'label'       => __( 'Slider size' , 'customizr' ),
                             'section'     => 'frontpage_sec' ,
-                            'type'        => 'checkbox' ,
+                            'type'        => 'select' ,
+                            'choices'       => array(
+                              'boxed' => __( 'Boxed', 'customizr' ),
+                              'fw' => __( 'Full-width', 'customizr' ),
+                              'fp' => __( 'Full-page', 'customizr' )
+                            ),
                             'priority'      => 30,
-                            'notice'      => __( "When checked, the front page slider occupies the full viewport's width", 'customizr' ),
           ),
 
           //Delay between each slides

@@ -363,14 +363,6 @@ body[class*=ie] img.v-centered.tc-holder-img {
   transform-style: preserve-3d;
 }
 
-.parallax .content {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 .czr-valign {
   -webkit-transform: translate(0, 50%);
   -moz-transform: translate(0, 50%);
@@ -4882,6 +4874,13 @@ form.czr-form .czr-search-field {
   z-index: 4;
 }
 
+.czr-slider-holder {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/*
 .section-slider .container {
   z-index: 3;
   position: relative;
@@ -4891,6 +4890,10 @@ form.czr-form .czr-search-field {
   top: 0;
 }
 
+.parallax  .content {
+  @extend %vertical-align;
+}
+*/
 #main-wrapper .section.custom {
   margin: 2.5em;
 }
