@@ -6,7 +6,7 @@
 *
 * @package      Customizr
 * @subpackage   classes
-* @since        3.0
+* @since        4.0
 * @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
 * @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
 * @link         http://presscustomizr.com/customizr
