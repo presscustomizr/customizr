@@ -6,14 +6,14 @@
  * Sidenav Menu
  */
 ?>
-<div id="tc-sn" class="tc-sn primary-nav__container" <?php czr_fn_echo('element_attributes') ?>>
+<div id="tc-sn" class="tc-sn primary-nav__container" aria-expanded="false" <?php czr_fn_echo('element_attributes') ?>>
     <nav class="tc-sn primary-nav__nav" <?php czr_fn_echo('element_attributes') ?>>
       <div class="tc-sn-inner">
         <?php
           if ( czr_fn_has('sidenav_menu_button') ) {
             czr_fn_render_template( 'header/menu_button', array(
               'model_args' => array(
-                'data_attributes' => 'data-toggle="sidenav"',
+                'data_attributes' => 'data-toggle="sidenav" aria-expanded="false"',
               )
             ) );
           }
