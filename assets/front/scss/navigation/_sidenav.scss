@@ -9,6 +9,10 @@
   max-width: 100%;
   padding: 0;
 
+  .primary-nav__nav, .tc-sn-inner {
+    height: 100%;
+  }
+
   /* test */
   .nav__menu-wrapper {
     height: 85vh;
