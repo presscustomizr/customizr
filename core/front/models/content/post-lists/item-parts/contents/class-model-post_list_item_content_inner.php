@@ -15,7 +15,7 @@ class CZR_post_list_item_content_inner_model_class extends CZR_Model {
       /* Public api */
       public function czr_fn_get_element_class() {
 
-            return 'full' == $this->content_type ? array( 'entry-content' ) : array( 'entry-summary' );
+            return 'full' === $this->content_type ? array( 'entry-content' ) : array( 'entry-summary' );
 
       }
 
