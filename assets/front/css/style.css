@@ -674,7 +674,7 @@ select:-webkit-autofill {
   color: #B4B4B4;
 }
 
-.header-skin-light #tc-sn.primary-nav__container,
+.header-skin-light #tc-sn .tc-sn-inner,
 .header-skin-light #sticky-placeholder,
 .header-skin-light .topnav_navbars__wrapper {
   background: #fff;
@@ -1055,7 +1055,7 @@ select:-webkit-autofill {
   color: #B4B4B4;
 }
 
-.header-skin-dark #tc-sn.primary-nav__container,
+.header-skin-dark #tc-sn .tc-sn-inner,
 .header-skin-dark #sticky-placeholder,
 .header-skin-dark .topnav_navbars__wrapper {
   background: #202020;
@@ -2031,6 +2031,10 @@ select:-webkit-autofill {
   /* test */
   /* test */
   /* Animation stuff */
+}
+
+#tc-sn .primary-nav__nav, #tc-sn .tc-sn-inner {
+  height: 100%;
 }
 
 #tc-sn .nav__menu-wrapper {
@@ -6072,6 +6076,15 @@ a.czr-format-link:hover::before {
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
 }
 
 .grid-container__square-mini .flickity-viewport {
@@ -6092,7 +6105,15 @@ a.czr-format-link:hover::before {
   float: none;
   background: #f7f8f9;
   white-space: normal;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
 }
 
 .grid-container__square-mini .grid__item {
