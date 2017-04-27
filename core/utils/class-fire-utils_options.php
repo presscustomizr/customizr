@@ -9,7 +9,7 @@
   * @since Customizr 3.4.9
   */
   function czr_fn_is_customizr_option( $option_key ) {
-      $_is_czr_option = in_array( substr( $option_key, 0, 3 ), array( CZR_OPT_PREFIX ) );
+      $_is_czr_option = in_array( substr( $option_key, 0, 3 ), apply_filters( 'czr_options_prefixes', array( CZR_OPT_PREFIX ) ) );
       return apply_filters( 'czr_is_customizr_option', $_is_czr_option , $option_key );
   }
 
