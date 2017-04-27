@@ -285,6 +285,10 @@ blockquote p {
   margin-top: 0.5em;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .inline-list, .socials, .tags {
   list-style: none;
 }
@@ -6230,7 +6234,7 @@ a.czr-format-link:hover::before {
   word-wrap: break-word;
 }
 
-article .entry-content a {
+article .entry-content a:not(.btn) {
   text-decoration: underline;
 }
 
@@ -7074,6 +7078,10 @@ section.post-content {
   background: #131313;
 }
 
+.footer-skin-dark .footer__wrapper .colophon__row a {
+  display: initial;
+}
+
 .footer-skin-light .footer__wrapper {
   color: #202020;
   background: #fff;
@@ -7121,6 +7129,10 @@ section.post-content {
 
 .footer-skin-light .footer__wrapper .colophon__row {
   background: #f7f8f9;
+}
+
+.footer-skin-light .footer__wrapper .colophon__row a {
+  display: initial;
 }
 
 .footer__wrapper a {
