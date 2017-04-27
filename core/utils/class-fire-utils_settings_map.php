@@ -2360,7 +2360,7 @@ function czr_fn_popul_panels_map( $panel_map ) {
 * POPULATE REMOVE SECTIONS
 ***************************************************************/
 /**
- * hook : czr_fn_remove_section_map
+ * hook : czr_remove_section_map
  */
 function czr_fn_popul_remove_section_map( $_sections ) {
   //customizer option array
@@ -2379,7 +2379,7 @@ function czr_fn_popul_remove_section_map( $_sections ) {
 ***************************************************************/
 /**
 * Print the themes section (themes switcher) when previewing the themes from wp-admin/themes.php
-* hook : czr_fn_remove_section_map
+* hook : czr_remove_section_map
 */
 function czr_fn_set_theme_switcher_visibility( $_sections) {
   //Don't do anything is in preview frame
@@ -2413,7 +2413,7 @@ function czr_fn_set_theme_switcher_visibility( $_sections) {
 * POPULATE SECTIONS
 ***************************************************************/
 /**
-* hook : czr_fn_add_section_map
+* hook : czr_add_section_map
 */
 function czr_fn_popul_section_map( $_sections ) {
   //declare a private property to check wp version >= 4.0
