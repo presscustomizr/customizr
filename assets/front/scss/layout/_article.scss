@@ -11,7 +11,7 @@
 .entry-header .entry-title {
   word-wrap: break-word;
 }
-article .entry-content a {
+article .entry-content a:not(.btn) {
   text-decoration: underline;
 }
 .page__header {
