@@ -440,13 +440,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * add custom classes to the grid container element
   */
   function czr_fn_get_element_class() {
+    $_classes = array();
 
     if ( ! empty( $this->grid_shadow ) )
-      array_push( $_classes, 'tc-grid-shadow' );
+      $_classes[] = 'tc-grid-shadow';
     if ( ! empty( $this->grid_bottom_border ) )
-      array_push( $_classes, 'tc-grid-border' );
+      $_classes[] = 'tc-grid-border';
     if ( ! empty( $this->contained ) )
-      array_push( $_classes, 'container' );
+      $_classes[] = 'container';
 
     return $_classes;
   }
