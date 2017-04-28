@@ -208,7 +208,7 @@
 */
 function czr_fn_get_ctx_excluded_options() {
     return apply_filters(
-      'czr_fn_get_ctx_excluded_options',
+      'czr_get_ctx_excluded_options',
       array(
         'defaults',
         'tc_sliders',
