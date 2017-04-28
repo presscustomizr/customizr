@@ -120,10 +120,12 @@
     z-index: 2;
   }
 
-  .tc-sn-visible:not(.animating) &,
+  .tc-sn-visible:not(.animating) & {
+    @include transform( translate(0, 0) );
+    z-index: 2;
+  }
   .animating.sn-open & {
     @include transform( translate3d(0, 0, 0) );
-    z-index: 2;
   }
 
   .sn-left & {
