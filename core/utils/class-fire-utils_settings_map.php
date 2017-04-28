@@ -109,6 +109,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_post_metas_option_map',
     'czr_fn_post_list_option_map',
     'czr_fn_single_post_option_map',
+    'czr_fn_single_page_option_map',
     'czr_fn_gallery_option_map',
     'czr_fn_paragraph_option_map',
     'czr_fn_post_navigation_option_map',
@@ -1607,7 +1608,45 @@ function czr_fn_single_post_option_map( $get_default = null ) {
 }
 
 
-
+/*-----------------------------------------------------------------------------------------------------
+                               SINGLE PAGESS SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_single_page_option_map( $get_default = null ) {
+  return array(
+      'tc_single_page_thumb_location'  =>  array(
+                        'default'       => 'hide',
+                        'control'     => 'CZR_controls' ,
+                        'label'         => __( "Post thumbnail position" , "customizr" ),
+                        'section'       => 'single_pages_sec' ,
+                        'type'      =>  'select' ,
+                        'choices'     => array(
+                                'hide'                    => __( "Don't display" , 'customizr' ),
+                                '__before_main_wrapper|200'   => __( 'Before the title in full width' , 'customizr' ),
+                                '__before_content|0'     => __( 'Before the title boxed' , 'customizr' ),
+                                '__after_content_title|10'    => __( 'After the title' , 'customizr' ),
+                        ),
+                        'priority'      => 10,
+                        'notice'    => sprintf( '%s<br/>%s',
+                          __( 'You can display the featured image (also called the post thumbnail) of your pages before their content, when they are displayed individually.' , 'customizr' ),
+                          sprintf( __( "Don't know how to set a featured image to a page? Learn how in the %s.", "customizr" ),
+                              sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
+                          )
+                        )
+      ),
+      'tc_single_page_thumb_height' => array(
+                        'default'       => 250,
+                        'sanitize_callback' => 'czr_fn_sanitize_number',
+                        'control'   => 'CZR_controls' ,
+                        'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
+                        'section'     => 'single_pages_sec' ,
+                        'type'        => 'number' ,
+                        'step'        => 1,
+                        'min'         => 0,
+                        'priority'      => 20,
+                        'transport'   => 'postMessage'
+      )
+  );
+}
 
 
 
@@ -2557,20 +2596,18 @@ function czr_fn_popul_section_map( $_sections ) {
                         'description' =>  __( 'Set up single posts options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
+    'single_pages_sec'        => array(
+                        'title'     =>  __( 'Single pages' , 'customizr' ),
+                        'priority'    =>  $is_wp_version_before_4_0 ? 18 : 25,
+                        'description' =>  __( 'Set up single pages options' , 'customizr' ),
+                        'panel'   => 'tc-content-panel'
+    ),
     'breadcrumb_sec'        => array(
                         'title'     =>  __( 'Breadcrumb' , 'customizr' ),
                         'priority'    =>  $is_wp_version_before_4_0 ? 11 : 30,
                         'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
-
-
-    /*'tc_page_settings'        => array(
-                        'title'     =>  __( 'Pages' , 'customizr' ),
-                        'priority'    =>  25,
-                        'description' =>  __( 'Set up pages options' , 'customizr' ),
-                        'panel'   => 'tc-content-panel'
-    ),*/
     'post_metas_sec'        => array(
                         'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
                         'priority'    =>  $is_wp_version_before_4_0 ? 20 : 50,
