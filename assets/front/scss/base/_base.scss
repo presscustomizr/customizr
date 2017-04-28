@@ -136,7 +136,7 @@ img::-moz-selection {
 }
 
 body {
-  webkit-tap-highlight-color: $skin;
+  -webkit-tap-highlight-color: $skin;
 }
 
 .alignleft {

@@ -8,9 +8,44 @@
   }
 }*/
 
+/* Regular headings */
+
+.archive-header .archive-title,
 .entry-header .entry-title {
   word-wrap: break-word;
+  margin-top: 0.4em;
 }
+.archive-header .header-bottom,
+.entry-header .header-bottom {
+  @extend .service-font;
+  color: $grey;
+  position: relative;
+  margin: 0 0 3em 0;
+  a {
+      @extend .semi-bold;
+  }
+}
+
+.entry-header .tax__container, .entry-header .post-info {
+  @extend .small;
+}
+
+.archive-header .header-bottom {
+  margin: -1em 0 0 0;
+}
+
+.archive-header-description {
+  margin: $base-line-height 0;
+  padding-top: $base-line-height;
+  padding-bottom: $base-line-height;
+  border-top: 1px solid $grey-lightest;
+  border-bottom: 1px solid $grey-lightest;
+}
+.archive-header .featurette-divider {
+  margin-top: 1.8*$base-line-height;
+}
+/* end regular headings */
+
 article .entry-content a:not(.btn) {
   text-decoration: underline;
 }
