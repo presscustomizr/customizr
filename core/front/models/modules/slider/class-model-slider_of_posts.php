@@ -208,7 +208,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
       'limit'          => 5,
       'offset'         => 0,
     );
-    $args           = apply_filters( 'tc_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
+    $args           = apply_filters( 'czr_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
     /* Set up */
     $columns        = 'posts.ID, posts.post_date';

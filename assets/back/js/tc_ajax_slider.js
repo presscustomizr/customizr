@@ -201,7 +201,7 @@ var CzrSlider;
       //init select2 multipicker
       _init_multipicker : function(){
         if ( typeof $.fn.select2 !== 'function' ) return;
-        this.$_slider_section_box.find('select.czr_multiple_picker').select2({
+        this.$_slider_section_box.find('select.czr_multiple_picker, select.tc_multiple_picker').select2({
           closeOnSelect: false,
           formatSelection: tcEscapeMarkup
         });
