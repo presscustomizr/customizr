@@ -4,7 +4,7 @@ class CZR_post_list_item_header_model_class extends CZR_Model {
   public $entry_header_inner_class;
   public $has_edit_button;
 
-  public $defaults = array( 'the_title' => '' );
+  public $defaults = array( 'the_title' => '', 'has_header_format_icon' => false );
 
   function czr_fn_get_element_class() {
     $element_class = $this -> element_class;
