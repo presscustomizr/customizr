@@ -6,6 +6,14 @@
  */
 ?>
 <article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?>>
+  <?php
+  /* heading */
+  if ( czr_fn_has( 'regular_page_heading' ) ) {
+
+    czr_fn_render_template( 'content/singular/headings/regular_page_heading' );
+
+  }
+  ?>
   <div class="post-entry tc-content-inner">
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
       <?php
