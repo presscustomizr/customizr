@@ -36,8 +36,13 @@ if ( ! class_exists( 'CZR___' ) ) :
         private $not_existing_files = array();
 
         function __construct( $_args = array()) {
+
             //allow c4 templates
             add_filter( 'czr_four_do'             , '__return_true' );
+            //define a constant we can use everywhere
+            //that will tell us we're in the new Customizr:
+            //Will be highly used during the transion between the two themes
+            if( ! defined( 'CUSTOMIZR_4' ) )            define( 'CUSTOMIZR_4' , true );
 
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
