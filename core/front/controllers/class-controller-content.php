@@ -31,6 +31,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return true;
     }
 
+    function czr_fn_display_view_regular_page_heading() {
+      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_page() && ! is_front_page() );
+    }
 
     function czr_fn_display_view_singular_headings() {
       return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_attachment() || ( $this -> czr_fn_display_view_page() && ! is_front_page() );
