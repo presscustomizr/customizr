@@ -76,7 +76,9 @@ var czrapp = czrapp || {};
         enableGoldenRatio : false, //true
         zeroTopAdjust: 0,
         goldenRatioVal : CZRParams.goldenRatio || 1.618,
-        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350
+        goldenRatioLimitHeightTo : CZRParams.gridGoldenRatioLimit || 350,
+        setOpacityWhenCentered : true,//will set the opacity to 1
+        opacity : 1
       });
 
       //SLIDER IMG + VARIOUS

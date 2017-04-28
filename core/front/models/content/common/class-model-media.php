@@ -38,7 +38,6 @@ class CZR_media_model_class extends CZR_Model {
       *
       */
       public function czr_fn_setup( $args = array() ) {
-
             $defaults = array (
 
                   'post_id'               => null,
@@ -91,7 +90,6 @@ class CZR_media_model_class extends CZR_Model {
       * @override
       */
       public function __construct( $model = array() ) {
-
             /*
             * the model->defaults by default are:
             * 1) merged to the model array at instantiation time (see instance's method CZR_model.czr_fn_update )
@@ -111,6 +109,7 @@ class CZR_media_model_class extends CZR_Model {
                   'use_icon'              => false,
                   'force_icon'            => false,
                   'thumb_size'            => 'full',
+                  'element_class'         => '',
 
                   'has_permalink'         => true,
                   'has_lightbox'          => true,
@@ -120,13 +119,15 @@ class CZR_media_model_class extends CZR_Model {
                   'image_centering'    => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering'
             );
 
-            return parent::__construct( $model );
+            parent::__construct( $model );
+
       }
 
 
 
       /* @override */
       public function czr_fn_setup_late_properties() {
+
 
             /*
             * This is if the model is called without setting up the media (czr_fn_setup)
@@ -145,6 +146,8 @@ class CZR_media_model_class extends CZR_Model {
                         'use_icon'              => $this->use_icon,
                         'force_icon'            => $this->force_icon,
 
+                        'element_class'         => $this->element_class,
+
                         'thumb_size'            => $this->thumb_size,
                         'use_thumb_placeholder' => $this->use_thumb_placeholder,
 
@@ -155,6 +158,7 @@ class CZR_media_model_class extends CZR_Model {
 
 
             }
+
             $this->czr_fn__setup_media_wrapper();
       }
 

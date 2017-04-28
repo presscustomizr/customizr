@@ -26,7 +26,11 @@
 
   ?>
 
-  <?php do_action('__before_main_wrapper') ?>
+  <?php
+    // This hook is used to render the following elements(ordered by priorities) :
+    // singular thumbnail
+    do_action('__before_main_wrapper')
+  ?>
 
     <div id="main-wrapper" class="section">
             <?php
