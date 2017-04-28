@@ -1,6 +1,6 @@
 <?php
 /**
-* The template for displaying the list of posts titles (archives, categories, )
+* The template for displaying the sarch archive title (search, no-results )
 */
 ?>
 <header class="row page__header image__header archive-header" <?php czr_fn_echo('element_attributes') ?>>
