@@ -465,7 +465,15 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
           ),
           */
-           'tc_center_slider_img'  =>  array(
+          'tc_slider_parallax'  =>  array(
+                            'default'       => 1,
+                            'control'   => 'CZR_controls' ,
+                            'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
+                            'section'     => 'images_sec' ,
+                            'type'        => 'checkbox' ,
+                            'notice'    => __( 'If enabled, your slides scroll slower than the page (parallax effect).' , 'customizr' ),
+          ),
+          'tc_center_slider_img'  =>  array(
                             'default'       => 1,
                             'control'   => 'CZR_controls' ,
                             'label'       => __( "Dynamic slider images centering on any devices" , "customizr" ),
