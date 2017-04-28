@@ -430,7 +430,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                $smart_load_opts       = apply_filters( 'tc_img_smart_load_options' , array(
 
                        'parentSelectors' => array(
-                           '.article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles',
+                           '[class*=grid-container], .article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles',
                        ),
                        'opts'     => array(
                            'excludeImg' => array( '.tc-holder-img' )

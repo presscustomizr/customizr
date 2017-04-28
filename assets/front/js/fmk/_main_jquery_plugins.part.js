@@ -18,7 +18,7 @@ var czrapp = czrapp || {};
     //.post-related-articles handles the related posts
     imgSmartLoad : function() {
       var smartLoadEnabled = 1 == CZRParams.imgSmartLoadEnabled,
-          //Default selectors for where are : $( '.article-container, .__before_main_wrapper, .widget-front' ).find('img');
+          //Default selectors for where are : $( '[class*=grid-container], .article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles' ).find('img');
           _where           = CZRParams.imgSmartLoadOpts.parentSelectors.join();
 
       //Smart-Load images
