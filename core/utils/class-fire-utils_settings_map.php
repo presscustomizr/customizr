@@ -110,7 +110,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_post_list_option_map',
     'czr_fn_single_post_option_map',
     'czr_fn_single_page_option_map',
-    'czr_fn_gallery_option_map',
+    //'czr_fn_gallery_option_map', //No gallery options in c4 as of now
     'czr_fn_paragraph_option_map',
     'czr_fn_post_navigation_option_map',
     //SIDEBARS
@@ -1673,7 +1673,6 @@ function czr_fn_breadcrumb_option_map( $get_default = null ) {
                             'priority'      => 20,
                             'active_callback' => 'czr_fn_is_home'
           ),
-          /* will be handled with skope
           'tc_show_breadcrumb_in_pages'  =>  array(
                             'default'       => 1,
                             'control'     => 'CZR_controls' ,
@@ -1701,7 +1700,6 @@ function czr_fn_breadcrumb_option_map( $get_default = null ) {
                             'priority'      => 50
 
           ),
-          */
           'tc_breadcrumb_yoast' => array(
                             'default'   => czr_fn_user_started_before_version( '3.4.39' , '1.2.39' ) ? 0 : 1,
                             'label'     => __( "Use Yoast SEO breadcrumbs" , "customizr" ),
