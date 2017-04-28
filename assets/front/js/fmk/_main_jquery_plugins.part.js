@@ -63,7 +63,7 @@ var czrapp = czrapp || {};
       //POST CLASSIC GRID IMAGES
       $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
         enableCentering : CZRParams.centerAllImg,
-        oncustom : ['smartload', 'simple_load'],
+        oncustom : ['smartload', 'refresh-height', 'simple_load'],
         zeroTopAdjust: 0,
         enableGoldenRatio : false, //true
         goldenRatioVal : CZRParams.goldenRatio || 1.618,
@@ -72,7 +72,7 @@ var czrapp = czrapp || {};
 
       $('.js-centering.entry-media__holder').centerImages({
         enableCentering : CZRParams.centerAllImg,
-        oncustom : ['smartload', 'simple_load'],
+        oncustom : ['smartload', 'refresh-height', 'simple_load'],
         enableGoldenRatio : false, //true
         zeroTopAdjust: 0,
         goldenRatioVal : CZRParams.goldenRatio || 1.618,

@@ -116,7 +116,7 @@ class CZR_media_model_class extends CZR_Model {
 
                   'visibility'            => true,
 
-                  'image_centering'    => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering'
+                  'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering'
             );
 
             parent::__construct( $model );
@@ -152,7 +152,9 @@ class CZR_media_model_class extends CZR_Model {
                         'use_thumb_placeholder' => $this->use_thumb_placeholder,
 
                         'has_permalink'         => $this->has_permalink,
-                        'has_lightbox'          => $this->has_lightbox
+                        'has_lightbox'          => $this->has_lightbox,
+
+                        'image_centering'       => $this->image_centering,
 
                   ) );
 
