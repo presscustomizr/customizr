@@ -686,6 +686,10 @@ select:-webkit-autofill {
   background: #fff;
 }
 
+.header-skin-light .topnav_navbars__wrapper {
+  border-bottom: 1px solid rgba(32, 32, 32, 0.09);
+}
+
 @media (min-width: 992px) {
   .header-skin-light .header-transparent #sticky-placeholder {
     background: transparent;
@@ -1065,6 +1069,10 @@ select:-webkit-autofill {
 .header-skin-dark #sticky-placeholder,
 .header-skin-dark .topnav_navbars__wrapper {
   background: #202020;
+}
+
+.header-skin-dark .topnav_navbars__wrapper {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 @media (min-width: 992px) {
@@ -2033,6 +2041,7 @@ select:-webkit-autofill {
   width: 350px;
   max-width: 100%;
   padding: 0;
+  outline: 1px solid rgba(255, 255, 255, 0.09);
   /* test */
   /* test */
   /* test */

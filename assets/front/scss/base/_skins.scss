@@ -54,7 +54,9 @@ $secondary-color-dark   : $grey;
   .topnav_navbars__wrapper  {
     background: $background-color;
   }
-
+  .topnav_navbars__wrapper  {
+    border-bottom: 1px solid rgba($primary-color, 0.09);
+  }
   @include media-breakpoint-up(lg) {
     .header-transparent {
       #sticky-placeholder { background: transparent }
