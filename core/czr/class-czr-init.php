@@ -257,17 +257,25 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         $_priority = $_priority + 10;
       }//foreach
 
-      //REMOVE CUSTOM CSS ADDED IN 4.7 => IT WILL REPLACE THE CUSTOMIZR BUILT-IN ONE SOON
-      //But the migration is not coded yet
-      $custom_css_setting_id = sprintf( 'custom_css[%s]', get_stylesheet() );
-      if ( is_object( $wp_customize -> get_setting( $custom_css_setting_id ) ) ) {
-        $wp_customize -> remove_setting( $custom_css_setting_id );
-      }
-      if ( is_object( $wp_customize -> get_control( 'custom_css' ) ) ) {
-        $wp_customize -> remove_control( 'custom_css' );
-      }
-      if ( is_object( $wp_customize -> get_section( 'custom_css' ) ) ) {
-        $wp_customize -> remove_section( 'custom_css' );
+      //MOVE THE CUSTOM CSS SECTION (introduced in 4.7) INTO THE ADVANCED PANEL
+      if ( is_object( $wp_customize->get_section( 'custom_css' ) ) ) {
+
+          $wp_customize -> get_section( 'custom_css' ) -> panel = 'tc-advanced-panel';
+          $wp_customize -> get_section( 'custom_css' ) -> priority = 10;
+
+
+        //CHANGE CUSTOM_CSS DEFAULT
+        $custom_css_setting_id = sprintf( 'custom_css[%s]', get_stylesheet() );
+        if ( is_object( $wp_customize->get_setting( $custom_css_setting_id ) ) ) {
+          $original = $wp_customize->get_setting( $custom_css_setting_id )->default;
+          $new_def = sprintf( "%s\n%s\n%s\n*/",
+              substr( $original, 0, strlen($original) - 2),
+              __( "Use this field to test small chunks of CSS code. For important CSS customizations, it is recommended to modify the style.css file of a child theme." , 'customizr' ),
+              'http' . esc_url( '//codex.wordpress.org/Child_Themes' )
+          );
+          $wp_customize->get_setting( $custom_css_setting_id )->default = $new_def;
+        }
+
       }
 
     }

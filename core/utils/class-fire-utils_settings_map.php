@@ -34,6 +34,9 @@ function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
     //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
     add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages');
 
+    //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
+    add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
+
     //POST LIST
     //classical grid
     add_filter( 'czr_fn_post_list_option_map', 'czr_fn_classical_grid_option_map' , 20, 2 );
@@ -1080,7 +1083,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
 
           //select slider
           'tc_front_slider' => array(
-                            'default'     => 'demo' ,
+                            'default'     => 'tc_posts_slider' ,
                             'control'     => 'CZR_controls' ,
                             'title'       => __( 'Slider options' , 'customizr' ),
                             'label'       => __( 'Select front page slider' , 'customizr' ),
@@ -2263,7 +2266,9 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                                CUSTOM CSS SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_custom_css_option_map( $get_default = null ) {
-  return array(
+  global $wp_version;
+
+  return version_compare( $wp_version, '4.7', '>=' ) ? array() : array(
           'tc_custom_css' =>  array(
                             'sanitize_callback' => 'wp_filter_nohtml_kses',
                             'sanitize_js_callback' => 'wp_filter_nohtml_kses',
@@ -2702,7 +2707,7 @@ function czr_fn_popul_section_map( $_sections ) {
     )
   );
 
-  if ( CZR_IS_PRO ) {
+  if ( ! CZR_IS_PRO ) {
     $_new_sections = array_merge( $_new_sections, array(
         /*---------------------------------------------------------------------------------------------
         -> SECTION : GO-PRO
@@ -2723,7 +2728,16 @@ function czr_fn_popul_section_map( $_sections ) {
 
 
 
+function czr_fn_force_remove_section_map( $_sections ) {
+  global $wp_version;
 
+  // FORCE REMOVE SECTIONS
+  // CUSTOM CSS section for wp >= 4.7
+  if ( version_compare( $wp_version, '4.7', '>=' ) )
+    unset( $_sections[ 'custom_sec' ] );
+
+  return $_sections;
+}
 
 /***************************************************************
 * CONTROLS HELPERS
@@ -2873,12 +2887,14 @@ function czr_fn_slider_choices() {
     0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
     'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
     'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
-    );
+  );
+
   if ( $slider_names ) {
     foreach( $slider_names as $tc_name => $slides) {
       $slider_choices[$tc_name] = $tc_name;
     }
   }
+
   return $slider_choices;
 }
 
