@@ -1097,6 +1097,8 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'label'       => __('Number of posts to display', 'customizr'),
                             'section'     => 'frontpage_sec' ,
                             'type'        => 'number',
+                            'step'        => 1,
+                            'min'         => 1,
                             'priority'    => 22,
                             'notice'      => __( "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website.", 'customizr' )
           ),
