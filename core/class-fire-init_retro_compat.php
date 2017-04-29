@@ -11,19 +11,30 @@
 //only if user is logged in
 //then each routine has to decide what to do also depending on the user started before
 if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
-  $theme_options            = czr_fn_get_raw_option( CZR_THEME_OPTIONS );
-
+  $theme_options            = czr_fn_get_admin_option( CZR_THEME_OPTIONS );
+  $_to_update               = false;
 
   if ( ! empty( $theme_options ) ) {
 
     $_new_options_w_socials = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
 
-    $_to_update             = ! empty( $_new_options_w_socials );
-    $theme_options          = $_to_update ? $_new_options_w_socials : $theme_options;
+    if ( ! empty( $_new_options_w_socials ) ) {
+      $theme_options              = $_new_options_w_socials;
+      $_to_update                 = true;
+    }
+
+
+    //Custom css
+    $_new_options_w_custom_css  = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
+    if ( ! empty( $_new_options_w_custom_css ) ) {
+      $theme_options              = $_new_options_w_custom_css;
+      $_to_update                 = true;
+    }
 
     if ( $_to_update ) {
       update_option( CZR_THEME_OPTIONS, $theme_options );
     }
+
   }
 }
 
@@ -33,15 +44,18 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
   $_options = $theme_options;
 
-
-  //nothing t do if already moved
-  if ( ! czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
-    return array();
-
+  /*
+  * When Memcached is active transients (object cached) might be not persistent
+  * we cannot really rely on them :/
+  */
+  //nothing to do if new user
+  //if ( czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+  //  return array();
   //nothing to do if already moved
   if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_socials', $_options[ '__moved_opts' ] ) ) {
     return array();
   }
+
 
   $_old_socials  = array(
         'tc_rss'            => array(
@@ -121,7 +135,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
   $_options     = wp_parse_args( $_options, $_social_options );
 
 
-  $_to_update   = false;
+
   $_new_socials = array();
   $_index       = 0;
 
@@ -155,20 +169,64 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
       );
       $_index++;
 
-      $_to_update = true;
     }
   }
 
-  if ( $_to_update ) {
+  if ( !empty( $_new_socials ) ) {
     $theme_options[ 'tc_social_links' ] = $_new_socials;
+  }
+
+  //save the state in the options
+  $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+  array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+
+  return $theme_options;
+
+}
+
+
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
+
+  $_options = $theme_options;
+
+  /*
+  * When Memcached is active transients (object cached) might be not persistent
+  * we cannot really rely on them :/
+  */
+  //if ( ! czr_fn_user_started_before_version( '3.5.5', '1.3.3' ) )
+  //  return array();
+
+  //nothing to do if already moved
+  if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'custom_css', $_options[ '__moved_opts' ] ) ) {
+    return array();
+  }
+
+
+  /*
+  * FROM
+  * https://make.wordpress.org/core/2016/11/26/extending-the-custom-css-editor/
+  */
+  if ( function_exists( 'wp_update_custom_css_post' ) ) {
+    // Migrate any existing theme CSS to the core option added in WordPress 4.7.
+    $css = array_key_exists( 'tc_custom_css', $_options ) ?  html_entity_decode( esc_html( $_options['tc_custom_css'] ) ) : '';
+
+    if ( $css ) {
+      $core_css = wp_get_custom_css(); // Preserve any CSS already added to the core option.
+      //avoid duplications
+      $core_css = str_replace( $css, '', $core_css );
+      $return = wp_update_custom_css_post( $core_css . "\n" . $css );
+    }
+
 
     //save the state in the options
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-    array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+    array_push( $theme_options[ '__moved_opts' ], 'custom_css' );
 
     return $theme_options;
   }
 
   return array();
 }
-

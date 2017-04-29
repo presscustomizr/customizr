@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function czr_fn_write_custom_css( $_css = null ) {
 
                $_css                     = isset( $_css ) ? $_css : '';
-               $_moved_opts              = czr_fn_get_opt(  '__moved_opts' ) ;
+               $_moved_opts              = czr_fn_get_opt(  '__moved_opts' );
 
                /*
                * Do not print old custom css if moved in the WP Custom CSS
