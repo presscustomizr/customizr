@@ -173,7 +173,7 @@
   */
   function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
       $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
-      $_options               = czr_fn_get_raw_option( $option_group );
+      $_options               = czr_fn_get_admin_option( $option_group );
       $_options[$option_name] = $option_value;
 
       update_option( $option_group, $_options );
@@ -212,10 +212,11 @@ function czr_fn_get_ctx_excluded_options() {
       array(
         'defaults',
         'tc_sliders',
+        'tc_social_links',
         'tc_blog_restrict_by_cat',
         'last_update_notice',
         'last_update_notice_pro',
-        'tc_social_links'
+        '__moved_opts'
       )
     );
 }
@@ -232,13 +233,40 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 
 //@return an array of unfiltered options
 //=> all options or a single option val
-function czr_fn_get_raw_option( $opt_name = null, $opt_group = null ) {
+function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
     $alloptions = wp_cache_get( 'alloptions', 'options' );
-    $alloptions = maybe_unserialize($alloptions);
-    if ( ! is_null( $opt_group ) && isset($alloptions[$opt_group]) ) {
-      $alloptions = maybe_unserialize($alloptions[$opt_group]);
+    $alloptions = maybe_unserialize( $alloptions );
+    //is there any option group requested ?
+    if ( ! is_null( $opt_group ) && array_key_exists( $opt_group, $alloptions ) ) {
+      $alloptions = maybe_unserialize( $alloptions[ $opt_group ] );
     }
-    if ( is_null( $opt_name ) )
-      return $alloptions;
-    return isset( $alloptions[$opt_name] ) ? maybe_unserialize($alloptions[$opt_name]) : false;
+    //shall we return a specific option ?
+    if ( is_null( $opt_name ) ) {
+        return $alloptions;
+    } else {
+        $opt_value = array_key_exists( $opt_name, $alloptions ) ? maybe_unserialize( $alloptions[ $opt_name ] ) : false;//fallback on cache option val
+        //do we need to get the db value instead of the cached one ? <= might be safer with some user installs not properly handling the wp cache
+        //=> typically used to checked the template name for czr_fn_isprevdem()
+        if ( ! $from_cache ) {
+            global $wpdb;
+            //@see wp-includes/option.php : get_option()
+            $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $opt_name ) );
+            if ( is_object( $row ) ) {
+                $opt_value = $row->option_value;
+            }
+        }
+        return $opt_value;
+    }
+}
+
+//@return an array of options
+function czr_fn_get_admin_option( $option_group = null ) {
+    $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
+
+    //here we could hook a callback to remove all the filters on "option_{CZR_THEME_OPTIONS}"
+    do_action( "czr_before_getting_option_{$option_group}" );
+    $options = get_option( $option_group, array() );
+    //here we could hook a callback to re-add all the filters on "option_{CZR_THEME_OPTIONS}"
+    do_action( "czr_after_getting_option_{$option_group}" );
+    return $options;
 }
