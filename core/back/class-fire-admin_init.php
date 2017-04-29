@@ -189,15 +189,17 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     *
     */
     function czr_fn_add_editor_style() {
+
       $_stylesheets = array(
-          CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
-          CZR_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
+          CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css'
       );
+
 
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
         $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
 
       add_editor_style( $_stylesheets );
+
     }
 
 
@@ -218,17 +220,32 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( 'tinymce' != wp_default_editor() )
         return $init;
 
+      $_css = '';
+
       //some plugins fire tiny mce editor in the customizer
       //in this case, the CZR_resources_fonts class has to be loaded
-      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources::$instance) )
+      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )
         CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
 
-      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources::$instance) )
-        return;
+      if ( class_exists('CZR_resources_fonts') && is_object(CZR_resources_fonts::$instance) ) {
+        //fonts
+        $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+      }
 
-      //fonts
-      $_css  = CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+      //skin
+      //some plugins fire tiny mce editor in the customizer
+      //in this case, the CZR_resources_styles class has to be loaded
+      if ( ! class_exists('CZR_resources_styles') || ! is_object(CZR_resources_styles::$instance) )
+        CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_styles') ) ), true );
 
+      if ( class_exists('CZR_resources_styles') && is_object(CZR_resources_styles::$instance) ) {
+
+        //dynamic skin
+        $_css  .= CZR_resources_styles::$instance -> czr_fn_maybe_write_skin_inline_css( '' );
+
+      }
+
+      if ( $_css )
       $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
       return $init;
