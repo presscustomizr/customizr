@@ -15,9 +15,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
   class CZR_admin_init {
     static $instance;
     function __construct () {
+
       self::$instance =& $this;
       //enqueue additional styling for admin screens
-      add_action( 'admin_init'            , array( $this , 'czr_fn_admin_style' ) );
+      add_action( 'admin_init'            , array( $this, 'czr_fn_admin_style' ) );
 
       //Load the editor-style specific (post formats and RTL), the active skin, the user style.css
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
@@ -25,12 +26,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       add_filter( 'tiny_mce_before_init'  , array( $this, 'czr_fn_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
-      add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_thumbnail') , 10, 2);
-
-      //refresh the posts slider transient on save_post. Since v3.4.9.
-      add_action ( 'save_post'            , array( $this , 'czr_fn_refresh_posts_slider'), 20, 2 );
-      //refresh the posts slider transient on permanent post/attachment deletion. Since v3.4.9.
-      add_action ( 'deleted_post'         , array( $this , 'czr_fn_refresh_posts_slider') );
+      add_action ( 'save_post'            , array( $this, 'czr_fn_refresh_thumbnail') , 10, 2);
 
       //refresh the terms array (categories/tags pickers options) on term deletion
       add_action ( 'delete_term'          , array( $this, 'czr_fn_refresh_terms_pickers_options_cb'), 10, 3 );
@@ -39,13 +35,13 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       add_action( 'admin_notices'         , array( $this, 'czr_fn_may_be_display_update_notice') );
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'czr_fn_dismiss_update_notice_action' ) );
+
       add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
+
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
         add_filter( 'czr_update_notice', $callback );
 
-      //PLACEHOLDERS AJAX SETUP HOOKS
-      add_action( 'init'                 , array( $this, 'czr_fn_placeholders_ajax_setup') );
     }
 
 
@@ -61,46 +57,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
+      if ( function_exists( 'czr_fn_set_thumb_info' ) )
         czr_fn_set_thumb_info( $post_id );
     }
 
-    /*
-    * @return void
-    * updates the posts slider transient
-    * @package Customizr
-    * @since Customizr 3.4.9
-    */
-    function czr_fn_refresh_posts_slider( $post_id, $post = array() ) {
-      // no need to build up/refresh the transient it we don't use the posts slider
-      // since we always delete the transient when entering the preview.
-      if ( 'tc_posts_slider' != czr_fn_get_opt( 'tc_front_slider' ) || ! apply_filters('czr_posts_slider_use_transient' , true ) )
-        return;
-
-      if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
-        return;
-
-      $slider_of_posts = $this -> czr_fn_maybe_get_slider_of_posts_instance();
-
-      //Cache posts slider
-      if ( $slider_of_posts )
-        $slider_of_posts -> czr_fn_cache_posts_slider();
-    }
-
-
-    public function czr_fn_maybe_get_slider_of_posts_instance() {
-      $slider_of_posts = null;
-      $CZR             = CZR();
-      /* Instantiate slider of posts */
-       if ( ! class_exists( 'CZR_slider_of_posts_model_class' ) ) {
-        $slider          = $CZR -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider', 'model_class' => 'modules/slider/slider') );
-        if ( ! $slider )
-          return;
-        $slider_of_posts = $CZR -> collection -> czr_fn_instantiate_model( array( 'id' => 'slider_of_posts', 'model_class' => 'modules/slider/slider_of_posts' ) );
-      } else
-        $slider_of_posts = $CZR -> collection -> czr_fn_get_model_instance( 'slider_of_posts' );
-
-      return $slider_of_posts;
-    }
 
 
     /*
@@ -121,6 +81,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
 
     function czr_fn_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
+       // czr_fn_get_opt and czr_fn_set_option in core/utils/ class-fire-utils_option
        //home/blog posts category picker
        $_option = czr_fn_get_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
@@ -147,6 +108,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( false === strpos($_font_pair,'_g_') )
         return;
       //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
+      //czr_fn_get_font defined in core/utils/class-fire-utils
       return array(
         str_replace(
           ',',
@@ -253,36 +215,23 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
 
-      $CZR = CZR();
+      if ( 'tinymce' != wp_default_editor() )
+        return $init;
+
       //some plugins fire tiny mce editor in the customizer
-      //in this case, the CZR_resource class has to be loaded
-      if ( ! class_exists('CZR_resources_styles') )
-        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_styles') ) ), true );
-      if ( ! class_exists('CZR_resources_fonts') )
-        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_fonts') ) ), true );
-      if ( ! class_exists('CZR_resources_scripts') )
-        $CZR -> czr_fn_load( array('fire' => array( array('inc' , 'resources_scripts') ) ), true );
+      //in this case, the CZR_resources_fonts class has to be loaded
+      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources::$instance) )
+        CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
+
+      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources::$instance) )
+        return;
 
       //fonts
-      $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
-      //icons
-      $_css .= CZR_resources::$instance -> czr_fn_get_inline_font_icons_css();
-     ?>
+      $_css  = CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
 
-        <script type="text/javascript">
-          function add_user_defined_CSS( ed ) {
-            //http://www.tinymce.com/wiki.php/Tutorial:Migration_guide_from_3.x
-              ed.on('init', function() {
-                  tinyMCE.activeEditor.dom.addStyle(<?php echo json_encode($_css) ?>);
-              } );
-          };
-        </script>
+      $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
-        <?php
-        if (wp_default_editor() == 'tinymce')
-            $init['setup'] = 'add_user_defined_CSS';
-
-        return $init;
+      return $init;
     }
 
 
@@ -345,7 +294,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         <div class="updated" style="position:relative">
           <?php
             echo apply_filters(
-              'czr_fn_update_notice',
+              'czr_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
                 "customizr-pro" == CZR_THEMENAME ? 'Customizr Pro' : 'Customizr',
@@ -356,7 +305,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
           ?>
           <?php
             echo apply_filters(
-              'czr_fn_update_notice',
+              'czr_update_notice',
               sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
@@ -366,7 +315,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
               )
             );
           ?>
-          <p style="text-align:right;position: absolute;right: 7px;bottom: -5px;">
+          <p style="text-align:right;position: absolute;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
             <?php printf('<em>%1$s <strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s x ) </a></strong></em>',
                 __("I already know what's new thanks !", "customizr" ),
                 __('close' , 'customizr')
@@ -441,51 +390,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       </script>
       <?php
-    }
-
-
-    /*****************************************************
-    * ADMIN AJAX HOOKS ALL PLACEHOLDERS
-    *****************************************************/
-    /**
-    * hook : init => because we need to fire this function before the admin_ajax.php call
-    * @since v3.4+
-    */
-    function czr_fn_placeholders_ajax_setup() {
-      if ( czr_fn_get_opt('tc_display_front_help') )
-        add_action( 'wp_ajax_czr_notice_actions'         , array( $this, 'czr_fn_notice_ajax_actions' ) );
-    }
-
-
-    /*****************************************************
-    * PLACEHOLDERS : AJAX JS AND CALLBACK
-    *****************************************************/
-    /**
-    * Two cases :
-    * 1) remove block/disable option
-    * 2) dismiss notice
-    * hook : wp_ajax_tc_notice_actions
-    *
-    * @package Customizr
-    * @since Customizr 3.4+
-    */
-    function czr_fn_notice_ajax_actions() {
-      if ( isset( $_POST['remove_action'] ) )
-        $_remove_action = esc_attr( $_POST['remove_action'] );
-      else
-        wp_die(0);
-      check_ajax_referer( 'czr-notice-nonce', 'CZRNoticeNonce' );
-      switch ($_remove_action) {
-        case 'remove_block':
-          if ( isset( $_POST[ 'user_option' ] ) )
-            czr_fn_set_option( esc_attr( $_POST['user_option'] ) , 0 );
-        break;
-        case 'remove_notice':
-          if ( isset( $_POST[ 'notice_id' ] ) )
-            set_transient( 'tc_' . esc_attr( $_POST['notice_id'] ), 'disabled' , 60*60*24*365*20 );//20 years of peace
-        break;
-      }
-      wp_die();
     }
 
   }//end of class

@@ -6,48 +6,46 @@
 * @package      Customizr
 */
 if ( ! class_exists( 'CZR_resources_fonts' ) ) :
-	class CZR_resources_fonts {
-	    //Access any method or var of the class with classname::$instance -> var or method():
-	    static $instance;
+  class CZR_resources_fonts {
 
-	    function __construct () {
-	        self::$instance =& $this;
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
+        //Access any method or var of the class with classname::$instance -> var or method():
+        static $instance;
 
-          //Font awesome
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons') );
+        function __construct () {
 
-          add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
-	    }
+              self::$instance =& $this;
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
 
+              //Font awesome
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons') );
 
+              add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
+        }
 
+        /**
+        * Write the font icon in the custom stylesheet at the very beginning
+        * hook : wp_enqueue_scripts
+        * @package Customizr
+        * @since Customizr 3.2.3
+        */
+        function czr_fn_maybe_enqueue_fa_icons() {
 
+              //Enqueue FontAwesome CSS
+              if ( true == czr_fn_get_opt( 'tc_font_awesome_icons' ) ) {
 
-		/**
-    * Write the font icon in the custom stylesheet at the very beginning
-    * hook : wp_enqueue_scripts
-    * @package Customizr
-    * @since Customizr 3.2.3
-    */
-		function czr_fn_maybe_enqueue_fa_icons() {
+                    $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
+                    wp_enqueue_style( 'customizr-fa',
 
-      //Enqueue FontAwesome CSS
-      if ( true == czr_fn_get_opt( 'tc_font_awesome_icons' ) ) {
-        $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
-        wp_enqueue_style( 'customizr-fa',
-          $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
-          array(),
-          CUSTOMIZR_VER,
-          'all'
-        );
-      }
+                          $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+                          array(),
+                          CUSTOMIZR_VER,
+                          'all'
 
-    }
+                    );
+              }
 
-
-
+         }
 
 
     /*
