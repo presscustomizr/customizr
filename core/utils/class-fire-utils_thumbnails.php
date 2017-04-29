@@ -194,7 +194,7 @@ function czr_fn_get_id_from_attachment( $post_id ) {
     //define a filtrable boolean to set if attached images can be used as thumbnails
     //1) must be a non single post context
     //2) user option should be checked in customizer
-    $_bool = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_use_attachment_as_thumb' ) );
+    $_bool = 0 != esc_attr( czr_fn_get_opt( 'czr_post_list_use_attachment_as_thumb' ) );
 
     if ( ! is_admin() )
       $_bool = ! czr_fn_is_single_post() && $_bool;

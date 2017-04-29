@@ -189,7 +189,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               //CZR_FRAMEWORK_PATH is the relative path where the framework is located
               if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
               //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
-              if( ! defined( 'CZR_PHP_FRONT_PATH' ) ) define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
+              if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
               if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
               //CZR_BASE_CHILD is the root server path of the child theme
@@ -234,7 +234,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core'       , 'resources_fonts'),
                         array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
- //                       array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+                        array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
 //                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(

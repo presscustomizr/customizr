@@ -13,15 +13,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   *
   */
   protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'full' ) {
-    $use_transient   = apply_filters( 'tc_posts_slider_use_transient', ! czr_fn_is_customizing() );
-    //Do not use transient when in the customizer preview (this class is not called in the customize left panel)
-    $store_transient = $load_transient = $use_transient;
-
-    // delete transient when in the customize preview
-    if ( ! $use_transient )
-      delete_transient( 'tc_posts_slides' );
-
-    return apply_filters( 'tc_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient , $store_transient ) );
+    return apply_filters( 'czr_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size ) );
   }
 
   /**
@@ -44,7 +36,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   *
   */
   /* Steps;
-  * 1) get the pre slides model, can be either stored in the transient or live generated
+  * 1) get the pre slides model
   * 2) get the actual model from the pre_model
   *
   *
@@ -55,13 +47,14 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   * mostly with qtranslate (polylang will force us, most likely if I don't find any
   * other suitable solution, to not use the transient).
   */
-  private function czr_fn_get_the_posts_slides( $slider_name_id, $img_size, $load_transient = true, $store_transient = true ) {
-    $load_transient  = apply_filters( 'tc_posts_slider_load_transient'  , $load_transient );
-    $store_transient = apply_filters( 'tc_posts_slider_store_transient', $store_transient );
-    $pre_slides      = $this -> czr_fn_get_pre_posts_slides( compact( 'img_size', 'load_transient', 'store_transient' ) );
+  private function czr_fn_get_the_posts_slides( $slider_name_id, $img_size ) {
+
+    $pre_slides      = $this -> czr_fn_get_pre_posts_slides( array( 'img_size' => $img_size ) );
+
     //filter the pre_model
-    $pre_slides      = apply_filters( 'tc_posts_slider_pre_model', $pre_slides, $this );
-    //if the slider not longer exists or exists but is empty, return false
+    $pre_slides      = apply_filters( 'czr_posts_slider_pre_model', $pre_slides, $this );
+
+    //if the slider no longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $pre_slides ) )
       return false;
 
@@ -91,18 +84,6 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   * Helper
   * Return an ass array of 'posts'=> array of the post slide pre models 'common' => common properties
   *
-  * This method takes care of building the array of convenient objects
-  * we'll use to build the actual posts slider model
-  * and store it in a transient when required
-  *
-  * Setps:
-  * - check if there's a transient and we have to use it => get the transient
-  * a pre_model array
-  *
-  * - if not transient (both cases: no transient, don't use transient)
-  *  build the array of posts to use
-  *
-  * - eventually store the transient
   *
   * @package Customizr
   * @since Customizr 3.4.9
@@ -111,44 +92,40 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   private function czr_fn_get_pre_posts_slides( $args ){
     $defaults       = array(
       'img_size'            => null,
-      'load_transient'      => true,
-      'store_transient'     => true,
-      'transient_name'      => 'tc_posts_slides',
       //options
       'stickies_only'       => esc_attr( czr_fn_get_opt( 'tc_posts_slider_stickies' ) ),
       'show_title'          => esc_attr( czr_fn_get_opt( 'tc_posts_slider_title' ) ),
       'show_excerpt'        => esc_attr( czr_fn_get_opt( 'tc_posts_slider_text' ) ),
       'button_text'         => esc_attr( czr_fn_get_opt( 'tc_posts_slider_button_text' ) ),
-      'limit'               => esc_attr( czr_fn_get_opt( 'tc_posts_slider_number' ) ),
+      'posts_per_page'      => esc_attr( czr_fn_get_opt( 'tc_posts_slider_number' ) ),
       'link_type'           => esc_attr( czr_fn_get_opt( 'tc_posts_slider_link') ),
     );
+
     $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
-    $load_transient = false;
 
-    if ( $load_transient )
-      // the transient stores the pre_model
-      $pre_slides = get_transient( $transient_name );
-    else
-      $pre_slides = false;
-    // We have to retrieve the posts and build the pre_model when $pre_slides_model is null:
-    // a) we don't have to use the transient
-    // b) the transient doesn't exist
-    if ( false !== $pre_slides )
-      return $pre_slides;
     //retrieve posts from the db
     $queried_posts    = $this -> czr_fn_query_posts_slider( $args );
     if ( empty ( $queried_posts ) )
       return array();
+
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', 'czr_fn_parse_imgs' );
+      remove_filter( 'czr_thumb_html', 'czr_fn_parse_imgs' );
+
+    // prevent adding thumb inline style when no center img is added
+    add_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
+
+    //Allow retrieving first attachment as thumb
+    add_filter( 'czr_use_attachment_as_thumb', '__return_true', 100 );
+
     /*** end tc_thumb setup ***/
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
       $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_get_opt('tc_resp_slider_img') ) ? false : true ;
+
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
     foreach ( $queried_posts as $_post ) {
@@ -157,10 +134,19 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
         continue;
       $pre_slides_posts[] = $pre_slide_model;
     }
+
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', 'czr_fn_parse_imgs' );
+      add_filter( 'czr_thumb_html', 'czr_fn_parse_imgs' );
+
+    // remove thumb style reset
+    remove_filter( 'czr_post_thumb_inline_style', '__return_empty_string', 100 );
+
+    // remove forced retrieval first attachment as thumb;
+    remove_filter( 'czr_use_attachment_as_thumb', '__return_true', 100 );
+    /* end tc_thumb reset filters */
+
     /* end tc_thumb reset filters */
     if ( ! empty( $pre_slides_posts ) ) {
       /*** Setup shared properties ***/
@@ -178,8 +164,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
       $pre_slides['common']  = compact( 'button_text', 'link_whole_slide');
       $pre_slides['posts']   = $pre_slides_posts;
     }
-    if ( $store_transient )
-      set_transient( $transient_name, $pre_slides , 60*60*24*365*20 );//20 years of peace
+
     return $pre_slides;
   }
 
@@ -193,114 +178,42 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   *
   */
   private function czr_fn_query_posts_slider( $args = array() ) {
-    global $wpdb;
     $defaults       = array(
-      'stickies_only'  => 0,
-      'post_status'    => 'publish',
-      'post_type'      => 'post',
-      'show_title'     => true,
-      'show_excerpt'   => true,
-      'pt_where'       => " AND meta_key='_thumbnail_id'",
-      'pa_where'       => " AND attachments.post_type='attachment' AND attachments.post_mime_type LIKE '%image%' AND attachments.post_parent=posts.ID",
-      'join'           => '',
-      'join_where'     => '',
-      'order_by'       => 'posts.post_date DESC',
-      'limit'          => 5,
-      'offset'         => 0,
+      'stickies_only'    => 0,
+      'post_status'      => 'publish',
+      'post_type'        => 'post',
+      'orderby'          => 'date',
+      'order'            => 'DESC',
+      'posts_per_page'   => 5,
+      'offset'           => 0,
+      'suppress_filters' => false, // <- for language plugins
     );
+
     $args           = apply_filters( 'czr_query_posts_slider_args', wp_parse_args( $args, $defaults ) );
-    extract( $args );
-    /* Set up */
-    $columns        = 'posts.ID, posts.post_date';
-    $columns       .= $show_title   ? ', posts.post_title' : '';
-    $columns       .= $show_excerpt ? ', posts.post_excerpt, posts.post_content' : '';
-    // if we have to show the title or the excerpt the post_password field is needed to know whether or not is a protected post
-    $columns       .= $show_title || $show_excerpt ? ', posts.post_password' : '';
-    $pt_where       = "posts.post_status='$post_status' AND posts.post_type='$post_type'". $pt_where;
-    $pa_where       = "posts.post_status='$post_status' AND posts.post_type='$post_type'". $pa_where;
-    // Do we have to show only sticky posts?
-    if ( $stickies_only ) {
-      // Are there sticky posts?
-      $_sticky_posts  = get_option('sticky_posts');
-      $_sticky_column = '';
-      if ( ! empty( $_sticky_posts ) ) {
-        $_sticky_posts_ids = implode(',', $_sticky_posts );
-        $_filter_stickies_only = sprintf(" AND posts.ID IN (%s)",
-            $_sticky_posts_ids
-        );
-        $pa_where .= $_filter_stickies_only;
-        $pt_where .= $_filter_stickies_only;
+    $_posts         = false;
+
+    if ( is_array($args) && !empty($args) && array_key_exists( 'posts_per_page', $args) && $args['posts_per_page'] > 0 ) {
+
+      // Do we have to show only sticky posts?
+      if ( array_key_exists( 'stickies_only', $args) && $args['stickies_only'] ) {
+        // Are there sticky posts?
+        $_sticky_posts  = get_option('sticky_posts');
+        if ( ! empty( $_sticky_posts ) ) {
+          $args = array_merge( $args, array( 'post__in' => $_sticky_posts  ) );
+        }
+        else {
+          $args = false;
+        }
       }
+
+      if ( !empty($args) )
+        $_posts = get_posts( $args );
     }
-    $sql = sprintf( 'SELECT DISTINCT %1$s FROM ( %2$s ) as posts %3$s %4$s ORDER BY %5$s LIMIT %6$s OFFSET %7$s',
-             apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
-             $this -> czr_fn_get_posts_have_tc_thumb_sql(
-               apply_filters( 'tc_query_posts_slider_columns', $columns, $args ),
-               apply_filters( 'tc_query_posts_slide_thumbnail_where', $pt_where, $args ),
-               apply_filters( 'tc_query_posts_slider_attachment_where', $pa_where, $args )
-             ),
-             apply_filters( 'tc_query_posts_slider_join', $join, $args ),
-             apply_filters( 'tc_query_posts_slider_join_where', $join_where, $args ),
-             apply_filters( 'tc_query_posts_slider_orderby', $order_by, $args ),
-             $limit,
-             $offset
-    );
-    $sql = apply_filters( 'tc_query_posts_slider_sql', $sql, $args );
-    $_posts = $wpdb->get_results( $sql );
-    return apply_filters( 'tc_query_posts_slider', $_posts, $args );
+
+    return apply_filters( 'czr_query_posts_slider', $_posts, $args );
   }
 
 
-  /**
-  * Helper
-  * Returns the SQL to retrieve the posts which have a thumbnail OR attachments
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  *
-  */
-  private function czr_fn_get_posts_have_tc_thumb_sql( $_columns, $_pt_where = '', $_pa_where = '' ) {
-    return apply_filters( 'czr_get_posts_have_tc_thumb_sql', sprintf( '%1$s UNION %2$s',
-        $this -> czr_fn_get_posts_have_thumbnail_sql( $_columns, $_pt_where ),
-        $this -> czr_fn_get_posts_have_attachment_sql( $_columns, $_pa_where )
-    ));
-  }
-
-
-  /**
-  * Helper
-  * Returns the SQL to retrieve the posts which have a thumbnail
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  *
-  */
-  private function czr_fn_get_posts_have_thumbnail_sql( $_columns, $_where = '' ) {
-    global $wpdb;
-    return apply_filters( 'czr_get_posts_have_thumbnail_sql', "
-        SELECT $_columns
-        FROM $wpdb->posts AS posts INNER JOIN $wpdb->postmeta AS metas
-        ON posts.ID=metas.post_id
-        WHERE $_where
-   ");
-  }
-
-
-  /**
-  * Helper
-  * Returns the SQL to retrieve the posts which have an attachment
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  *
-  */
-  private function czr_fn_get_posts_have_attachment_sql( $_columns, $_where = '' ) {
-    global $wpdb;
-    return apply_filters( 'czr_get_posts_have_attachment_sql', "
-        SELECT $_columns FROM $wpdb->posts attachments, $wpdb->posts posts
-        WHERE $_where
-    ");
-  }
 
   /**
   * Return a single post slide pre model
@@ -315,18 +228,37 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   */
   function czr_fn_get_single_post_slide_pre_model( $_post , $img_size, $args ){
     $ID                     = $_post->ID;
+
     //attachment image
-    $thumb                  = czr_fn_get_thumbnail_model($img_size, $ID, null, isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null, '' );
+    $thumb                  = czr_fn_get_thumbnail_model(
+      $img_size, //$requested_size
+      $ID, //post ID
+      null, //$_custom_thumb_id
+      isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null,//$_enable_wp_responsive_imgs
+      $_placeholder = false
+    );
+
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
-    // we don't want to show slides with no image
-    if ( ! $slide_background )
-      return false;
+
+    // we assign a default thumbnail if needed.
+    if ( ! $slide_background ) {
+        if ( file_exists( CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' ) ) {
+            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                CZR_BASE_URL_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png'
+            );
+        } else {
+            return false;
+        }
+    }
+
     //title
     $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
     //lead text
     $text                   = ( isset( $args['show_excerpt'] ) && $args['show_excerpt'] ) ? $this -> czr_fn_get_post_slide_excerpt( $_post, $ID) : '';
     return compact( 'ID', 'title', 'text', 'slide_background' );
   }
+
+
   /**
   * Return a single post slide model
   * Returns and array of slides with data
@@ -380,22 +312,6 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   * HELPERS / SETTERS / CALLBACKS
   *******************************/
 
-  /**
-  * Setter
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  */
-  function czr_fn_cache_posts_slider( $args = array() ) {
-    $defaults = array (
-      //use the home slider_width
-      'img_size'        => 1 == czr_fn_get_opt( 'tc_slider_width' ) ? 'slider-full' : 'slider',
-      'load_transient'  => false,
-      'store_transient' => true,
-      'transient_name'  => 'tc_posts_slides'
-    );
-    $this -> czr_fn_get_pre_posts_slides( wp_parse_args( $args, $defaults) );
-  }
 
   /**
   * Getter
