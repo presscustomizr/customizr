@@ -1,25 +1,6 @@
 (function (wp, $) {
-        /* Pro section init */
-        var api = api || wp.customize,
-            proSectionConstructor;
-
-        if ( 'function' === typeof api.Section ) {
-            proSectionConstructor = api.Section.extend( {
-                  active : true,
-                  // No events for this type of section.
-                  attachEvents: function () {},
-                  // Always make the section active.
-                  isContextuallyActive: function () {
-                    return this.active();
-                  },
-                  _toggleActive: function(){ return true; },
-
-            } );
-
-            $.extend( api.sectionConstructor, {
-                  'czr-customize-section-pro' : proSectionConstructor
-            });
-        }
+        var api = api || wp.customize;
+        
         $( function($) {
                 /* GRID */
                 var _build_control_id = function( _control ) {
