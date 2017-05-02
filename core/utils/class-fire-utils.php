@@ -637,16 +637,17 @@ function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
 function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
     $_ispro = CZR_IS_PRO;
 
-    if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
-      return false;
-
-    if ( ! $_ispro && ! get_transient( 'started_using_customizr' ) )
-      return false;
-
+    //the transient is set in CZR___::czr_fn_init_properties()
     $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
-    $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
-    if ( ! $_ver )
+
+    if ( ! get_transient( $_trans ) )
       return false;
+
+    $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
+
+    if ( ! is_string( $_ver ) )
+      return false;
+
 
     $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
 
@@ -656,7 +657,7 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
     switch ( $_start_version_infos[0] ) {
       //in this case with now exactly what was the starting version (most common case)
       case 'with':
-        return version_compare( $_start_version_infos[1] , $_ver, '<' );
+        return isset( $_start_version_infos[1] ) ? version_compare( $_start_version_infos[1] , $_ver, '<' ) : true;
       break;
       //here the user started to use the theme before, we don't know when.
       //but this was actually before this check was created
