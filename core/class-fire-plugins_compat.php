@@ -905,7 +905,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       // Allow HEADER CART OPTIONS in the customizer
       // Returns a callback function needed by 'active_callback' to enable the options in the customizer
-      add_filter( 'czr_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
+      add_filter( 'tc_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
       function czr_fn_woocommerce_options_enabled_cb() {
         return '__return_true';
       }
