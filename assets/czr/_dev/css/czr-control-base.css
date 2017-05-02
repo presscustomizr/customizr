@@ -679,21 +679,16 @@ span.czr-panel-subtitle {
 /* GOPRO SECTION STYLE */
 /* for both hueman and customizr */
 #customize-controls .control-section-czr-customize-section-pro .accordion-section-title:hover,
-#customize-controls .control-section-czr-customize-section-pro .accordion-section-title:focus,
-#customize-controls .control-section-hu-customize-section-pro .accordion-section-title:hover,
-#customize-controls .control-section-hu-customize-section-pro .accordion-section-title:focus {
+#customize-controls .control-section-czr-customize-section-pro .accordion-section-title:focus {
   background-color: #fff;
 }
-#customize-theme-controls .control-section-czr-customize-section-pro .accordion-section-title:after,
-#customize-theme-controls .control-section-hu-customize-section-pro .accordion-section-title:after {
+#customize-theme-controls .control-section-czr-customize-section-pro .accordion-section-title:after {
   content: none;
 }
-#accordion-section-customizr_go_pro .accordion-section-title,
-#accordion-section-go_pro_sec .accordion-section-title {
+#accordion-section-go_pro_sec .accordion-section-title{
   margin: 0 0 15px;
 }
-.control-section-czr-customize-section-pro .accordion-section-title .button,
-.control-section-hu-customize-section-pro .accordion-section-title .button {
+.control-section-czr-customize-section-pro .accordion-section-title .button {
   font-size: 15px;
   line-height: 24px;
   height: 30px;
@@ -723,14 +718,12 @@ span.czr-panel-subtitle {
   margin-left: 8px;
 
 }
-.control-section-czr-customize-section-pro .accordion-section-title .button:hover,
-.control-section-hu-customize-section-pro .accordion-section-title .button:hover {
+.control-section-czr-customize-section-pro .accordion-section-title .button:hover {
     color: #fff;
     background: #ed9c28;
     border-color: #d58512;
 }
-.rtl .control-section-czr-customize-section-pro .accordion-section-title .button,
-.rtl .control-section-hu-customize-section-pro .accordion-section-title .button {
+.rtl .control-section-czr-customize-section-pro .accordion-section-title .button {
   margin-left:  0;
   margin-right: 8px;
 }
@@ -1482,6 +1475,13 @@ section .czr-sub-set:first-child {
   padding: 3%;
   background: rgba(116, 210, 116, 0.42);
   float: left;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+/* Underline skope switch text in control notices and in the main skope switcher title */
+.slide-mod-skope-notice .czr-skope-switch {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .modopts-top-buttons {
@@ -1496,13 +1496,13 @@ section .czr-sub-set:first-child {
   float: left;
   padding: 1% 0;
 }
+.item-bottom-btn {
+
+}
 .item-bottom-btn, .modopt-top-btn {
-  width: 47%;
-  margin-right: 2%;
-  padding: 1% 0;
   opacity: 1;
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   border-width: 1px;
   -webkit-appearance: none;
@@ -1519,13 +1519,18 @@ section .czr-sub-set:first-child {
   opacity: 1;
 }
 .item-bottom-btn {
-  background: #ababab;
+  background: #868686;
+  width: 47%;
+  margin-right: 2%;
+  padding: 1% 0;
 }
 .modopt-top-btn {
   background: rgba(171, 171, 171, 0.5);
+  width: 170px;
+  padding: 2px 0;
 }
 .item-bottom-btn:hover {
-  background: #848484;
+  background: #5d5d5d;
 }
 .modopt-top-btn:hover {
   background:rgba(41, 41, 41, 0.53);
@@ -1540,10 +1545,11 @@ section .czr-sub-set:first-child {
     background: inherit;
 }
 
-/* Underline skope switch text in control notices and in the main skope switcher title */
-.slide-mod-skope-notice .czr-skope-switch {
-  cursor: pointer;
-  text-decoration: underline;
+
+/* NOTICES */
+.czr-notice {
+    font-size: 12px;
+    font-weight: normal;
 }
 .in-sub-panel #czr-donate-customizer,
  .in-sub-panel .czr-cta-wrap {
@@ -2712,6 +2718,11 @@ body.czr-editing-sektion #customize-preview {
     background-color: #fcad06;
 }
 
+/* FIX CUSTOMIZE INFO OVERLAPPING SKOPE SWITCHER */
+.czr-skop-on #customize-controls .customize-info.is-in-view, #customize-controls .customize-section-title.is-in-view {
+  opacity: 0;
+}
+
 
 /* HEADER AND SCOPE SWITCHER */
 .czr-skop-on .wp-full-overlay-sidebar .wp-full-overlay-header {
@@ -2982,7 +2993,7 @@ h2.czr-current-skope-title {
 }
 
 /* Underline skope switch text in control notices and in the main skope switcher title */
-.czr-skope-notice .czr-skope-switch, .czr-scope-switcher .czr-skope-switch {
+.czr-skope-switch {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -3160,12 +3171,11 @@ body.czr-skop-loading #customize-preview {
 
 
 
-/* TOP NOTE ( for Welcome, etc ) */
-#czr-top-note {
+/* PREVIEW NOTIFICATIONS BLOCKS ( for Welcome, etc ) */
+/* COMMONS */
+#czr-top-note, #czr-bottom-infos {
   position: absolute;
   text-align: center;
-  padding: 2%;
-  top : -100%;
   right: 0;
   left: 0;
   z-index: 20;
@@ -3177,16 +3187,10 @@ body.czr-skop-loading #customize-preview {
   -o-transition: all, 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   visibility: hidden;
-  background: rgba(0, 0, 0, 0.80);
 }
-#czr-top-note h2 {
-  color: #fff;
-  font-size: 25px
-}
-#czr-top-note a {
-  color: #fff;
-}
-#czr-top-note .czr-top-note-close {
+.czr-preview-notification a, .czr-preview-notification h2 {color: #fff; margin: 1em 0;}
+
+.czr-preview-notification .czr-preview-note-close {
   position: absolute;
   top: 10px;
   right: 25px;
@@ -3194,26 +3198,56 @@ body.czr-skop-loading #customize-preview {
   cursor: pointer;
 }
 
-#czr-top-note .fa-arrow-left {
+.czr-preview-notification  .fa-arrow-left {
   position: absolute;
   bottom: 10px;
   left: 25px;
   font-size: 40px;
 }
-#czr-top-note .czr-note-content {
+.czr-preview-notification .czr-note-content {
   display: inline-block;
   line-height: 20px;
   width: 80%;
 }
-#czr-top-note .czr-note-message {
+.czr-preview-notification .czr-note-message {
   font-size: 16px;
-  line-height: 20px;
+  line-height: 1.5em;
+  margin: 0.5em 0;
 }
+
+/* TOP NOTE */
+#czr-top-note { top : -100%; background: rgba(0, 0, 0, 0.80); padding: 2%;}
+#czr-top-note h2 {font-size: 25px; }
+
 body.czr-top-note-open #czr-top-note {
   top: 0;
   visibility: inherit;
 }
 
+/* BOTTOM SKOPE INFOS */
+#czr-bottom-infos { bottom : -100%; background-color: rgba(0, 0, 0, 0.85);padding: 1px;}
+body.czr-bottom-infos-open #czr-bottom-infos {
+  bottom: 0;
+  visibility: inherit;
+}
+#czr-bottom-infos .czr-note-content .czr-note-message {
+    font-size: 13px;
+}
+#czr-bottom-infos .action-links-wrap {
+  width: 100%;
+}
+#czr-bottom-infos .action-link {
+  font-style: italic;
+  display: inline-block;
+  width: 40%;
+}
+#czr-bottom-infos .action-link a:hover {
+  color: #fff;
+}
+.czr-disable-bottom-infos {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 
 
@@ -3355,5 +3389,3 @@ body.czr-resetting-skope #czr-skope-pane .czr-spinner-wrapper {
     -o-transition: background .3s ease-in-out!important;
     transition: background .3s ease-in-out!important;
 }
-
-

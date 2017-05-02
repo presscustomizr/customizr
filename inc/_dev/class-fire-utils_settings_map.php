@@ -2676,7 +2676,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
             /*---------------------------------------------------------------------------------------------
             -> SECTION : GO-PRO
             ----------------------------------------------------------------------------------------------*/
-            'customizr_go_pro'   => array(
+            'go_pro_sec'   => array(
                                 'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
                                 'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
                                 'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
