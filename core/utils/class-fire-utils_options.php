@@ -222,6 +222,109 @@ function czr_fn_get_ctx_excluded_options() {
 }
 
 
+
+/**
+* Returns a boolean
+* check if user started to use the theme before ( strictly < ) the requested version
+*
+* @package Customizr
+* @since Customizr 3.2.9
+*/
+function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
+    $_ispro = CZR_IS_PRO;
+
+    //the transient is set in CZR___::czr_fn_init_properties()
+    $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+    if ( ! get_transient( $_trans ) )
+      return false;
+
+    $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
+
+    if ( ! is_string( $_ver ) )
+      return false;
+
+
+    $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
+
+    if ( ! is_array( $_start_version_infos ) )
+      return false;
+
+    switch ( $_start_version_infos[0] ) {
+      //in this case with now exactly what was the starting version (most common case)
+      case 'with':
+        return isset( $_start_version_infos[1] ) ? version_compare( $_start_version_infos[1] , $_ver, '<' ) : true;
+      break;
+      //here the user started to use the theme before, we don't know when.
+      //but this was actually before this check was created
+      case 'before':
+        return true;
+      break;
+
+      default :
+        return false;
+      break;
+    }
+}
+
+
+/**
+* Boolean helper to check if the secondary menu is enabled
+* since v3.4+
+*/
+function czr_fn_is_secondary_menu_enabled() {
+    return (bool) esc_attr( czr_fn_get_opt( 'tc_display_second_menu' ) ) /* && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) )*/;
+}
+
+
+
+
+
+/**
+* @return an array of font name / code OR a string of the font css code
+* @parameter string name or google compliant suffix for href link
+*
+* @package Customizr
+* @since Customizr 3.2.9
+*/
+function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
+    $_to_return = ( 'list' == $_what ) ? array() : false;
+    $_font_groups = apply_filters(
+      'tc_font_pairs',
+      CZR_init::$instance -> font_pairs
+    );
+    foreach ( $_font_groups as $_group_slug => $_font_list ) {
+      if ( 'list' == $_what ) {
+        $_to_return[$_group_slug] = array();
+        $_to_return[$_group_slug]['list'] = array();
+        $_to_return[$_group_slug]['name'] = $_font_list['name'];
+      }
+
+      foreach ( $_font_list['list'] as $slug => $data ) {
+        switch ($_requested) {
+          case 'name':
+            if ( 'list' == $_what )
+              $_to_return[$_group_slug]['list'][$slug] =  $data[0];
+          break;
+
+          case 'code':
+            if ( 'list' == $_what )
+              $_to_return[$_group_slug]['list'][$slug] =  $data[1];
+          break;
+
+          default:
+            if ( 'list' == $_what )
+              $_to_return[$_group_slug]['list'][$slug] = $data;
+            else if ( $slug == $_requested ) {
+                return $data[1];
+            }
+          break;
+        }
+      }
+    }
+    return $_to_return;
+}
+
 /**
 * Boolean helper : tells if this option is excluded from the ctx treatments.
 * @return bool
@@ -230,7 +333,7 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
     return in_array( $opt_name, czr_fn_get_ctx_excluded_options() );
 }
 
-
+if ( ! ( function_exists( 'czr_fn_get_raw_option' ) ) ) :
 //@return an array of unfiltered options
 //=> all options or a single option val
 function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
@@ -258,7 +361,9 @@ function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache
         return $opt_value;
     }
 }
+endif;
 
+if ( ! ( function_exists( 'czr_fn_get_admin_option' ) ) ) :
 //@return an array of options
 function czr_fn_get_admin_option( $option_group = null ) {
     $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
@@ -270,3 +375,4 @@ function czr_fn_get_admin_option( $option_group = null ) {
     do_action( "czr_after_getting_option_{$option_group}" );
     return $options;
 }
+endif;
