@@ -24,6 +24,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_action ('after_setup_theme'          , array( $this , 'czr_fn_set_plugins_supported'), 20 );
       add_action ('after_setup_theme'          , array( $this , 'czr_fn_plugins_compatibility'), 30 );
       // remove qtranslateX theme options filter
+      // TODO: check, might be not needed anymore as we don't re-store filtered options anymore in front
       remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
     }//end of constructor
 
@@ -48,7 +49,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'woocommerce' );
       add_theme_support( 'the-events-calendar' );
       add_theme_support( 'optimize-press' );
-      add_theme_support( 'sensei' );
+      add_theme_support( 'woo-sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
       add_theme_support( 'disqus' );
       add_theme_support( 'uris' );
@@ -112,7 +113,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $this -> czr_fn_set_woocomerce_compat();
 
       /* Sensei woocommerce addon */
-      if ( current_theme_supports( 'sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+      if ( current_theme_supports( 'woo-sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> czr_fn_set_sensei_compat();
 
       /* Visual Composer */
@@ -323,8 +324,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.3+
     */
     private function czr_fn_set_polylang_compat() {
-      // Disable posts slider transient caching
-      add_filter('czr_posts_slider_use_transient', '__return_false');
 
       // If Polylang is active, hook function on the admin pages
       if ( function_exists( 'pll_register_string' ) )
@@ -395,27 +394,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_pll_translate_tax');
         /*end tax filtering*/
 
-        /* Slider of posts */
-        if ( function_exists( 'pll_current_language') ) {
-        // Filter the posts query for the current language
-          add_filter( 'czr_query_posts_slider_join'      , 'pll_posts_slider_join' );
-          add_filter( 'czr_query_posts_slider_join_where', 'pll_posts_slider_join' );
-        }
-        function pll_posts_slider_join( $join ) {
-          global $wpdb;
-          switch ( current_filter() ){
-            case 'czr_query_posts_slider_join'        : $join .= " INNER JOIN $wpdb->term_relationships AS pll_tr";
-                                                       break;
-            case 'czr_query_posts_slider_join_where'  : $_join = $wpdb->prepare("pll_tr.object_id = posts.ID AND pll_tr.term_taxonomy_id=%d ",
-                                                                                pll_current_language( 'term_taxonomy_id' )
-                                                       );
-                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
-                                                       break;
-          }
-
-          return $join;
-        }
-        /*end Slider of posts */
 
         //Featured pages ids "translation"
         // Substitute any page id with the equivalent page in current language (if found)
@@ -438,8 +416,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       $this->default_language = apply_filters( 'wpml_default_language', null );
       $this->current_language = apply_filters( 'wpml_current_language', null );
 
-      // Disable posts slider transient caching
-      add_filter('czr_posts_slider_use_transient', '__return_false');
       //define the CONSTANT wpml context. This means that user have to set the translations again when switching from Customizr, to Customizr-Pro.
       //If we don't want to do this, let's go with 'Customizr-option' in any case.
       //Also I choose to use "-option" suffix to avoid confusions as with WPML you can also translate theme's strings ( gettexted -> __() ) and WPML by default assigns to theme the context 'customizr' (textdomain)
@@ -673,29 +649,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_wpml_translate_cat');
         /*end tax filtering*/
 
-        /* Slider of posts */
-        if ( defined( 'ICL_LANGUAGE_CODE') ) {
-        // Filter the posts query for the current language
-          add_filter( 'czr_query_posts_slider_join'      , 'wpml_posts_slider_join' );
-          add_filter( 'czr_query_posts_slider_join_where', 'wpml_posts_slider_join' );
-        }
-        function wpml_posts_slider_join( $join ) {
-          global $wpdb;
-          switch ( current_filter() ){
-            case 'czr_query_posts_slider_join'        : $join .= " INNER JOIN {$wpdb->prefix}icl_translations AS wpml_tr";
-                                                       break;
-            case 'czr_query_posts_slider_join_where'  : $_join = $wpdb->prepare("wpml_tr.element_id = posts.ID AND wpml_tr.language_code=%s AND wpml_tr.element_type=%s",
-                                                                    ICL_LANGUAGE_CODE,
-                                                                    'post_post'
-                                                       );
-                                                       $join .= $join ? 'AND ' . $_join : 'WHERE '. $_join;
-                                                       break;
-          }
-
-          return $join;
-        }
-        /*end Slider of posts */
-        /*end Slider*/
       }//end Front
     }//end wpml compat
 
@@ -816,19 +769,28 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'czr_show_tax_archive_title', 'czr_fn_sensei_disable_tax_archive_title');
       function czr_fn_sensei_disable_tax_archive_title( $bool ){
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_post_type_archive('sensei_message') ) ? false : $bool;
       }
 
       //disables post navigation
       add_filter( 'czr_show_post_navigation', 'czr_fn_sensei_disable_post_navigation' );
       function czr_fn_sensei_disable_post_navigation($bool) {
-        return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+        return ( function_exists('is_sensei') && is_sensei() || is_singular('sensei_message') ) ? false : $bool;
       }
+
       //removes post comment action on after_loop hook
       add_filter( 'czr_are_comments_enabled', 'czr_fn_sensei_disable_comments' );
       function czr_fn_sensei_disable_comments($bool) {
         return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
       }
+
+      //in my courses page avoid displaying both page and single content
+      //add_filter( 'tc_show_single_post_content', 'czr_fn_sensei_disable_single_content_in_my_courses');
+      function czr_fn_sensei_disable_single_content_in_my_courses( $bool ) {
+        global $post;
+        return is_page() && 'course' === $post->post_type ? false : $bool;
+      }
+
     }//end sensei compat
 
 
@@ -866,24 +828,22 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_wc_is_checkout_cart() {
         return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
       }
+      //Helper
+      function czr_fn_woocommerce_shop_page_id( $id = null ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id( 'shop' ) : $id;
+      }
+      //Helper
+      function czr_fn_woocommerce_shop_enable( $bool ){
+        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
+      }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
         return 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) );
       }
 
-      //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_woocommerce_disable_title_icon' );
-      function czr_fn_woocommerce_disable_title_icon($bool) {
-        return ( function_exists('czr_fn_wc_is_checkout_cart') && czr_fn_wc_is_checkout_cart() ) ? false : $bool;
-      }
-      // use Customizr title
-      // initially used to display the edit button
-    //  add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
-      function czr_fn_woocommerce_the_title( $_title ){
-        if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
-          return apply_filters( 'czr_title_text', $_title );
-        return $_title;
-      }
+      //when in the woocommerce shop page use the "shop" id
+      add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
+
 
       // hide tax archive title
       add_filter( 'czr_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title');
@@ -892,16 +852,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //allow slider in the woocommerce shop page
-      add_filter('czr_show_slider', 'czr_fn_woocommerce_enable_shop_slider');
-      function czr_fn_woocommerce_enable_shop_slider( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
-      }
+      add_filter( 'czr_show_slider', 'czr_fn_woocommerce_shop_enable');
 
-      //to allow the slider in the woocommerce shop page we need the shop page id
-      add_filter('czr_slider_get_real_id', 'czr_fn_woocommerce_shop_page_id');
-      function czr_fn_woocommerce_shop_page_id( $id ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() && function_exists('wc_get_page_id') ) ? wc_get_page_id('shop') : $id;
-      }
+
+      //allow page layout post meta in 'shop'
+      add_filter( 'czr_is_page_layout', 'czr_fn_woocommerce_shop_enable' );
+
 
       //handles the woocomerce sidebar : removes action if sidebars not active
       if ( !is_active_sidebar( 'shop') ) {
@@ -913,7 +869,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_disable_post_navigation($bool) {
          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
-
 
       //removes post comment action on after_loop hook
       add_filter( 'czr_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
@@ -962,6 +917,156 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_register_wc_cart() {
         czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'woocommerce_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
       }
+
+      //additional woocommerce skin style
+      foreach ( array(
+                  'skin_color_color',
+                  'skin_color_background-color',
+                  'skin_color_border-color',
+
+                  'skin_darkest_color_color',
+                  'skin_darkest_color_background-color',
+                  'skin_darkest_color_border-color',
+               )  as $filter_key ) {
+
+         add_filter( "czr_dynamic_{$filter_key}_prop_selectors", str_replace('-', '_', "czr_fn_wc_{$filter_key}_prop_selectors") );
+      }
+
+      function czr_fn_wc_skin_color_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit:hover',
+            '.woocommerce input#submit:hover',
+            '.woocommerce input.button:hover',
+            '.woocommerce a.button:hover',
+            '.woocommerce .button.add_to_cart_button:hover',
+            '.woocommerce #respond input#submit:focus',
+            '.woocommerce input#submit:focus',
+            '.woocommerce input.button:focus',
+            '.woocommerce a.button:focus',
+            '.woocommerce .button.add_to_cart_button:focus',
+            '.woocommerce #respond input#submit:active',
+            '.woocommerce input#submit:active',
+            '.woocommerce input.button:active',
+            '.woocommerce a.button:active',
+            '.woocommerce .button.add_to_cart_button:active'
+         ));
+      }
+
+      function czr_fn_wc_skin_color_background_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit',
+            '.woocommerce input#submit',
+            '.woocommerce input.button',
+            '.woocommerce a.button',
+            '.woocommerce .button.add_to_cart_button'
+         ));
+      }
+
+      function czr_fn_wc_skin_color_border_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce #respond input#submit',
+            '.woocommerce input#submit',
+            '.woocommerce input.button',
+            '.woocommerce a.button',
+            '.woocommerce .button.add_to_cart_button',
+            '.woocommerce #respond input#submit:hover',
+            '.woocommerce input#submit:hover',
+            '.woocommerce input.button:hover',
+            '.woocommerce a.button:hover',
+            '.woocommerce .button.add_to_cart_button:hover',
+            '.woocommerce #respond input#submit:focus',
+            '.woocommerce input#submit:focus',
+            '.woocommerce input.button:focus',
+            '.woocommerce a.button:focus',
+            '.woocommerce .button.add_to_cart_button:focus',
+            '.woocommerce #respond input#submit:active',
+            '.woocommerce input#submit:active',
+            '.woocommerce input.button:active',
+            '.woocommerce a.button:active',
+            '.woocommerce .button.add_to_cart_button:active'
+         ));
+      }
+
+
+      function czr_fn_wc_skin_darkest_color_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]:hover',
+            '.woocommerce input.button[class*=alt]:hover',
+            '.woocommerce a.button[class*=alt]:hover',
+            '.woocommerce button.button[class*=alt]:hover',
+            '.woocommerce input#submit.alt.disabled:hover',
+            '.woocommerce input.button.alt.disabled:hover',
+            '.woocommerce button.button.alt.disabled:hover',
+            '.woocommerce a.button.alt.disabled:hover',
+            '.woocommerce input#submit[class*=alt]:focus',
+            '.woocommerce input.button[class*=alt]:focus',
+            '.woocommerce a.button[class*=alt]:focus',
+            '.woocommerce button.button[class*=alt]:focus',
+            '.woocommerce input#submit.alt.disabled:focus',
+            '.woocommerce input.button.alt.disabled:focus',
+            '.woocommerce button.button.alt.disabled:focus',
+            '.woocommerce a.button.alt.disabled:focus',
+            '.woocommerce input#submit[class*=alt]:active',
+            '.woocommerce input.button[class*=alt]:active',
+            '.woocommerce a.button[class*=alt]:active',
+            '.woocommerce button.button[class*=alt]:active',
+            '.woocommerce input#submit.alt.disabled:active',
+            '.woocommerce input.button.alt.disabled:active',
+            '.woocommerce button.button.alt.disabled:active',
+            '.woocommerce a.button.alt.disabled:active',
+         ));
+      }
+
+      function czr_fn_wc_skin_darkest_color_background_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]',
+            '.woocommerce input.button[class*=alt]',
+            '.woocommerce a.button[class*=alt]',
+            '.woocommerce button.button[class*=alt]',
+            '.woocommerce input#submit.alt.disabled',
+            '.woocommerce input.button.alt.disabled',
+            '.woocommerce button.button.alt.disabled',
+            '.woocommerce a.button.alt.disabled'
+         ));
+      }
+
+      function czr_fn_wc_skin_darkest_color_border_color_prop_selectors( $selectors ) {
+         return array_merge( $selectors, array(
+            '.woocommerce input#submit[class*=alt]:hover',
+            '.woocommerce input.button[class*=alt]:hover',
+            '.woocommerce a.button[class*=alt]:hover',
+            '.woocommerce button.button[class*=alt]:hover',
+            '.woocommerce input#submit.alt.disabled:hover',
+            '.woocommerce input.button.alt.disabled:hover',
+            '.woocommerce button.button.alt.disabled:hover',
+            '.woocommerce a.button.alt.disabled:hover',
+            '.woocommerce input#submit[class*=alt]:focus',
+            '.woocommerce input.button[class*=alt]:focus',
+            '.woocommerce a.button[class*=alt]:focus',
+            '.woocommerce button.button[class*=alt]:focus',
+            '.woocommerce input#submit.alt.disabled:focus',
+            '.woocommerce input.button.alt.disabled:focus',
+            '.woocommerce button.button.alt.disabled:focus',
+            '.woocommerce a.button.alt.disabled:focus',
+            '.woocommerce input#submit[class*=alt]:active',
+            '.woocommerce input.button[class*=alt]:active',
+            '.woocommerce a.button[class*=alt]:active',
+            '.woocommerce button.button[class*=alt]:active',
+            '.woocommerce input#submit.alt.disabled:active',
+            '.woocommerce input.button.alt.disabled:active',
+            '.woocommerce button.button.alt.disabled:active',
+            '.woocommerce a.button.alt.disabled:active',
+            '.woocommerce input#submit[class*=alt]',
+            '.woocommerce input.button[class*=alt]',
+            '.woocommerce a.button[class*=alt]',
+            '.woocommerce button.button[class*=alt]',
+            '.woocommerce input#submit.alt.disabled',
+            '.woocommerce input.button.alt.disabled',
+            '.woocommerce button.button.alt.disabled',
+            '.woocommerce a.button.alt.disabled'
+         ));
+      }
+
     }//end woocommerce compat
 
 
@@ -1088,7 +1193,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
         <?php if ( czr_fn_has('breadcrumb') ) : ?>
           <div class="container">
-            <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
+            <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
           </div>
         <?php endif ?>
 
@@ -1132,6 +1237,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         </div><!-- .container -->
 
         <?php do_action('__after_main_container'); ?>
+        <?php if ( czr_fn_has('footer_push') ) czr_fn_render_template('footer/footer_push', 'footer_push') ?>
 
       </div><!-- #main-wrapper -->
 

@@ -13,6 +13,7 @@
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
+
 if ( ! class_exists( 'CZR_init' ) ) :
   class CZR_init {
       //declares the filtered default settings
@@ -28,13 +29,15 @@ if ( ! class_exists( 'CZR_init' ) ) :
       public $font_pairs;
       public $font_selectors;
       public $fp_ids;
-      public $socials;
       public $sidebar_widgets;
       public $footer_widgets;
       public $widgets;
 
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
+
+      //print comments template once : plugins compatibility
+      public static $comments_rendered = false;
 
       function __construct () {
           self::$instance =& $this;
@@ -62,32 +65,34 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //may be filter the thumbnail inline style
           add_filter( 'czr_post_thumb_inline_style'            , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
 
+          //prevent rendering the comments template more than once
+          add_filter( 'czr_render_comments_template'           , array( $this,  'czr_fn_control_coments_template_rendering' ) );
 
           //Default layout settings
           $this -> global_layout      = array(
                                         'r' => array(
-                                            'content'       => 'col-xs-12 col-md-9',
+                                            'content'       => 'col-12 col-md-9',
                                             'l-sidebar'     => false,
-                                            'r-sidebar'     => 'col-xs-12 col-md-3',
+                                            'r-sidebar'     => 'col-12 col-md-3',
                                             'customizer'    => __( 'Right sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Right sidebar' , 'customizr' ),
                                         ),
                                         'l' => array(
-                                            'content'       => 'col-xs-12 col-md-9 push-md-3',
-                                            'l-sidebar'     => 'col-xs-12 col-md-3 pull-md-9',
+                                            'content'       => 'col-12 col-md-9 push-md-3',
+                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-9',
                                             'r-sidebar'     => false,
                                             'customizer'    => __( 'Left sidebar' , 'customizr' ),
                                             'metabox'       => __( 'Left sidebar' , 'customizr' ),
                                         ),
                                         'b' => array(
-                                            'content'       => 'col-xs-12 col-md-6 push-md-3',
-                                            'l-sidebar'     => 'col-xs-12 col-md-3 pull-md-6',
-                                            'r-sidebar'     => 'col-xs-12 col-md-3',
+                                            'content'       => 'col-12 col-md-6 push-md-3',
+                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-6',
+                                            'r-sidebar'     => 'col-12 col-md-3',
                                             'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
                                             'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
                                         ),
                                         'f' => array(
-                                            'content'       => 'col-xs-12',
+                                            'content'       => 'col-12',
                                             'l-sidebar'     => false,
                                             'r-sidebar'     => false,
                                             'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
@@ -152,6 +157,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
             'gfont' => array(
               'name'  => __('Google fonts pairs' , 'customizr'),
               'list'  => apply_filters( 'czr_gfont_pairs' , array(
+                '_g_sintony_poppins'               => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
                 '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
                 '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
                 '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
@@ -181,6 +187,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
            'default' => array(
             'name'  => __('Single fonts' , 'customizr'),
             'list'  => apply_filters( 'czr_single_fonts' , array(
+                  '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
                   '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
                   '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
                   '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
@@ -212,96 +219,6 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Default featured pages ids
           $this -> fp_ids             = array( 'one' , 'two' , 'three' );
-
-          //Default social networks
-          $this -> socials            = array(
-            'tc_rss'            => array(
-                                    'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                    'option_label'  => __( 'RSS feed (default is the wordpress feed)' , 'customizr' ),
-                                    'default'       => get_bloginfo( 'rss_url' )
-                                ),
-            'tc_email'          => array(
-                                    'link_title'    => __( 'E-mail' , 'customizr' ),
-                                    'option_label'  => __( 'Contact E-mail address' , 'customizr' ),
-                                    'default'       => null,
-                                    'type'          => 'email'
-                                  ),
-            'tc_twitter'        => array(
-                                    'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                                    'option_label'  => __( 'Twitter profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_facebook'       => array(
-                                    'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                                    'option_label'  => __( 'Facebook profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_google'         => array(
-                                    'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                                    'option_label'  => __( 'Google+ profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_instagram'      => array(
-                                    'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                                    'option_label'  => __( 'Instagram profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_tumblr'       => array(
-                                    'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                                    'option_label'  => __( 'Tumblr url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_flickr'       => array(
-                                    'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                                    'option_label'  => __( 'Flickr url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_wordpress'      => array(
-                                    'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                                    'option_label'  => __( 'WordPress profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_youtube'        => array(
-                                    'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                                    'option_label'  => __( 'Youtube profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_pinterest'      => array(
-                                    'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                                    'option_label'  => __( 'Pinterest profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_github'         => array(
-                                    'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                                    'option_label'  => __( 'Github profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_dribbble'       => array(
-                                    'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                                    'option_label'  => __( 'Dribbble profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_linkedin'       => array(
-                                    'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                                    'option_label'  => __( 'LinkedIn profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_vk'             => array(
-                                    'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
-                                    'option_label'  => __( 'VKontakte profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_yelp'           => array(
-                                    'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
-                                    'option_label'  => __( 'Yelp profile url' , 'customizr' ),
-                                    'default'       => null
-                                  ),
-            'tc_xing'           => array(
-                                    'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
-                                    'option_label'  => __( 'Xing profile url' , 'customizr' ),
-                                    'default'       => null
-                                  )
-          );//end of social array
 
 
           //Default sidebar widgets
@@ -375,7 +292,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 4.0.0
       */
       function czr_fn_javascript_detection() {
-       echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+           echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
       }
 
 
@@ -449,10 +366,12 @@ if ( ! class_exists( 'CZR_init' ) ) :
             || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
           )
             return;
+
          // categories
          // we have to ignore sticky posts (do not prepend them)
          // disable grid sticky post expansion
          $cats = czr_fn_get_opt('tc_blog_restrict_by_cat');
+
          $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
          if ( is_array( $cats ) && ! empty( $cats ) ){
@@ -614,7 +533,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //tag cloud - same font size
           add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
-
+          //tag cloud add button classes
+          add_filter( 'wp_generate_tag_cloud_data'          , array( $this, 'czr_fn_add_tag_cloud_button_classes') );
       }
 
 
@@ -830,27 +750,48 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
-          $CZR = CZR();
+
+          $_classes = is_array( $_classes ) ? $_classes : array();
+
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
-            array_push( $_classes, 'tc-fade-hover-links' );
+            $_classes[] = 'czr-fade-hover-links';
           if ( czr_fn_is_customizing() )
-            array_push( $_classes, 'is-customizing' );
+            $_classes[] = 'is-customizing';
           if ( wp_is_mobile() )
-            array_push( $_classes, 'tc-is-mobile' );
+            $_classes[] = 'czr-is-mobile';
           if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
-            array_push( $_classes, esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) ) );
+            $_classes[] = esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) );
 
 
-          //skin
-          array_push( $_classes, 'header-skin-' . ( 'dark' == esc_attr( czr_fn_get_opt( 'tc_skin_type' ) ) ? 'dark' : 'light' ) );
+          //header and footer skins
+          $_classes[] = 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_skin' ) ) );
+          $_classes[] = 'footer-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_footer_skin' ) ) );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
           if ( in_array( $_layout, array('b', 'l', 'r', 'f') ) ) {
-            array_push( $_classes, sprintf( 'czr-%s-sidebar',
+            $_classes[] = sprintf( 'czr-%s-sidebar',
               'f' == $_layout ? 'no' : $_layout
-            ) );
+            );
           }
+          //IMAGE CENTERED
+          if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_img') ) ){
+            $_classes[] = 'tc-center-images';
+          }
+
+          //SKIN CLASS
+          $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
+          $_classes[] = substr( $_skin , 0 , strpos($_skin, '.') );
+
+          //SIDENAV POSITIONING
+          if ( czr_fn_is_possible('sidenav') ) {
+
+            $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+
+            $_classes[] = apply_filters( 'tc_sidenav_body_class', strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
+
+          }
+
           return $_classes;
       }
 
@@ -905,10 +846,33 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @return array modified arguments.
       */
       function czr_fn_add_widget_tag_cloud_args( $args ) {
-        $args['largest'] = 1;
-        $args['smallest'] = 1;
-        $args['unit'] = 'em';
+        if ( is_array( $args ) ) {
+          $args['largest'] = 1;
+          $args['smallest'] = 1;
+          $args['unit'] = 'em';
+        }
+
         return $args;
+      }
+
+      /**
+      * Add button classes tp tag cloud links
+      *
+      *
+      * @since Customizr 4.0
+      *
+      * @param array $args arguments for tag cloud widget.
+      * @return array modified arguments.
+      */
+      function czr_fn_add_tag_cloud_button_classes( $tags_data ) {
+        if ( is_array( $tags_data ) ) {
+          foreach ( $tags_data as &$tag_data ) {
+            if ( is_array( $tag_data ) ) {
+              $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-skin-darkest-oh inverted" : "btn btn-dark inverted";
+            }
+          }
+        }
+        return $tags_data;
       }
 
 
@@ -920,12 +884,25 @@ if ( ! class_exists( 'CZR_init' ) ) :
       */
       function czr_fn_search_form() {
         ob_start();
-         czr_fn_render_template( 'modules/searchform' );
+         czr_fn_render_template( 'modules/search/searchform' );
         $form = ob_get_clean();
 
         return $form;
       }
 
+      /**
+      * Controls the rendering of the comments template
+      *
+      * @param bool $bool
+      * @return bool $bool
+      * hook : czr_render_comments_template
+      *
+      */
+      function czr_fn_control_coments_template_rendering( $bool ) {
+        $_to_return = !self::$comments_rendered && $bool;
+        self::$comments_rendered = true;
+        return $_to_return;
+      }
 
   }//end of class
 endif;

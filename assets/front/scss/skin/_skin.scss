@@ -1,0 +1,87 @@
+/* Skinify the entry-metas on hover */
+.entry-meta a:not(.btn) {
+    &:hover {
+      color: $skin-link-color-hover;
+      span::after, span::before {
+        background-color: $skin-link-color-hover;
+      }
+    }
+}
+
+//All grids Icons
+
+//specific for classical
+.grid-container__classic .post-type__icon {
+    //SKINNED
+    background-color: $skin-link-color;
+    .icn-format {
+      color: $skin-link-color-hover;
+    }
+    &:hover {
+      background-color: $skin-link-color-hover;
+    }
+}
+
+.post-type__icon {
+    &:hover {
+      .icn-format {
+        color: $skin-link-color;
+      }
+    }
+}
+
+//Post list titles
+[class*="grid-container__"] .hover .entry-title a {
+  color: $skin-link-color-hover;
+}
+[class*="grid-container__"] .entry-title a:hover {
+  color: $skin-link-color;
+  &::after {
+    background-color: $skin-link-color;
+  }
+}
+
+//Grid classic with border bottom
+.grid-container__classic.tc-grid-border .grid__item {
+  border-color: $skin-dark;
+}
+
+//Widget areas
+.widget-area {
+    a:not(.btn):hover {
+      color: $skin-link-color-hover;
+    }
+    .widget:not(.widget_shopping_cart) a:not(.btn):before {
+      background-color: $skin-link-color-hover;
+    }
+}
+
+.pagination {
+  color: $skin-darkest;
+}
+
+.post-navigation {
+  background-color:  rgba($skin-light, 0.4);
+}
+
+//slider dots
+.flickity-page-dots .dot {
+  background-color: $skin-dark;
+}
+
+//link format
+a.czr-format-link {
+  &:hover,
+  .format-link.hover & {
+    color: $skin-link-color-hover;
+  }
+  &::before {
+    background-color: $skin-link-color-hover;
+  }
+}
+
+//comments
+.comment-author a::before,
+.comment-link::before {
+  background-color: $skin-link-color-hover;
+}

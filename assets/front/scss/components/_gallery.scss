@@ -50,47 +50,47 @@
 
 }
 .post-gallery {
-	padding:0;
-	margin:0;
-	width:100%;
-	@include clearfix;
-	position: ralative;
-	overflow:hidden;
+  padding:0;
+  margin:0;
+  width:100%;
+  @include clearfix;
+  position: ralative;
+  overflow:hidden;
 }
 
 /* replace 9 with 0 -
 * temporary
 * Gallery needs a better implementation
 */
- @for $i from 1 through 0 {
+@for $i from 1 through 0 {
   .col-num-#{$i} {
-  	.gallery-item {
-  		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
-  	}
-   	.gallery-item:nth-child(#{$i}) {
-  		float:none;
-  	}
-  	@media (max-width: 992px)  {
-	  .gallery-item {
-  		width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
-  		}
-	}
+    .gallery-item {
+      width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
+    }
+    .gallery-item:nth-child(#{$i}) {
+      float:none;
+    }
+    @include media-breakpoint-down(md) {
+     .gallery-item {
+         width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+      }
+    }
   }
 }
 
 
 @for $i from 3 through 0 {
   .col-num-#{$i} {
-  	.gallery-item {
-		.post-action {
-			width:  $base-line-height*9/$i;
-			height: $base-line-height*9/$i;
-			top: $base-line-height - $i/10 ;
-			right: $base-line-height - $i/10 ;
-			a {
-				line-height: $base-line-height*9/$i;
-			}
-  		}
-  	}
+    .gallery-item {
+    .post-action {
+      width:  $base-line-height*9/$i;
+      height: $base-line-height*9/$i;
+      top: $base-line-height - $i/10 ;
+      right: $base-line-height - $i/10 ;
+      a {
+        line-height: $base-line-height*9/$i;
+      }
+      }
+    }
   }
 }

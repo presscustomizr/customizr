@@ -1,6 +1,7 @@
 <?php
 class CZR_header_model_class extends CZR_Model {
   public $elements_container_class;
+  public $navbar_template;
 
   /**
   * @override
@@ -9,20 +10,50 @@ class CZR_header_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
+    /*
+    * New layouts
+    * 1) left           => sl-logo_left   //sl stays for single-line : backward compatibility
+    * 2) right          => sl-logo_right  //sl stays for single-line : backward compatibility
+    * 3) centered       => logo_centered  //backward compatibility
+    * 4) v-left         => v-logo_left    //v stays for "vertical"
+    * 5) v-right        => v-logo_right   //v stays for "vertical"
+    */
+    $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
 
-    $element_class            = array( 'logo-' . esc_attr( czr_fn_get_opt( 'tc_header_layout' ) ) );
+    switch ( $header_layouts ) {
+
+      case 'right'    : $navbar_template = 'default_navbar';
+                        $element_class   = 'sl-logo_right';
+                        break;
+      case 'centered' : $navbar_template = 'default_navbar';
+                        $element_class   = 'logo_centered';
+                        break;
+      case 'v-left'   : $navbar_template = 'vertical_navbar';
+                        $element_class   = 'v-logo_left';
+                        break;
+      case 'v-right'  : $navbar_template = 'vertical_navbar';
+                        $element_class   = 'v-logo_right';
+                        break;
+
+      default         : $navbar_template = 'default_navbar';
+                        $element_class   = 'sl-logo_left';
+    }
+
+    $element_class            = array( $element_class );
     $elements_container_class = array();
 
 
     /* Is the header absolute ? add absolute and header-transparent classes
     * The header is absolute when:
-    * a) the header_type option is 'absolute'
+    * a) not 404
+    *
+    * b) the header_type option is 'absolute'
     * or
-    * b) we display a full heading (with background) AND
-    * b.1) not in front page
+    * c) we display a full heading (with background) AND
+    * c.1) not in front page
     */
-    if ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) ||
-        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) )
+    if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) /*||
+        ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) */ ) )
       array_push( $element_class, 'header-absolute', 'header-transparent' );
 
     //No navbar box
@@ -31,14 +62,15 @@ class CZR_header_model_class extends CZR_Model {
 
     //regular menu
     if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )
-      array_push( $element_class, 'tc-regular-menu' );
+      array_push( $element_class, 'czr-regular-menu' );
 
 
     //header class for the secondary menu
-    array_push(  $element_class,
-      'tc-second-menu-on',
-      'tc-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
-    );
+    if ( czr_fn_is_secondary_menu_enabled() )
+      array_push(  $element_class,
+        'czr-second-menu-on',
+        'czr-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+      );
 
 
     /* Sticky header treatment */
@@ -46,8 +78,12 @@ class CZR_header_model_class extends CZR_Model {
 
     if ( $_sticky_header ) {
       array_push( $element_class,
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? ' tc-shrink-on' : ' tc-shrink-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'tc-title-logo-on' : 'tc-title-logo-off'
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_mobile' ) ) ? 'czr-sticky-mobile' : '',
+        0 != esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? 'czr-shrink-on' : 'czr-shrink-off',
+        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'czr-title-logo-on' : 'czr-title-logo-off'
       );
       array_push( $elements_container_class, 'navbar-to-stick' );
     }
@@ -55,7 +91,8 @@ class CZR_header_model_class extends CZR_Model {
 
     return array_merge( $model, array(
       'element_class'            => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
-      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) )
+      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) ),
+      'navbar_template'          => $navbar_template
      ) );
   }
 
@@ -63,11 +100,13 @@ class CZR_header_model_class extends CZR_Model {
   function czr_fn_setup_children() {
     $children = array(
       //* Registered as children here as they need to filter the header class and add custom style css */
-      array( 'model_class' => 'header/logo', 'id' => 'logo' ),
-      array( 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky'), 'id' => 'sticky_logo' ),
-
-      //secondary menu registered here because of the extending
-      array( 'id' => 'secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/second_menu' ) ),
+      array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
+      array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
+      array( 'model_class' => 'header/title', 'id' => 'title' ),
+      //secondary and primary menu registered here because of the extending
+      array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ) ),
+      array( 'id' => 'secondary_menu', 'model_class' => 'header/menu' ),
+      array( 'id' => 'sidenav_menu', 'model_class' => 'header/menu' ),
 
       //here because it acts on the header class
       array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
@@ -90,7 +129,8 @@ class CZR_header_model_class extends CZR_Model {
       $_css = sprintf("%s%s",
         $_css,
         "
-        .tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
+        .czr-sticky-mobile .nav-collapse.active.limited-heightm
+        .navbar-sticky, .header-absolute .topnav_navbars__wrapper {
           z-index:{$_custom_z_index}
         }"
       );
@@ -98,19 +138,4 @@ class CZR_header_model_class extends CZR_Model {
     return $_css;
   }
 
-
-  function czr_fn_body_class( $_classes/*array*/ ) {
-    //STICKY HEADER
-    if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_header' ) ) ) {
-
-      /* WHICH OPTIONS SHOULD BE KEPT HERE ???? */
-      //STICKY TRANSPARENT ON SCROLL
-      if ( 1 == esc_attr( czr_fn_get_opt( 'tc_sticky_transparent_on_scroll' ) ) )
-        array_push( $_classes, 'tc-transparent-on-scroll' );
-      else
-        array_push( $_classes, 'tc-solid-color-on-scroll' );
-    }
-
-    return $_classes;
-  }
 }//end of class

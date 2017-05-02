@@ -1,3 +1,326 @@
+/**
+ * --------------------------------------------------------------------------
+ * Inspired by Bootstrap (v4.0.0-alpha.5): dropdown.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * --------------------------------------------------------------------------
+ */
++function () {
+  //Util
+  jQuery.fn.czrReverse = function() {
+    return this.pushStack(this.get().reverse(), arguments);
+  };
+
+  var _createClass = function () {
+   function defineProperties(target, props) {
+     for (var i = 0; i < props.length; i++) {
+       var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+     }
+   }return function (Constructor, protoProps, staticProps) {
+     if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+   };
+  }();
+
+  function _classCallCheck(instance, Constructor) {
+   if (!(instance instanceof Constructor)) {
+     throw new TypeError("Cannot call a class as a function");
+   }
+  }
+
+  var czrDropdown = function ($) {
+
+    /**
+     * ------------------------------------------------------------------------
+     * Constants
+     * ------------------------------------------------------------------------
+     */
+
+    var NAME = 'czrDropdown';
+    var VERSION = '1'; // '4.0.0-alpha.6';
+    var DATA_KEY = 'czr.czrDropdown';
+    var EVENT_KEY = '.' + DATA_KEY;
+    var DATA_API_KEY = '.data-api';
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+    var SPACE_KEYCODE = 32; // KeyboardEvent.which value for space key
+    var ARROW_UP_KEYCODE = 38; // KeyboardEvent.which value for up arrow key
+    var ARROW_DOWN_KEYCODE = 40; // KeyboardEvent.which value for down arrow key
+    var RIGHT_MOUSE_BUTTON_WHICH = 3; // MouseEvent.which value for the right button (assuming a right-handed mouse)
+    var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + '|' + ARROW_DOWN_KEYCODE + '|' + ESCAPE_KEYCODE + '|' + SPACE_KEYCODE);
+
+    var Event = {
+      HIDE: 'hide' + EVENT_KEY,
+      HIDDEN: 'hidden' + EVENT_KEY,
+      SHOW: 'show' + EVENT_KEY,
+      SHOWN: 'shown' + EVENT_KEY,
+      CLICK: 'click' + EVENT_KEY,
+      CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY,
+      FOCUSIN_DATA_API: 'focusin' + EVENT_KEY + DATA_API_KEY,
+      KEYDOWN_DATA_API: 'keydown' + EVENT_KEY + DATA_API_KEY
+    };
+
+    var ClassName = {
+      BACKDROP: 'czr-dropdown-backdrop',
+      DISABLED: 'disabled',
+      SHOW: 'show'
+    };
+
+    var Selector = {
+      BACKDROP: '.czr-dropdown-backdrop',
+      DATA_TOGGLE: '[data-toggle="czr-dropdown"]',
+      FORM_CHILD: '.czr-dropdown form',
+      ROLE_MENU: '[role="menu"]',
+      ROLE_LISTBOX: '[role="listbox"]',
+      NAVBAR_NAV: '.navbar-nav',
+      PARENTS:  '.menu-item-has-children',
+      VISIBLE_ITEMS: '[role="menu"] li:not(.disabled) a, ' + '[role="listbox"] li:not(.disabled) a'
+    };
+
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
+    var czrDropdown = function () {
+      function czrDropdown(element) {
+        _classCallCheck(this, czrDropdown);
+
+        this._element = element;
+
+        this._addEventListeners();
+      }
+
+      // getters
+
+      // public
+
+      czrDropdown.prototype.toggle = function toggle() {
+        if (this.disabled || $(this).hasClass(ClassName.DISABLED)) {
+          return false;
+        }
+
+        var parent = czrDropdown._getParentFromElement(this);
+        var isActive = $(parent).hasClass(ClassName.SHOW);
+        var _parentsToNotClear = $.makeArray( $(parent).parents(Selector.PARENTS) );
+
+        czrDropdown._clearMenus('', _parentsToNotClear );
+
+        if (isActive) {
+          return false;
+        }
+
+        if ('ontouchstart' in document.documentElement && !$(parent).closest(Selector.NAVBAR_NAV).length) {
+
+          // if mobile we use a backdrop because click events don't delegate
+          var dropdown = document.createElement('div');
+          dropdown.className = ClassName.BACKDROP;
+          $(dropdown).insertBefore(this);
+          $(dropdown).on('click', function() { czrDropdown._clearMenus( '', _parentsToNotClear  ) } );
+        }
+
+        var relatedTarget = {
+          relatedTarget: this
+        };
+        var showEvent = $.Event(Event.SHOW, relatedTarget);
+
+        $(parent).trigger(showEvent);
+
+        if (showEvent.isDefaultPrevented()) {
+          return false;
+        }
+
+        this.focus();
+        this.setAttribute('aria-expanded', 'true');
+
+        $(parent).toggleClass(ClassName.SHOW);
+        $(parent).trigger($.Event(Event.SHOWN, relatedTarget));
+
+        return false;
+      };
+
+      czrDropdown.prototype.dispose = function dispose() {
+        $.removeData(this._element, DATA_KEY);
+        $(this._element).off(EVENT_KEY);
+        this._element = null;
+      };
+
+      // private
+
+      czrDropdown.prototype._addEventListeners = function _addEventListeners() {
+        $(this._element).on(Event.CLICK, this.toggle);
+      };
+
+      // static
+
+      czrDropdown._jQueryInterface = function _jQueryInterface(config) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new czrDropdown(this);
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (typeof config === 'string') {
+            if (data[config] === undefined) {
+              throw new Error('No method named "' + config + '"');
+            }
+            data[config].call(this);
+          }
+        });
+      };
+
+      czrDropdown._clearMenus = function _clearMenus(event, _parentsToNotClear ) {
+        if (event && event.which === RIGHT_MOUSE_BUTTON_WHICH) {
+          return;
+        }
+        //TODO
+        var backdrop = $(Selector.BACKDROP)[0];
+        if (backdrop) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+
+        var toggles = $.makeArray($(Selector.DATA_TOGGLE));
+
+
+        for (var i = 0; i < toggles.length; i++) {
+          var parent = czrDropdown._getParentFromElement(toggles[i]);
+          var relatedTarget = { relatedTarget: toggles[i] };
+
+          if (!$(parent).hasClass(ClassName.SHOW) || $.inArray(parent, _parentsToNotClear ) > -1 ){
+            continue;
+          }
+
+          if (event && ( event.type === 'click' &&
+              /input|textarea/i.test(event.target.tagName) || event.type === 'focusin')
+              && $.contains(parent, event.target)) {
+            continue;
+          }
+
+          var hideEvent = $.Event(Event.HIDE, relatedTarget);
+          $(parent).trigger(hideEvent);
+          if (hideEvent.isDefaultPrevented()) {
+            continue;
+          }
+
+          toggles[i].setAttribute('aria-expanded', 'false');
+
+          $(parent).removeClass(ClassName.SHOW).trigger($.Event(Event.HIDDEN, relatedTarget));
+        }
+      };
+
+      czrDropdown._getParentFromElement = function _getParentFromElement(element) {
+        var _parentNode = void 0;
+        /* get the closest dropdown parent */
+        var $_parent = $(element).closest(Selector.PARENTS);
+
+        if ( $_parent.length ) {
+          _parentNode = $_parent[0];
+        }
+
+        return _parentNode || element.parentNode;
+      };
+
+      czrDropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
+        if (!REGEXP_KEYDOWN.test(event.which) || /input|textarea/i.test(event.target.tagName)) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (this.disabled || $(this).hasClass(ClassName.DISABLED)) {
+          return;
+        }
+
+        var parent = czrDropdown._getParentFromElement(this);
+        var isActive = $(parent).hasClass(ClassName.SHOW);
+
+        if (!isActive && event.which !== ESCAPE_KEYCODE ||
+             isActive && event.which === ESCAPE_KEYCODE) {
+
+          if (event.which === ESCAPE_KEYCODE) {
+            var toggle = $(parent).find(Selector.DATA_TOGGLE)[0];
+            $(toggle).trigger('focus');
+          }
+
+          $(this).trigger('click');
+          return;
+        }
+
+       /* var items = $.makeArray($(Selector.VISIBLE_ITEMS));
+
+        items = items.filter(function (item) {
+          return item.offsetWidth || item.offsetHeight;
+        });*/
+        var items = $(parent).find(Selector.VISIBLE_ITEMS).get();
+
+        if (!items.length) {
+          return;
+        }
+
+        var index = items.indexOf(event.target);
+
+        if (event.which === ARROW_UP_KEYCODE && index > 0) {
+          // up
+          index--;
+        }
+
+        if (event.which === ARROW_DOWN_KEYCODE && index < items.length - 1) {
+          // down
+          index++;
+        }
+
+        if (index < 0) {
+          index = 0;
+        }
+
+        items[index].focus();
+      };
+
+      _createClass(czrDropdown, null, [{
+        key: 'VERSION',
+        get: function get() {
+          return VERSION;
+        }
+      }]);
+
+      return czrDropdown;
+    }();
+
+    /**
+     * ------------------------------------------------------------------------
+     * Data Api implementation
+     * ------------------------------------------------------------------------
+     */
+
+    $(document)
+      .on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler)
+      .on(Event.KEYDOWN_DATA_API, Selector.ROLE_MENU, czrDropdown._dataApiKeydownHandler)
+      .on(Event.KEYDOWN_DATA_API, Selector.ROLE_LISTBOX, czrDropdown._dataApiKeydownHandler)
+      .on(Event.CLICK_DATA_API/* + ' ' + Event.FOCUSIN_DATA_API*/, czrDropdown._clearMenus)
+      .on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle)
+      .on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
+        e.stopPropagation();
+    });
+
+    /**
+     * ------------------------------------------------------------------------
+     * jQuery
+     * ------------------------------------------------------------------------
+     */
+
+    $.fn[NAME] = czrDropdown._jQueryInterface;
+    $.fn[NAME].Constructor = czrDropdown;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return czrDropdown._jQueryInterface;
+    };
+
+    return czrDropdown;
+  }(jQuery);
+}();
+
 var czrapp = czrapp || {};
 /************************************************
 * DROPDOWNS SUB CLASS
@@ -6,10 +329,31 @@ var czrapp = czrapp || {};
   var _methods =  {
 
     init : function() {
-      this.namespace = 'czrDropdown';
-      this.openClass = 'active';
-      this.dropdownMenuOnClick();
+      this.DATA_KEY  = 'czr.czrDropdown';
+      this.EVENT_KEY = '.' + this.DATA_KEY;
+      this.Event     = {
+        PLACE     : 'place'+ this.EVENT_KEY,
+        SHOWN     : 'shown' + this.EVENT_KEY,
+        HIDDEN    : 'hidden' + this.EVENT_KEY,
+      }
+      this.Selector = {
+        DATA_TOGGLE        : '[data-toggle="czr-dropdown"]',
+        DATA_HOVER_PARENT  : '.czr-open-on-hover .menu-item-has-children, .primary-nav__woocart',
+        DATA_CLICK_PARENT  : '.czr-open-on-click .menu-item-has-children',
+        DATA_PARENTS       : '.tc-header .menu-item-has-children'
+      }
+
+      this.ClassName = {
+        DROPDOWN         : 'dropdown-menu',
+        DROPDOWN_WRAPPER : 'czr-dropdown-menu',
+        SHOW           : 'show',
+        PARENTS          : 'menu-item-has-children'
+      };
+
+      //Integrated
+      //this.dropdownMenuOnClick();
       this.dropdownMenuOnHover();
+      this.dropdownPlacement();
     },
 
 
@@ -19,27 +363,26 @@ var czrapp = czrapp || {};
 
     //Handle dropdown on hover via js
     dropdownMenuOnHover : function() {
-      var _dropdown_selector = '.tc-open-on-hover .menu-item-has-children, .primary-nav__woocart',
+      var _dropdown_selector = this.Selector.DATA_HOVER_PARENT,
           self               = this;
 
       function _addOpenClass () {
         $_el = $(this);
-        if ( ! $_el.hasClass(self.openClass) ) {
-          self.dropdownTrigger( $_el, 'li-open' );
-          $_el.addClass(self.openClass);
+        if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
+          $_el.addClass(self.ClassName.SHOW);
+          $_el.trigger(self.Event.SHOWN);
         }
       };
 
       //a little delay before closing to avoid closing a parent before accessing the child
       function _removeOpenClass () {
 
-        var $_el = $(this)
+        var $_el = $(this);
 
         _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-            //test
-            self.dropdownTrigger( $_el, 'li-close' );
-            $_el.removeClass(self.openClass);
+            $_el.removeClass(self.ClassName.SHOW);
+            $_el.trigger( self.Event.HIDDEN );
           }
 
         }, 150);
@@ -47,61 +390,120 @@ var czrapp = czrapp || {};
         _debounced_removeOpenClass();
       };
 
-      czrapp.$_tcHeader.on('mouseenter', _dropdown_selector, _addOpenClass );
-      czrapp.$_tcHeader.on('mouseleave', _dropdown_selector , _removeOpenClass );
+      czrapp.$_body.on('mouseenter', _dropdown_selector, _addOpenClass );
+      czrapp.$_body.on('mouseleave', _dropdown_selector , _removeOpenClass );
     },
 
-    //Handle dropdown on click for multi-tier menus
-    dropdownMenuOnClick : function() {
-      var _dropdown_menu_container_selector  = '.tc-open-on-click',
-          _dropdown_menu_selector            = '.dropdown-menu',
-          _dropdown_submenu_selector         = '.dropdown-submenu',
-          _dropdown_toggler_selector         = '[data-toggle="dropdown"]',
-          _dropdown_submenu_toggler_selector = '.dropdown .dropdown-submenu > [data-toggle="dropdown"]',
-          _open_class                        = this.openClass,
-          self                               = this;
 
-          //_dropdown_link_selector            = '.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'
+    /*
+    * Snake Prototype
+    */
+    dropdownPlacement : function() {
+      var self = this,
+          doingAnimation = false;
 
-      /* TODO: Better handling with bootstrap events */
-      /* Test */
-      $( _dropdown_menu_container_selector ).on( 'tap click', _dropdown_toggler_selector, function(evt) {
-        var $_el = $(this).closest( 'li' );
-        if ( $_el.hasClass( _open_class) ) {
-          //we are about to close it
-          self.dropdownTrigger( $_el, 'li-close' );
-        }else
-          self.dropdownTrigger( $_el, 'li-open' );
-      });
+      _handle_visibility();
 
-      // make sub-submenus dropdown on click work
-      $( _dropdown_menu_container_selector ).on('tap click', _dropdown_submenu_toggler_selector, function(){
-        var _openthis          = false,
-            $_el               = $(this);
-            $_parent_submenu   = $_el.closest( _dropdown_submenu_selector );
+      //Util
+      function _is_visible( _el ) {
+        var $_this        = $(_el),
+            _this_offset  = $_this.offset(),
+            $_parent      = $_this.closest('.nav__menu');
 
-        if ( ! $_parent_submenu.hasClass( _open_class ) ) {
-          _openthis = true;
+        if ( !$_this.is(':visible') ) {
+          return false;
         }
-        // close opened submenus
-        $( $_parent_submenu.closest( _dropdown_menu_selector ) ).find( _dropdown_submenu_selector +'.'+ _open_class ).each(function() {
-          var $_submenu_to_close = $( this ),
-              $_toggler          = $_submenu_to_close.find( _dropdown_toggler_selector + '[aria-expanded="true"]' ),
-              $_toggler_js_el    = $_toggler.length ? $_toggler[0] : null;
 
-          $_submenu_to_close.removeClass( _open_class );
-          $_toggler_js_el && $_toggler_js_el.setAttribute('aria-expanded', 'false');
+        if( _this_offset.left + $_this.outerWidth() > czrapp.$_window.width() ||
+            _this_offset.top >= $_parent.offset().top + $_parent.outerHeight() - 5 ) {
+          return false;
+        }
+        return true;
+      }
+
+      function _handle_visibility() {
+        var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW),
+            $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW );
+            $_elements_to_hide        = $( '[class*=sl-] .primary-nav__menu > .menu-item').czrReverse();
+
+        //Hide the non visible
+        //Needed only when single line
+        $_elements_to_hide.each( function() {
+          var $_this = $(this);
+          $_this.removeClass( 'hidden-lg-up' );
+          if ( !_is_visible( this ) ) {
+            $_this.addClass( 'hidden-lg-up' );
+          }
         });
 
-        if ( _openthis ) {
-          $_parent_submenu.addClass( _open_class );
-          $_el[0].setAttribute('aria-expanded', 'true');
+        //close the non visible
+        //Needed only when single line
+        $_active_first_menu_items.each( function() {
+          var $_this = $(this);
+          if ( !_is_visible( this ) ) {
+            $_this.removeClass(self.ClassName.SHOW);
+          }
+        });
+        //this will trigger the snake
+        $_active_menu_items.trigger(self.Event.PLACE);
+      }
+
+      czrapp.$_body.on( 'tc-resize', function() {
+        if ( ! doingAnimation ) {
+          doingAnimation = true;
+          window.requestAnimationFrame(function() {
+            _handle_visibility();
+            doingAnimation = false;
+          });
         }
+      });
 
-        return false;
-      });//.on()
+      //snake bound on menu-item shown and "resize" (see _handle_visibility)
+      czrapp.$_body.on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
+        _do_snake( $(this), evt );
+      });
+
+      //snake
+      function _do_snake( $_el, evt ) {
+        var $_this       = $_el;
+
+        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.SHOW) )
+          return;
+
+        var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER ).not('.'+self.ClassName.DROPDOWN);
+            $_dropdown         = $_dropdown_wrapper.length ? $_dropdown_wrapper.children('.'+self.ClassName.DROPDOWN ) : $_this.children( '.'+self.ClassName.DROPDOWN );
+
+        if ( !$_dropdown.length )
+          return;
+
+        //wrapper's (first-level) width must be at maximum the li width, and not in mobiles
+         if (  $_dropdown_wrapper.length && $_dropdown_wrapper.closest('.menu-item-has-children').not('.czr-dropdown-submenu').length ) {
+          if ( 'static' != $_dropdown.css('position') ) {
+            //use of getBoundingClientRect because outerWidth rounds
+            $_dropdown_wrapper.css( 'width', $_this[0].getBoundingClientRect().width );
+          }else
+            $_dropdown_wrapper.css( 'width', '');
+         }
+
+        //stage: if not visible $ isn't able to get width, offset
+        $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
+
+        _maybe_move( $_dropdown );
+
+        //unstage if staged
+        $_dropdown.css( 'zIndex', '').css('display', '');
+      }
+
+      function _maybe_move( $_dropdown ){
+        //reset
+        $_dropdown.removeClass( 'open-left open-right' );
+        if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() ) {
+          $_dropdown.addClass( 'open-left' );
+        } if ( $_dropdown.offset().left < 0 ) {
+          $_dropdown.addClass( 'open-right' );
+        }
+      }
     }
-
   };//_methods{}
 
   czrapp.methods.Czr_Dropdowns = {};

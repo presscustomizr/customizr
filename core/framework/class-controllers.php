@@ -19,19 +19,22 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'title',
               'logo_wrapper',
               'logo',
-              'sticky_logo', /*'logo_title', */
+              'sticky_logo',
               'tagline',
               'mobile_tagline',
-              'favicon',
               'menu',
               'sidenav',
+              'topnav',
+              'social_in_topnav',
+              //'header_social_block',
               'navbar_menu',
-              'navbar_secondary_menu',
+              'secondary_menu',
               'menu_button',
               'mobile_menu_button',
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
-              'header_social_block'
+              'header_social_block',
+              'nav_search'
             ),
             'content' => array(
               'post_list',
@@ -44,7 +47,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'comment_list',
               'comments',
               'posts_navigation',
-              'post_list_heading',
+              'regular_page_heading',
+              'archive_heading',
               'author_description',
               'posts_list_description',
               'search_heading',
@@ -53,22 +57,19 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
             ),
             'footer' => array(
               'btt_arrow',
-              'footer_btt',
               'footer_push',
               'footer_widgets',
               'colophon',
               'footer_social_block'
-          //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
-              'social_block',
               'breadcrumb',
-              'comment_info',
+              'social_block',
               'post_list_grid',
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'edit_button'
+              'search_full_page'
               //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
             //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
             ),
@@ -123,7 +124,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return bool
     //@param array() or object() model
     public function czr_fn_has_controller( $model = array() ) {
-          return ! empty( $this -> czr_fn_build_controller( $model ) );
+          $controller = $this -> czr_fn_build_controller( $model );
+          return ! empty( $controller );
     }
 
 
@@ -168,12 +170,13 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return boolean
     //@walks the controllers setup array until a match is found
     private function czr_fn_has_default_controller( $controller_ids ) {
-          foreach ( $this -> controllers as $group => $views_id )
-            foreach( $controller_ids as $id )
-              if ( in_array($id, $views_id) )
+          foreach ( $this -> controllers as $group => $views_id ) {
+            foreach( $controller_ids as $id ) {
+              if ( in_array($id, $views_id) ) {
                 return true;
-            //foreach
-          //foreach
+              }
+            }//foreach
+          }//foreach
           return false;
     }
 
@@ -235,7 +238,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           $_instance = false;
           $CZR       = CZR();
 
-          $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
+          $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

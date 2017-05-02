@@ -6,7 +6,7 @@
 *
 * @package      Customizr
 * @subpackage   classes
-* @since        3.0
+* @since        4.0
 * @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
 * @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
 * @link         http://presscustomizr.com/customizr
@@ -22,6 +22,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         static $db_options;
         static $options;//not used in customizer context only
 
+        static $customizer_map;
+        static $theme_setting_list;
+
         public $collection;
         public $views;//object, stores the views
         public $controllers;//object, stores the controllers
@@ -29,13 +32,26 @@ if ( ! class_exists( 'CZR___' ) ) :
         //stack
         public $current_model = array();
 
+        private $existing_files     = array();
+        private $not_existing_files = array();
 
         function __construct( $_args = array()) {
+
+            //allow c4 templates
+            add_filter( 'czr_four_do'             , '__return_true' );
+            //define a constant we can use everywhere
+            //that will tell us we're in the new Customizr:
+            //Will be highly used during the transion between the two themes
+            if( ! defined( 'CUSTOMIZR_4' ) )            define( 'CUSTOMIZR_4' , true );
+
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
+            //IMPORTANT : this callback needs to be ran AFTER czr_fn_init_properties.
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
+
             //this action callback is the one responsible to load new czr main templates
-            add_action( 'czr_four_template'       , array( $this, 'czr_fn_four_template_redirect' ), 10 , 1 );
+            add_action( 'czr_four_template'       , array( $this , 'czr_fn_four_template_redirect' ), 10 , 1 );
 
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -92,8 +108,16 @@ if ( ! class_exists( 'CZR___' ) ) :
               }
         }
 
+        /* ------------------------------------------------------------------------- *
+         *  CACHE THE LIST OF THEME SETTINGS ONLY
+        /* ------------------------------------------------------------------------- */
+        //Fired in __construct()
+        function czr_fn_cache_theme_setting_list() {
+          if ( is_array(self::$theme_setting_list) && ! empty( self::$theme_setting_list ) )
+            return;
 
-
+          self::$theme_setting_list = czr_fn_generate_theme_setting_list();
+        }
 
 
         /**
@@ -164,8 +188,8 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/utils/' );
               //CZR_FRAMEWORK_PATH is the relative path where the framework is located
               if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
-              //CZR_FRAMEWORK_FRONT_PATH is the relative path where the framework front files are located
-              if( ! defined( 'CZR_FRAMEWORK_FRONT_PATH' ) ) define( 'CZR_FRAMEWORK_FRONT_PATH' , 'core/front/' );
+              //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
+              if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
               if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
               //CZR_BASE_CHILD is the root server path of the child theme
@@ -182,10 +206,19 @@ if ( ! class_exists( 'CZR___' ) ) :
               if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
               //MAIN OPTIONS NAME
               if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
-
+              //CZR_CZR_PATH is the relative path where the Customizer php is located
+              if( ! defined( 'CZR_CZR_PATH' ) )             define( 'CZR_CZR_PATH' , 'core/czr/' );
+              //CZR_FRONT_ASSETS_URL http url of the front assets
+              if( ! defined( 'CZR_FRONT_ASSETS_URL' ) )     define( 'CZR_FRONT_ASSETS_URL' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/' );
               //if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );//DEPRECATED
               //IS PRO
-              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , file_exists( sprintf( '%score/init-pro.php' , CZR_BASE ) ) && "customizr-pro" == CZR_THEMENAME );
+              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
+
+              //IS DEBUG MODE
+              if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
+
+              //IS DEV MODE
+              if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
 
         }//setup_contants()
 
@@ -197,11 +230,11 @@ if ( ! class_exists( 'CZR___' ) ) :
               $this -> czr_core = apply_filters( 'czr_core',
                 array(
                     'fire'      =>   array(
- //                       array('core'       , 'resources_styles'),
+                        array('core'       , 'resources_styles'),
                         array('core'       , 'resources_fonts'),
- //                       array('core'       , 'resources_scripts'),
+                        array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
- //                       array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
+                        array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
 //                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
@@ -237,6 +270,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+            do_action( 'czr_load' );
 
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
@@ -250,12 +284,19 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
+            $this -> czr_fn_require_once( CZR_CORE_PATH  . 'class-fire-init_retro_compat.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
+            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_colors.php' );
 
             //Helper class to build a simple date diff object
             //Alternative to date_diff for php version < 5.3.0
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_date.php' );
+
+            if ( czr_fn_is_customizing() ) {
+              $this -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-init.php' );
+              new CZR_customize();
+            }
 
             //do we apply a filter ? optional boolean can force no filter
             $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
@@ -266,6 +307,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               foreach ($files as $path_suffix ) {
                 $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
                 $classname = 'CZR_' . $path_suffix[1];
+
                 if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
                   continue;
                 //instantiates
@@ -278,6 +320,10 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
             $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+
+            //load front templates tags files
+            if ( ! is_admin() )
+              $this -> czr_fn_require_once( CZR_PHP_FRONT_PATH . 'template-tags/template-tags.php' );
         }
 
 
@@ -302,10 +348,11 @@ if ( ! class_exists( 'CZR___' ) ) :
               /*********************************************
               * ROOT HTML STRUCTURE
               *********************************************/
-              array(
+              /*array(
                 'hook' => 'wp_head' ,
                 'template' => 'header/favicon',
-              ),
+                'id'       => 'favicon'
+              ),*/
 
 
               /*********************************************
@@ -315,21 +362,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                 'model_class'    => 'header',
                 'id'             => 'header'
               ),
-
-              /*********************************************
-              * SLIDER
-              *********************************************/
-              /* Need to be pre-registered because of the custom style*/
-              array(
-                'model_class' => 'modules/slider/slider',
-                'id'          => 'main_slider'
-              ),
-              //slider of posts
-              array(
-                'id'          => 'main_posts_slider',
-                'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' )
-              ),
-              /** end slider **/
 
 
             //   /*********************************************
@@ -350,13 +382,13 @@ if ( ! class_exists( 'CZR___' ) ) :
                 'model_class'    => 'content',
               ),
 
-            //   /*********************************************
-            //   * FOOTER
-            //   *********************************************/
-            //   array(
-            //     'id'           => 'footer',
-            //     'model_class'  => 'footer',
-            //   ),
+              /*********************************************
+              * FOOTER
+              *********************************************/
+              array(
+                'id'           => 'footer',
+                'model_class'  => 'footer',
+              ),
             )
           );
         }
@@ -386,7 +418,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           if ( ! czr_fn_is_customizing() )
             {
               if ( is_admin() )
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
+                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back' ) );
               else
                 //Skips all admin classes
                 $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
@@ -465,10 +497,32 @@ if ( ! class_exists( 'CZR___' ) ) :
             $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
             $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
-            foreach ( $roots as $root )
-              foreach ( $path_prefixes as $path_prefix )
-                if ( file_exists( $filename = $root . $path_prefix . $path_suffix ) )
+            foreach ( $roots as $root ) {
+              foreach ( $path_prefixes as $path_prefix ) {
+
+                $filename     = $root . $path_prefix . $path_suffix;
+                $_exists      = in_array( $filename, $this->existing_files );
+                $_exists_not  = in_array( $filename, $this->not_existing_files );
+
+
+                if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
+
+                  //cache file existence
+                  if ( !$_exists ) {
+                    $this->existing_files[] = $filename;
+
+                  }
+
                   return $filename;
+
+                }
+                else if ( !$_exists_not ) {
+                  //cache file not existence
+                  $this->not_existing_files[] = $filename;
+                }
+
+              }
+            }
 
             return false;
         }
@@ -482,11 +536,33 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             $combined_roots = array_combine( $roots, $roots_urls );
 
-            foreach ( $roots as $root )
+            foreach ( $roots as $root ) {
+
               foreach ( $url_prefixes as $url_prefix ) {
-                if ( file_exists( $filename = $root . $url_prefix . $url_suffix ) )
+
+                $filename     = $root . $url_prefix . $url_suffix;
+                $_exists      = in_array( $filename, $this->existing_files );
+                $_exists_not  = in_array( $filename, $this->not_existing_files );
+
+                if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
+
+                  //cache file existence
+                  if ( !$_exists ) {
+                    $this->existing_files[] = $filename;
+                  }
+
                   return array_key_exists( $root, $combined_roots) ? $combined_roots[ $root ] . $url_prefix . $url_suffix : false;
+
+                }
+                else if ( !$_exists_not ) {
+                  //cache file not existence
+                  $this->not_existing_files[] = $filename;
+                }
+
               }
+
+            }
+
             return false;
         }
 

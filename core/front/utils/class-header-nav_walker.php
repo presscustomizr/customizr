@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
         if ( ! apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
           if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
             $atts[ 'href' ]          = '#';
-            $atts[ 'data-toggle' ]   = "dropdown";
+            $atts[ 'data-toggle' ]   = "czr-dropdown";
             $atts[ 'role' ]          = "button";
             $atts[ 'aria-haspopup' ] = "true";
             $atts[ 'aria-expanded' ] = "false";
@@ -55,26 +55,24 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       //this is_dropdown property has been added in the the display_element() override method
       if ( $item -> is_dropdown ) {
         if ( $depth === 0 ) {
-          if ( ! in_array( 'dropdown', $classes ) )
-            $classes[] = 'dropdown';
+          if ( ! in_array( 'czr-dropdown', $classes ) )
+            $classes[] = 'czr-dropdown';
         } elseif ( $depth > 0 ) {
-          if ( ! in_array( 'dropdown-submenu', $classes ) )
-            $classes[] = 'dropdown-submenu';
+          if ( ! in_array( 'czr-dropdown-submenu', $classes ) )
+            $classes[] = 'czr-dropdown-submenu';
         }
-        if ( ! in_array( 'btn-group', $classes ) )
-          $classes[] = 'btn-group';
+        //if ( ! in_array( 'btn-group', $classes ) )
+         // $classes[] = 'btn-group';
       }
 
       if ( $depth > 0 ) {
         if ( ! in_array( 'dropdown-item', $classes ) )
           $classes[] = 'dropdown-item';
-      } else {
-        if ( ! in_array( 'nav-item', $classes ) )
-          $classes[] = 'nav-item';
       }
 
-      if ( ! empty( array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) ) )
-          && ! in_array( 'current-active' , $classes ) )
+      $_active     = array_intersect( $classes, array( 'current-menu-ancestor', 'current-menu-item', 'current-menu-parent' ) );
+
+      if ( ! empty( $_active ) && ! in_array( 'current-active' , $classes ) )
         $classes[] = 'current-active';
 
       return $classes;
@@ -82,25 +80,33 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<ul class=\"dropdown-menu\">\n";
+      $output .= "\n<div class=\"czr-dropdown-menu\"><ul class=\"dropdown-menu\">\n";
     }
 
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+      $output .= "</ul></div>\n";
+    }
 
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
       $item_html = '';
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);
 
+      //wrap link into a span
+      $item_html   = str_replace( '<a', '<span><a', $item_html);
+
       if ( $item->is_dropdown ) {
         $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
         $_is_link           = FALSE === strpos( $item_html, 'href="#"');
 
         if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
-          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
+          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
         elseif ( ! $_dropdown_on_hover && $_is_link )
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
+        //close span
+        $item_html   = str_replace( '</a>', '</a></span>', $item_html);
 
         if (stristr( $item_html, 'li class="divider' )) {
           $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
@@ -165,14 +171,14 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //check if the current menu item is a dropdown (has children)
       if ( in_array('page_item_has_children', $classes ) ) {
         if ( $depth === 0 ) {
-          if ( ! in_array( 'dropdown', $classes ) )
-            $classes[] = 'dropdown';
+          if ( ! in_array( 'czr-dropdown', $classes ) )
+            $classes[] = 'czr-dropdown';
         } elseif ( $depth > 0 ) {
-          if ( ! in_array( 'dropdown-submenu', $classes ) )
-            $classes[] = 'dropdown-submenu';
+          if ( ! in_array( 'czr-dropdown-submenu', $classes ) )
+            $classes[] = 'czr-dropdown-submenu';
         }
-        if ( ! in_array( 'btn-group', $classes ) )
-          $classes[] = 'btn-group';
+        //if ( ! in_array( 'btn-group', $classes ) )
+        //  $classes[] = 'btn-group';
 
         if ( ! in_array( 'menu-item-has-children' , $classes ) )
           $classes[] = 'menu-item-has-children';
@@ -181,16 +187,13 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       if ( $depth > 0 ) {
         if ( ! in_array( 'dropdown-item', $classes ) )
           $classes[] = 'dropdown-item';
-      } else {
-        if ( ! in_array( 'nav-item', $classes ) )
-          $classes[] = 'nav-item';
       }
 
       if ( ! in_array( 'menu-item' , $classes ) )
         $classes[] = 'menu-item';
 
-      if ( ! empty( array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) ) )
-          && ! in_array( 'current-active' , $classes ) )
+      $_active     = array_intersect( $classes, array( 'current_page_ancestor', 'current_page_item', 'current_page_parent' ) );
+      if ( ! empty( $_active ) && ! in_array( 'current-active' , $classes ) )
         $classes[] = 'current-active';
 
        return $classes;
@@ -198,26 +201,33 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<ul class=\"dropdown-menu\">\n";
+      $output .= "\n<div class=\"czr-dropdown-menu\"><ul class=\"dropdown-menu\">\n";
     }
 
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+      $output .= "</ul></div>\n";
+    }
 
     function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
 
       //since the &$output is passed by reference, it will modify the value on the fly based on the parent method treatment
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
+      //wrap link into a span
+      $item_html   = str_replace( '<a', '<span><a', $item_html);
 
       if ( $args['has_children'] ) {
 
         $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
 
         if ( $_dropdown_on_hover )
-          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>', $item_html );
+          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
         else
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icn-down-small"></i></span></span>', $item_html );
+          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
 
       }else {
+        //close span
+        $item_html   = str_replace( '</a>', '</a></span>', $item_html);
 
         if (stristr( $item_html, 'li class="divider' )) {
           $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);

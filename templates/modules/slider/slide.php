@@ -34,7 +34,7 @@ if ( czr_fn_get( 'has_caption' ) ) :
     <?php endif; ?>
     <!-- BUTTON -->
     <?php if ( czr_fn_get( 'button_text' ) ): ?>
-      <a class="btn btn-skin btn-large" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
+      <a class="btn btn-large btn-skin" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
   <?php
@@ -44,15 +44,9 @@ if ( czr_fn_get( 'has_caption' ) ) :
 endif;
 
   /* edit link */
-  if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) )
-      czr_fn_render_template(
-        'modules/edit_button',
-        array(
-          'model_args' => array(
-            'edit_button_class' => 'slide-btn-edit inverse',
-            'edit_button_link'  => $edit_url
-          )
-        )
-      );
-  ?>
-</div><! -- /.item -->
+  if ( (bool) $edit_url = czr_fn_get( 'edit_url' ) ) {
+    czr_fn_edit_button( array( 'class' => 'slide-btn-edit inverse', 'link'  => $edit_url ) );
+  }
+
+?>
+</div><!-- /.item -->

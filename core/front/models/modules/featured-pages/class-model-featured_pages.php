@@ -227,8 +227,19 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
 
 
+  /*
+  * Fired just after the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    reset( $this -> featured_pages );
+  }
+
+
+
   function czr_fn_get_featured_page( $autoadvance = true ) {
         $fp = current( $this -> featured_pages );
+
         if ( empty( $fp ) )
           return false;
         if ( $autoadvance )
@@ -245,8 +256,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         if ( $fp_button_text || czr_fn_is_customizing() ){
           $fp_button_text  = '<span>' . $fp_button_text . '</span>';
-          $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-more', $fp_single_id );
-          $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
+          $fp_button_class = $fp_button_text ? '' : ' hidden';
         }
         return compact( 'fp_button_class', 'fp_button_text' );
   }
