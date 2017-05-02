@@ -194,8 +194,16 @@ function czr_post_format_part( $post_format = null ) {
       if ( in_array( $post_format, array( 'quote', 'link' ) ) ) {
         czr_fn_render_template( "content/common/text/{$post_format}" );
       }
-      elseif ( in_array( $post_format, array( 'audio', 'video' ) ) )
-        czr_fn_render_template( "content/common/media/{$post_format}" );
+      elseif ( in_array( $post_format, array( 'audio', 'video' ) ) ) {
+        //reponsive video?
+        $args = 'video' == $post_format ? array(
+          'model_args' => array(
+            'element_class' => 'czr__r-w16by9' //responsive
+          )
+        ) : array();
+
+        czr_fn_render_template( "content/common/media/{$post_format}", $args );
+      }
 }
 
 endif;

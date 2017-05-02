@@ -14,8 +14,8 @@ class CZR_video_model_class extends CZR_Model {
                                           'media'           => null,
                                           'video'           => null,
                                           'post_id'         => null,
-
-                                          'visibility'       => true,
+                                          'element_class'   => '',
+                                          'visibility'      => true,
                                     );
 
 
@@ -68,7 +68,8 @@ class CZR_video_model_class extends CZR_Model {
 
             if ( is_null( $this->media ) ) {
                   $this -> czr_fn_setup( array(
-                        'post_id'         => $this->post_id
+                        'post_id'         => $this->post_id,
+                        'element_class'   => $this->element_class
                   ) );
             }
 
