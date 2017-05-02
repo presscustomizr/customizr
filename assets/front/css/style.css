@@ -324,7 +324,6 @@ img.h-centered {
   position: relative;
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
-  -ms-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important;
 }
 
@@ -339,7 +338,6 @@ img.v-centered {
   position: relative;
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
-  -ms-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important;
 }
 
@@ -372,21 +370,18 @@ body[class*=ie] img.v-centered.tc-holder-img {
 .czr-valign {
   -webkit-transform: translate(0, 50%);
   -moz-transform: translate(0, 50%);
-  -ms-transform: translate(0, 50%);
   transform: translate(0, 50%);
 }
 
 .czr-valign .czr-valign-child {
   -webkit-transform: translate(0, -50%);
   -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
 
 .czr-talign {
   -webkit-transform: translate(0, -50%);
   -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
   top: 50%;
   position: absolute;
@@ -645,7 +640,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -657,7 +651,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -866,7 +859,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -878,7 +870,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -897,7 +888,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -909,7 +899,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -923,7 +912,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -1030,7 +1018,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -1042,7 +1029,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -1251,7 +1237,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -1263,7 +1248,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -1282,7 +1266,6 @@ select:-webkit-autofill {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -1294,7 +1277,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -1308,7 +1290,6 @@ select:-webkit-autofill {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -1432,14 +1413,12 @@ select:-webkit-autofill {
 .ham__navbar-toggler .ham-toggler-menu__span:after {
   -webkit-transform: rotateZ(45deg);
   -moz-transform: rotateZ(45deg);
-  -ms-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
 }
 
 .ham__navbar-toggler .ham-toggler-menu__span:before {
   -webkit-transform: rotateZ(-45deg);
   -moz-transform: rotateZ(-45deg);
-  -ms-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
 }
 
@@ -1447,7 +1426,6 @@ select:-webkit-autofill {
   top: -6px;
   -webkit-transform: rotateZ(0);
   -moz-transform: rotateZ(0);
-  -ms-transform: rotateZ(0);
   transform: rotateZ(0);
 }
 
@@ -1455,7 +1433,6 @@ select:-webkit-autofill {
   top: 6px;
   -webkit-transform: rotateZ(0);
   -moz-transform: rotateZ(0);
-  -ms-transform: rotateZ(0);
   transform: rotateZ(0);
 }
 
@@ -1788,11 +1765,9 @@ select:-webkit-autofill {
   position: fixed;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
   -o-transition: top 0.5s, down 0.5s, height 0.5s, background 0.5s ease-in-out;
@@ -1977,13 +1952,11 @@ select:-webkit-autofill {
   .primary-nav__container .primary-nav__search .czr-form .form-group.in-focus label {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
     transform: translateY(-100%);
   }
   .primary-nav__container .primary-nav__search .czr-form .form-group.in-focus label .icn-close {
     -webkit-transform: translateY(200%);
     -moz-transform: translateY(200%);
-    -ms-transform: translateY(200%);
     transform: translateY(200%);
   }
   .primary-nav__container .primary-nav__search .czr-form .form-group {
@@ -2031,10 +2004,14 @@ select:-webkit-autofill {
 
 #tc-sn {
   position: fixed;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
   backface-visibility: hidden;
   z-index: 0;
   height: 100vh;
@@ -2188,7 +2165,6 @@ select:-webkit-autofill {
 .tc-sn-visible:not(.animating) #tc-sn {
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
   transform: translate(0, 0);
   z-index: 2;
 }
@@ -2196,7 +2172,6 @@ select:-webkit-autofill {
 .animating.sn-open #tc-sn {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
@@ -2207,7 +2182,6 @@ select:-webkit-autofill {
 .sn-close.sn-left #tc-sn, .sn-left #tc-sn {
   -webkit-transform: translate3d(-100%, 0, 0);
   -moz-transform: translate3d(-100%, 0, 0);
-  -ms-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
@@ -2218,7 +2192,6 @@ select:-webkit-autofill {
 .sn-close.sn-right #tc-sn, .sn-right #tc-sn {
   -webkit-transform: translate3d(100%, 0, 0);
   -moz-transform: translate3d(100%, 0, 0);
-  -ms-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
 
@@ -3691,7 +3664,6 @@ cite::first-child {
   .regular .dropdown-menu .caret__dropdown-toggler i {
     -webkit-transform: translateZ(0) rotate(-90deg);
     -moz-transform: translateZ(0) rotate(-90deg);
-    -ms-transform: translateZ(0) rotate(-90deg);
     transform: translateZ(0) rotate(-90deg);
     position: relative;
     display: inline-block;
@@ -3730,14 +3702,12 @@ cite::first-child {
   transition: all 0.3s ease;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
 .menu-item.show > span .caret__dropdown-toggler i {
   -webkit-transform: translateZ(0) rotate(-180deg);
   -moz-transform: translateZ(0) rotate(-180deg);
-  -ms-transform: translateZ(0) rotate(-180deg);
   transform: translateZ(0) rotate(-180deg);
 }
 
@@ -3860,7 +3830,6 @@ nav li.dropdown-item:before {
   background-color: transparent;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -3870,7 +3839,6 @@ nav li.dropdown-item:before {
   transition: all 0.2s, 0.3s ease;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
-  -ms-transform: scale(0);
   transform: scale(0);
 }
 
@@ -3883,7 +3851,6 @@ nav li.dropdown-item:before {
   background-color: #202020;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
 }
 
@@ -4042,19 +4009,15 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   width: 50px;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transition: width 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   -o-transition: width 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   transition: width 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
   line-height: 60px;
   border: none;
@@ -4172,12 +4135,10 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   /* fallback for those browsers w/o translate3d transform property*/
   -webkit-transform: translate3d(-50%, -50%, 0);
   -moz-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
   /* end of centering */
   border: 150px solid;
@@ -4203,12 +4164,10 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 .czr-link-mask-p.hover .czr-link-mask::before {
   -webkit-transform: translate(-50%, -50%) scale(1.4);
   -moz-transform: translate(-50%, -50%) scale(1.4);
-  -ms-transform: translate(-50%, -50%) scale(1.4);
   transform: translate(-50%, -50%) scale(1.4);
   /* fallback for those browsers w/o translate3d transform property*/
   -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4);
   -moz-transform: translate3d(-50%, -50%, 0) scale(1.4);
-  -ms-transform: translate3d(-50%, -50%, 0) scale(1.4);
   transform: translate3d(-50%, -50%, 0) scale(1.4);
 }
 
@@ -4236,7 +4195,6 @@ svg.czr-svg-placeholder {
   z-index: 1;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
@@ -4341,7 +4299,6 @@ form.czr-form .czr-focus label i.icn-close {
   transition: transform 0.3s ease;
   -webkit-transform: translateY(-110%);
   -moz-transform: translateY(-110%);
-  -ms-transform: translateY(-110%);
   transform: translateY(-110%);
 }
 
@@ -4357,7 +4314,6 @@ form.czr-form .czr-focus.in-focus > label {
   z-index: 1;
   -webkit-transform: translateY(-110%);
   -moz-transform: translateY(-110%);
-  -ms-transform: translateY(-110%);
   transform: translateY(-110%);
   color: #B4B4B4;
 }
@@ -4378,7 +4334,6 @@ form.czr-form .czr-focus.in-focus > label i.icn-close {
   opacity: 1;
   -webkit-transform: translateY(110%);
   -moz-transform: translateY(110%);
-  -ms-transform: translateY(110%);
   transform: translateY(110%);
   cursor: pointer;
 }
@@ -4427,7 +4382,6 @@ form.czr-form .czr-search-field {
 .gallery-item.hover .post-thumbnail {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -4588,8 +4542,6 @@ form.czr-form .czr-search-field {
   transition: visibility 0.6s ease-in-out, opacity 0.6s ease-in-out;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
   backface-visibility: hidden;
   perspective: 1000px;
 }
@@ -5068,7 +5020,6 @@ dl dd {
 .featured-page img {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
 }
@@ -5077,12 +5028,10 @@ dl dd {
   /* temporary CSS centering */
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   /* fallback for those browsers w/o translate3d transform property*/
   -webkit-transform: translate3d(-50%, -50%, 0);
   -moz-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
@@ -5237,11 +5186,9 @@ dl dd {
   opacity: 0;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
-  -ms-transform: scale(0);
   transform: scale(0);
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition: all 0.2s, 0.3s ease-in-out;
   -o-transition: all 0.2s, 0.3s ease-in-out;
@@ -5282,7 +5229,6 @@ dl dd {
   z-index: 10;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
@@ -5341,7 +5287,6 @@ a.czr-format-link:before {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -5352,7 +5297,6 @@ a.czr-format-link:hover::before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -5646,11 +5590,9 @@ a.czr-format-link:hover::before {
     top: 0;
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
     transform: translate(0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
   .grid-container__classic .expanded .entry-summary .tc-g-cont {
@@ -5747,7 +5689,6 @@ a.czr-format-link:hover::before {
 .grid-container__classic .tc-grid-icon {
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
-  -ms-transform: scale(0);
   transform: scale(0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -5762,7 +5703,6 @@ a.czr-format-link:hover::before {
 .grid-container__classic .grid-item.hover .tc-grid-icon {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
@@ -5895,7 +5835,6 @@ a.czr-format-link:hover::before {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
   -webkit-transform: translate(0, -4px);
   -moz-transform: translate(0, -4px);
-  -ms-transform: translate(0, -4px);
   transform: translate(0, -4px);
 }
 
@@ -6169,7 +6108,6 @@ a.czr-format-link:hover::before {
   padding: 0;
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
   transform: translate(0, 0);
 }
 
@@ -6335,7 +6273,6 @@ article .entry-content a:not(.btn) {
   padding: 0 15px;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   position: absolute;
 }
@@ -6650,7 +6587,6 @@ section[class^="post-"] .entry-meta {
   padding: 0 1.25em;
   -webkit-transform: rotate(-90deg) translate3d(-50%, -50%, 0);
   -moz-transform: rotate(-90deg) translate3d(-50%, -50%, 0);
-  -ms-transform: rotate(-90deg) translate3d(-50%, -50%, 0);
   transform: rotate(-90deg) translate3d(-50%, -50%, 0);
   white-space: nowrap;
   position: absolute;
@@ -6802,7 +6738,6 @@ section.post-related-articles .entry-meta {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -6813,7 +6748,6 @@ section.post-related-articles .entry-meta {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -6840,7 +6774,6 @@ section.post-related-articles .entry-meta {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -6851,7 +6784,6 @@ section.post-related-articles .entry-meta {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -7001,7 +6933,6 @@ section.post-content {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -7012,7 +6943,6 @@ section.post-content {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -7117,7 +7047,6 @@ section.post-content {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -7129,7 +7058,6 @@ section.post-content {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 
@@ -7170,7 +7098,6 @@ section.post-content {
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
-  -ms-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -7182,7 +7109,6 @@ section.post-content {
   visibility: visible;
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);
-  -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
 

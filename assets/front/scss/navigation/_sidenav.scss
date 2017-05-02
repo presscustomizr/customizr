@@ -1,6 +1,8 @@
 #tc-sn {
   position: fixed;
-
+  
+  @include perspective( 1000px );
+  @include transform-style( preserve-3d );
   @include backface-visibility( hidden );
 
   z-index: 0;
