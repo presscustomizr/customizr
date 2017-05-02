@@ -195,22 +195,31 @@
 @mixin transform ($transforms) {
   -webkit-transform: $transforms;
   -moz-transform: $transforms;
-  -ms-transform: $transforms;
   transform: $transforms;
 }
 
 @mixin transform-style ($transforms-style) {
   -webkit-transform-style: $transforms-style;
   -moz-transform-style: $transforms-style;
-  -ms-transform-style: $transforms-style;
   transform-style: $transforms-style;
 }
 
 @mixin transform-origin ($transforms-origin) {
   -webkit-transform-origin: $transforms-origin;
   -moz-transform-origin: $transforms-origin;
-  -ms-transform-origin: $transforms-origin;
   transform-origin: $transforms-origin;
+}
+
+@mixin perspective ($perspective ) {
+  -webkit-perspective: $perspective;
+     -moz-perspective: $perspective;
+          perspective: $perspective;
+}
+
+@mixin backface-visibility( $backface_visibility ) {
+  -webkit-backface-visibility: $backface_visibility;
+     -moz-backface-visibility: $backface_visibility;
+          backface-visibility: $backface_visibility;
 }
 
 
