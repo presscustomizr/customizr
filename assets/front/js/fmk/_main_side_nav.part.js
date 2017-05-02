@@ -49,6 +49,11 @@ var czrapp = czrapp || {};
         self.sideNavEventHandler( evt, 'transitionend' );
       });
 
+      //END TOGGLING
+      czrapp.$_body.on( 'sn-close sn-open', function( evt ) {
+        self.sideNavEventHandler( evt, evt.type );
+      });
+      
       //RESIZING ACTIONS
       czrapp.$_window.on('tc-resize', function( evt ) {
         self.sideNavEventHandler( evt, 'resize');
@@ -77,6 +82,15 @@ var czrapp = czrapp || {};
              this._transition_end_callback();
         break;
 
+        case 'sn-open'  :
+            this._end_visibility_toggle();
+        break;
+        
+        case 'sn-close' :
+            this._end_visibility_toggle();
+            this._set_offset_height();
+        break;
+
         case 'scroll' :
         case 'resize' :
           setTimeout( function() {
@@ -102,6 +116,11 @@ var czrapp = czrapp || {};
       else
         this._anim_type = 'sn-open';
 
+      //aria attribute toggling
+      var _aria_expanded_attr = 'sn-open' == this._anim_type; //boolean
+      $( this._toggler_selector ).attr('aria-expanded', _aria_expanded_attr );
+      $( this._sidenav_selector ).attr('aria-expanded', _aria_expanded_attr );
+
       //2 cases translation enabled or disabled.
       //=> if translation3D enabled, the _transition_end_callback is fired at the end of anim by the transitionEnd event
       if ( this._browser_can_translate3d ){
@@ -122,20 +141,17 @@ var czrapp = czrapp || {};
                    .trigger( this._anim_type + '_end' )
                    .trigger( this._anim_type );
 
-      var _aria_expanded_attr = 'sn-open' == this._anim_type; //boolean
-
-      //Toggler buttons class and aria attribute toggling
-      $( this._toggler_selector ).toggleClass( 'collapsed' )
-                                 .attr('aria-expanded', _aria_expanded_attr );
-
-      //Sidenav class and aria attribute toggling
-      $( this._sn_selector ).toggleClass( this._active_class )
-                            .attr('aria-expanded', _aria_expanded_attr );
-
-      this._set_offset_height();
     },
 
+    _end_visibility_toggle : function() {
 
+      //Toggler buttons class toggling
+      $( this._toggler_selector ).toggleClass( 'collapsed' );
+
+      //Sidenav class toggling
+      $( this._sidenav_selector ).toggleClass( this._active_class );
+
+    },
 
     /***********************************************
     * HELPERS
