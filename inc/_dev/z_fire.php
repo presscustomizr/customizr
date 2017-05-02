@@ -1,8 +1,4 @@
 <?php
-//Creates a new instance
-new CZR___;
-do_action('czr_load');
-
 //@return an array of unfiltered options
 //=> all options or a single option val
 if ( !( function_exists( 'czr_fn_get_raw_option' ) ) ) :
@@ -66,6 +62,11 @@ function czr_fn_isprevdem() {
     return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() );
 }
 endif;
+
+//Creates a new instance
+new CZR___;
+do_action('czr_load');
+
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
     new CZR_prevdem();

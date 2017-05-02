@@ -18,25 +18,34 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 
     public $customizer_map = array();
 
+    private $_is_settings_map_available;
 
     function __construct () {
 
         self::$instance =& $this;
 
-        //TODO: what to do when these files do not exist?
-        //I'm mostly thinking about server caching issues
+        //Be sure that all these files exist 
+        //I'm mostly thinking about server caching issues when users update
+        //This is just an edge case, but let's be pedantic
 
-        //require core utils settings map
-        if ( file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
-
-          //require all the other files needed - they contain functions used in core/utils/class-fire-utils_settings_map.php
-          require_once( TC_BASE . 'core/functions.php' );
-          require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
-          require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
-
-          require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
-
+        //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
+        if ( $_is_settings_map_available = file_exists( TC_BASE . 'core/functions.php' ) ) {
+            require_once( TC_BASE . 'core/functions.php' );
         }
+
+        if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
+            require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
+        }
+
+        if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
+            require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
+        }
+        //require core utils settings map
+        if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
+            require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
+        }  
+
+        $this->_is_settings_map_available = $_is_settings_map_available;
 
     }//end of construct
 
@@ -51,6 +60,12 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
     * TODO: unify this
     */
     public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
+      
+      //when not all the deps have been satisfied return an empty array
+      //this will produce only php warnings
+      //TODO: consider to raise an exception
+      if ( empty( $this->_is_settings_map_available ) )
+        return array();
 
       //Hook callbacks are defined in core/utils/class-fire-utils_settings_map.php
       if ( ! empty( $this -> customizer_map ) ) {

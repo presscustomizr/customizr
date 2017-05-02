@@ -850,7 +850,7 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
 }
 
 //@return bool
-if ( ! function_exists( 'czr_fn_prevdem' ) ):
+if ( ! function_exists( 'czr_fn_isprevdem' ) ):
 function czr_fn_isprevdem() {
     global $wp_customize;
     $is_dirty = false;
@@ -865,6 +865,7 @@ function czr_fn_isprevdem() {
     return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() );
 }
 endif;
+
 //back compat
 if ( ! class_exists( 'CZR_utils' ) ) :
   class CZR_utils {
@@ -887,5 +888,8 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       return czr_fn_opt( $option_name, $option_group, $use_default );
     }
   }
+
+  new CZR_utils;
+
 endif;
-new CZR_utils;
+
