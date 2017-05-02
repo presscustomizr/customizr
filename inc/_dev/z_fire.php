@@ -5,6 +5,7 @@ do_action('czr_load');
 
 //@return an array of unfiltered options
 //=> all options or a single option val
+if ( !( function_exists( 'czr_fn_get_raw_option' ) ) ) :
 function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
     $alloptions = wp_cache_get( 'alloptions', 'options' );
     $alloptions = maybe_unserialize( $alloptions );
@@ -30,7 +31,11 @@ function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache
         return $opt_value;
     }
 }
+endif;
 
+
+
+if ( !( function_exists( 'czr_fn_get_admin_option' ) ) ) :
 //@return an array of options
 function czr_fn_get_admin_option( $option_group = null ) {
     $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
@@ -43,7 +48,9 @@ function czr_fn_get_admin_option( $option_group = null ) {
 
     return $options;
 }
+endif;
 
+if ( !( function_exists( 'czr_fn_isprevdem' ) ) ) :
 //@return bool
 function czr_fn_isprevdem() {
     global $wp_customize;
@@ -58,6 +65,7 @@ function czr_fn_isprevdem() {
     }
     return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() );
 }
+endif;
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
     new CZR_prevdem();
