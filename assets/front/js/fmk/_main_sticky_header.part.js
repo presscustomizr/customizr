@@ -199,7 +199,7 @@ var czrapp = czrapp || {};
       if ( this._sticky_trigger )
         return this._sticky_trigger;
 
-      var $_trigger_element = this.$_sticky_placeholder && this.$_sticky_placeholder.height() ? this.$_sticky_placeholder : this.$_sticky_candidate;
+      var $_trigger_element = this.$_sticky_placeholder && this.$_sticky_placeholder[0].getBoundingClientRect().height ? this.$_sticky_placeholder : this.$_sticky_candidate;
       return $_trigger_element.outerHeight() + $_trigger_element.offset().top + 50;
     },
 
@@ -272,7 +272,7 @@ var czrapp = czrapp || {};
 
         this.$_sticky_placeholder = $('#sticky-placeholder');
       }
-      this.$_sticky_placeholder.css('height', this.$_sticky_candidate.outerHeight() );
+      this.$_sticky_placeholder.css('height', this.$_sticky_candidate[0].getBoundingClientRect().height );
     },
 
     //STICKY HEADER SUB CLASS HELPER (private like)
