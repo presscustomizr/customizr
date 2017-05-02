@@ -77,7 +77,15 @@
 
             body:not(.sticky-enabled) & {
               padding-left: 2*$base-line-height-root; /* balances what is in topnav.scss */
+
             }
+            body:not(.sticky-enabled)[class*=sn-] & {
+              padding-right: 2*$base-line-height-root;
+              .socials {
+                padding-right: $base-line-height;
+              }
+            }
+
             li:before,
             .socials:before {
               content: none;

@@ -2490,6 +2490,12 @@ select:-webkit-autofill {
     padding-left: 2.5rem;
     /* balances what is in topnav.scss */
   }
+  body:not(.sticky-enabled)[class*=sn-] [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils {
+    padding-right: 2.5rem;
+  }
+  body:not(.sticky-enabled)[class*=sn-] [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .socials {
+    padding-right: 1.25em;
+  }
   [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils li:before,
   [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .socials:before {
     content: none;
