@@ -11,7 +11,6 @@
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(
               'data_attributes' => 'data-toggle="collapse" data-target="#secondary-nav"',
-              'element_class'   => 'float-right'
             )
           ));
         ?>

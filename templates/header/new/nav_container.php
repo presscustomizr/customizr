@@ -16,7 +16,7 @@
             'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ),
             'model_args' => array(
               'element_class' => 'primary-nav__menu-wrapper_new',
-              'menu_class'    => array( 'primary-nav__menu_new', 'regular_new', 'navbar-nav', 'nav___menu' ),
+              'menu_class'    => array( 'primary-nav__menu_new', 'regular_new', 'navbar-nav', 'nav__menu' ),
             )
           ));
         };
