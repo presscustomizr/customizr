@@ -16,8 +16,8 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
               self::$instance =& $this;
               add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
 
-              //Font awesome
-              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons') );
+              //Font awesome before other theme styles
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons'), 9 );
 
               add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 

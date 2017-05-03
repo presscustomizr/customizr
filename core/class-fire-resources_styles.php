@@ -52,16 +52,19 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                wp_enqueue_style( 'customizr-pre-common'     , czr_fn_get_theme_file_url( "{$_path}customizr{$_ext}" ), array(), $_ver, 'all' );
 
-               wp_enqueue_style( 'customizr-common'         , czr_fn_get_theme_file_url( "{$_path}czr/style{$_ext}"), array(), $_ver, 'all' );
+               wp_enqueue_style( 'customizr-common-custom'  , czr_fn_get_theme_file_url( "{$_path}czr/style{$_ext}"), array(), $_ver, 'all' );
 
                wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
 
-               //Customizr stylesheet (style.css)
-               wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
+               //Customizr main stylesheet
+               wp_enqueue_style( 'customizr-common'         , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
 
 
                //Customizer user defined style options : the custom CSS is written with a high priority here
-               wp_add_inline_style( 'customizr-style'       , apply_filters( 'czr_user_options_style' , '' ) );
+               wp_add_inline_style( 'customizr-common'      , apply_filters( 'czr_user_options_style' , '' ) );
+
+               //Customizr stylesheet (style.css)
+               wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style{$_ext}"), array(), $_ver, 'all' );
 
          }
 
