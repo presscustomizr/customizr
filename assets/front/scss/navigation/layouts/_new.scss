@@ -1,6 +1,10 @@
 .primary-navbar__wrapper-new .primary-nav__utils {
   display: none;
 }
+.secondary-nav__socials {
+  flex-shrink: 0;
+}
+
 /* ie fix */
 .secondary-nav__container,
 .secondary-nav__menu-wrapper {
