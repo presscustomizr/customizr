@@ -1816,13 +1816,6 @@ select:-webkit-autofill {
     padding-left: 2.5em;
     white-space: nowrap;
   }
-  .primary-nav__utils {
-    white-space: normal;
-    /* firefox patch */
-  }
-  .primary-nav__utils .nav.utils > li:first-of-type {
-    position: initial;
-  }
 }
 
 .woocart.cart-contents,
@@ -2213,17 +2206,35 @@ select:-webkit-autofill {
 
 @media (min-width: 992px) {
   .primary-navbar__wrapper-new.row {
+    /* ensure the navbar elements do not wrap in a new line */
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
+    /* do not shrink the branding container and center the inner items */
     /* pull-menu-right must become justify-content-end - bootstrap class */
+    /* utils li a centered aligned */
   }
-  .primary-navbar__wrapper-new.row li {
-    position: relative;
+  .primary-navbar__wrapper-new.row .branding__container_new,
+  .primary-navbar__wrapper-new.row .primary-nav__utils li,
+  .primary-navbar__wrapper-new.row .primary-nav__utils,
+  .primary-navbar__wrapper-new.row .primary-nav__wrapper_new,
+  .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
   }
   .primary-navbar__wrapper-new.row .branding__container_new {
     max-width: 30%;
     flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .primary-navbar__wrapper-new.row .primary-nav__utils li,
+  .primary-navbar__wrapper-new.row li {
+    position: relative;
   }
   .primary-navbar__wrapper-new.row .primary-nav__container_new {
     display: -webkit-box;
@@ -2234,25 +2245,15 @@ select:-webkit-autofill {
     -ms-flex-positive: 1;
     flex-grow: 1;
   }
-  .primary-navbar__wrapper-new.row .hamburger-toggler__container,
-  .primary-navbar__wrapper-new.row .primary-nav__search,
-  .primary-navbar__wrapper-new.row .primary-nav__utils,
-  .primary-navbar__wrapper-new.row .primary-nav__wrapper_new,
-  .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
   .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new,
   .primary-navbar__wrapper-new.row .primary-nav__wrapper_new {
     width: 100%;
   }
   .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new.pull-menu-right {
-    -webkit-box-pack: end !important;
-    -webkit-justify-content: flex-end !important;
-    -ms-flex-pack: end !important;
-    justify-content: flex-end !important;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
   .primary-navbar__wrapper-new.row .primary-nav__utils .utils {
     margin: 0;
@@ -2267,12 +2268,28 @@ select:-webkit-autofill {
   }
   .primary-navbar__wrapper-new.row .woocart.cart-contents, .primary-navbar__wrapper-new.row .desktop_search__link,
   .primary-navbar__wrapper-new.row .hamburger-toggler__container .ham__navbar-toggler {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
     align-self: center;
     display: block;
     height: auto;
+    position: relative;
+  }
+  .primary-navbar__wrapper-new.row .woocart.cart-contents sup {
+    position: absolute;
+    top: 0;
   }
   .primary-navbar__wrapper-new.row .primary-nav__utils .utils li:before {
     content: none !important;
+  }
+  [class*=logo_right] .primary-navbar__wrapper-new,
+  [class*=logo_right] .primary-navbar__wrapper-new .primary-nav__container_new,
+  [class*=logo_right] .primary-navbar__wrapper-new .primary-nav__utils .utils {
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 }
 

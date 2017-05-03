@@ -314,10 +314,10 @@
     padding-left: 2.5em;
     white-space: nowrap;
   }
-  .primary-nav__utils {
-    white-space: normal; /* firefox patch */
-    .nav.utils > li:first-of-type { position: initial }
-  }
+  //.primary-nav__utils {
+  //  white-space: normal; /* firefox patch */
+  //  .nav.utils > li:first-of-type { position: initial }
+  //}
 }
 .woocart.cart-contents,
 .desktop_search__link {
