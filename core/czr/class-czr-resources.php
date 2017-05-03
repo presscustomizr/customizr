@@ -84,9 +84,11 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                 //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
                 'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' ),
                 'blogname' => get_bloginfo('name'),
+                'isRTL'           => is_rtl()
               )
             )
       );
+
       if ( czr_fn_is_partial_refreshed_on() ) {
         add_filter( 'czr_user_options_style', array( $this, 'czr_fn_write_preview_style' ) );
       }
@@ -217,18 +219,20 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'themeName'       => CZR_THEMENAME,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
-            'translatedStrings'   => $this -> czr_fn_get_translated_strings(),
+            'i18n'   => $this -> czr_fn_get_translated_strings(),
 
             'themeOptions'     => CZR_THEME_OPTIONS,
 
-            'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('TC_DEV') && true === TC_DEV ),
+            'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
 
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
             'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
-            'isThemeSwitchOn'  => isset( $_GET['theme']),
+            'isThemeSwitchOn'  => !CZR_IS_PRO,
             'themeSettingList' => CZR___::$theme_setting_list,
 
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
+
+            'isRTL'           => is_rtl()
           )
         )
       );
@@ -295,7 +299,12 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
                                         __("Change the header layout", "customizr")
                                       )
                                     )
-                                  )
+                                  ),
+
+
+                'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
+                'Settings' => __('Settings', 'customizr'),
+                'Options for' => __('Options for', 'customizr')
           )
       );
     }

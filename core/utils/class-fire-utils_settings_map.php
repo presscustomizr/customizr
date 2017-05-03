@@ -160,7 +160,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'sanitize_callback' => 'czr_fn_sanitize_number',
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                             'width'     => 250,
-                            'height'    => 70,
+                            'height'    => 100,
                             'flex_width' => true,
                             'flex_height' => true,
                             //to keep the selected cropped size
@@ -2222,7 +2222,10 @@ function czr_fn_sidebars_option_map( $get_default = null ) {
                             'section'     => 'sidebar_socials_sec',
                             'type'        => 'checkbox' ,
                             'priority'       => 20,
-                            'transport'   => 'postMessage'
+                            'ubq_section'   => array(
+                                                'section' => 'socials_sec',
+                                                'priority' => '2'
+                                             )
           ),
 
           'tc_social_in_right-sidebar'  =>  array(
@@ -2232,7 +2235,10 @@ function czr_fn_sidebars_option_map( $get_default = null ) {
                             'section'     => 'sidebar_socials_sec',
                             'type'        => 'checkbox' ,
                             'priority'       => 25,
-                            'transport'   => 'postMessage'
+                            'ubq_section'   => array(
+                                                'section' => 'socials_sec',
+                                                'priority' => '3'
+                                             )
           ),
           'tc_social_in_sidebar_title'  =>  array(
                             'default'       => __( 'Social links' , 'customizr' ),
@@ -2270,7 +2276,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             ),
                             'section'       => 'footer_global_sec' ,
                             'type'          => 'select' ,
-                            'priority'      => 0,
+                            'priority'      => 0
           ),
           'tc_social_in_footer' =>  array(
                             'default'       => 1,
@@ -2279,7 +2285,10 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'section'     => 'footer_global_sec' ,
                             'type'        => 'checkbox' ,
                             'priority'       => 0,
-                            'transport'   => 'postMessage'
+                            'ubq_section'   => array(
+                                                'section' => 'socials_sec',
+                                                'priority' => '4'
+                                             )
           ),
           'tc_sticky_footer'  =>  array(
                             'default'       => czr_fn_user_started_before_version( '3.4.0' , '1.1.14' ) ? 0 : 1,
