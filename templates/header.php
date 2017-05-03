@@ -11,7 +11,7 @@
     <div class="container-fluid topnav-navbars__container">
       <?php if ( czr_fn_has('topnav') ) czr_fn_render_template( 'header/topnav' ) ?>
       <?php if ( czr_fn_has('navbar_wrapper') )
-        czr_fn_render_template( 'header/navbar_layouts/' . czr_fn_get( 'navbar_template' ), array(
+        czr_fn_render_template( 'header/' . czr_fn_get( 'navbar_template' ), array(
                   'model_class' => 'header/navbar_wrapper'
               )
         );

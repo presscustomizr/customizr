@@ -346,7 +346,7 @@ var czrapp = czrapp || {};
       this.ClassName = {
         DROPDOWN         : 'dropdown-menu',
         DROPDOWN_WRAPPER : 'czr-dropdown-menu',
-        SHOW           : 'show',
+        SHOW             : 'show',
         PARENTS          : 'menu-item-has-children'
       };
 
@@ -410,7 +410,11 @@ var czrapp = czrapp || {};
             _this_offset  = $_this.offset(),
             $_parent      = $_this.closest('.nav__menu');
 
-        if ( !$_this.is(':visible') ) {
+        if ( !$_parent.length ) {
+          return true;
+        }
+
+        if ( !$_this.is(':visible')  ) {
           return false;
         }
 
@@ -477,6 +481,7 @@ var czrapp = czrapp || {};
           return;
 
         //wrapper's (first-level) width must be at maximum the li width, and not in mobiles
+        /*
          if (  $_dropdown_wrapper.length && $_dropdown_wrapper.closest('.menu-item-has-children').not('.czr-dropdown-submenu').length ) {
           if ( 'static' != $_dropdown.css('position') ) {
             //use of getBoundingClientRect because outerWidth rounds
@@ -484,7 +489,7 @@ var czrapp = czrapp || {};
           }else
             $_dropdown_wrapper.css( 'width', '');
          }
-
+        */
         //stage: if not visible $ isn't able to get width, offset
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 

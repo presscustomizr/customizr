@@ -2173,6 +2173,7 @@ select:-webkit-autofill {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  -ms-transform: translate(0, 0);
 }
 
 .sn-left #tc-sn {
@@ -2183,6 +2184,7 @@ select:-webkit-autofill {
   -webkit-transform: translate3d(-100%, 0, 0);
   -moz-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate(-100%, 0);
 }
 
 .sn-right #tc-sn {
@@ -2193,626 +2195,84 @@ select:-webkit-autofill {
   -webkit-transform: translate3d(100%, 0, 0);
   -moz-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
+  -ms-transform: translate(100%, 0);
 }
 
-/* nav with tables */
-@media (min-width: 992px) {
-  [class*=sl-] .navbar-brand-sitelogo + .navbar-brand-tagline {
-    display: none;
-  }
-  [class*=sl-] .primary-navbar__wrapper {
-    display: table;
-    /* block !important;
-      /*min-width: 100% !important;*/
-    min-height: 70px;
-    width: 100%;
-    height: 100%;
-    /*ie10 fix?*/
-  }
-  .sticky-enabled [class*=sl-] .primary-navbar__wrapper {
-    height: 70px;
-  }
-  .ie[class*=ie1] [class*=sl-] .primary-navbar__wrapper {
-    min-height: 70px !important;
-  }
-  .ie[class*=ie1] [class*=sl-] .primary-navbar__wrapper .primary-nav__container {
-    height: 100% !important;
-  }
-  [class*=sl-] .branding {
-    height: auto;
-    max-height: none;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__nav {
-    width: 100%;
-    display: table !important;
-    text-align: initial !important;
-    height: 100%;
-    overflow: visible;
-  }
-  [class*=sl-] .branding__container {
-    left: 0 !important;
-    display: table-cell !important;
-    float: none !important;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  [class*=sl-] .primary-nav__container {
-    margin: 0 !important;
-    padding-left: 0 !important;
-    width: 100% !important;
-    display: table-cell !important;
-    height: 100%;
-    padding-bottom: 0;
-    padding-top: 0;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-  [class*=sl-] .primary-nav__menu-wrapper {
-    display: table-cell !important;
-    width: 100% !important;
-    padding-right: 2.5em;
-    padding-left: 2.5em;
-    margin: 0 !important;
-    vertical-align: middle;
-    height: 100%;
-    padding-bottom: 0;
-    padding-top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    position: static !important;
-    /* override */
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular {
-    vertical-align: middle;
-    height: 100%;
-    /*overflow: hidden;*/
-    display: inline-block;
-    /*@at-root  .tc-header[class*=sl-] .primary-nav__menu-wrapper {
-          &.pull-menu-left .nav__menu {
-            float: left;
-          }
-          &.pull-menu-right .nav__menu {
-            float: right;
-          }
-        }*/
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
-    height: 100%;
-    position: static;
-    /* to allow the dropdown show when overflow hidden set by the parent*/
-    float: left;
-    display: inline-table;
-    /* firefox needs this */
-  }
-  .ie [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
-    display: inline-block;
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a > span:not(.caret__dropdown-toggler) {
-    display: table-cell !important;
-    vertical-align: middle !important;
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span, [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span.caret__dropdown-toggler {
-    height: 100%;
-    display: table !important;
-    position: relative;
-    padding: 0;
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span {
-    height: 100%;
-    /*display: table-row!important;*/
-    position: relative;
-    padding: 0;
-  }
-  [class*=sl-] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a {
-    display: table-cell;
-    height: 100%;
-    vertical-align: middle;
-    line-height: inherit;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils {
-    display: table !important;
-    height: 100%;
-    white-space: nowrap !important;
-    vertical-align: middle;
-    table-layout: initial;
-    float: right;
-    margin: 0 -1.25rem;
-  }
-  .ie [class*=sl-] .primary-nav__container .primary-nav__utils {
-    display: table-cell !important;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-    padding-right: 1.25em;
-    padding-left: 1.25em;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials {
-    position: relative;
-    /* display : inline-block; */
-    display: table-cell;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils li, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials li {
-    display: inline-block;
-    display: inline-table;
-    vertical-align: middle;
-    /*float: left;*/
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .utils li a, [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials li a {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  [class*=sl-] .primary-nav__container .primary-nav__utils .primary-nav__socials ul {
-    display: inline-block !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  .sl-logo_right .branding__container {
-    text-align: right;
-  }
-  .sl-logo_right .primary-navbar__wrapper {
-    direction: rtl;
-  }
-  .sl-logo_right .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
-    direction: ltr;
-  }
-  .sl-logo_right .primary-nav__container .primary-nav__nav {
-    text-align: left;
-  }
-  .sl-logo_right .primary-nav__container .primary-nav__utils {
-    direction: rtl;
-    text-align: left;
-    float: left;
-  }
-  .sl-logo_right .primary-nav__container .primary-nav__utils * {
-    direction: ltr;
-  }
-  .sl-logo_right .primary-nav__utils .nav.utils > li:first-of-type {
-    position: relative;
-  }
-  .sl-logo_right .primary-nav__utils .utils li:before,
-  .sl-logo_right .primary-nav__utils .primary-nav__socials .socials:before {
-    left: auto;
-    right: 0;
-  }
-}
-
-@media (min-width: 992px) {
-  [class*=logo_center] {
-    /* sticky enabled */
-  }
-  [class*=logo_center] .primary-navbar__wrapper {
-    height: 100%;
-    width: 100%;
-    white-space: normal;
-    /* overrides white-space: nowrap  in topnav.scss*/
-  }
-  [class*=logo_center] .branding__container {
-    width: 100%;
-    text-align: center;
-    clear: both;
-    height: auto;
-    left: 0;
-  }
-  [class*=logo_center] .branding {
-    padding-top: 1.875em;
-    padding-bottom: 1.875em;
-  }
-  [class*=logo_center] .primary-nav__container {
-    text-align: center;
-    padding: 0;
-    width: 100%;
-    display: table;
-    white-space: normal;
-    height: 70px;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav {
-    width: auto;
-    display: inline-table !important;
-    height: 100%;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper {
-    display: table-cell !important;
-    /* overrides topnav.scss */
-    vertical-align: middle;
-  }
-  body:not(.sticky-enabled) [class*=logo_center] .primary-nav__menu-wrapper {
-    padding: 0 !important;
-    text-align: center;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular {
-    vertical-align: middle;
-    display: inline-block;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
-    height: 100%;
-    float: left;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > .caret__dropdown-toggler[data-toggle="czr-dropdown"],
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a > span:not(.caret__dropdown-toggler) {
-    display: table-cell !important;
-    vertical-align: middle !important;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span, [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span.caret__dropdown-toggler {
-    height: 100%;
-    display: table !important;
-    position: relative;
-    padding: 0;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span {
-    height: 100%;
-    /*display: table-row!important;*/
-    position: relative;
-    padding: 0;
-  }
-  [class*=logo_center] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a {
-    display: table;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    vertical-align: middle;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils {
-    display: table !important;
-    height: 100%;
-    white-space: nowrap !important;
-    vertical-align: middle;
-  }
-  body:not(.sticky-enabled) [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils {
-    padding-left: 2.5rem;
-    /* balances what is in topnav.scss */
-  }
-  body:not(.sticky-enabled)[class*=sn-] [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils {
-    padding-right: 2.5rem;
-  }
-  body:not(.sticky-enabled)[class*=sn-] [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .socials {
-    padding-right: 1.25em;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils li:before,
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .socials:before {
-    content: none;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .utils, [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .primary-nav__socials {
-    position: relative;
-    display: table-cell;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .utils li, [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .primary-nav__socials li {
-    display: inline-table;
-    vertical-align: middle;
-  }
-  [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .utils li a, [class*=logo_center] .primary-nav__container .primary-nav__nav .primary-nav__utils .primary-nav__socials li a {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  [class*=logo_center] .primary-nav__socials ul {
-    display: inline-block !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper {
-    display: table;
-    min-height: 70px;
-    height: 70px;
-    width: 100%;
-  }
-  .sticky-enabled [class*=logo_center] .primary-nav__container,
-  .sticky-enabled [class*=logo_center] .branding__container {
-    width: auto;
-    clear: none;
-    text-align: left;
-    display: table-cell !important;
-    vertical-align: middle;
-    min-height: 100%;
-    height: 100%;
-    white-space: nowrap;
-    float: none !important;
-  }
-  .sticky-enabled [class*=logo_center] .branding {
-    padding: 0;
-    /*img { max-height: 70px; } */
-  }
-  .sticky-enabled [class*=logo_center] .primary-nav__menu-wrapper {
-    width: 100%;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav {
-    width: 100%;
-    display: table !important;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__menu-wrapper {
-    vertical-align: middle;
-    padding-left: 2.5em !important;
-    padding-right: 2.5em !important;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
-    display: table !important;
-    height: 100%;
-    white-space: nowrap !important;
-    float: right;
-    vertical-align: middle;
-    min-height: inherit;
-    width: auto;
-  }
-  .ie .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
-    display: table-cell !important;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils, .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials {
-    display: table-cell;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils li, .sticky-enabled [class*=logo_center] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials li {
-    display: inline-table;
-  }
-  .sticky-enabled .branding__container .primary-nav__utils {
-    display: none !important;
-  }
-}
-
-[class*=v-logo_] .branding__container .primary-nav__utils {
+.primary-navbar__wrapper-new .primary-nav__utils {
   display: none;
 }
 
+/* ie fix */
+.secondary-nav__container,
+.secondary-nav__menu-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media (min-width: 992px) {
-  [class*=v-logo_] {
-    /* sticky enabled */
+  .primary-navbar__wrapper-new.row {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    /* pull-menu-right must become justify-content-end - bootstrap class */
   }
-  [class*=v-logo_] .primary-navbar__wrapper {
-    white-space: normal;
+  .primary-navbar__wrapper-new.row li {
+    position: relative;
   }
-  [class*=v-logo_] .branding__container {
+  .primary-navbar__wrapper-new.row .branding__container_new {
+    max-width: 30%;
+    flex-shrink: 0;
+  }
+  .primary-navbar__wrapper-new.row .primary-nav__container_new {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+  .primary-navbar__wrapper-new.row .hamburger-toggler__container,
+  .primary-navbar__wrapper-new.row .primary-nav__search,
+  .primary-navbar__wrapper-new.row .primary-nav__utils,
+  .primary-navbar__wrapper-new.row .primary-nav__wrapper_new,
+  .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new,
+  .primary-navbar__wrapper-new.row .primary-nav__wrapper_new {
     width: 100%;
-    text-align: left;
-    clear: both;
-    left: 0;
   }
-  [class*=v-logo_] .branding {
+  .primary-navbar__wrapper-new.row .primary-nav__menu-wrapper_new.pull-menu-right {
+    -webkit-box-pack: end !important;
+    -webkit-justify-content: flex-end !important;
+    -ms-flex-pack: end !important;
+    justify-content: flex-end !important;
+  }
+  .primary-navbar__wrapper-new.row .primary-nav__utils .utils {
+    margin: 0;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .primary-navbar__wrapper-new.row .woocart.cart-contents, .primary-navbar__wrapper-new.row .desktop_search__link,
+  .primary-navbar__wrapper-new.row .hamburger-toggler__container .ham__navbar-toggler {
+    align-self: center;
+    display: block;
     height: auto;
-    padding-top: 1.875em;
-    padding-bottom: 1.875em;
-    max-height: none;
-    float: left;
   }
-  [class*=v-logo_] .branding .navbar-logo {
-    height: auto;
-  }
-  [class*=v-logo_] .primary-nav__utils {
-    float: right;
-  }
-  [class*=v-logo_] .branding__container .primary-nav__utils {
-    display: table !important;
-    height: 100%;
-    min-height: 70px;
-    height: 70px;
-    float: right;
-    white-space: nowrap !important;
-  }
-  [class*=v-logo_] .branding__container .primary-nav__utils .utils, [class*=v-logo_] .branding__container .primary-nav__utils .primary-nav__socials {
-    position: relative;
-    display: table-cell;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  [class*=v-logo_] .branding__container .primary-nav__utils .utils li, [class*=v-logo_] .branding__container .primary-nav__utils .primary-nav__socials li {
-    display: inline-table;
-    vertical-align: middle;
-    height: 100%;
-  }
-  [class*=v-logo_] .branding__container .primary-nav__utils .utils li a, [class*=v-logo_] .branding__container .primary-nav__utils .primary-nav__socials li a {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  [class*=v-logo_] .primary-nav__socials ul {
-    display: inline-block !important;
-    height: 100%;
-    vertical-align: middle;
-    position: relative;
-  }
-  [class*=v-logo_] .primary-nav__utils .utils li:before,
-  [class*=v-logo_] .primary-nav__utils .primary-nav__socials .socials:before {
+  .primary-navbar__wrapper-new.row .primary-nav__utils .utils li:before {
     content: none !important;
-  }
-  [class*=v-logo_] .primary-nav__container .primary-nav__nav {
-    display: inline-table !important;
-    height: 100%;
-    overflow: visible;
-    width: 100%;
-    vertical-align: bottom;
-  }
-  [class*=v-logo_] .primary-nav__container {
-    padding-left: 0 !important;
-    width: 100% !important;
-    display: table !important;
-    height: auto;
-    white-space: normal;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper {
-    display: table-cell !important;
-    width: auto;
-    padding: 0 !important;
-    margin: 0 !important;
-    vertical-align: middle;
-    height: 100%;
-    padding-bottom: 0;
-    padding-top: 0;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular {
-    vertical-align: middle;
-    display: inline-block;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li {
-    height: 100%;
-    float: left;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > .caret__dropdown-toggler,
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a > span, [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li i {
-    display: table-cell !important;
-    float: none !important;
-    vertical-align: middle !important;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > a, [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span, [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span.caret__dropdown-toggler {
-    height: 100%;
-    display: table !important;
-    position: relative;
-    padding: 0;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span {
-    height: 100%;
-    position: relative;
-  }
-  [class*=v-logo_] .primary-nav__menu-wrapper .primary-nav__menu.regular > li > span > a {
-    display: table;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    vertical-align: middle;
-  }
-  [class*=v-logo_] .primary-nav__container .primary-nav__utils {
-    display: table-cell !important;
-    height: 100%;
-    white-space: nowrap !important;
-  }
-  [class*=v-logo_] .primary-nav__container .primary-nav__utils .utils, [class*=v-logo_] .primary-nav__container .primary-nav__utils .primary-nav__socials {
-    position: relative;
-    display: inline-block;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  [class*=v-logo_] .primary-nav__container .primary-nav__utils .utils li, [class*=v-logo_] .primary-nav__container .primary-nav__utils .primary-nav__socials li {
-    display: inline-table;
-    vertical-align: middle;
-    /*float: left;*/
-  }
-  [class*=v-logo_] .primary-nav__container .primary-nav__utils .utils li a, [class*=v-logo_] .primary-nav__container .primary-nav__utils .primary-nav__socials li a {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  .sticky-enabled [class*=v-logo_] {
-    /* sticky logo right */
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper {
-    display: table;
-    min-height: 70px;
-    height: 70px;
-    width: 100%;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-nav__utils {
-    vertical-align: middle;
-  }
-  .sticky-enabled .branding__container .primary-nav__utils {
-    display: none !important;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-nav__container,
-  .sticky-enabled [class*=v-logo_] .branding__container {
-    clear: none;
-    text-align: left;
-    width: auto;
-    display: table-cell !important;
-    vertical-align: middle;
-    min-height: 100%;
-    height: 100%;
-    white-space: nowrap;
-    float: none !important;
-  }
-  .sticky-enabled [class*=v-logo_] .branding {
-    padding: 0;
-    /*img { max-height: 70px; }*/
-  }
-  .sticky-enabled [class*=v-logo_] .primary-nav__menu-wrapper {
-    width: 100%;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav {
-    width: 100%;
-    display: table !important;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__menu-wrapper {
-    vertical-align: middle;
-    padding-left: 2.5em !important;
-    padding-right: 2.5em !important;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
-    display: table !important;
-    height: 100%;
-    float: right;
-    white-space: nowrap !important;
-    vertical-align: middle;
-    min-height: inherit;
-    width: auto;
-  }
-  .ie .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils {
-    display: table-cell !important;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils, .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials {
-    display: table-cell;
-    float: none !important;
-    height: 100%;
-    vertical-align: middle;
-  }
-  .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .utils li, .sticky-enabled [class*=v-logo_] .primary-navbar__wrapper .primary-nav__nav .primary-nav__utils .primary-nav__socials li {
-    display: inline-table;
-  }
-  .sticky-enabled .branding__container .primary-nav__utils {
-    display: none !important;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .branding__container {
-    text-align: right;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-navbar__wrapper {
-    direction: rtl;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__nav .primary-nav__menu-wrapper {
-    direction: ltr;
-    width: 100%;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__nav {
-    text-align: left;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__utils {
-    direction: rtl;
-    float: left;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__utils * {
-    direction: ltr;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__container .primary-nav__utils .primary-nav__socials .socials {
-    padding-left: 0;
-    padding-right: 1.25em;
-    margin-left: 0;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__utils .nav.utils > li:first-of-type {
-    position: relative;
-  }
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__utils .utils li:before,
-  .sticky-enabled [class*=v-logo_].v-logo_right .primary-nav__utils .primary-nav__socials .socials:before {
-    left: auto;
-    right: 0;
-  }
-  /* Logo on the right */
-  .v-logo_right {
-    /* nav with tables logo right */
-  }
-  .v-logo_right .branding__container {
-    text-align: right;
-  }
-  .v-logo_right .branding__container .branding {
-    float: right;
-  }
-  .v-logo_right .branding__container .primary-nav__utils {
-    direction: rtl;
-    float: left;
-  }
-  .v-logo_right .branding__container .primary-nav__utils .socials {
-    padding-left: 0;
-    padding-right: 1.25em;
-    margin-left: 0;
-  }
-  .v-logo_right .branding__container .primary-nav__utils * {
-    direction: ltr;
   }
 }
 

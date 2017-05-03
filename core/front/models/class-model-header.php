@@ -39,6 +39,11 @@ class CZR_header_model_class extends CZR_Model {
                         $element_class   = 'sl-logo_left';
     }
 
+    $navbar_template     = 'navbar_layouts/' . $navbar_template;
+
+    //test
+    $navbar_template     = 'new/' . $navbar_template;
+
     $element_class            = array( $element_class );
     $elements_container_class = array();
 

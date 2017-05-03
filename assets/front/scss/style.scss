@@ -12,9 +12,12 @@
 @import 'navigation/components';
 @import 'navigation/topnav';
 @import 'navigation/sidenav';
-@import 'navigation/layouts/single_line';
-@import 'navigation/layouts/logo_center';
-@import 'navigation/layouts/vertical';
+
+//@import 'navigation/layouts/single_line';
+//@import 'navigation/layouts/logo_center';
+//@import 'navigation/layouts/vertical';
+
+@import 'navigation/layouts/new';
 
 @import 'navigation/common';
 

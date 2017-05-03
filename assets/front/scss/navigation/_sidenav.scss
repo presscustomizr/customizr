@@ -1,6 +1,6 @@
 #tc-sn {
   position: fixed;
-  
+
   @include perspective( 1000px );
   @include transform-style( preserve-3d );
   @include backface-visibility( hidden );
@@ -129,12 +129,16 @@
   }
   .animating.sn-open & {
     @include transform( translate3d(0, 0, 0) );
+    //ms-hack
+    -ms-transform: translate(0,0);
   }
 
   .sn-left & {
     left: 0;
     @at-root .sn-close.sn-left #tc-sn, & {
       @include transform( translate3d(-100%, 0, 0) );
+      //ms-hack
+      -ms-transform: translate(-100%,0);
     }
   }
 
@@ -142,6 +146,8 @@
     right: 0;
     @at-root .sn-close.sn-right #tc-sn, & {
       @include transform( translate3d(100%, 0, 0) );
+      //ms-hack
+      -ms-transform: translate(100%,0);
     }
   }
 

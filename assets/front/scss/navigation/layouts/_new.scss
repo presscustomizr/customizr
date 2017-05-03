@@ -1,0 +1,87 @@
+.primary-navbar__wrapper-new .primary-nav__utils {
+  display: none;
+}
+/* ie fix */
+.secondary-nav__container,
+.secondary-nav__menu-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@include media-breakpoint-up(lg) {
+.primary-navbar__wrapper-new.row {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+
+  li {
+    position: relative;
+  }
+  .branding__container_new {
+    max-width: 30%;
+    flex-shrink: 0;
+  }
+
+  .primary-nav__container_new {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+            flex-grow: 1;
+  }
+
+  .hamburger-toggler__container,
+  .primary-nav__search,
+  .primary-nav__utils,
+  .primary-nav__wrapper_new,
+  .primary-nav__menu-wrapper_new {
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .primary-nav__menu-wrapper_new,
+  .primary-nav__wrapper_new {
+    width: 100%;
+  }
+
+  /* pull-menu-right must become justify-content-end - bootstrap class */
+  .primary-nav__menu-wrapper_new.pull-menu-right {
+        -webkit-box-pack: end !important;
+        -webkit-justify-content: flex-end !important;
+            -ms-flex-pack: end !important;
+                justify-content: flex-end !important;
+  }
+
+  .primary-nav__utils .utils {
+    margin: 0;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row
+
+  }
+  .woocart.cart-contents, .desktop_search__link,
+  .hamburger-toggler__container .ham__navbar-toggler {
+    align-self: center;
+    display: block;
+    height: auto;
+  }
+
+  //hack remove line before
+  .primary-nav__utils .utils li:before {
+    content: none !important;
+  }
+}
+}
