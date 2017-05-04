@@ -838,17 +838,15 @@ select:-webkit-autofill {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-light [class*=-nav__menu] > li > span > a, .header-skin-light [class*=-nav__menu] .caret__dropdown-toggler {
+.header-skin-light [class*=-nav__menu] > li > a, .header-skin-light [class*=-nav__menu] .caret__dropdown-toggler {
   color: #202020;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a {
-  /* & > span:first-of-type { @include underlined ($primary-color, 2px); }
-      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }*/
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a {
   position: relative;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a:before {
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -865,7 +863,7 @@ select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a:hover::before {
+.header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a:hover::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -873,11 +871,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a {
   position: relative;
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a:before {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -894,7 +892,7 @@ select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > span > a:hover::before {
+.secondary-nav__nav .header-skin-light [class*=-nav__menu] > li:not(.dropdown-item) > a:hover::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -902,12 +900,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-light [class*=-nav__menu] > li.show > span > a, .header-skin-light [class*=-nav__menu] li.current-active > span > a {
+.header-skin-light [class*=-nav__menu] > li.show > a, .header-skin-light [class*=-nav__menu] li.current-active > a {
   color: #777;
-  /* & > span:first-of-type { @include underlined_highlight_before($primary-color) } */
 }
 
-.header-skin-light [class*=-nav__menu] > li.show > span > a::before, .header-skin-light [class*=-nav__menu] li.current-active > span > a::before {
+.header-skin-light [class*=-nav__menu] > li.show > a::before, .header-skin-light [class*=-nav__menu] li.current-active > a::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1216,17 +1213,15 @@ select:-webkit-autofill {
   /* border-left: 1px solid $color; */
 }
 
-.header-skin-dark [class*=-nav__menu] > li > span > a, .header-skin-dark [class*=-nav__menu] .caret__dropdown-toggler {
+.header-skin-dark [class*=-nav__menu] > li > a, .header-skin-dark [class*=-nav__menu] .caret__dropdown-toggler {
   color: #fff;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a {
-  /* & > span:first-of-type { @include underlined ($primary-color, 2px); }
-      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }*/
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a {
   position: relative;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a:before {
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -1243,7 +1238,7 @@ select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a:hover::before {
+.header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a:hover::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1251,11 +1246,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a {
   position: relative;
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a:before {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -1272,7 +1267,7 @@ select:-webkit-autofill {
   transition: all 0.3s ease 0s;
 }
 
-.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > span > a:hover::before {
+.secondary-nav__nav .header-skin-dark [class*=-nav__menu] > li:not(.dropdown-item) > a:hover::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1280,12 +1275,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-dark [class*=-nav__menu] > li.show > span > a, .header-skin-dark [class*=-nav__menu] li.current-active > span > a {
+.header-skin-dark [class*=-nav__menu] > li.show > a, .header-skin-dark [class*=-nav__menu] li.current-active > a {
   color: #eceeef;
-  /* & > span:first-of-type { @include underlined_highlight_before($primary-color) } */
 }
 
-.header-skin-dark [class*=-nav__menu] > li.show > span > a::before, .header-skin-dark [class*=-nav__menu] li.current-active > span > a::before {
+.header-skin-dark [class*=-nav__menu] > li.show > a::before, .header-skin-dark [class*=-nav__menu] li.current-active > a::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1996,6 +1990,7 @@ select:-webkit-autofill {
   padding: 0;
   outline: 1px solid rgba(255, 255, 255, 0.09);
   /* test */
+  /* Always expand dropdowns */
   /* test */
   /* test */
   /* Animation stuff */
@@ -2010,7 +2005,7 @@ select:-webkit-autofill {
   overflow-y: auto;
 }
 
-#tc-sn .czr-open-on-hover .dropdown-menu {
+#tc-sn .dropdown-menu {
   display: block !important;
 }
 
@@ -2174,6 +2169,36 @@ select:-webkit-autofill {
   -ms-transform: translate(100%, 0);
 }
 
+/* Mobile */
+.branding__container_new {
+  /* Use classes instead */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.branding__container_new .branding,
+.branding__container_new .mobile-utils__wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-shrink: 1;
+}
+
+.branding__container_new .branding {
+  max-width: 70%;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
 .primary-navbar__wrapper-new .primary-nav__utils {
   display: none;
 }
@@ -2231,6 +2256,11 @@ select:-webkit-autofill {
   }
   .primary-navbar__wrapper-new.row .branding__container_new .branding {
     max-width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
   .primary-navbar__wrapper-new.row .primary-nav__utils li,
   .primary-navbar__wrapper-new.row li {
@@ -3182,7 +3212,7 @@ cite::first-child {
   transform-style: preserve-3d;
 }
 
-.menu-item.show > span .caret__dropdown-toggler i {
+.menu-item.show > a > .caret__dropdown-toggler i {
   -webkit-transform: translateZ(0) rotate(-180deg);
   -moz-transform: translateZ(0) rotate(-180deg);
   transform: translateZ(0) rotate(-180deg);

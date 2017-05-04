@@ -13,7 +13,8 @@
     'walker'          => czr_fn_get( 'walker' ),
     'menu_id'         => czr_fn_get( 'menu_id' ),
     'link_before'     => '<span>',
-    'link_after'      => '</span>'
+    'link_after'      => '</span>',
+    'dropdown_type'   => czr_fn_get( 'dropdown_type' )
   ) );
   ?>
 </div>

@@ -1,5 +1,12 @@
 <?php
 class CZR_menu_model_class extends CZR_Model {
+  protected $theme_location;
+  protected $menu_id;
+  protected $def_menu_class;
+  protected $menu_class;
+  protected $fallback_cb;
+  protected $walker;
+  protected $dropdown_type;
 
   /**
   * @override
@@ -16,7 +23,8 @@ class CZR_menu_model_class extends CZR_Model {
         'def_menu_class'      => array('nav'),
         'menu_class'          => array(),
         'fallback_cb'         => array( $this, 'czr_fn_page_menu' ),
-        'walker'              => ''
+        'walker'              => '',
+        'dropdown_type'       => esc_attr( czr_fn_get_opt( 'tc_menu_type' ) )
     );
 
     return $_preset;
@@ -44,9 +52,12 @@ class CZR_menu_model_class extends CZR_Model {
   }
 
   protected function czr_fn__get_element_class() {
-    return array( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ?  'czr-open-on-hover' : 'czr-open-on-click',
+    $_submenu_opening_class = 'hover' == $this -> dropdown_type ? 'czr-open-on-hover' : 'czr-open-on-click';
+    $_submenu_opening_class = !$this -> dropdown_type ? '' : $_submenu_opening_class;
+
+    return array_filter( array( $_submenu_opening_class,
       $this->element_class //maybe passed
-    );
+    ) );
   }
 
 
@@ -58,7 +69,14 @@ class CZR_menu_model_class extends CZR_Model {
    * @return string html menu
    */
   function czr_fn_page_menu( $args = array() ) {
-    $defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
+    $defaults = array(
+      'sort_column' => 'menu_order, post_title',
+      'menu_class' => 'menu',
+      'echo' => true,
+      'link_before' => '',
+      'link_after' => ''
+    );
+
     $args = wp_parse_args( $args, $defaults );
 
     $args = apply_filters( 'wp_page_menu_args', $args );

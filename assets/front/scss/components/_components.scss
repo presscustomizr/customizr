@@ -491,7 +491,7 @@ cite {
   display: block;
   @include transition (all 0.3s ease);
   @include transform-style( preserve-3d );
-  .menu-item.show > span & {
+  .menu-item.show > a > & {
     @include transform( translateZ(0) rotate(-180deg));
   }
 }

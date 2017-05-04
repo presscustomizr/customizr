@@ -144,19 +144,16 @@ $secondary-color-dark   : $grey;
 
   [class*=-nav__menu] {
 
-    & > li > span > a, .caret__dropdown-toggler {
+    & > li > a, .caret__dropdown-toggler {
       color: $primary-color;
     }
 
-    & > li:not(.dropdown-item) > span > a {
-     /* & > span:first-of-type { @include underlined ($primary-color, 2px); }
-      .secondary-nav__nav & > span:first-of-type { @include underlined ($primary-color, 1px); }*/
+    & > li:not(.dropdown-item) > a {
       @include underlined ($primary-color, 2px);
       .secondary-nav__nav & { @include underlined ($primary-color, 1px); }
     }
-    & > li.show > span > a, &  li.current-active > span > a {
+    & > li.show > a, &  li.current-active > a {
       color: $secondary-color;
-      /* & > span:first-of-type { @include underlined_highlight_before($primary-color) } */
       @include underlined_highlight_before($primary-color);
     }
     &  li.show {

@@ -18,31 +18,8 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       $this -> czr_location = $_location;
 
       add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
-      /* Since WP 3.6.0 */
-      add_filter( 'nav_menu_link_attributes', array($this, 'czr_fn_process_menu_links'), 10, 4 );
     }
 
-
-    /**
-    * hook : nav_menu_link_attributed
-    */
-    function czr_fn_process_menu_links( $atts, $item, $args, $depth ) {
-      if (  'CZR_nav_walker' != get_class( (object)$args->walker ) )
-        return $atts;
-
-      if ( $item->is_dropdown ) {
-        if ( ! apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location ) ) {
-          if (  ! $atts[ 'href' ] || '#' == $atts['href'] ) {
-            $atts[ 'href' ]          = '#';
-            $atts[ 'data-toggle' ]   = "czr-dropdown";
-            $atts[ 'role' ]          = "button";
-            $atts[ 'aria-haspopup' ] = "true";
-            $atts[ 'aria-expanded' ] = "false";
-          }
-        }
-      }
-      return $atts;
-    }
 
     /**
     * hook : czr_nav_menu_css_class
@@ -92,21 +69,46 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);
 
-      //wrap link into a span
-      $item_html   = str_replace( '<a', '<span><a', $item_html);
-
       if ( $item->is_dropdown ) {
-        $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
-        $_is_link           = FALSE === strpos( $item_html, 'href="#"');
+        //3 cases:
+        //1 - dropdown on hover
+        //2 - dropdown on click
+        //3 - no dropdown ( sidenav )
+        switch( $args->dropdown_type ) {
 
-        if ( $_dropdown_on_hover ||  ( ! ( $_dropdown_on_hover || $_is_link ) ) )
-          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
-        elseif ( ! $_dropdown_on_hover && $_is_link )
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
+          case 'hover' :
+                    $item_html = str_replace(
+                      array( '<a', '</a>' ),
+                      array(
+                        '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
+                        '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
+                      ),
+                      $item_html
+                    );
+                    break;
+
+          case 'click' :
+                    $item_html = str_replace(
+                      array( '<a', '</a>' ),
+                      array(
+                        '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
+                        '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
+                      ),
+                      $item_html
+                    );
+                    break;
+
+          default :
+                   $item_html = str_replace(
+                     '</a>',
+                     '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>',
+                     $item_html
+                   );
+
+        }//end switch
+
 
       }else {
-        //close span
-        $item_html   = str_replace( '</a>', '</a></span>', $item_html);
 
         if (stristr( $item_html, 'li class="divider' )) {
           $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);
@@ -131,6 +133,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       //let the parent do the rest of the job !
       parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output);
     }
+
   }//end of class
 endif;
 
@@ -213,21 +216,48 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       //since the &$output is passed by reference, it will modify the value on the fly based on the parent method treatment
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
-      //wrap link into a span
-      $item_html   = str_replace( '<a', '<span><a', $item_html);
 
       if ( $args['has_children'] ) {
 
-        $_dropdown_on_hover = apply_filters( 'czr_force_open_on_hover', ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_get_opt( 'tc_menu_type' ) ) ), $this -> czr_location );
+          //3 cases:
+          //1 - dropdown on hover
+          //2 - dropdown on click
+          //3 - no dropdown ( sidenav )
+          switch( $args[ 'dropdown_type' ] ) {
 
-        if ( $_dropdown_on_hover )
-          $item_html = str_replace( '</a>', '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a></span>', $item_html );
-        else
-          $item_html = str_replace( '</a>', '</a><span class="caret__dropdown-toggler" data-toggle="czr-dropdown" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="icn-down-small"></i></span></span>', $item_html );
+            case 'hover' :
+                      $item_html = str_replace(
+                        array( '<a', '</a>' ),
+                        array(
+                          '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
+                          '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
+                        ),
+                        $item_html
+                      );
+                      break;
+
+            case 'click' :
+                      $item_html = str_replace(
+                        array( '<a', '</a>' ),
+                        array(
+                          '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
+                          '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
+                        ),
+                        $item_html
+                      );
+                      break;
+
+            default :
+                     $item_html = str_replace(
+                       '</a>',
+                       '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>',
+                       $item_html
+                     );
+
+          }//end switch
+
 
       }else {
-        //close span
-        $item_html   = str_replace( '</a>', '</a></span>', $item_html);
 
         if (stristr( $item_html, 'li class="divider' )) {
           $item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU' , '' , $item_html);

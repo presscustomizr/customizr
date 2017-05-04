@@ -22,7 +22,8 @@
     overflow-y: auto;
   }
 
-  .czr-open-on-hover .dropdown-menu {
+  /* Always expand dropdowns */
+  .dropdown-menu {
     display: block !important;
   }
 

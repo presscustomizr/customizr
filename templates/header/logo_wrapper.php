@@ -12,8 +12,8 @@
         czr_fn_render_template( 'header/logo', array( 'model_id' => 'sticky_logo' ) );
     ?>
   </a>
-  <?php
-  if ( czr_fn_has( 'tagline' ) )
-    czr_fn_render_template( 'header/tagline' );
-  ?>
 </div>
+<?php
+if ( czr_fn_has( 'tagline' ) )
+  czr_fn_render_template( 'header/tagline' );
+?>

@@ -25,6 +25,7 @@
               'model_id'   => 'sidenav_menu',
               'model_args' => array(
                 'element_class' => 'primary-nav__menu-wrapper',
+                'dropdown_type' => '',
                 'menu_class'    => array( 'primary-nav__menu', 'side', 'nav__menu' )
               )
             ));
