@@ -333,6 +333,7 @@ var czrapp = czrapp || {};
       this.EVENT_KEY = '.' + this.DATA_KEY;
       this.Event     = {
         PLACE     : 'place'+ this.EVENT_KEY,
+        RESIZE    : 'tc-resize',
         SHOWN     : 'shown' + this.EVENT_KEY,
         HIDDEN    : 'hidden' + this.EVENT_KEY,
       }
@@ -345,7 +346,6 @@ var czrapp = czrapp || {};
 
       this.ClassName = {
         DROPDOWN         : 'dropdown-menu',
-        DROPDOWN_WRAPPER : 'czr-dropdown-menu',
         SHOW             : 'show',
         PARENTS          : 'menu-item-has-children'
       };
@@ -402,94 +402,41 @@ var czrapp = czrapp || {};
       var self = this,
           doingAnimation = false;
 
-      _handle_visibility();
+      czrapp.$_body
+          //on resize trigger Event.PLACE on active dropdowns
+          .on( this.Event.RESIZE, function() {
 
-      //Util
-      function _is_visible( _el ) {
-        var $_this        = $(_el),
-            _this_offset  = $_this.offset(),
-            $_parent      = $_this.closest('.nav__menu');
+                  if ( ! doingAnimation ) {
+                    doingAnimation = true;
+                    window.requestAnimationFrame(function() {
+                      //trigger a placement on the open dropdowns
+                      $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW)
+                          .trigger(self.Event.PLACE);
+                      doingAnimation = false;
+                    });
+                  }
 
-        if ( !$_parent.length ) {
-          return true;
-        }
+          })
+          //snake bound on menu-item shown and place
+          .on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
 
-        if ( !$_this.is(':visible')  ) {
-          return false;
-        }
+            _do_snake( $(this), evt );
 
-        if( _this_offset.left + $_this.outerWidth() > czrapp.$_window.width() ||
-            _this_offset.top >= $_parent.offset().top + $_parent.outerHeight() - 5 ) {
-          return false;
-        }
-        return true;
-      }
-
-      function _handle_visibility() {
-        var $_active_menu_items       = $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW),
-            $_active_first_menu_items = $( '[class*=sl-] .primary-nav__menu > .'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW );
-            $_elements_to_hide        = $( '[class*=sl-] .primary-nav__menu > .menu-item').czrReverse();
-
-        //Hide the non visible
-        //Needed only when single line
-        $_elements_to_hide.each( function() {
-          var $_this = $(this);
-          $_this.removeClass( 'hidden-lg-up' );
-          if ( !_is_visible( this ) ) {
-            $_this.addClass( 'hidden-lg-up' );
-          }
-        });
-
-        //close the non visible
-        //Needed only when single line
-        $_active_first_menu_items.each( function() {
-          var $_this = $(this);
-          if ( !_is_visible( this ) ) {
-            $_this.removeClass(self.ClassName.SHOW);
-          }
-        });
-        //this will trigger the snake
-        $_active_menu_items.trigger(self.Event.PLACE);
-      }
-
-      czrapp.$_body.on( 'tc-resize', function() {
-        if ( ! doingAnimation ) {
-          doingAnimation = true;
-          window.requestAnimationFrame(function() {
-            _handle_visibility();
-            doingAnimation = false;
           });
-        }
-      });
-
-      //snake bound on menu-item shown and "resize" (see _handle_visibility)
-      czrapp.$_body.on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
-        _do_snake( $(this), evt );
-      });
 
       //snake
       function _do_snake( $_el, evt ) {
+
         var $_this       = $_el;
 
         if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.SHOW) )
           return;
 
-        var $_dropdown_wrapper = $_this.children( '.'+self.ClassName.DROPDOWN_WRAPPER ).not('.'+self.ClassName.DROPDOWN);
-            $_dropdown         = $_dropdown_wrapper.length ? $_dropdown_wrapper.children('.'+self.ClassName.DROPDOWN ) : $_this.children( '.'+self.ClassName.DROPDOWN );
+        var $_dropdown         = $_this.children( '.'+self.ClassName.DROPDOWN );
 
         if ( !$_dropdown.length )
           return;
 
-        //wrapper's (first-level) width must be at maximum the li width, and not in mobiles
-        /*
-         if (  $_dropdown_wrapper.length && $_dropdown_wrapper.closest('.menu-item-has-children').not('.czr-dropdown-submenu').length ) {
-          if ( 'static' != $_dropdown.css('position') ) {
-            //use of getBoundingClientRect because outerWidth rounds
-            $_dropdown_wrapper.css( 'width', $_this[0].getBoundingClientRect().width );
-          }else
-            $_dropdown_wrapper.css( 'width', '');
-         }
-        */
         //stage: if not visible $ isn't able to get width, offset
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 
@@ -497,18 +444,27 @@ var czrapp = czrapp || {};
 
         //unstage if staged
         $_dropdown.css( 'zIndex', '').css('display', '');
+
       }
+
 
       function _maybe_move( $_dropdown ){
         //reset
         $_dropdown.removeClass( 'open-left open-right' );
         if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() ) {
+
           $_dropdown.addClass( 'open-left' );
+
         } if ( $_dropdown.offset().left < 0 ) {
+
           $_dropdown.addClass( 'open-right' );
+
         }
       }
+
     }
+
+
   };//_methods{}
 
   czrapp.methods.Czr_Dropdowns = {};

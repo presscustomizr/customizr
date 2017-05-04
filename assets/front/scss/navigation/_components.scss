@@ -64,19 +64,3 @@
        @include transform(rotateZ(0));
     }
 }
-/* Dropdowns */
-.show > .czr-dropdown-menu > .dropdown-menu {
-  display: block;
-}
-/* Test */
-//@media (min-width: 992px)
-@include media-breakpoint-up(lg){
-  .regular .czr-dropdown-menu {
-    position: absolute;
-  }
-  .regular .dropdown-menu .czr-dropdown-menu {
-      top: 55%;
-      left: 0;
-      width: 100%;
-  }
-}

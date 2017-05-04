@@ -80,11 +80,11 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<div class=\"czr-dropdown-menu\"><ul class=\"dropdown-menu\">\n";
+      $output .= "\n<ul class=\"dropdown-menu\">\n";
     }
 
     function end_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "</ul></div>\n";
+      $output .= "</ul>\n";
     }
 
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
@@ -201,11 +201,11 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
 
     function start_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "\n<div class=\"czr-dropdown-menu\"><ul class=\"dropdown-menu\">\n";
+      $output .= "\n<ul class=\"dropdown-menu\">\n";
     }
 
     function end_lvl(&$output, $depth = 0, $args = array()) {
-      $output .= "</ul></div>\n";
+      $output .= "</ul>\n";
     }
 
     function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {

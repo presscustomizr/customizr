@@ -1436,23 +1436,6 @@ select:-webkit-autofill {
   transform: rotateZ(0);
 }
 
-/* Dropdowns */
-.show > .czr-dropdown-menu > .dropdown-menu {
-  display: block;
-}
-
-/* Test */
-@media (min-width: 992px) {
-  .regular .czr-dropdown-menu {
-    position: absolute;
-  }
-  .regular .dropdown-menu .czr-dropdown-menu {
-    top: 55%;
-    left: 0;
-    width: 100%;
-  }
-}
-
 /* NEW */
 .primary-navbar__wrapper {
   margin: 0 -1.25rem;
@@ -2347,9 +2330,6 @@ select:-webkit-autofill {
 
 @media (max-width: 991px) {
   .not-hidden-md-down.secondary-navbar__wrapper .caret__dropdown-toggler {
-    display: none !important;
-  }
-  .not-hidden-md-down.secondary-navbar__wrapper .czr-dropdown-menu {
     display: none !important;
   }
   .not-hidden-md-down.secondary-navbar__wrapper .nav__menu > li {

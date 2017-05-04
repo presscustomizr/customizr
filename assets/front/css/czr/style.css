@@ -15,9 +15,6 @@
 /* end HEADER HACK */
 
 /* VARIOUS */
-#tc-page-wrap {
-  z-index: 1;
-}
 
 /*.grid img,
 img.wp-post-image,
@@ -263,9 +260,6 @@ input[type="submit"] {
   font-size: 1rem;
 }
 */
-form.czr-form .coupon.czr-focus:not(.in-focus) input {
-  color: inherit;
-}
 
 /* header secondary menu font-size fix
 replace
@@ -280,6 +274,7 @@ replace
 .secondary-navbar__wrapper {
   font-size: 0.83333em;
 }
+/*
 .secondary-navbar__wrapper .czr-dropdown > .dropdown-menu {
   font-size: 0.8em;
 }
