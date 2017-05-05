@@ -17,10 +17,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function __construct () {
                self::$instance =& $this;
 
-               $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
-
-               $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
-               $this->_minify_css              = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
+               add_action( 'after_setup_theme'                   , array( $this, 'czr_fn_setup_properties' ), 20 );
 
                add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
 
@@ -30,6 +27,19 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
 
          }
+
+
+         //hook: after_setup_theme
+         function czr_fn_setup_properties() {
+               
+               $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+
+               $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
+               $this->_minify_css              = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
+
+         }
+
+
 
          /**
          * Registers and enqueues Customizr stylesheets
@@ -131,17 +141,17 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                $skin_dark_color               = czr_fn_darken_hex( $skin_color, '12%' );
                $skin_darkest_color            = czr_fn_darken_hex( $skin_color, '20%' );
                $skin_light_color              = czr_fn_lighten_hex( $skin_color, '12%' );
-               $skin_lightest_color           = czr_fn_lighten_hex( $skin_color, '20%' );
+               $skin_lightest_color           = czr_fn_lighten_hex( $skin_color, '25%' );
 
                //shaded
-               $skin_light_color_shade_high   = czr_fn_hex2rgba( $skin_light_color, 0.4, $array = false, $make_prop_value = true );
-               $skin_darkest_color_shade_high = czr_fn_hex2rgba( $skin_darkest_color, 0.4, $array = false, $make_prop_value = true );
-               $skin_darkest_color_shade_low  = czr_fn_hex2rgba( $skin_darkest_color, 0.7, $array = false, $make_prop_value = true);
+               $skin_lightest_color_shade_high = czr_fn_hex2rgba( $skin_lightest_color, 0.4, $array = false, $make_prop_value = true );
+               $skin_darkest_color_shade_high  = czr_fn_hex2rgba( $skin_darkest_color, 0.4, $array = false, $make_prop_value = true );
+               $skin_darkest_color_shade_low   = czr_fn_hex2rgba( $skin_darkest_color, 0.8, $array = false, $make_prop_value = true);
 
                //LET'S DANCE
                //start computing style
                $skin                          = array();
-               $glue                          = $this->_minify_css ? '' : "\n";
+               $glue                          = $this->_minify_css || esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
                $skin_style_map                = array(
 
@@ -240,8 +250,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                            )
                      ),
 
-                     'skin_light_color_shade_high' => array(
-                           'color'  => $skin_light_color_shade_high,
+                     'skin_lightest_color_shade_high' => array(
+                           'color'  => $skin_lightest_color_shade_high,
                            'rules'  => array(
                                  'background-color' => array(
                                        '.post-navigation',
@@ -306,6 +316,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        'a.czr-format-link:hover',
                                        '.format-link.hover a.czr-format-link',
                                        'input[type=submit]:hover',
+                                       '.tabs .nav-link:hover', 
+                                       '.tabs .nav-link.active', 
+                                       '.tabs .nav-link.active:hover', 
+                                       '.tabs .nav-link.active:focus' 
                                  ),
 
                                  'border-color' => array(
@@ -340,7 +354,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
                                        'a.czr-format-link::before',
                                        '.comment-author a::before',
-                                       '.comment-link::before'
+                                       '.comment-link::before',
+                                       '.tabs .nav-link.active::before'
                                  )
                            )
                      ),

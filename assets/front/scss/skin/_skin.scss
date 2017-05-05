@@ -1,9 +1,17 @@
-/* Skinify the entry-metas on hover */
+//definitions
+%skin-darkest-color {
+  color: $skin-darkest
+}
+%skin-darkest-backround-color {
+  background-color: $skin-darkest;
+}
+
+
 .entry-meta a:not(.btn) {
     &:hover {
       color: $skin-link-color-hover;
       span::after, span::before {
-        background-color: $skin-link-color-hover;
+        @extend %skin-darkest-backround-color;
       }
     }
 }
@@ -18,7 +26,7 @@
       color: $skin-link-color-hover;
     }
     &:hover {
-      background-color: $skin-link-color-hover;
+      @extend %skin-darkest-backround-color;
     }
 }
 
@@ -52,7 +60,7 @@
       color: $skin-link-color-hover;
     }
     .widget:not(.widget_shopping_cart) a:not(.btn):before {
-      background-color: $skin-link-color-hover;
+      @extend %skin-darkest-backround-color;
     }
 }
 
@@ -61,7 +69,7 @@
 }
 
 .post-navigation {
-  background-color:  rgba($skin-light, 0.4);
+  background-color:  rgba($skin-lightest, 0.4);
 }
 
 //slider dots
@@ -76,12 +84,25 @@ a.czr-format-link {
     color: $skin-link-color-hover;
   }
   &::before {
-    background-color: $skin-link-color-hover;
+    @extend %skin-darkest-backround-color;
   }
 }
 
-//comments
+//comments and active tabs underline
 .comment-author a::before,
 .comment-link::before {
-  background-color: $skin-link-color-hover;
+  @extend %skin-darkest-backround-color;
+}
+
+
+.tabs .nav-link {
+
+      &:hover, &.active, &.active:hover, &.active:focus {
+        @extend %skin-darkest-color;
+      }
+
+      &.active::before {
+        @extend %skin-darkest-backround-color;
+      }
+
 }

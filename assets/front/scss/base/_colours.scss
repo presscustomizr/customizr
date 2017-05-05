@@ -1,11 +1,12 @@
 
 
-$skin                     : #B4B4B4;
+//$skin                     : #B4B4B4;
+$skin                     : #5a5a5a;
 
 $skin-dark                : darken( $skin, 12% );
 $skin-darkest             : darken( $skin, 20% );
 $skin-light               : lighten( $skin, 12% );
-$skin-lightest            : lighten( $skin, 20% );
+$skin-lightest            : lighten( $skin, 25% );
 
 $skin-link-color          : $skin;
 $skin-link-color-hover    : $skin-darkest;

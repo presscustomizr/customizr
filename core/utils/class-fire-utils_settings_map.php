@@ -232,7 +232,7 @@ function czr_fn_skin_option_map( $get_default = null ) {
           ),
           /*new */
           'tc_skin_color' => array(
-                            'default'     => '#B4B4B4',
+                            'default'     => '#5a5a5a',
                             'control'     => 'WP_Customize_Color_Control',
                             'label'       => __( 'Skin color' , 'customizr' ),
                             'section'     => 'skins_sec',

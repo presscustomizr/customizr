@@ -30,7 +30,7 @@ function czr_fn_wp_filters() {
 * @since Customizr 3.3.0
 */
 function czr_fn_parse_imgs( $_html ) {
-    $_bool = is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('tc_disable_img_smart_load_mobiles', false ) );
+    $_bool = is_feed() || is_preview() || ( wp_is_mobile() && apply_filters( 'tc_disable_img_smart_load_mobiles', false ) );
 
     if ( apply_filters( 'tc_disable_img_smart_load', $_bool, current_filter() ) )
       return $_html;

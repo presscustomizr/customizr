@@ -118,7 +118,7 @@
 
 // .btn modifier
 .btn-skin-darkest-shaded {
-  background-color: rgba($skin-darkest, 0.7);
+  background-color: rgba($skin-darkest, 0.8);
   border-color: transparent;
   color: $white;
 
@@ -130,7 +130,7 @@
   &.inverted {
     background-color: rgba($skin-darkest, 0.4);
     &:hover, &:focus, &:active {
-      background-color: rgba($skin-darkest, 0.7);
+      background-color: rgba($skin-darkest, 0.8);
     }
   }
 }
@@ -600,11 +600,9 @@ nav li.dropdown-item:before {
         @include transform(scale(0));
       }
       &:hover, &.active, &.active:hover, &.active:focus {
-        color:$black;
         background-color: transparent;
       }
       &.active::before {
-        background-color: $black;
         @include transform(scale(1));
       }
   }
