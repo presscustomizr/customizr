@@ -98,12 +98,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
                     );
                     break;
 
-          default :
-                   $item_html = str_replace(
-                     '</a>',
-                     '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>',
-                     $item_html
-                   );
+          //no caret for case 3
 
         }//end switch
 
@@ -247,12 +242,7 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
                       );
                       break;
 
-            default :
-                     $item_html = str_replace(
-                       '</a>',
-                       '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>',
-                       $item_html
-                     );
+            //no caret for case 3
 
           }//end switch
 

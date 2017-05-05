@@ -3,29 +3,29 @@
  * The template for displaying the topnav
 */
 ?>
-<div class="secondary-navbar__wrapper row <?php czr_fn_echo('element_class') ?> flex-lg-nowrap justify-content-lg-between align-items-lg-start" <?php czr_fn_echo('element_attributes') ?>>
-  <?php if ( czr_fn_has( 'secondary_menu' ) ) :?>
+<div class="topbar-navbar__wrapper row <?php czr_fn_echo('element_class') ?> flex-lg-nowrap justify-content-lg-between align-items-lg-start" <?php czr_fn_echo('element_attributes') ?>>
+  <?php if ( czr_fn_has( 'tobar_menu' ) ) :?>
     <?php if ( czr_fn_get( 'has_mobile_button' ) ) :?>
       <div class="hamburger-toggler__wrapper col-12 float-left hidden-lg-up">
         <?php
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(
-              'data_attributes' => 'data-toggle="collapse" data-target="#secondary-nav"',
+              'data_attributes' => 'data-toggle="collapse" data-target="#topbar-nav"',
             )
           ));
         ?>
       </div>
     <?php endif ?>
-    <div class="secondary-nav__container">
-      <nav id="secondary-nav" class="secondary-nav__nav float-left <?php czr_fn_echo('nav_class') ?>">
+    <div class="topbar-nav__container col col-auto">
+      <nav id="topbar-nav" class="topbar-nav__nav float-left <?php czr_fn_echo('nav_class') ?>">
         <?php
           czr_fn_render_template( 'header/menu', array(
-            'model_id' => 'secondary_menu',
+            'model_id' => 'tobar_menu',
             'model_args' => array(
-              'theme_location' => 'secondary',
-              'element_class' => 'secondary-nav__menu-wrapper',
+              'theme_location' => 'topbar',
+              'element_class' => 'topbar-nav__menu-wrapper',
               'menu_class'    => czr_fn_get('menu_class'),
-              'menu_id'       => 'secondary-menu'
+              'menu_id'       => 'topbar-menu'
             )
           ));
         ?>
@@ -33,7 +33,7 @@
     </div>
   <?php endif ?>
   <?php if ( czr_fn_has('header_social_block') ) : ?>
-    <div class="secondary-nav__socials social-links hidden-md-down">
+    <div class="topbar-nav__socials social-links hidden-md-down col col-auto">
       <?php czr_fn_render_template( 'modules/common/social_block' ) ?>
     </div>
   <?php endif ?>

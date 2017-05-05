@@ -56,6 +56,10 @@ var czrapp = czrapp || {};
 
         _debounced_addOpenClass = _.debounce( function() {
 
+          //do nothing if menu is mobile
+          if( 'static' == $_el.find( '.'+self.ClassName.DROPDOWN ).css( 'position' ) )
+            return false;
+
           if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
             $_el.addClass(self.ClassName.SHOW)
                 .trigger(self.Event.SHOWN);
@@ -116,9 +120,15 @@ var czrapp = czrapp || {};
       //This happens before the closing occurs when dropdown on click and the dropdown on hover (see the debounce in this case)
       czrapp.$_body.on( this.Event.TAP + ' ' + this.Event.CLICK, this.Selector.DATA_SHOWN_TOGGLE, function(evt) {
 
+            var $_el = $(this);
+
+            //do nothing if menu is mobile
+            if( 'static' == $_el.find( '.'+self.ClassName.DROPDOWN ).css( 'position' ) )
+              return false;
+
             evt.preventDefault();
 
-            var $_el = $(this);
+
             if ( '#' != $_el.attr( 'href' ) ) {
               window.location = $_el.attr('href');
             }
@@ -219,10 +229,6 @@ var czrapp = czrapp || {};
  * --------------------------------------------------------------------------
  */
 +function () {
-  //Util
-  jQuery.fn.czrReverse = function() {
-    return this.pushStack(this.get().reverse(), arguments);
-  };
 
   var _createClass = function () {
    function defineProperties(target, props) {
@@ -279,7 +285,6 @@ var czrapp = czrapp || {};
     };
 
     var Selector = {
-      BACKDROP: '.czr-dropdown-backdrop',
       DATA_TOGGLE: '[data-toggle="czr-dropdown"]',
       FORM_CHILD: '.czr-dropdown form',
       MENU: '.dropdown-menu',
@@ -310,6 +315,10 @@ var czrapp = czrapp || {};
         if (this.disabled || $(this).hasClass(ClassName.DISABLED)) {
           return false;
         }
+
+        //do nothing if menu is mobile
+        if( 'static' == $(this).next( Selector.MENU ).css( 'position' ) )
+          return true;
 
         var parent = czrDropdown._getParentFromElement(this);
         var isActive = $(parent).hasClass(ClassName.SHOW);
@@ -382,6 +391,7 @@ var czrapp = czrapp || {};
       };
 
       czrDropdown._clearMenus = function _clearMenus(event, _parentsToNotClear ) {
+
         if (event && (event.which === RIGHT_MOUSE_BUTTON_WHICH || event.type === 'keyup' && event.which !== TAB_KEYCODE)) {
           return;
         }

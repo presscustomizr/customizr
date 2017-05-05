@@ -546,6 +546,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           /* This theme uses wp_nav_menu() in one location. */
           register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
           register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
+          register_nav_menu( 'topbar' , __( 'Topnav (horizontal) Menu' , 'customizr' ) );
       }
 
 

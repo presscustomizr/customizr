@@ -109,8 +109,11 @@ class CZR_header_model_class extends CZR_Model {
       array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
       array( 'model_class' => 'header/title', 'id' => 'title' ),
       //secondary and primary menu registered here because of the extending
-      array( 'id' => 'navbar_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ) ),
-      array( 'id' => 'secondary_menu', 'model_class' => 'header/menu' ),
+      array( 'id' => 'navbar_primary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ) ),
+      array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_secondary_menu' ) ),
+
+      array( 'id' => 'topbar_menu', 'model_class' => 'header/menu' ),
+
       array( 'id' => 'sidenav_menu', 'model_class' => 'header/menu' ),
 
       //here because it acts on the header class

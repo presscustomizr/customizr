@@ -14,4 +14,8 @@ class CZR_navbar_wrapper_model_class extends CZR_Model {
 
     return $model;
   }
+/*
+  function czr_fn_get_navbar_menu_id() {
+    czr_fn_is_possible( 'navbar_secondary_menu' )
+  }*/
 }

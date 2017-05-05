@@ -88,12 +88,11 @@
     }
     .dropdown-menu .dropdown-item {
         padding: $base-line-height/2 $base-line-height-root/2;
+        margin: 0;
     }
-    .dropdown-menu .dropdown-item:first-of-type {
-        margin-top: $base-line-height;
-    }
+
     .dropdown-menu .dropdown-item:last-of-type {
-        margin-bottom: $base-line-height/2;
+        padding-bottom: 0;
     }
 
     li { display: block; width:100%; position: relative; height: auto }

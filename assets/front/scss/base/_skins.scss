@@ -20,20 +20,6 @@ $secondary-color-dark   : $grey;
        $secondary-color : $grey-dark;
      }
 
-/* overlays skin */
-  .overlay {
-    background: rgba($background-color, 0.98);
-    color: $primary-color;
-    a { color: $secondary-color-light; }
-    a:hover { color: $primary-color; }
-    .nav__container {
-      nav {
-        .primary-nav__menu > li { border-bottom: 0.5px solid rgba($secondary-color-light, 0.25); }
-        a {  @include underlined ( $primary-color, 1px ); }
-      }
-    }
-  }
-/* end overlays skins */
 
   .ham__navbar-toggler.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
   .ham-toggler-menu__span, .caret__dropdown-toggler__span {
@@ -42,7 +28,7 @@ $secondary-color-dark   : $grey;
       }
   }
 
-    .secondary-navbar__wrapper .socials {
+    .topbar-navbar__wrapper .socials {
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease); }
       a:hover { color: $secondary-color-light; }
     }
@@ -51,29 +37,29 @@ $secondary-color-dark   : $grey;
 
   #tc-sn .tc-sn-inner,
   #sticky-placeholder,
-  .topnav_navbars__wrapper  {
+  .header-navbars__wrapper  {
     background: $background-color;
   }
-  .topnav_navbars__wrapper  {
+  .header-navbars__wrapper  {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
   @include media-breakpoint-up(lg) {
     .header-transparent {
       #sticky-placeholder { background: transparent }
-      .topnav_navbars__wrapper {
+      .header-navbars__wrapper {
         background: transparent;
         border-bottom: 1px solid rgba($primary-color, 0.09);
       }
     }
   }
 
-  .secondary-navbar__wrapper .hamburger-toggler__container,
-  .secondary-navbar__wrapper {
+  .topbar-navbar__wrapper .hamburger-toggler__container,
+  .topbar-navbar__wrapper {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
 
   header:not(.header-transparent) {
-    .topnav_navbars__wrapper {
+    .header-navbars__wrapper {
       @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
     }
   }
@@ -136,34 +122,32 @@ $secondary-color-dark   : $grey;
   }
 
    .mobile-woocart__container a { color:$primary-color; }
-   .hamburger-toggler__container,
-     .mobile-woocart__container {
-        @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1);
 
-     }
+    .mobile-utils__wrapper {
+      @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1);
+    }
 
-  [class*=-nav__menu] {
+  [class*=nav__menu] {
 
-    & > li > a, .caret__dropdown-toggler {
+    & li > a, .caret__dropdown-toggler {
       color: $primary-color;
     }
 
-    & > li:not(.dropdown-item) > a {
+    & li > a {
       @include underlined ($primary-color, 2px);
-      .secondary-nav__nav & { @include underlined ($primary-color, 1px); }
+      .topbar-nav__nav & { @include underlined ($primary-color, 1px); }
     }
-    & > li.show > a, &  li.current-active > a {
+    & li.show > a, &  li.current-active > a {
       color: $secondary-color;
       @include underlined_highlight_before($primary-color);
     }
-    &  li.show {
+    & li.show {
       .caret__dropdown-toggler__span:after,
       .caret__dropdown-toggler__span:before  {
         background: $secondary-color-dark;
       }
     }
     .dropdown-menu a { color: $primary-color; }
-    .dropdown-menu a:hover, li.show > span > a  { color: $secondary-color;  }
     .dropdown-item  a { color: $secondary-color; }
     .dropdown-item:hover a { color: $primary-color; }
 
@@ -174,7 +158,7 @@ $secondary-color-dark   : $grey;
   }
 
   .tc-sn .primary-nav__menu {
-    & > li {
+    & > li:not(:last-of-type) {
         border-bottom: 1px solid rgba($primary-color, 0.075);
     }
   }
@@ -184,7 +168,7 @@ $secondary-color-dark   : $grey;
         border-top: 1px solid rgba($primary-color, 0.075);
      }
 
-    .secondary-navbar__wrapper,
+    .topbar-navbar__wrapper,
     .primary-nav__container,
     .branding__container {
       background: rgba($background-color, 1);

@@ -3,16 +3,13 @@
 .primary-navbar__wrapper {
   margin: 0 -1*$base-line-height-root;
 }
-.secondary-navbar__wrapper .menu-item a {
+.topbar-navbar__wrapper .menu-item a {
   padding-top: .425rem;
   padding-bottom: .425rem;
 }
 
-.secondary-navbar__wrapper {
-   // display:block; //flex-hurt
+.topbar-navbar__wrapper {
     vertical-align: middle;
-    padding: 0 $base-line-height-root;
-    margin: 0 -1*$base-line-height-root;
     position: relative;
     & > div {
       background: inherit;
@@ -26,7 +23,7 @@
       vertical-align: middle;
     }
 }
-.secondary-nav__nav {
+.topbar-nav__nav {
   padding-top: $base-line-height/2;
   padding-bottom: $base-line-height/2;
     ul a {
@@ -35,11 +32,9 @@
          vertical-align: middle;
   }
 }
-.secondary-nav__socials {
-   text-align:right;
-  .socials {
-    float:right;
-  }
+.topbar-nav__socials {
+  padding-top: $base-line-height/2;
+  padding-bottom: $base-line-height/2;
 }
 
 
@@ -299,7 +294,7 @@
   .header-transparent & {
     @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
   }
-  .secondary-navbar__wrapper  { display:none; }
+  .topbar-navbar__wrapper  { display:none; }
 }
 
 @include media-breakpoint-up(lg) {
@@ -375,7 +370,7 @@
                     margin-right:0; margin-left:0;
                  }
              }
-             @at-root [class*=navbar-toggleable-] .secondary-nav__nav .nav__menu {
+             @at-root [class*=navbar-toggleable-] .topbar-nav__nav .nav__menu {
                    width:100%;
                    display: block;
                    & > li + li { display: block; margin-left: 0; margin-right: 0 }
@@ -387,10 +382,10 @@
           }
 
     }
-    @at-root .secondary-navbar__wrapper[class*=navbar-toggleable-] .secondary-nav__container,
+    @at-root .topbar-navbar__wrapper[class*=navbar-toggleable-] .topbar-nav__container,
     .primary-nav__container .primary-nav__nav  { width:100%; text-align:left;}
 
-    @at-root .secondary-navbar__wrapper[class*=navbar-toggleable-] .secondary-nav__nav .nav__menu li,
+    @at-root .topbar-navbar__wrapper[class*=navbar-toggleable-] .topbar-nav__nav .nav__menu li,
     .primary-nav__container .primary-nav__nav  li { display: block; width:100%; text-align:left; }
 
     .primary-nav__container .primary-nav__utils .socials { margin-left:0; margin-top: $base-line-height*2; }
@@ -407,7 +402,7 @@
         }
     }
 
-    @at-root [class*=navbar-toggleable-] .secondary-nav__nav .nav__menu,
+    @at-root [class*=navbar-toggleable-] .topbar-nav__nav .nav__menu,
     .primary-nav__container {
       li { position: relative; width:100% }
     }
@@ -451,7 +446,7 @@
 
 /**
 * In desktops when resizing below the "collapsing mobile menu" treshold
-* always expand submenus when .tc-open-on-hover (which is not available in mobiles )
+* always expand submenus when .czr-open-on-hover (which is not available in mobiles )
 */
 //@media (max-width: 991px)
 @include media-breakpoint-down(md){

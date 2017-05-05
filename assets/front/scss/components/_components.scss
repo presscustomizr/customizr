@@ -423,116 +423,6 @@ cite {
 }
 /* link */
 
-.dropdown-menu {
-          border-radius: 0;
-          border:0;
-          margin: 0;
-          padding: 0;
-          font-size: inherit;
-          li {
-            clear:both;
-            min-width: 100%;
-          }
-          a {
-            .primary-nav__menu & {
-              @extend .bold;
-            }
-            float:none;
-            position: relative;
-            display:  inline-block !important;
-            /* white-space:nowrap; */
-          /*  line-height:  30px;
-            height: 30px;*/
-            vertical-align: middle;
-            [class*=nav__menu] & { padding: 0 }
-            width: 100%;
-          }
-          @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );
-          .dropdown-item {
-              float:none;
-              background-color: transparent;
-              padding: $base-line-height/2 1.5rem;
-              /*&.menu-item-has-children { padding-right:$base-line-height*2; }*/
-              display: block;
-              /*line-height: 4em;*/
-              vertical-align: middle;
-              @include media-breakpoint-up(lg) {
-                  @at-root .regular .dropdown-menu .caret__dropdown-toggler i {
-                    @include transform( translateZ(0) rotate(-90deg));
-                    //transform-origin:100% 100%;
-                    position: relative;
-                    display: inline-block;
-                    top: -0.1em;
-                  }
-              }
-              @include media-breakpoint-down(md) {
-                  &:last-of-type {
-                    margin-bottom: $base-line-height/2;
-                  }
-                  &:first-of-type {
-                    margin-top: $base-line-height;
-                  }
-             }
-          }
-          .dropdown-item + .dropdown-item { margin-left: 0 }
-          .dropdown-item.open {
-              .dropdown-item.open ul { display:block; }
-          }
-          .dropdown-menu {
-              left: 100%;
-              top: 55%;
-              text-transform: none;
-              font-size:ms(0);
-          }
-
-}
-
-.caret__dropdown-toggler i{
-  display: block;
-  @include transition (all 0.3s ease);
-  @include transform-style( preserve-3d );
-  .menu-item.show > a > & {
-    @include transform( translateZ(0) rotate(-180deg));
-  }
-}
-@include media-breakpoint-down(md) { //max-width: 992px
-     .dropdown-menu {
-         background: transparent;
-         @include box-shadow(0, 0, 0, rgba(0 ,0, 0, 0));
-         position:relative;
-         float:none;
-         top:0;
-         left:0;
-         width:100%;
-         .dropdown-menu {
-            top:0;
-            left:0;
-         }
-         .dropdown-item {
-            padding: $base-line-height/2 $base-line-height-root/2;
-         }
-      }
-}
-
-
-/* drop down hover effect test */
-.dropdown-item { position: relative; }
-nav li.dropdown-item:before {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transition-delay: 0s;
-    transition-duration: .6s;
-    transition-timing-function: cubic-bezier(.19, 1, .22, 1);
-    -webkit-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-}
-.dropdown-item:hover:before {
-    width: 100%;
-}
 
 .tags {
     @extend .inline-list;
@@ -560,20 +450,6 @@ nav li.dropdown-item:before {
   margin-left:0;
 }
 
-/*
-.tagcloud a:hover,
-.tags li:hover {
-    border-color: $black;
-    background-color: $black;
-}
-*/
-/*
-.widget .tagcloud a:hover,
-.tagcloud a:hover,
-.tags li:hover a {
-  color: white;
-}
-*/
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
 
 /* tabs */
@@ -792,26 +668,6 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   height: 48px;
 }
 
-.line-holder {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    z-index: 0;
-    &::after {
-      content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: $black;
-    height: 2px;
-    }
-}
-@include media-breakpoint-down(sm) {
-  .line-holder { display: none; }
-}
-
 /*
 * Link mask, like round divs
 */
@@ -881,7 +737,6 @@ svg.czr-svg-placeholder {
   top: 25%;
   @include transition(opacity .5s ease)
 }
-
 
 .bg-link, .bg-icon-link {
     top: 0;

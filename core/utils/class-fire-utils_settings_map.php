@@ -621,6 +621,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 10,
           ),
+          /* Implement Hueman way?
           'tc_header_topnav_mobile'  =>  array(
                             'default'       => 'hide',
                             'control'       => 'CZR_controls' ,
@@ -633,7 +634,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             ),
                             'type'          => 'select' ,
                             'priority'      => 13,
-          ),
+          ),*/
           /*end_new*/
           /* removed in c4*/
           //enable/disable top border
@@ -669,6 +670,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                            'priority'  => 18,
                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
           ),
+          /*TODO: this should be visible only if displaying a topnav */
           'tc_social_in_header' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in header' , 'customizr' ),
@@ -683,6 +685,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                              )
           ),
           /* new */
+          /* By default when displaying socials in header and a topnav
           'tc_social_in_topnav' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in topnav' , 'customizr' ),
@@ -691,6 +694,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'        => 'checkbox' ,
                             'priority'      => 22,
           ),
+          */
           'tc_search_in_header' => array(
                             'default'   => 1,
                             'label'     => __( 'Display a search button in the header' , 'customizr' ),
@@ -724,6 +728,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'select' ,
                             'priority'      => 26,
           ),
+          /* Makes no
           'tc_header_type'  => array(
                             'default'       => 'standard',
                             'control'       => 'CZR_controls' ,
@@ -736,6 +741,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             ),
                             'priority'      => 27,
           ),
+          */
           /* end new */
           'tc_sticky_header'  =>  array(
                             'default'       => 1,
@@ -748,7 +754,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'transport'     => 'postMessage',
                             'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
           ),
-          /* new */
+          /* new TODO:
           'tc_sticky_mobile'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
