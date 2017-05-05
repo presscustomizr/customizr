@@ -366,7 +366,16 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             <?php else://if no slider created yet and no slider of posts addon?>
 
                  <div class="meta-box-item-content">
-                   <p class="description"> <?php _e("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ) ?><br/>
+                   <p class="description">
+                    <?php _e("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ) ?>
+                    <br/>
+                    <?php
+                        printf('<p><i>%1$s <a href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a>.</i></p>',
+                            __('For more informations about sliders, check the documentation page :' , 'customizr'),
+                            esc_url('http://docs.presscustomizr.com/search?query=slider'),
+                            __('Slider documentation' , 'customizr')
+                        );
+                    ?>
                    </p>
                     <br />
                 </div>
