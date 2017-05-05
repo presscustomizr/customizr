@@ -179,10 +179,17 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           $upd_date   = $this -> czr_fn_get_meta_date( 'update' );
 
           $_args      = compact( 'cat_list' ,'tag_list', 'pub_date', 'auth', 'upd_date' );
-          $_html      = sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
-            $pub_date,
-            $auth
+
+          /*
+          * See: https://github.com/presscustomizr/customizr/issues/875
+          * use wp_sprintf (wp-includes/formatting.php) to avoid Warning sprintf(): Too few arguments
+          * caused by malformed translation trying to access not passed arguments
+          */
+          $_html      = wp_sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
+              $pub_date,
+              $auth
           );
+
           return apply_filters( 'tc_post_metas_model' , compact( "_html" , "_args" ) );
         }
 
