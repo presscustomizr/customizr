@@ -41,9 +41,8 @@ The exceptions to this license are as follows:
 
 #######################  Changelog ######################
 = 3.5.12 May 5th 2017 =
-Fix: use wp_sprintf to avoid Warning sprintf(): Too few arguments. Fixes #875
-Imp: remove now unneded specific czr js for the go-pro section
-Fix: fix header layout center - menu position deps in the customizer. Fixes #879
+* Fix: use wp_sprintf to avoid Warning sprintf(): Too few arguments. Fixes #875
+* Fix: fix header layout center - menu position deps in the customizer. Fixes #879
 
 = 3.5.11 April 7th 2017 =
 * Fix: fix logo centered - menu centered not working non front ( fixes #868 )

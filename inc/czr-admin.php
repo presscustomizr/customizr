@@ -245,85 +245,88 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * hook : admin_notices
     */
     function czr_fn_may_be_display_update_notice() {
-      $opt_name                   = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice_values  = CZR_utils::$inst -> czr_fn_opt($opt_name);
-      $show_new_notice = false;
+        $opt_name                   = CZR___::czr_fn_is_pro() ? 'last_update_notice_pro' : 'last_update_notice';
+        $last_update_notice_values  = CZR_utils::$inst -> czr_fn_opt($opt_name);
+        $show_new_notice = false;
 
-      if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
-        //first time user of the theme, the option does not exist
-        // 1) initialize it => set it to the current Customizr version, displayed 0 times.
-        // 2) update in db
-        $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-        CZR_utils::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
-        //already user of the theme ?
-        if ( CZR_utils::$inst->czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
-          $show_new_notice = true;
-      }
-
-      $_db_version          = $last_update_notice_values["version"];
-      $_db_displayed_count  = $last_update_notice_values["display_count"];
-
-      //user who just upgraded the theme will be notified until he clicks on the dismiss link
-      //or until the notice has been displayed 5 times.
-      if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
-        //CASE 1 : displayed less than 5 times
-        if ( $_db_displayed_count < 5 ) {
-          $show_new_notice = true;
-          //increments the counter
-          (int) $_db_displayed_count++;
-          $last_update_notice_values["display_count"] = $_db_displayed_count;
-          //updates the option val with the new count
-          CZR_utils::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
+        if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
+            //first time user of the theme, the option does not exist
+            // 1) initialize it => set it to the current Customizr version, displayed 0 times.
+            // 2) update in db
+            $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+            CZR_utils::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
+            //already user of the theme ?
+            if ( CZR_utils::$inst->czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+              $show_new_notice = true;
         }
-        //CASE 2 : displayed 5 times => automatic dismiss
-        else {
-          //reset option value with new version and counter to 0
-          $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-          CZR_utils::$inst->czr_fn_set_option( $opt_name, $new_val );
-        }//end else
-      }//end if
 
-      if ( ! $show_new_notice )
-        return;
+        $_db_version          = $last_update_notice_values["version"];
+        $_db_displayed_count  = $last_update_notice_values["display_count"];
 
-      ob_start();
-        ?>
-        <div class="updated" style="position:relative">
-          <?php
-            echo apply_filters(
-              'tc_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
-                __( "Good, you've just upgraded to", "customizr"),
-                "customizr-pro" == CZR___::$theme_name ? 'Customizr Pro' : 'Customizr',
-                __( "version", "customizr"),
-                CUSTOMIZR_VER
-              )
-            );
+        //user who just upgraded the theme will be notified until he clicks on the dismiss link
+        //or until the notice has been displayed 5 times.
+        if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
+            //CASE 1 : displayed less than 5 times
+            if ( $_db_displayed_count < 5 ) {
+                $show_new_notice = true;
+                //increments the counter
+                (int) $_db_displayed_count++;
+                $last_update_notice_values["display_count"] = $_db_displayed_count;
+                //updates the option val with the new count
+                CZR_utils::$inst->czr_fn_set_option( $opt_name, $last_update_notice_values );
+            }
+            //CASE 2 : displayed 5 times => automatic dismiss
+            else {
+                //reset option value with new version and counter to 0
+                $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+                CZR_utils::$inst->czr_fn_set_option( $opt_name, $new_val );
+            }//end else
+        }//end if
+
+        //always display in dev mode
+        $show_new_notice = ( defined( 'CZR_DEV' ) && CZR_DEV ) ? true : $show_new_notice;
+
+        if ( ! $show_new_notice )
+          return;
+
+        ob_start();
           ?>
-          <?php
-            echo apply_filters(
-              'tc_update_notice',
-              sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
-                __( "We'd like to introduce the new features we've been working on.", "customizr"),
-                CZR_WEBSITE . "category/customizr-releases/",
-                __( "Read the latest release notes" , "customizr" ),
-                esc_url('demo.presscustomizr.com'),
-                __( "Visit the demo", "customizr" )
-              )
-            );
-          ?>
-          <p style="text-align:right;position: absolute;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
-            <?php printf('<em>%1$s <strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s x ) </a></strong></em>',
-                __("I already know what's new thanks !", "customizr" ),
-                __('close' , 'customizr')
+          <div class="updated" style="position:relative">
+            <?php
+              echo apply_filters(
+                'tc_update_notice',
+                sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
+                    __( "Good, you've just upgraded to", "customizr"),
+                    CZR___::czr_fn_is_pro() ? 'Customizr Pro' : 'Customizr',
+                    __( "version", "customizr"),
+                    CUSTOMIZR_VER
+                )
               );
             ?>
-          </p>
-        </div>
-        <?php
-      $_html = ob_get_contents();
-      if ($_html) ob_end_clean();
-      echo $_html;
+            <?php
+              echo apply_filters(
+                  'tc_update_notice',
+                  sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary hu-go-pro-btn" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
+                    __( "We'd like to introduce the new features we've been working on.", "customizr"),
+                    CZR_WEBSITE . "category/customizr-releases/",
+                    __( "Read the latest release notes" , "customizr" ),
+                    ! CZR___::czr_fn_is_pro() ? esc_url('presscustomizr.com/customizr-pro?ref=a') : esc_url('demo.presscustomizr.com'),
+                    ! CZR___::czr_fn_is_pro() ? __( "Upgrade to Customizr Pro", "customizr" ) : __( "Visit the demo", "customizr" )
+                  )
+              );
+            ?>
+            <p style="text-align:right;position: absolute;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
+              <?php printf('<em>%1$s <strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s x ) </a></strong></em>',
+                    __("I already know what's new thanks !", "customizr" ),
+                    __('close' , 'customizr')
+                );
+              ?>
+            </p>
+          </div>
+          <?php
+        $_html = ob_get_contents();
+        if ($_html) ob_end_clean();
+        echo $_html;
     }
 
 
@@ -332,12 +335,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * => sets the last_update_notice to the current Customizr version when user click on dismiss notice link
     */
     function czr_fn_dismiss_update_notice_action() {
-      check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = "customizr-pro" == CZR___::$theme_name ? 'last_update_notice_pro' : 'last_update_notice';
-      //reset option value with new version and counter to 0
-      $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-      CZR_utils::$inst->czr_fn_set_option( $opt_name, $new_val );
-      wp_die();
+        check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
+        $opt_name = CZR___::czr_fn_is_pro() ? 'last_update_notice_pro' : 'last_update_notice';
+        //reset option value with new version and counter to 0
+        $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+        CZR_utils::$inst->czr_fn_set_option( $opt_name, $new_val );
+        wp_die();
     }
 
 
@@ -580,13 +583,13 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
               <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
 
               <div class="feature-section images-stagger-right">
-                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro/' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
+                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
                 <h4 style="text-align: left;max-width:inherit"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
-                <p style="text-align: lef;max-width:inherit"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones." , 'customizr') ?>
+                <p style="text-align: lef;max-width:inherit"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites." , 'customizr') ?>
                 </p>
                 <p style="text-align:left;max-width:inherit">
-                    <a class="button-primary review-customizr" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro/' ); ?>" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
+                    <a class="button-primary review-customizr hu-go-pro-btn" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
                 </p>
               </div>
             </div>

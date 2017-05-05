@@ -2679,7 +2679,7 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
             'go_pro_sec'   => array(
                                 'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
                                 'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
-                                'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
+                                'pro_url'       => sprintf('%scustomizr-pro?ref=c', CZR_WEBSITE ),
                                 'priority'      => 0,
                                 'section_class' => 'CZR_Customize_Section_Pro',
                                 'active_callback' => array( $this, 'czr_fn_pro_section_active_cb' )
