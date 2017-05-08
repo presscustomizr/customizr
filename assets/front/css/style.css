@@ -843,11 +843,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-light [class*=nav__menu] li.show > a, .header-skin-light [class*=nav__menu] li.current-active > a {
+.header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a, .header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a {
   color: #777;
 }
 
-.header-skin-light [class*=nav__menu] li.show > a::before, .header-skin-light [class*=nav__menu] li.current-active > a::before {
+.header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a::before, .header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a::before {
   background-color: #202020;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1161,11 +1161,11 @@ select:-webkit-autofill {
   transform: scaleX(1);
 }
 
-.header-skin-dark [class*=nav__menu] li.show > a, .header-skin-dark [class*=nav__menu] li.current-active > a {
+.header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a, .header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a {
   color: #eceeef;
 }
 
-.header-skin-dark [class*=nav__menu] li.show > a::before, .header-skin-dark [class*=nav__menu] li.current-active > a::before {
+.header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a::before, .header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a::before {
   background-color: #fff;
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -1432,8 +1432,15 @@ select:-webkit-autofill {
   position: relative;
 }
 
-/* Only for regular menus (horizontal) */
-.regular .dropdown-item::before {
+.dropdown-item {
+  /*@include media-breakpoint-up(lg) {
+      & a:not(:hover)::before {
+        content: none !important
+      }
+    }*/
+}
+
+.dropdown-item::before {
   content: '';
   position: absolute;
   width: 0%;
@@ -1447,18 +1454,8 @@ select:-webkit-autofill {
   transform-origin: 0 100%;
 }
 
-.regular .dropdown-item:hover::before {
+.dropdown-item.show::before, .dropdown-item.current-active::before, .dropdown-item:hover::before {
   width: 100%;
-}
-
-.navbar-collapse.show .regular .dropdown-item::before {
-  content: none;
-}
-
-@media (min-width: 992px) {
-  .regular .dropdown-item a::before {
-    content: none !important;
-  }
 }
 
 /* NEW */

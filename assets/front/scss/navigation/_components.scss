@@ -159,8 +159,7 @@
 .dropdown-item {
   position: relative;
 }
-/* Only for regular menus (horizontal) */
-.regular .dropdown-item{
+.dropdown-item{
     &::before {
       content: '';
       position: absolute;
@@ -174,20 +173,16 @@
       -webkit-transform-origin: 0 100%;
       transform-origin: 0 100%;
     }
-
-    &:hover::before {
-      width: 100%;
-    }
-    //reset when in collapse open
-    .navbar-collapse.show & {
+    &.show, &.current-active,
+    &:hover {
       &::before {
-        content: none;
+        width: 100%;
       }
     }
-    //no underline in desktops for submenus
-    @include media-breakpoint-up(lg) {
-      & a::before {
+    //no underline in desktops for submenus (not hover)
+    /*@include media-breakpoint-up(lg) {
+      & a:not(:hover)::before {
         content: none !important
       }
-    }
+    }*/
 }

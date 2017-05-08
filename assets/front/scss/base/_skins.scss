@@ -137,7 +137,7 @@ $secondary-color-dark   : $grey;
       @include underlined ($primary-color, 2px);
       .topbar-nav__nav & { @include underlined ($primary-color, 1px); }
     }
-    & li.show > a, &  li.current-active > a {
+    & li.show:not(.dropdown-item) > a, &  li:not(.dropdown-item).current-active > a {
       color: $secondary-color;
       @include underlined_highlight_before($primary-color);
     }
