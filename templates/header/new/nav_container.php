@@ -10,14 +10,9 @@
         if ( czr_fn_has( 'nav_search' ) ) {
           czr_fn_render_template( 'header/mobile_search_container' );
         }
-        if ( czr_fn_has('navbar_menu_test') ) {
+        if ( czr_fn_has('navbar_primary_menu') || czr_fn_has( 'navbar_secondary_menu' ) ) {
           czr_fn_render_template( 'header/menu', array(
-            'model_id'   => 'navbar_menu_test',
-            'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/regular_primary_menu' ),
-            'model_args' => array(
-              'element_class' => 'primary-nav__menu-wrapper_new',
-              'menu_class'    => array( 'primary-nav__menu_new', 'regular', 'navbar-nav', 'nav__menu' ),
-            )
+            'model_id'   =>  czr_fn_has('navbar_primary_menu') ? 'navbar_primary_menu' : 'navbar_secondary_menu'
           ));
         };
 

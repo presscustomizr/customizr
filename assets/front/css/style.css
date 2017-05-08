@@ -1293,29 +1293,35 @@ select:-webkit-autofill {
 }
 
 .ham__navbar-toggler .ham-toggler-menu__span:after {
-  -webkit-transform: rotateZ(45deg);
-  -moz-transform: rotateZ(45deg);
-  transform: rotateZ(45deg);
+  -webkit-transform: translate3d(0, 0, 0) rotateZ(45deg);
+  -moz-transform: translate3d(0, 0, 0) rotateZ(45deg);
+  transform: translate3d(0, 0, 0) rotateZ(45deg);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .ham__navbar-toggler .ham-toggler-menu__span:before {
-  -webkit-transform: rotateZ(-45deg);
-  -moz-transform: rotateZ(-45deg);
-  transform: rotateZ(-45deg);
+  -webkit-transform: translate3d(0, 0, 0) rotateZ(-45deg);
+  -moz-transform: translate3d(0, 0, 0) rotateZ(-45deg);
+  transform: translate3d(0, 0, 0) rotateZ(-45deg);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .ham__navbar-toggler.collapsed .ham-toggler-menu__span:before {
   top: -6px;
-  -webkit-transform: rotateZ(0);
-  -moz-transform: rotateZ(0);
-  transform: rotateZ(0);
+  -webkit-transform: translate3d(0, 0, 0) rotateZ(0);
+  -moz-transform: translate3d(0, 0, 0) rotateZ(0);
+  transform: translate3d(0, 0, 0) rotateZ(0);
 }
 
 .ham__navbar-toggler.collapsed .ham-toggler-menu__span:after {
   top: 6px;
-  -webkit-transform: rotateZ(0);
-  -moz-transform: rotateZ(0);
-  transform: rotateZ(0);
+  -webkit-transform: translate3d(0, 0, 0) rotateZ(0);
+  -moz-transform: translate3d(0, 0, 0) rotateZ(0);
+  transform: translate3d(0, 0, 0) rotateZ(0);
 }
 
 /* Dropdowns */

@@ -52,16 +52,22 @@
   }
 }
 
-.ham__navbar-toggler .ham-toggler-menu__span:after  { @include transform(rotateZ(45deg));  }
-.ham__navbar-toggler .ham-toggler-menu__span:before { @include transform(rotateZ(-45deg));  }
+.ham__navbar-toggler .ham-toggler-menu__span:after  { 
+  @include transform( translate3d(0,0,0) rotateZ(45deg));
+  @include transform-style( preserve-3d ); 
+}
+.ham__navbar-toggler .ham-toggler-menu__span:before { 
+  @include transform( translate3d(0,0,0) rotateZ(-45deg)); 
+  @include transform-style( preserve-3d );
+}
 .ham__navbar-toggler.collapsed .ham-toggler-menu__span {
     &:before {
       top: -6px;
-      @include transform(rotateZ(0));
+      @include transform(translate3d(0,0,0) rotateZ(0));
     }
     &:after {
       top: 6px;
-       @include transform(rotateZ(0));
+       @include transform(translate3d(0,0,0) rotateZ(0));
     }
 }
 

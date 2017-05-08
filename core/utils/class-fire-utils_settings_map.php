@@ -601,12 +601,9 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                           'section'       => 'header_layout_sec' ,
                           'type'          =>  'select' ,
                           'choices'       => array(
-                                  'left'      => __( 'One line: Logo / title on the left' , 'customizr' ),
-                                  'right'     => __( 'One line: Logo / title on the right' , 'customizr' ),
+                                  'left'      => __( 'Logo / title on the left' , 'customizr' ),
+                                  'right'     => __( 'Logo / title on the right' , 'customizr' ),
                                   'centered'  => __( 'Logo / title centered' , 'customizr'),
-                                  //new
-                                  'v-left'    => __( 'Logo / title on the left' , 'customizr' ),
-                                  'v-right'   => __( 'Logo / title on the right' , 'customizr' )
                           ),
                           'priority'      => 5,
                           'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',

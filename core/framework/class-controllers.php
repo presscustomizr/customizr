@@ -27,8 +27,10 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'topnav',
               'social_in_topnav',
               //'header_social_block',
-              'navbar_menu',
-              'secondary_menu',
+              'navbar_primary_menu',
+              'navbar_secondary_menu',
+              //'topnav_menu',
+
               'menu_button',
               'mobile_menu_button',
               'sidenav_menu_button',
