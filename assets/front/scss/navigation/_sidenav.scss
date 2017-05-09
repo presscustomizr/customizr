@@ -4,6 +4,8 @@
   @include perspective( 1000px );
   @include transform-style( preserve-3d );
   @include backface-visibility( hidden );
+  @include transition( top 0.2s ease-in-out );
+  top: 0;
 
   z-index: 0;
   height: 100vh;
@@ -12,7 +14,7 @@
   padding: 0;
   outline: 1px solid rgba(255, 255, 255, 0.09);
 
-  .primary-nav__nav, .tc-sn-inner {
+  .side-nav__nav, .tc-sn-inner {
     height: 100%;
   }
 
@@ -28,89 +30,61 @@
   }
 
   .hamburger-toggler__container {
-    height: 70px;
     float: right;
     .sn-left & {
       float: left;
-    }
-    clear: both;
-    top: 0;
-    &::before, &::after {
-      content: none;
     }
   }
 
   .mobile-search__container {
     float: left;
     width: 100%;
-    padding: 0 $base-line-height-root;
+    padding: 0 30px;
     .czr-form .form-group {
-      margin: 0.625rem 0 1.25rem 0;
+      margin: $base-line-height-root/2 0 $base-line-height-root 0;
     }
-  }
-
-  .nav__menu-wrapper {
-    width: 100%;
-    float: left;
-    &::before, &::after {
-      display: table;
-      content: ' ';
-      position: relative
-    }
-  }
-  /* test */
-
-  .nav__menu-wrapper .nav__menu li > span {
-    display: table;
-    width: 100%;
-    a, span { display: table-cell !important; vertical-align: middle; position: relative; right: 0 !important }
-    a, a > span:first-of-type { width: 100%; padding-right: 0 }
-    a > span:first-of-type { float: none !important;}
   }
 
   /* test */
 
-  .primary-nav__nav  {
+  .side-nav__nav  {
     width:100%;
     text-align:left;
     padding:0;
 
     .dropdown-menu {
-      background: transparent;
-      -webkit-box-shadow: 0 0 0 transparent;
-      -moz-box-shadow: 0 0 0 transparent;
-      box-shadow: 0 0 0 transparent;
-      position: relative;
+      @include box-shadow( 0, 0, 0, transparent );
+      position: static;
       float: none;
-      top: 0;
-      left: 0;
       width: 100%;
     }
-    .dropdown-menu .dropdown-item {
-        padding: $base-line-height/2 $base-line-height-root/2;
-        margin: 0;
+
+    .dropdown-item.current-active::before,
+    .dropdown-item:hover::before {
+        width: 0;
+    }
+    .czr-dropdown .menu-item-has-children {
+      padding-bottom: 0;
     }
 
-    .dropdown-menu .dropdown-item:last-of-type {
-        padding-bottom: 0;
-    }
+    .side-nav__menu-wrapper {
+      float: left;
 
-    li { display: block; width:100%; position: relative; height: auto }
+      &::before, &::after {
+        display: table;
+        content: ' ';
+        position: relative
+      }
 
-    .primary-nav__menu-wrapper {
       display: block;
-      padding: $base-line-height 0;
+      padding: $base-line-height 30px;
       width:100%;
-      max-width:100%;
-      .primary-nav__menu  {
+
+      .side-nav__menu  {
         width:100%;
         display: block;
         text-align: left;
-        & > li a    {
-          white-space: normal;
-        }
         & > li  {
-          padding: $base-line-height $base-line-height-root*2;
           margin-right: 0; margin-left:0;
         }
       }

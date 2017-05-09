@@ -1,3 +1,6 @@
+
+
+
 /* Mobile */
 .branding__container_new {
   /* Use classes instead */
@@ -11,7 +14,7 @@
       -ms-flex-pack: justify ;
       justify-content: space-between ;
 
-  width: 100%;
+
 
   .branding,
   .mobile-utils__wrapper {
@@ -29,30 +32,6 @@
   }
 }
 
-.primary-navbar__wrapper-new .primary-nav__utils {
-  display: none;
-}
-.topbar-nav__socials {
-  flex-shrink: 0;
-}
-
-/* ie fix */
-.topbar-nav__container,
-.topbar-nav__menu-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-          flex-grow: 1;
-  max-width: 100%;
-}
-.topbar-nav__nav,
-.topbar-nav__menu {
-  width: 100%;
-}
 
 @include media-breakpoint-up(lg) {
 
@@ -64,7 +43,6 @@
 
     .branding__container_new,
     .primary-nav__utils li,
-    .primary-nav__utils,
     .primary-nav__wrapper_new,
     .primary-nav__menu-wrapper_new {
 
@@ -86,22 +64,12 @@
       width: auto;
       .branding {
         max-width: 100%;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
       }
     }
 
 
-    .primary-nav__utils li,
-    li {
-      position: relative;
-    }
-
-
     .primary-nav__container_new {
+      margin: 0 -15px;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -122,63 +90,6 @@
 
     }
 
-    /* pull-menu-right must become justify-content-end - bootstrap class */
-    .primary-nav__menu-wrapper_new.pull-menu-right {
-          -webkit-box-pack: end;
-          -webkit-justify-content: flex-end;
-              -ms-flex-pack: end;
-                  justify-content: flex-end;
-    }
-
-    .primary-nav__utils .utils {
-      margin: 0;
-      -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-      flex-direction: row
-
-    }
-
-    /* utils li a centered aligned */
-    .woocart.cart-contents, .desktop_search__link,
-    .hamburger-toggler__container .ham__navbar-toggler {
-
-    -webkit-align-self: center;
-        -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-            align-self: center;
-
-      display: block;
-      height: auto;
-      position: relative;
-    }
-
-    .woocart.cart-contents sup {
-      position: absolute;
-      top: 0;
-    }
-
-    //hack remove line before
-    .primary-nav__utils .utils li:before {
-      content: none !important;
-    }
-
-
-  }
-  [class*=logo_right] .primary-navbar__wrapper-new {
-    &,
-    .primary-nav__container_new,
-    .primary-nav__utils .utils {
-      -webkit-box-direction: reverse;
-      -webkit-flex-direction: row-reverse;
-      -ms-flex-direction: row-reverse;
-      flex-direction: row-reverse
-    }
   }
 
 }

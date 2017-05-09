@@ -308,6 +308,7 @@ a.czr-format-link {
   .tc-grid-figure {
     position: relative;
     overflow:hidden;
+    @include backface-visibility(hidden);
     img {
       width: 100%;
       height: auto;

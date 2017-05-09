@@ -4,5 +4,5 @@
  */
 ?>
 <li class="primary-nav__search hidden-md-down" <?php czr_fn_echo('element_attributes') ?>>
-  <a class="desktop_search__link"><span class="sr-only">Search</span><i class="icn-search"></i></a>
+  <a href="#" class="desktop_search__link"><span class="sr-only">Search</span><i class="icn-search"></i></a>
 </li>

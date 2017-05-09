@@ -4,7 +4,7 @@
  */
 ?>
 <div class="primary-nav__container_new <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="primary-nav__wrapper_new navbar-toggleable-md">
+  <div class="primary-nav__wrapper_new navbar-toggleable-md col col-auto">
      <nav class="collapse navbar-collapse primary-nav__nav" id="primary-nav">
       <?php
         if ( czr_fn_has( 'nav_search' ) ) {

@@ -1,7 +1,7 @@
 <?php
 class CZR_woocommerce_cart_model_class extends CZR_Model {
 
-  public $defaults = array( 'element_tag' => 'div', 'display_widget' => true );
+  public $defaults = array( 'display_widget' => true );
 
   public function __construct( $model ) {
     parent::__construct( $model);

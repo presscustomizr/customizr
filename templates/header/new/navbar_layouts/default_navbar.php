@@ -13,7 +13,7 @@
   <?php czr_fn_render_template(  'header/new/branding_wrapper', array(
     'model_args' => array(
       'with_nav_utils' => false,
-      'element_class'  => 'col col-auto',
+      'element_class'  => 'col col-auto justify-content-between',
     )
   ) ) ?>
   <?php czr_fn_render_template(  'header/new/nav_container', array(

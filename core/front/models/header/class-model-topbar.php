@@ -1,5 +1,5 @@
 <?php
-class CZR_topnav_model_class extends CZR_Model {
+class CZR_topbar_model_class extends CZR_Model {
   /**
   * @override
   * fired before the model properties are parsed

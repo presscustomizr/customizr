@@ -610,10 +610,10 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                           'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
           ),
           /*new*/
-          'tc_header_topnav'  =>  array(
+          'tc_header_topbar'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display the topnav" , "customizr" ),
+                            'label'         => __( "Display the topbar" , "customizr" ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 10,

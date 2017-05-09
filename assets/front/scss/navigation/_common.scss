@@ -1,163 +1,289 @@
-/* test */
-/* This should be for all */
-.nav__menu li {
-  > span {
-    display: inline-table;
-    width: 100%;
-    vertical-align: middle;
-    a, span {
-      display: table-cell !important;
+.nav__menu {
+  @extend .small;
+  @extend .caps;
+  @extend .bold;
+  @extend .letter-spacing-1;
+
+  .menu-item {
+    margin: 0 .5rem;
+    padding: 1/2 * $base-line-height 0;
+  }
+  .menu-item a {
+    padding: 1em .5rem;
+    @include display-flex();
+      -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+  }
+}
+.regular.navbar-nav {
+   margin: 0 -.5rem;
+}
+
+/* Dropdowns */
+//menu items with children
+.czr-dropdown {
+    position: relative;
+}
+
+/* Dropdown menu ul */
+.czr-dropdown .dropdown-menu {
+    display: block;
+
+    @include media-breakpoint-up(lg) { //min-width: 992px
+        & {
+            display: none;
+            max-width: 350px;
+            a {
+              white-space: normal;
+            }
+        }
+    }
+
+    border-radius: 0;
+    border:0;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+
+    a {
+        @extend .bold;
+        position: relative;
+        vertical-align: middle;
+        white-space: nowrap;
+        padding: 1/2 * $base-line-height $base-line-height-root;
+        margin: 0 -1/2*$base-line-height-root;
+
+    }
+
+    //@include box-shadow( 0, 0, 0, transparent );
+
+    //include box-shadow in desktops
+    @include media-breakpoint-up(lg) {
+
+      @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );
+
+    }
+
+    .dropdown-item {
+        padding: 1em $base-line-height-root;
+        margin-left: 0;
+
+
+        @include media-breakpoint-up(lg) {
+            @at-root .regular .dropdown-menu .caret__dropdown-toggler i {
+              @include transform( translateZ(0) rotate(-90deg));
+              position: relative;
+              display: inline-block;
+            }
+            /*padding-top: 0;
+            padding-bottom: 0;*/
+        }
+        @include media-breakpoint-down(md) {
+            @at-root .czr-dropdown > .dropdown-menu > .dropdown-item:last-of-type {
+              margin-bottom: $base-line-height/2;
+            }
+           /* &:first-of-type {
+              margin-top: $base-line-height;
+            }*/
+       }
+    }
+
+    .dropdown-menu {
+        text-transform: none;
+        font-size:ms(0);
+
+        @include media-breakpoint-up(lg) { //min-width: 992px
+            .regular & {
+                left: 100%;
+                top: 55%;
+            }
+        }
+
+    }
+
+}
+
+
+/* dropdown-item (level > 1) hover effect */
+.dropdown-item {
+  position: relative;
+}
+.dropdown-item {
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition-delay: 0s;
+      transition-duration: .6s;
+      transition-timing-function: cubic-bezier(.19, 1, .22, 1);
+      -webkit-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+    }
+    &.current-active,
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+}
+
+/* Caret */
+.caret__dropdown-toggler {
+  display: none;
+
+  @include media-breakpoint-up(lg) { //min-width:992px
+    .regular & {
+      display: inline-block;
+      width: 1.5em;
       vertical-align: middle;
+      z-index: inherit;
+      cursor: pointer;
       position: relative;
     }
-    a, a > span:first-of-type {
-      width: 100%; padding-right: 0
-    }
-    a > span:first-of-type {
-      float: none !important;
-    }
-    @at-root .primary-nav__menu li a {
-      height: 3em;
-      line-height: 3em;
-    }
-  }
-
-  //In mobiles do not allow dropdowns for the topbar menu when shown as is
-  @include media-breakpoint-down(md) {
-    @at-root .not-hidden-md-down.topbar-navbar__wrapper {
-
-      .caret__dropdown-toggler { display: none !important; }
-      .nav__menu > li {
-        border: none;
-        >span, > span > a, > span > a > span:first-of-type {
-          width: auto
-        }
-      }
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    @at-root .tc-header {
-      .dropdown-item {
-        .caret__dropdown-toggler {
-          right: -.75rem
-        }
-      }
-      .nav__menu > li {
-        > span > a, > span > a > span:first-of-type {
-          width: auto
-        }
-      }
-    }
   }
 }
 
-.topbar-navbar__wrapper {
-  font-size: 0.83333em;
-  ul li{
-    font-size: 1em;
-  }
-
-  .hamburger-toggler__wrapper {
-    padding: 0;
-  }
-  @at-root .topbar-nav__menu.regular {
-    margin-left: -1/2*$base-line-height-root;
-    margin-right: -1/2*$base-line-height-root;
-    > li {
-        margin-left: 1/2*$base-line-height-root;
-        margin-right: 1/2*$base-line-height-root;
+.caret__dropdown-toggler i {
+    display: block;
+    @include transition (all 0.3s ease);
+    @include transform-style( preserve-3d );
+    .menu-item.show > a > & {
+        @include transform( translateZ(0) rotate(-180deg));
     }
-  }
-}
-
-/* test */
-
-@include media-breakpoint-down(md) {
-
-  /* Limit nav-collpase height to the viewport when sticky mobile */
-  .czr-sticky-mobile .navbar-collapse {
-    position: absolute!important;
-    background: inherit;
-    z-index: 100;
-    left: 0;
-    &::before, &::after {
-      display: table;
-      content: '';
-      line-height: 0;
-    }
-    &.show.limited-height {
-      overflow: auto;
-    }
-  }
-}
-
-
-.mobile-woocart__container,
-.hamburger-toggler__container {
-  float: none;
-  height: 100%;
-  vertical-align: middle;
-  display: inline-table;
-  margin-left: 0;
-  margin-right: 0;
-  padding-right: 1.25em;
-  padding-left: 1.25em;
-  [class*=logo_right] &::before {
-    left: auto;
-    right: 0;
-  }
-}
-
-.mobile-woocart__container .woocart,
-.hamburger-toggler__container .ham__navbar-toggler {
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-}
-
-
-.primary-nav__wrapper {
-  height: inherit;
-  background: inherit;
 }
 
 
 
-//@media screen and (min-width: 992px)
+/*
+* Fade submenu only in desktops and only for horizontal menus
+* only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
+* sidenav is not impacted
+*/
 @include media-breakpoint-up(lg) {
-  .primary-nav__utils .utils {
-    margin: 0px -1*$base-line-height;
+  .czr-submenu-fade .nav li > ul {
+      opacity: 0;
+      visibility: hidden;
+      display: block;
+      @include transition( all 0.2s ease-in-out );
+      @include transform( translate( 0, -5% ) );
+  }
+  .czr-submenu-fade li.show > ul {
+      opacity: 1;
+      visibility: visible;
+      @include transform( translate( 0, 0) );
+  }
+  .czr-submenu-move .dropdown-menu > li > a {
+      -webkit-transition: all ease 0.241s;
+      -moz-transition: all ease 0.241s;
+      -o-transition: all ease 0.241s;
+      transition: all ease 0.241s;
+      @include transform( translate( 0, 0) );
+  }
+  .czr-submenu-move .dropdown-item > a:hover {
+      @include transform( translate( 5px, 0) );
   }
 }
-.mobile-search__container {
-  padding: 0px $base-line-height;
-  margin: 0;
-}
-.primary-nav__utils .utils li {
-  padding: 0px $base-line-height;
-  margin: 0;
-}
+/*end fade effect */
 
+/**
+* Dropdown menu direction [SNAKE]
+* available only in header
+*/
+.tc-header {
+    .dropdown-menu {
+        &.open-right {
+            left: 0;
+            right: auto;
+            @at-root .open-right .dropdown-menu:not(.open-left),
+                     .dropdown-menu .dropdown-menu.open-right {
 
+                left: 100%;
+                right: auto;
+            }
+        }
 
-/* Fix */
-//@media screen and (min-width: 992px)
-@include media-breakpoint-up(lg) {
-  .primary-nav__menu.regular {
-    margin-left: -1em;
-    margin-right: -1em;
-    > li {
-          margin-left: 1em;
-          margin-right: 1em;
+        &.open-left {
+            left: auto;
+            right: 0;
+            @at-root .open-left .dropdown-menu:not(.open-right),
+                     .dropdown-menu .dropdown-menu.open-left {
+
+                right: 100%;
+                left: auto;
+            }
+        }
     }
-  }
-
-  .primary-nav__menu-wrapper.pull-menu-left {
-    text-align: left;
-  }
-  .primary-nav__menu-wrapper.pull-menu-right {
-    text-align: right;
-  }
-
 }
+
+/* end common drodpowns */
+
+/* Utils nav */
+.utils_links {
+  padding: $base-line-height 15px;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+          align-self: center;
+
+  display: block;
+  height: auto;
+  position: relative;
+}
+
+/* Hamburger button */
+
+.ham-toggler-menu {
+    -webkit-appearance: initial !important;
+    @extend .utils_links;
+
+    @at-root .ham-toggler-menu__span {
+      @include transition (all, .3s)
+      background: transparent;
+      display: inline-block;
+      width: 1rem;
+      height: 2px;
+      position: relative;
+      top: 0;
+      vertical-align: middle;
+      @include transition (all ease 0.3s);
+      &:before, &:after {
+          position: absolute;
+          content: '';
+          display: inline-block;
+          width: inherit;
+          height: inherit;
+          transition: all ease .3s;
+          outline: .075rem solid transparent;
+          left: 0;
+      }
+    }
+
+    @at-root .ham-toggler-menu__span:after  {
+      @include transform( translate3d(0,0,0) rotateZ(45deg));
+      @include transform-style( preserve-3d );
+    }
+    @at-root .ham-toggler-menu__span:before {
+      @include transform( translate3d(0,0,0) rotateZ(-45deg));
+      @include transform-style( preserve-3d );
+    }
+    &.collapsed .ham-toggler-menu__span {
+        &:before {
+          top: -6px;
+          @include transform(translate3d(0,0,0) rotateZ(0));
+        }
+        &:after {
+          top: 6px;
+           @include transform(translate3d(0,0,0) rotateZ(0));
+        }
+    }
+}
+/*end ham */

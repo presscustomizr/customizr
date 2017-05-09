@@ -8,16 +8,12 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_header_social_block() {
-      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) ) ) &&
-        ( czr_fn_is_customize_preview_frame()  || czr_fn_is_possible('social_block') );
+      return 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
     }
 
-    function czr_fn_display_view_social_in_topnav() {
-      return ( 1 == esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) ) );
-    }
 
-    function czr_fn_display_view_topnav() {
-      return ( 1 == esc_attr( czr_fn_get_opt( 'tc_header_topnav' ) ) );
+    function czr_fn_display_view_topbar() {
+      return 1 == esc_attr( czr_fn_get_opt( 'tc_header_topbar' ) );
     }
 
 
@@ -74,9 +70,9 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //when the top navbar menu is allowed?
     //1) menu allowed
     //and
-    //2) menu type is sidenav but a secondary menu is chosen
-    function czr_fn_display_view_topnav_menu() {
-      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_get_opt( 'tc_header_topnav' ) );
+    //2) topbar is displayed
+    function czr_fn_display_view_topbar_menu() {
+      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_get_opt( 'tc_header_topbar' ) );
     }
 
     //when the sidenav menu is allowed?

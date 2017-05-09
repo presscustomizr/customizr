@@ -1,10 +1,10 @@
 <?php
 /**
- * The template for displaying the topnav
+ * The template for displaying the topbar
 */
 ?>
-<div class="topbar-navbar__wrapper row <?php czr_fn_echo('element_class') ?> flex-lg-nowrap justify-content-lg-between align-items-lg-start" <?php czr_fn_echo('element_attributes') ?>>
-  <?php if ( czr_fn_has( 'tobar_menu' ) ) :?>
+<div class="topbar-navbar__wrapper row flex-row <?php czr_fn_echo('element_class') ?> flex-lg-nowrap justify-content-lg-between align-items-lg-start" <?php czr_fn_echo('element_attributes') ?>>
+  <?php if ( czr_fn_has( 'topbar_menu' ) ) :?>
     <?php if ( czr_fn_get( 'has_mobile_button' ) ) :?>
       <div class="hamburger-toggler__wrapper col-12 float-left hidden-lg-up">
         <?php
@@ -34,7 +34,12 @@
   <?php endif ?>
   <?php if ( czr_fn_has('header_social_block') ) : ?>
     <div class="topbar-nav__socials social-links hidden-md-down col col-auto">
-      <?php czr_fn_render_template( 'modules/common/social_block' ) ?>
+      <?php czr_fn_render_template( 'modules/common/social_block',array(
+              'model_args' => array(
+                'element_class' => is_rtl() ? 'float-left' : 'float-right',
+              )
+            ));
+      ?>
     </div>
   <?php endif ?>
 </div>

@@ -451,7 +451,7 @@
     left: 0;
     background-color: $color;
     visibility: hidden;
-    @include transform( scaleX(0) );
+    @include transform( translate3d(0,0,0) scaleX(0) );
     @include transition( all 0.3s ease 0s );
   }
   &:hover {
@@ -462,7 +462,7 @@
   &::before {
     background-color: $color;
     visibility: visible;
-    @include transform( scaleX(1) );
+    @include transform( translate3d(0,0,0) scaleX(1) );
   }
 }
 
@@ -476,13 +476,13 @@
     bottom: 0;
     left: 0;
     visibility: hidden;
-    @include transform( scaleX(0) );
+    @include transform( translate3d(0,0,0) scaleX(0) );
     @include transition( all 0.3s ease 0s );
   }
   &:hover {
     &::before {
       visibility: visible;
-      @include transform( scaleX(1) );
+      @include transform( translate3d(0,0,0) scaleX(1) );
     }
   }
 }
@@ -523,4 +523,11 @@
     height: 100%;
     width: .1px;
   }
+}
+
+@mixin display-flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }

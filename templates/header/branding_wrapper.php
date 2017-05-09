@@ -4,12 +4,14 @@
  */
 ?>
   <div class="branding__container" <?php czr_fn_echo('element_attributes') ?>>
-    <div class="branding">
+    <div class="branding ">
     <?php
       if ( czr_fn_has('logo_wrapper') ){
         czr_fn_render_template( 'header/logo_wrapper' );
       } else
         czr_fn_render_template( 'header/title' );
+
+
     ?>
     </div>
     <div class="mobile-utils__wrapper hidden-lg-up">

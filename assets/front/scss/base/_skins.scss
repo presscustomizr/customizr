@@ -20,8 +20,16 @@ $secondary-color-dark   : $grey;
        $secondary-color : $grey-dark;
      }
 
+     /* overlays skin */
+     .overlay {
+       background: rgba($background-color, 0.98);
+       color: $primary-color;
+       a { color: $secondary-color-light; }
+       a:hover { color: $primary-color; }
+     }
+     /* end overlays skins */
 
-  .ham__navbar-toggler.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
+  .ham-toggler-menu.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
   .ham-toggler-menu__span, .caret__dropdown-toggler__span {
       &:before, &:after {
          background: $primary-color;
@@ -75,7 +83,7 @@ $secondary-color-dark   : $grey;
   .primary-nav__utils {
      color: $primary-color;
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
-      .ham__navbar-toggler.collapsed:hover {
+      .ham-toggler-menu.collapsed:hover {
         span::after,
         span::before,
         span {
@@ -84,10 +92,6 @@ $secondary-color-dark   : $grey;
       }
       .ham-toggler-menu__span, a:hover, a.current-active { color: $secondary-color-light; }
 
-      @include media-breakpoint-up(lg) {
-        .primary-nav__socials .socials { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
-        .utils li { @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1); }
-      }
       @include media-breakpoint-down(md) {
         .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
       }
@@ -123,9 +127,6 @@ $secondary-color-dark   : $grey;
 
    .mobile-woocart__container a { color:$primary-color; }
 
-    .mobile-utils__wrapper {
-      @include v-divider ($base-line-height, rgba($primary-color, 0.09), left, 1);
-    }
 
   [class*=nav__menu] {
 
@@ -133,11 +134,13 @@ $secondary-color-dark   : $grey;
       color: $primary-color;
     }
 
-    & li > a {
+    & li > a > span:first-of-type{
       @include underlined ($primary-color, 2px);
       .topbar-nav__nav & { @include underlined ($primary-color, 1px); }
     }
-    & li.show:not(.dropdown-item) > a, &  li:not(.dropdown-item).current-active > a {
+    & li.show:not(.dropdown-item) > a > span:first-of-type,
+    &  li:not(.dropdown-item).current-active > a > span:first-of-type,
+    &  li.current-menu-item > a > span:first-of-type {
       color: $secondary-color;
       @include underlined_highlight_before($primary-color);
     }
@@ -157,7 +160,7 @@ $secondary-color-dark   : $grey;
      border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
   }
 
-  .tc-sn .primary-nav__menu {
+  .tc-sn .nav__menu {
     & > li:not(:last-of-type) {
         border-bottom: 1px solid rgba($primary-color, 0.075);
     }
@@ -177,7 +180,7 @@ $secondary-color-dark   : $grey;
       border-bottom: 1px solid rgba($primary-color, 0.075);
     }
     .nav__menu {
-      & > li {
+      & > li:not(:last-of-type) {
           border-bottom: 1px solid rgba($primary-color, 0.075);
       }
     }

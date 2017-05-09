@@ -94,6 +94,8 @@
 
     }
     li a {
+      padding: 0;
+      margin: 0;
       white-space: normal;
       display: block !important;
       &::before {
@@ -106,7 +108,7 @@
       margin: 0 $base-line-height/2;
       text-align: center;
       .button {
-        display: block;
+        display: block !important;
          &:nth-child(odd) {
             margin-bottom: .6180469716em;
         }
