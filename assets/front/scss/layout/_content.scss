@@ -3,10 +3,6 @@
   position: relative;
   background: inherit;
   z-index: 1;
-  @include backface-visibility( hidden );
-  @include media-breakpoint-up(lg) {
-    overflow: hidden;
-  }
 }
 
 
