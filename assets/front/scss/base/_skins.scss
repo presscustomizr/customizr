@@ -29,6 +29,12 @@ $secondary-color-dark   : $grey;
      }
      /* end overlays skins */
 
+
+     #tc-sn {
+       outline: 1px solid rgba($primary-color, 0.09);
+     }
+
+
   .ham-toggler-menu.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
   .ham-toggler-menu__span, .caret__dropdown-toggler__span {
       &:before, &:after {
@@ -184,7 +190,7 @@ $secondary-color-dark   : $grey;
           border-bottom: 1px solid rgba($primary-color, 0.075);
       }
     }
-    .primary-nav__search {
+    .mobile-search__container {
       border-bottom: 1px solid rgba($primary-color, 0.075);
     }
    }

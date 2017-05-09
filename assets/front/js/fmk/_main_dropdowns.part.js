@@ -70,7 +70,7 @@ var czrapp = czrapp || {};
                 $_data_toggle[0].setAttribute('aria-expanded', 'true');
           }
 
-        }, 0);
+        }, 150);
 
         _debounced_addOpenClass();
       };

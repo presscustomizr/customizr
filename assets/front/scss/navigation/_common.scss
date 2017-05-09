@@ -6,10 +6,10 @@
 
   .menu-item {
     margin: 0 .5rem;
-    padding: 1/2 * $base-line-height 0;
+    padding: 0;
   }
   .menu-item a {
-    padding: 1em .5rem;
+    padding: $base-line-height .5rem;
     @include display-flex();
       -webkit-box-align: center;
     -webkit-align-items: center;
@@ -19,11 +19,24 @@
       -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
       justify-content: space-between;
+
   }
 }
-.regular.navbar-nav {
-   margin: 0 -.5rem;
+.regular.nav__menu {
+    margin: 0 -1rem;
+    
+    //only first menu item in desktops
+    @include media-breakpoint-up(lg) { //min-width: 992px
+        > .menu-item > a {
+          padding: 0 .5rem;
+
+            & > span:first-of-type {
+                padding: $base-line-height 0;
+            }   
+        }
+    }
 }
+
 
 /* Dropdowns */
 //menu items with children
@@ -32,7 +45,7 @@
 }
 
 /* Dropdown menu ul */
-.czr-dropdown .dropdown-menu {
+.dropdown-menu {
     display: block;
 
     @include media-breakpoint-up(lg) { //min-width: 992px
@@ -44,7 +57,8 @@
             }
         }
     }
-
+}
+.czr-dropdown .dropdown-menu {
     border-radius: 0;
     border:0;
     margin: 0;
@@ -56,9 +70,8 @@
         position: relative;
         vertical-align: middle;
         white-space: nowrap;
-        padding: 1/2 * $base-line-height $base-line-height-root;
+        padding: $base-line-height $base-line-height-root;
         margin: 0 -1/2*$base-line-height-root;
-
     }
 
     //@include box-shadow( 0, 0, 0, transparent );
@@ -71,8 +84,8 @@
     }
 
     .dropdown-item {
-        padding: 1em $base-line-height-root;
-        margin-left: 0;
+        padding: 0 $base-line-height-root;
+        margin: 0;
 
 
         @include media-breakpoint-up(lg) {
@@ -80,6 +93,7 @@
               @include transform( translateZ(0) rotate(-90deg));
               position: relative;
               display: inline-block;
+              top: -.1em;
             }
             /*padding-top: 0;
             padding-bottom: 0;*/
@@ -156,6 +170,8 @@
     display: block;
     @include transition (all 0.3s ease);
     @include transform-style( preserve-3d );
+    @include backface-visibility( hidden );
+    perspective: 1000px;
     .menu-item.show > a > & {
         @include transform( translateZ(0) rotate(-180deg));
     }
@@ -262,8 +278,6 @@
           width: inherit;
           height: inherit;
           transition: all ease .3s;
-          outline: .075rem solid transparent;
-          left: 0;
       }
     }
 
@@ -287,3 +301,72 @@
     }
 }
 /*end ham */
+
+.mobile-search__container {
+    width: 100%;
+}
+.mobile-search__container .czr-form .form-group {
+    margin: 2/3 * $base-line-height-root 0 $base-line-height-root 0;
+    padding-bottom: $base-line-height;
+}
+.tc-header .mobile-search__container {
+    margin: $base-line-height-root 0;
+}
+
+
+/* Sticky stuff */
+/*
+* Header types: Absolute or Standard(pushing) and Sticky
+*/
+/*
+* On sticky: visibilities
+*/
+.sticky-enabled {
+  .czr-menu-off .regular.nav__menu,
+  .czr-title-logo-off .navbar-brand,
+  .czr-tagline-off .navbar-brand-tagline {
+    display: none !important;
+  }
+}
+
+.navbar-sticky,
+.header-absolute .topnav_navbars__wrapper {
+  left: 0;
+  right: 0;
+  z-index: 100
+}
+@include media-breakpoint-up(lg) {
+  .header-absolute {
+    .topnav_navbars__wrapper,
+    #sticky-placeholder {
+      position: absolute;
+    }
+  }
+}
+.navbar-sticky.animating { top: -20% !important }
+
+/* Sticky header */
+.navbar-to-stick.navbar-sticky {
+  position: fixed;
+
+  &:not(.animating) {
+    top: 0;
+    .admin-bar & {
+      @media screen and ( min-width: 783px ) {
+        top: 30px;
+      }
+      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
+        top: 46px;
+      }
+    }
+  }
+  //@include transition(top 0.5s, height 0.5s,background 0.5s ease-in-out);
+  //@include transform(translateZ(0));
+  //@include transform-style(preserve-3d);
+
+  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
+  .header-transparent & {
+    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
+  }
+  .topbar-navbar__wrapper  { display:none; }
+}

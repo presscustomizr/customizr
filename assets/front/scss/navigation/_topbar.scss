@@ -1,4 +1,3 @@
-
 .topbar-nav__socials {
         flex-shrink: 0;
   -webkit-flex-grow: 1;
@@ -16,6 +15,7 @@
           flex-grow: 1;
   max-width: 100%;
 }
+
 .topbar-nav__nav,
 .topbar-nav__menu {
   width: 100%;
@@ -23,5 +23,19 @@
   .menu-item a {
     font-weight    : normal;
     text-transform : none;
+  }
+  @at-root .topbar-nav__menu.nav__menu {
+    margin: 0 -0.5rem;
+    > .menu-item {
+      margin: 0 0.25rem;
+
+        > a {
+            padding: 0 0.25rem;
+            > span:first-of-type {
+                padding: $base-line-height/2 0;
+            }
+        }
+     
+    }
   }
 }

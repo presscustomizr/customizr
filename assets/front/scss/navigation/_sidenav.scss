@@ -12,7 +12,6 @@
   width: 350px;
   max-width: 100%;
   padding: 0;
-  outline: 1px solid rgba(255, 255, 255, 0.09);
 
   .side-nav__nav, .tc-sn-inner {
     height: 100%;
@@ -38,11 +37,7 @@
 
   .mobile-search__container {
     float: left;
-    width: 100%;
     padding: 0 30px;
-    .czr-form .form-group {
-      margin: $base-line-height-root/2 0 $base-line-height-root 0;
-    }
   }
 
   /* test */

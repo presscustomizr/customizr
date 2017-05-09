@@ -243,59 +243,7 @@
 .primary-nav__menu li { position: relative }
 /*.primary-nav__socials .socials { font-size: 1rem; }*/
 .primary-nav__socials .socials li { @extend .small;  }
-/*
-* Header types: Absolute or Standard(pushing) and Sticky
-*/
-/*
-* On sticky: visibilities
-*/
-.sticky-enabled {
-  .czr-menu-off .primary-nav__menu,
-  .czr-title-logo-off .navbar-logo,
-  .czr-tagline-off .navbar-brand-tagline {
-    display: none !important;
-  }
-}
 
-.navbar-sticky,
-.header-absolute .topnav_navbars__wrapper {
-  left: 0;
-  right: 0;
-  z-index: 100
-}
-@include media-breakpoint-up(lg) {
-  .header-absolute {
-    .topnav_navbars__wrapper,
-    #sticky-placeholder {
-      position: absolute;
-    }
-  }
-}
-.navbar-sticky.animating { top: -20% !important }
-
-/* Sticky header */
-.navbar-to-stick.navbar-sticky {
-  position: fixed;
-  @include transform(translateZ(0));
-  @include transform-style(preserve-3d);
-  &:not(.animating) {
-    top: 0;
-    .admin-bar & {
-      @media screen and ( min-width: 783px ) {
-        top: 30px;
-      }
-      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
-        top: 46px;
-      }
-    }
-  }
-  @include transition(top 0.5s,down 0.5s,height 0.5s,background 0.5s ease-in-out);
-  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
-  .header-transparent & {
-    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
-  }
-  .topbar-navbar__wrapper  { display:none; }
-}
 
 @include media-breakpoint-up(lg) {
   .branding__container { left:$base-line-height; }
