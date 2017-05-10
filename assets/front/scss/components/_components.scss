@@ -695,12 +695,12 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
   &::before {
     position: absolute;
-    width: 60%;
+    width: 65%;
     /*
     * this refers to the parent width, allowing us to have a perfect square despite the parent
     * as it has the same element's width percentage value.
     */
-    padding-bottom: 60%;
+    padding-bottom: 65%;
     content: '';
     z-index: 1;
     /* Centering */

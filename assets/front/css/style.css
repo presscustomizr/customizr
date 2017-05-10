@@ -344,6 +344,7 @@ img.v-centered {
   max-height: none !important;
   vertical-align: top;
   position: relative;
+  max-width: none !important;
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important;
@@ -436,6 +437,10 @@ body[class*=ie] img.v-centered.tc-holder-img {
 
 .czr__r-w1by1::before {
   padding-top: 100%;
+}
+
+.czr__r-wFP::before {
+  padding-top: 92.592593%;
 }
 
 *,
@@ -2894,12 +2899,12 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .czr-link-mask::before {
   position: absolute;
-  width: 60%;
+  width: 65%;
   /*
     * this refers to the parent width, allowing us to have a perfect square despite the parent
     * as it has the same element's width percentage value.
     */
-  padding-bottom: 60%;
+  padding-bottom: 65%;
   content: '';
   z-index: 1;
   /* Centering */
@@ -3773,7 +3778,7 @@ dl dd {
 
 .featured-page .czr-thumb-wrapper {
   overflow: hidden;
-  max-width: 350px;
+  max-width: 270px;
   /* this actually depends on the thumb size */
   margin: auto;
   position: relative;

@@ -7,9 +7,9 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
 <div class="row fp-widget-area" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
 <?php endif ?>
   <div class="featured-page col-12 col-md-<?php czr_fn_echo( 'fp_col' ) ?> fp-<?php czr_fn_echo( 'fp_id' ) ?>">
-    <div class="widget-front czr-link-mask-p grid__item round" <?php czr_fn_echo('element_attributes') ?>>
+    <div class="widget-front czr-link-mask-p round" <?php czr_fn_echo('element_attributes') ?>>
       <?php if ( czr_fn_get( 'fp_img' ) ) : /* FP IMAGE */?>
-      <div class="tc-thumbnail czr-thumb-wrapper czr__r-w1by1 <?php czr_fn_echo( 'thumb_wrapper_class' ) ?>">
+      <div class="tc-thumbnail czr-thumb-wrapper czr__r-wFP <?php czr_fn_echo( 'thumb_wrapper_class' ) ?>">
         <a class="czr-link-mask" href="<?php czr_fn_echo( 'featured_page_link' ) ?>" title="<?php echo esc_attr( strip_tags( czr_fn_get( 'featured_page_title' ) ) ) ?>">
           <?php czr_fn_echo( 'fp_img' ) ?>
         </a>

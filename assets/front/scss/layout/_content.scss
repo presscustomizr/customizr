@@ -197,7 +197,7 @@ dl {
 
   .czr-thumb-wrapper {
     overflow: hidden;
-    max-width: 350px; /* this actually depends on the thumb size */
+    max-width: 270px; /* this actually depends on the thumb size */
     margin: auto;
     position: relative;
   }
@@ -205,15 +205,6 @@ dl {
     margin-bottom: $base-line-height*2
   }
 
-//included in h/v-centered
-//  .center-images-enabled & img {
-//    /* should help avoiding undesired visible line
-//    * see:
-//    * https://github.com/presscustomizr/customizr/issues/632
-//    * https://github.com/presscustomizr/customizr/issues/474
-//    */
-//    @include transform( translate3d(0,0,0) );
-//  }
   & img {
     @include transform( translate3d(0 ,0, 0) );
     backface-visibility: hidden;

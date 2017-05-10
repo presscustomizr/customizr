@@ -51,6 +51,7 @@ img.v-centered {
   max-height: none!important;
   vertical-align: top;
   position: relative;
+  max-width: none!important;
   @include transform( translate(0,0) !important );
   body[class*=ie] &.tc-holder-img {
     transform: none !important;
@@ -133,4 +134,8 @@ img.v-centered {
 
 .czr__r-w1by1 {
   @include czr__responsive-wrapper( 1, 1 );
+}
+
+.czr__r-wFP {
+  @include czr__responsive-wrapper( 270, 250 ); //default fp image size
 }

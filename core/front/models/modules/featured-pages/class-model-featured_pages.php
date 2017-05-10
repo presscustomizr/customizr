@@ -52,10 +52,10 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $model[ 'fp_holder_img' ]       = apply_filters (
               'tc_fp_holder_img' ,
-              sprintf('<img class="tc-holder-img" data-src="holder.js/350x350/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
+              sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
                 ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
                 $_skin_color,
-                $_center_imgs ? 'style="max-width:350px;width:350px;height:350px;"' : ''
+                $_center_imgs ? 'style="max-width:270px;width:270px;height:250px;"' : ''
               )
         );
         //gets the featured pages array and sets the fp layout

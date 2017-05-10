@@ -102,7 +102,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Default images sizes
           $this -> tc_thumb_size        = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-          $this -> tc_fp_thumb_size     = array( 'width' => 350 , 'height' => 350, 'crop' => true ); //size name : tc-thumb
+          $this -> tc_fp_thumb_size     = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
           $this -> tc_slider_full_size  = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
           $this -> tc_slider_size       = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
           $this -> tc_grid_full_size    = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
