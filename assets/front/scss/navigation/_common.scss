@@ -175,6 +175,11 @@
     @include transform-style( preserve-3d );
     @include backface-visibility( hidden );
     perspective: 1000px;
+    text-align: center;
+    vertical-align: middle;
+    &::before {
+      line-height: inherit;
+    }
     .menu-item.show > a > & {
         @include transform( translateZ(0) rotate(-180deg));
         -ms-transform: rotate(-180deg);

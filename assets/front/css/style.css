@@ -1362,6 +1362,12 @@ select:-webkit-autofill {
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
   perspective: 1000px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.caret__dropdown-toggler i::before {
+  line-height: inherit;
 }
 
 .menu-item.show > a > .caret__dropdown-toggler i {
@@ -1625,6 +1631,7 @@ select:-webkit-autofill {
 .branding .navbar-brand {
   font-size: 1.75em;
   margin: 0;
+  vertical-align: middle;
 }
 
 .navbar-brand img {
