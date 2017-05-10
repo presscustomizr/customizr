@@ -10,7 +10,8 @@ var czrapp = czrapp || {};
       this.DATA_KEY  = 'czr.czrDropdown';
       this.EVENT_KEY = '.' + this.DATA_KEY;
       this.Event     = {
-        PLACE     : 'place'+ this.EVENT_KEY,
+        PLACE_ME  : 'placeme'+ this.EVENT_KEY,
+        PLACE_ALL : 'placeall' + this.EVENT_KEY,
         RESIZE    : 'tc-resize',
         SHOWN     : 'shown' + this.EVENT_KEY,
         SHOW      : 'show' + this.EVENT_KEY,
@@ -153,31 +154,38 @@ var czrapp = czrapp || {};
       czrapp.$_body
           //on resize trigger Event.PLACE on active dropdowns
           .on( this.Event.RESIZE, function() {
-
                   if ( ! doingAnimation ) {
                     doingAnimation = true;
                     window.requestAnimationFrame(function() {
                       //trigger a placement on the open dropdowns
                       $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW)
-                          .trigger(self.Event.PLACE);
+                          .trigger(self.Event.PLACE_ME);
                       doingAnimation = false;
                     });
                   }
 
           })
+          .on( this.Event.PLACE_ALL, function() {
+                      //trigger a placement on all
+                      $( '.'+self.ClassName.PARENTS )
+                          .trigger(self.Event.PLACE_ME);
+          })
           //snake bound on menu-item shown and place
-          .on( this.Event.SHOWN+' '+this.Event.PLACE, this.Selector.DATA_PARENTS, function(evt) {
+          .on( this.Event.SHOWN+' '+this.Event.PLACE_ME, this.Selector.DATA_PARENTS, function(evt) {
 
             _do_snake( $(this), evt );
 
           });
+
+      //run at start
+      czrapp.$_body.trigger( self.Event.PLACE_ALL );
 
       //snake
       function _do_snake( $_el, evt ) {
 
         var $_this       = $_el;
 
-        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) || !$_this.hasClass(self.ClassName.SHOW) )
+        if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) )
           return;
 
         var $_dropdown         = $_this.children( '.'+self.ClassName.DROPDOWN );
@@ -186,6 +194,8 @@ var czrapp = czrapp || {};
           return;
 
         //stage: if not visible $ isn't able to get width, offset
+        czrapp.$_body.removeClass( 'snk-ready' );
+
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 
         _maybe_move( $_dropdown );
@@ -208,6 +218,7 @@ var czrapp = czrapp || {};
           $_dropdown.addClass( 'open-right' );
 
         }
+        czrapp.$_body.addClass( 'snk-ready' );
       }
 
     }

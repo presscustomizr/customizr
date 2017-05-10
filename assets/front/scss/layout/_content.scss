@@ -3,6 +3,18 @@
   position: relative;
   background: inherit;
   z-index: 1;
+  /* 
+  * make sure we don't allow overflow-x when snake has not performed its job 
+  * as matter of fact might happen (e.g. see dropdown animated entrance effect)
+  * that dropdown might have display != none (to allow transitions).
+  * In this case they might overflow the tc-page-wrap hence making the horizontal
+  * scrollbar visible. 
+  * (see the snake process in the dropdown js part for more info on the snk-ready class
+  * treatment)
+  */
+  body:not( .snk-ready ) & {
+    overflow-x: hidden;
+  }
 }
 
 
