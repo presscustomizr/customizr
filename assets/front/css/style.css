@@ -637,14 +637,14 @@ select:-webkit-autofill {
   background: #202020;
 }
 
-.header-skin-light .topbar-navbar__wrapper .socials a, .header-skin-light .topbar-navbar__wrapper .socials a:focus, .header-skin-light .topbar-navbar__wrapper .socials a:active {
+.header-skin-light .tc-header .socials a, .header-skin-light .tc-header .socials a:focus, .header-skin-light .tc-header .socials a:active {
   color: #202020;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.header-skin-light .topbar-navbar__wrapper .socials a:hover {
+.header-skin-light .tc-header .socials a:hover {
   color: #B4B4B4;
 }
 
@@ -928,14 +928,14 @@ select:-webkit-autofill {
   background: #fff;
 }
 
-.header-skin-dark .topbar-navbar__wrapper .socials a, .header-skin-dark .topbar-navbar__wrapper .socials a:focus, .header-skin-dark .topbar-navbar__wrapper .socials a:active {
+.header-skin-dark .tc-header .socials a, .header-skin-dark .tc-header .socials a:focus, .header-skin-dark .tc-header .socials a:active {
   color: #fff;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.header-skin-dark .topbar-navbar__wrapper .socials a:hover {
+.header-skin-dark .tc-header .socials a:hover {
   color: #B4B4B4;
 }
 
@@ -1229,16 +1229,16 @@ select:-webkit-autofill {
 }
 
 /* Dropdown menu ul */
-.dropdown-menu.czr-dropdown-menu {
+.czr-dropdown-menu {
   display: block;
 }
 
 @media (min-width: 992px) {
-  .dropdown-menu.czr-dropdown-menu {
+  .czr-dropdown-menu {
     display: none;
     max-width: 350px;
   }
-  .dropdown-menu.czr-dropdown-menu a {
+  .czr-dropdown-menu a {
     white-space: normal;
   }
 }
@@ -1261,9 +1261,9 @@ select:-webkit-autofill {
 
 @media (min-width: 992px) {
   .dropdown-menu.czr-dropdown-menu {
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -1382,24 +1382,38 @@ select:-webkit-autofill {
 * sidenav is not impacted
 */
 @media (min-width: 992px) {
-  .czr-submenu-fade .nav li > ul {
+  .czr-submenu-fade .menu-item-has-children {
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+  }
+  .czr-submenu-fade .menu-item-has-children > ul {
+    position: fixed;
     opacity: 0;
     visibility: hidden;
     display: block;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    -webkit-transform: translate(0, -5%);
-    -moz-transform: translate(0, -5%);
-    transform: translate(0, -5%);
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: translate(0, -10%);
+    -moz-transform: translate(0, -10%);
+    transform: translate(0, -10%);
+  }
+  .czr-submenu-fade li.show {
+    -webkit-perspective: none;
+    -moz-perspective: none;
+    perspective: none;
   }
   .czr-submenu-fade li.show > ul {
-    opacity: 1;
+    position: absolute;
     visibility: visible;
+    opacity: 1;
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
     transform: translate(0, 0);
   }
+  /*end fade effect */
+  /* submenu link move */
   .czr-submenu-move .dropdown-menu > li > a {
     -webkit-transition: all ease 0.241s;
     -moz-transition: all ease 0.241s;
@@ -1414,9 +1428,9 @@ select:-webkit-autofill {
     -moz-transform: translate(5px, 0);
     transform: translate(5px, 0);
   }
+  /* end subemnu link move */
 }
 
-/*end fade effect */
 /**
 * Dropdown menu direction [SNAKE]
 * available only in header
@@ -1603,6 +1617,7 @@ select:-webkit-autofill {
   display: none;
 }
 
+/* end sticky stuff */
 /* Branding */
 .branding__container {
   width: 100%;
@@ -1915,6 +1930,9 @@ select:-webkit-autofill {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+  }
+  .primary-navbar__wrapper-new.row .primary-nav__wrapper_new {
+    margin: 0 -15px;
   }
   .primary-navbar__wrapper-new.row .primary-nav__container_new {
     display: -webkit-box;
@@ -3437,19 +3455,6 @@ form.czr-form .czr-search-field {
   position: relative;
   background: inherit;
   z-index: 1;
-  /* 
-  * make sure we don't allow overflow-x when snake has not performed its job 
-  * as matter of fact might happen (e.g. see dropdown animated entrance effect)
-  * that dropdown might have display != none (to allow transitions).
-  * In this case they might overflow the tc-page-wrap hence making the horizontal
-  * scrollbar visible. 
-  * (see the snake process in the dropdown js part for more info on the snk-ready class
-  * treatment)
-  */
-}
-
-body:not(.snk-ready) #tc-page-wrap {
-  overflow-x: hidden;
 }
 
 #main-wrapper.bg {

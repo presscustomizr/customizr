@@ -45,7 +45,7 @@
 }
 
 /* Dropdown menu ul */
-.dropdown-menu.czr-dropdown-menu {
+.czr-dropdown-menu {
     display: block;
 
     @include media-breakpoint-up(lg) { //min-width: 992px
@@ -79,7 +79,7 @@
     //include box-shadow in desktops
     @include media-breakpoint-up(lg) {
 
-      @include box-shadow( 0, 2px, 2px, rgba(0, 0, 0, 0.15) );
+      @include box-shadow( 1px, 2px, 2px, rgba(0, 0, 0, 0.15), false, 2px );
 
     }
 
@@ -189,25 +189,45 @@
 }
 
 
-
 /*
 * Fade submenu only in desktops and only for horizontal menus
 * only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
 * sidenav is not impacted
 */
 @include media-breakpoint-up(lg) {
-  .czr-submenu-fade .nav li > ul {
-      opacity: 0;
-      visibility: hidden;
-      display: block;
-      @include transition( all 0.2s ease-in-out );
-      @include transform( translate( 0, -5% ) );
+  //lets use a tricky to make this not impact on the snake
+  //basically we know that assigning a perspective to an element
+  //plus position:relative creates a new system
+  //where fixed elements behave like absolute elements relative to the parent
+  //this way the actual visual position of the dropdown will not be impacted
+  //though, as fixed element, even if overflowing the tc-page-wrap, will not
+  //make the orizontal scrollbar appear!
+
+ .czr-submenu-fade .menu-item-has-children {
+      @include perspective(1000px);
+      > ul {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        @include transition( all 0.3s ease-in-out );
+        @include transform( translate( 0, -10% ) );
+      }
   }
-  .czr-submenu-fade li.show > ul {
-      opacity: 1;
-      visibility: visible;
-      @include transform( translate( 0, 0) );
+
+  .czr-submenu-fade li.show {
+      @include perspective( none );
+      > ul {
+        position: absolute;
+        visibility: visible;
+        opacity: 1;
+        @include transform( translate( 0, 0) );
+      }
   }
+
+  /*end fade effect */
+
+  /* submenu link move */
   .czr-submenu-move .dropdown-menu > li > a {
       -webkit-transition: all ease 0.241s;
       -moz-transition: all ease 0.241s;
@@ -218,8 +238,9 @@
   .czr-submenu-move .dropdown-item > a:hover {
       @include transform( translate( 5px, 0) );
   }
+  /* end subemnu link move */
 }
-/*end fade effect */
+
 
 /**
 * Dropdown menu direction [SNAKE]
@@ -381,3 +402,4 @@
   }
   .topbar-navbar__wrapper  { display:none; }
 }
+/* end sticky stuff */

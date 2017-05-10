@@ -177,8 +177,6 @@ var czrapp = czrapp || {};
 
           });
 
-      //run at start
-      czrapp.$_body.trigger( self.Event.PLACE_ALL );
 
       //snake
       function _do_snake( $_el, evt ) {
@@ -192,9 +190,6 @@ var czrapp = czrapp || {};
 
         if ( !$_dropdown.length )
           return;
-
-        //stage: if not visible $ isn't able to get width, offset
-        czrapp.$_body.removeClass( 'snk-ready' );
 
         $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
 
@@ -218,7 +213,7 @@ var czrapp = czrapp || {};
           $_dropdown.addClass( 'open-right' );
 
         }
-        czrapp.$_body.addClass( 'snk-ready' );
+
       }
 
     }
