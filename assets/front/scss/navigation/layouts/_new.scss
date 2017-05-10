@@ -18,23 +18,8 @@
 
     }
 
-    /* do not shrink the branding container and center the inner items */
-    .branding__container_new{
-      max-width: 30%;
-      flex-shrink: 0;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      width: auto;
-      .branding {
-        max-width: 100%;
-      }
-    }
-
 
     .primary-nav__container_new {
-      padding: 0;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -46,13 +31,28 @@
         -ms-flex-preferred-size: 0;
             flex-basis: 0;
     }
-    .primary-nav__menu-wrapper_new,
-    .primary-nav__wrapper_new {
+    .primary-nav__menu-wrapper_new {
       width: 100%;
     }
-    .primary-nav__wrapper_new {
+    .primary-nav__nav {
       flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
 
+    }
+
+  }
+
+  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper-new.row {
+
+
+    flex-direction: column !important;
+
+    .branding__container {
+      max-width: 100%;
+    }
+
+    .primary-nav__container_new {
+      flex-basis: auto;
+      justify-content: center;
     }
 
   }

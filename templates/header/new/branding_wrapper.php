@@ -11,7 +11,7 @@
       } else
         czr_fn_render_template( 'header/title' );
 
-      if ( czr_fn_has( 'tagline' ) )
+      if ( czr_fn_has( 'branding_tagline' ) )
         czr_fn_render_template( 'header/tagline' );
 
     ?>

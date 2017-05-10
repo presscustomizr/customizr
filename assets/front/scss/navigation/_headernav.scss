@@ -60,7 +60,7 @@
 /* This styles the utils in desktop and mobiles */
 .nav__utils {
     @extend .display-flex;
-
+    flex-shrink: 0;
     .utils {
         -webkit-flex-wrap: nowrap;
         -ms-flex-wrap: nowrap;
@@ -90,6 +90,10 @@
     }
 }
 
+.nav__container-top .col {
+    margin-top: $base-line-height-root;
+    margin-bottom: $base-line-height-root;
+}
 /*
 * Revert header (not topbar) elements order when logo right
 */

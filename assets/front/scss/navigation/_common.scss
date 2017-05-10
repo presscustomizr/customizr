@@ -24,7 +24,7 @@
 }
 .regular.nav__menu {
     margin: 0 -1rem;
-    
+
     //only first menu item in desktops
     @include media-breakpoint-up(lg) { //min-width: 992px
         > .menu-item > a {
@@ -32,7 +32,7 @@
 
             & > span:first-of-type {
                 padding: $base-line-height 0;
-            }   
+            }
         }
     }
 }
@@ -45,7 +45,7 @@
 }
 
 /* Dropdown menu ul */
-.dropdown-menu {
+.dropdown-menu.czr-dropdown-menu {
     display: block;
 
     @include media-breakpoint-up(lg) { //min-width: 992px
@@ -58,7 +58,7 @@
         }
     }
 }
-.czr-dropdown .dropdown-menu {
+.dropdown-menu.czr-dropdown-menu {
     border-radius: 0;
     border:0;
     margin: 0;
@@ -84,7 +84,7 @@
     }
 
     .dropdown-item {
-        padding: 0 $base-line-height-root;
+        padding: 0 0 0 $base-line-height-root; //in rtl we shuould to the opposite
         margin: 0;
 
 
@@ -96,9 +96,11 @@
               display: inline-block;
               top: -.1em;
             }
-            /*padding-top: 0;
-            padding-bottom: 0;*/
+            @at-root .regular .dropdown-menu .dropdown-item {
+              padding: 0 $base-line-height;
+            }
         }
+
         @include media-breakpoint-down(md) {
             @at-root .czr-dropdown > .dropdown-menu > .dropdown-item:last-of-type {
               margin-bottom: $base-line-height/2;
@@ -109,13 +111,13 @@
        }
     }
 
-    .dropdown-menu {
+    .czr-dropdown-menu {
         text-transform: none;
         font-size:ms(0);
 
         @include media-breakpoint-up(lg) { //min-width: 992px
             @at-root .dropdown-menu .dropdown-menu {
-              
+
                   left: 100%;
                   top: 55%;
 

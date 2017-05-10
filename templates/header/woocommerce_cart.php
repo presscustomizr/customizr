@@ -13,7 +13,7 @@
   */
   if ( czr_fn_get( 'display_widget' ) ) :
   ?>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu czr-dropdown-menu">
     <li>
       <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
     </li>

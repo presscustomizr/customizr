@@ -11,6 +11,10 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
     }
 
+    function czr_fn_display_view_branding_tagline() {
+      return 1 == esc_attr( czr_fn_get_opt( "tc_tagline_branding" ) );
+    }
+
 
     function czr_fn_display_view_topbar() {
       return 1 == esc_attr( czr_fn_get_opt( 'tc_header_topbar' ) );

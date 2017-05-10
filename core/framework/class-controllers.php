@@ -26,6 +26,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'sidenav',
               'topbar_menu',
               'topbar',
+              'branding_tagline',
               //'header_social_block',
               'navbar_primary_menu',
               'navbar_secondary_menu',
