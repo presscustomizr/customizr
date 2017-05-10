@@ -1769,15 +1769,13 @@ select:-webkit-autofill {
     max-width: 100%;
   }
   body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper .primary-nav__container {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 66.666667%;
-    -ms-flex: 0 0 66.666667%;
-    flex: 0 0 66.666667%;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
     width: 66.666667%;
     max-width: 66.666667%;
+    flex-basis: auto;
   }
   body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper .nav__container-top {
     -webkit-box-pack: justify !important;

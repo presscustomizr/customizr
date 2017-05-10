@@ -138,7 +138,6 @@
     }
     .primary-nav__nav {
       flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
-
     }
 
   }
@@ -160,16 +159,14 @@
       }
 
       .primary-nav__container {
-          -webkit-flex-basis: auto;
-              -ms-flex-preferred-size: auto;
-                  flex-basis: auto;
-
               -webkit-box-flex: 0;
-              -webkit-flex: 0 0 66.666667%;
-              -ms-flex: 0 0 66.666667%;
-              flex: 0 0 66.666667%;
+              -webkit-flex: 0 0 auto;
+              -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
                   width: 66.666667%;
-              max-width: 66.666667%;
+              max-width: 66.666667%;;
+
+                  flex-basis: auto
       }
 
       .nav__container-top {
