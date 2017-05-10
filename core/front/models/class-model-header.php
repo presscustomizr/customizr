@@ -22,10 +22,10 @@ class CZR_header_model_class extends CZR_Model {
 
     switch ( $header_layouts ) {
 
-      case 'right'    : $navbar_template = 'default_navbar';
+      case 'right'    : $navbar_template = 'navbar_wrapper';
                         $element_class   = 'sl-logo_right';
                         break;
-      case 'centered' : $navbar_template = 'default_navbar';
+      case 'centered' : $navbar_template = 'navbar_wrapper';
                         $element_class   = 'logo_centered';
                         break;
      /*  maybe pro
@@ -36,14 +36,9 @@ class CZR_header_model_class extends CZR_Model {
                         $element_class   = 'v-logo_right';
                         break;
       */
-      default         : $navbar_template = 'default_navbar';
+      default         : $navbar_template = 'navbar_wrapper';
                         $element_class   = 'sl-logo_left';
     }
-
-    $navbar_template     = 'navbar_layouts/' . $navbar_template;
-
-    //test
-    $navbar_template     = 'new/' . $navbar_template;
 
     $element_class            = array( $element_class );
     $elements_container_class = array();
@@ -62,9 +57,6 @@ class CZR_header_model_class extends CZR_Model {
         ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) */ ) )
       array_push( $element_class, 'header-absolute', 'header-transparent' );
 
-    //No navbar box
-    if ( 1 != esc_attr( czr_fn_get_opt( 'tc_display_boxed_navbar') ) )
-      array_push( $element_class, 'no-navbar' );
 
     //regular menu
     if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )

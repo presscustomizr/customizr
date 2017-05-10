@@ -27,16 +27,19 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'topbar_menu',
               'topbar',
               'branding_tagline',
-              //'header_social_block',
+
               'navbar_primary_menu',
               'navbar_secondary_menu',
-              //'topnav_menu',
+
 
               'menu_button',
               'mobile_menu_button',
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
-              'header_social_block',
+
+              'navbar_social_block',
+              'topbar_social_block',
+
               'nav_search'
             ),
             'content' => array(

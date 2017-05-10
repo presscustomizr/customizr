@@ -12,10 +12,6 @@ class CZR_navbar_primary_menu_model_class extends CZR_menu_model_class {
 
             switch ( $_menu_position ) {
 
-              case 'pull-menu-center' :
-                    $menu_position_class = 'justify-content-center';
-                    break;
-
               case 'pull-menu-left' :
                     $menu_position_class = 'justify-content-start';
                     break;
@@ -26,10 +22,10 @@ class CZR_navbar_primary_menu_model_class extends CZR_menu_model_class {
 
             $_this_preset = array(
 
-                'element_class'       =>  array( 'primary-nav__menu-wrapper_new', $menu_position_class ),
+                'element_class'       =>  array( 'primary-nav__menu-wrapper', $menu_position_class ),
                 'theme_location'      => 'main',
-                'menu_id'             => 'primary',
-                'menu_class'          => array( 'primary-nav__menu_new', 'regular', 'navbar-nav', 'nav__menu' ),
+                'menu_id'             => 'primary-nav',
+                'menu_class'          => array( 'primary-nav__menu', 'regular', 'navbar-nav', 'nav__menu' ),
 
             );
 

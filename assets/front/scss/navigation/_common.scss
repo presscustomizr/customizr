@@ -211,7 +211,7 @@
         visibility: hidden;
         display: block;
         @include transition( all 0.3s ease-in-out );
-        @include transform( translate( 0, -10% ) );
+        @include transform( translate( 0, -20px ) );
       }
   }
 

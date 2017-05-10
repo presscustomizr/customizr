@@ -11,6 +11,18 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
     }
 
+    function czr_fn_display_view_navbar_social_block() {
+      $_topbar_on        = $this->czr_fn_display_view_topbar();
+      $_social_in_navbar = $_topbar_on ? 1 != esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) ) : true;
+
+      return $this -> czr_fn_display_view_header_social_block() && $_social_in_navbar;
+
+    }
+
+    function czr_fn_display_view_topbar_social_block() {
+      return $this -> czr_fn_display_view_header_social_block() && 1 == esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) );
+    }
+
     function czr_fn_display_view_branding_tagline() {
       return 1 == esc_attr( czr_fn_get_opt( "tc_tagline_branding" ) );
     }

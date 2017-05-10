@@ -43,20 +43,59 @@
 
   }
 
-  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper-new.row {
+  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper-new {
 
+      -webkit-box-orient: vertical !important;
+      -webkit-box-direction: normal !important;
+      -webkit-flex-direction: column !important;
+          -ms-flex-direction: column !important;
+              flex-direction: column !important;
 
-    flex-direction: column !important;
+      .branding__container {
+          max-width: 100%;
+      }
 
-    .branding__container {
-      max-width: 100%;
-    }
+      .primary-nav__container_new {
+          -webkit-flex-basis: auto;
+              -ms-flex-preferred-size: auto;
+                  flex-basis: auto;
 
-    .primary-nav__container_new {
-      flex-basis: auto;
-      justify-content: center;
-    }
+              -webkit-box-flex: 0;
+              -webkit-flex: 0 0 66.666667%;
+              -ms-flex: 0 0 66.666667%;
+              flex: 0 0 66.666667%;
+                  width: 66.666667%;
+              max-width: 66.666667%;
+      }
 
+      .nav__container-top {
+                 -webkit-box-pack: justify !important;
+          -webkit-justify-content: space-between !important;
+                    -ms-flex-pack: justify !important;
+                  justify-content: space-between !important;
+      }
+      .navbar-toggleable-md {
+          width: auto !important;
+          -webkit-box-pack: center !important;
+          -webkit-justify-content: center !important;
+              -ms-flex-pack: center !important;
+                  justify-content: center !important;
+      }
+      .navbar-toggleable-md .navbar-collapse {
+          width: auto;
+            -webkit-align-self: center !important;
+                -ms-flex-item-align: center !important;
+                        -ms-grid-row-align: center !important;
+                    align-self: center !important;
+
+            -webkit-flex-basis: auto;
+                -ms-flex-preferred-size: auto;
+                    flex-basis: auto;
+
+          -webkit-flex-grow: 0;
+              -ms-flex-positive: 0;
+                  flex-grow: 0;
+      }
   }
 
 }

@@ -32,7 +32,7 @@
       </nav>
     </div>
   <?php endif ?>
-  <?php if ( czr_fn_has('header_social_block') ) : ?>
+  <?php if ( czr_fn_has( 'topbar_social_block' ) ) : ?>
     <div class="topbar-nav__socials social-links hidden-md-down col col-auto">
       <?php czr_fn_render_template( 'modules/common/social_block',array(
               'model_args' => array(

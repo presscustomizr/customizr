@@ -94,13 +94,126 @@
     margin-top: $base-line-height-root;
     margin-bottom: $base-line-height-root;
 }
+
+/*
+* HEADER LAYOUTS
+*/
+@include media-breakpoint-up(lg) {
+
+  .primary-navbar__wrapper {
+    /* ensure the navbar elements do not wrap in a new line */
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+    .branding__container,
+    .primary-nav__utils li,
+    .primary-nav__wrapper,
+    .primary-nav__menu-wrapper {
+
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+
+    }
+    .primary-nav__wrapper {
+        margin: 0 -15px;
+    }
+
+    .primary-nav__container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+              flex-grow: 1;
+      -webkit-flex-basis: 0;
+        -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+    }
+    .primary-nav__menu-wrapper {
+      width: 100%;
+    }
+    .primary-nav__nav {
+      flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
+
+    }
+
+  }
+
+  /*
+  * LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
+  * that's why is handled only with CSS
+  */
+  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper {
+
+      -webkit-box-orient: vertical !important;
+      -webkit-box-direction: normal !important;
+      -webkit-flex-direction: column !important;
+          -ms-flex-direction: column !important;
+              flex-direction: column !important;
+
+      .branding__container {
+          max-width: 100%;
+      }
+
+      .primary-nav__container {
+          -webkit-flex-basis: auto;
+              -ms-flex-preferred-size: auto;
+                  flex-basis: auto;
+
+              -webkit-box-flex: 0;
+              -webkit-flex: 0 0 66.666667%;
+              -ms-flex: 0 0 66.666667%;
+              flex: 0 0 66.666667%;
+                  width: 66.666667%;
+              max-width: 66.666667%;
+      }
+
+      .nav__container-top {
+                 -webkit-box-pack: justify !important;
+          -webkit-justify-content: space-between !important;
+                    -ms-flex-pack: justify !important;
+                  justify-content: space-between !important;
+      }
+
+      .navbar-toggleable-md {
+          width: auto !important;
+          -webkit-box-pack: center !important;
+          -webkit-justify-content: center !important;
+              -ms-flex-pack: center !important;
+                  justify-content: center !important;
+      }
+
+      .navbar-toggleable-md .navbar-collapse {
+          width: auto;
+           -webkit-align-self: center !important;
+          -ms-flex-item-align: center !important;
+           -ms-grid-row-align: center !important;
+                   align-self: center !important;
+
+            -webkit-flex-basis: auto;
+       -ms-flex-preferred-size: auto;
+                    flex-basis: auto;
+
+          -webkit-flex-grow: 0;
+              -ms-flex-positive: 0;
+                  flex-grow: 0;
+      }
+  }
+
+}
+
 /*
 * Revert header (not topbar) elements order when logo right
 */
-[class*=logo_right] .primary-navbar__wrapper-new {
+[class*=logo_right] .primary-navbar__wrapper {
   &,
   .branding__container,
-  .primary-nav__container_new,
+  .primary-nav__wrapper,
+  .nav__container-top,
   .nav__utils .utils {
     -webkit-box-direction: reverse !important;
     -webkit-flex-direction: row-reverse !important;

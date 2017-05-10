@@ -682,7 +682,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                              )
           ),
           /* new */
-          /* By default when displaying socials in header and a topnav
           'tc_social_in_topnav' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in topnav' , 'customizr' ),
@@ -691,7 +690,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'        => 'checkbox' ,
                             'priority'      => 22,
           ),
-          */
           'tc_search_in_header' => array(
                             'default'   => 1,
                             'label'     => __( 'Display a search button in the header' , 'customizr' ),
@@ -714,7 +712,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
           /* new */
           'tc_header_skin'  =>  array(
-                            'default'       => 'dark',
+                            'default'       => 'light',
                             'control'       => 'CZR_controls' ,
                             'label'         => __( 'Header skin', 'customizr'),
                             'choices'       => array(
