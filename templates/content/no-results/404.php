@@ -8,7 +8,7 @@
   <h2><?php _e('Ooops, page not found', 'customizr') ?></h2>
 </header>
 <hr class='featurette-divider'>
-<article id="post-0" class="post error404 no-results not-found row text-xs-center">
+<article id="post-0" class="post error404 no-results not-found row text-center">
   <div class="tc-content col-12">
     <div class="entry-content">
       <p><?php _e( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' ) ?></p>
