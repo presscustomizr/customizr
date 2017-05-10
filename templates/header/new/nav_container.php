@@ -4,7 +4,7 @@
  */
 ?>
 <div class="primary-nav__container_new <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="nav__container-top row flex-lg-row justify-content-lg-end align-items-center align-self-end">
+  <div class="hidden-md-down nav__container-top row flex-lg-row justify-content-lg-end align-items-center">
     <?php if ( czr_fn_has( 'tagline' ) )
       czr_fn_render_template( 'header/tagline' ,array(
                 'model_args' => array(
@@ -23,7 +23,7 @@
       </div>
     <?php endif ?>
   </div>
-  <div class="primary-nav__wrapper_new navbar-toggleable-md row flex-lg-row justify-content-lg-between align-self-stretch">
+  <div class="primary-nav__wrapper_new navbar-toggleable-md flex-lg-row justify-content-lg-between">
      <nav class="collapse navbar-collapse primary-nav__nav col-lg" id="primary-nav">
       <?php
         if ( czr_fn_has( 'nav_search' ) ) {

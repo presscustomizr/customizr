@@ -42,7 +42,7 @@ $secondary-color-dark   : $grey;
       }
   }
 
-    .topbar-navbar__wrapper .socials {
+    .tc-header .socials {
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease); }
       a:hover { color: $secondary-color-light; }
     }

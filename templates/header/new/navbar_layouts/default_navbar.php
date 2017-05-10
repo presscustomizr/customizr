@@ -9,7 +9,7 @@
  * Navbar menu buttons
  */
 ?>
-<div class="primary-navbar__wrapper-new row <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="primary-navbar__wrapper-new row align-items-center flex-lg-row <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <?php czr_fn_render_template(  'header/new/branding_wrapper', array(
     'model_args' => array(
       'with_nav_utils' => false,
@@ -19,7 +19,7 @@
   <?php czr_fn_render_template(  'header/new/nav_container', array(
     'model_args' => array(
       'with_nav_utils' => true,
-      'element_class'  => 'justify-content-lg-around col col-lg-auto align-items-center flex-lg-column',
+      'element_class'  => 'justify-content-lg-around col col-lg-auto flex-lg-column',
     )
   ) ) ?>
 </div>
