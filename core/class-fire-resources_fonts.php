@@ -86,7 +86,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       $_font_selectors    = CZR_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
-      extract( CZR_init::$instance -> font_selectors, EXTR_OVERWRITE );
+      extract( $_font_selectors, EXTR_OVERWRITE );
 
       if ( ! isset($body) || ! isset($titles) )
         return;

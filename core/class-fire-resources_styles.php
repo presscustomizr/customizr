@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
          //hook: after_setup_theme
          function czr_fn_setup_properties() {
-               
+
                $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
                $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
@@ -316,10 +316,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        'a.czr-format-link:hover',
                                        '.format-link.hover a.czr-format-link',
                                        'input[type=submit]:hover',
-                                       '.tabs .nav-link:hover', 
-                                       '.tabs .nav-link.active', 
-                                       '.tabs .nav-link.active:hover', 
-                                       '.tabs .nav-link.active:focus' 
+                                       '.tabs .nav-link:hover',
+                                       '.tabs .nav-link.active',
+                                       '.tabs .nav-link.active:hover',
+                                       '.tabs .nav-link.active:focus'
                                  ),
 
                                  'border-color' => array(
