@@ -63,6 +63,8 @@ class CZR_gallery {
             $captiontag = 'figcaption';
             $icontag    = 'div';
 
+            //test
+            $html5      = true;
 
             if ( ! empty( $atts['include'] ) ) {
                   $_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );

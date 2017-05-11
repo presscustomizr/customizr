@@ -3119,11 +3119,34 @@ form.czr-form .czr-search-field {
   padding-right: 2em;
 }
 
+.gallery-item {
+  /* do not style standard gallery */
+  /* do not style standard gallery */
+}
+
+.gallery-item dt {
+  text-align: inherit;
+  padding: 0.8rem;
+}
+
+.gallery-item dt::before {
+  content: none;
+}
+
+.gallery-item dd.wp-caption-text {
+  padding: 0 0.8rem;
+  margin: 0;
+}
+
+.gallery-item dd.wp-caption-text::before {
+  content: none;
+}
+
 .gallery-item .gallery-icon {
   overflow: hidden;
 }
 
-.gallery-item img {
+.gallery-item .gallery-icon img {
   display: block;
   -webkit-transition: transform 0.3s ease-in-out;
   -o-transition: transform 0.3s ease-in-out;
@@ -3132,10 +3155,15 @@ form.czr-form .czr-search-field {
   width: 100%;
 }
 
-.gallery-item.hover img {
+.hover.gallery-item .gallery-icon img {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+section[class^="post-"] .gallery.row {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 /*

@@ -1,19 +1,38 @@
+
 .gallery-item {
+  /* do not style standard gallery */
+  dt {
+    text-align: inherit;
+    &::before { content: none }
+    padding: 0.8rem;
+  }
+  dd.wp-caption-text {
+    padding: 0 0.8rem;
+    margin: 0;
+    &::before { content: none }
+  }
+  /* do not style standard gallery */
+  
   .gallery-icon {
     overflow: hidden;
-  }
-  img {
-    display: block;
-    @include transition(transform 0.3s ease-in-out);
-    max-width: 100%;
-    width: 100%;
-  }
-  &.hover img {
-    @include transform( scale(1.1) );
+  
+    img {
+      display: block;
+      @include transition(transform 0.3s ease-in-out);
+      max-width: 100%;
+      width: 100%;
+
+      @at-root .hover.gallery-item .gallery-icon img {
+        @include transform( scale(1.1) );
+      }
+    }
+
   }
 }
-
-
+section[class^="post-"] .gallery.row {
+  margin-top: $base-line-height-root;
+  margin-bottom: $base-line-height-root;
+}
 
 /*
 * Gallery needs a better implementation
