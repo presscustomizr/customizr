@@ -188,7 +188,7 @@
   * @since Customizr 3.2.0
   */
   function czr_fn_cache_db_options($opt_group = null) {
-      $opts_group = is_null($opt_group) ? CZR_THEME_OPTIONS : $opt_group;
+      $opt_group = is_null($opt_group) ? CZR_THEME_OPTIONS : $opt_group;
       CZR___::$db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
       return CZR___::$db_options;
   }
