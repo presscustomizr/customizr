@@ -32,7 +32,7 @@ function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
 
     //FILTER SPECIFIC SETTING-CONTROL MAPS
     //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-    add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages');
+    add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages', 10, 2 );
 
     //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
     add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
@@ -72,7 +72,7 @@ function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
 
 /**
 * Populate the control map
-* hook : 'czr_fn_add_setting_control_map'
+* hook : 'czr_add_setting_control_map'
 * => loops on a callback list, each callback is a section setting group
 * @return array()
 *
@@ -87,10 +87,10 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_skin_option_map',
     'czr_fn_fonts_option_map',
     'czr_fn_social_option_map',
-    'czr_fn_icons_option_map', //Removed in c4
+
     'czr_fn_links_option_map',
     'czr_fn_images_option_map',
-    'czr_fn_responsive_option_map', //Removed in c4, handled with Bootstrap css
+
     'czr_fn_authors_option_map',
     'czr_fn_smoothscroll_option_map',
     //HEADER
@@ -128,7 +128,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     //each section map takes one boolean param : $get_default
     $_section_map = apply_filters(
       $_section_cb,
-      call_user_func_array( $_section_cb, array( $get_default ) )
+      call_user_func( $_section_cb, $get_default )
     );
 
     if ( ! is_array( $_section_map) )
@@ -170,7 +170,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
           //force logo resize 250 * 85
           'tc_logo_resize'  => array(
                             'default'   =>  1,
-                            'label'     =>  __( 'Force logo height to max-height:70px' , 'customizr' ),
+                            'label'     =>  __( 'Force logo dimensions to max-width:250px and max-height:100px' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'logo_sec' ,
                             'type'        => 'checkbox' ,
@@ -191,18 +191,6 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'dst_height'  => false,
                             'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
           ),
-
-/* We don't handle the favicon in czr4
-          //favicon
-          'tc_fav_upload' => array(
-                            'control'   =>  'CZR_Customize_Upload_Control' ,
-                            'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
-                            'title'     => __( 'FAVICON' , 'customizr'),
-                            'section'   =>  'logo_sec' ,
-                            'type'      => 'tc_upload',
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-          )
-*/
   );
 }
 
@@ -210,39 +198,19 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                                   SKIN SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_skin_option_map( $get_default = null ) {
-  return array(
-          //skin select OLD
-          'tc_skin'     => array(
-                            'default'   => czr_fn_user_started_before_version( '3.4.32' , '1.2.31') ? 'blue3.css' : 'grey.css',
-                            'control'   => 'CZR_controls' ,
-                            'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
-                            'section'   =>  'skins_sec' ,
-                            'type'      =>  'select' ,
-                            'choices'    =>  $get_default ? null : czr_fn_build_skin_list(),
-                            'transport'   =>  'postMessage',
-                            'notice'    => __( 'Disabled if the random option is on.' , 'customizr' )
-          ),
-          'tc_skin_random' => array(
-                            'default'   => 0,
-                            'control'   => 'CZR_controls',
-                            'label'     => __('Randomize the skin', 'customizr'),
-                            'section'   => 'skins_sec',
-                            'type'      => 'checkbox',
-                            'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
-          ),
-          /*new */
-          'tc_skin_color' => array(
-                            'default'     => '#5a5a5a',
-                            'control'     => 'WP_Customize_Color_Control',
-                            'label'       => __( 'Skin color' , 'customizr' ),
-                            'section'     => 'skins_sec',
-                            'type'        =>  'color' ,
-                            'priority'    => 30,
-                            'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
-                            'sanitize_js_callback' => 'maybe_hash_hex_color',
-                            'transport'   => 'refresh' //postMessage
-          ),
-    );//end of skin options
+      return array(
+            'tc_skin_color' => array(
+                              'default'     => '#5a5a5a',
+                              'control'     => 'WP_Customize_Color_Control',
+                              'label'       => __( 'Skin color' , 'customizr' ),
+                              'section'     => 'skins_sec',
+                              'type'        =>  'color' ,
+                              'priority'    => 30,
+                              'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
+                              'sanitize_js_callback' => 'maybe_hash_hex_color',
+                              'transport'   => 'refresh' //postMessage
+            ),
+      );//end of skin options
 }
 
 
@@ -251,8 +219,8 @@ function czr_fn_skin_option_map( $get_default = null ) {
                                  FONT SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_fonts_option_map( $get_default = null ) {
-  return array(
-          'tc_fonts'      => array(
+      return array(
+            'tc_fonts'      => array(
                             'default'       => czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_poppins',
                             'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                             'control'       =>  'CZR_controls',
@@ -262,8 +230,8 @@ function czr_fn_fonts_option_map( $get_default = null ) {
                             'priority'      => 10,
                             'transport'     => 'postMessage',
                             'notice'        => __( "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs." , 'customizr' )
-          ),
-          'tc_body_font_size'      => array(
+            ),
+            'tc_body_font_size'      => array(
                             'default'       => czr_fn_user_started_before_version( '3.2.9', '1.0.1' ) ? 14 : 15,
                             'sanitize_callback' => 'czr_fn_sanitize_number',
                             'label'         => __( 'Set your website default font size in pixels.' , 'customizr' ),
@@ -276,14 +244,14 @@ function czr_fn_fonts_option_map( $get_default = null ) {
                             'transport'     => 'postMessage',
                             'notice'        => __( "This option sets the default font size applied to any text element of your website, when no font size is already applied." , 'customizr' )
           )
-  );
+      );
 }
 
 
 /*-----------------------------------------------------------------------------------------------------
                          SOCIAL NETWORKS + POSITION SECTION
 ------------------------------------------------------------------------------------------------------*/
-function czr_fn_social_option_map( $get_default = null  ) {
+function czr_fn_social_option_map( $get_default = null ) {
   return array(
       'tc_social_links' => array(
             'default'   => array(),//empty array by default
@@ -312,16 +280,6 @@ function czr_fn_links_option_map( $get_default = null ) {
                             'type'        => 'checkbox' ,
                             'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.', 'customizr') )
           ),
-          'tc_link_hover_effect'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "Fade effect on link hover" , "customizr" ),
-                            'section'       => 'links_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 20,
-                            'transport'   => 'postMessage'
-          ),
-
           'tc_ext_link_style'  =>  array(
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
@@ -347,80 +305,7 @@ function czr_fn_links_option_map( $get_default = null ) {
 }
 
 
-/* Removed in c4 */
-/*-----------------------------------------------------------------------------------------------------
-                               ICONS SECTION
-------------------------------------------------------------------------------------------------------*/
-function czr_fn_icons_option_map( $get_default = null ) {
-  return array(
-          'tc_show_title_icon'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "Display icons next to titles" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 10,
-                            'notice'    => __( 'When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets.' , 'customizr' ),
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_page_title_icon'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display a page icon next to the page title" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 20,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_post_title_icon'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 30,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_archive_title_icon'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "Display an icon next to the archive title" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'notice'    => __( 'When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
-                            'priority'      => 40,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_post_list_title_icon'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'notice'    => __( 'When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
-                            'priority'      => 50,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_sidebar_widget_icon'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "WP sidebar widgets : display icons next to titles" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 60,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_show_footer_widget_icon'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls' ,
-                            'label'         => __( "WP footer widgets : display icons next to titles" , "customizr" ),
-                            'section'       => 'titles_icons_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 70,
-                            'transport'   => 'postMessage'
-          )
-  );
-}
+
 
 
 /*-----------------------------------------------------------------------------------------------------
@@ -436,16 +321,8 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( 'Lightbox effect on images' , 'customizr' ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 1,
                             'notice'    => __( 'If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File.' , 'customizr' ),
-          ),
-
-          'tc_fancybox_autoscale' =>  array(
-                            'default'       => 1,
-                            'control'   => 'CZR_controls' ,
-                            'label'       => __( 'Autoscale images on zoom' , 'customizr' ),
-                            'section'     => 'images_sec' ,
-                            'type'        => 'checkbox' ,
-                            'notice'    => __( 'If enabled, this option will force images to fit the screen on lightbox zoom.' , 'customizr' ),
           ),
 
           'tc_retina_support' =>  array(
@@ -454,6 +331,7 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( 'High resolution (Retina) support' , 'customizr' ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 5,
                             'notice'    => sprintf('%1$s <strong>%2$s</strong> : <a href="%4$splugin-install.php?tab=plugin-information&plugin=regenerate-thumbnails" title="%5$s" target="_blank">%3$s</a>.',
                                 __( 'If enabled, your website will include support for high resolution devices.' , 'customizr' ),
                                 __( "It is strongly recommended to regenerate your media library images in high definition with this free plugin" , 'customizr'),
@@ -468,15 +346,8 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 10,
                             'notice'    => __( 'If enabled, your slides scroll slower than the page (parallax effect).' , 'customizr' ),
-          ),
-          'tc_display_slide_loader'  =>  array(
-                            'default'       => 1,
-                            'control'   => 'CZR_controls' ,
-                            'label'       => __( "Sliders : display on loading icon before rendering the slides" , "customizr" ),
-                            'section'     => 'images_sec' ,
-                            'type'        => 'checkbox' ,
-                            'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
           ),
 
           'tc_center_slider_img'  =>  array(
@@ -485,6 +356,7 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( "Dynamic slider images centering on any devices" , "customizr" ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 15,
                             //'notice'    => __( 'This option dynamically centers your images on any devices vertically or horizontally (without stretching them) according to their initial dimensions.' , 'customizr' ),
           ),
           'tc_center_img'  =>  array(
@@ -493,6 +365,7 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( "Dynamic thumbnails centering on any devices" , "customizr" ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 20,
                             'notice'    => __( 'This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio.' , 'customizr' ),
           )
   );//end of images options
@@ -506,6 +379,7 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'label'       => __( "Enable the WordPress responsive image feature for the slider" , "customizr" ),
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'    => 25,
           ),
           'tc_resp_thumbs_img'  =>  array(
                             'default'     => 0,
@@ -514,6 +388,7 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'section'     => 'images_sec' ,
                             'notice'      => __( 'This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely.' , 'customizr' ),
                             'type'        => 'checkbox' ,
+                            'priority'    => 30,
           )
       )
     );
@@ -522,25 +397,6 @@ function czr_fn_images_option_map( $get_default = null ) {
 }
 
 
-
-
-
-/* Removed in c4 */
-/*-----------------------------------------------------------------------------------------------------
-                              RESPONSIVE SETTINGS SECTION
-------------------------------------------------------------------------------------------------------*/
-function czr_fn_responsive_option_map( $get_default = null ) {
-  return array(
-          'tc_block_reorder'  =>  array(
-                            'default'       => 1,
-                            'control'   => 'CZR_controls' ,
-                            'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( 'Dynamic sidebar reordering on small devices' , 'customizr' ) ),
-                            'section'     => 'responsive_sec' ,
-                            'type'        => 'checkbox' ,
-                            'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
-          )
-  );//end of links options
-}
 
 
 
@@ -611,7 +467,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
           /*new*/
           'tc_header_topbar'  =>  array(
-                            'default'       => 1,
+                            'default'       => 0,
                             'control'       => 'CZR_controls' ,
                             'label'         => __( "Display the topbar" , "customizr" ),
                             'section'       => 'header_layout_sec' ,
@@ -633,17 +489,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 13,
           ),*/
           /*end_new*/
-          /* removed in c4*/
-          //enable/disable top border
-          'tc_top_border' => array(
-                            'default'       =>  1,//top border on by default
-                            'label'         =>  __( 'Display top border' , 'customizr' ),
-                            'control'       =>  'CZR_controls' ,
-                            'section'       =>  'header_layout_sec' ,
-                            'type'          =>  'checkbox' ,
-                            'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                            'priority'      => 10
-          ),
           'tc_show_tagline'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -667,7 +512,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                            'priority'  => 18,
                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
           ),
-          /*TODO: this should be visible only if displaying a topnav */
           'tc_social_in_header' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in header' , 'customizr' ),
@@ -683,12 +527,16 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
           /* new */
           'tc_social_in_topnav' =>  array(
-                            'default'       => 1,
+                            'default'       => 0,
                             'label'       => __( 'Social links in topnav' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'     => 'header_layout_sec' ,
                             'type'        => 'checkbox' ,
                             'priority'      => 22,
+                            'ubq_section'   => array(
+                                                'section' => 'socials_sec',
+                                                'priority' => '2'
+                                             )
           ),
           'tc_search_in_header' => array(
                             'default'   => 1,
@@ -697,19 +545,9 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'   => 'header_layout_sec',
                             'type'      => 'checkbox' ,
                             'priority'  => 24,
+
           ),
           /* end new */
-          /* removed in c4*/
-          'tc_display_boxed_navbar'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display menu in a box" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 25,
-                            'transport'     => 'postMessage',
-                            'notice'    => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
-          ),
           /* new */
           'tc_header_skin'  =>  array(
                             'default'       => 'light',
@@ -768,18 +606,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 40,
                             'transport'     => 'postMessage',
-          ),
-          /* Removed in c4*/
-          'tc_woocommerce_header_cart_sticky' => array(
-                           'default'   => 1,
-                           'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
-                           'control'   => 'CZR_controls' ,
-                           'section'   => 'header_layout_sec',
-                           'type'      => 'checkbox' ,
-                           'priority'  => 45,
-                           'transport' => 'postMessage',
-                           'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
-                           'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
           ),
           'tc_sticky_show_title_logo'  =>  array(
                             'default'       => 1,
@@ -874,26 +700,6 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                           ),
                           'priority'      => 30
           ),
-          /* by default now */
-          'tc_menu_resp_dropdown_limit_to_viewport'  =>  array(
-                            'default'       => 0,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport." , "customizr" ) ),
-                            'section'       => 'nav' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 35,
-                            //'transport'     => 'postMessage',
-          ),
-          /* not anymore in c4 */
-          'tc_display_menu_label'  =>  array(
-                            'default'       => 0,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display a label next to the menu button." , "customizr" ),
-                            'section'       => 'nav' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 45,
-                            'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
-          ),
           'tc_menu_position'  =>  array(
                             'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                             'control'       => 'CZR_controls' ,
@@ -952,21 +758,6 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 80,
                             'transport'     => 'postMessage',
-          ),
-          'tc_second_menu_resp_setting'  =>  array(
-                            'default'       => 'in-sn-before',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "Choose a mobile devices (responsive) behaviour for the secondary menu." , "customizr" ) ),
-                            'section'       => 'nav',
-                            'type'      =>  'select',
-                            'choices'     => array(
-                                'in-sn-before'   => __( 'Move before inside the side menu ' , 'customizr'),
-                                'in-sn-after'   => __( 'Move after inside the side menu ' , 'customizr'),
-                                'display-in-header'   => __( 'Display in the header' , 'customizr'),
-                                'hide'   => __( 'Hide' , 'customizr'  ),
-                            ),
-                            'priority'      => 90,
-                            // 'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
           ),
           'tc_hide_all_menus'  =>  array(
                             'default'       => 0,
@@ -1087,11 +878,15 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'type'        => 'select' ,
                             'choices'     => czr_fn_layout_choices(),
                             'priority'    => 2,
+                            'ubq_section'   => array(
+                                'section' => 'post_layout_sec',
+                                'priority' => '0'
+                            )
           ),
 
           //select slider
           'tc_front_slider' => array(
-                            'default'     => 'demo' ,
+                            'default'     => 'tc_posts_slider' ,
                             'control'     => 'CZR_controls' ,
                             'title'       => __( 'Slider options' , 'customizr' ),
                             'label'       => __( 'Select front page slider' , 'customizr' ),
@@ -1103,11 +898,13 @@ function czr_fn_front_page_option_map( $get_default = null ) {
           ),
           //posts slider
           'tc_posts_slider_number' => array(
-                            'default'     => 1 ,
+                            'default'     => 4,
                             'control'     => 'CZR_controls',
                             'label'       => __('Number of posts to display', 'customizr'),
                             'section'     => 'frontpage_sec' ,
                             'type'        => 'number',
+                            'step'        => 1,
+                            'min'         => 1,
                             'priority'    => 22,
                             'notice'      => __( "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website.", 'customizr' )
           ),
@@ -1165,19 +962,15 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'notice'      => __( 'The button text will be limited to 80 chars max. Leave this field empty to hide the button', 'customizr' ),
           ),
 
-          //select slider : in customizr < 4 this was a checkbox
+          //select slider
           'tc_slider_width' => array(
-                            'default'       => 'fw',
-                            'control'   => 'CZR_controls' ,
-                            'label'       => __( 'Slider size' , 'customizr' ),
+                            'default'      => 1,
+                            'control'     => 'CZR_controls' ,
+                            'label'       => __( 'Full width slider' , 'customizr' ),
                             'section'     => 'frontpage_sec' ,
-                            'type'        => 'select' ,
-                            'choices'       => array(
-                                'boxed' => __( 'Boxed', 'customizr' ),
-                                'fw' => __( 'Full-width', 'customizr' ),
-                                'fp' => __( 'Full-page', 'customizr' )
-                            ),
-                            'priority'      => 30,
+                            'type'        => 'checkbox' ,
+                            'priority'    => 30,
+                            'notice'      => __( "When checked, the front page slider occupies the full viewport's width", 'customizr' ),
           ),
 
           //Delay between each slides
@@ -1193,6 +986,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'notice'    => __( 'in ms : 1000ms = 1s' , 'customizr' ),
                             'priority'      => 50,
           ),
+
           'tc_slider_default_height' => array(
                             'default'       => 500,
                             'sanitize_callback' => 'czr_fn_sanitize_number',
@@ -1806,20 +1600,6 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'priority'      => 5,
                             'transport'   => 'postMessage'
           ),
-          /* Post metas design has been removed in c4 */
-          'tc_post_metas_design'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
-                            'control'     => 'CZR_controls' ,
-                            'title'         => __( 'Metas Design' , 'customizr' ),
-                            'label'         => __( "Select a design for the post metas" , "customizr" ),
-                            'section'       => 'post_metas_sec' ,
-                            'type'          =>  'select' ,
-                            'choices'       => array(
-                                'buttons'     => __( 'Buttons and text' , 'customizr' ),
-                                'no-buttons'  => __( 'Text only' , 'customizr' )
-                            ),
-                            'priority'      => 10
-          ),
           'tc_show_post_metas_home'  =>  array(
                             'default'       => 0,
                             'control'     => 'CZR_controls' ,
@@ -1906,54 +1686,6 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             ),
                             'priority'      => 55
           ),
-          /* Update notice in title has been completely removed in c4*/
-          'tc_post_metas_update_notice_in_title'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
-                            'control'       => 'CZR_controls',
-                            'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
-                            'label'         => __( "Display a recent update notice" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          => 'checkbox',
-                            'priority'      => 65,
-                            'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' )
-          ),
-          'tc_post_metas_update_notice_interval'  =>  array(
-                            'default'       => 10,
-                            'control'       => 'CZR_controls',
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                            'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          => 'number' ,
-                            'step'          => 1,
-                            'min'           => 0,
-                            'priority'      => 70,
-                            'notice'    => __( 'Set a maximum interval (in days) during which the last update notice will be displayed.' , 'customizr' ),
-          ),
-          'tc_post_metas_update_notice_text'  =>  array(
-                            'default'       => __( "Recently updated !" , "customizr" ),
-                            'control'       => 'CZR_controls',
-                            'label'         => __( "Update notice text" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          => 'text',
-                            'priority'      => 75,
-                            'transport'   => 'postMessage'
-          ),
-          'tc_post_metas_update_notice_format'  =>  array(
-                            'default'       => 'label-default',
-                            'control'       => 'CZR_controls',
-                            'label'         => __( "Update notice style" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          =>  'select' ,
-                            'choices'       => array(
-                                    'label-default'   => __( 'Default (grey)' , 'customizr' ),
-                                    'label-success'   => __( 'Success (green)' , 'customizr' ),
-                                    'label-warning'   => __( 'Alert (orange)' , 'customizr' ),
-                                    'label-important' => __( 'Important (red)' , 'customizr' ),
-                                    'label-info'      => __( 'Info (blue)' , 'customizr' )
-                            ),
-                            'priority'      => 80,
-                            'transport'   => 'postMessage'
-          )
   );
 }
 
@@ -2073,44 +1805,6 @@ function czr_fn_comment_option_map( $get_default = null ) {
                             'section'       => 'comments_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 1
-          ),
-          /* Removed in c4 */
-          'tc_comment_bubble_shape' => array(
-                            'default'     => 'default',
-                            'control'     => 'CZR_controls',
-                            'label'       => __( 'Comments bubble shape' , 'customizr' ),
-                            'section'     => 'comments_sec',
-                            'type'      =>  'select' ,
-                            'choices'     => array(
-                                    'default'             => __( "Small bubbles" , 'customizr' ),
-                                    'custom-bubble-one'   => __( 'Large bubbles' , 'customizr' ),
-                            ),
-                            'priority'    => 10,
-          ),
-          /* Removed in c4 */
-          'tc_comment_bubble_color_type' => array(
-                            'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'custom' : 'skin',
-                            'control'     => 'CZR_controls',
-                            'label'       => __( 'Comments bubble color' , 'customizr' ),
-                            'section'     => 'comments_sec',
-                            'type'      =>  'select' ,
-                            'choices'     => array(
-                                    'skin'     => __( "Skin color" , 'customizr' ),
-                                    'custom'   => __( 'Custom' , 'customizr' ),
-                            ),
-                            'priority'    => 20,
-          ),
-          /* Removed in c4 */
-          'tc_comment_bubble_color' => array(
-                            'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : czr_fn_get_skin_color(),
-                            'control'     => 'WP_Customize_Color_Control',
-                            'label'       => __( 'Comments bubble color' , 'customizr' ),
-                            'section'     => 'comments_sec',
-                            'type'        =>  'color' ,
-                            'priority'    => 30,
-                            'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
-                            'sanitize_js_callback' => 'maybe_hash_hex_color',
-                            'transport'   => 'postMessage'
           ),
           'tc_page_comments'  =>  array(
                             'default'     => 0,
@@ -2241,16 +1935,6 @@ function czr_fn_sidebars_option_map( $get_default = null ) {
                                                 'priority' => '3'
                                              )
           ),
-          'tc_social_in_sidebar_title'  =>  array(
-                            'default'       => __( 'Social links' , 'customizr' ),
-                            'label'       => __( 'Social link title in sidebars' , 'customizr' ),
-                            'control'   =>  'CZR_controls' ,
-                            'section'     => 'sidebar_socials_sec',
-                            'type'        => 'text' ,
-                            'priority'       => 30,
-                            'transport'   => 'postMessage',
-                            'notice'    => __( 'Will be hidden if empty' , 'customizr' )
-          )
   );
 }
 
@@ -2286,7 +1970,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'section'     => 'footer_global_sec' ,
                             'type'        => 'checkbox' ,
                             'priority'       => 0,
-                            'ubq_section'   => array(
+                            'ubq_section'  => array(
                                                 'section' => 'socials_sec',
                                                 'priority' => '4'
                                              )
@@ -2605,12 +2289,6 @@ function czr_fn_popul_section_map( $_sections ) {
                         'description' =>  __( 'Various links settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
-    'titles_icons_sec'        => array(
-                        'title'     =>  __( 'Titles icons settings' , 'customizr' ),
-                        'priority'    =>  $_is_wp_version_before_4_0 ? 18 : 40,
-                        'description' =>  __( 'Set up the titles icons options' , 'customizr' ),
-                        'panel'   => 'tc-global-panel'
-    ),
     'images_sec'         => array(
                         'title'     =>  __( 'Image settings' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 95 : 50,
@@ -2688,14 +2366,6 @@ function czr_fn_popul_section_map( $_sections ) {
                         'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
-
-
-    /*'tc_page_settings'        => array(
-                        'title'     =>  __( 'Pages' , 'customizr' ),
-                        'priority'    =>  25,
-                        'description' =>  __( 'Set up pages options' , 'customizr' ),
-                        'panel'   => 'tc-content-panel'
-    ),*/
     'post_metas_sec'        => array(
                         'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 20 : 50,
@@ -2737,14 +2407,6 @@ function czr_fn_popul_section_map( $_sections ) {
                         'description' =>  __( 'Set up your social profiles links in the sidebar(s).' , 'customizr' ),
                         'panel'   => 'tc-sidebars-panel'
     ),
-    'responsive_sec'           => array(
-                        'title'     =>  __( 'Responsive settings' , 'customizr' ),
-                        'priority'    =>  20,
-                        'description' =>  __( 'Various settings for responsive display' , 'customizr' ),
-                        'panel'   => 'tc-sidebars-panel'
-    ),
-
-
     /*---------------------------------------------------------------------------------------------
     -> PANEL : FOOTER
     ----------------------------------------------------------------------------------------------*/
@@ -2882,43 +2544,6 @@ function czr_fn_generates_featured_pages( $_original_map ) {
 }
 
 
-
-/**
-* Generates social network options
-* Populate the social section map of settings/controls
-* hook : tc_social_option_map
-*
-* @package Customizr
-* @since Customizr 3.0.15
-*
-*/
-function czr_fn_generates_socials( $_original_map ) {
-  //gets the social network array
-  $socials      = apply_filters( 'tc_default_socials' , CZR_init::$instance -> socials );
-
-  //declares some loop's vars and the settings array
-  $priority     = 50;//start priority
-  $incr         = 0;
-  $_new_map     = array();
-
-  foreach ( $socials as $key => $data ) {
-    $priority += $incr;
-    $type      = isset( $data['type'] ) && ! is_null( $data['type'] ) ? $data['type'] : 'url';
-
-    $_new_map[$key]  = array(
-                  'default'       => ( isset($data['default']) && !is_null($data['default']) ) ? $data['default'] : null,
-                  'sanitize_callback' => array( $this , 'czr_fn_sanitize_' . $type ),
-                  'control'       => 'CZR_controls' ,
-                  'label'         => ( isset($data['option_label']) ) ? call_user_func( '__' , $data['option_label'] , 'customizr' ) : $key,
-                  'section'       => 'socials_sec' ,
-                  'type'          => $type,
-                  'priority'      => $priority,
-                  'icon'          => "tc-icon-". str_replace('tc_', '', $key)
-                );
-    $incr += 5;
-  }
-  return array_merge( $_original_map, $_new_map );
-}
 
 
 /**
