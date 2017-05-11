@@ -245,7 +245,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core/front/utils', 'nav_walker')
                     ),
                     'content'   =>   array(
-   //                     array('core/front/utils', 'gallery')
+                        array('core/front/utils', 'gallery')
                     ),
  //                   'addons'    => apply_filters( 'czr_addons_classes' , array() )
                 )
@@ -345,15 +345,6 @@ if ( ! class_exists( 'CZR___' ) ) :
           return apply_filters(
             'czr_model_map',
             array(
-              /*********************************************
-              * ROOT HTML STRUCTURE
-              *********************************************/
-              /*array(
-                'hook' => 'wp_head' ,
-                'template' => 'header/favicon',
-                'id'       => 'favicon'
-              ),*/
-
 
               /*********************************************
               * HEADER

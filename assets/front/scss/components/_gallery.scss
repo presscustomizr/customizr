@@ -1,78 +1,34 @@
 .gallery-item {
-  dt {
-    text-align: inherit;
-    padding: 0;
-    &::before { content: none }
+  .gallery-icon {
+    overflow: hidden;
   }
-   position: relative;
-   float:left;
-   display:block;
-   overflow:hidden;
-   margin:0;
-   padding:0;
-   margin-bottom:$base-line-height;
-
-  .tc-thumbnail {
-    width: 100%;
-    position: relative;
-    overflow:hidden;
-
-  }
-  .post-thumbnail {
-    @include transition(all, 0.3s ease);
-  }
-  .tc-content {
-    @extend .small;
-    padding-top: $base-line-height/2;
-    font-family: $serviceFont;
-    color: $grey;
-  }
-  &.hover  .post-thumbnail {
-    @include transform(scale(1.1));
-  }
-  &.hover .tc-content { color: $black; }
   img {
-    display:block;
+    display: block;
+    @include transition(transform 0.3s ease-in-out);
+    max-width: 100%;
     width: 100%;
-    height: 100%
-   }
+  }
+  &.hover img {
+    @include transform( scale(1.1) );
+  }
 }
+
+
+
 /*
-.gallery-item:not(:last-of-type)  {
-   margin-right:$base-line-height;
-}
-*/
-.bg .gallery-item {
-  background: $white;
-  .tc-content { padding:$base-line-height;  }
-}
-.col-1 {
-
-}
-.post-gallery {
-  padding:0;
-  margin:0;
-  width:100%;
-  @include clearfix;
-  position: ralative;
-  overflow:hidden;
-}
-
-/* replace 9 with 0 -
-* temporary
 * Gallery needs a better implementation
 */
-@for $i from 1 through 0 {
-  .col-num-#{$i} {
+@for $i from 1 through 9 {
+  .gallery-columns-#{$i} {
     .gallery-item {
-      width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
+      //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
+      width: percentage( 1 / $i );
     }
-    .gallery-item:nth-child(#{$i}) {
-      float:none;
-    }
+
     @include media-breakpoint-down(md) {
      .gallery-item {
-         width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+         //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+         width: percentage( 1 / $i );
       }
     }
   }
@@ -80,7 +36,7 @@
 
 
 @for $i from 3 through 0 {
-  .col-num-#{$i} {
+  .gallery-columns-#{$i} {
     .gallery-item {
     .post-action {
       width:  $base-line-height*9/$i;

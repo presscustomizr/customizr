@@ -549,10 +549,11 @@ section.post-content { margin-top:0; }
   padding: 0;
   &::before {
     content: '';
-    border-top: 3px solid $black;
+    border-top: 2px solid $black;
     width: 4em;
+    max-width: 40%;
     display: block;
-    margin-bottom: 1em
+    margin-bottom: 4px
   }
 }
 
