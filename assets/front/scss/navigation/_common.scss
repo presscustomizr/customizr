@@ -176,7 +176,7 @@
     @include transition (all 0.3s ease);
     @include transform-style( preserve-3d );
     @include backface-visibility( hidden );
-    perspective: 1000px;
+    @include perspective(1000px);
     text-align: center;
     vertical-align: middle;
     &::before {
@@ -205,6 +205,7 @@
 
  .czr-submenu-fade .menu-item-has-children {
       @include perspective(1000px);
+      z-index: 100;
       > ul {
         position: fixed;
         opacity: 0;
