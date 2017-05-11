@@ -25,7 +25,7 @@ class CZR_logo_model_class extends CZR_Model {
         //( 1 == $logo_resize ) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
         ( 1 == $logo_resize ) ? sprintf( 'style="max-height:%2$spx"',
                                 apply_filters( 'czr_logo_max_width', 250 ),
-                                apply_filters( 'czr_logo_max_height', 70 )
+                                apply_filters( 'czr_logo_max_height', 100 )
                                 ) : '',
         implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == czr_fn_get_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
