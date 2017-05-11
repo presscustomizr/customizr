@@ -298,11 +298,35 @@ function czr_fn_fancybox_content_filter( $content) {
     if ( ! isset($post) )
       return $content;
 
-    $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-    $replacement = '<a$1href=$2$3.$4$5 class="expand-img-grouped" rel="czr-mfp-group'.$post -> ID.'"$6>';
+    //same as smartload ones
+    $allowed_image_extentions = apply_filters( 'tc_lightbox_allowed_img_extensions', array(
+      'bmp',
+      'gif',
+      'jpeg',
+      'jpg',
+      'jpe',
+      'tif',
+      'tiff',
+      'ico',
+      'png',
+      'svg',
+      'svgz'
+    ) );
 
-    $r_content = preg_replace( $pattern, $replacement, $content);
-    $content = $r_content ? $r_content : $content;
+    if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
+      return $content;
+    }
+
+    $img_extensions_pattern = sprintf( "[%s]", implode( '|', $allowed_image_extentions ) );
+
+    $pattern     = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+
+    $replacement = '<a$1href="$2" data-lb-type="grouped-post"$3>';
+
+    $r_content   = preg_replace( $pattern, $replacement, $content);
+
+    $content     = $r_content ? $r_content : $content;
+
     return apply_filters( 'czr_fancybox_content_filter', $content );
 }
 

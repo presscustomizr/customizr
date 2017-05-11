@@ -136,7 +136,7 @@ var czrapp = czrapp || {};
     },
 
     lightbox : function() {
-      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-darkest-shaded mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-darkest-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
 
       /* The magnificPopup delegation is very good
       * it works when clicking on a dynamically added a.expand-img
@@ -163,8 +163,8 @@ var czrapp = czrapp || {};
       /*
       * in singles when former tc_fancybox enabled
       */
-      $('#content').magnificPopup({
-        delegate: '.expand-img-grouped',
+      $('article').magnificPopup({
+        delegate: '[data-lb-type="grouped-post"]',
         type: 'image',
         gallery: {
          enabled: true,
