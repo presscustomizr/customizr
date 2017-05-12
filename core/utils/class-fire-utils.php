@@ -53,9 +53,10 @@ function czr_fn_parse_imgs( $_html ) {
       return $_html;
     }
 
-    $img_extensions_pattern = sprintf( "[%s]", implode( '|', $allowed_image_extentions ) );
+    $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+    $pattern                = '#<img([^>]+?)src=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
 
-    return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i', 'czr_fn_regex_callback' , $_html);
+    return preg_replace_callback( $pattern, 'czr_fn_regex_callback' , $_html);
 }
 
 
@@ -317,9 +318,10 @@ function czr_fn_fancybox_content_filter( $content) {
       return $content;
     }
 
-    $img_extensions_pattern = sprintf( "[%s]", implode( '|', $allowed_image_extentions ) );
 
-    $pattern     = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+    $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+    $pattern                = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+
 
     $replacement = '<a$1href="$2" data-lb-type="grouped-post"$3>';
 
