@@ -31,7 +31,7 @@ if ( null != $prev_link || null != $next_link ) :
 <section class="col-md-12 post-navigation <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <nav id="nav-below" class="" role="navigation">
     <h2 class="sr-only"><?php _e('Post navigation', 'customizr') ?></h2>
-    <ul class="pager clearfix">
+    <ul class="czr_pager clearfix">
       <li class="previous col-5">
       <?php if ( null != $prev_link ) : ?>
         <span class="sr-only"><?php _e('Previous post', 'customizr') ?></span>

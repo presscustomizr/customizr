@@ -4,6 +4,8 @@
   @extend .bold;
   @extend .letter-spacing-1;
 
+
+
   .menu-item {
     margin: 0 .5rem;
     padding: 0;
@@ -20,6 +22,14 @@
       -ms-flex-pack: justify;
       justify-content: space-between;
 
+
+
+  }
+}
+.nav li a {
+  &:focus,
+  &:hover {
+    background: transparent !important;
   }
 }
 .regular.nav__menu {

@@ -185,12 +185,14 @@ section[class^="post-"] {
 }
 
 .post-navigation {
-  //background:  $grey-lightest;
-  // SKINNED
-  //background:  $skin-lightest;
 
-  padding: $base-line-height;
-  margin:0;
+
+  .row > &[class*=col-],//<- to avoid other bootstrap plugin overriding this
+  & {
+    padding: $base-line-height;
+    margin:0;
+  }
+
   li {
     float:left;
     text-align: center;

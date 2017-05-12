@@ -1215,6 +1215,10 @@ select:-webkit-autofill {
   justify-content: space-between;
 }
 
+.nav li a:focus, .nav li a:hover {
+  background: transparent !important;
+}
+
 .regular.nav__menu {
   margin: 0 -1rem;
 }
@@ -5138,7 +5142,7 @@ section[class^="post-"] .entry-meta {
   margin-left: 1.25em;
 }
 
-.post-navigation {
+.row > .post-navigation[class*=col-], .post-navigation {
   padding: 1.25em;
   margin: 0;
 }
