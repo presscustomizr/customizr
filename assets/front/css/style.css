@@ -3146,165 +3146,212 @@ form.czr-form .czr-search-field {
   content: none;
 }
 
-.gallery-item .gallery-icon {
-  overflow: hidden;
-}
-
-.gallery-item .gallery-icon img {
-  display: block;
-  -webkit-transition: transform 0.3s ease-in-out;
-  -o-transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  max-width: 100%;
-  width: 100%;
-}
-
-.hover.gallery-item .gallery-icon img {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
 section[class^="post-"] .gallery.row {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
 
-/*
-* Gallery needs a better implementation
-*/
-.gallery-columns-1 .gallery-item {
+.czr-gallery {
+  /*
+  * Gallery needs a better implementation
+  */
+}
+
+.czr-gallery .czr-gallery-icon {
+  overflow: hidden;
+  position: relative;
+}
+
+.czr-gallery .czr-gallery-icon img {
+  display: block;
+  max-width: 100%;
   width: 100%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-1 .gallery-item {
-    width: 100%;
-  }
+.czr-gallery-style .gallery-item img {
+  -webkit-transition: transform 0.3s ease-in-out;
+  -o-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
-.gallery-columns-2 .gallery-item {
+.czr-gallery-style .gallery-item.hover img {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.czr-gallery.gallery-columns-1 .gallery-item {
+  width: 100%;
+}
+
+.czr-gallery.gallery-columns-2 .gallery-item {
   width: 50%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-2 .gallery-item {
-    width: 50%;
-  }
-}
-
-.gallery-columns-3 .gallery-item {
+.czr-gallery.gallery-columns-3 .gallery-item {
   width: 33.333333%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-3 .gallery-item {
-    width: 33.333333%;
-  }
-}
-
-.gallery-columns-4 .gallery-item {
+.czr-gallery.gallery-columns-4 .gallery-item {
   width: 25%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-4 .gallery-item {
-    width: 25%;
-  }
-}
-
-.gallery-columns-5 .gallery-item {
+.czr-gallery.gallery-columns-5 .gallery-item {
   width: 20%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-5 .gallery-item {
-    width: 20%;
-  }
-}
-
-.gallery-columns-6 .gallery-item {
+.czr-gallery.gallery-columns-6 .gallery-item {
   width: 16.666667%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-6 .gallery-item {
-    width: 16.666667%;
-  }
-}
-
-.gallery-columns-7 .gallery-item {
+.czr-gallery.gallery-columns-7 .gallery-item {
   width: 14.285714%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-7 .gallery-item {
-    width: 14.285714%;
-  }
-}
-
-.gallery-columns-8 .gallery-item {
+.czr-gallery.gallery-columns-8 .gallery-item {
   width: 12.5%;
 }
 
-@media (max-width: 991px) {
-  .gallery-columns-8 .gallery-item {
-    width: 12.5%;
-  }
-}
-
-.gallery-columns-9 .gallery-item {
+.czr-gallery.gallery-columns-9 .gallery-item {
   width: 11.111111%;
 }
 
 @media (max-width: 991px) {
-  .gallery-columns-9 .gallery-item {
-    width: 11.111111%;
+  .czr-gallery.gallery-columns-4 .gallery-item {
+    width: 50%;
   }
 }
 
-.gallery-columns-3 .gallery-item .post-action {
+@media (max-width: 991px) {
+  .czr-gallery.gallery-columns-5 .gallery-item {
+    width: 40%;
+  }
+}
+
+@media (max-width: 991px) {
+  .czr-gallery.gallery-columns-6 .gallery-item {
+    width: 33.333333%;
+  }
+}
+
+@media (max-width: 991px) {
+  .czr-gallery.gallery-columns-7 .gallery-item {
+    width: 28.571429%;
+  }
+}
+
+@media (max-width: 991px) {
+  .czr-gallery.gallery-columns-8 .gallery-item {
+    width: 25%;
+  }
+}
+
+@media (max-width: 991px) {
+  .czr-gallery.gallery-columns-9 .gallery-item {
+    width: 22.222222%;
+  }
+}
+
+@media (max-width: 575px) {
+  .czr-gallery.gallery-columns-1 .gallery-item {
+    width: 200%;
+  }
+}
+
+@media (max-width: 575px) {
+  .czr-gallery.gallery-columns-2 .gallery-item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .czr-gallery.gallery-columns-3 .gallery-item {
+    width: 66.666667%;
+  }
+}
+
+.czr-gallery.gallery-columns-3 .gallery-item .post-action {
   width: 3.75em;
   height: 3.75em;
   top: 0.95em;
   right: 0.95em;
 }
 
-.gallery-columns-3 .gallery-item .post-action a {
+.czr-gallery.gallery-columns-3 .gallery-item .post-action a {
   line-height: 3.75em;
 }
 
-.gallery-columns-2 .gallery-item .post-action {
-  width: 5.625em;
-  height: 5.625em;
-  top: 1.05em;
-  right: 1.05em;
+.czr-gallery.gallery-columns-4 .gallery-item .post-action {
+  width: 2.8125em;
+  height: 2.8125em;
+  top: 0.85em;
+  right: 0.85em;
 }
 
-.gallery-columns-2 .gallery-item .post-action a {
-  line-height: 5.625em;
+.czr-gallery.gallery-columns-4 .gallery-item .post-action a {
+  line-height: 2.8125em;
 }
 
-.gallery-columns-1 .gallery-item .post-action {
-  width: 11.25em;
-  height: 11.25em;
-  top: 1.15em;
-  right: 1.15em;
+.czr-gallery.gallery-columns-5 .gallery-item .post-action {
+  width: 2.25em;
+  height: 2.25em;
+  top: 0.75em;
+  right: 0.75em;
 }
 
-.gallery-columns-1 .gallery-item .post-action a {
-  line-height: 11.25em;
+.czr-gallery.gallery-columns-5 .gallery-item .post-action a {
+  line-height: 2.25em;
 }
 
-.gallery-columns-0 .gallery-item .post-action {
-  width: Infinity;
-  height: Infinity;
-  top: 1.25em;
-  right: 1.25em;
+.czr-gallery.gallery-columns-6 .gallery-item .post-action {
+  width: 1.875em;
+  height: 1.875em;
+  top: 0.65em;
+  right: 0.65em;
 }
 
-.gallery-columns-0 .gallery-item .post-action a {
-  line-height: Infinity;
+.czr-gallery.gallery-columns-6 .gallery-item .post-action a {
+  line-height: 1.875em;
+}
+
+.czr-gallery.gallery-columns-7 .gallery-item .post-action {
+  width: 1.607143em;
+  height: 1.607143em;
+  top: 0.55em;
+  right: 0.55em;
+}
+
+.czr-gallery.gallery-columns-7 .gallery-item .post-action a {
+  line-height: 1.607143em;
+}
+
+.czr-gallery.gallery-columns-8 .gallery-item .post-action {
+  width: 1.40625em;
+  height: 1.40625em;
+  top: 0.45em;
+  right: 0.45em;
+}
+
+.czr-gallery.gallery-columns-8 .gallery-item .post-action a {
+  line-height: 1.40625em;
+}
+
+.czr-gallery.gallery-columns-9 .gallery-item .post-action {
+  width: 1.25em;
+  height: 1.25em;
+  top: 0.35em;
+  right: 0.35em;
+}
+
+.czr-gallery.gallery-columns-9 .gallery-item .post-action a {
+  line-height: 1.25em;
+}
+
+@media (max-width: 767px) {
+  .czr-gallery .gallery-item {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .overlay {
@@ -3938,7 +3985,7 @@ dl dd {
   -webkit-transition: all 0.2s, 0.3s ease-in-out;
   -o-transition: all 0.2s, 0.3s ease-in-out;
   transition: all 0.2s, 0.3s ease-in-out;
-  z-index: -1;
+  z-index: 10;
   text-align: center;
   padding: 0;
   font-family: inherit;
@@ -3956,6 +4003,7 @@ dl dd {
   display: block;
   color: inherit !important;
   line-height: 3.75em;
+  text-decoration: none !important;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   -moz-opacity: 0;

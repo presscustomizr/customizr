@@ -44,14 +44,15 @@ function czr_fn_comment_info( $before = '', $after = '', $echo = true ) {
       );
 
       //Filter hook used by disqus plugin
-      $link_attributes = esc_attr( apply_filters( 'czr_comment_info_link_attributes', '' ) );
+      $link_attributes = apply_filters( 'czr_comment_info_link_attributes', '' );
 
-      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s"><span>%4$s</span></a>%5$s',
+      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s" %6$s><span>%4$s</span></a>%5$s',
             $before,
             $link,
             sprintf( "%s %s %s" , number_format_i18n( $comments_number ) , _n( 'Comment on' , 'Comments on' , $comments_number, 'customizr' ) ,  esc_attr( strip_tags( get_the_title() ) ) ),
             sprintf( "%s %s" , number_format_i18n( $comments_number ) , _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ),
-            $after
+            $after,
+            $link_attributes
       );
 
       if ( !$echo )
@@ -70,20 +71,26 @@ if ( ! function_exists( 'czr_fn_post_action' ) ) :
  * The template for displaying the post action button
  * generally shown on thumb hover, will open the lightbox
  */
-function czr_fn_post_action( $link, $class ) {
+function czr_fn_post_action( $link, $link_class = '', $link_attr = '', $echo = true ) {
 
       if ( !$link )
             return;
 
-      $icon     = 'icn-expand';
-      $class    = $class ? $class . ' ' . $icon : $icon;
+      $icon        = 'icn-expand';
+      $class       = $link_class ? $link_class . ' ' . $icon : $icon;
+      $link_attr   = $link_attr ? " {$link_attr}" : '';
 
-      ?>
-      <div class="post-action btn btn-skin-darkest-shaded inverted">
-        <a href="<?php echo esc_url( $link ) ?>" class="<?php esc_attr_e( $class ) ?>"></a>
-      </div>
-      <?php
+      $post_action = sprintf( '<div class="post-action btn btn-skin-darkest-shaded inverted"><a href="%1$s" class="%2$s"%3$s></a></div>',
+        esc_url( $link ),
+        esc_attr( $class ),
+        $link_attr
+      );
 
+
+      if ( !$echo )
+            return $post_action;
+
+      echo $post_action;
 }
 endif;
 

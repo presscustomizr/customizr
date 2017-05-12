@@ -148,10 +148,11 @@ var czrapp = czrapp || {};
         type: 'image'
         // other options
       });
+
       /* galleries in singles Create grouped galleries */
-      $( '.post-gallery' ).each(function(){
+      $( '.czr-gallery' ).each(function(){
         $(this).magnificPopup({
-          delegate: '.expand-img', // child items selector, by clicking on it popup will open
+          delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
           type: 'image',
           gallery: {
            enabled: true,
@@ -160,10 +161,11 @@ var czrapp = czrapp || {};
           // other options
         });
       });
+
       /*
       * in singles when former tc_fancybox enabled
       */
-      $('article').magnificPopup({
+      $('article .tc-content-inner').magnificPopup({
         delegate: '[data-lb-type="grouped-post"]',
         type: 'image',
         gallery: {

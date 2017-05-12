@@ -76,7 +76,8 @@
   @include transform(scale(0));
   @include transform-style(preserve-3d);
   @include transition(all, 0.3s ease-in-out);
-  z-index: -1;
+  //z-index: -1;
+  z-index: 10;
 
   text-align: center;
   padding: 0;
@@ -97,6 +98,7 @@
     display:block;
     color: inherit!important;
     line-height: $base-line-height*3;
+    text-decoration: none !important;
     @include opacity(0);
     @include transition (all, 0.6s ease);
     &:hover {

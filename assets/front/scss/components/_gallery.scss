@@ -12,60 +12,97 @@
     &::before { content: none }
   }
   /* do not style standard gallery */
-  
-  .gallery-icon {
-    overflow: hidden;
-  
-    img {
-      display: block;
-      @include transition(transform 0.3s ease-in-out);
-      max-width: 100%;
-      width: 100%;
-
-      @at-root .hover.gallery-item .gallery-icon img {
-        @include transform( scale(1.1) );
-      }
-    }
-
-  }
 }
+
 section[class^="post-"] .gallery.row {
   margin-top: $base-line-height-root;
   margin-bottom: $base-line-height-root;
 }
 
-/*
-* Gallery needs a better implementation
-*/
-@for $i from 1 through 9 {
-  .gallery-columns-#{$i} {
-    .gallery-item {
-      //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
-      width: percentage( 1 / $i );
+
+//let's style only our gallery
+.czr-gallery {
+
+
+  .czr-gallery-icon {
+    overflow: hidden;
+    position: relative;
+
+    img {
+      display: block;
+
+
+      max-width: 100%;
+      width: 100%;
+
+      @at-root .czr-gallery-style .gallery-item {
+        img  {
+          @include transition(transform 0.3s ease-in-out);
+        }
+        &.hover img {
+          @include transform( scale(1.1) );
+        }
+      }
+
     }
 
-    @include media-breakpoint-down(md) {
-     .gallery-item {
-         //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
-         width: percentage( 1 / $i );
+  }
+
+  /*
+  * Gallery needs a better implementation
+  */
+  @for $i from 1 through 9 {
+    &.gallery-columns-#{$i} {
+      .gallery-item {
+        //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
+        width: percentage( 1 / $i );
       }
+    }
+  }//for
+
+  @for $i from 4 through 9 {
+    &.gallery-columns-#{$i} {
+      @include media-breakpoint-down(md) {
+        .gallery-item {
+          //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+          width: percentage( 2 / $i );
+        }
+      }
+    }
+  }//for
+
+  @for $i from 1 through 3 {
+    &.gallery-columns-#{$i} {
+      @include media-breakpoint-down(xs) {
+        .gallery-item {
+          //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
+          width: percentage( 2 / $i );
+        }
+      }
+    }
+  }//for
+
+  @for $i from 3 through 9 {
+    &.gallery-columns-#{$i} {
+      .gallery-item {
+        .post-action {
+          width:  $base-line-height * 9/$i;
+          height: $base-line-height * 9/$i;
+          top: $base-line-height - $i/10 ;
+          right: $base-line-height - $i/10 ;
+          a {
+            line-height: $base-line-height*9/$i;
+          }//a
+        }//.post-action
+      }//.gallery-item
+    }//.gallery-columns-#
+  }//for
+
+  @include media-breakpoint-down(sm) {
+    .gallery-item {
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 }
 
-
-@for $i from 3 through 0 {
-  .gallery-columns-#{$i} {
-    .gallery-item {
-    .post-action {
-      width:  $base-line-height*9/$i;
-      height: $base-line-height*9/$i;
-      top: $base-line-height - $i/10 ;
-      right: $base-line-height - $i/10 ;
-      a {
-        line-height: $base-line-height*9/$i;
-      }
-      }
-    }
-  }
-}

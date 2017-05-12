@@ -19,18 +19,17 @@ class CZR_gallery {
 
             self::$instance =& $this;
 
-            //adds a filter for link markup (allow lightbox)
-            //add_filter ( 'wp_get_attachment_link'     , array( $this, 'czr_fn_modify_attachment_link') , 20, 6 );
-
             /*
             * Filters the default gallery shortcode output.
             * see wp-includes/media.php
             */
             add_filter( 'post_gallery', array( $this, 'czr_fn_czr_gallery' ), 10, 3 );
 
+            //add data attribute
+            add_filter( 'czr_gallery_image_linking_media'         , array( $this, 'czr_fn_maybe_lighbox_attachment_link' ), 10, 3 );
+            add_filter( 'czr_gallery_image_linking_no_media'      , array( $this, 'czr_fn_maybe_add_lighbox_button' ), 10, 3 );
+
       }
-
-
 
 
       /**
@@ -58,10 +57,20 @@ class CZR_gallery {
                         ), $attr, 'gallery' );
 
 
-            $id         = intval( $atts['id'] );
-            $itemtag    = 'figure';
-            $captiontag = 'figcaption';
-            $icontag    = 'div';
+            $id            = intval( $atts['id'] );
+            $gallery_class = implode( ' ', array_filter( array(
+                  'czr-gallery',
+                   'row',
+                   'flex-row',
+                  1 == esc_attr( czr_fn_get_opt( 'tc_gallery_style' ) ) ? 'czr-gallery-style' : ''
+                  )
+            ) );
+            $itemtag       = 'figure';
+            $itemclass     = 'col col-auto';
+            $captiontag    = 'figcaption';
+            $icontag       = 'div';
+            $iconclass     = 'czr-gallery-icon';
+
 
             //test
             $html5      = true;
@@ -91,46 +100,65 @@ class CZR_gallery {
             }
 
             $columns       = intval( $atts['columns'] );
-            $itemwidth     = $columns > 0 ? floor(100/$columns) : 100;
-
             $size_class    = sanitize_html_class( $atts['size'] );
-            $output        = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class} row flex-row'>";
+            $selector      = "gallery-{$instance}";
+
+            $output        = "<div id='$selector' class='{$gallery_class} gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
 
             $i = 0;
+
             foreach ( $attachments as $id => $attachment ) {
+
                   $attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$id" ) : '';
+
                   if ( ! empty( $atts['link'] ) && 'file' === $atts['link'] ) {
+
                         $image_output = wp_get_attachment_link( $id, $atts['size'], false, false, false, $attr );
+
+                        //maybe apply ligthbox on img click
+                        $image_output = apply_filters( 'czr_gallery_image_linking_media', $image_output, $id, $attachment );
+
                   } elseif ( ! empty( $atts['link'] ) && 'none' === $atts['link'] ) {
+
+                        //no link
                         $image_output = wp_get_attachment_image( $id, $atts['size'], false, $attr );
+
+                        //maybe add expand img button
+                        $image_output = apply_filters( 'czr_gallery_image_linking_no_media', $image_output, $id, $attachment );
+
                   } else {
+
+                        //link to attachment page
                         $image_output = wp_get_attachment_link( $id, $atts['size'], true, false, false, $attr );
+
+                        //maybe add expand img button
+                        $image_output = apply_filters( 'czr_gallery_image_linking_no_media', $image_output, $id, $attachment );
                   }
+
                   $image_meta  = wp_get_attachment_metadata( $id );
                   $orientation = '';
+
                   if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
                         $orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
                   }
-                  $output .= "<{$itemtag} class='gallery-item col col-auto'>";
+
+                  $output .= "<{$itemtag} class='gallery-item {$itemclass}'>";
                   $output .= "
-                        <{$icontag} class='gallery-icon {$orientation}'>
+                        <{$icontag} class='gallery-icon {$orientation} {$iconclass}'>
                               $image_output
                         </{$icontag}>";
+
                   if ( $captiontag && trim($attachment->post_excerpt) ) {
                         $output .= "
                               <{$captiontag} class='wp-caption-text gallery-caption' id='$selector-$id'>
                               " . wptexturize($attachment->post_excerpt) . "
                               </{$captiontag}>";
                   }
+
                   $output .= "</{$itemtag}>";
-                  if ( ! $html5 && $columns > 0 && ++$i % $columns == 0 ) {
-                        $output .= '<br style="clear: both" />';
-                  }
+
             }
-            if ( ! $html5 && $columns > 0 && $i % $columns !== 0 ) {
-                  $output .= "
-                        <br style='clear: both' />";
-            }
+
             $output .= "
                   </div>\n";
 
@@ -139,11 +167,45 @@ class CZR_gallery {
       }
 
 
+
+      function czr_fn_maybe_lighbox_attachment_link( $link_markup, $id, $attachment ) {
+
+            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_get_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
+                  return $link_markup;
+            }
+
+            $title = trim($attachment->post_excerpt) ? ' title="'. wptexturize($attachment->post_excerpt) .'"' : '';
+
+            return str_replace( '<a', '<a data-lb-type="grouped-gallery"'.$title, $link_markup );
+      }
+
+
+      function czr_fn_maybe_add_lighbox_button( $markup, $id, $attachment ) {
+
+            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_get_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
+                  return $markup;
+            }
+
+            $title = trim($attachment->post_excerpt) ? ' title="'. wptexturize($attachment->post_excerpt).'"' : '';
+
+            //get original expanded img
+            $link  = wp_get_attachment_url( $id );
+            $attr  = 'data-lb-type="grouped-gallery"' . $title;
+
+            return $markup . czr_fn_post_action( $link, $class = '', $attr,  $echo = false );
+
+      }
+
+
+
       /*
        * HELPERS
        */
       function czr_fn_is_gallery_enabled(){
             return apply_filters('czr_enable_gallery', esc_attr( czr_fn_get_opt('tc_enable_gallery') ) );
       }
+
+
+
 }//end of class
 endif;
