@@ -31,6 +31,13 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
       $_to_update                 = true;
     }
 
+    //old skin
+    $_new_options_w_skin        = czr_fn_maybe_move_old_skin_to_czr4( $theme_options );
+    if ( ! empty( $_new_options_w_skin ) ) {
+      $theme_options              = $_new_options_w_skin;
+      $_to_update                 = true;
+    }
+
     if ( $_to_update ) {
       update_option( CZR_THEME_OPTIONS, $theme_options );
     }
@@ -178,7 +185,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
 
   //save the state in the options
   $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-  array_push( $theme_options[ '__moved_opts' ], 'old_socials' );
+  $theme_options[ '__moved_opts' ][]  = 'old_socials';
 
   return $theme_options;
 
@@ -196,8 +203,6 @@ function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
   * When Memcached is active transients (object cached) might be not persistent
   * we cannot really rely on them :/
   */
-  //if ( ! czr_fn_user_started_before_version( '3.5.5', '1.3.3' ) )
-  //  return array();
 
   //nothing to do if already moved
   if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'custom_css', $_options[ '__moved_opts' ] ) ) {
@@ -223,10 +228,80 @@ function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
 
     //save the state in the options
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-    array_push( $theme_options[ '__moved_opts' ], 'custom_css' );
+    $theme_options[ '__moved_opts' ][]  = 'custom_css';
 
     return $theme_options;
   }
 
   return array();
+}
+
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_old_skin_to_czr4( $theme_options ) {
+
+      $_options = $theme_options;
+
+      //nothing to do if already moved
+      if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_skin', $_options[ '__moved_opts' ] ) ) {
+
+            return array();
+
+      }
+
+      /*
+      * If old skin not set or new skin color set just flag the old skin ported and return the modified theme_options
+      * so that, next time, we don't do what follows
+      */
+
+      $_old_skin_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
+      $_new_skin_set = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
+
+      if ( !$_old_skin_set || $_new_skin_set ) {
+
+            //save the state in the options
+            $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+            $theme_options[ '__moved_opts' ][]  = 'old_skin';
+
+            return $theme_options;
+      }
+
+
+      //get skin color from old skin value, which is in the form color_name.css
+      $_color_map    = CZR_init::$instance -> skin_color_map;
+
+      $_active_skin  = $theme_options[ 'tc_skin' ];
+
+      //mapped skin case
+      if ( ( false != $_active_skin && isset( $_color_map[$_active_skin][0] ) ) ) {
+
+            $_skin_color   =  $_color_map[$_active_skin][0];
+
+      } //treat custom skin color case: in the form custom-skin-{hex}.css
+      else {
+
+            $match         = 0;
+            $_skin_color   = preg_replace( '|^custom\-skin\-((?:[A-Fa-f0-9]{3}){1,2})\.css$|', '$1', $_active_skin, 1, $match );
+            $_skin_color   = $match ? "{#$_skin_color}" : false;
+
+      }
+
+
+      if ( $_skin_color ) {
+
+            $theme_options[ 'tc_skin_color' ] = "$_skin_color";
+
+      }
+
+      /*
+      * Whether or not the skin color match is found we did what we had to
+      * so flag it and return $theme_options
+      */
+      //save the state in the options
+      $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+      $theme_options[ '__moved_opts' ][]  = 'old_skin';
+
+      return $theme_options;
+
 }
