@@ -40,7 +40,7 @@ if ( ! class_exists( 'CZR_View' ) ) :
           //will fire czr_fn_apply_registered_changes_to_instance
           //do_action( 'pre_render_view', $this -> id );
 
-          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true ) )
+          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
             return;
 
           //allow filtering of the model before rendering (the view's model is passed by reference)
@@ -48,7 +48,7 @@ if ( ! class_exists( 'CZR_View' ) ) :
           do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
 
           //re-check visibility
-          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true ) )
+          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
             return;
 
           do_action( "__before_{$this -> model -> id}" );

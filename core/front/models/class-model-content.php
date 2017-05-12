@@ -60,7 +60,7 @@ class CZR_content_model_class extends CZR_Model {
 
             //let's prepare the thumb
             //register the model and the template for displaying the thumbnail at a specific hook
-            czr_fn_register( array( 'template' => 'content/common/media',
+            $singular_thumb_model_id = czr_fn_register( array( 'template' => 'content/common/media',
 
                   'id'         => 'singular_thumbnail',
                   'hook'       => $_hook,
@@ -72,9 +72,12 @@ class CZR_content_model_class extends CZR_Model {
                         'element_class'            => 'tc-single-post-thumbnail-wrapper tc-singular-thumbnail-wrapper'
                         //TODO: img size depending on the location?
                         //consider that we decided to not have image sizes for the slider so...
-                  )
+                  ),
+                  'controller' => 'singular_thumbnail'
             ) );
 
+            //control the vsibility
+            add_filter( "czr_do_render_view_{$singular_thumb_model_id}", array( $this, 'czr_fn_display_view_singular_thumbnail' ), 100, 2 );
 
             //css
             //needed only when not __after_regular_heading_title
@@ -85,30 +88,6 @@ class CZR_content_model_class extends CZR_Model {
             }
 
       }
-
-      function czr_fn_write_thumbnail_inline_css( $_css ) {
-            $context =  is_single() ? 'post' : 'page';
-
-            $_thumb_height   = apply_filters( "tc_${context}_post_thumb_height", esc_attr( czr_fn_get_opt( "tc_{$context}_post_thumb_height" ) ) );
-            $_thumb_height   = (! $_thumb_height || ! is_numeric($_thumb_height) ) ? 250 : $_thumb_height;
-
-            return sprintf("%s\n%s",
-              $_css,
-              ".tc-singular-thumbnail-wrapper .entry-media__wrapper {
-                max-height: {$_thumb_height}px;
-                height :{$_thumb_height}px
-              }\n
-              .tc-singular-thumbnail-wrapper.js-centering .entry-media__wrapper img {
-                opacity : 0;
-                -webkit-transition: opacity .5s ease-in-out;
-                -moz-transition: opacity .5s ease-in-out;
-                -ms-transition: opacity .5s ease-in-out;
-                -o-transition: opacity .5s ease-in-out;
-                transition: opacity .5s ease-in-out;
-              }\n"
-            );
-      }
-
 
 
 
@@ -191,5 +170,55 @@ class CZR_content_model_class extends CZR_Model {
             return $to_render;
 
       }
+
+
+
+      /*
+      * Singular thumbnail stuff
+      *
+      * TODO : maybe create a specific model
+      * slider and fi before main wrapper xor
+      */
+
+      function czr_fn_display_view_singular_thumbnail( $bool, $model ) {
+
+        if ( !$bool )
+          return;
+
+        $_hook = isset( $model->hook ) ? $model->hook : false;
+
+        if ( !$_hook )
+          return $bool;
+
+        $_slider_shown = ( did_action( '__after_main_slider' ) || did_action( '__after_main_posts_slider' ) );
+
+        return '__before_main_wrapper' == $_hook && $_slider_shown ? false : true;
+
+      }
+
+
+      function czr_fn_write_thumbnail_inline_css( $_css ) {
+            $context =  is_single() ? 'post' : 'page';
+
+            $_thumb_height   = apply_filters( "tc_${context}_post_thumb_height", esc_attr( czr_fn_get_opt( "tc_{$context}_post_thumb_height" ) ) );
+            $_thumb_height   = (! $_thumb_height || ! is_numeric($_thumb_height) ) ? 250 : $_thumb_height;
+
+            return sprintf("%s\n%s",
+              $_css,
+              ".tc-singular-thumbnail-wrapper .entry-media__wrapper {
+                max-height: {$_thumb_height}px;
+                height :{$_thumb_height}px
+              }\n
+              .tc-singular-thumbnail-wrapper.js-centering .entry-media__wrapper img {
+                opacity : 0;
+                -webkit-transition: opacity .5s ease-in-out;
+                -moz-transition: opacity .5s ease-in-out;
+                -ms-transition: opacity .5s ease-in-out;
+                -o-transition: opacity .5s ease-in-out;
+                transition: opacity .5s ease-in-out;
+              }\n"
+            );
+      }
+
 
 }
