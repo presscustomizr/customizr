@@ -7,11 +7,11 @@
 
 
   .menu-item {
-    margin: 0 .5rem;
+    margin: 0 $base-line-height-fixed/3;
     padding: 0;
   }
   .menu-item a {
-    padding: $base-line-height .5rem;
+    padding: $base-line-height $base-line-height-fixed/3;
     @include display-flex();
       -webkit-box-align: center;
     -webkit-align-items: center;
@@ -33,12 +33,12 @@
   }
 }
 .regular.nav__menu {
-    margin: 0 -1rem;
+    margin: 0 -1*$base-line-height-fixed/1.5;
 
     //only first menu item in desktops
     @include media-breakpoint-up(lg) { //min-width: 992px
         > .menu-item > a {
-          padding: 0 .5rem;
+          padding: 0 $base-line-height-fixed/3;
 
             & > span:first-of-type {
                 padding: $base-line-height 0;
@@ -80,8 +80,8 @@
         position: relative;
         vertical-align: middle;
         white-space: nowrap;
-        padding: $base-line-height $base-line-height-root;
-        margin: 0 -1/2*$base-line-height-root;
+        padding: $base-line-height $base-line-height-fixed;
+        margin: 0 -1/2*$base-line-height-fixed;
     }
 
     //@include box-shadow( 0, 0, 0, transparent );
@@ -94,7 +94,7 @@
     }
 
     .dropdown-item {
-        padding: 0 0 0 $base-line-height-root; //in rtl we shuould to the opposite
+        padding: 0 0 0 $base-line-height-fixed; //in rtl we shuould to the opposite
         margin: 0;
 
 
@@ -308,7 +308,7 @@
       @include transition (all, .3s)
       background: transparent;
       display: inline-block;
-      width: 1rem;
+      width: 18px;
       height: 2px;
       position: relative;
       top: 0;
@@ -349,11 +349,11 @@
     width: 100%;
 }
 .mobile-search__container .czr-form .form-group {
-    margin: 2/3 * $base-line-height-root 0 $base-line-height-root 0;
+    margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
     padding-bottom: $base-line-height;
 }
 .tc-header .mobile-search__container {
-    margin: $base-line-height-root 0;
+    margin: $base-line-height-fixed 0;
 }
 
 

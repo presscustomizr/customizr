@@ -1,19 +1,20 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 
 @import '../modules/modular-scale';
 
-$baseFont     : "Poppins", sans-serif;
+//$baseFont     : "Poppins", sans-serif;
+$baseFont     : 'Source Sans Pro', Arial, sans-serif;
+
 $monotypeFont : 'Roboto Mono', monospace;
 $serviceFont  : "Roboto", sans-serif;
 
-$ms-base: 1em;
-$ms-ratio: 1.2;
-$ms-base-root: 1rem;
+$ms-base: 15/16 * 1em;//<- was 1em == 15px
+$ms-ratio: 1.08;
+$ms-base-fixed: 15px;
 
 $base-line-height: $ms-base * 1.25;
-$base-line-height-root: $ms-base-root * 1.25;
+$base-line-height-fixed: 15px * 1.25;
 
 $ms-range:
   1   20em,
@@ -74,7 +75,7 @@ blockquote p {
   font-size: ms(-1);
 }
 .demi-small {
-  font-size: 0.833;
+  font-size: 0.9em;
 }
 .thin {
   font-weight: 300;

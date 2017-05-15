@@ -200,7 +200,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
                   '_g_abel'                       => array( 'Abel' , 'Abel|Abel' ),
                   '_g_leckerli'                   => array( 'Leckerli One' , 'Leckerli+One|Leckerli+One' ),
                   '_g_allerta'                    => array( 'Allerta' , 'Allerta|Allerta' ),
-                  '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro|Source+Sans+Pro' ),
+                  '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro:400|Source+Sans+Pro:400' ),
                   '_g_neuton'                     => array( 'Neuton' , 'Neuton|Neuton' ),
                   'helvetica_arial'               => array( 'Helvetica' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' ),
                   'palatino'                      => array( 'Palatino Linotype' , 'Palatino Linotype,Book Antiqua,Palatino,serif|Palatino Linotype,Book Antiqua,Palatino,serif' ),
@@ -212,8 +212,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
             )
           );//end of font pairs
           $this -> font_selectors     = array(
-            'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.site-title' , '.site-description', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
-            'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body' , '.navbar .nav>li>a') ) )
+            'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.navbar-brand-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
+            'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body') ) )
           );
 
 

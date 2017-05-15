@@ -19,7 +19,9 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
               //Font awesome before other theme styles
               add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons'), 9 );
 
+              add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_fonts_inline_css') );
               add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
+
 
         }
 
@@ -57,13 +59,22 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     */
     function czr_fn_enqueue_gfonts() {
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
-      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
+
       if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
         return;
 
+      $font               = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
+
+      if ( ! $font )
+        return;
+
+      if ( is_array( $font ) )//case is a pair
+        $font             = implode( '%7C', array_unique( $font ) );
+
+
       wp_enqueue_style(
         'czr-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', str_replace( '|', '%7C', czr_fn_get_font( 'single' , $_font_pair ) ) ),
+        sprintf( '//fonts.googleapis.com/css?family=%s', $font ),
         array(),
         null,
         'all'
@@ -79,6 +90,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
+
     function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
@@ -129,12 +141,20 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
         }
       }//end if
 
+      /*
+      * TODO: implement modular scale
+      */
       if ( 15 != $_body_font_size ) {
+
+        //turn into rem
+        $remsize      = $_body_font_size / 16;
+        $remsize      = number_format( (float)$remsize, 2, '.', '');
+
         $_line_height = apply_filters('czr_body_line_height_ratio', 1.75 );
         $_css .= "
           {$body} {
-            font-size : {$_body_font_size}px;
-            line-height : {$_line_height}px;
+            font-size : {$remsize}rem;
+            line-height : {$_line_height}em;
           }\n";
         }
 

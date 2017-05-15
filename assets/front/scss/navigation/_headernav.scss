@@ -96,8 +96,8 @@
 }
 
 .nav__container-top .col {
-    margin-top: $base-line-height-root;
-    margin-bottom: $base-line-height-root;
+    margin-top: $base-line-height-fixed/1.5;
+    margin-bottom: $base-line-height-fixed/1.5;
 }
 
 /*
@@ -179,6 +179,12 @@
           -webkit-justify-content: space-between !important;
                     -ms-flex-pack: justify !important;
                   justify-content: space-between !important;
+
+          .col {
+            margin-top: $base-line-height-fixed;
+            margin-bottom: $base-line-height-fixed;
+          }
+
       }
 
       .navbar-toggleable-md {

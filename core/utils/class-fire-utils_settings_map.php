@@ -221,7 +221,7 @@ function czr_fn_skin_option_map( $get_default = null ) {
 function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
             'tc_fonts'      => array(
-                            'default'       => czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_poppins',
+                            'default'       => czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_sourcesanspro',
                             'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
                             'control'       =>  'CZR_controls',
                             'section'       => 'fonts_sec',

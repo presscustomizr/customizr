@@ -288,12 +288,14 @@ function czr_fn_is_secondary_menu_enabled() {
 * @package Customizr
 * @since Customizr 3.2.9
 */
-function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
+function czr_fn_get_font( $_what = 'list' , $_requested = null
+  ) {
     $_to_return = ( 'list' == $_what ) ? array() : false;
     $_font_groups = apply_filters(
       'tc_font_pairs',
       CZR_init::$instance -> font_pairs
     );
+
     foreach ( $_font_groups as $_group_slug => $_font_list ) {
       if ( 'list' == $_what ) {
         $_to_return[$_group_slug] = array();
