@@ -53,7 +53,9 @@ class CZR_media_model_class extends CZR_Model {
                   'use_thumb_placeholder' => false,
 
                   'has_lightbox'          => true,
-
+/*
+                  'image_centering'       => false,
+*/
             );
 
 
