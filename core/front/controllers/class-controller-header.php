@@ -8,7 +8,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_header_social_block() {
-      return 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
+      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
     }
 
     function czr_fn_display_view_navbar_social_block() {

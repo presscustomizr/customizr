@@ -49,6 +49,7 @@
 
     }
 
+
     .branding,
     .mobile-utils__wrapper {
         @extend .display-flex;
@@ -56,6 +57,10 @@
     }
 }
 
+
+.navbar-brand-tagline {
+  font-style: italic;
+}
 
 /* This styles the utils in desktop and mobiles */
 .nav__utils {

@@ -15,6 +15,7 @@
   font-size: 1em;
   @extend .service-font;
   cursor: pointer;
+  text-decoration: none;
   @include transition( all 0.2s ease-in-out );
 }
 

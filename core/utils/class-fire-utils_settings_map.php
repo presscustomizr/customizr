@@ -607,6 +607,18 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 40,
                             'transport'     => 'postMessage',
           ),
+          /* Removed in c4*/
+          'tc_woocommerce_header_cart_sticky' => array(
+                            'default'   => 1,
+                            'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'checkbox' ,
+                            'priority'  => 45,
+                            'transport' => 'postMessage',
+                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
+                            'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
+          ),
           'tc_sticky_show_title_logo'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,

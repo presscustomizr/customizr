@@ -1688,6 +1688,10 @@ select:-webkit-autofill {
   flex-shrink: 1;
 }
 
+.navbar-brand-tagline {
+  font-style: italic;
+}
+
 /* This styles the utils in desktop and mobiles */
 .nav__utils {
   flex-shrink: 0;
@@ -2047,6 +2051,7 @@ select:-webkit-autofill {
   border-style: solid;
   font-size: 1em;
   cursor: pointer;
+  text-decoration: none;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
