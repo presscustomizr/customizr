@@ -499,19 +499,6 @@ class CZR_utils_settings_map {
                                     'transport'     => 'postMessage',
                                     'notice'        => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
                   ),
-
-                  /* Removed in c4*/
-                  'tc_woocommerce_header_cart_sticky' => array(
-                                    'default'   => 1,
-                                    'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
-                                    'control'   => 'CZR_controls' ,
-                                    'section'   => 'header_layout_sec',
-                                    'type'      => 'checkbox' ,
-                                    'priority'  => 45,
-                                    'transport' => 'postMessage',
-                                    'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
-                                    'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
-                  ),
             );
 
             return array_merge( $_map, $_to_add );
