@@ -33,7 +33,7 @@
       </nav>
     </div>
   <?php endif ?>
-  <?php if ( czr_fn_has('header_social_block') && czr_fn_has('social_in_topnav')) : ?>
+  <?php if ( czr_fn_has('social_in_topnav') ) : ?>
     <div class="secondary-nav__socials social-links hidden-md-down">
       <?php czr_fn_render_template( 'modules/common/social_block' ) ?>
     </div>

@@ -1,10 +1,10 @@
 .socials {
   @extend .inline-list;
-  li + li { margin-left:$base-line-height; }
+  li + li { margin-left: .833rem; }
   a {
     display:block;
-    height:$base-line-height*2;
-    line-height: $base-line-height*2;
+ /*   height:$base-line-height*2;
+    line-height: $base-line-height*2;*/
   }
 }
 

@@ -15,10 +15,21 @@
       display: inline-block;
       color: $grey;
     }
-    @at-root .widget-area .widget:not(.widget_shopping_cart) a:not(.btn) {
+    @at-root .widget-area .widget:not(.widget_shopping_cart) a:not(.btn):not(.social-icon) {
       @include underlined_nocolor( 1px )
     }
+
   }
+
+  .social-block {
+
+      margin-bottom: $base-line-height;
+      .socials {
+        font-size: $base-line-height;
+      }
+
+  }//.social-block
+
 }
 
 .sidebar {

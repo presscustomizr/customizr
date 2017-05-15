@@ -259,6 +259,15 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
 
+    function czr_fn_display_view_lefts_social_block() {
+      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_left-sidebar' );
+    }
+
+    function czr_fn_display_view_rights_social_block() {
+      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_right-sidebar' );
+
+
+    }
    /******************************
     VARIOUS HELPERS
     *******************************/
