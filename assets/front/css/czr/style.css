@@ -262,13 +262,13 @@ Headings images
   height: auto;
 }
 /* general */
-.css-centering.entry-media__holder .entry-media__wrapper {
+/*.css-centering.entry-media__holder .entry-media__wrapper {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-}
+}*/
 .css-centering.entry-media__holder img {
   /* temporary CSS centering */
   transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/

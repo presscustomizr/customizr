@@ -112,7 +112,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       $titles = apply_filters('czr_title_fonts_selectors' , $titles );
       $body   = apply_filters('czr_body_fonts_selectors' , $body );
 
-      if ( 'helvetica_arial' != $_font_pair ) {//check if not default
+      if ( '_g_sourcesanspro' != $_font_pair ) {//check if not default
         $_selector_fonts  = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
         if ( ! is_array($_selector_fonts) )
           return $_css;
@@ -121,23 +121,29 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
           //create the $_family and $_weight vars
           extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> czr_fn_is_gfont( $_font_pair ) ) );
 
+          $selector = '';
+
+          if ( !( $_family || $_weight ) )
+            continue;
+
+
           switch ($_key) {
             case 0 : //titles font
-              $_css .= "
-                {$titles} {
-                  font-family : {$_family};
-                  font-weight : {$_weight};
-                }\n";
-            break;
-
-            case 1 ://body font
-              $_css .= "
-                {$body} {
-                  font-family : {$_family};
-                  font-weight : {$_weight};
-                }\n";
-            break;
+              $selector = $titles;
+              break;
+            case 1 : //body fond
+              $selector = $body;
+              break;
           }
+
+          if ( $selector ) {
+              $_css .= sprintf( "%s { %s%s }\n",
+                  $selector,
+                  $_family ? "font-family : {$_family};" : '',
+                  $_weight  ? "font-weight : {$_weight};" : ''
+              );
+          }
+
         }
       }//end if
 
@@ -227,7 +233,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     */
     private function czr_fn_get_font_css_prop( $_raw_font , $is_gfont = false ) {
       $_css_exp = explode(':', $_raw_font);
-      $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
+      $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : false;
       $_family  = '';
 
       if ( $is_gfont ) {

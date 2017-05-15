@@ -60,7 +60,7 @@
         visibility: hidden;
         label {
           span:first-of-type {
-            font-size: ms(4);
+            font-size: ms(10);
             font-family: $baseFont;
             text-transform: none;
             margin-top: -$base-line-height;
@@ -98,7 +98,6 @@
     top:   68px;
     right: $base-line-height;
     z-index: 92;
-    font-size: ms(2);
   }
 }
 

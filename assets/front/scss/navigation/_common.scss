@@ -353,7 +353,7 @@
     padding-bottom: $base-line-height;
 }
 .tc-header .mobile-search__container {
-    margin: $base-line-height-fixed 0;
+    margin: 2*$base-line-height-fixed 0 $base-line-height-fixed 0;
 }
 
 

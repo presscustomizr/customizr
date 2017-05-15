@@ -171,7 +171,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
                   '_g_abel'                       => array( 'Abel' , 'Abel|Abel' ),
                   '_g_leckerli'                   => array( 'Leckerli One' , 'Leckerli+One|Leckerli+One' ),
                   '_g_allerta'                    => array( 'Allerta' , 'Allerta|Allerta' ),
-                  '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro:400|Source+Sans+Pro:400' ),
+                  '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro|Source+Sans+Pro' ),
                   '_g_neuton'                     => array( 'Neuton' , 'Neuton|Neuton' ),
                   'helvetica_arial'               => array( 'Helvetica' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' ),
                   'palatino'                      => array( 'Palatino Linotype' , 'Palatino Linotype,Book Antiqua,Palatino,serif|Palatino Linotype,Book Antiqua,Palatino,serif' ),

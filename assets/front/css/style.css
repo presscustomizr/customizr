@@ -1550,7 +1550,7 @@ select:-webkit-autofill {
 }
 
 .tc-header .mobile-search__container {
-  margin: 18.75px 0;
+  margin: 37.5px 0 18.75px 0;
 }
 
 /* Sticky stuff */
@@ -3453,7 +3453,7 @@ section[class^="post-"] .gallery.row {
 }
 
 .overlay .overlay-content .search-form__container .search-form label span:first-of-type {
-  font-size: 1.275458em;
+  font-size: 2.023992em;
   font-family: "Source Sans Pro", Arial, sans-serif;
   text-transform: none;
   margin-top: -1.171875em;
@@ -3490,7 +3490,6 @@ section[class^="post-"] .gallery.row {
   top: 68px;
   right: 1.171875em;
   z-index: 92;
-  font-size: 1.0935em;
 }
 
 .full-search-opened .overlay, .hamburger-menu.opened .overlay {
@@ -3908,7 +3907,7 @@ dl dd {
 }
 
 .post-type__icon {
-  font-size: 1.487695em;
+  font-size: 2.973909em;
   margin: 0 auto;
   text-align: center;
 }
