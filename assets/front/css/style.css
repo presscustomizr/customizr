@@ -171,7 +171,7 @@ blockquote p {
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, [class*=fp-text-], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.868056em;
 }
 
@@ -187,7 +187,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .tax__container a, .overlay .overlay-content .nav__container nav, .fp-title, .entry-footer .post-info a, .grid-container__plain .author-info a, .archive-header .header-bottom a,
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .tax__container a, .overlay .overlay-content .nav__container nav, .entry-footer .post-info a, .grid-container__plain .author-info a, .archive-header .header-bottom a,
 .entry-header .header-bottom a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
   font-weight: 500;
 }
@@ -438,8 +438,23 @@ body[class*=ie] img.v-centered.tc-holder-img {
   padding-top: 100%;
 }
 
+.czr__r-wFP {
+  max-width: 270px;
+  /* this actually depends on the thumb size */
+  margin: 8px auto;
+  position: relative;
+}
+
 .czr__r-wFP::before {
   padding-top: 92.592593%;
+}
+
+.czr__r-wFP img {
+  position: absolute !important;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 *,
@@ -1210,7 +1225,7 @@ select:-webkit-autofill {
   justify-content: space-between;
 }
 
-.nav li a:focus, .nav li a:hover {
+.nav li:not(.mini_cart_item) > a:focus, .nav li:not(.mini_cart_item) > a:hover {
   background: transparent !important;
 }
 
@@ -2882,37 +2897,23 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 */
 .czr-link-mask {
   position: absolute;
-  /*
-  * left/right/top/bottom values set to avoid (hopefully) visible line
-  * see:
-  * https://github.com/presscustomizr/customizr/issues/632
-  * https://github.com/presscustomizr/customizr/issues/474
-  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
-  */
   border-color: white;
-  left: 2px;
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   overflow: hidden;
   z-index: 1;
 }
 
-.no-effect .czr-link-mask {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
 .czr-link-mask::before {
   position: absolute;
-  width: 65%;
+  width: 63%;
   /*
     * this refers to the parent width, allowing us to have a perfect square despite the parent
     * as it has the same element's width percentage value.
     */
-  padding-bottom: 65%;
+  padding-bottom: 63%;
   content: '';
   z-index: 1;
   /* Centering */
@@ -2946,6 +2947,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   border-radius: 50%;
 }
 
+.expanded .czr-link-mask::before,
 .czr-link-mask-p.hover .czr-link-mask::before {
   -webkit-transform: translate(-50%, -50%) scale(1.4);
   -moz-transform: translate(-50%, -50%) scale(1.4);
@@ -3802,10 +3804,6 @@ dl dd {
 
 .featured-page .czr-thumb-wrapper {
   overflow: hidden;
-  max-width: 270px;
-  /* this actually depends on the thumb size */
-  margin: auto;
-  position: relative;
 }
 
 .featured-page .no-effect .czr-thumb-wrapper {
@@ -3830,7 +3828,7 @@ dl dd {
   transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
-  position: relative;
+  /*position: relative;*/
 }
 
 .fp-title,
@@ -3842,8 +3840,9 @@ dl dd {
 }
 
 .fp-title {
+  /* @extend .semi-bold;*/
   line-height: 1.171875em;
-  margin-top: 0;
+  margin-top: 0.585938em;
   margin-bottom: 1.171875em;
   word-break: break-word;
 }
@@ -3875,6 +3874,7 @@ dl dd {
 [class*=fp-text-] {
   margin: 2.34375em auto;
   color: #777;
+  /* @extend .small;*/
 }
 
 .fp-button {

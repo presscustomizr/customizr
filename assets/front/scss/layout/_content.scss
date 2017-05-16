@@ -178,9 +178,6 @@ dl {
 
   .czr-thumb-wrapper {
     overflow: hidden;
-    max-width: 270px; /* this actually depends on the thumb size */
-    margin: auto;
-    position: relative;
   }
   .no-effect .czr-thumb-wrapper {
     margin-bottom: $base-line-height*2
@@ -196,7 +193,7 @@ dl {
     @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
-    position: relative;
+    /*position: relative;*/
   }
   @at-root .fp-title,
            .fp-button,
@@ -207,9 +204,9 @@ dl {
   }
 
   @at-root .fp-title {
-    @extend .semi-bold;
+   /* @extend .semi-bold;*/
     line-height: $base-line-height;
-    margin-top : 0;
+    margin-top : $base-line-height/2;
     margin-bottom: $base-line-height;
     word-break: break-word;
     &::after {
@@ -235,7 +232,7 @@ dl {
   @at-root [class*=fp-text-] {
     margin: $base-line-height*2 auto;
     color: $grey-dark;
-    @extend .small;
+   /* @extend .small;*/
   }
 
   @at-root .fp-button {

@@ -138,4 +138,12 @@ img.v-centered {
 
 .czr__r-wFP {
   @include czr__responsive-wrapper( 270, 250 ); //default fp image size
+  max-width: 270px; /* this actually depends on the thumb size */
+  margin: 8px auto;
+  position: relative;
+  img {
+    position: absolute !important;
+    @include transform( translate3d(0 ,0, 0) );
+    backface-visibility: hidden;
+  }
 }

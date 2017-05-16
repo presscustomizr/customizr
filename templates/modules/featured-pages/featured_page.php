@@ -13,6 +13,7 @@ if ( czr_fn_get( 'is_first_of_row' ) ) : ?>
         <a class="czr-link-mask" href="<?php czr_fn_echo( 'featured_page_link' ) ?>" title="<?php echo esc_attr( strip_tags( czr_fn_get( 'featured_page_title' ) ) ) ?>">
           <?php czr_fn_echo( 'fp_img' ) ?>
         </a>
+
       </div>
       <?php endif /* END FP IMAGE*/ ?>
       <?php /* FP TITLE */ ?>

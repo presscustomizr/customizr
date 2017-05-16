@@ -15,6 +15,8 @@ class CZR_media_model_class extends CZR_Model {
       protected $thumb_size            ;
 
       protected $has_permalink         ;
+      protected $link_class            ;
+      protected $inner_wrapper_class   ;
       protected $has_lightbox          ;
 
       protected $image_centering       ;
@@ -53,9 +55,10 @@ class CZR_media_model_class extends CZR_Model {
                   'use_thumb_placeholder' => false,
 
                   'has_lightbox'          => true,
-/*
-                  'image_centering'       => false,
-*/
+                  'link_class'            => 'bg-link',
+
+                  'inner_wrapper_class'   => null,
+
             );
 
 
@@ -114,11 +117,13 @@ class CZR_media_model_class extends CZR_Model {
                   'element_class'         => '',
 
                   'has_permalink'         => true,
+                  'link_class'            => 'bg-link',
                   'has_lightbox'          => true,
 
                   'visibility'            => true,
 
-                  'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering'
+                  'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering',
+                  'inner_wrapper_class'   => null,
             );
 
             parent::__construct( $model );
@@ -277,10 +282,10 @@ class CZR_media_model_class extends CZR_Model {
                               $_instance->czr_fn_setup ( array(
 
                                           'post_id'           => $post_id,
-                                          'size'              => 'normal',
+                                          'size'              => $this->thumb_size ? $this->thumb_size : 'full',
                                           'use_placeholder'   => $this->use_thumb_placeholder,
                                           'use_attachment'    => 'wp_thumb' != $this->media_type,
-                                          'has_lightbox'     => $this->has_lightbox
+                                          'has_lightbox'      => $this->has_lightbox
 
                               ));
 

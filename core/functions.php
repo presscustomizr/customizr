@@ -281,7 +281,7 @@ if ( ! function_exists( 'czr_fn_register' ) ) {
 // a) registration went through
 // or
 // b) model already registered
-if ( ! function_exists( 'czr_fn_mabey_register' ) ) {
+if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
       function czr_fn_maybe_register( $model = array() ) {
 
             $_model_id = array_key_exists( 'id', $model ) && !empty( $model[ 'id' ] ) ? $model[ 'id' ] : false;

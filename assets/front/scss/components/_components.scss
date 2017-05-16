@@ -678,34 +678,21 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 */
 .czr-link-mask {
   position: absolute;
-  /*
-  * left/right/top/bottom values set to avoid (hopefully) visible line
-  * see:
-  * https://github.com/presscustomizr/customizr/issues/632
-  * https://github.com/presscustomizr/customizr/issues/474
-  * also avoids the mask::before hiding the whole box outline (internal) in featured-pages
-  */
   border-color: white;
-  left: 2px;
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   overflow: hidden;
   z-index: 1;
-  .no-effect & {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
   &::before {
     position: absolute;
-    width: 65%;
+    width: 63%;
     /*
     * this refers to the parent width, allowing us to have a perfect square despite the parent
     * as it has the same element's width percentage value.
     */
-    padding-bottom: 65%;
+    padding-bottom: 63%;
     content: '';
     z-index: 1;
     /* Centering */
@@ -723,6 +710,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     transition: all .3s ease;
     .no-effect & { border: transparent }
     .round & { border-radius: 50% }
+
+    .expanded  &,
     .czr-link-mask-p.hover & {
       @include transform ( translate(-50%,-50%) scale(1.4) ); /* fallback for those browsers w/o translate3d transform property*/
       @include transform ( translate3d(-50%,-50%, 0) scale(1.4) );

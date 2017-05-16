@@ -26,13 +26,8 @@
     // This hook is used to render the following elements(ordered by priorities) :
     // singular thumbnail
     do_action( '__after_regular_heading_title' );
+
+    czr_fn_comment_info( $before = '<div class="header-bottom entry-meta"><div class="post-info"><div class="comment-info">', $after = '</div></div></div>' );
     ?>
-    <div class="header-bottom entry-meta">
-      <div class="post-info">
-        <?php
-          czr_fn_comment_info();
-        ?>
-      </div>
-    </div>
   </div>
 </header>

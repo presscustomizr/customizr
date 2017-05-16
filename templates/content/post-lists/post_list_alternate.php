@@ -24,6 +24,8 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
 
                 'model_args' =>  array(
                   'element_class'            => czr_fn_get( 'media_class' ),
+                  'inner_wrapper_class'      => czr_fn_get( 'media_inner_class' ),
+                  'link_class'               => czr_fn_get( 'media_link_class' ),
                   'image_centering'          => czr_fn_get( 'image_centering' ),
                 )
               )

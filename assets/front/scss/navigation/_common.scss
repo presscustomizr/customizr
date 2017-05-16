@@ -26,7 +26,7 @@
 
   }
 }
-.nav li a {
+.nav li:not(.mini_cart_item) > a {
   &:focus,
   &:hover {
     background: transparent !important;
