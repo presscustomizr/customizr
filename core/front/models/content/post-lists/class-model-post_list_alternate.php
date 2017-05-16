@@ -269,7 +269,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             $has_format_icon_media         = $maybe_has_format_icon_media && 'format-icon' == $post_media ;
 
-            $cover_sections                = $this->cover_sections && ( $thumb_shape && !$has_format_icon_media );
+            $cover_sections                = $this->cover_sections && !( $thumb_shape && !$has_format_icon_media );
 
             $_sections_wrapper_class       = array();
             $_grid_item_class              = array();
