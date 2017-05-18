@@ -455,6 +455,8 @@ body[class*=ie] img.v-centered.tc-holder-img {
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  left: 0;
+  top: 0;
 }
 
 *,
@@ -4604,7 +4606,7 @@ a.czr-format-link:hover::before {
 }
 
 [class*=grid-container__] .full-image .tc-content .entry-footer .post-info {
-  padding-top: 1.171875em;
+  margin-top: 1.171875em;
 }
 
 .grid-container__masonry .post-type__icon {

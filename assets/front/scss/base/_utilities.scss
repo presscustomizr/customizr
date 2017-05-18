@@ -145,5 +145,7 @@ img.v-centered {
     position: absolute !important;
     @include transform( translate3d(0 ,0, 0) );
     backface-visibility: hidden;
+    left: 0;
+    top: 0;
   }
 }
