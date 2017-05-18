@@ -14,6 +14,7 @@
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >
       <div class="sections-wrapper grid__item">
         <?php
+          if ( czr_fn_get( 'has_post_media' ) ) {
             czr_fn_render_template(
               'content/common/media',
                array(
@@ -24,6 +25,7 @@
                )
               )
             );
+          }
         ?>
         <section class="tc-content entry-content__holder">
           <?php

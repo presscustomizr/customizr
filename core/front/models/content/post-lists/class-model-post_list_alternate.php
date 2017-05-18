@@ -187,6 +187,10 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             return $this -> czr_fn__get_post_list_item_property( 'media_inner_class' );
       }
 
+      function czr_fn_get_has_post_media() {
+            return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
+      }
+
       function czr_fn_get_print_start_wrapper() {
             return $this -> wrapped && czr_fn_is_loop_start();
       }
@@ -406,6 +410,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'sections_wrapper_class'  => $_sections_wrapper_class,
                   'grid_item_class'         => $_grid_item_class,
                   'article_selectors'       => $article_selectors,
+                  'has_post_media'          => $has_post_media
             );
 
             return $post_list_item;

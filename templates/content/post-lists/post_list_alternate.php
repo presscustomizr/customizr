@@ -14,23 +14,23 @@ if ( czr_fn_get( 'print_start_wrapper' ) ) : ?>
       <div class="grid__item <?php czr_fn_echo('grid_item_class') ?>">
         <div class="sections-wrapper <?php czr_fn_echo( 'sections_wrapper_class' ) ?>">
         <?php
+            if ( czr_fn_get( 'has_post_media' ) ) {
+              /* Media */
+              czr_fn_render_template(
+                'content/common/media',
+                array(
+                  'model_id'   => 'media',
+                  'reset_to_defaults' => false,
 
-            /* Media */
-            czr_fn_render_template(
-              'content/common/media',
-              array(
-                'model_id'   => 'media',
-                'reset_to_defaults' => false,
-
-                'model_args' =>  array(
-                  'element_class'            => czr_fn_get( 'media_class' ),
-                  'inner_wrapper_class'      => czr_fn_get( 'media_inner_class' ),
-                  'link_class'               => czr_fn_get( 'media_link_class' ),
-                  'image_centering'          => czr_fn_get( 'image_centering' ),
+                  'model_args' =>  array(
+                    'element_class'            => czr_fn_get( 'media_class' ),
+                    'inner_wrapper_class'      => czr_fn_get( 'media_inner_class' ),
+                    'link_class'               => czr_fn_get( 'media_link_class' ),
+                    'image_centering'          => czr_fn_get( 'image_centering' ),
+                  )
                 )
-              )
-            );
-
+              );
+            }
              /* Content */
             ?>
             <section class="tc-content entry-content__holder <?php czr_fn_echo('content_class') ?>">

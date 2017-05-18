@@ -103,6 +103,10 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'media_class' );
   }
 
+  function czr_fn_get_has_post_media() {
+    return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
+  }
+
   function czr_fn_get_show_comment_meta() {
     return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
   }
@@ -157,7 +161,8 @@ class CZR_post_list_plain_model_class extends CZR_Model {
         'cat_list_class'           => $cat_list_class,
         'entry_header_inner_class' => $entry_header_inner_class,
         'content_inner_class'      => $content_inner_class,
-        'show_comment_meta'        => $show_comment_meta
+        'show_comment_meta'        => $show_comment_meta,
+        'has_post_media'           => $this->show_thumb
     );
 
   }
