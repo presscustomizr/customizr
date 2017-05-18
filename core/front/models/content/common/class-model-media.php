@@ -115,7 +115,7 @@ class CZR_media_model_class extends CZR_Model {
                   'use_icon'              => false,
                   'force_icon'            => false,
                   'thumb_size'            => 'full',
-                  'element_class'         => '',
+                  'inner_wrapper_class'         => '',
 
                   'has_permalink'         => true,
                   'link_class'            => 'bg-link',
@@ -154,7 +154,7 @@ class CZR_media_model_class extends CZR_Model {
                         'use_icon'              => $this->use_icon,
                         'force_icon'            => $this->force_icon,
 
-                        'element_class'         => $this->element_class,
+                        'inner_wrapper_class'         => $this->inner_wrapper_class,
 
                         'thumb_size'            => $this->thumb_size,
                         'use_thumb_placeholder' => $this->use_thumb_placeholder,
@@ -355,13 +355,13 @@ class CZR_media_model_class extends CZR_Model {
                         break;
                   }
 
-                  //update element_class
-                  $element_class = ! empty($this-> element_class) ? $this ->element_class : array();
-                  $element_class = ! is_array( $element_class ) ? explode(' ', $element_class ) : $element_class;
+                  //update inner_wrapper_class
+                  $inner_wrapper_class = ! empty($this-> inner_wrapper_class) ? $this ->inner_wrapper_class : array();
+                  $inner_wrapper_class = ! is_array( $inner_wrapper_class ) ? explode(' ', $inner_wrapper_class ) : $inner_wrapper_class;
 
-                  $element_class[] = $centering_class;
+                  $inner_wrapper_class[] = $centering_class;
 
-                  $this->czr_fn_set_property( 'element_class', $element_class );
+                  $this->czr_fn_set_property( 'inner_wrapper_class', $inner_wrapper_class );
 
             }else {
 
