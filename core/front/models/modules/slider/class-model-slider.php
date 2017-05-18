@@ -422,6 +422,7 @@ class CZR_slider_model_class extends CZR_Model {
     * * : full page (default)
     */
     switch ( (string) $layout_value ) {
+      case '0':
       case '':
       case 'boxed': $layout = 'boxed'; break;
 
