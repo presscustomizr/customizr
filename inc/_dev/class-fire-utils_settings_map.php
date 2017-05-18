@@ -189,6 +189,7 @@ class CZR_utils_settings_map {
                   'czr_fn_navigation_option_map',
                   //CONTENT
                   'czr_fn_post_metas_option_map',
+                  'czr_fn_post_list_option_map',
                   'czr_fn_comment_option_map',
                   //SIDEBARS
                   'czr_fn_sidebars_option_map',
@@ -681,6 +682,116 @@ class CZR_utils_settings_map {
             );
 
             return array_merge( $_map, $_to_add );
+      }
+
+
+
+      /*-----------------------------------------------------------------------------------------------------
+                                    POST LISTS SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_post_list_option_map( $_map, $get_default = null ) {
+
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_post_list_thumb_placeholder',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+
+
+            global $wp_version;
+
+            //to add
+            $_to_add  = array(
+                  //Post list length
+                  'tc_post_list_length' =>  array(
+                                    'default'       => 'excerpt',
+                                    'label'         => __( 'Select the length of posts in lists (home, search, archives, ...)' , 'customizr' ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'select' ,
+                                    'choices'       => array(
+                                            'excerpt'   => __( 'Display the excerpt' , 'customizr' ),
+                                            'full'    => __( 'Display the full content' , 'customizr' )
+                                            ),
+                                    'priority'       => 20,
+                  ),
+                  /* Used only for the standard grid: Removed in c4 */
+                  'tc_post_list_default_thumb'  => array(
+                                    'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
+                                    'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
+                                    'section'   =>  'post_lists_sec' ,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                            //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                    'width'         => 570,
+                                    'height'        => 350,
+                                    'flex_width'    => true,
+                                    'flex_height'   => true,
+                                    //to keep the selected cropped size
+                                    'dst_width'     => false,
+                                    'dst_height'    => false,
+                                    'priority'      =>  73
+                  ),
+
+                  'tc_post_list_thumb_height' => array(
+                                    'default'       => 250,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'control'   => 'CZR_controls' ,
+                                    'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
+                                    'section'     => 'post_lists_sec' ,
+                                    'type'        => 'number' ,
+                                    'step'      => 1,
+                                    'min'     => 0,
+                                    'priority'      => 80,
+                                    'transport'   => 'postMessage'
+                  ),
+                  'tc_grid_thumb_height' => array(
+                                    'default'       => 350,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'control'       => 'CZR_controls' ,
+                                    'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
+                                    'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'number' ,
+                                    'step'          => 1,
+                                    'min'           => 0,
+                                    'priority'      => 65
+                                    //'transport'   => 'postMessage'
+                  ),
+
+            );
+
+            $_map = array_merge( $_map, $_to_add );
+
+            //Add thumb shape
+            $_map['tc_post_list_thumb_shape']['choices'] = array_merge( $_map['tc_post_list_thumb_shape']['choices'], array(
+                                    'squared'               => __( 'Squared, expand on hover' , 'customizr'),
+                                    'squared-expanded'      => __( 'Squared, no expansion' , 'customizr'),
+                                    'rectangular'           => __( 'Rectangular with no effect' , 'customizr'  ),
+                                    'rectangular-blurred'   => __( 'Rectangular with blur effect on hover' , 'customizr'  ),
+                                    'rectangular-unblurred' => __( 'Rectangular with unblur effect on hover' , 'customizr')
+            ) );
+
+            //Remove czr4 only thumb shape
+            unset( $_map['tc_post_list_thumb_shape']['choices']['regular'] );
+
+            //Add thumb position
+            $_map['tc_post_list_thumb_position']['choices'] = array_merge( $_map['tc_post_list_thumb_position']['choices'], array(
+                                    'top'     => __( 'Top' , 'customizr' ),
+                                    'bottom'    => __( 'Bottom' , 'customizr' ),
+            ) );
+
+            //Remove post list plain grid choice
+            unset( $_map['tc_post_list_grid']['choices']['plain' ] );
+
+            return $_map;
       }
 
 

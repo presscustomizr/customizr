@@ -1126,19 +1126,6 @@ function czr_fn_layout_option_map( $get_default = null ) {
                           'priority'       => 10,
           ),
 
-          //Post list length
-          'tc_post_list_length' =>  array(
-                            'default'       => 'excerpt',
-                            'label'         => __( 'Select the length of posts in lists (home, search, archives, ...)' , 'customizr' ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'select' ,
-                            'choices'       => array(
-                                    'excerpt'   => __( 'Display the excerpt' , 'customizr' ),
-                                    'full'    => __( 'Display the full content' , 'customizr' )
-                                    ),
-                            'priority'       => 20,
-          ),
-
           //Page sidebar layout
           'tc_sidebar_page_layout'  =>  array(
                             'default'       => 'l' ,//Default sidebar layout is on the left
@@ -1164,7 +1151,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
                               POST LISTS SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_post_list_option_map( $get_default = null ) {
-  global $wp_version;
+
   $_post_list_type = czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid';
 
   return array(
@@ -1197,22 +1184,6 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'type'          => 'checkbox',
                             'priority'      => 70
           ),
-          /* Removed in c4 */
-          'tc_post_list_default_thumb'  => array(
-                            'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
-                            'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
-                            'section'   =>  'post_lists_sec' ,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                    //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
-                            'width'         => 570,
-                            'height'        => 350,
-                            'flex_width'    => true,
-                            'flex_height'   => true,
-                            //to keep the selected cropped size
-                            'dst_width'     => false,
-                            'dst_height'    => false,
-                            'priority'      =>  73
-          ),
 
           /* Not used anymore in c4 */
           'tc_post_list_thumb_shape'  =>  array(
@@ -1225,27 +1196,10 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'choices'     => array(
                                     'rounded'               => __( 'Rounded, expand on hover' , 'customizr'),
                                     'rounded-expanded'      => __( 'Rounded, no expansion' , 'customizr'),
-                                    'squared'               => __( 'Squared, expand on hover' , 'customizr'),
-                                    'squared-expanded'      => __( 'Squared, no expansion' , 'customizr'),
-                                    'rectangular'           => __( 'Rectangular with no effect' , 'customizr'  ),
-                                    'rectangular-blurred'   => __( 'Rectangular with blur effect on hover' , 'customizr'  ),
-                                    'rectangular-unblurred' => __( 'Rectangular with unblur effect on hover' , 'customizr'),
+                                    'regular'               => __( 'Regular', 'customizr' ),
                             ),
                             'priority'      => 77
           ),
-          'tc_post_list_thumb_height' => array(
-                            'default'       => 250,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                            'control'   => 'CZR_controls' ,
-                            'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
-                            'section'     => 'post_lists_sec' ,
-                            'type'        => 'number' ,
-                            'step'      => 1,
-                            'min'     => 0,
-                            'priority'      => 80,
-                            'transport'   => 'postMessage'
-          ),
-
           'tc_post_list_thumb_position'  =>  array(
                             'default'       => 'right',
                             'control'     => 'CZR_controls' ,
@@ -1255,9 +1209,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'choices'     => array(
                                     //Since Customizr4 you can only have thumb first/second
                                     //hence, only right/left
-                                    'top'     => __( 'Top' , 'customizr' ),
                                     'right'   => __( 'Right' , 'customizr' ),
-                                    'bottom'    => __( 'Bottom' , 'customizr' ),
                                     'left'    => __( 'Left' , 'customizr' ),
                             ),
                             'priority'      => 90
@@ -1396,7 +1348,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
           'tc_grid_icons'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Display post format icons in the background' , "customizr" ),
+                            'label'         => __( 'Display post format icons' , "customizr" ),
                             'section'       => 'post_lists_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 63,
@@ -1413,20 +1365,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'min'           => 1,
                             'priority'      => 64
           ),
-          /* To remove: we use an aspect ratio in c4 */
-          'tc_grid_thumb_height' => array(
-                            'default'       => 350,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                            'control'       => 'CZR_controls' ,
-                            'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
-                            'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'number' ,
-                            'step'          => 1,
-                            'min'           => 0,
-                            'priority'      => 65
-                            //'transport'   => 'postMessage'
-          ),
+
           /* new:
           In customizr 4 used only for the Classical grid */
           'tc_post_list_thumb_placeholder'  =>  array(
@@ -1435,7 +1374,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'label'         => __( "Display thumbnail placeholder if no images available" , "customizr" ),
                             'section'       => 'post_lists_sec' ,
                             'type'          => 'checkbox',
-                            'priority'      => 100
+                            'priority'      => 99
           ),
 
   );
