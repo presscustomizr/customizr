@@ -71,7 +71,7 @@ var czrapp = czrapp || {};
       } );
 
       $('.js-centering.entry-media__holder').centerImages({
-        enableCentering : CZRParams.centerAllImg,
+        enableCentering : 1,
         oncustom : ['smartload', 'refresh-height', 'simple_load'],
         enableGoldenRatio : false, //true
         zeroTopAdjust: 0,

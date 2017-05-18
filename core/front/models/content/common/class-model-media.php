@@ -58,8 +58,10 @@ class CZR_media_model_class extends CZR_Model {
                   'link_class'            => 'bg-link',
 
                   'inner_wrapper_class'   => null,
+                  'image_centering'       => false,
 
             );
+
 
 
             $args = wp_parse_args( $args, $defaults );
@@ -70,7 +72,6 @@ class CZR_media_model_class extends CZR_Model {
 
             /* This will update the model object properties, merging the $model -> defaults too */
             $this -> czr_fn_update( $args );
-
 
             /* Set the media properties */
             $this -> czr_fn__setup_media();

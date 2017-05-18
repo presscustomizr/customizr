@@ -67,7 +67,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'contained'             => false,
                   'cover_sections'        => true,
                   'wrapped'               => true,
-                  'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering',
+                  'image_centering'       => 'js-centering',
                   'thumb_shape_effect'    => strstr(  esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape' ) ),'rounded' ) ? czr_fn_get_opt( 'tc_post_list_thumb_shape' ) : 'regular'
             );
 
@@ -662,7 +662,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'use_thumb_placeholder' => $use_img_placeholder,
                   'use_icon'              => $has_format_icon_media,
                   'force_icon'            => $force_icon,
-                  'thumb_size'            => $thumb_size
+                  'thumb_size'            => $thumb_size,
+                  'image_centering'       => $this->image_centering
 
             ) );
 
