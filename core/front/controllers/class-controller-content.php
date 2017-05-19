@@ -174,40 +174,29 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
 
 
-    /*
-    * OLD VERSION
-    */
-    // function czr_fn_display_view_posts_navigation() {
-    //   global $wp_query;
-
-    //   $bool  = $wp_query -> post_count > 0;
-    //   $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
-
-    //   if ( ! $bool )
-    //     return false;
-
-    //   //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
-    //   if ( czr_fn_is_customizing() )
-    //     return true;
-
-    //   if ( ! $this->czr_fn_is_posts_navigation_enabled() )
-    //     return false;
-
-    //   $_context = czr_fn_get_query_context();
-    //   return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
-    // }
 
     function czr_fn_display_view_posts_navigation() {
       global $wp_query;
 
-      /*
-      * We do not show post navigation in attachments
+      $bool  = $wp_query -> post_count > 0;
+      $bool  = is_singular() ? $bool && ! is_attachment() : $bool;
+
+      if ( ! $bool )
+        return false;
+
+      //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
+      /*if ( czr_fn_is_customizing() )
+        return true;
       */
-      return ! czr_fn_is_home_empty() &&
-            $wp_query -> post_count > 0 &&
-            ! is_attachment() &&
-            $this->czr_fn_is_posts_navigation_enabled();
+
+      if ( ! $this->czr_fn_is_posts_navigation_enabled() )
+        return false;
+
+      $_context = $this -> czr_fn_get_post_navigation_context();
+
+      return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
     }
+
 
 
     function czr_fn_display_view_404() {
@@ -282,11 +271,27 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
 
+    /**
+    *
+    * @return string or bool
+    *
+    */
+    function czr_fn_get_post_navigation_context(){
+      if ( is_page() )
+        return 'page';
+      if ( is_single() && ! is_attachment() )
+        return 'single'; // exclude attachments
+      if ( is_home() && 'posts' == get_option('show_on_front') )
+        return 'home';
+      if ( !is_404() && ! czr_fn_is_home_empty() )
+        return 'archive';
+      return false;
+    }
+
     /*
     * @param (string or bool) the context
     * @return bool
     *
-    * NOT USED ANYMORE!!!
     */
     function czr_fn_is_posts_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
