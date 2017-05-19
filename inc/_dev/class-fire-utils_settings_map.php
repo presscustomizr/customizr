@@ -631,6 +631,18 @@ class CZR_utils_settings_map {
                                     ),
                                     'priority'      => 10
                   ),
+                  'tc_post_metas_update_date_format'  =>  array(
+                                    'default'       => 'days',
+                                    'control'       => 'CZR_controls',
+                                    'label'         => __( "Select the last update format" , "customizr" ),
+                                    'section'       => 'post_metas_sec',
+                                    'type'          =>  'select' ,
+                                    'choices'       => array(
+                                            'days'     => __( 'No. of days since last update' , 'customizr' ),
+                                            'date'     => __( 'Date of the last update' , 'customizr' )
+                                    ),
+                                    'priority'      => 55
+                  ),
                   /* Update notice in title has been completely removed in c4*/
                   'tc_post_metas_update_notice_in_title'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
@@ -681,7 +693,14 @@ class CZR_utils_settings_map {
                   )
             );
 
-            return array_merge( $_map, $_to_add );
+            $_map = array_merge( $_map, $_to_add );
+
+            //add notice to the update date option
+            if ( isset( $_map[ 'tc_show_post_metas_update_date' ] ) )
+                  $_map[ 'tc_show_post_metas_update_date' ]['notice'] = __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' );
+
+            return $_map;
+
       }
 
 

@@ -1599,22 +1599,24 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'priority'      => 35
           ),
 
-          'tc_show_post_metas_publication_date'  =>  array(
-                            'default'       => 1,
-                            'control'     => 'CZR_controls',
-                            'label'         => __( "Display the publication date" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          => 'checkbox',
-                            'priority'      => 40
-          ),
           'tc_show_post_metas_author'  =>  array(
                             'default'       => 1,
                             'control'     => 'CZR_controls',
                             'label'         => __( "Display the author" , "customizr" ),
                             'section'       => 'post_metas_sec',
                             'type'          => 'checkbox',
+                            'priority'      => 40
+          ),
+          'tc_show_post_metas_publication_date'  =>  array(
+                            'default'       => 1,
+                            'control'     => 'CZR_controls',
+                            'label'         => __( "Display the publication date" , "customizr" ),
+                            'section'       => 'post_metas_sec',
+                            'type'          => 'checkbox',
                             'priority'      => 45
           ),
+          //Think about displaying this only in singles like hueman does!
+          //it's very ugly in post lists :/
           'tc_show_post_metas_update_date'  =>  array(
                             'default'       => 0,
                             'control'     => 'CZR_controls',
@@ -1622,21 +1624,8 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'section'       => 'post_metas_sec',
                             'type'          => 'checkbox',
                             'priority'      => 50,
-                            'notice'    => __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' ),
           ),
 
-          'tc_post_metas_update_date_format'  =>  array(
-                            'default'       => 'days',
-                            'control'       => 'CZR_controls',
-                            'label'         => __( "Select the last update format" , "customizr" ),
-                            'section'       => 'post_metas_sec',
-                            'type'          =>  'select' ,
-                            'choices'       => array(
-                                    'days'     => __( 'No. of days since last update' , 'customizr' ),
-                                    'date'     => __( 'Date of the last update' , 'customizr' )
-                            ),
-                            'priority'      => 55
-          ),
   );
 }
 
