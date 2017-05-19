@@ -13,11 +13,9 @@
     do_action( '__before_regular_heading_title' );
     ?>
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas' ) ) : ?>
-      <div class="entry-meta">
-        <div class="tax__container">
+        <div class="tax__container post-info entry-meta">
           <?php echo $cat ?>
         </div>
-      </div>
     <?php endif;
 
     if ( get_the_title() ) :
@@ -38,12 +36,27 @@
     <div class="header-bottom entry-meta">
       <div class="post-info">
         <?php
-          if ( czr_fn_has('post_metas') && $author = czr_fn_get( 'author', 'post_metas' ) )
-            echo $author;
-          if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas' ) )
-            if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
 
-          czr_fn_comment_info( $before = $date || $author ? '<span class="v-separator">|</span>' : '' );
+          if ( $has_meta = czr_fn_has('post_metas') ) {
+        ?>
+          <span class="entry-meta">
+        <?php
+            if ( $author = czr_fn_get( 'author', 'post_metas' ) )
+              echo $author;
+
+            if ( $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
+              if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
+
+            if ( $up_date = czr_fn_get( 'update_date', 'post_metas', array( 'permalink' => true ) ) )
+              if ( $date ) : ?><span class="v-separator">-</span><?php endif; echo $up_date;
+        ?>
+          </span>
+        <?php
+          }
+
+          if ( czr_fn_get('show_comment_meta') ) :
+            czr_fn_comment_info( $has_meta ? '<span class="v-separator">|</span>' : '' );
+          endif
         ?>
       </div>
     </div>

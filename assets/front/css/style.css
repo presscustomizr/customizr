@@ -171,7 +171,7 @@ blockquote p {
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__plain .entry-header .entry-meta, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.868056em;
 }
 
@@ -4061,14 +4061,6 @@ dl dd {
   display: none;
 }
 
-.entry-meta a:not(.btn) {
-  color: #B4B4B4;
-}
-
-.entry-meta a:not(.btn) span::after, .entry-meta a:not(.btn) span::before {
-  background-color: #202020;
-}
-
 a.czr-format-link {
   display: inline-block;
   text-decoration: none !important;
@@ -4189,13 +4181,15 @@ a.czr-format-link:hover::before {
   margin-bottom: 1.171875em;
 }
 
-.grid .post.no-thumb .tc-content {
-  padding-top: 4.6875em;
-}
-
 .grid .no-header .grid__item .entry-footer {
   margin-top: 0;
   padding-top: 0;
+}
+
+.entry-content__wrapper:not(.row) {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 /* ALTERNATE */
@@ -4225,6 +4219,8 @@ a.czr-format-link:hover::before {
 }
 
 .grid-container__alternate .post-type__icon {
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: none;
 }
 
@@ -4237,14 +4233,14 @@ a.czr-format-link:hover::before {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .grid-container__alternate.full .post-type__icon {
     display: block;
   }
 }
 
-@media (min-width: 1200px) {
-  .grid-container__alternate.semi-narrow .post-type__icon, .grid-container__alternate.narrow .post-type__icon {
+@media (min-width: 992px) {
+  .grid-container__alternate.semi-narrow .post-type__icon {
     display: block;
   }
 }
@@ -4277,10 +4273,6 @@ a.czr-format-link:hover::before {
 
 .grid-container__alternate.narrow .no-thumb:not(.format-quote) .tc-thumbnail {
   display: none;
-}
-
-.grid-container__alternate.narrow .post-type__icon {
-  min-height: 60px;
 }
 
 /* CLASSIC */
@@ -4601,8 +4593,8 @@ a.czr-format-link:hover::before {
 
 [class*=grid-container__] .full-image .tc-content .entry-footer {
   position: absolute;
-  width: 90%;
-  bottom: 1.171875em;
+  width: 100%;
+  bottom: 0;
 }
 
 [class*=grid-container__] .full-image .tc-content .entry-footer .post-info {
@@ -4611,12 +4603,13 @@ a.czr-format-link:hover::before {
 
 .grid-container__masonry .post-type__icon {
   background: transparent;
-  right: 1.171875em;
+  right: -1.757813em;
   width: 3.515625em;
   height: 3.515625em;
   line-height: 4em;
   border-radius: 0;
   font-size: 1em;
+  top: -1.757813em;
 }
 
 .grid-container__masonry .format-image .post-type__icon {
@@ -4735,12 +4728,12 @@ a.czr-format-link:hover::before {
   margin-top: 1.1em;
 }
 
-.grid-container__plain .post-info {
+.grid-container__plain footer .post-info {
   margin-top: 1.171875em;
 }
 
 @media (min-width: 48em) {
-  .grid-container__plain .post-info {
+  .grid-container__plain footer .post-info {
     text-align: right;
     margin-top: 0;
   }
@@ -4762,7 +4755,7 @@ a.czr-format-link:hover::before {
   display: inline-block;
 }
 
-.grid-container__plain .tax__container {
+.grid-container__plain .post-info.tax__container {
   margin-top: 1.171875em;
   /* .tax__link {
       overflow: hidden;
@@ -4817,7 +4810,7 @@ a.czr-format-link:hover::before {
   margin-top: 2.34375em;
 }
 
-.grid-container__plain .entry-footer .entry-meta {
+.grid-container__plain .entry-footer .post-info {
   margin-top: 2.34375em;
 }
 
@@ -5709,6 +5702,14 @@ section.post-content {
   display: none;
 }
 
+.post-info a:not(.btn) {
+  color: #B4B4B4;
+}
+
+.post-info a:not(.btn) span::after, .post-info a:not(.btn) span::before {
+  background-color: #202020;
+}
+
 @media screen and (min-width: 480px) and (max-width: 667px) {
   .sidebar {
     padding: 0 2.34375em;
@@ -6106,12 +6107,12 @@ section.post-content {
   color: #272727;
 }
 
-.entry-meta a:not(.btn):hover span::after, .entry-meta a:not(.btn):hover span::before, .grid-container__classic .post-type__icon:hover, .widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before, a.czr-format-link::before, .comment-author a::before,
+.post-info a:not(.btn):hover span::after, .post-info a:not(.btn):hover span::before, .grid-container__classic .post-type__icon:hover, .widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before, a.czr-format-link::before, .comment-author a::before,
 .comment-link::before, .tabs .nav-link.active::before {
   background-color: #272727;
 }
 
-.entry-meta a:not(.btn):hover {
+.post-info a:not(.btn):hover {
   color: #272727;
 }
 

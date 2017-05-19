@@ -576,3 +576,12 @@ section.post-content { margin-top:0; }
 .hide-post-metas .entry-meta {
   display: none;
 }
+
+.post-info a {
+  &:not(.btn) {
+    color: $grey;
+    span::after, span::before {
+      background-color: $black;
+    }
+  }
+}

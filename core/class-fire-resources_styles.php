@@ -15,6 +15,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          private $_resources_version;
 
          function __construct () {
+
                self::$instance =& $this;
 
                add_action( 'after_setup_theme'                   , array( $this, 'czr_fn_setup_properties' ), 20 );
@@ -24,7 +25,6 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
 
                add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
-
 
          }
 
@@ -309,7 +309,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-darkest-oh:focus',
                                        '.btn-skin-darkest-oh:hover',
                                        '.btn-skin-darkest.inverted',
-                                       '.entry-meta a:not(.btn):hover',
+                                       '.post-info a:not(.btn):hover',
                                        '.grid-container__classic .post-type__icon .icn-format',
                                        "[class*='grid-container__'] .hover .entry-title a",
                                        '.widget-area a:not(.btn):hover',

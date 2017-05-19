@@ -13,7 +13,7 @@
         <div class="post-type__icon"><i class="icn-format"></i></div>
     <?php endif ?>
     <?php if ( czr_fn_has('post_metas') && $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) ) : ?>
-      <div class="entry-meta">
+      <div class="entry-meta post-info">
           <?php echo $date ?>
       </div>
     <?php endif; ?>

@@ -7,7 +7,7 @@
 }
 
 
-.entry-meta a:not(.btn) {
+.post-info a:not(.btn) {
     &:hover {
       color: $skin-link-color-hover;
       span::after, span::before {

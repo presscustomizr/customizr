@@ -13,13 +13,13 @@
         <div class="post-type__icon"><i class="icn-format"></i></div>
     <?php endif; ?>
     <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get('cat_limit') ) ) ) : ?>
-      <div class="entry-meta">
-        <div class="tax__container">
+      <!--div class="entry-meta"!-->
+        <div class="tax__container post-info entry-meta">
           <?php echo $cat ?>
         </div>
-      </div>
+      <!--/div-->
     <?php endif; ?>
-    <h2 class="entry-title ">
+    <h2 class="entry-title">
       <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
     <?php

@@ -6,14 +6,14 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             'content'               => array(
                 // 'width (full||semi-narrow||narrow) => ' array( xl, lg, md, sm, xs )
-                'full'         => array( '', '8', '', '', '12' ),
-                'semi-narrow'  => array( '8', '', '', '', '12' ),
+                'full'         => array( '', '', '8', '', '12' ),
+                'semi-narrow'  => array( '', '8', '', '', '12' ),
                 'narrow'       => array( '', '', '', '', '12' )
             ),
             'media'                 => array(
                 // 'width (full||semi-narrow||narrow) => ' array( xl, lg, md, sm, xs )
-                'full'         => array( '', '4', '', '', '12' ),
-                'semi-narrow'  => array( '4', '', '', '', '12' ),
+                'full'         => array( '', '', '4', '', '12' ),
+                'semi-narrow'  => array( '', '4', '', '', '12' ),
                 'narrow'       => array( '', '', '', '', '12' )
             ),
 
