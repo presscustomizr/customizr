@@ -12,21 +12,39 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
       protected  $use_attachment;
 
-      public     $defaults          = array(
-                                          'media'                 => null,
 
-                                          'thumbnail_item'        => null,
 
-                                          'post_id'               => null,
-                                          'size'                  => 'full',
-                                          'use_placeholder'       => false,
-                                          'use_attachment'        => true,
+      /**
+      * @override
+      */
+      public function __construct( $model = array() ) {
 
-                                          'visibility'            => true,
+            /*
+            * the model->defaults by default are:
+            * 1) merged to the model array at instantiation time (see instance's method CZR_model.czr_fn_update )
+            * 2) they also can be merged (default behavior) to the passed args when updating a model while rendering its template
+            * 3) they can override the model properties when invoking instance's method CZR_model.czr_fn_reset_to_defaults
+            */
+            $this->defaults = array(
 
-                                          'has_lightbox'          => true
-                                    );
+                  'media'                 => null,
 
+                  'thumbnail_item'        => null,
+
+                  'post_id'               => null,
+                  'size'                  => 'full',
+                  'use_placeholder'       => false,
+                  'use_attachment'        => true,
+
+                  'visibility'            => true,
+
+                  'has_lightbox'          => czr_fn_get_opt( 'tc_fancybox' ),
+
+            );
+
+            parent::__construct( $model );
+
+      }
 
 
 
@@ -53,8 +71,6 @@ class CZR_thumbnail_model_class extends CZR_Model {
                   'size'            => 'full',
                   'use_placeholder' => false,
                   'use_attachment'  => true,
-
-                  'has_lightbox'    => true
 
             );
 

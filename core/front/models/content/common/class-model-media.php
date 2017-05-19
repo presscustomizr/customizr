@@ -54,14 +54,12 @@ class CZR_media_model_class extends CZR_Model {
                   'thumb_size'            => 'full',
                   'use_thumb_placeholder' => false,
 
-                  'has_lightbox'          => true,
                   'link_class'            => 'bg-link',
 
                   'inner_wrapper_class'   => null,
                   'image_centering'       => false,
 
             );
-
 
 
             $args = wp_parse_args( $args, $defaults );
@@ -115,11 +113,11 @@ class CZR_media_model_class extends CZR_Model {
                   'use_icon'              => false,
                   'force_icon'            => false,
                   'thumb_size'            => 'full',
-                  'inner_wrapper_class'         => '',
+                  'inner_wrapper_class'   => '',
 
                   'has_permalink'         => true,
                   'link_class'            => 'bg-link',
-                  'has_lightbox'          => true,
+                  'has_lightbox'          => czr_fn_get_opt( 'tc_fancybox' ),
 
                   'visibility'            => true,
 

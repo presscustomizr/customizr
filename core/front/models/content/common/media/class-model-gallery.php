@@ -7,15 +7,30 @@ class CZR_gallery_model_class extends CZR_Model {
       protected      $gallery_items;
 
 
-      public         $defaults      = array(
-                                          'media'           => null,
-                                          'gallery_items'   => null,
-                                          'post_id'         => null,
-                                          'visibility'      => true,
-                                          'has_lightbox'    => true,
-                                    );
+      /**
+      * @override
+      */
+      public function __construct( $model = array() ) {
 
+            /*
+            * the model->defaults by default are:
+            * 1) merged to the model array at instantiation time (see instance's method CZR_model.czr_fn_update )
+            * 2) they also can be merged (default behavior) to the passed args when updating a model while rendering its template
+            * 3) they can override the model properties when invoking instance's method CZR_model.czr_fn_reset_to_defaults
+            */
+            $this->defaults = array(
 
+                  'media'           => null,
+                  'gallery_items'   => null,
+                  'post_id'         => null,
+                  'visibility'      => true,
+                  'has_lightbox'    => czr_fn_get_opt( 'tc_fancybox' ),
+
+            );
+
+            parent::__construct( $model );
+
+      }
 
 
       /* Public api */
@@ -24,7 +39,6 @@ class CZR_gallery_model_class extends CZR_Model {
             $defaults = array (
 
                   'post_id'         => null,
-                  'has_lightbox'    => true,
 
             );
 
@@ -114,7 +128,7 @@ class CZR_gallery_model_class extends CZR_Model {
             foreach( $raw_media[ 'src' ] as $src ) {
 
                   /* Cannot use this as the gallery images can be randomly ordered
-                  while the gallery_ids are not 
+                  while the gallery_ids are not
                   //TODO: find an efficient way to retrieve the media id!
 
                   $_original_image  = '';
