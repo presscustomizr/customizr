@@ -213,7 +213,7 @@ blockquote p {
 .woocommerce input.button.alt,
 .woocommerce a.button.alt,
 .woocommerce button.button.alt, .tax__container a, .tagcloud a,
-.tag__link, .entry-footer, .archive-header .header-bottom,
+.tag__link, .entry-header .post-info, .entry-footer, .archive-header .header-bottom,
 .entry-header .header-bottom, .comment-meta time, .widget_calendar thead tr {
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
@@ -3935,6 +3935,20 @@ dl dd {
   color: #202020;
 }
 
+.entry-footer .flex-row {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.grid-container__alternate article:not(.full-image) .entry-footer .flex-row {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
 [class*=grid-container__alternate] .entry-media__wrapper .post-type__icon {
   background-color: transparent;
 }
@@ -4115,6 +4129,23 @@ a.czr-format-link:hover::before {
   color: #777;
 }
 
+.post-info .row {
+  margin: 0 -8px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.post-info .row [class*=col] {
+  padding: .1em 8px;
+}
+
+.post-info > .row > [class*=col] {
+  padding-top: .25em;
+  padding-bottom: .25em;
+}
+
 .entry-footer {
   align-items: center;
 }
@@ -4124,14 +4155,30 @@ a.czr-format-link:hover::before {
   position: relative;
 }
 
+.full-image .entry-footer .post-info {
+  position: relative;
+}
+
+.full-image .entry-footer .post-info::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: 0;
+  background: #eceeef;
+}
+
 .grid__item {
   position: relative;
   background: #fff;
+  outline: 1px solid #efefef;
+  outline-offset: -1px;
 }
 
 /* specific to grid layout (masonry/classic) */
 .grid .tc-content {
-  padding: 2.34375em 1.171875em;
+  padding: 2.34375em 15px;
   margin: 0 auto;
   text-align: left;
   width: 90%;
@@ -4154,7 +4201,9 @@ a.czr-format-link:hover::before {
 }
 
 .grid .entry-footer .post-info {
-  padding-top: 2.34375em;
+  padding-top: 1.171875em;
+  margin-top: 2.34375em;
+  margin-bottom: -1em;
   position: relative;
   text-align: right;
 }
@@ -4171,10 +4220,6 @@ a.czr-format-link:hover::before {
 
 .grid .entry-footer .post-info .v-separator {
   visibility: hidden;
-}
-
-.grid .entry-footer .post-info > *:first-child {
-  float: left;
 }
 
 .grid .entry-footer .post-tags {
@@ -4465,20 +4510,6 @@ a.czr-format-link:hover::before {
   color: #fff;
 }
 
-.grid-container__classic .format-image .tc-content .entry-footer .post-info {
-  position: relative;
-}
-
-.grid-container__classic .format-image .tc-content .entry-footer .post-info::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  top: 0;
-  left: 0;
-  background: #eceeef;
-}
-
 .grid-container__classic .tc-grid-icon {
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
@@ -4550,7 +4581,7 @@ a.czr-format-link:hover::before {
   max-width: 90%;
 }
 
-[class*=grid-container__] .full-image .tc-content .entry-header a, [class*=grid-container__] .full-image .tc-content .entry-footer a {
+[class*=grid-container__] .full-image .tc-content .entry-header a, [class*=grid-container__] .full-image .tc-content .entry-footer .post-info, [class*=grid-container__] .full-image .tc-content .entry-footer a {
   color: #fff;
 }
 
@@ -4667,7 +4698,7 @@ a.czr-format-link:hover::before {
 }
 
 .grid-container__alternate.semi-narrow .tc-content {
-  padding: 2.34375em;
+  padding: 2.34375em 15px;
   font-size: 90%;
 }
 
@@ -4806,7 +4837,7 @@ a.czr-format-link:hover::before {
 .grid-container__plain .entry-footer {
   clear: both;
   border-top: 1px solid #eceeef;
-  padding-top: 2.34375em;
+  padding-top: 1.171875em;
   margin-top: 2.34375em;
 }
 
@@ -4845,6 +4876,10 @@ a.czr-format-link:hover::before {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   perspective: 1000px;
+}
+
+.grid-container__square-mini .grid__item {
+  outline: none;
 }
 
 .grid-container__square-mini .flickity-viewport {

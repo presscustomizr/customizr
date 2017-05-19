@@ -14,29 +14,28 @@
       </ul>
     </div>
   <?php endif; ?>
-    <div class="post-info clearfix">
-    <?php
+    <div class="post-info clearfix entry-meta">
 
-      if ( $has_meta = czr_fn_has('post_metas') ) {
-    ?>
-      <span class="entry-meta">
-    <?php
-        if ( $author = czr_fn_get( 'author', 'post_metas' ) )
-          echo $author;
+      <div class="row flex-row">
+        <div class="col col-auto">
 
-        if ( $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
-          if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
+        <?php
+          if ( $author = czr_fn_get( 'author', 'post_metas' ) )
+            echo $author;
+        ?>
+        </div>
+        <div class="col col-auto">
+          <div class="row">
+          <?php
+            if ( $date = czr_fn_get( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
+              echo '<div class="col col-auto">' . $date . '</div>';
 
-        if ( $up_date = czr_fn_get( 'update_date', 'post_metas', array( 'permalink' => true ) ) )
-          if ( $date ) : ?><span class="v-separator">-</span><?php endif; echo $up_date;
-    ?>
-      </span>
-    <?php
-      }
+            if ( $up_date = czr_fn_get( 'update_date', 'post_metas', array( 'permalink' => true ) ) )
+              echo '<div class="col col-auto">' . $up_date . '</div>';
 
-      if ( czr_fn_get('show_comment_meta') ) :
-        czr_fn_comment_info( $has_meta ? '<span class="v-separator">|</span>' : '' );
-      endif
-    ?>
-  </div>
+          ?>
+          </div>
+        </div>
+      </div>
+    </div>
 </footer>

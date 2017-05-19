@@ -60,7 +60,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'thumb_alternate'       => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ),
                   'thumb_position'        => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) ),
                   'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-                  'show_comment_meta'     => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
                   'content_width'         => $content_width,
                   'format_icon_media'     => ! in_array( 'narrow', $content_width ),
                   'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),

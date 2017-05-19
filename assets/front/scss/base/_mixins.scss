@@ -531,3 +531,17 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+@mixin flex-justify-content-between() {
+       -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+        justify-content: space-between;
+}
+
+@mixin flex-justify-content-start(){
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}

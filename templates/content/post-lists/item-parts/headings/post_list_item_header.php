@@ -23,6 +23,9 @@
       <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
     <?php
+
+      czr_fn_comment_info( array( 'before' => '<div class="post-info">', 'after' => '</div>') );
+
       if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
         czr_fn_edit_button( array( 'link'  => $edit_post_link ) );
     ?>

@@ -19,7 +19,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
       'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
-      'show_comment_meta'         => esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false,
       'split_layout'              => true, //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
@@ -107,10 +106,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
   }
 
-  function czr_fn_get_show_comment_meta() {
-    return $this -> czr_fn__get_post_list_item_property( 'show_comment_meta' );
-  }
-
   function czr_fn_get_print_start_wrapper() {
     return $this -> wrapped && czr_fn_is_loop_start();
   }
@@ -147,7 +142,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $cat_list );
-    $show_comment_meta           = $this -> show_comment_meta && czr_fn_is_possible( 'comment_info' );
 
     //add the aspect ratio class for all media types (except audio )
     $media_class                 = 'audio' == $current_post_format ? '' : 'czr__r-w16by9';
@@ -161,7 +155,6 @@ class CZR_post_list_plain_model_class extends CZR_Model {
         'cat_list_class'           => $cat_list_class,
         'entry_header_inner_class' => $entry_header_inner_class,
         'content_inner_class'      => $content_inner_class,
-        'show_comment_meta'        => $show_comment_meta,
         'has_post_media'           => $this->show_thumb
     );
 

@@ -101,13 +101,7 @@
           )
         )
       )?>
-      <?php czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer',
-        array(
-          'model_args' => array(
-            'show_comment_meta' => czr_fn_get('show_comment_meta')
-          )
-        )
-      ) ?>
+      <?php czr_fn_render_template( 'content/post-lists/item-parts/footers/post_list_item_footer' ) ?>
     </div>
   <?php
 

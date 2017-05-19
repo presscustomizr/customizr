@@ -72,40 +72,6 @@ embed, iframe, object, video { max-width: 100%;}
     position: relative;
 }
 
-/* Placeholder temp */
-.tc-placeholder-wrap {
-    padding: 19px;
-    background-color: #F5F5F5;
-    border: 1px solid #E3E3E3;
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
-    -moz-box-shadow: inset 0 0 10px rgba(0,0,0,.6);
-    box-shadow: inset 0 0 10px rgba(0,0,0,.6);
-    position: relative;
-}
-.tc-placeholder-wrap p {
-    font-style: italic;
-    font-size: 80%;
-    color: #5A5A5A!important;
-    text-align: center;
-}
-.tc-placeholder-wrap::before {
-    font-family: FontAwesome;
-    speak: none;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    font-style: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-
-    font-size: 1em;
-    content: "\f05a";
-    padding-left: 0;
-    position: absolute;
-    text-decoration: none!important;
-    top: 5px;
-    left: 5px;
-}
 
 /* Slider stuff */
 /* Slider loader wrapper took from Customizr */
@@ -148,35 +114,8 @@ embed, iframe, object, video { max-width: 100%;}
   position: absolute;
 }
 
-.czr-carousel.full-page {
-  width: 100%;
-  height: 100vh;
-}
-.admin-bar .czr-carousel.full-page {
-  height: calc( 100vh - 46px );
-}
-@media screen and ( min-width: 783px ){
-  .admin-bar .czr-carousel.full-page {
-    height: calc( 100vh - 32px );
-  }
-}
 [id^=customizr-slider-].czr-carousel .carousel-inner,
 [id^=customizr-slider-].czr-carousel .carousel-cell { width: 100%; height: 100%; overflow: hidden;}
-
-
-/*
-Limit to desktop
-.grid-container__alternate .format-image .tc-content .entry-footer .post-info, .grid-container__alternate .format-gallery .tc-content .entry-footer .post-info, .grid-container__square-mini .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-image .tc-content .entry-footer .post-info, .grid-container__masonry .format-gallery .tc-content .entry-footer .post-info {
-    padding-top: 1.25em;
-}
-*/
-@media (max-width: 768px) {
-  .grid-container__alternate .full-image .tc-content .entry-footer .post-info,
-  .grid-container__masonry .full-image .tc-content .entry-footer .post-info {
-    padding-top: 0 !important;
-  }
-}
-
 
 
 
@@ -240,27 +179,7 @@ Limit to desktop
   overflow: hidden;
 }
 
-/* Give borders to the articles */
-.grid__item { outline: 1px solid #efefef; outline-offset: -1px;}
-.grid-container__square-mini .grid__item { outline: none }
-/*
-Headings images
-*/
-.page__header {
-  overflow: hidden;
-}
-.page__header .entry-media__holder {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.page__header .entry-media__holder img {
-  width: 100%;
-  height: auto;
-}
+
 /* general */
 /*.css-centering.entry-media__holder .entry-media__wrapper {
   position: absolute;

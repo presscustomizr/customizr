@@ -11,16 +11,21 @@ class CZR_post_metas_model_class extends CZR_Model {
     return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
   }
 
-  public function czr_fn_get_author() {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author' ) : '';
+  public function czr_fn_get_author( $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
   }
 
-  public function czr_fn_get_publication_date( $permalink = false ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array( '', $permalink ) ) : '';
+  public function czr_fn_get_publication_date( $permalink = false, $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
+        '',
+        $permalink,
+        $before = null ) ) : '';
   }
 
-  public function czr_fn_get_update_date( $permalink = false ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) ? $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
+  public function czr_fn_get_update_date( $permalink = false, $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) &&
+           false !== czr_fn_post_has_update() ?
+                $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
   }
   /* END PUBLIC GETTERS */
 
@@ -43,15 +48,24 @@ class CZR_post_metas_model_class extends CZR_Model {
   }
 
   private function czr_fn_meta_generate_author() {
-    return $this -> czr_fn_get_meta_author();
+    $author = $this -> czr_fn_get_meta_author();
+    $before = is_null($before) ? __( 'by&nbsp;', 'customizr' ) :'';
+
+    return $before . $author;
   }
 
-  private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false ) {
-    return $this -> czr_fn_get_meta_date( 'publication', $format, $permalink );
+  private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false, $before = null ) {
+    $date   = $this -> czr_fn_get_meta_date( 'publication', $format, $permalink );
+    $before = is_null($before) ? __( 'Published&nbsp;', 'customizr' ) :'';
+
+    return $before . $date;
   }
 
-  private function czr_fn_meta_generate_up_date( $format = '', $permalink = false ) {
-    return $this -> czr_fn_get_meta_date( 'update', $format, $permalink );
+  private function czr_fn_meta_generate_up_date( $format = '', $permalink = false, $before = null ) {
+    $date   = $this -> czr_fn_get_meta_date( 'update', $format, $permalink );
+    $before = is_null($before) ? __( 'Updated&nbsp;', 'customizr' ) :'';
+
+    return $before . $date;
   }
 
 
@@ -80,9 +94,10 @@ class CZR_post_metas_model_class extends CZR_Model {
     $_use_post_mod_date = apply_filters( 'czr_use_the_post_modified_date' , 'publication' != $pub_or_update );
     return apply_filters(
       'tc_date_meta',
-        sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
+        sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date %3$s" datetime="%4$s">%5$s</time></a>' ,
           $permalink ? esc_url( get_the_permalink() ) : esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
           $permalink ? esc_attr( the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ) ) : esc_attr( get_the_time() ),
+          'publication' == $pub_or_update ? 'published' : 'updated',
           $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
           $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
         ),
