@@ -170,13 +170,12 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       $global_layout                 = czr_fn_get_global_layout();
 
       /* Force 404 layout */
-      //checks if the 'force default layout' option is checked and return the default layout before any specific layout
       if ( is_404() ) {
-        $czr_screen_layout = array(
-          'sidebar' => false,
-          'class'   => 'col-12 col-md-8 push-md-2'
-        );
-        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+            $czr_screen_layout = array(
+                'sidebar' => false,
+                'class'   => 'col-12 col-md-8 push-md-2'
+            );
+            return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
 
@@ -187,13 +186,13 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
       //checks if the 'force default layout' option is checked and return the default layout before any specific layout
       if( $czr_sidebar_force_layout ) {
-        $class_tab  = $global_layout[$czr_sidebar_default_layout];
-        $class_tab  = $class_tab['content'];
-        $czr_screen_layout = array(
-          'sidebar' => $czr_sidebar_default_layout,
-          'class'   => $class_tab
-        );
-        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+            $class_tab  = $global_layout[$czr_sidebar_default_layout];
+            $class_tab  = $class_tab['content'];
+            $czr_screen_layout = array(
+                'sidebar' => $czr_sidebar_default_layout,
+                'class'   => $class_tab
+            );
+            return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
       global $wp_query, $post;
@@ -201,11 +200,11 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
 
       if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) ) {
-        $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
-        $is_singular_layout           = true;
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
+            $is_singular_layout           = true;
       } if ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
-        $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
-        $is_singular_layout           = true;
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+            $is_singular_layout           = true;
       }
 
       $czr_sidebar_default_layout     = empty($_czr_sidebar_default_layout) ? $czr_sidebar_default_layout : $_czr_sidebar_default_layout;
@@ -223,27 +222,29 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
       //if we are displaying an attachement, we use the parent post/page layout
       if ( isset($post) && is_singular() && 'attachment' == $post->post_type ) {
-        $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
+            $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
       }
 
       //for a singular post or page OR for the posts page
       elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page ) {
-        $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
+            $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
       }
 
       //checks if we display home page, either posts or static page and apply the customizer option
       global $wp_the_query;
       if( ($wp_the_query->is_home() && 'posts' == get_option( 'show_on_front' ) ) || $wp_the_query->is_front_page()) {
-         $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
+            $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
       }
 
       if ( $czr_specific_post_layout ) {
-          $class_tab  = $global_layout[$czr_specific_post_layout];
-          $class_tab  = $class_tab['content'];
-          $czr_screen_layout = array(
-            'sidebar' => $czr_specific_post_layout,
-            'class'   => $class_tab
-        );
+
+            $class_tab  = $global_layout[$czr_specific_post_layout];
+            $class_tab  = $class_tab['content'];
+            $czr_screen_layout = array(
+                'sidebar' => $czr_specific_post_layout,
+                'class'   => $class_tab
+            );
+
       }
 
       return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
