@@ -35,6 +35,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_page() && ! is_front_page() );
     }
 
+    function czr_fn_display_view_regular_post_heading() {
+      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_post() );
+    }
 
 
     function czr_fn_display_view_singular_headings() {
@@ -135,11 +138,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     function czr_fn_display_view_post_metas() {
 
       //disable in attachment context, attachment post metas have their own class
-      if ( is_attachment() )
-        $post_metas = false;
+      /*if ( is_attachment() )
+        $post_metas = false;*/
 
-      //post metas are always insanciated in customizing context
-      elseif ( czr_fn_is_customizing() )
+      //post metas are always insantiated in customizing context
+      if ( czr_fn_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
@@ -159,15 +162,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'czr_show_post_metas', $post_metas );
     }
 
-/*
-    function czr_fn_display_view_post_metas_text() {
-      return $this -> czr_fn_display_view_post_metas() && 'buttons' != esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
-    }
 
-    function czr_fn_display_view_post_metas_button() {
-      return $this -> czr_fn_display_view_post_metas() && 'buttons' == esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
-    }
-*/
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed
@@ -176,31 +171,8 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         ( is_search() && apply_filters( 'czr_include_attachments_in_search_results' , false ) );
     }
 
-    /* Thumbnails in post lists */
-    function czr_fn_display_view_post_list_rectangular_thumb() {
-      return $this -> czr_fn_display_view_post_list_thumbnail() &&
-            FALSE !== strpos( esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
-    }
 
-    function czr_fn_display_view_post_list_standard_thumb() {
-      return $this -> czr_fn_display_view_post_list_thumbnail() &&
-            FALSE === strpos( esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
-    }
 
-    /* Helper */
-    function czr_fn_display_view_post_list_thumbnail() {
-      $display_post_list_thumbnail = $this -> czr_fn_display_view_post_list() && 'full' != esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
-      return $display_post_list_thumbnail;
-    }
-    /* end  Thumbnails in post lists*/
-
-    /* Single post thumbnail */
-    function czr_fn_display_view_post_thumbnail() {
-      $display_attachment_as_thumb = apply_filters( 'czr_use_attachment_as_thumb', false ) && czr_fn_has_thumb();
-
-      return $this -> czr_fn_display_view_post() && 'hide' != esc_attr( czr_fn_get_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
-    }
 
     /*
     * OLD VERSION

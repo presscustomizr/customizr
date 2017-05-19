@@ -19,17 +19,11 @@ class CZR_post_metas_model_class extends CZR_Model {
     return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array( '', $permalink ) ) : '';
   }
 
-  public function czr_fn_get_update_date( $permalink = false, $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = czr_fn_post_has_update() ) {
-      if ( 'days' == esc_attr( czr_fn_get_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
-        $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
-        $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
-      }
-      return isset( $_update ) ? $_update : $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) );
-    }
-    return false;
+  public function czr_fn_get_update_date( $permalink = false ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) ? $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
   }
   /* END PUBLIC GETTERS */
+
 
   /* HELPERS */
   protected function czr_fn_get_meta( $meta, $params = array(), $separator = '' ) {
@@ -265,14 +259,14 @@ class CZR_post_metas_model_class extends CZR_Model {
       return $_classes;
 
     if ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
-       array_push( $_classes, 'hide-all-post-metas' );
+       $_classes[] = 'hide-all-post-metas';
 
     if (
         ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
         ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
         ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
     )
-      array_push( $_classes, 'hide-post-metas' );
+      $_classes[] = 'hide-post-metas';
 
     return $_classes;
   }

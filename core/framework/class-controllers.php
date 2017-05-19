@@ -53,14 +53,18 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'comment_list',
               'comments',
               'posts_navigation',
+
               'regular_page_heading',
+              'regular_post_heading',
+
               'archive_heading',
               'author_description',
               'posts_list_description',
               'search_heading',
               'post_heading',
               'lefts_social_block',
-              'rights_social_block'
+              'rights_social_block',
+              'post_metas'
             ),
             'footer' => array(
               'btt_arrow',
