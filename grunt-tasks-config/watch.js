@@ -26,8 +26,22 @@ module.exports = {
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },
 	front_js : {
-		files : ['<%= paths.front_js %>parts/*.js', '!*.min.js', '!<%= paths.front_js %>parts/main.js'],
-		tasks : ['gitinfo' , 'replace:readme', 'jshint:part_front_js', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
+		files : [
+        '<%= paths.front_js %>parts/*.js',
+        '!<%= paths.front_js %>*.min.js',
+        '!<%= paths.front_js %>parts/*.min.js',
+        '!<%= paths.front_js %>parts/main.js'
+    ],
+		tasks : [
+        'gitinfo' ,
+        'replace:readme',
+        'jshint:part_front_js',
+        'concat:front_main_parts_js',
+        'concat:front_js',
+        'jshint:front',
+        'uglify:part_front_js' ,
+        'uglify:main_front_js'
+    ],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},
 	//Other admin js assets are jshinted on change
