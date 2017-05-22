@@ -89,43 +89,6 @@ function czr_fn_regex_callback( $matches ) {
 }
 
 
-
-
-/**
-* Returns the current skin's primary color
-*
-* @package Customizr
-* @since Customizr 3.1.23
-* Not used in the new customizr
-*/
-function czr_fn_get_skin_color( $_what = null ) {
-    $_color_map    = CZR_init::$instance -> skin_color_map;
-    $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
-
-    $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-    //falls back to blue3 ( default #27CDA5 ) if not defined
-    $_to_return = array( '#27CDA5', '#1b8d71' );
-
-    switch ($_what) {
-      case 'all':
-        $_to_return = $_color_map;
-      break;
-
-      case 'pair':
-        $_to_return = ( false != $_active_skin && array_key_exists( $_active_skin, $_color_map ) && is_array( $_color_map[$_active_skin] ) ) ? $_color_map[$_active_skin] : $_to_return;
-      break;
-
-      default:
-        $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
-      break;
-    }
-    //Custom skin backward compatibility : different filter prefix
-    $_to_return = apply_filters( 'tc_get_skincolor' , $_to_return , $_what );
-    return apply_filters( 'czr_get_skincolor' , $_to_return , $_what );
-}
-
-
-
 /**
 * This function returns the filtered global layout defined in CZR_init
 *
@@ -889,7 +852,7 @@ function czr_fn_isprevdem() {
         //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
         $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
     }
-    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR___::czr_fn_is_pro() );
+    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR_IS_PRO );
 }
 endif;
 
