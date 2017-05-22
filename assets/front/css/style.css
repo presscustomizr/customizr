@@ -171,7 +171,7 @@ blockquote p {
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.868056em;
 }
 
@@ -219,7 +219,7 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.caps, .nav__menu, .btn-more, .btn-large, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.caps, .nav__menu, input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
@@ -329,13 +329,6 @@ img.h-centered {
   width: auto !important;
   max-width: none !important;
   position: relative;
-  -webkit-transform: translate(0, 0) !important;
-  -moz-transform: translate(0, 0) !important;
-  transform: translate(0, 0) !important;
-}
-
-img.h-centered.tc-holder-img {
-  transform: none !important;
 }
 
 img.v-centered {
@@ -344,13 +337,6 @@ img.v-centered {
   vertical-align: top;
   position: relative;
   max-width: none !important;
-  -webkit-transform: translate(0, 0) !important;
-  -moz-transform: translate(0, 0) !important;
-  transform: translate(0, 0) !important;
-}
-
-body[class*=ie] img.v-centered.tc-holder-img {
-  transform: none !important;
 }
 
 .filter {
@@ -401,6 +387,15 @@ body[class*=ie] img.v-centered.tc-holder-img {
   display: block;
   padding: 0;
   overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 [class*=czr__r-w]::before {
@@ -457,6 +452,10 @@ body[class*=ie] img.v-centered.tc-holder-img {
   backface-visibility: hidden;
   left: 0;
   top: 0;
+}
+
+.czr__r-wFP img.tc-holder-img {
+  -ms-transform: none;
 }
 
 *,
@@ -2909,6 +2908,15 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 }
 
 .czr-link-mask::before {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   position: absolute;
   width: 63%;
   /*

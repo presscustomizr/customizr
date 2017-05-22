@@ -191,6 +191,7 @@
 input[type=submit] {
   @extend %btn_base;
   @extend .btn-skin-darkest;
+  @extend .caps;
   cursor: pointer;
 }
 
@@ -685,7 +686,12 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   bottom: 0px;
   overflow: hidden;
   z-index: 1;
+
+
   &::before {
+    @include backface-visibility( hidden );
+    @include perspective( 1000px );
+    @include transform-style( preserve-3d );
     position: absolute;
     width: 63%;
     /*

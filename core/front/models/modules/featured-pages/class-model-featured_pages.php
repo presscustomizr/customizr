@@ -47,7 +47,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $show_thumb                     = $model['show_thumb'];
 
-        $_skin_color                    = czr_fn_get_skin_color();
+        $_skin_color                    = czr_fn_get_opt( 'tc_skin_color' );
         $_center_imgs                   = $model['center_imgs'];
 
         $model[ 'fp_holder_img' ]       = apply_filters (
@@ -55,7 +55,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
               sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
                 ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
                 $_skin_color,
-                $_center_imgs ? 'style="max-width:270px;width:270px;height:250px;"' : ''
+                'style="width:270px;height:250px"'
               )
         );
         //gets the featured pages array and sets the fp layout

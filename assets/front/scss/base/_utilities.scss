@@ -41,10 +41,6 @@ img.h-centered {
   width: auto!important;
   max-width: none!important;
   position: relative;
-  @include transform( translate(0,0) !important );
-  &.tc-holder-img {
-    transform: none !important;
-  }
 }
 img.v-centered {
   height: auto!important;
@@ -52,10 +48,6 @@ img.v-centered {
   vertical-align: top;
   position: relative;
   max-width: none!important;
-  @include transform( translate(0,0) !important );
-  body[class*=ie] &.tc-holder-img {
-    transform: none !important;
-  }
 }
 
 .filter {
@@ -98,6 +90,9 @@ img.v-centered {
   display: block;
   padding: 0;
   overflow: hidden;
+  @include backface-visibility( hidden );
+  @include perspective( 1000px );
+  @include transform-style( preserve-3d );
 
   &::before {
     display: block;
@@ -144,6 +139,10 @@ img.v-centered {
   img {
     position: absolute !important;
     @include transform( translate3d(0 ,0, 0) );
+    //fix holder transform in ie11
+    &.tc-holder-img {
+      -ms-transform: none;
+    }
     backface-visibility: hidden;
     left: 0;
     top: 0;
