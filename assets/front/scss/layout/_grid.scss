@@ -105,8 +105,10 @@
     position:relative;
     display:block;
     color: inherit!important;
-    line-height: $base-line-height*3;
+    line-height: 0;
     text-decoration: none !important;
+    top: 50%;
+    @include transform( translate(0, -50%) );
     @include opacity(0);
     @include transition (all, 0.6s ease);
     &:hover {
@@ -880,6 +882,7 @@ a.czr-format-link {
     top: $base-line-height;
     bottom: $base-line-height;
     overflow: hidden;
+    width: auto;
   }
 
   .tc-content-inner {
