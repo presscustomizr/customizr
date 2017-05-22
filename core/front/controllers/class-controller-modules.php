@@ -38,6 +38,17 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider     = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
+      //hide slider when home page>1
+      if ( apply_filters( 'tc_hide_featured_pages_when_paged', is_main_query() && czr_fn_is_home() ) ) {
+
+            global $wp_query;
+
+            $_is_paged = isset( $wp_query->query_vars['paged'] ) && $wp_query->query_vars['paged'] > 1 ||
+                         isset( $wp_query->query_vars['page'] ) && $wp_query->query_vars['page'] > 1;
+
+            $_show_slider   = $_show_slider && ! $_is_paged;
+      }
+
       $_show_slider     = apply_filters( 'czr_show_slider' , $_show_slider ) && czr_fn_is_slider_active();
 
       return $_show_slider;
@@ -73,9 +84,21 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     function czr_fn_display_view_featured_pages() {
-      //gets display fp option
-      $tc_show_featured_pages 	      = esc_attr( czr_fn_get_opt( 'tc_show_featured_pages' ) );
-      return apply_filters( 'czr_show_fp', 0 != $tc_show_featured_pages && czr_fn_is_home() );
+          //gets display fp option
+          $tc_show_featured_pages 	      = esc_attr( czr_fn_get_opt( 'tc_show_featured_pages' ) ) && czr_fn_is_home();
+
+          //hide featured pages when page>1
+          if ( apply_filters( 'tc_hide_featured_pages_when_paged', is_main_query() ) ) {
+
+                global $wp_query;
+
+                $_is_paged = isset( $wp_query->query_vars['paged'] ) && $wp_query->query_vars['paged'] > 1 ||
+                             isset( $wp_query->query_vars['page'] ) && $wp_query->query_vars['page'] > 1;
+
+                $tc_show_featured_pages   = $tc_show_featured_pages && ! $_is_paged;
+          }
+
+          return apply_filters( 'czr_show_fp', $tc_show_featured_pages );
     }
 
 
