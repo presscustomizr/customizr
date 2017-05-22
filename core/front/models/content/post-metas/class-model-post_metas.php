@@ -47,11 +47,10 @@ class CZR_post_metas_model_class extends CZR_Model {
     return $this -> czr_fn_meta_generate_tax_list( $hierarchical = false, $limit );
   }
 
-  private function czr_fn_meta_generate_author() {
+  private function czr_fn_meta_generate_author( $before ) {
     $author = $this -> czr_fn_get_meta_author();
     $before = is_null($before) ? __( 'by&nbsp;', 'customizr' ) :'';
-
-    return $before . $author;
+    return '<span class="author-meta">' . $before . $author . '</span>';
   }
 
   private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false, $before = null ) {
@@ -97,7 +96,7 @@ class CZR_post_metas_model_class extends CZR_Model {
         sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date %3$s" datetime="%4$s">%5$s</time></a>' ,
           $permalink ? esc_url( get_the_permalink() ) : esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
           $permalink ? esc_attr( the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ) ) : esc_attr( get_the_time() ),
-          'publication' == $pub_or_update ? 'published' : 'updated',
+          'publication' == $pub_or_update ? 'published updated' : 'updated',
           $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
           $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
         ),
@@ -124,7 +123,7 @@ class CZR_post_metas_model_class extends CZR_Model {
 
     return apply_filters(
         'tc_author_meta',
-        sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
+        sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
             esc_url( get_author_posts_url( get_the_author_meta( 'ID', $author_id ) ) ),
             esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author_meta('nicename', $author_id ) ) ),
             get_the_author_meta('nicename', $author_id )

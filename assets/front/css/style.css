@@ -187,7 +187,7 @@ blockquote p {
   font-weight: 400;
 }
 
-.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .tax__container a, .overlay .overlay-content .nav__container nav, .entry-footer .post-info a, .grid-container__plain .author-info a, .archive-header .header-bottom a,
+.semi-bold, h6 , .btn-more, .btn-small, .btn-edit, a.external, .tax__container a, .overlay .overlay-content .nav__container nav, .entry-footer .post-info a, .grid-container__plain .author-info .author-meta a, .archive-header .header-bottom a,
 .entry-header .header-bottom a, .page__header .header-content .post-info, .comment-author a, .comment-link, .footer__wrapper h5 {
   font-weight: 500;
 }
@@ -4149,11 +4149,6 @@ a.czr-format-link:hover::before {
   padding: .1em 8px;
 }
 
-.post-info > .row > [class*=col] {
-  padding-top: .25em;
-  padding-bottom: .25em;
-}
-
 .entry-footer {
   align-items: center;
 }
@@ -4778,20 +4773,17 @@ a.czr-format-link:hover::before {
   }
 }
 
-.grid-container__plain .author-info a {
-  line-height: 48px;
+.grid-container__plain .author-info .author-meta {
   margin-right: 1.171875em;
-  width: auto;
   margin-left: 1.171875em;
+}
+
+.grid-container__plain .author-info .author-meta a {
+  line-height: 48px;
+  width: auto;
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   letter-spacing: 4px;
-}
-
-.grid-container__plain .author-info .avatar, .grid-container__plain .author-info a {
-  float: none;
-  clear: none;
-  display: inline-block;
 }
 
 .grid-container__plain .post-info.tax__container {

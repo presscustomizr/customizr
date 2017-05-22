@@ -190,10 +190,6 @@ a.czr-format-link {
           padding: .1em 8px;
       }
     }
-    & > .row > [class*=col] {
-      padding-top: .25em;
-      padding-bottom: .25em;
-    }
 
     .entry-header & {
        @extend .service-font;
@@ -675,18 +671,22 @@ a.czr-format-link {
 
   .post-info, .author-info, .post-tags {  @extend .small;  }
   .author-info {
-    a {
-      //color: $black;
-      @extend .semi-bold;
-      line-height: 48px;
+
+    .author-meta {
       margin-right: $base-line-height;
-      width: auto;
       margin-left: $base-line-height;
-      text-transform: uppercase;
-      font-family: $serviceFont;
-      letter-spacing: 4px;
-    }//a
-    .avatar, a { float:none; clear: none; display: inline-block; }
+
+      a {
+        @extend .semi-bold;
+        line-height: 48px;
+        width: auto;
+        text-transform: uppercase;
+        font-family: $serviceFont;
+        letter-spacing: 4px;
+      }//a
+    }
+
+    //.avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
   .post-info.tax__container {

@@ -240,7 +240,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             if ( !( $is_full_image || $force_format_icon_media ) && 'regular' != $this -> thumb_shape_effect ) {
 
-                  list( $thumb_shape, $thumb_effect ) = explode( '-', $this->thumb_shape_effect );
+                  $thumb_shape_effect = explode( '-', $this->thumb_shape_effect );
+
+                  if ( count( $thumb_shape_effect ) > 1 )
+                        $thumb_effect = $thumb_shape_effect[1];
+                  if ( count( $thumb_shape_effect ) > 0 )
+                        $thumb_shape = $thumb_shape_effect[0];
 
             }
 
