@@ -11,6 +11,7 @@ input:not([type="submit"]), textarea {
 form  {
   label {
     color: $black;
+
     font-family: $serviceFont;
     @extend .small;
     @extend .caps;
@@ -21,7 +22,7 @@ form  {
   input[type="text"], input[type="url"], input[type="password"], input[type="email"],  input[type="number"], textarea {
     outline: none;
     border: none;
-    border-bottom: 2px solid #202020;
+    border-bottom: 2px solid $black;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
@@ -52,7 +53,7 @@ form.czr-form {
   .czr-focus label {
     display: block;
     position: absolute;
-    @include transition(all, .3s ease);
+    @include transition(transform 0.3s ease);
     span { float: left; }
 
     i.icn-close {
@@ -62,7 +63,7 @@ form.czr-form {
       width:2em;
       line-height: 2em;
       @include opacity(0);
-      @include transition(all 0.3s ease);
+      @include transition(transform 0.3s ease);
       @include transform(translateY(-110%));
     }
   }
@@ -74,7 +75,6 @@ form.czr-form {
       z-index: 1;
       @include transform(translateY(-110%));
       color: $grey;
-
       i.icn-search { @include opacity(0); }
       i.icn-close {
         @include opacity(1);

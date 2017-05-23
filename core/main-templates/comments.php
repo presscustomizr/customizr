@@ -6,12 +6,16 @@
  * and the comment form. The actual display of comments is
  * handled by a callback to tc_comment_callback()
  */
+
+// Print once : plugins compatibility
+if ( ! apply_filters( 'czr_render_comments_template', true ) )
+  return;
 ?>
 <div id="comments" class="comments_container">
   <section class="post-comments">
     <?php
       if ( czr_fn_has('comment_list') ) {
-        czr_fn_render_template( 'content/comments/comment_list' );
+        czr_fn_render_template( 'content/singular/comments/comment_list' );
       }
       comment_form( array(
         'class_form'         => 'czr-form comment-form',

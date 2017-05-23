@@ -1,0 +1,416 @@
+.nav__menu {
+  @extend .small;
+  @extend .caps;
+  @extend .bold;
+  @extend .letter-spacing-1;
+
+
+
+  .menu-item {
+    margin: 0 $base-line-height-fixed/3;
+    padding: 0;
+  }
+  .menu-item a {
+    padding: $base-line-height $base-line-height-fixed/3;
+    @include display-flex();
+      -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+
+
+
+  }
+}
+.nav li:not(.mini_cart_item) > a {
+  &:focus,
+  &:hover {
+    background: transparent !important;
+  }
+}
+.regular.nav__menu {
+    margin: 0 -1*$base-line-height-fixed/1.5;
+
+    //only first menu item in desktops
+    @include media-breakpoint-up(lg) { //min-width: 992px
+        > .menu-item > a {
+          padding: 0 $base-line-height-fixed/3;
+
+            & > span:first-of-type {
+                padding: $base-line-height 0;
+            }
+        }
+    }
+}
+
+
+/* Dropdowns */
+//menu items with children
+.czr-dropdown {
+    position: relative;
+}
+
+/* Dropdown menu ul */
+.czr-dropdown-menu {
+    display: block;
+
+    @include media-breakpoint-up(lg) { //min-width: 992px
+        & {
+            display: none;
+            max-width: 350px;
+            a {
+              white-space: normal;
+            }
+        }
+    }
+}
+.dropdown-menu.czr-dropdown-menu {
+    border-radius: 0;
+    border:0;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+
+    a {
+        @extend .bold;
+        position: relative;
+        vertical-align: middle;
+        white-space: nowrap;
+        padding: $base-line-height $base-line-height-fixed;
+        margin: 0 -1/2*$base-line-height-fixed;
+    }
+
+    //@include box-shadow( 0, 0, 0, transparent );
+
+    //include box-shadow in desktops
+    @include media-breakpoint-up(lg) {
+
+      @include box-shadow( 1px, 2px, 2px, rgba(0, 0, 0, 0.15), false, 2px );
+
+    }
+
+    .dropdown-item {
+        padding: 0 0 0 $base-line-height-fixed; //in rtl we shuould to the opposite
+        margin: 0;
+
+
+        @include media-breakpoint-up(lg) {
+            @at-root .regular .dropdown-menu .caret__dropdown-toggler i {
+              @include transform( translateZ(0) rotate(-90deg));
+              -ms-transform: rotate(-90deg);
+              position: relative;
+              display: inline-block;
+              top: -.1em;
+            }
+            @at-root .regular .dropdown-menu .dropdown-item {
+              padding: 0 $base-line-height;
+            }
+        }
+
+        @include media-breakpoint-down(md) {
+            @at-root .czr-dropdown > .dropdown-menu > .dropdown-item:last-of-type {
+              margin-bottom: $base-line-height/2;
+            }
+           /* &:first-of-type {
+              margin-top: $base-line-height;
+            }*/
+       }
+    }
+
+    .czr-dropdown-menu {
+        text-transform: none;
+        font-size:ms(0);
+
+        @include media-breakpoint-up(lg) { //min-width: 992px
+            @at-root .dropdown-menu .dropdown-menu {
+
+                  left: 100%;
+                  top: 55%;
+
+            }
+        }
+
+    }
+
+}
+
+
+/* dropdown-item (level > 1) hover effect */
+.dropdown-item {
+  position: relative;
+}
+.dropdown-item {
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition-delay: 0s;
+      transition-duration: .6s;
+      transition-timing-function: cubic-bezier(.19, 1, .22, 1);
+      -webkit-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+    }
+    &.current-active,
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+}
+
+/* Caret */
+.caret__dropdown-toggler {
+  display: none;
+
+  @include media-breakpoint-up(lg) { //min-width:992px
+    .regular & {
+      display: inline-block;
+      width: 1.5em;
+      vertical-align: middle;
+      z-index: inherit;
+      cursor: pointer;
+      position: relative;
+    }
+  }
+}
+
+.caret__dropdown-toggler i {
+    display: block;
+    @include transition (all 0.3s ease);
+    @include transform-style( preserve-3d );
+    @include backface-visibility( hidden );
+    @include perspective(1000px);
+    text-align: center;
+    vertical-align: middle;
+    &::before {
+      line-height: inherit;
+    }
+    .menu-item.show > a > & {
+        @include transform( translateZ(0) rotate(-180deg));
+        -ms-transform: rotate(-180deg);
+    }
+}
+
+
+/*
+* Fade submenu only in desktops and only for horizontal menus
+* only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
+* sidenav is not impacted
+*/
+@include media-breakpoint-up(lg) {
+  //lets use a tricky to make this not impact on the snake
+  //basically we know that assigning a perspective to an element
+  //plus position:relative creates a new system
+  //where fixed elements behave like absolute elements relative to the parent
+  //this way the actual visual position of the dropdown will not be impacted
+  //though, as fixed element, even if overflowing the tc-page-wrap, will not
+  //make the orizontal scrollbar appear!
+
+ .czr-submenu-fade .menu-item-has-children {
+      @include perspective(1000px);
+      z-index: 100;
+      > ul {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        display: block;
+        @include transition( all 0.3s ease-in-out );
+        @include transform( translate( 0, -20px ) );
+      }
+  }
+
+  .czr-submenu-fade li.show {
+      @include perspective( none );
+      > ul {
+        position: absolute;
+        visibility: visible;
+        opacity: 1;
+        @include transform( translate( 0, 0) );
+      }
+  }
+
+  /*end fade effect */
+
+  /* submenu link move */
+  .czr-submenu-move .dropdown-menu > li > a {
+      -webkit-transition: all ease 0.241s;
+      -moz-transition: all ease 0.241s;
+      -o-transition: all ease 0.241s;
+      transition: all ease 0.241s;
+      @include transform( translate( 0, 0) );
+  }
+  .czr-submenu-move .dropdown-item > a:hover {
+      @include transform( translate( 5px, 0) );
+  }
+  /* end subemnu link move */
+}
+
+
+/**
+* Dropdown menu direction [SNAKE]
+* available only in header
+*/
+.tc-header {
+    .dropdown-menu {
+        &.open-right {
+            left: 0;
+            right: auto;
+            @at-root .tc-header .open-right .dropdown-menu:not(.open-left),
+                     .tc-header .dropdown-menu .dropdown-menu.open-right {
+
+                left: 100%;
+                right: auto;
+            }
+        }
+
+        &.open-left {
+            left: auto;
+            right: 0;
+            @at-root .tc-header .open-left .dropdown-menu:not(.open-right),
+                     .tc-header .dropdown-menu .dropdown-menu.open-left {
+
+                right: 100%;
+                left: auto;
+            }
+        }
+    }
+}
+
+/* end common drodpowns */
+
+/* Utils nav */
+.utils_links {
+  padding: $base-line-height 15px;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+          align-self: center;
+
+  display: block;
+  height: auto;
+  position: relative;
+}
+
+/* Hamburger button */
+
+.ham-toggler-menu {
+    -webkit-appearance: initial !important;
+    @extend .utils_links;
+
+    @at-root .ham-toggler-menu__span {
+      @include transition (all, .3s)
+      background: transparent;
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      position: relative;
+      top: 0;
+      vertical-align: middle;
+      @include transition (all ease 0.3s);
+      &:before, &:after {
+          position: absolute;
+          content: '';
+          display: inline-block;
+          width: inherit;
+          height: inherit;
+          transition: all ease .3s;
+      }
+    }
+
+    @at-root .ham-toggler-menu__span:after  {
+      @include transform( translate3d(0,0,0) rotateZ(45deg));
+      @include transform-style( preserve-3d );
+    }
+    @at-root .ham-toggler-menu__span:before {
+      @include transform( translate3d(0,0,0) rotateZ(-45deg));
+      @include transform-style( preserve-3d );
+    }
+    &.collapsed .ham-toggler-menu__span {
+        &:before {
+          top: -6px;
+          @include transform(translate3d(0,0,0) rotateZ(0));
+        }
+        &:after {
+          top: 6px;
+           @include transform(translate3d(0,0,0) rotateZ(0));
+        }
+    }
+}
+/*end ham */
+
+.mobile-search__container {
+    width: 100%;
+}
+.mobile-search__container .czr-form .form-group {
+    margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
+    padding-bottom: $base-line-height;
+}
+.tc-header .mobile-search__container {
+    margin: 2*$base-line-height-fixed 0 $base-line-height-fixed 0;
+}
+
+
+/* Sticky stuff */
+/*
+* Header types: Absolute or Standard(pushing) and Sticky
+*/
+/*
+* On sticky: visibilities
+*/
+.sticky-enabled {
+  .czr-menu-off .regular.nav__menu,
+  .czr-title-logo-off .navbar-brand,
+  .czr-tagline-off .navbar-brand-tagline {
+    display: none !important;
+  }
+}
+
+.navbar-sticky,
+.header-absolute .topnav_navbars__wrapper {
+  left: 0;
+  right: 0;
+  z-index: 100
+}
+@include media-breakpoint-up(lg) {
+  .header-absolute {
+    .topnav_navbars__wrapper,
+    #sticky-placeholder {
+      position: absolute;
+    }
+  }
+}
+.navbar-sticky.animating { top: -20% !important }
+
+/* Sticky header */
+.navbar-to-stick.navbar-sticky {
+  position: fixed;
+
+  &:not(.animating) {
+    top: 0;
+    .admin-bar & {
+      @media screen and ( min-width: 783px ) {
+        top: 30px;
+      }
+      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
+        top: 46px;
+      }
+    }
+  }
+  @include transition(top 0.5s, height 0.5s,background 0.5s ease-in-out);
+  @include transform(translateZ(0));
+  @include transform-style(preserve-3d);
+
+  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
+  .header-transparent & {
+    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
+  }
+  .topbar-navbar__wrapper  { display:none; }
+}
+/* end sticky stuff */

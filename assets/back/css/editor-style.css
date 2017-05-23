@@ -2,6 +2,16 @@
 Theme Name: customizr
 Description: Used to style the TinyMCE editor.
 */
+@font-face {
+  font-family: 'FontAwesome';
+  src:url('../../shared/fonts/fa/fonts/fontawesome-webfont.eot');
+  src:url('../../shared/fonts/fa/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../../shared/fonts/fa/fonts/fontawesome-webfont.woff2') format('woff2'),
+      url('../../shared/fonts/fa/fonts/fontawesome-webfont.woff') format('woff'),
+      url('../../shared/fonts/fa/fonts/fontawesome-webfont.ttf') format('truetype'),
+      url('../../shared/fonts/fa/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+}
+
 body{
 	background: #FAFAFA!important;
 }

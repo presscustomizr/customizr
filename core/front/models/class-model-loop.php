@@ -19,7 +19,7 @@ class CZR_loop_model_class extends CZR_Model {
     if ( ! empty( $this -> loop_item ) )
       $_t = is_string( $this->loop_item[0] ) ? $this->loop_item[0] : $_t;
 
-    if ( ! empty( $this -> loop_item ) )
+    if ( ! empty( $this -> loop_item ) && isset($this->loop_item[1] ) )
       $_args = is_array( $this->loop_item[1] ) ? $this->loop_item[1] : $_args;
 
     $_model_id    =  ! empty( $_args['model_id'] ) ? $_args['model_id'] : basename($_t);

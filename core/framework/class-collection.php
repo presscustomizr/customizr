@@ -302,15 +302,25 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
         //A model class has been defined, let's try to load it and instantiate it
         //The model_class arg can also be an array in the form array( 'parent' => parent_model_class (string), 'name' => model_class ('string') )
-        if ( 'model_class' == $_model_class && isset( $model['model_class']['name'] ) ) {
-          $this -> czr_fn_require_model_class( $model['model_class']['parent'] );
+        if ( 'model_class' == $_model_class && is_array( $model[ 'model_class' ] ) && array_key_exists( 'name', $model['model_class'] ) ) {
+
+          if ( ! class_exists( sprintf( 'CZR_%s_model_class', $model['model_class']['parent'] ) ) ) {
+            $this -> czr_fn_require_model_class( $model['model_class']['parent'] );
+          }
+
           $model_class     = $model[ $_model_class ]['name'];
 
         } else {
           $model_class     = $model[ $_model_class ];
         }
 
-        $model_class_name     = sprintf( 'CZR_%s_model_class', $this -> czr_fn_require_model_class( $model_class ) );
+
+        $model_class_name     = sprintf( 'CZR_%s_model_class', basename( $model_class ) );
+
+        if ( ! class_exists($model_class_name) ) {
+          $this -> czr_fn_require_model_class( $model_class );
+        }
+
 
         if ( class_exists($model_class_name) ) {
           $instance = new $model_class_name( $model );
@@ -339,9 +349,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       $model_class_dirname  = dirname( $_model_class );
       $CZR                  = CZR();
 
-      $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
-
-      return $model_class_basename;
+      return $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
     }
 
 

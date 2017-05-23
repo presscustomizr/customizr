@@ -26,138 +26,142 @@
 
   ?>
 
-  <?php do_action('__before_main_wrapper') ?>
+  <?php
+    // This hook is used to render the following elements(ordered by priorities) :
+    // singular thumbnail
+    do_action('__before_main_wrapper')
+  ?>
 
     <div id="main-wrapper" class="section">
-      <?php  if ( ! czr_fn_is_home() && ! is_404() ): ?>
-        <div class="container-fluid">
-          <?php
-            if ( czr_fn_has( 'post_list_heading' ) )
-              $_heading_template = 'content/headings/post_list_heading';
-            elseif ( czr_fn_has( 'search_heading' ) )
-              $_heading_template = 'content/headings/search_heading';
-            elseif ( czr_fn_has('post_heading') )
-              $_heading_template = 'content/headings/post_heading';
-            else //pages and fallback
-              $_heading_template = 'content/headings/page_heading';
-
-            czr_fn_render_template( $_heading_template );
-          ?>
-        </div>
-      <?php endif ?>
-
-
-      <?php
-        /* FEATURED PAGES */
-        if ( czr_fn_has( 'featured_pages' ) )
-          czr_fn_render_template( 'modules/featured-pages/featured_pages' );
-      ?>
-
-      <?php if ( czr_fn_has('breadcrumb') ) : ?>
-        <div class="container">
-          <?php czr_fn_render_template( 'modules/breadcrumb' ) ?>
-        </div>
-      <?php endif ?>
-
-      <?php do_action('__before_main_container') ?>
-
-      <div class="<?php czr_fn_main_container_class() ?>" role="main">
-
-        <?php do_action('__before_content_wrapper'); ?>
-
-        <div class="<?php czr_fn_column_content_wrapper_class() ?>">
-
-          <?php do_action('__before_content'); ?>
-
-          <div id="content" class="<?php czr_fn_article_container_class() ?>">
             <?php
-
-              do_action( '__before_loop' );
-
-              if ( have_posts() ) {
-                while ( have_posts() ) {
-                  the_post();
-
-                  // Render list of posts based on the options
-                  if ( $_is_post_list = czr_fn_is_list_of_posts() ) {
-                    if ( czr_fn_has('post_list_grid') ) {
-                      czr_fn_render_template( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) );
-                    }
-                    elseif ( czr_fn_has('post_list') ){
-                      czr_fn_render_template( 'content/post-lists/post_list_alternate' );
-                    }elseif ( czr_fn_has('post_list_masonry') ) {
-                      czr_fn_render_template( 'content/post-lists/post_list_masonry' );
-                    }elseif ( czr_fn_has('post_list_plain') ) {
-                      czr_fn_render_template( 'content/post-lists/post_list_plain' );
-                    }elseif ( czr_fn_has('post_list_plain_excerpt') ) {
-                      czr_fn_render_template( 'content/post-lists/post_list_plain_excerpt', array( 'model_class' => 'content/post-lists/post_list_plain', 'model_args' => array( 'show_full_content' => 0 ) ) );
-                    } else { //fallback
-                      czr_fn_render_template( 'content/singular/page_content' );
-                    }
-                  } else {
-
-                    if( is_single() )
-                      czr_fn_render_template( 'content/singular/post_content' );
-                    else
-                      //fallback
-                      czr_fn_render_template( 'content/singular/page_content' );
-
-                  }
-                }//endwhile;
-              }else {//no results
-                if ( is_search() )
-                  czr_fn_render_template( 'content/no-results/search_no_results' );
-                else
-                  czr_fn_render_template( 'content/no-results/404' );
-              }
+              //this was the previous implementation of the big heading.
+              //The next one will be implemented with the slider module
             ?>
-          </div>
+          <?php  if ( apply_filters( 'big_heading_enabled', false && ! czr_fn_is_home() && ! is_404() ) ): ?>
+            <div class="container-fluid">
+              <?php
+                if ( czr_fn_has( 'archive_heading' ) )
+                  $_heading_template = 'content/post-lists/headings/archive_heading';
+                elseif ( czr_fn_has( 'search_heading' ) )
+                  $_heading_template = 'content/post-lists/headings/search_heading';
+                elseif ( czr_fn_has('post_heading') )
+                  $_heading_template = 'content/singular/headings/post_heading';
+                else //pages and fallback
+                  $_heading_template = 'content/singular/headings/page_heading';
 
-          <?php do_action('__after_content'); ?>
+                czr_fn_render_template( $_heading_template );
+              ?>
+            </div>
+          <?php endif ?>
+
 
           <?php
-            /*
-            * SIDEBARS
-            */
-            /* By design do not display sidebars in 404 */
-            if ( ! is_404() ) {
-              if ( czr_fn_has('left_sidebar') )
-                get_sidebar( 'left' );
-
-              if ( czr_fn_has('right_sidebar') )
-                get_sidebar( 'right' );
-
-            }
+            /* FEATURED PAGES */
+            if ( czr_fn_has( 'featured_pages' ) )
+              czr_fn_render_template( 'modules/featured-pages/featured_pages' );
           ?>
-        </div><!-- .column-content-wrapper -->
 
-        <?php do_action('__after_content_wrapper'); ?>
-
-        <?php if ( is_single() && ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) ) : ?>
-          <div class="row single-post-info">
-            <div class="col-xs-12">
-            <?php
-              if ( czr_fn_has('single_author_info') )
-                 czr_fn_render_template( 'content/authors/author_info' );
-
-              if ( czr_fn_has('related_posts') )
-                czr_fn_render_template( 'modules/related-posts/related_posts' )
-            ?>
+          <?php if ( czr_fn_has('breadcrumb') ) : ?>
+            <div class="container">
+              <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
             </div>
-          </div>
-        <?php endif ?>
+          <?php endif ?>
 
-        <?php if ( czr_fn_has('comments') ) : ?>
-          <div class="row">
-            <div class="col-xs-12">
-              <?php czr_fn_render_template( 'content/comments/comments' ) ?>
-            </div>
-          </div>
-        <?php endif ?>
 
-      </div><!-- .container -->
+          <?php do_action('__before_main_container') ?>
 
-      <?php do_action('__after_main_container'); ?>
+          <div class="<?php czr_fn_main_container_class() ?>" role="main">
+
+            <?php do_action('__before_content_wrapper'); ?>
+
+            <div class="<?php czr_fn_column_content_wrapper_class() ?>">
+
+              <?php do_action('__before_content'); ?>
+
+              <div id="content" class="<?php czr_fn_article_container_class() ?>">
+
+                <?php
+
+                  /* Archive regular headings */
+                  if ( apply_filters( 'regular_heading_enabled', ! czr_fn_is_home() && ! is_404() ) ):
+
+                    if ( czr_fn_has( 'archive_heading' ) )
+                      czr_fn_render_template( 'content/post-lists/headings/regular_archive_heading',
+                        array(
+                          'model_class' => 'content/post-lists/headings/archive_heading'
+                        )
+                      );
+                    elseif ( czr_fn_has( 'search_heading' ) )
+                      czr_fn_render_template( 'content/post-lists/headings/regular_search_heading' );
+
+                  endif;
+
+
+                  do_action( '__before_main_loop' );
+
+                  if ( ! czr_fn_is_home_empty() ) {
+                    if ( have_posts() ) {
+
+                      czr_fn_render_template( 'loop', array( 'model_args' => czr_fn_get( 'content_to_render', 'main_content') ) );
+
+                    }else {//no results
+
+                      if ( is_search() )
+                        czr_fn_render_template( 'content/no-results/search_no_results' );
+                      else
+                        czr_fn_render_template( 'content/no-results/404' );
+                    }
+                  }//not home empty
+                  do_action( '__after_main_loop' );
+                ?>
+              </div>
+
+              <?php do_action('__after_content'); ?>
+
+              <?php
+                /*
+                * SIDEBARS
+                */
+                /* By design do not display sidebars in 404 */
+                if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
+                  if ( czr_fn_has('left_sidebar') )
+                    get_sidebar( 'left' );
+
+                  if ( czr_fn_has('right_sidebar') )
+                    get_sidebar( 'right' );
+
+                }
+              ?>
+            </div><!-- .column-content-wrapper -->
+
+            <?php do_action('__after_content_wrapper'); ?>
+
+            <?php if ( is_single() && ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) ) : ?>
+              <div class="row single-post-info">
+                <div class="col-12">
+                <?php
+                  if ( czr_fn_has('single_author_info') )
+                     czr_fn_render_template( 'content/singular/authors/author_info' );
+
+                  if ( czr_fn_has('related_posts') )
+                    czr_fn_render_template( 'modules/related-posts/related_posts' )
+                ?>
+                </div>
+              </div>
+            <?php endif ?>
+
+            <?php if ( czr_fn_has('comments') ) : ?>
+              <div class="row">
+                <div class="col-12">
+                  <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
+                </div>
+              </div>
+            <?php endif ?>
+
+          </div><!-- .container -->
+
+          <?php do_action('__after_main_container'); ?>
+          <?php if ( czr_fn_has('footer_push') ) czr_fn_render_template('footer/footer_push', 'footer_push') ?>
 
     </div><!-- #main-wrapper -->
 
@@ -169,8 +173,10 @@
       <div class="container-fluid">
         <div class="row">
         <?php
-          $_pn_template_prefix = $_is_post_list ? 'post_list' : 'singular';
-          czr_fn_render_template( "content/navigation/{$_pn_template_prefix}_posts_navigation", array( 'model_id' => 'posts_navigation', 'model_class' => 'content/navigation/posts_navigation' ) );
+          if ( !is_singular() )
+            czr_fn_render_template( "content/post-lists/navigation/post_list_posts_navigation" );
+          else
+            czr_fn_render_template( "content/singular/navigation/singular_posts_navigation" );
         ?>
         </div>
       </div>

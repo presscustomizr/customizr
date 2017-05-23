@@ -1,0 +1,231 @@
+/* Branding */
+.branding__container {
+
+    @extend .display-flex;
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        max-width: 33%;
+        width: auto;
+    }
+
+    @at-root .branding {
+        @extend .display-flex;
+        padding: $base-line-height 0;
+        overflow: hidden;
+        max-width: 70%;
+
+        @include media-breakpoint-up(lg) {
+            max-width: none;
+        }
+
+        .navbar-brand {
+            font-size: 1.75em;
+            margin: 0;
+            vertical-align: middle;
+            @at-root .navbar-brand img {
+              width: auto;
+              max-width: 100%;
+            }
+
+            &.has_tagline {
+                margin: 0;
+                font-size: 1.5em;
+                line-height: 1.5em;
+            }
+
+        }
+        .navbar-brand-tagline {
+              font-size: 0.8em;
+              line-height: normal;
+              padding: 0;
+              margin: 0;
+              width: 100%;
+              @extend .bold;
+        }
+        .navbar-brand + .navbar-brand-tagline {
+              margin-top: 2/3*$base-line-height;
+        }
+
+    }
+
+
+    .branding,
+    .mobile-utils__wrapper {
+        @extend .display-flex;
+        flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
+    }
+}
+
+
+.navbar-brand-tagline {
+  font-style: italic;
+}
+
+/* This styles the utils in desktop and mobiles */
+.nav__utils {
+    @extend .display-flex;
+    flex-shrink: 0;
+    .utils {
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+
+    li {
+        @extend .display-flex;
+    }
+
+    /* utils li a centered aligned */
+    @at-root .woocart.cart-contents, .desktop_search__link {
+        @extend .utils_links;
+    }
+
+     @at-root .woocart.cart-contents {
+        @include display-flex();
+        sup {
+            top: 0;
+        }
+    }
+}
+
+.nav__container-top .col {
+    margin-top: $base-line-height-fixed/1.5;
+    margin-bottom: $base-line-height-fixed/1.5;
+}
+
+/*
+* HEADER LAYOUTS
+*/
+@include media-breakpoint-up(lg) {
+
+  .primary-navbar__wrapper {
+    /* ensure the navbar elements do not wrap in a new line */
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+
+    .branding__container,
+    .primary-nav__utils li,
+    .primary-nav__wrapper,
+    .primary-nav__menu-wrapper {
+
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+
+    }
+    .primary-nav__wrapper {
+        margin: 0 -15px;
+    }
+
+    .primary-nav__container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+              flex-grow: 1;
+      -webkit-flex-basis: 0;
+        -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+    }
+    .primary-nav__menu-wrapper {
+      width: 100%;
+    }
+    .primary-nav__nav {
+      flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
+    }
+
+  }
+
+  /*
+  * LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
+  * that's why is handled only with CSS
+  */
+  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper {
+
+      -webkit-box-orient: vertical !important;
+      -webkit-box-direction: normal !important;
+      -webkit-flex-direction: column !important;
+          -ms-flex-direction: column !important;
+              flex-direction: column !important;
+
+      .branding__container {
+          max-width: 100%;
+      }
+
+      .primary-nav__container {
+              -webkit-box-flex: 0;
+              -webkit-flex: 0 0 auto;
+              -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+                  width: 66.666667%;
+              max-width: 66.666667%;;
+
+                  flex-basis: auto
+      }
+
+      .nav__container-top {
+                 -webkit-box-pack: justify !important;
+          -webkit-justify-content: space-between !important;
+                    -ms-flex-pack: justify !important;
+                  justify-content: space-between !important;
+
+          .col {
+            margin-top: $base-line-height-fixed;
+            margin-bottom: $base-line-height-fixed;
+          }
+
+      }
+
+      .navbar-toggleable-md {
+          width: auto !important;
+          -webkit-box-pack: center !important;
+          -webkit-justify-content: center !important;
+              -ms-flex-pack: center !important;
+                  justify-content: center !important;
+      }
+
+      .navbar-toggleable-md .navbar-collapse {
+          width: auto;
+           -webkit-align-self: center !important;
+          -ms-flex-item-align: center !important;
+           -ms-grid-row-align: center !important;
+                   align-self: center !important;
+
+            -webkit-flex-basis: auto;
+       -ms-flex-preferred-size: auto;
+                    flex-basis: auto;
+
+          -webkit-flex-grow: 0;
+              -ms-flex-positive: 0;
+                  flex-grow: 0;
+      }
+  }
+
+}
+
+/*
+* Revert header (not topbar) elements order when logo right
+*/
+[class*=logo_right] .primary-navbar__wrapper {
+  &,
+  .branding__container,
+  .primary-nav__wrapper,
+  .nav__container-top,
+  .nav__utils .utils {
+    -webkit-box-direction: reverse !important;
+    -webkit-flex-direction: row-reverse !important;
+    -ms-flex-direction: row-reverse !important;
+    flex-direction: row-reverse !important
+  }
+}
