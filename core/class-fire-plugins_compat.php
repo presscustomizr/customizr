@@ -91,7 +91,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       * Polylang
       * Credits : Rocco Aliberti
       */
-      if ( current_theme_supports( 'polylang' ) && $this -> czr_fn_is_plugin_active('polylang/polylang.php') )
+      if ( current_theme_supports( 'polylang' ) && ( $this -> czr_fn_is_plugin_active('polylang/polylang.php') || $this -> czr_fn_is_plugin_active('polylang-pro/polylang.php') ) )
         $this -> czr_fn_set_polylang_compat();
 
       /*
