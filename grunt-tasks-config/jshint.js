@@ -3,7 +3,14 @@ module.exports = {
 		reporter : require('jshint-stylish')
 	},
 	gruntfile : ['Gruntfile.js'],
-  part_front_js : ['<%= paths.front_js %>/parts/*.part.js', '<%= paths.front_js_4_source %>/jquery-plugins/**/*.js', '! <%= paths.front_js %>/parts/*.min.js' ],
+  part_front_js : [
+    '<%= paths.front_js %>/parts/*.part.js',
+    '<%= paths.front_js4 %>/jquery-plugins/**/*.js',
+    //czr4
+    '<%= paths.front_js %>/fmk/*.part.js',
+    '<%= paths.front_js %>/vendors/*.js',
+    '! <%= paths.front_js %>/parts/*.min.js',
+  ],
 	front : ['<%= paths.front_js %>parts/main.js'],
 	those : [], //populated dynamically with the watch event
 };
