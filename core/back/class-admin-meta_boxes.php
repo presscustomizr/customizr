@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          add_action( 'add_meta_boxes'                     , array( $this , 'czr_fn_mixed_meta_boxes' )) ;
 
          //post ( post formats ) displayed only in post types
-         add_action( 'add_meta_boxes_post'                , array( $this , 'czr_fn_post_meta_boxes' )) ;
+         add_action( 'add_meta_boxes_post'                , array( $this , 'czr_fn_post_formats_meta_boxes' )) ;
 
          //attachment
          add_action( 'add_meta_boxes_attachment'          , array( $this , 'czr_fn_attachment_meta_box' ));
@@ -165,31 +165,41 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
              'post' => 'post'
          );
 
-         $screens             = array_merge( $custom_post_types, $builtin_post_types );
+         $screens                   = array_merge( $custom_post_types, $builtin_post_types );
 
          $mixed_meta_boxes          = $this->czr_fn_get_mixed_meta_boxes_map();
 
+         $_metabox_added             = false;
          //3- Adding the meta-boxes to those screens
          foreach ( $screens as $key => $screen) {
 
             foreach ( $mixed_meta_boxes as $meta_box_key ) {
                $this->czr_add_metabox( $meta_box_key, $screen );
+               $_metabox_added       = true;
             }//end foreach
 
-            do_action( 'tc_attachment_metabox_added' );
+
 
          }//end foreach
+         if ( $_metabox_added )
+            do_action( 'tc_post_metabox_added' );
 
       }
 
 
-      function czr_fn_post_meta_boxes() {
+      function czr_fn_post_formats_meta_boxes() {
 
          $post_meta_boxes          = $this->czr_fn_get_post_meta_boxes_map();
 
+         $_metabox_added           = false;
+
          foreach ( $post_meta_boxes as $meta_box_key ) {
             $this->czr_add_metabox( $meta_box_key, 'post' );
+            $_metabox_added        = true;
          }//end foreach
+
+         if ( $_metabox_added )
+            do_action( 'tc_post_formats_metabox_added' );
 
       }
 
@@ -1012,19 +1022,25 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-        function czr_fn_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
-         $screens = array( 'attachment' );
-         foreach ( $screens as $screen) {
-             add_meta_box(
-                  'slider_sectionid' ,
-                 __( 'Slider Options' , 'customizr' ),
-                 array( $this , 'czr_fn_attachment_slider_box' ),
-                 $screen/*,
-                  'side' ,
-                  'high'*/
-             );
-           }
-        }
+      function czr_fn_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
+
+            $screens          = array( 'attachment' );
+
+            foreach ( $screens as $screen) {
+                  add_meta_box(
+                     'slider_sectionid' ,
+                     __( 'Slider Options' , 'customizr' ),
+                     array( $this , 'czr_fn_attachment_slider_box' ),
+                     $screen/*,
+                     'side' ,
+                     'high'*/
+                  );
+            }
+
+            do_action( 'tc_attachment_metabox_added' );
+
+      }
+
 
 
 
@@ -1987,6 +2003,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          if ( 'post' != get_post_type() )
             return;
 
+         if ( !did_action( 'tc_post_formats_metabox_added' ) )
+            return;
 
          $_ext = $this->_minify_resources ? '.min.js' : '.js';
 
