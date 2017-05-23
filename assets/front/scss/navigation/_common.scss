@@ -182,13 +182,14 @@
 }
 
 .caret__dropdown-toggler i {
-    display: block;
+    display: inline-block;
     @include transition (all 0.3s ease);
     @include transform-style( preserve-3d );
     @include backface-visibility( hidden );
     @include perspective(1000px);
     text-align: center;
-    vertical-align: middle;
+    vertical-align: baseline;
+    line-height: 0;
     &::before {
       line-height: inherit;
     }

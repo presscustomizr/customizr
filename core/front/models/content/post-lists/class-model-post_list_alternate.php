@@ -257,8 +257,9 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             }
 
 
-            $is_media_bigger_than_content  = in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats', array( 'video', 'image' ) ) )
-                              && ! $this->has_narrow_layout;
+            $is_media_bigger_than_content  = in_array( $_current_post_format , apply_filters( 'czr_alternate_big_media_post_formats',
+                              $thumb_shape ? array('video') : array( 'video', 'image' ) ) )
+                                    && ! $this->has_narrow_layout;
 
             $post_media                    = $this->show_thumb ? $this->czr_fn__get_post_media (
 
@@ -365,9 +366,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             $media_class       = $media_cols  = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
 
 
-
             //add the aspect ratio class for the full image types
-
             if  ( $is_full_image || 'video' == $_current_post_format ) {
 
                   $media_class[] = 'czr__r-w16by9';
@@ -380,7 +379,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             }
 
-            elseif ( $thumb_shape && !$has_format_icon_media && !$is_media_bigger_than_content ) {
+            elseif ( $thumb_shape && !$has_format_icon_media && !$is_media_bigger_than_content && 'audio' != $_current_post_format) {
 
                   $media_inner_class = 'czr__r-wFP';
                   $media_link_class  = 'czr-link-mask';

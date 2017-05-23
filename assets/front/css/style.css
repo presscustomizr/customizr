@@ -1367,7 +1367,7 @@ select:-webkit-autofill {
 }
 
 .caret__dropdown-toggler i {
-  display: block;
+  display: inline-block;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -1381,7 +1381,8 @@ select:-webkit-autofill {
   -moz-perspective: 1000px;
   perspective: 1000px;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: baseline;
+  line-height: 0;
 }
 
 .caret__dropdown-toggler i::before {
