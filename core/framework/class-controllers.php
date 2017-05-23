@@ -19,19 +19,28 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'title',
               'logo_wrapper',
               'logo',
-              'sticky_logo', /*'logo_title', */
+              'sticky_logo',
               'tagline',
               'mobile_tagline',
-              'favicon',
               'menu',
               'sidenav',
-              'navbar_menu',
+              'topbar_menu',
+              'topbar',
+              'branding_tagline',
+
+              'navbar_primary_menu',
               'navbar_secondary_menu',
+
+
               'menu_button',
               'mobile_menu_button',
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
-              'header_social_block'
+
+              'navbar_social_block',
+              'topbar_social_block',
+
+              'nav_search'
             ),
             'content' => array(
               'post_list',
@@ -44,33 +53,34 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'comment_list',
               'comments',
               'posts_navigation',
-              'post_list_heading',
+
+              'regular_page_heading',
+              'regular_post_heading',
+
+              'archive_heading',
               'author_description',
               'posts_list_description',
               'search_heading',
               'post_heading',
-              //'404', 'attachment', 'headings', 'no_results', 'page', 'post', 'single_author_info', 'post_list', 'post_metas','right_sidebar', 'left_sidebar', 'posts_list_headings', 'posts_list_description', 'author_description', 'posts_list_title', 'posts_list_search_title', 'singular_article', 'post_list_title', 'post_navigation_singular', 'post_navigation_posts', 'comments', 'comment_list', 'comment', 'tracepingback', 'author_info', 'singular_headings', 'post_list_standard_thumb', 'post_list_rectangular_thumb', 'post_thumbnail'
+              'lefts_social_block',
+              'rights_social_block',
+              'post_metas'
             ),
             'footer' => array(
               'btt_arrow',
-              'footer_btt',
               'footer_push',
               'footer_widgets',
               'colophon',
               'footer_social_block'
-          //    'widgets', , 'back_to_top'
             ),
             'modules' => array(
-              'social_block',
               'breadcrumb',
-              'comment_info',
+              'social_block',
               'post_list_grid',
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'edit_button'
-              //'social_block', 'breadcrumb', 'comment_info', 'post_list_grid', 'featured_pages', 'main_slider', 'recently_updated', 'edit_button', 'help_block'
-            //   'breadcrumb', 'comment_bubbles', 'featured_pages', 'gallery', 'post_list_grid', 'post_thumbnails', 'slider'
+              'search_full_page'
             ),
           );
 
@@ -123,7 +133,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return bool
     //@param array() or object() model
     public function czr_fn_has_controller( $model = array() ) {
-          return ! empty( $this -> czr_fn_build_controller( $model ) );
+          $controller = $this -> czr_fn_build_controller( $model );
+          return ! empty( $controller );
     }
 
 
@@ -168,12 +179,13 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
     //@return boolean
     //@walks the controllers setup array until a match is found
     private function czr_fn_has_default_controller( $controller_ids ) {
-          foreach ( $this -> controllers as $group => $views_id )
-            foreach( $controller_ids as $id )
-              if ( in_array($id, $views_id) )
+          foreach ( $this -> controllers as $group => $views_id ) {
+            foreach( $controller_ids as $id ) {
+              if ( in_array($id, $views_id) ) {
                 return true;
-            //foreach
-          //foreach
+              }
+            }//foreach
+          }//foreach
           return false;
     }
 
@@ -235,7 +247,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
           $_instance = false;
           $CZR       = CZR();
 
-          $CZR -> czr_fn_require_once( CZR_FRAMEWORK_FRONT_PATH . $_path );
+          $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . $_path );
 
           if ( class_exists($_class) ) {
             $_instance = new $_class;

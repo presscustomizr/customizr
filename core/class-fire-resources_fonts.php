@@ -6,77 +6,48 @@
 * @package      Customizr
 */
 if ( ! class_exists( 'CZR_resources_fonts' ) ) :
-	class CZR_resources_fonts {
-	    //Access any method or var of the class with classname::$instance -> var or method():
-	    static $instance;
+  class CZR_resources_fonts {
 
-	    function __construct () {
-	        self::$instance =& $this;
-          add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
+        //Access any method or var of the class with classname::$instance -> var or method():
+        static $instance;
 
-          //Custom Stylesheets
-          //Write font icon
-          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_inline_font_icons_css') , apply_filters( 'czr_font_icon_priority', 999 ) );
+        function __construct () {
 
-          //add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_fonts_inline_css') );
-          add_filter('czr_user_options_style'          , array( $this , 'czr_fn_write_dropcap_inline_css') );
-	    }
+              self::$instance =& $this;
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
 
+              //Font awesome before other theme styles
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons'), 9 );
 
+              add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_fonts_inline_css') );
+              add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
 
-
-
-		/**
-    * Write the font icon in the custom stylesheet at the very beginning
-    * hook : czr_user_options_style
-    * @package Customizr
-    * @since Customizr 3.2.3
-    */
-		function czr_fn_write_inline_font_icons_css( $_css = null ) {
-      $_css               = isset($_css) ? $_css : '';
-      return apply_filters( 'czr_write_inline_font_icons',
-        $this -> czr_fn_get_inline_font_icons_css() . "\n" . $_css,
-        $_css
-      );
-    }//end of function
-
-
-
-    /**
-    * @return string of css font icons
-    *
-    * @package Customizr
-    * @since Customizr 3.3.2
-    */
-    public function czr_fn_get_inline_font_icons_css( $_force = false ) {
-      if ( ! $_force && false == czr_fn_get_opt( 'tc_font_awesome_icons' ) )
-        return;
-      /*
-      * Not using add_query_var here in order to keep the code simple
-      */
-      $_path            = apply_filters( 'czr_font_icons_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/css' );
-      $_version         = apply_filters( 'czr_font_icons_version', true ) ? '4.7.0' : '';
-      $_ie_query_var    = $_version ? "&v={$_version}" : '';
-      $_query_var       = $_version ? "?v={$_version}" : '';
-      ob_start();
-        ?>
-        @font-face {
-          font-family: 'FontAwesome';
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot<?php echo $_query_var ?>' ) );
-          src:url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.eot?#iefix<?php echo $_ie_query_var ?>') format('embedded-opentype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff2<?php echo $_query_var ?>') format('woff2'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.woff<?php echo $_query_var ?>') format('woff'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.ttf<?php echo $_query_var ?>') format('truetype'),
-              url('<?php echo $_path ?>/fonts/fonts/fontawesome-webfont.svg<?php echo $_query_var ?>#fontawesomeregular') format('svg');
-          font-weight: normal;
-          font-style: normal;
         }
-        <?php
-      $_font_css = ob_get_contents();
-      if ($_font_css) ob_end_clean();
-      return $_font_css;
-    }
+
+        /**
+        * Write the font icon in the custom stylesheet at the very beginning
+        * hook : wp_enqueue_scripts
+        * @package Customizr
+        * @since Customizr 3.2.3
+        */
+        function czr_fn_maybe_enqueue_fa_icons() {
+
+              //Enqueue FontAwesome CSS
+              if ( true == czr_fn_get_opt( 'tc_font_awesome_icons' ) ) {
+
+                    $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
+                    wp_enqueue_style( 'customizr-fa',
+
+                          $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+                          array(),
+                          CUSTOMIZR_VER,
+                          'all'
+
+                    );
+              }
+
+         }
 
 
     /*
@@ -88,13 +59,22 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     */
     function czr_fn_enqueue_gfonts() {
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
-      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
+
       if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
         return;
 
+      $font               = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
+
+      if ( ! $font )
+        return;
+
+      if ( is_array( $font ) )//case is a pair
+        $font             = implode( '%7C', array_unique( $font ) );
+
+
       wp_enqueue_style(
         'czr-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', czr_fn_get_font( 'single' , $_font_pair ) ),
+        sprintf( '//fonts.googleapis.com/css?family=%s', $font ),
         array(),
         null,
         'all'
@@ -110,6 +90,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
+
     function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( czr_fn_get_opt( 'tc_fonts' ) );
@@ -117,7 +98,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       $_font_selectors    = CZR_init::$instance -> font_selectors;
 
       //create the $body and $titles vars
-      extract( CZR_init::$instance -> font_selectors, EXTR_OVERWRITE );
+      extract( $_font_selectors, EXTR_OVERWRITE );
 
       if ( ! isset($body) || ! isset($titles) )
         return;
@@ -131,7 +112,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       $titles = apply_filters('czr_title_fonts_selectors' , $titles );
       $body   = apply_filters('czr_body_fonts_selectors' , $body );
 
-      if ( 'helvetica_arial' != $_font_pair ) {//check if not default
+      if ( '_g_sourcesanspro' != $_font_pair ) {//check if not default
         $_selector_fonts  = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
         if ( ! is_array($_selector_fonts) )
           return $_css;
@@ -140,32 +121,46 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
           //create the $_family and $_weight vars
           extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> czr_fn_is_gfont( $_font_pair ) ) );
 
+          $selector = '';
+
+          if ( !( $_family || $_weight ) )
+            continue;
+
+
           switch ($_key) {
             case 0 : //titles font
-              $_css .= "
-                {$titles} {
-                  font-family : {$_family};
-                  font-weight : {$_weight};
-                }\n";
-            break;
-
-            case 1 ://body font
-              $_css .= "
-                {$body} {
-                  font-family : {$_family};
-                  font-weight : {$_weight};
-                }\n";
-            break;
+              $selector = $titles;
+              break;
+            case 1 : //body fond
+              $selector = $body;
+              break;
           }
+
+          if ( $selector ) {
+              $_css .= sprintf( "%s { %s%s }\n",
+                  $selector,
+                  $_family ? "font-family : {$_family};" : '',
+                  $_weight  ? "font-weight : {$_weight};" : ''
+              );
+          }
+
         }
       }//end if
 
-      if ( 14 != $_body_font_size ) {
-        $_line_height = round( $_body_font_size * 19 / 14 );
+      /*
+      * TODO: implement modular scale
+      */
+      if ( 15 != $_body_font_size ) {
+
+        //turn into rem
+        $remsize      = $_body_font_size / 16;
+        $remsize      = number_format( (float)$remsize, 2, '.', '');
+
+        $_line_height = apply_filters('czr_body_line_height_ratio', 1.75 );
         $_css .= "
           {$body} {
-            font-size : {$_body_font_size}px;
-            line-height : {$_line_height}px;
+            font-size : {$remsize}rem;
+            line-height : {$_line_height}em;
           }\n";
         }
 
@@ -238,7 +233,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     */
     private function czr_fn_get_font_css_prop( $_raw_font , $is_gfont = false ) {
       $_css_exp = explode(':', $_raw_font);
-      $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : 'inherit';
+      $_weight  = isset( $_css_exp[1] ) ? $_css_exp[1] : false;
       $_family  = '';
 
       if ( $is_gfont ) {

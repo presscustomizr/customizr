@@ -1,18 +1,37 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 
 @import '../modules/modular-scale';
 
-$baseFont     : "Poppins", sans-serif;
+//$baseFont     : "Poppins", sans-serif;
+$baseFont     : 'Source Sans Pro', Arial, sans-serif;
+
 $monotypeFont : 'Roboto Mono', monospace;
 $serviceFont  : "Roboto", sans-serif;
 
+
 $ms-base: 1em;
 $ms-ratio: 1.2;
+$ms-base-fixed: 15px;
+$body-base-ratio: 15/16; //<-was 1em when html was 15px
+
+$base-line-height: 1em * 1.25;
+$base-line-height-fixed: 15px * 1.25;
 
 
-$base-line-height: $ms-base * 1.25;
+$line-height:
+  1.4    20em,
+  1.75   40em;
+
+$ms-range:
+  0.833   20em,
+  $body-base-ratio  60em;
+
+body {
+  font-family: $baseFont;
+  @include ms-respond(line-height, 1, $line-height, 1);
+  @include ms-respond(font-size, 1 );
+}
 
 $ms-range:
   1   20em,
@@ -21,11 +40,6 @@ $ms-range:
 $line-height:
   1.4  20em,
   1.75 40em;
-
-body {
-  font-family: $baseFont;
-  @include ms-respond(line-height, 1, $line-height, 1);
-}
 
 @for $i from 1 through 6 {
   h#{$i} {
@@ -58,13 +72,8 @@ $line-height:
   1.75   40em;
 
 $ms-range:
-  0.833  20em,
-  1      60em;
-
-
-body {
-   @include ms-respond(font-size, 1);
-}
+  0.833   20em,
+  1  60em;
 
 blockquote p {
   font-family: $baseFont;
@@ -73,7 +82,7 @@ blockquote p {
   font-size: ms(-1);
 }
 .demi-small {
-  font-size: 0.833;
+  font-size: 0.9em;
 }
 .thin {
   font-weight: 300;

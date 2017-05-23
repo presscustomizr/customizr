@@ -1,15 +1,35 @@
+
 @media screen and (min-width: 480px) and (max-width: 667px) {
+//what and why
   .sidebar {
     padding: 0 $base-line-height*2;
   }
 }
 
-.widget {
-  margin-bottom: $base-line-height*3;
-  li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
-  li::before { content: none }
-  a { display: inline-block; }
-  &:not(.widget_tag_cloud) a { position:relative; @include underlined ($black, 1px) }
+.widget-area {
+  .widget {
+    margin-bottom: $base-line-height*3;
+    li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
+    li::before { content: none }
+    @at-root .widget-area a {
+      display: inline-block;
+      color: $grey;
+    }
+    @at-root .widget-area .widget:not(.widget_shopping_cart) a:not(.btn):not(.social-icon) {
+      @include underlined_nocolor( 1px )
+    }
+
+  }
+
+  .social-block {
+
+      margin-bottom: $base-line-height;
+      .socials {
+        font-size: $base-line-height;
+      }
+
+  }//.social-block
+
 }
 
 .sidebar {
@@ -31,6 +51,9 @@
       background: $black;
     }
   }
+  .widget_search input[type="text"] {
+    border-bottom-color: $black;
+  }
 }
 
 .widget_recent_comments {
@@ -42,9 +65,6 @@
   @extend .caps;
   @extend .bold;
   @extend .letter-spacing-1;
-  .cat-item.on {
-    a { color: $black }
-  }
 }
 
 .widget_calendar {
@@ -69,7 +89,8 @@
   }
 }
 
-@media screen and (min-width: 768px) { /*md*/
+//@media screen and (min-width: 768px)
+@include media-breakpoint-up(md) {
   .sidebar.left  { padding-right:$base-line-height*2; }
   .sidebar.right {
     padding-left:$base-line-height*2;

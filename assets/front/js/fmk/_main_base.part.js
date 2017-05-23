@@ -114,26 +114,36 @@ var czrapp = czrapp || {};
 
     //bool
     isResponsive : function() {
-      return $(window).width() <= 979 - 15;
+      return this.matchMedia(979);
     },
 
     //@return string of current device
     getDevice : function() {
       var _devices = {
-            desktop : 979 - 15,
-            tablet : 767 - 15,
-            smartphone : 480 - 15
+            desktop : 979,
+            tablet : 767,
+            smartphone : 480
           },
           _current_device = 'desktop',
-          $_window = czrapp.$_window || $(window);
+          that = this;
+
 
       _.map( _devices, function( max_width, _dev ){
-        if ( $_window.width() <= max_width )
+        if ( that.matchMedia( max_width ) )
           _current_device = _dev;
       } );
       return _current_device;
     },
 
+
+    matchMedia : function( _maxWidth ) {
+      if ( window.matchMedia )
+        return ( window.matchMedia("(max-width: "+_maxWidth+"px)").matches );
+
+      //old browsers compatibility
+      $_window = czrapp.$_window || $(window);
+      return $_window.width() <= ( _maxWidth - 15 );
+    },
 
     //@return bool
     isSelectorAllowed : function( $_el, skip_selectors, requested_sel_type ) {
@@ -160,6 +170,17 @@ var czrapp = czrapp || {};
       //if not, at least one is not allowed
       return 0 === _filtered.length;
     },
+
+
+
+    //Dev mode aware and IE compatible consoleLog()
+    consoleLog : function() {
+      //fix for IE, because console is only defined when in F12 debugging mode in IE
+      if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) || ! CZRParams.isDevMode )
+        return;
+      console.log.apply( console, arguments );
+    },
+
 
     /***************************************************************************
     * Event methods, offering the ability to bind to and trigger events.
@@ -239,7 +260,7 @@ var czrapp = czrapp || {};
       var self = this;
       _.map( cbs, function(cb) {
         if ( 'function' == typeof(self[cb]) ) {
-          args = 'undefined' == typeof( args ) ? Array() : args ;  
+          args = 'undefined' == typeof( args ) ? Array() : args ;
           self[cb].apply(self, args );
           czrapp.trigger( cb, _.object( _.keys(args), args ) );
         }
@@ -273,7 +294,7 @@ var czrapp = czrapp || {};
       return czrapp.isReponsive();
     },
     isSelectorAllowed: function( $_el, skip_selectors, requested_sel_type ) {
-      return czrapp.isSelectorAllowed( $_el, skip_selectors, requested_sel_type );    
+      return czrapp.isSelectorAllowed( $_el, skip_selectors, requested_sel_type );
     }
 
   };//_methods{}

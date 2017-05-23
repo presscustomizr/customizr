@@ -1,0 +1,33 @@
+<?php
+/**
+ * The template for displaying the header of a post in a post list
+ * In CZR loop
+ *
+ * @package Customizr
+ */
+?>
+<header class="entry-header <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
+  <div class="entry-header-inner <?php czr_fn_echo( 'entry_title_class' ) ?>">
+    <?php /* Maybe treat this case with CSS only */
+      if ( czr_fn_get( 'has_header_format_icon' ) ): ?>
+        <div class="post-type__icon"><i class="icn-format"></i></div>
+    <?php endif; ?>
+    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get('cat_limit') ) ) ) : ?>
+      <!--div class="entry-meta"!-->
+        <div class="tax__container post-info entry-meta">
+          <?php echo $cat ?>
+        </div>
+      <!--/div-->
+    <?php endif; ?>
+    <h2 class="entry-title">
+      <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
+    </h2>
+    <?php
+
+      czr_fn_comment_info( array( 'before' => '<div class="post-info">', 'after' => '</div>') );
+
+      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+        czr_fn_edit_button( array( 'link'  => $edit_post_link ) );
+    ?>
+  </div>
+</header>

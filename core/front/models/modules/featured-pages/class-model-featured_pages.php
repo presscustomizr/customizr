@@ -47,19 +47,20 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $show_thumb                     = $model['show_thumb'];
 
-        $_skin_color                    = czr_fn_get_skin_color();
+        $_skin_color                    = czr_fn_get_opt( 'tc_skin_color' );
         $_center_imgs                   = $model['center_imgs'];
 
         $model[ 'fp_holder_img' ]       = apply_filters (
               'tc_fp_holder_img' ,
-              sprintf('<img class="tc-holder-img" data-src="holder.js/350x350/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
+              sprintf('<img class="tc-holder-img" data-src="holder.js/270x250/%1$s:%2$s" data-no-retina alt="Holder Thumbnail" %3$s />',
                 ( '#E4E4E4' != $_skin_color ) ? '#EEE' : '#5A5A5A',
                 $_skin_color,
-                $_center_imgs ? 'style="max-width:350px;width:350px;height:350px;"' : ''
+                'style="width:270px;height:250px"'
               )
         );
         //gets the featured pages array and sets the fp layout
         $model['fp_ids']                = CZR_init::$instance -> fp_ids;
+
         $model['fp_nb']                 = count( $model['fp_ids'] );
 
 
@@ -227,8 +228,19 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
 
 
+  /*
+  * Fired just after the view is rendered
+  * @hook: post_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_reset_late_properties() {
+    reset( $this -> featured_pages );
+  }
+
+
+
   function czr_fn_get_featured_page( $autoadvance = true ) {
         $fp = current( $this -> featured_pages );
+
         if ( empty( $fp ) )
           return false;
         if ( $autoadvance )
@@ -245,8 +257,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         if ( $fp_button_text || czr_fn_is_customizing() ){
           $fp_button_text  = '<span>' . $fp_button_text . '</span>';
-          $fp_button_class = apply_filters( 'czr_fp_button_class' , 'btn btn-more', $fp_single_id );
-          $fp_button_class = $fp_button_text ? $fp_button_class : $fp_button_class . ' hidden';
+          $fp_button_class = $fp_button_text ? '' : ' hidden';
         }
         return compact( 'fp_button_class', 'fp_button_text' );
   }

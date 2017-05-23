@@ -31,11 +31,22 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return true;
     }
 
+    function czr_fn_display_view_regular_page_heading() {
+      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_page() && ! is_front_page() );
+    }
+
+    function czr_fn_display_view_regular_post_heading() {
+      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_post() );
+    }
+
+
     function czr_fn_display_view_singular_headings() {
       return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_attachment() || ( $this -> czr_fn_display_view_page() && ! is_front_page() );
     }
 
-    function czr_fn_display_view_post_list_heading() {
+
+
+    function czr_fn_display_view_archive_heading() {
       return czr_fn_is_list_of_posts() && ! is_search();
     }
 
@@ -47,15 +58,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return is_single();
     }
 
-    /*
-    * TODO: model / tempalte
-    * The post list with full content will be, in the future, a new type of post list
-    * before 4.0 this option was 'tc_post_list_length'
-    */
+
     function czr_fn_display_view_post_list_full() {
-      return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) ||
-          'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) )
-        );
+      return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_post_list() {
@@ -73,6 +78,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     function czr_fn_display_view_post_list_plain_excerpt() {
       return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain_excerpt' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
     }
+
 
     function czr_fn_display_view_posts_list_title() {
       return $this -> czr_fn_display_view_posts_list_headings() && ! is_search();
@@ -132,11 +138,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     function czr_fn_display_view_post_metas() {
 
       //disable in attachment context, attachment post metas have their own class
-      if ( is_attachment() )
-        $post_metas = false;
+      /*if ( is_attachment() )
+        $post_metas = false;*/
 
-      //post metas are always insanciated in customizing context
-      elseif ( czr_fn_is_customizing() )
+      //post metas are always insantiated in customizing context
+      if ( czr_fn_is_customizing() )
         $post_metas = true;
 
       elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
@@ -156,15 +162,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'czr_show_post_metas', $post_metas );
     }
 
-/*
-    function czr_fn_display_view_post_metas_text() {
-      return $this -> czr_fn_display_view_post_metas() && 'buttons' != esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
-    }
 
-    function czr_fn_display_view_post_metas_button() {
-      return $this -> czr_fn_display_view_post_metas() && 'buttons' == esc_attr( czr_fn_get_opt( 'tc_post_metas_design' ) );
-    }
-*/
     //when to display attachment post metas?
     //a) in single attachment page
     //b) eventually, in the search list when attachments are allowed
@@ -173,31 +171,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         ( is_search() && apply_filters( 'czr_include_attachments_in_search_results' , false ) );
     }
 
-    /* Thumbnails in post lists */
-    function czr_fn_display_view_post_list_rectangular_thumb() {
-      return $this -> czr_fn_display_view_post_list_thumbnail() &&
-            FALSE !== strpos( esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape'), 'rectangular' ), 'rectangular' );
-    }
 
-    function czr_fn_display_view_post_list_standard_thumb() {
-      return $this -> czr_fn_display_view_post_list_thumbnail() &&
-            FALSE === strpos( esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape') ), 'rectangular' );
-    }
 
-    /* Helper */
-    function czr_fn_display_view_post_list_thumbnail() {
-      $display_post_list_thumbnail = $this -> czr_fn_display_view_post_list() && 'full' != esc_attr( czr_fn_get_opt( 'tc_post_list_length' ) ) && 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) );
-      return $display_post_list_thumbnail;
-    }
-    /* end  Thumbnails in post lists*/
 
-    /* Single post thumbnail */
-    function czr_fn_display_view_post_thumbnail() {
-      $display_attachment_as_thumb = apply_filters( 'czr_use_attachment_as_thumb', false ) && czr_fn_has_thumb();
-
-      return $this -> czr_fn_display_view_post() && 'hide' != esc_attr( czr_fn_get_opt( 'tc_single_post_thumb_location' ) )
-        && apply_filters( 'czr_show_single_post_thumbnail' , $display_attachment_as_thumb || has_post_thumbnail() );
-    }
 
     function czr_fn_display_view_posts_navigation() {
       global $wp_query;
@@ -209,15 +185,18 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         return false;
 
       //always print post navigation html in the customizr preview - the visibility will be handled in the model/template
-      if ( czr_fn_is_customizing() )
+      /*if ( czr_fn_is_customizing() )
         return true;
+      */
 
       if ( ! $this->czr_fn_is_posts_navigation_enabled() )
         return false;
 
-      $_context = czr_fn_get_query_context();
+      $_context = $this -> czr_fn_get_post_navigation_context();
+
       return $this -> czr_fn_is_posts_navigation_context_enabled( $_context );
     }
+
 
 
     function czr_fn_display_view_404() {
@@ -240,14 +219,16 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_are_comments_enabled() );
     }
 
-    function czr_fn_display_view_comment() {
-      return $this -> czr_fn_display_view_comment_list();
+
+    function czr_fn_display_view_lefts_social_block() {
+      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_left-sidebar' );
     }
 
-    function czr_fn_display_view_trackpingback() {
-      return $this -> czr_fn_display_view_comment_list();
-    }
+    function czr_fn_display_view_rights_social_block() {
+      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_right-sidebar' );
 
+
+    }
    /******************************
     VARIOUS HELPERS
     *******************************/
@@ -290,9 +271,27 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
 
+    /**
+    *
+    * @return string or bool
+    *
+    */
+    function czr_fn_get_post_navigation_context(){
+      if ( is_page() )
+        return 'page';
+      if ( is_single() && ! is_attachment() )
+        return 'single'; // exclude attachments
+      if ( is_home() && 'posts' == get_option('show_on_front') )
+        return 'home';
+      if ( !is_404() && ! czr_fn_is_home_empty() )
+        return 'archive';
+      return false;
+    }
+
     /*
     * @param (string or bool) the context
     * @return bool
+    *
     */
     function czr_fn_is_posts_navigation_context_enabled( $_context ) {
       return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );

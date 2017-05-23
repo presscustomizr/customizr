@@ -127,6 +127,33 @@ function czr_fn_is_home_empty() {
     return ( ( is_home() || is_front_page() ) && 'nothing' == get_option( 'show_on_front' ) ) ? true : false;
 }
 
+
+
+
+
+/**
+* Returns the "real" queried post ID or if !isset, get_the_ID()
+* Checks some contextual booleans
+*
+* @package Customizr
+* @since Customizr 1.0
+*/
+function czr_fn_get_id()  {
+    if ( in_the_loop() ) {
+
+      $czr_id           = get_the_ID();
+    } else {
+      global $post;
+      $queried_object   = get_queried_object();
+      $czr_id           = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
+      $czr_id           = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $czr_id;
+    }
+
+    $czr_id = ( is_404() || is_search() || is_archive() ) ? null : $czr_id;
+
+    return apply_filters( 'czr_id', $czr_id );
+}
+
 /**
 * helper
 * returns the actual page id if we are displaying the posts page
@@ -135,8 +162,8 @@ function czr_fn_is_home_empty() {
 */
 function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id  = get_queried_object_id();
-    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && $wp_query -> is_posts_page && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    $queried_id  = czr_fn_get_id();
+    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
 }
 
 
@@ -158,7 +185,7 @@ function czr_fn_get_the_post_list_article_selectors( $post_class = '', $id_suffi
 
     if ( isset($post) )
       $selectors = apply_filters( "czr_post_list_selectors", sprintf('%1$s %2$s',
-        czr_fn_get_the_post_id( 'post', get_the_ID(), $id_suffix ),
+        czr_fn_get_the_post_id( 'post', $post->ID, $id_suffix ),
         czr_fn_get_the_post_class( $post_class )
       ) );
 
@@ -190,7 +217,7 @@ function czr_fn_get_the_singular_article_selectors( $post_class = '' ) {
     if ( isset($post) ) {
       $post_type  = czr_fn_get_post_type();
       $selectors  = apply_filters( "czr_article_singular_{$post_type}_selectors", sprintf('%1$s %2$s',
-        czr_fn_get_the_post_id( 'page' == $post_type ? $post_type : 'post', get_the_ID() ),
+        czr_fn_get_the_post_id( 'page' == $post_type ? $post_type : 'post', $post->ID ),
         czr_fn_get_the_post_class( $post_class )
       ) );
     }
