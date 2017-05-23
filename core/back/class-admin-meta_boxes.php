@@ -145,8 +145,16 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          **/
          //1 - retrieves the custom post types
          $args                = array(
-            //'public'   => true,
-             '_builtin' => false
+            //we want our metaboxes added only to those custom post types that can be seen on front
+            //the parameter 'publicly_queryable' should ensure this.
+            //Example:
+            // - In WooCommerce product post type our metaboxes are visibile while they're not in WooCommerce orders/coupons ...
+            //   that cannot be seen in front.
+            // - They're visible in Tribe Events Calendar's event post type
+            // - They're not visible in ACF(-pro) screens
+            // - They're not visbile in Ultime Responsive image slider post type
+            'publicly_queryable' => true,
+            '_builtin'           => false
          );
 
          $custom_post_types    = apply_filters( 'czr_post_metaboxes_cpt', get_post_types($args) );
@@ -163,13 +171,12 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          //3- Adding the meta-boxes to those screens
          foreach ( $screens as $key => $screen) {
-           //skip if acf
-            if ('acf' == $screen )
-               continue;
 
             foreach ( $mixed_meta_boxes as $meta_box_key ) {
                $this->czr_add_metabox( $meta_box_key, $screen );
             }//end foreach
+
+            do_action( 'tc_attachment_metabox_added' );
 
          }//end foreach
 
@@ -1892,10 +1899,12 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
         $_min_version = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min';
         //load scripts only for creating and editing slides options in pages and posts
-        if( ( 'media.php'  == $hook)) {
-           wp_enqueue_script( 'jquery-ui-sortable' );
+        if ( did_action( 'tc_attachment_metabox_added' ) ) {
+            wp_enqueue_script( 'jquery-ui-sortable' );
         }
-        if( ( 'post-new.php' == $hook || 'post.php' == $hook || 'media.php' == $hook) )  {
+        if ( did_action( 'tc_attachment_metabox_added' ) || did_action( 'tc_post_metabox_added' ) )  {
+            do_action( 'tc_enqueue_ajax_slider_before' );
+
            //ajax refresh for slider options
            wp_enqueue_script( 'czr_ajax_slider' ,
                sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
@@ -1964,6 +1973,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   true
                );
            }
+           do_action( 'tc_enqueue_ajax_slider_after' );
         }//end post type hook check
       }
 
