@@ -21,7 +21,8 @@
                 //'reset_to_defaults' => false,
                 'model_args' => array(
                   'element_class'            => czr_fn_get('media_class'),
-                  'media_type'               => 'wp_thumb'
+                  'media_type'               => 'wp_thumb',
+                  'image_centering'          => 'no-js-centering'
                )
               )
             );

@@ -133,8 +133,8 @@ article .entry-content a:not(.btn) {
   }
 }
 .page-breadcrumbs {
-  margin-top: 3em;
-  margin-bottom: 5em;
+  margin-top: 2*$base-line-height;
+  margin-bottom: 3*$base-line-height;
   @extend .demi-small;
 }
 
