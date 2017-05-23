@@ -5017,6 +5017,10 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.3
     */
     function czr_fn_single_post_prepare_thumb() {
+      //never display the featured image if a slider is displayed
+      //=> since the post thumbnail is always printed after the slider, we can check if did_action('__after_carousel_inner'). @see class-content-slider.php
+      if ( 0 != did_action('__after_carousel_inner') )
+        return;
       $_size_to_request = apply_filters( 'tc_single_post_thumb_size' , $this -> czr_fn_get_current_thumb_size() );
       //get the thumbnail data (src, width, height) if any
       //array( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width" )
@@ -6912,10 +6916,17 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
           $upd_date   = $this -> czr_fn_get_meta_date( 'update' );
 
           $_args      = compact( 'cat_list' ,'tag_list', 'pub_date', 'auth', 'upd_date' );
-          $_html      = sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
-            $pub_date,
-            $auth
+
+          /*
+          * See: https://github.com/presscustomizr/customizr/issues/875
+          * use wp_sprintf (wp-includes/formatting.php) to avoid Warning sprintf(): Too few arguments
+          * caused by malformed translation trying to access not passed arguments
+          */
+          $_html      = wp_sprintf( __( 'This entry was posted on %1$s<span class="by-author"> by %2$s</span>.' , 'customizr' ),
+              $pub_date,
+              $auth
           );
+
           return apply_filters( 'tc_post_metas_model' , compact( "_html" , "_args" ) );
         }
 

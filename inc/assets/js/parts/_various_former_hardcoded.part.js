@@ -48,7 +48,7 @@
                 //       class : '',
                 // }
                 // Fired on click
-                // Attempt to fire an ajax call and
+                // Attempt to fire an ajax call
                 var _doAjax = function( _query_ ) {
                           var ajaxUrl = czrapp.localized.ajaxUrl, dfd = $.Deferred();
                           $.post( ajaxUrl, _query_ )

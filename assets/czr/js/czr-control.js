@@ -52,7 +52,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                       return string.length > 150 ? string.substr( 0, 149 ) : string;
                 };
             if ( ! _.isEmpty( _.filter( _toArr, function( it ) { return ! _.isString( it ); } ) ) ) {
-                  _toArr =  JSON.stringify( _toArr );
+                  _toArr =  JSON.stringify( _toArr.join(' ') );
             } else {
                   _toArr = _toArr.join(' ');
             }
@@ -66,7 +66,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
               return;
             if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) )
               return;
-
             console.log.apply( console, _prettyPrintLog( { consoleArguments : arguments } ) );
       };
 
@@ -197,6 +196,20 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   api.czr_skopeReset  = new api.CZR_skopeReset();
 
                   api.trigger('czr-skope-started');
+                  var _toggleTopFailureNote = function() {
+                        api.czr_skopeBase.toggleTopNote( true, {
+                              title : serverControlParams.i18n.skope['There was a problem when trying to load the customizer.'],
+                              message : [
+                                    serverControlParams.i18n.skope['Please refer to'],
+                                    '<a href="http://docs.presscustomizr.com/article/285-there-was-a-problem-when-trying-to-load-the-customizer" target="_blank">',
+                                    serverControlParams.i18n.skope['this documentation page'],
+                                    '</a>',
+                                    serverControlParams.i18n.skope['to understand how to fix the problem.']
+                              ].join(' '),
+                              selfCloseAfter : 40000
+                        });
+                  };
+
 
                   api.czr_skopeReady
                         .done( function() {
@@ -204,6 +217,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                         })
                         .fail( function( error ) {
                               api.errorLog( 'Skope could not be instantiated : ' + error );
+                              _toggleTopFailureNote();
                               serverControlParams.isSkopOn = false;
                         })
                         .always( function() {
@@ -212,25 +226,11 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   if ( 'rejected' != api.czr_skopeReady.state() ) {
                         setTimeout( function() {
                             if ( 'pending' == api.czr_skopeReady.state() )  {
-                                  api.czr_skopeBase.toggleTopNote( true, {
-                                        title : serverControlParams.i18n.skope['There was a problem when trying to load the customizer.'],
-                                        message : [
-                                              serverControlParams.i18n.skope['Please open your'],
-                                              '<a href="http://docs.presscustomizr.com/article/272-inspect-your-webpages-in-your-browser-with-the-development-tools" target="_blank">',
-                                              serverControlParams.i18n.skope['browser debug tool'],
-                                              '</a>',
-                                              ',',
-                                              serverControlParams.i18n.skope['and report any error message (in red) printed in the javascript console in the'],
-                                              '<a href="https://wordpress.org/support/theme/hueman" target="_blank">',
-                                              serverControlParams.i18n.skope['Hueman theme forum'],
-                                              '</a>.'
-                                        ].join(' '),
-                                        selfCloseAfter : 40000
-                                  });
+                                  _toggleTopFailureNote();
 
                                   api.czr_isLoadingSkope( false );
                             }
-                        }, 30000);
+                        }, 40000);
                   }
             }
             if ( serverControlParams.isChangeSetOn ) {
@@ -338,6 +338,48 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                 });
           }
       });
+
+      /*****************************************************************************
+      * ADD PRO BEFORE SPECIFIC SECTIONS AND PANELS
+      *****************************************************************************/
+      if ( serverControlParams.isPro ) {
+            _.each( [ 'tc_font_customizer_settings', 'header_image_sec', 'content_blog_sec', 'static_front_page' ], function( _secId ) {
+                  _.delay( function() {
+                      api.section.when( _secId, function( _sec_ ) {
+                            if ( 1 >= _sec_.headContainer.length ) {
+                                _sec_.headContainer.find('.accordion-section-title').prepend( '<span class="pro-title-block">Pro</span>' );
+                            }
+                      });
+                  }, 1000 );
+            });
+            _.each( ['hu-header-panel', 'hu-content-panel' ], function( _secId ) {
+                  api.panel.when( _secId, function( _sec_ ) {
+                        if ( 1 >= _sec_.headContainer.length ) {
+                            _sec_.headContainer.find('.accordion-section-title').prepend( '<span class="pro-title-block">Pro</span>' );
+                        }
+                  });
+            });
+      }
+
+
+      /*****************************************************************************
+      * ADD PRO BEFORE SPECIFIC SECTIONS AND PANELS
+      *****************************************************************************/
+      if ( ! serverControlParams.isPro && _.isFunction( api.Section ) ) {
+            proSectionConstructor = api.Section.extend( {
+                  active : true,
+                  attachEvents: function () {},
+                  isContextuallyActive: function () {
+                    return this.active();
+                  },
+                  _toggleActive: function(){ return true; },
+
+            } );
+
+            $.extend( api.sectionConstructor, {
+                  'czr-customize-section-pro' : proSectionConstructor
+            });
+      }
 })( wp.customize , jQuery, _);
 
 
@@ -357,8 +399,8 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                 self.skope_colors = {
                       global : 'rgb(255, 255, 255)',
                       special_group : 'rgba(173, 213, 247, 0.55)',
-                      group  : 'rgba(173, 213, 247, 0.55)',
-                      local  : 'rgba(78, 122, 199, 0.35)'
+                      group  : 'rgba(39, 59, 88, 0.12)',// 'rgba(173, 213, 247, 0.55)',
+                      local  : 'rgba(39, 59, 88, 0.28)'// 'rgba(78, 122, 199, 0.35)'
                 };
                 api.czr_isPreviewerSkopeAware   = $.Deferred();
                 api.czr_initialSkopeCollectionPopulated = $.Deferred();
@@ -384,11 +426,15 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                       }
                 });
                 api.previewer.bind( 'czr-skopes-synced', function( data ) {
-                      if ( ! serverControlParams.isSkopOn || 'rejected' == api.czr_skopeReady.state() )
-                        return;
+                      if ( ! serverControlParams.isSkopOn || 'rejected' == api.czr_skopeReady.state() ) {
+                            return;
+                      }
                       var preview = this,
                           previousSkopeCollection = api.czr_currentSkopesCollection();
                       if ( ! _.has( data, 'czr_skopes') ) {
+                            if ( 'resolved' != api.czr_skopeReady.state() ) {
+                                  api.czr_skopeReady.reject();
+                            }
                             api.errorLog( "On 'czr-skopes-synced' : missing skopes in the server data" );
                             return;
                       }
@@ -398,6 +444,14 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                             api.czr_skopeReady.reject( er );
                             return;
                       }
+                      var _refreshSkopeInfosNotices = function() {
+                            self._writeCurrentSkopeTitle();
+                            if ( api.czr_bottomInfosVisible() ) {
+                                  self.renderBottomInfosTmpl();//<= will build a new bottom skope message infos in the preview based on the new active skopes
+                            } else {
+                                  api.czr_bottomInfosVisible( true );
+                            }
+                      };
                       api.czr_initialSkopeCollectionPopulated.then( function() {
                             var refreshActiveSkope = _.isUndefined( _.findWhere( api.czr_currentSkopesCollection(), {id : api.czr_activeSkopeId() } ) );
                             api.czr_skopeBase.reactWhenSkopeSyncedDone( data ).done( function() {
@@ -408,7 +462,7 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                                                           if ( 'resolved' != api.czr_skopeReady.state() ) {
                                                                 api.czr_skopeReady.resolve( self.getActiveSkopeId() );
                                                           }
-                                                          self._writeCurrentSkopeTitle();
+                                                          _refreshSkopeInfosNotices();
                                                     })
                                                     .fail( function() {
                                                           throw new Error( 'Error when trying to set the active skope after skope synced.' );
@@ -421,7 +475,7 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                                             _newLoc  =_.findWhere( data.czr_skopes, { skope : 'local' } ).opt_name;
 
                                         if ( _newLoc !== _prevLoc && 'resolved' == api.czr_skopeReady.state() ) {
-                                              self._writeCurrentSkopeTitle();
+                                              _refreshSkopeInfosNotices();
                                         }
                                   }
                             });
@@ -463,34 +517,7 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                 api.czr_serverNotification.bind( function( to, from ) {
                         self.toggleServerNotice( to );
                 });
-                api.czr_topNoteVisible = new api.Value( false );
-                api.czr_skopeReady.then( function() {
-                      api.czr_topNoteVisible.bind( function( visible ) {
-                              var noteParams = {},
-                                  _defaultParams = {
-                                        title : '',
-                                        message : '',
-                                        actions : '',
-                                        selfCloseAfter : 20000
-                                  };
-                              noteParams = $.extend( _defaultParams , serverControlParams.topNoteParams );
-                              noteParams.actions = function() {
-                                    var _query = $.extend(
-                                          api.previewer.query(),
-                                          { nonce:  api.previewer.nonce.save }
-                                    );
-                                    wp.ajax.post( 'czr_dismiss_top_note' , _query )
-                                          .always( function () {})
-                                          .fail( function ( response ) { api.consoleLog( 'czr_dismiss_top_note failed', _query, response ); })
-                                          .done( function( response ) {});
-                              };
-
-                              self.toggleTopNote( visible, noteParams );
-                      });
-                      _.delay( function() {
-                            api.czr_topNoteVisible( ! _.isEmpty( serverControlParams.isTopNoteOn ) || 1 == serverControlParams.isTopNoteOn );
-                      }, 2000 );
-                });
+                self._setupPreviewNotificationsBlocks();//top note and bottom skope infos
                 self.scopeSwitcherEventMap = [
                       {
                             trigger   : 'click keydown',
@@ -530,6 +557,21 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
           },//initialize
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           /*****************************************************************************
           * EMBED WRAPPER
           *****************************************************************************/
@@ -553,6 +595,13 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
           },
 
 
+
+
+
+
+
+
+
           /*****************************************************************************
           * API DIRTYNESS REACTIONS
           *****************************************************************************/
@@ -560,6 +609,13 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                 $('body').toggleClass('czr-api-dirty', is_dirty );
                 api.state( 'saved')( ! is_dirty );
           },
+
+
+
+
+
+
+
 
 
           /*****************************************************************************
@@ -625,6 +681,11 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                                       });
                                 });
                           };
+                          if ( api.czr_bottomInfosVisible() ) {
+                                self.renderBottomInfosTmpl();//<= will build a new bottom skope message infos in the preview based on the new active skopes
+                          } else {
+                                api.czr_bottomInfosVisible( true );
+                          }
                           _.delay( function() {
                                 _setupSectionControlDialogs();
                           }, 500 );
@@ -632,6 +693,67 @@ var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
                 api.czr_skopeReady.then( function() {
                       _doWhenSkopeReady();
                 });
+          },
+          _setupPreviewNotificationsBlocks : function() {
+                var self = this;
+                api.czr_topNoteVisible = new api.Value( false );
+                api.czr_skopeReady.then( function() {
+                      api.czr_topNoteVisible.bind( function( visible ) {
+                              var noteParams = {},
+                                  _defaultParams = {
+                                        title : '',
+                                        message : '',
+                                        actions : '',
+                                        selfCloseAfter : 20000
+                                  };
+                              noteParams = $.extend( _defaultParams , serverControlParams.topNoteParams );
+                              noteParams.actions = function() {
+                                    var _query = $.extend(
+                                          api.previewer.query(),
+                                          { nonce:  api.previewer.nonce.save }
+                                    );
+                                    wp.ajax.post( 'czr_dismiss_top_note' , _query )
+                                          .always( function () {})
+                                          .fail( function ( response ) { api.consoleLog( 'czr_dismiss_top_note failed', _query, response ); })
+                                          .done( function( response ) {});
+                              };
+
+                              self.toggleTopNote( visible, noteParams );
+                      });
+                      _.delay( function() {
+                            api.czr_topNoteVisible( ! _.isEmpty( serverControlParams.isTopNoteOn ) || 1 == serverControlParams.isTopNoteOn );
+                      }, 2000 );
+                });
+                api.czr_bottomInfosVisible = new api.Value( false );
+                api.czr_skopeReady.then( function() {
+                      api.czr_bottomInfosVisible.bind( function( visible ) {
+                              var noteParams = {},
+                                  _defaultParams = {
+                                        title : '',
+                                        message : '',
+                                        actions : '',
+                                        selfCloseAfter : 20000
+                                  };
+                              noteParams = $.extend( _defaultParams , {} );
+
+                              return self.toggleBottomInfos( visible, noteParams );//returns a promise()
+                      }, { deferred : true } );
+                      var _skopeInfosSetId = api.CZR_Helpers.build_setId( 'show-skope-infos' );
+                      api.when( _skopeInfosSetId, function( _set_ ){
+                            api.czr_bottomInfosVisible.validate = function( value ) {
+                                  var _v = _set_(),
+                                      _isChecked = 0 !== _v && '0' !== _v && false !== _v && 'off' !== _v;
+
+                                  return _isChecked ? value : false;
+                            };
+                            _set_.bind( function( visible ) {
+                                  api.czr_bottomInfosVisible( 0 !== visible && '0' !== visible && false !== visible && 'off' !== visible );
+                            });
+                      });
+                      _.delay( function() {
+                            api.czr_bottomInfosVisible( true );
+                      }, 2000 );
+                });//api.czr_skopeReady.then()
           }
       });//$.extend()
 })( wp.customize , jQuery, _);
@@ -771,10 +893,10 @@ $.extend( CZRSkopeBaseMths, {
                             api.CZR_Helpers.setupDOMListeners(
                                   [ {
                                         trigger   : 'click keydown',
-                                        selector  : '.czr-top-note-close',
-                                        name      : 'close-top-note',
+                                        selector  : '.czr-preview-note-close',
                                         actions   : function() {
-                                              _destroy().done( function() {
+                                              _hideAndDestroy().done( function() {
+                                                    api.czr_topNoteVisible( false );
                                                     if ( _.isFunction( noteParams.actions ) ) {
                                                           noteParams.actions();
                                                     }
@@ -786,7 +908,7 @@ $.extend( CZRSkopeBaseMths, {
                             );
                       });
                 },
-                _destroy = function() {
+                _hideAndDestroy = function() {
                       var dfd = $.Deferred();
                       $('body').removeClass('czr-top-note-open');
                       if ( self.welcomeNote.length ) {
@@ -805,10 +927,12 @@ $.extend( CZRSkopeBaseMths, {
             if ( visible ) {
                   _renderAndSetup();
             } else {
-                  _destroy();
+                  _hideAndDestroy().done( function() {
+                        api.czr_topNoteVisible( false );//should be already false
+                  });
             }
             _.delay( function() {
-                        _destroy();
+                        api.czr_topNoteVisible( false );
                   },
                   noteParams.selfCloseAfter || 20000
             );
@@ -1211,6 +1335,209 @@ $.extend( CZRSkopeBaseMths, {
 });//$.extend()
 })( wp.customize , jQuery, _ );
 var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
+(function ( api, $, _ ) {
+$.extend( CZRSkopeBaseMths, {
+      toggleBottomInfos : function( visible, noteParams ) {
+            noteParams = _.isObject( noteParams ) ? noteParams : {};
+            var self = this,
+                dfd = $.Deferred(),
+                _defaultParams = {
+                      title : '',
+                      message : '',
+                      actions : '',
+                      selfCloseAfter : 20000
+                },
+                _skopeInfosSetId = api.CZR_Helpers.build_setId('show-skope-infos'),
+                _renderAndSetup = function() {
+                      var _dfd = $.Deferred();
+                      $.when( self.renderBottomInfosTmpl( noteParams ) )
+                            .done( function( $_el ) {
+                                  self.bottomInfosContainer = $_el;
+                                  _.delay( function() {
+                                        $('body').addClass('czr-bottom-infos-open');
+                                        _dfd.resolve();
+                                  }, 200 );
+                                  api.CZR_Helpers.setupDOMListeners(
+                                        [
+                                              {
+                                                    trigger   : 'click keydown',
+                                                    selector  : '.czr-preview-note-close',
+                                                    actions   : function() {
+                                                          _hideAndDestroy().done( function() {
+                                                                api.czr_bottomInfosVisible( false );
+                                                                if ( _.isFunction( noteParams.actions ) ) {
+                                                                      noteParams.actions();
+                                                                }
+                                                          });
+                                                    }
+                                              },
+                                              {
+                                                    trigger   : 'click keydown',
+                                                    selector  : '.czr-skope-switch',
+                                                    actions   : function( params ) {
+                                                          var _skopeIdToSwithTo = $( params.dom_event.currentTarget, params.dom_el ).attr('data-skope-id');
+                                                          if ( ! _.isEmpty( _skopeIdToSwithTo ) && api.czr_skope.has( _skopeIdToSwithTo ) )
+                                                            api.czr_activeSkopeId( _skopeIdToSwithTo );
+                                                    }
+                                              },
+                                              {
+                                                    trigger   : 'click keydown',
+                                                    selector  : '.czr-disable-bottom-infos',
+                                                    actions   : function( params ) {
+                                                          if ( api.control.has( _skopeInfosSetId ) ) {
+                                                                api.control( _skopeInfosSetId ).focus();
+                                                          }
+                                                    }
+                                              }
+                                        ] ,
+                                        { dom_el : self.bottomInfosContainer },
+                                        self
+                                  );
+                            })
+                            .fail( function() {
+                                  _dfd.resolve();
+                            });
+                      return _dfd.promise();
+                },
+                _hideAndDestroy = function() {
+                      return $.Deferred( function() {
+                            var _dfd_ = this;
+                            $('body').removeClass('czr-bottom-infos-open');
+                            if ( self.bottomInfosContainer.length ) {
+                                  _.delay( function() {
+                                        self.bottomInfosContainer.remove();
+                                        self.bottomInfosContainer = false;
+                                        _dfd_.resolve();
+                                  }, 300 );
+                            } else {
+                                _dfd_.resolve();
+                            }
+                      });
+                };
+
+
+            noteParams = $.extend( _defaultParams , noteParams);
+
+            if ( visible ) {
+                  _renderAndSetup().always( function() {
+                        dfd.resolve();
+                  });
+            } else {
+                  _hideAndDestroy().done( function() {
+                        api.czr_bottomInfosVisible( false );//should be already false
+                        dfd.resolve();
+                  });
+            }
+            return dfd.promise();
+      },
+      renderBottomInfosTmpl : function( params ) {
+            params = params || {};
+            var self = this,
+                _tmpl = '',
+                _skope_id = api.czr_activeSkopeId();
+            if ( ! api.czr_skope.has( _skope_id ) || ! _.isObject( api.czr_skope( _skope_id )() ) )
+              return false;
+
+            var _skope_title = api.czr_skope( _skope_id )().long_title,
+                _ctxTitle = api.czr_skope( _skope_id )().ctx_title;
+
+            _skope_title = _.isString( _skope_title ) ? _skope_title : '';
+            _ctxTitle = _.isString( _ctxTitle ) ? _ctxTitle : '';
+
+            var _title = params.title || ['Customizing', _ctxTitle.toLowerCase() ].join(' '),
+                _message = params.message || self._getSkopeInfosMessage( _skope_id ),
+                _renderTmpl = function() {
+                      return $.Deferred( function() {
+                            var dfd = this;
+                            try {
+                                  _tmpl =  wp.template( 'czr-bottom-infos' )( { title : _title } );
+                                  $('#customize-preview').after( $( _tmpl ) );
+                                  dfd.resolve();
+                            } catch( er ) {
+                                  api.errorLog( 'Error when parsing the the bottom infos template : ' + er );
+                                  dfd.reject( er );
+                            }
+                      });
+                };
+            if ( _.isUndefined( this.bottomInfosContainer ) || 1 != this.bottomInfosContainer.length ) {
+                  _renderTmpl().done( function() {
+                        $('.czr-note-message', '#czr-bottom-infos').html( _message );
+                  });
+            } else {
+                  $('.czr-note-content', self.bottomInfosContainer ).fadeOut({
+                        duration : 'fast',
+                        complete : function() {
+                              $( 'h2', self.bottomInfosContainer ).html( [ '&middot;', _title, '&middot;' ].join(' ') );
+                              $('.czr-note-message', self.bottomInfosContainer ).html( _message );
+                              $(this).fadeIn('fast');
+                        }
+                  });
+
+            }
+            return ( this.bottomInfosContainer && 1 == this.bottomInfosContainer.length ) ? this.bottomInfosContainer : $( '#czr-bottom-infos' );
+      },
+      _getSkopeInfosMessage : function( skope_id ) {
+            skope_id = skope_id || api.czr_activeSkopeId();
+            var _localSkopeId = _.findWhere( api.czr_currentSkopesCollection(), { skope : 'local' } ).id;
+            if ( ! api.czr_skope.has( skope_id ) || ! _.isObject( api.czr_skope( skope_id )() ) || _.isUndefined( _localSkopeId ) )
+              return '';
+
+            var self = this,
+                _skpLevel = api.czr_skope( skope_id )().skope,
+                _inheritedFrom = self.getInheritedSkopeTitles(),
+                _overrides = self.getOverridenSkopeTitles(),
+                _localCtxTitle = api.czr_skope( _localSkopeId )().ctx_title,//<= the context title is always the one of the local skope
+                current_title = api.czr_skope( skope_id )().long_title,//ex : Options for home
+                _html;
+
+            switch( _skpLevel ) {
+                    case 'global' :
+                          _html = [
+                                serverControlParams.i18n.skope['The customizations made site wide are inherited by all other levels of customization.'],
+                                '<br/>',
+                                serverControlParams.i18n.skope['The current context'],
+                                ['(', _localCtxTitle, ')'].join(' '),
+                                serverControlParams.i18n.skope['can be customized more specifically at the following level'] + '(s)',
+                                ':',
+                                _overrides + '.'
+                          ].join(' ');
+                    break;
+                    case 'group' :
+                          _html = [
+                                serverControlParams.i18n.skope['The current customizations will be applied to'],
+                                api.czr_skope( skope_id )().ctx_title.toLowerCase() + '.',
+                                '<br/>',
+                                serverControlParams.i18n.skope['The options not customized at this level will inherit their value from'],
+                                _inheritedFrom,
+                                '.<br/>',
+                                serverControlParams.i18n.skope['The current context'],
+                                ['(', _localCtxTitle, ')'].join(' '),
+                                serverControlParams.i18n.skope['can be customized more specifically at the following level'],
+                                ':',
+                                _overrides + '.'
+                          ].join(' ');
+                    break;
+                    case 'local' :
+                          _html = [
+                                serverControlParams.i18n.skope['The current context'],
+                                ['(', _localCtxTitle, ')'].join(' '),
+                                serverControlParams.i18n.skope['can be customized with a specific set of options.'],
+                                '<br/>',
+                                serverControlParams.i18n.skope['The options not customized at this level will inherit their value from'],
+                                _inheritedFrom + '.'
+                          ].join(' ');
+                    break;
+            }
+
+            return $.trim( [
+                  '<span class="czr-skope-bottom-infos">',
+                    _html,
+                    '</span>'
+            ].join(' ') );
+      }
+});//$.extend()
+})( wp.customize , jQuery, _);
+var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRSkopeBaseMths, {
 
@@ -1258,13 +1585,21 @@ $.extend( CZRSkopeBaseMths, {
     getActiveSkopeId : function( _current_skope_collection ) {
           _current_skope_collection = _current_skope_collection || api.czr_currentSkopesCollection();
 
-          var _currentSkopeLevel = ( ! _.isEmpty( api.czr_activeSkopeId() ) && api.czr_skope.has( api.czr_activeSkopeId() ) ) ? api.czr_skope( api.czr_activeSkopeId() )().skope : serverControlParams.isLocalSkope ? 'local' : 'global',
-              _newSkopeCandidate = _.findWhere( _current_skope_collection, { skope : _currentSkopeLevel } );
+          var _currentSkopeLevel, _newSkopeCandidate, _skpId;
+          if ( ! _.isEmpty( api.czr_activeSkopeId() ) && api.czr_skope.has( api.czr_activeSkopeId() ) ) {
+                _currentSkopeLevel = api.czr_skope( api.czr_activeSkopeId() )().skope;
+          } else if ( serverControlParams.isLocalSkope ) {
+                _currentSkopeLevel = 'local';
+          } else {
+                _currentSkopeLevel = 'global';
+          }
+
+          _newSkopeCandidate = _.findWhere( _current_skope_collection, { skope : _currentSkopeLevel } );
 
           _skpId = ! _.isUndefined( _newSkopeCandidate ) ? _newSkopeCandidate.id : _.findWhere( _current_skope_collection, { skope : 'global' } ).id;
 
           if ( _.isUndefined( _skpId ) ) {
-            throw new Error( 'No default skope was found in getActiveSkopeId ', _current_skope_collection );
+                throw new Error( 'No default skope was found in getActiveSkopeId ', _current_skope_collection );
           }
           return _skpId;
     },
@@ -1958,7 +2293,7 @@ $.extend( CZRSkopeBaseMths, {
           var self = this, dfd = $.Deferred();
           if ( ! _.isUndefined(from) && api.czr_skope.has(from) )
             api.czr_skope(from).active(false);
-          else if ( ! _.isUndefined(from) )
+          else if ( ! _.isUndefined( from ) )
             throw new Error('listenToActiveSkope : previous scope does not exist in the collection', from );
 
           if ( ! _.isUndefined(to) && api.czr_skope.has(to) )
@@ -2035,11 +2370,16 @@ $.extend( CZRSkopeBaseMths, {
                             throw new Error( 'Fail to process silent updates in _debouncedProcessSilentUpdates');
                       })
                       .done( function( _updatedSetIds ) {
-                            api.previewer.refresh()
-                                  .always( function() {
-                                        dfd.resolve( _updatedSetIds );
-                                        api.state( 'switching-skope' )( false );
-                                  });
+                            if ( _.isUndefined( from ) && api.czr_skope.has( to ) && 'global' == api.czr_skope( to )().skope ) {
+                                  dfd.resolve( _updatedSetIds );
+                                  api.state( 'switching-skope' )( false );
+                            } else {
+                                  api.previewer.refresh()
+                                        .always( function() {
+                                              dfd.resolve( _updatedSetIds );
+                                              api.state( 'switching-skope' )( false );
+                                        });
+                            }
                       });
           };
           if ( _.has(api, 'czr_isModuleExpanded') && false !== api.czr_isModuleExpanded() ) {
@@ -2108,7 +2448,7 @@ $.extend( CZRSkopeBaseMths, {
                             api.state( 'switching-skope' ).isBound = true;
                       }
           });
-    }
+    }//_writeCurrentSkopeTitle
 });//$.extend
 })( wp.customize , jQuery, _ );
 var CZRSkopeBaseMths = CZRSkopeBaseMths || {};
@@ -2923,13 +3263,15 @@ $.extend( CZRSkopeBaseMths, {
               _isSkoped = function( setId ) {
                     return setId && self.isSettingSkopeEligible( setId );
               },//filter only eligible ctrlIds
+
               _generateControlNotice = function( setId, _localSkopeId ) {
                     var _currentSkopeId         = api.czr_activeSkopeId(),
                         _inheritedFromSkopeId   = self.getInheritedSkopeId( setId, _currentSkopeId ),
                         _overridedBySkopeId     = self.getAppliedPrioritySkopeId( setId, _currentSkopeId ),
                         _html = [],
                         _isCustomized,
-                        _hasDBVal;
+                        _hasDBVal,
+                        _ctxTitle;
                     if ( ! _isSkoped( setId ) ) {
                           _html.push( [
                                 serverControlParams.i18n.skope['This option is always customized sitewide and cannot be reset.']
@@ -2940,6 +3282,10 @@ $.extend( CZRSkopeBaseMths, {
                           _isCustomized = ! _.isUndefined( api.czr_skope( _currentSkopeId ).dirtyValues()[setId] );
                           _hasDBVal     = ! _.isUndefined( api.czr_skope( _currentSkopeId ).dbValues()[setId] );
 
+                          _ctxTitle = api.czr_skope( _inheritedFromSkopeId )().ctx_title;
+
+                          _ctxTitle = ( _.isString( _ctxTitle ) ? _ctxTitle : '' ).toLowerCase();
+
                           if ( _isCustomized ) {
                                 if ( 'global' == api.czr_skope( _inheritedFromSkopeId )().skope ) {
                                       _html.push( [
@@ -2948,7 +3294,7 @@ $.extend( CZRSkopeBaseMths, {
                                 } else {
                                     _html.push( [
                                           serverControlParams.i18n.skope['Customized. Will be applied to'],
-                                          '<strong>' + api.czr_skope( _inheritedFromSkopeId )().ctx_title + '</strong>',
+                                          '<strong>' + _ctxTitle + '</strong>',
                                           serverControlParams.i18n.skope['once published.']
                                     ].join(' ') );
                                 }
@@ -2961,7 +3307,7 @@ $.extend( CZRSkopeBaseMths, {
                                       } else {
                                             _html.push( [
                                                   serverControlParams.i18n.skope['Customized and applied to'],
-                                                  '<strong>' + api.czr_skope( _inheritedFromSkopeId )().ctx_title + '.' + '</strong>'
+                                                  '<strong>' + _ctxTitle + '.' + '</strong>'
                                             ].join(' ') );
                                       }
                                 } else {
@@ -2972,12 +3318,17 @@ $.extend( CZRSkopeBaseMths, {
                     if ( _inheritedFromSkopeId !== _currentSkopeId && api.czr_skope.has( _inheritedFromSkopeId ) ) {
                           _isCustomized = ! _.isUndefined( api.czr_skope( _inheritedFromSkopeId ).dirtyValues()[setId] );
                           _hasDBVal     = ! _.isUndefined( api.czr_skope( _inheritedFromSkopeId ).dbValues()[setId] );
+
+                          _ctxTitle = api.czr_skope( _currentSkopeId )().ctx_title;
+
+                          _ctxTitle = ( _.isString( _ctxTitle ) ? _ctxTitle : '' ).toLowerCase();
+
                           if ( ! _isCustomized && ! _hasDBVal ) {
                                 _html.push(
                                       [
                                             serverControlParams.i18n.skope['Default website value.'],
                                             serverControlParams.i18n.skope['You can customize this specifically for'],
-                                            '<strong>' + api.czr_skope( _currentSkopeId )().ctx_title + '.' + '</strong>'
+                                            '<strong>' + _ctxTitle + '.' + '</strong>'
                                       ].join(' ')
                                 );
                           } else {
@@ -2986,7 +3337,7 @@ $.extend( CZRSkopeBaseMths, {
                                             serverControlParams.i18n.skope['Currently inherited from'],
                                             self.buildSkopeLink( _inheritedFromSkopeId ) + '.',
                                             serverControlParams.i18n.skope['You can customize this specifically for'],
-                                            '<strong>' + api.czr_skope( _currentSkopeId )().ctx_title + '.' + '</strong>'
+                                            '<strong>' + _ctxTitle + '.' + '</strong>'
                                       ].join(' ')
                                 );
                           }
@@ -2994,9 +3345,13 @@ $.extend( CZRSkopeBaseMths, {
                     if ( _overridedBySkopeId !== _currentSkopeId && api.czr_skope.has( _overridedBySkopeId ) ) {
                           _isCustomized = ! _.isUndefined( api.czr_skope( _overridedBySkopeId ).dirtyValues()[setId] );
 
+                          _ctxTitle = api.czr_skope( _localSkopeId )().ctx_title;
+
+                          _ctxTitle = ( _.isString( _ctxTitle ) ? _ctxTitle : '' ).toLowerCase();
+
                           _html.push( [
                                 ! _isCustomized ? serverControlParams.i18n.skope['The value currently applied to'] : serverControlParams.i18n.skope['The value that will be applied to'],
-                                '<strong>' + api.czr_skope( _localSkopeId )().ctx_title + '</strong>',
+                                '<strong>' + _ctxTitle + '</strong>',
                                 ! _isCustomized ? serverControlParams.i18n.skope['is set in'] : serverControlParams.i18n.skope['is customized in'],
                                 self.buildSkopeLink( _overridedBySkopeId ),
                                 serverControlParams.i18n.skope['which has a higher priority than the current option scope'],
@@ -3267,6 +3622,7 @@ $.extend( CZRSkopeSaveMths, {
                       opt_name : null
                 },
                 invalidSettings = [],
+                settingInvalidities = [],
                 modifiedWhileSaving = {},
                 invalidControls,
                 submit_dfd = $.Deferred();
@@ -6517,6 +6873,10 @@ $.extend( CZRItemMths , {
             if ( item.module.isMultiItem() ) {
                   item.viewState.callbacks.add( function( to, from ) {
                         var _isExpanded = -1 !== to.indexOf( 'expanded' );
+                        if ( module.hasModOpt() && _isExpanded ) {
+                              api.czr_ModOptVisible( false );
+                        }
+
                         if ( _isExpanded ) {
                               if ( _.isObject( item.contentContainer ) && false !== item.contentContainer.length ) {
                                     item.toggleItemExpansion(to, from );
@@ -6717,7 +7077,8 @@ $.extend( CZRModOptMths , {
             var ctrl = modOpt.module.control;
             modOpt.set( _initial_model );
             api.czr_ModOptVisible = new api.Value( false );
-            api.czr_ModOptVisible.bind( function( visible ) {
+            api.czr_ModOptVisible.bind( function( visible, from, args ) {
+                  args = args || {};
                   if ( visible ) {
                         modOpt.module.closeRemoveDialogs().closeAllItems();
 
@@ -6727,6 +7088,13 @@ $.extend( CZRModOptMths , {
                                     api.CZR_Helpers.setupInputCollectionFromDOM.call( modOpt ).toggleModPanelView( visible );
                               } catch(e) {
                                     api.consoleLog(e);
+                              }
+                              if ( args.module && args.focus ) {
+                                    _.delay( function() {
+                                          if ( _.isNull(  args.module.czr_ModOpt.container ) || ! args.module.czr_ModOpt.container.find('[data-tab-id="' + args.focus + '"] a').length )
+                                            return;
+                                          args.module.czr_ModOpt.container.find('[data-tab-id="' + args.focus + '"] a').trigger('click');
+                                    }, 200 );
                               }
                         });
 
@@ -6898,6 +7266,7 @@ $.extend( CZRModuleMths, {
 
             } );
             module.embedded = $.Deferred();
+            module.itemsWrapper = '';//will store the $ item container
             if ( ! module.isInSektion() ) {
                   module.container = $( module.control.selector );
                   module.embedded.resolve();
@@ -7096,11 +7465,12 @@ $.extend( CZRModuleMths, {
                   module        : { items : $.extend( true, {}, module().items ) , modOpt : module.hasModOpt() ?  $.extend( true, {}, module().modOpt ): {} },
                   input_parent_id : args.input_parent_id,//<= can be the mod opt or the item
                   input_id      : args.input_id,
-                  value         : args.to
+                  value         : args.to,
+                  isPartialRefresh : args.isPartialRefresh//<= let us know if it is a full wrapper refresh or a single input update ( true when fired from sendModuleInputsToPreview )
             });
             module.trigger( 'input_sent', { input : args.to , dom_el: module.container } );
       },
-      sendModuleInputsToPreview : function() {
+      sendModuleInputsToPreview : function( args ) {
             var module = this,
                 _sendInputData = function() {
                       var inputParent = this,//this is the input parent : item or modOpt
@@ -7112,7 +7482,8 @@ $.extend( CZRModuleMths, {
                                   input_id : inputId,
                                   input_parent_id : inputParent.id,
                                   to : inputVal,
-                                  from : null
+                                  from : null,
+                                  isPartialRefresh : args.isPartialRefresh
                             });
                       });
                 };
@@ -7551,6 +7922,8 @@ $.extend( CZRDynModuleMths, {
               $.extend( module, {
                   itemPreAddEl : ''//is specific for each crud module
               } );
+
+              module.preItemsWrapper = '';//will store the pre items wrapper
               module.itemAddedMessage = serverControlParams.i18n.successMessage;
               module.userEventMap = new api.Value( [
                     {
@@ -7572,7 +7945,8 @@ $.extend( CZRDynModuleMths, {
               module.setupDOMListeners( module.userEventMap() , { dom_el : module.container } );
               module.preItem = new api.Value( module.getDefaultItemModel() );
               module.preItemEmbedded = $.Deferred();//was module.czr_preItem.create('item_content');
-              module.preItemEmbedded.done( function() {
+              module.preItemEmbedded.done( function( $preWrapper ) {
+                    module.preItemsWrapper = $preWrapper;
                     module.setupPreItemInputCollection();
               });
               module.preItemExpanded = new api.Value(false);
@@ -7606,27 +7980,37 @@ $.extend( CZRDynModuleMths, {
                   collapsePreItem = function() {
                         module.preItemExpanded.set(false);
                         module._resetPreItemInputs();
-                        module.toggleSuccessMessage('off');
-                  };
+                  },
+                  dfd = $.Deferred();
 
               if ( _.isEmpty(item) || ! _.isObject(item) ) {
-                throw new Error('addItem : an item should be an object and not empty. In : ' + module.id +'. Aborted.' );
+                    api.errorLog( 'addItem : an item should be an object and not empty. In : ' + module.id +'. Aborted.' );
+                    return dfd.resolve().promise();
               }
-              collapsePreItem = _.debounce( collapsePreItem, 2000 );
+              collapsePreItem = _.debounce( collapsePreItem, 200 );
               module.instantiateItem( item, true ).ready(); //true == Added by user
+              ( function() {
+                    return $.Deferred( function() {
+                          var _dfd_ = this;
+                          module.czr_Item( item.id ).isReady.then( function() {
+                                collapsePreItem();
 
-              module.czr_Item( item.id ).isReady.then( function() {
-                    module.toggleSuccessMessage('on');
-                    collapsePreItem();
-
-                    module.trigger('item-added', item );
-                    if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
-                      module.control.previewer.refresh();
-                    }
+                                module.trigger('item-added', item );
+                                if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                                  module.control.previewer.refresh().done( function() {
+                                        _dfd_.resolve();
+                                  });
+                                } else {
+                                        _dfd_.resolve();
+                                }
+                          });
+                    }).promise();
+              })().done( function() {
+                      module.czr_Item( item.id ).viewState( 'expanded' );
+              }).always( function() {
+                      dfd.resolve();
               });
-
-
-
+              return dfd.promise();
       },
 
       _resetPreItemInputs : function() {
@@ -7657,7 +8041,7 @@ $.extend( CZRDynModuleMths, {
 
               var $_pre_add_el = $('.' + module.control.css_attr.pre_add_item_content, module.container );
               $_pre_add_el.prepend( pre_add_template() );
-              module.preItemEmbedded.resolve();
+              module.preItemEmbedded.resolve( $_pre_add_el );
       },
       _getPreItemView : function() {
               var module = this;
@@ -8794,7 +9178,7 @@ $.extend( CZRBaseControlMths, {
                               if ( ! control.czr_Module( _mod_.id ) )
                                 return;
 
-                              control.czr_Module( _mod_.id ).sendModuleInputsToPreview();
+                              control.czr_Module( _mod_.id ).sendModuleInputsToPreview( { isPartialRefresh : true } );
                         });
                   }
             });
@@ -10966,25 +11350,8 @@ $.extend( CZRLayoutSelectMths , {
           );//_.extend()
 
 }) ( wp.customize, jQuery, _);(function (wp, $) {
-        /* Pro section init */
-        var api = api || wp.customize,
-            proSectionConstructor;
-
-        if ( 'function' === typeof api.Section ) {
-            proSectionConstructor = api.Section.extend( {
-                  active : true,
-                  attachEvents: function () {},
-                  isContextuallyActive: function () {
-                    return this.active();
-                  },
-                  _toggleActive: function(){ return true; },
-
-            } );
-
-            $.extend( api.sectionConstructor, {
-                  'czr-customize-section-pro' : proSectionConstructor
-            });
-        }
+        var api = api || wp.customize;
+        
         $( function($) {
                 /* GRID */
                 var _build_control_id = function( _control ) {
@@ -11079,32 +11446,46 @@ $.extend( CZRLayoutSelectMths , {
                     }
 
                     /**
-                    * Dependency between the header layout and the menu position, when the menu style is Side Menu
+                    * Dependency between the header layout and the horizontal menu positions
+                    * What this does:
+                    * 1) enable/disale the 'pull-menu-center' among the select option for the horizontal menus position
+                    *    this option is available only when the header layout is "centered" (logo centered)
+                    * 2) reset to default the horizontal menus position ONLY if the user switches from an header
+                    *    centered layout to a logo right/left layout.
+                    * 
                     */
                     (function() {
                         var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
 
                             _hm_secondary_position_option  = 'tc_theme_options[tc_second_menu_position]',
                             _header_layout_setting         = api( 'tc_theme_options[tc_header_layout]' );
-
-
-                        toggle_option( 'centered' == _header_layout_setting.get() );
-                        _header_layout_setting.callbacks.add( function(to) {
-                            toggle_option( 'centered' == to );
+                        if ( 'centered' != _header_layout_setting.get() )   
+                            toggle_select_option_visibility( false );
+                        _header_layout_setting.callbacks.add( function(to, from ) {                                                       
+                              if ( 'centered' != to && 'centered' == from ) {
+                                    reset_menu_position_option();
+                              }
+                              toggle_select_option_visibility( 'centered' == to );                        
+                        
                         } );
 
-                        function toggle_option( is_header_centered ) {
+                        function reset_menu_position_option() {
                             _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
-
-                              if ( 'pull-menu-center' == api( option ).get() )
-                                  api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
-
-                              var $_select = api.control( option ).container.find("select");
-
-                              $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
-                              $_select.selecter( 'destroy' ).selecter();
+                                if ( 'pull-menu-center' == api( option ).get() )
+                                    api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
 
                             });
+                        }
+
+                        function toggle_select_option_visibility( is_header_centered ) {
+
+                            _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
+
+                                var $_select = api.control( option ).container.find("select");
+                                $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
+                                $_select.selecter( 'destroy' ).selecter();
+
+                            });  
                         }
 
                     })();

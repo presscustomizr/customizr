@@ -80,7 +80,9 @@ module.exports = {
   },
 	front_main_parts_js : {
     src: [
-      '<%= paths.front_js %>parts/_main_base.part.js',
+      '<%= paths.front_js %>parts/_main_base_0_utilities.part.js',
+      '<%= paths.front_js %>parts/_main_base_1_fmk.part.js',
+      '<%= paths.front_js %>parts/_main_base_2_initialize.part.js',
       '<%= paths.front_js %>parts/_main_browser_detect.part.js',
       '<%= paths.front_js %>parts/_main_jquery_plugins.part.js',
       '<%= paths.front_js %>parts/_main_slider.part.js',

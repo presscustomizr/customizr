@@ -412,7 +412,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     */
     static function czr_fn_is_pro() {
       //TC_BASE is the root server path of the parent theme
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
+      if ( ! defined( 'TC_BASE' ) ) define( 'TC_BASE' , get_template_directory().'/' );
       return class_exists( 'CZR_init_pro' ) && "customizr-pro" == self::$theme_name;
     }
   }//end of class

@@ -597,6 +597,7 @@ class CZR_utils_settings_map {
             );
 
             return array_merge( $_map, $_to_add );
+
       }
 
 

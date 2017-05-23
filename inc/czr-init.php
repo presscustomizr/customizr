@@ -412,7 +412,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     */
     static function czr_fn_is_pro() {
       //TC_BASE is the root server path of the parent theme
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
+      if ( ! defined( 'TC_BASE' ) ) define( 'TC_BASE' , get_template_directory().'/' );
       return class_exists( 'CZR_init_pro' ) && "customizr-pro" == self::$theme_name;
     }
   }//end of class
@@ -2895,6 +2895,7 @@ class CZR_utils_settings_map {
                   'czr_fn_navigation_option_map',
                   //CONTENT
                   'czr_fn_post_metas_option_map',
+                  'czr_fn_post_list_option_map',
                   'czr_fn_comment_option_map',
                   //SIDEBARS
                   'czr_fn_sidebars_option_map',
@@ -3205,19 +3206,6 @@ class CZR_utils_settings_map {
                                     'transport'     => 'postMessage',
                                     'notice'        => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
                   ),
-
-                  /* Removed in c4*/
-                  'tc_woocommerce_header_cart_sticky' => array(
-                                    'default'   => 1,
-                                    'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
-                                    'control'   => 'CZR_controls' ,
-                                    'section'   => 'header_layout_sec',
-                                    'type'      => 'checkbox' ,
-                                    'priority'  => 45,
-                                    'transport' => 'postMessage',
-                                    'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
-                                    'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
-                  ),
             );
 
             return array_merge( $_map, $_to_add );
@@ -3315,6 +3303,7 @@ class CZR_utils_settings_map {
             );
 
             return array_merge( $_map, $_to_add );
+
       }
 
 
@@ -3348,6 +3337,18 @@ class CZR_utils_settings_map {
                                         'no-buttons'  => __( 'Text only' , 'customizr' )
                                     ),
                                     'priority'      => 10
+                  ),
+                  'tc_post_metas_update_date_format'  =>  array(
+                                    'default'       => 'days',
+                                    'control'       => 'CZR_controls',
+                                    'label'         => __( "Select the last update format" , "customizr" ),
+                                    'section'       => 'post_metas_sec',
+                                    'type'          =>  'select' ,
+                                    'choices'       => array(
+                                            'days'     => __( 'No. of days since last update' , 'customizr' ),
+                                            'date'     => __( 'Date of the last update' , 'customizr' )
+                                    ),
+                                    'priority'      => 55
                   ),
                   /* Update notice in title has been completely removed in c4*/
                   'tc_post_metas_update_notice_in_title'  =>  array(
@@ -3399,7 +3400,124 @@ class CZR_utils_settings_map {
                   )
             );
 
-            return array_merge( $_map, $_to_add );
+            $_map = array_merge( $_map, $_to_add );
+
+            //add notice to the update date option
+            if ( isset( $_map[ 'tc_show_post_metas_update_date' ] ) )
+                  $_map[ 'tc_show_post_metas_update_date' ]['notice'] = __( 'If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated).' , 'customizr' );
+
+            return $_map;
+
+      }
+
+
+
+      /*-----------------------------------------------------------------------------------------------------
+                                    POST LISTS SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_post_list_option_map( $_map, $get_default = null ) {
+
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_post_list_thumb_placeholder',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+
+
+            global $wp_version;
+
+            //to add
+            $_to_add  = array(
+                  //Post list length
+                  'tc_post_list_length' =>  array(
+                                    'default'       => 'excerpt',
+                                    'label'         => __( 'Select the length of posts in lists (home, search, archives, ...)' , 'customizr' ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'select' ,
+                                    'choices'       => array(
+                                            'excerpt'   => __( 'Display the excerpt' , 'customizr' ),
+                                            'full'    => __( 'Display the full content' , 'customizr' )
+                                            ),
+                                    'priority'       => 20,
+                  ),
+                  /* Used only for the standard grid: Removed in c4 */
+                  'tc_post_list_default_thumb'  => array(
+                                    'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
+                                    'label'         => __( 'Upload a default thumbnail' , 'customizr' ),
+                                    'section'   =>  'post_lists_sec' ,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                            //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                    'width'         => 570,
+                                    'height'        => 350,
+                                    'flex_width'    => true,
+                                    'flex_height'   => true,
+                                    //to keep the selected cropped size
+                                    'dst_width'     => false,
+                                    'dst_height'    => false,
+                                    'priority'      =>  73
+                  ),
+
+                  'tc_post_list_thumb_height' => array(
+                                    'default'       => 250,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'control'   => 'CZR_controls' ,
+                                    'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
+                                    'section'     => 'post_lists_sec' ,
+                                    'type'        => 'number' ,
+                                    'step'      => 1,
+                                    'min'     => 0,
+                                    'priority'      => 80,
+                                    'transport'   => 'postMessage'
+                  ),
+                  'tc_grid_thumb_height' => array(
+                                    'default'       => 350,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'control'       => 'CZR_controls' ,
+                                    'title'         => __( 'Thumbnails max height for the grid layout' , 'customizr' ),
+                                    'label'         => __( "Set the post grid thumbnail's max height in pixels" , 'customizr' ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'number' ,
+                                    'step'          => 1,
+                                    'min'           => 0,
+                                    'priority'      => 65
+                                    //'transport'   => 'postMessage'
+                  ),
+
+            );
+
+            $_map = array_merge( $_map, $_to_add );
+
+            //Add thumb shape
+            $_map['tc_post_list_thumb_shape']['choices'] = array_merge( $_map['tc_post_list_thumb_shape']['choices'], array(
+                                    'squared'               => __( 'Squared, expand on hover' , 'customizr'),
+                                    'squared-expanded'      => __( 'Squared, no expansion' , 'customizr'),
+                                    'rectangular'           => __( 'Rectangular with no effect' , 'customizr'  ),
+                                    'rectangular-blurred'   => __( 'Rectangular with blur effect on hover' , 'customizr'  ),
+                                    'rectangular-unblurred' => __( 'Rectangular with unblur effect on hover' , 'customizr')
+            ) );
+
+            //Remove czr4 only thumb shape
+            unset( $_map['tc_post_list_thumb_shape']['choices']['regular'] );
+
+            //Add thumb position
+            $_map['tc_post_list_thumb_position']['choices'] = array_merge( $_map['tc_post_list_thumb_position']['choices'], array(
+                                    'top'     => __( 'Top' , 'customizr' ),
+                                    'bottom'    => __( 'Bottom' , 'customizr' ),
+            ) );
+
+            //Remove post list plain grid choice
+            unset( $_map['tc_post_list_grid']['choices']['plain' ] );
+
+            return $_map;
       }
 
 
@@ -3442,7 +3560,7 @@ class CZR_utils_settings_map {
                   ),
                   /* Removed in c4 */
                   'tc_comment_bubble_color' => array(
-                                  'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : czr_fn_get_skin_color(),
+                                  'default'     => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? '#F00' : CZR_utils::$inst->czr_fn_get_skin_color(),
                                   'control'     => 'WP_Customize_Color_Control',
                                   'label'       => __( 'Comments bubble color' , 'customizr' ),
                                   'section'     => 'comments_sec',

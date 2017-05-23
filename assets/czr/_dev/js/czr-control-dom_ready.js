@@ -1,25 +1,6 @@
 (function (wp, $) {
-        /* Pro section init */
-        var api = api || wp.customize,
-            proSectionConstructor;
-
-        if ( 'function' === typeof api.Section ) {
-            proSectionConstructor = api.Section.extend( {
-                  active : true,
-                  // No events for this type of section.
-                  attachEvents: function () {},
-                  // Always make the section active.
-                  isContextuallyActive: function () {
-                    return this.active();
-                  },
-                  _toggleActive: function(){ return true; },
-
-            } );
-
-            $.extend( api.sectionConstructor, {
-                  'czr-customize-section-pro' : proSectionConstructor
-            });
-        }
+        var api = api || wp.customize;
+        
         $( function($) {
                 /* GRID */
                 var _build_control_id = function( _control ) {
@@ -121,7 +102,13 @@
                     }
 
                     /**
-                    * Dependency between the header layout and the menu position, when the menu style is Side Menu
+                    * Dependency between the header layout and the horizontal menu positions
+                    * What this does:
+                    * 1) enable/disale the 'pull-menu-center' among the select option for the horizontal menus position
+                    *    this option is available only when the header layout is "centered" (logo centered)
+                    * 2) reset to default the horizontal menus position ONLY if the user switches from an header
+                    *    centered layout to a logo right/left layout.
+                    * 
                     */
                     (function() {
                         var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
@@ -130,26 +117,51 @@
                             _header_layout_setting         = api( 'tc_theme_options[tc_header_layout]' );
 
 
-                        toggle_option( 'centered' == _header_layout_setting.get() );
+                        //if the initial header layout value is not centered
+                        //we have to disable the select option 'pull-menu-center'
+                        if ( 'centered' != _header_layout_setting.get() )   
+                            toggle_select_option_visibility( false );
 
 
-                        //when user switch layout, make sure the menu is correctly aligned by default.
-                        _header_layout_setting.callbacks.add( function(to) {
-                            toggle_option( 'centered' == to );
+                        //when user switches the header layout:
+                        // if the previous option value was "centered"
+                        //1) make sure the menu is correctly aligned if the current header layout is not 'centered' 
+                        //   and the previous was 'centered' 
+                        //2) disable/enable 'pull-menu-center' menu position option
+                        _header_layout_setting.callbacks.add( function(to, from ) {                                                       
+                     
+                              //1)
+                              if ( 'centered' != to && 'centered' == from ) {
+                                    reset_menu_position_option();
+                              }
+                              //2)
+                              toggle_select_option_visibility( 'centered' == to );                        
+                        
                         } );
 
-                        function toggle_option( is_header_centered ) {
+                        function reset_menu_position_option() {
                             _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
 
-                              if ( 'pull-menu-center' == api( option ).get() )
-                                  api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
-
-                              var $_select = api.control( option ).container.find("select");
-
-                              $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
-                              $_select.selecter( 'destroy' ).selecter();
+                                //if the current position of the menu is "centered"
+                                //revert it to the default value
+                                //Note: this function is called only when the user switches from an header centered layout
+                                // to a logo right/left one.
+                                if ( 'pull-menu-center' == api( option ).get() )
+                                    api( option ).set( serverControlParams.isRTL ? 'pull-menu-left' : 'pull-menu-right' );
 
                             });
+                        }
+
+                        function toggle_select_option_visibility( is_header_centered ) {
+
+                            _.each( [ _hm_primary_position_option, _hm_secondary_position_option], function( option ) {
+
+                                var $_select = api.control( option ).container.find("select");
+                                //enable disable "pull-menu-center" select option based on whether or not the header layout is 'centered'
+                                $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
+                                $_select.selecter( 'destroy' ).selecter();
+
+                            });  
                         }
 
                     })();

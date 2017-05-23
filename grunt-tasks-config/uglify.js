@@ -21,7 +21,7 @@ module.exports = {
     files: [{
       expand: true,
       cwd: '<%= paths.front_js %>/parts',
-      src: ['**/*.js', '!*.min.js', '!*.part.js'],
+      src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
       dest: '<%= paths.front_js %>/parts',
       ext: '.min.js'
     }]
