@@ -4237,6 +4237,10 @@ a.czr-format-link:hover::before {
   margin: 2.5em 0 1.25em 0;
 }
 
+.grid-container__alternate .entry-footer .post-info {
+  font-size: 1em;
+}
+
 .grid-container__alternate article {
   position: relative;
   margin: 2.5em 0;
@@ -4776,14 +4780,6 @@ a.czr-format-link:hover::before {
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   letter-spacing: 4px;
-}
-
-.grid-container__plain .post-info.tax__container {
-  margin-top: 1.25em;
-  /* .tax__link {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }*/
 }
 
 .grid-container__plain.split .tax__container {

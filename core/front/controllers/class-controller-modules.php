@@ -18,6 +18,11 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       return czr_fn_has_social_links();
     }
 
+    /* Will be in pro */
+    function czr_fn_display_view_social_share() {
+      return false;
+    }
+
     function czr_fn_display_view_main_slider() {
       if ( ! $this -> czr_fn_display_main_slider() )
         return;

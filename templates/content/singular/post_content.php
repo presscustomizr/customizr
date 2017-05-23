@@ -21,9 +21,9 @@
         <?php
           czr_fn_link_pages();
         ?>
-        <div class="entry-meta clearfix">
+        <div class="row entry-meta justify-content-between align-items-center">
           <?php if ( czr_fn_has('post_metas') && czr_fn_get( 'tag_list', 'post_metas' ) ) : ?>
-          <div class="post-tags float-sm-left">
+          <div class="post-tags col-xs-12 col-sm-auto col-sm">
             <ul class="tags">
               <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
             </ul>
@@ -32,7 +32,7 @@
         <?php
           if ( czr_fn_has('social_share') ) :
         ?>
-          <div class="post-share float-sm-right">
+          <div class="post-share col-xs-12 col-sm-auto col-sm">
               <!-- fake need to have social links somewhere -->
               <?php czr_fn_render_template( 'modules/common/social_block', array( 'model_id' => 'social_share' ) ) ?>
           </div>

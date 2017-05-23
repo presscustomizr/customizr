@@ -80,7 +80,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'main_slider',
               'main_posts_slider',
               'featured_pages',
-              'search_full_page'
+              'search_full_page',
+              'social_share'
             ),
           );
 

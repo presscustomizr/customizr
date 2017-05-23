@@ -282,6 +282,9 @@ a.czr-format-link {
   .entry-footer {
     @extend .small;
     margin: $base-line-height*2 0 $base-line-height 0;
+    .post-info {
+      font-size: 1em;
+    }
   }
 
   article  {
@@ -696,13 +699,13 @@ a.czr-format-link {
     //.avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
-  .post-info.tax__container {
-    margin-top:$base-line-height;
-   /* .tax__link {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }*/
-  }
+  //.post-info.tax__container {
+  //  margin-top:$base-line-height;
+  // /* .tax__link {
+  //    overflow: hidden;
+  //    text-overflow: ellipsis;
+  //  }*/
+  //}
 
   &.split .tax__container {
     overflow:hidden;
