@@ -101,7 +101,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-waypoints' => array(
 
                            'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery.waypoints.js' ),
+                           'files' => array( 'waypoints.js' ),
                            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
 
                      ),
@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      //request animation frame
                      'tc-raf' => array(
 
-                           'path' => $_front_path . 'vendors/',
+                           'path' => $_front_path  . 'fmk/',
                            'files' => array( 'requestAnimationFramePolyfill.js' ),
                            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
 
@@ -225,14 +225,29 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
 
                      // TODO: GRUNT CONCAT
-                     'tc-main-base' => array(
+                     'tc-main-base-utilities' => array(
 
                            'path' => $_front_path  . 'fmk/',
-                           'files' => array( '_main_base.part.js' ),
+                           'files' => array( '_main_base_0_utilities.part.js' ),
                            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
 
                      ),
 
+                     'tc-main-base-fmk' => array(
+
+                           'path' => $_front_path  . 'fmk/',
+                           'files' => array( '_main_base_1_fmk.part.js', ),
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
+
+                     ),
+
+                     'tc-main-base' => array(
+
+                           'path' => $_front_path  . 'fmk/',
+                           'files' => array( '_main_base_2_initialize.part.js', ),
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
+
+                     ),
 
                      'tc-main-browser-detect' => array(
 
@@ -287,6 +302,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'fmk/',
                            'files' => array( '_main_userxp.part.js' ),
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
+
+                     ),
+
+                     'tc-main-slider' => array(
+
+                           'path' => $_front_path . 'fmk/',
+                           'files' => array( '_main_slider.part.js' ),
                            'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
 
                      ),
@@ -385,16 +408,21 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   'tc-main-front',
 
                   'tc-outline',
+                  'tc-main-base-utilities',
+                  'tc-main-base-fmk',
                   'tc-main-base',
 
                   'tc-main-browser-detect',
                   'tc-main-dropdowns',
 
-                  'tc-main-sticky-header',
+                  //'tc-main-sticky-header',
                   'tc-main-side-nav',
                   'tc-main-sticky-footer',
                   'tc-main-masonry', //<- only in pro, to move
                   'tc-main-userxp',
+
+                  'tc-main-slider',
+
                   'tc-main-jquery-plugins',
                   'tc-main-xfire'
                ) );
