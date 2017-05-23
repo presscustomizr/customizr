@@ -1,0 +1,123 @@
+#tc-sn {
+  position: fixed;
+
+  @include perspective( 1000px );
+  @include transform-style( preserve-3d );
+  @include backface-visibility( hidden );
+  @include transition( top 0.2s ease-in-out );
+  top: 0;
+
+  z-index: 0;
+  height: 100vh;
+  width: 350px;
+  max-width: 100%;
+  padding: 0;
+
+  .side-nav__nav, .tc-sn-inner {
+    height: 100%;
+  }
+
+  /* test */
+  .nav__menu-wrapper {
+    height: 85vh;
+    overflow-y: auto;
+  }
+
+  /* Always expand dropdowns */
+  .dropdown-menu.czr-dropdown-menu {
+    display: block !important;
+  }
+
+  .hamburger-toggler__container {
+    float: right;
+    .sn-left & {
+      float: left;
+    }
+  }
+
+  .mobile-search__container {
+    float: left;
+    padding: 0 30px;
+  }
+
+  /* test */
+  .side-nav__nav  {
+    width:100%;
+    text-align:left;
+    padding:0;
+
+    .dropdown-menu.czr-dropdown-menu {
+      @include box-shadow( 0, 0, 0, transparent );
+      position: static;
+      float: none;
+      width: 100%;
+    }
+
+
+    .dropdown-item.current-active::before,
+    .dropdown-item:hover::before {
+        width: 0;
+    }
+    .czr-dropdown .menu-item-has-children {
+      padding-bottom: 0;
+    }
+
+    .side-nav__menu-wrapper {
+      float: left;
+
+      &::before, &::after {
+        display: table;
+        content: ' ';
+        position: relative
+      }
+
+      display: block;
+      padding: $base-line-height 30px;
+      width:100%;
+
+      .side-nav__menu  {
+        width:100%;
+        display: block;
+        text-align: left;
+        & > li  {
+          margin-right: 0; margin-left:0;
+        }
+      }
+    }
+  }
+
+  /* Animation stuff */
+  .animating & {
+    @include transition( transform 0.5s ease-in-out );
+    z-index: 2;
+  }
+
+  .tc-sn-visible:not(.animating) & {
+    @include transform( translate(0, 0) );
+    z-index: 2;
+  }
+  .animating.sn-open & {
+    @include transform( translate3d(0, 0, 0) );
+    //ms-hack
+    -ms-transform: translate(0,0);
+  }
+
+  .sn-left & {
+    left: 0;
+    @at-root .sn-close.sn-left #tc-sn, & {
+      @include transform( translate3d(-100%, 0, 0) );
+      //ms-hack
+      -ms-transform: translate(-100%,0);
+    }
+  }
+
+  .sn-right & {
+    right: 0;
+    @at-root .sn-close.sn-right #tc-sn, & {
+      @include transform( translate3d(100%, 0, 0) );
+      //ms-hack
+      -ms-transform: translate(100%,0);
+    }
+  }
+
+}

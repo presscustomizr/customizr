@@ -1,9 +1,22 @@
-.clearfix {
-  clear: both
+.bg-transparent {
+  background: transparent
 }
-.bg-transparent { background: transparent }
-.big-text-10 { font-size: 10em }
-.m-t-05 { margin-top: 0.5em }
+
+.big-text-10 {
+  font-size: 10em
+}
+
+.m-t-05 {
+  margin-top: 0.5em
+}
+
+.hidden {
+  display: none !important;
+}
+
+.display-flex {
+  @include display-flex();
+}
 
 .inline-list {
   list-style : none;
@@ -14,25 +27,27 @@
   }
   li:before { content: none }
 }
-.no-hover { pointer-events: none !important; }
+.no-hover, .no-hover * {
+  pointer-events: none;
+}
 .shadow {
     @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
 }
 
-@mixin border_b_t() {
-     &::before {
-        content:"";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        top:0;
-        left:0;
-        background: $grey-light;
-      }
+
+
+/* JS IMAGE CENTERING */
+img.h-centered {
+  width: auto!important;
+  max-width: none!important;
+  position: relative;
 }
-.img-centered {
-  @extend .centered;
-  margin: 0 auto;
+img.v-centered {
+  height: auto!important;
+  max-height: none!important;
+  vertical-align: top;
+  position: relative;
+  max-width: none!important;
 }
 
 .filter {
@@ -50,85 +65,8 @@
   }
 }
 
-@mixin v-divider ($mp, $color, $side, $active:0) {
-  padding-#{$side}: $mp;
-  &:before {
-      content:" ";
-      position:absolute;
-      top:0;
-      height:100%;
-      bottom:0;
-      /* #{$side} : -$mp; */
-      left:0;
-      background: $color;
-      @if $active == 0 { width: 0; }
-      @else { width: 1px } ;
-      /* border-#{$side}: 1px solid $color; */
-  }
-}
 
-@mixin underlined_border ($color, $height) {
-  .no-thumb & {
-      position: relative;
-      display: inline;
-      border-bottom: $height solid transparent;
-      @include transition(all, 0.3s ease);
-  }
-  .hover.no-thumb & {
-      border-color: $color;
-  }
-}
-
-@mixin underlined_simple ($color, $height) {
-  position: relative;
-  &:before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: $height;
-      bottom: 0;
-      left: 0;
-      visibility: visible;
-      background-color: $color;
-      @include transform( scaleX(1) );
-   }
-}
-
-@mixin underlined ($color, $height) {
-  position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: $height;
-    bottom: 0;
-    left: 0;
-    background-color: $color;
-    visibility: hidden;
-    @include transform( scaleX(0) );
-    @include transition( all 0.3s ease 0s );
-   }
-   &:hover:before {
-     visibility: visible;
-     @include transform( scaleX(1) );
-  }
-}
-
-@mixin text-truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-@mixin centered {
-  @extend .centered;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-//vectical-alignement
+//vertical-alignment
 %vertical-align-parent {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -143,12 +81,70 @@
   transform: translateY(-50%);
 }
 
-@mixin vertical-align() {
-  &:before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
+.czr-valign { @include czr-valign() }
+.czr-talign { @include czr-talign() }
+
+/* Responsive ratios */
+[class*=czr__r-w] {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  @include backface-visibility( hidden );
+  @include perspective( 1000px );
+  @include transform-style( preserve-3d );
+
+  &::before {
+    display: block;
+    content: "";
+  }
+
+  .czr__r-i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    width: .1px;
+  }
+}
+
+/* Various responsive ratios */
+
+.czr__r-w16by9 {
+  @include czr__responsive-wrapper( 16, 9 );
+}
+
+.czr__r-wGR {
+  @include czr__responsive-wrapper( $golden, 1 );
+}
+
+.czr__r-w10by15 {
+  @include czr__responsive-wrapper( 10, 15 );
+}
+
+.czr__r-w4by3 {
+  @include czr__responsive-wrapper( 4, 3 );
+}
+
+.czr__r-w1by1 {
+  @include czr__responsive-wrapper( 1, 1 );
+}
+
+.czr__r-wFP {
+  @include czr__responsive-wrapper( 270, 250 ); //default fp image size
+  max-width: 270px; /* this actually depends on the thumb size */
+  margin: 8px auto;
+  position: relative;
+  img {
+    position: absolute !important;
+    @include transform( translate3d(0 ,0, 0) );
+    //fix holder transform in ie11
+    &.tc-holder-img {
+      -ms-transform: none;
+    }
+    backface-visibility: hidden;
+    left: 0;
+    top: 0;
   }
 }

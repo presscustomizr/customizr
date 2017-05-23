@@ -1,0 +1,111 @@
+//definitions
+%skin-darkest-color {
+  color: $skin-darkest
+}
+%skin-darkest-backround-color {
+  background-color: $skin-darkest;
+}
+
+
+.post-info a:not(.btn) {
+    &:hover {
+      color: $skin-link-color-hover;
+      span::after, span::before {
+        @extend %skin-darkest-backround-color;
+      }
+    }
+}
+
+//All grids Icons
+
+//specific for classical
+.grid-container__classic .post-type__icon {
+    //SKINNED
+    background-color: $skin-link-color;
+    .icn-format {
+      color: $skin-link-color-hover;
+    }
+    &:hover {
+      @extend %skin-darkest-backround-color;
+    }
+}
+
+.post-type__icon {
+    &:hover {
+      .icn-format {
+        color: $skin-link-color;
+      }
+    }
+}
+
+//Post list titles
+[class*="grid-container__"] .hover .entry-title a {
+  color: $skin-link-color-hover;
+  &::after {
+    background-color: $skin-link-color;
+  }
+}
+[class*="grid-container__"] .entry-title a:hover {
+  color: $skin-link-color;
+  &::after {
+    background-color: $skin-link-color;
+  }
+}
+
+//Grid classic with border bottom
+.grid-container__classic.tc-grid-border .grid__item {
+  border-color: $skin-dark;
+}
+
+//Widget areas
+.widget-area {
+    a:not(.btn):hover {
+      color: $skin-link-color-hover;
+    }
+    .widget:not(.widget_shopping_cart) a:not(.btn):before {
+      @extend %skin-darkest-backround-color;
+    }
+}
+
+.pagination {
+  color: $skin-darkest;
+}
+
+.post-navigation {
+  background-color:  rgba($skin-lightest, 0.4);
+}
+
+//slider dots
+.flickity-page-dots .dot {
+  background-color: $skin-dark;
+}
+
+//link format
+a.czr-format-link {
+  &:hover,
+  .format-link.hover & {
+    color: $skin-link-color-hover;
+  }
+  &::before {
+    @extend %skin-darkest-backround-color;
+  }
+}
+
+//comments and active tabs underline
+.comment-author a::before,
+.comment-link::before {
+  @extend %skin-darkest-backround-color;
+}
+
+
+.tabs .nav-link {
+
+      &:hover, &.active, &.active:hover, &.active:focus {
+        @extend %skin-darkest-color;
+      }
+
+      &.active::before {
+        @extend %skin-darkest-backround-color;
+      }
+
+}

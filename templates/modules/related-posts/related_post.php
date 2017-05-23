@@ -7,29 +7,29 @@
   <div class="grid__item">
     <?php
       czr_fn_render_template(
-        'content/post-lists/singles/post_list_single_media',
+        'content/common/media',
         array(
           'model_args' => array(
-            'element_class' => czr_fn_get('media_cols'),
-            'only_thumb'    => true,
-            'has_post_media' => true
+              'element_class'         => czr_fn_get('media_cols'),
+              'media_type'            => 'czr-thumb',
+              'use_thumb_placeholder' => true
           )
         )
       );
       /* Content */
     ?>
-      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>" <?php czr_fn_echo('element_attributes') ?> >
+      <section class="tc-content entry-content__holder <?php czr_fn_echo('content_cols') ?>">
         <div class="entry-content__wrapper">
         <?php
           /* header */
           czr_fn_render_template(
-            'content/post-lists/singles/headings/post_list_single_header',
+            'content/post-lists/item-parts/headings/post_list_item_header_date',
             array(
-              'model_args' => array( 'cat_limit'  => 2 )
+              'model_class' => 'content/post-lists/item-parts/headings/post_list_item_header'
             )
           );
           /* content inner */
-          czr_fn_render_template( 'content/post-lists/singles/contents/post_list_single_content_inner' );
+          czr_fn_render_template( 'content/post-lists/item-parts/contents/post_list_item_content_inner' );
         ?>
         </div>
       </section>

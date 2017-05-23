@@ -1,41 +1,6 @@
 <?php
 class CZR_post_metas_model_class extends CZR_Model {
-  //protected $_cache = array();
 
-  public    $type   = 'post_metas';
-
-  function __construct( $model = array() ) {
-    //Fires the parent constructor
-    parent::__construct( $model );
-
-    //Since we use only one instance for every post in a post list reset the cache at each loop cycle
-    //add_action( 'the_post', array( $this, 'czr_fn_reset_cache' ) );
-
-  }
-
-
-  /*
-  * @override
-  */
-  /*
-  function czr_fn_maybe_render_this_model_view() {
-
-    if ( ! $this -> visibility )
-      return;
-    if ( is_attachment() )
-        return;
-
-    return $this -> czr_fn_get_cat_list() ||
-          $this -> czr_fn_get_tag_list() ||
-          $this -> czr_fn_get_author() ||
-          $this -> czr_fn_get_publication_date() ||
-          $this -> czr_fn_get_update_date();
-
-  }
-*/
-  public function czr_fn_reset_cache() {
-    $this -> _cache = array();
-  }
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $limit = false, $sep = '' ) {
@@ -46,33 +11,31 @@ class CZR_post_metas_model_class extends CZR_Model {
     return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
   }
 
-  public function czr_fn_get_author() {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author' ) : '';
+  public function czr_fn_get_author( $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
   }
 
-  public function czr_fn_get_publication_date() {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date' ) : '';
+  public function czr_fn_get_publication_date( $permalink = false, $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
+        '',
+        $permalink,
+        $before = null ) ) : '';
   }
 
-  public function czr_fn_get_update_date( $today = '', $yesterday = '', $manydays = '' ) {
-    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) && false !== $_update_days = czr_fn_post_has_update() ) {
-      if ( 'days' == esc_attr( czr_fn_get_opt( 'tc_post_metas_update_date_format' ) ) && $today && $yesterday && $manydays ) {
-        $_update = ( 0 == $_update_days ) ? $today : sprintf( $manydays, $_update_days );
-        $_update = ( 1 == $_update_days ) ? $yesterday : $_update;
-      }
-      return isset( $_update ) ? $_update : $this -> czr_fn_get_meta( 'up_date' );
-    }
-    return false;
+  public function czr_fn_get_update_date( $permalink = false, $before = null ) {
+    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) &&
+           false !== czr_fn_post_has_update() ?
+                $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
   }
   /* END PUBLIC GETTERS */
 
+
   /* HELPERS */
   protected function czr_fn_get_meta( $meta, $params = array(), $separator = '' ) {
-    //if ( ! isset( $this -> _cache[ $meta ] ) ) {
+
     $params = is_array( $params ) ? $params : array( $params );
-    $this -> _cache[ $meta ] = czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
-    //}
-    return $this -> _cache[ $meta ];
+    return czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
+
   }
 
 
@@ -84,16 +47,24 @@ class CZR_post_metas_model_class extends CZR_Model {
     return $this -> czr_fn_meta_generate_tax_list( $hierarchical = false, $limit );
   }
 
-  private function czr_fn_meta_generate_author() {
-    return $this -> czr_fn_get_meta_author();
+  private function czr_fn_meta_generate_author( $before ) {
+    $author = $this -> czr_fn_get_meta_author();
+    $before = is_null($before) ? __( 'by&nbsp;', 'customizr' ) :'';
+    return '<span class="author-meta">' . $before . $author . '</span>';
   }
 
-  private function czr_fn_meta_generate_pub_date( $format = '' ) {
-    return $this -> czr_fn_get_meta_date( 'publication', $format );
+  private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false, $before = null ) {
+    $date   = $this -> czr_fn_get_meta_date( 'publication', $format, $permalink );
+    $before = is_null($before) ? __( 'Published&nbsp;', 'customizr' ) :'';
+
+    return $before . $date;
   }
 
-  private function czr_fn_meta_generate_up_date( $format = '' ) {
-    return $this -> czr_fn_get_meta_date( 'update', $format );
+  private function czr_fn_meta_generate_up_date( $format = '', $permalink = false, $before = null ) {
+    $date   = $this -> czr_fn_get_meta_date( 'update', $format, $permalink );
+    $before = is_null($before) ? __( 'Updated&nbsp;', 'customizr' ) :'';
+
+    return $before . $date;
   }
 
 
@@ -103,7 +74,7 @@ class CZR_post_metas_model_class extends CZR_Model {
     if ( $_is_hierarchical )
       array_push( $_classes , 'tax__link' );
     else
-      array_push( $_classes , 'tag__link' );
+      array_push( $_classes , 'tag__link btn btn-skin-darkest-oh inverted' );
 
     return $_classes;
   }
@@ -115,16 +86,17 @@ class CZR_post_metas_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '' ) {
+  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '', $permalink = false ) {
     if ( 'short' == $_format )
       $_format = 'j M, Y';
     $_format = apply_filters( 'czr_meta_date_format' , $_format );
     $_use_post_mod_date = apply_filters( 'czr_use_the_post_modified_date' , 'publication' != $pub_or_update );
     return apply_filters(
       'tc_date_meta',
-        sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
-          esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
-          esc_attr( get_the_time() ),
+        sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date %3$s" datetime="%4$s">%5$s</time></a>' ,
+          $permalink ? esc_url( get_the_permalink() ) : esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
+          $permalink ? esc_attr( the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ) ) : esc_attr( get_the_time() ),
+          'publication' == $pub_or_update ? 'published updated' : 'updated',
           $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
           $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
         ),
@@ -143,7 +115,6 @@ class CZR_post_metas_model_class extends CZR_Model {
   private function czr_fn_get_meta_author() {
     $author_id = null;
 
-
     if ( is_single() )
       if ( ! in_the_loop() ) {
         global $post;
@@ -151,8 +122,8 @@ class CZR_post_metas_model_class extends CZR_Model {
       }
 
     return apply_filters(
-        'tc_author_meta', ! $author_id ? '' :
-        sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
+        'tc_author_meta',
+        sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
             esc_url( get_author_posts_url( get_the_author_meta( 'ID', $author_id ) ) ),
             esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author_meta('nicename', $author_id ) ) ),
             get_the_author_meta('nicename', $author_id )
@@ -302,14 +273,14 @@ class CZR_post_metas_model_class extends CZR_Model {
       return $_classes;
 
     if ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
-       array_push( $_classes, 'hide-all-post-metas' );
+       $_classes[] = 'hide-all-post-metas';
 
     if (
         ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
         ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
         ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
     )
-      array_push( $_classes, 'hide-post-metas' );
+      $_classes[] = 'hide-post-metas';
 
     return $_classes;
   }

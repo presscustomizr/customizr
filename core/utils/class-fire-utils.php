@@ -9,9 +9,12 @@
 * @since Customizr 3.3.0
 */
 function czr_fn_wp_filters() {
-    //add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
-    if ( esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) ) ) {
-        add_filter( 'the_content'   , 'czr_fn_parse_imgs' , PHP_INT_MAX );
+    add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
+    /*
+    * Smartload disabled for content retrieved via ajax
+    */
+    if ( apply_filters( 'czr_globally_enable_img_smart_load', !czr_fn_is_ajax() && esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) ) ) ) {
+        add_filter( 'the_content'    , 'czr_fn_parse_imgs', PHP_INT_MAX );
         add_filter( 'czr_thumb_html' , 'czr_fn_parse_imgs'  );
     }
     add_filter( 'wp_title'        , 'czr_fn_wp_title' , 10, 2 );
@@ -27,11 +30,35 @@ function czr_fn_wp_filters() {
 * @since Customizr 3.3.0
 */
 function czr_fn_parse_imgs( $_html ) {
-    if( is_feed() || is_preview() || ( wp_is_mobile() && apply_filters('czr_disable_img_smart_load_mobiles', false ) ) )
+    $_bool = is_feed() || is_preview() || ( wp_is_mobile() && apply_filters( 'tc_disable_img_smart_load_mobiles', false ) );
+
+    if ( apply_filters( 'tc_disable_img_smart_load', $_bool, current_filter() ) )
       return $_html;
 
-    return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', 'czr_fn_regex_callback' , $_html);
+    $allowed_image_extentions = apply_filters( 'tc_smartload_allowed_img_extensions', array(
+      'bmp',
+      'gif',
+      'jpeg',
+      'jpg',
+      'jpe',
+      'tif',
+      'tiff',
+      'ico',
+      'png',
+      'svg',
+      'svgz'
+    ) );
+
+    if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
+      return $_html;
+    }
+
+    $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+    $pattern                = '#<img([^>]+?)src=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+
+    return preg_replace_callback( $pattern, 'czr_fn_regex_callback' , $_html);
 }
+
 
 
 /**
@@ -45,12 +72,11 @@ function czr_fn_parse_imgs( $_html ) {
 function czr_fn_regex_callback( $matches ) {
     $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-    if ( false !== strpos( $matches[0], 'data-src' ) ||
-        preg_match('/ data-smartload *= *"false" */', $matches[0]) )
+    if ( false !== strpos( $matches[0], 'data-src' ) || preg_match('/ data-smartload *= *"false" */', $matches[0]) ) {
       return $matches[0];
-    else
+    } else {
       return apply_filters( 'czr_img_smartloaded',
-        str_replace( 'srcset=', 'data-srcset=',
+        str_replace( array('srcset=', 'sizes='), array('data-srcset=', 'data-sizes='),
             sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
                 $matches[1],
                 $_placeholder,
@@ -59,63 +85,7 @@ function czr_fn_regex_callback( $matches ) {
             )
         )
       );
-}
-
-
-
-
-/**
-* Returns the current skin's primary color
-*
-* @package Customizr
-* @since Customizr 3.1.23
-*/
-function czr_fn_get_skin_color( $_what = null ) {
-    $_color_map    = CZR_init::$instance -> skin_color_map;
-    $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
-
-    $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );
-    //falls back to blue3 ( default #27CDA5 ) if not defined
-    $_to_return = array( '#27CDA5', '#1b8d71' );
-
-    switch ($_what) {
-      case 'all':
-        $_to_return = $_color_map;
-      break;
-
-      case 'pair':
-        $_to_return = ( false != $_active_skin && array_key_exists( $_active_skin, $_color_map ) && is_array( $_color_map[$_active_skin] ) ) ? $_color_map[$_active_skin] : $_to_return;
-      break;
-
-      default:
-        $_to_return = ( false != $_active_skin && isset($_color_map[$_active_skin][0]) ) ? $_color_map[$_active_skin][0] : $_to_return[0];
-      break;
     }
-    //Custom skin backward compatibility : different filter prefix
-    $_to_return = apply_filters( 'tc_get_skincolor' , $_to_return , $_what );
-    return apply_filters( 'czr_get_skincolor' , $_to_return , $_what );
-}
-
-
-
-
-/**
-* Returns the "real" queried post ID or if !isset, get_the_ID()
-* Checks some contextual booleans
-*
-* @package Customizr
-* @since Customizr 1.0
-*/
-function czr_fn_get_id()  {
-    if ( in_the_loop() ) {
-      $tc_id            = get_the_ID();
-    } else {
-      global $post;
-      $queried_object   = get_queried_object();
-      $tc_id            = ( ! empty ( $post ) && isset($post -> ID) ) ? $post -> ID : null;
-      $tc_id            = ( isset ($queried_object -> ID) ) ? $queried_object -> ID : $tc_id;
-    }
-    return ( is_404() || is_search() || is_archive() ) ? null : $tc_id;
 }
 
 
@@ -163,14 +133,14 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       $global_layout                 = czr_fn_get_global_layout();
 
       /* Force 404 layout */
-      //checks if the 'force default layout' option is checked and return the default layout before any specific layout
       if ( is_404() ) {
-        $czr_screen_layout = array(
-          'sidebar' => false,
-          'class'   => 'col-xs-12 col-md-8 push-md-2'
-        );
-        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+            $czr_screen_layout = array(
+                'sidebar' => false,
+                'class'   => 'col-12 col-md-8 push-md-2'
+            );
+            return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
+
 
       /* DEFAULT LAYOUTS */
       //what is the default layout we want to apply? By default we apply the global default layout
@@ -179,20 +149,28 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
       //checks if the 'force default layout' option is checked and return the default layout before any specific layout
       if( $czr_sidebar_force_layout ) {
-        $class_tab  = $global_layout[$czr_sidebar_default_layout];
-        $class_tab  = $class_tab['content'];
-        $czr_screen_layout = array(
-          'sidebar' => $czr_sidebar_default_layout,
-          'class'   => $class_tab
-        );
-        return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
+            $class_tab  = $global_layout[$czr_sidebar_default_layout];
+            $class_tab  = $class_tab['content'];
+            $czr_screen_layout = array(
+                'sidebar' => $czr_sidebar_default_layout,
+                'class'   => $class_tab
+            );
+            return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
       }
 
+      global $wp_query, $post;
+      $is_singular_layout          = false;
 
-      if ( is_single() )
-        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
-      if ( is_page() )
-        $czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+
+      if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) ) {
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
+            $is_singular_layout           = true;
+      } if ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+            $is_singular_layout           = true;
+      }
+
+      $czr_sidebar_default_layout     = empty($_czr_sidebar_default_layout) ? $czr_sidebar_default_layout : $_czr_sidebar_default_layout;
 
       //builds the default layout option array including layout and article class
       $class_tab  = $global_layout[$czr_sidebar_default_layout];
@@ -204,28 +182,32 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
       //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
       $czr_specific_post_layout    = false;
-      global $wp_query;
+
       //if we are displaying an attachement, we use the parent post/page layout
-      if ( $post && 'attachment' == $post -> post_type ) {
-        $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
+      if ( isset($post) && is_singular() && 'attachment' == $post->post_type ) {
+            $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
       }
+
       //for a singular post or page OR for the posts page
-      elseif ( is_singular() || $wp_query -> is_posts_page ) {
-        $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
+      elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page ) {
+            $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
       }
 
       //checks if we display home page, either posts or static page and apply the customizer option
-      if( (is_home() && 'posts' == get_option( 'show_on_front' ) ) || is_front_page()) {
-         $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
+      global $wp_the_query;
+      if( ($wp_the_query->is_home() && 'posts' == get_option( 'show_on_front' ) ) || $wp_the_query->is_front_page()) {
+            $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
       }
 
-      if( $czr_specific_post_layout ) {
-          $class_tab  = $global_layout[$czr_specific_post_layout];
-          $class_tab  = $class_tab['content'];
-          $czr_screen_layout = array(
-            'sidebar' => $czr_specific_post_layout,
-            'class'   => $class_tab
-        );
+      if ( $czr_specific_post_layout ) {
+
+            $class_tab  = $global_layout[$czr_specific_post_layout];
+            $class_tab  = $class_tab['content'];
+            $czr_screen_layout = array(
+                'sidebar' => $czr_specific_post_layout,
+                'class'   => $class_tab
+            );
+
       }
 
       return apply_filters( 'czr_screen_layout' , $czr_screen_layout[$sidebar_or_class], $post_id , $sidebar_or_class );
@@ -281,10 +263,36 @@ function czr_fn_fancybox_content_filter( $content) {
     if ( ! isset($post) )
       return $content;
 
-    $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-    $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
-    $r_content = preg_replace( $pattern, $replacement, $content);
-    $content = $r_content ? $r_content : $content;
+    //same as smartload ones
+    $allowed_image_extentions = apply_filters( 'tc_lightbox_allowed_img_extensions', array(
+      'bmp',
+      'gif',
+      'jpeg',
+      'jpg',
+      'jpe',
+      'tif',
+      'tiff',
+      'ico',
+      'png',
+      'svg',
+      'svgz'
+    ) );
+
+    if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
+      return $content;
+    }
+
+
+    $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+    $pattern                = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+
+
+    $replacement = '<a$1href="$2" data-lb-type="grouped-post"$3>';
+
+    $r_content   = preg_replace( $pattern, $replacement, $content);
+
+    $content     = $r_content ? $r_content : $content;
+
     return apply_filters( 'czr_fancybox_content_filter', $content );
 }
 
@@ -333,34 +341,87 @@ function czr_fn_wp_title( $title, $sep ) {
 * Gets the social networks list defined in customizer options
 *
 *
+*
 * @package Customizr
 * @since Customizr 3.0.10
 *
 * @since Customizr 3.4.55 Added the ability to retrieve them as array
 * @param $output_type optional. Return type "string" or "array"
 */
+//MODEL LOOKS LIKE THIS
+//(
+//     [0] => Array
+//         (
+//             [is_mod_opt] => 1
+//             [module_id] => tc_social_links_czr_module
+//             [social-size] => 15
+//         )
+
+//     [1] => Array
+//         (
+//             [id] => czr_social_module_0
+//             [title] => Follow us on Renren
+//             [social-icon] => fa-renren
+//             [social-link] => http://customizr-dev.dev/feed/rss/
+//             [social-color] => #6d4c8e
+//             [social-target] => 1
+//         )
+// )
 function czr_fn_get_social_networks( $output_type = 'string' ) {
 
-    $_socials = czr_fn_get_opt('tc_social_links');
+    $_socials         = czr_fn_get_opt('tc_social_links');
+    $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
+    $_default_size    = '14'; //px
+
+    $_social_opts     = array( 'social-size' => $_default_size );
 
     if ( empty( $_socials ) )
       return;
 
+    //get the social mod opts
+    foreach( $_socials as $key => $item ) {
+      if ( ! array_key_exists( 'is_mod_opt', $item ) )
+        continue;
+      $_social_opts = wp_parse_args( $item, $_social_opts );
+    }
+
+    //if the size is the default one, do not add the inline style css
+    $social_size_css  = empty( $_social_opts['social-size'] ) || $_default_size == $_social_opts['social-size'] ? '' : "font-size:{$_social_opts['social-size']}px";
+
     $_social_links = array();
     foreach( $_socials as $key => $item ) {
-      array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon" %1$s title="%2$s" href="%3$s" %4$s style="color:%5$s"><i class="fa %6$s"></i></a>',
-      //do we have an id set ?
-      //Typically not if the user still uses the old options value.
-      //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+        //skip if mod_opt
+        if ( array_key_exists( 'is_mod_opt', $item ) )
+          continue;
 
-      // Put them together
-        ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'hu_socials_'. $key : $item['id'] ),
-        isset($item['title']) ? esc_attr( $item['title'] ) : '',
-        ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
-        ( isset($item['social-target']) && false != $item['social-target'] ) ? 'target="_blank"' : '',
-        isset($item['social-color']) ? esc_attr($item['social-color']) : '#000',
-        isset($item['social-icon']) ? esc_attr($item['social-icon']) : ''
-      ) );
+        //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+        $icon_class            = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+        $link_icon_class       = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                '';
+
+        /* Maybe build inline style */
+        $social_color_css      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
+        //if the color is the default one, do not print the inline style css
+        $social_color_css      = in_array( $social_color_css, $_default_color ) ? '' : "color:{$social_color_css}";
+        $style_props           = implode( ';', array_filter( array( $social_color_css, $social_size_css ) ) );
+
+        $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
+
+        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
+          //do we have an id set ?
+          //Typically not if the user still uses the old options value.
+          //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+
+          // Put them together
+            !czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+            isset($item['title']) ? esc_attr( $item['title'] ) : '',
+            ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+            ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
+            $icon_class,
+            $link_icon_class,
+            $style_attr
+        ) );
     }
 
     /*
@@ -507,116 +568,14 @@ function czr_fn_is_date_valid($str) {
 
 
 /**
-* @return an array of font name / code OR a string of the font css code
-* @parameter string name or google compliant suffix for href link
-*
-* @package Customizr
-* @since Customizr 3.2.9
-*/
-function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
-    $_to_return = ( 'list' == $_what ) ? array() : false;
-    $_font_groups = apply_filters(
-      'tc_font_pairs',
-      CZR_init::$instance -> font_pairs
-    );
-    foreach ( $_font_groups as $_group_slug => $_font_list ) {
-      if ( 'list' == $_what ) {
-        $_to_return[$_group_slug] = array();
-        $_to_return[$_group_slug]['list'] = array();
-        $_to_return[$_group_slug]['name'] = $_font_list['name'];
-      }
-
-      foreach ( $_font_list['list'] as $slug => $data ) {
-        switch ($_requested) {
-          case 'name':
-            if ( 'list' == $_what )
-              $_to_return[$_group_slug]['list'][$slug] =  $data[0];
-          break;
-
-          case 'code':
-            if ( 'list' == $_what )
-              $_to_return[$_group_slug]['list'][$slug] =  $data[1];
-          break;
-
-          default:
-            if ( 'list' == $_what )
-              $_to_return[$_group_slug]['list'][$slug] = $data;
-            else if ( $slug == $_requested ) {
-                return $data[1];
-            }
-          break;
-        }
-      }
-    }
-    return $_to_return;
-}
-
-
-
-/**
-* Returns a boolean
-* check if user started to use the theme before ( strictly < ) the requested version
-*
-* @package Customizr
-* @since Customizr 3.2.9
-*/
-function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
-    $_ispro = CZR_IS_PRO;
-
-    if ( $_ispro && ! get_transient( 'started_using_customizr_pro' ) )
-      return false;
-
-    if ( ! $_ispro && ! get_transient( 'started_using_customizr' ) )
-      return false;
-
-    $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
-    $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
-    if ( ! $_ver )
-      return false;
-
-    $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
-
-    if ( ! is_array( $_start_version_infos ) )
-      return false;
-
-    switch ( $_start_version_infos[0] ) {
-      //in this case with now exactly what was the starting version (most common case)
-      case 'with':
-        return version_compare( $_start_version_infos[1] , $_ver, '<' );
-      break;
-      //here the user started to use the theme before, we don't know when.
-      //but this was actually before this check was created
-      case 'before':
-        return true;
-      break;
-
-      default :
-        return false;
-      break;
-    }
-}
-
-
-/**
-* Boolean helper to check if the secondary menu is enabled
-* since v3.4+
-*/
-function czr_fn_is_secondary_menu_enabled() {
-    return (bool) esc_attr( czr_fn_get_opt( 'tc_display_second_menu' ) ) /* && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) )*/;
-}
-
-
-
-
-
-/**
 * Returns the url of the customizer with the current url arguments + an optional customizer section args
 *
 * @param $autofocus(optional) is an array indicating the elements to focus on ( control,section,panel).
 * Ex : array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec').
 * Wordpress will cycle among autofocus keys focusing the existing element - See wp-admin/customize.php.
-* The actual focused element depends on its type according to this priority scale: control, section, panel.
-* In this sense when specifying a control, additional section and panel could be considered as fall-back.
+* // Following not valid anymore in wp 4.6.1, due to a bug?
+* //The actual focused element depends on its type according to this priority scale: control, section, panel.
+* //In this sense when specifying a control, additional section and panel could be considered as fall-back.
 *
 * @param $control_wrapper(optional) is a string indicating the wrapper to apply to the passed control. By default is "tc_theme_options".
 * Ex: passing $aufocus = array('control' => 'tc_front_slider') will produce the query arg 'autofocus'=>array('control' => 'tc_theme_options[tc_front_slider]'
@@ -625,23 +584,41 @@ function czr_fn_is_secondary_menu_enabled() {
 * @since Customizr 3.4+
 */
 function czr_fn_get_customizer_url( $autofocus = null, $control_wrapper = 'tc_theme_options' ) {
-    $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
-    $autofocus  = ( ! is_array($autofocus) || empty($autofocus) ) ? null : $autofocus;
+   $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+   $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
+   $autofocus  = ( ! is_array($autofocus) || empty($autofocus) ) ? null : $autofocus;
 
-    if ( is_null($autofocus) )
+   if ( is_null($autofocus) ) {
       return $_customize_url;
+   }
 
-    // $autofocus must contain at least one key among (control,section,panel)
-    if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) )
+   $_ordered_keys = array( 'control', 'section', 'panel');
+
+   // $autofocus must contain at least one key among (control,section,panel)
+   if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) ) {
       return $_customize_url;
+   }
 
-    // wrap the control in the $control_wrapper if neded
-    if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ){
+   // $autofocus must contain at least one key among (control,section,panel)
+   if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) ) {
+      return $_customize_url;
+   }
+
+   // wrap the control in the $control_wrapper if neded
+   if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ) {
       $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
-    }
-    // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-    return add_query_arg( array( 'autofocus' => $autofocus ), $_customize_url );
+   }
+
+   //Since wp 4.6.1 we order the params following the $_ordered_keys order
+   $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
+
+   if ( ! empty( $autofocus ) ) {
+      //here we pass the first element of the array
+      // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
+      return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
+   }
+
+   return $_customize_url;
 }
 
 
@@ -654,6 +631,26 @@ function czr_fn_get_customizer_url( $autofocus = null, $control_wrapper = 'tc_th
 function czr_fn_has_location_menu( $_location ) {
     $_all_locations  = get_nav_menu_locations();
     return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
+}
+
+/**
+* Whether or not we are in the ajax context
+* @return bool
+* @since v3.4.37
+*/
+function czr_fn_is_ajax() {
+  /*
+  * wp_doing_ajax() introduced in 4.7.0
+  */
+  $wp_doing_ajax = ( function_exists('wp_doing_ajax') && wp_doing_ajax() ) || ( ( defined('DOING_AJAX') && 'DOING_AJAX' ) );
+
+  /*
+  * https://core.trac.wordpress.org/ticket/25669#comment:19
+  * http://stackoverflow.com/questions/18260537/how-to-check-if-the-request-is-an-ajax-request-with-php
+  */
+  $_is_ajax      = $wp_doing_ajax || ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+  return apply_filters( 'czr_is_ajax', $_is_ajax );
 }
 
 
@@ -758,9 +755,12 @@ function czr_fn_is_slider_active( $queried_id = null ) {
   //is the slider set to on for the queried id?
   if ( czr_fn_is_home() && czr_fn_get_opt( 'tc_front_slider' ) )
     return apply_filters( 'czr_slider_active_status', true , $queried_id );
+
   $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
+
   if ( ! empty( $_slider_on ) && $_slider_on )
     return apply_filters( 'czr_slider_active_status', true , $queried_id );
+
   return apply_filters( 'czr_slider_active_status', false , $queried_id );
 }
 
@@ -789,6 +789,15 @@ function czr_fn_post_has_title() {
 /* TODO: caching system */
 function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true ) {
     $logo_type_sep      = $logo_type ? '_sticky_' : '_';
+
+    $_cache_key         = "czr{$logo_type_sep}logo_atts";
+    $_logo_atts         = wp_cache_get( $_cache_key );
+
+    if ( false !== $_logo_atts )
+      return $_logo_atts;
+
+    $_logo_atts = array();
+
     $accepted_formats   = apply_filters( 'czr_logo_img_formats' , array('jpg', 'jpeg', 'png' ,'gif', 'svg', 'svgz' ) );
 
     //check if the logo is a path or is numeric
@@ -816,7 +825,7 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     $filetype           = czr_fn_check_filetype ($_logo_src);
 
     if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) )
-      return array(
+      $_logo_atts = array(
                 'logo_src'           => $_logo_src,
                 'logo_attachment_id' => $_attachment_id,
                 'logo_width'         => $_width,
@@ -824,5 +833,53 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
                 'logo_type'          => trim($logo_type_sep,'_')
       );
 
-    return array();
+    //cache this
+    wp_cache_set( $_cache_key, $_logo_atts );
+
+    return $_logo_atts;
 }
+
+//@return bool
+if ( ! function_exists( 'czr_fn_isprevdem' ) ):
+function czr_fn_isprevdem() {
+    global $wp_customize;
+    $is_dirty = false;
+    if ( is_object( $wp_customize ) && method_exists( $wp_customize, 'unsanitized_post_values' ) ) {
+        $real_cust            = $wp_customize -> unsanitized_post_values( array( 'exclude_changeset' => true ) );
+        $_preview_index       = array_key_exists( 'customize_messenger_channel' , $_POST ) ? $_POST['customize_messenger_channel'] : '';
+        $_is_first_preview    = false !== strpos( $_preview_index ,'-0' );
+        $_doing_ajax_partial  = array_key_exists( 'wp_customize_render_partials', $_POST );
+        //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
+        $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
+    }
+    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR_IS_PRO );
+}
+endif;
+
+//back compat
+if ( ! class_exists( 'CZR_utils' ) ) :
+  class CZR_utils {
+    //Access any method or var of the class with classname::$instance -> var or method():
+    static $inst;
+    static $instance;
+
+    function __construct () {
+      self::$inst =& $this;
+      self::$instance =& $this;
+    }
+
+    /**
+    * Returns an option from the options array of the theme.
+    *
+    * @package Customizr
+    * @since Customizr 1.0
+    */
+    function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
+      return czr_fn_opt( $option_name, $option_group, $use_default );
+    }
+  }
+
+  new CZR_utils;
+
+endif;
+

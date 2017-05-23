@@ -343,7 +343,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       * ADD PRO BEFORE SPECIFIC SECTIONS AND PANELS
       *****************************************************************************/
       if ( serverControlParams.isPro ) {
-            _.each( [ 'tc_font_customizer_settings', 'header_image_sec', 'content_blog_sec', 'static_front_page' ], function( _secId ) {
+            _.each( [ 'tc_font_customizer_settings', 'header_image_sec', 'content_blog_sec', 'static_front_page', 'content_single_sec' ], function( _secId ) {
                   _.delay( function() {
                       api.section.when( _secId, function( _sec_ ) {
                             if ( 1 >= _sec_.headContainer.length ) {
@@ -2370,16 +2370,11 @@ $.extend( CZRSkopeBaseMths, {
                             throw new Error( 'Fail to process silent updates in _debouncedProcessSilentUpdates');
                       })
                       .done( function( _updatedSetIds ) {
-                            if ( _.isUndefined( from ) && api.czr_skope.has( to ) && 'global' == api.czr_skope( to )().skope ) {
-                                  dfd.resolve( _updatedSetIds );
-                                  api.state( 'switching-skope' )( false );
-                            } else {
-                                  api.previewer.refresh()
-                                        .always( function() {
-                                              dfd.resolve( _updatedSetIds );
-                                              api.state( 'switching-skope' )( false );
-                                        });
-                            }
+                            api.previewer.refresh()
+                                  .always( function() {
+                                        dfd.resolve( _updatedSetIds );
+                                        api.state( 'switching-skope' )( false );
+                                  });
                       });
           };
           if ( _.has(api, 'czr_isModuleExpanded') && false !== api.czr_isModuleExpanded() ) {
@@ -5086,18 +5081,10 @@ $.extend( CZRSkopeMths, {
             if ( ! serverControlParams.isSkopOn ) {
                   return dfd.resolve().promise();
             }
-
             if ( ! _.has( api, 'czr_activeSkopeId') || _.isUndefined( api.czr_activeSkopeId() ) ) {
                   api.consoleLog( 'The api.czr_activeSkopeId() is undefined in the api.previewer._new_refresh() method.');
-            }
-            if ( ! _.has( api, 'czr_activeSkopeId') ) {
-                  if ( 'resolved' != api.czr_skopeReady.state() ) {
-                        api.czr_skopeReady.done( function() {
-                              _new_refresh.apply( api.previewer, params );
-                        });
-                        coreRefresh.apply( previewer );
-                        return dfd.resolve().promise();
-                  }
+                  coreRefresh.apply( previewer );
+                  return dfd.resolve().promise();
             }
             previewer.send( 'loading-initiated' );
 

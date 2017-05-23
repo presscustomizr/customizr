@@ -9,7 +9,7 @@
   left: 0;
   z-index:90;
   animation: a .3s forwards;
-  @include transition (all 0.3s cubic-bezier(.19, 1, .22, 1));
+  @include transition (visibility 0.3s cubic-bezier(.19, 1, .22, 1), opacity 0.3s cubic-bezier(.19, 1, .22, 1));
 
   .overlay-content {
     position: relative;
@@ -23,7 +23,7 @@
     max-width: 1140px;
     z-index:91;
     @include opacity(0);
-    @include transition (all 0.6s ease-in-out);
+    @include transition (visibility 0.6s ease-in-out, opacity 0.6s ease-in-out );
     @include backface-visibility(hidden);
     perspective: 1000px;
 
@@ -39,9 +39,10 @@
       border-left: 0.5px solid rgba($grey, 0.25);
     }
     .search__wrapper {
-      width: 100%;
+      left: $base-line-height;
+      right: $base-line-height;
       top: 50%;
-      transform: translate2d(0,-50%);//fallback
+      transform: translate(0,-50%);//fallback
       transform: translate3d(0,-50%,0);
       position: absolute;
     }
@@ -49,20 +50,20 @@
       position: relative;
       @include opacity(0);
       visibility: hidden;
-      @include transition (all 1s ease) ;
+      @include transition (visibility 1s ease, opacity 1s ease) ;
       width:90%;
       margin:0 auto;
       text-align: center;
       .search-form {
         @include opacity(0);
-        @include transition (all 1s ease);
+        @include transition (visibility 1s ease, opacity 1s ease);
         visibility: hidden;
         label {
           span:first-of-type {
             font-size: ms(4);
             font-family: $baseFont;
             text-transform: none;
-            margin-top: -$base-line-height;
+            margin-top: -$base-line-height/2;
           }
         }
 
@@ -96,6 +97,7 @@
     position: absolute;
     top:   68px;
     right: $base-line-height;
+    z-index: 92;
     font-size: ms(2);
   }
 }

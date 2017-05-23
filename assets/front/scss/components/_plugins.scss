@@ -1,0 +1,131 @@
+//
+// Woocommerce
+//
+
+//buttons
+.woocommerce {
+
+  #respond input#submit,
+  input#submit,
+  input.button,
+  a.button,
+  .button.add_to_cart_button,
+  input#submit.alt.disabled,
+  input.button.alt.disabled,
+  button.button.alt.disabled,
+  a.button.alt.disabled,
+  input#submit.alt,
+  input.button.alt,
+  a.button.alt,
+  button.button.alt {
+    @extend %btn_base;
+  }
+
+  #respond input#submit,
+  input#submit,
+  input.button,
+  a.button,
+  .button.add_to_cart_button {
+    @extend .btn-skin;
+  }
+
+
+
+  input#submit[class*=alt],
+  input.button[class*=alt],
+  a.button[class*=alt],
+  button.button[class*=alt] {
+    @extend .btn-skin-darkest;
+  }
+
+  input#submit.alt.disabled,
+  input.button.alt.disabled,
+  button.button.alt.disabled,
+  a.button.alt.disabled {
+    @extend .btn-skin-darkest;
+  }
+}
+
+//cols conflicting with bootstrap
+.woocommerce #content [class*=col],
+#content .woocommerce [class*=col] {
+  max-width: none;
+}
+
+//table
+#add_payment_method .cart-collaterals .cart_totals table,
+.woocommerce-cart .cart-collaterals .cart_totals table,
+.woocommerce-checkout .cart-collaterals .cart_totals table,
+.woocommerce table.shop_table {
+  @extend %table;
+}
+
+
+
+// WooCart
+.primary-nav__woocart {
+  position: relative;
+  .product_list_widget {
+    min-height: 3em;
+    max-height: 30vh;
+    overflow-y: auto;
+    .mCustomScrollBox {
+      min-height: inherit;
+    }
+  }
+  ul li {
+    display: block !important;
+    width: 100%;
+    padding: $base-line-height/2 !important;
+    margin-left: 0 !important;
+    white-space: normal;
+    position: relative;
+    &::before {
+      content: none !important;
+    }
+  }
+  .widget_shopping_cart {
+    min-width: 320px;
+    max-width: 50vw;
+    li,
+    p.buttons,
+    p.total {
+      padding: 1em $base-line-height;
+
+    }
+    li a {
+      padding: 0;
+      margin: 0;
+      white-space: normal;
+      display: block !important;
+      &::before {
+        content: none !important;
+      }
+    }
+
+    p.buttons,
+    p.total {
+      margin: 0 $base-line-height/2;
+      text-align: center;
+      .button {
+        display: block !important;
+         &:nth-child(odd) {
+            margin-bottom: .6180469716em;
+        }
+      }
+    }
+    .product_list_widget li a.remove {
+      position: relative;
+      float: left;
+      top: auto;
+      display: block;
+      line-height: 1.15;
+      left: -.25em;
+      z-index: 9;
+    }
+    .product_list_widget img {
+      margin-left: 1em;
+      float: right;
+    }
+  }
+}

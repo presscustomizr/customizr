@@ -50,6 +50,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
 
           //here is where extension classes can set their preset models
           $_preset = $this -> czr_fn_get_preset_model();
+
           if ( is_array($_preset) && ! empty( $_preset ) )
             $model = wp_parse_args( $_preset, $model );
 
@@ -67,7 +68,9 @@ if ( ! class_exists( 'CZR_Model' ) ) :
             $CZR -> collection -> czr_fn_delete( $this -> id );
             return;
           }
-          //equivalent of wp_parse_args() with default model property values
+
+
+          //inside will make the equivalent of wp_parse_args() with default model property values
           $this -> czr_fn_update( $model );
 
           //at this stage the mode must at least have :
@@ -312,7 +315,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //update the model properties with a set of new ones
     //is fired on instantiation
     //@param = array()
-    public function czr_fn_update( $model = array() ) {
+    public function czr_fn_update( $model = array(), $merge_defaults = true ) {
           /*
           * Parse model into $this->defaults, if not empty
           * This property will be merged with the array of properties
@@ -326,16 +329,24 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           * this means that if we render the edit button in a list of posts below the slider
           * we are forced to specify the new text, which, in most of the cases would be just "Edit" (defaults)
           */
-          if ( ! empty( $this -> defaults ) )
-            $model = wp_parse_args( $model, $this->defaults );
+          if ( $merge_defaults && ! empty( $this -> defaults ) ) {
+                $model = wp_parse_args( $model, $this->defaults );
+          }
 
           foreach ( $model as $key => $value ) {
-            if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
-              $this->$key = $model[ $key ];
+               if ( ! isset( $this->key) || ( isset( $this->$key ) && $model[ $key ] != $this->$key ) )
+                      $this->$key = $model[ $key ];
           }
 
           //emit an event when a model is updated
           do_action( 'model_updated', $this -> id );
+    }
+
+    /*
+    * Reset the defaults properties to their original values
+    */
+    public function czr_fn_reset_to_defaults () {
+          $this -> czr_fn_update( $this->defaults );
     }
 
 
