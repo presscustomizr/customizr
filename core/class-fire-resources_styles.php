@@ -352,6 +352,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-darkest-oh.inverted:hover',
                                        'input[type=submit]',
                                        '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
+                                       "[class*='grid-container__'] .hover .entry-title a::after",
                                        'a.czr-format-link::before',
                                        '.comment-author a::before',
                                        '.comment-link::before',

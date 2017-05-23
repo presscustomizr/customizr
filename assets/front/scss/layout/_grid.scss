@@ -97,6 +97,7 @@
 
   width: $base-line-height*3;
   height:$base-line-height*3;
+  line-height: $base-line-height*3;
 
   display: inline-block;
   vertical-align: middle;
@@ -105,10 +106,9 @@
     position:relative;
     display:block;
     color: inherit!important;
-    line-height: 0;
+
     text-decoration: none !important;
-    top: 50%;
-    @include transform( translate(0, -50%) );
+
     @include opacity(0);
     @include transition (all, 0.6s ease);
     &:hover {
@@ -203,9 +203,6 @@ a.czr-format-link {
     align-items: center;
     @extend .service-font;
     .post-info  {
-      .full-image & {
-        @include border_b_t();
-      }
       color: $grey;
       position: relative;
       a {
@@ -512,7 +509,10 @@ a.czr-format-link {
 //full-image = image with no excerpt/gallery
 //IT's AVAILABLE ONLY FOR MASONRY & ALTERNATE
 [class*=grid-container__] .full-image {
-  a:not(.bg-link) { z-index: 2; position: relative; }
+  .entry-footer .post-info{
+    font-size: 1em;
+  }
+  .entry-footer .col, a:not(.bg-link) { z-index: 2; position: relative; }
 
   .bg-link {
     background: rgba($black, 0.25);
@@ -521,7 +521,9 @@ a.czr-format-link {
   &.hover .bg-link {
     background: rgba($black, 0.35);
   }
-
+  .entry-media__holder {
+    z-index: 2;
+  }
   .tc-content {
     padding: $base-line-height;
     width: 100%;
@@ -532,7 +534,6 @@ a.czr-format-link {
     left: 0;
     right:0;
     top: 0;
-    /*z-index: 104;*/
     .entry-title { max-width: 90%; }
     .entry-header a, .entry-footer .post-info, .entry-footer a {
       color: $white;
@@ -616,9 +617,9 @@ a.czr-format-link {
 .grid-container__alternate.semi-narrow  {
   /*.czr-r-sidebar & { padding: 0 $base-line-height*2 0 0  }
   .czr-l-sidebar & { padding: 0 0 0 $base-line-height*2 }*/
-  .tc-content { 
-    padding:$base-line-height 15px; 
-    font-size: 90%; 
+  .tc-content {
+    padding:$base-line-height 15px;
+    font-size: 90%;
   }
   .no-thumb .tc-content { padding: $base-line-height*2; }
   /*.format-video .video-container  {
@@ -883,6 +884,7 @@ a.czr-format-link {
     bottom: $base-line-height;
     overflow: hidden;
     width: auto;
+    height: auto;
   }
 
   .tc-content-inner {

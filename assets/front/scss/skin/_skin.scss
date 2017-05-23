@@ -41,6 +41,9 @@
 //Post list titles
 [class*="grid-container__"] .hover .entry-title a {
   color: $skin-link-color-hover;
+  &::after {
+    background-color: $skin-link-color;
+  }
 }
 [class*="grid-container__"] .entry-title a:hover {
   color: $skin-link-color;
