@@ -50,7 +50,7 @@
                 // Fired on click
                 // Attempt to fire an ajax call
                 var _doAjax = function( _query_ ) {
-                          var ajaxUrl = czrapp.localized.ajaxUrl, dfd = $.Deferred();
+                          var ajaxUrl = czrapp.localized.adminAjaxUrl, dfd = $.Deferred();
                           $.post( ajaxUrl, _query_ )
                                 .done( function( _r ) {
                                       // Check if the user is logged out.

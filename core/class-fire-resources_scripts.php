@@ -448,6 +448,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                               'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
                               'anchorSmoothScroll'         => $anchor_smooth_scroll,
                               'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
+                              'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
 
                               'centerAllImg'          => esc_attr( czr_fn_get_opt( 'tc_center_img') ),
                               'HasComments'        => $has_post_comments,
@@ -466,14 +467,17 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                               'imgSmartLoadEnabled' => $smart_load_enabled,
                               'imgSmartLoadOpts'    => $smart_load_opts,
 
-
                               'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
 
-
-                              'ajaxUrl'           => admin_url( 'admin-ajax.php' ),
+                              //AJAX
+                              'adminAjaxUrl'        => admin_url( 'admin-ajax.php' ),
+                              'ajaxUrl'             => add_query_arg(
+                                    array( 'czrajax' => true ), //to scope our ajax calls
+                                    set_url_scheme( home_url( '/' ) )
+                              ),
+                              'czrFrontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                               'isDevMode'        => CZR_DEBUG_MODE || CZR_DEV_MODE
-
 
                            ),
                            czr_fn_get_id()
@@ -497,9 +501,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   );
                }
 */
-                //load retina.js in footer if enabled
-                if ( apply_filters('tc_load_retinajs', 1 == czr_fn_get_opt( 'tc_retina_support' ) ) )
-                  wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/vendors/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+               //load retina.js in footer if enabled
+               if ( apply_filters('tc_load_retinajs', 1 == czr_fn_get_opt( 'tc_retina_support' ) ) )
+                     wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/vendors/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
          }
 

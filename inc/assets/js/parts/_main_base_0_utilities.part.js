@@ -104,8 +104,8 @@ var czrapp = czrapp || {};
             //do we have a query ?
             query = query || ( _.isObject( query ) ? query : {} );
 
-            var ajaxUrl = TCParams.ajaxUrl,
-                nonce = TCParams.huFrontNonce,//{ 'id' : '', 'handle' : '' }
+            var ajaxUrl = czrapp.localized.ajaxUrl,
+                nonce = czrapp.localized.czrFrontNonce,//{ 'id' : '', 'handle' : '' }
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : ''

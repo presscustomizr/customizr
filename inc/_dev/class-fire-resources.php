@@ -298,7 +298,13 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 'frontHelpNoticesOn'  => czr_fn_is_front_help_enabled(),
                 'frontHelpNoticeParams' => apply_filters( 'tc_js_params_front_placeholders', array() ),
 
-                'ajaxUrl'           => admin_url( 'admin-ajax.php' ),
+                //AJAX
+                'adminAjaxUrl'        => admin_url( 'admin-ajax.php' ),
+                'ajaxUrl'             => add_query_arg(
+                      array( 'czrajax' => true ), //to scope our ajax calls
+                      set_url_scheme( home_url( '/' ) )
+                ),
+                'czrFrontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                 'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV )
   	        	),
