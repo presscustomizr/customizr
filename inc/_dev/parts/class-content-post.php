@@ -163,7 +163,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_single_post_prepare_thumb() {
       //never display the featured image if a slider is displayed
       //=> since the post thumbnail is always printed after the slider, we can check if did_action('__after_carousel_inner'). @see class-content-slider.php
-      if ( 0 != did_action('__after_carousel_inner') )
+      if ( 0 != did_action('__after_carousel_inner') && '__before_main_wrapper' == current_filter() )
         return;
       $_size_to_request = apply_filters( 'tc_single_post_thumb_size' , $this -> czr_fn_get_current_thumb_size() );
       //get the thumbnail data (src, width, height) if any
