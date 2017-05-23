@@ -6,11 +6,8 @@ var CZRParams = CZRParams || {
   FancyBoxAutoscale: 1,
   FancyBoxState: 1,
   HasComments: "",
-  LeftSidebarClass: ".span3.left.tc-sidebar",
   LoadBootstrap: 1,
   LoadModernizr: 1,
-  ReorderBlocks: 1,
-  RightSidebarClass: ".span3.right.tc-sidebar",
   SliderDelay: +5000,
   SliderHover: 1,
   SliderName: "demo",
@@ -18,7 +15,7 @@ var CZRParams = CZRParams || {
   SmoothScroll: { Enabled : 1 , Options : {} },
   anchorSmoothScroll: "linear",
   anchorSmoothScrollExclude : {
-      simple : ['[class*=edd]', '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]'],
+      simple : ['[class*=edd]', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]'],
       deep : { classes : [], ids : [] }
     },
   stickyCustomOffset: { _initial : 0, _scrolling : 0, options : { _static : true, _element : "" } },

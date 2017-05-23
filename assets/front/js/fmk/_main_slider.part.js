@@ -32,6 +32,8 @@ var czrapp = czrapp || {};
                   /* Disable controllers when the first or the latest slide is in the viewport (for the related posts) */
                   czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', self._slider_arrows_enable_toggler );
 
+                  /* for gallery carousels to preserve the dragging we have to move the possible background gallery link inside the flickity viewport */
+                  czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-gallery.czr-carousel .carousel-inner', self._move_background_link_inside );
                   /*Handle custom nav */
                   // previous
                   czrapp.$_body.on( 'click tap prev.czr-carousel', '.czr-carousel-prev', function(e) { self._slider_arrows.apply( this , [ e, 'previous' ] );} );
@@ -126,8 +128,7 @@ var czrapp = czrapp || {};
             * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
             */
             _parallax : function( evt ) {
-
-                var $_parallax_carousel  = $(evt.target),
+                var $_parallax_carousel  = $(this),
                   //extrapolate data from the parallax carousel and pass them to the flickity viewport
                       _parallax_data_map = ['parallaxRatio', 'parallaxDirection', 'parallaxOverflowHidden', 'backgroundClass', 'matchMedia'];
                       _parallax_data     = _.object( _.chain(_parallax_data_map).map( function( key ) {
@@ -221,6 +222,15 @@ var czrapp = czrapp || {};
 
             },
 
+            _move_background_link_inside : function( evt ) {
+
+                  var $_flickity_slider = $(this),
+                      $_bg_link = $_flickity_slider.closest('.entry-media__wrapper').children('.bg-link');
+
+                  if ( $_bg_link.length > 0 ) {
+                        $(this).find( '.flickity-viewport' ).prepend($_bg_link);
+                  }
+            }
       };//methods {}
 
       czrapp.methods.Slider = {};

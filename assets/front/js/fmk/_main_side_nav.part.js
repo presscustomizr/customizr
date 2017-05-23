@@ -4,7 +4,7 @@ var czrapp = czrapp || {};
 *************************************************/
 (function($, czrapp) {
   var _methods =  {
-    init : function() {
+    initOnDomReady : function() {
       this._sidenav_selector        = '#tc-sn';
 
       if ( ! this._is_sn_on() )
@@ -53,7 +53,7 @@ var czrapp = czrapp || {};
       czrapp.$_body.on( 'sn-close sn-open', function( evt ) {
         self.sideNavEventHandler( evt, evt.type );
       });
-      
+
       //RESIZING ACTIONS
       czrapp.$_window.on('tc-resize', function( evt ) {
         self.sideNavEventHandler( evt, 'resize');
@@ -85,7 +85,7 @@ var czrapp = czrapp || {};
         case 'sn-open'  :
             this._end_visibility_toggle();
         break;
-        
+
         case 'sn-close' :
             this._end_visibility_toggle();
             this._set_offset_height();
@@ -210,7 +210,7 @@ var czrapp = czrapp || {};
 
   };//_methods{}
 
-  czrapp.methods.Czr_SideNav = {};
-  $.extend( czrapp.methods.Czr_SideNav , _methods );
+  czrapp.methods.SideNav = {};
+  $.extend( czrapp.methods.SideNav , _methods );
 
 })(jQuery, czrapp);

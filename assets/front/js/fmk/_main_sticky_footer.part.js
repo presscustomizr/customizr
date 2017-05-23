@@ -4,18 +4,12 @@ var czrapp = czrapp || {};
 *************************************************/
 (function($, czrapp) {
   var _methods =  {
-    init : function() {
+    initOnDomReady : function() {
       this.$_push         = $('#czr-push-footer');
       this._class         = 'sticky-footer-enabled';
       this.$_page         = $('#tc-page-wrap');
       this.doingAnimation = false;
-      /*
-      if ( 1 != CZRParams.stickyHeader ) {//sticky header fires a resize
-        var self = this;
-        setTimeout( function() {
-                self._apply_sticky_footer(); }, 50
-        );
-      }*/
+
       setTimeout( function() {
         czrapp.$_body.trigger('refresh-sticky-footer');
       }, 50 );
@@ -55,14 +49,8 @@ var czrapp = czrapp || {};
           if ( !self.doingAnimation ) {
               self.doingAnimation = true;
               window.requestAnimationFrame(function() {
-              //to avoid the creation of a function inside a loop
-              //but still allow the access to "this"
-              //var func = function() { return self._apply_sticky_footer(); };
-              //for ( var i = 0; i<5; i++ ) {/* inspired by twentyfifteen js */
-              //    setTimeout( func, 50 * i);
-              //  }
-                self._apply_sticky_footer();
-                self.doingAnimation = false;
+                  self._apply_sticky_footer();
+                  self.doingAnimation = false;
               });
           }
         break;
@@ -80,11 +68,16 @@ var czrapp = czrapp || {};
            _event        = false;
 
       if ( _push_height > 0 ) {
+
         this.$_push.css('height', _push_height).addClass(this._class);
         _event = 'sticky-footer-on';
-      }else if ( this.$_push.hasClass(this._class) ) {
+
+      }
+      else if ( this.$_push.hasClass(this._class) ) {
+
         this.$_push.removeClass(this._class);
         _event = 'sticky-footer-off';
+
       }
 
       /* Fire an event which something might listen to */
@@ -113,7 +106,7 @@ var czrapp = czrapp || {};
     }
   };//_methods{}
 
-  czrapp.methods.Czr_StickyFooter = {};
-  $.extend( czrapp.methods.Czr_StickyFooter , _methods );
+  czrapp.methods.StickyFooter = {};
+  $.extend( czrapp.methods.StickyFooter , _methods );
 
 })(jQuery, czrapp);

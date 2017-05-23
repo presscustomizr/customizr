@@ -3,10 +3,6 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
    var _methods =   {
 
-      init : function() {
-
-      },
-
       //outline firefox fix, see https://github.com/presscustomizr/customizr/issues/538
       outline: function() {
          if ( 'function' == typeof( tcOutline ) )
@@ -26,11 +22,11 @@ var czrapp = czrapp || {};
             clearTimeout(timer);
 
             if( !body.classList.contains( 'no-hover' ) ) {
-               body.classList.add( 'no-hover' )
+               body.classList.add( 'no-hover' );
             }
 
             timer = setTimeout( function(){
-               body.classList.remove('no-hover')
+               body.classList.remove('no-hover');
             }, 100);
 
          }, false );
@@ -42,7 +38,7 @@ var czrapp = czrapp || {};
             return;
 
          /* Grid */
-         $( '.grid-container__alternate, .grid-container__square-mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-media__holder, article.full-image .tc-content', _toggleArticleParentHover )
+         $( '.grid-container__alternate, .grid-container__square-mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-media__holder, article.full-image .tc-content', _toggleArticleParentHover );
          $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid__item', _toggleArticleParentHover );
          czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front', _toggleThisHover );
 
@@ -53,7 +49,7 @@ var czrapp = czrapp || {};
 
          function _toggleArticleParentHover( evt ) {
             _toggleElementClassOnHover( $(this).closest('article'), 'hover', evt );
-         };
+         }
 
          function _toggleThisHover( evt ) {
             _toggleElementClassOnHover( $(this), 'hover', evt );
@@ -82,11 +78,11 @@ var czrapp = czrapp || {};
             ],
             _focusable_class    = 'czr-focus',
             _parent_selector    = '.'+_focusable_class,
-            _focus_class          = 'in-focus',
-            _czr_form_class      = 'czr-form',
-            _inputs                  = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
-            $_focusable_inputs = $( _input_types.join() );
-            _maybe_fire            = $_focusable_inputs.length > 0;
+            _focus_class        = 'in-focus',
+            _czr_form_class     = 'czr-form',
+            _inputs             = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
+            $_focusable_inputs  = $( _input_types.join() );
+            _maybe_fire         = $_focusable_inputs.length > 0;
 
          //This is needed to add a class to the input parent (label parent) so that
          //we can limit absolute positioning + translations only to relevant ones ( defined in _input_types )
@@ -181,44 +177,9 @@ var czrapp = czrapp || {};
             $_ssbar.detach().prependTo('.article-container');
       },
 
-      headingsActions_test : function() {
-         //User request animation frame
-         var _page_header_inner    = $('.header-content-inner'),
-               _header_push             = $('.header-absolute .topnav_navbars__wrapper'),
-               _offset, doingAnimation;
-
-         if ( ! _page_header_inner.length || ! _header_push.length )
-            return;
-
-         _maybeHandleResize();
-         czrapp.$_window.on('resize', _maybeHandleResize );
-
-         function _maybeHandleResize(){
-            if ( ! doingAnimation ) {
-               //do nothing if is scrolling
-               if ( czrapp.$_body.hasClass('sticky-enabled') )
-                  return;
-
-               doingAnimation = true;
-               window.requestAnimationFrame( function() {
-
-                  //reset offset
-                  if ( 'absolute' != _header_push.css('position') )
-                     _offset = '';
-                  else
-                     _offset =   parseFloat( _header_push.outerHeight() );
-
-                  _page_header_inner.css('paddingTop', _offset );
-                  //We should handle the font sizing I think
-                  doingAnimation = false;
-               });
-            }
-         };
-
-      },
 
       /* Find a way to make this smaller but still effective */
-      featuredPages_test : function() {
+      featuredPagesAlignment : function() {
 
          var $_featured_pages   = $('.featured-page .widget-front'),
                _n_featured_pages = $_featured_pages.length,
@@ -392,9 +353,46 @@ var czrapp = czrapp || {};
             });
          });
       },
+
+      //SMOOTH SCROLL FOR AUTHORIZED LINK SELECTORS
+      anchorSmoothScroll : function() {
+        if ( ! czrapp.localized.anchorSmoothScroll || 'easeOutExpo' != czrapp.localized.anchorSmoothScroll )
+              return;
+
+        var _excl_sels = ( czrapp.localized.anchorSmoothScrollExclude && _.isArray( czrapp.localized.anchorSmoothScrollExclude.simple ) ) ? czrapp.localized.anchorSmoothScrollExclude.simple.join(',') : '',
+            self = this,
+            $_links = $('a[href^="#"]', '#content').not(_excl_sels);
+
+        //Deep exclusion
+        //are ids and classes selectors allowed ?
+        //all type of selectors (in the array) must pass the filter test
+        _deep_excl = _.isObject( czrapp.localized.anchorSmoothScrollExclude.deep ) ? czrapp.localized.anchorSmoothScrollExclude.deep : null ;
+        if ( _deep_excl )
+          _links = _.toArray($_links).filter( function ( _el ) {
+            return ( 2 == ( ['ids', 'classes'].filter(
+                          function( sel_type) {
+                              return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
+                          } ) ).length
+                  );
+          });
+        $(_links).click( function () {
+            var anchor_id = $(this).attr("href");
+
+            //anchor el exists ?
+            if ( ! $(anchor_id).length )
+              return;
+
+            if ('#' != anchor_id) {
+                $('html, body').animate({
+                    scrollTop: $(anchor_id).offset().top
+                }, 700, czrapp.localized.anchorSmoothScroll);
+            }
+            return false;
+        });//click
+      },
    };//_methods{}
 
-   czrapp.methods.Czr_UserExperience = {};
-   $.extend( czrapp.methods.Czr_UserExperience , _methods );
+   czrapp.methods.UserXP = {};
+   $.extend( czrapp.methods.UserXP , _methods );
 
 })(jQuery, czrapp);
