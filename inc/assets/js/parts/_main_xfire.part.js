@@ -110,13 +110,6 @@ var czrapp = czrapp || {};
                       ctor : czrapp.Base.extend( czrapp.methods.Dropdowns ),
                       ready : [ 'fireDropDown' ]
                 },
-                // masonryGrid : {
-                //       ctor : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
-                //       ready : [
-                //             'masonryGridEventListener',
-                //             'fireMasonry'
-                //       ]
-                // },
 
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
