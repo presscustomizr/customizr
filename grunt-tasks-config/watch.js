@@ -21,7 +21,7 @@ module.exports = {
 		tasks : ['gitinfo' , 'replace:readme', 'less:dev_common', 'less:dev_skin' , 'cssmin:dev_common', 'cssmin:dev_skin' ],
 	},
   front_jquery_js : {
-    files : ['<%= paths.front_js4 %>jquery-plugins/*.js', '!*.min.js'],
+    files : ['<%= paths.front_js_4 %>jquery-plugins/*.js', '!*.min.js'],
     tasks : ['jshint:those', 'jshint:part_front_js', 'concat:front_main_parts_js', 'concat:front_js', 'jshint:front', 'uglify:part_front_js' , 'uglify:main_front_js'],
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },
@@ -44,22 +44,23 @@ module.exports = {
     ],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
 	},
+  //c4
   front_js4 : {
     files : [
-        '<%= paths.front_js4 %>fmk/*.js',
-        '!<%= paths.front_js4 %>*.min.js',
-        '!<%= paths.front_js4 %>fmk/*.min.js',
-        '!<%= paths.front_js4 %>fmk/main.js'
+        '<%= paths.front_js_4 %>fmk/*.js',
+        '!<%= paths.front_js_4 %>*.min.js',
+        '!<%= paths.front_js_4 %>fmk/*.min.js',
+        '!<%= paths.front_js_4 %>fmk/main.js'
     ],
     tasks : [
         'gitinfo' ,
         'replace:readme',
         'jshint:part_front_js',
-        'concat:front_main_parts_js',
-        'concat:front_js',
+        'concat:front_main_fmk_js4',
+        'concat:front_js4',
         'jshint:front',
-        'uglify:part_front_js' ,
-        'uglify:main_front_js'
+        'uglify:fmk_front_js4' ,
+        'uglify:main_front_js4'
     ],
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },

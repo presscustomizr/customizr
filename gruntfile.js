@@ -39,7 +39,7 @@ module.exports = function(grunt) {
  //     credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
-        'customizr4_dev': ['clean:free' , 'watch'],
+        //'customizr4_dev': ['clean:free' , 'watch'],
         'customizr_dev': ['clean:free' ,'watch'],
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
@@ -56,6 +56,7 @@ module.exports = function(grunt) {
           'less:prod_common_rtl',
           'cssmin:prod_skins' ,
           'cssmin:prod_common',
+          'sass:front',//c4
           'lineending:front_css4',
           'cssmin:prod_common_rtl'
         ],
@@ -65,7 +66,13 @@ module.exports = function(grunt) {
           'concat:front_js',
           'lineending:front_js',
           'uglify:part_front_js',
-          'uglify:main_front_js'
+          'uglify:main_front_js',
+          //c4
+          'concat:front_main_fmk_js4',
+          'concat:front_js4',
+          'lineending:front_js4',
+          'uglify:fmk_front_js4',
+          'uglify:main_front_js4'
         ],
         'prod_admin_css_js' : [
           'cssmin:prod_admin_css',
