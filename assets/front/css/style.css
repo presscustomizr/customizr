@@ -2819,7 +2819,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .czr-carousel-nav .czr-carousel-control, .mfp-gallery .czr-carousel-control {
   position: absolute;
-  z-index: 2;
+  z-index: 9;
   top: calc((100% - 60px)/2);
   text-align: center;
   padding: 0px;
