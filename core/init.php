@@ -355,15 +355,15 @@ if ( ! class_exists( 'CZR___' ) ) :
               ),
 
 
-            //   /*********************************************
-            //   * Featured Pages
-            //   *********************************************/
-            //   /* contains the featured page item registration */
-            //   array(
-            //     'id'          => 'featured_pages',
-            //     'model_class' => 'modules/featured-pages/featured_pages',
-            //   ),
-            //   /** end featured pages **/
+              /*********************************************
+              * Featured Pages
+              *********************************************/
+              /* contains the featured page item registration */
+              array(
+                'id'          => 'featured_pages',
+                'model_class' => 'modules/featured-pages/featured_pages',
+              ),
+              /** end featured pages **/
 
               /*********************************************
               * CONTENT
