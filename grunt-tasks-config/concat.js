@@ -128,7 +128,7 @@ module.exports = {
       '<%= paths.front_js_4 %>fmk/_main_userxp.part.js',
       //'<%= paths.front_js_4 %>fmk/_main_sticky_header.part.js',
       '<%= paths.front_js_4 %>fmk/_main_sticky_footer.part.js',
-      //'<%= paths.front_js_4 %>fmk/_main_masonry.part.js',
+      '<%= paths.front_js_4 %>fmk/_main_masonry.part.js',
       '<%= paths.front_js_4 %>fmk/_main_side_nav.part.js',
       '<%= paths.front_js_4 %>fmk/_main_dropdowns.part.js',
       '<%= paths.front_js_4 %>fmk/_main_xfire.part.js',
@@ -155,9 +155,9 @@ module.exports = {
       '<%= paths.front_js_4 %>fmk/outline.js',
       '<%= paths.front_js_4 %>vendors/waypoints.js',
       '<%= paths.front_js_4 %>vendors/vivus.min.js',
+      //maybe move following two outside and enqueue only when needed
       '<%= paths.front_js_4 %>vendors/flickity.pkgd.js',
       '<%= paths.front_js_4 %>vendors/jquery.mCustomScrollbar.js',
-      '<%= paths.front_js_4 %>vendors/jquery.magnific-popup.js',
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',

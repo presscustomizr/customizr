@@ -36,11 +36,11 @@ module.exports = function(grunt) {
       skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "grey",
       //https://www.npmjs.org/package/grunt-ssh
       //Check if the context var is set and == travis => avoid travis error with ftpauth no found
- //     credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
+      credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
         //'customizr4_dev': ['clean:free' , 'watch'],
-        'customizr_dev': ['clean:free' ,'watch'],
+        'customizr_dev': ['clean' ,'watch'],
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
         //PROD
@@ -72,7 +72,8 @@ module.exports = function(grunt) {
           'concat:front_js4',
           'lineending:front_js4',
           'uglify:fmk_front_js4',
-          'uglify:main_front_js4'
+          'uglify:main_front_js4',
+          'uglify:vendors_front_js4'
         ],
         'prod_admin_css_js' : [
           'cssmin:prod_admin_css',

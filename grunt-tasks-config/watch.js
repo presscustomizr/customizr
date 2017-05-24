@@ -39,7 +39,7 @@ module.exports = {
         'concat:front_main_parts_js',
         'concat:front_js',
         'jshint:front',
-        'uglify:part_front_js' ,
+        'uglify:part_front_js',
         'uglify:main_front_js'
     ],
 		//tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
@@ -59,8 +59,9 @@ module.exports = {
         'concat:front_main_fmk_js4',
         'concat:front_js4',
         'jshint:front',
-        'uglify:fmk_front_js4' ,
-        'uglify:main_front_js4'
+        'uglify:fmk_front_js4',
+        'uglify:main_front_js4',
+        'uglify:vendors_front_js4'
     ],
     //tasks: ['concat:front_js', 'jshint:front', 'ftp_push:those'],
   },
