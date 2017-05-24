@@ -70,7 +70,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                        'path' => $_front_path . 'fmk/',
                        'files' => array( 'smoothScroll.js' ),
-                       'dependencies' => array( 'tc-js-arraymap-proto', 'underscore' )
+                       'dependencies' => array( 'underscore' )
 
                      ),
 
@@ -84,7 +84,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'vendors/',
                            'files' => array( 'custom-bootstrap.js' , 'custom-bootstrap.min.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery', 'tc-js-params' )
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -92,8 +92,17 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-mfp' => array(
 
                            'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery.magnific-popup.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
+                           'files' => array( 'jquery-magnific-popup.js' ),
+                           'dependencies' => array( 'jquery' )
+
+                     ),
+
+                     //flickity
+                     'tc-flickity' => array(
+
+                           'path' => $_front_path . 'vendors/',
+                           'files' => array( 'flickity-pkgd.js' ),
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -102,25 +111,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'vendors/',
                            'files' => array( 'waypoints.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
-
-                     ),
-
-                     //flickity
-                     'tc-flickity' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'flickity.pkgd.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
-
-                     ),
-
-                     //request animation frame
-                     'tc-raf' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( 'requestAnimationFramePolyfill.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -129,7 +120,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'vendors/',
                            'files' => array( 'vivus.min.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -138,7 +129,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'vendors/',
                            'files' => array( 'holder.min.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -146,8 +137,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-mcs' => array(
 
                            'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery.mCustomScrollbar.min.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' )
+                           'files' => array( 'jquery-mCustomScrollbar.js' ),
+                           'dependencies' => array( 'jquery' )
 
                      ),
 
@@ -224,113 +215,20 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      ),
 
 
-                     // TODO: GRUNT CONCAT
-                     'tc-main-base-utilities' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( '_main_base_0_utilities.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
+                     'tc-main-front' => array(
+                          'path' => $_front_path  . 'fmk/',
+                          'files' => array( 'main.js' ),
+                          'dependencies' => $this -> czr_fn_is_lightbox_required() ?
+                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp' , 'underscore' ) :
+                                 array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
                      ),
 
-                     'tc-main-base-fmk' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( '_main_base_1_fmk.part.js', ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-base' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( '_main_base_2_initialize.part.js', ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-browser-detect' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( '_main_browser_detect.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-dropdowns' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_dropdowns.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-sticky-header' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_sticky_header.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-side-nav' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_side_nav.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-sticky-footer' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_sticky_footer.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-masonry' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_masonry.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore', 'masonry' )
-
-                     ),
-
-
-                     'tc-main-userxp' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_userxp.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-slider' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_slider.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-jquery-plugins' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_jquery_plugins.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-                     'tc-main-xfire' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( '_main_xfire.part.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
-                     ),
-
-
+                     //concats all scripts
+                     'tc-scripts' => array(
+                          'path' => $_front_path,
+                          'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
+                          'dependencies' => $this -> czr_fn_is_lightbox_required() ? array( 'jquery', 'tc-mfp' ) : array( 'jquery' )
+                     )
 
                );//end of scripts map
 
@@ -369,63 +267,50 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                    false
                );
 
+               if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
+                     if ( $this -> czr_fn_is_lightbox_required() ) {
+                           $this -> czr_fn_enqueue_script( 'tc-mfp' );
+                     }
+                     //!!tc-scripts includes underscore, tc-js-arraymap-proto
+                     $this -> czr_fn_enqueue_script( 'tc-scripts' );
+               }
+               else {
 
-               wp_enqueue_script( 'underscore' );
+                  wp_enqueue_script( 'underscore' );
 
-               //!!mind the dependencies
-               $this -> czr_fn_enqueue_script( array(
-                  'tc-js-params',
-                  'tc-js-arraymap-proto',
-                  //vendors
-                  'tc-bootstrap',
-                  'tc-smoothscroll',
-                  'tc-outline',
-                  'tc-waypoints',
-                  'tc-mcs',
-                  'tc-mfp',
-                  'tc-flickity',
-                  'tc-vivus',
-                  'tc-raf',
-                  'tc-holder' //@todo: load only when needed
-               ) );
+                  //!!mind the dependencies
+                  $this -> czr_fn_enqueue_script( array(
+                     'tc-js-params',
+                     'tc-js-arraymap-proto',
+                     //vendors
+                     'tc-bootstrap',
+                     'tc-smoothscroll',
+                     'tc-outline',
+                     'tc-waypoints',
+                     'tc-mcs',
+                     'tc-flickity',
+                     'tc-vivus',
+                     'tc-raf',
+                  ) );
 
+                  if ( $this -> czr_fn_is_lightbox_required() )
+                        $this -> czr_fn_enqueue_script( 'tc-mfp' );
 
-               //plugins
-               $this -> czr_fn_enqueue_script( array(
-                  'tc-dropcap' ,
-                  'tc-img-smartload',
-                  'tc-img-original-sizes',
-                  'tc-ext-links',
-                  'tc-center-images',
-                  'tc-parallax',
-                  'tc-animate-svg',
+                  //plugins and main front
+                  $this -> czr_fn_enqueue_script( array(
+                     'tc-dropcap' ,
+                     'tc-img-smartload',
+                     'tc-img-original-sizes',
+                     'tc-ext-links',
+                     'tc-center-images',
+                     'tc-parallax',
+                     'tc-animate-svg',
 
-               ) );
+                     'tc-main-front',
+                  ) );
 
-               //part, to concat in 'tc-main-front'
-               //plugins
-               $this -> czr_fn_enqueue_script( array(
-                  'tc-main-front',
+               }//end load concatenated
 
-                  'tc-outline',
-                  'tc-main-base-utilities',
-                  'tc-main-base-fmk',
-                  'tc-main-base',
-
-                  'tc-main-browser-detect',
-                  'tc-main-dropdowns',
-
-                  //'tc-main-sticky-header',
-                  'tc-main-side-nav',
-                  'tc-main-sticky-footer',
-                  'tc-main-masonry', //<- only in pro, to move
-                  'tc-main-userxp',
-
-                  'tc-main-slider',
-
-                  'tc-main-jquery-plugins',
-                  'tc-main-xfire'
-               ) );
 
 
 
@@ -467,7 +352,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                ));
 
                wp_localize_script(
-                     'tc-js-params',
+                     $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
                      'CZRParams',
                      apply_filters( 'tc_customizr_script_params' , array(
 
@@ -510,25 +395,24 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                            ),
                            czr_fn_get_id()
 
+
                      )//end of filter
 
                );
 
 
                //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
-//@TODO: enqueue holder.js only if needed
-/*
-               $tc_show_featured_pages           = class_exists('CZR_featured_pages') && CZR_featured_pages::$instance -> czr_fn_show_featured_pages();
-               if ( 0 != $tc_show_featured_pages && $this -> czr_fn_maybe_is_holder_js_required() ) {
+               //@TODO: enqueue holder.js only if needed
+               if ( apply_filters( 'tc_holder_js_required', false ) || czr_fn_is_customizing() ) {
                   wp_enqueue_script(
-                     'holder',
-                     sprintf( '%1$sinc/assets/js/holder.min.js' , TC_BASE_URL ),
+                     'holder-js',
+                     CZR_FRONT_ASSETS_URL . 'js/vendors/holder.min.js',
                      array(),
                      CUSTOMIZR_VER,
                      $in_footer = true
                   );
                }
-*/
+
                //load retina.js in footer if enabled
                if ( apply_filters('tc_load_retinajs', 1 == czr_fn_get_opt( 'tc_retina_support' ) ) )
                      wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/vendors/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
@@ -589,7 +473,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                //Do we load the minified version if available ?
                if ( count( $_params['files'] ) > 1 )
-                     $_filename = $this->_minify_js ? $_params['files'][0] : $_params['files'][1];
+                     $_filename = !$this->_minify_js ? $_params['files'][0] : $_params['files'][1];
                else
                      $_filename = $_params['files'][0];
 
@@ -605,5 +489,26 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          }
 
 
+         /**
+         * Helper to check if we need fancybox or not on front
+         *
+         * @return boolean
+         * @package Customizr
+         * @since v3.3+
+         */
+         private function czr_fn_is_lightbox_required() {
+               return czr_fn_get_opt( 'tc_fancybox' ) || czr_fn_get_opt( 'tc_gallery_fancybox');
+         }
+
+         /**
+         * Helper
+         *
+         * @return boolean
+         * @package Customizr
+         * @since v3.3+
+         */
+         function czr_fn_load_concatenated_front_scripts() {
+               return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+         }
    }//end of CZR_resources_js
 endif;
