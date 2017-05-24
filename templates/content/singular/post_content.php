@@ -17,7 +17,7 @@
       czr_post_format_part();
       the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
       ?>
-      <footer class="post-footer container-fluid clearfix">
+      <footer class="post-footer clearfix">
         <?php
           czr_fn_link_pages();
         ?>
