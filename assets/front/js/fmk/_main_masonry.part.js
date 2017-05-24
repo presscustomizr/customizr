@@ -63,7 +63,7 @@ var czrapp = czrapp || {};
 
     _czrMaybeTriggerImagesLoaded : function() {
       var self = this;
-      this._loaded_counter++;;
+      this._loaded_counter++;
       if ( this._loaded_counter == this._n_images )
         setTimeout( function(){
           self.$_grid.trigger('images_loaded');
