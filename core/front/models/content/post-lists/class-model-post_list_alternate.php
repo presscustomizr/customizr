@@ -28,9 +28,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
       private $post_class     = array('col-12');
 
-      protected $place_1 = 'media';//thumb always printed first
-      protected $place_2 = 'content';//thumb always printed first
-
       protected $post_list_items = array();
 
 
@@ -283,21 +280,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             $_sections_wrapper_class       = array();
             $_grid_item_class              = array();
 
-            /* Structural */
-            $place_1                       = $this->place_1;
-            $place_2                       = $this->place_2;
-
-
-            $_push                         = array(
-                  $place_1 => array(),
-                  $place_2 => array()
-            );
-
-            $_pull                         = array(
-                  $place_1 => array(),
-                  $place_2 => array()
-            );
-
 
             /* End define variables */
 
@@ -323,7 +305,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   }
 
 
-                  // conditions to swap place_1 with place_2 are:
+                  // conditions to swap thumb with content are:
                   // 1) show_thumb_first is false && alternate not on
                   // or
                   // 2) show_thumb_first is false && alternate on and current post number is odd (1,3,..). (First post is 0 )
@@ -332,18 +314,12 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   $swap = !$_layout['show_thumb_first'] && !$_layout[ 'alternate' ];
                   $swap = $swap || $_layout[ 'alternate' ] &&  0 == ( $wp_query -> current_post + (int)$_layout['show_thumb_first'] ) % 2 ;
 
-                  if ( $swap ) {
-                        //build complementar
-                        /* the slice is to avoid push/pull in xs */
-                        $_push[ $place_1 ]        = array_slice( $_layout[ $place_2 ], 0, count($_layout[ $place_2 ]) - 1);
-                        $_pull[ $place_2 ]        = array_slice( $_layout[ $place_1 ], 0, count($_layout[ $place_1 ]) - 1);
-                  }
+                  $_sections_wrapper_class[] = $swap ? 'flex-row-reverse' : 'flex-row';
 
                   if ( ! $this->has_narrow_layout )
                         //allow centering sections
                         array_push( $_sections_wrapper_class, !$cover_sections ? 'czr-center-sections' : 'czr-cover-sections');
-                  }
-
+            }
             elseif ( $is_full_image && $has_post_media ) {
 
                   /*
@@ -362,8 +338,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             }
 
-            $content_cols      = $this -> czr_fn_build_cols( $_layout['content'], $_push['content'], $_pull['content']);
-            $media_class       = $media_cols  = $this -> czr_fn_build_cols( $_layout['media'], $_push['media'], $_pull['media']);
+            $content_cols      = $this -> czr_fn_build_cols( $_layout['content'] );
+            $media_class       = $media_cols  = $this -> czr_fn_build_cols( $_layout['media'] );
 
 
             //add the aspect ratio class for the full image types
@@ -570,34 +546,27 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       * @return array() of bootstrap classes defining the responsive widths
       *
       */
-      function czr_fn_build_cols( $_widths, $_push = array(), $_pull = array() ) {
+      function czr_fn_build_cols( $_widths ) {
 
             $_col_bps = self::$_col_bp;
 
             $_widths = array_filter( $_widths );
-            $_push   = array_filter( $_push );
-            $_pull   = array_filter( $_pull );
 
             $_cols   = array();
 
-            $_push_class = $_pull_class = '';
+
 
             foreach ( $_widths as $i => $val ) {
                   $_col_bp_prefix = 'xs' == $_col_bps[$i] ? '-' : "-{$_col_bps[$i]}-";
 
-                  if ( isset($_push[$i]) )
-                        $_push_class    = "push{$_col_bp_prefix}{$_push[$i]}";
-
-                  if ( isset($_pull[$i]) )
-                        $_pull_class    = "pull{$_col_bp_prefix}{$_pull[$i]}";
-
                   $_width_class  = "col{$_col_bp_prefix}$val";
-                  array_push( $_cols, $_width_class, $_push_class, $_pull_class );
+                  $_cols[]       = $_width_class;
             }
 
             return array_filter( array_unique( $_cols ) );
 
       }
+
 
       /**
       * @package Customizr
