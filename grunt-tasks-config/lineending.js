@@ -13,6 +13,11 @@ module.exports = {
         '': ['<%= paths.front_js %>tc-scripts.js'],
       }
     },
+    front_js4 : {
+      files: {
+        '': ['<%= paths.front_js_4 %>tc-scripts.js'],
+      }
+    },
     czr_js : {
         files : { // Files to process: $dest : $source
           '' : [

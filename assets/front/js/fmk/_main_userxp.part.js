@@ -108,7 +108,7 @@ var czrapp = czrapp || {};
             } else {
                $_parent.removeClass( _focus_class );
             }
-         };
+         }
 
          //on ready :   think about search forms in search pages
          $(_inputs).trigger( 'in-focus-load.czr-focus' );
@@ -293,13 +293,13 @@ var czrapp = czrapp || {};
                * apply the needed offset for each featured page element
                */
                for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
-                  var $_el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
-                        _offset;
+                  var $__el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                        __offset;
 
-                  if ( $_el.length > 0 ) {
-                     _offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
-                     if ( _offset )
-                        $_el.css( 'paddingTop', parseFloat($_el.css('paddingTop')) + _offset );
+                  if ( $__el.length > 0 ) {
+                     __offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
+                     if ( __offset )
+                        $__el.css( 'paddingTop', parseFloat($__el.css('paddingTop')) + __offset );
                   }
                }//endfor
             }//endfor
