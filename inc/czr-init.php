@@ -7021,6 +7021,7 @@ if ( !( function_exists( 'czr_fn_get_raw_option' ) ) ) :
 function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
     $alloptions = wp_cache_get( 'alloptions', 'options' );
     $alloptions = maybe_unserialize( $alloptions );
+    $alloptions = ! is_array( $alloptions ) ? array() : $alloptions;//fixes https://github.com/presscustomizr/hueman/issues/492
     //is there any option group requested ?
     if ( ! is_null( $opt_group ) && array_key_exists( $opt_group, $alloptions ) ) {
       $alloptions = maybe_unserialize( $alloptions[ $opt_group ] );
