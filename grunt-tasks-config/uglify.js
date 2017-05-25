@@ -26,6 +26,34 @@ module.exports = {
       ext: '.min.js'
     }]
   },
+  main_front_js4: {
+    files: [{
+      expand: true,
+      cwd: '<%= paths.front_js_4 %>',
+      src: ['tc-scripts.js'],
+      //src: ['**/*.js', '!*.min.js'],
+      dest: '<%= paths.front_js_4 %>',
+      ext: '.min.js'
+    }]
+  },
+  fmk_front_js4: {
+    files: [{
+      expand: true,
+      cwd: '<%= paths.front_js_4 %>/fmk',
+      src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
+      dest: '<%= paths.front_js_4 %>/fmk',
+      ext: '.min.js'
+    }]
+  },
+  vendors_front_js4: {
+    files: [{
+      expand: true,
+      cwd: '<%= paths.front_js_4 %>/vendors',
+      src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
+      dest: '<%= paths.front_js_4 %>/vendors',
+      ext: '.min.js'
+    }]
+  },
   prod_admin_js:{
     files: [{
       expand: true,

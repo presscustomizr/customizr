@@ -194,7 +194,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
         //is the image the holder?
         if ( $fp_img == $this->fp_holder_img ) {
           //force enqueing holder js
-          add_filter( 'czr_holder_js_required', '__return_true');
+          add_filter( 'tc_holder_js_required', '__return_true');
           $thumb_wrapper_class = 'tc-holder';
         }
         //array with fp_button
