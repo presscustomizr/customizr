@@ -40,7 +40,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
         $_post_nav_enabled         = $this -> czr_fn_is_post_navigation_enabled();
         $_post_nav_context_enabled = $this -> czr_fn_is_post_navigation_context_enabled( $_context );
 
-        $_is_customizing           = CZR___::$instance -> czr_fn_is_customizing() ;
+        $_is_customizing           = czr_fn_is_customizing() ;
 
         if ( $_is_customizing ){
           if ( ! $_post_nav_enabled )
@@ -227,14 +227,14 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @return bool
       */
       function czr_fn_is_post_navigation_context_enabled( $_context ) {
-        return $_context && 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
+        return $_context && 1 == esc_attr( czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
       function czr_fn_is_post_navigation_enabled(){
-        return 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_show_post_navigation' ) ) ;
+        return 1 == esc_attr( czr_fn_opt( 'tc_show_post_navigation' ) ) ;
       }
 
   }//end of class

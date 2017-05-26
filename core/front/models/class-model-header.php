@@ -18,7 +18,7 @@ class CZR_header_model_class extends CZR_Model {
     * 4) v-left         => v-logo_left    //v stays for "vertical"
     * 5) v-right        => v-logo_right   //v stays for "vertical"
     */
-    $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+    $header_layouts = esc_attr( czr_fn_opt( 'tc_header_layout' ) );
 
     switch ( $header_layouts ) {
 
@@ -53,13 +53,13 @@ class CZR_header_model_class extends CZR_Model {
     * c) we display a full heading (with background) AND
     * c.1) not in front page
     */
-    //if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_get_opt( 'tc_header_type' ) ) /*||
-    //    ( 'full' == esc_attr( czr_fn_get_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) */ ) )
+    //if ( !is_404() && ( 'absolute' == esc_attr( czr_fn_opt( 'tc_header_type' ) ) /*||
+    //    ( 'full' == esc_attr( czr_fn_opt( 'tc_heading' ) ) && ! czr_fn_is_home() ) */ ) )
     //  array_push( $element_class, 'header-absolute', 'header-transparent' );
 
 
     //regular menu
-    //if ( 'side' != esc_attr( czr_fn_get_opt( 'tc_menu_style') ) )
+    //if ( 'side' != esc_attr( czr_fn_opt( 'tc_menu_style') ) )
     //  array_push( $element_class, 'czr-regular-menu' );
 
 
@@ -67,29 +67,29 @@ class CZR_header_model_class extends CZR_Model {
     //if ( czr_fn_is_secondary_menu_enabled() )
     //  array_push(  $element_class,
     //    'czr-second-menu-on',
-    //    'czr-second-menu-' . esc_attr( czr_fn_get_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
+    //    'czr-second-menu-' . esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
     //  );
 
 
     /* Sticky header treatment */
-    /*$_sticky_header  = esc_attr( czr_fn_get_opt( "tc_sticky_header") ) || czr_fn_is_customizing();
+    /*$_sticky_header  = esc_attr( czr_fn_opt( "tc_sticky_header") ) || czr_fn_is_customizing();
 
     if ( $_sticky_header ) {
       array_push( $element_class,
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_mobile' ) ) ? 'czr-sticky-mobile' : '',
-        0 != esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ? 'czr-shrink-on' : 'czr-shrink-off',
-        0 != esc_attr( czr_fn_get_opt( 'tc_sticky_show_title_logo') ) ? 'czr-title-logo-on' : 'czr-title-logo-off'
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_mobile' ) ) ? 'czr-sticky-mobile' : '',
+        0 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'czr-shrink-on' : 'czr-shrink-off',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') ) ? 'czr-title-logo-on' : 'czr-title-logo-off'
       );
       array_push( $elements_container_class, 'navbar-to-stick' );
     }*/
 
     /* Submenus effect */
-    if ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_get_opt( 'tc_menu_submenu_fade_effect') ) )
+    if ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) )
       array_push( $element_class, 'czr-submenu-fade' );
-    if ( 0 != esc_attr( czr_fn_get_opt( 'tc_menu_submenu_item_move_effect') ) )
+    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) )
       array_push( $element_class, 'czr-submenu-move' );
 
 
@@ -133,8 +133,8 @@ class CZR_header_model_class extends CZR_Model {
     return $_css;
 
     //HEADER Z-INDEX
-    if ( 100 != esc_attr( czr_fn_get_opt( 'tc_sticky_z_index') ) ) {
-      $_custom_z_index = esc_attr( czr_fn_get_opt( 'tc_sticky_z_index') );
+    if ( 100 != esc_attr( czr_fn_opt( 'tc_sticky_z_index') ) ) {
+      $_custom_z_index = esc_attr( czr_fn_opt( 'tc_sticky_z_index') );
       $_css = sprintf("%s%s",
         $_css,
         "

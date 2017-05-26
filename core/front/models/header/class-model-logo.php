@@ -17,7 +17,7 @@ class CZR_logo_model_class extends CZR_Model {
     $model[ 'src' ]           = $atts[ 'logo_src' ];
     $model[ 'element_class' ] = array( $this -> logo_type );
 
-    $logo_resize              = ( 'sticky' != $this->logo_type ) ? esc_attr( czr_fn_get_opt( 'tc_logo_resize') ) : '';
+    $logo_resize              = ( 'sticky' != $this->logo_type ) ? esc_attr( czr_fn_opt( 'tc_logo_resize') ) : '';
     //build other attrs
     $model[ 'element_attributes' ] = trim( sprintf('%1$s %2$s %3$s %4$s',
         $atts[ 'logo_width' ] ? sprintf( 'width="%1$s"', $atts[ 'logo_width' ] ) : '',
@@ -27,7 +27,7 @@ class CZR_logo_model_class extends CZR_Model {
                                 apply_filters( 'czr_logo_max_width', 250 ),
                                 apply_filters( 'czr_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == czr_fn_get_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
+        implode(' ' , apply_filters('czr_logo_other_attributes' , ( 0 == czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) )
     ));
 
 
@@ -52,7 +52,7 @@ class CZR_logo_model_class extends CZR_Model {
     //and
     //2.1) the shrink title_logo option is enabled
     if ( czr_fn_is_customizing() ||
-        ( 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_header') ) && 0 != esc_attr( czr_fn_get_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
+        ( 0 != esc_attr( czr_fn_opt( 'tc_sticky_header') ) && 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ) ) {
       $_logo_shrink  = implode (';' , apply_filters('czr_logo_shrink_css' , array("height:60px!important","width:auto!important") ) );
       $_css = sprintf("%s%s",
           $_css,

@@ -154,8 +154,7 @@ module.exports = {
       '<%= paths.core_php_4 %>/_utils/fn-3-options.php',
       '<%= paths.core_php_4 %>/_utils/fn-4-query.php',
       '<%= paths.core_php_4 %>/_utils/fn-5-thumbnails.php',
-      '<%= paths.core_php_4 %>/_utils/fn-6-colors.php',
-      '<%= paths.core_php_4 %>/_utils/fn-7-date.php'
+      '<%= paths.core_php_4 %>/_utils/fn-6-colors.php'
     ],
     dest: '<%= paths.core_php_4 %>functions.php',
   },

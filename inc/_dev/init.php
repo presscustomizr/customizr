@@ -25,6 +25,11 @@ if( ! function_exists( 'tc__f' ) ) :
     }
 endif;
 
+
+
+//load shared fn
+require_once( get_template_directory() . '/core/functions-base.php' );
+
 /**
 * Fires the theme : constants definition, core classes loading
 *
@@ -38,9 +43,7 @@ endif;
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR___' ) ) :
-  class CZR___ {
-    //Access any method or var of the class with classname::$instance -> var or method():
-    static $instance;
+  final class CZR___ extends CZR_BASE {
     public $tc_core;
     public $is_customizing;
     public static $theme_name;
@@ -81,8 +84,8 @@ if ( ! class_exists( 'CZR___' ) ) :
       if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , get_template_directory_uri() . '/' );
       //TC_BASE_URL_CHILD http url of the loaded child theme
       if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-      //THEMENAME contains the Name of the currently loaded theme
-      if( ! defined( 'THEMENAME' ) )          define( 'THEMENAME' , $tc_base_data['title'] );
+      //CZR_THEMENAME contains the Name of the currently loaded theme
+      if( ! defined( 'CZR_THEMENAME' ) )          define( 'CZR_THEMENAME' , $tc_base_data['title'] );
       //CZR_WEBSITE is the home website of Customizr
       if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
 
@@ -91,7 +94,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       //MAIN OPTIONS NAME
       if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
 
-      if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , self::czr_fn_is_pro() );
+      if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -177,7 +180,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       foreach ( $_to_load as $group => $files ) {
         foreach ($files as $path_suffix ) {
           //checks if a child theme is used and if the required file has to be overriden
-          // if ( $this -> czr_fn_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
+          // if ( czr_fn_is_child() && file_exists( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ) {
           //     require_once ( TC_BASE_CHILD . $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] .'.php') ;
           // }
           // else {
@@ -206,7 +209,7 @@ if ( ! class_exists( 'CZR___' ) ) :
     ****************************/
     function czr_fn_req_once( $file_path ) {
         //checks if a child theme is used and if the required file has to be overriden
-        if ( $this -> czr_fn_is_child() && file_exists( TC_BASE_CHILD . $file_path ) ) {
+        if ( czr_fn_is_child() && file_exists( TC_BASE_CHILD . $file_path ) ) {
             require_once ( TC_BASE_CHILD . $file_path ) ;
         }
         else {
@@ -234,7 +237,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       //2) IS CUSTOMIZING
       //---2.1) IS LEFT PANEL => customizer controls
       //---2.2) IS RIGHT PANEL => preview
-      if ( ! $this -> czr_fn_is_customizing() )
+      if ( ! czr_fn_is_customizing() )
         {
           if ( is_admin() ) {
             //load
@@ -263,14 +266,14 @@ if ( ! class_exists( 'CZR___' ) ) :
           $this -> czr_fn_req_once( 'inc/czr-customize.php' );
 
           //left panel => skip all front end classes
-          if ( $this -> czr_fn_is_customize_left_panel() ) {
+          if ( czr_fn_is_customize_left_panel() ) {
             $_to_load = $this -> czr_fn_unset_core_classes(
                 $_to_load,
                 array( 'header' , 'content' , 'footer' ),
                 array( 'fire|inc|resources' , 'fire|inc/admin|admin_page' , 'admin|inc/admin|meta_boxes' )
             );
           }
-          if ( $this -> czr_fn_is_customize_preview_frame() ) {
+          if ( czr_fn_is_customize_preview_frame() ) {
             //load
             $this -> czr_fn_req_once( 'inc/czr-front.php' );
 
@@ -330,119 +333,15 @@ if ( ! class_exists( 'CZR___' ) ) :
     }//end of fn
 
 
-
-
-    /**
-    * Checks if we use a child theme. Uses a deprecated WP functions (get _theme_data) for versions <3.4
-    * @return boolean
-    *
-    * @since  Customizr 3.0.11
-    */
-    function czr_fn_is_child() {
-      // get themedata version wp 3.4+
-      if ( function_exists( 'wp_get_theme' ) ) {
-        //get WP_Theme object of customizr
-        $tc_theme       = wp_get_theme();
-        //define a boolean if using a child theme
-        return $tc_theme -> parent() ? true : false;
-      }
-      else {
-        $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-        return ! empty($tc_theme['Template']) ? true : false;
-      }
-    }
-
-
-    /**
-    * Are we in a customization context ? => ||
-    * 1) Left panel ?
-    * 2) Preview panel ?
-    * 3) Ajax action from customizer ?
-    * @return  bool
-    * @since  3.2.9
-    */
-    function czr_fn_is_customizing() {
-      //checks if is customizing : two contexts, admin and front (preview frame)
-      return in_array( 1, array(
-        $this -> czr_fn_is_customize_left_panel(),
-        $this -> czr_fn_is_customize_preview_frame(),
-        $this -> czr_fn_doing_customizer_ajax()
-      ) );
-    }
-
-
-    /**
-    * Is the customizer left panel being displayed ?
-    * @return  boolean
-    * @since  3.3+
-    */
-    function czr_fn_is_customize_left_panel() {
-      global $pagenow;
-      return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
-    }
-
-
-    /**
-    * Is the customizer preview panel being displayed ?
-    * @return  boolean
-    * @since  3.3+
-    */
-    function czr_fn_is_customize_preview_frame() {
-      return is_customize_preview() || ( ! is_admin() && isset($_REQUEST['customize_messenger_channel']) );
-    }
-
-
-    /**
-    * Always include wp_customize or customized in the custom ajax action triggered from the customizer
-    * => it will be detected here on server side
-    * typical example : the donate button
-    *
-    * @return boolean
-    * @since  3.3.2
-    */
-    function czr_fn_doing_customizer_ajax() {
-      $_is_ajaxing_from_customizer = isset( $_POST['customized'] ) || isset( $_POST['wp_customize'] );
-      return $_is_ajaxing_from_customizer && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
-    }
-
-
-    /**
-    * @return  boolean
-    * @since  3.4+
-    */
-    static function czr_fn_is_pro() {
-      //TC_BASE is the root server path of the parent theme
-      if ( ! defined( 'TC_BASE' ) ) define( 'TC_BASE' , get_template_directory().'/' );
-      return class_exists( 'CZR_init_pro' ) && "customizr-pro" == self::$theme_name;
-    }
   }//end of class
 endif;
 
+
+
+
+
+
 /* HELPERS */
-//@return boolean
-if ( ! function_exists( 'czr_fn_is_partial_refreshed_on' ) ) {
-  function czr_fn_is_partial_refreshed_on() {
-    return apply_filters( 'tc_partial_refresh_on', true );
-  }
-}
-/* HELPER FOR CHECKBOX OPTIONS */
-//used in the customizer
-//replace wp checked() function
-if ( ! function_exists( 'czr_fn_checked' ) ) {
-  function czr_fn_checked( $val ) {
-    echo $val ? 'checked="checked"' : '';
-  }
-}
-/**
-* helper
-* @return  bool
-*/
-if ( ! function_exists( 'czr_fn_has_social_links' ) ) {
-  function czr_fn_has_social_links() {
-    $_socials = czr_fn_get_opt('tc_social_links');
-    return ! empty( $_socials );
-  }
-}
 
 /**
 * helper
@@ -489,12 +388,4 @@ if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
 }
 
 
-/**
-* @return  bool
-* @since Customizr 3.4+
-* User option to enabe/disable all notices. Enabled by default.
-*/
-function czr_fn_is_front_help_enabled(){
-  return apply_filters( 'tc_is_front_help_enabled' , (bool)CZR_utils::$inst->czr_fn_opt('tc_display_front_help') );
-}
 ?>

@@ -9,7 +9,7 @@ class CZR_btt_arrow_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     //set direction class
-    $direction = esc_attr( czr_fn_get_opt( 'tc_back_to_top_position' ) );
+    $direction = esc_attr( czr_fn_opt( 'tc_back_to_top_position' ) );
 
     $dir_opposites = array(
       'left'  => 'right',

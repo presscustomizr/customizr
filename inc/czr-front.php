@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
   	  }
 
       //add a 100% wide container just after the sticky header to reset margin top
-      if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ) || CZR___::$instance -> czr_fn_is_customizing() )
+      if ( 1 == esc_attr( czr_fn_opt( 'tc_sticky_header' ) ) || czr_fn_is_customizing() )
         add_action( '__after_header'              , array( $this, 'czr_fn_reset_margin_top_after_sticky_header'), 0 );
 
     }
@@ -151,7 +151,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       if ( function_exists('has_site_icon') && has_site_icon() )
         return;
 
-      $_fav_option  			= esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fav_upload') );
+      $_fav_option  			= esc_attr( czr_fn_opt( 'tc_fav_upload') );
      	if ( ! $_fav_option || is_null($_fav_option) )
      		return;
 
@@ -162,7 +162,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
      		$_attachment_data 	= apply_filters( 'tc_fav_attachment_img' , wp_get_attachment_image_src( $_fav_option , 'full' ) );
      		$_fav_src 			= $_attachment_data[0];
      	} else { //old treatment
-     		$_saved_path 		= esc_url ( CZR_utils::$inst->czr_fn_opt( 'tc_fav_upload') );
+     		$_saved_path 		= esc_url ( czr_fn_opt( 'tc_fav_upload') );
      		//rebuild the path : check if the full path is already saved in DB. If not, then rebuild it.
        	$upload_dir 		= wp_upload_dir();
        	$_fav_src 			= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
@@ -213,7 +213,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
           $_width 				= false;
           $_height 				= false;
           $_attachement_id 		= false;
-          $_logo_option  			= esc_attr( CZR_utils::$inst->czr_fn_opt( "tc{$logo_type}logo_upload") );
+          $_logo_option  			= esc_attr( czr_fn_opt( "tc{$logo_type}logo_upload") );
           //check if option is an attachement id or a path (for backward compatibility)
           if ( is_numeric($_logo_option) ) {
               $_attachement_id 	= $_logo_option;
@@ -224,15 +224,15 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
           } else { //old treatment
               //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
               $upload_dir 			= wp_upload_dir();
-              $_saved_path 			= esc_url ( CZR_utils::$inst->czr_fn_opt( "tc{$logo_type}logo_upload") );
+              $_saved_path 			= esc_url ( czr_fn_opt( "tc{$logo_type}logo_upload") );
               $_logo_src 				= ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
           }
 
           //hook + makes ssl compliant
           $_logo_src    			= apply_filters( "tc{$logo_type}logo_src" , is_ssl() ? str_replace('http://', 'https://', $_logo_src) : $_logo_src ) ;
 
-          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_logo_resize') ) : '';
-          $filetype 				= CZR_utils::$inst -> czr_fn_check_filetype ($_logo_src);
+          $logo_resize 			= ( $logo_type == '_' ) ? esc_attr( czr_fn_opt( 'tc_logo_resize') ) : '';
+          $filetype 				= czr_fn_check_filetype($_logo_src);
           if( ! empty($_logo_src) && in_array( $filetype['ext'], $accepted_formats ) ) {
               $_args 		= array(
                       'logo_src' 				=> $_logo_src,
@@ -311,7 +311,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
                                 apply_filters( 'tc_logo_max_width', 250 ),
                                 apply_filters( 'tc_logo_max_height', 100 )
                                 ) : '',
-        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == CZR_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
+        implode(' ' , apply_filters('tc_logo_other_attributes' , ( 0 == czr_fn_opt( 'tc_retina_support' ) ) ? array('data-no-retina') : array() ) ),
         $logo_type,
         $logo_attachment_id ? sprintf( 'attachment-%1$s', $logo_attachment_id ) : ''
       );
@@ -438,7 +438,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_header' ) ) || ! ( $_socials = czr_fn__f( '__get_socials' ) );
+        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( 'tc_social_in_header' ) ) || ! ( $_socials = czr_fn__f( '__get_socials' ) );
 
         if ( $_nothing_to_render )
         	return;
@@ -466,7 +466,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		*/
 		function czr_fn_tagline_display() {
       //do not display tagline if the related option is false or no tagline available
-      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_tagline' ) ) )
+      if ( 0 == esc_attr( czr_fn_opt( 'tc_show_tagline' ) ) )
         return;
 
       $_tagline_text  = czr_fn_get_tagline_text( $echo = false );
@@ -525,7 +525,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
 		function czr_fn_write_header_inline_css( $_css ) {
       //TOP BORDER
-			if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_top_border') ) ) {
+			if ( 1 != esc_attr( czr_fn_opt( 'tc_top_border') ) ) {
   			$_css = sprintf("%s\n%s",
   				$_css,
   				"header.tc-header {border-top: none;}\n"
@@ -533,7 +533,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 	    }
 
       //STICKY HEADER
-	    if ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') ) || CZR___::$instance -> czr_fn_is_customizing() ) {
+	    if ( 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) || czr_fn_is_customizing() ) {
 	    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 	    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -566,8 +566,8 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
       }
 
 			//HEADER Z-INDEX
-	    if ( 100 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_z_index') ) ) {
-	    	$_custom_z_index 	= esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_z_index') );
+	    if ( 100 != esc_attr( czr_fn_opt( 'tc_sticky_z_index') ) ) {
+	    	$_custom_z_index 	= esc_attr( czr_fn_opt( 'tc_sticky_z_index') );
 		    $_css = sprintf("%s\n%s",
   		      $_css,
   		      ".tc-no-sticky-header .tc-header, .tc-sticky-header .tc-header {
@@ -589,10 +589,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     */
     function czr_fn_add_body_classes($_classes) {
       //STICKY HEADER
-    	if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ) ) {
+    	if ( 1 == esc_attr( czr_fn_opt( 'tc_sticky_header' ) ) ) {
      		$_classes = array_merge( $_classes, array('tc-sticky-header', 'sticky-disabled') );
      		//STICKY TRANSPARENT ON SCROLL
-       	if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_transparent_on_scroll' ) ) )
+       	if ( 1 == esc_attr( czr_fn_opt( 'tc_sticky_transparent_on_scroll' ) ) )
        		$_classes = array_merge( $_classes, array('tc-transparent-on-scroll') );
        	else
        		$_classes = array_merge( $_classes, array('tc-solid-color-on-scroll') );
@@ -602,7 +602,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
      	}
 
       //No navbar box
-      if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_boxed_navbar') ) )
+      if ( 1 != esc_attr( czr_fn_opt( 'tc_display_boxed_navbar') ) )
           $_classes = array_merge( $_classes , array('no-navbar' ) );
 
       return $_classes;
@@ -622,12 +622,12 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_show_tagline 			= 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_show_tagline') );
-      $_show_title_logo 		= 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_show_title_logo') );
+			$_show_tagline 			= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_tagline') );
+      $_show_title_logo 		= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') );
       $_use_sticky_logo 		= $this -> czr_fn_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			  = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_show_menu') );
-			$_header_layout 		= "logo-" . esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) );
+			$_shrink_title_logo 	= 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') );
+			$_show_menu 			  = 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_menu') );
+			$_header_layout 		= "logo-" . esc_attr( czr_fn_opt( 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
         $_show_title_logo ? 'tc-title-logo-on' : 'tc-title-logo-off',
@@ -648,10 +648,10 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     * @since Customizr 3.2.9
     */
     function czr_fn_use_sticky_logo(){
-        if ( ! esc_attr( CZR_utils::$inst->czr_fn_opt( "tc_sticky_logo_upload") ) )
+        if ( ! esc_attr( czr_fn_opt( "tc_sticky_logo_upload") ) )
             return false;
-        if ( ! ( esc_attr( CZR_utils::$inst->czr_fn_opt( "tc_sticky_header") ) &&
-                     esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_show_title_logo') )
+        if ( ! ( esc_attr( czr_fn_opt( "tc_sticky_header") ) &&
+                     esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') )
                )
         )
             return false;
@@ -671,7 +671,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_layout = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') );
+			$_layout = esc_attr( czr_fn_opt( 'tc_header_layout') );
 			switch ($_layout) {
 				case 'left':
 					$_classes = array('brand', 'span3' , 'pull-left');
@@ -722,7 +722,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_menu_hooks() {
-      if ( (bool) CZR_utils::$inst->czr_fn_opt('tc_hide_all_menus') )
+      if ( (bool) czr_fn_opt('tc_hide_all_menus') )
         return;
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'czr_fn_add_body_classes') );
@@ -797,7 +797,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
               __( "This is a default page menu.", "customizr" ),
               __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
               sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a>', admin_url('nav-menus.php'), __( "menu creation screen", "customizr") )
               )
           );
@@ -860,7 +860,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
         apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
         '<span class="icon-bar"></span>',
-        (bool)esc_attr( CZR_utils::$inst->czr_fn_opt('tc_display_menu_label') ) ? $_button_label : '',
+        (bool)esc_attr( czr_fn_opt('tc_display_menu_label') ) ? $_button_label : '',
         '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Open the menu' , 'customizr')
       );
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
@@ -921,12 +921,12 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_regular_menu_display( $_location = 'main' ){
       $type               = 'regular';
-      $button_where       = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $button_where       = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class       = array( 'btn-toggle-nav', $button_where );
       $button_attr        = 'data-toggle="collapse" data-target=".nav-collapse"';
 
-      $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
-      $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
+      $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
+      $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
 
       $menu_view = $this -> czr_fn_wp_nav_menu_view( compact( '_location', 'type', 'menu_class', 'menu_wrapper_class' ) );
 
@@ -989,7 +989,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_sidenav_toggle_button_display() {
       $type          = 'sidenav';
-      $where         = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $where         = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class  = array( 'btn-toggle-nav', 'sn-toggle', $where );
       $button_attr   = '';
 
@@ -1018,7 +1018,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
             'fallback_cb'     => array( $this, 'czr_fn_page_menu' ),
             //if no menu is set to the required location, fallsback to tc_page_menu
             //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
-            'walker'          => ! CZR_utils::$inst -> czr_fn_has_location_menu($_location) ? '' : new CZR_nav_walker($_location),
+            'walker'          => ! czr_fn_has_location_menu($_location) ? '' : new CZR_nav_walker($_location),
             'echo'            => false,
         )
       );
@@ -1053,7 +1053,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
               __( "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed.", "customizr" ),
               sprintf( __("%s or %s.", "customizr"),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('demo.presscustomizr.com?design=nav'), __( "Try it with the demo", "customizr") ),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "open the customizer menu section", "customizr"), __("change your menu design now", "customizr") )
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "open the customizer menu section", "customizr"), __("change your menu design now", "customizr") )
               )
           );
           printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
@@ -1079,7 +1079,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
           printf('<p><strong>%1$s<br/>%2$s</strong></p>',
               __( "You can display your main menu or a second menu here horizontally.", "customizr" ),
               sprintf( __("%s or read the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "Manage menus in the header", "customizr"), __("Manage your menus in the header now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "Manage menus in the header", "customizr"), __("Manage your menus in the header now", "customizr") ),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('http://docs.presscustomizr.com/article/101-customizr-theme-options-header-settings/#navigation'), __( "documentation", "customizr") )
               )
           );
@@ -1104,9 +1104,9 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_menu_style_options( $_classes ) {
-      $_classes = ( ! wp_is_mobile() && 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
-      $_classes = ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
-      $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
+      $_classes = ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
+      $_classes = ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
+      $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
 
       //Navbar menus positions (not sidenav)
       //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
@@ -1115,15 +1115,15 @@ if ( ! class_exists( 'CZR_menu' ) ) :
 
       $_menu_position = '';
       if ( ! $this -> czr_fn_is_sidenav_enabled() )
-        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') );
+        $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_menu_position') );
       if ( CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() )
-        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_position') );
+        $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_second_menu_position') );
 
 
 
       if ( 'pull-menu-center' == $_menu_position ) {
         //pull-menu-center is possible only when logo-centered
-        if ( 'centered' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) ) )
+        if ( 'centered' != esc_attr( czr_fn_opt( 'tc_header_layout' ) ) )
           array_pop($_classes);
 
         //this value will determine the beahavior when logo-center and menu center and .sticky-enabled
@@ -1168,7 +1168,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       if ( CZR_Utils::$inst -> czr_fn_is_secondary_menu_enabled() )
         array_push( $_classes, 'tc-second-menu-on' );
       //adds the resp. behaviour option for secondary menu
-      array_push( $_classes, 'tc-second-menu-' . esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
+      array_push( $_classes, 'tc-second-menu-' . esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
 
       return $_classes;
     }
@@ -1403,7 +1403,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_sidenav_body_class( $_classes ){
-      $_where = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
+      $_where = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
       array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;
@@ -1432,7 +1432,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_sidenav_enabled() {
-      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_style' ) ) );
+      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) ) );
     }
 
 
@@ -1440,7 +1440,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_second_menu_enabled() {
-      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_second_menu' ) ) );
+      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( czr_fn_opt( 'tc_display_second_menu' ) ) );
     }
 
 
@@ -1644,7 +1644,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -1741,14 +1741,14 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       if ( ! empty( $args['has_children'] ) ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, isset($args['theme_location']) ? $args['theme_location'] : null);
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
         if ( $depth === 0 )
-            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);      
+            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
       }
 
       elseif (stristr( $item_html, 'li class="divider' )) {
@@ -1874,7 +1874,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
                         $attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit' , 'post_type' => 'attachment' , 'post_mime_type' => 'image' , 'order' => 'ASC' , 'orderby' => 'menu_order ID' ) ) );
 
                         //did we activate the fancy box in customizer?
-                        $tc_fancybox = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fancybox' ) );
+                        $tc_fancybox = esc_attr( czr_fn_opt( 'tc_fancybox' ) );
 
                         ?>
 
@@ -2043,13 +2043,13 @@ class CZR_breadcrumb {
 
     function czr_fn_set_breadcrumb_display_in_context( $_bool ) {
     	if ( czr_fn__f('__is_home') )
-	  		return 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+	  		return 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
 	  	else {
-		  	if ( is_page() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+		  	if ( is_page() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
 		  		return false;
-		  	if ( is_single() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+		  	if ( is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
 		  		return false;
-		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
 		  		return false;
 		}
 		return $_bool;
@@ -2062,13 +2062,13 @@ class CZR_breadcrumb {
     * @since Customizr 1.0
     */
     function czr_fn_breadcrumb_display() {
-	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_breadcrumb') ) ) )
+	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( czr_fn_opt( 'tc_breadcrumb') ) ) )
 	      return;
 
 	  	if ( ! apply_filters( 'tc_show_breadcrumb_in_context' , true ) )
 	      return;
 
-	  	if ( czr_fn__f('__is_home')  && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) )
+	  	if ( czr_fn__f('__is_home')  && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_home' ) ) )
 	  		return;
 
 	  	//set the args properties
@@ -3187,7 +3187,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
             <p><?php _e( 'Pingback:' , 'customizr' ); ?> <?php comment_author_link(); ?>
-                <?php if ( ! CZR___::$instance -> czr_fn_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
+                <?php if ( ! czr_fn_is_customizing() )  edit_comment_link( __( '(Edit)' , 'customizr' ), '<span class="edit-link btn btn-success btn-mini">' , '</span>' ); ?>
             </p>
           </article>
         <?php
@@ -3229,7 +3229,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
                             get_comment_author_link(),
                             // If current post author is also comment author, make it known visually.
                             ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author' , 'customizr' ) . '</span>' : '' ,
-                            ! CZR___::$instance -> czr_fn_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
+                            ! czr_fn_is_customizing() && current_user_can( 'edit_comment', $comment->comment_ID ) ? '<p class="edit-link btn btn-success btn-mini"><a class="comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit' , 'customizr' ) . '</a></p>' : ''
                         ),
                         sprintf( '<a class="comment-date" href="%1$s"><time datetime="%2$s">%3$s</time></a>' ,
                             esc_url( get_comment_link( $comment->comment_ID ) ),
@@ -3344,7 +3344,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_set_comment_list_display() {
-      return (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) );
+      return (bool) esc_attr( czr_fn_opt( 'tc_show_comment_list' ) );
     }
 
 
@@ -3381,7 +3381,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         apply_filters( 'tc_bubble_comment_anchor', '#tc-comment-title'),
         sprintf( '%1$s %2$s' , get_comments_number(), __( 'Comment(s) on' , 'customizr' ) ),
         is_null($_title) ? esc_attr( strip_tags( $post -> post_title ) ) : esc_attr( strip_tags( $_title ) ),
-        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) ) ) : ''
+        0 != get_comments_number() ? apply_filters( 'tc_bubble_comment' , '' , esc_attr( czr_fn_opt( 'tc_comment_bubble_shape' ) ) ) : ''
       );
     }
 
@@ -3414,13 +3414,13 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @since Customizr 3.3.2
     */
     function czr_fn_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ) )
+      if ( 0 == esc_attr( czr_fn_opt( 'tc_comment_show_bubble' ) ) )
         return $_css;
 
-      $_bubble_color_type   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color_type' ) );
-      $_custom_bubble_color = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_color' ) );
+      $_bubble_color_type   = esc_attr( czr_fn_opt( 'tc_comment_bubble_color_type' ) );
+      $_custom_bubble_color = esc_attr( czr_fn_opt( 'tc_comment_bubble_color' ) );
 
-      $_bubble_shape        = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_bubble_shape' ) );
+      $_bubble_shape        = esc_attr( czr_fn_opt( 'tc_comment_bubble_shape' ) );
 
       //apply custom color only if type custom
       //if color type is skin => bubble color is defined in the skin stylesheet
@@ -3508,9 +3508,9 @@ if ( ! class_exists( 'CZR_comments' ) ) :
 
         //3) check global user options for pages and posts
         if ( is_page() )
-          $_bool = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_page_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( czr_fn_opt( 'tc_page_comments' )) && $_bool;
         else
-          $_bool = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( czr_fn_opt( 'tc_post_comments' )) && $_bool;
       } else
         $_bool = false;
 
@@ -3538,10 +3538,10 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     private function czr_fn_is_bubble_enabled() {
       $_bool_arr = array(
         in_the_loop(),
-        (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_comment_show_bubble' ) ),
+        (bool) esc_attr( czr_fn_opt( 'tc_comment_show_bubble' ) ),
         $this -> czr_fn_are_comments_enabled(),
         get_comments_number() != 0,
-        (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_comment_list' ) ),
+        (bool) esc_attr( czr_fn_opt( 'tc_show_comment_list' ) ),
         (bool) apply_filters( 'tc_comments_in_title', true ),
         in_array( get_post_type(), apply_filters('tc_show_comment_bubbles_for_post_types' , array( 'post' , 'page') ) )
       );
@@ -3586,7 +3586,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       if ( ! CZR_placeholders::czr_fn_is_fp_notice_on() )
         return;
 
-      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
 
       ?>
       <div class="tc-placeholder-wrap tc-fp-notice">
@@ -3711,18 +3711,18 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
         $featured_page_id                   = 0;
 
         //if fps are not set
-        if ( null == CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) || ! CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) ) {
+        if ( null == czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) || ! czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) ) {
             //admin link if user logged in
             $featured_page_link             = '';
             $customizr_link                 = '';
-            if ( ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+            if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
               $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+                czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
             }
-            $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+            $featured_page_link          = apply_filters( 'tc_fp_link_url', czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
 
             //rendering
             $featured_page_id               =  null;
@@ -3741,7 +3741,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
         }
 
         else {
-            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
 
             $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
@@ -3750,14 +3750,14 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
             $edit_enabled                   = false;
             //when are we displaying the edit link?
             //never display when customizing
-            if ( ! CZR___::$instance -> czr_fn_is_customizing() ) {
+            if ( ! czr_fn_is_customizing() ) {
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
             }
 
             $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
-            $featured_text                  = apply_filters( 'tc_fp_text', CZR_utils::$inst->czr_fn_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+            $featured_text                  = apply_filters( 'tc_fp_text', czr_fn_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
             $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
             //get the page/post object
@@ -3822,9 +3822,9 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
               //button block
-              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( czr_fn_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-              if ( $tc_fp_button_text || CZR___::$instance -> czr_fn_is_customizing() ){
+              if ( $tc_fp_button_text || czr_fn_is_customizing() ){
                 $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                 $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                 $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
@@ -3868,7 +3868,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages         = esc_attr( czr_fn_opt( 'tc_show_featured_pages' ) );
 
       return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
     }
@@ -3876,7 +3876,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages_img() {
       //gets  display img option
-      return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
+      return apply_filters( 'tc_show_featured_pages_img', esc_attr( czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
     }
 
   }//end of class
@@ -3915,7 +3915,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        *
        */
       function czr_fn_add_gallery_class( $_classes ){
-        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_gallery_style' ) ) ) )
+        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( czr_fn_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
         return $_classes;
       }
@@ -3934,7 +3934,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
         if ( ! $this -> czr_fn_is_gallery_enabled() )
           return $markup;
 
-        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id );
+        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id );
 
         if ( $tc_gallery_fancybox == 1 && $permalink == false ) //add the filter only if link to the attachment file/image
           {
@@ -3969,7 +3969,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        * HELPERS
        */
       function czr_fn_is_gallery_enabled(){
-        return apply_filters('tc_enable_gallery', esc_attr( CZR_utils::$inst -> czr_fn_opt('tc_enable_gallery') ) );
+        return apply_filters('tc_enable_gallery', esc_attr( czr_fn_opt('tc_enable_gallery') ) );
       }
   }//end of class
 endif;
@@ -4196,7 +4196,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       */
       public function czr_fn_is_edit_enabled() {
         //never display when customizing
-        if ( CZR___::$instance -> czr_fn_is_customizing() )
+        if ( czr_fn_is_customizing() )
           return false;
         //when are we displaying the edit link?
         $edit_enabled = ( (is_user_logged_in()) && is_page() && current_user_can('edit_pages') ) ? true : false;
@@ -4231,13 +4231,13 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       */
       function czr_fn_set_post_page_icon( $_bool ) {
           if ( is_page() )
-            $_bool = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
           if ( is_single() && ! is_page() )
-            $_bool = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
           if ( ! is_single() )
-            $_bool = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
           //last condition
-          return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
+          return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
       }
 
 
@@ -4250,9 +4250,9 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_archive_icon( $_class ) {
-          $_class = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
+          $_class = ( 0 == esc_attr( czr_fn_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
           //last condition
-          return 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
+          return 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
       }
 
 
@@ -4447,7 +4447,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
               return $html;
 
           //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
-          if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+          if ( 0 == esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
               return $html;
 
           //php version check for DateTime
@@ -4456,11 +4456,11 @@ if ( ! class_exists( 'CZR_headings' ) ) :
             return $html;
 
           //get the user defined interval in days
-          $_interval = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_update_notice_interval' ) );
+          $_interval = esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_interval' ) );
           $_interval = ( 0 != $_interval ) ? $_interval : 30;
 
           //Check if the last update is less than n days old. (replace n by your own value)
-          $has_recent_update = ( CZR_utils::$inst -> czr_fn_post_has_update( true ) && CZR_utils::$inst -> czr_fn_post_has_update( 'in_days') < $_interval ) ? true : false;
+          $has_recent_update = ( czr_fn_post_has_update( true ) && czr_fn_post_has_update( 'in_days') < $_interval ) ? true : false;
 
           if ( ! $has_recent_update )
               return $html;
@@ -4470,8 +4470,8 @@ if ( ! class_exists( 'CZR_headings' ) ) :
               'tc_update_notice_in_title',
               sprintf('%1$s &nbsp; <span class="tc-update-notice label %3$s">%2$s</span>',
                   $html,
-                  esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_update_notice_text' ) ),
-                  esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_update_notice_format' ) )
+                  esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_text' ) ),
+                  esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_format' ) )
               )
           );
       }
@@ -4486,19 +4486,19 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       function czr_fn_set_archive_custom_title( $_title ) {
         switch ( current_filter() ) {
           case 'tc_category_archive_title' :
-            return esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_cat_title' ) );
+            return esc_attr( czr_fn_opt( 'tc_cat_title' ) );
           break;
 
           case 'tc_tag_archive_title' :
-            return esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_tag_title' ) );
+            return esc_attr( czr_fn_opt( 'tc_tag_title' ) );
           break;
 
           case 'tc_search_results_title' :
-            return esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_search_title' ) );
+            return esc_attr( czr_fn_opt( 'tc_search_title' ) );
           break;
 
           case 'tc_author_archive_title' :
-            return esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_author_title' ) );
+            return esc_attr( czr_fn_opt( 'tc_author_title' ) );
           break;
         }
         return $_title;
@@ -4614,7 +4614,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_set_single_page_thumbnail_hooks() {
-      if ( $this -> czr_fn_page_display_controller() && ! CZR_utils::$inst->czr_fn_is_home() ) {
+      if ( $this -> czr_fn_page_display_controller() && ! czr_fn_is_home() ) {
         add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
       }
 
@@ -4624,7 +4624,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
       if ( ! $this -> czr_fn_show_single_page_thumbnail() )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' )) );
       $_hook                = apply_filters( 'tc_single_page_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
@@ -4681,7 +4681,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     /**
     * Get Single page thumb model + view
     * Inject it in the view
-    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) || '__before_content'
+    * hook : esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
@@ -4737,7 +4737,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
               __( "You can display your page's featured image here if you have set one.", "customizr" ),
               sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_pages_sec") ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "section" => "single_pages_sec") ), __( "Jump to the customizer now", "customizr") )
               ),
               sprintf( __( "Don't know how to set a featured image to a page? Learn how in the %s.", "customizr" ),
                 sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
@@ -4793,7 +4793,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_show_single_page_thumbnail() {
-      return ! CZR_utils::$inst->czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      return ! czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
     }
 
 
@@ -4804,7 +4804,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     private function czr_fn_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      $_exploded_location   = explode( '|', esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -4836,7 +4836,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_page_thumbnail() )
         return $_css;
-      $_single_thumb_height   = apply_filters('tc_single_page_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_height' ) ) );
+      $_single_thumb_height   = apply_filters('tc_single_page_thumb_height', esc_attr( czr_fn_opt( 'tc_single_page_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
@@ -4926,7 +4926,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' )) );
       $_hook                = apply_filters( 'tc_single_post_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
@@ -4982,7 +4982,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       if ( ! $this -> czr_fn_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
       //@todo check if some conditions below not redundant?
-      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_author_info' ) ) )
+      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) )
         return;
 
       $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
@@ -5015,7 +5015,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     /**
     * Get Single post thumb model + view
     * Inject it in the view
-    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) || '__before_content'
+    * hook : esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
@@ -5069,7 +5069,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
               __( "You can display your post's featured image here if you have set one.", "customizr" ),
               sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
               ),
               sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
                 sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
@@ -5129,7 +5129,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.11
     */
     function czr_fn_show_single_post_thumbnail() {
-      return $this -> czr_fn_single_post_display_controller() && apply_filters( 'tc_show_single_post_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
+      return $this -> czr_fn_single_post_display_controller() && apply_filters( 'tc_show_single_post_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
     }
 
 
@@ -5140,7 +5140,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.3
     */
     private function czr_fn_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
+      $_exploded_location   = explode( '|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -5172,7 +5172,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return $_css;
-      $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
+      $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
@@ -5356,7 +5356,7 @@ class CZR_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( czr_fn_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -5375,7 +5375,7 @@ class CZR_post_list {
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_fn_has_thumb(),
-          0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) )
+          0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) )
         )
       )
     );
@@ -5481,13 +5481,13 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-    $_shape = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
 
     //1) check if shape is rounded, squared on rectangular
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $thumb_wrapper;
 
-    $_position = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
           get_permalink( get_the_ID() ),
           esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
@@ -5604,8 +5604,8 @@ class CZR_post_list {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = CZR_utils::$inst -> czr_fn_opt('tc_blog_restrict_by_cat');
-     $cats = array_filter( $cats, array( CZR_utils::$inst , 'czr_fn_category_id_exists' ) );
+     $cats = czr_fn_opt('tc_blog_restrict_by_cat');
+     $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );
@@ -5620,7 +5620,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_add_thumb_shape_name( $_classes ) {
-    return array_merge( $_classes , array(esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') ) ) );
+    return array_merge( $_classes , array(esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') ) ) );
   }
 
 
@@ -5631,7 +5631,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -5643,9 +5643,9 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_post_list_layout( $_layout ) {
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
+    $_layout['alternate']        = ( 0 == esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
                                    || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
@@ -5661,7 +5661,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_content_class( $_classes ) {
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return array_merge( $_classes , array( "thumb-position-{$_position}") );
   }
 
@@ -5680,7 +5680,7 @@ class CZR_post_list {
     //note : handled with javascript if tc_center_img option enabled
     $_bool = array_product(
       array(
-        ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ),
+        ! esc_attr( czr_fn_opt( 'tc_center_img') ),
         false != $image,
         ! empty($image),
         isset($_filtered_thumb_size['width']),
@@ -5692,7 +5692,7 @@ class CZR_post_list {
 
     $_width     = $_filtered_thumb_size['width'];
     $_height    = $_filtered_thumb_size['height'];
-    $_shape     = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape     = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
     $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
     if ( ! is_single() && ! $_is_rectangular )
       return $_style;
@@ -5711,7 +5711,7 @@ class CZR_post_list {
   function czr_fn_write_thumbnail_inline_css( $_css ) {
     if ( ! $this -> czr_fn_post_list_controller() )
       return $_css;
-    $_list_thumb_height     = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = esc_attr( czr_fn_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
 
     return sprintf("%s\n%s",
@@ -5731,11 +5731,11 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_thumb_size( $_default_size ) {
-    $_shape = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $_default_size;
 
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 
@@ -5820,7 +5820,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> czr_fn_is_grid_enabled() ) )
               return;
 
-          $this -> post_id = CZR_utils::czr_fn_id();
+          $this -> post_id = czr_fn_get_id();
 
           do_action( '__post_list_grid' );
           //Disable icon titles
@@ -5968,7 +5968,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           // CONTENT : get the figcaption content => post content
           $post_list_content_class          = array(
               isset( $_layout['content'] ) ? $_layout['content'] : 'span6',
-              CZR___::czr_fn_is_pro() ? '' : 'mask'//no css mask for the pro grid
+              czr_fn_is_pro() ? '' : 'mask'//no css mask for the pro grid
           );
           $_post_content_html               = $this -> czr_fn_grid_get_single_post_html( implode( ' ', $post_list_content_class ) );
 
@@ -6081,7 +6081,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return string
         */
         function czr_fn_grid_set_title_length( $_title ) {
-          $_max = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_num_words') );
+          $_max = esc_attr( czr_fn_opt( 'tc_grid_num_words') );
           $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
           $_max = $_max <= 0 ? 1 : $_max;
 
@@ -6210,9 +6210,9 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         */
         function czr_fn_grid_container_set_classes( $_classes ) {
           array_push( $_classes, 'tc-post-list-grid' );
-          if ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_shadow') ) )
+          if ( esc_attr( czr_fn_opt( 'tc_grid_shadow') ) )
             array_push( $_classes, 'tc-grid-shadow' );
-          if ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_bottom_border') ) )
+          if ( esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ) )
             array_push( $_classes, 'tc-grid-border' );
           return $_classes;
         }
@@ -6320,8 +6320,8 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return modified html string
         */
         function czr_fn_set_grid_icon_visibility( $_html ) {
-          $_icon_enabled = (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_icons') );
-          if ( CZR___::$instance -> czr_fn_is_customizing() )
+          $_icon_enabled = (bool) esc_attr( czr_fn_opt( 'tc_grid_icons') );
+          if ( czr_fn_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
                 $_icon_enabled ? 'inline-block' : 'none',
                 $_html
@@ -6551,7 +6551,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.55 ); //line-height / font-size
           $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
           //body font size
-          $_bs = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_body_font_size') );
+          $_bs = esc_attr( czr_fn_opt( 'tc_body_font_size') );
           $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
 
           return sprintf( 'font-size:%spx;line-height:%spx;' ,
@@ -6624,7 +6624,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return (number) customizer user defined height for the grid thumbnails
         */
         private function czr_fn_grid_get_thumb_height() {
-          $_opt = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height') );
+          $_opt = esc_attr( czr_fn_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
 
@@ -6643,7 +6643,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
                   $wp_query->is_posts_page ) )
               return false;
 
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_expand_featured') ) );
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ) );
 
           if ( ! $this -> expanded_sticky ) {
             $_sticky_posts = get_option('sticky_posts');
@@ -6684,14 +6684,14 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return bool
         */
         public function czr_fn_is_grid_enabled() {
-          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
         private function czr_fn_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
-            esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_columns') ),
+            esc_attr( czr_fn_opt( 'tc_grid_columns') ),
             CZR_utils::czr_fn_get_layout( $this -> post_id , 'class' )
           );
         }
@@ -6725,7 +6725,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
          * and the post list we're in */
         private function czr_fn_is_grid_context_matching() {
           $_type = $this -> czr_fn_get_grid_context();
-          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
+          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 
@@ -6734,7 +6734,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return  boolean
         */
         private function czr_fn_grid_show_thumb() {
-          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) );
+          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) );
         }
   }//end of class
 endif;
@@ -6780,8 +6780,8 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         */
         function czr_fn_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
-          if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas' ) ) ) {
-            if ( CZR___::$instance -> czr_fn_is_customizing() )
+          if ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) ) {
+            if ( czr_fn_is_customizing() )
               add_filter( 'body_class' , array( $this , 'czr_fn_hide_all_post_metas') );
             else{
               add_filter( 'tc_show_post_metas' , '__return_false' );
@@ -6789,12 +6789,12 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             }
           }
           if ( is_singular() && ! is_page() && ! czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) {
+              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
 
-              if ( CZR___::$instance -> czr_fn_is_customizing() ) {
+              if ( czr_fn_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'czr_fn_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -6803,12 +6803,12 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( ! is_singular() && ! czr_fn__f('__is_home') && ! is_page() ) {
-              if ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) {
+              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
 
-              if ( CZR___::$instance -> czr_fn_is_customizing() ) {
+              if ( czr_fn_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'czr_fn_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -6817,11 +6817,11 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_home' ) ) ) {
+              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
-              if ( CZR___::$instance -> czr_fn_is_customizing() ) {
+              if ( czr_fn_is_customizing() ) {
                   add_filter( 'body_class' , array( $this , 'czr_fn_hide_post_metas') );
                   add_filter( 'tc_show_post_metas' , '__return_true' );
               }
@@ -6859,7 +6859,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * DESIGN HOOK SETUP
         ***********************/
         function czr_fn_set_design_options() {
-          if ( 'buttons' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_design' ) ) )
+          if ( 'buttons' == esc_attr( czr_fn_opt( 'tc_post_metas_design' ) ) )
             return;
 
           add_filter( 'tc_meta_terms_glue'           , array( $this, 'czr_fn_set_term_meta_glue' ) );
@@ -6996,13 +6996,13 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         function czr_fn_set_post_metas_elements( $_default , $_args = array() ) {
-            $_show_cats         = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> czr_fn_meta_generate_tax_list( true );
-            $_show_tags         = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> czr_fn_meta_generate_tax_list( false );
-            $_show_pub_date     = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== CZR_utils::$inst -> czr_fn_post_has_update();
-            $_show_upd_in_days  = 'days' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_metas_update_date_format' ) );
+            $_show_cats         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> czr_fn_meta_generate_tax_list( true );
+            $_show_tags         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> czr_fn_meta_generate_tax_list( false );
+            $_show_pub_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) );
+            $_show_upd_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== czr_fn_post_has_update();
+            $_show_upd_in_days  = 'days' == esc_attr( czr_fn_opt( 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
-            $_show_author       = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_post_metas_author' ) );
+            $_show_author       = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) );
 
             //extract cat_list, tag_list, pub_date, auth, upd_date from $args if not empty
             if ( empty($_args) )
@@ -7056,7 +7056,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             $_update_text = '';
             if ( $_show_upd_date ) {
               if ( $_show_upd_in_days ) {
-                $_update_days = CZR_utils::$inst -> czr_fn_post_has_update();
+                $_update_days = czr_fn_post_has_update();
                 $_update_text = ( 0 == $_update_days ) ? __( '(updated today)' , 'customizr' ) : sprintf( __( '(updated %s days ago)' , 'customizr' ), $_update_days );
                 $_update_text = ( 1 == $_update_days ) ? __( '(updated 1 day ago)' , 'customizr' ) : $_update_text;
               }
@@ -7141,7 +7141,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         */
         public function czr_fn_get_term_of_tax_type( $hierarchical = true ) {
           //var declaration
-          $post_type              = get_post_type( CZR_utils::czr_fn_id() );
+          $post_type              = get_post_type( czr_fn_get_id() );
           $tax_list               = get_object_taxonomies( $post_type, 'object' );
           $_tax_type_list         = array();
           $_tax_type_terms_list   = array();
@@ -7179,7 +7179,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
 
           //fill the post terms array
           foreach ($_tax_type_list as $tax_name => $data ) {
-              $_current_tax_terms = get_the_terms( CZR_utils::czr_fn_id() , $tax_name );
+              $_current_tax_terms = get_the_terms( czr_fn_get_id() , $tax_name );
 
               //If current post support this tax but no terms has been assigned yet = continue
               if ( ! $_current_tax_terms )
@@ -7210,10 +7210,10 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         public function czr_fn_is_tax_authorized( $_tax_object , $post_type ) {
           $_in_exclude_list = in_array(
             $_tax_object['name'],
-            apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , CZR_utils::czr_fn_id() ) )
+            apply_filters_ref_array ( 'tc_exclude_taxonomies_from_metas' , array( array('post_format') , $post_type , czr_fn_get_id() ) )
           );
 
-          $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], CZR_utils::czr_fn_id() ) );
+          $_is_private = false === (bool) $_tax_object['public'] && apply_filters_ref_array( 'tc_exclude_private_taxonomies', array( true, $_tax_object['public'], czr_fn_get_id() ) );
           return ! $_in_exclude_list && ! $_is_private;
         }
 
@@ -7414,7 +7414,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
         $_post_nav_enabled         = $this -> czr_fn_is_post_navigation_enabled();
         $_post_nav_context_enabled = $this -> czr_fn_is_post_navigation_context_enabled( $_context );
 
-        $_is_customizing           = CZR___::$instance -> czr_fn_is_customizing() ;
+        $_is_customizing           = czr_fn_is_customizing() ;
 
         if ( $_is_customizing ){
           if ( ! $_post_nav_enabled )
@@ -7601,14 +7601,14 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
       * @return bool
       */
       function czr_fn_is_post_navigation_context_enabled( $_context ) {
-        return $_context && 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
+        return $_context && 1 == esc_attr( czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
       }
 
       /*
       * @return bool
       */
       function czr_fn_is_post_navigation_enabled(){
-        return 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_show_post_navigation' ) ) ;
+        return 1 == esc_attr( czr_fn_opt( 'tc_show_post_navigation' ) ) ;
       }
 
   }//end of class
@@ -7665,7 +7665,7 @@ class CZR_post_thumbnails {
       //because this method is also called from the slider of posts which refers to the slider responsive image setting
       //limit this just for wp version >= 4.4
       if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-        $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == CZR_utils::$inst->czr_fn_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
+        $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
 
       //try to extract $_thumb_id and $_thumb_type
       extract( $this -> czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
@@ -7795,7 +7795,7 @@ class CZR_post_thumbnails {
           $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
         }
         if ( ! $_thumb_id || empty( $_thumb_id ) ) {
-          $_thumb_id    = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_default_thumb' ) );
+          $_thumb_id    = esc_attr( czr_fn_opt( 'tc_post_list_default_thumb' ) );
           $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
         }
       }
@@ -7812,7 +7812,7 @@ class CZR_post_thumbnails {
       //define a filtrable boolean to set if attached images can be used as thumbnails
       //1) must be a non single and non page post context
       //2) user option should be checked in customizer
-      $_bool = 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
+      $_bool = 0 != esc_attr( czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
       if ( ! is_admin() ) {
         $_bool = !CZR_post::$instance -> czr_fn_single_post_display_controller() && $_bool;
         $_bool = !CZR_page::$instance -> czr_fn_page_display_controller() && $_bool;
@@ -7864,14 +7864,14 @@ class CZR_post_thumbnails {
       //extract "tc_thumb" , "tc_thumb_height" , "tc_thumb_width"
       extract( $_thumb_model );
       $thumb_img        = ! isset( $_thumb_model) ? false : $tc_thumb;
-      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, CZR_utils::czr_fn_id() );
+      $thumb_img        = apply_filters( 'tc_post_thumb_img', $thumb_img, czr_fn_get_id() );
       if ( ! $thumb_img )
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_init::$instance -> tc_thumb_size, CZR_utils::czr_fn_id()  );
+      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-      $no_effect_class  = ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+      $no_effect_class  = ( esc_attr( czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
       //default hover effect
       $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
@@ -7882,7 +7882,7 @@ class CZR_post_thumbnails {
                                     implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
 
-      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, CZR_utils::czr_fn_id() ) );
+      $thumb_wrapper    = apply_filters_ref_array( 'tc_post_thumb_wrapper', array( $thumb_wrapper, $thumb_img, czr_fn_get_id() ) );
 
       //cache the thumbnail view
       $html             = sprintf('<section class="tc-thumbnail %1$s">%2$s</section>',
@@ -7934,7 +7934,7 @@ class CZR_post_thumbnails {
       //note : handled with javascript if tc_center_img option enabled
       $_bool = array_product(
         array(
-          ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ),
+          ! esc_attr( czr_fn_opt( 'tc_center_img') ),
           false != $image,
           ! empty($image),
           isset($_filtered_thumb_size['width']),
@@ -8029,7 +8029,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         if ( czr_fn__f( '__is_home_empty') )
           return;
         //gets current screen layout
-        $screen_layout        = CZR_utils::czr_fn_get_layout( CZR_utils::czr_fn_id() , 'sidebar'  );
+        $screen_layout        = CZR_utils::czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
 		    // GY: add relative right and left for LTR/RTL sites
         $rel_left             = is_rtl() ? 'right' : 'left';
         $rel_right            = is_rtl() ? 'left' : 'right';
@@ -8104,7 +8104,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
             printf('<p><strong>%1$s</strong></p>',
                 sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
                     sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                        CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ),
+                        czr_fn_get_customizer_url( array( 'panel' => 'widgets') ),
                         __( "Add widgets", "customizr"),
                         __("now", "customizr")
                     ),
@@ -8145,17 +8145,17 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option ) );
+        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( $option ) );
 
         $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
 
         //only when partial refresh enabled, otherwise we fall back on refresh
-        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
+        $_nothing_to_render         = czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
 
         if ( $_nothing_to_render )
           return;
 
-        $_title = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_sidebar_title') );
+        $_title = esc_attr( czr_fn_opt( 'tc_social_in_sidebar_title') );
         $html = sprintf('<aside class="%1$s">%2$s<div class="social-links">%3$s</div></aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
@@ -8177,8 +8177,8 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       function czr_fn_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == esc_attr( czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
+          return ( 0 == esc_attr( czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }
@@ -8325,7 +8325,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_resp_slider_img') ) ) {
+      if ( 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ) {
         $slide_background_attr['srcset'] = " ";
         //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
         //only when the passed srcset attr is not empty. This will avoid us to:
@@ -8478,7 +8478,7 @@ class CZR_slider {
       return $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size );
     }
     //if not demo or tc_posts_slider, we get slides from options
-    $all_sliders    = CZR_utils::$inst -> czr_fn_opt( 'tc_sliders');
+    $all_sliders    = czr_fn_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
 
     //if the slider not longer exists or exists but is empty, return false
@@ -8592,12 +8592,12 @@ class CZR_slider {
     $defaults       = array(
       'img_size'            => null,
       //options
-      'stickies_only'       => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_stickies' ) ),
-      'show_title'          => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_title' ) ),
-      'show_excerpt'        => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_text' ) ),
-      'button_text'         => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_button_text' ) ),
-      'posts_per_page'      => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ), //limit
-      'link_type'           => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_link') ),
+      'stickies_only'       => esc_attr( czr_fn_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'          => esc_attr( czr_fn_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'        => esc_attr( czr_fn_opt( 'tc_posts_slider_text' ) ),
+      'button_text'         => esc_attr( czr_fn_opt( 'tc_posts_slider_button_text' ) ),
+      'posts_per_page'      => esc_attr( czr_fn_opt( 'tc_posts_slider_number' ) ), //limit
+      'link_type'           => esc_attr( czr_fn_opt( 'tc_posts_slider_link') ),
     );
 
     $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
@@ -8611,7 +8611,7 @@ class CZR_slider {
 
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
-    $smart_load_enabled = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    $smart_load_enabled = 1 == esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
       remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_fn_parse_imgs') );
 
@@ -8624,7 +8624,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
 
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
@@ -8701,7 +8701,7 @@ class CZR_slider {
       return self::$sliders_model[ $slider_name_id ];
 
     //gets slider options if any
-    $layout_value                 = czr_fn__f('__is_home') ? CZR_utils::$inst->czr_fn_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
+    $layout_value                 = czr_fn__f('__is_home') ? czr_fn_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
     $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
 
     //declares the layout vars
@@ -8991,7 +8991,7 @@ class CZR_slider {
   */
   function czr_fn_render_slide_edit_link_view( $_view_model ) {
     //never display when customizing
-    if ( CZR___::$instance -> czr_fn_is_customizing() )
+    if ( czr_fn_is_customizing() )
       return;
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
@@ -9026,7 +9026,7 @@ class CZR_slider {
 
   function czr_fn_render_slider_edit_link_view( $slides, $slider_name_id ) {
     //never display when customizing
-    if ( CZR___::$instance -> czr_fn_is_customizing() )
+    if ( czr_fn_is_customizing() )
       return;
     if ( 'demo' == $slider_name_id )
       return;
@@ -9038,7 +9038,7 @@ class CZR_slider {
     //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
     if ( czr_fn__f('__is_home') ){
       $show_slider_edit_link = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
-      $_edit_link            = CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+      $_edit_link            = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     }else if ( is_singular() ){ // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
       global $post;
       $show_slider_edit_link = ( is_user_logged_in() && ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ) ? true : false;
@@ -9103,7 +9103,7 @@ class CZR_slider {
   function czr_fn_maybe_display_dismiss_notice() {
     if ( ! CZR_placeholders::czr_fn_is_slider_notice_on() )
       return;
-    $_customizer_lnk = CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     ?>
     <div class="tc-placeholder-wrap tc-slider-notice">
       <?php
@@ -9131,7 +9131,7 @@ class CZR_slider {
   //hook : wp
   //introduced in v3.4.23
   function czr_fn_maybe_setup_parallax() {
-    if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_parallax') ) )
+    if ( 1 != esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
       return;
 
     add_filter( 'tc_slider_layout_class'       , array( $this, 'czr_fn_add_parallax_wrapper_class' ) );
@@ -9204,7 +9204,7 @@ class CZR_slider {
   */
   private function czr_fn_is_slider_possible() {
     //gets the front slider if any
-    $tc_front_slider              = esc_attr(CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) );
+    $tc_front_slider              = esc_attr(czr_fn_opt( 'tc_front_slider' ) );
     //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
     $_show_slider = czr_fn__f('__is_home') ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
@@ -9233,7 +9233,7 @@ class CZR_slider {
   */
   private function czr_fn_get_current_slider($queried_id) {
     //gets the current slider id
-    $_home_slider     = CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' );
+    $_home_slider     = czr_fn_opt( 'tc_front_slider' );
     $slider_name_id   = ( czr_fn__f('__is_home') && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
     return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
   }
@@ -9247,7 +9247,7 @@ class CZR_slider {
   */
   private function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id                   = CZR_utils::czr_fn_id();
+    $queried_id                   = czr_fn_get_id();
 
     return apply_filters( 'tc_slider_get_real_id', ( ! czr_fn__f('__is_home') && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
@@ -9261,7 +9261,7 @@ class CZR_slider {
   */
   private function czr_fn_is_slider_active( $queried_id ) {
     //is the slider set to on for the queried id?
-    if ( czr_fn__f('__is_home') && CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) )
+    if ( czr_fn__f('__is_home') && czr_fn_opt( 'tc_front_slider' ) )
       return apply_filters( 'tc_slider_active_status', true , $queried_id );
 
     $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
@@ -9282,7 +9282,7 @@ class CZR_slider {
     //a) we have to render the demo slider
     //b) display slider loading option is enabled (can be filtered)
     return ( 'demo' == $slider_name_id
-        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id )
+        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id )
     );
   }
 
@@ -9302,11 +9302,11 @@ class CZR_slider {
 
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( CZR___::$instance -> czr_fn_is_customizing() ) {
-      if ( 500 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) )
+    if ( czr_fn_is_customizing() ) {
+      if ( 500 != esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( czr_fn_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'tc_set_demo_slider_height' , 750 );
@@ -9359,12 +9359,12 @@ class CZR_slider {
 
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
-    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) );
+    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( czr_fn_opt( 'tc_slider_default_height') ) );
     $_slider_inline_css = "";
 
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
       return $_css;
@@ -9425,7 +9425,7 @@ class CZR_slider {
   *
   */
   function czr_fn_set_slider_wrapper_class($_classes) {
-    if ( ! is_array($_classes) || 500 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) )
+    if ( ! is_array($_classes) || 500 == esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
       return $_classes;
 
     return array_merge( $_classes , array('custom-slider-height') );
@@ -9440,7 +9440,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   */
   function czr_fn_set_inner_class( $_classes ) {
-    if( ! (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
+    if( ! (bool) esc_attr( czr_fn_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
       return $_classes;
     array_push( $_classes, 'center-slides-enabled' );
     return $_classes;
@@ -9688,7 +9688,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
       }
 
 			//hack to render white color icons if skin is grey or black
-			$skin_class 					= ( in_array( CZR_utils::$inst->czr_fn_opt( 'tc_skin') , array('grey.css' , 'black.css', 'black2.css')) ) ? 'white-icons' : '';
+			$skin_class 					= ( in_array( czr_fn_opt( 'tc_skin') , array('grey.css' , 'black.css', 'black2.css')) ) ? 'white-icons' : '';
 			$footer_widgets_wrapper_classes = implode(" ", apply_filters( 'tc_footer_widget_wrapper_class' , array('container' , 'footer-widgets', $skin_class) ) );
 			ob_start();
 			?>
@@ -9744,7 +9744,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
           printf('<p><strong>%1$s</strong></p>',
               sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
                 sprintf('<a class="tc-inline-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s</a>',
                   __( 'dismiss this notice', 'customizr')
                 )
@@ -9803,7 +9803,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         //when do we display the socials?
         //1) must be enabled
         //the whole block will be always displayed for a matter of structure (columns)
-	    	$_hide_socials = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_footer') ) );
+	    	$_hide_socials = ( 0 == esc_attr( czr_fn_opt( 'tc_social_in_footer') ) );
 
 
 	      	echo apply_filters(
@@ -9853,7 +9853,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		*/
         function czr_fn_colophon_right_block() {
           //since 3.4.16 BTT button excludes BTT text
-      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_back_to_top' ) ) ) )
+      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) ) )
         return;
 
     	echo apply_filters(
@@ -9894,7 +9894,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @since Customizr 3.3.27
     */
     function czr_fn_write_sticky_footer_inline_css( $_css ){
-      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_fn_is_customizing() ) )
+      if ( ! ( $this -> is_sticky_footer_enabled() || czr_fn_is_customizing() ) )
         return $_css;
 
       $_css = sprintf("%s\n%s",
@@ -9930,7 +9930,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     *
     */
     function czr_fn_sticky_footer_push() {
-      if ( ! ( $this -> is_sticky_footer_enabled() || CZR___::$instance -> czr_fn_is_customizing() ) )
+      if ( ! ( $this -> is_sticky_footer_enabled() || czr_fn_is_customizing() ) )
         return;
 
       echo '<div id="tc-push-footer"></div>';
@@ -9945,10 +9945,10 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @since Customizr 3.2.0
 		*/
 		function czr_fn_render_back_to_top() {
-			if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_back_to_top' ) ) )
+			if ( 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) )
                 return;
             printf('<div id="tc-footer-btt-wrapper" class="tc-btt-wrapper %1$s"><i class="btt-arrow"></i></div>',
-                esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_back_to_top_position' ) )
+                esc_attr( czr_fn_opt( 'tc_back_to_top_position' ) )
             );
 		}
 
@@ -9963,8 +9963,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		function czr_fn_set_widget_wrapper_class( $_original_classes ) {
 			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-			if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_footer_widget_icon' ) ) )
-				return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			if ( 1 == esc_attr( czr_fn_opt( 'tc_show_footer_widget_icon' ) ) )
+				return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
         }
@@ -9978,7 +9978,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @return bool
     */
     function is_sticky_footer_enabled() {
-      return 1 == esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_sticky_footer') );
+      return 1 == esc_attr( czr_fn_opt( 'tc_sticky_footer') );
     }
   }//end of class
 endif;

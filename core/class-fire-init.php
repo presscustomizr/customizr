@@ -370,7 +370,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
          // categories
          // we have to ignore sticky posts (do not prepend them)
          // disable grid sticky post expansion
-         $cats = czr_fn_get_opt('tc_blog_restrict_by_cat');
+         $cats = czr_fn_opt('tc_blog_restrict_by_cat');
 
          $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
@@ -550,41 +550,6 @@ if ( ! class_exists( 'CZR_init' ) ) :
       }
 
 
-
-
-      /**
-      * Returns the active path+skin.css or tc_common.css
-      *
-      * @package Customizr
-      * @since Customizr 3.0.15
-      */
-      function czr_fn_get_style_src( $_wot = 'skin' ) {
-          $_sheet    = ( 'skin' == $_wot ) ? esc_attr( czr_fn_get_opt( 'tc_skin' ) ) : 'tc_common.css';
-          $_sheet    = $this -> czr_fn_maybe_use_min_style( $_sheet );
-
-          //Finds the good path : are we in a child theme and is there a skin to override?
-          $remote_path    = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
-
-          //Checks if there is a rtl version of common if needed
-          if ( 'skin' != $_wot && ( is_rtl() || ( defined( 'WPLANG' ) && ( 'ar' == WPLANG || 'he_IL' == WPLANG ) ) ) ){
-            $remote_rtl_path   = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/css/' . $_sheet );
-            $remote_path       = $remote_rtl_path ? $remote_rtl_path : $remote_path;
-          }
-
-          //Defines the active skin and fallback to blue.css if needed
-          if ( 'skin' == $_wot ) {
-            $CZR = CZR();
-            //custom skin old tree compatibility for customizr-pro children only
-            $remote_path       = ( CZR_IS_PRO && $CZR -> czr_fn_is_child() && ! $remote_path ) ? czr_fn_get_theme_file_url( 'inc/assets/css/' . $_sheet ) : $remote_path;
-            $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/blue3.css';
-          } else
-            $czr_style_src  = $remote_path ? $remote_path : CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/css/tc_common.css';
-
-          return apply_filters ( 'czr_get_style_src' , $czr_style_src , $_wot );
-      }
-
-
-
       /**
       * //Move in CZR_utils?
       *
@@ -599,7 +564,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.4.19
       */
       function czr_fn_maybe_use_min_style( $_sheet ) {
-          if ( esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) )
+          if ( esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) )
             $_sheet = ( defined('CZR_NOT_MINIFIED_CSS') && true === CZR_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
           return $_sheet;
       }
@@ -633,7 +598,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
      */
       function czr_fn_add_retina_support( $metadata, $attachment_id ) {
           //checks if retina is enabled in options
-          if ( 0 == czr_fn_get_opt( 'tc_retina_support' ) )
+          if ( 0 == czr_fn_opt( 'tc_retina_support' ) )
             return $metadata;
 
           if ( ! is_array($metadata) )
@@ -754,19 +719,19 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           $_classes = is_array( $_classes ) ? $_classes : array();
 
-          if ( 0 != esc_attr( czr_fn_get_opt( 'tc_link_hover_effect' ) ) )
+          if ( 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) )
             $_classes[] = 'czr-fade-hover-links';
           if ( czr_fn_is_customizing() )
             $_classes[] = 'is-customizing';
           if ( wp_is_mobile() )
             $_classes[] = 'czr-is-mobile';
-          if ( 0 != esc_attr( czr_fn_get_opt( 'tc_enable_dropcap' ) ) )
-            $_classes[] = esc_attr( czr_fn_get_opt( 'tc_dropcap_design' ) );
+          if ( 0 != esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
+            $_classes[] = esc_attr( czr_fn_opt( 'tc_dropcap_design' ) );
 
 
           //header and footer skins
-          $_classes[] = 'header-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_header_skin' ) ) );
-          $_classes[] = 'footer-skin-' . ( esc_attr( czr_fn_get_opt( 'tc_footer_skin' ) ) );
+          $_classes[] = 'header-skin-' . ( esc_attr( czr_fn_opt( 'tc_header_skin' ) ) );
+          $_classes[] = 'footer-skin-' . ( esc_attr( czr_fn_opt( 'tc_footer_skin' ) ) );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
@@ -776,18 +741,18 @@ if ( ! class_exists( 'CZR_init' ) ) :
             );
           }
           //IMAGE CENTERED
-          if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_img') ) ){
+          if ( (bool) esc_attr( czr_fn_opt( 'tc_center_img') ) ){
             $_classes[] = 'tc-center-images';
           }
 
           //SKIN CLASS
-          $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
-          $_classes[] = substr( $_skin , 0 , strpos($_skin, '.') );
+          // $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
+          // $_classes[] = substr( $_skin , 0 , strpos($_skin, '.') );
 
           //SIDENAV POSITIONING
           if ( czr_fn_is_possible('sidenav') ) {
 
-            $header_layouts = esc_attr( czr_fn_get_opt( 'tc_header_layout' ) );
+            $header_layouts = esc_attr( czr_fn_opt( 'tc_header_layout' ) );
 
             $_classes[] = apply_filters( 'tc_sidenav_body_class', strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
 
@@ -813,7 +778,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //note : handled with javascript if tc_center_img option enabled
           $_bool = array_product(
             array(
-              ! esc_attr( czr_fn_get_opt( 'tc_center_img') ),
+              ! esc_attr( czr_fn_opt( 'tc_center_img') ),
               false != $image,
               ! empty($image),
               isset($_filtered_thumb_size['width']),

@@ -98,7 +98,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
      *  Front page : WP Core
     /* ------------------------------------------------------------------------- */
     function czr_fn_set_front_page_content( $value ) {
-        if ( CZR___::$instance -> czr_fn_is_customizing() )
+        if ( czr_fn_is_customizing() )
           return $value;
         return 'posts';
     }
@@ -337,7 +337,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
      *  Socials
     /* ------------------------------------------------------------------------- */
     function czr_fn_set_socials( $options ) {
-      if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
+      if ( czr_fn_is_customize_left_panel() )
         return $options;
 
       $to_display = array( 'tc_facebook', 'tc_twitter', 'tc_linkedin', 'tc_google');

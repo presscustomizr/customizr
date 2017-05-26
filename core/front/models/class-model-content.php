@@ -29,7 +29,7 @@ class CZR_content_model_class extends CZR_Model {
             //__before_main_wrapper, 200
             //__before_regular_{post|page}_heading_title
             //__after_regular_{post|page}_heading_title
-            $_singular_thumb_option = czr_fn_get_opt( "tc_single_${context}_thumb_location" );
+            $_singular_thumb_option = czr_fn_opt( "tc_single_${context}_thumb_location" );
 
             //nothing to do:
             if ( ! ( $_singular_thumb_option && 'hide' != $_singular_thumb_option ) ) {
@@ -200,7 +200,7 @@ class CZR_content_model_class extends CZR_Model {
       function czr_fn_write_thumbnail_inline_css( $_css ) {
             $context =  is_single() ? 'post' : 'page';
 
-            $_thumb_height   = apply_filters( "tc_${context}_post_thumb_height", esc_attr( czr_fn_get_opt( "tc_{$context}_post_thumb_height" ) ) );
+            $_thumb_height   = apply_filters( "tc_${context}_post_thumb_height", esc_attr( czr_fn_opt( "tc_{$context}_post_thumb_height" ) ) );
             $_thumb_height   = (! $_thumb_height || ! is_numeric($_thumb_height) ) ? 250 : $_thumb_height;
 
             return sprintf("%s\n%s",

@@ -191,7 +191,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_bbpress_disable_title_icon' );
+      add_filter( 'tc_opt_tc_show_title_icon', 'czr_fn_bbpress_disable_title_icon' );
       function czr_fn_bbpress_disable_title_icon($bool) {
          return ( function_exists('is_bbpress') && is_bbpress() ) ? false : $bool;
       }
@@ -206,7 +206,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     */
     private function czr_fn_set_buddypress_compat() {
       //disable title icons
-      add_filter( 'czr_opt_tc_show_title_icon', 'czr_fn_buddypress_disable_title_icon' );
+      add_filter( 'tc_opt_tc_show_title_icon', 'czr_fn_buddypress_disable_title_icon' );
       function czr_fn_buddypress_disable_title_icon($bool) {
          return ( function_exists('is_buddypress') && is_buddypress() ) ? false : $bool;
       }
@@ -227,7 +227,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //if we can call it that way.
       add_action( 'xprofile_screen_change_avatar', 'czr_fn_buddypress_maybe_disable_img_smartload' );
       function czr_fn_buddypress_maybe_disable_img_smartload() {
-        add_filter( 'czr_opt_tc_img_smart_load', '__return_false' );
+        add_filter( 'tc_opt_tc_img_smart_load', '__return_false' );
       }
 
     }
@@ -372,7 +372,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $tc_translatable_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
-          add_filter("czr_opt_$tc_translatable_option", 'pll__');
+          add_filter("tc_opt_$tc_translatable_option", 'pll__');
 
         /**
         * Tax filtering (home/blog posts filtered by cat)
@@ -391,7 +391,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         }
 
         //Translate category ids for the filtered posts in home/blog
-        add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_pll_translate_tax');
+        add_filter('tc_opt_tc_blog_restrict_by_cat', 'czr_fn_pll_translate_tax');
         /*end tax filtering*/
 
 
@@ -594,10 +594,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         // String transaltion binders : requires wpml icl_t function
         if ( function_exists( 'icl_t') ) {
           /*** TC - WPML bind, wrap WPML string translator function into convenient tc functions ***/
-          //define our icl_t wrapper for options filtered with czr_opt_{$option}
+          //define our icl_t wrapper for options filtered with tc_opt_{$option}
           if ( ! function_exists( 'czr_fn_wpml_t_opt' ) ) {
             function czr_fn_wpml_t_opt( $string ) {
-              return czr_fn_wpml_t( $string, str_replace('czr_opt_', '', current_filter() ) );
+              return czr_fn_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
             }
           }
           //special function for the post slider button text pre trim filter
@@ -620,10 +620,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            add_filter("czr_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
+            add_filter("tc_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
-          add_filter( 'czr_opt_tc_sliders', 'sliders_filter', 99 );
+          add_filter( 'tc_opt_tc_sliders', 'sliders_filter', 99 );
 
         }
         /*A) FP*/
@@ -646,7 +646,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           return array_unique( czr_fn_wpml_object_id( $cat_ids, 'category' ) );
         }
         //Translate category ids for the filtered posts in home/blog
-        add_filter('czr_opt_tc_blog_restrict_by_cat', 'czr_fn_wpml_translate_cat');
+        add_filter('tc_opt_tc_blog_restrict_by_cat', 'czr_fn_wpml_translate_cat');
         /*end tax filtering*/
 
       }//end Front
@@ -838,7 +838,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       function czr_fn_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) );
+        return 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) );
       }
 
       //when in the woocommerce shop page use the "shop" id
@@ -879,7 +879,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'czr_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );
       function czr_fn_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( czr_fn_get_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -1080,7 +1080,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'czr_anchor_smoothscroll_excl', 'czr_fn_vc_disable_link_scroll' );
       function czr_fn_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( czr_fn_get_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();

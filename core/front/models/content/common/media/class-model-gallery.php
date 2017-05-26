@@ -24,7 +24,7 @@ class CZR_gallery_model_class extends CZR_Model {
                   'gallery_items'   => null,
                   'post_id'         => null,
                   'visibility'      => true,
-                  'has_lightbox'    => czr_fn_get_opt( 'tc_fancybox' ),
+                  'has_lightbox'    => czr_fn_opt( 'tc_fancybox' ),
 
             );
 

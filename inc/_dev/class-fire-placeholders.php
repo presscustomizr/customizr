@@ -153,7 +153,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_thumbnail_help_on() {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
@@ -163,8 +163,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         'disabled' == get_transient("tc_thumbnail_help"),
-        ( is_single() && 'hide' != CZR_utils::$inst->czr_fn_opt('tc_single_post_thumb_location') ),
-        ( is_page() && 'hide' != CZR_utils::$inst->czr_fn_opt('tc_single_page_thumb_location') ),
+        ( is_single() && 'hide' != czr_fn_opt('tc_single_post_thumb_location') ),
+        ( is_page() && 'hide' != czr_fn_opt('tc_single_page_thumb_location') ),
         ! is_admin() && ! is_singular(),
         ! czr_fn_is_front_help_enabled()
       );
@@ -212,7 +212,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p>',
               __( "Did you know you can easily speed up your page load by deferring the loading of the non visible images?", "customizr" ),
               sprintf( __("%s and check the option 'Load images on scroll' under 'Website Performances' section.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "control" => "tc_img_smart_load", "section" => "performances_sec" ) ), __( "Jump to the customizer now", "customizr") )
               )
           );
           printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
@@ -238,7 +238,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_img_smartload_help_on( $text, $min_img_num = 2 ) {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       if ( $min_img_num ) {
@@ -251,7 +251,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         return true;
 
       $_dont_display_conditions = array(
-        1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) ),
+        1 == esc_attr( czr_fn_opt( 'tc_img_smart_load' ) ),
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
         ! czr_fn_is_front_help_enabled(),
         'disabled' == get_transient("tc_img_smartload_help"),
@@ -294,7 +294,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_sidenav_help_on() {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
@@ -303,8 +303,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        CZR_utils::$inst->czr_fn_has_location_menu('main'),// => if the "main" location has a menu assigned
-        'navbar' == CZR_utils::$inst->czr_fn_opt('tc_menu_style'),
+        czr_fn_has_location_menu('main'),// => if the "main" location has a menu assigned
+        'navbar' == czr_fn_opt('tc_menu_style'),
         'disabled' == get_transient("tc_sidenav_help"),
         ! czr_fn_is_front_help_enabled()
       );
@@ -345,17 +345,17 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_second_menu_placeholder_on() {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
       if ( defined('CZR_DEV') && true === CZR_DEV )
         return true;
       //don't display if main menu style is regular <=> 'navbar' == tc_menu_style
-      if ( 'navbar' == CZR_utils::$inst->czr_fn_opt('tc_menu_style') )
+      if ( 'navbar' == czr_fn_opt('tc_menu_style') )
         return false;
       //don't display if second menu is enabled : tc_display_second_menu
-      if ( (bool)CZR_utils::$inst->czr_fn_opt('tc_display_second_menu') )
+      if ( (bool)czr_fn_opt('tc_display_second_menu') )
         return false;
 
       return apply_filters(
@@ -391,7 +391,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_main_menu_notice_on() {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
@@ -400,8 +400,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        'navbar' != CZR_utils::$inst->czr_fn_opt('tc_menu_style'),
-        (bool)CZR_utils::$inst->czr_fn_opt('tc_display_second_menu'),
+        'navbar' != czr_fn_opt('tc_menu_style'),
+        (bool)czr_fn_opt('tc_display_second_menu'),
         'disabled' == get_transient("tc_main_menu_notice"),
         ! czr_fn_is_front_help_enabled()
       );
@@ -436,7 +436,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       check_ajax_referer( 'tc-slider-notice-nonce', 'sliderNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_slider':
-          CZR_utils::$inst -> czr_fn_set_option( 'tc_front_slider' , 0 );
+          czr_fn_set_option( 'tc_front_slider' , 0 );
         break;
 
         case 'remove_notice':
@@ -454,7 +454,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_slider_notice_on( $_position = null ) {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
@@ -463,8 +463,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! CZR_utils::$inst-> czr_fn_is_home(),
-        'tc_posts_slider' != CZR_utils::$inst->czr_fn_opt('tc_front_slider'),
+        ! is_admin() && ! czr_fn_is_home(),
+        'tc_posts_slider' != czr_fn_opt('tc_front_slider'),
         'disabled' == get_transient("tc_slider_notice"),
         ! czr_fn_is_front_help_enabled()
       );
@@ -500,7 +500,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       check_ajax_referer( 'tc-fp-notice-nonce', 'fpNoticeNonce' );
       switch ($_remove_action) {
         case 'remove_fp':
-          CZR_utils::$inst -> czr_fn_set_option( 'tc_show_featured_pages' , 0 );
+          czr_fn_set_option( 'tc_show_featured_pages' , 0 );
         break;
 
         case 'remove_notice':
@@ -517,7 +517,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_fp_notice_on( $_position = null ) {
       //never display when customizing
-      if ( CZR___::$instance -> czr_fn_is_customizing() )
+      if ( czr_fn_is_customizing() )
         return;
 
       //always display in DEV mode
@@ -526,11 +526,11 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! CZR_utils::$inst-> czr_fn_is_home(),
-        ! (bool)CZR_utils::$inst->czr_fn_opt('tc_show_featured_pages'),
+        ! is_admin() && ! czr_fn_is_home(),
+        ! (bool)czr_fn_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> czr_fn_is_one_fp_set(),
-        CZR___::czr_fn_is_pro(),
+        czr_fn_is_pro(),
         CZR_plugins_compat::$instance->czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php'),
         ! czr_fn_is_front_help_enabled()
       );
@@ -554,7 +554,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
       if ( ! is_array($fp_ids) )
         return;
       foreach ($fp_ids as $fp_single_id ) {
-        $_fp_sets[] = (bool)CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id );
+        $_fp_sets[] = (bool)czr_fn_opt( 'tc_featured_page_'.$fp_single_id );
       }
       //returns true if at least one fp has been set.
       return (bool)array_sum($_fp_sets);
@@ -591,7 +591,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     static function czr_fn_is_widget_placeholder_enabled( $_position = null ) {
       //never display when customizing
-      // if ( CZR___::$instance -> czr_fn_is_customizing() )
+      // if ( czr_fn_is_customizing() )
       //   return;
 
       //always display in DEV mode

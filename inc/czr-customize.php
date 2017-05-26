@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
-      if ( ! CZR___::czr_fn_is_pro() && class_exists('CZR_Customize_Section_Pro') ) {
+      if ( ! czr_fn_is_pro() && class_exists('CZR_Customize_Section_Pro') ) {
         $manager -> register_section_type( 'CZR_Customize_Section_Pro');
       }
     }
@@ -463,7 +463,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_utils::$inst -> czr_fn_is_customizr_option( $key ) )
+          if ( czr_fn_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 
@@ -723,7 +723,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
               array(
                 'themeFolder'     => get_template_directory_uri(),
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => CZR_utils::$inst -> czr_fn_get_font( 'list' ),
+                'fontPairs'       => czr_fn_get_font( 'list' ),
                 'fontSelectors'   => CZR_init::$instance -> font_selectors,
                 'wpBuiltinSettings' => CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
                 'themeOptions'  => CZR_THEME_OPTIONS,
@@ -867,7 +867,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'docURL'          => esc_url('docs.presscustomizr.com/'),
 
             'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
-            'themeName'       => CZR___::$theme_name,
+            'CZR_THEMENAME'       => CZR___::$theme_name,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'i18n'   => $this -> czr_fn_get_translated_strings(),
@@ -878,7 +878,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
             'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
-            'isThemeSwitchOn'  => ! CZR___::czr_fn_is_pro(),
+            'isThemeSwitchOn'  => ! czr_fn_is_pro(),
             'themeSettingList' => CZR_utils::$_theme_setting_list,
 
             'faviconOptionName' => 'tc_fav_upload',
@@ -908,7 +908,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
         if (  false === strpos($prop, 'is_') )
           continue;
         if ( 'is_home' == $prop )
-          $val = CZR_utils::$inst->czr_fn_is_home();
+          $val = czr_fn_is_home();
 
         $_wp_conditionals[$prop] = $val;
       }
@@ -1028,7 +1028,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
               <?php
               if ( 'tc_theme_options[tc_front_slider]' == $this -> id ) {
                 //retrieve all sliders in option array
-                $sliders          = CZR_utils::$inst -> czr_fn_opt( 'tc_sliders' );
+                $sliders          = czr_fn_opt( 'tc_sliders' );
 
                 if ( empty( $sliders ) ) {
                   printf('<div class="czr-notice" style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',

@@ -54,17 +54,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             $content_width         = czr_fn_get_in_content_width_class();
 
             $_preset = array(
-                  'thumb_alternate'       => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_alternate' ) ),
-                  'thumb_position'        => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_position' ) ),
-                  'show_thumb'            => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+                  'thumb_alternate'       => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
+                  'thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
+                  'show_thumb'            => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
                   'content_width'         => $content_width,
                   'format_icon_media'     => ! in_array( 'narrow', $content_width ),
-                  'excerpt_length'        => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+                  'excerpt_length'        => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
                   'contained'             => false,
                   'cover_sections'        => true,
                   'wrapped'               => true,
                   'image_centering'       => 'js-centering',
-                  'thumb_shape_effect'    => strstr(  esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_shape' ) ),'rounded' ) ? czr_fn_get_opt( 'tc_post_list_thumb_shape' ) : 'regular'
+                  'thumb_shape_effect'    => strstr(  esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape' ) ),'rounded' ) ? czr_fn_opt( 'tc_post_list_thumb_shape' ) : 'regular'
             );
 
             return $_preset;

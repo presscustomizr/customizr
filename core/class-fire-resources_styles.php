@@ -35,7 +35,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
                $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
-               $this->_minify_css              = esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
+               $this->_minify_css              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
 
          }
 
@@ -87,7 +87,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function czr_fn_write_custom_css( $_css = null ) {
 
                $_css                     = isset( $_css ) ? $_css : '';
-               $_moved_opts              = czr_fn_get_opt(  '__moved_opts' );
+               $_moved_opts              = czr_fn_opt(  '__moved_opts' );
 
                /*
                * Do not print old custom css if moved in the WP Custom CSS
@@ -128,7 +128,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function czr_fn_maybe_write_skin_inline_css( $_css ) {
 
                //retrieve the current option
-               $skin_color                    = czr_fn_get_opt( 'tc_skin_color' );
+               $skin_color                    = czr_fn_opt( 'tc_skin_color' );
 
                //retrieve the default color
                $defaults                      = czr_fn_get_default_options();
@@ -151,7 +151,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                //LET'S DANCE
                //start computing style
                $skin                          = array();
-               $glue                          = $this->_minify_css || esc_attr( czr_fn_get_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $glue                          = $this->_minify_css || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
                $skin_style_map                = array(
 

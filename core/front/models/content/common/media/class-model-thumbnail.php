@@ -38,7 +38,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
                   'visibility'            => true,
 
-                  'has_lightbox'          => czr_fn_get_opt( 'tc_fancybox' ),
+                  'has_lightbox'          => czr_fn_opt( 'tc_fancybox' ),
 
             );
 

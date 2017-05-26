@@ -83,7 +83,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     function czr_fn_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
        // czr_fn_get_opt and czr_fn_set_option in core/utils/ class-fire-utils_option
        //home/blog posts category picker
-       $_option = czr_fn_get_opt( $option_name, $option_group, $use_default = false );
+       $_option = czr_fn_opt( $option_name, $option_group, $use_default = false );
        if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
          //update the option
          czr_fn_set_option( $option_name, array_diff( $_option, (array)$term ) );
@@ -103,7 +103,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * @since Customizr 3.2.10
     */
     function czr_fn_maybe_add_gfonts_to_editor() {
-      $_font_pair         = esc_attr( czr_fn_get_opt('tc_fonts') );
+      $_font_pair         = esc_attr( czr_fn_opt('tc_fonts') );
       $_all_font_pairs    = CZR_init::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
         return;
@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_may_be_display_update_notice() {
       $opt_name                   = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice_values  = czr_fn_get_opt($opt_name);
+      $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;
 
       if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {

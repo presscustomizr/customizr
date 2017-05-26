@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_menu_hooks() {
-      if ( (bool) CZR_utils::$inst->czr_fn_opt('tc_hide_all_menus') )
+      if ( (bool) czr_fn_opt('tc_hide_all_menus') )
         return;
       //VARIOUS USER OPTIONS
       add_filter( 'body_class'                    , array( $this , 'czr_fn_add_body_classes') );
@@ -106,7 +106,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
               __( "This is a default page menu.", "customizr" ),
               __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
               sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a>', admin_url('nav-menus.php'), __( "menu creation screen", "customizr") )
               )
           );
@@ -169,7 +169,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         implode(' ', apply_filters( "tc_{$type}_button_class", $button_class ) ),
         apply_filters( "tc_{$type}_menu_button_attr", $button_attr),
         '<span class="icon-bar"></span>',
-        (bool)esc_attr( CZR_utils::$inst->czr_fn_opt('tc_display_menu_label') ) ? $_button_label : '',
+        (bool)esc_attr( czr_fn_opt('tc_display_menu_label') ) ? $_button_label : '',
         '__sidenav' == current_filter() ? __('Close', 'customizr') : __('Open the menu' , 'customizr')
       );
       return apply_filters( "tc_{$type}_menu_button_view", $_button );
@@ -230,12 +230,12 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_regular_menu_display( $_location = 'main' ){
       $type               = 'regular';
-      $button_where       = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $button_where       = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class       = array( 'btn-toggle-nav', $button_where );
       $button_attr        = 'data-toggle="collapse" data-target=".nav-collapse"';
 
-      $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
-      $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
+      $menu_class         = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav tc-hover-menu' ) : array( 'nav' ) ;
+      $menu_wrapper_class = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array( 'nav-collapse collapse', 'tc-hover-menu-wrapper' ) : array( 'nav-collapse', 'collapse' );
 
       $menu_view = $this -> czr_fn_wp_nav_menu_view( compact( '_location', 'type', 'menu_class', 'menu_wrapper_class' ) );
 
@@ -298,7 +298,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     */
     function czr_fn_sidenav_toggle_button_display() {
       $type          = 'sidenav';
-      $where         = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
+      $where         = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'pull-right' : 'pull-left';
       $button_class  = array( 'btn-toggle-nav', 'sn-toggle', $where );
       $button_attr   = '';
 
@@ -327,7 +327,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
             'fallback_cb'     => array( $this, 'czr_fn_page_menu' ),
             //if no menu is set to the required location, fallsback to tc_page_menu
             //=> tc_page_menu has it's own class extension of Walker, therefore no need to specify one below
-            'walker'          => ! CZR_utils::$inst -> czr_fn_has_location_menu($_location) ? '' : new CZR_nav_walker($_location),
+            'walker'          => ! czr_fn_has_location_menu($_location) ? '' : new CZR_nav_walker($_location),
             'echo'            => false,
         )
       );
@@ -362,7 +362,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
               __( "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed.", "customizr" ),
               sprintf( __("%s or %s.", "customizr"),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('demo.presscustomizr.com?design=nav'), __( "Try it with the demo", "customizr") ),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "open the customizer menu section", "customizr"), __("change your menu design now", "customizr") )
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "open the customizer menu section", "customizr"), __("change your menu design now", "customizr") )
               )
           );
           printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
@@ -388,7 +388,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
           printf('<p><strong>%1$s<br/>%2$s</strong></p>',
               __( "You can display your main menu or a second menu here horizontally.", "customizr" ),
               sprintf( __("%s or read the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "nav") ), __( "Manage menus in the header", "customizr"), __("Manage your menus in the header now", "customizr") ),
+                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "Manage menus in the header", "customizr"), __("Manage your menus in the header now", "customizr") ),
                 sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('http://docs.presscustomizr.com/article/101-customizr-theme-options-header-settings/#navigation'), __( "documentation", "customizr") )
               )
           );
@@ -413,9 +413,9 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_menu_style_options( $_classes ) {
-      $_classes = ( ! wp_is_mobile() && 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
-      $_classes = ( 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
-      $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
+      $_classes = ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
+      $_classes = ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
+      $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
 
       //Navbar menus positions (not sidenav)
       //CASE 1 : regular menu (sidenav not enabled), controled by option 'tc_menu_position'
@@ -424,15 +424,15 @@ if ( ! class_exists( 'CZR_menu' ) ) :
 
       $_menu_position = '';
       if ( ! $this -> czr_fn_is_sidenav_enabled() )
-        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_position') );
+        $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_menu_position') );
       if ( CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() )
-        $_menu_position = $_classes[] = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_position') );
+        $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_second_menu_position') );
 
 
 
       if ( 'pull-menu-center' == $_menu_position ) {
         //pull-menu-center is possible only when logo-centered
-        if ( 'centered' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout' ) ) )
+        if ( 'centered' != esc_attr( czr_fn_opt( 'tc_header_layout' ) ) )
           array_pop($_classes);
 
         //this value will determine the beahavior when logo-center and menu center and .sticky-enabled
@@ -477,7 +477,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       if ( CZR_Utils::$inst -> czr_fn_is_secondary_menu_enabled() )
         array_push( $_classes, 'tc-second-menu-on' );
       //adds the resp. behaviour option for secondary menu
-      array_push( $_classes, 'tc-second-menu-' . esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
+      array_push( $_classes, 'tc-second-menu-' . esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
 
       return $_classes;
     }
@@ -712,7 +712,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.3+
     */
     function czr_fn_sidenav_body_class( $_classes ){
-      $_where = 'right' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
+      $_where = 'right' != esc_attr( czr_fn_opt( 'tc_header_layout') ) ? 'right' : 'left';
       array_push( $_classes, apply_filters( 'tc_sidenav_body_class', "sn-$_where" ) );
 
       return $_classes;
@@ -741,7 +741,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_sidenav_enabled() {
-      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_style' ) ) );
+      return apply_filters( 'tc_is_sidenav_enabled', 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) ) );
     }
 
 
@@ -749,7 +749,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @return bool
     */
     function czr_fn_is_second_menu_enabled() {
-      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_second_menu' ) ) );
+      return apply_filters( 'tc_is_second_menu_enabled', (bool)esc_attr( czr_fn_opt( 'tc_display_second_menu' ) ) );
     }
 
 

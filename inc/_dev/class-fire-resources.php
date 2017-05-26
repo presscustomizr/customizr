@@ -49,7 +49,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   		*/
       function czr_fn_enqueue_front_styles() {
             //Enqueue FontAwesome CSS
-            if ( true == CZR_utils::$inst -> czr_fn_opt( 'tc_font_awesome_icons' ) ) {
+            if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
               $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
               wp_enqueue_style( 'customizr-fa',
                   $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
@@ -211,16 +211,16 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
         //carousel options
         //gets slider options if any for home/front page or for others posts/pages
-        $js_slidername      = czr_fn__f('__is_home') ? CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) : get_post_meta( CZR_utils::czr_fn_id() , $key = 'post_slider_key' , $single = true );
-        $js_sliderdelay     = czr_fn__f('__is_home') ? CZR_utils::$inst->czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( CZR_utils::czr_fn_id() , $key = 'slider_delay_key' , $single = true );
+        $js_slidername      = czr_fn__f('__is_home') ? czr_fn_opt( 'tc_front_slider' ) : get_post_meta( czr_fn_get_id() , $key = 'post_slider_key' , $single = true );
+        $js_sliderdelay     = czr_fn__f('__is_home') ? czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_delay_key' , $single = true );
 
   			//has the post comments ? adds a boolean parameter in js
   			global $wp_query;
   			$has_post_comments 	= ( 0 != $wp_query -> post_count && comments_open() && get_comments_number() != 0 ) ? true : false;
 
   			//adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
-  			$anchor_smooth_scroll 		  = ( false != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
-  			if ( false != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_link_scroll') ) )
+  			$anchor_smooth_scroll 		  = ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
+  			if ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) )
   				wp_enqueue_script('jquery-effects-core');
               $anchor_smooth_scroll_exclude =  apply_filters( 'tc_anchor_smoothscroll_excl' , array(
                   'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
@@ -230,11 +230,11 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                   )
               ));
 
-        $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_smoothscroll') ) );
+        $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( czr_fn_opt( 'tc_smoothscroll') ) );
         $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
         //smart load
-        $smart_load_enabled   = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+        $smart_load_enabled   = esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
         $smart_load_opts      = apply_filters( 'tc_img_smart_load_options' , array(
               'parentSelectors' => array(
                   '.article-container', '.__before_main_wrapper', '.widget-front',
@@ -244,7 +244,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
               )
         ));
   			//gets current screen layout
-      	$screen_layout      = CZR_utils::czr_fn_get_layout( CZR_utils::czr_fn_id() , 'sidebar'  );
+      	$screen_layout      = CZR_utils::czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
       	//gets the global layout settings
       	$global_layout      = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
       	$sidebar_layout     = isset($global_layout[$screen_layout]['sidebar']) ? $global_layout[$screen_layout]['sidebar'] : false;
@@ -258,39 +258,39 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   	        apply_filters( 'tc_customizr_script_params' , array(
   	          	'_disabled'          => apply_filters( 'tc_disabled_front_js_parts', array() ),
                 'FancyBoxState' 		=> $this -> czr_fn_is_fancyboxjs_required(),
-  	          	'FancyBoxAutoscale' => ( 1 == CZR_utils::$inst->czr_fn_opt( 'tc_fancybox_autoscale') ) ? true : false,
+  	          	'FancyBoxAutoscale' => ( 1 == czr_fn_opt( 'tc_fancybox_autoscale') ) ? true : false,
   	          	'SliderName' 			  => $js_slidername,
   	          	'SliderDelay' 			=> $js_sliderdelay,
   	          	'SliderHover'			  => apply_filters( 'tc_stop_slider_hover', true ),
-  	          	'centerSliderImg'   => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ),
+  	          	'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
                 'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
                 'anchorSmoothScroll'			=> $anchor_smooth_scroll,
                 'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
-  	          	'ReorderBlocks' 		=> esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_block_reorder') ),
-  	          	'centerAllImg' 			=> esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ),
+  	          	'ReorderBlocks' 		=> esc_attr( czr_fn_opt( 'tc_block_reorder') ),
+  	          	'centerAllImg' 			=> esc_attr( czr_fn_opt( 'tc_center_img') ),
   	          	'HasComments' 			=> $has_post_comments,
   	          	'LeftSidebarClass' 		=> $left_sb_class,
   	          	'RightSidebarClass' 	=> $right_sb_class,
   	          	'LoadModernizr' 		=> apply_filters( 'tc_load_modernizr' , true ),
   	          	'stickyCustomOffset' 	=> apply_filters( 'tc_sticky_custom_offset' , array( "_initial" => 0, "_scrolling" => 0, "options" => array( "_static" => true, "_element" => "" ) ) ),
-  	          	'stickyHeader' 			=> esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_sticky_header' ) ),
-  	          	'dropdowntoViewport' 	=> esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
+  	          	'stickyHeader' 			=> esc_attr( czr_fn_opt( 'tc_sticky_header' ) ),
+  	          	'dropdowntoViewport' 	=> esc_attr( czr_fn_opt( 'tc_menu_resp_dropdown_limit_to_viewport') ),
   	          	'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
-                'extLinksStyle'       => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_ext_link_style' ) ),
-                'extLinksTargetExt'   => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_ext_link_target' ) ),
+                'extLinksStyle'       => esc_attr( czr_fn_opt( 'tc_ext_link_style' ) ),
+                'extLinksTargetExt'   => esc_attr( czr_fn_opt( 'tc_ext_link_target' ) ),
                 'extLinksSkipSelectors'   => apply_filters( 'tc_ext_links_skip_selectors' , array( 'classes' => array('btn', 'button') , 'ids' => array() ) ),
-                'dropcapEnabled'      => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ),
-                'dropcapWhere'      => array( 'post' => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_page_dropcap' ) ) ),
-                'dropcapMinWords'     => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_dropcap_minwords' ) ),
+                'dropcapEnabled'      => esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ),
+                'dropcapWhere'      => array( 'post' => esc_attr( czr_fn_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( czr_fn_opt( 'tc_page_dropcap' ) ) ),
+                'dropcapMinWords'     => esc_attr( czr_fn_opt( 'tc_dropcap_minwords' ) ),
                 'dropcapSkipSelectors'  => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array('btn') , 'id' => array() ) ),
                 'imgSmartLoadEnabled' => $smart_load_enabled,
                 'imgSmartLoadOpts'    => $smart_load_opts,
                 'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
-                'gridGoldenRatioLimit' => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height' ) ),
+                'gridGoldenRatioLimit' => esc_attr( czr_fn_opt( 'tc_grid_thumb_height' ) ),
                 'isSecondMenuEnabled'  => CZR_utils::$inst->czr_fn_is_secondary_menu_enabled(),
-                'secondMenuRespSet'   => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_second_menu_resp_setting' ) ),
+                'secondMenuRespSet'   => esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) ),
 
-                'isParallaxOn'        => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_parallax') ),
+                'isParallaxOn'        => esc_attr( czr_fn_opt( 'tc_slider_parallax') ),
                 'parallaxRatio'       => apply_filters('tc_parallax_ratio', 0.55 ),
 
                 'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
@@ -308,7 +308,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
                 'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV )
   	        	),
-  	        	CZR_utils::czr_fn_id()
+  	        	czr_fn_get_id()
   		    )//end of filter
   	     );
 
@@ -329,7 +329,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   	    }
 
   	    //load retina.js in footer if enabled
-  	    if ( apply_filters('tc_load_retinajs', 1 == CZR_utils::$inst->czr_fn_opt( 'tc_retina_support' ) ) )
+  	    if ( apply_filters('tc_load_retinajs', 1 == czr_fn_opt( 'tc_retina_support' ) ) )
   	    	wp_enqueue_script( 'retinajs' ,TC_BASE_URL . 'inc/assets/js/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
   	    //Load hammer.js for mobile
@@ -349,7 +349,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       function czr_fn_write_custom_css( $_css = null ) {
         $_css               = isset($_css) ? $_css : '';
 
-        $_moved_opts        = CZR_utils::$inst->czr_fn_opt(  '__moved_opts' ) ;
+        $_moved_opts        = czr_fn_opt(  '__moved_opts' ) ;
 
         /*
         * Do not print old custom css if moved in the WP Custom CSS
@@ -357,14 +357,14 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         if ( !empty( $_moved_opts ) && is_array( $_moved_opts ) && in_array( 'custom_css', $_moved_opts) )
           return $_css;
 
-        $tc_custom_css      = esc_html( CZR_utils::$inst->czr_fn_opt( 'tc_custom_css') );
+        $tc_custom_css      = esc_html( czr_fn_opt( 'tc_custom_css') );
         if ( ! isset($tc_custom_css) || empty($tc_custom_css) )
           return $_css;
 
         return apply_filters( 'tc_write_custom_css',
           $_css . "\n" . html_entity_decode( $tc_custom_css ),
           $_css,
-          CZR_utils::$inst->czr_fn_opt( 'tc_custom_css')
+          czr_fn_opt( 'tc_custom_css')
         );
       }//end of function
 
@@ -401,14 +401,14 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since Customizr 3.2.9
       */
       function czr_fn_enqueue_gfonts() {
-        $_font_pair         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
+        $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
         $_all_font_pairs    = CZR_init::$instance -> font_pairs;
         if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
           return;
 
         wp_enqueue_style(
           'tc-gfonts',
-          sprintf( '//fonts.googleapis.com/css?family=%s', str_replace( '|', '%7C', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) ) ),
+          sprintf( '//fonts.googleapis.com/css?family=%s', str_replace( '|', '%7C', czr_fn_get_font( 'single' , $_font_pair ) ) ),
           array(),
           null,
           'all'
@@ -427,8 +427,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       */
       function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
         $_css               = isset($_css) ? $_css : '';
-        $_font_pair         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fonts' ) );
-        $_body_font_size    = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_body_font_size' ) );
+        $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
+        $_body_font_size    = esc_attr( czr_fn_opt( 'tc_body_font_size' ) );
         $_font_selectors    = CZR_init::$instance -> font_selectors;
 
         //create the $body and $titles vars
@@ -447,7 +447,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         $body   = apply_filters('tc_body_fonts_selectors' , $body );
 
         if ( 'helvetica_arial' != $_font_pair ) {//check if not default
-          $_selector_fonts  = explode( '|', CZR_utils::$inst -> czr_fn_get_font( 'single' , $_font_pair ) );
+          $_selector_fonts  = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
           if ( ! is_array($_selector_fonts) )
             return $_css;
 
@@ -510,13 +510,13 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       */
       function czr_fn_write_dropcap_inline_css( $_css = null , $_context = null ) {
         $_css               = isset($_css) ? $_css : '';
-        if ( ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_enable_dropcap' ) ) )
+        if ( ! esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
           return $_css;
 
         $_main_color_pair = CZR_utils::$inst -> czr_fn_get_skin_color( 'pair' );
         $_color           = $_main_color_pair[0];
         $_shad_color      = $_main_color_pair[1];
-        $_pad_right       = false !== strpos( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
+        $_pad_right       = false !== strpos( esc_attr( czr_fn_opt( 'tc_fonts' ) ), 'lobster' ) ? 26 : 8;
         $_css .= "
           .tc-dropcap {
             color: {$_color};
@@ -546,7 +546,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since Customizr 3.3+
       */
       function czr_fn_set_random_skin ( $_skin ) {
-        if ( false == esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_skin_random' ) ) )
+        if ( false == esc_attr( czr_fn_opt( 'tc_skin_random' ) ) )
           return $_skin;
 
         //allow custom skins to be taken in account
@@ -665,7 +665,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since v3.3+
       */
       private function czr_fn_is_fancyboxjs_required() {
-        return CZR_utils::$inst -> czr_fn_opt( 'tc_fancybox' ) || CZR_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox');
+        return czr_fn_opt( 'tc_fancybox' ) || czr_fn_opt( 'tc_gallery_fancybox');
       }
 
       /**
@@ -684,7 +684,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
 
         foreach ( $fp_ids as $fp_single_id ){
-          $featured_page_id = CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id );
+          $featured_page_id = czr_fn_opt( 'tc_featured_page_'.$fp_single_id );
           if ( null == $featured_page_id || ! $featured_page_id || ! CZR_featured_pages::$instance -> czr_fn_get_fp_img( null, $featured_page_id, null ) ) {
             $bool = true;
             break;

@@ -62,7 +62,7 @@ class CZR_gallery {
                   'czr-gallery',
                    'row',
                    'flex-row',
-                  1 == esc_attr( czr_fn_get_opt( 'tc_gallery_style' ) ) ? 'czr-gallery-style' : ''
+                  1 == esc_attr( czr_fn_opt( 'tc_gallery_style' ) ) ? 'czr-gallery-style' : ''
                   )
             ) );
             $itemtag       = 'figure';
@@ -170,7 +170,7 @@ class CZR_gallery {
 
       function czr_fn_maybe_lighbox_attachment_link( $link_markup, $id, $attachment ) {
 
-            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_get_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
+            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
                   return $link_markup;
             }
 
@@ -182,7 +182,7 @@ class CZR_gallery {
 
       function czr_fn_maybe_add_lighbox_button( $markup, $id, $attachment ) {
 
-            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_get_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
+            if ( ! apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id ) ) {
                   return $markup;
             }
 
@@ -202,7 +202,7 @@ class CZR_gallery {
        * HELPERS
        */
       function czr_fn_is_gallery_enabled(){
-            return apply_filters('czr_enable_gallery', esc_attr( czr_fn_get_opt('tc_enable_gallery') ) );
+            return apply_filters('czr_enable_gallery', esc_attr( czr_fn_opt('tc_enable_gallery') ) );
       }
 
 

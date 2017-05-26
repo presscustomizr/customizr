@@ -17,17 +17,17 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'grid_columns'           => esc_attr( czr_fn_get_opt( 'tc_grid_columns') ),
-      'grid_title_num_words'   => esc_attr( czr_fn_get_opt( 'tc_grid_num_words') ),
-      'grid_icons'             => esc_attr( czr_fn_get_opt( 'tc_grid_icons') ),
-      'grid_expand_featured'   => esc_attr( czr_fn_get_opt( 'tc_grid_expand_featured') ),
-      'show_thumb'             => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
-      'grid_bottom_border'     => esc_attr( czr_fn_get_opt( 'tc_grid_bottom_border') ),
-      'grid_shadow'            => esc_attr( czr_fn_get_opt( 'tc_grid_shadow') ),
-      //'grid_thumb_height'     => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_height') ),
-      'grid_thumb_shape'       => esc_attr( czr_fn_get_opt( 'tc_grid_thumb_shape') ),
-      'use_thumb_placeholder'  => esc_attr( czr_fn_get_opt( 'tc_post_list_thumb_placeholder' ) ),
-      'excerpt_length'         => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'grid_columns'           => esc_attr( czr_fn_opt( 'tc_grid_columns') ),
+      'grid_title_num_words'   => esc_attr( czr_fn_opt( 'tc_grid_num_words') ),
+      'grid_icons'             => esc_attr( czr_fn_opt( 'tc_grid_icons') ),
+      'grid_expand_featured'   => esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ),
+      'show_thumb'             => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
+      'grid_bottom_border'     => esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ),
+      'grid_shadow'            => esc_attr( czr_fn_opt( 'tc_grid_shadow') ),
+      //'grid_thumb_height'     => esc_attr( czr_fn_opt( 'tc_grid_thumb_height') ),
+      'grid_thumb_shape'       => esc_attr( czr_fn_opt( 'tc_grid_thumb_shape') ),
+      'use_thumb_placeholder'  => esc_attr( czr_fn_opt( 'tc_post_list_thumb_placeholder' ) ),
+      'excerpt_length'         => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
       'wrapped'                => true,
       'masonry'                => false,
       'contained'              => false,
@@ -673,7 +673,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $_lh_ratio = apply_filters( 'czr_grid_line_height_ratio' , 1.55 ); //line-height / font-size
     $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
     //body font size
-    $_bs = esc_attr( czr_fn_get_opt( 'tc_body_font_size') );
+    $_bs = esc_attr( czr_fn_opt( 'tc_body_font_size') );
     $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
     return sprintf( 'font-size:%spx;line-height:%spx;' ,
       ceil( $_bs * $_ratio ),

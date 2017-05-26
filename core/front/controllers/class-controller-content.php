@@ -60,23 +60,23 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
 
     function czr_fn_display_view_post_list_full() {
-      return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_post_list() {
-      return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() && 'alternate' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() && 'alternate' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_post_list_masonry() {
-      return apply_filters( 'czr_display_view_post_list_masonry', czr_fn_is_list_of_posts() && 'masonry' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_display_view_post_list_masonry', czr_fn_is_list_of_posts() && 'masonry' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_post_list_plain() {
-      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
     function czr_fn_display_view_post_list_plain_excerpt() {
-      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain_excerpt' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_display_view_post_list_plain', czr_fn_is_list_of_posts() && 'plain_excerpt' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
 
@@ -110,7 +110,7 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         return;
 
       //@todo check if some conditions below not redundant?
-      if ( ! apply_filters( 'czr_show_author_metas_in_post', esc_attr( czr_fn_get_opt( 'tc_show_author_info' ) ) ) )
+      if ( ! apply_filters( 'czr_show_author_metas_in_post', esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) ) )
         return;
 
       return true;
@@ -145,17 +145,17 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       if ( czr_fn_is_customizing() )
         $post_metas = true;
 
-      elseif ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
+      elseif ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) )
         $post_metas = false;
 
       elseif ( is_singular() && ! is_page() && ! czr_fn_is_home() )
-        $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) );
+        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) );
 
       elseif ( ! is_singular() && ! czr_fn_is_home() && ! is_page() )
-        $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) );
+        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) );
 
       elseif ( czr_fn_is_home() )
-        $post_metas = ( 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) ) );
+        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) ) );
       else
         $post_metas = false;
 
@@ -216,16 +216,16 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_comment_list() {
-      return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_are_comments_enabled() );
+      return apply_filters( 'czr_display_comment_list', (bool) esc_attr( czr_fn_opt( 'tc_show_comment_list' ) ) && $this -> czr_fn_are_comments_enabled() );
     }
 
 
     function czr_fn_display_view_lefts_social_block() {
-      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_left-sidebar' );
+      return czr_fn_has_social_links() && czr_fn_opt( 'tc_social_in_left-sidebar' );
     }
 
     function czr_fn_display_view_rights_social_block() {
-      return czr_fn_has_social_links() && czr_fn_get_opt( 'tc_social_in_right-sidebar' );
+      return czr_fn_has_social_links() && czr_fn_opt( 'tc_social_in_right-sidebar' );
 
 
     }
@@ -261,9 +261,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
         //3) check global user options for pages and posts
         if ( 'page' == get_post_type() )
-          $_bool = 1 == esc_attr( czr_fn_get_opt( 'tc_page_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( czr_fn_opt( 'tc_page_comments' )) && $_bool;
         else
-          $_bool = 1 == esc_attr( czr_fn_get_opt( 'tc_post_comments' )) && $_bool;
+          $_bool = 1 == esc_attr( czr_fn_opt( 'tc_post_comments' )) && $_bool;
       } else
         $_bool = false;
 
@@ -294,14 +294,14 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     *
     */
     function czr_fn_is_posts_navigation_context_enabled( $_context ) {
-      return $_context && 1 == esc_attr( czr_fn_get_opt( "tc_show_post_navigation_{$_context}" ) );
+      return $_context && 1 == esc_attr( czr_fn_opt( "tc_show_post_navigation_{$_context}" ) );
     }
 
     /*
     * @return bool
     */
     function czr_fn_is_posts_navigation_enabled(){
-      return apply_filters( 'czr_show_post_navigation', 1 == esc_attr( czr_fn_get_opt( 'tc_show_post_navigation' ) ) );
+      return apply_filters( 'czr_show_post_navigation', 1 == esc_attr( czr_fn_opt( 'tc_show_post_navigation' ) ) );
     }
 
   }//end of class

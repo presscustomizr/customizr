@@ -16,21 +16,21 @@ class CZR_featured_pages_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
         $_preset = array(
-          'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_show_featured_pages_img' ) ),
-          'center_imgs'               => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ),
+          'show_thumb'                => esc_attr( czr_fn_opt( 'tc_show_featured_pages_img' ) ),
+          'center_imgs'               => esc_attr( czr_fn_opt( 'tc_center_img' ) ),
           'fp_per_row'                => 3,
           'fps'                       => array(
-              esc_attr( czr_fn_get_opt( 'tc_featured_page_one' ) ),
-              esc_attr( czr_fn_get_opt( 'tc_featured_page_two' ) ),
-              esc_attr( czr_fn_get_opt( 'tc_featured_page_three' ) )
+              esc_attr( czr_fn_opt( 'tc_featured_page_one' ) ),
+              esc_attr( czr_fn_opt( 'tc_featured_page_two' ) ),
+              esc_attr( czr_fn_opt( 'tc_featured_page_three' ) )
           ),
           'fps_text'                  => array(
-              esc_attr( czr_fn_get_opt( 'tc_featured_text_one' ) ),
-              esc_attr( czr_fn_get_opt( 'tc_featured_text_two' ) ),
-              esc_attr( czr_fn_get_opt( 'tc_featured_text_three' ) )
+              esc_attr( czr_fn_opt( 'tc_featured_text_one' ) ),
+              esc_attr( czr_fn_opt( 'tc_featured_text_two' ) ),
+              esc_attr( czr_fn_opt( 'tc_featured_text_three' ) )
           ),
           'text_length'               => 200,
-          'button_text'               => esc_attr( czr_fn_get_opt( 'tc_featured_page_button_text') )
+          'button_text'               => esc_attr( czr_fn_opt( 'tc_featured_page_button_text') )
         );
 
         return $_preset;
@@ -47,7 +47,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $show_thumb                     = $model['show_thumb'];
 
-        $_skin_color                    = czr_fn_get_opt( 'tc_skin_color' );
+        $_skin_color                    = czr_fn_opt( 'tc_skin_color' );
         $_center_imgs                   = $model['center_imgs'];
 
         $model[ 'fp_holder_img' ]       = apply_filters (

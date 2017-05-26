@@ -31,7 +31,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        *
        */
       function czr_fn_add_gallery_class( $_classes ){
-        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_gallery_style' ) ) ) )
+        if (  $this -> czr_fn_is_gallery_enabled() && apply_filters( 'tc_gallery_style', esc_attr( czr_fn_opt( 'tc_gallery_style' ) ) ) )
           array_push($_classes, 'tc-gallery-style');
         return $_classes;
       }
@@ -50,7 +50,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
         if ( ! $this -> czr_fn_is_gallery_enabled() )
           return $markup;
 
-        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( CZR_utils::$inst -> czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id );
+        $tc_gallery_fancybox = apply_filters( 'tc_gallery_fancybox', esc_attr( czr_fn_opt( 'tc_gallery_fancybox' ) ) , $id );
 
         if ( $tc_gallery_fancybox == 1 && $permalink == false ) //add the filter only if link to the attachment file/image
           {
@@ -85,7 +85,7 @@ if ( ! class_exists( 'CZR_gallery' ) ) :
        * HELPERS
        */
       function czr_fn_is_gallery_enabled(){
-        return apply_filters('tc_enable_gallery', esc_attr( CZR_utils::$inst -> czr_fn_opt('tc_enable_gallery') ) );
+        return apply_filters('tc_enable_gallery', esc_attr( czr_fn_opt('tc_enable_gallery') ) );
       }
   }//end of class
 endif;

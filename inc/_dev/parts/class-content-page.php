@@ -54,7 +54,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_set_single_page_thumbnail_hooks() {
-      if ( $this -> czr_fn_page_display_controller() && ! CZR_utils::$inst->czr_fn_is_home() ) {
+      if ( $this -> czr_fn_page_display_controller() && ! czr_fn_is_home() ) {
         add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
       }
 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
       if ( ! $this -> czr_fn_show_single_page_thumbnail() )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' )) );
       $_hook                = apply_filters( 'tc_single_page_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     /**
     * Get Single page thumb model + view
     * Inject it in the view
-    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) || '__before_content'
+    * hook : esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
@@ -177,7 +177,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
               __( "You can display your page's featured image here if you have set one.", "customizr" ),
               sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_pages_sec") ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "section" => "single_pages_sec") ), __( "Jump to the customizer now", "customizr") )
               ),
               sprintf( __( "Don't know how to set a featured image to a page? Learn how in the %s.", "customizr" ),
                 sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
@@ -233,7 +233,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_show_single_page_thumbnail() {
-      return ! CZR_utils::$inst->czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      return ! czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
     }
 
 
@@ -244,7 +244,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     private function czr_fn_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      $_exploded_location   = explode( '|', esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -276,7 +276,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_page_thumbnail() )
         return $_css;
-      $_single_thumb_height   = apply_filters('tc_single_page_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_page_thumb_height' ) ) );
+      $_single_thumb_height   = apply_filters('tc_single_page_thumb_height', esc_attr( czr_fn_opt( 'tc_single_page_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,

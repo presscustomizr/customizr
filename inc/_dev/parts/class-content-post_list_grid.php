@@ -45,7 +45,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           if ( ! apply_filters( 'tc_set_grid_hooks' , $this -> czr_fn_is_grid_enabled() ) )
               return;
 
-          $this -> post_id = CZR_utils::czr_fn_id();
+          $this -> post_id = czr_fn_get_id();
 
           do_action( '__post_list_grid' );
           //Disable icon titles
@@ -193,7 +193,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           // CONTENT : get the figcaption content => post content
           $post_list_content_class          = array(
               isset( $_layout['content'] ) ? $_layout['content'] : 'span6',
-              CZR___::czr_fn_is_pro() ? '' : 'mask'//no css mask for the pro grid
+              czr_fn_is_pro() ? '' : 'mask'//no css mask for the pro grid
           );
           $_post_content_html               = $this -> czr_fn_grid_get_single_post_html( implode( ' ', $post_list_content_class ) );
 
@@ -306,7 +306,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return string
         */
         function czr_fn_grid_set_title_length( $_title ) {
-          $_max = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_num_words') );
+          $_max = esc_attr( czr_fn_opt( 'tc_grid_num_words') );
           $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
           $_max = $_max <= 0 ? 1 : $_max;
 
@@ -435,9 +435,9 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         */
         function czr_fn_grid_container_set_classes( $_classes ) {
           array_push( $_classes, 'tc-post-list-grid' );
-          if ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_shadow') ) )
+          if ( esc_attr( czr_fn_opt( 'tc_grid_shadow') ) )
             array_push( $_classes, 'tc-grid-shadow' );
-          if ( esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_bottom_border') ) )
+          if ( esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ) )
             array_push( $_classes, 'tc-grid-border' );
           return $_classes;
         }
@@ -545,8 +545,8 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return modified html string
         */
         function czr_fn_set_grid_icon_visibility( $_html ) {
-          $_icon_enabled = (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_icons') );
-          if ( CZR___::$instance -> czr_fn_is_customizing() )
+          $_icon_enabled = (bool) esc_attr( czr_fn_opt( 'tc_grid_icons') );
+          if ( czr_fn_is_customizing() )
             return sprintf('<div class="tc-grid-icon format-icon" style="display:%1$s"></div>%2$s',
                 $_icon_enabled ? 'inline-block' : 'none',
                 $_html
@@ -776,7 +776,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           $_lh_ratio = apply_filters( 'tc_grid_line_height_ratio' , 1.55 ); //line-height / font-size
           $_ratio = $this -> czr_fn_get_grid_font_ratios( $_size , $_wot );
           //body font size
-          $_bs = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_body_font_size') );
+          $_bs = esc_attr( czr_fn_opt( 'tc_body_font_size') );
           $_bs = is_numeric($_bs) && 1 >= $_bs ? $_bs : 15;
 
           return sprintf( 'font-size:%spx;line-height:%spx;' ,
@@ -849,7 +849,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return (number) customizer user defined height for the grid thumbnails
         */
         private function czr_fn_grid_get_thumb_height() {
-          $_opt = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_thumb_height') );
+          $_opt = esc_attr( czr_fn_opt( 'tc_grid_thumb_height') );
           return ( is_numeric($_opt) && $_opt > 1 ) ? $_opt : 350;
         }
 
@@ -868,7 +868,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
                   $wp_query->is_posts_page ) )
               return false;
 
-          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_expand_featured') ) );
+          $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ) );
 
           if ( ! $this -> expanded_sticky ) {
             $_sticky_posts = get_option('sticky_posts');
@@ -909,14 +909,14 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return bool
         */
         public function czr_fn_is_grid_enabled() {
-          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+          return apply_filters( 'tc_is_grid_enabled', 'grid' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
         }
 
 
         /* retrieves number of cols option, and wrap it into a filter */
         private function czr_fn_get_grid_cols() {
           return apply_filters( 'tc_get_grid_cols',
-            esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_columns') ),
+            esc_attr( czr_fn_opt( 'tc_grid_columns') ),
             CZR_utils::czr_fn_get_layout( $this -> post_id , 'class' )
           );
         }
@@ -950,7 +950,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
          * and the post list we're in */
         private function czr_fn_is_grid_context_matching() {
           $_type = $this -> czr_fn_get_grid_context();
-          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
+          $_apply_grid_to_post_type = apply_filters( 'tc_grid_in_' . $_type, esc_attr( czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
           return apply_filters('tc_grid_do',  $_type && $_apply_grid_to_post_type );
         }
 
@@ -959,7 +959,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return  boolean
         */
         private function czr_fn_grid_show_thumb() {
-          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) );
+          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) );
         }
   }//end of class
 endif;

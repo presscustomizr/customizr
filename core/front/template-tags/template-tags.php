@@ -27,7 +27,7 @@ if ( ! function_exists( 'czr_fn_comment_info' ) ) :
 function czr_fn_comment_info( $args = array() ) {
 
 
-      $_allow_comment_info = (bool) esc_attr( czr_fn_get_opt( 'tc_comment_show_bubble' ) ) && (bool) esc_attr( czr_fn_get_opt( 'tc_show_comment_list' ) );
+      $_allow_comment_info = (bool) esc_attr( czr_fn_opt( 'tc_comment_show_bubble' ) ) && (bool) esc_attr( czr_fn_opt( 'tc_show_comment_list' ) );
 
       if ( ! $_allow_comment_info )
             return;

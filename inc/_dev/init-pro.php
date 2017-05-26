@@ -21,9 +21,9 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     function __construct () {
         self::$instance =& $this;
         $this -> _pro_classes = array(
-          'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
+          'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  CZR_THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
           'TC_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
-          'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
+          'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  CZR_THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
           'TC_wfc'                     => array('/addons/wfc/wordpress-font-customizer.php'),
           'TC_fpu'                     => array('/addons/fpu/tc_unlimited_featured_pages.php'),
           'PC_pro_bundle'              => array('/addons/bundle/pc-pro-bundle.php')
@@ -71,7 +71,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     * @since  Customizr 3.3+
     */
     function czr_fn_set_files_to_load_pro($_to_load) {
-      if ( ! is_admin() || ( is_admin() && CZR___::$instance -> czr_fn_is_customizing() ) ) {
+      if ( ! is_admin() || ( is_admin() && czr_fn_is_customizing() ) ) {
           unset($_to_load['TC_activation_key']);
           unset($_to_load['TC_theme_updater']);
           unset($_to_load['TC_theme_check_updates']);

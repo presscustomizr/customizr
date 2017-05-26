@@ -96,7 +96,7 @@ class CZR_related_posts_model_class extends CZR_model {
     );
 
     // Related by categories
-    if ( 'categories' == czr_fn_get_opt('tc_related_posts') ) {
+    if ( 'categories' == czr_fn_opt('tc_related_posts') ) {
       $cats = get_post_meta($post_id, 'related-cat', true);
       if ( !$cats ) {
         $cats = wp_get_post_categories($post_id, array('fields'=>'ids'));
@@ -107,7 +107,7 @@ class CZR_related_posts_model_class extends CZR_model {
     }
 
     // Related by tags
-    if ( 'tags' == czr_fn_get_opt('tc_related_posts') ) {
+    if ( 'tags' == czr_fn_opt('tc_related_posts') ) {
       $tags = get_post_meta($post_id, 'related-tag', true);
       if ( !$tags ) {
         $tags = wp_get_post_tags($post_id, array('fields'=>'ids'));

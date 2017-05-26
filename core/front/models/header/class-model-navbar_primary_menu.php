@@ -8,7 +8,7 @@ class CZR_navbar_primary_menu_model_class extends CZR_menu_model_class {
 
             $_preset        = parent::czr_fn_get_preset_model();
 
-            $_menu_position = esc_attr( czr_fn_get_opt( 'tc_menu_position') );
+            $_menu_position = esc_attr( czr_fn_opt( 'tc_menu_position') );
 
             switch ( $_menu_position ) {
 

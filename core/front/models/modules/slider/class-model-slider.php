@@ -129,7 +129,7 @@ class CZR_slider_model_class extends CZR_Model {
   */
   protected function czr_fn_get_the_slides( $slider_name_id/*, /*$img_size*/) {
     //if not demo or tc_posts_slider, we get slides from options
-    $all_sliders    = czr_fn_get_opt( 'tc_sliders');
+    $all_sliders    = czr_fn_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $saved_slides) )
@@ -231,7 +231,7 @@ class CZR_slider_model_class extends CZR_Model {
   protected function czr_fn_set_wp_responsive_slide_img_attr() {
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( czr_fn_get_opt('tc_resp_slider_img') ) ) {
+      if ( 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ) {
         //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
         //only when the passed srcset attr is not empty. This will avoid us to:
         //a) add a filter to get rid of already computed srcset
@@ -347,9 +347,9 @@ class CZR_slider_model_class extends CZR_Model {
   function czr_fn_get_slider_inner_class() {
     $class = array( 'carousel-inner' );
 
-    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_center_slider_img') ) )
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_center_slider_img') ) )
       array_push( $class, 'center-slides-enabled' );
-    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
       array_push( $class, 'czr-parallax-slider' );
     return apply_filters( 'czr_carousel_inner_classes', $class );
   }
@@ -381,10 +381,10 @@ class CZR_slider_model_class extends CZR_Model {
     $class        = array_merge( $class, $layout_class );
 
     //custom height
-    if ( ! in_array( 'full-page', $class ) && 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
+    if ( ! in_array( 'full-page', $class ) && 500 != esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
       array_push( $class, 'custom-slider-height' );
 
-    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
       array_push( $class, 'parallax-wrapper' );
 
     return array_filter( $class );
@@ -397,7 +397,7 @@ class CZR_slider_model_class extends CZR_Model {
   * @return string
   */
   protected function czr_fn_get_slider_inner_attrs() {
-    if ( (bool) esc_attr( czr_fn_get_opt( 'tc_slider_parallax') ) )
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
       return sprintf( 'data-parallax-ratio="%s"',
         apply_filters('tc_parallax_ratio', 0.55 )
       );
@@ -413,7 +413,7 @@ class CZR_slider_model_class extends CZR_Model {
   */
   protected function czr_fn_get_slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
-    $layout_value                 = czr_fn_is_home() ? czr_fn_get_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
+    $layout_value                 = czr_fn_is_home() ? czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
     $layout_value                 = apply_filters( 'czr_slider_layout', $layout_value, $queried_id );
 
     /* For backward compatibility this can be:
@@ -570,10 +570,10 @@ class CZR_slider_model_class extends CZR_Model {
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
     if ( czr_fn_is_customizing() ) {
-      if ( 500 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height') ) )
+      if ( 500 != esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( czr_fn_get_opt( 'tc_slider_default_height', CZR_THEME_OPTIONS, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( czr_fn_opt( 'tc_slider_default_height', CZR_THEME_OPTIONS, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'czr_set_demo_slider_height' , 750 );
@@ -627,13 +627,13 @@ class CZR_slider_model_class extends CZR_Model {
     $slider_name_id     =  $slider_name_id ? $slider_name_id : czr_fn_get_current_slider( $this -> czr_fn_get_real_id() );
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
-    $_custom_height     = esc_attr( czr_fn_get_opt( 'tc_slider_default_height') );
+    $_custom_height     = esc_attr( czr_fn_opt( 'tc_slider_default_height') );
     $_custom_height     = apply_filters( 'czr_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
 
     $_slider_inline_css = "";
 
     //When shall we append custom slider style to the global custom inline stylesheet?
-    $_bool = ( czr_fn_is_home() || 0 != esc_attr( czr_fn_get_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = ( czr_fn_is_home() || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_slider_inline_css;

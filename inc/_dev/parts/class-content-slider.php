@@ -137,7 +137,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_resp_slider_img') ) ) {
+      if ( 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ) {
         $slide_background_attr['srcset'] = " ";
         //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
         //only when the passed srcset attr is not empty. This will avoid us to:
@@ -290,7 +290,7 @@ class CZR_slider {
       return $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size );
     }
     //if not demo or tc_posts_slider, we get slides from options
-    $all_sliders    = CZR_utils::$inst -> czr_fn_opt( 'tc_sliders');
+    $all_sliders    = czr_fn_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
 
     //if the slider not longer exists or exists but is empty, return false
@@ -404,12 +404,12 @@ class CZR_slider {
     $defaults       = array(
       'img_size'            => null,
       //options
-      'stickies_only'       => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_stickies' ) ),
-      'show_title'          => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_title' ) ),
-      'show_excerpt'        => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_text' ) ),
-      'button_text'         => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_button_text' ) ),
-      'posts_per_page'      => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_number' ) ), //limit
-      'link_type'           => esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_posts_slider_link') ),
+      'stickies_only'       => esc_attr( czr_fn_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'          => esc_attr( czr_fn_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'        => esc_attr( czr_fn_opt( 'tc_posts_slider_text' ) ),
+      'button_text'         => esc_attr( czr_fn_opt( 'tc_posts_slider_button_text' ) ),
+      'posts_per_page'      => esc_attr( czr_fn_opt( 'tc_posts_slider_number' ) ), //limit
+      'link_type'           => esc_attr( czr_fn_opt( 'tc_posts_slider_link') ),
     );
 
     $args         = apply_filters( 'tc_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
@@ -423,7 +423,7 @@ class CZR_slider {
 
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
-    $smart_load_enabled = 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_img_smart_load' ) );
+    $smart_load_enabled = 1 == esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
       remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_fn_parse_imgs') );
 
@@ -436,7 +436,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
 
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
@@ -513,7 +513,7 @@ class CZR_slider {
       return self::$sliders_model[ $slider_name_id ];
 
     //gets slider options if any
-    $layout_value                 = czr_fn__f('__is_home') ? CZR_utils::$inst->czr_fn_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
+    $layout_value                 = czr_fn__f('__is_home') ? czr_fn_opt( 'tc_slider_width' ) : esc_attr(get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ));
     $layout_value                 = apply_filters( 'tc_slider_layout', $layout_value, $queried_id );
 
     //declares the layout vars
@@ -803,7 +803,7 @@ class CZR_slider {
   */
   function czr_fn_render_slide_edit_link_view( $_view_model ) {
     //never display when customizing
-    if ( CZR___::$instance -> czr_fn_is_customizing() )
+    if ( czr_fn_is_customizing() )
       return;
     //extract $_view_model = array( $id, $data , $slider_name_id, $img_size )
     extract( $_view_model );
@@ -838,7 +838,7 @@ class CZR_slider {
 
   function czr_fn_render_slider_edit_link_view( $slides, $slider_name_id ) {
     //never display when customizing
-    if ( CZR___::$instance -> czr_fn_is_customizing() )
+    if ( czr_fn_is_customizing() )
       return;
     if ( 'demo' == $slider_name_id )
       return;
@@ -850,7 +850,7 @@ class CZR_slider {
     //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
     if ( czr_fn__f('__is_home') ){
       $show_slider_edit_link = ( is_user_logged_in() && current_user_can('edit_theme_options') ) ? true : false;
-      $_edit_link            = CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+      $_edit_link            = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     }else if ( is_singular() ){ // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
       global $post;
       $show_slider_edit_link = ( is_user_logged_in() && ( current_user_can('edit_pages') || current_user_can( 'edit_posts', $post -> ID ) ) ) ? true : false;
@@ -915,7 +915,7 @@ class CZR_slider {
   function czr_fn_maybe_display_dismiss_notice() {
     if ( ! CZR_placeholders::czr_fn_is_slider_notice_on() )
       return;
-    $_customizer_lnk = CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
+    $_customizer_lnk = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     ?>
     <div class="tc-placeholder-wrap tc-slider-notice">
       <?php
@@ -943,7 +943,7 @@ class CZR_slider {
   //hook : wp
   //introduced in v3.4.23
   function czr_fn_maybe_setup_parallax() {
-    if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_parallax') ) )
+    if ( 1 != esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
       return;
 
     add_filter( 'tc_slider_layout_class'       , array( $this, 'czr_fn_add_parallax_wrapper_class' ) );
@@ -1016,7 +1016,7 @@ class CZR_slider {
   */
   private function czr_fn_is_slider_possible() {
     //gets the front slider if any
-    $tc_front_slider              = esc_attr(CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) );
+    $tc_front_slider              = esc_attr(czr_fn_opt( 'tc_front_slider' ) );
     //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
     $_show_slider = czr_fn__f('__is_home') ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
@@ -1045,7 +1045,7 @@ class CZR_slider {
   */
   private function czr_fn_get_current_slider($queried_id) {
     //gets the current slider id
-    $_home_slider     = CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' );
+    $_home_slider     = czr_fn_opt( 'tc_front_slider' );
     $slider_name_id   = ( czr_fn__f('__is_home') && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
     return apply_filters( 'tc_slider_name_id', $slider_name_id , $queried_id);
   }
@@ -1059,7 +1059,7 @@ class CZR_slider {
   */
   private function czr_fn_get_real_id() {
     global $wp_query;
-    $queried_id                   = CZR_utils::czr_fn_id();
+    $queried_id                   = czr_fn_get_id();
 
     return apply_filters( 'tc_slider_get_real_id', ( ! czr_fn__f('__is_home') && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
   }
@@ -1073,7 +1073,7 @@ class CZR_slider {
   */
   private function czr_fn_is_slider_active( $queried_id ) {
     //is the slider set to on for the queried id?
-    if ( czr_fn__f('__is_home') && CZR_utils::$inst->czr_fn_opt( 'tc_front_slider' ) )
+    if ( czr_fn__f('__is_home') && czr_fn_opt( 'tc_front_slider' ) )
       return apply_filters( 'tc_slider_active_status', true , $queried_id );
 
     $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
@@ -1094,7 +1094,7 @@ class CZR_slider {
     //a) we have to render the demo slider
     //b) display slider loading option is enabled (can be filtered)
     return ( 'demo' == $slider_name_id
-        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id )
+        || apply_filters( 'tc_display_slider_loader', 1 == esc_attr( czr_fn_opt( 'tc_display_slide_loader') ), $slider_name_id )
     );
   }
 
@@ -1114,11 +1114,11 @@ class CZR_slider {
 
     //2) height option has not been changed by user yet
     //the possible customization context must be taken into account here
-    if ( CZR___::$instance -> czr_fn_is_customizing() ) {
-      if ( 500 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) )
+    if ( czr_fn_is_customizing() ) {
+      if ( 500 != esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
         return $_h;
     } else {
-      if ( false !== (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
+      if ( false !== (bool) esc_attr( czr_fn_opt( 'tc_slider_default_height', CZR___::$tc_option_group, $use_default = false ) ) )
         return $_h;
     }
     return apply_filters( 'tc_set_demo_slider_height' , 750 );
@@ -1171,12 +1171,12 @@ class CZR_slider {
 
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
-    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) );
+    $_custom_height     = apply_filters( 'tc_slider_height' , esc_attr( czr_fn_opt( 'tc_slider_default_height') ) );
     $_slider_inline_css = "";
 
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
       return $_css;
@@ -1237,7 +1237,7 @@ class CZR_slider {
   *
   */
   function czr_fn_set_slider_wrapper_class($_classes) {
-    if ( ! is_array($_classes) || 500 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_slider_default_height') ) )
+    if ( ! is_array($_classes) || 500 == esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
       return $_classes;
 
     return array_merge( $_classes , array('custom-slider-height') );
@@ -1252,7 +1252,7 @@ class CZR_slider {
   * @since Customizr 3.3+
   */
   function czr_fn_set_inner_class( $_classes ) {
-    if( ! (bool) esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
+    if( ! (bool) esc_attr( czr_fn_opt( 'tc_center_slider_img') ) || ! is_array($_classes) )
       return $_classes;
     array_push( $_classes, 'center-slides-enabled' );
     return $_classes;

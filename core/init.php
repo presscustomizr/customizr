@@ -14,16 +14,8 @@
 */
 if ( ! class_exists( 'CZR___' ) ) :
 
-  final class CZR___ {
-        public static $instance;//@todo make private in the future
+  final class CZR___ extends CZR_BASE  {
         public $czr_core;
-
-        static $default_options;
-        static $db_options;
-        static $options;//not used in customizer context only
-
-        static $customizer_map;
-        static $theme_setting_list;
 
         public $collection;
         public $views;//object, stores the views
@@ -44,17 +36,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             //Will be highly used during the transion between the two themes
             if( ! defined( 'CUSTOMIZR_4' ) )            define( 'CUSTOMIZR_4' , true );
 
-            //init properties
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
-
-            //IMPORTANT : this callback needs to be ran AFTER czr_fn_init_properties.
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
-
             //this action callback is the one responsible to load new czr main templates
             add_action( 'czr_four_template'       , array( $this , 'czr_fn_four_template_redirect' ), 10 , 1 );
-
-            //refresh the theme options right after the _preview_filter when previewing
-            add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
 
             //filters to 'the_content', 'wp_title' => in utils
             add_action( 'wp_head' , 'czr_fn_wp_filters' );
@@ -88,60 +71,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                   add_action('wp'         , array(self::$instance, 'czr_fn_register_model_map') );
               }
               return self::$instance;
-        }
-
-
-
-        /**
-        * Init CZR_utils class properties after_setup_theme
-        * Fixes the bbpress bug : Notice: bbp_setup_current_user was called incorrectly. The current user is being initialized without using $wp->init()
-        * czr_fn_get_default_options uses is_user_logged_in() => was causing the bug
-        * hook : after_setup_theme
-        *
-        * @package Customizr
-        * @since Customizr 3.2.3
-        */
-        function czr_fn_init_properties() {
-              self::$db_options       = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
-              self::$default_options  = czr_fn_get_default_options();
-              $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
-
-              //What was the theme version when the user started to use Customizr?
-              //new install = no options yet
-              //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-              if ( 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-                set_transient(
-                  $_trans,
-                  sprintf('%s|%s' , 1 >= count( self::$db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-                  60*60*24*9999
-                );
-              }
-        }
-
-        /* ------------------------------------------------------------------------- *
-         *  CACHE THE LIST OF THEME SETTINGS ONLY
-        /* ------------------------------------------------------------------------- */
-        //Fired in __construct()
-        function czr_fn_cache_theme_setting_list() {
-          if ( is_array(self::$theme_setting_list) && ! empty( self::$theme_setting_list ) )
-            return;
-
-          self::$theme_setting_list = czr_fn_generate_theme_setting_list();
-        }
-
-
-        /**
-        * The purpose of this callback is to refresh and store the theme options in a property on each customize preview refresh
-        * => preview performance improvement
-        * 'customize_preview_init' is fired on wp_loaded, once WordPress is fully loaded ( after 'init', before 'wp') and right after the call to 'customize_register'
-        * This method is fired just after the theme option has been filtered for each settings by the WP_Customize_Setting::_preview_filter() callback
-        * => if this method is fired before this hook when customizing, the user changes won't be taken into account on preview refresh
-        *
-        * hook : customize_preview_init
-        * @return  void
-        */
-        function czr_fn_customize_refresh_db_opt(){
-          CZR___::$db_options = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
         }
 
 
@@ -280,21 +209,20 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
-            do_action( 'czr_load' );
-
             //loads utils
             if ( CZR_DEV_MODE ) {
-                locate_template( CZR_UTILS_PATH . 'fn-0-base.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-1-settings_map.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-2-utils.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-3-options.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-4-query.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-5-thumbnails.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-6-colors.php' );
-                locate_template( CZR_UTILS_PATH . 'fn-7-date.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-0-base.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-1-settings_map.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-2-utils.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-3-options.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-4-query.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-5-thumbnails.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-6-colors.php' );
             } else {
                 require_once( get_template_directory() . '/core/functions.php' );
             }
+
+            do_action( 'czr_load' );
 
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
@@ -664,31 +592,24 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
 
-        /**
-        * Checks if we use a child theme. Uses a deprecated WP functions (get _theme_data) for versions <3.4
-        * @return boolean
-        *
-        * @since  Customizr 3.0.11
-        */
-        function czr_fn_is_child() {
-            // get themedata version wp 3.4+
-            if ( function_exists( 'wp_get_theme' ) ) {
-              //get WP_Theme object of customizr
-              $tc_theme       = wp_get_theme();
-              //define a boolean if using a child theme
-              return $tc_theme -> parent() ? true : false;
-            }
-            else {
-              $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-              return ! empty($tc_theme['Template']) ? true : false;
-            }
-        }
+
 
   }//end of class
 endif;//endif;
 
 //Fire
-//require_once( get_template_directory() . '/core/functions.php' );
+require_once( get_stylesheet_directory() . '/core/functions-base.php' );
+
+/**
+ * @since 4.0
+ * @return object CZR Instance
+ */
+if ( ! function_exists( 'CZR' ) ) {
+   function CZR() {
+         return CZR___::czr_fn_instance();
+   }
+}
+
 
 // Fire Customizr
 CZR();

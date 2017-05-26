@@ -165,7 +165,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //Anyway to avoid the 1x1 issue we alter the img attribute (data-recalc-dims) which photon adds to the img tag(php) so
       //the width/height will not be erronously recalculated
       if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )
-        add_filter( 'tc_img_smartloaded', 'czr_fn_jp_smartload_img');
+        add_filter( 'czr_img_smartloaded', 'czr_fn_jp_smartload_img');
       function czr_fn_jp_smartload_img( $img ) {
         return str_replace( 'data-recalc-dims', 'data-tcjp-recalc-dims', $img );
       }
@@ -562,7 +562,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         //In English we have set to filter blog posts for cat A,B and C.
         //In Italian we do not have cat C so there will be displayed transposed cats A and B
         //if we change this option in the Customizer with lang IT removing B, e.g., when we switch to EN we'll have that the array of cats contains just A, as it as been overwritten with the new setting
-        if ( CZR___::$instance -> czr_fn_is_customize_left_panel() )
+        if ( czr_fn_is_customize_left_panel() )
           add_filter( 'option_tc_theme_options', 'czr_fn_wpml_customizer_options_transpose' );
         function czr_fn_wpml_customizer_options_transpose( $options ) {
           $options_to_transpose = apply_filters ( 'tc_wpml_customizer_translate_options', array(
@@ -734,7 +734,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       * Avoid php smartload image php parsing in events list content
       * See: https://github.com/presscustomizr/hueman/issues/285
       */
-      add_filter( 'tc_disable_img_smart_load', 'czr_fn_tec_disable_img_smart_load_events_list', 999, 2);
+      add_filter( 'czr_disable_img_smart_load', 'czr_fn_tec_disable_img_smart_load_events_list', 999, 2);
       function czr_fn_tec_disable_img_smart_load_events_list( $_bool, $parent_filter ) {
         if ( 'the_content' == $parent_filter && czr_fn_is_tec_events_list() )
           return true;//disable
@@ -868,7 +868,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //when in the woocommerce shop page use the "shop" id
-      add_filter( 'tc_id', 'czr_fn_woocommerce_shop_page_id' );
+      add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
 
       // use Customizr title
       // initially used to display the edit button
@@ -913,7 +913,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );
       function czr_fn_woocommerce_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
         if ( function_exists('is_woocommerce') && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
@@ -949,13 +949,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //narrow the tagline
       add_filter( 'tc_tagline_class', 'czr_fn_woocommerce_force_tagline_width', 100 );
       function czr_fn_woocommerce_force_tagline_width( $_class ) {
-        return 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
+        return 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ? 'span6' : $_class ;
       }
 
       // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
       add_filter( 'woocommerce_add_to_cart_fragments', 'czr_fn_woocommerce_add_to_cart_fragment' );
       function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
+        if ( 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
           $_cart_count = WC()->cart->get_cart_contents_count();
           $fragments['span.tc-wc-count'] = sprintf( '<span class="count btn-link tc-wc-count">%1$s</span>', $_cart_count ? $_cart_count : '' );
         }
@@ -965,7 +965,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //print the cart menu in the header
       add_action( '__navbar', 'czr_fn_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function czr_fn_woocommerce_header_cart() {
-        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return;
 
         $_main_item_class = '';
@@ -1000,15 +1000,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //add woommerce header cart classes to the header (sticky enabled)
       add_filter( 'tc_header_classes'   , 'czr_fn_woocommerce_set_header_classes');
       function czr_fn_woocommerce_set_header_classes( $_classes ) {
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
-          $_classes[]          = ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
+        if ( 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
+          $_classes[]          = ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ) ? 'tc-wccart-off' : 'tc-wccart-on';
         return $_classes;
       }
 
       //add woocommerce header cart CSS
       add_filter('tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
       function czr_fn_woocommerce_header_cart_css( $_css ) {
-        if ( 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
+        if ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
 
         /* The only real decision I took here is the following:
@@ -1016,7 +1016,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         * so that as it grows it won't break on a new line. This is quite an hack to
         * keep the cart space as small as possible (span1) and do not hurt the tagline too much (from span7 to span6). Also nobody will, allegedly, have more than 10^3 products in its cart
         */
-        $_header_layout      = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_header_layout') );
+        $_header_layout      = esc_attr( czr_fn_opt( 'tc_header_layout') );
         $_resp_pos_css       = 'right' == $_header_layout ? 'float: left;' : '';
         $_wc_t_align         = 'left';
 
@@ -1116,7 +1116,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //link smooth scroll: exclude all anchor links inside vc wrappers (.vc_row)
       add_filter( 'tc_anchor_smoothscroll_excl', 'czr_fn_vc_disable_link_scroll' );
       function czr_fn_vc_disable_link_scroll( $excl ){
-        if ( false == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_link_scroll') ) ) return $excl;
+        if ( false == esc_attr( czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
         if ( ! is_array( $excl ) )
           $excl = array();
@@ -1258,7 +1258,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
 
-              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::czr_fn_get_layout( CZR_utils::czr_fn_id() , 'class' ) , 'article-container' ) ) ) ?>">
+              <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::czr_fn_get_layout( czr_fn_get_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
                 <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
       <?php

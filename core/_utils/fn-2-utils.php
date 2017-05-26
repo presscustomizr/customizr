@@ -13,7 +13,7 @@ function czr_fn_wp_filters() {
     /*
     * Smartload disabled for content retrieved via ajax
     */
-    if ( apply_filters( 'czr_globally_enable_img_smart_load', !czr_fn_is_ajax() && esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) ) ) ) {
+    if ( apply_filters( 'czr_globally_enable_img_smart_load', !czr_fn_is_ajax() && esc_attr( czr_fn_opt( 'tc_img_smart_load' ) ) ) ) {
         add_filter( 'the_content'    , 'czr_fn_parse_imgs', PHP_INT_MAX );
         add_filter( 'czr_thumb_html' , 'czr_fn_parse_imgs'  );
     }
@@ -21,72 +21,7 @@ function czr_fn_wp_filters() {
 }
 
 
-/**
-* hook : the_content
-* Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
-*
-* @return string
-* @package Customizr
-* @since Customizr 3.3.0
-*/
-function czr_fn_parse_imgs( $_html ) {
-    $_bool = is_feed() || is_preview() || ( wp_is_mobile() && apply_filters( 'tc_disable_img_smart_load_mobiles', false ) );
 
-    if ( apply_filters( 'tc_disable_img_smart_load', $_bool, current_filter() ) )
-      return $_html;
-
-    $allowed_image_extentions = apply_filters( 'tc_smartload_allowed_img_extensions', array(
-      'bmp',
-      'gif',
-      'jpeg',
-      'jpg',
-      'jpe',
-      'tif',
-      'tiff',
-      'ico',
-      'png',
-      'svg',
-      'svgz'
-    ) );
-
-    if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
-      return $_html;
-    }
-
-    $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
-    $pattern                = '#<img([^>]+?)src=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
-
-    return preg_replace_callback( $pattern, 'czr_fn_regex_callback' , $_html);
-}
-
-
-
-/**
-* callback of preg_replace_callback in czr_fn_parse_imgs
-* Inspired from Unveil Lazy Load plugin : https://wordpress.org/plugins/unveil-lazy-load/ by @marubon
-*
-* @return string
-* @package Customizr
-* @since Customizr 3.3.0
-*/
-function czr_fn_regex_callback( $matches ) {
-    $_placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-    if ( false !== strpos( $matches[0], 'data-src' ) || preg_match('/ data-smartload *= *"false" */', $matches[0]) ) {
-      return $matches[0];
-    } else {
-      return apply_filters( 'czr_img_smartloaded',
-        str_replace( array('srcset=', 'sizes='), array('data-srcset=', 'data-sizes='),
-            sprintf('<img %1$s src="%2$s" data-src="%3$s" %4$s>',
-                $matches[1],
-                $_placeholder,
-                $matches[2],
-                $matches[3]
-            )
-        )
-      );
-    }
-}
 
 
 /**
@@ -144,8 +79,8 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
       /* DEFAULT LAYOUTS */
       //what is the default layout we want to apply? By default we apply the global default layout
-      $czr_sidebar_default_layout    = esc_attr( czr_fn_get_opt('tc_sidebar_global_layout') );
-      $czr_sidebar_force_layout      = esc_attr( czr_fn_get_opt('tc_sidebar_force_layout') );
+      $czr_sidebar_default_layout    = esc_attr( czr_fn_opt('tc_sidebar_global_layout') );
+      $czr_sidebar_force_layout      = esc_attr( czr_fn_opt('tc_sidebar_force_layout') );
 
       //checks if the 'force default layout' option is checked and return the default layout before any specific layout
       if( $czr_sidebar_force_layout ) {
@@ -163,10 +98,10 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 
 
       if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) ) {
-            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_post_layout') );
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_post_layout') );
             $is_singular_layout           = true;
       } if ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
-            $_czr_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_page_layout') );
+            $_czr_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_page_layout') );
             $is_singular_layout           = true;
       }
 
@@ -196,7 +131,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       //checks if we display home page, either posts or static page and apply the customizer option
       global $wp_the_query;
       if( ($wp_the_query->is_home() && 'posts' == get_option( 'show_on_front' ) ) || $wp_the_query->is_front_page()) {
-            $czr_specific_post_layout = czr_fn_get_opt('tc_front_layout');
+            $czr_specific_post_layout = czr_fn_opt('tc_front_layout');
       }
 
       if ( $czr_specific_post_layout ) {
@@ -254,7 +189,7 @@ function czr_fn_get_article_container_class() {
  * @since Customizr 2.0.7
  */
 function czr_fn_fancybox_content_filter( $content) {
-    $tc_fancybox = esc_attr( czr_fn_get_opt( 'tc_fancybox' ) );
+    $tc_fancybox = esc_attr( czr_fn_opt( 'tc_fancybox' ) );
 
     if ( 1 != $tc_fancybox )
       return $content;
@@ -299,42 +234,6 @@ function czr_fn_fancybox_content_filter( $content) {
 
 
 
-/**
-* Title element formating
-*
-* @since Customizr 2.1.6
-*
-*/
-function czr_fn_wp_title( $title, $sep ) {
-  if ( function_exists( '_wp_render_title_tag' ) )
-    return $title;
-
-  global $paged, $page;
-
-  if ( is_feed() )
-    return $title;
-
-  // Add the site name.
-  $title .= get_bloginfo( 'name' );
-
-  // Add the site description for the home/front page.
-  $site_description = get_bloginfo( 'description' , 'display' );
-  if ( $site_description && czr_fn_is_home() )
-    $title = "$title $sep $site_description";
-
-  // Add a page number if necessary.
-  if ( $paged >= 2 || $page >= 2 )
-    $title = "$title $sep " . sprintf( __( 'Page %s' , 'customizr' ), max( $paged, $page ) );
-
-  return $title;
-}
-
-
-
-
-
-
-
 
 
 /**
@@ -369,7 +268,7 @@ function czr_fn_wp_title( $title, $sep ) {
 // )
 function czr_fn_get_social_networks( $output_type = 'string' ) {
 
-    $_socials         = czr_fn_get_opt('tc_social_links');
+    $_socials         = czr_fn_opt('tc_social_links');
     $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
     $_default_size    = '14'; //px
 
@@ -435,223 +334,6 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 
 
 
-
-/**
-* Retrieve the file type from the file name
-* Even when it's not at the end of the file
-* copy of wp_check_filetype() in wp-includes/functions.php
-*
-* @since 3.2.3
-*
-* @param string $filename File name or path.
-* @param array  $mimes    Optional. Key is the file extension with value as the mime type.
-* @return array Values with extension first and mime type.
-*/
-function czr_fn_check_filetype( $filename, $mimes = null ) {
-    $filename = basename( $filename );
-    if ( empty($mimes) )
-      $mimes = get_allowed_mime_types();
-    $type = false;
-    $ext = false;
-    foreach ( $mimes as $ext_preg => $mime_match ) {
-      $ext_preg = '!\.(' . $ext_preg . ')!i';
-      //was ext_preg = '!\.(' . $ext_preg . ')$!i';
-      if ( preg_match( $ext_preg, $filename, $ext_matches ) ) {
-        $type = $mime_match;
-        $ext = $ext_matches[1];
-        break;
-      }
-    }
-
-    return compact( 'ext', 'type' );
-}
-
-/**
-* Check whether a category exists.
-* (wp category_exists isn't available in pre_get_posts)
-* @since 3.4.10
-*
-* @see term_exists()
-*
-* @param int $cat_id.
-* @return bool
-*/
-function czr_fn_category_id_exists( $cat_id ) {
-    return term_exists( (int) $cat_id, 'category');
-}
-
-
-
-/**
-* @return a date diff object
-* @uses  date_diff if php version >=5.3.0, instantiates a fallback class if not
-*
-* @since 3.2.8
-*
-* @param date one object.
-* @param date two object.
-*/
-function czr_fn_date_diff( $_date_one , $_date_two ) {
-  //if version is at least 5.3.0, use date_diff function
-  if ( version_compare( PHP_VERSION, '5.3.0' ) >= 0) {
-    return date_diff( $_date_one , $_date_two );
-  } else {
-    $_date_one_timestamp   = $_date_one->format("U");
-    $_date_two_timestamp   = $_date_two->format("U");
-    return new CZR_DateInterval( $_date_two_timestamp - $_date_one_timestamp );
-  }
-}
-
-
-
-/**
-* Return boolean OR number of days since last update OR PHP version < 5.2
-*
-* @package Customizr
-* @since Customizr 3.2.6
-*/
-function czr_fn_post_has_update( $_bool = false) {
-    //php version check for DateTime
-    //http://php.net/manual/fr/class.datetime.php
-    if ( version_compare( PHP_VERSION, '5.2.0' ) < 0 )
-      return false;
-
-    //first proceed to a date check
-    $dates_to_check = array(
-      'created'   => get_the_date('Y-m-d g:i:s'),
-      'updated'   => get_the_modified_date('Y-m-d g:i:s'),
-      'current'   => date('Y-m-d g:i:s')
-    );
-    //ALL dates must be valid
-    if ( 1 != array_product( array_map( 'czr_fn_is_date_valid' , $dates_to_check ) ) )
-      return false;
-
-    //Import variables into the current symbol table
-    extract($dates_to_check);
-
-    //Instantiate the different date objects
-    $created                = new DateTime( $created );
-    $updated                = new DateTime( $updated );
-    $current                = new DateTime( $current );
-
-    $created_to_updated     = czr_fn_date_diff( $created , $updated );
-    $updated_to_today       = czr_fn_date_diff( $updated, $current );
-
-    if ( true === $_bool )
-      //return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : true;
-      return ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? true : false;
-    else
-      //return ( 0 == $created_to_updated -> days && 0 == $created_to_updated -> s ) ? false : $updated_to_today -> days;
-      return ( $created_to_updated -> s > 0 || $created_to_updated -> i > 0 ) ? $updated_to_today -> days : false;
-}
-
-
-
-/*
-* @return boolean
-* http://stackoverflow.com/questions/11343403/php-exception-handling-on-datetime-object
-*/
-function czr_fn_is_date_valid($str) {
-    if ( ! is_string($str) )
-       return false;
-
-    $stamp = strtotime($str);
-    if ( ! is_numeric($stamp) )
-       return false;
-
-    if ( checkdate(date('m', $stamp), date('d', $stamp), date('Y', $stamp)) )
-       return true;
-
-    return false;
-}
-
-
-
-/**
-* Returns the url of the customizer with the current url arguments + an optional customizer section args
-*
-* @param $autofocus(optional) is an array indicating the elements to focus on ( control,section,panel).
-* Ex : array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec').
-* Wordpress will cycle among autofocus keys focusing the existing element - See wp-admin/customize.php.
-* // Following not valid anymore in wp 4.6.1, due to a bug?
-* //The actual focused element depends on its type according to this priority scale: control, section, panel.
-* //In this sense when specifying a control, additional section and panel could be considered as fall-back.
-*
-* @param $control_wrapper(optional) is a string indicating the wrapper to apply to the passed control. By default is "tc_theme_options".
-* Ex: passing $aufocus = array('control' => 'tc_front_slider') will produce the query arg 'autofocus'=>array('control' => 'tc_theme_options[tc_front_slider]'
-*
-* @return url string
-* @since Customizr 3.4+
-*/
-function czr_fn_get_customizer_url( $autofocus = null, $control_wrapper = 'tc_theme_options' ) {
-   $_current_url       = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-   $_customize_url     = add_query_arg( 'url', urlencode( $_current_url ), wp_customize_url() );
-   $autofocus  = ( ! is_array($autofocus) || empty($autofocus) ) ? null : $autofocus;
-
-   if ( is_null($autofocus) ) {
-      return $_customize_url;
-   }
-
-   $_ordered_keys = array( 'control', 'section', 'panel');
-
-   // $autofocus must contain at least one key among (control,section,panel)
-   if ( ! count( array_intersect( array_keys($autofocus), $_ordered_keys ) ) ) {
-      return $_customize_url;
-   }
-
-   // $autofocus must contain at least one key among (control,section,panel)
-   if ( ! count( array_intersect( array_keys($autofocus), array( 'control', 'section', 'panel') ) ) ) {
-      return $_customize_url;
-   }
-
-   // wrap the control in the $control_wrapper if neded
-   if ( array_key_exists( 'control', $autofocus ) && ! empty( $autofocus['control'] ) && $control_wrapper ) {
-      $autofocus['control'] = $control_wrapper . '[' . $autofocus['control'] . ']';
-   }
-
-   //Since wp 4.6.1 we order the params following the $_ordered_keys order
-   $autofocus = array_merge( array_filter( array_flip( $_ordered_keys ), '__return_false'), $autofocus );
-
-   if ( ! empty( $autofocus ) ) {
-      //here we pass the first element of the array
-      // We don't really have to care for not existent autofocus keys, wordpress will stash them when passing the values to the customize js
-      return add_query_arg( array( 'autofocus' => array_slice( $autofocus, 0, 1 ) ), $_customize_url );
-   }
-
-   return $_customize_url;
-}
-
-
-/**
-* Is there a menu assigned to a given location ?
-* Used in class-header-menu and class-fire-placeholders
-* @return bool
-* @since  v3.4+
-*/
-function czr_fn_has_location_menu( $_location ) {
-    $_all_locations  = get_nav_menu_locations();
-    return isset($_all_locations[$_location]) && is_object( wp_get_nav_menu_object( $_all_locations[$_location] ) );
-}
-
-/**
-* Whether or not we are in the ajax context
-* @return bool
-* @since v3.4.37
-*/
-function czr_fn_is_ajax() {
-  /*
-  * wp_doing_ajax() introduced in 4.7.0
-  */
-  $wp_doing_ajax = ( function_exists('wp_doing_ajax') && wp_doing_ajax() ) || ( ( defined('DOING_AJAX') && 'DOING_AJAX' ) );
-
-  /*
-  * https://core.trac.wordpress.org/ticket/25669#comment:19
-  * http://stackoverflow.com/questions/18260537/how-to-check-if-the-request-is-an-ajax-request-with-php
-  */
-  $_is_ajax      = $wp_doing_ajax || ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
-
-  return apply_filters( 'czr_is_ajax', $_is_ajax );
-}
 
 
 //hook : czr_dev_notice
@@ -753,7 +435,7 @@ function czr_fn_return_cb_result_array( $cb, $params = array() ) {
 function czr_fn_is_slider_active( $queried_id = null ) {
   $queried_id = $queried_id ? $queried_id : czr_fn_get_real_id();
   //is the slider set to on for the queried id?
-  if ( czr_fn_is_home() && czr_fn_get_opt( 'tc_front_slider' ) )
+  if ( czr_fn_is_home() && czr_fn_opt( 'tc_front_slider' ) )
     return apply_filters( 'czr_slider_active_status', true , $queried_id );
 
   $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
@@ -773,7 +455,7 @@ function czr_fn_is_slider_active( $queried_id = null ) {
 function czr_fn_get_current_slider( $queried_id = null ) {
   $queried_id = $queried_id ? $queried_id : czr_fn_get_real_id();
   //gets the current slider id
-  $_home_slider     = czr_fn_get_opt( 'tc_front_slider' );
+  $_home_slider     = czr_fn_opt( 'tc_front_slider' );
   $slider_name_id   = ( czr_fn_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
   return apply_filters( 'czr_slider_name_id', $slider_name_id , $queried_id );
 }
@@ -806,7 +488,7 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     $_width             = false;
     $_height            = false;
     $_attachment_id     = false;
-    $_logo_option       = esc_attr( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
+    $_logo_option       = esc_attr( czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
     //check if option is an attachement id or a path (for backward compatibility)
     if ( is_numeric($_logo_option) ) {
       $_attachment_id   = $_logo_option;
@@ -817,7 +499,7 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     } elseif ( $backward_compatibility ) { //old treatment
       //rebuild the logo path : check if the full path is already saved in DB. If not, then rebuild it.
       $upload_dir       = wp_upload_dir();
-      $_saved_path      = esc_url ( czr_fn_get_opt( "tc{$logo_type_sep}logo_upload") );
+      $_saved_path      = esc_url ( czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
       $_logo_src        = ( false !== strpos( $_saved_path , '/wp-content/' ) ) ? $_saved_path : $upload_dir['baseurl'] . $_saved_path;
     }
     //hook + makes ssl compliant
@@ -839,22 +521,21 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     return $_logo_atts;
 }
 
-//@return bool
-if ( ! function_exists( 'czr_fn_isprevdem' ) ):
-function czr_fn_isprevdem() {
-    global $wp_customize;
-    $is_dirty = false;
-    if ( is_object( $wp_customize ) && method_exists( $wp_customize, 'unsanitized_post_values' ) ) {
-        $real_cust            = $wp_customize -> unsanitized_post_values( array( 'exclude_changeset' => true ) );
-        $_preview_index       = array_key_exists( 'customize_messenger_channel' , $_POST ) ? $_POST['customize_messenger_channel'] : '';
-        $_is_first_preview    = false !== strpos( $_preview_index ,'-0' );
-        $_doing_ajax_partial  = array_key_exists( 'wp_customize_render_partials', $_POST );
-        //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
-        $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
-    }
-    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! CZR_IS_PRO );
-}
-endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //back compat
 if ( ! class_exists( 'CZR_utils' ) ) :

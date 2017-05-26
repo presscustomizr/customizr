@@ -24,7 +24,7 @@ class CZR_menu_model_class extends CZR_Model {
         'menu_class'          => array(),
         'fallback_cb'         => array( $this, 'czr_fn_page_menu' ),
         'walker'              => '',
-        'dropdown_type'       => esc_attr( czr_fn_get_opt( 'tc_menu_type' ) )
+        'dropdown_type'       => esc_attr( czr_fn_opt( 'tc_menu_type' ) )
     );
 
     return $_preset;

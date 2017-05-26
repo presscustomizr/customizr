@@ -17,7 +17,7 @@ if ( apply_filters( 'czr_four_do', false ) ) {
 
             <?php do_action( '__before_article_container' ); ##hook of left sidebar?>
 
-                <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::czr_fn_get_layout(  CZR_utils::czr_fn_id() , 'class' ) , 'article-container' ) ) ) ?>">
+                <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( CZR_utils::czr_fn_get_layout(  czr_fn_get_id() , 'class' ) , 'article-container' ) ) ) ?>">
 
                     <?php do_action( '__before_loop' );##hooks the header of the list of post : archive, search... ?>
 

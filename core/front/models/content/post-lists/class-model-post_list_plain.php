@@ -16,12 +16,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
     $_preset = array(
-      'show_thumb'                => esc_attr( czr_fn_get_opt( 'tc_post_list_show_thumb' ) ),
+      'show_thumb'                => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
       'content_width'             => czr_fn_get_in_content_width_class(),
-      'excerpt_length'            => esc_attr( czr_fn_get_opt( 'tc_post_list_excerpt_length' ) ),
+      'excerpt_length'            => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false,
-      'split_layout'              => 1 != esc_attr( czr_fn_get_opt( 'tc_post_list_plain_split_layout' ) ), //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
+      'split_layout'              => 1 != esc_attr( czr_fn_opt( 'tc_post_list_plain_split_layout' ) ), //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
       'wrapped'                   => true,
     );
 

@@ -33,7 +33,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       if ( ! CZR_placeholders::czr_fn_is_fp_notice_on() )
         return;
 
-      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
+      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
 
       ?>
       <div class="tc-placeholder-wrap tc-fp-notice">
@@ -158,18 +158,18 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
         $featured_page_id                   = 0;
 
         //if fps are not set
-        if ( null == CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) || ! CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) ) {
+        if ( null == czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) || ! czr_fn_opt( 'tc_featured_page_'.$fp_single_id ) ) {
             //admin link if user logged in
             $featured_page_link             = '';
             $customizr_link                 = '';
-            if ( ! CZR___::$instance -> czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+            if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
               $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+                czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Edit now.' , 'customizr' )
               );
             }
-            $featured_page_link          = apply_filters( 'tc_fp_link_url', CZR_utils::czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+            $featured_page_link          = apply_filters( 'tc_fp_link_url', czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
 
             //rendering
             $featured_page_id               =  null;
@@ -188,7 +188,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
         }
 
         else {
-            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
+            $featured_page_id               = apply_filters( 'tc_fp_id', esc_attr( czr_fn_opt( 'tc_featured_page_'.$fp_single_id) ), $fp_single_id );
 
             $featured_page_link             = apply_filters( 'tc_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
 
@@ -197,14 +197,14 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
             $edit_enabled                   = false;
             //when are we displaying the edit link?
             //never display when customizing
-            if ( ! CZR___::$instance -> czr_fn_is_customizing() ) {
+            if ( ! czr_fn_is_customizing() ) {
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
               $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
             }
 
             $edit_enabled                   = apply_filters( 'tc_edit_in_fp_title', $edit_enabled );
 
-            $featured_text                  = apply_filters( 'tc_fp_text', CZR_utils::$inst->czr_fn_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
+            $featured_text                  = apply_filters( 'tc_fp_text', czr_fn_opt( 'tc_featured_text_'.$fp_single_id ), $fp_single_id, $featured_page_id );
             $featured_text                  = apply_filters( 'tc_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
 
             //get the page/post object
@@ -269,9 +269,9 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               echo apply_filters( 'tc_fp_text_block' , $tc_fp_text_block , $fp_single_id , $text, $featured_page_id);
 
               //button block
-              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
+              $tc_fp_button_text = apply_filters( 'tc_fp_button_text' , esc_attr( czr_fn_opt( 'tc_featured_page_button_text') ) , $fp_single_id );
 
-              if ( $tc_fp_button_text || CZR___::$instance -> czr_fn_is_customizing() ){
+              if ( $tc_fp_button_text || czr_fn_is_customizing() ){
                 $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                 $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
                 $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
@@ -315,7 +315,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages         = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages' ) );
+      $tc_show_featured_pages         = esc_attr( czr_fn_opt( 'tc_show_featured_pages' ) );
 
       return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
     }
@@ -323,7 +323,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages_img() {
       //gets  display img option
-      return apply_filters( 'tc_show_featured_pages_img', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
+      return apply_filters( 'tc_show_featured_pages_img', esc_attr( czr_fn_opt( 'tc_show_featured_pages_img' ) ) );
     }
 
   }//end of class

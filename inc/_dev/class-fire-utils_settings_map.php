@@ -16,9 +16,6 @@ if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 class CZR_utils_settings_map {
 
       static $instance;
-
-      public $customizer_map = array();
-
       private $is_wp_version_before_4_0;
       private $_is_settings_map_available;
 
@@ -38,17 +35,17 @@ class CZR_utils_settings_map {
                   require_once( TC_BASE . 'core/functions.php' );
             }
 
-            if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
-                  require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
-            }
+            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
+            //       require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
+            // }
 
-            if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
-                  require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
-            }
-            //require core utils settings map
-            if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
-                  require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
-            }
+            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
+            //       require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
+            // }
+            // //require core utils settings map
+            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
+            //       require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
+            // }
 
             $this->_is_settings_map_available = $_is_settings_map_available;
 
@@ -75,8 +72,8 @@ class CZR_utils_settings_map {
 
 
             //Hook callbacks are defined in core/utils/class-fire-utils_settings_map.php
-            if ( ! empty( $this -> customizer_map ) ) {
-                  $_customizer_map = $this -> customizer_map;
+            if ( ! empty( CZR___::$customizer_map ) ) {
+                  $_customizer_map = CZR___::$customizer_map;
             }
             else {
 
@@ -111,7 +108,7 @@ class CZR_utils_settings_map {
                       array( 'add_section'         => apply_filters( 'tc_add_section_map', array() ) ),
                       array( 'add_setting_control' => apply_filters( 'tc_add_setting_control_map', array(), $get_default ) )
                   );
-                  $this -> customizer_map = $_customizer_map;
+                  CZR___::$customizer_map = $_customizer_map;
 
             }
 
@@ -273,7 +270,7 @@ class CZR_utils_settings_map {
                               'label'     =>  __( 'Choose a predefined skin' , 'customizr' ),
                               'section'   =>  'skins_sec' ,
                               'type'      =>  'select' ,
-                              'choices'    =>  $get_default ? null : czr_fn_build_skin_list(),
+                              'choices'    =>  $get_default ? null : $this -> czr_fn_build_skin_list(),
                               'transport'   =>  'postMessage',
                               'notice'    => __( 'Disabled if the random option is on.' , 'customizr' )
                   ),
@@ -992,6 +989,73 @@ class CZR_utils_settings_map {
       function czr_fn_sanitize_email( $value) {
         return sanitize_email( $value );
       }
+
+      /**
+      * Returns the list of available skins from child (if exists) and parent theme
+      *
+      * @package Customizr
+      * @since Customizr 3.0.11
+      * @updated Customizr 3.0.15
+      */
+      //Valid only for customizr < 4.0
+      function czr_fn_build_skin_list() {
+        $tc_base        = TC_BASE;
+        $tc_base_child  = TC_BASE_CHILD;
+
+        $parent_skins   = $this -> czr_fn_get_skins( $tc_base .'inc/assets/css');
+        $child_skins    = ( czr_fn_is_child() && file_exists( $tc_base_child .'inc/assets/css') ) ? $this -> czr_fn_get_skins( $tc_base_child .'inc/assets/css') : array();
+        $skin_list      = array_merge( $parent_skins , $child_skins );
+
+        return apply_filters( 'tc_skin_list', $skin_list );
+      }
+
+
+      /**
+      * Generates skin select list
+      *
+      * @package Customizr
+      * @since Customizr 3.0.15
+      *
+      */
+      function czr_fn_get_skins($path) {
+        //checks if path exists
+        if ( !file_exists($path) )
+          return;
+
+        //gets the skins from init
+        $default_skin_list    = CZR_init::$instance -> skins;
+
+        //declares the skin list array
+        $skin_list        = array();
+
+        //gets the skins : filters the files with a css extension and generates and array[] : $key = filename.css => $value = filename
+        $files            = scandir($path) ;
+        foreach( $files as $file ) {
+            //skips the minified and tc_common
+            if ( false !== strpos($file, '.min.') || false !== strpos($file, 'tc_common') )
+              continue;
+
+            if ( $file[0] != '.' && !is_dir($path.$file) ) {
+              if ( substr( $file, -4) == '.css' ) {
+                $skin_list[$file] = isset($default_skin_list[$file]) ?  call_user_func( '__' , $default_skin_list[$file] , 'customizr' ) : substr_replace( $file , '' , -4 , 4);
+              }
+            }
+          }//endforeach
+        $_to_return = array();
+
+        //Order skins like in the default array
+        foreach( $default_skin_list as $_key => $value ) {
+          if( isset($skin_list[$_key]) ) {
+            $_to_return[$_key] = $skin_list[$_key];
+          }
+        }
+        //add skins not included in default
+        foreach( $skin_list as $_file => $_name ) {
+          if( ! isset( $_to_return[$_file] ) )
+            $_to_return[$_file] = $_name;
+        }
+        return $_to_return;
+      }//end of function
 
 }//end of class
 endif;

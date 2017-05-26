@@ -53,7 +53,7 @@ class CZR_archive_heading_model_class extends CZR_Model {
         case 'year'           : return __( 'Yearly Archives:', 'customizr' );
       }
     }
-    return esc_attr( czr_fn_get_opt( "tc_{$context}_title" ) );
+    return esc_attr( czr_fn_opt( "tc_{$context}_title" ) );
   }
 
   function czr_fn_get_posts_list_title_content( $context = null ) {

@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
-      if ( ! CZR___::czr_fn_is_pro() && class_exists('CZR_Customize_Section_Pro') ) {
+      if ( ! czr_fn_is_pro() && class_exists('CZR_Customize_Section_Pro') ) {
         $manager -> register_section_type( 'CZR_Customize_Section_Pro');
       }
     }
@@ -463,7 +463,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           //=> grid customizer addon starts by gc_
           //When do we add a prefix ?
           $add_prefix = false;
-          if ( CZR_utils::$inst -> czr_fn_is_customizr_option( $key ) )
+          if ( czr_fn_is_customizr_option( $key ) )
             $add_prefix = true;
           $_opt_name = $add_prefix ? "{$czr_option_group}[{$key}]" : $key;
 

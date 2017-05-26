@@ -65,7 +65,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         if ( czr_fn__f( '__is_home_empty') )
           return;
         //gets current screen layout
-        $screen_layout        = CZR_utils::czr_fn_get_layout( CZR_utils::czr_fn_id() , 'sidebar'  );
+        $screen_layout        = CZR_utils::czr_fn_get_layout( czr_fn_get_id() , 'sidebar'  );
 		    // GY: add relative right and left for LTR/RTL sites
         $rel_left             = is_rtl() ? 'right' : 'left';
         $rel_right            = is_rtl() ? 'left' : 'right';
@@ -140,7 +140,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
             printf('<p><strong>%1$s</strong></p>',
                 sprintf( __("Add widgets to this sidebar %s or %s.", "customizr"),
                     sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-                        CZR_utils::czr_fn_get_customizer_url( array( 'panel' => 'widgets') ),
+                        czr_fn_get_customizer_url( array( 'panel' => 'widgets') ),
                         __( "Add widgets", "customizr"),
                         __("now", "customizr")
                     ),
@@ -181,17 +181,17 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( $option ) );
+        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( $option ) );
 
         $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
 
         //only when partial refresh enabled, otherwise we fall back on refresh
-        $_nothing_to_render         = CZR___::$instance -> czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
+        $_nothing_to_render         = czr_fn_is_customizing() && czr_fn_is_partial_refreshed_on() ? $_nothing_to_render : $_nothing_to_render_front;
 
         if ( $_nothing_to_render )
           return;
 
-        $_title = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_social_in_sidebar_title') );
+        $_title = esc_attr( czr_fn_opt( 'tc_social_in_sidebar_title') );
         $html = sprintf('<aside class="%1$s">%2$s<div class="social-links">%3$s</div></aside>',
             implode( " " , apply_filters( 'tc_sidebar_block_social_class' , array('social-block', 'widget', 'widget_social') ) ),
             ! $_title ? '' : apply_filters( 'tc_sidebar_socials_title' , sprintf( '<h3 class="widget-title">%1$s</h3>', $_title ) ),
@@ -213,8 +213,8 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       function czr_fn_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == esc_attr( czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
+          return ( 0 == esc_attr( czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }

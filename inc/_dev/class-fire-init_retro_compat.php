@@ -64,7 +64,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       * we cannot really rely on them :/
       */
       //nothing to do if new user
-      //if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+      //if ( ! czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
       //  return array();
 
       //nothing to do if already moved
@@ -159,7 +159,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       * When Memcached is active transients (object cached) might be not persistent
       * we cannot really rely on them :/
       */
-      //if ( ! CZR_utils::$inst -> czr_fn_user_started_before_version( '3.5.5', '1.3.3' ) )
+      //if ( ! czr_fn_user_started_before_version( '3.5.5', '1.3.3' ) )
       //  return array();
 
       //nothing to do if already moved

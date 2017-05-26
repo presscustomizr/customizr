@@ -15,57 +15,60 @@
 * @since Customizr 3.0
 */
 function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
+    if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ) {
+      return CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default, $what );
+    }
 
-  if ( ! empty( CZR___::$customizer_map ) ) {
-    $_customizer_map = CZR___::$customizer_map;
-  }
-  else {
-    //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-    add_filter( 'czr_add_panel_map'           , 'czr_fn_popul_panels_map');
-    add_filter( 'czr_remove_section_map'      , 'czr_fn_popul_remove_section_map');
-    //theme switcher's enabled when user opened the customizer from the theme's page
-    add_filter( 'czr_remove_section_map'      , 'czr_fn_set_theme_switcher_visibility');
-    add_filter( 'czr_add_section_map'         , 'czr_fn_popul_section_map');
-    //add controls to the map
-    add_filter( 'czr_add_setting_control_map' , 'czr_fn_popul_setting_control_map', 10, 2 );
+    if ( ! empty( CZR___::$customizer_map ) ) {
+      $_customizer_map = CZR___::$customizer_map;
+    }
+    else {
+      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
+      add_filter( 'czr_add_panel_map'           , 'czr_fn_popul_panels_map');
+      add_filter( 'czr_remove_section_map'      , 'czr_fn_popul_remove_section_map');
+      //theme switcher's enabled when user opened the customizer from the theme's page
+      add_filter( 'czr_remove_section_map'      , 'czr_fn_set_theme_switcher_visibility');
+      add_filter( 'czr_add_section_map'         , 'czr_fn_popul_section_map');
+      //add controls to the map
+      add_filter( 'czr_add_setting_control_map' , 'czr_fn_popul_setting_control_map', 10, 2 );
 
 
-    //FILTER SPECIFIC SETTING-CONTROL MAPS
-    //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-    add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages', 10, 2 );
+      //FILTER SPECIFIC SETTING-CONTROL MAPS
+      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+      add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages', 10, 2 );
 
-    //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
-    add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
+      //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
+      add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
 
-    //CACHE THE GLOBAL CUSTOMIZER MAP
-    $_customizer_map = array_merge(
-      array( 'add_panel'           => apply_filters( 'czr_add_panel_map', array() ) ),
-      array( 'remove_section'      => apply_filters( 'czr_remove_section_map', array() ) ),
-      array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
-      array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
-    );
-    CZR___::$customizer_map = $_customizer_map;
-  }
-  if ( is_null($what) ) {
-    return apply_filters( 'tc_customizer_map', $_customizer_map );
-  }
+      //CACHE THE GLOBAL CUSTOMIZER MAP
+      $_customizer_map = array_merge(
+        array( 'add_panel'           => apply_filters( 'czr_add_panel_map', array() ) ),
+        array( 'remove_section'      => apply_filters( 'czr_remove_section_map', array() ) ),
+        array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
+        array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
+      );
+      CZR___::$customizer_map = $_customizer_map;
+    }
+    if ( is_null($what) ) {
+      return apply_filters( 'tc_customizer_map', $_customizer_map );
+    }
 
-  $_to_return = $_customizer_map;
-  switch ( $what ) {
-      case 'add_panel':
-        $_to_return = $_customizer_map['add_panel'];
-      break;
-      case 'remove_section':
-        $_to_return = $_customizer_map['remove_section'];
-      break;
-      case 'add_section':
-        $_to_return = $_customizer_map['add_section'];
-      break;
-      case 'add_setting_control':
-        $_to_return = $_customizer_map['add_setting_control'];
-      break;
-  }
-  return $_to_return;
+    $_to_return = $_customizer_map;
+    switch ( $what ) {
+        case 'add_panel':
+          $_to_return = $_customizer_map['add_panel'];
+        break;
+        case 'remove_section':
+          $_to_return = $_customizer_map['remove_section'];
+        break;
+        case 'add_section':
+          $_to_return = $_customizer_map['add_section'];
+        break;
+        case 'add_setting_control':
+          $_to_return = $_customizer_map['add_setting_control'];
+        break;
+    }
+    return $_to_return;
 }
 
 
@@ -2485,56 +2488,6 @@ function czr_fn_generates_featured_pages( $_original_map ) {
 
 
 
-
-/**
-* Generates skin select list
-*
-* @package Customizr
-* @since Customizr 3.0.15
-*
-*/
-function czr_fn_get_skins($path) {
-  //checks if path exists
-  if ( !file_exists($path) )
-    return;
-
-  //gets the skins from init
-  $default_skin_list    = CZR_init::$instance -> skins;
-
-  //declares the skin list array
-  $skin_list        = array();
-
-  //gets the skins : filters the files with a css extension and generates and array[] : $key = filename.css => $value = filename
-  $files            = scandir($path) ;
-  foreach( $files as $file ) {
-      //skips the minified and tc_common
-      if ( false !== strpos($file, '.min.') || false !== strpos($file, 'tc_common') )
-        continue;
-
-      if ( $file[0] != '.' && !is_dir($path.$file) ) {
-        if ( substr( $file, -4) == '.css' ) {
-          $skin_list[$file] = isset($default_skin_list[$file]) ?  call_user_func( '__' , $default_skin_list[$file] , 'customizr' ) : substr_replace( $file , '' , -4 , 4);
-        }
-      }
-    }//endforeach
-  $_to_return = array();
-
-  //Order skins like in the default array
-  foreach( $default_skin_list as $_key => $value ) {
-    if( isset($skin_list[$_key]) ) {
-      $_to_return[$_key] = $skin_list[$_key];
-    }
-  }
-  //add skins not included in default
-  foreach( $skin_list as $_file => $_name ) {
-    if( ! isset( $_to_return[$_file] ) )
-      $_to_return[$_file] = $_name;
-  }
-  return $_to_return;
-}//end of function
-
-
-
 /**
 * Returns the layout choices array
 *
@@ -2573,26 +2526,6 @@ function czr_fn_slider_choices() {
   }
 
   return $slider_choices;
-}
-
-
-/**
-* Returns the list of available skins from child (if exists) and parent theme
-*
-* @package Customizr
-* @since Customizr 3.0.11
-* @updated Customizr 3.0.15
-*/
-//Valid only for customizr < 4.0
-function czr_fn_build_skin_list() {
-  $tc_base        = defined( 'TC_BASE' ) ? TC_BASE : CZR_BASE;
-  $tc_base_child  = defined( 'TC_BASE_CHILD' ) ? TC_BASE_CHILD : CZR_BASE_CHILD;
-
-  $parent_skins   = czr_fn_get_skins( $tc_base .'inc/assets/css');
-  $child_skins    = ( CZR___::$instance->czr_fn_is_child() && file_exists( $tc_base_child .'inc/assets/css') ) ? czr_fn_get_skins( $tc_base_child .'inc/assets/css') : array();
-  $skin_list      = array_merge( $parent_skins , $child_skins );
-
-  return apply_filters( 'tc_skin_list', $skin_list );
 }
 
 

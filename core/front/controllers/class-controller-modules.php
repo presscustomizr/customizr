@@ -39,7 +39,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
     function czr_fn_display_main_slider() {
       //gets the front slider if any
-      $tc_front_slider  = esc_attr( czr_fn_get_opt( 'tc_front_slider' ) );
+      $tc_front_slider  = esc_attr( czr_fn_opt( 'tc_front_slider' ) );
       //when do we display a slider? By default only for home (if a slider is defined), pages and posts (including custom post types)
       $_show_slider     = czr_fn_is_home() ? ! empty( $tc_front_slider ) : ! is_404() && ! is_archive() && ! is_search();
 
@@ -63,23 +63,23 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     /* BREADCRUMB */
     function czr_fn_display_view_breadcrumb() {
 
-      if ( $to_return = 1 == esc_attr( czr_fn_get_opt( 'tc_breadcrumb') ) ) {
+      if ( $to_return = 1 == esc_attr( czr_fn_opt( 'tc_breadcrumb') ) ) {
         if ( is_search() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
+          $to_return = 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_search' ) ) ? false : true;
 
         elseif ( is_404() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
+          $to_return = 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_404' ) ) ? false : true;
 
         elseif ( czr_fn_is_home() )
-          $to_return = 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+          $to_return = 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
 
-        elseif ( is_page() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+        elseif ( is_page() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
           $to_return = false;
 
-        elseif ( is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+        elseif ( is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
           $to_return = false;
 
-        elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_get_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+        elseif ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
           $to_return = false;
       }
 
@@ -90,7 +90,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
     function czr_fn_display_view_featured_pages() {
           //gets display fp option
-          $tc_show_featured_pages 	      = esc_attr( czr_fn_get_opt( 'tc_show_featured_pages' ) ) && czr_fn_is_home();
+          $tc_show_featured_pages 	      = esc_attr( czr_fn_opt( 'tc_show_featured_pages' ) ) && czr_fn_is_home();
 
           //hide featured pages when page>1
           if ( apply_filters( 'tc_hide_featured_pages_when_paged', is_main_query() ) ) {
@@ -108,7 +108,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     function czr_fn_display_view_recently_updated() {
-      return 0 != esc_attr( czr_fn_get_opt( 'tc_post_metas_update_notice_in_title' ) );
+      return 0 != esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) );
     }
 
 
@@ -127,7 +127,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       * User option to enabe/disable all notices
       */
       return apply_filters( 'czr_is_front_help_enabled' ,
-          czr_fn_get_opt('tc_display_front_help')
+          czr_fn_opt('tc_display_front_help')
           && is_user_logged_in()
           && current_user_can('edit_theme_options')
       );
@@ -138,14 +138,14 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     VARIOUS HELPERS
     *******************************/
     function czr_fn_display_view_post_list_grid() {
-      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) );
+      return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }
 
     // /**
     // * Old version: NOT USED ANYMORE: context skopified
     // */
     // function czr_fn_display_view_post_list_grid() {
-    //   return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_get_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
+    //   return apply_filters( 'czr_is_grid_enabled', czr_fn_is_list_of_posts() && 'grid' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) && $this -> czr_fn_is_grid_context_matching() );
     // }
 
 
@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     //  * and the post list we're in */
     // private function czr_fn_is_grid_context_matching() {
     //   $_type = $this -> czr_fn_get_grid_context();
-    //   $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_get_opt( 'tc_grid_in_' . $_type ) ) );
+    //   $_apply_grid_to_post_type = apply_filters( 'czr_grid_in_' . $_type, esc_attr( czr_fn_opt( 'tc_grid_in_' . $_type ) ) );
     //   return apply_filters('czr_grid_do',  $_type && $_apply_grid_to_post_type );
     // }
 

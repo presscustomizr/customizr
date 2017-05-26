@@ -514,7 +514,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
            }
 
            //by default we apply the global default layout
-           $tc_sidebar_default_layout  = esc_attr( czr_fn_get_opt('tc_sidebar_global_layout') );
+           $tc_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_global_layout') );
 
 
            ?>

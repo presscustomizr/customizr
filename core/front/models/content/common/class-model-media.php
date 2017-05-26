@@ -117,11 +117,11 @@ class CZR_media_model_class extends CZR_Model {
 
                   'has_permalink'         => true,
                   'link_class'            => 'bg-link',
-                  'has_lightbox'          => czr_fn_get_opt( 'tc_fancybox' ),
+                  'has_lightbox'          => czr_fn_opt( 'tc_fancybox' ),
 
                   'visibility'            => true,
 
-                  'image_centering'       => esc_attr( czr_fn_get_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering',
+                  'image_centering'       => esc_attr( czr_fn_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering',
                   'inner_wrapper_class'   => null,
             );
 

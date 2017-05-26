@@ -37,7 +37,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     //because this method is also called from the slider of posts which refers to the slider responsive image setting
     //limit this just for wp version >= 4.4
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == czr_fn_get_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
+      $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
 
     //try to extract $_thumb_id and $_thumb_type
     extract( czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
@@ -133,7 +133,7 @@ function czr_fn_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
 * @return string
 */
 function czr_fn_get_single_thumbnail_position() {
-    $_exploded_location     = explode( '|', esc_attr( czr_fn_get_opt( 'tc_single_post_thumb_location' ) ) );
+    $_exploded_location     = explode( '|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
     $_hook                  = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
     return $_hook;
 }
@@ -177,7 +177,7 @@ function czr_fn_set_thumb_info( $post_id = null , $_thumb_id = null, $_return = 
         $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
       }
       if ( ! $_thumb_id || empty( $_thumb_id ) ) {
-        $_thumb_id    = esc_attr( czr_fn_get_opt( 'tc_post_list_default_thumb' ) );
+        $_thumb_id    = esc_attr( czr_fn_opt( 'tc_post_list_default_thumb' ) );
         $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
       }
     }
@@ -194,7 +194,7 @@ function czr_fn_get_id_from_attachment( $post_id ) {
     //define a filtrable boolean to set if attached images can be used as thumbnails
     //1) must be a non single post context
     //2) user option should be checked in customizer
-    $_bool = 0 != esc_attr( czr_fn_get_opt( 'tc_post_list_use_attachment_as_thumb' ) );
+    $_bool = 0 != esc_attr( czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
 
     if ( ! is_admin() )
       $_bool = ! czr_fn_is_single_post() && $_bool;
@@ -252,7 +252,7 @@ function czr_fn_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = t
     //handles the case when the image dimensions are too small
     $thumb_size       = apply_filters( 'czr_thumb_size' , CZR_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
     $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
-    $no_effect_class  = ( esc_attr( czr_fn_get_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
+    $no_effect_class  = ( esc_attr( czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
     //default hover effect
     $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',

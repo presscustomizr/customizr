@@ -160,7 +160,7 @@ class CZR_post_list {
     //When do we show the post excerpt?
     //1) when set in options
     //2) + other filters conditions
-    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_length' ) ) );
+    return (bool) apply_filters( 'tc_show_excerpt', 'full' != esc_attr( czr_fn_opt( 'tc_post_list_length' ) ) );
   }
 
 
@@ -179,7 +179,7 @@ class CZR_post_list {
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_fn_has_thumb(),
-          0 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_show_thumb' ) )
+          0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) )
         )
       )
     );
@@ -285,13 +285,13 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-    $_shape = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
 
     //1) check if shape is rounded, squared on rectangular
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $thumb_wrapper;
 
-    $_position = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
           get_permalink( get_the_ID() ),
           esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
@@ -408,8 +408,8 @@ class CZR_post_list {
      // categories
      // we have to ignore sticky posts (do not prepend them)
      // disable grid sticky post expansion
-     $cats = CZR_utils::$inst -> czr_fn_opt('tc_blog_restrict_by_cat');
-     $cats = array_filter( $cats, array( CZR_utils::$inst , 'czr_fn_category_id_exists' ) );
+     $cats = czr_fn_opt('tc_blog_restrict_by_cat');
+     $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
      if ( is_array( $cats ) && ! empty( $cats ) ){
          $query->set('category__in', $cats );
@@ -424,7 +424,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_add_thumb_shape_name( $_classes ) {
-    return array_merge( $_classes , array(esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') ) ) );
+    return array_merge( $_classes , array(esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') ) ) );
   }
 
 
@@ -435,7 +435,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_excerpt_length' ) );
+    $_custom = esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) );
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -447,9 +447,9 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_post_list_layout( $_layout ) {
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
+    $_layout['alternate']        = ( 0 == esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
                                    || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
@@ -465,7 +465,7 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_content_class( $_classes ) {
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return array_merge( $_classes , array( "thumb-position-{$_position}") );
   }
 
@@ -484,7 +484,7 @@ class CZR_post_list {
     //note : handled with javascript if tc_center_img option enabled
     $_bool = array_product(
       array(
-        ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_center_img') ),
+        ! esc_attr( czr_fn_opt( 'tc_center_img') ),
         false != $image,
         ! empty($image),
         isset($_filtered_thumb_size['width']),
@@ -496,7 +496,7 @@ class CZR_post_list {
 
     $_width     = $_filtered_thumb_size['width'];
     $_height    = $_filtered_thumb_size['height'];
-    $_shape     = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape     = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
     $_is_rectangular = ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') ? false : true;
     if ( ! is_single() && ! $_is_rectangular )
       return $_style;
@@ -515,7 +515,7 @@ class CZR_post_list {
   function czr_fn_write_thumbnail_inline_css( $_css ) {
     if ( ! $this -> czr_fn_post_list_controller() )
       return $_css;
-    $_list_thumb_height     = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_height' ) );
+    $_list_thumb_height     = esc_attr( czr_fn_opt( 'tc_post_list_thumb_height' ) );
     $_list_thumb_height     = (! $_list_thumb_height || ! is_numeric($_list_thumb_height) ) ? 250 : $_list_thumb_height;
 
     return sprintf("%s\n%s",
@@ -535,11 +535,11 @@ class CZR_post_list {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_thumb_size( $_default_size ) {
-    $_shape = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_shape') );
+    $_shape = esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape') );
     if ( ! $_shape || false !== strpos($_shape, 'rounded') || false !== strpos($_shape, 'squared') )
       return $_default_size;
 
-    $_position                  = esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_post_list_thumb_position' ) );
+    $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     return ( 'top' == $_position || 'bottom' == $_position ) ? 'tc_rectangular_size' : $_default_size;
   }
 

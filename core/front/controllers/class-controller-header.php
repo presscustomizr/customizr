@@ -8,28 +8,28 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_header_social_block() {
-      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_get_opt( "tc_social_in_header" ) );
+      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_opt( "tc_social_in_header" ) );
     }
 
     function czr_fn_display_view_navbar_social_block() {
       $_topbar_on        = $this->czr_fn_display_view_topbar();
-      $_social_in_navbar = $_topbar_on ? 1 != esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) ) : true;
+      $_social_in_navbar = $_topbar_on ? 1 != esc_attr( czr_fn_opt( "tc_social_in_topnav" ) ) : true;
 
       return $this -> czr_fn_display_view_header_social_block() && $_social_in_navbar;
 
     }
 
     function czr_fn_display_view_topbar_social_block() {
-      return $this -> czr_fn_display_view_header_social_block() && 1 == esc_attr( czr_fn_get_opt( "tc_social_in_topnav" ) );
+      return $this -> czr_fn_display_view_header_social_block() && 1 == esc_attr( czr_fn_opt( "tc_social_in_topnav" ) );
     }
 
     function czr_fn_display_view_branding_tagline() {
-      return 1 == esc_attr( czr_fn_get_opt( "tc_tagline_branding" ) );
+      return 1 == esc_attr( czr_fn_opt( "tc_tagline_branding" ) );
     }
 
 
     function czr_fn_display_view_topbar() {
-      return 1 == esc_attr( czr_fn_get_opt( 'tc_header_topbar' ) );
+      return 1 == esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
     }
 
 
@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //1) not in customizer preview (we just hide it in the model)
     //2) the user choose to not display it
     function czr_fn_display_view_tagline() {
-      return czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_tagline') ) );
+      return czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_opt( 'tc_show_tagline') ) );
     }
 
     function czr_fn_display_view_title() {
@@ -59,7 +59,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_sticky_logo() {
-      if ( esc_attr( czr_fn_get_opt( "tc_sticky_header" ) ) ) {
+      if ( esc_attr( czr_fn_opt( "tc_sticky_header" ) ) ) {
         /*sticky logo is quite new no bc needed*/
         $_logo_atts = czr_fn_get_logo_atts( 'sticky', $backward_compat = false );
         return ! empty( $_logo_atts );
@@ -72,7 +72,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_primary_menu() {
-      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
+      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_opt( 'tc_menu_style' ) );
     }
 
     //when the 'secondary' navbar menu is allowed?
@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) topbar is displayed
     function czr_fn_display_view_topbar_menu() {
-      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_get_opt( 'tc_header_topbar' ) );
+      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
     }
 
     //when the sidenav menu is allowed?
@@ -96,11 +96,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu style is aside
     function czr_fn_display_view_sidenav() {
-      return $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( czr_fn_get_opt( 'tc_menu_style' ) );
+      return $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) );
     }
 
     function czr_fn_display_view_menu() {
-      return ! czr_fn_get_opt('tc_hide_all_menus');
+      return ! czr_fn_opt('tc_hide_all_menus');
     }
 
     //when the 'sidevan menu button' is allowed?
@@ -130,7 +130,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
 
     function czr_fn_display_view_nav_search()  {
-      return czr_fn_get_opt( 'tc_search_in_header' );
+      return czr_fn_opt( 'tc_search_in_header' );
     }
   }//end of class
 endif;

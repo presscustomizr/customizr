@@ -66,13 +66,13 @@ class CZR_breadcrumb {
 
     function czr_fn_set_breadcrumb_display_in_context( $_bool ) {
     	if ( czr_fn__f('__is_home') )
-	  		return 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
+	  		return 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_home' ) ) ? false : true;
 	  	else {
-		  	if ( is_page() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
+		  	if ( is_page() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_pages' ) ) )
 		  		return false;
-		  	if ( is_single() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
+		  	if ( is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_single_posts' ) ) )
 		  		return false;
-		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
+		  	if ( ! is_page() && ! is_single() && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_in_post_lists' ) ) )
 		  		return false;
 		}
 		return $_bool;
@@ -85,13 +85,13 @@ class CZR_breadcrumb {
     * @since Customizr 1.0
     */
     function czr_fn_breadcrumb_display() {
-	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_breadcrumb') ) ) )
+	  	if ( ! apply_filters( 'tc_show_breadcrumb' , 1 == esc_attr( czr_fn_opt( 'tc_breadcrumb') ) ) )
 	      return;
 
 	  	if ( ! apply_filters( 'tc_show_breadcrumb_in_context' , true ) )
 	      return;
 
-	  	if ( czr_fn__f('__is_home')  && 1 != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_breadcrumb_home' ) ) )
+	  	if ( czr_fn__f('__is_home')  && 1 != esc_attr( czr_fn_opt( 'tc_show_breadcrumb_home' ) ) )
 	  		return;
 
 	  	//set the args properties

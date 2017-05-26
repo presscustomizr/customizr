@@ -18,7 +18,7 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
 
   // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
   function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-    if ( 1 == esc_attr( czr_fn_get_opt( 'tc_woocommerce_header_cart' ) ) ) {
+    if ( 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) ) {
       $fragments['sup.czr-wc-count'] = $this -> czr_fn_get_wc_cart_count_html();
     }
     return $fragments;

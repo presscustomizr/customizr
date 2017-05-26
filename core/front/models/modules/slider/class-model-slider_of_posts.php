@@ -93,13 +93,13 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     $defaults       = array(
       'img_size'            => null,
       //options
-      'stickies_only'            => esc_attr( czr_fn_get_opt( 'tc_posts_slider_stickies' ) ),
-      'show_title'               => esc_attr( czr_fn_get_opt( 'tc_posts_slider_title' ) ),
-      'show_excerpt'             => esc_attr( czr_fn_get_opt( 'tc_posts_slider_text' ) ),
-      'button_text'              => esc_attr( czr_fn_get_opt( 'tc_posts_slider_button_text' ) ),
-      'posts_per_page'           => esc_attr( czr_fn_get_opt( 'tc_posts_slider_number' ) ),
-      'link_type'                => esc_attr( czr_fn_get_opt( 'tc_posts_slider_link') ),
-      'slider_responsive_images' => esc_attr( czr_fn_get_opt( 'tc_resp_slider_img') ) ? true : false,
+      'stickies_only'            => esc_attr( czr_fn_opt( 'tc_posts_slider_stickies' ) ),
+      'show_title'               => esc_attr( czr_fn_opt( 'tc_posts_slider_title' ) ),
+      'show_excerpt'             => esc_attr( czr_fn_opt( 'tc_posts_slider_text' ) ),
+      'button_text'              => esc_attr( czr_fn_opt( 'tc_posts_slider_button_text' ) ),
+      'posts_per_page'           => esc_attr( czr_fn_opt( 'tc_posts_slider_number' ) ),
+      'link_type'                => esc_attr( czr_fn_opt( 'tc_posts_slider_link') ),
+      'slider_responsive_images' => esc_attr( czr_fn_opt( 'tc_resp_slider_img') ) ? true : false,
     );
 
     $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
@@ -112,7 +112,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
 
     /*** tc_thumb setup filters ***/
     // remove smart load img parsing if any
-    $smart_load_enabled = 1 == esc_attr( czr_fn_get_opt( 'tc_img_smart_load' ) );
+    $smart_load_enabled = 1 == esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
       remove_filter( 'czr_thumb_html', 'czr_fn_parse_imgs' );
 

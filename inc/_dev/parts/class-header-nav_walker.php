@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       if ( $item->is_dropdown ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, $this -> tc_location );
         $item_html      = str_replace( $search , $replace , $item_html);
@@ -150,14 +150,14 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
       if ( ! empty( $args['has_children'] ) ) {
         //makes top menu not clickable (default bootstrap behaviour)
         $search         = '<a';
-        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
+        $replace        = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? '<a' : '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"';
         $replace       .= strpos($item_html, 'href=') ? '' : ' href="#"' ;
         $replace        = apply_filters( 'tc_menu_open_on_click', $replace , $search, isset($args['theme_location']) ? $args['theme_location'] : null);
         $item_html      = str_replace( $search , $replace , $item_html);
 
         //adds arrows down
         if ( $depth === 0 )
-            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);      
+            $item_html      = str_replace( '</a>' , ' <strong class="caret"></strong></a>' , $item_html);
       }
 
       elseif (stristr( $item_html, 'li class="divider' )) {

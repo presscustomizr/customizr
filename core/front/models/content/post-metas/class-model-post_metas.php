@@ -4,26 +4,26 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $limit = false, $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', $limit, $sep ) : '';
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', $limit, $sep ) : '';
   }
 
   public function czr_fn_get_tag_list( $limit = false, $sep = '' ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
   }
 
   public function czr_fn_get_author( $before = null ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
   }
 
   public function czr_fn_get_publication_date( $permalink = false, $before = null ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
         '',
         $permalink,
         $before = null ) ) : '';
   }
 
   public function czr_fn_get_update_date( $permalink = false, $before = null ) {
-    return 0 != esc_attr( czr_fn_get_opt( 'tc_show_post_metas_update_date' ) ) &&
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) &&
            false !== czr_fn_post_has_update() ?
                 $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
   }
@@ -272,13 +272,13 @@ class CZR_post_metas_model_class extends CZR_Model {
     if ( ! czr_fn_is_customizing() )
       return $_classes;
 
-    if ( 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas' ) ) )
+    if ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) )
        $_classes[] = 'hide-all-post-metas';
 
     if (
-        ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_get_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) )
     )
       $_classes[] = 'hide-post-metas';
 

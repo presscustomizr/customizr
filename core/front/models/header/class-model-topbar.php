@@ -8,7 +8,7 @@ class CZR_topbar_model_class extends CZR_Model {
   */
   function czr_fn_get_preset_model() {
 
-    //$mobile_topnav           = esc_attr( czr_fn_get_opt( 'tc_header_topnav_mobile' ) );
+    //$mobile_topnav           = esc_attr( czr_fn_opt( 'tc_header_topnav_mobile' ) );
     //By default we decided is hidden;
     $mobile_topnav           = 'hidden';
 

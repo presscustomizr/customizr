@@ -66,7 +66,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return;
 
-      $_exploded_location   = explode('|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' )) );
+      $_exploded_location   = explode('|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' )) );
       $_hook                = apply_filters( 'tc_single_post_thumb_hook', isset($_exploded_location[0]) ? $_exploded_location[0] : '__before_content' );
       $_priority            = ( isset($_exploded_location[1]) && is_numeric($_exploded_location[1]) ) ? $_exploded_location[1] : 20;
 
@@ -122,7 +122,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
       if ( ! $this -> czr_fn_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
       //@todo check if some conditions below not redundant?
-      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_show_author_info' ) ) )
+      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) )
         return;
 
       $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
@@ -155,7 +155,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     /**
     * Get Single post thumb model + view
     * Inject it in the view
-    * hook : esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) || '__before_content'
+    * hook : esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) || '__before_content'
     * @return  void
     * @package Customizr
     * @since Customizr 3.2.3
@@ -209,7 +209,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
           printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
               __( "You can display your post's featured image here if you have set one.", "customizr" ),
               sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', CZR_utils::czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
+                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
               ),
               sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
                 sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
@@ -269,7 +269,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.11
     */
     function czr_fn_show_single_post_thumbnail() {
-      return $this -> czr_fn_single_post_display_controller() && apply_filters( 'tc_show_single_post_thumbnail', 'hide' != esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
+      return $this -> czr_fn_single_post_display_controller() && apply_filters( 'tc_show_single_post_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
     }
 
 
@@ -280,7 +280,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.3
     */
     private function czr_fn_get_current_thumb_size() {
-      $_exploded_location   = explode( '|', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
+      $_exploded_location   = explode( '|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
       $_hook                = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
       return '__before_main_wrapper' == $_hook ? 'slider-full' : 'slider';
     }
@@ -312,7 +312,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return $_css;
-      $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
+      $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
       return sprintf("%s\n%s",
         $_css,
