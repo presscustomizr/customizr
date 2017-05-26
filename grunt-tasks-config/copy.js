@@ -25,7 +25,8 @@ module.exports = {
       '!assets/czr/_dev/**',
       '!lang_pro/**',
       /*c4*/
-      '!core/**',
+      '!core/_framework/**',
+      '!core/_utils/**',
       '!templates/**',
       '!assets/back/**', //back of c4
       '!assets/shared/fonts/customizr/**', //new customizr fonts

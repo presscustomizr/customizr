@@ -146,6 +146,19 @@ module.exports = {
     ],
     dest: '<%= paths.core_php_4 %>fmk.php',
   },
+  utils_php_c4 : {
+    src: [
+      '<%= paths.core_php_4 %>/_utils/fn-0-base.php',
+      '<%= paths.core_php_4 %>/_utils/fn-1-settings_map.php',
+      '<%= paths.core_php_4 %>/_utils/fn-2-utils.php',
+      '<%= paths.core_php_4 %>/_utils/fn-3-options.php',
+      '<%= paths.core_php_4 %>/_utils/fn-4-query.php',
+      '<%= paths.core_php_4 %>/_utils/fn-5-thumbnails.php',
+      '<%= paths.core_php_4 %>/_utils/fn-6-colors.php',
+      '<%= paths.core_php_4 %>/_utils/fn-7-date.php'
+    ],
+    dest: '<%= paths.core_php_4 %>functions.php',
+  },
   front_main_fmk_js4 : {
     src: [
       '<%= paths.front_js_4 %>fmk/_main_base_0_utilities.part.js',

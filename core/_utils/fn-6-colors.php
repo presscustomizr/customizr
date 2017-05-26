@@ -353,3 +353,5 @@ if ( ! function_exists( 'czr_fn_hue2rgbtone' ) ) {
       return round( 255 * $_to_return );
    }
 }
+
+?>

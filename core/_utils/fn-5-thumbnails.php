@@ -349,4 +349,4 @@ function czr_fn_remove_srcset_attr( $attr ) {
     return $attr;
 }
 
-
+?>

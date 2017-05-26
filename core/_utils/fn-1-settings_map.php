@@ -2677,3 +2677,5 @@ function czr_fn_sanitize_uploads( $url ) {
 function czr_fn_pro_section_active_cb() {
     return ! czr_fn_isprevdem();
 }
+
+?>

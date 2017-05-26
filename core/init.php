@@ -195,9 +195,9 @@ if ( ! class_exists( 'CZR___' ) ) :
               //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
               if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'core/main-templates/' );
               //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-              if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/utils/' );
+              if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_utils/' );
               //CZR_FRAMEWORK_PATH is the relative path where the framework is located
-              if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/framework/' );
+              if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/_framework/' );
               //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
               if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
               //CZR_ASSETS_PREFIX is the relative path where the assets are located
@@ -282,22 +282,32 @@ if ( ! class_exists( 'CZR___' ) ) :
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
             do_action( 'czr_load' );
 
+            //loads utils
+            if ( CZR_DEV_MODE ) {
+                locate_template( CZR_UTILS_PATH . 'fn-0-base.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-1-settings_map.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-2-utils.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-3-options.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-4-query.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-5-thumbnails.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-6-colors.php' );
+                locate_template( CZR_UTILS_PATH . 'fn-7-date.php' );
+            } else {
+                require_once( get_template_directory() . '/core/functions.php' );
+            }
+
             //loads init
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-init.php' );
             new CZR_init();
+
+            //Retro Compat has to be fired after class-fire-init.php, according to R. Aliberti. Well probably.
+            $this -> czr_fn_require_once( CZR_CORE_PATH  . 'class-fire-init_retro_compat.php' );
 
             //loads the plugin compatibility
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
             new CZR_plugins_compat();
 
-            //loads utils
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_settings_map.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_options.php' );
-            $this -> czr_fn_require_once( CZR_CORE_PATH  . 'class-fire-init_retro_compat.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_query.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_thumbnails.php' );
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_colors.php' );
+
 
             //Helper class to build a simple date diff object
             //Alternative to date_diff for php version < 5.3.0
@@ -678,7 +688,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 endif;//endif;
 
 //Fire
-require_once( get_template_directory() . '/core/functions.php' );
+//require_once( get_template_directory() . '/core/functions.php' );
 
 // Fire Customizr
 CZR();

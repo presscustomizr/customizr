@@ -276,3 +276,5 @@ function czr_fn_is_loop_end() {
     global $wp_query;
     return $wp_query -> current_post == $wp_query -> post_count -1;
 }
+
+?>
