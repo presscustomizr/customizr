@@ -55,7 +55,7 @@ var czrapp = czrapp || {};
       });
 
       //RESIZING ACTIONS
-      czrapp.$_window.on('tc-resize', function( evt ) {
+      czrapp.$_window.on('resize', function( evt ) {
         self.sideNavEventHandler( evt, 'resize');
       });
 
