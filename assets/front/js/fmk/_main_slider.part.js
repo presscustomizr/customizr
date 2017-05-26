@@ -17,9 +17,8 @@ var czrapp = czrapp || {};
                         if ( this.isActive ) {
                           return;
                         }
-                        var self = this;
                         activate.apply( this, arguments );
-                        $( self.element ).trigger( 'czr-flickity-ready' );
+                        this.dispatchEvent( 'czr-flickity-ready', null, this );
                   };
 
 
