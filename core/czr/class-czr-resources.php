@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       global $wp_version;
 
       //DEV MODE
-      if ( $this->_is_dev_mode ) {
+      //if ( $this->_is_dev_mode ) {
         wp_enqueue_script(
         'czr-customizer-preview' ,
           sprintf('%1$s/assets/czr/_dev/js/czr-preview-base.js' , get_template_directory_uri() ),
@@ -56,17 +56,18 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
           time(),
           true
         );
-      }
+      //}
       //PRODUCTION
-      else {
-        wp_enqueue_script(
-          'czr-customizer-preview' ,
-          sprintf('%1$s/assets/czr/js/czr-preview-c4%2$s.js' , get_template_directory_uri(), $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-preview', 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
+      //@todo => concatenate + minify
+      // else {
+      //   wp_enqueue_script(
+      //     'czr-customizer-preview' ,
+      //     sprintf('%1$s/assets/czr/js/czr-preview-c4%2$s.js' , get_template_directory_uri(), $this->_is_debug_mode ? '' : '.min' ),
+      //     array( 'customize-preview', 'underscore'),
+      //     $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+      //     true
+      //   );
+      // }
 
 
       //localizes
@@ -123,7 +124,8 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     function czr_fn_customize_controls_js_css() {
 
       //DEV MODE
-      if ( $this->_is_dev_mode ) {
+      //@to do => concatenate + minify for prod
+      //if ( $this->_is_dev_mode ) {
         //CSS
         wp_enqueue_style(
           'tc-customizer-controls-style',
@@ -165,28 +167,28 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
           time(),
           true
         );
-      }
+      //}
       //PRODUCTION
-      else {
-        //CSS
-        wp_enqueue_style(
-          'tc-customizer-controls-style',
-          sprintf('%1$sassets/czr/css/czr-control-c4%2$s.css' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' ),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          $media = 'all'
-        );
+      // else {
+      //   //CSS
+      //   wp_enqueue_style(
+      //     'tc-customizer-controls-style',
+      //     sprintf('%1$sassets/czr/css/czr-control-c4%2$s.css' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
+      //     array( 'customize-controls' ),
+      //     $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+      //     $media = 'all'
+      //   );
 
 
-        //JS
-        wp_enqueue_script(
-          'tc-customizer-controls',
-          sprintf('%1$sassets/czr/js/czr-control-c4%2$s.js' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' , 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
+      //   //JS
+      //   wp_enqueue_script(
+      //     'tc-customizer-controls',
+      //     sprintf('%1$sassets/czr/js/czr-control-c4%2$s.js' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
+      //     array( 'customize-controls' , 'underscore'),
+      //     $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+      //     true
+      //   );
+      // }
 
       //gets the featured pages id from init
       $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
