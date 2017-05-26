@@ -132,19 +132,34 @@ var czrapp = czrapp || {};
         }
       });
 
-      //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
+      //only one button for each gallery
       czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        $(this).closest('article').magnificPopup({
-            delegate: '.gallery-img', // child items selector, by clicking on it popup will open
-            type: 'image',
-            gallery: {
-              enabled: true,
-              arrowMarkup: _arrowMarkup
-            },
-        }).magnificPopup('open');
+            var $_expand_btn    = $( this ),
+                $_gallery_crsl  = $_expand_btn.closest( '.czr-carousel' );
+
+              if ( $_gallery_crsl.length > 0 ) {
+
+                  if ( ! $_gallery_crsl.data( 'mfp' ) ) {
+                        $_gallery_crsl.magnificPopup({
+                            delegate: '.gallery-img',
+                            type: 'image',
+                            gallery: {
+                              enabled: true,
+                              arrowMarkup: _arrowMarkup
+                            }
+                        });
+                        $_gallery_crsl.data( 'mfp', true );
+                  }  
+                  
+                  if ( $_gallery_crsl.data( 'mfp' ) ) {
+                        //open the selected carousel gallery item
+                        $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');
+                  }
+
+            }//endif
       });
     },
 
