@@ -49,7 +49,10 @@ module.exports = function(grunt) {
           'concat:init_php',
           'concat:front_php',
           'concat:admin_php',
-          'concat:customize_php'
+          'concat:customize_php',
+          //c4
+          'concat:fmk_php_c4',
+          'concat:utils_php_c4'
         ],
         'prod_front_css': [
           'multi:prod_skins',
@@ -57,7 +60,8 @@ module.exports = function(grunt) {
           'less:prod_common_rtl',
           'cssmin:prod_skins' ,
           'cssmin:prod_common',
-          'sass:front',//c4
+          //c4
+          'sass:front',
           'lineending:front_css4',
           'cssmin:prod_common_rtl'
         ],
@@ -90,9 +94,23 @@ module.exports = function(grunt) {
 
         //https://www.npmjs.org/package/grunt-gitinfo
         //Get Git info from a working copy and populate grunt.config with the data
-        'prod_build':  [ 'gitinfo', 'replace', 'clean:free', 'clean:in_customizr_pro', 'copy', 'clean:customizr_pro_lang', 'compress'],
+        'prod_build':  [
+          'gitinfo',
+          'replace',
+          'clean:free',
+          'clean:in_customizr_pro',
+          'copy',
+          'clean:customizr_pro_lang',
+          'compress'
+        ],
         //final build meta task
-        'customizr_build' : ['prod_php', 'prod_front_css', 'prod_front_js', 'prod_admin_css_js', 'prod_build'],
+        'customizr_build' : [
+          'prod_php',
+          'prod_front_css',
+          'prod_front_js',
+          'prod_admin_css_js',
+          'prod_build'
+        ],
 
         //TRAVIS ci virtual machine build check on js @todo check other resources?
         'travis' : ['jshint'],

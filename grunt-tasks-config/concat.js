@@ -139,10 +139,10 @@ module.exports = {
   //C4
   fmk_php_c4 : {
     src: [
-      '<%= paths.core_php_4 %>/framework/class-model.php',
-      '<%= paths.core_php_4 %>/framework/class-collection.php',
-      '<%= paths.core_php_4 %>/framework/class-view.php',
-      '<%= paths.core_php_4 %>/framework/class-controllers.php',
+      '<%= paths.core_php_4 %>/_framework/class-model.php',
+      '<%= paths.core_php_4 %>/_framework/class-collection.php',
+      '<%= paths.core_php_4 %>/_framework/class-view.php',
+      '<%= paths.core_php_4 %>/_framework/class-controllers.php',
     ],
     dest: '<%= paths.core_php_4 %>fmk.php',
   },

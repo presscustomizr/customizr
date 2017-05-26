@@ -83,8 +83,34 @@ module.exports = {
 		files : ['<%= paths.czr_assets %>/js/*.js', '<%= paths.czr_assets %>/_dev/js/*.js'],
 		tasks : ['gitinfo' , 'replace:readme', 'wait:pause'],
 	},
-	push_php : {
-		files: ['**/*.php' , '!build/**.*.php', '! <%= paths.inc_php %>czr-admin.php', '! <%= paths.inc_php %>czr-customize.php', '! <%= paths.inc_php %>czr-front.php', '! <%= paths.inc_php %>czr-init.php'],
-		tasks: ['gitinfo' , 'replace:readme', 'wait:pause', 'concat:init_php', 'concat:front_php', 'concat:admin_php', 'concat:customize_php']
-	}
+	php_one : {
+		files: [
+      '<%= paths.dev_php %>**/*.php'
+    ],
+		tasks: [
+      'gitinfo' ,
+      'replace:readme',
+      'wait:pause',
+      'concat:init_php',
+      'concat:front_php',
+      'concat:admin_php',
+      'concat:customize_php'
+    ]
+	},
+  php_fmk_c4 : {
+    files: [
+      '<%= paths.core_php_4 %>/_framework/**/*.php'
+    ],
+    tasks: [
+      'concat:fmk_php_c4',
+    ]
+  },
+  php_utils_c4 : {
+    files: [
+      '<%= paths.core_php_4 %>/_utils/**/*.php'
+    ],
+    tasks: [
+      'concat:utils_php_c4',
+    ]
+  }
 };
