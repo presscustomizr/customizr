@@ -22,7 +22,7 @@ var czrapp = czrapp || {};
       var self = this;
 
       // maybe apply sticky footer on window resize
-      czrapp.$_window.on( 'tc-resize', function() {
+      czrapp.$_window.on( 'resize', function() {
         self.stickyFooterEventHandler('resize');
       });
 
