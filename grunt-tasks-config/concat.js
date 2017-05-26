@@ -117,6 +117,35 @@ module.exports = {
     ],
 		dest: '<%= paths.front_js %>tc-scripts.js',
 	},
+  czr_css : {
+    src: [ '<%= paths.czr_assets %>/_dev/css/czr-control-*.css', '! <%= paths.czr_assets %>/_dev/css/*.min.css', ],
+    dest: '<%= paths.czr_assets %>css/czr-control.css'
+  },
+  czr_control_js : {
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-control-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-deps.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-dom_ready.js'
+    ],
+    dest: '<%= paths.czr_assets %>js/czr-control.js'
+  },
+  czr_preview_js : {
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-post_message.js',
+    ],
+    dest: '<%= paths.czr_assets %>js/czr-preview.js'
+  },
+  //C4
+  fmk_php_c4 : {
+    src: [
+      '<%= paths.core_php_4 %>/framework/class-model.php',
+      '<%= paths.core_php_4 %>/framework/class-collection.php',
+      '<%= paths.core_php_4 %>/framework/class-view.php',
+      '<%= paths.core_php_4 %>/framework/class-controllers.php',
+    ],
+    dest: '<%= paths.core_php_4 %>fmk.php',
+  },
   front_main_fmk_js4 : {
     src: [
       '<%= paths.front_js_4 %>fmk/_main_base_0_utilities.part.js',
@@ -156,29 +185,10 @@ module.exports = {
       '<%= paths.front_js_4 %>vendors/waypoints.js',
       '<%= paths.front_js_4 %>vendors/vivus.min.js',
       //maybe move following two outside and enqueue only when needed
-      '<%= paths.front_js_4 %>vendors/flickity.pkgd.js',
-      '<%= paths.front_js_4 %>vendors/jquery.mCustomScrollbar.js',
+      '<%= paths.front_js_4 %>vendors/flickity-pkgd.js',
+      '<%= paths.front_js_4 %>vendors/jquery-mCustomScrollbar.js',
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',
-  },
-  czr_css : {
-    src: [ '<%= paths.czr_assets %>/_dev/css/czr-control-*.css', '! <%= paths.czr_assets %>/_dev/css/*.min.css', ],
-    dest: '<%= paths.czr_assets %>css/czr-control.css'
-  },
-  czr_control_js : {
-    src: [
-      '<%= paths.czr_assets %>/_dev/js/czr-control-base.js',
-      '<%= paths.czr_assets %>/_dev/js/czr-control-deps.js',
-      '<%= paths.czr_assets %>/_dev/js/czr-control-dom_ready.js'
-    ],
-    dest: '<%= paths.czr_assets %>js/czr-control.js'
-  },
-  czr_preview_js : {
-    src: [
-      '<%= paths.czr_assets %>/_dev/js/czr-preview-base.js',
-      '<%= paths.czr_assets %>/_dev/js/czr-preview-post_message.js',
-    ],
-    dest: '<%= paths.czr_assets %>js/czr-preview.js'
-  },
+  }
 };

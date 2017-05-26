@@ -585,3 +585,5 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
   }//end of class
 endif;
+
+?>

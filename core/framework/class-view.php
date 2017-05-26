@@ -139,3 +139,5 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
   }//class
 endif;
+
+?>

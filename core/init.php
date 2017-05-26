@@ -58,8 +58,18 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             //filters to 'the_content', 'wp_title' => in utils
             add_action( 'wp_head' , 'czr_fn_wp_filters' );
+
+            add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
         }
 
+        //hook : czr_dev_notice
+        function czr_fn_print_r($message) {
+          if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
+            return;
+          ?>
+            <pre><h6 style="color:red"><?php echo $message ?></h6></pre>
+          <?php
+        }
 
 
         public static function czr_fn_instance() {
@@ -294,8 +304,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_date.php' );
 
             if ( czr_fn_is_customizing() ) {
-              $this -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-init.php' );
-              new CZR_customize();
+                $this -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-init.php' );
+                new CZR_customize();
             }
 
             //do we apply a filter ? optional boolean can force no filter
@@ -303,28 +313,33 @@ if ( ! class_exists( 'CZR___' ) ) :
             if ( empty($_to_load) )
               return;
 
-            foreach ( $_to_load as $group => $files )
-              foreach ($files as $path_suffix ) {
-                $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
-                $classname = 'CZR_' . $path_suffix[1];
+            foreach ( $_to_load as $group => $files ) {
+                foreach ($files as $path_suffix ) {
+                    $this -> czr_fn_require_once ( $path_suffix[0] . '/class-' . $group . '-' .$path_suffix[1] . '.php');
+                    $classname = 'CZR_' . $path_suffix[1];
 
-                if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
-                  continue;
-                //instantiates
-                $instances = class_exists($classname)  ? new $classname : '';
-              }
+                    if ( in_array( $classname, apply_filters( 'czr_dont_instantiate_in_init', array( 'CZR_nav_walker') ) ) )
+                      continue;
+                    //instantiates
+                    $instances = class_exists($classname)  ? new $classname : '';
+                }
+            }
 
 
             //load the new framework classes
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
-            $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+            if ( CZR_DEV_MODE ) {
+                $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
+                $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
+                $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
+                $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
+            } else {
+                $this -> czr_fn_require_once( CZR_CORE_PATH . 'fmk.php' );
+            }
 
             //load front templates tags files
             if ( ! is_admin() )
               $this -> czr_fn_require_once( CZR_PHP_FRONT_PATH . 'template-tags/template-tags.php' );
-        }
+        }//czf_fn_load()
 
 
 
