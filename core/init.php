@@ -28,6 +28,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         private $not_existing_files = array();
 
         function __construct( $_args = array()) {
+            //call CZR_BASE constructor
+            parent::__construct( $_args );
 
             //allow c4 templates
             add_filter( 'czr_four_do'             , '__return_true' );
@@ -44,6 +46,8 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
         }
+
+
 
         //hook : czr_dev_notice
         function czr_fn_print_r($message) {

@@ -50,6 +50,9 @@ if ( ! class_exists( 'CZR___' ) ) :
     public static $tc_option_group;
 
     function __construct () {
+      //call CZR_BASE constructor
+      parent::__construct();
+
       self::$instance =& $this;
 
       /* GETS INFORMATIONS FROM STYLE.CSS */
