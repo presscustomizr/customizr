@@ -3642,12 +3642,6 @@ section[class^="post-"] .gallery.row {
   margin-bottom: 1.25em;
 }
 
-.section {
-  position: relative;
-  padding: 0;
-  margin: 0;
-}
-
 .section-slider {
   overflow: hidden;
 }
@@ -3693,42 +3687,6 @@ section[class^="post-"] .gallery.row {
 */
 #main-wrapper .section.custom {
   margin: 2.5em;
-}
-
-.section .image {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
-  z-index: 2;
-  position: absolute;
-  display: block;
-}
-
-.section .parallax,
-.section .static-image {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: block;
-  position: relative;
-}
-
-.section .parallax > img,
-.section .parallax .filter > img,
-.section .static-image > img,
-.section .static-image .filter > img {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: relative;
-  z-index: 1;
-}
-
-.section .parallax-small {
-  height: 65vh;
 }
 
 ol {
