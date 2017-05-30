@@ -28,7 +28,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         private $not_existing_files = array();
 
         function __construct( $_args = array()) {
-
+            parent::__construct( $_args );
             //allow c4 templates
             add_filter( 'czr_four_do'             , '__return_true' );
             //define a constant we can use everywhere
@@ -174,7 +174,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
                         array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
-//                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
+                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
 //                        array('core/back' , 'customize'),//loads customizer actions and resources

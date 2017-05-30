@@ -57,8 +57,24 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
         return;
 
-      if ( function_exists( 'czr_fn_set_thumb_info' ) )
-        czr_fn_set_thumb_info( $post_id );
+      //if czr4
+      if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) {
+
+        if ( function_exists( 'czr_fn_set_thumb_info' ) )
+          czr_fn_set_thumb_info( $post_id );
+
+      }
+      else {
+
+        if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
+          CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
+          new CZR_post_thumbnails();
+        }
+
+        CZR_post_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
+
+      }
+
     }
 
 
@@ -190,9 +206,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_add_editor_style() {
 
-      $_stylesheets = array(
-          CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css'
-      );
+      $_stylesheets = array_filter( array(
+          CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
+          //backward compat
+          ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ? CZR_init::$instance -> czr_fn_get_style_src() : '',
+          get_stylesheet_uri()
+      ) );
 
 
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
@@ -214,6 +233,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     *
     */
     function czr_fn_user_defined_tinymce_css( $init ) {
+
       if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
 
@@ -222,33 +242,53 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       $_css = '';
 
-      //some plugins fire tiny mce editor in the customizer
-      //in this case, the CZR_resources_fonts class has to be loaded
-      if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )
-        CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
+      //if czr4
+      if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) {
+        //some plugins fire tiny mce editor in the customizer
+        //in this case, the CZR_resources_fonts class has to be loaded
+        if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )
+          CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
 
-      if ( class_exists('CZR_resources_fonts') && is_object(CZR_resources_fonts::$instance) ) {
-        //fonts
-        $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+        if ( class_exists('CZR_resources_fonts') && is_object(CZR_resources_fonts::$instance) ) {
+          //fonts
+          $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+        }
+
+        //skin
+        //some plugins fire tiny mce editor in the customizer
+        //in this case, the CZR_resources_styles class has to be loaded
+        if ( ! class_exists('CZR_resources_styles') || ! is_object(CZR_resources_styles::$instance) )
+          CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_styles') ) ), true );
+
+        if ( class_exists('CZR_resources_styles') && is_object(CZR_resources_styles::$instance) ) {
+
+          //dynamic skin
+          $_css  .= CZR_resources_styles::$instance -> czr_fn_maybe_write_skin_inline_css( '' );
+
+        }
+
       }
+      //old customizr
+      else {
 
-      //skin
-      //some plugins fire tiny mce editor in the customizer
-      //in this case, the CZR_resources_styles class has to be loaded
-      if ( ! class_exists('CZR_resources_styles') || ! is_object(CZR_resources_styles::$instance) )
-        CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_styles') ) ), true );
+        //some plugins fire tiny mce editor in the customizer
+        //in this case, the CZR_resource class has to be loaded
+        if ( ! class_exists('CZR_resources') || ! is_object(CZR_resources::$instance) ) {
+          CZR___::$instance -> czr_fn_req_once( 'inc/czr-init.php' );
+          new CZR_resources();
+        }
 
-      if ( class_exists('CZR_resources_styles') && is_object(CZR_resources_styles::$instance) ) {
 
-        //dynamic skin
-        $_css  .= CZR_resources_styles::$instance -> czr_fn_maybe_write_skin_inline_css( '' );
+        //fonts
+        $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
 
       }
 
       if ( $_css )
-      $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
+        $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
       return $init;
+
     }
 
 
@@ -314,7 +354,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
               'czr_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
                 __( "Good, you've just upgraded to", "customizr"),
-                "customizr-pro" == CZR_THEMENAME ? 'Customizr Pro' : 'Customizr',
+                CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER
               )
@@ -327,8 +367,8 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
                 __( "Read the latest release notes" , "customizr" ),
-                esc_url('demo.presscustomizr.com'),
-                __( "Visit the demo", "customizr" )
+                ! CZR_IS_PRO ? esc_url('presscustomizr.com/customizr-pro?ref=a') : esc_url('demo.presscustomizr.com'),
+                ! CZR_IS_PRO ? __( "Upgrade to Customizr Pro", "customizr" ) : __( "Visit the demo", "customizr" )
               )
             );
           ?>
@@ -353,7 +393,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_dismiss_update_notice_action() {
       check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       //reset option value with new version and counter to 0
       $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
       czr_fn_set_option( $opt_name, $new_val );
@@ -411,3 +451,5 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
   }//end of class
 endif;
+
+?>

@@ -76,12 +76,17 @@ if ( ! class_exists( 'CZR___' ) ) :
 
       //CUSTOMIZR_VER is the Version
       if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
-      //TC_BASE is the root server path of the parent theme
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
+      //CZR_BASE is the root server path of the parent theme
+      if( ! defined( 'CZR_BASE' ) )           define( 'CZR_BASE' , get_template_directory().'/' );
+      //TC_BASE_URL http url of the loaded parent theme (retro compat)
+      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
       //TC_BASE_CHILD is the root server path of the child theme
       if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
-      //TC_BASE_URL http url of the loaded parent theme
-      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , get_template_directory_uri() . '/' );
+
+      //CZR_BASE_URL http url of the loaded parent theme
+      if( ! defined( 'CZR_BASE_URL' ) )       define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
+      //TC_BASE_URL http url of the loaded parent theme (retro compat)
+      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
       //TC_BASE_URL_CHILD http url of the loaded child theme
       if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
       //CZR_THEMENAME contains the Name of the currently loaded theme
@@ -95,6 +100,15 @@ if ( ! class_exists( 'CZR___' ) ) :
       if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
 
       if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
+
+      //IS DEBUG MODE
+      if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
+
+      //IS DEV MODE
+      if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
+
+      //CZR_ASSETS_PREFIX is the relative path where the assets are located
+      if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -284,6 +298,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             );
           }
         }
+
       return $_to_load;
     }
 
