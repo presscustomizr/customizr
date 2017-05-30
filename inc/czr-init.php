@@ -1461,7 +1461,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       * Polylang
       * Credits : Rocco Aliberti
       */
-      if ( current_theme_supports( 'polylang' ) && $this -> czr_fn_is_plugin_active('polylang/polylang.php') )
+      if ( current_theme_supports( 'polylang' ) && ( $this -> czr_fn_is_plugin_active('polylang/polylang.php') || $this -> czr_fn_is_plugin_active('polylang-pro/polylang.php') ) )
         $this -> czr_fn_set_polylang_compat();
 
       /*
@@ -6062,13 +6062,10 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           'svgz'
         ) );
 
-        if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
-          return $_html;
-        }
+        $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+        $pattern                = '#<img([^>]+?)src=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
 
-        $img_extensions_pattern = sprintf( "[%s]", implode( '|', $allowed_image_extentions ) );
-
-        return preg_replace_callback('#<img([^>]+?)src=[\'"]?([^\'"\s>]+.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i', array( $this , 'czr_fn_regex_callback' ) , $_html);
+        return preg_replace_callback( $pattern, array( $this, 'czr_fn_regex_callback') , $_html);
       }
 
 
@@ -6326,7 +6323,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_cache_db_options($opt_group = null) {
-        $opts_group = is_null($opt_group) ? CZR___::$tc_option_group : $opt_group;
+        $opt_group = is_null($opt_group) ? CZR___::$tc_option_group : $opt_group;
         $this -> db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
         return $this -> db_options;
       }
@@ -6457,10 +6454,35 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         if ( ! isset($post) )
           return $content;
 
-        $pattern ="/<a(.*?)href=( '|\")(.*?).(bmp|gif|jpeg|jpg|png)( '|\")(.*?)>/i";
-        $replacement = '<a$1href=$2$3.$4$5 class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$6>';
+        //same as smartload ones
+        $allowed_image_extentions = apply_filters( 'tc_lightbox_allowed_img_extensions', array(
+          'bmp',
+          'gif',
+          'jpeg',
+          'jpg',
+          'jpe',
+          'tif',
+          'tiff',
+          'ico',
+          'png',
+          'svg',
+          'svgz'
+        ) );
+
+
+        if ( empty( $allowed_image_extentions ) || ! is_array( $allowed_image_extentions ) ) {
+          return $content;
+        }
+
+
+        $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
+        $pattern                = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
+
+        $replacement = '<a$1href="$2"class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$3>';
+
         $r_content = preg_replace( $pattern, $replacement, $content);
         $content = $r_content ? $r_content : $content;
+
         return apply_filters( 'tc_fancybox_content_filter', $content );
       }
 
@@ -8996,6 +9018,7 @@ do_action('czr_load');
 function czr_fn_get_raw_option( $opt_name = null, $opt_group = null, $from_cache = true ) {
     $alloptions = wp_cache_get( 'alloptions', 'options' );
     $alloptions = maybe_unserialize( $alloptions );
+    $alloptions = ! is_array( $alloptions ) ? array() : $alloptions;//fixes https://github.com/presscustomizr/hueman/issues/492
     //is there any option group requested ?
     if ( ! is_null( $opt_group ) && array_key_exists( $opt_group, $alloptions ) ) {
       $alloptions = maybe_unserialize( $alloptions[ $opt_group ] );
