@@ -423,7 +423,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_cache_db_options($opt_group = null) {
-        $opts_group = is_null($opt_group) ? CZR___::$tc_option_group : $opt_group;
+        $opt_group = is_null($opt_group) ? CZR___::$tc_option_group : $opt_group;
         $this -> db_options = false === get_option( $opt_group ) ? array() : (array)get_option( $opt_group );
         return $this -> db_options;
       }
