@@ -86,6 +86,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
           $screens              = array_merge( $custom_post_types, $builtin_post_types );
 
+          $_metabox_added       = false;
+
           //3- Adding the meta-boxes to those screens
           foreach ( $screens as $key => $screen) {
 
@@ -107,8 +109,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   apply_filters('tc_post_meta_boxes_priority' , 'high', $screen)
               );
 
-              do_action( 'tc_post_metabox_added' );
           }//end foreach
+
+          if ( $_metabox_added )
+            do_action( 'tc_post_metabox_added' );
       }
 
 
@@ -513,9 +517,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   'side' ,
                   'high'*/
               );
-
-              do_action( 'tc_attachment_metabox_added' );
           }
+          do_action( 'tc_attachment_metabox_added' );
         }
 
 
@@ -1395,7 +1398,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
         if( did_action( 'tc_attachment_metabox_added' ) ) {
             wp_enqueue_script( 'jquery-ui-sortable' );
         }
-        if( did_action( 'tc_attachment_metabox_added' ) || did_action( 'tc_post_metabox_added' ) )  {
+        if( did_action( 'tc_attachment_metabox_added' ) || did_action( 'tc_post_metabox_added' ) ) {
             do_action( 'tc_enqueue_ajax_slider_before' );
 
             //ajax refresh for slider options
