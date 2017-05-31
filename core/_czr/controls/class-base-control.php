@@ -203,7 +203,11 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
         case CZR_THEME_OPTIONS.'[tc_skin]':
           $_data_hex  = '';
-          $_color_map = czr_fn_get_skin_color( 'all' );
+          //only for czr3
+          if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+            return;
+
+          $_color_map = CZR_utils::$inst->czr_fn_get_skin_color( 'all' );
           //Get the color map array structured as follow
           // array(
           //       'blue.css'        =>  array( '#08c', '#005580' ),

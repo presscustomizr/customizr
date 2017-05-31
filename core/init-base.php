@@ -12,6 +12,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         static $customizer_map = array();
         static $theme_setting_list;
 
+        static $theme_name;
+
         function __construct( $_args = array()) {
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
@@ -103,6 +105,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
                $tc_base_data['prefix']      = $tc_base_data['title'];
           }
+
+          self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
 
           //CUSTOMIZR_VER is the Version
           if( ! defined( 'CUSTOMIZR_VER' ) )            define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );

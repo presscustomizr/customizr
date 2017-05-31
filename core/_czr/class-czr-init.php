@@ -19,6 +19,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
     function __construct () {
       global $wp_version;
+
       //check if WP version >= 3.4 to include customizer functions
       //Shall we really keep this ?
       if ( ! version_compare( $wp_version, '3.4' , '>=' ) ) {
@@ -44,26 +45,22 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //add grid/post list buttons in the control views
       add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
 
-      //Print modules and inputs templates
-      $this -> czr_fn_load_tmpl();
-      //Add the module data server side generated + additional resources (like the WP text editor)
-      $this -> czr_fn_load_module_data_resources();
-
 
       //populate the css_attr property, used both server side and on the customize panel (passed via serverControlParams )
       $this -> css_attr = $this -> czr_fn_get_controls_css_attr();
 
       //load resources class
-      $this -> czr_fn_require_czr_resources();
+      $this -> czr_fn_fire_czr_resources();
+
     }
 
 
-    function czr_fn_require_czr_resources() {
-      CZR() -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-resources.php' );
-      if (  ! is_object(CZR_customize_resources::$instance) && class_exists( 'CZR_customize_resources' ) ) {
+
+    function czr_fn_fire_czr_resources() {
+      if (  ! is_object(CZR_customize_resources::$instance) )
         new CZR_customize_resources();
-      }
     }
+
 
 
     /* ------------------------------------------------------------------------- *
@@ -75,20 +72,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     * @since Customizr 1.0
     */
     function czr_fn_augment_customizer( $manager ) {
-      $_classes = array(
-        'controls/class-base-control.php',
-        'controls/class-cropped-image-control.php',
-        'controls/class-multipicker-control.php',
-        'controls/class-modules-control.php',
-        'controls/class-upload-control.php',
-        'panels/class-panels.php',
-        'settings/class-settings.php',
-        'sections/class-pro-section.php'
-      );
-
-      foreach ($_classes as $_path) {
-        locate_template( CZR_CZR_PATH . $_path , $load = true, $require_once = true );
-      }
+      /* Concatenated with grunt  */
 
       //Registered types are eligible to be rendered via JS and created dynamically.
       if ( class_exists('CZR_Customize_Cropped_Image_Control') )
@@ -103,11 +87,19 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     }
 
 
+
     /* ------------------------------------------------------------------------- *
      *  PARTIALS
     /* ------------------------------------------------------------------------- */
     //hook : customize_register
     function czr_fn_register_partials( WP_Customize_Manager $wp_customize ) {
+
+        //ONLY FOR OLD CZR at the moment
+        if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+          return;
+
+
+
         //Bail if selective refresh is not available (old versions) or disabled (for skope for example)
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
@@ -139,32 +131,10 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             'render_callback'     => 'czr_fn_print_social_links',
             'fallback_refresh'    => false,
         ) );
+
     }
 
 
-    /* ------------------------------------------------------------------------- *
-     *  LOAD MODULES AND INPUTS TEMPLATES
-    /* ------------------------------------------------------------------------- */
-    function czr_fn_load_tmpl() {
-      $_tmpl = array(
-        'tmpl/modules/all-modules-tmpl.php',
-        'tmpl/modules/body_bg-module-tmpl.php',
-        'tmpl/modules/social-module-tmpl.php',
-        'tmpl/modules/widgets-areas-module-tmpl.php',
-        'tmpl/modules/text_editor-module-tmpl.php',
-        'tmpl/modules/slide-module-tmpl.php',
-        'tmpl/inputs/img-uploader-tmpl.php',
-        'tmpl/inputs/text_editor-input-tmpl.php'
-      );
-      foreach ($_tmpl as $_path) {
-        locate_template( CZR_CZR_PATH . $_path , $load = true, $require_once = true );
-      }
-    }
-
-
-    function czr_fn_load_module_data_resources() {
-      locate_template( CZR_CZR_PATH . 'modules/modules-data.php' , $load = true, $require_once = true );
-    }
 
 
     /*
@@ -175,6 +145,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     * @return void()
     */
     function czr_fn_alter_wp_customizer_settings( $wp_customize ) {
+
       //CHANGE BLOGNAME AND BLOGDESCRIPTION TRANSPORT
       if ( is_object( $wp_customize -> get_setting( 'blogname' ) ) ) {
         $wp_customize -> get_setting( 'blogname' )->transport = 'postMessage';
@@ -184,16 +155,21 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       }
 
 
-      //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
-      //=> REMOVE CUSTOMIZR FAV ICON CONTROL
-      //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
-      global $wp_version;
-      if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
-        $tc_option_group = CZR_THEME_OPTIONS;
-        //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
-        $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
+      //ONLY FOR OLD CUSTOMIZR
+      if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ) {
 
-      }//end ALTER SITE ICON
+        //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
+        //=> REMOVE CUSTOMIZR FAV ICON CONTROL
+        //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
+        global $wp_version;
+        if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
+          $tc_option_group = CZR_THEME_OPTIONS;
+          //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
+          $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
+
+        }//end ALTER SITE ICON
+
+      }
 
 
       //CHANGE MENUS PROPERTIES
@@ -205,7 +181,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       }
       $_priorities  = array(
         'main' => 10,
-        'secondary' => 20
+        'secondary' => 20,
+        'topbar'    => 30,
       );
 
       //WP only adds the menu(s) settings and controls if the user has created at least one menu.
@@ -633,6 +610,16 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       }
     }
 
+    //ONLY FOR OLD CUSTOMIZR
+    /*
+    * hook : '__after_setting_control' (declared in class-tc-controls-settings.php)
+    * Display a title for the favicon control, after the logo
+    */
+    function czr_fn_add_favicon_title($set_id) {
+      if ( false !== strpos( $set_id, 'tc_sticky_logo_upload' ) )
+        printf( '<h3 class="czr-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
+    }
+
 
     /**
     * Add fallback admin page.
@@ -674,3 +661,5 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     }
   }//end class
 endif;
+?>
+

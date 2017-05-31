@@ -109,7 +109,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
-//                        array('core/back' , 'customize'),//loads customizer actions and resources
+                        array('core/back' , 'customize'),//loads customizer actions and resources
                         array('core/back' , 'meta_boxes')//loads the meta boxes for pages, posts and attachment : slider and layout settings
                     ),
                     'header'    =>   array(
@@ -118,7 +118,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'content'   =>   array(
                         array('core/front/utils', 'gallery')
                     ),
- //                   'addons'    => apply_filters( 'czr_addons_classes' , array() )
+                    'addons'    => apply_filters( 'tc_addons_classes' , array() )
                 )
               );
               //check the context
@@ -167,16 +167,6 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-plugins_compat.php' );
             new CZR_plugins_compat();
 
-
-
-            //Helper class to build a simple date diff object
-            //Alternative to date_diff for php version < 5.3.0
-            $this -> czr_fn_require_once( CZR_UTILS_PATH . 'class-fire-utils_date.php' );
-
-            if ( czr_fn_is_customizing() ) {
-                $this -> czr_fn_require_once( CZR_CZR_PATH . 'class-czr-init.php' );
-                new CZR_customize();
-            }
 
             //do we apply a filter ? optional boolean can force no filter
             $_to_load = $_no_filter ? $_to_load : apply_filters( 'czr_get_files_to_load' , $_to_load );
@@ -315,6 +305,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             {
               //load
               czr_fn_require_once( CZR_CORE_PATH . 'czr-admin.php' );
+              czr_fn_require_once( CZR_CORE_PATH . 'czr-customize.php' );
+              //new CZR_customize();
 
               //left panel => skip all front end classes
               if (czr_fn_is_customize_left_panel() ) {

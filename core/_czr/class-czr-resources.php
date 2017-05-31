@@ -17,18 +17,22 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     private $_is_dev_mode   = false;
     private $_is_debug_mode = false;
 
+
     function __construct () {
       self::$instance =& $this;
 
-      $this->_is_debug_mode = ( defined('WP_DEBUG') && true === WP_DEBUG );
-      $this->_is_dev_mode   = ( defined('CZR_DEV') && true === CZR_DEV );
+      $this->_is_debug_mode  = ( defined('WP_DEBUG') && true === WP_DEBUG );
+      $this->_is_dev_mode    = ( defined('CZR_DEV') && true === CZR_DEV );
+
+      $_methods_suffix       = defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ? '' : '_old';
 
       //control scripts and style
-      add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );
+      add_action( 'customize_controls_enqueue_scripts'        , array( $this, "czr_fn_customize_controls_js_css{$_methods_suffix}" ), 10 );
 
       //preview scripts
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt
-      add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_customize_preview_js_css' ), 20 );
+      add_action( 'customize_preview_init'                    , array( $this, "czr_fn_customize_preview_js_css{$_methods_suffix}" ), 20 );
+
       //exports some wp_query informations. Updated on each preview refresh.
       add_action( 'customize_preview_init'                    , array( $this, 'czr_fn_add_preview_footer_action' ), 20 );
 
@@ -69,6 +73,52 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       //   );
       // }
 
+      $this->czr_fn_customize_preview_localize();
+    }
+
+
+    //OLD CUSTOMIZER
+    //hook : customize_preview_init
+    function czr_fn_customize_preview_js_css_old() {
+
+
+      //DEV MODE
+      if ( $this->_is_dev_mode ) {
+        wp_enqueue_script(
+        'czr-customizer-preview' ,
+          sprintf('%1$s/assets/czr/_dev/js/czr-preview-base.js' , get_template_directory_uri() ),
+          array( 'customize-preview', 'underscore'),
+          time(),
+          true
+        );
+        wp_enqueue_script(
+        'czr-customizer-preview-pm' ,
+          sprintf('%1$s/assets/czr/_dev/js/czr-preview-post_message.js' , get_template_directory_uri() ),
+          array( 'czr-customizer-preview' ),
+          time(),
+          true
+        );
+      }
+      //PRODUCTION
+      else {
+        wp_enqueue_script(
+          'czr-customizer-preview' ,
+          sprintf('%1$s/assets/czr/js/czr-preview%2$s.js' , get_template_directory_uri(), $this->_is_debug_mode ? '' : '.min' ),
+          array( 'customize-preview', 'underscore'),
+          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+          true
+        );
+      }
+
+      $this->czr_fn_customize_preview_localize();
+      add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_old' ) );
+    }
+
+
+
+    //shared between the two versions
+    function czr_fn_customize_preview_localize() {
+      global $wp_version;
 
       //localizes
       wp_localize_script(
@@ -77,6 +127,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             apply_filters('tc_js_customizer_preview_params' ,
               array(
                 'themeFolder'     => get_template_directory_uri(),
+                //czr4 won't use this
                 'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
                 'fontPairs'       => czr_fn_get_font( 'list' ),
                 'fontSelectors'   => CZR_init::$instance -> font_selectors,
@@ -89,15 +140,13 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
               )
             )
       );
-
-      if ( czr_fn_is_partial_refreshed_on() ) {
-        add_filter( 'czr_user_options_style', array( $this, 'czr_fn_write_preview_style' ) );
-      }
-
     }
 
 
-    function czr_fn_write_preview_style( $_css ) {
+
+
+    //only for the old
+    function czr_fn_write_preview_style_old( $_css ) {
       //specific preview style
       return sprintf( "%s\n%s",
           $_css,
@@ -114,6 +163,8 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       );
 
     }
+
+
     /**
      * Add script to controls
      * Dependency : customize-controls located in wp-includes/script-loader.php
@@ -190,6 +241,100 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       //   );
       // }
 
+        $this->czr_fn_customize_controls_localize();
+    }
+
+
+    /**
+     * Add script to controls
+     * Dependency : customize-controls located in wp-includes/script-loader.php
+     * Hooked on customize_controls_enqueue_scripts located in wp-admin/customize.php
+     * @package Customizr
+     * @since Customizr 3.1.0
+     */
+    function czr_fn_customize_controls_js_css_old() {
+
+      //DEV MODE
+      if ( $this->_is_dev_mode ) {
+        //CSS
+        wp_enqueue_style(
+          'tc-customizer-controls-style',
+          sprintf('%1$sassets/czr/_dev/css/czr-control-base.css', TC_BASE_URL),
+          array( 'customize-controls' ),
+          time(),
+          $media = 'all'
+        );
+
+        wp_enqueue_style(
+          'tc-customizer-controls-theme-style',
+          sprintf('%1$sassets/czr/_dev/css/czr-control-theme.css', TC_BASE_URL),
+          array( 'tc-customizer-controls-style' ),
+          time(),
+          $media = 'all'
+        );
+
+        //JS
+        wp_enqueue_script(
+          'tc-customizer-controls',
+          sprintf('%1$sassets/czr/_dev/js/czr-control-base.js' , TC_BASE_URL),
+          array( 'customize-controls' , 'underscore'),
+          time(),
+          true
+        );
+
+        wp_enqueue_script(
+          'tc-customizer-controls-deps',
+          sprintf('%1$sassets/czr/_dev/js/czr-control-deps.js' , TC_BASE_URL),
+          array( 'tc-customizer-controls' ),
+          time(),
+          true
+        );
+
+        wp_enqueue_script(
+          'tc-customizer-controls-deps',
+          sprintf('%1$sassets/czr/_dev/js/czr-control-deps.js' , TC_BASE_URL),
+          array( 'tc-customizer-controls' ),
+          time(),
+          true
+        );
+
+        wp_enqueue_script(
+          'tc-customizer-controls-vdr',
+          sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready.js' , TC_BASE_URL),
+          array( 'tc-customizer-controls' ),
+          time(),
+          true
+        );
+      }
+      //PRODUCTION
+      else {
+        //CSS
+        wp_enqueue_style(
+          'tc-customizer-controls-style',
+          sprintf('%1$sassets/czr/css/czr-control%2$s.css' , TC_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
+          array( 'customize-controls' ),
+          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+          $media = 'all'
+        );
+
+
+        //JS
+        wp_enqueue_script(
+          'tc-customizer-controls',
+          sprintf('%1$sassets/czr/js/czr-control%2$s.js' , TC_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
+          array( 'customize-controls' , 'underscore'),
+          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+          true
+        );
+      }
+
+      $this->czr_fn_customize_controls_localize();
+    }
+
+
+    //shared
+    function czr_fn_customize_controls_localize() {
+
       //gets the featured pages id from init
       $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
 
@@ -207,6 +352,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
         $text_fields[]    = CZR_THEME_OPTIONS.'[tc_featured_text_'. $id.']';
       }
 
+
       //localizes
       wp_localize_script(
         'tc-customizer-controls',
@@ -218,7 +364,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'docURL'          => esc_url('docs.presscustomizr.com/'),
 
             'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
-            'themeName'       => CZR_THEMENAME,
+            'CZR_THEMENAME'       => CZR___::$theme_name,
 
             'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
             'i18n'   => $this -> czr_fn_get_translated_strings(),
@@ -229,11 +375,13 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
             'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
-            'isThemeSwitchOn'  => !CZR_IS_PRO,
-            'themeSettingList' => CZR___::$theme_setting_list,
+            'isThemeSwitchOn'  => ! CZR_IS_PRO,
+            'themeSettingList' => CZR_BASE::$theme_setting_list,
+
+            //not used by the new
+            'faviconOptionName' => 'tc_fav_upload',
 
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
-
             'isRTL'           => is_rtl()
           )
         )
@@ -246,6 +394,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     function czr_fn_add_preview_footer_action() {
       add_action( 'wp_footer', array( $this, 'czr_fn_add_customize_preview_data' ) , 20 );
     }
+
 
     //hook : wp_footer in the preview
     function czr_fn_add_customize_preview_data() {
@@ -313,3 +462,5 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
   }
 endif;
+
+?>
