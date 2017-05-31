@@ -1,4 +1,30 @@
 <?php
+/**
+* The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
+*
+* By convention in Customizr, filter hooks are used as follow :
+* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
+* 2) declared with apply_filters in methods to make the code extensible for developers
+* 3) accessed with czr_fn__f() to return values (while front end content is handled with action hooks)
+*
+* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
+*
+* @since Customizr 3.0
+*/
+if( ! function_exists( 'czr_fn__f' ) ) :
+    function czr_fn__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
+    }
+endif;
+
+//This function is the only one with a different prefix.
+//It has been kept in the theme for retro-compatibility.
+if( ! function_exists( 'tc__f' ) ) :
+    function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+        return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
+    }
+endif;
+
 if ( !( function_exists( 'czr_fn_isprevdem' ) ) ) :
 //@return bool
 function czr_fn_isprevdem() {

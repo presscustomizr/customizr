@@ -51,7 +51,7 @@ module.exports = {
       '<%= paths.back_php %>class-fire-admin_page.php',
       '<%= paths.back_php %>class-admin-meta_boxes.php'
     ],
-    dest: '<%= paths.inc_php %>czr-admin.php',
+    dest: '<%= paths.core_php %>czr-admin.php',
   },
   customize_php : {
     src: [

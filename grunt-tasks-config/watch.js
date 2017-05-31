@@ -85,7 +85,8 @@ module.exports = {
 	},
 	php_one : {
 		files: [
-      '<%= paths.dev_php %>**/*.php'
+      '<%= paths.dev_php %>**/*.php',
+      '<%= paths.back_php %>**/*.php',
     ],
 		tasks: [
       'gitinfo' ,

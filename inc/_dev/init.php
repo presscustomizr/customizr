@@ -1,36 +1,5 @@
 <?php
 /**
-* The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
-*
-* By convention in Customizr, filter hooks are used as follow :
-* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
-* 2) declared with apply_filters in methods to make the code extensible for developers
-* 3) accessed with czr_fn__f() to return values (while front end content is handled with action hooks)
-*
-* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
-*
-* @since Customizr 3.0
-*/
-if( ! function_exists( 'czr_fn__f' ) ) :
-    function czr_fn__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
-       return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
-    }
-endif;
-
-//This function is the only one with a different prefix.
-//It has been kept in the theme for retro-compatibility.
-if( ! function_exists( 'tc__f' ) ) :
-    function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
-       return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
-    }
-endif;
-
-
-
-//load shared fn
-require_once( get_template_directory() . '/core/functions-base.php' );
-
-/**
 * Fires the theme : constants definition, core classes loading
 *
 *
@@ -50,65 +19,13 @@ if ( ! class_exists( 'CZR___' ) ) :
     public static $tc_option_group;
 
     function __construct () {
+
+      //call CZR_BASE constructor
+      parent::__construct();
+
       self::$instance =& $this;
 
-      /* GETS INFORMATIONS FROM STYLE.CSS */
-      // get themedata version wp 3.4+
-      if( function_exists( 'wp_get_theme' ) ) {
-        //get WP_Theme object of customizr
-        $tc_theme                     = wp_get_theme();
-
-        //Get infos from parent theme if using a child theme
-        $tc_theme = $tc_theme -> parent() ? $tc_theme -> parent() : $tc_theme;
-
-        $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
-        $tc_base_data['version']      = $tc_theme -> version;
-        $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
-      }
-
-      // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
-      else {
-           $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-           $tc_base_data['prefix']      = $tc_base_data['title'];
-      }
-
-      self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
-
-      //CUSTOMIZR_VER is the Version
-      if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
-      //CZR_BASE is the root server path of the parent theme
-      if( ! defined( 'CZR_BASE' ) )           define( 'CZR_BASE' , get_template_directory().'/' );
-      //TC_BASE_URL http url of the loaded parent theme (retro compat)
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
-      //TC_BASE_CHILD is the root server path of the child theme
-      if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
-
-      //CZR_BASE_URL http url of the loaded parent theme
-      if( ! defined( 'CZR_BASE_URL' ) )       define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
-      //TC_BASE_URL http url of the loaded parent theme (retro compat)
-      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
-      //TC_BASE_URL_CHILD http url of the loaded child theme
-      if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-      //CZR_THEMENAME contains the Name of the currently loaded theme
-      if( ! defined( 'CZR_THEMENAME' ) )          define( 'CZR_THEMENAME' , $tc_base_data['title'] );
-      //CZR_WEBSITE is the home website of Customizr
-      if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
-
-      //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
-      if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
-      //MAIN OPTIONS NAME
-      if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
-
-      if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
-
-      //IS DEBUG MODE
-      if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
-
-      //IS DEV MODE
-      if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
-
-      //CZR_ASSETS_PREFIX is the relative path where the assets are located
-      if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
+      $this -> czr_fn_setup_constants();
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -169,7 +86,26 @@ if ( ! class_exists( 'CZR___' ) ) :
       //theme class groups instanciation
       //$this -> czr_fn__();
       add_action('czr_load', array( $this, 'czr_fn__') );
+
     }//end of __construct()
+
+
+
+    protected function czr_fn_setup_constants() {
+
+      parent::czr_fn_setup_constants();
+      //retro compat
+      //TC_BASE_URL http url of the loaded parent theme (retro compat)
+      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
+      //TC_BASE_CHILD is the root server path of the child theme
+      if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , CZR_BASE_CHILD );
+      //TC_BASE_URL http url of the loaded parent theme (retro compat)
+      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
+      //TC_BASE_URL_CHILD http url of the loaded child theme
+      if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
+
+    }
+
 
 
 
@@ -255,7 +191,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         {
           if ( is_admin() ) {
             //load
-            $this -> czr_fn_req_once( 'inc/czr-admin.php' );
+            $this -> czr_fn_req_once( 'core/czr-admin.php' );
 
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
@@ -276,7 +212,7 @@ if ( ! class_exists( 'CZR___' ) ) :
       else
         {
           //load
-          $this -> czr_fn_req_once( 'inc/czr-admin.php' );
+          $this -> czr_fn_req_once( 'core/czr-admin.php' );
           $this -> czr_fn_req_once( 'inc/czr-customize.php' );
 
           //left panel => skip all front end classes

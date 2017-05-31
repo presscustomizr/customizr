@@ -20,12 +20,13 @@ module.exports = function(grunt) {
         front_css : 'inc/assets/css/',
         front_js_4 : 'assets/front/js/',
         front_js : 'inc/assets/js/',
-        admin_css : 'inc/admin/css/',
-        admin_js : 'inc/admin/js/',
+        admin_css : 'assets/back/css/',
+        admin_js : 'assets/back/js/',
         core_php_4 : 'core/',
         dev_php : 'inc/_dev/',
-        back_php : 'core/back/',
+        back_php : 'core/_back/',
         inc_php : 'inc/',
+        core_php : 'core/',
         lang : 'inc/lang/',
 
         // New customizer

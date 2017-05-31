@@ -27,6 +27,7 @@ module.exports = {
       /*c4*/
       '!core/_framework/**',
       '!core/_utils/**',
+      '!core/_back/**',
       '!templates/**',
       '!assets/back/**', //back of c4
       '!assets/shared/fonts/customizr/**', //new customizr fonts
@@ -64,6 +65,10 @@ module.exports = {
       '!custom-skins/**',
       '!inc/_dev/**',
       '!assets/czr/_dev/**',
+      /*c4*/
+      '!core/_framework/**',
+      '!core/_utils/**',
+      '!core/_back/**',
       '!inc/lang/**'
     ],
     dest: '../customizr-pro/'
