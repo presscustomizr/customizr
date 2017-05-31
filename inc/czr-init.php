@@ -15,7 +15,6 @@ if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ extends CZR_BASE {
     public $tc_core;
     public $is_customizing;
-    public static $theme_name;
     public static $tc_option_group;
 
     function __construct () {
@@ -213,7 +212,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         {
           //load
           $this -> czr_fn_req_once( 'core/czr-admin.php' );
-          $this -> czr_fn_req_once( 'inc/czr-customize.php' );
+          $this -> czr_fn_req_once( 'core/czr-customize.php' );
 
           //left panel => skip all front end classes
           if ( czr_fn_is_customize_left_panel() ) {
@@ -2565,7 +2564,6 @@ class CZR_utils_settings_map {
 
       static $instance;
       private $is_wp_version_before_4_0;
-      private $_is_settings_map_available;
 
       function __construct () {
 
@@ -2583,19 +2581,6 @@ class CZR_utils_settings_map {
                   require_once( TC_BASE . 'core/functions.php' );
             }
 
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
-            // }
-
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
-            // }
-            // //require core utils settings map
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
-            // }
-
-            $this->_is_settings_map_available = $_is_settings_map_available;
 
       }//end of construct
 
@@ -2610,14 +2595,6 @@ class CZR_utils_settings_map {
       * TODO: unify this
       */
       public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
-
-            //when not all the deps have been satisfied return an empty array
-            //this will produce only php warnings
-            //TODO: consider to raise an exception
-            if ( empty( $this->_is_settings_map_available ) ) {
-                  return array();
-            }
-
 
             //Hook callbacks are defined in core/utils/class-fire-utils_settings_map.php
             if ( ! empty( CZR___::$customizer_map ) ) {
@@ -3513,30 +3490,6 @@ class CZR_utils_settings_map {
             return array_merge( $_old_sections, $_sections );
       }
 
-
-
-
-      /* Sanitize callbacks */
-      /**
-       * adds sanitization callback funtion : url
-       * @package Customizr
-       * @since Customizr 1.1.4
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_url( $value) {
-        $value = esc_url( $value);
-        return $value;
-      }
-
-      /**
-       * adds sanitization callback funtion : email
-       * @package Customizr
-       * @since Customizr 3.4.11
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_email( $value) {
-        return sanitize_email( $value );
-      }
 
       /**
       * Returns the list of available skins from child (if exists) and parent theme

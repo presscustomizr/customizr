@@ -15,7 +15,6 @@ if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ extends CZR_BASE {
     public $tc_core;
     public $is_customizing;
-    public static $theme_name;
     public static $tc_option_group;
 
     function __construct () {
@@ -213,7 +212,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         {
           //load
           $this -> czr_fn_req_once( 'core/czr-admin.php' );
-          $this -> czr_fn_req_once( 'inc/czr-customize.php' );
+          $this -> czr_fn_req_once( 'core/czr-customize.php' );
 
           //left panel => skip all front end classes
           if ( czr_fn_is_customize_left_panel() ) {
