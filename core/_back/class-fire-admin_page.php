@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       //changelog
       add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_print_changelog' ), 20);
       //build the support url
-      $this -> support_url = czr_fn_is_pro() ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this -> support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'      , array( $this, 'czr_fn_fix_wp_footer_link_style') );
     }
@@ -39,7 +39,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
    */
     function czr_fn_add_welcome_page() {
         $_name = __( 'About Customizr' , 'customizr' );
-        $_name = czr_fn_is_pro() ? sprintf( '%s Pro', $_name ) : $_name;
+        $_name = CZR_IS_PRO ? sprintf( '%s Pro', $_name ) : $_name;
 
         $theme_page = add_theme_page(
             $_name,   // Name of page
@@ -62,7 +62,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
         $_support_url   = $this -> support_url;
-        $_theme_name    = czr_fn_is_pro() ? 'Customizr Pro' : 'Customizr';
+        $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
 
@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                 );
                 printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
                   __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" ),
-                  czr_fn_is_pro() ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
+                  CZR_IS_PRO ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
                     sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
                   )
                 );
@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                 </div>
                  <div class="last-feature col">
                     <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
-                      <?php czr_fn_is_pro() ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
+                      <?php CZR_IS_PRO ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
                     </a>
                  </div>
               </div><!-- .two-col -->
@@ -162,7 +162,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( ! czr_fn_is_pro() ) : ?>
+          <?php if ( ! CZR_IS_PRO ) : ?>
             <div class="changelog">
 
                 <div class="feature-section col two-col">
@@ -175,7 +175,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
                   <div class="last-feature col">
                     <h3 style="font-size:1.3em;"><?php _e( 'Follow us','customizr' ); ?></h3>
-                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none" src="<?php echo TC_BASE_URL.'inc/admin/img/pc.png' ?>" alt="Press Customizr" /></a></p>
+                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/pc.png' ?>" alt="Press Customizr" /></a></p>
                     <!-- Place this tag where you want the widget to render. -->
 
                   </div><!-- .feature-section -->
@@ -187,7 +187,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
               <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
 
               <div class="feature-section images-stagger-right">
-                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo TC_BASE_URL.'inc/admin/img/customizr-pro.png' ?>" class=""></a>
+                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/customizr-pro.png' ?>" class=""></a>
                 <h4 style="text-align: left;max-width:inherit"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
                 <p style="text-align: lef;max-width:inherit"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites." , 'customizr') ?>
@@ -222,16 +222,16 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
     function czr_fn_print_changelog() {
       if ( isset($_GET['help']) )
         return;
-      if( ! file_exists( TC_BASE . "readme.txt" ) ) {
+      if( ! file_exists( CZR_BASE . "readme.txt" ) ) {
         return;
       }
-      if( ! is_readable( TC_BASE . "readme.txt" ) ) {
+      if( ! is_readable( CZR_BASE . "readme.txt" ) ) {
         echo '<p>The changelog in readme.txt is not readable.</p>';
         return;
       }
 
       $html = '';
-      $stylelines = explode("\n", implode('', file( TC_BASE . "readme.txt" ) ) );
+      $stylelines = explode("\n", implode('', file( CZR_BASE . "readme.txt" ) ) );
       $read = false;
       $is_title = false;
 
@@ -280,7 +280,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 # HOME_URL:                 <?php echo home_url() . "\n"; ?>
 # IS MULTISITE :            <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
 
-# THEME | VERSION :         <?php printf( '%1$s | v%2$s', CZR___::$theme_name , CUSTOMIZR_VER ) . "\n"; ?>
+# THEME | VERSION :         <?php printf( '%1$s | v%2$s', sanitize_file_name( strtolower( CZR_THEMENAME ) ), CUSTOMIZR_VER ) . "\n"; ?>
 # WP VERSION :              <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 # PERMALINK STRUCTURE :     <?php echo get_option( 'permalink_structure' ) . "\n"; ?>
 

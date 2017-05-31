@@ -20,11 +20,13 @@ module.exports = function(grunt) {
         front_css : 'inc/assets/css/',
         front_js_4 : 'assets/front/js/',
         front_js : 'inc/assets/js/',
-        admin_css : 'inc/admin/css/',
-        admin_js : 'inc/admin/js/',
+        admin_css : 'assets/back/css/',
+        admin_js : 'assets/back/js/',
         core_php_4 : 'core/',
         dev_php : 'inc/_dev/',
+        back_php : 'core/_back/',
         inc_php : 'inc/',
+        core_php : 'core/',
         lang : 'inc/lang/',
 
         // New customizer
@@ -37,7 +39,7 @@ module.exports = function(grunt) {
       skin_color : ( grunt.option.flags()[0] && -1 != grunt.option.flags()[0].indexOf('#') ) ? grunt.option.flags()[0].replace(/-/g, '') : "grey",
       //https://www.npmjs.org/package/grunt-ssh
       //Check if the context var is set and == travis => avoid travis error with ftpauth no found
-      credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
+      //credentials : 'travis' == grunt.option('context') ? {} : grunt.file.readJSON('.ftpauth'),
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
         //'customizr4_dev': ['clean:free' , 'watch'],

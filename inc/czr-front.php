@@ -8613,7 +8613,7 @@ class CZR_slider {
     // remove smart load img parsing if any
     $smart_load_enabled = 1 == esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
     if ( $smart_load_enabled )
-      remove_filter( 'tc_thumb_html', array( CZR_utils::$instance, 'czr_fn_parse_imgs') );
+      remove_filter( 'tc_thumb_html', 'czr_fn_parse_imgs' );
 
     // prevent adding thumb inline style when no center img is added
     add_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );
@@ -8641,7 +8641,7 @@ class CZR_slider {
     /* tc_thumb reset filters */
     // re-add smart load parsing if removed
     if ( $smart_load_enabled )
-      add_filter('tc_thumb_html', array(CZR_utils::$instance, 'czr_fn_parse_imgs') );
+      add_filter('tc_thumb_html', 'czr_fn_parse_imgs' );
 
     // remove thumb style reset
     remove_filter( 'tc_post_thumb_inline_style', '__return_empty_string', 100 );

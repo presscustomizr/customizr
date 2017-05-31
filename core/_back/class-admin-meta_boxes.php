@@ -52,11 +52,15 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          add_action( 'wp_ajax_slider_action'              , array( $this , 'czr_fn_slider_cb' ));
 
-         //enqueue slider script
-         add_action( 'admin_enqueue_scripts'              , array( $this , 'czr_fn_slider_admin_scripts' ));
+         //enqueue slider scripts when needed (will be in the footer)
+         //czr_slider_metabox_added is fired when
+         //a) the slider attachment metabox is printed: czr_fn_attachment_meta_box
+         //b) the slider post metabox is printed: czr_fn_post_slider_box
+         add_action( 'czr_slider_metabox_added'            , array( $this,  'czr_fn_slider_admin_scripts') );
 
          //enqueue post format script
-         add_action( 'admin_enqueue_scripts'               , array( $this , 'czr_fn_post_formats_admin_scripts' ));
+         add_action( 'czr_post_formats_metabox_added'      , array( $this , 'czr_fn_post_formats_admin_scripts' ) );
+
 
         /**
          * checks if WP version strictly < 3.5
@@ -79,8 +83,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          if ( !isset($this->mixed_meta_boxes_map) ) {
 
             $_meta_boxes_map = array (
-                'layout_section',
-                'slider_section',
+               'layout_section',
+               'slider_section',
             );
 
             if ( $_cache )
@@ -161,33 +165,31 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          //2 - Merging with the builtin post types, pages and posts
          $builtin_post_types   = array(
-             'page' => 'page',
-             'post' => 'post'
+            'page' => 'page',
+              'post' => 'post'
          );
 
          $screens                   = array_merge( $custom_post_types, $builtin_post_types );
 
          $mixed_meta_boxes          = $this->czr_fn_get_mixed_meta_boxes_map();
 
-         $_metabox_added             = false;
+
          //3- Adding the meta-boxes to those screens
          foreach ( $screens as $key => $screen) {
-
             foreach ( $mixed_meta_boxes as $meta_box_key ) {
                $this->czr_add_metabox( $meta_box_key, $screen );
                $_metabox_added       = true;
             }//end foreach
 
-
-
          }//end foreach
-         if ( $_metabox_added )
-            do_action( 'tc_post_metabox_added' );
 
       }
 
 
       function czr_fn_post_formats_meta_boxes() {
+         //if not czr4 return
+         if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) )
+            return;
 
          $post_meta_boxes          = $this->czr_fn_get_post_meta_boxes_map();
 
@@ -199,7 +201,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          }//end foreach
 
          if ( $_metabox_added )
-            do_action( 'tc_post_formats_metabox_added' );
+            do_action( 'czr_post_formats_metabox_added' );
 
       }
 
@@ -508,7 +510,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
            //Generates layouts select list array
            $layouts             = array();
-           $global_layout        = apply_filters( 'czr_global_layout' , CZR_init::$instance -> global_layout );
+           $global_layout        = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
            foreach ( $global_layout as $key => $value ) {
              $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
            }
@@ -544,6 +546,9 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          </div>
 
          <?php
+
+         do_action( 'czr_post_metabox_added', $post );
+         do_action( 'czr_post_layout_metabox_added', $post );
       }
 
 
@@ -592,6 +597,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
              <?php do_action( '__post_slider_infos' , $post -> ID ); ?>
            </div>
          <?php
+
+         do_action( 'czr_post_metabox_added', $post );
+         do_action( 'czr_slider_metabox_added', $post );
+
       }//end of function
 
 
@@ -1024,20 +1033,11 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        */
       function czr_fn_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
 
-            $screens          = array( 'attachment' );
-
-            foreach ( $screens as $screen) {
-                  add_meta_box(
-                     'slider_sectionid' ,
-                     __( 'Slider Options' , 'customizr' ),
-                     array( $this , 'czr_fn_attachment_slider_box' ),
-                     $screen/*,
-                     'side' ,
-                     'high'*/
-                  );
-            }
-
-            do_action( 'tc_attachment_metabox_added' );
+         add_meta_box(
+            'slider_sectionid' ,
+            __( 'Slider Options' , 'customizr' ),
+            array( $this , 'czr_fn_attachment_slider_box' )
+         );
 
       }
 
@@ -1081,6 +1081,9 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             <?php do_action( '__attachment_slider_infos' , $post -> ID); ?>
           </div>
          <?php
+
+         do_action( 'czr_attachment_metabox_added' );
+         do_action( 'czr_slider_metabox_added' );
       }
 
 
@@ -1909,102 +1912,101 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        * Loads the necessary scripts and stylesheets to display slider options
        * @package Customizr
        * @since Customizr 1.0
+       * @hook czr_slider_metabox_added
        */
-        function czr_fn_slider_admin_scripts( $hook) {
-        global $post;
+      function czr_fn_slider_admin_scripts( $hook) {
+         global $post;
 
-        $_min_version = ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min';
-        //load scripts only for creating and editing slides options in pages and posts
-        if ( did_action( 'tc_attachment_metabox_added' ) ) {
+         $_min_version = ( !$this->_minify_resources ) ? '' : '.min';
+
+
+         //load scripts only for creating and editing slides options in pages and posts
+         if ( did_action( 'tc_attachment_metabox_added' ) ) {
             wp_enqueue_script( 'jquery-ui-sortable' );
-        }
-        if ( did_action( 'tc_attachment_metabox_added' ) || did_action( 'tc_post_metabox_added' ) )  {
-            do_action( 'tc_enqueue_ajax_slider_before' );
+         }
 
-           //ajax refresh for slider options
-           wp_enqueue_script( 'czr_ajax_slider' ,
-               sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
-               array( 'jquery' ),
+
+         do_action( 'tc_enqueue_ajax_slider_before' );
+
+         //ajax refresh for slider options
+         wp_enqueue_script( 'czr_ajax_slider' ,
+            sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
+            array( 'jquery' ),
+            true
+         );
+
+         // Tips to declare javascript variables http://www.garyc40.com/2010/03/5-tips-for-using-ajax-in-wordpress/#bad-ways
+         wp_localize_script( 'czr_ajax_slider' , 'SliderAjax' , array(
+            // URL to wp-admin/admin-ajax.php to process the request
+            //'ajaxurl'         => admin_url( 'admin-ajax.php' ),
+            // generate a nonce with a unique ID "myajax-post-comment-nonce"
+            // so that you can check it later when an AJAX request is sent
+               'SliderNonce' => wp_create_nonce( 'tc-slider-nonce' ),
+               'SliderCheckNonce' => wp_create_nonce( 'tc-slider-check-nonce' ),
+            )
+         );
+
+         //iphone like button style and script
+         wp_enqueue_style( 'iphonecheckcss' ,
+            sprintf('%1$sback/css/iphonecheck%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
+         );
+
+         wp_enqueue_script( 'iphonecheck' ,
+            sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
+            array('jquery'),
+            true
+         );
+
+         //thickbox
+         wp_admin_css( 'thickbox' );
+         add_thickbox();
+
+         //sortable stuffs
+         wp_enqueue_style( 'sortablecss' ,
+            sprintf('%1$sback/css/tc_sortable%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
+         );
+
+         //wp built-in color picker style and script
+         //Access the global $wp_version variable to see which version of WordPress is installed.
+         global $wp_version;
+
+         //If the WordPress version is greater than or equal to 3.5, then load the new WordPress color picker.
+         if ( 3.5 <= $wp_version ){
+            //Both the necessary css and javascript have been registered already by WordPress, so all we have to do is load them with their handle.
+            wp_enqueue_style( 'wp-color-picker' );
+            wp_enqueue_script( 'wp-color-picker' );
+             // load the minified version of custom script
+            wp_enqueue_script( 'cp_demo-custom' ,
+               sprintf('%1$sback/js/color-picker%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX , $_min_version ),
+               array( 'jquery' , 'wp-color-picker' ),
                true
-           );
-
-           // Tips to declare javascript variables http://www.garyc40.com/2010/03/5-tips-for-using-ajax-in-wordpress/#bad-ways
-           wp_localize_script( 'czr_ajax_slider' , 'SliderAjax' , array(
-           // URL to wp-admin/admin-ajax.php to process the request
-           //'ajaxurl'         => admin_url( 'admin-ajax.php' ),
-           // generate a nonce with a unique ID "myajax-post-comment-nonce"
-           // so that you can check it later when an AJAX request is sent
-            'SliderNonce' => wp_create_nonce( 'tc-slider-nonce' ),
-
-           //
-            'SliderCheckNonce' => wp_create_nonce( 'tc-slider-check-nonce' ),
-           )
-           );
-
-           //iphone like button style and script
-           wp_enqueue_style( 'iphonecheckcss' ,
-               sprintf('%1$sback/css/iphonecheck%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
-           );
-           wp_enqueue_script( 'iphonecheck' ,
-
-               sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
-               array('jquery'),
+            );
+         }
+         //If the WordPress version is less than 3.5 load the older farbtasic color picker.
+         else {
+            //As with wp-color-picker the necessary css and javascript have been registered already by WordPress, so all we have to do is load them with their handle.
+            wp_enqueue_style( 'farbtastic' );
+            wp_enqueue_script( 'farbtastic' );
+            // load the minified version of custom script
+            wp_enqueue_script( 'cp_demo-custom' ,
+               sprintf('%1$sback/js/color-picker%2$s.js' ,  CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
+               array( 'jquery' , 'farbtastic' ),
                true
-           );
+            );
+         }
 
-           //thickbox
-           wp_admin_css( 'thickbox' );
-           add_thickbox();
+         do_action( 'tc_enqueue_ajax_slider_after' );
 
-           //sortable stuffs
-           wp_enqueue_style( 'sortablecss' ,
-               sprintf('%1$sback/css/tc_sortable%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
-           );
-
-           //wp built-in color picker style and script
-          //Access the global $wp_version variable to see which version of WordPress is installed.
-           global $wp_version;
-
-           //If the WordPress version is greater than or equal to 3.5, then load the new WordPress color picker.
-           if ( 3.5 <= $wp_version ){
-               //Both the necessary css and javascript have been registered already by WordPress, so all we have to do is load them with their handle.
-               wp_enqueue_style( 'wp-color-picker' );
-               wp_enqueue_script( 'wp-color-picker' );
-                // load the minified version of custom script
-               wp_enqueue_script( 'cp_demo-custom' ,
-                  sprintf('%1$sback/js/color-picker%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX , $_min_version ),
-                  array( 'jquery' , 'wp-color-picker' ),
-                  true
-               );
-           }
-           //If the WordPress version is less than 3.5 load the older farbtasic color picker.
-           else {
-               //As with wp-color-picker the necessary css and javascript have been registered already by WordPress, so all we have to do is load them with their handle.
-               wp_enqueue_style( 'farbtastic' );
-               wp_enqueue_script( 'farbtastic' );
-               // load the minified version of custom script
-               wp_enqueue_script( 'cp_demo-custom' ,
-                  sprintf('%1$sback/js/color-picker%2$s.js' ,  CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
-                  array( 'jquery' , 'farbtastic' ),
-                  true
-               );
-           }
-           do_action( 'tc_enqueue_ajax_slider_after' );
-        }//end post type hook check
       }
 
-
+      /**
+       * Loads the necessary scripts for the post formats metaboxes
+       * @package Customizr
+       * @since Customizr 4.0
+       * @hook czr_post_formats_metabox_added
+       */
 
       function czr_fn_post_formats_admin_scripts( $hook ) {
-
-         if( !( 'post-new.php' == $hook || 'post.php' == $hook  ) )
-            return;
-
-         if ( 'post' != get_post_type() )
-            return;
-
-         if ( !did_action( 'tc_post_formats_metabox_added' ) )
-            return;
 
          $_ext = $this->_minify_resources ? '.min.js' : '.js';
 
@@ -2022,6 +2024,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                'postFormatSections' => $this -> czr_fn_get_post_meta_boxes_map()
             )
          );
+
       }
 
 
@@ -2033,20 +2036,20 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
   ------------- ATTACHMENT FIELDS FILTER IF WP < 3.5 -------------
   ----------------------------------------------------------------
   */
-      function czr_fn_attachment_filter( $form_fields, $post = null) {
-         $this -> czr_fn_attachment_slider_box ( $post);
-          return $form_fields;
-      }
+   function czr_fn_attachment_filter( $form_fields, $post = null) {
+      $this -> czr_fn_attachment_slider_box ( $post);
+      return $form_fields;
+   }
 
 
-      function czr_fn_attachment_save_filter( $post, $attachment ) {
-         if ( isset( $_POST['tc_post_id']))
-          $postid = $_POST['tc_post_id'];
+   function czr_fn_attachment_save_filter( $post, $attachment ) {
+      if ( isset( $_POST['tc_post_id']))
+      $postid = $_POST['tc_post_id'];
 
-         $this -> czr_fn_slide_save( $postid );
+      $this -> czr_fn_slide_save( $postid );
 
-         return $post;
-      }
+      return $post;
+   }
 
 
 
@@ -2309,3 +2312,5 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
    }//end of class
 endif;
+
+?>

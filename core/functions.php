@@ -2928,7 +2928,7 @@ function czr_fn_wp_filters() {
 * @since Customizr 4.0
 */
 function czr_fn_get_global_layout() {
-  return apply_filters( 'czr_global_layout' , CZR_init::$instance -> global_layout );
+  return apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
 }
 
 /**

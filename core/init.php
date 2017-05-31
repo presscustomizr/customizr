@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Fires the theme : constants definition, core classes loading
 *
@@ -29,6 +28,9 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         function __construct( $_args = array()) {
 
+            //call CZR_BASE constructor
+            parent::__construct( $_args );
+
             //allow c4 templates
             add_filter( 'czr_four_do'             , '__return_true' );
             //define a constant we can use everywhere
@@ -43,7 +45,9 @@ if ( ! class_exists( 'CZR___' ) ) :
             add_action( 'wp_head' , 'czr_fn_wp_filters' );
 
             add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
+
         }
+
 
         //hook : czr_dev_notice
         function czr_fn_print_r($message) {
@@ -58,7 +62,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         public static function czr_fn_instance() {
               if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
                 self::$instance = new CZR___();
+                //defined in CZR_BASE
                 self::$instance -> czr_fn_setup_constants();
+
                 self::$instance -> czr_fn_setup_loading();
                 self::$instance -> czr_fn_load();
 
@@ -90,80 +96,6 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-
-
-
-
-        private function czr_fn_setup_constants() {
-              /* GETS INFORMATIONS FROM STYLE.CSS */
-              // get themedata version wp 3.4+
-              if( function_exists( 'wp_get_theme' ) ) {
-                //get WP_Theme object of customizr
-                $tc_theme                     = wp_get_theme();
-
-                //Get infos from parent theme if using a child theme
-                $tc_theme = $tc_theme -> parent() ? $tc_theme -> parent() : $tc_theme;
-
-                $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
-                $tc_base_data['version']      = $tc_theme -> version;
-                $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
-              }
-
-              // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
-              else {
-                   $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-                   $tc_base_data['prefix']      = $tc_base_data['title'];
-              }
-
-              //CUSTOMIZR_VER is the Version
-              if( ! defined( 'CUSTOMIZR_VER' ) )            define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
-              //CZR_BASE is the root server path of the parent theme
-              if( ! defined( 'CZR_BASE' ) )                 define( 'CZR_BASE' , get_template_directory().'/' );
-              //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-              if( ! defined( 'CZR_CORE_PATH' ) )            define( 'CZR_CORE_PATH' , 'core/' );
-              //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
-              if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'core/main-templates/' );
-              //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-              if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_utils/' );
-              //CZR_FRAMEWORK_PATH is the relative path where the framework is located
-              if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/_framework/' );
-              //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
-              if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
-              //CZR_ASSETS_PREFIX is the relative path where the assets are located
-              if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
-              //CZR_BASE_CHILD is the root server path of the child theme
-              if( ! defined( 'CZR_BASE_CHILD' ) )           define( 'CZR_BASE_CHILD' , get_stylesheet_directory().'/' );
-              //CZR_BASE_URL http url of the loaded parent theme
-              if( ! defined( 'CZR_BASE_URL' ) )             define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
-              //CZR_BASE_URL_CHILD http url of the loaded child theme
-              if( ! defined( 'CZR_BASE_URL_CHILD' ) )       define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-              //CZR_THEMENAME contains the Name of the currently loaded theme
-              if( ! defined( 'CZR_THEMENAME' ) )            define( 'CZR_THEMENAME' , $tc_base_data['title'] );
-              //CZR_WEBSITE is the home website of Customizr
-              if( ! defined( 'CZR_WEBSITE' ) )              define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
-              //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
-              if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
-              //MAIN OPTIONS NAME
-              if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
-              //CZR_CZR_PATH is the relative path where the Customizer php is located
-              if( ! defined( 'CZR_CZR_PATH' ) )             define( 'CZR_CZR_PATH' , 'core/czr/' );
-              //CZR_FRONT_ASSETS_URL http url of the front assets
-              if( ! defined( 'CZR_FRONT_ASSETS_URL' ) )     define( 'CZR_FRONT_ASSETS_URL' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/' );
-              //if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );//DEPRECATED
-              //IS PRO
-              if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
-
-              //IS DEBUG MODE
-              if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
-
-              //IS DEV MODE
-              if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
-
-        }//setup_contants()
-
-
-
-
         private function czr_fn_setup_loading() {
               //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
               $this -> czr_core = apply_filters( 'czr_core',
@@ -174,7 +106,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                         array('core'       , 'resources_scripts'),
                         array('core'       , 'widgets'),//widget factory
                         array('core/back'  , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
-//                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
+                        array('core/back'  , 'admin_page')//creates the welcome/help panel including changelog and system config
                     ),
                     'admin'     => array(
 //                        array('core/back' , 'customize'),//loads customizer actions and resources
@@ -355,21 +287,35 @@ if ( ! class_exists( 'CZR___' ) ) :
           //Not customizing
           //1) IS NOT CUSTOMIZING : czr_fn_is_customize_left_panel() || czr_fn_is_customize_preview_frame() || czr_fn_doing_customizer_ajax()
           //---1.1) IS ADMIN
+          //-------1.1.a) Doing AJAX
+          //-------1.1.b) Not Doing AJAX
           //---1.2) IS NOT ADMIN
           //2) IS CUSTOMIZING
           //---2.1) IS LEFT PANEL => customizer controls
           //---2.2) IS RIGHT PANEL => preview
-          if ( ! czr_fn_is_customizing() )
-            {
-              if ( is_admin() )
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back' ) );
-              else
+          if ( ! czr_fn_is_customizing() ) {
+              if ( is_admin() ) {
+                //load
+                czr_fn_require_once( CZR_CORE_PATH . 'czr-admin.php' );
+
+                //if doing ajax, we must not exclude the placeholders
+                //because ajax actions are fired by admin_ajax.php where is_admin===true.
+                if ( defined( 'DOING_AJAX' ) )
+                  $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
+                else
+                  $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placehloders' ) );
+              }
+              else {
                 //Skips all admin classes
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/back|admin_init', 'fire|core/back|admin_page') );
-            }
+                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/admin|admin_init', 'fire|core/admin|admin_page') );
+              }
+          }
           //Customizing
           else
             {
+              //load
+              czr_fn_require_once( CZR_CORE_PATH . 'czr-admin.php' );
+
               //left panel => skip all front end classes
               if (czr_fn_is_customize_left_panel() ) {
                 $_to_load = $this -> czr_fn_unset_core_classes(
@@ -598,18 +544,16 @@ if ( ! class_exists( 'CZR___' ) ) :
 endif;//endif;
 
 //Fire
-require_once( get_stylesheet_directory() . '/core/functions-base.php' );
 
 /**
  * @since 4.0
  * @return object CZR Instance
  */
 if ( ! function_exists( 'CZR' ) ) {
-   function CZR() {
-         return CZR___::czr_fn_instance();
-   }
+    function CZR() {
+      return CZR___::czr_fn_instance();
+    }
 }
-
 
 // Fire Customizr
 CZR();
