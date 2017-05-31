@@ -22,7 +22,6 @@ module.exports = function(grunt) {
         front_js : 'inc/assets/js/',
         admin_css : 'assets/back/css/',
         admin_js : 'assets/back/js/',
-        core_php_4 : 'core/',
         dev_php : 'inc/_dev/',
         back_php : 'core/_back/',
         inc_php : 'inc/',
