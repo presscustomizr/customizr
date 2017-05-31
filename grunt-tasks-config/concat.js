@@ -47,36 +47,36 @@ module.exports = {
   },
   admin_php : {
     src: [
-      '<%= paths.dev_php %>admin/class-fire-admin_init.php',
-      '<%= paths.dev_php %>admin/class-fire-admin_page.php',
-      '<%= paths.dev_php %>admin/class-admin-meta_boxes.php'
+      '<%= paths.back_php %>class-fire-admin_init.php',
+      '<%= paths.back_php %>class-fire-admin_page.php',
+      '<%= paths.back_php %>class-admin-meta_boxes.php'
     ],
-    dest: '<%= paths.inc_php %>czr-admin.php',
+    dest: '<%= paths.core_php %>czr-admin.php',
   },
   customize_php : {
     src: [
-      '<%= paths.dev_php %>czr/class-czr-init.php',
-      '<%= paths.dev_php %>czr/class-czr-resources.php',
+      '<%= paths.core_php %>_czr/class-czr-init.php',
+      '<%= paths.core_php %>_czr/class-czr-resources.php',
       //parts
-      '<%= paths.dev_php %>czr/controls/class-base-control.php',
-      '<%= paths.dev_php %>czr/controls/class-cropped-image-control.php',
-      '<%= paths.dev_php %>czr/controls/class-multipicker-control.php',
-      '<%= paths.dev_php %>czr/controls/class-modules-control.php',
-      '<%= paths.dev_php %>czr/controls/class-upload-control.php',
+      '<%= paths.core_php %>_czr/controls/class-base-control.php',
+      '<%= paths.core_php %>_czr/controls/class-cropped-image-control.php',
+      '<%= paths.core_php %>_czr/controls/class-multipicker-control.php',
+      '<%= paths.core_php %>_czr/controls/class-modules-control.php',
+      '<%= paths.core_php %>_czr/controls/class-upload-control.php',
 
-      '<%= paths.dev_php %>czr/panels/class-panels.php',
-      '<%= paths.dev_php %>czr/settings/class-settings.php',
-      '<%= paths.dev_php %>czr/sections/class-pro-section.php',
+      '<%= paths.core_php %>_czr/panels/class-panels.php',
+      '<%= paths.core_php %>_czr/settings/class-settings.php',
+      '<%= paths.core_php %>_czr/sections/class-pro-section.php',
 
       //modules data
-      '<%= paths.dev_php %>czr/modules/modules-data.php',
+      '<%= paths.core_php %>_czr/modules/modules-data.php',
 
       //templates
-      '<%= paths.dev_php %>czr/tmpl/modules/all-modules-tmpl.php',
-      '<%= paths.dev_php %>czr/tmpl/modules/social-module-tmpl.php',
-      '<%= paths.dev_php %>czr/tmpl/inputs/img-uploader-tmpl.php',
+      '<%= paths.core_php %>_czr/tmpl/modules/all-modules-tmpl.php',
+      '<%= paths.core_php %>_czr/tmpl/modules/social-module-tmpl.php',
+      '<%= paths.core_php %>_czr/tmpl/inputs/img-uploader-tmpl.php',
     ],
-    dest: '<%= paths.inc_php %>czr-customize.php',
+    dest: '<%= paths.core_php %>czr-customize.php',
   },
 	front_main_parts_js : {
     src: [
@@ -139,24 +139,24 @@ module.exports = {
   //C4
   fmk_php_c4 : {
     src: [
-      '<%= paths.core_php_4 %>/_framework/class-model.php',
-      '<%= paths.core_php_4 %>/_framework/class-collection.php',
-      '<%= paths.core_php_4 %>/_framework/class-view.php',
-      '<%= paths.core_php_4 %>/_framework/class-controllers.php',
+      '<%= paths.core_php %>/_framework/class-model.php',
+      '<%= paths.core_php %>/_framework/class-collection.php',
+      '<%= paths.core_php %>/_framework/class-view.php',
+      '<%= paths.core_php %>/_framework/class-controllers.php',
     ],
-    dest: '<%= paths.core_php_4 %>fmk.php',
+    dest: '<%= paths.core_php %>fmk.php',
   },
   utils_php_c4 : {
     src: [
-      '<%= paths.core_php_4 %>/_utils/fn-0-base.php',
-      '<%= paths.core_php_4 %>/_utils/fn-1-settings_map.php',
-      '<%= paths.core_php_4 %>/_utils/fn-2-utils.php',
-      '<%= paths.core_php_4 %>/_utils/fn-3-options.php',
-      '<%= paths.core_php_4 %>/_utils/fn-4-query.php',
-      '<%= paths.core_php_4 %>/_utils/fn-5-thumbnails.php',
-      '<%= paths.core_php_4 %>/_utils/fn-6-colors.php'
+      '<%= paths.core_php %>/_utils/fn-0-base.php',
+      '<%= paths.core_php %>/_utils/fn-1-settings_map.php',
+      '<%= paths.core_php %>/_utils/fn-2-utils.php',
+      '<%= paths.core_php %>/_utils/fn-3-options.php',
+      '<%= paths.core_php %>/_utils/fn-4-query.php',
+      '<%= paths.core_php %>/_utils/fn-5-thumbnails.php',
+      '<%= paths.core_php %>/_utils/fn-6-colors.php'
     ],
-    dest: '<%= paths.core_php_4 %>functions.php',
+    dest: '<%= paths.core_php %>functions.php',
   },
   front_main_fmk_js4 : {
     src: [

@@ -20,7 +20,9 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
               add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons'), 9 );
 
               add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_fonts_inline_css') );
-              add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
+
+              //not ready yet
+              //add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
 
         }

@@ -85,7 +85,9 @@ module.exports = {
 	},
 	php_one : {
 		files: [
-      '<%= paths.dev_php %>**/*.php'
+      '<%= paths.dev_php %>**/*.php',
+      '<%= paths.back_php %>**/*.php',
+      '<%= paths.core_php %>/_czr/**/*.php',
     ],
 		tasks: [
       'gitinfo' ,
@@ -99,7 +101,7 @@ module.exports = {
 	},
   php_fmk_c4 : {
     files: [
-      '<%= paths.core_php_4 %>/_framework/**/*.php'
+      '<%= paths.core_php %>/_framework/**/*.php'
     ],
     tasks: [
       'concat:fmk_php_c4',
@@ -107,7 +109,7 @@ module.exports = {
   },
   php_utils_c4 : {
     files: [
-      '<%= paths.core_php_4 %>/_utils/**/*.php'
+      '<%= paths.core_php %>/_utils/**/*.php'
     ],
     tasks: [
       'concat:utils_php_c4',
