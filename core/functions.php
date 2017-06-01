@@ -3411,7 +3411,9 @@ function czr_fn_is_single_post() {
         && is_singular()
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
-        && ! czr_fn_is_home_empty() );
+        && ! czr_fn_is_home_empty()
+        && ! czr_fn_is_home()
+        );
 }
 
 

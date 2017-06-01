@@ -55,15 +55,15 @@ function czr_fn_comment_info( $args = array() ) {
       );
 
       //Filter hook used by disqus plugin
-      $link_attributes = apply_filters( 'czr_comment_info_link_attributes', '' );
+      $link_attributes = implode( '', apply_filters( 'czr_comment_info_link_attributes', array() ) );
 
-      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s" %6$s><span>%4$s</span></a>%5$s',
+      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s" %5$s><span>%4$s</span></a>%6$s',
             $before,
             $link,
             sprintf( "%s %s %s" , number_format_i18n( $comments_number ) , _n( 'Comment on' , 'Comments on' , $comments_number, 'customizr' ) ,  esc_attr( strip_tags( get_the_title() ) ) ),
             sprintf( "%s %s" , number_format_i18n( $comments_number ) , _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ),
-            $after,
-            $link_attributes
+            $link_attributes,
+            $after
       );
 
       if ( !$echo )

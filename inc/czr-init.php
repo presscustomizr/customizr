@@ -1343,7 +1343,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end of plugin compatibility function
 
 
-
+    /*
+    * Same in czr4
+    */
     /**
     * Jetpack compat hooks
     *
@@ -1351,14 +1353,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_fn_set_jetpack_compat() {
-      //jetpack image carousel
-      //this filter doesn't exist anymore it has been replaced by
-      //tc_is_gallery_enabled
-      //I think we can remove the following compatibility as everything seems to work (considering that it doesn't do anything atm)
-      //and we haven't received any complain
-      //Also we now have a whole gallery section of settings and we coul redirect users there to fine tune it
-      add_filter( 'tc_gallery_bool', '__return_false' );
-
       //Photon jetpack's module conflicts with our smartload feature:
       //Photon removes the width,height attribute in php, then in js it compute them (when they have the special attribute 'data-recalc-dims')
       //based on the img src. When smartload is enabled the images parsed by its js which are not already smartloaded are dummy
@@ -1394,7 +1388,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'czr_fn_bbpress_disable_feature');
       //disables thumbnails and excerpt for post lists
-      add_filter( 'tc_show_post_list_thumb', 'czr_fn_bbpress_disable_feature' );
+      add_filter( 'tc_opt_tc_post_list_thumb', 'czr_fn_bbpress_disable_feature' );
       //show full content in post lists
       add_filter( 'tc_show_excerpt', 'czr_fn_bbpress_disable_feature' );
       //disables Customizr author infos on forums
@@ -1409,6 +1403,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_filter( 'tc_is_img_smartload_help_on', 'czr_fn_bbpress_disable_feature' );
     }
 
+
+    /*
+    * Same in czr4 except for comments enabled filter prefix (tc_ -> czr_)
+    */
     /**
     * BuddyPress compat hooks
     *
@@ -1437,6 +1435,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }
 
+    /*
+    * same in czr4 with filter prefixes change ( tc_ -> czr_ )
+    */
     /**
     * QtranslateX compat hooks
     *
@@ -1521,7 +1522,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }
 
-
+    /*
+    * same in czr4
+    */
     /**
     * Polylang compat hooks
     *
@@ -1538,7 +1541,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         // grab theme options
         $tc_options = czr_fn__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default = true );
+        $tc_settings_map = czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
         $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
@@ -1577,7 +1580,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $tc_translatable_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
-          add_filter("tc_opt_$tc_translatable_option", 'pll__');
+          add_filter("tc_opt_{$tc_translatable_option}", 'pll__');
 
         /**
         * Tax filtering (home/blog posts filtered by cat)
@@ -1608,7 +1611,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }//end Front
     }//end polylang compat
 
-
+    /*
+    * same in czr4
+    */
     /**
     * WPML compat hooks
     *
@@ -1804,12 +1809,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
               return czr_fn_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
             }
           }
-          //special function for the post slider button text pre trim filter
-          if ( ! function_exists( 'czr_fn_wpml_t_ps_button_text' ) ) {
-            function czr_fn_wpml_t_ps_button_text( $string ) {
-              return czr_fn_wpml_t( $string, 'tc_posts_slider_button_text' );
-            }
-          }
+
           //define our icl_t wrapper
           if ( ! function_exists( 'czr_fn_wpml_t' ) ) {
             function czr_fn_wpml_t( $string, $opt ) {
@@ -1824,7 +1824,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            add_filter("tc_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
+            add_filter("tc_opt_{$tc_wpml_option}", 'czr_fn_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
           add_filter( 'tc_opt_tc_sliders', 'czr_fn_wpml_sliders_filter', 99 );
@@ -1888,7 +1888,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return czr_fn_is_tec_events_list() ? false : $bool;
       }
 
-      // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
+      // Events archive is displayed, wrongly, with our post lists classes, we have to prevent this
       add_filter( 'tc_post_list_controller', 'czr_fn_tec_disable_post_list');
       add_filter( 'tc_is_grid_enabled', 'czr_fn_tec_disable_post_list');
       function czr_fn_tec_disable_post_list( $bool ) {
@@ -2210,7 +2210,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //add woocommerce header cart CSS
-      add_filter('tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
+      add_filter( 'tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
       function czr_fn_woocommerce_header_cart_css( $_css ) {
         if ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
@@ -2310,6 +2310,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end woocommerce compat
 
 
+    /*
+    * same in czr4 except for the filter prefix (tc_ -> czr_)
+    */
     /**
     * Visual Composer compat hooks
     *
@@ -2372,6 +2375,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end disqus compat
 
 
+    /*
+    * same in czr4 except for the filter prefix (tc_ -> czr_)
+    */
     /**
     * Ultimate Responsive Image Slider compat hooks
     *
@@ -2396,7 +2402,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }//end uris compat
 
-
+    /* same in czr4 */
     /**
     * TC Unlimited Featured Pages compat hooks
     * Since Customizr 3.4.24 we changed the functions and class prefixes
@@ -2523,6 +2529,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       return false;
     }
 
+    /* same in czr4 */
     public function czr_fn_get_string_options_to_translate() {
       $string_options = array(
         'tc_front_slider',
