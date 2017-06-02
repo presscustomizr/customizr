@@ -384,7 +384,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $tc_settings_map = czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
-        $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+        $polylang_group = CZR_IS_PRO ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
         $tc_translatable_raw_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();

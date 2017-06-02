@@ -305,7 +305,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * hook : admin_notices
     */
     function czr_fn_may_be_display_update_notice() {
-      $opt_name                   = "customizr-pro" == CZR_THEMENAME ? 'last_update_notice_pro' : 'last_update_notice';
+      $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;
 

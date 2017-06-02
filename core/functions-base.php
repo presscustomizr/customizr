@@ -151,7 +151,7 @@ function czr_fn_is_front_help_enabled(){
 */
 if ( ! function_exists( 'czr_fn_is_pro' ) ) {
       function czr_fn_is_pro() {
-            return class_exists( 'CZR_init_pro' ) && "customizr-pro" == CZR_THEMENAME;
+            return class_exists( 'CZR_init_pro' ) && "customizr-pro" == CZR___::$theme_name;
       }
 }
 
