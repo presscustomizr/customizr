@@ -32,11 +32,13 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_regular_page_heading() {
-      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_page() && ! is_front_page() );
+      $page_heading = apply_filters( 'czr_display_page_heading', $this -> czr_fn_display_view_page() && ! is_front_page() );
+      return apply_filters( 'regular_heading',  $page_heading );
     }
 
     function czr_fn_display_view_regular_post_heading() {
-      return apply_filters( 'regular_heading',  $this -> czr_fn_display_view_post() );
+      $post_heading = apply_filters( 'czr_display_post_heading', $this -> czr_fn_display_view_post() );
+      return apply_filters( 'regular_heading',  $post_heading );
     }
 
 
@@ -107,6 +109,9 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
     function czr_fn_display_view_single_author_info() {
       if ( ! get_the_author_meta( 'description' ) )
+        return;
+
+      if ( !$this -> czr_fn_display_view_post() )
         return;
 
       //@todo check if some conditions below not redundant?

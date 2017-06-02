@@ -90,9 +90,12 @@ var czrapp = czrapp || {};
          if ( _maybe_fire ) {
             $_focusable_inputs.each( function() {
                var $_this = $(this);
-               if ( !$_this.attr('placeholder') )
-                  $(this).parent().addClass(_focusable_class)
-                            .closest('form').addClass(_czr_form_class);
+               if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
+                  $(this)
+                        .addClass('czr-focusable')
+                        .parent().addClass(_focusable_class)
+                        .closest('form').addClass(_czr_form_class);
+               }
             });
          }else
             return;

@@ -69,8 +69,8 @@ form.czr-form {
   }
 
   .czr-focus {
-    input { transition: all 600ms; }
-    &:not(.in-focus) input { color: transparent; }
+    .czr-focusable { transition: all 600ms; }
+    &:not(.in-focus) > .czr-focusable { color: transparent; }
     &.in-focus > label {
       z-index: 1;
       @include transform(translateY(-110%));

@@ -6,8 +6,10 @@
 }
 
 
-#main-wrapper.bg { background: $grey-lightest; }
-#main-wrapper { padding-bottom:$base-line-height*4; }
+#main-wrapper,
+#content {
+  padding-bottom:$base-line-height*2;
+}
 
 #main-wrapper {
   &::before, &::after {
