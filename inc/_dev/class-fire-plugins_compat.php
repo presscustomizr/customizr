@@ -926,6 +926,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
               $excl['deep']['classes'] = array();
 
           $excl['deep']['classes'][] = 'wc-tabs';
+          $excl['deep']['classes'][] = 'woocommerce-product-rating';
         }
         return $excl;
       }
