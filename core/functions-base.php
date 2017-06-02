@@ -1,4 +1,30 @@
 <?php
+/**
+* The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
+*
+* By convention in Customizr, filter hooks are used as follow :
+* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
+* 2) declared with apply_filters in methods to make the code extensible for developers
+* 3) accessed with czr_fn__f() to return values (while front end content is handled with action hooks)
+*
+* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
+*
+* @since Customizr 3.0
+*/
+if( ! function_exists( 'czr_fn__f' ) ) :
+    function czr_fn__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+        return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
+    }
+endif;
+
+//This function is the only one with a different prefix.
+//It has been kept in the theme for retro-compatibility.
+if( ! function_exists( 'tc__f' ) ) :
+    function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
+        return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
+    }
+endif;
+
 if ( !( function_exists( 'czr_fn_isprevdem' ) ) ) :
 //@return bool
 function czr_fn_isprevdem() {
@@ -1019,4 +1045,133 @@ function czr_fn_get_post_type() {
 function czr_fn_is_no_results() {
     global $wp_query;
     return ( is_search() && 0 == $wp_query -> post_count ) ? true : false;
+}
+
+
+/*-----------------------------------------------------------
+/* PREVIOUSLY IN inc/czr-init.php (class-fire-utils_settings_map.php) and core/functions.php
+/*----------------------------------------------------------*/
+
+
+/**
+* Returns the layout choices array
+*
+* @package Customizr
+* @since Customizr 3.1.0
+*/
+function czr_fn_layout_choices() {
+    $global_layout  = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
+    $layout_choices = array();
+    foreach ($global_layout as $key => $value) {
+      $layout_choices[$key]   = ( $value['customizer'] ) ? call_user_func(  '__' , $value['customizer'] , 'customizr' ) : null ;
+    }
+    return $layout_choices;
+}
+
+
+/**
+* Retrieves slider names and generate the select list
+* @package Customizr
+* @since Customizr 3.0.1
+*/
+function czr_fn_slider_choices() {
+  $__options      =   get_option('tc_theme_options');
+  $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
+
+  $slider_choices = array(
+    0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
+    'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
+    'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
+  );
+
+  if ( $slider_names ) {
+    foreach( $slider_names as $tc_name => $slides) {
+      $slider_choices[$tc_name] = $tc_name;
+    }
+  }
+
+  return $slider_choices;
+}
+
+
+/**
+* active callback of section 'customizr_go_pro'
+* @return  bool
+*/
+function czr_fn_pro_section_active_cb() {
+    return ! czr_fn_isprevdem();
+}
+
+
+
+/***************************************************************
+* SANITIZATION HELPERS
+***************************************************************/
+/**
+ * adds sanitization callback funtion : textarea
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+function czr_fn_sanitize_textarea( $value) {
+  $value = esc_html( $value);
+  return $value;
+}
+
+
+
+/**
+ * adds sanitization callback funtion : number
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+function czr_fn_sanitize_number( $value) {
+  if ( ! $value || is_null($value) )
+    return $value;
+
+  $value = esc_attr( $value); // clean input
+  $value = (int) $value; // Force the value into integer type.
+
+  return ( 0 < $value ) ? $value : null;
+}
+
+/**
+ * adds sanitization callback funtion : url
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+function czr_fn_sanitize_url( $value) {
+  $value = esc_url( $value);
+  return $value;
+}
+
+/**
+ * adds sanitization callback funtion : email
+ * @package Customizr
+ * @since Customizr 3.4.11
+ */
+function czr_fn_sanitize_email( $value) {
+  return sanitize_email( $value );
+}
+
+/**
+ * adds sanitization callback funtion : colors
+ * @package Customizr
+ * @since Customizr 1.1.4
+ */
+function czr_fn_sanitize_hex_color( $color ) {
+  if ( $unhashed = sanitize_hex_color_no_hash( $color ) )
+    return '#' . $unhashed;
+
+  return $color;
+}
+
+
+/**
+* Change upload's path to relative instead of absolute
+* @package Customizr
+* @since Customizr 3.1.11
+*/
+function czr_fn_sanitize_uploads( $url ) {
+  $upload_dir = wp_upload_dir();
+  return str_replace($upload_dir['baseurl'], '', $url);
 }
