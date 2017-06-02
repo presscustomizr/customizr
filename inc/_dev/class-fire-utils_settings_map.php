@@ -25,12 +25,8 @@ class CZR_utils_settings_map {
             global $wp_version;
             $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
 
-            //Be sure that all these files exist
-            //I'm mostly thinking about server caching issues when users update
-            //This is just an edge case, but let's be pedantic
-
             //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
-            if ( $_is_settings_map_available = file_exists( TC_BASE . 'core/functions.php' ) ) {
+            if ( file_exists( TC_BASE . 'core/functions.php' ) ) {
                   require_once( TC_BASE . 'core/functions.php' );
             }
 

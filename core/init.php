@@ -549,3 +549,12 @@ if ( ! function_exists( 'CZR' ) ) {
 
 // Fire Customizr
 CZR();
+
+do_action('czr_load');
+
+
+//may be load pro
+if ( CZR_IS_PRO ) {
+    require_once( get_template_directory() . '/core/init-pro.php' );
+    new CZR_init_pro(CZR___::$theme_name );
+}

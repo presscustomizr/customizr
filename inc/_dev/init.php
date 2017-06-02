@@ -337,5 +337,4 @@ if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
   }
 }
 
-
 ?>
