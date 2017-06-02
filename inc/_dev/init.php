@@ -90,23 +90,6 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
 
-    protected function czr_fn_setup_constants() {
-
-      parent::czr_fn_setup_constants();
-      //retro compat
-      //TC_BASE_URL http url of the loaded parent theme (retro compat)
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
-      //TC_BASE_CHILD is the root server path of the child theme
-      if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , CZR_BASE_CHILD );
-      //TC_BASE_URL http url of the loaded parent theme (retro compat)
-      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
-      //TC_BASE_URL_CHILD http url of the loaded child theme
-      if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
-
-    }
-
-
-
 
     /**
     * Class instanciation using a singleton factory :

@@ -121,9 +121,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'addons'    => apply_filters( 'tc_addons_classes' , array() )
                 )
               );
-              //check the context
-//              if ( CZR_IS_PRO )
-//                require_once( sprintf( '%score/init-pro.php' , CZR_BASE ) );
 
               //set files to load according to the context : admin / front / customize
               add_filter( 'czr_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
@@ -199,6 +196,12 @@ if ( ! class_exists( 'CZR___' ) ) :
             //load front templates tags files
             if ( ! is_admin() )
               $this -> czr_fn_require_once( CZR_PHP_FRONT_PATH . 'template-tags/template-tags.php' );
+
+            //may be load pro
+            if ( CZR_IS_PRO ) {
+                new CZR_init_pro(CZR___::$theme_name );
+            }
+
         }//czf_fn_load()
 
 
@@ -530,8 +533,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
 
-
-
   }//end of class
 endif;//endif;
 
@@ -547,14 +548,7 @@ if ( ! function_exists( 'CZR' ) ) {
     }
 }
 
+//require init-pro if it exists
+require_once( get_template_directory() . '/core/init-pro.php' );
 // Fire Customizr
 CZR();
-
-do_action('czr_load');
-
-
-//may be load pro
-if ( CZR_IS_PRO ) {
-    require_once( get_template_directory() . '/core/init-pro.php' );
-    new CZR_init_pro(CZR___::$theme_name );
-}

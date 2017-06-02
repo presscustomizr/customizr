@@ -152,6 +152,17 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
           //IS DEV MODE
           if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
 
+          //retro compat for FPU and WFC plugins
+
+          //TC_BASE_URL http url of the loaded parent theme (retro compat)
+          if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
+          //TC_BASE_CHILD is the root server path of the child theme
+          if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , CZR_BASE_CHILD );
+          //TC_BASE_URL http url of the loaded parent theme (retro compat)
+          if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
+          //TC_BASE_URL_CHILD http url of the loaded child theme
+          if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
+
         }
 
   }
