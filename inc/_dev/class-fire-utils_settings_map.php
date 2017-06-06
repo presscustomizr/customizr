@@ -17,7 +17,6 @@ class CZR_utils_settings_map {
 
       static $instance;
       private $is_wp_version_before_4_0;
-      private $_is_settings_map_available;
 
       function __construct () {
 
@@ -26,28 +25,11 @@ class CZR_utils_settings_map {
             global $wp_version;
             $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
 
-            //Be sure that all these files exist
-            //I'm mostly thinking about server caching issues when users update
-            //This is just an edge case, but let's be pedantic
-
             //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
-            if ( $_is_settings_map_available = file_exists( TC_BASE . 'core/functions.php' ) ) {
+            if ( file_exists( TC_BASE . 'core/functions.php' ) ) {
                   require_once( TC_BASE . 'core/functions.php' );
             }
 
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
-            // }
-
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
-            // }
-            // //require core utils settings map
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
-            // }
-
-            $this->_is_settings_map_available = $_is_settings_map_available;
 
       }//end of construct
 
@@ -62,14 +44,6 @@ class CZR_utils_settings_map {
       * TODO: unify this
       */
       public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
-
-            //when not all the deps have been satisfied return an empty array
-            //this will produce only php warnings
-            //TODO: consider to raise an exception
-            if ( empty( $this->_is_settings_map_available ) ) {
-                  return array();
-            }
-
 
             //Hook callbacks are defined in core/utils/class-fire-utils_settings_map.php
             if ( ! empty( CZR___::$customizer_map ) ) {
@@ -476,17 +450,6 @@ class CZR_utils_settings_map {
 
             //to add
             $_to_add  = array(
-                  //enable/disable top border
-                  'tc_top_border' => array(
-                                    'default'       =>  1,//top border on by default
-                                    'label'         =>  __( 'Display top border' , 'customizr' ),
-                                    'control'       =>  'CZR_controls' ,
-                                    'section'       =>  'header_layout_sec' ,
-                                    'type'          =>  'checkbox' ,
-                                    'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                                    'priority'      => 10
-                  ),
-
                   'tc_display_boxed_navbar'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                     'control'       => 'CZR_controls' ,
@@ -965,30 +928,6 @@ class CZR_utils_settings_map {
             return array_merge( $_old_sections, $_sections );
       }
 
-
-
-
-      /* Sanitize callbacks */
-      /**
-       * adds sanitization callback funtion : url
-       * @package Customizr
-       * @since Customizr 1.1.4
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_url( $value) {
-        $value = esc_url( $value);
-        return $value;
-      }
-
-      /**
-       * adds sanitization callback funtion : email
-       * @package Customizr
-       * @since Customizr 3.4.11
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_email( $value) {
-        return sanitize_email( $value );
-      }
 
       /**
       * Returns the list of available skins from child (if exists) and parent theme

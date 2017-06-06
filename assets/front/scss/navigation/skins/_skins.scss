@@ -114,21 +114,19 @@ $secondary-color-dark   : $grey;
     color: $primary-color;
   }
   .branding {
-    a { color:$primary-color; }
-    .navbar-brand-tagline { color: $secondary-color }
-    .has_tagline {
-      a {
-        span::after {
-          content: "";
-          position: absolute;
-          width: 33%;
-          height: 3px;
-          bottom: 0;
-          left: 0;
-          background: $primary-color;
-        }
+    a {
+      color:$primary-color;
+      span::after {
+        content: "";
+        position: absolute;
+        width: 33%;
+        height: 3px;
+        bottom: 0;
+        left: 0;
+        background: $primary-color;
       }
     }
+    .navbar-brand-tagline { color: $secondary-color }
   }
 
    .mobile-woocart__container a { color:$primary-color; }

@@ -9,7 +9,7 @@ if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
 }
 
 //may be load pro
-if ( czr_fn_is_pro() ) {
+if ( CZR_IS_PRO ) {
     new CZR_init_pro(CZR___::$theme_name );
 }
 ?>
