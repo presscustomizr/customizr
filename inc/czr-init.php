@@ -2988,17 +2988,6 @@ class CZR_utils_settings_map {
 
             //to add
             $_to_add  = array(
-                  //enable/disable top border
-                  'tc_top_border' => array(
-                                    'default'       =>  1,//top border on by default
-                                    'label'         =>  __( 'Display top border' , 'customizr' ),
-                                    'control'       =>  'CZR_controls' ,
-                                    'section'       =>  'header_layout_sec' ,
-                                    'type'          =>  'checkbox' ,
-                                    'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                                    'priority'      => 10
-                  ),
-
                   'tc_display_boxed_navbar'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                     'control'       => 'CZR_controls' ,

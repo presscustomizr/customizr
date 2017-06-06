@@ -6,6 +6,10 @@
   background-color: $skin-darkest;
 }
 
+//header top border
+.tc-header.border-top {
+  border-color: $skin;
+}
 
 .post-info a:not(.btn) {
     &:hover {

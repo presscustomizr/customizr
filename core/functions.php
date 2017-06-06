@@ -776,6 +776,16 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 13,
           ),*/
           /*end_new*/
+          //enable/disable top border
+          'tc_top_border' => array(
+                            'default'       =>  1,//top border on by default
+                            'label'         =>  __( 'Display top border' , 'customizr' ),
+                            'control'       =>  'CZR_controls' ,
+                            'section'       =>  'header_layout_sec' ,
+                            'type'          =>  'checkbox' ,
+                            'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
+                            'priority'      => 10
+          ),
           'tc_show_tagline'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,

@@ -86,12 +86,19 @@ class CZR_header_model_class extends CZR_Model {
       array_push( $elements_container_class, 'navbar-to-stick' );
     }*/
 
-    /* Submenus effect */
-    if ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) )
-      array_push( $element_class, 'czr-submenu-fade' );
-    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) )
-      array_push( $element_class, 'czr-submenu-move' );
+    /* TOP BORDER */
+    if ( 1 == esc_attr( czr_fn_opt( 'tc_top_border') ) ) {
+      $element_class[] = 'border-top';
+    }
 
+    /* Submenus effect */
+    if ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) {
+      $element_class[] = 'czr-submenu-fade';
+    }
+
+    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) {
+      $element_class[] = 'czr-submenu-move';
+    }
 
     return array_merge( $model, array(
       'element_class'            => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
@@ -130,7 +137,13 @@ class CZR_header_model_class extends CZR_Model {
   * @package Customizr
   */
   function czr_fn_user_options_style_cb( $_css ) {
-    return $_css;
+    //TOP BORDER
+    if ( 1 == esc_attr( czr_fn_opt( 'tc_top_border') ) ) {
+      $_css = sprintf("%s\n%s",
+          $_css,
+            ".tc-header.border-top { border-top-width: 5px; border-top-style: solid }"
+      );
+    }
 
     //HEADER Z-INDEX
     if ( 100 != esc_attr( czr_fn_opt( 'tc_sticky_z_index') ) ) {
