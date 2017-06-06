@@ -217,9 +217,15 @@ a.czr-format-link {
   background: $white;
   outline: 1px solid #efefef;
   outline-offset: -1px;
+  z-index: 1;
+  //fix round divs overflowing the grid borders (inset outline)
+  & .sections-wrapper {
+    z-index: -1;
+    position: relative;
+  }
 }
 
-/* specific to grid layout (masonry/classic) */
+// specific to grid layout (masonry/classic)
 .grid {
   .tc-content {
     padding: $base-line-height*2 15px;

@@ -4,12 +4,14 @@
 $skin                     : #5a5a5a;
 
 $skin-dark                : darken( $skin, 12% );
-$skin-darkest             : darken( $skin, 20% );
-$skin-light               : lighten( $skin, 12% );
-$skin-lightest            : lighten( $skin, 25% );
+$skin-light               : lighten( $skin, 15% );
+$skin-lightest            : lighten( $skin, 20% );
 
-$skin-link-color          : $skin;
-$skin-link-color-hover    : $skin-darkest;
+$skin-link-color                : $skin;
+$skin-link-color-hover          : $skin-dark;
+$skin-lightest-color-shade-high : rgba($skin-lightest, 0.2);
+$skin-dark-color-shade-high     : rgba($skin-dark, 0.2);
+$skin-dark-color-shade-low      : rgba($skin-dark, 0.8);
 
 $alert         : #e74c3c;
 $black         : #202020;

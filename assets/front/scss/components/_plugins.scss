@@ -37,14 +37,14 @@
   input.button[class*=alt],
   a.button[class*=alt],
   button.button[class*=alt] {
-    @extend .btn-skin-darkest;
+    @extend .btn-skin-dark;
   }
 
   input#submit.alt.disabled,
   input.button.alt.disabled,
   button.button.alt.disabled,
   a.button.alt.disabled {
-    @extend .btn-skin-darkest;
+    @extend .btn-skin-dark;
   }
 
   //fix circular on sale labels over woocommerce thumbs
@@ -152,4 +152,3 @@
     }
   }
 }
-

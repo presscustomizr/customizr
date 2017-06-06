@@ -931,9 +931,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                   'skin_color_background-color',
                   'skin_color_border-color',
 
-                  'skin_darkest_color_color',
-                  'skin_darkest_color_background-color',
-                  'skin_darkest_color_border-color',
+                  'skin_dark_color_color',
+                  'skin_dark_color_background-color',
+                  'skin_dark_color_border-color',
                )  as $filter_key ) {
 
          add_filter( "czr_dynamic_{$filter_key}_prop_selectors", str_replace('-', '_', "czr_fn_wc_{$filter_key}_prop_selectors") );
@@ -995,7 +995,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
 
-      function czr_fn_wc_skin_darkest_color_color_prop_selectors( $selectors ) {
+      function czr_fn_wc_skin_dark_color_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
             '.woocommerce input#submit[class*=alt]:hover',
             '.woocommerce input.button[class*=alt]:hover',
@@ -1024,7 +1024,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
          ));
       }
 
-      function czr_fn_wc_skin_darkest_color_background_color_prop_selectors( $selectors ) {
+      function czr_fn_wc_skin_dark_color_background_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
             '.woocommerce input#submit[class*=alt]',
             '.woocommerce input.button[class*=alt]',
@@ -1037,7 +1037,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
          ));
       }
 
-      function czr_fn_wc_skin_darkest_color_border_color_prop_selectors( $selectors ) {
+      function czr_fn_wc_skin_dark_color_border_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
             '.woocommerce input#submit[class*=alt]:hover',
             '.woocommerce input.button[class*=alt]:hover',
