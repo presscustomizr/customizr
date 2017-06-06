@@ -4425,6 +4425,10 @@ a.czr-format-link:hover::before {
   }
 }
 
+.grid-container__classic .expanded .entry-summary .entry-title a {
+  color: white;
+}
+
 .grid-container__classic .tc-grid-caption .tc-g-cont {
   max-height: 100%;
   overflow: hidden;

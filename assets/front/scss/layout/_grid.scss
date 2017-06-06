@@ -408,6 +408,7 @@ a.czr-format-link {
           background: rgba(0,0,0,.4);
           padding: 8%;
           height: auto;
+
           //@media screen and (max-width: 767px)
           @include media-breakpoint-down(sm) {
             bottom: 0;
@@ -417,6 +418,9 @@ a.czr-format-link {
             .tc-g-cont { max-height: 70%; }
             .entry-title { margin-top: $base-line-height / 2 }
           }//@media
+          .entry-title a {
+            color: white;
+          }
         }//.expanded .entry-summary
       }//.grid-container__classic .expanded
 
