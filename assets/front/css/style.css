@@ -2299,6 +2299,28 @@ select:-webkit-autofill {
   background-color: #272727;
 }
 
+.btn-skin-h-dark {
+  background-color: #5a5a5a;
+  color: #fff;
+  border-color: #5a5a5a;
+}
+
+.btn-skin-h-dark:hover, .btn-skin-h-dark:focus, .btn-skin-h-dark:active {
+  color: #fff;
+  background-color: #3b3b3b;
+  border-color: #3b3b3b;
+}
+
+.btn-skin-h-dark.inverted {
+  background-color: #3b3b3b;
+  border-color: #3b3b3b;
+}
+
+.btn-skin-h-dark.inverted:hover, .btn-skin-h-dark.inverted:focus, .btn-skin-h-dark.inverted:active {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+
 input[type=submit] {
   cursor: pointer;
 }
@@ -2795,6 +2817,10 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 /* Carousel dots for the main slider */
 [id^=customizr-slider-] .flickity-page-dots {
   bottom: 30px;
+}
+
+[id^=customizr-slider-] .flickity-page-dots .dot {
+  background-color: white;
 }
 
 [id^=customizr-slider-] .flickity-page-dots .dot::before {
@@ -6205,10 +6231,6 @@ section.post-content {
 
 .post-navigation {
   background-color: rgba(154, 154, 154, 0.4);
-}
-
-.flickity-page-dots .dot {
-  background-color: #3b3b3b;
 }
 
 a.czr-format-link:hover,

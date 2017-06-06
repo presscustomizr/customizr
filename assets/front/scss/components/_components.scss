@@ -188,6 +188,29 @@
   }
 }
 
+// .btn modifier
+.btn-skin-h-dark {
+  background-color: $skin;
+  color: $white;
+  border-color: $skin;
+
+  &:hover, &:focus, &:active {
+    color: $white;
+    background-color: $skin-dark;
+    border-color: $skin-dark;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: $skin-dark;
+    border-color: $skin-dark;
+    &:hover, &:focus, &:active {
+      background-color: $skin;
+      border-color: $skin;
+    }
+  }
+}
+
 input[type=submit] {
   @extend %btn_base;
   @extend .btn-skin-darkest;
@@ -601,6 +624,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   .flickity-page-dots {
     bottom: 30px;
     .dot {
+      background-color: white;
       &::before { content: none; }
     }
   }

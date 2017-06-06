@@ -176,6 +176,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin:active',
                                        '.btn-skin:focus',
                                        '.btn-skin:hover',
+                                       '.btn-skin-h-dark',
+                                       '.btn-skin-h-dark.inverted:active',
+                                       '.btn-skin-h-dark.inverted:focus',
+                                       '.btn-skin-h-dark.inverted:hover',
                                        '.tc-header.border-top',
                                  ),
                                  'background-color' => array(
@@ -185,6 +189,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin.inverted:active',
                                        '.btn-skin.inverted:focus',
                                        '.btn-skin.inverted:hover',
+                                       '.btn-skin-h-dark',
+                                       '.btn-skin-h-dark.inverted:active',
+                                       '.btn-skin-h-dark.inverted:focus',
+                                       '.btn-skin-h-dark.inverted:hover',
                                  )
                            )
                      ),
@@ -282,6 +290,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-dark.inverted:active',
                                        '.btn-skin-dark.inverted:focus',
                                        '.btn-skin-dark.inverted:hover',
+                                       '.btn-skin-h-dark:active',
+                                       '.btn-skin-h-dark:focus',
+                                       '.btn-skin-h-dark:hover',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
                                  ),
 
                                  'background-color' => array(
@@ -289,7 +303,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-dark.inverted:active',
                                        '.btn-skin-dark.inverted:focus',
                                        '.btn-skin-dark.inverted:hover',
-                                       '.flickity-page-dots .dot',
+                                       '.btn-skin-h-dark:active',
+                                       '.btn-skin-h-dark:focus',
+                                       '.btn-skin-h-dark:hover',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
                                  ),
                            )
                      ),
