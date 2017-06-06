@@ -753,11 +753,7 @@ select:-webkit-autofill {
   color: #202020;
 }
 
-.header-skin-light .branding .navbar-brand-tagline {
-  color: #777;
-}
-
-.header-skin-light .branding .has_tagline a span::after {
+.header-skin-light .branding a span::after {
   content: "";
   position: absolute;
   width: 33%;
@@ -765,6 +761,10 @@ select:-webkit-autofill {
   bottom: 0;
   left: 0;
   background: #202020;
+}
+
+.header-skin-light .branding .navbar-brand-tagline {
+  color: #777;
 }
 
 .header-skin-light .mobile-woocart__container a {
@@ -1044,11 +1044,7 @@ select:-webkit-autofill {
   color: #fff;
 }
 
-.header-skin-dark .branding .navbar-brand-tagline {
-  color: #eceeef;
-}
-
-.header-skin-dark .branding .has_tagline a span::after {
+.header-skin-dark .branding a span::after {
   content: "";
   position: absolute;
   width: 33%;
@@ -1056,6 +1052,10 @@ select:-webkit-autofill {
   bottom: 0;
   left: 0;
   background: #fff;
+}
+
+.header-skin-dark .branding .navbar-brand-tagline {
+  color: #eceeef;
 }
 
 .header-skin-dark .mobile-woocart__container a {
@@ -1664,7 +1664,8 @@ select:-webkit-autofill {
 }
 
 .branding .navbar-brand {
-  font-size: 1.75em;
+  font-size: 1.5em;
+  line-height: 1.5em;
   margin: 0;
   vertical-align: middle;
 }
@@ -1672,12 +1673,6 @@ select:-webkit-autofill {
 .navbar-brand img {
   width: auto;
   max-width: 100%;
-}
-
-.branding .navbar-brand.has_tagline {
-  margin: 0;
-  font-size: 1.5em;
-  line-height: 1.5em;
 }
 
 .branding .navbar-brand-tagline {
