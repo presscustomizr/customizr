@@ -181,7 +181,7 @@ module.exports = {
     src: [
       '<%= paths.front_js_4 %>fmk/tc-js-params.js',
       '<%= paths.front_js_4 %>fmk/oldBrowserCompat.js',
-      '<%= paths.front_js_4 %>vendors/custom-bootstrap.min.js',
+      '<%= paths.front_js_4 %>vendors/custom-bootstrap.js',
       '<%= paths.front_js_4 %>vendors/underscore-min.js',
       '<%= paths.front_js_4 %>jquery-plugins/jqueryimgOriginalSizes.js',
       '<%= paths.front_js_4 %>jquery-plugins/jqueryaddDropCap.js',
@@ -199,6 +199,7 @@ module.exports = {
       //maybe move following two outside and enqueue only when needed
       '<%= paths.front_js_4 %>vendors/flickity-pkgd.js',
       '<%= paths.front_js_4 %>vendors/jquery-mCustomScrollbar.js',
+      '<%= paths.front_js_4 %>vendors/jquery.fittext.js',
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',

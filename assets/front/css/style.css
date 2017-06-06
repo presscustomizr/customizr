@@ -352,12 +352,6 @@ img.v-centered {
   content: "";
 }
 
-.section-slider {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
 .czr-valign {
   -webkit-transform: translate(0, 50%);
   -moz-transform: translate(0, 50%);
@@ -2944,6 +2938,47 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   border: none;
 }
 
+/* caousel */
+.czr-carousel {
+  position: relative;
+  overflow: hidden;
+  /* If automatic centering is enabled */
+}
+
+.carousel-caption {
+  height: auto;
+  max-height: 80%;
+  width: 80%;
+  text-align: center;
+  z-index: 3;
+  overflow: hidden;
+  /* temporary centering */
+  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+}
+
+.center-slides-disabled .carousel-image img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.czr-carousel .center-slides-enabled > .item > .carousel-image img {
+  display: block;
+  position: relative;
+}
+
 /* avatars */
 .avatar {
   border-radius: 50%;
@@ -3702,24 +3737,23 @@ section[class^="post-"] .gallery.row {
   color: #fff;
 }
 
-.slider-text > h2 {
+[id^=customizr-slider-] .carousel-caption > h1 {
   margin: 0;
   line-height: 1.1;
+  font-weight: 700;
+  font-size: 2.98598em;
 }
 
-.slider-text > h2 + h3 {
+[id^=customizr-slider-] h1.very-big {
+  font-size: 65px;
+  line-height: 1.4em;
+  margin-bottom: 0.2em;
+}
+
+[id^=customizr-slider-] .czrs-subtitle {
   margin-top: 0;
-  margin-bottom: 1.25em;
-}
-
-.section {
-  position: relative;
-  padding: 0;
-  margin: 0;
-}
-
-.section-slider {
-  overflow: hidden;
+  margin-bottom: 0.5em;
+  font-size: 30px;
 }
 
 [id^=customizr-slider-] .bg-link {
@@ -3741,26 +3775,19 @@ section[class^="post-"] .gallery.row {
   z-index: 4;
 }
 
+[id^=customizr-slider-] .carousel-inner,
+[id^=customizr-slider-] .carousel-cell {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .czr-slider-holder {
   position: relative;
   height: 100%;
   width: 100%;
 }
 
-/*
-.section-slider .container {
-  z-index: 3;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-  top: 0;
-}
-
-.parallax  .content {
-  @extend %vertical-align;
-}
-*/
 #main-wrapper .section.custom {
   margin: 2.5em;
 }

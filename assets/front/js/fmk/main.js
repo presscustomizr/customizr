@@ -1259,6 +1259,32 @@ var czrapp = czrapp || {};
                   /* Enable page dots on fly (for the main slider only, for the moment, consider to make it dependend to data-flickity-dots)*/
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', self._slider_dots );
 
+                  /* Fire fittext */
+                  czrapp.$_body.on( 'czr-flickity-ready.flickity', function() {
+                    $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 65,//the default max font-size
+                                      minFontSize : 30,
+                                }
+                    );
+                    $(this).find( '.carousel-caption .czrs-subtitle' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 35,//the default max font-size
+                                      minFontSize : 20,
+                                }
+                    );
+                    $(this).find( '.carousel-caption .czrs-cta' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 16,//the default max font-size
+                                      minFontSize : 14,
+                                }
+                    );
+                  });
+
+
                   /* Disable controllers when the first or the latest slide is in the viewport (for the related posts) */
                   czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', self._slider_arrows_enable_toggler );
 

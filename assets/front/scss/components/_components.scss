@@ -680,6 +680,48 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
 }
 
+/* caousel */
+
+.czr-carousel {
+  position: relative;
+  overflow: hidden;
+
+  @at-root .carousel-caption {
+    height: auto;
+    max-height: 80%;
+    width: 80%;
+    text-align: center;
+    z-index: 3;
+    overflow: hidden;
+
+    /* temporary centering */
+    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  @at-root .carousel-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  @at-root .center-slides-disabled .carousel-image img {
+    /* temporary CSS centering */
+    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  /* If automatic centering is enabled */
+  .center-slides-enabled > .item > .carousel-image img {
+    display: block;
+    position: relative;
+  }
+}
 
 /* avatars */
 

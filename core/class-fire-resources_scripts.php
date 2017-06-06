@@ -59,7 +59,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-js-arraymap-proto' => array(
 
                            'path' => $_shared_path,
-                           'files' => array( 'oldBrowserCompat.min.js' ),
+                           'files' => array( 'oldBrowserCompat.min.js', 'oldBrowserCompat.min.js' ),
                            'dependencies' => array()
 
                      ),
@@ -123,12 +123,21 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                            'dependencies' => array( 'jquery' )
 
                      ),
+                     //fittext
+
+                     'tc-fittext' => array(
+
+                           'path' => $_front_path . 'vendors/',
+                           'files' => array( 'jquery-fittext.js' ),
+                           'dependencies' => array( 'jquery' )
+
+                     ),
 
                      //holder
                      'tc-holder' => array(
 
                            'path' => $_front_path . 'vendors/',
-                           'files' => array( 'holder.min.js' ),
+                           'files' => array( 'holder.min.js', 'holder.min.js' ),
                            'dependencies' => array( 'jquery' )
 
                      ),
@@ -158,7 +167,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryaddDropCap.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -166,7 +175,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryimgSmartLoad.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -174,7 +183,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryextLinks.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -182,7 +191,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryParallax.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -290,6 +299,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-mcs',
                      'tc-flickity',
                      'tc-vivus',
+                     'tc-fittext',
                      'tc-raf',
                   ) );
 

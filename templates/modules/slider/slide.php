@@ -26,15 +26,15 @@ if ( czr_fn_get( 'has_caption' ) ) :
   <div class="carousel-caption slider-text">
     <?php if ( czr_fn_get( 'title' ) ): ?>
     <!-- TITLE -->
-      <h2 class="display thick" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></h2>
+      <h1 class="czrs-title display-1 thick very-big" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></h2>
     <?php endif; ?>
     <?php if ( czr_fn_get( 'subtitle' ) ) : ?>
     <!-- TEXT -->
-      <h3 class="semi-bold" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'subtitle' ) ?></h3>
+      <h3 class="czrs-subtitle semi-bold" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'subtitle' ) ?></h3>
     <?php endif; ?>
     <!-- BUTTON -->
     <?php if ( czr_fn_get( 'button_text' ) ): ?>
-      <a class="btn btn-large btn-skin-h-dark" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
+      <a class="czrs-cta btn btn-skin-h-dark caps" href="<?php czr_fn_echo( 'button_link' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"><?php czr_fn_echo( 'button_text' ) ?></a>
     <?php endif; ?>
   </div>
   <?php
