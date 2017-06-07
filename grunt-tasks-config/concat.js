@@ -199,7 +199,7 @@ module.exports = {
       //maybe move following two outside and enqueue only when needed
       '<%= paths.front_js_4 %>vendors/flickity-pkgd.js',
       '<%= paths.front_js_4 %>vendors/jquery-mCustomScrollbar.js',
-      '<%= paths.front_js_4 %>vendors/jquery.fittext.js',
+      '<%= paths.front_js_4 %>vendors/jquery-fittext.js',
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',
