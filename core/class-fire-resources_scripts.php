@@ -123,15 +123,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                            'dependencies' => array( 'jquery' )
 
                      ),
-                     //fittext
 
-                     'tc-fittext' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery-fittext.js' ),
-                           'dependencies' => array( 'jquery' )
-
-                     ),
 
                      //holder
                      'tc-holder' => array(
@@ -211,6 +203,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                      ),
 
+                     //fittext
+                     'tc-fittext' => array(
+
+                           'path' => $_front_path . 'jquery-plugins/',
+                           'files' => array( 'jqueryFittext.js' ),
+                           'dependencies' => array( 'jquery' )
+
+                     ),
 
                      /*
                      * OUR PARTS
@@ -228,8 +228,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                           'path' => $_front_path  . 'fmk/',
                           'files' => array( 'main.js' ),
                           'dependencies' => $this -> czr_fn_is_lightbox_required() ?
-                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp' , 'underscore' ) :
-                                 array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
+                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp', 'tc-fittext', 'underscore' ) :
+                                 array( 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
                      ),
 
                      //concats all scripts
@@ -299,7 +299,6 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-mcs',
                      'tc-flickity',
                      'tc-vivus',
-                     'tc-fittext',
                      'tc-raf',
                   ) );
 
@@ -315,6 +314,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-center-images',
                      'tc-parallax',
                      'tc-animate-svg',
+                     'tc-fittext',
 
                      'tc-main-front',
                   ) );

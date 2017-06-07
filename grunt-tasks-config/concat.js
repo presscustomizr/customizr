@@ -192,6 +192,7 @@ module.exports = {
       '<%= paths.front_js_4 %>jquery-plugins/jqueryAnimateSvg.js',
       '<%= paths.front_js_4 %>fmk/requestAnimationFramePolyfill.js',
       '<%= paths.front_js_4 %>fmk/matchMediaPolyfill.js',
+      '<%= paths.front_js_4 %>jquery-plugins/jqueryFittext.js',
       '<%= paths.front_js_4 %>fmk/smoothScroll.js',
       '<%= paths.front_js_4 %>fmk/outline.js',
       '<%= paths.front_js_4 %>vendors/waypoints.js',
@@ -199,7 +200,6 @@ module.exports = {
       //maybe move following two outside and enqueue only when needed
       '<%= paths.front_js_4 %>vendors/flickity-pkgd.js',
       '<%= paths.front_js_4 %>vendors/jquery-mCustomScrollbar.js',
-      '<%= paths.front_js_4 %>vendors/jquery-fittext.js',
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',
