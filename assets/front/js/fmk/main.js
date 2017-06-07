@@ -1260,7 +1260,7 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', self._slider_dots );
 
                   /* Fire fittext */
-                  czrapp.$_body.on( 'czr-flickity-ready.flickity', function() {
+                  czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
                     $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
                                 1.5,//<=kompressor
                                 {
