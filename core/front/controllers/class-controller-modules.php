@@ -10,6 +10,11 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
       //why this class extends CZR_controllers?
     }
 
+    //TODO: option based
+    function czr_fn_display_view_related_posts() {
+      return apply_filters( 'czr_display_related_posts', czr_fn_is_possible( 'post' ) );
+    }
+
     function czr_fn_display_view_search_full_page () {
       return czr_fn_has( 'nav_search' );
     }

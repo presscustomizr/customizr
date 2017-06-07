@@ -6,8 +6,10 @@
 }
 
 
-#main-wrapper.bg { background: $grey-lightest; }
-#main-wrapper { padding-bottom:$base-line-height*4; }
+#main-wrapper,
+#content {
+  padding-bottom:$base-line-height*2;
+}
 
 #main-wrapper {
   &::before, &::after {
@@ -32,41 +34,60 @@
   }
 }
 
-.slider-text > h2 { margin:0; line-height: 1.1 }
-.slider-text > h2 + h3 { margin-top:0; margin-bottom: $base-line-height; }
-.section { position: relative; padding:0; margin:0;}
-.section-slider {
-  @extend %vertical-align-parent;
-  overflow: hidden;
-}
+
 [id^=customizr-slider-] {
-  .bg-link { z-index: 4 }
+
+  .carousel-caption > h1 {
+      margin: 0;
+      line-height: 1.1;
+      font-weight: 700;
+      font-size: 2.98598em;
+  }
+
+  h1.very-big {
+    font-size: 65px;
+    line-height: 1.4em;
+    margin-bottom: 0.2em;
+  }
+
+  .czrs-subtitle {
+      margin-top: 0;
+      margin-bottom: 0.5em;
+      font-size: 30px;
+  }
+
+  .bg-link {
+    z-index: 4
+  }
   .btn-edit {
     position: absolute;
-    &.slider-btn-edit { bottom: 10px;  left: 10px }
-    &.slide-btn-edit { bottom: 10%; right: 10px; z-index: 4 }
+    &.slider-btn-edit {
+      bottom: 10px;
+      left: 10px
+    }
+    &.slide-btn-edit {
+      bottom: 10%;
+      right: 10px;
+      z-index: 4
+    }
+  }
+  .carousel-inner,
+  .carousel-cell {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 }
+
 .czr-slider-holder {
   position: relative;
   height: 100%;
   width: 100%;
 }
-/*
-.section-slider .container {
-  z-index: 3;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-  top: 0;
-}
 
-.parallax  .content {
-  @extend %vertical-align;
+#main-wrapper .section.custom  {
+  margin: $base-line-height*2;
 }
-*/
-#main-wrapper .section.custom  { margin: $base-line-height*2; }
 
 .section .image {
   background-size: cover;

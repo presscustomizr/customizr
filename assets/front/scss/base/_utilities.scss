@@ -131,7 +131,8 @@ img.v-centered {
   @include czr__responsive-wrapper( 1, 1 );
 }
 
-.czr__r-wFP {
+//TCT stays for TC thumb
+.czr__r-wTCT {
   @include czr__responsive-wrapper( 270, 250 ); //default fp image size
   max-width: 270px; /* this actually depends on the thumb size */
   margin: 8px auto;
@@ -146,5 +147,8 @@ img.v-centered {
     backface-visibility: hidden;
     left: 0;
     top: 0;
+  }
+  .grid__item > & {
+    z-index: -1;
   }
 }

@@ -1,17 +1,21 @@
 //definitions
-%skin-darkest-color {
-  color: $skin-darkest
+%skin-dark-color {
+  color: $skin-dark
 }
-%skin-darkest-backround-color {
-  background-color: $skin-darkest;
+%skin-dark-background-color {
+  background-color: $skin-dark;
 }
 
+//header top border
+.tc-header.border-top {
+  border-color: $skin;
+}
 
 .post-info a:not(.btn) {
     &:hover {
       color: $skin-link-color-hover;
       span::after, span::before {
-        @extend %skin-darkest-backround-color;
+        @extend %skin-dark-background-color;
       }
     }
 }
@@ -26,7 +30,7 @@
       color: $skin-link-color-hover;
     }
     &:hover {
-      @extend %skin-darkest-backround-color;
+      @extend %skin-dark-background-color;
     }
 }
 
@@ -42,13 +46,13 @@
 [class*="grid-container__"] .hover .entry-title a {
   color: $skin-link-color-hover;
   &::after {
-    background-color: $skin-link-color;
+    @extend %skin-dark-background-color;
   }
 }
 [class*="grid-container__"] .entry-title a:hover {
   color: $skin-link-color;
   &::after {
-    background-color: $skin-link-color;
+    @extend %skin-dark-background-color;
   }
 }
 
@@ -63,22 +67,18 @@
       color: $skin-link-color-hover;
     }
     .widget:not(.widget_shopping_cart) a:not(.btn):before {
-      @extend %skin-darkest-backround-color;
+      @extend %skin-dark-background-color;
     }
 }
 
 .pagination {
-  color: $skin-darkest;
+  color: $skin-dark;
 }
 
 .post-navigation {
-  background-color:  rgba($skin-lightest, 0.4);
+  background-color:  $skin-lightest-color-shade-high;
 }
 
-//slider dots
-.flickity-page-dots .dot {
-  background-color: $skin-dark;
-}
 
 //link format
 a.czr-format-link {
@@ -87,25 +87,25 @@ a.czr-format-link {
     color: $skin-link-color-hover;
   }
   &::before {
-    @extend %skin-darkest-backround-color;
+    @extend %skin-dark-background-color;
   }
 }
 
 //comments and active tabs underline
 .comment-author a::before,
 .comment-link::before {
-  @extend %skin-darkest-backround-color;
+  @extend %skin-dark-background-color;
 }
 
 
 .tabs .nav-link {
 
       &:hover, &.active, &.active:hover, &.active:focus {
-        @extend %skin-darkest-color;
+        @extend %skin-dark-color;
       }
 
       &.active::before {
-        @extend %skin-darkest-backround-color;
+        @extend %skin-dark-background-color;
       }
 
 }

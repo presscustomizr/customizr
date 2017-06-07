@@ -128,32 +128,31 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          function czr_fn_maybe_write_skin_inline_css( $_css ) {
 
                //retrieve the current option
-               $skin_color                    = czr_fn_opt( 'tc_skin_color' );
+               $skin_color                     = czr_fn_opt( 'tc_skin_color' );
 
                //retrieve the default color
-               $defaults                      = czr_fn_get_default_options();
+               $defaults                       = czr_fn_get_default_options();
 
-               $def_skin_color                = isset( $defaults['tc_skin_color'] ) ? $defaults['tc_skin_color'] : false;
+               $def_skin_color                 = isset( $defaults['tc_skin_color'] ) ? $defaults['tc_skin_color'] : false;
 
                if ( in_array( $def_skin_color, array( $skin_color, strtoupper( $skin_color) ) ) )
                      return;
 
-               $skin_dark_color               = czr_fn_darken_hex( $skin_color, '12%' );
-               $skin_darkest_color            = czr_fn_darken_hex( $skin_color, '20%' );
-               $skin_light_color              = czr_fn_lighten_hex( $skin_color, '12%' );
-               $skin_lightest_color           = czr_fn_lighten_hex( $skin_color, '25%' );
+               $skin_dark_color                = czr_fn_darken_hex( $skin_color, '12%' );
+               $skin_light_color               = czr_fn_lighten_hex( $skin_color, '15%' );
+               $skin_lightest_color            = czr_fn_lighten_hex( $skin_color, '20%' );
 
                //shaded
-               $skin_lightest_color_shade_high = czr_fn_hex2rgba( $skin_lightest_color, 0.4, $array = false, $make_prop_value = true );
-               $skin_darkest_color_shade_high  = czr_fn_hex2rgba( $skin_darkest_color, 0.4, $array = false, $make_prop_value = true );
-               $skin_darkest_color_shade_low   = czr_fn_hex2rgba( $skin_darkest_color, 0.8, $array = false, $make_prop_value = true);
+               $skin_lightest_color_shade_high = czr_fn_hex2rgba( $skin_lightest_color, 0.2, $array = false, $make_prop_value = true );
+               $skin_dark_color_shade_high     = czr_fn_hex2rgba( $skin_dark_color, 0.2, $array = false, $make_prop_value = true );
+               $skin_dark_color_shade_low      = czr_fn_hex2rgba( $skin_dark_color, 0.8, $array = false, $make_prop_value = true);
 
                //LET'S DANCE
                //start computing style
-               $skin                          = array();
-               $glue                          = $this->_minify_css || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $skin                           = array();
+               $glue                           = $this->_minify_css || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
-               $skin_style_map                = array(
+               $skin_style_map                 = array(
 
                      'skin_color' => array(
                            'color'  => $skin_color,
@@ -168,7 +167,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.grid-container__classic .post-type__icon',
                                        '.post-type__icon:hover .icn-format',
                                        '.grid-container__classic .post-type__icon:hover .icn-format',
-                                       "[class*='grid-container__'] .entry-title a.czr-title:hover"
+                                       "[class*='grid-container__'] .entry-title a.czr-title:hover",
                                  ),
                                  'border-color' => array(
                                        '.czr-slider-loader-wrapper .czr-css-loader > div ',
@@ -176,6 +175,11 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin:active',
                                        '.btn-skin:focus',
                                        '.btn-skin:hover',
+                                       '.btn-skin-h-dark',
+                                       '.btn-skin-h-dark.inverted:active',
+                                       '.btn-skin-h-dark.inverted:focus',
+                                       '.btn-skin-h-dark.inverted:hover',
+                                       '.tc-header.border-top',
                                  ),
                                  'background-color' => array(
                                        "[class*='grid-container__'] .entry-title a:hover::after",
@@ -184,6 +188,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin.inverted:active',
                                        '.btn-skin.inverted:focus',
                                        '.btn-skin.inverted:hover',
+                                       '.btn-skin-h-dark',
+                                       '.btn-skin-h-dark.inverted:active',
+                                       '.btn-skin-h-dark.inverted:focus',
+                                       '.btn-skin-h-dark.inverted:hover',
                                  )
                            )
                      ),
@@ -265,50 +273,17 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                            'rules'  => array(
                                  //prop => selectors
                                  'color'  => array(
-                                       '.btn-skin-dark:active',
-                                       '.btn-skin-dark:focus',
-                                       '.btn-skin-dark:hover',
-                                       '.btn-skin-dark.inverted',
-                                 ),
-
-                                 'border-color' => array(
-                                       '.grid-container__classic.tc-grid-border .grid__item',
-                                       '.btn-skin-dark',
-                                       '.btn-skin-dark.inverted',
-                                       '.btn-skin-dark:active',
-                                       '.btn-skin-dark:focus',
-                                       '.btn-skin-dark:hover',
-                                       '.btn-skin-dark.inverted:active',
-                                       '.btn-skin-dark.inverted:focus',
-                                       '.btn-skin-dark.inverted:hover',
-                                 ),
-
-                                 'background-color' => array(
-                                       '.btn-skin-dark',
-                                       '.btn-skin-dark.inverted:active',
-                                       '.btn-skin-dark.inverted:focus',
-                                       '.btn-skin-dark.inverted:hover',
-                                       '.flickity-page-dots .dot',
-                                 ),
-                           )
-                     ),
-
-                     'skin_darkest_color' => array(
-                           'color'  => $skin_darkest_color,
-                           'rules'  => array(
-                                 //prop => selectors
-                                 'color'  => array(
                                        '.pagination',
                                        'a:hover',
                                        'a:focus',
                                        'a:active',
-                                       '.btn-skin-darkest:active',
-                                       '.btn-skin-darkest:focus',
-                                       '.btn-skin-darkest:hover',
-                                       '.btn-skin-darkest-oh:active',
-                                       '.btn-skin-darkest-oh:focus',
-                                       '.btn-skin-darkest-oh:hover',
-                                       '.btn-skin-darkest.inverted',
+                                       '.btn-skin-dark:active',
+                                       '.btn-skin-dark:focus',
+                                       '.btn-skin-dark:hover',
+                                       '.btn-skin-dark.inverted',
+                                       '.btn-skin-dark-oh:active',
+                                       '.btn-skin-dark-oh:focus',
+                                       '.btn-skin-dark-oh:hover',
                                        '.post-info a:not(.btn):hover',
                                        '.grid-container__classic .post-type__icon .icn-format',
                                        "[class*='grid-container__'] .hover .entry-title a",
@@ -323,33 +298,47 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  ),
 
                                  'border-color' => array(
-                                       '.btn-skin-darkest',
-                                       '.btn-skin-darkest.inverted',
+                                       '.grid-container__classic.tc-grid-border .grid__item',
+                                       '.btn-skin-dark',
+                                       '.btn-skin-dark.inverted',
                                        'input[type=submit]',
-                                       '.btn-skin-darkest:active',
-                                       '.btn-skin-darkest:focus',
-                                       '.btn-skin-darkest:hover',
-                                       '.btn-skin-darkest-oh:active',
-                                       '.btn-skin-darkest-oh:focus',
-                                       '.btn-skin-darkest-oh:hover',
-                                       '.btn-skin-darkest.inverted:active',
-                                       '.btn-skin-darkest.inverted:focus',
-                                       '.btn-skin-darkest.inverted:hover',
-                                       '.btn-skin-darkest-oh.inverted:active',
-                                       '.btn-skin-darkest-oh.inverted:focus',
-                                       '.btn-skin-darkest-oh.inverted:hover',
+                                       '.btn-skin-dark:active',
+                                       '.btn-skin-dark:focus',
+                                       '.btn-skin-dark:hover',
+                                       '.btn-skin-dark.inverted:active',
+                                       '.btn-skin-dark.inverted:focus',
+                                       '.btn-skin-dark.inverted:hover',
+                                       '.btn-skin-h-dark:active',
+                                       '.btn-skin-h-dark:focus',
+                                       '.btn-skin-h-dark:hover',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-dark-oh:active',
+                                       '.btn-skin-dark-oh:focus',
+                                       '.btn-skin-dark-oh:hover',
+                                       '.btn-skin-dark-oh.inverted:active',
+                                       '.btn-skin-dark-oh.inverted:focus',
+                                       '.btn-skin-dark-oh.inverted:hover',
                                        'input[type=submit]:hover',
+
                                  ),
 
                                  'background-color' => array(
+                                       '.btn-skin-dark',
+                                       '.btn-skin-dark.inverted:active',
+                                       '.btn-skin-dark.inverted:focus',
+                                       '.btn-skin-dark.inverted:hover',
+                                       '.btn-skin-h-dark:active',
+                                       '.btn-skin-h-dark:focus',
+                                       '.btn-skin-h-dark:hover',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-h-dark.inverted',
+                                       '.btn-skin-dark-oh.inverted:active',
+                                       '.btn-skin-dark-oh.inverted:focus',
+                                       '.btn-skin-dark-oh.inverted:hover',
                                        '.grid-container__classic .post-type__icon:hover',
-                                       '.btn-skin-darkest',
-                                       '.btn-skin-darkest.inverted:active',
-                                       '.btn-skin-darkest.inverted:focus',
-                                       '.btn-skin-darkest.inverted:hover',
-                                       '.btn-skin-darkest-oh.inverted:active',
-                                       '.btn-skin-darkest-oh.inverted:focus',
-                                       '.btn-skin-darkest-oh.inverted:hover',
                                        'input[type=submit]',
                                        '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
                                        "[class*='grid-container__'] .hover .entry-title a::after",
@@ -357,32 +346,32 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.comment-author a::before',
                                        '.comment-link::before',
                                        '.tabs .nav-link.active::before'
+                                 ),
+                           )
+                     ),
+
+                     'skin_dark_color_shade_high' => array(
+                           'color'  => $skin_dark_color_shade_high,
+                           'rules'  => array(
+                                 //prop => selectors
+                                 'background-color' => array(
+                                       '.btn-skin-dark-shaded:active',
+                                       '.btn-skin-dark-shaded:focus',
+                                       '.btn-skin-dark-shaded:hover',
+                                       '.btn-skin-dark-shaded.inverted',
                                  )
                            )
                      ),
 
-                     'skin_darkest_color_shade_high' => array(
-                           'color'  => $skin_darkest_color_shade_high,
+                     'skin_dark_color_shade_low' => array(
+                           'color'  => $skin_dark_color_shade_low,
                            'rules'  => array(
                                  //prop => selectors
                                  'background-color' => array(
-                                       '.btn-skin-darkest-shaded:active',
-                                       '.btn-skin-darkest-shaded:focus',
-                                       '.btn-skin-darkest-shaded:hover',
-                                       '.btn-skin-darkest-shaded.inverted',
-                                 )
-                           )
-                     ),
-
-                     'skin_darkest_color_shade_low' => array(
-                           'color'  => $skin_darkest_color_shade_low,
-                           'rules'  => array(
-                                 //prop => selectors
-                                 'background-color' => array(
-                                       '.btn-skin-darkest-shaded',
-                                       '.btn-skin-darkest-shaded.inverted:active',
-                                       '.btn-skin-darkest-shaded.inverted:focus',
-                                       '.btn-skin-darkest-shaded.inverted:hover',
+                                       '.btn-skin-dark-shaded',
+                                       '.btn-skin-dark-shaded.inverted:active',
+                                       '.btn-skin-dark-shaded.inverted:focus',
+                                       '.btn-skin-dark-shaded.inverted:hover',
                                  )
                            )
                      )

@@ -12,8 +12,8 @@ if ( ! function_exists( 'czr_fn_carousel_nav' ) ) :
 function czr_fn_carousel_nav() {
       ?>
       <div class="czr-carousel-nav">
-        <span class="czr-carousel-control btn btn-skin-darkest-shaded inverted czr-carousel-prev icn-left-open-big" tabindex="0"></span>
-        <span class="czr-carousel-control btn btn-skin-darkest-shaded inverted czr-carousel-next icn-right-open-big" tabindex="0"></span>
+        <span class="czr-carousel-control btn btn-skin-dark-shaded inverted czr-carousel-prev icn-left-open-big" tabindex="0"></span>
+        <span class="czr-carousel-control btn btn-skin-dark-shaded inverted czr-carousel-next icn-right-open-big" tabindex="0"></span>
       </div>
       <?php
 }
@@ -55,15 +55,15 @@ function czr_fn_comment_info( $args = array() ) {
       );
 
       //Filter hook used by disqus plugin
-      $link_attributes = apply_filters( 'czr_comment_info_link_attributes', '' );
+      $link_attributes = implode( '', apply_filters( 'czr_comment_info_link_attributes', array() ) );
 
-      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s" %6$s><span>%4$s</span></a>%5$s',
+      $link            = sprintf( '%1$s<a class="comments__link" href="%2$s" title="%3$s" %5$s><span>%4$s</span></a>%6$s',
             $before,
             $link,
             sprintf( "%s %s %s" , number_format_i18n( $comments_number ) , _n( 'Comment on' , 'Comments on' , $comments_number, 'customizr' ) ,  esc_attr( strip_tags( get_the_title() ) ) ),
             sprintf( "%s %s" , number_format_i18n( $comments_number ) , _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ),
-            $after,
-            $link_attributes
+            $link_attributes,
+            $after
       );
 
       if ( !$echo )
@@ -91,7 +91,7 @@ function czr_fn_post_action( $link, $link_class = '', $link_attr = '', $echo = t
       $class       = $link_class ? $link_class . ' ' . $icon : $icon;
       $link_attr   = $link_attr ? " {$link_attr}" : '';
 
-      $post_action = sprintf( '<div class="post-action btn btn-skin-darkest-shaded inverted"><a href="%1$s" class="%2$s"%3$s></a></div>',
+      $post_action = sprintf( '<div class="post-action btn btn-skin-dark-shaded inverted"><a href="%1$s" class="%2$s"%3$s></a></div>',
         esc_url( $link ),
         esc_attr( $class ),
         $link_attr
@@ -126,7 +126,7 @@ function czr_fn_readmore_button( $args = array() ) {
 
       $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' readmore-holder' : 'readmore-holder';
 
-      $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-darkest" href="%2$s" title="%3$s">%4$s</a></span>',
+      $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-dark" href="%2$s" title="%3$s">%4$s</a></span>',
             esc_attr( $args[ 'class' ] ),
             esc_url( $args[ 'link' ] ),
             esc_attr( $args[ 'title' ] ),

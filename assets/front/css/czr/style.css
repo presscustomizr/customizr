@@ -1,8 +1,3 @@
-/* PARALLAX FILTER FIX */
-.carousel.filter {
-  height: 100vh !important;
-}
-.section-slider .container { height: 100vh !important;}
 /* parallax test with tc-page-wrap shifting ^^*/
 /*.parallax-mirror,*/
 /* #tc-page-wrap { transition: right, left 300ms ease-in; left: 0 ; } */
@@ -76,46 +71,12 @@ embed, iframe, object, video { max-width: 100%;}
 /* Slider stuff */
 /* Slider loader wrapper took from Customizr */
 /* If automatic centering is enabled */
-.czr-carousel > .center-slides-enabled > .item > .carousel-image img {
-  display: block;
-  position: relative;
-}
+
 /* end took from customizer */
 
-.czr-carousel { position: relative; overflow: hidden;}
-.carousel-caption {
-  height: auto;
-  max-height: 80%;
-  width: 80%;
-  text-align: center;
-  z-index: 3;
-  overflow: hidden;
 
-  /* temporary centering */
-  transform: translate(-50%, -50%);
-  transform: translate3d(-50%, -50%, 0);
-  top: 50%;
-  left: 50%;
-  position: absolute;
 
-}
 
-.carousel-image img {
-  width: 100%;
-  height: auto;
-}
-
-.center-slides-disabled .carousel-image img {
-  /* temporary CSS centering */
-  transform: translate(-50%, -50%);
-  transform: translate3d(-50%, -50%, 0);
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-
-[id^=customizr-slider-].czr-carousel .carousel-inner,
-[id^=customizr-slider-].czr-carousel .carousel-cell { width: 100%; height: 100%; overflow: hidden;}
 
 
 

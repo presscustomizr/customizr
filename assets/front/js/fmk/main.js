@@ -1154,7 +1154,7 @@ var czrapp = czrapp || {};
     },
 
     lightBox : function() {
-      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-darkest-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
 
       /* The magnificPopup delegation is very good
       * it works when clicking on a dynamically added a.expand-img
@@ -1192,19 +1192,34 @@ var czrapp = czrapp || {};
         }
       });
 
-      //TODO: FIND A BETTER SOLUTION
       //in post lists galleries post formats
+      //only one button for each gallery
       czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        $(this).closest('article').magnificPopup({
-            delegate: '.gallery-img', // child items selector, by clicking on it popup will open
-            type: 'image',
-            gallery: {
-              enabled: true,
-              arrowMarkup: _arrowMarkup
-            },
-        }).magnificPopup('open');
+            var $_expand_btn    = $( this ),
+                $_gallery_crsl  = $_expand_btn.closest( '.czr-carousel' );
+
+              if ( $_gallery_crsl.length > 0 ) {
+
+                  if ( ! $_gallery_crsl.data( 'mfp' ) ) {
+                        $_gallery_crsl.magnificPopup({
+                            delegate: '.gallery-img',
+                            type: 'image',
+                            gallery: {
+                              enabled: true,
+                              arrowMarkup: _arrowMarkup
+                            }
+                        });
+                        $_gallery_crsl.data( 'mfp', true );
+                  }
+
+                  if ( $_gallery_crsl.data( 'mfp' ) ) {
+                        //open the selected carousel gallery item
+                        $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');
+                  }
+
+            }//endif
       });
     },
 
@@ -1233,9 +1248,8 @@ var czrapp = czrapp || {};
                         if ( this.isActive ) {
                           return;
                         }
-                        var self = this;
                         activate.apply( this, arguments );
-                        $( self.element ).trigger( 'czr-flickity-ready' );
+                        this.dispatchEvent( 'czr-flickity-ready', null, this );
                   };
 
 
@@ -1244,6 +1258,32 @@ var czrapp = czrapp || {};
 
                   /* Enable page dots on fly (for the main slider only, for the moment, consider to make it dependend to data-flickity-dots)*/
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', self._slider_dots );
+
+                  /* Fire fittext */
+                  czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
+                    $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 65,//the default max font-size
+                                      minFontSize : 30,
+                                }
+                    );
+                    $(this).find( '.carousel-caption .czrs-subtitle' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 35,//the default max font-size
+                                      minFontSize : 20,
+                                }
+                    );
+                    $(this).find( '.carousel-caption .czrs-cta' ).czrFitText(
+                                1.5,//<=kompressor
+                                {
+                                      maxFontSize : 16,//the default max font-size
+                                      minFontSize : 14,
+                                }
+                    );
+                  });
+
 
                   /* Disable controllers when the first or the latest slide is in the viewport (for the related posts) */
                   czrapp.$_body.on( 'select.flickity', '.czr-carousel .carousel-inner', self._slider_arrows_enable_toggler );
@@ -1544,9 +1584,12 @@ var czrapp = czrapp || {};
          if ( _maybe_fire ) {
             $_focusable_inputs.each( function() {
                var $_this = $(this);
-               if ( !$_this.attr('placeholder') )
-                  $(this).parent().addClass(_focusable_class)
-                            .closest('form').addClass(_czr_form_class);
+               if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
+                  $(this)
+                        .addClass('czr-focusable')
+                        .parent().addClass(_focusable_class)
+                        .closest('form').addClass(_czr_form_class);
+               }
             });
          }else
             return;
@@ -1874,7 +1917,7 @@ var czrapp = czrapp || {};
       var self = this;
 
       // maybe apply sticky footer on window resize
-      czrapp.$_window.on( 'tc-resize', function() {
+      czrapp.$_window.on( 'resize', function() {
         self.stickyFooterEventHandler('resize');
       });
 
@@ -2093,7 +2136,7 @@ var czrapp = czrapp || {};
       });
 
       //RESIZING ACTIONS
-      czrapp.$_window.on('tc-resize', function( evt ) {
+      czrapp.$_window.on('resize', function( evt ) {
         self.sideNavEventHandler( evt, 'resize');
       });
 
@@ -2265,7 +2308,6 @@ var czrapp = czrapp || {};
       this.Event     = {
         PLACE_ME  : 'placeme'+ this.EVENT_KEY,
         PLACE_ALL : 'placeall' + this.EVENT_KEY,
-        RESIZE    : 'tc-resize',
         SHOWN     : 'shown' + this.EVENT_KEY,
         SHOW      : 'show' + this.EVENT_KEY,
         HIDDEN    : 'hidden' + this.EVENT_KEY,
@@ -2274,7 +2316,7 @@ var czrapp = czrapp || {};
         TAP       : 'tap' + this.EVENT_KEY,
       };
       this.ClassName = {
-        DROPDOWN         : 'dropdown-menu',
+        DROPDOWN         : 'czr-dropdown-menu',
         SHOW             : 'show',
         PARENTS          : 'menu-item-has-children'
       };
@@ -2286,12 +2328,6 @@ var czrapp = czrapp || {};
         DATA_CLICK_PARENT        : '.czr-open-on-click .menu-item-has-children',
         DATA_PARENTS             : '.tc-header .menu-item-has-children'
       };
-
-      //Integrated
-      this.dropdownMenuOnHover();
-      this.dropdownPlacement();
-
-      this.dropdownOpenGoToLinkOnClick();
     },
 
 
@@ -2302,7 +2338,6 @@ var czrapp = czrapp || {};
           self               = this;
 
       enableDropdownOnHover();
-
 
       function _addOpenClass ( evt ) {
 
@@ -2372,7 +2407,7 @@ var czrapp = czrapp || {};
 
       //go to the link if submenu is already opened
       //This happens before the closing occurs when dropdown on click and the dropdown on hover (see the debounce in this case)
-      czrapp.$_body.on( this.Event.TAP + ' ' + this.Event.CLICK, this.Selector.DATA_SHOWN_TOGGLE, function(evt) {
+      czrapp.$_body.on( this.Event.CLICK, this.Selector.DATA_SHOWN_TOGGLE, function(evt) {
 
             var $_el = $(this);
 
@@ -2404,20 +2439,22 @@ var czrapp = czrapp || {};
       var self = this,
           doingAnimation = false;
 
-      czrapp.$_body
+      czrapp.$_window
           //on resize trigger Event.PLACE on active dropdowns
-          .on( this.Event.RESIZE, function() {
+          .on( 'resize', function() {
                   if ( ! doingAnimation ) {
-                    doingAnimation = true;
-                    window.requestAnimationFrame(function() {
-                      //trigger a placement on the open dropdowns
-                      $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW)
-                          .trigger(self.Event.PLACE_ME);
-                      doingAnimation = false;
-                    });
+                        doingAnimation = true;
+                        window.requestAnimationFrame(function() {
+                          //trigger a placement on the open dropdowns
+                          $( '.'+self.ClassName.PARENTS+'.'+self.ClassName.SHOW)
+                              .trigger(self.Event.PLACE_ME);
+                          doingAnimation = false;
+                        });
                   }
 
-          })
+          });
+
+      czrapp.$_body
           .on( this.Event.PLACE_ALL, function() {
                       //trigger a placement on all
                       $( '.'+self.ClassName.PARENTS )
@@ -2425,21 +2462,19 @@ var czrapp = czrapp || {};
           })
           //snake bound on menu-item shown and place
           .on( this.Event.SHOWN+' '+this.Event.PLACE_ME, this.Selector.DATA_PARENTS, function(evt) {
-
+            evt.stopPropagation();
             _do_snake( $(this), evt );
-
           });
 
 
       //snake
       function _do_snake( $_el, evt ) {
 
-        var $_this       = $_el;
-
         if ( !( evt && evt.namespace && self.DATA_KEY === evt.namespace ) )
           return;
 
-        var $_dropdown         = $_this.children( '.'+self.ClassName.DROPDOWN );
+        var $_this       = $_el,
+            $_dropdown   = $_this.children( '.'+self.ClassName.DROPDOWN );
 
         if ( !$_dropdown.length )
           return;
@@ -2454,16 +2489,24 @@ var czrapp = czrapp || {};
       }
 
 
-      function _maybe_move( $_dropdown ){
-        //reset
-        $_dropdown.removeClass( 'open-left open-right' );
+      function _maybe_move( $_dropdown ) {
+        //snake inheritance
+        if ( $_dropdown.parent().closest( '.'+self.ClassName.DROPDOWN ).hasClass( 'open-left' ) ) {
+          $_dropdown.removeClass( 'open-right' ).addClass( 'open-left' );
+        }
+        else {
+          $_dropdown.removeClass( 'open-left' ).addClass( 'open-right' );
+        }
+
+        //let's compute on which side open the dropdown
         if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() ) {
 
-          $_dropdown.addClass( 'open-left' );
+          $_dropdown.removeClass( 'open-right' ).addClass( 'open-left' );
 
-        } if ( $_dropdown.offset().left < 0 ) {
+        }
+        else if ( $_dropdown.offset().left < 0 ) {
 
-          $_dropdown.addClass( 'open-right' );
+          $_dropdown.removeClass( 'open-left' ).addClass( 'open-right' );
 
         }
 

@@ -382,10 +382,13 @@ class CZR_slider_model_class extends CZR_Model {
 
     //custom height
     if ( ! in_array( 'full-page', $class ) && 500 != esc_attr( czr_fn_opt( 'tc_slider_default_height') ) )
-      array_push( $class, 'custom-slider-height' );
+      $class[] = 'custom-slider-height';
 
     if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
-      array_push( $class, 'parallax-wrapper' );
+      $class[] = 'parallax-wrapper';
+
+    //add fittext utility class
+    $class[] = 'fittext-p';
 
     return array_filter( $class );
   }
@@ -646,17 +649,12 @@ class CZR_slider_model_class extends CZR_Model {
 
     $_slider_inline_css = "
       $slider_html_element_id.czr-carousel {
-        /*line-height: {$_custom_height}px;*/
         height:{$_custom_height}px;
       }
       $slider_html_element_id .czr-slider-loader-wrapper {
         line-height: {$_custom_height}px;
         height:{$_custom_height}px;
-      }
-      /*.carousel .tc-slider-controls {
-        line-height: {$_custom_height}px;
-        max-height:{$_custom_height}px;
-      }*/";
+      }";
 
     foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
       if ( ! is_numeric($_ratio) )
@@ -666,14 +664,10 @@ class CZR_slider_model_class extends CZR_Model {
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
           $slider_html_element_id.czr-carousel {
-            /*line-height: {$_item_dyn_height}px;*/
             height:{$_item_dyn_height}px;
           }
-          $slider_html_element_id.czr-carousel .carousel-caption {
-            max-height: {$_caption_dyn_height}px;
-          }
           $slider_html_element_id .czr-slider-loader-wrapper {
-            /*line-height: {$_item_dyn_height}px;*/
+            line-height: {$_item_dyn_height}px;
             height:{$_item_dyn_height}px;
           }
         }";
