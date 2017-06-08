@@ -42,7 +42,7 @@ module.exports = function(grunt) {
       customizr_tasks : {
         //DEV : clean the build and watch changes (see watch task)
         //'customizr4_dev': ['clean:free' , 'watch'],
-        'customizr_dev': ['clean' ,'watch'],
+        'customizr_dev': ['clean:free' ,'watch'],
         'common_css' : ['less:dev_common' , 'cssmin:dev_common' ],
 
         //PROD
@@ -61,10 +61,12 @@ module.exports = function(grunt) {
           'less:prod_common_rtl',
           'cssmin:prod_skins' ,
           'cssmin:prod_common',
+          'cssmin:prod_common_rtl',
           //c4
           'sass:front',
           'lineending:front_css4',
-          'cssmin:prod_common_rtl'
+          'cssmin:prod_front_c4'
+
         ],
         'prod_front_js': [
           'jshint',

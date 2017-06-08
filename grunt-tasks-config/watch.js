@@ -14,7 +14,7 @@ module.exports = {
 	//Regenerate the main css skin each time a less file is changed
 	create_czr4_css : {
 		files : ['<%= paths.sass4 %>**/*.scss'],
-		tasks : ['gitinfo', 'sass:front'],
+		tasks : ['gitinfo', 'sass:front', 'cssmin:dev_main_c4'],
 	},
 	create_push_skin : {
 		files : ['<%= paths.less %>**/*.less'],

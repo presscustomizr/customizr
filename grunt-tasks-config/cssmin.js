@@ -16,6 +16,18 @@ module.exports = {
       {'<%= paths.front_css %>tc_common.min.css' : '<%= paths.front_css %>tc_common.css'}
     ]
   },
+  dev_main_c4: {
+    files: [
+      {'<%= paths.front_css4 %>style.min.css' : '<%= paths.front_css4 %>style.css'}
+    ]
+  },
+  prod_front_c4: {
+    expand: true,
+    cwd: '<%= paths.front_css4 %>',
+    src: ['*.css', '!*.min.css'],
+    dest: '<%= paths.front_css4 %>',
+    ext: '.min.css'
+  },
   prod_skins: {
     expand: true,
     cwd: '<%= paths.front_css %>',
