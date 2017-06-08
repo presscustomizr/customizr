@@ -172,10 +172,6 @@ endif;
 //load shared fn
 require_once( get_template_directory() . '/core/functions-base.php' );
 
-
-if ( ! defined( 'CZR_MODERN_STYLE' ) ) {
-  define( 'CZR_MODERN_STYLE' , FALSE );
-}
 if ( czr_fn_is_modern_style() ) {
   require_once( get_template_directory() . '/core/init.php' );
 } else {
