@@ -1,4 +1,17 @@
 <?php
+/*
+ * @since 3.5.0
+ */
+//shortcut function to echo the column content wrapper class
+if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
+      function czr_fn_is_modern_style() {
+            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] )
+              return true;
+            return defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : false;
+      }
+}
+
+
 /**
 * The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
 *

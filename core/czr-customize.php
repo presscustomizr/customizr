@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     function czr_fn_register_partials( WP_Customize_Manager $wp_customize ) {
 
         //ONLY FOR OLD CZR at the moment
-        if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+        if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE )
           return;
 
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
 
       //ONLY FOR OLD CUSTOMIZR
-      if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ) {
+      if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
 
         //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
         //=> REMOVE CUSTOMIZR FAV ICON CONTROL
@@ -689,7 +689,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       $this->_is_debug_mode  = ( defined('WP_DEBUG') && true === WP_DEBUG );
       $this->_is_dev_mode    = ( defined('CZR_DEV') && true === CZR_DEV );
 
-      $_methods_suffix       = defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ? '' : '_old';
+      $_methods_suffix       = defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ? '' : '_old';
 
       //control scripts and style
       add_action( 'customize_controls_enqueue_scripts'        , array( $this, "czr_fn_customize_controls_js_css{$_methods_suffix}" ), 10 );
@@ -1335,7 +1335,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
         case CZR_THEME_OPTIONS.'[tc_skin]':
           $_data_hex  = '';
           //only for czr3
-          if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+          if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE )
             return;
 
           $_color_map = CZR_utils::$inst->czr_fn_get_skin_color( 'all' );

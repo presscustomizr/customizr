@@ -17,7 +17,7 @@ var czrapp = czrapp || {};
 
               this.$_sidenav_inner          = $( '.tc-sn-inner', this.$_sidenav);
 
-              this._toggle_event            = czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
+              this._toggle_event            = 'click';// before c4, was czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
 
               this._browser_can_translate3d = ! czrapp.$_html.hasClass('no-csstransforms3d');
 

@@ -104,8 +104,8 @@ var czrapp = czrapp || {};
             //do we have a query ?
             query = query || ( _.isObject( query ) ? query : {} );
 
-            var ajaxUrl = TCParams.ajaxUrl,
-                nonce = TCParams.huFrontNonce,//{ 'id' : '', 'handle' : '' }
+            var ajaxUrl = czrapp.localized.ajaxUrl,
+                nonce = czrapp.localized.czrFrontNonce,//{ 'id' : '', 'handle' : '' }
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : ''
@@ -2210,7 +2210,7 @@ var czrapp = czrapp || {};
 
               this.$_sidenav_inner          = $( '.tc-sn-inner', this.$_sidenav);
 
-              this._toggle_event            = czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
+              this._toggle_event            = 'click';// before c4, was czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
 
               this._browser_can_translate3d = ! czrapp.$_html.hasClass('no-csstransforms3d');
 
@@ -2781,13 +2781,6 @@ var czrapp = czrapp || {};
                       ctor : czrapp.Base.extend( czrapp.methods.Dropdowns ),
                       ready : [ 'fireDropDown' ]
                 },
-                // masonryGrid : {
-                //       ctor : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
-                //       ready : [
-                //             'masonryGridEventListener',
-                //             'fireMasonry'
-                //       ]
-                // },
 
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
@@ -2969,7 +2962,7 @@ var czrapp = czrapp || {};
                 // Fired on click
                 // Attempt to fire an ajax call
                 var _doAjax = function( _query_ ) {
-                          var ajaxUrl = czrapp.localized.ajaxUrl, dfd = $.Deferred();
+                          var ajaxUrl = czrapp.localized.adminAjaxUrl, dfd = $.Deferred();
                           $.post( ajaxUrl, _query_ )
                                 .done( function( _r ) {
                                       // Check if the user is logged out.

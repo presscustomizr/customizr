@@ -1,4 +1,4 @@
-# Customizr v3.5.12 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.13 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,11 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.13 June 7th 2017 =
+* improved : update select2 plugin to version 4.0.3 the same we use in the customizer
+* improved : improve customizr post meta boxes. Do not add in post types which are not visibile in front. Fire actions when meta boxes are added so that we can enqueue related resources (js/css) only when needed by checking on did_action('relevant_action_hook')
+* added : php, css and js code for modern style design
+
 = 3.5.12 May 5th 2017 =
 * Fix: use wp_sprintf to avoid Warning sprintf(): Too few arguments. Fixes #875
 * Fix: fix header layout center - menu position deps in the customizer. Fixes #879

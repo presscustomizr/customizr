@@ -188,7 +188,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
       function czr_fn_post_formats_meta_boxes() {
          //if not czr4 return
-         if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) )
+         if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
             return;
 
          $post_meta_boxes          = $this->czr_fn_get_post_meta_boxes_map();

@@ -2883,16 +2883,27 @@ var TCParams = TCParams || {};
           defaults = {
                 load_all_images_on_first_scroll : false,
                 attribute : [ 'data-src', 'data-srcset', 'data-sizes' ],
-                excludeImg : '',
+                excludeImg : [''],
                 threshold : 200,
                 fadeIn_options : { duration : 400 },
-                delaySmartLoadEvent : 0
-          };
+                delaySmartLoadEvent : 0,
+
+          },
+          //with intersecting cointainers:
+          //- to avoid race conditions
+          //- to avoid multi processing in general
+          skipImgClass = 'tc-smart-load-skip';
 
 
       function Plugin( element, options ) {
             this.element = element;
             this.options = $.extend( {}, defaults, options) ;
+            //add .tc-smart-load-skip to the excludeImg
+            if ( _.isArray( this.options.excludeImg ) )
+              this.options.excludeImg.push( '.'+skipImgClass );
+            else
+              this.options.excludeImg = [ '.'+skipImgClass ];
+
             this._defaults = defaults;
             this._name = pluginName;
             this.init();
@@ -2907,8 +2918,13 @@ var TCParams = TCParams || {};
             this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
             this.timer      = 0;
 
-            //attach action to the load event
-            $_imgs.bind( 'load_img', {}, function() { self._load_img(this); });
+
+            $_imgs
+                  //avoid intersecting cointainers to parse the same images
+                  .addClass( skipImgClass )
+                  //attach action to the load event
+                  .bind( 'load_img', {}, function() { self._load_img(this); });
+
             //the scroll event gets throttled with the requestAnimationFrame
             $(window).scroll( function( _evt ) { self._better_scroll_event_handler( $_imgs, _evt ); } );
             //debounced resize event
@@ -5222,8 +5238,8 @@ var czrapp = czrapp || {};
             //do we have a query ?
             query = query || ( _.isObject( query ) ? query : {} );
 
-            var ajaxUrl = TCParams.ajaxUrl,
-                nonce = TCParams.huFrontNonce,//{ 'id' : '', 'handle' : '' }
+            var ajaxUrl = czrapp.localized.ajaxUrl,
+                nonce = czrapp.localized.czrFrontNonce,//{ 'id' : '', 'handle' : '' }
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : ''
@@ -7328,7 +7344,7 @@ var czrapp = czrapp || {};
 
               this.$_sidenav_inner          = $( '.tc-sn-inner', this.$_sidenav);
 
-              this._toggle_event            = czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
+              this._toggle_event            = 'click';// before c4, was czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click';
 
               this._browser_can_translate3d = ! czrapp.$_html.hasClass('no-csstransforms3d');
 
@@ -7899,13 +7915,6 @@ var czrapp = czrapp || {};
                       ctor : czrapp.Base.extend( czrapp.methods.Dropdowns ),
                       ready : [ 'fireDropDown' ]
                 },
-                // masonryGrid : {
-                //       ctor : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
-                //       ready : [
-                //             'masonryGridEventListener',
-                //             'fireMasonry'
-                //       ]
-                // },
 
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
@@ -8087,7 +8096,7 @@ var czrapp = czrapp || {};
                 // Fired on click
                 // Attempt to fire an ajax call
                 var _doAjax = function( _query_ ) {
-                          var ajaxUrl = czrapp.localized.ajaxUrl, dfd = $.Deferred();
+                          var ajaxUrl = czrapp.localized.adminAjaxUrl, dfd = $.Deferred();
                           $.post( ajaxUrl, _query_ )
                                 .done( function( _r ) {
                                       // Check if the user is logged out.
