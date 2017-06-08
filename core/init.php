@@ -549,6 +549,8 @@ if ( ! function_exists( 'CZR' ) ) {
 }
 
 //require init-pro if it exists
-require_once( get_template_directory() . '/core/init-pro.php' );
+if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
+  require_once( get_template_directory() . '/core/init-pro.php' );
+
 // Fire Customizr
 CZR();
