@@ -23,6 +23,8 @@ module.exports = {
           '' : [
               '<%= paths.czr_assets %>js/czr-control.js',
               '<%= paths.czr_assets %>js/czr-preview.js',
+              '<%= paths.czr_assets %>js/czr-control-modern.js',
+              '<%= paths.czr_assets %>js/czr-preview-modern.js',
         ]
       }
     }

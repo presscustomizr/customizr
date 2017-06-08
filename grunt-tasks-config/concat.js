@@ -129,12 +129,27 @@ module.exports = {
     ],
     dest: '<%= paths.czr_assets %>js/czr-control.js'
   },
+  czr_control_js_c4 : {
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-control-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-deps-modern.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-control-dom_ready-modern.js'
+    ],
+    dest: '<%= paths.czr_assets %>js/czr-control-modern.js'
+  },
   czr_preview_js : {
     src: [
       '<%= paths.czr_assets %>/_dev/js/czr-preview-base.js',
       '<%= paths.czr_assets %>/_dev/js/czr-preview-post_message.js',
     ],
     dest: '<%= paths.czr_assets %>js/czr-preview.js'
+  },
+  czr_preview_js_c4 : {
+    src: [
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-base.js',
+      '<%= paths.czr_assets %>/_dev/js/czr-preview-post_message-modern.js',
+    ],
+    dest: '<%= paths.czr_assets %>js/czr-preview-modern.js'
   },
   //C4
   fmk_php_c4 : {
