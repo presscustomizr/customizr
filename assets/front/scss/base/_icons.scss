@@ -10,16 +10,16 @@
   font-style: normal;
 }
 
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'customizr';
-    src: url('../font/customizr.svg?12839698#customizr') format('svg');
-  }
-}
-*/
+// Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it.
+// Note, that will break hinting! In other OS-es font will be not as sharp as it could be
+//
+//@media screen and (-webkit-min-device-pixel-ratio:0) {
+//  @font-face {
+//    font-family: 'customizr';
+//    src: url('../font/customizr.svg?12839698#customizr') format('svg');
+//  }
+//}
+
 
  [class^="icn-"]:before, [class*=" icn-"]:before {
   content: '';
@@ -46,15 +46,15 @@
   /* remove if not needed */
   margin-left: .2em;
 
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
+  // you can be more comfortable with increased icons size
+  // font-size: 120%;
 
-  /* Font smoothing. That was taken from TWBS */
+  // Font smoothing. That was taken from TWBS
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+  // Uncomment for 3D effect
+  // text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
 }
 .icn-close:before { content: '\e800'; } /* '' */
 .icn-shoppingcart:before { content: '\e801'; } /* '' */

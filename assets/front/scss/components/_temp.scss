@@ -1,0 +1,113 @@
+
+/* VARIOUS */
+
+.tc-thumbnail img {
+  width: 100%;
+}
+
+
+
+/* FLICKITY SLIDER  */
+/*.carousel { z-index: 4;}*/
+.carousel-cell { width: 100%; overflow: hidden;}
+.carousel img { min-width: 100%;}
+
+
+/* Patches */
+
+
+embed, iframe, object, video {
+  max-width: 100%;
+}
+/* Alternate and Masonry special formats patch*/
+.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{
+  display: block;
+}
+
+
+
+
+.article-container .grid-container__alternate .full-image .entry-header,
+.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header{ position: relative;}
+
+
+.article-container .grid-container__alternate .entry-footer {
+  margin: 0;
+  margin-top: 2.5em;
+}
+
+
+@media (max-width: 991px) {
+  .article-container .grid-container__alternate .entry-header {
+    margin-top: 0;
+  }
+}
+
+
+.entry-media__holder .post-type__icon i {
+    position: relative;
+}
+
+/* Some thumbnail container sizes ideas */
+
+.grid-container__masonry .full-image .tc-thumbnail img{
+    width: auto;
+    height: 100%;
+    max-width: none;
+
+}
+
+.full-image .tc-thumbnail {
+  background: #B4B4B4 ;
+}
+[class*=grid-container__] .czr-carousel,
+[class*=grid-container__] .carousel-inner {
+  height: 100%;
+}
+
+[class*=grid-container__]:not(.grid-container__square-mini) .flickity-viewport {
+  position: absolute;
+  width: 100%;
+}
+
+
+[class*=grid-container__] .tc-thumbnail .carousel-cell {
+  height: 100%;
+  overflow: hidden;
+}
+
+
+.css-centering.entry-media__holder img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%); /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: relative;
+}
+
+/* thanks flex */
+.czr-center-sections {
+  align-items: center;
+}
+.czr-cover-sections  {
+  align-items: center;
+}
+.czr-cover-sections > section {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* element to strech class needed */
+.czr-cover-sections > .entry-media__holder {
+  align-self: stretch;
+}
+.no-thumb .czr-cover-sections .entry-media__holder {
+  align-self: center;
+}
+.no-thumb .czr-cover-sections .entry-media__wrapper {
+  margin: auto;
+}
