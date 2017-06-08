@@ -88,8 +88,11 @@ module.exports = function(grunt) {
           'concat:czr_css',
           'cssmin:prod_czr_css',
           'concat:czr_control_js',
+          'concat:czr_control_js_c4',
           'comments:czr_control_js',
+          'comments:czr_control_js_c4',
           'concat:czr_preview_js',
+          'concat:czr_preview_js_c4',
           'lineending:czr_js',
           'uglify:prod_admin_js',
           'uglify:prod_czr_js'
