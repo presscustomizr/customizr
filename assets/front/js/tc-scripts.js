@@ -2272,7 +2272,7 @@ window.matchMedia || (window.matchMedia = function() {
 
       // Store the object
       var $this      = $(this),
-          $refParent = $(settings.refParentSel),
+          $refParent = $this.closest(settings.refParentSel),
           _font_size;
 
       // Resizer() resizes items based on the object width divided by the compressor * 10

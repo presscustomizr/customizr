@@ -173,10 +173,10 @@ endif;
 require_once( get_template_directory() . '/core/functions-base.php' );
 
 
-if ( ! defined( 'CZR_DEV_4' ) ) {
-  define( 'CZR_DEV_4' , FALSE );
+if ( ! defined( 'CZR_MODERN_STYLE' ) ) {
+  define( 'CZR_MODERN_STYLE' , FALSE );
 }
-if ( CZR_DEV_4 ) {
+if ( czr_fn_is_modern_style() ) {
   require_once( get_template_directory() . '/core/init.php' );
 } else {
   require_once( get_template_directory() . '/inc/czr-init.php' );

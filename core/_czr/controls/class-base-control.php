@@ -204,7 +204,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
         case CZR_THEME_OPTIONS.'[tc_skin]':
           $_data_hex  = '';
           //only for czr3
-          if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+          if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE )
             return;
 
           $_color_map = CZR_utils::$inst->czr_fn_get_skin_color( 'all' );

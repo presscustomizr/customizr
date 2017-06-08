@@ -299,7 +299,7 @@ if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
 * @since Customizr 3.0
 */
 function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
-    if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ) {
+    if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
       return CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default, $what );
     }
 

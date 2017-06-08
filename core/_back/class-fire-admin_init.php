@@ -58,7 +58,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         return;
 
       //if czr4
-      if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) {
+      if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) {
 
         if ( function_exists( 'czr_fn_set_thumb_info' ) )
           czr_fn_set_thumb_info( $post_id );
@@ -209,7 +209,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       $_stylesheets = array_filter( array(
           CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
           //backward compat
-          ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ? CZR_init::$instance -> czr_fn_get_style_src() : '',
+          ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ? CZR_init::$instance -> czr_fn_get_style_src() : '',
           get_stylesheet_uri()
       ) );
 
@@ -243,7 +243,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       $_css = '';
 
       //if czr4
-      if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) {
+      if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) {
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resources_fonts class has to be loaded
         if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )

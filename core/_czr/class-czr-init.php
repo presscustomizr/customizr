@@ -95,7 +95,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     function czr_fn_register_partials( WP_Customize_Manager $wp_customize ) {
 
         //ONLY FOR OLD CZR at the moment
-        if ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 )
+        if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE )
           return;
 
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
 
       //ONLY FOR OLD CUSTOMIZR
-      if ( ! ( defined( 'CUSTOMIZR_4' ) && CUSTOMIZR_4 ) ) {
+      if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
 
         //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
         //=> REMOVE CUSTOMIZR FAV ICON CONTROL
