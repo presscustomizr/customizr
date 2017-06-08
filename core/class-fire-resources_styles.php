@@ -60,10 +60,6 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                wp_enqueue_style( 'customizr-magnific'       , czr_fn_get_theme_file_url( "{$_path}magnific-popup{$_ext}" ), array(), $_ver, 'all' );
 
-               wp_enqueue_style( 'customizr-pre-common'     , czr_fn_get_theme_file_url( "{$_path}customizr{$_ext}" ), array(), $_ver, 'all' );
-
-               wp_enqueue_style( 'customizr-common-custom'  , czr_fn_get_theme_file_url( "{$_path}czr/style{$_ext}"), array(), $_ver, 'all' );
-
                wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
 
                //Customizr main stylesheet

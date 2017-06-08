@@ -271,6 +271,159 @@ blockquote p {
   text-decoration: underline;
 }
 
+@font-face {
+  font-family: 'customizr';
+  src: url("../../shared/fonts/customizr/customizr.eot?12839698");
+  src: url("../../shared/fonts/customizr/customizr.eot?12839698#iefix") format("embedded-opentype"), url("../../shared/fonts/customizr/customizr.woff2?128396981") format("woff2"), url("../../shared/fonts/customizr/customizr.woff?12839698") format("woff"), url("../../shared/fonts/customizr/customizr.ttf?12839698") format("truetype"), url("../../shared/fonts/customizr/customizr.svg?12839698#customizr") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icn-"]:before, [class*=" icn-"]:before {
+  content: '';
+  font-family: "customizr";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  vertical-align: middle;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icn-close:before {
+  content: '\e800';
+}
+
+/* '' */
+.icn-shoppingcart:before {
+  content: '\e801';
+}
+
+/* '' */
+.icn-search:before {
+  content: '\e802';
+}
+
+/* '' */
+.icn-grid-empty:before {
+  content: '\e803';
+}
+
+/* '' */
+.icn-grid-filled:before {
+  content: '\e804';
+}
+
+/* '' */
+.icn-plus:before {
+  content: '\e805';
+}
+
+/* '' */
+.icn-quote:before {
+  content: '\e808';
+}
+
+/* '' */
+.icn-expand-thin:before {
+  content: '\e809';
+}
+
+/* '' */
+.icn-plus-thin:before {
+  content: '\e80a';
+}
+
+/* '' */
+.icn-close-thin:before {
+  content: '\e80b';
+}
+
+/* '' */
+.icn-arrow-l:before {
+  content: '\e80d';
+}
+
+/* '' */
+.icn-arrow-r:before {
+  content: '\e80e';
+}
+
+/* '' */
+.icn-down-small:before {
+  content: '\e80f';
+}
+
+/* '' */
+.icn-up-small:before {
+  content: '\e810';
+}
+
+/* '' */
+.icn-text:before {
+  content: '\e811';
+}
+
+/* '' */
+.icn-link:before {
+  content: '\e812';
+}
+
+/* '' */
+.icn-left-open-big:before {
+  content: '\e813';
+}
+
+/* '' */
+.icn-right-open-big:before {
+  content: '\e814';
+}
+
+/* '' */
+.icn-expand-small:before {
+  content: '\e815';
+}
+
+/* '' */
+.icn-expand:before {
+  content: '\e816';
+}
+
+/* '' */
+.icn-edit:before {
+  content: '\e817';
+}
+
+/* '' */
+.icn-arrow-r-long:before {
+  content: '\e819';
+}
+
+/* '' */
+.icn-arrow-l-long:before {
+  content: '\e81a';
+}
+
+/* '' */
+.icn-article:before {
+  content: '\e81c';
+}
+
+/* '' */
 .bg-transparent {
   background: transparent;
 }
@@ -2029,14 +2182,125 @@ select:-webkit-autofill {
   -ms-transform: translate(100%, 0);
 }
 
+/* VARIOUS */
+.tc-thumbnail img {
+  width: 100%;
+}
+
+/* FLICKITY SLIDER  */
+/*.carousel { z-index: 4;}*/
+.carousel-cell {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel img {
+  min-width: 100%;
+}
+
+/* Patches */
+embed, iframe, object, video {
+  max-width: 100%;
+}
+
+/* Alternate and Masonry special formats patch*/
+.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe {
+  display: block;
+}
+
+.article-container .grid-container__alternate .full-image .entry-header,
+.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header,
+.article-container .grid-container__masonry .full-image .entry-header {
+  position: relative;
+}
+
+.article-container .grid-container__alternate .entry-footer {
+  margin: 0;
+  margin-top: 2.5em;
+}
+
+@media (max-width: 991px) {
+  .article-container .grid-container__alternate .entry-header {
+    margin-top: 0;
+  }
+}
+
+.entry-media__holder .post-type__icon i {
+  position: relative;
+}
+
+/* Some thumbnail container sizes ideas */
+.grid-container__masonry .full-image .tc-thumbnail img {
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.full-image .tc-thumbnail {
+  background: #B4B4B4;
+}
+
+[class*=grid-container__] .czr-carousel,
+[class*=grid-container__] .carousel-inner {
+  height: 100%;
+}
+
+[class*=grid-container__]:not(.grid-container__square-mini) .flickity-viewport {
+  position: absolute;
+  width: 100%;
+}
+
+[class*=grid-container__] .tc-thumbnail .carousel-cell {
+  height: 100%;
+  overflow: hidden;
+}
+
+.css-centering.entry-media__holder img {
+  /* temporary CSS centering */
+  transform: translate(-50%, -50%);
+  /* fallback for those browsers w/o translate3d transform property*/
+  transform: translate3d(-50%, -50%, 0);
+  top: 50%;
+  left: 50%;
+  position: relative;
+}
+
+/* thanks flex */
+.czr-center-sections {
+  align-items: center;
+}
+
+.czr-cover-sections {
+  align-items: center;
+}
+
+.czr-cover-sections > section {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* element to strech class needed */
+.czr-cover-sections > .entry-media__holder {
+  align-self: stretch;
+}
+
+.no-thumb .czr-cover-sections .entry-media__holder {
+  align-self: center;
+}
+
+.no-thumb .czr-cover-sections .entry-media__wrapper {
+  margin: auto;
+}
+
 .socials li + li {
   margin-left: .833rem;
 }
 
 .socials a {
   display: block;
-  /*   height:$base-line-height*2;
-    line-height: $base-line-height*2;*/
 }
 
 .btn, input[type=submit], .woocommerce #respond input#submit,
