@@ -505,6 +505,12 @@ img.v-centered {
   content: "";
 }
 
+.section-slider {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
 .czr-valign {
   -webkit-transform: translate(0, 50%);
   -moz-transform: translate(0, 50%);
@@ -4001,6 +4007,20 @@ section[class^="post-"] .gallery.row {
   color: #fff;
 }
 
+.slider-text > h2 {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.slider-text > h2 + h3 {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+
+.section-slider {
+  overflow: hidden;
+}
+
 [id^=customizr-slider-] .carousel-caption > h1 {
   margin: 0;
   line-height: 1.1;
@@ -4054,42 +4074,6 @@ section[class^="post-"] .gallery.row {
 
 #main-wrapper .section.custom {
   margin: 2.5em;
-}
-
-.section .image {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
-  z-index: 2;
-  position: absolute;
-  display: block;
-}
-
-.section .parallax,
-.section .static-image {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: block;
-  position: relative;
-}
-
-.section .parallax > img,
-.section .parallax .filter > img,
-.section .static-image > img,
-.section .static-image .filter > img {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: relative;
-  z-index: 1;
-}
-
-.section .parallax-small {
-  height: 65vh;
 }
 
 ol {
