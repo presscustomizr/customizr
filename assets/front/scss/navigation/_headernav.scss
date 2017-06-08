@@ -20,18 +20,13 @@
         }
 
         .navbar-brand {
-            font-size: 1.75em;
+            font-size: 1.5em;
+            line-height: 1.5em;
             margin: 0;
             vertical-align: middle;
             @at-root .navbar-brand img {
               width: auto;
               max-width: 100%;
-            }
-
-            &.has_tagline {
-                margin: 0;
-                font-size: 1.5em;
-                line-height: 1.5em;
             }
 
         }

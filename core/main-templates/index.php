@@ -122,7 +122,7 @@
                 /*
                 * SIDEBARS
                 */
-                /* By design do not display sidebars in 404 */
+                /* By design do not display sidebars in 404 or home empty */
                 if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
                   if ( czr_fn_has('left_sidebar') )
                     get_sidebar( 'left' );
@@ -136,7 +136,7 @@
 
             <?php do_action('__after_content_wrapper'); ?>
 
-            <?php if ( is_single() && ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) ) : ?>
+            <?php if ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) : ?>
               <div class="row single-post-info">
                 <div class="col-12">
                 <?php

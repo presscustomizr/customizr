@@ -2,6 +2,7 @@
 @import 'base/variables';
 @import 'base/colours';
 @import 'base/typography';
+@import 'base/icons';
 
 @import 'base/utilities';
 
@@ -15,6 +16,7 @@
 @import 'navigation/sidenav';
 
 
+@import 'components/temp'; //temporary, to merge
 
 @import 'components/components';
 @import 'components/forms';

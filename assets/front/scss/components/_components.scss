@@ -3,8 +3,6 @@
   li + li { margin-left: .833rem; }
   a {
     display:block;
- /*   height:$base-line-height*2;
-    line-height: $base-line-height*2;*/
   }
 }
 
@@ -72,24 +70,24 @@
 }
 
 // .btn modifier
-.btn-skin-darkest {
-  background-color: $skin-darkest;
+.btn-skin-dark {
+  background-color: $skin-dark;
   color: $white;
-  border-color: $skin-darkest;
+  border-color: $skin-dark;
 
   &:hover, &:focus, &:active {
-    color: $skin-darkest;
+    color: $skin-dark;
     background-color: transparent;
-    border-color: $skin-darkest;
+    border-color: $skin-dark;
   }
 
   // .btn modifier
   &.inverted {
     background-color: transparent;
-    color: $skin-darkest;//$black;
+    color: $skin-dark;//$black;
     &:hover, &:focus, &:active {
       color: $white;
-      background-color: $skin-darkest;//previously $black;
+      background-color: $skin-dark;//previously $black;
     }
   }
 }
@@ -118,20 +116,20 @@
 }
 
 // .btn modifier
-.btn-skin-darkest-shaded {
-  background-color: rgba($skin-darkest, 0.8);
+.btn-skin-dark-shaded {
+  background-color: $skin-dark-color-shade-low;
   border-color: transparent;
   color: $white;
 
   &:hover, &:focus, &:active {
-    background-color: rgba($skin-darkest, 0.4);
+    background-color: $skin-dark-color-shade-high;
   }
 
   // .btn modifier
   &.inverted {
-    background-color: rgba($skin-darkest, 0.4);
+    background-color: $skin-dark-color-shade-high;
     &:hover, &:focus, &:active {
-      background-color: rgba($skin-darkest, 0.8);
+      background-color: $skin-dark-color-shade-low;
     }
   }
 }
@@ -163,15 +161,15 @@
 }
 
 // .btn modifier
-.btn-skin-darkest-oh {
+.btn-skin-dark-oh {
   background-color: $black;
   border-color: $black;
   color: $white;
 
   &:hover, &:focus, &:active {
-    color: $skin-darkest;
+    color: $skin-dark;
     background-color: transparent;
-    border-color: $skin-darkest;
+    border-color: $skin-dark;
   }
 
   // .btn modifier
@@ -181,16 +179,39 @@
     border-color: $grey-light;
 
     &:hover, &:focus, &:active {
-      border-color: $skin-darkest;
+      border-color: $skin-dark;
       color: $white;
-      background-color: $skin-darkest;//previously $black;
+      background-color: $skin-dark;//previously $black;
+    }
+  }
+}
+
+// .btn modifier
+.btn-skin-h-dark {
+  background-color: $skin;
+  color: $white;
+  border-color: $skin;
+
+  &:hover, &:focus, &:active {
+    color: $white;
+    background-color: $skin-dark;
+    border-color: $skin-dark;
+  }
+
+  // .btn modifier
+  &.inverted {
+    background-color: $skin-dark;
+    border-color: $skin-dark;
+    &:hover, &:focus, &:active {
+      background-color: $skin;
+      border-color: $skin;
     }
   }
 }
 
 input[type=submit] {
   @extend %btn_base;
-  @extend .btn-skin-darkest;
+  @extend .btn-skin-dark;
   @extend .caps;
   cursor: pointer;
 }
@@ -601,6 +622,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   .flickity-page-dots {
     bottom: 30px;
     .dot {
+      background-color: white;
       &::before { content: none; }
     }
   }
@@ -656,6 +678,48 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
 }
 
+/* caousel */
+
+.czr-carousel {
+  position: relative;
+  overflow: hidden;
+
+  @at-root .carousel-caption {
+    height: auto;
+    max-height: 80%;
+    width: 80%;
+    text-align: center;
+    z-index: 3;
+    overflow: hidden;
+
+    /* temporary centering */
+    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  @at-root .carousel-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  @at-root .center-slides-disabled .carousel-image img {
+    /* temporary CSS centering */
+    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  /* If automatic centering is enabled */
+  .center-slides-enabled > .item > .carousel-image img {
+    display: block;
+    position: relative;
+  }
+}
 
 /* avatars */
 

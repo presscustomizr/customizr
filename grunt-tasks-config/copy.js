@@ -27,13 +27,16 @@ module.exports = {
       /*c4*/
       '!core/_framework/**',
       '!core/_utils/**',
-      '!templates/**',
-      '!assets/back/**', //back of c4
-      '!assets/shared/fonts/customizr/**', //new customizr fonts
-      '!assets/front/css/**', //c4 css
-      '!assets/front/scss/**', //c4 scss
-      '!assets/front/js/vendors/**', //c4 js vendors
-      '!assets/front/js/fmk/**' //c4 js fmk
+      '!core/_back/**',
+      '!core/_czr/**',
+      '!core/init-pro.php',
+      //'!templates/**',
+      //'!assets/back/**', //back of c4
+      //'!assets/shared/fonts/customizr/**', //new customizr fonts
+      //'!assets/front/css/**', //c4 css
+      //'!assets/front/scss/**', //c4 scss
+      //'!assets/front/js/vendors/**', //c4 js vendors
+      //'!assets/front/js/fmk/**' //c4 js fmk
       /*end c4*/
 		],
 		dest: 'build/free/<%= pkg.name %>/'
@@ -64,6 +67,11 @@ module.exports = {
       '!custom-skins/**',
       '!inc/_dev/**',
       '!assets/czr/_dev/**',
+      /*c4 dev*/
+      '!core/_framework/**',
+      '!core/_utils/**',
+      '!core/_back/**',
+      '!core/_czr/**',
       '!inc/lang/**'
     ],
     dest: '../customizr-pro/'

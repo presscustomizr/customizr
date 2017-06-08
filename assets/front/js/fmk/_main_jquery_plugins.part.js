@@ -94,7 +94,7 @@ var czrapp = czrapp || {};
     },
 
     lightBox : function() {
-      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-darkest-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
 
       /* The magnificPopup delegation is very good
       * it works when clicking on a dynamically added a.expand-img
@@ -152,8 +152,8 @@ var czrapp = czrapp || {};
                             }
                         });
                         $_gallery_crsl.data( 'mfp', true );
-                  }  
-                  
+                  }
+
                   if ( $_gallery_crsl.data( 'mfp' ) ) {
                         //open the selected carousel gallery item
                         $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');

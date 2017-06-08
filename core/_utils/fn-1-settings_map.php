@@ -492,6 +492,16 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 13,
           ),*/
           /*end_new*/
+          //enable/disable top border
+          'tc_top_border' => array(
+                            'default'       =>  1,//top border on by default
+                            'label'         =>  __( 'Display top border' , 'customizr' ),
+                            'control'       =>  'CZR_controls' ,
+                            'section'       =>  'header_layout_sec' ,
+                            'type'          =>  'checkbox' ,
+                            'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
+                            'priority'      => 10
+          ),
           'tc_show_tagline'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -2484,131 +2494,6 @@ function czr_fn_generates_featured_pages( $_original_map ) {
   }
 
   return array_merge( $_original_map , $fp_setting_control );
-}
-
-
-
-/**
-* Returns the layout choices array
-*
-* @package Customizr
-* @since Customizr 3.1.0
-*/
-function czr_fn_layout_choices() {
-    $global_layout  = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
-    $layout_choices = array();
-    foreach ($global_layout as $key => $value) {
-      $layout_choices[$key]   = ( $value['customizer'] ) ? call_user_func(  '__' , $value['customizer'] , 'customizr' ) : null ;
-    }
-    return $layout_choices;
-}
-
-
-/**
-* Retrieves slider names and generate the select list
-* @package Customizr
-* @since Customizr 3.0.1
-*/
-function czr_fn_slider_choices() {
-  $__options      =   get_option('tc_theme_options');
-  $slider_names   =   isset($__options['tc_sliders']) ? $__options['tc_sliders'] : array();
-
-  $slider_choices = array(
-    0     =>  __( '&mdash; No slider &mdash;' , 'customizr' ),
-    'demo'  =>  __( '&mdash; Demo Slider &mdash;' , 'customizr' ),
-    'tc_posts_slider' => __('&mdash; Auto-generated slider from your blog posts &mdash;', 'customizr')
-  );
-
-  if ( $slider_names ) {
-    foreach( $slider_names as $tc_name => $slides) {
-      $slider_choices[$tc_name] = $tc_name;
-    }
-  }
-
-  return $slider_choices;
-}
-
-
-
-/***************************************************************
-* SANITIZATION HELPERS
-***************************************************************/
-/**
- * adds sanitization callback funtion : textarea
- * @package Customizr
- * @since Customizr 1.1.4
- */
-function czr_fn_sanitize_textarea( $value) {
-  $value = esc_html( $value);
-  return $value;
-}
-
-
-
-/**
- * adds sanitization callback funtion : number
- * @package Customizr
- * @since Customizr 1.1.4
- */
-function czr_fn_sanitize_number( $value) {
-  if ( ! $value || is_null($value) )
-    return $value;
-
-  $value = esc_attr( $value); // clean input
-  $value = (int) $value; // Force the value into integer type.
-
-  return ( 0 < $value ) ? $value : null;
-}
-
-/**
- * adds sanitization callback funtion : url
- * @package Customizr
- * @since Customizr 1.1.4
- */
-function czr_fn_sanitize_url( $value) {
-  $value = esc_url( $value);
-  return $value;
-}
-
-/**
- * adds sanitization callback funtion : email
- * @package Customizr
- * @since Customizr 3.4.11
- */
-function czr_fn_sanitize_email( $value) {
-  return sanitize_email( $value );
-}
-
-/**
- * adds sanitization callback funtion : colors
- * @package Customizr
- * @since Customizr 1.1.4
- */
-function czr_fn_sanitize_hex_color( $color ) {
-  if ( $unhashed = sanitize_hex_color_no_hash( $color ) )
-    return '#' . $unhashed;
-
-  return $color;
-}
-
-
-/**
-* Change upload's path to relative instead of absolute
-* @package Customizr
-* @since Customizr 3.1.11
-*/
-function czr_fn_sanitize_uploads( $url ) {
-  $upload_dir = wp_upload_dir();
-  return str_replace($upload_dir['baseurl'], '', $url);
-}
-
-
-/**
-* active callback of section 'customizr_go_pro'
-* @return  bool
-*/
-function czr_fn_pro_section_active_cb() {
-    return ! czr_fn_isprevdem();
 }
 
 ?>

@@ -357,7 +357,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             elseif ( $thumb_shape && !$has_format_icon_media && !$is_media_bigger_than_content && 'audio' != $_current_post_format) {
 
-                  $media_inner_class = 'czr__r-wFP';
+                  $media_inner_class = 'czr__r-wTCT';
                   $media_link_class  = 'czr-link-mask';
 
             }

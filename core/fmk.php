@@ -1221,6 +1221,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'single_author_info',
               'comment_list',
               'comments',
+              'post',
               'posts_navigation',
 
               'regular_page_heading',
@@ -1250,7 +1251,8 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'main_posts_slider',
               'featured_pages',
               'search_full_page',
-              'social_share'
+              'social_share',
+              'related_posts'
             ),
           );
 

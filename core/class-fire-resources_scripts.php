@@ -59,7 +59,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-js-arraymap-proto' => array(
 
                            'path' => $_shared_path,
-                           'files' => array( 'oldBrowserCompat.min.js' ),
+                           'files' => array( 'oldBrowserCompat.min.js', 'oldBrowserCompat.min.js' ),
                            'dependencies' => array()
 
                      ),
@@ -124,11 +124,12 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                      ),
 
+
                      //holder
                      'tc-holder' => array(
 
                            'path' => $_front_path . 'vendors/',
-                           'files' => array( 'holder.min.js' ),
+                           'files' => array( 'holder.min.js', 'holder.min.js' ),
                            'dependencies' => array( 'jquery' )
 
                      ),
@@ -158,7 +159,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryaddDropCap.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -166,7 +167,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryimgSmartLoad.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -174,7 +175,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryextLinks.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -182,7 +183,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                            'path' => $_front_path . 'jquery-plugins/',
                            'files' => array( 'jqueryParallax.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
 
                      ),
 
@@ -202,6 +203,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                      ),
 
+                     //fittext
+                     'tc-fittext' => array(
+
+                           'path' => $_front_path . 'jquery-plugins/',
+                           'files' => array( 'jqueryFittext.js' ),
+                           'dependencies' => array( 'jquery' )
+
+                     ),
 
                      /*
                      * OUR PARTS
@@ -219,8 +228,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                           'path' => $_front_path  . 'fmk/',
                           'files' => array( 'main.js' ),
                           'dependencies' => $this -> czr_fn_is_lightbox_required() ?
-                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp' , 'underscore' ) :
-                                 array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
+                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp', 'tc-fittext', 'underscore' ) :
+                                 array( 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
                      ),
 
                      //concats all scripts
@@ -305,6 +314,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-center-images',
                      'tc-parallax',
                      'tc-animate-svg',
+                     'tc-fittext',
 
                      'tc-main-front',
                   ) );
@@ -324,7 +334,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                if ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) )
                      wp_enqueue_script('jquery-effects-core');
 
-               $anchor_smooth_scroll_exclude =  apply_filters( 'tc_anchor_smoothscroll_excl' , array(
+               $anchor_smooth_scroll_exclude =  apply_filters( 'czr_anchor_smoothscroll_excl' , array(
 
                    'simple' => array( '[class*=edd]' , '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
                    'deep'   => array(

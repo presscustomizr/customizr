@@ -1,36 +1,5 @@
 <?php
 /**
-* The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
-*
-* By convention in Customizr, filter hooks are used as follow :
-* 1) declared with add_filters in class constructors (mainly) to hook on WP built-in callbacks or create "getters" used everywhere
-* 2) declared with apply_filters in methods to make the code extensible for developers
-* 3) accessed with czr_fn__f() to return values (while front end content is handled with action hooks)
-*
-* Used everywhere in Customizr. Can pass up to five variables to the filter callback.
-*
-* @since Customizr 3.0
-*/
-if( ! function_exists( 'czr_fn__f' ) ) :
-    function czr_fn__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
-       return apply_filters( $tag , $value , $arg_one , $arg_two , $arg_three , $arg_four , $arg_five );
-    }
-endif;
-
-//This function is the only one with a different prefix.
-//It has been kept in the theme for retro-compatibility.
-if( ! function_exists( 'tc__f' ) ) :
-    function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
-       return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
-    }
-endif;
-
-
-
-//load shared fn
-require_once( get_template_directory() . '/core/functions-base.php' );
-
-/**
 * Fires the theme : constants definition, core classes loading
 *
 *
@@ -46,55 +15,16 @@ if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ extends CZR_BASE {
     public $tc_core;
     public $is_customizing;
-    public static $theme_name;
     public static $tc_option_group;
 
     function __construct () {
+
+      //call CZR_BASE constructor
+      parent::__construct();
+
       self::$instance =& $this;
 
-      /* GETS INFORMATIONS FROM STYLE.CSS */
-      // get themedata version wp 3.4+
-      if( function_exists( 'wp_get_theme' ) ) {
-        //get WP_Theme object of customizr
-        $tc_theme                     = wp_get_theme();
-
-        //Get infos from parent theme if using a child theme
-        $tc_theme = $tc_theme -> parent() ? $tc_theme -> parent() : $tc_theme;
-
-        $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
-        $tc_base_data['version']      = $tc_theme -> version;
-        $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
-      }
-
-      // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
-      else {
-           $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-           $tc_base_data['prefix']      = $tc_base_data['title'];
-      }
-
-      self::$theme_name                 = sanitize_file_name( strtolower($tc_base_data['title']) );
-
-      //CUSTOMIZR_VER is the Version
-      if( ! defined( 'CUSTOMIZR_VER' ) )      define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
-      //TC_BASE is the root server path of the parent theme
-      if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , get_template_directory().'/' );
-      //TC_BASE_CHILD is the root server path of the child theme
-      if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , get_stylesheet_directory().'/' );
-      //TC_BASE_URL http url of the loaded parent theme
-      if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , get_template_directory_uri() . '/' );
-      //TC_BASE_URL_CHILD http url of the loaded child theme
-      if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-      //CZR_THEMENAME contains the Name of the currently loaded theme
-      if( ! defined( 'CZR_THEMENAME' ) )          define( 'CZR_THEMENAME' , $tc_base_data['title'] );
-      //CZR_WEBSITE is the home website of Customizr
-      if( ! defined( 'CZR_WEBSITE' ) )         define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
-
-      //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
-      if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
-      //MAIN OPTIONS NAME
-      if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
-
-      if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
+      $this -> czr_fn_setup_constants();
 
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
@@ -155,7 +85,9 @@ if ( ! class_exists( 'CZR___' ) ) :
       //theme class groups instanciation
       //$this -> czr_fn__();
       add_action('czr_load', array( $this, 'czr_fn__') );
+
     }//end of __construct()
+
 
 
 
@@ -241,7 +173,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         {
           if ( is_admin() ) {
             //load
-            $this -> czr_fn_req_once( 'inc/czr-admin.php' );
+            $this -> czr_fn_req_once( 'core/czr-admin.php' );
 
             //if doing ajax, we must not exclude the placeholders
             //because ajax actions are fired by admin_ajax.php where is_admin===true.
@@ -262,8 +194,8 @@ if ( ! class_exists( 'CZR___' ) ) :
       else
         {
           //load
-          $this -> czr_fn_req_once( 'inc/czr-admin.php' );
-          $this -> czr_fn_req_once( 'inc/czr-customize.php' );
+          $this -> czr_fn_req_once( 'core/czr-admin.php' );
+          $this -> czr_fn_req_once( 'core/czr-customize.php' );
 
           //left panel => skip all front end classes
           if ( czr_fn_is_customize_left_panel() ) {
@@ -284,6 +216,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             );
           }
         }
+
       return $_to_load;
     }
 
@@ -387,8 +320,8 @@ if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
   }
 }
 
-
-?><?php
+?>
+<?php
 /**
 * Fires the pro theme : constants definition, core classes loading
 * Defined in the customizr dev folder but not part of the free theme distribution
@@ -1393,7 +1326,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end of plugin compatibility function
 
 
-
+    /*
+    * Same in czr4
+    */
     /**
     * Jetpack compat hooks
     *
@@ -1401,14 +1336,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     * @since Customizr 3.4+
     */
     private function czr_fn_set_jetpack_compat() {
-      //jetpack image carousel
-      //this filter doesn't exist anymore it has been replaced by
-      //tc_is_gallery_enabled
-      //I think we can remove the following compatibility as everything seems to work (considering that it doesn't do anything atm)
-      //and we haven't received any complain
-      //Also we now have a whole gallery section of settings and we coul redirect users there to fine tune it
-      add_filter( 'tc_gallery_bool', '__return_false' );
-
       //Photon jetpack's module conflicts with our smartload feature:
       //Photon removes the width,height attribute in php, then in js it compute them (when they have the special attribute 'data-recalc-dims')
       //based on the img src. When smartload is enabled the images parsed by its js which are not already smartloaded are dummy
@@ -1444,7 +1371,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'czr_fn_bbpress_disable_feature');
       //disables thumbnails and excerpt for post lists
-      add_filter( 'tc_show_post_list_thumb', 'czr_fn_bbpress_disable_feature' );
+      add_filter( 'tc_opt_tc_post_list_thumb', 'czr_fn_bbpress_disable_feature' );
       //show full content in post lists
       add_filter( 'tc_show_excerpt', 'czr_fn_bbpress_disable_feature' );
       //disables Customizr author infos on forums
@@ -1459,6 +1386,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_filter( 'tc_is_img_smartload_help_on', 'czr_fn_bbpress_disable_feature' );
     }
 
+
+    /*
+    * Same in czr4 except for comments enabled filter prefix (tc_ -> czr_)
+    */
     /**
     * BuddyPress compat hooks
     *
@@ -1487,6 +1418,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }
 
+    /*
+    * same in czr4 with filter prefixes change ( tc_ -> czr_ )
+    */
     /**
     * QtranslateX compat hooks
     *
@@ -1571,7 +1505,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }
 
-
+    /*
+    * same in czr4
+    */
     /**
     * Polylang compat hooks
     *
@@ -1588,10 +1524,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         // grab theme options
         $tc_options = czr_fn__f('__options');
         // grab settings map, useful for some options labels
-        $tc_settings_map = CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default = true );
+        $tc_settings_map = czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
         // set $polylang_group;
-        $polylang_group = 'customizr-pro' == CZR___::$theme_name ? 'Customizr-Pro' : 'Customizr';
+        $polylang_group = CZR_IS_PRO ? 'Customizr-Pro' : 'Customizr';
 
         //get options to translate
         $tc_translatable_raw_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
@@ -1627,7 +1563,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         $tc_translatable_options = CZR_plugins_compat::$instance -> czr_fn_get_string_options_to_translate();
         //translate
         foreach ( $tc_translatable_options as $tc_translatable_option )
-          add_filter("tc_opt_$tc_translatable_option", 'pll__');
+          add_filter("tc_opt_{$tc_translatable_option}", 'pll__');
 
         /**
         * Tax filtering (home/blog posts filtered by cat)
@@ -1658,7 +1594,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }//end Front
     }//end polylang compat
 
-
+    /*
+    * same in czr4
+    */
     /**
     * WPML compat hooks
     *
@@ -1854,12 +1792,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
               return czr_fn_wpml_t( $string, str_replace('tc_opt_', '', current_filter() ) );
             }
           }
-          //special function for the post slider button text pre trim filter
-          if ( ! function_exists( 'czr_fn_wpml_t_ps_button_text' ) ) {
-            function czr_fn_wpml_t_ps_button_text( $string ) {
-              return czr_fn_wpml_t( $string, 'tc_posts_slider_button_text' );
-            }
-          }
+
           //define our icl_t wrapper
           if ( ! function_exists( 'czr_fn_wpml_t' ) ) {
             function czr_fn_wpml_t( $string, $opt ) {
@@ -1874,7 +1807,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
           //strings translation
           foreach ( $tc_wpml_options as $tc_wpml_option )
-            add_filter("tc_opt_$tc_wpml_option", 'czr_fn_wpml_t_opt', 20 );
+            add_filter("tc_opt_{$tc_wpml_option}", 'czr_fn_wpml_t_opt', 20 );
 
           //translates sliders? credits @Srdjan
           add_filter( 'tc_opt_tc_sliders', 'czr_fn_wpml_sliders_filter', 99 );
@@ -1938,7 +1871,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return czr_fn_is_tec_events_list() ? false : $bool;
       }
 
-      // Events archive is displayed, wrongly, we our post lists classes, we have to prevent this
+      // Events archive is displayed, wrongly, with our post lists classes, we have to prevent this
       add_filter( 'tc_post_list_controller', 'czr_fn_tec_disable_post_list');
       add_filter( 'tc_is_grid_enabled', 'czr_fn_tec_disable_post_list');
       function czr_fn_tec_disable_post_list( $bool ) {
@@ -2180,6 +2113,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
               $excl['deep']['classes'] = array();
 
           $excl['deep']['classes'][] = 'wc-tabs';
+          $excl['deep']['classes'][] = 'woocommerce-product-rating';
         }
         return $excl;
       }
@@ -2260,7 +2194,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       //add woocommerce header cart CSS
-      add_filter('tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
+      add_filter( 'tc_user_options_style', 'czr_fn_woocommerce_header_cart_css');
       function czr_fn_woocommerce_header_cart_css( $_css ) {
         if ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
           return $_css;
@@ -2360,6 +2294,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end woocommerce compat
 
 
+    /*
+    * same in czr4 except for the filter prefix (tc_ -> czr_)
+    */
     /**
     * Visual Composer compat hooks
     *
@@ -2422,6 +2359,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end disqus compat
 
 
+    /*
+    * same in czr4 except for the filter prefix (tc_ -> czr_)
+    */
     /**
     * Ultimate Responsive Image Slider compat hooks
     *
@@ -2446,7 +2386,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
     }//end uris compat
 
-
+    /* same in czr4 */
     /**
     * TC Unlimited Featured Pages compat hooks
     * Since Customizr 3.4.24 we changed the functions and class prefixes
@@ -2573,6 +2513,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       return false;
     }
 
+    /* same in czr4 */
     public function czr_fn_get_string_options_to_translate() {
       $string_options = array(
         'tc_front_slider',
@@ -2614,7 +2555,6 @@ class CZR_utils_settings_map {
 
       static $instance;
       private $is_wp_version_before_4_0;
-      private $_is_settings_map_available;
 
       function __construct () {
 
@@ -2623,28 +2563,11 @@ class CZR_utils_settings_map {
             global $wp_version;
             $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
 
-            //Be sure that all these files exist
-            //I'm mostly thinking about server caching issues when users update
-            //This is just an edge case, but let's be pedantic
-
             //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
-            if ( $_is_settings_map_available = file_exists( TC_BASE . 'core/functions.php' ) ) {
+            if ( file_exists( TC_BASE . 'core/functions.php' ) ) {
                   require_once( TC_BASE . 'core/functions.php' );
             }
 
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_options.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_options.php' );
-            // }
-
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils.php' );
-            // }
-            // //require core utils settings map
-            // if ( $_is_settings_map_available && $_is_settings_map_available = file_exists( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' ) ) {
-            //       require_once( TC_BASE . 'core/utils/class-fire-utils_settings_map.php' );
-            // }
-
-            $this->_is_settings_map_available = $_is_settings_map_available;
 
       }//end of construct
 
@@ -2659,14 +2582,6 @@ class CZR_utils_settings_map {
       * TODO: unify this
       */
       public function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
-
-            //when not all the deps have been satisfied return an empty array
-            //this will produce only php warnings
-            //TODO: consider to raise an exception
-            if ( empty( $this->_is_settings_map_available ) ) {
-                  return array();
-            }
-
 
             //Hook callbacks are defined in core/utils/class-fire-utils_settings_map.php
             if ( ! empty( CZR___::$customizer_map ) ) {
@@ -3073,17 +2988,6 @@ class CZR_utils_settings_map {
 
             //to add
             $_to_add  = array(
-                  //enable/disable top border
-                  'tc_top_border' => array(
-                                    'default'       =>  1,//top border on by default
-                                    'label'         =>  __( 'Display top border' , 'customizr' ),
-                                    'control'       =>  'CZR_controls' ,
-                                    'section'       =>  'header_layout_sec' ,
-                                    'type'          =>  'checkbox' ,
-                                    'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                                    'priority'      => 10
-                  ),
-
                   'tc_display_boxed_navbar'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                     'control'       => 'CZR_controls' ,
@@ -3562,30 +3466,6 @@ class CZR_utils_settings_map {
             return array_merge( $_old_sections, $_sections );
       }
 
-
-
-
-      /* Sanitize callbacks */
-      /**
-       * adds sanitization callback funtion : url
-       * @package Customizr
-       * @since Customizr 1.1.4
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_url( $value) {
-        $value = esc_url( $value);
-        return $value;
-      }
-
-      /**
-       * adds sanitization callback funtion : email
-       * @package Customizr
-       * @since Customizr 3.4.11
-       * //kept for backward compatibility
-       */
-      function czr_fn_sanitize_email( $value) {
-        return sanitize_email( $value );
-      }
 
       /**
       * Returns the list of available skins from child (if exists) and parent theme
@@ -6175,7 +6055,7 @@ if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
 }
 
 //may be load pro
-if ( czr_fn_is_pro() ) {
+if ( CZR_IS_PRO ) {
     new CZR_init_pro(CZR___::$theme_name );
 }
 ?>
