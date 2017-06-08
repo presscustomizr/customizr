@@ -810,6 +810,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
       static $instance;
 
       function __construct () {
+
           self::$instance =& $this;
           add_action( 'add_meta_boxes'                       , array( $this , 'czr_fn_post_meta_boxes' ));
           add_action( '__post_slider_infos'                  , array( $this , 'czr_fn_get_post_slider_infos' ));
