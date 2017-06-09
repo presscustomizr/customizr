@@ -20,7 +20,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //enqueue additional styling for admin screens
       add_action( 'admin_init'            , array( $this, 'czr_fn_admin_style' ) );
 
-      //Load the editor-style specific (post formats and RTL), the active skin, the user style.css
+      //Load the editor-style specific (post formats and RTL), the user style.css, the active skin
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
       add_action( 'after_setup_theme'     , array( $this, 'czr_fn_add_editor_style') );
 
@@ -205,13 +205,19 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     *
     */
     function czr_fn_add_editor_style() {
+      //array_filter to remove empty array items is not needed as wp function get_editor_stylesheets() (since WP 4.0)
+      //will do that for us
 
-      $_stylesheets = array_filter( array(
-          CZR_BASE_URL . CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
+      $_stylesheets = array(
+          //we need only the relative path, otherwise get_editor_stylesheets() will treat this as external CSS
+          //which means:
+          //a) child-themes cannot override it
+          //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
+          CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
+          'style.css',
           //backward compat
-          ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ? CZR_init::$instance -> czr_fn_get_style_src() : '',
-          get_stylesheet_uri()
-      ) );
+          ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ? 'inc/assets/css/' . esc_attr( czr_fn_opt( 'tc_skin' ) ) : '',
+      );
 
 
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
