@@ -3646,6 +3646,9 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       //save $args for filter
       $args = array($fp_ids, $fp_nb, $fp_per_row, $span_value);
 
+      //force first attachments as thumb in static front page
+      //see: https://github.com/presscustomizr/customizr/issues/936
+      add_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
       ?>
 
       <?php ob_start(); ?>
@@ -3681,6 +3684,11 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       <?php
       $html = ob_get_contents();
       if ($html) ob_end_clean();
+
+      //remove forcing first attachments as thumb in static front page
+      //see: https://github.com/presscustomizr/customizr/issues/936
+      remove_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
+
       echo apply_filters( 'tc_fp_block_display' , $html, $args );
      }
 
