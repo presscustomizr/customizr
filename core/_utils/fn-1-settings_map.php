@@ -699,7 +699,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
 //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
 function czr_fn_navigation_option_map( $get_default = null ) {
   $menu_style = czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside';
-  $menu_style = czr_fn_user_started_before_version( '4.0', '2.0' ) ? $menu_style : 'navbar';
+
   return array(
           'tc_display_second_menu'  =>  array(
                             'default'       => 0,
