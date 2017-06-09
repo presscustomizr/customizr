@@ -191,6 +191,16 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
           CZR_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
       );
 
+      $_stylesheets = array(
+          //we need only the relative path, otherwise get_editor_stylesheets() will treat this as external CSS
+          //which means:
+          //a) child-themes cannot override it
+          //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
+          'inc/admin/css/editor-style.min.css',
+          'style.css',
+          'inc/assets/css/' . esc_attr( CZR_utils::$inst->czr_fn_opt( 'tc_skin' ) ),
+      );
+
       if ( apply_filters( 'tc_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
         $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
 
@@ -222,9 +232,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         new CZR_resources();
       }
 
-
+      //maybe add rtl class
+      $_mce_body_context = is_rtl() ? 'mce-content-body.rtl' : 'mce-content-body';
       //fonts
-      $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+      $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', $_mce_body_context );
 
       $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
