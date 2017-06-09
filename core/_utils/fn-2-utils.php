@@ -367,15 +367,23 @@ function czr_fn_fire_cb( $cb, $params = array(), $return = false ) {
         $to_return = call_user_func( array( $cb[0] ,  $cb[1] ), $params );
       }
       //instantiated with an instance property holding the object ?
-      else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
-        $to_return = call_user_func( array( $cb[0]::$instance ,  $cb[1] ), $params );
+      else if ( class_exists($cb[0]) ) {
+
+        /* PHP 5.3- compliant*/
+        $class_vars = get_class_vars( $cb[0] );
+
+        if ( isset( $class_vars[ 'instance' ] ) && method_exists( $class_vars[ 'instance' ], $cb[1]) ) {
+          $to_return = call_user_func( array( $class_vars[ 'instance' ] ,  $cb[1] ), $params );
+        }
+
+        else {
+          $_class_obj = new $cb[0]();
+          if ( method_exists($_class_obj, $cb[1]) )
+            $to_return = call_user_func( array( $_class_obj, $cb[1] ), $params );
+        }
       }
-      else {
-        $_class_obj = new $cb[0]();
-        if ( method_exists($_class_obj, $cb[1]) )
-          $to_return = call_user_func( array( $_class_obj, $cb[1] ), $params );
-      }
-    } else if ( is_string($cb) && function_exists($cb) ) {
+    }
+    else if ( is_string($cb) && function_exists($cb) ) {
       $to_return = call_user_func($cb, $params);
     }
 
@@ -403,15 +411,23 @@ function czr_fn_fire_cb_array( $cb, $params = array(), $return = false ) {
         $to_return = call_user_func_array( array( $cb[0] ,  $cb[1] ), $params );
       }
       //instantiated with an instance property holding the object ?
-      else if ( class_exists($cb[0]) && isset($cb[0]::$instance) && method_exists($cb[0]::$instance, $cb[1]) ) {
-        $to_return = call_user_func_array( array( $cb[0]::$instance ,  $cb[1] ), $params );
+      else if ( class_exists($cb[0]) ) {
+
+        /* PHP 5.3- compliant*/
+        $class_vars = get_class_vars( $cb[0] );
+
+        if ( isset( $class_vars[ 'instance' ] ) && method_exists( $class_vars[ 'instance' ], $cb[1]) ) {
+          $to_return = call_user_func_array( array( $class_vars[ 'instance' ] ,  $cb[1] ), $params );
+        }
+
+        else {
+          $_class_obj = new $cb[0]();
+          if ( method_exists($_class_obj, $cb[1]) )
+            $to_return = call_user_func_array( array( $_class_obj, $cb[1] ), $params );
+        }
       }
-      else {
-        $_class_obj = new $cb[0]();
-        if ( method_exists($_class_obj, $cb[1]) )
-          $to_return = call_user_func_array( array( $_class_obj, $cb[1] ), $params );
-      }
-    } else if ( is_string($cb) && function_exists($cb) ) {
+    }
+    else if ( is_string($cb) && function_exists($cb) ) {
       $to_return = call_user_func_array($cb, $params);
     }
 
