@@ -247,6 +247,8 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         return $init;
 
       $_css = '';
+      //maybe add rtl class
+      $_mce_body_context = is_rtl() ? 'mce-content-body.rtl' : 'mce-content-body';
 
       //if czr4
       if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) {
@@ -257,7 +259,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
         if ( class_exists('CZR_resources_fonts') && is_object(CZR_resources_fonts::$instance) ) {
           //fonts
-          $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+          $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', $_mce_body_context );
         }
 
         //skin
@@ -286,7 +288,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
 
         //fonts
-        $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', 'mce-content-body');
+        $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', $_mce_body_context );
 
       }
 
