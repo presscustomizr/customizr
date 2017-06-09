@@ -187,11 +187,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_add_editor_style() {
       $_stylesheets = array(
-          TC_BASE_URL.'inc/admin/css/editor-style.min.css',
-          CZR_init::$instance -> czr_fn_get_style_src() , get_stylesheet_uri()
-      );
-
-      $_stylesheets = array(
           //we need only the relative path, otherwise get_editor_stylesheets() will treat this as external CSS
           //which means:
           //a) child-themes cannot override it
