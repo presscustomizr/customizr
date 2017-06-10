@@ -25,9 +25,6 @@ var czrapp = czrapp || {};
                   /* Allow parallax */
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', self._parallax );
 
-                  /* Enable page dots on fly (for the main slider only, for the moment, consider to make it dependend to data-flickity-dots)*/
-                  czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', self._slider_dots );
-
                   /* Fire fittext */
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
                     $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
@@ -98,23 +95,35 @@ var czrapp = czrapp || {};
                       dragThreshold: 10
                   });
 
-                  $('.carousel-inner', '[id^="customizr-slider-main"]').flickity({
-                      prevNextButtons: false,
-                      pageDots: false,
 
-                      wrapAround: true,
-                      imagesLoaded: true,
-                      //lazyLoad ?
+                  var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]');
+                  if ( $_main_slider.length > 0 ) {
+                        //number of slides
+                        //check if has one single slide
+                        //in this case we don't allow pageDots, nor the slide will be draggable
+                        var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length;
 
-                      setGallerySize: false,
-                      cellSelector: '.carousel-cell',
+                        $_main_slider.flickity({
+                            prevNextButtons: false,
+                            pageDots: !_is_single_slide,
+                            draggable: !_is_single_slide,
 
-                      dragThreshold: 10,
+                            wrapAround: true,
 
-                      autoPlay: true, // {Number in milliseconds }
+                            imagesLoaded: true,
 
-                      accessibility: false,
-                  });
+                            //lazyLoad ?
+
+                            setGallerySize: false,
+                            cellSelector: '.carousel-cell',
+
+                            dragThreshold: 10,
+
+                            autoPlay: true, // {Number in milliseconds }
+
+                            accessibility: false,
+                        });
+                  }
             },
 
             centerMainSlider : function() {
@@ -148,6 +157,7 @@ var czrapp = czrapp || {};
 
                   } , 50);
             },
+
             /*
             * carousel parallax on flickity ready
             * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
@@ -165,19 +175,6 @@ var czrapp = czrapp || {};
                         );
 
                   $_parallax_carousel.children('.flickity-viewport').czrParallax(_parallax_data);
-
-            },
-
-
-
-            //Enable page dots on fly
-            _slider_dots : function( evt, _flickity ) {
-
-                  if ( $(evt.target).find('.carousel-cell').length > 1 ) {
-                    _flickity.options.pageDots = true;
-                    _flickity._createPageDots();
-                    _flickity.activatePageDots();
-                  }
 
             },
 
