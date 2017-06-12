@@ -1243,7 +1243,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       ?>
       <div id="main-wrapper" class="section">
 
-        <?php do_action('__before_main_container') ?>
+
 
           <?php
             //this was the previous implementation of the big heading.
@@ -1266,6 +1266,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           </div>
         <?php endif ?>
 
+        <?php do_action('__before_main_container') ?>
 
         <?php
           /* FEATURED PAGES */
