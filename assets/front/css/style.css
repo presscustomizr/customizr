@@ -6504,6 +6504,14 @@ section.post-content {
   float: right;
 }
 
+.fpc-container[data-bgcolor="#fafafa"] {
+  background-color: #fff !important;
+}
+
+.fpc-container[data-bgcolor="#fafafa"] .fpc-widget-front .czr-link-mask {
+  border-color: #fff !important;
+}
+
 .tabs .nav-link:hover, .tabs .nav-link.active, .tabs .nav-link.active:hover, .tabs .nav-link.active:focus {
   color: #3b3b3b;
 }

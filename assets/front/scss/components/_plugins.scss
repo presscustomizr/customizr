@@ -152,3 +152,11 @@
     }
   }
 }
+//force fpu background to white if fpu bg set to default color
+//TODO: change default color for czr4 in FPU
+.fpc-container[data-bgcolor="#fafafa"] {
+  background-color: #fff !important;
+  .fpc-widget-front .czr-link-mask {
+    border-color: #fff !important;
+  }
+}

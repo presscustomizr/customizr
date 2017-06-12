@@ -1213,6 +1213,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         //needed as some plugins (lang) will check the TC_fpu class existence
         add_filter( 'tc_other_plugins_force_fpu_disable', '__return_false' );
       }
+
     }
 
     /**
@@ -1241,6 +1242,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       ?>
       <div id="main-wrapper" class="section">
+
+        <?php do_action('__before_main_container') ?>
+
           <?php
             //this was the previous implementation of the big heading.
             //The next one will be implemented with the slider module
@@ -1275,8 +1279,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           </div>
         <?php endif ?>
 
-
-        <?php do_action('__before_main_container') ?>
 
         <div class="<?php czr_fn_main_container_class() ?>" role="main">
 
