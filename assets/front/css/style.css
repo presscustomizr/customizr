@@ -4461,7 +4461,7 @@ a.czr-format-link:hover::before {
   margin-bottom: 0.3125em;
 }
 
-.entry-title a {
+.entry-title:not(.over-thumb) a {
   color: #202020;
 }
 
@@ -4688,6 +4688,10 @@ a.czr-format-link:hover::before {
   left: 0;
 }
 
+.grid-container__classic .tc-grid-figure .bg-link {
+  background-color: transparent;
+}
+
 .grid-container__classic .tc-grid-caption {
   display: block;
   position: absolute;
@@ -4703,11 +4707,19 @@ a.czr-format-link:hover::before {
   -moz-opacity: 0;
   -khtml-opacity: 0;
   opacity: 0;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   width: 100%;
   height: 100%;
+}
+
+.grid-container__classic .tc-grid-caption,
+.grid-container__classic .expanded .entry-summary {
+  -webkit-transition-property: opacity,background,color;
+  transition-property: opacity,background,color;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  background: transparent;
 }
 
 .grid-container__classic .no-thumb .tc-grid-caption {
@@ -4719,13 +4731,15 @@ a.czr-format-link:hover::before {
   color: inherit;
 }
 
-.grid-container__classic .hover .tc-grid-caption {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
-  filter: alpha(opacity=75);
-  -moz-opacity: 0.75;
-  -khtml-opacity: 0.75;
-  opacity: 0.75;
-  background: #202020;
+.grid-container__classic .grid-item.hover .tc-grid-caption,
+.grid-container__classic .expanded.hover .entry-summary {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+  background: #fafafa;
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
 
