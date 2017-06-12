@@ -40,6 +40,13 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.14 June 9th 2017 =
+* fix: use of the add_editor_style wp function : needs relative paths fixes #926
+* fix: php 5.2.* when trying to access to a static property of a class which is actually a variable. fixes #928
+* fix: menu style for users started after 3.4.0 is 'aside'
+* fix: fp in static front page not displaying first attachment as thumb
+* improved : add rtl class to the inline font style in the wp editor
+
 = 3.5.13 June 7th 2017 =
 * improved : update select2 plugin to version 4.0.3 the same we use in the customizer
 * improved : improve customizr post meta boxes. Do not add in post types which are not visibile in front. Fire actions when meta boxes are added so that we can enqueue related resources (js/css) only when needed by checking on did_action('relevant_action_hook')
