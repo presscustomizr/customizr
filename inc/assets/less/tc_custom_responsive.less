@@ -144,17 +144,19 @@
       text-align: center;
   }
   .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav {
-      float: initial;
+      float: none;      
       display: inline-block;
 
       & when (@is_rtl = true) {
         margin : 0 -15px 0 -10px;
+        text-align: right;
       }
       & when (@is_rtl = false) {
-       margin : 0 -10px 0 -15px;
-      }
 
-      text-align: initial;
+        margin : 0 -10px 0 -15px;
+        text-align: left;
+      }
+      
   }
 
   .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav > .menu-item > a {
