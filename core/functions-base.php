@@ -5,7 +5,8 @@
 //shortcut function to echo the column content wrapper class
 if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
       function czr_fn_is_modern_style() {
-            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] )
+            //do not allow theme style switching via $_GET when is Pro
+            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() )
               return true;
             return defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : false;
       }
@@ -35,6 +36,91 @@ endif;
 if( ! function_exists( 'tc__f' ) ) :
     function tc__f( $tag , $value = null , $arg_one = null , $arg_two = null , $arg_three = null , $arg_four = null , $arg_five = null) {
         return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
+    }
+endif;
+
+if ( ! function_exists( 'czr_fn_setup_constants' ) ):
+    function czr_fn_setup_constants() {
+
+        /* GETS INFORMATIONS FROM STYLE.CSS */
+        // get themedata version wp 3.4+
+        if ( function_exists( 'wp_get_theme' ) ) {
+          //get WP_Theme object of customizr
+          $tc_theme                     = wp_get_theme();
+
+          //Get infos from parent theme if using a child theme
+          $tc_theme = $tc_theme -> parent() ? $tc_theme -> parent() : $tc_theme;
+
+          $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme -> name;
+          $tc_base_data['version']      = $tc_theme -> version;
+          $tc_base_data['authoruri']    = $tc_theme -> {'Author URI'};
+        }
+
+        // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)
+        else {
+             $tc_base_data                = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
+             $tc_base_data['prefix']      = $tc_base_data['title'];
+        }
+
+        //CUSTOMIZR_VER is the Version
+        if( ! defined( 'CUSTOMIZR_VER' ) )            define( 'CUSTOMIZR_VER' , $tc_base_data['version'] );
+        //CZR_BASE is the root server path of the parent theme
+        if( ! defined( 'CZR_BASE' ) )                 define( 'CZR_BASE' , get_template_directory().'/' );
+        //CZR_UTILS_PREFIX is the relative path where the utils classes are located
+        if( ! defined( 'CZR_CORE_PATH' ) )            define( 'CZR_CORE_PATH' , 'core/' );
+        //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
+        if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'core/main-templates/' );
+        //CZR_UTILS_PREFIX is the relative path where the utils classes are located
+        if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_utils/' );
+        //CZR_FRAMEWORK_PATH is the relative path where the framework is located
+        if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/_framework/' );
+        //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
+        if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
+        //CZR_ASSETS_PREFIX is the relative path where the assets are located
+        if( ! defined( 'CZR_ASSETS_PREFIX' ) )        define( 'CZR_ASSETS_PREFIX' , 'assets/' );
+        //CZR_BASE_CHILD is the root server path of the child theme
+        if( ! defined( 'CZR_BASE_CHILD' ) )           define( 'CZR_BASE_CHILD' , get_stylesheet_directory().'/' );
+        //CZR_BASE_URL http url of the loaded parent theme
+        if( ! defined( 'CZR_BASE_URL' ) )             define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
+        //CZR_BASE_URL_CHILD http url of the loaded child theme
+        if( ! defined( 'CZR_BASE_URL_CHILD' ) )       define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
+        
+        //CZR_THEMENAME contains the Name of the currently loaded theme
+        if( ! defined( 'CZR_THEMENAME' ) )            define( 'CZR_THEMENAME' , $tc_base_data['title'] );
+
+        if( ! defined( 'CZR_SANITIZED_THEMENAME' ) )  define( 'CZR_SANITIZED_THEMENAME' , sanitize_file_name( strtolower($tc_base_data['title']) ) );
+
+        //CZR_WEBSITE is the home website of Customizr
+        if( ! defined( 'CZR_WEBSITE' ) )              define( 'CZR_WEBSITE' , $tc_base_data['authoruri'] );
+        //OPTION PREFIX //all customizr theme options start by "tc_" by convention (actually since the theme was created.. tc for Themes & Co...)
+        if( ! defined( 'CZR_OPT_PREFIX' ) )           define( 'CZR_OPT_PREFIX' , apply_filters( 'czr_options_prefixes', 'tc_' ) );
+        //MAIN OPTIONS NAME
+        if( ! defined( 'CZR_THEME_OPTIONS' ) )        define( 'CZR_THEME_OPTIONS', apply_filters( 'czr_options_name', 'tc_theme_options' ) );
+        //CZR_CZR_PATH is the relative path where the Customizer php is located
+        if( ! defined( 'CZR_CZR_PATH' ) )             define( 'CZR_CZR_PATH' , 'core/czr/' );
+        //CZR_FRONT_ASSETS_URL http url of the front assets
+        if( ! defined( 'CZR_FRONT_ASSETS_URL' ) )     define( 'CZR_FRONT_ASSETS_URL' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/' );
+        //if( ! defined( 'CZR_OPT_AJAX_ACTION' ) )      define( 'CZR_OPT_AJAX_ACTION' , 'czr_fn_get_opt' );//DEPRECATED
+        //IS PRO
+        if( ! defined( 'CZR_IS_PRO' ) )               define( 'CZR_IS_PRO' , czr_fn_is_pro() );
+
+        //IS DEBUG MODE
+        if( ! defined( 'CZR_DEBUG_MODE' ) )           define( 'CZR_DEBUG_MODE', ( defined('WP_DEBUG') && true === WP_DEBUG ) );
+
+        //IS DEV MODE
+        if( ! defined( 'CZR_DEV_MODE' ) )             define( 'CZR_DEV_MODE', ( defined('CZR_DEV') && true === CZR_DEV ) );
+
+        //retro compat for FPU and WFC plugins
+
+        //TC_BASE_URL http url of the loaded parent theme (retro compat)
+        if( ! defined( 'TC_BASE' ) )            define( 'TC_BASE' , CZR_BASE );
+        //TC_BASE_CHILD is the root server path of the child theme
+        if( ! defined( 'TC_BASE_CHILD' ) )      define( 'TC_BASE_CHILD' , CZR_BASE_CHILD );
+        //TC_BASE_URL http url of the loaded parent theme (retro compat)
+        if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
+        //TC_BASE_URL_CHILD http url of the loaded child theme
+        if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
+
     }
 endif;
 
@@ -164,7 +250,7 @@ function czr_fn_is_front_help_enabled(){
 */
 if ( ! function_exists( 'czr_fn_is_pro' ) ) {
       function czr_fn_is_pro() {
-            return class_exists( 'CZR_init_pro' ) && "customizr-pro" == CZR___::$theme_name;
+            return class_exists( 'CZR_init_pro' ) && "customizr-pro" == CZR_SANITIZED_THEMENAME;
       }
 }
 
