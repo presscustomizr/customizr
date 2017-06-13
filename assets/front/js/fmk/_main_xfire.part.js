@@ -111,7 +111,13 @@ var czrapp = czrapp || {};
                             'dropdownPlacement'//snake
                       ]
                 },
-
+                masonry : {
+                      ctor  : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
+                      ready : [
+                            'initOnCzrReady',
+                            'masonryGridEventListener'
+                      ]
+                },
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
                       ready : [

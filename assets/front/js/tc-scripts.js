@@ -12821,7 +12821,11 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
 
-    init : function() {
+    initOnCzrReady : function() {
+
+      if ( typeof undefined === typeof $.fn.masonry )
+        return;
+
       /*
       * TODO:
       * - use delegation for images (think about infinite scroll)
@@ -12837,18 +12841,24 @@ var czrapp = czrapp || {};
       this._loaded_counter = 0;
       this._n_images = this.$_images.length;
 
+
       if ( ! this._n_images )
         this._czrFireMasonry();
 
     },
+
     masonryGridEventListener : function() {
       //LOADING ACTIONS
       var self = this;
+
+      if ( typeof undefined === typeof this.$_grid )
+        return;
 
       this.$_grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
 
       if ( ! this._n_images )
         return;
+
       this.$_images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
 
       //Dummy, for testing purpose only
@@ -12872,8 +12882,8 @@ var czrapp = czrapp || {};
     }
   };//_methods{}
 
-  czrapp.methods.Czr_MasonryGrid = {};
-  $.extend( czrapp.methods.Czr_MasonryGrid , _methods );
+  czrapp.methods.MasonryGrid = {};
+  $.extend( czrapp.methods.MasonryGrid , _methods );
 })(jQuery, czrapp);var czrapp = czrapp || {};
 /************************************************
 * SIDE NAV SUB CLASS
@@ -13757,7 +13767,13 @@ var czrapp = czrapp || {};
                             'dropdownPlacement'//snake
                       ]
                 },
-
+                masonry : {
+                      ctor  : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
+                      ready : [
+                            'initOnCzrReady',
+                            'masonryGridEventListener'
+                      ]
+                },
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
                       ready : [
