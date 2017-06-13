@@ -1,7 +1,7 @@
 <?php
 class CZR_loop_model_class extends CZR_Model {
   public $reset_query        = false;
-  public $register_loop_item = true;
+  public $register_loop_item = false;
 
   public $loop_item_template, $loop_item_args;
 
