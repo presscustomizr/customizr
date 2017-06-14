@@ -92,7 +92,7 @@ class CZR_related_posts_model_class extends CZR_model {
       'ignore_sticky_posts'     => 1,
       'orderby'                 => 'rand',
       'post__not_in'            => array($post_id),
-      'posts_per_page'          => 3
+      'posts_per_page'          => 4
     );
 
     // Related by categories
@@ -107,7 +107,7 @@ class CZR_related_posts_model_class extends CZR_model {
     }
 
     // Related by tags
-    if ( 'tags' == czr_fn_opt('tc_related_posts') ) {
+    else if ( 'tags' == czr_fn_opt('tc_related_posts') ) {
       $tags = get_post_meta($post_id, 'related-tag', true);
       if ( !$tags ) {
         $tags = wp_get_post_tags($post_id, array('fields'=>'ids'));
