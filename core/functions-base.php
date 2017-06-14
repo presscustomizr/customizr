@@ -2,13 +2,15 @@
 /*
  * @since 3.5.0
  */
-//shortcut function to echo the column content wrapper class
 if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
       function czr_fn_is_modern_style() {
-            //do not allow theme style switching via $_GET when is Pro
+            //do not allow theme style switching via $_GET param czr_modern_style when is Pro
             if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() )
-              return true;
-            return defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : false;
+              $_czr_is_modern_style = true;
+            else
+              $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : false;
+
+            return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
       }
 }
 
@@ -84,7 +86,7 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         if( ! defined( 'CZR_BASE_URL' ) )             define( 'CZR_BASE_URL' , get_template_directory_uri() . '/' );
         //CZR_BASE_URL_CHILD http url of the loaded child theme
         if( ! defined( 'CZR_BASE_URL_CHILD' ) )       define( 'CZR_BASE_URL_CHILD' , get_stylesheet_directory_uri() . '/' );
-        
+
         //CZR_THEMENAME contains the Name of the currently loaded theme
         if( ! defined( 'CZR_THEMENAME' ) )            define( 'CZR_THEMENAME' , $tc_base_data['title'] );
 

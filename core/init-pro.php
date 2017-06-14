@@ -82,4 +82,11 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
 
   }//end of class
 endif;
-?>
+
+//Allow theme style switching via $_GET param czr_pro_modern_style when is Pro
+add_filter( 'czr_is_modern_style', 'czr_fn_maybe_allow_pro_modern_style' );
+if ( ! function_exists( 'czr_fn_maybe_allow_pro_modern_style' ) ) :
+  function czr_fn_maybe_allow_pro_modern_style( $czr_is_modern_style ) {
+    return ( isset( $_GET['czr_pro_modern_style'] ) && true == $_GET['czr_pro_modern_style'] ) ? czr_fn_is_pro() : $czr_is_modern_style;
+  }
+endif;
