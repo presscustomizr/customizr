@@ -12,7 +12,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
     //TODO: option based
     function czr_fn_display_view_related_posts() {
-      return apply_filters( 'czr_display_related_posts', czr_fn_is_possible( 'post' ) );
+      return apply_filters( 'czr_display_related_posts', czr_fn_is_possible( 'post' ) && 'disabled' != czr_fn_opt('tc_related_posts') );
     }
 
     function czr_fn_display_view_search_full_page () {

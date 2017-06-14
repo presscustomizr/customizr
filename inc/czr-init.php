@@ -2700,6 +2700,7 @@ class CZR_utils_settings_map {
                   'czr_fn_post_metas_option_map',
                   'czr_fn_post_list_option_map',
                   'czr_fn_comment_option_map',
+                  'czr_fn_single_post_option_map',
                   //SIDEBARS
                   'czr_fn_sidebars_option_map',
                   //FOOTER
@@ -3368,6 +3369,28 @@ class CZR_utils_settings_map {
             return array_merge( $_map, $_to_add );
       }
 
+
+      /*-----------------------------------------------------------------------------------------------------
+                                     COMMENTS SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_single_post_option_map( $_map, $get_default = null ) {
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_related_posts',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+
+            return $_map;
+      }
 
       /******************************************************************************************************
       *******************************************************************************************************

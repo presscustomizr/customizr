@@ -1403,7 +1403,8 @@ function czr_fn_single_post_option_map( $get_default = null ) {
       'tc_single_post_thumb_location'  =>  array(
                         'default'       => 'hide',
                         'control'     => 'CZR_controls' ,
-                        'label'         => __( "Post thumbnail position" , "customizr" ),
+                        'label'         => __( 'Post thumbnail position' , 'customizr' ),
+                        'title'         => __( 'Featured Image' , 'customizr' ),
                         'section'       => 'single_posts_sec' ,
                         'type'      =>  'select' ,
                         'choices'     => array(
@@ -1431,7 +1432,23 @@ function czr_fn_single_post_option_map( $get_default = null ) {
                         'min'         => 0,
                         'priority'      => 20,
                         'transport'   => 'postMessage'
-      )
+      ),
+      'tc_related_posts' => array(
+                        'default'   => 'categories',
+                        'control'   => 'CZR_controls',
+                        'title'     => __( 'Related posts', 'customizr'),
+                        'label'     => __( 'Single - Related Posts', 'customizr'),
+                        'section'   => 'single_posts_sec',
+                        'type'      => 'select',
+                        'priority'  => 20,
+                        'choices' => array(
+                          'disabled'    => __( 'Disable' , 'customzir' ),
+                          'categories'  => __( 'Related by categories' , 'customzir' ),
+                          'tags'        => __( 'Related by tags' , 'customzir' )
+                        ),
+                        'notice'    => __( 'Display randomized related articles below the post' , 'customizr'),
+      ),
+
   );
 
 }
@@ -1445,7 +1462,8 @@ function czr_fn_single_page_option_map( $get_default = null ) {
       'tc_single_page_thumb_location'  =>  array(
                         'default'       => 'hide',
                         'control'     => 'CZR_controls' ,
-                        'label'         => __( "Post thumbnail position" , "customizr" ),
+                        'label'         => __( 'Post thumbnail position', 'customizr' ),
+                        'title'         => __( 'Featured Image' , 'customizr' ),
                         'section'       => 'single_pages_sec' ,
                         'type'      =>  'select' ,
                         'choices'     => array(
