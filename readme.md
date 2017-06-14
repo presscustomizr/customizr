@@ -1,4 +1,4 @@
-# Customizr v3.5.14 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.15 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,18 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.15 June 14th 2017 =
+* Fix: single slide sliders must not be draggable fixes #941
+* Fix: fix menu center resulting aligned to the left on IE fixes #944
+* Fix: fix position of structural hook __before_main_container
+* Fix: fix fpc-container alignment when in #content
+* Fix: by default the loop model should not register the loop item model if 
+* Fix: remove old theme favicon control - is handled in js fixes #954
+* Fix: remove new lines at the end of czr_ classes fixes #957
+* Imp: improve classical grid CSS
+* Imp: fp and grid images always js centered
+* Add: modern-style - add related posts options for single post
+
 = 3.5.14 June 9th 2017 =
 * fix: use of the add_editor_style wp function : needs relative paths fixes #926
 * fix: php 5.2.* when trying to access to a static property of a class which is actually a variable. fixes #928
