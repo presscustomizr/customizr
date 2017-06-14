@@ -163,8 +163,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         public static function czr_fn_instance() {
               if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
                 self::$instance = new CZR___();
-                //defined in CZR_BASE
-                self::$instance -> czr_fn_setup_constants();
 
                 self::$instance -> czr_fn_setup_loading();
                 self::$instance -> czr_fn_load();
@@ -648,10 +646,6 @@ if ( ! function_exists( 'CZR' ) ) {
       return CZR___::czr_fn_instance();
     }
 }
-
-//require init-pro if it exists
-if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
-  require_once( get_template_directory() . '/core/init-pro.php' );
 
 // Fire Customizr
 CZR();

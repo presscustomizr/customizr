@@ -5,7 +5,6 @@ module.exports = {
   init_php : {
     src: [
       '<%= paths.dev_php %>init.php',
-      '<%= paths.core_php %>init-pro.php',
       '<%= paths.dev_php %>class-fire-init.php',
       '<%= paths.dev_php %>class-fire-plugins_compat.php',
       '<%= paths.dev_php %>class-fire-utils_settings_map.php',
