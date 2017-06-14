@@ -33,6 +33,7 @@
   ?>
 
     <div id="main-wrapper" class="section">
+
             <?php
               //this was the previous implementation of the big heading.
               //The next one will be implemented with the slider module
@@ -55,6 +56,8 @@
           <?php endif ?>
 
 
+          <?php do_action('__before_main_container') ?>
+
           <?php
             /* FEATURED PAGES */
             if ( czr_fn_has( 'featured_pages' ) )
@@ -67,8 +70,6 @@
             </div>
           <?php endif ?>
 
-
-          <?php do_action('__before_main_container') ?>
 
           <div class="<?php czr_fn_main_container_class() ?>" role="main">
 

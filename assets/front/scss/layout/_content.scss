@@ -5,18 +5,18 @@
   z-index: 1;
 }
 
-
-#main-wrapper,
-#content {
-  padding-bottom:$base-line-height*2;
-}
-
+#tc-page-wrap,
 #main-wrapper {
   &::before, &::after {
     display: table;
     content: '';
     line-height: 0
   }
+}
+
+#main-wrapper,
+#content {
+  padding-bottom:$base-line-height*2;
 }
 
 .container[role="main"] {
