@@ -24,8 +24,6 @@ if ( ! class_exists( 'CZR___' ) ) :
 
       self::$instance =& $this;
 
-      $this -> czr_fn_setup_constants();
-
       //this is the structure of the Customizr code : groups => ('path' , 'class_suffix')
       $this -> tc_core = apply_filters( 'tc_core',
         array(
