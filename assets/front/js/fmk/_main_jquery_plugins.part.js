@@ -62,9 +62,9 @@ var czrapp = czrapp || {};
     * @return {void}
     */
     centerImages : function() {
-      //POST CLASSIC GRID IMAGES
+      //Featured pages and classical grid are always centered
       $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
-        enableCentering : czrapp.localized.centerAllImg,
+        enableCentering : 1,
         oncustom : ['smartload', 'refresh-height', 'simple_load'],
         zeroTopAdjust: 0,
         enableGoldenRatio : false,

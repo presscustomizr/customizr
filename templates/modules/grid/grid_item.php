@@ -37,7 +37,7 @@
             if( czr_fn_get( 'has_title_in_caption' ) && !czr_fn_get( 'title_in_caption_below' ) ):
 
             ?>
-            <h2 class="entry-title">
+            <h2 class="entry-title over-thumb">
               <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
             </h2>
             <?php
@@ -53,7 +53,7 @@
             if( czr_fn_get( 'has_title_in_caption' ) && czr_fn_get( 'title_in_caption_below' ) ):
 
             ?>
-            <h2 class="entry-title">
+            <h2 class="entry-title over-thumb">
               <a href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
             </h2>
             <?php

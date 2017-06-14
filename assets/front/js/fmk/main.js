@@ -1122,9 +1122,9 @@ var czrapp = czrapp || {};
     * @return {void}
     */
     centerImages : function() {
-      //POST CLASSIC GRID IMAGES
+      //Featured pages and classical grid are always centered
       $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
-        enableCentering : czrapp.localized.centerAllImg,
+        enableCentering : 1,
         oncustom : ['smartload', 'refresh-height', 'simple_load'],
         zeroTopAdjust: 0,
         enableGoldenRatio : false,
@@ -1256,9 +1256,6 @@ var czrapp = czrapp || {};
                   /* Allow parallax */
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', self._parallax );
 
-                  /* Enable page dots on fly (for the main slider only, for the moment, consider to make it dependend to data-flickity-dots)*/
-                  czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', self._slider_dots );
-
                   /* Fire fittext */
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
                     $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
@@ -1329,23 +1326,35 @@ var czrapp = czrapp || {};
                       dragThreshold: 10
                   });
 
-                  $('.carousel-inner', '[id^="customizr-slider-main"]').flickity({
-                      prevNextButtons: false,
-                      pageDots: false,
 
-                      wrapAround: true,
-                      imagesLoaded: true,
-                      //lazyLoad ?
+                  var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]');
+                  if ( $_main_slider.length > 0 ) {
+                        //number of slides
+                        //check if has one single slide
+                        //in this case we don't allow pageDots, nor the slide will be draggable
+                        var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length;
 
-                      setGallerySize: false,
-                      cellSelector: '.carousel-cell',
+                        $_main_slider.flickity({
+                            prevNextButtons: false,
+                            pageDots: !_is_single_slide,
+                            draggable: !_is_single_slide,
 
-                      dragThreshold: 10,
+                            wrapAround: true,
 
-                      autoPlay: true, // {Number in milliseconds }
+                            imagesLoaded: true,
 
-                      accessibility: false,
-                  });
+                            //lazyLoad ?
+
+                            setGallerySize: false,
+                            cellSelector: '.carousel-cell',
+
+                            dragThreshold: 10,
+
+                            autoPlay: true, // {Number in milliseconds }
+
+                            accessibility: false,
+                        });
+                  }
             },
 
             centerMainSlider : function() {
@@ -1379,6 +1388,7 @@ var czrapp = czrapp || {};
 
                   } , 50);
             },
+
             /*
             * carousel parallax on flickity ready
             * we parallax only the flickity-viewport, so that we don't parallax the carouasel-dots
@@ -1396,19 +1406,6 @@ var czrapp = czrapp || {};
                         );
 
                   $_parallax_carousel.children('.flickity-viewport').czrParallax(_parallax_data);
-
-            },
-
-
-
-            //Enable page dots on fly
-            _slider_dots : function( evt, _flickity ) {
-
-                  if ( $(evt.target).find('.carousel-cell').length > 1 ) {
-                    _flickity.options.pageDots = true;
-                    _flickity._createPageDots();
-                    _flickity.activatePageDots();
-                  }
 
             },
 
@@ -2026,7 +2023,11 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
 
-    init : function() {
+    initOnCzrReady : function() {
+
+      if ( typeof undefined === typeof $.fn.masonry )
+        return;
+
       /*
       * TODO:
       * - use delegation for images (think about infinite scroll)
@@ -2042,18 +2043,24 @@ var czrapp = czrapp || {};
       this._loaded_counter = 0;
       this._n_images = this.$_images.length;
 
+
       if ( ! this._n_images )
         this._czrFireMasonry();
 
     },
+
     masonryGridEventListener : function() {
       //LOADING ACTIONS
       var self = this;
+
+      if ( typeof undefined === typeof this.$_grid )
+        return;
 
       this.$_grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
 
       if ( ! this._n_images )
         return;
+
       this.$_images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
 
       //Dummy, for testing purpose only
@@ -2077,8 +2084,8 @@ var czrapp = czrapp || {};
     }
   };//_methods{}
 
-  czrapp.methods.Czr_MasonryGrid = {};
-  $.extend( czrapp.methods.Czr_MasonryGrid , _methods );
+  czrapp.methods.MasonryGrid = {};
+  $.extend( czrapp.methods.MasonryGrid , _methods );
 })(jQuery, czrapp);var czrapp = czrapp || {};
 /************************************************
 * SIDE NAV SUB CLASS
@@ -2962,7 +2969,13 @@ var czrapp = czrapp || {};
                             'dropdownPlacement'//snake
                       ]
                 },
-
+                masonry : {
+                      ctor  : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
+                      ready : [
+                            'initOnCzrReady',
+                            'masonryGridEventListener'
+                      ]
+                },
                 userXP : {
                       ctor : czrapp.Base.extend( czrapp.methods.UserXP ),
                       ready : [
