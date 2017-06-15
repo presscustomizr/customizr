@@ -112,7 +112,7 @@ class CZR_slider_model_class extends CZR_Model {
   protected function czr_fn_get_slides( $slider_name_id/*, $img_size*/ ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
-      return apply_filters( 'czr_default_slides', $this -> czr_fn_get_default_slides() );
+      return apply_filters( 'tc_default_slides', $this -> czr_fn_get_default_slides() );
     else
       return $this -> czr_fn_get_the_slides( $slider_name_id );
   }
@@ -292,34 +292,7 @@ class CZR_slider_model_class extends CZR_Model {
   */
   protected function czr_fn_get_default_slides() {
     //Default slides content
-    $demo_slides =array(
-      1 => array(
-        'title'         =>  '',
-        'text'          =>  '',
-        'button_text'   =>  '',
-        'link_id'       =>  null,
-        'link_url'      =>  null,
-        'link_target'   =>  '_blank',
-        'color_style'   =>  '',
-        'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/customizr-theme.jpg',
-                                    __( 'Customizr is a clean responsive theme' , 'customizr' )
-                            )
-      ),
-      2 => array(
-        'title'         =>  '',
-        'text'          =>  '',
-        'button_text'   =>  '',
-        'link_id'       =>  null,
-        'link_url'      =>  null,
-        'link_target'   =>  '_blank',
-        'color_style'   =>  '',
-        'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/img/demo_slide_2.jpg',
-                                    __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
-                            )
-      )
-    );
+    $demo_slides = CZR___::$instance -> default_slides;
 
     if ( current_user_can('edit_theme_options') ) {
       $demo_slides[1] = array_merge( $demo_slides[1], array(

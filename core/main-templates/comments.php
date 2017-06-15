@@ -8,7 +8,7 @@
  */
 
 // Print once : plugins compatibility
-if ( ! apply_filters( 'czr_render_comments_template', true ) )
+if ( ! apply_filters( 'tc_render_comments_template', true ) )
   return;
 ?>
 <div id="comments" class="comments_container">

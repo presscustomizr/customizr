@@ -18,6 +18,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     public static $tc_option_group;
 
     function __construct () {
+      //following R. Aliberti advise
+      if( ! defined( 'CZR_IS_MODERN_STYLE' ) )            define( 'CZR_IS_MODERN_STYLE' , false );
 
       //call CZR_BASE constructor
       parent::__construct();

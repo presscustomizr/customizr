@@ -51,7 +51,7 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
 
       //gets the filtered default values
       $footer_widgets           = apply_filters( 'czr_footer_widgets'  , CZR_init::$instance -> footer_widgets );
-      $sidebar_widgets          = apply_filters( 'czr_sidebar_widgets' , CZR_init::$instance -> sidebar_widgets );
+      $sidebar_widgets          = apply_filters( 'czr_sidebar_widgets' , CZR___::$instance -> sidebar_widgets );
       $widgets                  = apply_filters( 'czr_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
 
       //declares the arguments array

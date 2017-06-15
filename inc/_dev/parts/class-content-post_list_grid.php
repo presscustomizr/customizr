@@ -424,7 +424,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         */
         function czr_fn_set_thumb_size(){
           $thumb = ( $this -> czr_fn_get_grid_section_cols() == '1' ) ? 'tc_grid_full_size' : 'tc_grid_size';
-          return CZR_init::$instance -> $thumb;
+          return CZR___::$instance -> $thumb;
         }
 
 

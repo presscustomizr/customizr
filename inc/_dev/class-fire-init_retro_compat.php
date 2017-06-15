@@ -81,7 +81,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
         return array();
       }
 
-      $_old_socials          = CZR_init::$instance -> socials;
+      $_old_socials          = CZR__::$instance -> old_socials;
       $_old_filtered_socials = apply_filters( 'tc_default_socials', $_old_socials );
 
       /*

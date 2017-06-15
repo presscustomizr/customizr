@@ -63,66 +63,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
     return array();
   }
 
-
-  $_old_socials  = array(
-        'tc_rss'            => array(
-                                'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
-                            ),
-        'tc_email'          => array(
-                                'link_title'    => __( 'E-mail' , 'customizr' ),
-                              ),
-        'tc_twitter'        => array(
-                                'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                              ),
-        'tc_facebook'       => array(
-                                'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                              ),
-        'tc_google'         => array(
-                                'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                              ),
-        'tc_instagram'      => array(
-                                'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                              ),
-        'tc_tumblr'       => array(
-                                'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                              ),
-        'tc_flickr'       => array(
-                                'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                              ),
-        'tc_wordpress'      => array(
-                                'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                              ),
-        'tc_youtube'        => array(
-                                'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                              ),
-        'tc_pinterest'      => array(
-                                'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                              ),
-        'tc_github'         => array(
-                                'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                              ),
-        'tc_dribbble'       => array(
-                                'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                              ),
-        'tc_linkedin'       => array(
-                                'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                              ),
-        'tc_vk'             => array(
-                                'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
-                              ),
-        'tc_yelp'           => array(
-                                'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
-                              ),
-        'tc_xing'           => array(
-                                'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
-                              ),
-        'tc_snapchat'       => array(
-                                'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
-                              )
-  );//end of social array
-
-  $_old_filtered_socials = apply_filters( 'tc_default_socials', $_old_socials );
+  $_old_filtered_socials = apply_filters( 'tc_default_socials', CZR__::$instance -> old_socials );
 
   /*
   * old socials were in the form
@@ -269,7 +210,7 @@ function czr_fn_maybe_move_old_skin_to_czr4( $theme_options ) {
 
 
       //get skin color from old skin value, which is in the form color_name.css
-      $_color_map    = CZR_init::$instance -> skin_color_map;
+      $_color_map    = CZR___::$instance -> skin_classic_color_map;
 
       $_active_skin  = $theme_options[ 'tc_skin' ];
 

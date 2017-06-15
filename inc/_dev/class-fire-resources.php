@@ -402,7 +402,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       */
       function czr_fn_enqueue_gfonts() {
         $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
-        $_all_font_pairs    = CZR_init::$instance -> font_pairs;
+        $_all_font_pairs    = CZR___::$instance -> font_pairs;
         if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
           return;
 
@@ -550,7 +550,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           return $_skin;
 
         //allow custom skins to be taken in account
-        $_skins = apply_filters( 'tc_get_skin_color', CZR_init::$instance -> skin_color_map, 'all' );
+        $_skins = apply_filters( 'tc_get_skin_color', CZR___::$instance -> skin_classic_color_map, 'all' );
 
         //allow users to filter the list of skins they want to randomize
         $_skins = apply_filters( 'tc_skins_to_randomize', $_skins );
@@ -681,7 +681,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         if ( ! ( class_exists('CZR_featured_pages') && CZR_featured_pages::$instance -> czr_fn_show_featured_pages_img() ) )
           return $bool;
 
-        $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+        $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR___::$instance -> fp_ids);
 
         foreach ( $fp_ids as $fp_single_id ){
           $featured_page_id = czr_fn_opt( 'tc_featured_page_'.$fp_single_id );

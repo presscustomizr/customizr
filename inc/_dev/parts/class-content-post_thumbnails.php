@@ -39,7 +39,7 @@ class CZR_post_thumbnails {
 
       $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'tc_thumb_size_name' , 'tc-thumb' ) : $requested_size;
       $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
-      $_filtered_thumb_size       = apply_filters( 'tc_thumb_size' , CZR_init::$instance -> tc_thumb_size );
+      $_filtered_thumb_size       = apply_filters( 'tc_thumb_size' , CZR___::$instance -> tc_thumb_size );
       $_model                     = array();
       $_img_attr                  = array();
       $tc_thumb_height            = '';
@@ -253,7 +253,7 @@ class CZR_post_thumbnails {
         return;
 
       //handles the case when the image dimensions are too small
-      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR_init::$instance -> tc_thumb_size, czr_fn_get_id()  );
+      $thumb_size       = apply_filters( 'tc_thumb_size' , CZR___::$instance -> tc_thumb_size, czr_fn_get_id()  );
       $no_effect_class  = ( isset($tc_thumb) && isset($tc_thumb_height) && ( $tc_thumb_height < $thumb_size['height']) ) ? 'no-effect' : '';
       $no_effect_class  = ( esc_attr( czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 

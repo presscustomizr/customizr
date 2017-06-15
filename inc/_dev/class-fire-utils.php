@@ -80,7 +80,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       * @since Customizr 3.1.23
       */
       function czr_fn_get_skin_color( $_what = null ) {
-          $_color_map    = CZR_init::$instance -> skin_color_map;
+          $_color_map    = CZR___::$instance -> skin_classic_color_map;
           $_color_map    = ( is_array($_color_map) ) ? $_color_map : array();
 
           $_active_skin =  str_replace('.min.', '.', basename( CZR_init::$instance -> czr_fn_get_style_src() ) );

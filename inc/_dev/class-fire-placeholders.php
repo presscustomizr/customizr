@@ -550,7 +550,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     */
     function czr_fn_is_one_fp_set() {
       $_fp_sets = array();
-      $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+      $fp_ids = apply_filters( 'tc_featured_pages_ids' , CZR___::$instance -> fp_ids);
       if ( ! is_array($fp_ids) )
         return;
       foreach ($fp_ids as $fp_single_id ) {

@@ -2479,7 +2479,7 @@ function czr_fn_generates_featured_pages( $_original_map ) {
   $fp_setting_control = array();
 
   //gets the featured pages id from init
-  $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+  $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR___::$instance -> fp_ids);
 
   //dropdown field generator
   foreach ( $fp_ids as $id ) {

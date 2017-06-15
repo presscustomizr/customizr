@@ -1382,7 +1382,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         'tc_social_in_sidebar_title',
       );
       if ( ! class_exists('TC_fpu') && ! class_exists('TC_fpc') ) {
-        $fp_areas = CZR_init::$instance -> fp_ids;
+        $fp_areas = CZR___::$instance -> fp_ids;
         foreach ( $fp_areas as $fp_area )
           $string_options[] = 'tc_featured_text_' . $fp_area;
 

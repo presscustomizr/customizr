@@ -285,7 +285,7 @@ class CZR_slider {
   private function czr_fn_get_the_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
-      return apply_filters( 'tc_default_slides', CZR_init::$instance -> default_slides );
+      return apply_filters( 'tc_default_slides', CZR___::$instance -> default_slides );
     else if ( 'tc_posts_slider' == $slider_name_id ) {
       return $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size );
     }

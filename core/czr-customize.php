@@ -880,7 +880,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     function czr_fn_customize_controls_localize() {
 
       //gets the featured pages id from init
-      $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+      $fp_ids       = apply_filters( 'tc_featured_pages_ids' , CZR___::$instance -> fp_ids);
 
       //declares the common fp control fields and the dynamic arrays
       $fp_controls      = array(

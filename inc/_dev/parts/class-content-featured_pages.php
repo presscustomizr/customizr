@@ -72,7 +72,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       $tc_show_featured_pages_img     = $this -> czr_fn_show_featured_pages_img();
 
       //gets the featured pages array and sets the fp layout
-      $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR_init::$instance -> fp_ids);
+      $fp_ids                         = apply_filters( 'tc_featured_pages_ids' , CZR___::$instance -> fp_ids);
       $fp_nb                          = count($fp_ids);
       $fp_per_row                     = apply_filters( 'tc_fp_per_line', 3 );
 

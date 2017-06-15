@@ -59,7 +59,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
               )
         );
         //gets the featured pages array and sets the fp layout
-        $model['fp_ids']                = CZR_init::$instance -> fp_ids;
+        $model['fp_ids']                = CZR___::$instance -> fp_ids;
 
         $model['fp_nb']                 = count( $model['fp_ids'] );
 

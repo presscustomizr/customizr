@@ -120,7 +120,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_maybe_add_gfonts_to_editor() {
       $_font_pair         = esc_attr( czr_fn_opt('tc_fonts') );
-      $_all_font_pairs    = CZR_init::$instance -> font_pairs;
+      $_all_font_pairs    = CZR___::$instance -> font_pairs;
       if ( false === strpos($_font_pair,'_g_') )
         return;
       //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
