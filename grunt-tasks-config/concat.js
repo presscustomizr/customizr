@@ -3,6 +3,14 @@ module.exports = {
 		separator: '',
 	},
   init_php : {
+    options: {
+      process: function(src, filepath) {
+        //removes trailing newlines ( and spaces ) at the begin of a file
+        src = src.replace(/^\s+[\n\r]+(<\?php)/gm,"$1");
+        //removes >1 ending newlines ( and spaces ) after php closing tag
+        return src.replace(/\?>([\n\r])+\s+$/gm,"?>$1");
+      },
+    },
     src: [
       '<%= paths.dev_php %>init.php',
       '<%= paths.dev_php %>class-fire-init.php',
@@ -19,6 +27,14 @@ module.exports = {
     dest: '<%= paths.inc_php %>czr-init.php',
   },
   front_php : {
+    options: {
+      process: function(src, filepath) {
+        //removes trailing newlines ( and spaces ) at the begin of a file
+        src = src.replace(/^\s+[\n\r]+(<\?php)/gm,"$1");
+        //removes >1 ending newlines ( and spaces ) after php closing tag
+        return src.replace(/\?>([\n\r])+\s+$/gm,"?>$1");
+      },
+    },
     src: [
       '<%= paths.dev_php %>parts/class-header-header_main.php',
       '<%= paths.dev_php %>parts/class-header-menu.php',
@@ -53,6 +69,14 @@ module.exports = {
     dest: '<%= paths.core_php %>czr-admin.php',
   },
   customize_php : {
+    options: {
+      process: function(src, filepath) {
+        //removes trailing newlines ( and spaces ) at the begin of a file
+        src = src.replace(/^\s+[\n\r]+(<\?php)/gm,"$1");
+        //removes >1 ending newlines ( and spaces ) after php closing tag
+        return src.replace(/\?>([\n\r])+\s+$/gm,"?>$1");
+      },
+    },
     src: [
       '<%= paths.core_php %>_czr/class-czr-init.php',
       '<%= paths.core_php %>_czr/class-czr-resources.php',
@@ -153,6 +177,14 @@ module.exports = {
   },
   //C4
   fmk_php_c4 : {
+    options: {
+      process: function(src, filepath) {
+        //removes trailing newlines ( and spaces ) at the begin of a file
+        src = src.replace(/^\s+[\n\r]+(<\?php)/gm,"$1");
+        //removes >1 ending newlines ( and spaces ) after php closing tag
+        return src.replace(/\?>([\n\r])+\s+$/gm,"?>$1");
+      },
+    },
     src: [
       '<%= paths.core_php %>/_framework/class-model.php',
       '<%= paths.core_php %>/_framework/class-collection.php',
@@ -162,6 +194,14 @@ module.exports = {
     dest: '<%= paths.core_php %>fmk.php',
   },
   utils_php_c4 : {
+    options: {
+      process: function(src, filepath) {
+        //removes trailing newlines ( and spaces ) at the begin of a file
+        src = src.replace(/^\s+[\n\r]+(<\?php)/gm,"$1");
+        //removes >1 ending newlines ( and spaces ) after php closing tag
+        return src.replace(/\?>([\n\r])+\s+$/gm,"?>$1");
+      },
+    },
     src: [
       '<%= paths.core_php %>/_utils/fn-0-base.php',
       '<%= paths.core_php %>/_utils/fn-1-settings_map.php',
@@ -218,5 +258,5 @@ module.exports = {
       '<%= paths.front_js_4 %>fmk/main.js'
     ],
     dest: '<%= paths.front_js_4 %>tc-scripts.js',
-  }
+  },
 };
