@@ -40,6 +40,18 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.15 June 14th 2017 =
+* Fix: single slide sliders must not be draggable fixes #941
+* Fix: fix menu center resulting aligned to the left on IE fixes #944
+* Fix: fix position of structural hook __before_main_container
+* Fix: fix fpc-container alignment when in #content
+* Fix: by default the loop model should not register the loop item model if 
+* Fix: remove old theme favicon control - is handled in js fixes #954
+* Fix: remove new lines at the end of czr_ classes fixes #957
+* Imp: improve classical grid CSS
+* Imp: fp and grid images always js centered
+* Add: modern-style - add related posts options for single post
+
 = 3.5.14 June 9th 2017 =
 * fix: use of the add_editor_style wp function : needs relative paths fixes #926
 * fix: php 5.2.* when trying to access to a static property of a class which is actually a variable. fixes #928

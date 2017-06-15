@@ -1,5 +1,5 @@
 /*!
- * Customizr v3.5.14
+ * Customizr v3.5.15
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -8783,10 +8783,10 @@ li#wp-admin-bar-tc-customizr-help a {
     text-align: center;
   }
   .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav {
-    float: initial;
+    float: none;
     display: inline-block;
     margin: 0 -15px 0 -10px;
-    text-align: initial;
+    text-align: right;
   }
   .sticky-disabled .logo-centered .pull-menu-center .nav-collapse .nav > .menu-item > a {
     padding-left: 20px;
