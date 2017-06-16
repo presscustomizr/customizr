@@ -3,6 +3,18 @@ module.exports = {
       eol: 'crlf', //or lf
       overwrite: true //orverwrite on the same file
     },
+    concatenated_php : {
+      files : { // Files to process: $dest : $source
+          '' : [
+              '<%= paths.inc_php %>czr-init.php',
+              '<%= paths.inc_php %>czr-front.php',
+              '<%= paths.core_php %>czr-admin.php',
+              '<%= paths.core_php %>czr-customize.php',
+              '<%= paths.core_php %>fmk.php',
+              '<%= paths.core_php %>functions.php'
+        ]
+      }
+    },
     front_css4: {// Task
       files: { // Files to process: $dest : $source
         '': ['<%= paths.front_css4 %>style.css']
@@ -19,7 +31,7 @@ module.exports = {
       }
     },
     czr_js : {
-        files : { // Files to process: $dest : $source
+      files : { // Files to process: $dest : $source
           '' : [
               '<%= paths.czr_assets %>js/czr-control.js',
               '<%= paths.czr_assets %>js/czr-preview.js',
@@ -27,5 +39,5 @@ module.exports = {
               '<%= paths.czr_assets %>js/czr-preview-modern.js',
         ]
       }
-    }
+    },
 };
