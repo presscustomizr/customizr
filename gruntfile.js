@@ -53,7 +53,8 @@ module.exports = function(grunt) {
           'concat:customize_php',
           //c4
           'concat:fmk_php_c4',
-          'concat:utils_php_c4'
+          'concat:utils_php_c4',
+          'lineending:concatenated_php'
         ],
         'prod_front_css': [
           'multi:prod_skins',
