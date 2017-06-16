@@ -61,6 +61,43 @@ var czrapp = czrapp || {};
                   return $_window.width() <= ( _maxWidth - 15 );
             },
 
+
+
+
+            /***************************************************************************
+            * CUSTOM EVENTS
+            * tc-resize
+            ****************************************************************************/
+            emitCustomEvents : function() {
+
+                  var that = this;
+                  /*-----------------------------------------------------
+                  -> CUSTOM RESIZE EVENT
+                  ------------------------------------------------------*/
+                  czrapp.$_window.resize( function(e) {
+                        var $_windowWidth     = czrapp.$_window.width(),
+                            _current          = czrapp.current_device,//<= stored on last resize event or on load
+                            //15 pixels adjustement to avoid replacement before real responsive width
+                            _to               = that.getDevice();
+
+                        //updates width dependant properties
+                        czrapp.is_responsive  = that.isResponsive();
+                        czrapp.current_device = _to;
+                        czrapp.$_body.trigger( 'tc-resize', { current : _current, to : _to} );
+                  } );//resize();
+
+                  /*-----------------------------------------------------
+                  - > CUSTOM REFRESH CACHE EVENT on partial content rendered (customizer preview)
+                  ------------------------------------------------------*/
+                  if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
+                        wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+                              czrapp.$_tcHeader = $('.tc-header');
+                              czrapp.$_body.trigger( 'partialRefresh.czr', placement );
+                        });
+                  }
+
+            },
+
             emit : function( cbs, args ) {
                   cbs = _.isArray(cbs) ? cbs : [cbs];
                   var self = this;
