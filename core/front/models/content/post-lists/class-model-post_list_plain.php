@@ -167,7 +167,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   protected function czr_fn__get_cat_list() {
     /* Post list plain showing excerpts limits the category to show to 3 */
-    $cat_list                  = ! $this -> show_full_content ? czr_fn_get( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get( 'cat_list', 'post_metas');
+    $cat_list                  = ! $this -> show_full_content ? czr_fn_get_property( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get_property( 'cat_list', 'post_metas');
     return $cat_list;
   }
 

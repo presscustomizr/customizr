@@ -497,7 +497,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
     //@return the collection of models
-    public function czr_fn_get() {
+    public function czr_fn_get_collection() {
       //uses self::$instance instead of this to always use the parent instance
       return self::$collection;
     }
@@ -519,7 +519,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       $priority = empty($priority) ? 10 : (int)$priority;
       $available = true;
       //loop on the existing model object in the collection
-      foreach ( $this -> czr_fn_get() as $id => $model) {
+      foreach ( $this -> czr_fn_get_collection() as $id => $model) {
         if ( ! isset($model -> hook) )
           continue;
         if ( $hook != $model -> hook )

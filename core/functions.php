@@ -33,9 +33,9 @@ if ( ! function_exists( 'czr_fn_article_container_class' ) ) {
  * @since 3.5.0
  */
 //shortcut function to get a theme file
-if ( ! function_exists( 'czr_fn_get_theme_file' ) ) {
-      function czr_fn_get_theme_file( $path_suffix ) {
-            return CZR() -> czr_fn_get_theme_file( $path_suffix );
+if ( ! function_exists( 'czr_fn_get_theme_file_path' ) ) {
+      function czr_fn_get_theme_file_path( $path_suffix ) {
+            return CZR() -> czr_fn_get_theme_file_path( $path_suffix );
       }
 }
 /*
@@ -82,11 +82,21 @@ if ( ! function_exists( 'czr_fn_reset_current_model' ) ) {
  * @since 3.5.0
  */
 //shortcut function to get a current model property
-if ( ! function_exists( 'czr_fn_get' ) ) {
-      function czr_fn_get( $property, $model_id = null, $args = array() ) {
-            return CZR() -> czr_fn_get( $property, $model_id, $args );
+if ( ! function_exists( 'czr_fn_get_property' ) ) {
+      function czr_fn_get_property( $property, $model_id = null, $args = array() ) {
+            return CZR() -> czr_fn_get_property( $property, $model_id, $args );
       }
 }
+
+
+
+//shortcut function to get a current model
+if ( ! function_exists( 'czr_fn_get_current_model' ) ) {
+      function czr_fn_get_current_model() {
+            return CZR() -> czr_fn_get_current_model();
+      }
+}
+
 
 /*
  * @since 3.5.0
@@ -162,28 +172,31 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
 
             if ( czr_fn_is_registered( $_model_id ) ) {
 
-                  $model_instance = czr_fn_get_model_instance( $_model_id );
+                $model_instance = czr_fn_get_model_instance( $_model_id );
 
-                  //sets the template property on the fly based on what's requested
-                  if ( ! czr_fn_get_model_property( $_model_id, 'template') ) {
-                        $model_instance -> czr_fn_set_property('template' , $_t );
-                  }
+                //sets the template property on the fly based on what's requested
+                if ( ! czr_fn_get_model_property( $_model_id, 'template') ) {
+                    $model_instance -> czr_fn_set_property('template' , $_t );
+                }
 
-                  //update model with the one passed
-                  if ( is_array($args) && array_key_exists( 'model_args', $args) ) {
+                //update model with the one passed
+                if ( is_array($args) && array_key_exists( 'model_args', $args) ) {
+                      $model_instance -> czr_fn_update( $_model_args, $_reset_to_defaults );
+                } elseif ( $_reset_to_defaults ) {
+                      $model_instance -> czr_fn_reset_to_defaults();
+                }
 
-                        $model_instance -> czr_fn_update( $_model_args, $_reset_to_defaults );
-
-                  }
-                  elseif ( $_reset_to_defaults ) {
-
-                        $model_instance -> czr_fn_reset_to_defaults();
-                  }
-
-                  czr_fn_get_view_instance($_model_id ) -> czr_fn_maybe_render();
-            }
-            else {
-                  czr_fn_register( array( 'id' => $_model_id, 'render' => true, 'template' => $_t, 'model_class' => $_model_class, 'args' => $_model_args ) );
+                czr_fn_get_view_instance( $_model_id ) -> czr_fn_maybe_render();
+            } else {
+                czr_fn_register(
+                    array(
+                      'id'          => $_model_id,
+                      'render'      => true,
+                      'template'    => $_t,
+                      'model_class' => $_model_class,
+                      'args'        => $_model_args
+                    )
+                );
             }
       }
 }
@@ -280,6 +293,29 @@ if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
                   return $_model_id;
 
             return CZR() -> collection -> czr_fn_register( $model );
+      }
+}
+
+//pluggable, following Rocco's wise ( always... AH AH AH ) suggestion.
+//=> shut the fuck up Larry.
+if ( ! function_exists( 'czr_fn_get_main_content_loop_item' ) ) {
+      function czr_fn_get_main_content_loop_item() {
+            //fallback
+            $to_render = array( 'loop_item' => array('content/singular/page_content' ) );
+            if ( czr_fn_is_list_of_posts() ) {
+
+                $to_render = array( 'loop_item' => array( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) ) );
+
+                if ( czr_fn_has('post_list') ) {
+                      $to_render = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
+                } elseif ( czr_fn_has('post_list_plain') ) {
+                      $to_render = array( 'loop_item' => array('content/post-lists/post_list_plain' ));
+                }
+
+            } elseif ( is_single() ) {
+                $to_render = array( 'loop_item' => array('content/singular/post_content' ));
+            }
+            return apply_filters( "czr_main_content_loop_item", $to_render );
       }
 }
 ?><?php

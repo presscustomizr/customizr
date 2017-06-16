@@ -138,7 +138,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           $CZR            = CZR();
           //this check has already been done before instantiating the model.
           //Do we really need this again here ?
-          if ( ! $CZR -> controllers -> czr_fn_is_possible($this -> czr_fn_get())  )
+          if ( ! $CZR -> controllers -> czr_fn_is_possible($this -> czr_fn_get_model_as_array() )  )
             return;
 
           //instantiate the view with the current model object as param
@@ -179,19 +179,19 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //@param $instance is the view instance object, can be CZR_View or a child of CZR_View
     //hook the rendering method to the hook
     //$this -> view_instance can be used. It can be a child of this class.
-    public function czr_fn_maybe_hook_or_render_view($instance) {
-          if ( empty($this -> id) ) {
-            do_action('czr_dev_notice', 'In CZR_Model, a model is missing its id.' );
-            return;
+    public function czr_fn_maybe_hook_or_render_view( $instance )  {
+          if ( empty( $this -> id ) ) {
+              do_action('czr_dev_notice', 'In CZR_Model, a model is missing its id.' );
+              return;
           }
 
           //Are we in czr_fn_render_template case
           //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
           //AND if the render property is forced to true
           //if not check if template_redirect has already been fired, to see if we are in a czr_fn_render case
-          if ( did_action('template_redirect') && $this -> render ) {
-            $instance -> czr_fn_maybe_render();
-            return;//this is the end, beautiful friend.
+          if ( did_action( 'template_redirect' ) && $this -> render ) {
+              $instance -> czr_fn_maybe_render();
+              return;//this is the end, beautiful friend.
           }
 
           //What are the requested hook and priority ?
@@ -276,13 +276,15 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //normalizes the way we can access and change a single model property
     //@return the property
     public function czr_fn_get_property( $property, $args = array() ) {
-          if ( method_exists( $this, "czr_fn_get_{$property}" ) )
-            return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
+          if ( method_exists( $this, "czr_fn_get_{$property}" ) ) {
+              error_log( 'WHEN ? => ' . $this -> id . ' | ' . $property );
+              return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
+          }
           return isset ( $this -> $property ) ? $this -> $property : '';
     }
 
     //@returns the model property as an array of params
-    public function czr_fn_get() {
+    public function czr_fn_get_model_as_array() {
           $model = array();
           foreach ( array_keys( get_object_vars( $this ) ) as $key ) {
             $model[ $key ] = $this->$key;

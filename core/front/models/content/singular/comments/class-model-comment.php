@@ -17,8 +17,8 @@ class CZR_comment_model_class extends CZR_Model {
     global $post;
     global $comment;
 
-    $args  = czr_fn_get( 'comment_args' );
-    $depth = czr_fn_get( 'comment_depth' );
+    $args  = czr_fn_get_property( 'comment_args' );
+    $depth = czr_fn_get_property( 'comment_depth' );
 
     $props = array(
      'comment_text'            => apply_filters( 'comment_text', get_comment_text( $comment->comment_ID , $args ), $comment, $args ),

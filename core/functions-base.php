@@ -71,7 +71,7 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         //CZR_UTILS_PREFIX is the relative path where the utils classes are located
         if( ! defined( 'CZR_CORE_PATH' ) )            define( 'CZR_CORE_PATH' , 'core/' );
         //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
-        if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'core/main-templates/' );
+        if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'templates/main-templates/' );
         //CZR_UTILS_PREFIX is the relative path where the utils classes are located
         if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_utils/' );
         //CZR_FRAMEWORK_PATH is the relative path where the framework is located

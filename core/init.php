@@ -74,7 +74,7 @@ a) rendered on fly ( core/functions.php czr_fn_render_template(...) ) directly f
 b) rendered at a specific hook and priority
 
 A template can access models data through two functions
-1) czr_fn_get( property, model_id(optional, default is the current model), args(optional) ) - gets a model's property
+1) czr_fn_get_property( property, model_id(optional, default is the current model), args(optional) ) - gets a model's property
 2) czr_fn_echo( property, model_id(optional, default is the current model), args(optional) ) - echoes a model's property
 
 Each model object can define the way a property is retrieved by defining a method with the following signature
@@ -347,7 +347,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               *********************************************/
               array(
                 'id'             => 'main_content',
-                'model_class'    => 'content',
+                'model_class'    => 'main_content',
               ),
 
               /*********************************************
@@ -477,35 +477,29 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //called when requiring a file - will always give the precedence to the child-theme file if it exists
         //then to the theme root
-        function czr_fn_get_theme_file( $path_suffix ) {
+        function czr_fn_get_theme_file_path( $path_suffix ) {
             $path_prefixes = array_unique( apply_filters( 'czr_include_paths'     , array( '' ) ) );
             $roots         = array_unique( apply_filters( 'czr_include_roots_path', array( CZR_BASE_CHILD, CZR_BASE ) ) );
 
             foreach ( $roots as $root ) {
-              foreach ( $path_prefixes as $path_prefix ) {
+                foreach ( $path_prefixes as $path_prefix ) {
 
-                $filename     = $root . $path_prefix . $path_suffix;
-                $_exists      = in_array( $filename, $this->existing_files );
-                $_exists_not  = in_array( $filename, $this->not_existing_files );
+                    $filename     = $root . $path_prefix . $path_suffix;
+                    $_exists      = in_array( $filename, $this->existing_files );
+                    $_exists_not  = in_array( $filename, $this->not_existing_files );
 
-
-                if ( !$_exists_not && ( $_exists || file_exists( $filename ) ) ) {
-
-                  //cache file existence
-                  if ( !$_exists ) {
-                    $this->existing_files[] = $filename;
-
-                  }
-
-                  return $filename;
+                    if ( ! $_exists_not && ( $_exists || file_exists( $filename ) ) ) {
+                        //cache file existence
+                        if ( ! $_exists ) {
+                            $this->existing_files[] = $filename;
+                        }
+                        return $filename;
+                    } else if ( ! $_exists_not ) {
+                        //cache file not existence
+                        $this->not_existing_files[] = $filename;
+                    }
 
                 }
-                else if ( !$_exists_not ) {
-                  //cache file not existence
-                  $this->not_existing_files[] = $filename;
-                }
-
-              }
             }
 
             return false;
@@ -553,7 +547,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //requires a file only if exists
         function czr_fn_require_once( $path_suffix ) {
-            if ( false !== $filename = $this -> czr_fn_get_theme_file( $path_suffix ) )
+            if ( false !== $filename = $this -> czr_fn_get_theme_file_path( $path_suffix ) )
               require_once( $filename );
 
             return (bool) $filename;
@@ -584,16 +578,27 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @param $property (string), the property to get
         * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
         */
-        function czr_fn_get( $property, $model_id = null, $args = array() ) {
+        function czr_fn_get_property( $property, $model_id = null, $args = array() ) {
             $current_model = false;
-            if ( ! is_null($model_id) ) {
-              if ( czr_fn_is_registered($model_id) )
-                $current_model = czr_fn_get_model_instance( $model_id );
+            if ( ! is_null( $model_id ) ) {
+                if ( czr_fn_is_registered( $model_id ) ) {
+                    $current_model = czr_fn_get_model_instance( $model_id );
+                }
             } else {
-              $current_model = end( $this -> current_model );
+                $current_model = end( $this -> current_model );
             }
-            return is_object($current_model) ? $current_model -> czr_fn_get_property( $property, $args ) : false;
+            return is_object( $current_model ) ? $current_model -> czr_fn_get_property( $property, $args ) : false;
         }
+
+
+        /*
+        * An handly function to get a the full current model list of properties
+        */
+        function czr_fn_get_current_model() {
+            $current_model = end( $this -> current_model );
+            return is_object( $current_model ) ? $current_model : false;
+        }
+
 
         /*
         * An handly function to print a current model property (wrapper for czr_fn_get)
@@ -601,7 +606,7 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @param $args (array) - optional, an ordered list of params to pass to the current model property getter (if defined)
         */
         function czr_fn_echo( $property, $model_id = null, $args = array() ) {
-            $prop_value = czr_fn_get( $property, $model_id, $args );
+            $prop_value = czr_fn_get_property( $property, $model_id, $args );
             /*
             * is_array returns false if an array is empty:
             * in that case we have to transform it in false or ''
