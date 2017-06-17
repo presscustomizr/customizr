@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.16 June 17th 2017 =
+* Imp: improve deploying process to avoid headers already sent issues
+* Fix: missing front js custom events: tc-resize, partialRefresh.czr fixes #961
+
 = 3.5.15 June 14th 2017 =
 * Fix: single slide sliders must not be draggable fixes #941
 * Fix: fix menu center resulting aligned to the left on IE fixes #944
