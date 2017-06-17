@@ -1276,3 +1276,18 @@ function czr_fn_sanitize_uploads( $url ) {
   $upload_dir = wp_upload_dir();
   return str_replace($upload_dir['baseurl'], '', $url);
 }
+
+
+
+
+
+/**
+* helper
+* Prints the social links
+* @return  void
+*/
+if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
+    function czr_fn_print_social_links() {
+        echo czr_fn_get_social_networks();
+    }
+}

@@ -108,7 +108,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_post_list_option_map',
     'czr_fn_single_post_option_map',
     'czr_fn_single_page_option_map',
-    'czr_fn_gallery_option_map', //No gallery options in c4 as of now
+    'czr_fn_gallery_option_map', //No gallery options in modern style ( v4+ ) as of now
     'czr_fn_paragraph_option_map',
     'czr_fn_post_navigation_option_map',
     //SIDEBARS
@@ -1198,7 +1198,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'priority'      => 70
           ),
 
-          /* Not used anymore in c4 */
+          /* Not used anymore in modern style ( v4+ ) */
           'tc_post_list_thumb_shape'  =>  array(
                             'default'       => 'rounded',
                             'control'     => 'CZR_controls' ,
@@ -1665,7 +1665,7 @@ function czr_fn_post_metas_option_map( $get_default = null ){
 /*-----------------------------------------------------------------------------------------------------
                                GALLERY SECTION
 -----------------------------------------------------------------------------------------------------*/
-/* Totally removed in c4 */
+/* Totally removed in modern style ( v4+ ) */
 function czr_fn_gallery_option_map( $get_default = null ){
   return array(
           'tc_enable_gallery'  =>  array(

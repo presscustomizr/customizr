@@ -55,27 +55,3 @@ require_once( get_template_directory() . '/core/init-base.php' );
 * More informations about how to create a child theme with Customizr : http://docs.presscustomizr.com/article/24-creating-a-child-theme-for-customizr/
 * A good starting point to customize the Customizr theme : http://docs.presscustomizr.com/article/35-how-to-customize-the-customizr-wordpress-theme/
 */
-
-function my_callb() {
-  echo '<h1>VIVE LA QUIQUETTE ZIZI DE RENZI</h1>';
-   echo sanitize_file_name( 'content/post-lists/my_template' );
-   echo trailingslashit( 'DFSDF' );
-}
-
-add_action( 'wp', function() {
-    czr_fn_register(
-        array(
-          'hook'        => '__before_main_wrapper',
-          'template'    => 'joie',
-          'template_path' => get_stylesheet_directory() . '/bin/templates',
-          'html'        => '<h1>VIVE LE ZIZI DE RENZI</h1>',
-          'callback'    => 'my_callb'
-        )
-    );
-});
-
-add_filter( 'czr_template_file_path', function( $path, $name ) {
-    if ( 'footer' != $name )
-      return $path;
-    return get_stylesheet_directory() . '/bin/templates/joie.php';
-}, 10, 2);

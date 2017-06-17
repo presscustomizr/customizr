@@ -52,7 +52,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
             if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
               $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
               wp_enqueue_style( 'customizr-fa',
-                  $_path . CZR_init::$instance -> czr_fn_maybe_use_min_style( 'font-awesome.css' ),
+                  $_path . 'font-awesome.min.css',
                   array() , CUSTOMIZR_VER, 'all' );
             }
 

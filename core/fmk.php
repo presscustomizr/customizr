@@ -277,7 +277,6 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //@return the property
     public function czr_fn_get_property( $property, $args = array() ) {
           if ( method_exists( $this, "czr_fn_get_{$property}" ) ) {
-              error_log( 'WHEN ? => ' . $this -> id . ' | ' . $property );
               return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
           }
           return isset ( $this -> $property ) ? $this -> $property : '';

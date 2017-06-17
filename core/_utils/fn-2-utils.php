@@ -283,9 +283,9 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         continue;
       $_social_opts = wp_parse_args( $item, $_social_opts );
     }
-
+    $font_size_value = $_social_opts['social-size'];
     //if the size is the default one, do not add the inline style css
-    $social_size_css  = empty( $_social_opts['social-size'] ) || $_default_size == $_social_opts['social-size'] ? '' : "font-size:{$_social_opts['social-size']}px";
+    $social_size_css  = empty( $font_size_value ) || $_default_size == $font_size_value ? '' : "font-size:{$font_size_value}px";
 
     $_social_links = array();
     foreach( $_socials as $key => $item ) {
@@ -307,13 +307,13 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 
         $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
 
-        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" href="%3$s"%4$s%7$s><i class="fa %5$s"></i></a>',
+        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="fa %5$s"></i></a>',
           //do we have an id set ?
           //Typically not if the user still uses the old options value.
           //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
 
           // Put them together
-            !czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+            ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
             isset($item['title']) ? esc_attr( $item['title'] ) : '',
             ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
             ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',

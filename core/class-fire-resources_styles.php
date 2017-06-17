@@ -11,13 +11,14 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          //Access any method or var of the class with classname::$instance -> var or method():
          static $instance;
 
-         private $_minify_css;
+         private $_is_css_minified;
          private $_resources_version;
 
          function __construct () {
 
                self::$instance =& $this;
 
+               //setup version param and is_css_minified bool
                add_action( 'after_setup_theme'                   , array( $this, 'czr_fn_setup_properties' ), 20 );
 
                add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
@@ -34,8 +35,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
-               $this->_minify_css              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
-               $this->_minify_css              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_minify_css : false;
+               $this->_is_css_minified              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
+               $this->_is_css_minified              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_is_css_minified : false;
 
          }
 
@@ -52,7 +53,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                $_ver        = $this->_resouces_version;
 
-               $_ext        = $this->_minify_css ? '.min.css' : '.css';
+               $_ext        = $this->_is_css_minified ? '.min.css' : '.css';
 
                wp_enqueue_style( 'customizr-bs'             , czr_fn_get_theme_file_url( "{$_path}custom-bs/custom-bootstrap{$_ext}" ) , array(), $_ver, 'all' );
 
@@ -146,7 +147,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                //LET'S DANCE
                //start computing style
                $skin                           = array();
-               $glue                           = $this->_minify_css || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $glue                           = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
                $skin_style_map                 = array(
 

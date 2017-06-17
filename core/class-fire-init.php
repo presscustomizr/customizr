@@ -28,102 +28,82 @@ if ( ! class_exists( 'CZR_init' ) ) :
       function __construct () {
           self::$instance =& $this;
 
-          //modify the query with pre_get_posts
-          //! wp_loaded is fired after WordPress is fully loaded but before the query is set
-          add_action( 'wp_loaded'                              , array( $this, 'czr_fn_set_early_hooks') );
+          //html5
+          //tag cloud - same font size
+          //tag cloud add button classes
+          add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ));
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
           add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
           //Add the context
           add_filter ( 'body_class'                            , 'czr_fn_set_post_list_context_class' );
 
-          //may be filter the thumbnail inline style
-          add_filter( 'czr_post_thumb_inline_style'            , array( $this , 'czr_fn_change_thumb_inline_css' ), 10, 3 );
-
           //Add custom search form
           add_filter( 'get_search_form'                        , array( $this, 'czr_fn_search_form' ), 0 );
 
           //Default layout settings
           $this -> global_layout      = array(
-                                        'r' => array(
-                                            'content'       => 'col-12 col-md-9',
-                                            'l-sidebar'     => false,
-                                            'r-sidebar'     => 'col-12 col-md-3',
-                                            'customizer'    => __( 'Right sidebar' , 'customizr' ),
-                                            'metabox'       => __( 'Right sidebar' , 'customizr' ),
-                                        ),
-                                        'l' => array(
-                                            'content'       => 'col-12 col-md-9 push-md-3',
-                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-9',
-                                            'r-sidebar'     => false,
-                                            'customizer'    => __( 'Left sidebar' , 'customizr' ),
-                                            'metabox'       => __( 'Left sidebar' , 'customizr' ),
-                                        ),
-                                        'b' => array(
-                                            'content'       => 'col-12 col-md-6 push-md-3',
-                                            'l-sidebar'     => 'col-12 col-md-3 pull-md-6',
-                                            'r-sidebar'     => 'col-12 col-md-3',
-                                            'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
-                                            'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
-                                        ),
-                                        'f' => array(
-                                            'content'       => 'col-12',
-                                            'l-sidebar'     => false,
-                                            'r-sidebar'     => false,
-                                            'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
-                                            'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
-                                        ),
+              'r' => array(
+                  'content'       => 'col-12 col-md-9',
+                  'l-sidebar'     => false,
+                  'r-sidebar'     => 'col-12 col-md-3',
+                  'customizer'    => __( 'Right sidebar' , 'customizr' ),
+                  'metabox'       => __( 'Right sidebar' , 'customizr' ),
+              ),
+              'l' => array(
+                  'content'       => 'col-12 col-md-9 push-md-3',
+                  'l-sidebar'     => 'col-12 col-md-3 pull-md-9',
+                  'r-sidebar'     => false,
+                  'customizer'    => __( 'Left sidebar' , 'customizr' ),
+                  'metabox'       => __( 'Left sidebar' , 'customizr' ),
+              ),
+              'b' => array(
+                  'content'       => 'col-12 col-md-6 push-md-3',
+                  'l-sidebar'     => 'col-12 col-md-3 pull-md-6',
+                  'r-sidebar'     => 'col-12 col-md-3',
+                  'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
+                  'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
+              ),
+              'f' => array(
+                  'content'       => 'col-12',
+                  'l-sidebar'     => false,
+                  'r-sidebar'     => false,
+                  'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
+                  'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
+              ),
           );
 
           $this -> font_selectors     = array(
-            'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.navbar-brand-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
-            'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body') ) )
+              'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.navbar-brand-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
+              'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body') ) )
           );
 
 
           //Default footer widgets
           $this -> footer_widgets     = array(
-            'footer_one'    => array(
-                            'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                            'before_title'            => '<h5 class="widget-title">',
-                            'after_title'             => '</h5>'
-            ),
-            'footer_two'    => array(
-                            'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                            'before_title'            => '<h5 class="widget-title">',
-                            'after_title'             => '</h5>'
-            ),
-            'footer_three'   => array(
-                            'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                            'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                            'before_title'            => '<h5 class="widget-title">',
-                            'after_title'             => '</h5>'
-            )
+              'footer_one'    => array(
+                              'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
+              'footer_two'    => array(
+                              'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
+              'footer_three'   => array(
+                              'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              )
           );//end of array
       }//end of constructor
 
 
 
-      /**
-      * //Move in CZR_utils?
-      *
-      * Returns the min or normal version of the passed css filename (basename.type)
-      * depending on whether or not the minified version should be used
-      *
-      * @param $_sheet string
-      *
-      * @return string
-      *
-      * @package Customizr
-      * @since Customizr 3.4.19
-      */
-      function czr_fn_maybe_use_min_style( $_sheet ) {
-          if ( esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) )
-            $_sheet = ( defined('CZR_NOT_MINIFIED_CSS') && true === CZR_NOT_MINIFIED_CSS ) ? $_sheet : str_replace('.css', '.min.css', $_sheet);
-          return $_sheet;
-      }
 
 
 
@@ -183,45 +163,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
 
-
-      /**
-      * hook czr_post_thumb_inline_style
-      * Replace default widht:auto by width:100%
-      * @param array of args passed by apply_filters_ref_array method
-      * @return  string
-      *
-      * @package Customizr
-      * @since Customizr 3.2.6
-      */
-      function czr_fn_change_thumb_inline_css( $_style, $image, $_filtered_thumb_size) {
-          //conditions :
-          //note : handled with javascript if tc_center_img option enabled
-          $_bool = array_product(
-            array(
-              ! esc_attr( czr_fn_opt( 'tc_center_img') ),
-              false != $image,
-              ! empty($image),
-              isset($_filtered_thumb_size['width']),
-              isset($_filtered_thumb_size['height'])
-            )
-          );
-          if ( ! $_bool )
-            return $_style;
-
-          $_width     = $_filtered_thumb_size['width'];
-          $_height    = $_filtered_thumb_size['height'];
-          $_new_style = '';
-          //if we have a width and a height and at least on dimension is < to default thumb
-          if ( ! empty($image[1])
-            && ! empty($image[2])
-            && ( $image[1] < $_width || $image[2] < $_height )
-            ) {
-              $_new_style           = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
-          }
-          if ( empty($image[1]) || empty($image[2]) )
-            $_new_style             = sprintf('min-width:%1$spx;min-height:%2$spx;max-width: none;width: auto;max-height: none;', $_width, $_height );
-          return $_new_style;
+      function czr_fn_base_customizr_setup() {
+          add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
+          //tag cloud - same font size
+          add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
+          //tag cloud add button classes
+          add_filter( 'wp_generate_tag_cloud_data'          , array( $this, 'czr_fn_add_tag_cloud_button_classes') );
       }
+
+
+
 
       /**
       * Add tag cloud widget args so to have all tags with the same font size.
@@ -232,13 +183,13 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @return array modified arguments.
       */
       function czr_fn_add_widget_tag_cloud_args( $args ) {
-        if ( is_array( $args ) ) {
-          $args['largest'] = 1;
-          $args['smallest'] = 1;
-          $args['unit'] = 'em';
-        }
+          if ( is_array( $args ) ) {
+            $args['largest'] = 1;
+            $args['smallest'] = 1;
+            $args['unit'] = 'em';
+          }
 
-        return $args;
+          return $args;
       }
 
       /**
@@ -251,15 +202,30 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @return array modified arguments.
       */
       function czr_fn_add_tag_cloud_button_classes( $tags_data ) {
-        if ( is_array( $tags_data ) ) {
-          foreach ( $tags_data as &$tag_data ) {
-            if ( is_array( $tag_data ) ) {
-              $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-skin-darkest-oh inverted" : "btn btn-dark inverted";
+          if ( is_array( $tags_data ) ) {
+            foreach ( $tags_data as &$tag_data ) {
+              if ( is_array( $tag_data ) ) {
+                $tag_data['class'] = array_key_exists( 'class', $tag_data ) ? "{$tag_data['class']} btn btn-skin-darkest-oh inverted" : "btn btn-dark inverted";
+              }
             }
           }
-        }
-        return $tags_data;
+          return $tags_data;
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       /*
@@ -269,11 +235,11 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @return string custom search form html
       */
       function czr_fn_search_form() {
-        ob_start();
-         czr_fn_render_template( 'modules/search/searchform' );
-        $form = ob_get_clean();
+          ob_start();
+           czr_fn_render_template( 'modules/search/searchform' );
+          $form = ob_get_clean();
 
-        return $form;
+          return $form;
       }
 
 

@@ -7829,6 +7829,7 @@ class CZR_post_thumbnails {
     /**
     * hook tc_post_thumb_inline_style
     * Replace default widht:auto by width:100%
+    * => css centering of imgs when the js option is not checked
     * @param array of args passed by apply_filters_ref_array method
     * @return  string
     *

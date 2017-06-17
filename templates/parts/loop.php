@@ -7,8 +7,6 @@ if ( have_posts() ) {
 
       while ( have_posts() ) {
           the_post();
-          // error_log( print_r( czr_fn_get_property( 'loop_item_template' ), true ) );
-          // error_log( czr_fn_get_property('loop_item_template') );
           czr_fn_render_template(
               czr_fn_get_property( 'loop_item_template' ),//the loop item template is set the loop model. Example : "modules/grid/grid_wrapper"
               czr_fn_get_property( 'loop_item_args' )

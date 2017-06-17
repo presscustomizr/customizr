@@ -102,9 +102,6 @@
 
                   if ( ! czr_fn_is_home_empty() ) {
                       if ( have_posts() ) {
-
-                          error_log( print_r(  czr_fn_get_property( 'content_to_render', 'main_content'), true ) );
-
                           //Problem to solve : we want to be able to inject any loop item ( grid-wrapper, alternate, etc ... ) in the loop model
                           //=> since it's not set yet, it has to be done now.
                           //How to do it ?

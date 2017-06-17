@@ -334,15 +334,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             if ( ! get_option( 'link_manager_enabled' ) ) {
               add_theme_support( 'customize-selective-refresh-widgets' );
             }
-
-
-            if ( CZR_IS_MODERN_STYLE ) {
-                add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
-                //tag cloud - same font size
-                add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
-                //tag cloud add button classes
-                add_filter( 'wp_generate_tag_cloud_data'          , array( $this, 'czr_fn_add_tag_cloud_button_classes') );
-            }
         }
 
 
@@ -851,7 +842,7 @@ endif;
 
 
 //load shared fn
-require_once( get_template_directory() . '/core/functions-base.php' );
+require_once( get_template_directory() . '/core/core-functions.php' );
 
 //require init-pro if it exists
 if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
@@ -861,7 +852,7 @@ if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
 czr_fn_setup_constants();
 
 if ( czr_fn_is_modern_style() ) {
-  require_once( get_template_directory() . '/core/init.php' );
+    require_once( get_template_directory() . '/core/init.php' );
 } else {
-  require_once( get_template_directory() . '/inc/czr-init.php' );
+    require_once( get_template_directory() . '/inc/czr-init.php' );
 }

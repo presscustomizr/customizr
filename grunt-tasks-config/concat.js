@@ -12,7 +12,7 @@ module.exports = {
       },
     },
     src: [
-      '<%= paths.dev_php %>init.php',
+      '<%= paths.dev_php %>a_init-load-and-instantiate.php',
       '<%= paths.dev_php %>class-fire-init.php',
       '<%= paths.dev_php %>class-fire-plugins_compat.php',
       '<%= paths.dev_php %>class-fire-utils_settings_map.php',
@@ -22,7 +22,7 @@ module.exports = {
       '<%= paths.dev_php %>class-fire-widgets.php',
       '<%= paths.dev_php %>class-fire-placeholders.php',
       '<%= paths.dev_php %>class-fire-prevdem.php',
-      '<%= paths.dev_php %>z_fire.php'
+      '<%= paths.dev_php %>z_classical_specific_functions_and_instantiate_czr_for_classical.php'
     ],
     dest: '<%= paths.inc_php %>czr-init.php',
   },
