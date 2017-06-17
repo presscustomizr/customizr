@@ -287,7 +287,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 'imgSmartLoadOpts'    => $smart_load_opts,
                 'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
                 'gridGoldenRatioLimit' => esc_attr( czr_fn_opt( 'tc_grid_thumb_height' ) ),
-                'isSecondMenuEnabled'  => CZR_utils::$inst->czr_fn_is_secondary_menu_enabled(),
+                'isSecondMenuEnabled'  => czr_fn_is_secondary_menu_enabled(),
                 'secondMenuRespSet'   => esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) ),
 
                 'isParallaxOn'        => esc_attr( czr_fn_opt( 'tc_slider_parallax') ),

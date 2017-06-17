@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       //this adds css classes to the navbar-wrapper :
       //1) to the main menu if regular (sidenav not enabled)
       //2) to the secondary menu if enabled
-      if ( ! $this -> czr_fn_is_sidenav_enabled() || CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() ) {
+      if ( ! $this -> czr_fn_is_sidenav_enabled() || czr_fn_is_secondary_menu_enabled() ) {
         add_filter( 'tc_navbar_wrapper_class'     , array( $this, 'czr_fn_set_menu_style_options'), 0 );
       }
 
@@ -425,7 +425,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       $_menu_position = '';
       if ( ! $this -> czr_fn_is_sidenav_enabled() )
         $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_menu_position') );
-      if ( CZR_utils::$inst->czr_fn_is_secondary_menu_enabled() )
+      if ( czr_fn_is_secondary_menu_enabled() )
         $_menu_position = $_classes[] = esc_attr( czr_fn_opt( 'tc_second_menu_position') );
 
 
@@ -474,7 +474,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         return $_classes;
 
       //adds the second menu state
-      if ( CZR_Utils::$inst -> czr_fn_is_secondary_menu_enabled() )
+      if ( czr_fn_is_secondary_menu_enabled() )
         array_push( $_classes, 'tc-second-menu-on' );
       //adds the resp. behaviour option for secondary menu
       array_push( $_classes, 'tc-second-menu-' . esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) . '-when-mobile' ) );
@@ -515,7 +515,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * This actually "restore" regular menu style (user options in particular) by overriding the max-width: 979px media query
     */
     function czr_fn_add_second_menu_inline_style( $_css ) {
-      if ( ! CZR_Utils::$inst -> czr_fn_is_secondary_menu_enabled() )
+      if ( ! czr_fn_is_secondary_menu_enabled() )
         return $_css;
 
       return sprintf("%s\n%s",

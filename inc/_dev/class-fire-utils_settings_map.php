@@ -26,8 +26,8 @@ class CZR_utils_settings_map {
             $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
 
             //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
-            if ( file_exists( TC_BASE . 'core/functions.php' ) ) {
-                  require_once( TC_BASE . 'core/functions.php' );
+            if ( file_exists( TC_BASE . 'core/core-settings-map.php' ) ) {
+                  require_once( TC_BASE . 'core/core-settings-map.php' );
             }
 
 

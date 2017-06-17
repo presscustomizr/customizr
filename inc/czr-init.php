@@ -1856,8 +1856,8 @@ class CZR_utils_settings_map {
             $this -> is_wp_version_before_4_0 = ( ! version_compare( $wp_version, '4.0', '>=' ) ) ? true : false;
 
             //require all the files needed by the new settings map - they contain functions used in core/utils/class-fire-utils_settings_map.php
-            if ( file_exists( TC_BASE . 'core/functions.php' ) ) {
-                  require_once( TC_BASE . 'core/functions.php' );
+            if ( file_exists( TC_BASE . 'core/core-settings-map.php' ) ) {
+                  require_once( TC_BASE . 'core/core-settings-map.php' );
             }
 
 
@@ -3390,16 +3390,6 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       return czr_fn_user_started_before_version( $_czr_ver, $_pro_ver );
     }
 
-
-    /**
-    * Boolean helper to check if the secondary menu is enabled
-    * since v3.4+
-    */
-    function czr_fn_is_secondary_menu_enabled() {
-      return (bool) esc_attr( czr_fn_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) );
-    }
-
-
   }//end of class
 endif;
 
@@ -3692,7 +3682,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 'imgSmartLoadOpts'    => $smart_load_opts,
                 'goldenRatio'         => apply_filters( 'tc_grid_golden_ratio' , 1.618 ),
                 'gridGoldenRatioLimit' => esc_attr( czr_fn_opt( 'tc_grid_thumb_height' ) ),
-                'isSecondMenuEnabled'  => CZR_utils::$inst->czr_fn_is_secondary_menu_enabled(),
+                'isSecondMenuEnabled'  => czr_fn_is_secondary_menu_enabled(),
                 'secondMenuRespSet'   => esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) ),
 
                 'isParallaxOn'        => esc_attr( czr_fn_opt( 'tc_slider_parallax') ),

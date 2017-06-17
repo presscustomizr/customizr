@@ -740,6 +740,19 @@ function czr_fn_has_location_menu( $_location ) {
 }
 
 
+
+
+/**
+* Boolean helper to check if the secondary menu is enabled
+* since v3.4+
+*/
+function czr_fn_is_secondary_menu_enabled() {
+  return (bool) esc_attr( czr_fn_opt( 'tc_display_second_menu' ) ) && 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) );
+}
+
+
+
+
 /**
 * Whether or not we are in the ajax context
 * @return bool
@@ -1279,6 +1292,102 @@ function czr_fn_sanitize_uploads( $url ) {
 
 
 
+
+/**
+* Gets the social networks list defined in customizer options
+*
+*
+*
+* @package Customizr
+* @since Customizr 3.0.10
+*
+* @since Customizr 3.4.55 Added the ability to retrieve them as array
+* @param $output_type optional. Return type "string" or "array"
+*/
+//MODEL LOOKS LIKE THIS
+//(
+//     [0] => Array
+//         (
+//             [is_mod_opt] => 1
+//             [module_id] => tc_social_links_czr_module
+//             [social-size] => 15
+//         )
+
+//     [1] => Array
+//         (
+//             [id] => czr_social_module_0
+//             [title] => Follow us on Renren
+//             [social-icon] => fa-renren
+//             [social-link] => http://customizr-dev.dev/feed/rss/
+//             [social-color] => #6d4c8e
+//             [social-target] => 1
+//         )
+// )
+function czr_fn_get_social_networks( $output_type = 'string' ) {
+
+    $_socials         = czr_fn_opt('tc_social_links');
+    $_default_color   = array('rgb(90,90,90)', '#5a5a5a'); //both notations
+    $_default_size    = '14'; //px
+
+    $_social_opts     = array( 'social-size' => $_default_size );
+
+    if ( empty( $_socials ) )
+      return;
+
+    //get the social mod opts
+    foreach( $_socials as $key => $item ) {
+      if ( ! array_key_exists( 'is_mod_opt', $item ) )
+        continue;
+      $_social_opts = wp_parse_args( $item, $_social_opts );
+    }
+    $font_size_value = $_social_opts['social-size'];
+    //if the size is the default one, do not add the inline style css
+    $social_size_css  = empty( $font_size_value ) || $_default_size == $font_size_value ? '' : "font-size:{$font_size_value}px";
+
+    $_social_links = array();
+    foreach( $_socials as $key => $item ) {
+        //skip if mod_opt
+        if ( array_key_exists( 'is_mod_opt', $item ) )
+          continue;
+
+        //get the social icon suffix for backward compatibility (users custom CSS) we still add the class icon-*
+        $icon_class            = isset($item['social-icon']) ? esc_attr($item['social-icon']) : '';
+        $link_icon_class       = 'fa-' === substr( $icon_class, 0, 3 ) && 3 < strlen( $icon_class ) ?
+                ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
+                '';
+
+        /* Maybe build inline style */
+        $social_color_css      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
+        //if the color is the default one, do not print the inline style css
+        $social_color_css      = in_array( $social_color_css, $_default_color ) ? '' : "color:{$social_color_css}";
+        $style_props           = implode( ';', array_filter( array( $social_color_css, $social_size_css ) ) );
+
+        $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
+
+        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="fa %5$s"></i></a>',
+          //do we have an id set ?
+          //Typically not if the user still uses the old options value.
+          //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
+
+          // Put them together
+            ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
+            isset($item['title']) ? esc_attr( $item['title'] ) : '',
+            ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+            ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
+            $icon_class,
+            $link_icon_class,
+            $style_attr
+        ) );
+    }
+
+    /*
+    * return
+    */
+    switch ( $output_type ) :
+      case 'array' : return $_social_links;
+      default      : return implode( '', $_social_links );
+    endswitch;
+}
 
 
 /**

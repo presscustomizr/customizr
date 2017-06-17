@@ -227,15 +227,15 @@ if ( ! class_exists( 'CZR___' ) ) :
         * @since Customizr 3.0
         */
         function czr_fn_load( $_to_load = array(), $_no_filter = false ) {
+            require_once( CZR_BASE_CHILD . 'core/core-settings-map.php' );
+
             //loads utils
             if ( CZR_DEV_MODE ) {
                 require_once( CZR_BASE_CHILD . 'core/_utils/fn-0-base.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-1-settings_map.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-2-utils.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-3-options.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-4-query.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-5-thumbnails.php' );
-                require_once( CZR_BASE_CHILD . 'core/_utils/fn-6-colors.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-1-utils.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-2-query.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-3-thumbnails.php' );
+                require_once( CZR_BASE_CHILD . 'core/_utils/fn-4-colors.php' );
             } else {
                 require_once( get_template_directory() . '/core/functions.php' );
             }

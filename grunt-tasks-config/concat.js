@@ -204,12 +204,10 @@ module.exports = {
     },
     src: [
       '<%= paths.core_php %>/_utils/fn-0-base.php',
-      '<%= paths.core_php %>/_utils/fn-1-settings_map.php',
-      '<%= paths.core_php %>/_utils/fn-2-utils.php',
-      '<%= paths.core_php %>/_utils/fn-3-options.php',
-      '<%= paths.core_php %>/_utils/fn-4-query.php',
-      '<%= paths.core_php %>/_utils/fn-5-thumbnails.php',
-      '<%= paths.core_php %>/_utils/fn-6-colors.php'
+      '<%= paths.core_php %>/_utils/fn-1-utils.php',
+      '<%= paths.core_php %>/_utils/fn-2-query.php',
+      '<%= paths.core_php %>/_utils/fn-3-thumbnails.php',
+      '<%= paths.core_php %>/_utils/fn-4-colors.php'
     ],
     dest: '<%= paths.core_php %>functions.php',
   },

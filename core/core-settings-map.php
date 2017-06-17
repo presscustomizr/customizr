@@ -16,7 +16,7 @@
 */
 function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
     if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
-      return CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default, $what );
+        return CZR_utils_settings_map::$instance -> czr_fn_get_customizer_map( $get_default, $what );
     }
 
     if ( ! empty( CZR___::$customizer_map ) ) {
@@ -2513,5 +2513,3 @@ function czr_fn_generates_featured_pages( $_original_map ) {
 
   return array_merge( $_original_map , $fp_setting_control );
 }
-
-?>
