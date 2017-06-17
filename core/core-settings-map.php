@@ -1442,9 +1442,9 @@ function czr_fn_single_post_option_map( $get_default = null ) {
                         'type'      => 'select',
                         'priority'  => 20,
                         'choices' => array(
-                          'disabled'    => __( 'Disable' , 'customzir' ),
-                          'categories'  => __( 'Related by categories' , 'customzir' ),
-                          'tags'        => __( 'Related by tags' , 'customzir' )
+                          'disabled'    => __( 'Disable' , 'customizr' ),
+                          'categories'  => __( 'Related by categories' , 'customizr' ),
+                          'tags'        => __( 'Related by tags' , 'customizr' )
                         ),
                         'notice'    => __( 'Display randomized related articles below the post' , 'customizr'),
       ),
