@@ -37,6 +37,7 @@ module.exports = {
       //'!assets/front/scss/**', //c4 scss
       //'!assets/front/js/vendors/**', //c4 js vendors
       //'!assets/front/js/fmk/**' //c4 js fmk
+      '!assets/front/js/libs/**'
       /*end c4*/
 		],
 		dest: 'build/free/<%= pkg.name %>/'
@@ -72,7 +73,9 @@ module.exports = {
       '!core/_utils/**',
       '!core/_back/**',
       '!core/_czr/**',
-      '!inc/lang/**'
+      '!inc/lang/**',
+
+      '!assets/front/js/libs/**'
     ],
     dest: '../customizr-pro/'
   },
