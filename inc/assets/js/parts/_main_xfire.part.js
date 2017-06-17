@@ -76,7 +76,8 @@ var czrapp = czrapp || {};
                 base : {
                       ctor : czrapp.Base,
                       ready : [
-                            'cacheProp'
+                            'cacheProp',
+                            'emitCustomEvents'
                       ]
                 },
                 browserDetect : {

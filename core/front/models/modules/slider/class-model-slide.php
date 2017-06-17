@@ -34,7 +34,7 @@ class CZR_slide_model_class extends CZR_Model {
     //Extract current slide
     $slide          = $current_slide['slide'];
     $slide_id       = $current_slide['slide_id'];
-    $slider_name_id = czr_fn_get( 'slider_name_id' );
+    $slider_name_id = czr_fn_get_property( 'slider_name_id' );
 
     //Extract slide properties
     $link_whole_slide   = isset($slide['link_whole_slide']) && $slide['link_whole_slide'] && ! empty( $slide['link_url'] );

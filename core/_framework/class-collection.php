@@ -345,11 +345,17 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
     private function czr_fn_require_model_class( $_model_class ) {
-      $model_class_basename = basename( $_model_class );
-      $model_class_dirname  = dirname( $_model_class );
-      $CZR                  = CZR();
+        $model_class_basename = basename( $_model_class );
+        $model_class_dirname  = dirname( $_model_class );
 
-      return $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+        $path = apply_filters(
+            "czr_model_class_path",
+            CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename )
+        );
+
+        return  CZR() -> czr_fn_require_once(
+            apply_filters( "czr_model_class_path_{$model_class_basename}", $path )
+        );
     }
 
 
@@ -497,7 +503,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
     //@return the collection of models
-    public function czr_fn_get() {
+    public function czr_fn_get_collection() {
       //uses self::$instance instead of this to always use the parent instance
       return self::$collection;
     }
@@ -519,7 +525,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       $priority = empty($priority) ? 10 : (int)$priority;
       $available = true;
       //loop on the existing model object in the collection
-      foreach ( $this -> czr_fn_get() as $id => $model) {
+      foreach ( $this -> czr_fn_get_collection() as $id => $model) {
         if ( ! isset($model -> hook) )
           continue;
         if ( $hook != $model -> hook )

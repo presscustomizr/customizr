@@ -138,7 +138,7 @@ if ( ! class_exists( 'CZR_Model' ) ) :
           $CZR            = CZR();
           //this check has already been done before instantiating the model.
           //Do we really need this again here ?
-          if ( ! $CZR -> controllers -> czr_fn_is_possible($this -> czr_fn_get())  )
+          if ( ! $CZR -> controllers -> czr_fn_is_possible($this -> czr_fn_get_model_as_array() )  )
             return;
 
           //instantiate the view with the current model object as param
@@ -179,19 +179,19 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //@param $instance is the view instance object, can be CZR_View or a child of CZR_View
     //hook the rendering method to the hook
     //$this -> view_instance can be used. It can be a child of this class.
-    public function czr_fn_maybe_hook_or_render_view($instance) {
-          if ( empty($this -> id) ) {
-            do_action('czr_dev_notice', 'In CZR_Model, a model is missing its id.' );
-            return;
+    public function czr_fn_maybe_hook_or_render_view( $instance )  {
+          if ( empty( $this -> id ) ) {
+              do_action('czr_dev_notice', 'In CZR_Model, a model is missing its id.' );
+              return;
           }
 
           //Are we in czr_fn_render_template case
           //=> Typically yes if did_action('template_redirect'), since every model are registered on 'wp'
           //AND if the render property is forced to true
           //if not check if template_redirect has already been fired, to see if we are in a czr_fn_render case
-          if ( did_action('template_redirect') && $this -> render ) {
-            $instance -> czr_fn_maybe_render();
-            return;//this is the end, beautiful friend.
+          if ( did_action( 'template_redirect' ) && $this -> render ) {
+              $instance -> czr_fn_maybe_render();
+              return;//this is the end, beautiful friend.
           }
 
           //What are the requested hook and priority ?
@@ -276,13 +276,15 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     //normalizes the way we can access and change a single model property
     //@return the property
     public function czr_fn_get_property( $property, $args = array() ) {
-          if ( method_exists( $this, "czr_fn_get_{$property}" ) )
-            return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
+          if ( method_exists( $this, "czr_fn_get_{$property}" ) ) {
+              error_log( 'WHEN ? => ' . $this -> id . ' | ' . $property );
+              return call_user_func_array( array($this, "czr_fn_get_{$property}"), $args );
+          }
           return isset ( $this -> $property ) ? $this -> $property : '';
     }
 
     //@returns the model property as an array of params
-    public function czr_fn_get() {
+    public function czr_fn_get_model_as_array() {
           $model = array();
           foreach ( array_keys( get_object_vars( $this ) ) as $key ) {
             $model[ $key ] = $this->$key;
@@ -784,11 +786,17 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
     private function czr_fn_require_model_class( $_model_class ) {
-      $model_class_basename = basename( $_model_class );
-      $model_class_dirname  = dirname( $_model_class );
-      $CZR                  = CZR();
+        $model_class_basename = basename( $_model_class );
+        $model_class_dirname  = dirname( $_model_class );
 
-      return $CZR -> czr_fn_require_once( CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename ) );
+        $path = apply_filters(
+            "czr_model_class_path",
+            CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename )
+        );
+
+        return  CZR() -> czr_fn_require_once(
+            apply_filters( "czr_model_class_path_{$model_class_basename}", $path )
+        );
     }
 
 
@@ -936,7 +944,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
     //@return the collection of models
-    public function czr_fn_get() {
+    public function czr_fn_get_collection() {
       //uses self::$instance instead of this to always use the parent instance
       return self::$collection;
     }
@@ -958,7 +966,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       $priority = empty($priority) ? 10 : (int)$priority;
       $available = true;
       //loop on the existing model object in the collection
-      foreach ( $this -> czr_fn_get() as $id => $model) {
+      foreach ( $this -> czr_fn_get_collection() as $id => $model) {
         if ( ! isset($model -> hook) )
           continue;
         if ( $hook != $model -> hook )
@@ -1062,27 +1070,38 @@ if ( ! class_exists( 'CZR_View' ) ) :
     ***********************************************************************************/
     //hook : $model['hook']
     //NOTE : the $this here can be the child class $this.
+    //
+    //This method can fired or scheduled :
+    //1) in function czr_fn_render_template( $template, $args = array() ) for an already registered model
+    //  => Example : header
+    //2) in CZR_Model::czr_fn_maybe_hook_or_render_view, FIRED if did_action('template_redirect') and the 'render' model property is true
+    //3) else in CZR_Model::czr_fn_maybe_hook_or_render_view, SCHEDULED ( hooked )
     public function czr_fn_maybe_render() {
-          //this event is used to check for late deletion or change before actually rendering
-          //will fire czr_fn_apply_registered_changes_to_instance
-          //do_action( 'pre_render_view', $this -> id );
+        //this event is used to check for late deletion or change before actually rendering
+        //will fire czr_fn_apply_registered_changes_to_instance
+        //do_action( 'pre_render_view', $this -> id );
 
-          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
-            return;
+        if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
+          return;
 
-          //allow filtering of the model before rendering (the view's model is passed by reference)
-          do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
-          do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
+        //allow filtering of the model before rendering (the view's model is passed by reference)
+        //THIS IS WHERE THE czr_fn_setup_late_properties is fired
+        // With this action in the base model class constructor : add_action( "pre_rendering_view_{$this -> id}", array($this, "czr_fn_pre_rendering_my_view_cb" ), 9999 );
+        //WHAT DOES SETUP LATE PROPERTIES?
+        // => example for the loop model, it setup the template to render inside the loop, which are defined as model properties.
+        //  public $loop_item_template
+        do_action_ref_array( 'pre_rendering_view', array(&$this -> model) );
+        do_action_ref_array( "pre_rendering_view_{$this -> model -> id}", array(&$this -> model) );
 
-          //re-check visibility
-          if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
-            return;
+        //re-check visibility
+        if ( ! apply_filters( "czr_do_render_view_{$this -> model -> id}", true, $this->model ) )
+          return;
 
-          do_action( "__before_{$this -> model -> id}" );
+        do_action( "__before_{$this -> model -> id}" );
 
-          $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
+        $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
 
-          if ( $czr_fn_print_debug ) {
+        if ( $czr_fn_print_debug ) {
             echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
 
             /* Maybe merge debug info into the model element attributes */
@@ -1092,47 +1111,53 @@ if ( ! class_exists( 'CZR_View' ) ) :
                 isset( $this -> model -> template ) ? 'data-template="'. $this -> model -> template .'"' : ''
             )) );
             echo "<!-- START RENDERING VIEW ID : {$this -> model -> id} -->";
-          }
+        }
 
-            $this -> czr_fn_render();
+          $this -> czr_fn_render();
 
-          if ( $czr_fn_print_debug ) {
+        if ( $czr_fn_print_debug ) {
             echo "<!-- END OF RENDERING VIEW ID : {$this -> model -> id} -->";
             echo "<!-- HOOK CONTENT HERE : __after_{$this -> model -> id} -->";
-          }
-          do_action( "__after_{$this -> model -> id}" );
+        }
+        do_action( "__after_{$this -> model -> id}" );
 
-          // (the view's model is passed by reference)
-          do_action_ref_array( 'post_rendering_view', array(&$this -> model) );
-          do_action_ref_array( "post_rendering_view_{$this -> model -> id}", array(&$this -> model) );
+        // (the view's model is passed by reference)
+        do_action_ref_array( 'post_rendering_view', array(&$this -> model) );
+        do_action_ref_array( "post_rendering_view_{$this -> model -> id}", array(&$this -> model) );
     }
 
 
 
     //might be overriden in the child view if any
     public function czr_fn_render() {
-          if ( ! empty( $this -> model -> html ) )
+        if ( ! empty( $this -> model -> html ) )
             echo $this -> model -> html;
+        //NOTE : a model -> template can be 'my_template' or 'content/post-lists/my_template'
+        //=> if we want to use the template property as a suffix for filtering, we need to sanitize it
+        if ( ! empty( $this -> model -> template ) ) {
+            $template_path = trailingslashit( apply_filters( 'czr_template_path', "templates/parts/", $this -> model -> id, $this -> model ) );
+            $_template_file_path = apply_filters( 'czr_template_file_path', false, $this -> model -> template );
 
-          if ( ! empty( $this -> model -> template ) ) {
-            //get the filename
-            $_template_file = czr_fn_get_theme_file("templates/{$this -> model -> template}.php" );
-
-            if ( false !== $_template_file ) {
-              czr_fn_set_current_model( $this -> model );
-              ob_start();
-                load_template( $_template_file, $require_once = false );
-              $_temp_content = ob_get_contents();
-
-              ob_end_clean();
-              if ( ! empty($_temp_content) )
-                echo $_temp_content;
-
-              czr_fn_reset_current_model();
+            if ( false === $_template_file_path || ! file_exists( $_template_file_path ) ) {
+                //get the filename
+                $_template_file_path = czr_fn_get_theme_file_path( "{$template_path}{$this -> model -> template}.php" );
             }
-          }
 
-          if ( ! empty( $this -> model -> callback ) )
+            if ( false !== $_template_file_path ) {
+                czr_fn_set_current_model( $this -> model );
+
+                ob_start();
+                  load_template( $_template_file_path, $require_once = false );
+                  $_temp_content = ob_get_contents();
+                ob_end_clean();
+                if ( ! empty( $_temp_content ) )
+                  echo $_temp_content;
+
+                czr_fn_reset_current_model();
+            }
+        }
+
+        if ( ! empty( $this -> model -> callback ) )
             czr_fn_fire_cb( $this -> model -> callback, $this -> model -> cb_params );
     }
 
