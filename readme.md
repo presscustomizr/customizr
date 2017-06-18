@@ -1,4 +1,4 @@
-# Customizr v3.5.16 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v3.5.17 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,11 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 3.5.17 June 18th 2017 =
+* Fix: fix access to undefined tc_rectangular_size class property fixes #971
+* Fix: typo producing Class 'CZR__' not found in classical retro compat fixes #972
+* Imp: exclude helpblock elements from allowed dropcap elements
+
 = 3.5.16 June 17th 2017 =
 * Imp: improve deploying process to avoid headers already sent issues
 * Fix: missing front js custom events: tc-resize, partialRefresh.czr fixes #961
