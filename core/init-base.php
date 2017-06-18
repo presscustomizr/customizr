@@ -691,7 +691,10 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                 if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
                   $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
                   $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
-                  $_rectangular_size = apply_filters( 'tc_rectangular_size' , array_merge( $this -> tc_rectangular_size, array( 'height' => $_user_height ) ) );
+                  $_rectangular_size    = apply_filters(
+                    'tc_rectangular_size' ,
+                    array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
+                  );
                   add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
                 }
             }
