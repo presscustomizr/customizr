@@ -3797,16 +3797,16 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
           <div class="widget-front">
             <?php
               if ( isset( $show_img) && $show_img == 1 ) { //check if image option is checked
-                printf('<div class="thumb-wrapper %1$s">%2$s%3$s</div>',
+                printf('<div class="thumb-wrapper %1$s">%2$s</div>',
                    ( $fp_img == $fp_holder_img ) ? 'tc-holder' : '',
-                   apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s" title="%2$s"></a>',
+                   apply_filters('tc_fp_round_div' , sprintf('<div class="round-div"></div><a href="%1$s" title="%2$s">%3$s</a>',
                                                     $featured_page_link,
-                                                    esc_attr( strip_tags( $featured_page_title ) )
+                                                    esc_attr( strip_tags( $featured_page_title ) ),
+						    $fp_img
                                                   ) ,
                                 $fp_single_id,
                                 $featured_page_id
-                                ),
-                   $fp_img
+                                )
                 );
               }//end if image enabled check
 
