@@ -350,12 +350,19 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
         $path = apply_filters(
             "czr_model_class_path",
-            CZR_PHP_FRONT_PATH . sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename )
+            false,
+            $model_class_basename,
+            $model_path
         );
 
-        return  CZR() -> czr_fn_require_once(
-            apply_filters( "czr_model_class_path_{$model_class_basename}", $path )
-        );
+        if ( ! $path || ! file_exists( $path ) ) {
+          return  CZR() -> czr_fn_require_once(
+              CZR_PHP_FRONT_PATH . $model_path
+          );
+        }
+
+        require_once( $path );
+
     }
 
 
