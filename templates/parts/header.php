@@ -6,6 +6,7 @@
  * @since Customizr 3.5.0
  */
 ?>
+<?php do_action( '__before_header' ) ?>
 <header class="tpnav-header__header tc-header <?php czr_fn_echo('element_class') ?>" role="banner" <?php czr_fn_echo('element_attributes') ?>>
   <div class="header-navbars__wrapper <?php czr_fn_echo('elements_container_class') ?>">
     <div class="container-fluid topnav-navbars__container">
@@ -18,3 +19,4 @@
     </div>
   </div>
 </header>
+<?php do_action( '__after_header' ) ?>
