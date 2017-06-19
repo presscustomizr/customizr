@@ -63,7 +63,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
     return array();
   }
 
-  $_old_filtered_socials = apply_filters( 'tc_default_socials', CZR__::$instance -> old_socials );
+  $_old_filtered_socials = apply_filters( 'tc_default_socials', CZR___:::$instance -> old_socials );
 
   /*
   * old socials were in the form
