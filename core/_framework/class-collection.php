@@ -344,10 +344,15 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
     }
 
 
+    //This method require the requested class file and returns a boolean state of this action
+    //the boolean is required. If false, the theme will fallback on the CZR_Model base class
     private function czr_fn_require_model_class( $_model_class ) {
         $model_class_basename = basename( $_model_class );
         $model_class_dirname  = dirname( $_model_class );
+        $model_path           = sprintf( 'models/%1$s/class-model-%2$s.php', $model_class_dirname, $model_class_basename );
 
+        //this filter is NOT used in the customizr theme
+        //=> its intended to be used in plugins / addons, like pro grid for ex.
         $path = apply_filters(
             "czr_model_class_path",
             false,
@@ -355,14 +360,14 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
             $model_path
         );
 
+        //If not filtered ( normal case in customizr ), use the default path prefix + model path
         if ( ! $path || ! file_exists( $path ) ) {
           return  CZR() -> czr_fn_require_once(
               CZR_PHP_FRONT_PATH . $model_path
           );
         }
 
-        require_once( $path );
-
+        return require_once( $path );
     }
 
 
