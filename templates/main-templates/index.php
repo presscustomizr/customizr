@@ -110,14 +110,15 @@
                           //The loop has its model CZR_loop_model_class
                           //This loop model might setup a custom query if passed in model args
                           //this loop model needs a loop item which looks like :
-                          // Array
-                          // (
-                          //     [0] => modules/grid/grid_wrapper
-                          //     [1] => Array
-                          //         (
-                          //             [model_id] => post_list_grid
-                          //         )
+                          // Array = 'loop_item' => array(
+                          //    (
+                          //        [0] => modules/grid/grid_wrapper
+                          //        [1] => Array
+                          //            (
+                          //                [model_id] => post_list_grid
+                          //            )
 
+                          //      )
                           // )
                           // A loop item will be turned into 2 properties :
                           // 1) 'loop_item_template',
@@ -132,10 +133,9 @@
                           //Here, we inject a specific loop item, the main_content, inside the loop
                           //What is the main_content ?
                           //=> depends on the current context, @see czr_fn_get_main_content_loop_item() in core/functions.php
-                          czr_fn_render_template(
-                              'loop',
-                              array( 'model_args' => czr_fn_get_main_content_loop_item() )
-                          );
+
+
+                          czr_fn_render_template('loop');
 
                       } else {//no results
 

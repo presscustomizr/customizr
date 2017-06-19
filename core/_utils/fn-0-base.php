@@ -295,27 +295,4 @@ if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
             return CZR() -> collection -> czr_fn_register( $model );
       }
 }
-
-//pluggable, following Rocco's wise ( always... AH AH AH ) suggestion.
-//=> shut the fuck up Larry.
-if ( ! function_exists( 'czr_fn_get_main_content_loop_item' ) ) {
-      function czr_fn_get_main_content_loop_item() {
-            //fallback
-            $to_render = array( 'loop_item' => array('content/singular/page_content' ) );
-            if ( czr_fn_is_list_of_posts() ) {
-
-                $to_render = array( 'loop_item' => array( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) ) );
-
-                if ( czr_fn_has('post_list') ) {
-                      $to_render = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
-                } elseif ( czr_fn_has('post_list_plain') ) {
-                      $to_render = array( 'loop_item' => array('content/post-lists/post_list_plain' ));
-                }
-
-            } elseif ( is_single() ) {
-                $to_render = array( 'loop_item' => array('content/singular/post_content' ));
-            }
-            return apply_filters( "czr_main_content_loop_item", $to_render );
-      }
-}
 ?>
