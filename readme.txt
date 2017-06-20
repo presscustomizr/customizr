@@ -40,6 +40,10 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 3.5.18 June 20th 2017 =
+* Fix: modern : in singulars, no full width featured image if slider on fixes #988
+* Fix: modern - typo producing Class 'CZR__' not found in classical retro compat
+
 = 3.5.17 June 18th 2017 =
 * Fix: fix access to undefined tc_rectangular_size class property fixes #971
 * Fix: typo producing Class 'CZR__' not found in classical retro compat fixes #972
