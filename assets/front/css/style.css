@@ -4733,7 +4733,7 @@ a.czr-format-link:hover::before {
   color: inherit;
 }
 
-.grid-container__classic .grid-item.hover .tc-grid-caption,
+.grid-container__classic .grid-item:not(.expanded).hover .tc-grid-caption,
 .grid-container__classic .expanded.hover .entry-summary {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
