@@ -13,18 +13,25 @@ module.exports = function(grunt) {
         data: {
       pkg: grunt.file.readJSON( 'package.json' ),
       paths : {
-        sass4 : 'assets/**/scss/',
-        front_css4 : 'assets/front/css/',
         theme_assets : 'assets/',
-        less : 'inc/assets/less/',
-        front_css : 'inc/assets/css/',
-        front_js_4 : 'assets/front/js/',
-        front_js : 'inc/assets/js/',
+        theme_js_assets : 'assets/front/js/',
+
+        sass_modern : 'assets/**/scss/',
+        front_css_modern : 'assets/front/css/',
+
+        less_classic : 'inc/assets/less/',
+        front_css_classic : 'inc/assets/css/',
+
+
+        front_js_classic : 'inc/assets/js/',
+
         admin_css : 'assets/back/css/',
         admin_js : 'assets/back/js/',
-        dev_php : 'inc/_dev/',
+
+        dev_php_classic : 'inc/_dev/',
         back_php : 'core/_back/',
-        inc_php : 'inc/',
+
+        inc_php_classic : 'inc/',
         core_php : 'core/',
         lang : 'inc/lang/',
 

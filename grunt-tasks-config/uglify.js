@@ -10,47 +10,47 @@ module.exports = {
   main_front_js: {
     files: [{
       expand: true,
-      cwd: '<%= paths.front_js %>',
+      cwd: '<%= paths.front_js_classic %>',
       src: ['tc-scripts.js'],
       //src: ['**/*.js', '!*.min.js'],
-      dest: '<%= paths.front_js %>',
+      dest: '<%= paths.front_js_classic %>',
       ext: '.min.js'
     }]
   },
   part_front_js: {
     files: [{
       expand: true,
-      cwd: '<%= paths.front_js %>/parts',
+      cwd: '<%= paths.front_js_classic %>/parts',
       src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
-      dest: '<%= paths.front_js %>/parts',
+      dest: '<%= paths.front_js_classic %>/parts',
       ext: '.min.js'
     }]
   },
   main_front_js4: {
     files: [{
       expand: true,
-      cwd: '<%= paths.front_js_4 %>',
+      cwd: '<%= paths.theme_js_assets %>',
       src: ['tc-scripts.js'],
       //src: ['**/*.js', '!*.min.js'],
-      dest: '<%= paths.front_js_4 %>',
+      dest: '<%= paths.theme_js_assets %>',
       ext: '.min.js'
     }]
   },
   fmk_front_js4: {
     files: [{
       expand: true,
-      cwd: '<%= paths.front_js_4 %>/fmk',
+      cwd: '<%= paths.theme_js_assets %>/fmk',
       src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
-      dest: '<%= paths.front_js_4 %>/fmk',
+      dest: '<%= paths.theme_js_assets %>/fmk',
       ext: '.min.js'
     }]
   },
   vendors_front_js4: {
     files: [{
       expand: true,
-      cwd: '<%= paths.front_js_4 %>/vendors',
+      cwd: '<%= paths.theme_js_assets %>/vendors',
       src: ['**/*.js', '!*.min.js', '!*.part.js', '!OLD/**', '!*.main.js'],
-      dest: '<%= paths.front_js_4 %>/vendors',
+      dest: '<%= paths.theme_js_assets %>/vendors',
       ext: '.min.js'
     }]
   },

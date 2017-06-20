@@ -2,12 +2,12 @@ module.exports = {
 	//in development mode, only the default skin (grey : #5A5A5A ) is compiled when less files are updated
 	dev_common : {
 		files: [
-			{src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>tc_common.css'}
+			{src: '<%= paths.less_classic %>tc_common_gen.less', dest: '<%= paths.front_css_classic %>tc_common.css'}
 		]
 	},
   dev_skin : {
     files: [
-      {src: '<%= paths.less %>tc_skin_gen.less', dest: '<%= paths.front_css %>grey.css'}
+      {src: '<%= paths.less_classic %>tc_skin_gen.less', dest: '<%= paths.front_css_classic %>grey.css'}
     ]
   },
 	//in production, skins are generated with modified less vars
@@ -21,7 +21,7 @@ module.exports = {
         textAlign: 'left'
 			}
 		},
-		files: {"<%= paths.front_css %><%= skin_name %>.css": "<%= paths.less %>tc_skin_gen.less"}
+		files: {"<%= paths.front_css_classic %><%= skin_name %>.css": "<%= paths.less_classic %>tc_skin_gen.less"}
 	},
   prod_common : {
     options: {
@@ -32,7 +32,7 @@ module.exports = {
       }
     },
     files: [
-      {src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>tc_common.css'}
+      {src: '<%= paths.less_classic %>tc_common_gen.less', dest: '<%= paths.front_css_classic %>tc_common.css'}
     ]
   },
   prod_common_rtl : {
@@ -44,7 +44,7 @@ module.exports = {
       }
     },
     files: [
-      {src: '<%= paths.less %>tc_common_gen.less', dest: '<%= paths.front_css %>rtl/tc_common.css'}
+      {src: '<%= paths.less_classic %>tc_common_gen.less', dest: '<%= paths.front_css_classic %>rtl/tc_common.css'}
     ]
   },
   custom_skin : {
@@ -57,7 +57,7 @@ module.exports = {
       }
     },
     files: [
-      {src: '<%= paths.less %>tc_skin_gen.less', dest: 'custom-skins/<%= skin_name %>.css'}
+      {src: '<%= paths.less_classic %>tc_skin_gen.less', dest: 'custom-skins/<%= skin_name %>.css'}
     ]
   }
 };
