@@ -157,7 +157,7 @@ class CZR_main_content_model_class extends CZR_Model {
         if ( !$_hook )
           return $bool;
 
-        $_slider_shown = ( did_action( '__after_main_slider' ) || did_action( '__after_main_posts_slider' ) );
+        $_slider_shown = ( did_action( '__after_carousel_inner' ) );
 
         return '__before_main_wrapper' == $_hook && $_slider_shown ? false : true;
 

@@ -16,7 +16,7 @@
         </div>
 <?php
     endif;
-    do_action( '__before_carousel_inner__' );
+    do_action( '__before_carousel_inner' );
   ?>
   <div class="<?php czr_fn_echo( 'inner_class' ) ?>" <?php czr_fn_echo( 'inner_attrs' ) ?> >
 <?php
@@ -25,7 +25,7 @@
 ?>
   </div><!-- /.carousel-inner -->
 <?php
-    do_action( '__after_carousel_inner__' );
+    do_action( '__after_carousel_inner' );
     if ( czr_fn_get_property( 'has_slider_edit_link' ) ) {
       czr_fn_edit_button( array( 'class' => 'slider-btn-edit inverse', 'link'  => czr_fn_get_property( 'slider_edit_link' ), 'text'  => czr_fn_get_property( 'slider_edit_link_text' ) ) );
     }
