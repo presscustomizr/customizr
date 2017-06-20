@@ -390,7 +390,7 @@ a.czr-format-link {
         color: inherit;
       }
 
-      @at-root .grid-container__classic .grid-item.hover .tc-grid-caption,
+      @at-root .grid-container__classic .grid-item:not(.expanded).hover .tc-grid-caption,
               .grid-container__classic .expanded.hover .entry-summary {
 
         @include opacity(1);
