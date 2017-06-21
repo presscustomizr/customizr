@@ -116,7 +116,11 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           return czr_fn_opt( $option_name , $option_group, $use_default );
       }
 
-
+      //backward compatibility
+      //used until FPU 2.0.33
+      function czr_fn_parse_imgs( $_html ) {
+        return czr_fn_parse_imgs( $_html );
+      }
 
 
       /**
