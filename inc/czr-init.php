@@ -1346,24 +1346,32 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_shop_enable( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
       }
+      //Helper
+      function czr_fn_is_woocommerce_disable( $bool ) {
+        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+      }
 
       //when in the woocommerce shop page use the "shop" id
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
 
       // use Customizr title
       // initially used to display the edit button
+      // doesn't work anymore, lets comment it
+      /*
       add_filter( 'the_title', 'czr_fn_woocommerce_the_title' );
       function czr_fn_woocommerce_the_title( $_title ){
         if ( function_exists('is_woocommerce') && is_woocommerce() && ! is_page() )
             return apply_filters( 'tc_title_text', $_title );
         return $_title;
       }
+      */
+      //disable post lists in woocommerce contexts
+      add_filter( 'tc_post_list_controller', 'czr_fn_is_woocommerce_disable');
+      add_filter( 'tc_is_grid_enabled', 'czr_fn_is_woocommerce_disable');
 
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'czr_fn_woocommerce_disable_tax_archive_title' );
-      function czr_fn_woocommerce_disable_tax_archive_title( $bool ){
-        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
-      }
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_is_woocommerce_disable' );
+
 
       //allow slider in the woocommerce shop page
       add_filter( 'tc_show_slider', 'czr_fn_woocommerce_shop_enable' );
@@ -1378,17 +1386,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
       //disables post navigation
-      add_filter( 'tc_show_post_navigation', 'czr_fn_woocommerce_disable_post_navigation' );
-      function czr_fn_woocommerce_disable_post_navigation($bool) {
-         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
-      }
-
+      add_filter( 'tc_show_post_navigation', 'czr_fn_is_woocommerce_disable' );
 
       //removes post comment action on after_loop hook
-      add_filter( 'tc_are_comments_enabled', 'czr_fn_woocommerce_disable_comments' );
-      function czr_fn_woocommerce_disable_comments($bool) {
-         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
-      }
+      add_filter( 'tc_are_comments_enabled', 'czr_fn_is_woocommerce_disable' );
 
       //link smooth scroll: exclude woocommerce tabs
       add_filter( 'tc_anchor_smoothscroll_excl', 'czr_fn_woocommerce_disable_link_scroll' );
@@ -3168,7 +3169,11 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           return czr_fn_opt( $option_name , $option_group, $use_default );
       }
 
-
+      //backward compatibility
+      //used until FPU 2.0.33
+      function czr_fn_parse_imgs( $_html ) {
+        return czr_fn_parse_imgs( $_html );
+      }
 
 
       /**
