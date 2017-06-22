@@ -57,6 +57,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'disqus' );
       add_theme_support( 'uris' );
       add_theme_support( 'tc-unlimited-featured-pages' );
+      add_theme_support( 'learnpress' );
     }
 
 
@@ -136,11 +137,15 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /* Ultimate Responsive Image Slider  */
       if ( current_theme_supports( 'uris' ) && $this -> czr_fn_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
         $this -> czr_fn_set_uris_compat();
+
+      /* LearnPress  */
+      if ( current_theme_supports( 'learnpress' ) && $this -> czr_fn_is_plugin_active('learnpress/learnpress.php') )
+        $this -> czr_fn_set_lp_compat();
     }//end of plugin compatibility function
 
 
     /*
-    * Same in czr3
+    * Same in czr classic
     */
 
     /**
@@ -242,7 +247,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
     /*
-    * Same in czr3 except for comments enabled filter prefix (tc_ -> czr_)
+    * Same in czr classic except for comments enabled filter prefix (tc_ -> czr_)
     */
     /**
     * BuddyPress compat hooks
@@ -275,7 +280,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
     /*
-    * same in czr3 with filter prefixes change ( tc_ -> czr_ )
+    * same in czr classic with filter prefixes change ( tc_ -> czr_ )
     */
     /**
     * QtranslateX compat hooks
@@ -363,7 +368,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
     /*
-    * same in czr3
+    * same in czr classic
     */
     /**
     * Polylang compat hooks
@@ -452,7 +457,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end polylang compat
 
     /*
-    * same in czr3
+    * same in czr classic
     */
     /**
     * WPML compat hooks
@@ -1078,7 +1083,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
     /*
-    * same in czr3 except for the filter prefix (tc_ -> czr_)
+    * same in czr classic except for the filter prefix (tc_ -> czr_)
     */
     /**
     * Visual Composer compat hooks
@@ -1142,7 +1147,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end disqus compat
 
     /*
-    * same in czr3 except for the filter prefix (tc_ -> czr_)
+    * same in czr classic except for the filter prefix (tc_ -> czr_)
     */
     /**
     * Ultimate Responsive Image Slider compat hooks
@@ -1169,7 +1174,66 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     }//end uris compat
 
 
-    /* same in czr3 */
+    /**
+    * LearnPress compat hooks
+    *
+    * @package Customizr
+    * @since Customizr 3.5+
+    */
+    private function czr_fn_set_lp_compat() {
+      //do nothing if is admin
+      if ( is_admin() ) {
+        return;
+      }
+      //Helpers
+      if ( ! function_exists( 'tc_lp_is_learnpress' ) ):
+        function tc_lp_is_learnpress() {
+          return function_exists( 'is_learnpress' ) && is_learnpress();
+        }
+      endif;
+      if ( ! function_exists( 'tc_lp_is_learnpress_disable' ) ):
+        function tc_lp_is_learnpress_disable( $bool ) {
+          return tc_lp_is_learnpress() ? false : $bool;
+        }
+      endif;
+      if ( ! function_exists( 'tc_lp_is_learnpress_enable' ) ):
+        function tc_lp_is_learnpress_enable( $bool ) {
+          return tc_lp_is_learnpress() ? true : $bool;
+        }
+      endif;
+
+
+
+      //lp filters template_include falling back on the page.php theme template
+      //without checking its existence, since we have no page.php template, we have to fall back
+      //on index.php if what that filter returns is false ().
+      //is_learnpress() function should be our reference conditional tag
+      if ( ! function_exists( 'tc_lp_maybe_fall_back_on_index' ) ):
+        function tc_lp_maybe_fall_back_on_index( $template ) {
+          if ( ! tc_lp_is_learnpress() )
+            return $template;
+
+          if ( ! empty( $template ) )
+            return $template;
+
+          return get_template_part( 'index' );
+        }
+      endif;
+      add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index' );
+
+
+      // Disable post lists and single views in lp contexts
+      add_filter( 'czr_is_list_of_posts', 'tc_lp_is_learnpress_disable');
+      //enable page view
+      add_filter( 'czr_is_single_page', 'tc_lp_is_learnpress_enable');
+      //todo: display arhive title, do ot display metas in lp archives
+
+      //disable lp breadcrumb, we'll use our own
+      remove_action( 'learn_press_before_main_content', 'learn_press_breadcrumb' );
+
+    }//end lp compat
+
+    /* same in czr classic */
     /**
     * TC Unlimited Featured Pages compat hooks
     * Since Customizr 3.4.24 we changed the functions and class prefixes
@@ -1369,7 +1433,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       return false;
     }
 
-    /* same in czr3 */
+    /* same in czr classic */
     public function czr_fn_get_string_options_to_translate() {
       $string_options = array(
         'tc_front_slider',
