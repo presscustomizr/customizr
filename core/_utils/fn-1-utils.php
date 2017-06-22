@@ -471,6 +471,11 @@ if ( ! class_exists( 'CZR_utils' ) ) :
     function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
       return czr_fn_opt( $option_name, $option_group, $use_default );
     }
+
+    //used until FPU 2.0.33
+    function czr_fn_parse_imgs( $_html ) {
+      return czr_fn_parse_imgs( $_html );
+    }
   }
 
   new CZR_utils;
