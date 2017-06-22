@@ -194,7 +194,6 @@
           </div><!-- .container -->
 
           <?php do_action('__after_main_container'); ?>
-          <?php if ( czr_fn_has('footer_push') ) czr_fn_render_template('footer/footer_push', 'footer_push') ?>
 
     </div><!-- #main-wrapper -->
 

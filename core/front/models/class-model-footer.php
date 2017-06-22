@@ -10,7 +10,8 @@ class CZR_footer_model_class extends CZR_Model {
       *********************************************/
       array(
         'id'          => 'footer_push',
-        'model_class' => 'footer/footer_push',
+        'template'    => 'footer/footer_push',
+        'hook'        => '__after_main_container'
       ),
     );
 
