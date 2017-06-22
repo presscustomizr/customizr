@@ -130,8 +130,12 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
           //header and footer skins
-          $_classes[] = 'header-skin-' . ( esc_attr( czr_fn_opt( 'tc_header_skin' ) ) );
-          $_classes[] = 'footer-skin-' . ( esc_attr( czr_fn_opt( 'tc_footer_skin' ) ) );
+          $header_skin_opt = esc_attr( czr_fn_opt( 'tc_header_skin' ) );
+          $footer_skin_opt = esc_attr( czr_fn_opt( 'tc_footer_skin' ) );
+
+          //set header and footer skin with default fallback
+          $_classes[] = sprintf( 'header-skin-%1$s', $header_skin_opt ? $header_skin_opt : 'light' );
+          $_classes[] = sprintf( 'footer-skin-%1$s', $footer_skin_opt ? $footer_skin_opt : 'dark' );
 
           //adds the layout
           $_layout = czr_fn_get_layout( czr_fn_get_id() , 'sidebar' );
