@@ -40,10 +40,19 @@ if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
 
 
 
+//fire an action hook before loading the theme
+do_action( 'czr_before_init' );
 //Creates a new instance
 new CZR___;
-do_action('czr_load');
+//fire an action hook after loading the theme
+do_action( 'czr_after_init' );
 
+
+//fire an action hook before loading the theme class groups
+do_action( 'czr_before_load' );
+
+//classic CZR___ will hook here to instantiate theme class groups
+do_action('czr_load');
 
 if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
     new CZR_prevdem();
@@ -53,4 +62,7 @@ if ( czr_fn_isprevdem() && class_exists('CZR_prevdem') ) {
 if ( CZR_IS_PRO ) {
     new CZR_init_pro(CZR___::$theme_name );
 }
+
+//fire an action hook after loading the theme class groups
+do_action( 'czr_after_load' );
 ?>

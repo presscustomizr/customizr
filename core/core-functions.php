@@ -44,6 +44,9 @@ endif;
 if ( ! function_exists( 'czr_fn_setup_constants' ) ):
     function czr_fn_setup_constants() {
 
+        //fire an action hook before constants have been set up
+        do_action( 'czr_before_setup_base_constants' );
+
         /* GETS INFORMATIONS FROM STYLE.CSS */
         // get themedata version wp 3.4+
         if ( function_exists( 'wp_get_theme' ) ) {
@@ -123,6 +126,8 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         //TC_BASE_URL_CHILD http url of the loaded child theme
         if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
 
+        //fire an action hook after constants have been set up
+        do_action( 'czr_after_setup_base_constants' );
     }
 endif;
 
