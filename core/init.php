@@ -155,7 +155,14 @@ if ( ! class_exists( 'CZR___' ) ) :
               self::$instance = new CZR___();
 
               self::$instance -> czr_fn_setup_loading();
+
+              //fire an action hook before loading the theme class groups
+              do_action( 'czr_before_load' );
+
               self::$instance -> czr_fn_load();
+
+              //fire an action hook after loading the theme class groups
+              do_action( 'czr_after_load' );
 
               //FMK
               self::$instance -> collection = new CZR_Collection();
@@ -649,6 +656,9 @@ if ( ! function_exists( 'CZR' ) ) {
       return CZR___::czr_fn_instance();
     }
 }
-
+//fire an action hook before init the theme
+do_action( 'czr_before_init' );
 // Fire Customizr
 CZR();
+//fire an action hook after init the theme
+do_action( 'czr_after_init' );

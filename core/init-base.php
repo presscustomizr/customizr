@@ -781,6 +781,13 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         * @since Customizr 3.2.3
         */
         function czr_fn_init_properties() {
+              //fire an action hook before theme main properties have been set up
+              // theme_name
+              // db_options
+              // default_options
+              // started using customizr(-pro) transient
+              do_action( 'czr_before_caching_options' );
+
               self::$theme_name         = CZR_SANITIZED_THEMENAME;
 
               self::$db_options         = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
@@ -798,6 +805,12 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                 );
               }
 
+              //fire an action hook after theme main properties have been set up
+              // theme_name
+              // db_options
+              // default_options
+              // started using customizr(-pro) transient
+              do_action( 'czr_after_caching_options' );
         }
 
 
@@ -810,7 +823,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
           if ( is_array(self::$theme_setting_list) && ! empty( self::$theme_setting_list ) )
             return;
 
+          //fire an action hook before caching theme settomgs list
+          do_action( 'czr_before_caching_theme_settings_list' );
           self::$theme_setting_list = czr_fn_generate_theme_setting_list();
+          //fire an action hook after caching theme settomgs list
+          do_action( 'czr_after_caching_theme_settings_list' );
         }
 
 
