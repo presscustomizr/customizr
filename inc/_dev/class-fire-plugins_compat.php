@@ -1233,7 +1233,14 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           return tc_lp_is_learnpress() ? true : $bool;
         }
       endif;
-
+      if ( ! function_exists( 'tc_lp_is_learnpress_archive_disable' ) ):
+        function tc_lp_is_learnpress_archive_disable( $bool ) {
+          if ( function_exists( 'learn_press_is_course' )  && function_exists( 'learn_press_is_quiz' ) ) {
+            return tc_lp_is_learnpress() && ! ( learn_press_is_course() || learn_press_is_quiz() )  ? false : $bool;
+          }
+          return $bool;
+        }
+      endif;
 
 
       //lp filters template_include falling back on the page.php theme template
@@ -1256,12 +1263,25 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       // Disable post lists and single views in lp contexts
       add_filter( 'tc_post_list_controller', 'tc_lp_is_learnpress_disable');
-      add_filter( 'tc_is_grid_enabled', 'tc_lp_is_learnpress_disable');
       add_filter( 'tc_show_single_post_content', 'tc_lp_is_learnpress_disable');
+      // Disable archive headings
+      add_action( 'tc_show_tax_archive_title', 'tc_lp_is_learnpress_archive_disable' );
 
       //enable page view
       add_filter( 'tc_show_page_content', 'tc_lp_is_learnpress_enable');
-      //todo: display arhive title, do ot display metas in lp archives
+
+      //do not display metas in lp archives
+      add_filter( 'tc_opt_tc_show_post_metas', 'tc_lp_is_learnpress_archive_disable' );
+
+      //do not display post navigation in lp profile and lp checkout
+      add_filter( 'tc_opt_tc_show_post_navigation', 'tc_lp_maybe_disable_post_navigation' );
+      if ( ! function_exists( 'tc_lp_maybe_disable_post_navigation' ) ) {
+        function tc_lp_maybe_disable_post_navigation( $bool ) {
+          if ( function_exists( 'learn_press_is_profile' ) && function_exists( 'learn_press_is_checkout' ) ) {
+            return learn_press_is_profile() || learn_press_is_checkout() ? false : $bool;
+          }
+        }
+      }
 
       //disable lp breadcrumb, we'll use our own
       remove_action( 'learn_press_before_main_content', 'learn_press_breadcrumb' );

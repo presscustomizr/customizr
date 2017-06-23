@@ -1221,10 +1221,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       endif;
       add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index' );
 
-
       // Disable post lists and single views in lp contexts
       add_filter( 'czr_is_list_of_posts', 'tc_lp_is_learnpress_disable');
-      //enable page view
+
+      //enable page view for lp archives
       add_filter( 'czr_is_single_page', 'tc_lp_is_learnpress_enable');
       //todo: display arhive title, do ot display metas in lp archives
 
