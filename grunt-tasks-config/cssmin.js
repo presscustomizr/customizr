@@ -8,45 +8,45 @@ module.exports = {
   },
   dev_skin: {
     files: [
-      {'<%= paths.front_css %>grey.min.css' : '<%= paths.front_css %>grey.css'}
+      {'<%= paths.front_css_classic %>grey.min.css' : '<%= paths.front_css_classic %>grey.css'}
     ]
   },
   dev_common: {
     files: [
-      {'<%= paths.front_css %>tc_common.min.css' : '<%= paths.front_css %>tc_common.css'}
+      {'<%= paths.front_css_classic %>tc_common.min.css' : '<%= paths.front_css_classic %>tc_common.css'}
     ]
   },
   dev_main_c4: {
     files: [
-      {'<%= paths.front_css4 %>style.min.css' : '<%= paths.front_css4 %>style.css'}
+      {'<%= paths.front_css_modern %>style.min.css' : '<%= paths.front_css_modern %>style.css'}
     ]
   },
   prod_front_c4: {
     expand: true,
-    cwd: '<%= paths.front_css4 %>',
+    cwd: '<%= paths.front_css_modern %>',
     src: ['*.css', '!*.min.css'],
-    dest: '<%= paths.front_css4 %>',
+    dest: '<%= paths.front_css_modern %>',
     ext: '.min.css'
   },
   prod_skins: {
     expand: true,
-    cwd: '<%= paths.front_css %>',
+    cwd: '<%= paths.front_css_classic %>',
     src: ['*.css', '!*.min.css'],
-    dest: '<%= paths.front_css %>',
+    dest: '<%= paths.front_css_classic %>',
     ext: '.min.css'
   },
   prod_common :{
     expand: true,
-    cwd: '<%= paths.front_css %>',
+    cwd: '<%= paths.front_css_classic %>',
     src: ['tc_common.css'],
-    dest: '<%= paths.front_css %>',
+    dest: '<%= paths.front_css_classic %>',
     ext: '.min.css'
   },
   prod_common_rtl :{
     expand: true,
-    cwd: '<%= paths.front_css %>rtl/',
+    cwd: '<%= paths.front_css_classic %>rtl/',
     src: ['tc_common.css'],
-    dest: '<%= paths.front_css %>rtl/',
+    dest: '<%= paths.front_css_classic %>rtl/',
     ext: '.min.css'
   },
   prod_admin_css: {

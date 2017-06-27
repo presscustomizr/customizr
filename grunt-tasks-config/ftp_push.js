@@ -15,7 +15,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.front_css %>grey.min.css', '<%= paths.front_css %>grey.css']
+				src: ['<%= paths.front_css_classic %>grey.min.css', '<%= paths.front_css_classic %>grey.css']
 			}
 		]
 	},
@@ -24,7 +24,7 @@ module.exports = {
       {
         expand: true,
         cwd: '.',
-        src: ['<%= paths.front_css %>tc_common.min.css', '<%= paths.front_css %>tc_common.css']
+        src: ['<%= paths.front_css_classic %>tc_common.min.css', '<%= paths.front_css_classic %>tc_common.css']
       }
     ]
   },
@@ -33,7 +33,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.front_js %>tc-scripts.js']
+				src: ['<%= paths.front_js_classic %>tc-scripts.js']
 			}
 		]
 	},
@@ -52,7 +52,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.front_css %>*.css', '<%= paths.front_css %>rtl/*.css']
+				src: ['<%= paths.front_css_classic %>*.css', '<%= paths.front_css_classic %>rtl/*.css']
 			}
 		]
 	},
@@ -61,7 +61,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '.',
-				src: ['<%= paths.front_js %>*.js']
+				src: ['<%= paths.front_js_classic %>*.js']
 			}
 		]
 	},

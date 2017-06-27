@@ -39,206 +39,139 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          * @since Customizr 3.3+
          */
          private function czr_fn_get_script_map( $_handles = array() ) {
+              $_front_path  =  CZR_ASSETS_PREFIX . 'front/js/';
+              $_libs_path =  CZR_ASSETS_PREFIX . 'front/js/libs/';
 
-               $_front_path  =  CZR_ASSETS_PREFIX . 'front/js/';
-               $_shared_path =  CZR_ASSETS_PREFIX . 'shared/js/';
-
-               $_map = array(
-
+              $_map = array(
                      'tc-js-params' => array(
-
-                           'path' => $_front_path . 'fmk/',
-                           'files' => array( 'tc-js-params.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_front_path,
+                          'files' => array( 'tc-js-params.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
-
-
                      //adds support for map method in array prototype for old ie browsers <ie9
                      'tc-js-arraymap-proto' => array(
-
-                           'path' => $_shared_path,
-                           'files' => array( 'oldBrowserCompat.min.js', 'oldBrowserCompat.min.js' ),
-                           'dependencies' => array()
-
+                          'path' => $_libs_path,
+                          'files' => array( 'oldBrowserCompat.js', 'oldBrowserCompat.min.js' ),
+                          'dependencies' => array()
                      ),
-
-
-
                      'tc-smoothscroll' => array(
-
-                       'path' => $_front_path . 'fmk/',
-                       'files' => array( 'smoothScroll.js' ),
-                       'dependencies' => array( 'underscore' )
-
+                        'path' => $_libs_path,
+                        'files' => array( 'smoothscroll.js' ),
+                        'dependencies' => array( 'underscore' )
                      ),
-
-
                      /**
                      ** VENDORS
                      **/
-
                      //bootstrap
                      'tc-bootstrap' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'custom-bootstrap.js' , 'custom-bootstrap.min.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'custom-bootstrap-modern.js' , 'custom-bootstrap-modern.min.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      //magnific popup
                      'tc-mfp' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery-magnific-popup.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'jquery-magnific-popup.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      //flickity
                      'tc-flickity' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'flickity-pkgd.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'flickity-pkgd.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      //waypoints
                      'tc-waypoints' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'waypoints.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'waypoints.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      //vivus
                      'tc-vivus' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'vivus.min.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'vivus.min.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
-
                      //holder
                      'tc-holder' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'holder.min.js', 'holder.min.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'holder.min.js', 'holder.min.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      //mcustom scrollbar
                      'tc-mcs' => array(
-
-                           'path' => $_front_path . 'vendors/',
-                           'files' => array( 'jquery-mCustomScrollbar.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path,
+                          'files' => array( 'jquery-mCustomScrollbar.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      /*
                      * OWNED JQUERY PLUGINS
                      */
                      //original sizes
                      'tc-img-original-sizes' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryimgOriginalSizes.js' ),
-                           'dependencies' => array('jquery')
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryimgOriginalSizes.js' ),
+                          'dependencies' => array('jquery')
                      ),
-
                      'tc-dropcap' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryaddDropCap.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryaddDropCap.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
                      ),
-
                      'tc-img-smartload' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryimgSmartLoad.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryimgSmartLoad.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
                      ),
-
                      'tc-ext-links' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryextLinks.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryextLinks.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
                      ),
-
                      'tc-parallax' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryParallax.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryParallax.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
                      ),
 
                      'tc-animate-svg' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryAnimateSvg.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryAnimateSvg.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
                      ),
-
                      'tc-center-images' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryCenterImages.js' ),
-                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryCenterImages.js' ),
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'underscore' )
                      ),
 
                      //fittext
                      'tc-fittext' => array(
-
-                           'path' => $_front_path . 'jquery-plugins/',
-                           'files' => array( 'jqueryFittext.js' ),
-                           'dependencies' => array( 'jquery' )
-
+                          'path' => $_libs_path . 'jquery-plugins/',
+                          'files' => array( 'jqueryFittext.js' ),
+                          'dependencies' => array( 'jquery' )
                      ),
-
                      /*
                      * OUR PARTS
                      */
                      'tc-outline' => array(
-
-                           'path' => $_front_path  . 'fmk/',
-                           'files' => array( 'outline.js' ),
-                           'dependencies' => array()
-
+                          'path' => $_libs_path,
+                          'files' => array( 'outline.js' ),
+                          'dependencies' => array()
                      ),
-
-
                      'tc-main-front' => array(
-                          'path' => $_front_path  . 'fmk/',
+                          'path' => $_front_path,
                           'files' => array( 'main.js' ),
                           'dependencies' => $this -> czr_fn_is_lightbox_required() ?
                                  array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp', 'tc-fittext', 'underscore' ) :
                                  array( 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
                      ),
-
                      //concats all scripts
                      'tc-scripts' => array(
                           'path' => $_front_path,
                           'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
                           'dependencies' => $this -> czr_fn_is_lightbox_required() ? array( 'jquery', 'tc-mfp' ) : array( 'jquery' )
                      )
-
                );//end of scripts map
 
                return apply_filters('tc_get_script_map' , $_map, $_handles );

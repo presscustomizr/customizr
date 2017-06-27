@@ -3,7 +3,7 @@
 // [2]: https://github.com/sindresorhus/grunt-sass
 module.exports = {
   options: {
-    includePaths: ['<%= paths.sass4 %>'],
+    includePaths: ['<%= paths.sass_modern %>'],
     precision: 6,
     sourceComments: false,
     sourceMap: true,
@@ -11,7 +11,7 @@ module.exports = {
   },
   front: {
     files: {
-      '<%= paths.front_css4 %>style.css': '<%= paths.sass4 %>style.scss'
+      '<%= paths.front_css_modern %>style.css': '<%= paths.sass_modern %>style.scss'
     }
   }
 };

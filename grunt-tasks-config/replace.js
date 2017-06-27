@@ -21,7 +21,7 @@ module.exports = {
 	},
 	less: {
 		src: [
-			'<%= paths.less %>**/*.less'
+			'<%= paths.less_classic %>**/*.less'
 		],
 		overwrite: true,
 		replacements: [ {
@@ -31,7 +31,7 @@ module.exports = {
 	},
   css: {
     src: [
-      '<%= paths.front_css %>**/*.css'
+      '<%= paths.front_css_classic %>**/*.css'
     ],
     overwrite: true,
     replacements: [ {

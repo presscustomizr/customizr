@@ -8,6 +8,7 @@ module.exports = {
           '' : [
               '<%= paths.inc_php %>czr-init.php',
               '<%= paths.inc_php %>czr-front.php',
+
               '<%= paths.core_php %>czr-admin.php',
               '<%= paths.core_php %>czr-customize.php',
               '<%= paths.core_php %>fmk.php',
@@ -15,19 +16,19 @@ module.exports = {
         ]
       }
     },
-    front_css4: {// Task
+    front_css_modern: {// Task
       files: { // Files to process: $dest : $source
-        '': ['<%= paths.front_css4 %>style.css']
+        '': ['<%= paths.front_css_modern %>style.css']
       }
     },
     front_js : {
       files: {
-        '': ['<%= paths.front_js %>tc-scripts.js'],
+        '': ['<%= paths.front_js_classic %>tc-scripts.js'],
       }
     },
     front_js4 : {
       files: {
-        '': ['<%= paths.front_js_4 %>tc-scripts.js'],
+        '': ['<%= paths.theme_js_assets %>tc-scripts.js'],
       }
     },
     czr_js : {
