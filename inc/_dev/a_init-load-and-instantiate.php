@@ -173,7 +173,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           {
             if ( is_admin() ) {
               //load
-              $this -> czr_fn_req_once( 'core/czr-admin.php' );
+              $this -> czr_fn_req_once( 'core/czr-admin-ccat.php' );
 
               //if doing ajax, we must not exclude the placeholders
               //because ajax actions are fired by admin_ajax.php where is_admin===true.
@@ -184,7 +184,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
             else {
               //load
-              $this -> czr_fn_req_once( 'inc/czr-front.php' );
+              $this -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
 
               //Skips all admin classes
               $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
@@ -194,8 +194,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         else
           {
             //load
-            $this -> czr_fn_req_once( 'core/czr-admin.php' );
-            $this -> czr_fn_req_once( 'core/czr-customize.php' );
+            $this -> czr_fn_req_once( 'core/czr-admin-ccat.php' );
+            $this -> czr_fn_req_once( 'core/czr-customize-ccat.php' );
 
             //left panel => skip all front end classes
             if ( czr_fn_is_customize_left_panel() ) {
@@ -207,7 +207,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
             if ( czr_fn_is_customize_preview_frame() ) {
               //load
-              $this -> czr_fn_req_once( 'inc/czr-front.php' );
+              $this -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
 
               $_to_load = $this -> czr_fn_unset_core_classes(
                 $_to_load,

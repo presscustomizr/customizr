@@ -70,7 +70,7 @@ They do not necessarily need to be a file, but in most of the cases they are, as
 to render pure html code (model's property $html )
 
 A template can be:
-a) rendered on fly ( core/functions.php czr_fn_render_template(...) ) directly from another template
+a) rendered on fly ( core/functions-ccat.php czr_fn_render_template(...) ) directly from another template
 b) rendered at a specific hook and priority
 
 A template can access models data through two functions
@@ -238,13 +238,13 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             //loads utils
             if ( CZR_DEV_MODE ) {
-                require_once( CZR_BASE . CZR_CORE_PATH . '_utils/fn-0-base.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_utils/fn-1-utils.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_utils/fn-2-query.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_utils/fn-3-thumbnails.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_utils/fn-4-colors.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-0-base.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-1-utils.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-2-query.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-3-thumbnails.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-4-colors.php' );
             } else {
-                require_once( CZR_BASE . CZR_CORE_PATH . 'functions.php' );
+                require_once( CZR_BASE . CZR_CORE_PATH . 'functions-ccat.php' );
             }
 
             do_action( 'czr_load' );
@@ -286,7 +286,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-controllers.php' );
             } else {
-                $this -> czr_fn_require_once( CZR_CORE_PATH . 'fmk.php' );
+                $this -> czr_fn_require_once( CZR_CORE_PATH . 'fmk-ccat.php' );
             }
 
             //load front templates tags files
@@ -382,7 +382,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             if ( ! czr_fn_is_customizing() ) {
                 if ( is_admin() ) {
                   //load
-                  czr_fn_require_once( CZR_CORE_PATH . 'czr-admin.php' );
+                  czr_fn_require_once( CZR_CORE_PATH . 'czr-admin-ccat.php' );
 
                   //if doing ajax, we must not exclude the placeholders
                   //because ajax actions are fired by admin_ajax.php where is_admin===true.
@@ -400,8 +400,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             else
               {
                 //load
-                czr_fn_require_once( CZR_CORE_PATH . 'czr-admin.php' );
-                czr_fn_require_once( CZR_CORE_PATH . 'czr-customize.php' );
+                czr_fn_require_once( CZR_CORE_PATH . 'czr-admin-ccat.php' );
+                czr_fn_require_once( CZR_CORE_PATH . 'czr-customize-ccat.php' );
                 //new CZR_customize();
 
                 //left panel => skip all front end classes
