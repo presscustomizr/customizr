@@ -67,7 +67,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       else {
 
         if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
-          CZR___::$instance -> czr_fn_req_once( 'inc/czr-front.php' );
+          CZR___::$instance -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
           new CZR_post_thumbnails();
         }
 
@@ -282,7 +282,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resource class has to be loaded
         if ( ! class_exists('CZR_resources') || ! is_object(CZR_resources::$instance) ) {
-          CZR___::$instance -> czr_fn_req_once( 'inc/czr-init.php' );
+          CZR___::$instance -> czr_fn_req_once( 'inc/czr-init-ccat.php' );
           new CZR_resources();
         }
 

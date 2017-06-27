@@ -874,5 +874,5 @@ czr_fn_setup_constants();
 if ( czr_fn_is_modern_style() ) {
     require_once( get_template_directory() . '/core/init.php' );
 } else {
-    require_once( get_template_directory() . '/inc/czr-init.php' );
+    require_once( get_template_directory() . '/inc/czr-init-ccat.php' );
 }

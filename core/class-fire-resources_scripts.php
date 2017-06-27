@@ -60,7 +60,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                         'dependencies' => array( 'underscore' )
                      ),
                      /**
-                     ** VENDORS
+                     ** libs
                      **/
                      //bootstrap
                      'tc-bootstrap' => array(
@@ -161,7 +161,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      ),
                      'tc-main-front' => array(
                           'path' => $_front_path,
-                          'files' => array( 'main.js' ),
+                          'files' => array( 'main-ccat.js' ),
                           'dependencies' => $this -> czr_fn_is_lightbox_required() ?
                                  array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp', 'tc-fittext', 'underscore' ) :
                                  array( 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
@@ -203,7 +203,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                wp_enqueue_script(
                    'modernizr',
-                   CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/vendors/modernizr.min.js',
+                   CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/libs/modernizr.min.js',
                    array(),
                    $this->_resouces_version,
                    false
@@ -224,7 +224,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   $this -> czr_fn_enqueue_script( array(
                      'tc-js-params',
                      'tc-js-arraymap-proto',
-                     //vendors
+                     //libs
                      'tc-bootstrap',
                      'tc-smoothscroll',
                      'tc-outline',
@@ -349,7 +349,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                if ( apply_filters( 'tc_holder_js_required', false ) || czr_fn_is_customizing() ) {
                   wp_enqueue_script(
                      'holder-js',
-                     CZR_FRONT_ASSETS_URL . 'js/vendors/holder.min.js',
+                     CZR_FRONT_ASSETS_URL . 'js/libs/holder.min.js',
                      array(),
                      CUSTOMIZR_VER,
                      $in_footer = true
@@ -358,7 +358,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                //load retina.js in footer if enabled
                if ( apply_filters('tc_load_retinajs', 1 == czr_fn_opt( 'tc_retina_support' ) ) )
-                     wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/vendors/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+                     wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/libs/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
 
          }
 

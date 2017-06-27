@@ -22,17 +22,17 @@ module.exports = function(grunt) {
         less_classic : 'inc/assets/less/',
         front_css_classic : 'inc/assets/css/',
 
-
         front_js_classic : 'inc/assets/js/',
 
         admin_css : 'assets/back/css/',
         admin_js : 'assets/back/js/',
 
         dev_php_classic : 'inc/_dev/',
-        back_php : 'core/_back/',
-
         inc_php_classic : 'inc/',
+
         core_php : 'core/',
+        core_php_dev : 'core/_dev/',
+
         lang : 'inc/lang/',
 
         // New customizer
@@ -59,8 +59,8 @@ module.exports = function(grunt) {
           'concat:admin_php',
           'concat:customize_php',
           //c4
-          'concat:fmk_php_c4',
-          'concat:utils_php_c4',
+          'concat:fmk_php_modern',
+          'concat:utils_php_modern',
           'lineending:concatenated_php'
         ],
         'prod_front_css': [
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
           'cssmin:prod_common_rtl',
           //c4
           'sass:front',
-          'lineending:front_css4',
-          'cssmin:prod_front_c4'
+          'lineending:front_css_modern',
+          'cssmin:prod_front_modern'
 
         ],
         'prod_front_js': [
@@ -83,24 +83,27 @@ module.exports = function(grunt) {
           'lineending:front_js',
           'uglify:part_front_js',
           'uglify:main_front_js',
-          //c4
-          'concat:front_main_fmk_js4',
-          'concat:front_js4',
-          'lineending:front_js4',
-          'uglify:fmk_front_js4',
-          'uglify:main_front_js4',
-          'uglify:vendors_front_js4'
+          //modern style
+          'concat:front_main_fmk_js_modern',
+          'concat:front_js_modern',
+          'lineending:front_js_modern',
+          'uglify:fmk_front_js_modern',
+          'uglify:main_front_js_modern',
+          //'uglify:libs_front_js'
         ],
         'prod_admin_css_js' : [
           'cssmin:prod_admin_css',
           'concat:czr_css',
           'cssmin:prod_czr_css',
+
           'concat:czr_control_js',
-          'concat:czr_control_js_c4',
+          'concat:czr_control_js_modern',
           'comments:czr_control_js',
-          'comments:czr_control_js_c4',
+          'comments:czr_control_js_modern',
+
           'concat:czr_preview_js',
-          'concat:czr_preview_js_c4',
+          'concat:czr_preview_js_modern',
+
           'lineending:czr_js',
           'uglify:prod_admin_js',
           'uglify:prod_czr_js'

@@ -173,7 +173,7 @@ if ( ! class_exists( 'CZR___' ) ) :
           {
             if ( is_admin() ) {
               //load
-              $this -> czr_fn_req_once( 'core/czr-admin.php' );
+              $this -> czr_fn_req_once( 'core/czr-admin-ccat.php' );
 
               //if doing ajax, we must not exclude the placeholders
               //because ajax actions are fired by admin_ajax.php where is_admin===true.
@@ -184,7 +184,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
             else {
               //load
-              $this -> czr_fn_req_once( 'inc/czr-front.php' );
+              $this -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
 
               //Skips all admin classes
               $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|inc/admin|admin_init', 'fire|inc/admin|admin_page') );
@@ -194,8 +194,8 @@ if ( ! class_exists( 'CZR___' ) ) :
         else
           {
             //load
-            $this -> czr_fn_req_once( 'core/czr-admin.php' );
-            $this -> czr_fn_req_once( 'core/czr-customize.php' );
+            $this -> czr_fn_req_once( 'core/czr-admin-ccat.php' );
+            $this -> czr_fn_req_once( 'core/czr-customize-ccat.php' );
 
             //left panel => skip all front end classes
             if ( czr_fn_is_customize_left_panel() ) {
@@ -207,7 +207,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
             if ( czr_fn_is_customize_preview_frame() ) {
               //load
-              $this -> czr_fn_req_once( 'inc/czr-front.php' );
+              $this -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
 
               $_to_load = $this -> czr_fn_unset_core_classes(
                 $_to_load,
@@ -3477,7 +3477,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since Customizr 3.3+
       */
       private function czr_fn_get_script_map( $_handles = array() ) {
-          $_front_path  =  'inc/assets/js';
+          $_front_path  =  'inc/assets/js/';
           $_libs_path =  CZR_ASSETS_PREFIX . 'front/js/libs/';
 
           $_map = array(
@@ -3545,7 +3545,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
               //!!no fancybox dependency if fancybox not required!
               'tc-main-front' => array(
                 'path' => $_front_path,
-                'files' => array( 'main.js' , 'main.min.js' ),
+                'files' => array( 'main-ccat.js' , 'main-ccat.min.js' ),
                 'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
               ),
               //loaded separately => not included in tc-script.js

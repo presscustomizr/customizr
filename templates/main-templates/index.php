@@ -132,7 +132,7 @@
 
                           //Here, we inject a specific loop item, the main_content, inside the loop
                           //What is the main_content ?
-                          //=> depends on the current context, @see czr_fn_get_main_content_loop_item() in core/functions.php
+                          //=> depends on the current context, @see czr_fn_get_main_content_loop_item() in core/functions-ccat.php
 
 
                           czr_fn_render_template('loop');

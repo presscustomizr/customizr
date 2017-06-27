@@ -76,9 +76,9 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         //CZR_MAIN_TEMPLATES_PATH is the relative path where the czr4 WordPress templates are located
         if( ! defined( 'CZR_MAIN_TEMPLATES_PATH' ) )  define( 'CZR_MAIN_TEMPLATES_PATH' , 'templates/main-templates/' );
         //CZR_UTILS_PREFIX is the relative path where the utils classes are located
-        if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_utils/' );
+        if( ! defined( 'CZR_UTILS_PATH' ) )           define( 'CZR_UTILS_PATH' , 'core/_dev/_utils/' );
         //CZR_FRAMEWORK_PATH is the relative path where the framework is located
-        if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/_framework/' );
+        if( ! defined( 'CZR_FRAMEWORK_PATH' ) )       define( 'CZR_FRAMEWORK_PATH' , 'core/_dev/_framework/' );
         //CZR_PHP_FRONT_PATH is the relative path where the framework front files are located
         if( ! defined( 'CZR_PHP_FRONT_PATH' ) )       define( 'CZR_PHP_FRONT_PATH' , 'core/front/' );
         //CZR_ASSETS_PREFIX is the relative path where the assets are located
@@ -1168,7 +1168,7 @@ function czr_fn_is_no_results() {
 
 
 /*-----------------------------------------------------------
-/* PREVIOUSLY IN inc/czr-init.php (class-fire-utils_settings_map.php) and core/functions.php
+/* PREVIOUSLY IN inc/czr-init-ccat.php (class-fire-utils_settings_map.php) and core/functions-ccat.php
 /*----------------------------------------------------------*/
 
 

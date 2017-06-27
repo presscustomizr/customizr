@@ -77,7 +77,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       * @since Customizr 3.3+
       */
       private function czr_fn_get_script_map( $_handles = array() ) {
-          $_front_path  =  'inc/assets/js';
+          $_front_path  =  'inc/assets/js/';
           $_libs_path =  CZR_ASSETS_PREFIX . 'front/js/libs/';
 
           $_map = array(
@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
               //!!no fancybox dependency if fancybox not required!
               'tc-main-front' => array(
                 'path' => $_front_path,
-                'files' => array( 'main.js' , 'main.min.js' ),
+                'files' => array( 'main-ccat.js' , 'main-ccat.min.js' ),
                 'dependencies' => $this -> czr_fn_is_fancyboxjs_required() ? array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fancybox' , 'underscore' ) : array( 'jquery' , 'tc-js-params', 'tc-img-original-sizes', 'tc-bootstrap' , 'underscore' )
               ),
               //loaded separately => not included in tc-script.js
