@@ -4,19 +4,19 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
-  line-height: 1.4;
+  line-height: 1.5;
   font-size: 0.833em;
 }
 
 @media (min-width: 20em) and (max-width: 40em) {
   body {
-    line-height: calc( 1.4 + 0.35 * ( ( 100vw - 20em) / 20 ));
+    line-height: calc( 1.5 + 0.15 * ( ( 100vw - 20em) / 20 ));
   }
 }
 
 @media (min-width: 40em) {
   body {
-    line-height: 1.75;
+    line-height: 1.65;
   }
 }
 
@@ -4459,7 +4459,7 @@ a.czr-format-link:hover::before {
 }
 
 .entry-title {
-  line-height: 1.1;
+  line-height: 1.5;
   margin-bottom: 0.3125em;
 }
 
