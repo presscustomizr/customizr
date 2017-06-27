@@ -262,22 +262,22 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return string
   */
   function czr_fn_get_grid_item_title( $_title, $is_expanded ) {
-    $_max = $this -> grid_title_num_words;
-    $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
-    $_max = $_max <= 0 ? 1 : $_max;
+      $_max = $this -> grid_title_num_words;
+      $_max = ( empty($_max) || ! $_max ) ? 10 : $_max;
+      $_max = $_max <= 0 ? 1 : $_max;
 
 
-    if ( empty($_title) || ! is_string($_title) )
+      if ( empty($_title) || ! is_string($_title) )
+        return $_title;
+
+      if ( count( explode( ' ', $_title ) ) > $_max ) {
+        $_words = array_slice( explode( ' ', $_title ), 0, $_max );
+        $_title = sprintf( '%s &hellip;',
+          implode( ' ', $_words )
+        );
+      }
+
       return $_title;
-
-    if ( count( explode( ' ', $_title ) ) > $_max ) {
-      $_words = array_slice( explode( ' ', $_title ), 0, $_max );
-      $_title = sprintf( '%s &hellip;',
-        implode( ' ', $_words )
-      );
-    }
-
-    return $_title;
   }
 
 
@@ -285,24 +285,24 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * thumb properties
   */
   function czr_fn_get_grid_item_thumb_properties( $section_cols ) {
-    $has_thumb           = $this -> czr_fn_show_thumb();
-    $thumb_img           = '';
+      $has_thumb           = $this -> czr_fn_show_thumb();
+      $thumb_img           = '';
 
-    if ( $has_thumb ) {
-      $thumb_model                   = czr_fn_get_thumbnail_model(
-          $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
-          null, null, null,
-          $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
-          $_placehoder               = $this -> use_thumb_placeholder
-      );
+      if ( $has_thumb ) {
+        $thumb_model                   = czr_fn_get_thumbnail_model(
+            $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
+            null, null, null,
+            $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
+            $_placehoder               = $this -> use_thumb_placeholder
+        );
 
-      if ( ! isset( $thumb_model['tc_thumb'] ) )
-        return;
+        if ( ! isset( $thumb_model['tc_thumb'] ) )
+          return;
 
-      $thumb_img              = apply_filters( 'czr-grid-thumb-img', $thumb_model[ 'tc_thumb' ], czr_fn_get_id() );
-    }
+        $thumb_img              = apply_filters( 'czr-grid-thumb-img', $thumb_model[ 'tc_thumb' ], czr_fn_get_id() );
+      }
 
-    return compact( 'has_thumb', 'thumb_img' );
+      return compact( 'has_thumb', 'thumb_img' );
   }
 
 
@@ -310,13 +310,13 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * figure class
   */
   function czr_fn_get_grid_item_figure_class( $has_thumb, $section_cols, $is_expanded ) {
-    $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
+      $figure_class        = array( $has_thumb ? 'has-thumb' : 'no-thumb' );
 
-    //if current post is the expanded => golden ratio should be disabled
-    //add the aspect ratio class for the figure
-    array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
+      //if current post is the expanded => golden ratio should be disabled
+      //add the aspect ratio class for the figure
+      array_push( $figure_class, $is_expanded ? 'czr__r-w16by9' : 'czr__r-wGR' );
 
-    return $figure_class;
+      return $figure_class;
   }
 
 
@@ -326,14 +326,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @return array
   */
   function czr_fn_get_grid_item_icon_visibility() {
-    $icon_enabled        = (bool) $this -> grid_icons && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
-    $icon_attributes     = '';
+      $icon_enabled        = (bool) $this -> grid_icons && in_array( get_post_format(), array( 'link', 'quote', 'image' ) );
+      $icon_attributes     = '';
 
-    if ( czr_fn_is_customizing() )
-      $icon_attributes   = sprintf('style="display:%1$s"',
-          $icon_enabled ? 'inline-block' : 'none'
-      );
-    return compact( 'icon_enabled', 'icon_attributes' );
+      if ( czr_fn_is_customizing() )
+        $icon_attributes   = sprintf('style="display:%1$s"',
+            $icon_enabled ? 'inline-block' : 'none'
+        );
+      return compact( 'icon_enabled', 'icon_attributes' );
   }
 
 
