@@ -1,5 +1,5 @@
-[submodule "assets/front/js/jquery-plugins"]
-  path = assets/front/js/jquery-plugins
+[submodule "assets/front/js/libs/jquery-plugins"]
+  path = assets/front/js/libs/jquery-plugins
   url = https://github.com/presscustomizr/front-jquery-plugins.git
 [submodule "grunt-tasks-config"]
   path = grunt-tasks-config
