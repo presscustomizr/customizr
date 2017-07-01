@@ -269,7 +269,8 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?><?php
+?>
+<?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -3707,7 +3708,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                       array( 'czrajax' => true ), //to scope our ajax calls
                       set_url_scheme( home_url( '/' ) )
                 ),
-                'czrFrontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
+                'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                 'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV )
   	        	),
