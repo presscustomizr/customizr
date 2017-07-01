@@ -105,7 +105,7 @@ var czrapp = czrapp || {};
             query = query || ( _.isObject( query ) ? query : {} );
 
             var ajaxUrl = czrapp.localized.ajaxUrl,
-                nonce = czrapp.localized.czrFrontNonce,//{ 'id' : '', 'handle' : '' }
+                nonce = czrapp.localized.frontNonce,//{ 'id' : '', 'handle' : '' }
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : ''

@@ -331,7 +331,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                                     array( 'czrajax' => true ), //to scope our ajax calls
                                     set_url_scheme( home_url( '/' ) )
                               ),
-                              'czrFrontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
+                              'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                               'isDevMode'        => CZR_DEBUG_MODE || CZR_DEV_MODE
 

@@ -1,8 +1,7 @@
-//@global TCParams
 var czrapp = czrapp || {};
 czrapp.methods = {};
 
-(function( CZRParams, $ ){
+(function( $ ){
       var ctor, inherits, slice = Array.prototype.slice;
 
       // Shared empty constructor function to aid in prototype-chain creation.
@@ -575,4 +574,4 @@ czrapp.methods = {};
       // Create a global events bus
       $.extend( czrapp.Values.prototype, czrapp.Events );
 
-})( CZRParams, jQuery );
+})( jQuery );
