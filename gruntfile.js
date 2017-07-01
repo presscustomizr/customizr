@@ -54,11 +54,11 @@ module.exports = function(grunt) {
 
         //PROD
         'prod_php' : [
-          'concat:init_php',
-          'concat:front_php',
+          'concat:init_php_classic',
+          'concat:front_php_classic',
           'concat:admin_php',
           'concat:customize_php',
-          //c4
+          //modern style
           'concat:fmk_php_modern',
           'concat:utils_php_modern',
           'lineending:concatenated_php'
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
           'cssmin:prod_skins' ,
           'cssmin:prod_common',
           'cssmin:prod_common_rtl',
-          //c4
+          //modern style
           'sass:front',
           'lineending:front_css_modern',
           'cssmin:prod_front_modern'
@@ -78,8 +78,8 @@ module.exports = function(grunt) {
         ],
         'prod_front_js': [
           'jshint',
-          'concat:front_main_parts_js',
-          'concat:front_js',
+          'concat:front_main_parts_js_classic',
+          'concat:front_js_classic',
           'lineending:front_js',
           'uglify:part_front_js',
           'uglify:main_front_js',
