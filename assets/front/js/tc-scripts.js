@@ -10796,11 +10796,10 @@ and dependencies (minified).
 
       });
 
-}))}));//@global TCParams
-var czrapp = czrapp || {};
+}))}));var czrapp = czrapp || {};
 
 /*************************
-* JS LOG UTILITIES
+* JS LOG VARIOUS UTILITIES
 *************************/
 (function($, czrapp) {
       //Utility : print a js log on front
@@ -10897,13 +10896,13 @@ var czrapp = czrapp || {};
       };
 
       //encapsulates a WordPress ajax request in a normalize method
-      //@param query = { ... }
+      //@param query = {}
       czrapp.doAjax = function( query ) {
             //do we have a query ?
             query = query || ( _.isObject( query ) ? query : {} );
 
             var ajaxUrl = czrapp.localized.ajaxUrl,
-                nonce = czrapp.localized.frontNonce,//{ 'id' : '', 'handle' : '' }
+                nonce = czrapp.localized.frontNonce,//{ 'id' => 'HuFrontNonce', 'handle' => wp_create_nonce( 'hu-front-nonce' ) },
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : ''
@@ -10922,6 +10921,7 @@ var czrapp = czrapp || {};
                   return dfd.resolve().promise();
             }
             //setup nonce
+            //Note : the nonce might be checked server side ( not in all cases, only when writing in db )  with check_ajax_referer( 'hu-front-nonce', 'HuFrontNonce' )
             _query_[ nonce.id ] = nonce.handle;
             if ( ! _.isObject( nonce ) || _.isUndefined( nonce.id ) || _.isUndefined( nonce.handle ) ) {
                   czrapp.errorLog( 'czrapp.doAjax : unproper nonce' );
@@ -13732,7 +13732,7 @@ var czrapp = czrapp || {};
                       },
                       params.options
                   );
-
+                  console.log('NAME', name );
                   try { czrapp[ name ] = new params.ctor( ctorOptions ); }
                   catch( er ) {
                         czrapp.errorLog( 'Error when loading ' + name + ' | ' + er );
