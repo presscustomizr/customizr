@@ -289,12 +289,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $thumb_img           = '';
 
       if ( $has_thumb ) {
-        $thumb_model                   = czr_fn_get_thumbnail_model(
-            $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
-            null, null, null,
-            $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
-            $_placehoder               = $this -> use_thumb_placeholder
-        );
+          $thumb_model                   = czr_fn_get_thumbnail_model( array(
+              'requested_size'              => $this -> czr_fn_get_thumb_size_name( $section_cols ),
+              'filtered_thumb_size_name'    => $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
+              'placeholder'                 => $this -> use_thumb_placeholder
+          ));
 
         if ( ! isset( $thumb_model['tc_thumb'] ) )
           return;

@@ -227,13 +227,13 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     $ID                     = $_post->ID;
 
     //attachment image
-    $thumb                  = czr_fn_get_thumbnail_model(
-      $img_size, //$requested_size
-      $ID, //post ID
-      null, //$_custom_thumb_id
-      isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null,//$_enable_wp_responsive_imgs
-      $_placeholder = false
-    );
+    $thumb                  = czr_fn_get_thumbnail_model( array(
+        'requested_size'            => $img_size,
+        'post_id'                   => $ID,
+        'enable_wp_responsive_imgs' => isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null,
+        'placeholder'               => false
+    ));
+
 
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 

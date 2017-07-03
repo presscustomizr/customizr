@@ -8,14 +8,20 @@
 ?>
 <header class="entry-header <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="entry-header-inner <?php czr_fn_echo( 'entry_header_inner_class' ) ?>">
-  <?php /* Maybe treat this case with CSS only */
-    if ( czr_fn_get_property( 'has_header_format_icon' ) ): ?>
+    <?php
+      if ( czr_fn_get_property( 'has_header_format_icon' ) ):
+    ?>
       <div class="post-type__icon"><i class="icn-format"></i></div>
-  <?php endif; ?>
+    <?php
+      endif;//has_header_format_icon
+
+      if ( czr_fn_get_property( 'the_title' ) ):
+    ?>
     <h2 class="entry-title ">
       <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
     <?php
+      endif; //the_title
 
       czr_fn_comment_info( array( 'before' => '<div class="post-info">', 'after' => '</div>') );
 
