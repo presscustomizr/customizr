@@ -907,7 +907,7 @@ var czrapp = czrapp || {};
                         $_wpadminbar     : $('#wpadminbar'),
 
                         //cache various jQuery body inner el in czrapp obj
-                        $_tcHeader       : $('.tc-header'),
+                        $_header       : $('.tc-header'),
 
                         //various properties definition
                         localized        : "undefined" != typeof(TCParams) && TCParams ? TCParams : { _disabled: [] },
@@ -979,7 +979,7 @@ var czrapp = czrapp || {};
                   ------------------------------------------------------*/
                   if ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize && 'undefined' !== typeof wp.customize.selectiveRefresh ) {
                         wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
-                              czrapp.$_tcHeader = $('.tc-header');
+                              czrapp.$_header = $('.tc-header');
                               czrapp.$_body.trigger( 'partialRefresh.czr', placement );
                         });
                   }
@@ -1863,6 +1863,9 @@ var czrapp = czrapp || {};
 
                 this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
 
+                //isHeaderSticky is set on-load and on scroll the following way :
+                //self.isHeaderSticky( czrapp.$_window.scrollTop() > self.triggerHeight );
+                //Then, it is listened to by isHeaderStickyReact() to set the relevant css classes and fire the relevant actions
                 this.isHeaderSticky   = new czrapp.Value( false );
                 this.isHeaderSticky.bind( function( isSticky ) { self._isHeaderStickyReact( isSticky ); } );
 
@@ -1966,7 +1969,7 @@ var czrapp = czrapp || {};
                             .removeClass("sticky-disabled")
                             .trigger('tc-sticky-enabled');
                       // set the logo height, makes sense just when the logo isn't shrinked
-                      if ( ! czrapp.$_tcHeader.hasClass('tc-shrink-on') ) {
+                      if ( ! czrapp.$_header.hasClass('tc-shrink-on') ) {
                             self._set_logo_height();
                       }
                 } else {
@@ -2051,12 +2054,12 @@ var czrapp = czrapp || {};
                 var self = this;
 
                 //Reset all values first
-                czrapp.$_tcHeader.css('top' , '');
-                czrapp.$_tcHeader.css('height' , 'auto' );
+                czrapp.$_header.css('top' , '');
+                czrapp.$_header.css('height' , 'auto' );
                 this.$_resetMarginTop.css('margin-top' , '' ).show();
 
                 //What is the initial offset of the header ?
-                var headerHeight    = czrapp.$_tcHeader.outerHeight(true); /* include borders and eventual margins (true param)*/
+                var headerHeight    = czrapp.$_header.outerHeight(true); /* include borders and eventual margins (true param)*/
                 //set initial margin-top = initial offset + header's height
                 this.$_resetMarginTop.css('margin-top' , + headerHeight  + 'px');
           },
@@ -2065,7 +2068,7 @@ var czrapp = czrapp || {};
           _set_header_top_offset : function() {
                 var self = this;
                 //set header initial offset
-                czrapp.$_tcHeader.css('top' , self._get_top_offset() );
+                czrapp.$_header.css('top' , self._get_top_offset() );
           },
 
           //STICKY HEADER SUB CLASS HELPER (private like)
@@ -2407,7 +2410,7 @@ var czrapp = czrapp || {};
             fireDropDown : function() {
               this.$_sidenav                = $( '#tc-sn' );
               this._dd_first_selector       = '.menu-item-has-children.dropdown > .dropdown-menu' ;
-              this.$_nav_collapse           = czrapp.$_tcHeader.length > 0 ? czrapp.$_tcHeader.find( '.navbar-wrapper .nav-collapse' ) : [];
+              this.$_nav_collapse           = czrapp.$_header.length > 0 ? czrapp.$_header.find( '.navbar-wrapper .nav-collapse' ) : [];
               this.$_nav                    = this.$_nav_collapse.length ? this.$_nav_collapse.find( '.nav' ) : [];
 
               if ( ! this._has_dd_to_move() )
@@ -2432,7 +2435,7 @@ var czrapp = czrapp || {};
 
             dropdownPlaceCacheElements : function() {
               //cache jQuery el
-              this.$_nav_collapse           = czrapp.$_tcHeader.length > 0 ? czrapp.$_tcHeader.find( '.navbar-wrapper .nav-collapse' ) : [];
+              this.$_nav_collapse           = czrapp.$_header.length > 0 ? czrapp.$_header.find( '.navbar-wrapper .nav-collapse' ) : [];
               this.$_nav                    = this.$_nav_collapse.length ? this.$_nav_collapse.find( '.nav' ) : [];
               this.$_navbar_wrapper         = this.$_nav_collapse.length ? this.$_nav_collapse.closest( '.navbar-wrapper' ) : [];
             },
@@ -2776,7 +2779,7 @@ var czrapp = czrapp || {};
                       },
                       params.options
                   );
-                  console.log('NAME', name );
+
                   try { czrapp[ name ] = new params.ctor( ctorOptions ); }
                   catch( er ) {
                         czrapp.errorLog( 'Error when loading ' + name + ' | ' + er );
