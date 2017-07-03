@@ -12,7 +12,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'full' ) {
+  protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'slider-full' ) {
     return apply_filters( 'czr_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size ) );
   }
 
@@ -240,8 +240,9 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
         if ( file_exists( CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' ) ) {
-            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                CZR_BASE_URL_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png'
+            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-%2$s tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                CZR_BASE_URL_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png',
+                $img_size
             );
         } else {
             return false;
