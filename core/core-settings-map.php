@@ -373,9 +373,8 @@ function czr_fn_images_option_map( $get_default = null ) {
           )
   );//end of images options
   //add responsive image settings for wp >= 4.4
-  if ( version_compare( $wp_version, '4.4', '>=' ) )
-    $_image_options = array_merge( $_image_options, array(
-           'tc_resp_slider_img'  =>  array(
+  if ( version_compare( $wp_version, '4.4', '>=' ) ) {
+    $_image_options[ 'tc_resp_slider_img' ] =  array(
                             'default'     => 0,
                             'control'     => 'CZR_controls' ,
                             'title'       => __( 'Responsive settings', 'customizr' ),
@@ -383,18 +382,9 @@ function czr_fn_images_option_map( $get_default = null ) {
                             'section'     => 'images_sec' ,
                             'type'        => 'checkbox' ,
                             'priority'    => 25,
-          ),
-          'tc_resp_thumbs_img'  =>  array(
-                            'default'     => 0,
-                            'control'     => 'CZR_controls' ,
-                            'label'       => __( "Enable the WordPress responsive image feature for the theme's thumbnails" , "customizr" ),
-                            'section'     => 'images_sec' ,
                             'notice'      => __( 'This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely.' , 'customizr' ),
-                            'type'        => 'checkbox' ,
-                            'priority'    => 30,
-          )
-      )
     );
+  }
 
   return $_image_options;
 }

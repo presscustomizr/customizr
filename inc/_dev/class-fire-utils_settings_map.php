@@ -370,6 +370,9 @@ class CZR_utils_settings_map {
       ------------------------------------------------------------------------------------------------------*/
       function czr_fn_images_option_map( $_map, $get_default = null ) {
 
+            global $wp_version;
+
+
             if ( !is_array( $_map ) || empty( $_map ) ) {
                   return $_map;
             }
@@ -398,6 +401,25 @@ class CZR_utils_settings_map {
                   ),
 
             );
+
+            //add responsive image settings for wp >= 4.4
+            if ( version_compare( $wp_version, '4.4', '>=' ) ) {
+                  $_to_add[ 'tc_resp_thumbs_img' ] =  array(
+                                    'default'     => 0,
+                                    'control'     => 'CZR_controls' ,
+                                    'label'       => __( "Enable the WordPress responsive image feature for the theme's thumbnails" , "customizr" ),
+                                    'section'     => 'images_sec' ,
+                                    'type'        => 'checkbox' ,
+                                    'priority'    => 30,
+                  );
+
+                  //move the notice in the new control
+                  if ( isset( $_map[ 'tc_resp_slider_img' ] ) && isset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] ) ) {
+                        $_to_add[ 'tc_resp_thumbs_img' ][ 'notice' ] = $_map[ 'tc_resp_slider_img' ]['notice'];
+                        unset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] );
+                  }
+
+            }
 
             return array_merge( $_map, $_to_add );
       }
