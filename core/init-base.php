@@ -27,6 +27,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         public $tc_grid_full_size;
         public $tc_grid_size;
 
+
         //print comments template once : plugins compatibility
         public static $comments_rendered = false;
 
@@ -320,6 +321,24 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //slider boxed
             $slider_size      = apply_filters( 'tc_slider_size' , CZR___::$instance -> slider_size );
             add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+
+
+            //thumbs defined only for the modern style
+            if ( CZR_IS_MODERN_STYLE ) {
+              /*
+              * Do we want these to be filterable?
+              * I don't think som as we want this aspect ratio to be preserved!
+              */
+              //square thumb used in post list alternate for standard posts and regular shape
+              //also used in related posts
+              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR___::$instance -> tc_sq_thumb_size );
+              add_image_size( 'tc-sq-thumb' , $tc_sq_thumb_size['width'] , $tc_sq_thumb_size['height'], $tc_sq_thumb_size['crop'] );
+
+              //wide screen thumb (16:9) used in post list alternate for image and galleries post formats
+              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR___::$instance -> tc_ws_thumb_size );
+              add_image_size( 'tc-ws-thumb' , $tc_ws_thumb_size['width'] , $tc_ws_thumb_size['height'], $tc_ws_thumb_size['crop'] );
+
+            }
 
             //add support for svg and svgz format in media upload
             add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );

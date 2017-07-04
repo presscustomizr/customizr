@@ -116,7 +116,10 @@ class CZR_main_content_model_class extends CZR_Model {
                   array(
 
                         'id'          => 'main_posts_slider',
-                        'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' )
+                        'model_class' => array(
+                          'parent' => 'modules/slider/slider',
+                          'name' => 'modules/slider/slider_of_posts'
+                        ),
 
                   ),
                   /** end slider **/

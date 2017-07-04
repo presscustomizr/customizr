@@ -127,6 +127,9 @@ if ( ! class_exists( 'CZR___' ) ) :
         private $existing_files     = array();
         private $not_existing_files = array();
 
+        public $tc_sq_thumb_size;
+        public $tc_ws_thumb_size;
+
         function __construct( $_args = array()) {
 
             //call CZR_BASE constructor
@@ -147,6 +150,10 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
 
+
+            //Thumbs definition
+            $this -> tc_sq_thumb_size      = array( 'width' => 510 , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
+            $this -> tc_ws_thumb_size      = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb
         }
 
 
