@@ -625,7 +625,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
           if ( ! $this -> format_icon_media )
             return false;
 
-          return in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside', '' ) );
+          return in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside', 'chat', ''/*stays for standard*/ ) );
 
       }
 

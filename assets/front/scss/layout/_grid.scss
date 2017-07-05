@@ -13,6 +13,29 @@
 .format-link  .icn-format { @extend %icn-link;  }
 .format-image .icn-format { @extend %icn-img; }
 
+.format-aside .icn-format:before,
+.format-status .icn-format:before,
+.format-chat  .icn-format:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.format-chat .icn-format:before {
+    content: '\f086';
+}
+
+.format-aside .icn-format:before {
+    content: '\f08d';
+}
+
+.format-status .icn-format:before {
+    content: '\f0e7';
+}
+
 .post-type__icon {
   font-size: ms(6);
   margin:0 auto;
