@@ -161,6 +161,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'title'     => __( 'LOGO' , 'customizr'),
                             'section'   => 'logo_sec',
                             'sanitize_callback' => 'czr_fn_sanitize_number',
+                            'priority'  => 10,
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                             'width'     => 250,
                             'height'    => 100,
@@ -177,23 +178,10 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'logo_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'  => 15,
                             'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
           ),
-          'tc_sticky_logo_upload'  => array(
-                            'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
-                            'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                            'section'   =>  'logo_sec' ,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                    //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
-                            'width'     => 75,
-                            'height'    => 30,
-                            'flex_width' => true,
-                            'flex_height' => true,
-                            //to keep the selected cropped size
-                            'dst_width'  => false,
-                            'dst_height'  => false,
-                            'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
-          ),
+
   );
 }
 
