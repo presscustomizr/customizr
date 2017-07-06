@@ -88,6 +88,7 @@ class CZR_menu_model_class extends CZR_Model {
                     'menu_id'             => 'secondary-nav',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'navbar-nav', 'nav__menu' ),
 
+
                 );
 
                 break;

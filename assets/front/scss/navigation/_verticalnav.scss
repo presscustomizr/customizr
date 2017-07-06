@@ -19,4 +19,14 @@
   .czr-dropdown .menu-item-has-children {
     padding-bottom: 0;
   }
+
+  .czr-dropdown-menu .dropdown-item {
+    padding: 0 0 0 $base-line-height-fixed; //in rtl we shuould to the opposite
+
+    /* Maximum 4 indentations */
+    .dropdown-item .dropdown-item .dropdown-item .dropdown-item {
+      padding: 0;
+    }
+
+  }
 }

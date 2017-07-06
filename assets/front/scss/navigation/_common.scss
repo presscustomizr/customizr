@@ -91,7 +91,6 @@
 
 
     .dropdown-item {
-        padding: 0 0 0 $base-line-height-fixed; //in rtl we shuould to the opposite
         margin: 0;
 
 
@@ -288,7 +287,7 @@
 }
 
 /* Hamburger button */
-
+/*
 .ham-toggler-menu {
     -webkit-appearance: initial !important;
     @extend .utils_links;
@@ -332,6 +331,72 @@
         }
     }
 }
+*/
+
+
+/* ANOTHER BUTTON */
+.ham-toggler-menu {
+    -webkit-appearance: initial !important;
+    @extend .utils_links;
+}
+.ham__toggler-span-wrapper {
+    height: 12px;
+    position: relative;
+    width: 20px;
+    display: block;
+}
+
+.ham__toggler-span-wrapper .line {
+  display: block;
+  background: $black;
+  width: 20px;
+  height: 1.8px;
+  position: absolute;
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+  -webkit-transition: all ease 0.35s;
+  -moz-transition: all ease 0.35s;
+  -o-transition: all ease 0.35s;
+  transition: all ease 0.35s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ham__toggler-span-wrapper .line.line-1 {top: 0;}
+.ham__toggler-span-wrapper .line.line-2 {top: 50%;}
+.ham__toggler-span-wrapper .line.line-3 {top: 100%;}
+
+
+.ham-toggler-menu:hover .line {
+    -webkit-transform: translateX(-3px);
+    -moz-transform: translateX(-3px);
+    transform: translateX(-3px);
+    width: 26px;
+}
+
+.ham-toggler-menu:not(.collapsed) .line-1 {
+  -webkit-transform: translateY(6px) translateX(-3px) rotate(45deg);
+  -moz-transform: translateY(6px) translateX(-3px) rotate(45deg);
+  transform: translateY(6px) translateX(-3px) rotate(45deg);
+  width: 28px;
+}
+.ham-toggler-menu:not(.collapsed) .line-2 {
+  opacity: 0;
+}
+.ham-toggler-menu:not(.collapsed) .line-3 {
+  -webkit-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
+  -moz-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
+  transform: translateY(-6px) translateX(-3px) rotate(-45deg);
+  width: 28px;
+}
+
+
+
+/* END ANOTHER BUTTON */
 /*end ham */
 
 
