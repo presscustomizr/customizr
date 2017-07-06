@@ -112,7 +112,6 @@ class CZR_header_model_class extends CZR_Model {
     $children = array(
       //* Registered as children here as they need to filter the header class and add custom style css */
       array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
-      array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
       array( 'model_class' => 'header/title', 'id' => 'title' ),
 
 

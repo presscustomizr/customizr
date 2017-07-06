@@ -1,4 +1,4 @@
-<div class="mobile-nav__container hidden-lg-up col-12">
+<div class="mobile-nav__container col-12 <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
    <nav class="mobile-nav__nav collapse navbar-collapse flex-column col" id="mobile-nav">
     <?php
       if ( czr_fn_has( 'nav_search' ) ) {
@@ -9,10 +9,6 @@
           'model_id'   =>  'mobile_menu',
         ) );
       };
-
     ?>
   </nav>
-  <?php
-    if ( czr_fn_get_property('with_nav_utils') && czr_fn_has('nav_utils') ) czr_fn_render_template( 'header/nav_utils' )
-  ?>
 </div>

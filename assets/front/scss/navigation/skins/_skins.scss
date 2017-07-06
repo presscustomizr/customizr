@@ -13,60 +13,50 @@ $secondary-color-dark   : $grey;
   $primary-color-inverted  : invert($primary-color);
   $secondary-color-light   : $grey;
   $secondary-color: null;
-   @if ($primary-color == $white) {
+
+  @if ($primary-color == $white) {
      $secondary-color : $grey-light;
-   }
-     @else {
-       $secondary-color : $grey-dark;
-     }
-
-     /* overlays skin */
-     .overlay {
-       background: rgba($background-color, 0.98);
-       color: $primary-color;
-       a { color: $secondary-color-light; }
-       a:hover { color: $primary-color; }
-     }
-     /* end overlays skins */
-
-
-     #tc-sn {
-       outline: 1px solid rgba($primary-color, 0.09);
-     }
-
-
-  .ham-toggler-menu.collapsed .ham-toggler-menu__span  { background: $primary-color;  }
-  .ham-toggler-menu__span, .caret__dropdown-toggler__span {
-      &:before, &:after {
-         background: $primary-color;
-      }
+  }
+  @else {
+      $secondary-color : $grey-dark;
   }
 
-    .tc-header .socials {
-      a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease); }
-      a:hover { color: $secondary-color-light; }
-    }
+  /* overlays skin */
+  .overlay {
+    background: rgba($background-color, 0.98);
+    color: $primary-color;
+    a { color: $secondary-color-light; }
+    a:hover { color: $primary-color; }
+  }
+  /* end overlays skins */
+
+
+  #tc-sn {
+    outline: 1px solid rgba($primary-color, 0.09);
+  }
+
+  .ham__toggler-span-wrapper .line {
+    background: $primary-color;
+  }
+
+
+  .tc-header .socials {
+    a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease); }
+    a:hover { color: $secondary-color-light; }
+  }
 
 
 
   #tc-sn .tc-sn-inner,
-  #sticky-placeholder,
+  .primary-navbar__wrapper,
+  .mobile-navbar__warpper,
   .header-navbars__wrapper  {
     background: $background-color;
   }
   .header-navbars__wrapper  {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
-  @include media-breakpoint-up(lg) {
-    .header-transparent {
-      .header-navbars__wrapper {
-        background: transparent;
-        border-bottom: 1px solid rgba($primary-color, 0.09);
-      }
-    }
-  }
 
-  .topbar-navbar__wrapper .hamburger-toggler__container,
   .topbar-navbar__wrapper {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }
@@ -101,6 +91,7 @@ $secondary-color-dark   : $grey;
         .primary-nav__socials .socials { border-top: 1px solid rgba($primary-color, 0.09);  }
       }
   }
+
   .dropdown-item:before {
     background-color: rgba( $primary-color-inverted, 0.15);
   }
@@ -109,6 +100,7 @@ $secondary-color-dark   : $grey;
   .dropdown-item:hover {
     background: $background-color;
   }
+
   .dropdown-menu {
     color: $primary-color;
   }
@@ -125,10 +117,10 @@ $secondary-color-dark   : $grey;
         background: $primary-color;
       }
     }
-    .navbar-brand-tagline { color: $secondary-color }
-  }
 
-   .mobile-woocart__container a { color:$primary-color; }
+  }
+  .navbar-brand-tagline { color: $secondary-color }
+  .mobile-woocart__container a { color:$primary-color; }
 
 
   [class*=nav__menu] {
@@ -163,38 +155,25 @@ $secondary-color-dark   : $grey;
      border-bottom: 0.5px solid rgba($secondary-color-dark, 0.15);
   }
 
-  .tc-sn .nav__menu {
-    & > li:not(:last-of-type) {
-        border-bottom: 1px solid rgba($primary-color, 0.075);
-    }
+
+  .vertical-nav > li:not(:last-of-type) {
+      border-bottom: 1px solid rgba($primary-color, 0.075);
   }
 
-  @include media-breakpoint-down(md) {
-    .mobile-nav__container nav {
-        border-top: 1px solid rgba($primary-color, 0.075);
-    }
-
-    .topbar-navbar__wrapper,
-    .mobile-nav__container,
-    .branding__container {
-      background: rgba($background-color, 1);
-    }
+  .mobile-navbar__wrapper {
     .mobile-nav__container {
       border-bottom: 1px solid rgba($primary-color, 0.075);
     }
-    .nav__menu {
-      & > li:not(:last-of-type) {
-          border-bottom: 1px solid rgba($primary-color, 0.075);
-      }
+    .mobile-nav__nav {
+      border-top: 1px solid rgba($primary-color, 0.075);
     }
     .mobile-search__container {
       border-bottom: 1px solid rgba($primary-color, 0.075);
     }
-   }
 
-  .header-transparent .navbar-sticky { background: rgba($background-color, 0.95); }
+  }
 
-  header .czr-form, #tc-sn .czr-form, .overlay .czr-form {
+  header .czr-form, .overlay .czr-form {
     .form-group label {
        color: $primary-color;
     }
@@ -206,6 +185,7 @@ $secondary-color-dark   : $grey;
        border-color: $primary-color;
      }
   }
+
 }
 /* end mixin */
 

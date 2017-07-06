@@ -286,55 +286,7 @@
   position: relative;
 }
 
-/* Hamburger button */
-/*
-.ham-toggler-menu {
-    -webkit-appearance: initial !important;
-    @extend .utils_links;
-
-    @at-root .ham-toggler-menu__span {
-      @include transition (all, .3s)
-      background: transparent;
-      display: inline-block;
-      width: 18px;
-      height: 2px;
-      position: relative;
-      top: 0;
-      vertical-align: middle;
-      @include transition (all ease 0.3s);
-      &:before, &:after {
-          position: absolute;
-          content: '';
-          display: inline-block;
-          width: inherit;
-          height: inherit;
-          transition: all ease .3s;
-      }
-    }
-
-    @at-root .ham-toggler-menu__span:after  {
-      @include transform( translate3d(0,0,0) rotateZ(45deg));
-      @include transform-style( preserve-3d );
-    }
-    @at-root .ham-toggler-menu__span:before {
-      @include transform( translate3d(0,0,0) rotateZ(-45deg));
-      @include transform-style( preserve-3d );
-    }
-    &.collapsed .ham-toggler-menu__span {
-        &:before {
-          top: -6px;
-          @include transform(translate3d(0,0,0) rotateZ(0));
-        }
-        &:after {
-          top: 6px;
-           @include transform(translate3d(0,0,0) rotateZ(0));
-        }
-    }
-}
-*/
-
-
-/* ANOTHER BUTTON */
+// Hamburger button
 .ham-toggler-menu {
     -webkit-appearance: initial !important;
     @extend .utils_links;
@@ -348,7 +300,6 @@
 
 .ham__toggler-span-wrapper .line {
   display: block;
-  background: $black;
   width: 20px;
   height: 1.8px;
   position: absolute;
