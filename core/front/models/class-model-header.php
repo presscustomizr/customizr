@@ -114,16 +114,58 @@ class CZR_header_model_class extends CZR_Model {
       array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
       array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
       array( 'model_class' => 'header/title', 'id' => 'title' ),
-      //secondary and primary menu registered here because of the extending
-      array( 'id' => 'navbar_primary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/navbar_primary_menu' ) ),
-      array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/navbar_secondary_menu' ) ),
 
-      array( 'id' => 'topbar_menu', 'model_class' => 'header/menu' ),
 
-      array( 'id' => 'sidenav_menu', 'model_class' => 'header/menu' ),
+      //primary menu in the navbar
+      array(
+        'id' => 'navbar_primary_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'primary_navbar'
+        )
+      ),
 
-      //here because it acts on the header class
-      array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
+      //secondary menu in the navbar
+      array(
+        'id' => 'navbar_secondary_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'secondary_navbar'
+        ),
+      ),
+
+      //topbar menu
+      array(
+        'id' => 'topbar_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'topbar'
+        ),
+      ),
+
+      //sidenav menu
+      array(
+        'id' => 'sidenav_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'sidenav'
+        ),
+      ),
+
+      //mobile menu
+      array(
+        'id' => 'mobile_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'mobile'
+        ),
+      ),
+
+      array(
+        'id' => 'tagline',
+        'model_class' => 'header/tagline'
+      ),
+
     );
 
     return $children;

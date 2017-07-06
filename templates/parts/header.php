@@ -12,9 +12,7 @@
     <div class="container-fluid topnav-navbars__container">
       <?php
         if ( czr_fn_has('topbar') ) {
-            czr_fn_render_template( 'header/topbar', array(
-                  'model_class' => 'header/topbar'
-            ) );
+            czr_fn_render_template( 'header/topbar', array( 'model_id' => 'topbar' ) );
         }
       ?>
       <?php

@@ -27,15 +27,7 @@
               )
             ) );
         endif;
-        if ( czr_fn_has( 'sidenav' ) ) :
-            czr_fn_render_template( 'header/menu_button', array(
-              'model_args' => array(
-                'data_attributes' => 'data-toggle="sidenav" aria-expanded="false"',
-              )
-            ) );
-        else :
-            czr_fn_render_template( 'header/menu_button', array( 'model_args' => array() ) );
-        endif;
+        czr_fn_render_template( 'header/menu_button' );
 ?>
       </ul>
     </div>

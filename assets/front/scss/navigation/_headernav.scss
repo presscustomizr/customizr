@@ -95,6 +95,23 @@
     margin-bottom: $base-line-height-fixed/1.5;
 }
 
+/* Mobile stuff */
+.mobile-search__container {
+    width: 100%;
+}
+.mobile-search__container .czr-form .form-group {
+    margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
+    padding-bottom: $base-line-height;
+}
+.tc-header .mobile-search__container {
+    margin: 2*$base-line-height-fixed 0 $base-line-height-fixed 0;
+}
+
+.mobile-nav__container {
+  padding: 0;
+}
+
+
 /*
 * HEADER LAYOUTS
 */

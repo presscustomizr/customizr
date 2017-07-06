@@ -477,21 +477,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 10,
           ),
-          /* Implement Hueman way?
-          'tc_header_topnav_mobile'  =>  array(
-                            'default'       => 'hide',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Topnav in mobiles" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'choices'       => array(
-                                    'hide'      => __( 'Hide' , 'customizr' ),
-                                    'show'      => __( 'Show' , 'customizr'),
-                                    'collapse'  => __( 'Collapse' , 'customizr' ),
-                            ),
-                            'type'          => 'select' ,
-                            'priority'      => 13,
-          ),*/
-          /*end_new*/
           //enable/disable top border
           'tc_top_border' => array(
                             'default'       =>  1,//top border on by default
@@ -560,8 +545,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'  => 24,
 
           ),
-          /* end new */
-          /* new */
           'tc_header_skin'  =>  array(
                             'default'       => 'light',
                             'control'       => 'CZR_controls' ,
@@ -574,20 +557,29 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'select' ,
                             'priority'      => 26,
           ),
-          /* Makes no
-          'tc_header_type'  => array(
-                            'default'       => 'standard',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Header type" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          =>  'select',
-                            'choices'       => array(
-                                  'absolute'  => __( 'Absolute' , 'customizr' ),
-                                  'standard'  => __( 'Relative' , 'customizr'),
+          'tc_header_mobile_menu_layout' => array(
+                            'default'   => 'mobile_menu',
+                            'control'   => 'CZR_controls',
+                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
+                            'label'     => __( 'Select the menu(s) to use for mobile devices', 'customizr'),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'mobile_menu'    => __( 'Specific Mobile Menu', 'customizr' ),
+                                'main_menu'      => __( 'Main Menu', 'customizr' ),
+                                'secondary_menu' => __( 'Secondary', 'customizr' ),
+                                'top_menu'       => __( 'Topbar Menu', 'customizr' ),
                             ),
-                            'priority'      => 27,
+                            'notice'    => sprintf( '%1$s<br/>%2$s <br/>',
+                                __( 'When your visitors are using a smartphone or a tablet, the header becomes a thin bar on top, where the menu is revealed when clicking on the hamburger button. This option let you choose which menu will be displayed.' , 'customizr' ),
+                                __( 'If the selected menu location has no menu assigned, the theme will try to assign another menu in this order : mobile, main, secondary, topbar.' , 'customizr' )
+                            ),
+                            'priority'  => 28,
+                            'ubq_section'   => array(
+                                'section' => 'menu_locations',
+                                'priority' => '100'
+                            ),
           ),
-          */
           /* end new */
           'tc_sticky_header'  =>  array(
                             'default'       => 1,
@@ -599,16 +591,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 30,
                             'transport'     => 'postMessage',
                             'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
-          ),
-          /* new TODO:
-          'tc_sticky_mobile'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky on scroll in mobiles" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 30,
-                            'transport'     => 'postMessage',
           ),
           /* end new */
           'tc_sticky_show_tagline'  =>  array(

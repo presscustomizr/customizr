@@ -22,4 +22,5 @@
       'element_class'  => 'justify-content-lg-around col col-lg-auto flex-lg-column',
     )
   ) ) ?>
+  <?php czr_fn_render_template(  'header/mobile_nav' ) ?>
 </div>

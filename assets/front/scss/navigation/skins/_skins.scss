@@ -59,7 +59,6 @@ $secondary-color-dark   : $grey;
   }
   @include media-breakpoint-up(lg) {
     .header-transparent {
-      #sticky-placeholder { background: transparent }
       .header-navbars__wrapper {
         background: transparent;
         border-bottom: 1px solid rgba($primary-color, 0.09);
@@ -171,16 +170,16 @@ $secondary-color-dark   : $grey;
   }
 
   @include media-breakpoint-down(md) {
-    .primary-navbar__wrapper .primary-nav__container nav {
+    .mobile-nav__container nav {
         border-top: 1px solid rgba($primary-color, 0.075);
-     }
+    }
 
     .topbar-navbar__wrapper,
-    .primary-nav__container,
+    .mobile-nav__container,
     .branding__container {
       background: rgba($background-color, 1);
     }
-    .primary-nav__container {
+    .mobile-nav__container {
       border-bottom: 1px solid rgba($primary-color, 0.075);
     }
     .nav__menu {
