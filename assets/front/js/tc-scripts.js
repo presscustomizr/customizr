@@ -12386,11 +12386,11 @@ var czrapp = czrapp || {};
               var self = this;
               this.stickyCandidatesMap = {
                     mobile : {
-                          mediaRule : 'only screen and (max-width: 719px)',
+                          mediaRule : 'only screen and (max-width: 991px)',
                           selector : 'mobile-sticky'
                     },
                     desktop : {
-                          mediaRule : 'only screen and (min-width: 720px)',
+                          mediaRule : 'only screen and (min-width: 992px)',
                           selector : 'desktop-sticky'
                     }
               };
@@ -12607,19 +12607,18 @@ var czrapp = czrapp || {};
         //@return string : no_stick, stick_up, stick_always
         //falls back on no_stick
         _setUserStickyOpt : function( device ) {
-              return 'stick_up';
-              // var self = this;
-              // if ( _.isUndefined( device ) ) {
-              //       // self.currentStickySelector = self.currentStickySelector || new czrapp.Value('');
-              //       _.each( self.stickyCandidatesMap, function( _params, _device ) {
-              //             if ( _.isFunction( window.matchMedia ) && matchMedia( _params.mediaRule ).matches ) {
-              //                   device = _device;
-              //             }
-              //       });
-              // }
-              // device = device || 'desktop';
+              var self = this;
+              if ( _.isUndefined( device ) ) {
+                    // self.currentStickySelector = self.currentStickySelector || new czrapp.Value('');
+                    _.each( self.stickyCandidatesMap, function( _params, _device ) {
+                          if ( _.isFunction( window.matchMedia ) && matchMedia( _params.mediaRule ).matches ) {
+                                device = _device;
+                          }
+                    });
+              }
+              device = device || 'desktop';
 
-              // return ( czrapp.localized.menuStickyUserSettings && czrapp.localized.menuStickyUserSettings[ device ] ) ? czrapp.localized.menuStickyUserSettings[ device ] : 'no_stick';
+              return ( czrapp.localized.menuStickyUserSettings && czrapp.localized.menuStickyUserSettings[ device ] ) ? czrapp.localized.menuStickyUserSettings[ device ] : 'no_stick';
         },
 
         //This is specific to Hueman
