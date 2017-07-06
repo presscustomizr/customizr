@@ -161,6 +161,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'title'     => __( 'LOGO' , 'customizr'),
                             'section'   => 'logo_sec',
                             'sanitize_callback' => 'czr_fn_sanitize_number',
+                            'priority'  => 10,
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                             'width'     => 250,
                             'height'    => 100,
@@ -177,23 +178,10 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'logo_sec' ,
                             'type'        => 'checkbox' ,
+                            'priority'  => 15,
                             'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
           ),
-          'tc_sticky_logo_upload'  => array(
-                            'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
-                            'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                            'section'   =>  'logo_sec' ,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                    //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
-                            'width'     => 75,
-                            'height'    => 30,
-                            'flex_width' => true,
-                            'flex_height' => true,
-                            //to keep the selected cropped size
-                            'dst_width'  => false,
-                            'dst_height'  => false,
-                            'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
-          ),
+
   );
 }
 
@@ -477,21 +465,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'checkbox' ,
                             'priority'      => 10,
           ),
-          /* Implement Hueman way?
-          'tc_header_topnav_mobile'  =>  array(
-                            'default'       => 'hide',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Topnav in mobiles" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'choices'       => array(
-                                    'hide'      => __( 'Hide' , 'customizr' ),
-                                    'show'      => __( 'Show' , 'customizr'),
-                                    'collapse'  => __( 'Collapse' , 'customizr' ),
-                            ),
-                            'type'          => 'select' ,
-                            'priority'      => 13,
-          ),*/
-          /*end_new*/
           //enable/disable top border
           'tc_top_border' => array(
                             'default'       =>  1,//top border on by default
@@ -560,8 +533,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'  => 24,
 
           ),
-          /* end new */
-          /* new */
           'tc_header_skin'  =>  array(
                             'default'       => 'light',
                             'control'       => 'CZR_controls' ,
@@ -574,21 +545,51 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'select' ,
                             'priority'      => 26,
           ),
-          /* Makes no
-          'tc_header_type'  => array(
-                            'default'       => 'standard',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Header type" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          =>  'select',
-                            'choices'       => array(
-                                  'absolute'  => __( 'Absolute' , 'customizr' ),
-                                  'standard'  => __( 'Relative' , 'customizr'),
+          'tc_header_mobile_menu_layout' => array(
+                            'default'   => 'mobile_menu',
+                            'control'   => 'CZR_controls',
+                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
+                            'label'     => __( 'Select the menu(s) to use for mobile devices', 'customizr'),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'mobile_menu'    => __( 'Specific Mobile Menu', 'customizr' ),
+                                'main_menu'      => __( 'Main Menu', 'customizr' ),
+                                'secondary_menu' => __( 'Secondary', 'customizr' ),
+                                'top_menu'       => __( 'Topbar Menu', 'customizr' ),
                             ),
-                            'priority'      => 27,
+                            'notice'    => sprintf( '%1$s<br/>%2$s <br/>',
+                                __( 'When your visitors are using a smartphone or a tablet, the header becomes a thin bar on top, where the menu is revealed when clicking on the hamburger button. This option let you choose which menu will be displayed.' , 'customizr' ),
+                                __( 'If the selected menu location has no menu assigned, the theme will try to assign another menu in this order : mobile, main, secondary, topbar.' , 'customizr' )
+                            ),
+                            'priority'  => 28,
+                            'ubq_section'   => array(
+                                'section' => 'menu_locations',
+                                'priority' => '100'
+                            ),
           ),
-          */
+          'tc_header_desktop_sticky' => array(
+                            'default'   => 'stick_up',
+                            'control'   => 'CZR_controls',
+                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('header menu visibility on scroll', 'customizr') ),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'no_stick'      => __( 'Not visible when scrolling the page', 'customizr'),
+                                'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
+                                'stick_always'  => __( 'Always visible', 'customizr')
+                            ),
+                            'priority'  => 30,
+                            'ubq_section'   => array(
+                                'section' => 'menu_locations',
+                                'priority' => '120'
+                            )
+          ),
+
+
           /* end new */
+
           'tc_sticky_header'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -600,16 +601,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'transport'     => 'postMessage',
                             'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
           ),
-          /* new TODO:
-          'tc_sticky_mobile'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky on scroll in mobiles" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 30,
-                            'transport'     => 'postMessage',
-          ),
           /* end new */
           'tc_sticky_show_tagline'  =>  array(
                             'default'       => 0,
@@ -620,7 +611,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 40,
                             'transport'     => 'postMessage',
           ),
-          /* Removed in c4*/
+          /* Removed in modern */
           'tc_woocommerce_header_cart_sticky' => array(
                             'default'   => 1,
                             'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),

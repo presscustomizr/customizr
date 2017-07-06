@@ -7,7 +7,7 @@
  * (Socials)
  */
 ?>
-<div class="primary-nav__utils nav__utils hidden-md-down col col-auto" <?php czr_fn_echo('element_attributes') ?>>
+<div class="primary-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
     <ul class="nav utils row flex-row flex-nowrap">
       <?php
       if ( czr_fn_has( 'nav_search' ) ) czr_fn_render_template( 'header/nav_search' );
