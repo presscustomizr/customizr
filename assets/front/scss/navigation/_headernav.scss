@@ -256,4 +256,10 @@
   z-index:1000;
   /* background: rgba(255, 255, 255, 0.7); */
   width: 100%;
+  top: 0;
+}
+
+
+.admin-bar .fixed-header-on .desktop-sticky {
+    top: 32px;
 }

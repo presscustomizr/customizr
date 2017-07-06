@@ -324,6 +324,12 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                               'imgSmartLoadOpts'    => $smart_load_opts,
 
                               'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
+                              'isWPMobile' => wp_is_mobile(),
+
+                              'menuStickyUserSettings' => array(
+                                  'desktop' => czr_fn_opt( 'tc_header_desktop_sticky' ),
+                                  'mobile'  => czr_fn_opt( 'tc_header_mobile_sticky' )
+                              ),
 
                               //AJAX
                               'adminAjaxUrl'        => admin_url( 'admin-ajax.php' ),
@@ -453,5 +459,6 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          function czr_fn_load_concatenated_front_scripts() {
                return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
          }
+
    }//end of CZR_resources_js
 endif;

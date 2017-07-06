@@ -49,8 +49,8 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_logo_wrapper() {
-      //display the logo wrapper when one of them is available;
-      return $this -> czr_fn_display_view_logo() || $this -> czr_fn_display_view_sticky_logo();
+      //display the logo wrapper
+      return $this -> czr_fn_display_view_logo();
     }
 
     function czr_fn_display_view_logo() {
@@ -58,14 +58,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return ! empty( $_logo_atts );
     }
 
-    function czr_fn_display_view_sticky_logo() {
-      if ( esc_attr( czr_fn_opt( "tc_sticky_header" ) ) ) {
-        /*sticky logo is quite new no bc needed*/
-        $_logo_atts = czr_fn_get_logo_atts( 'sticky', $backward_compat = false );
-        return ! empty( $_logo_atts );
-      }
-      return;
-    }
+
 
     //when the 'main' navbar menu is allowed?
     //1) menu allowed

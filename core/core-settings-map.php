@@ -568,7 +568,28 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '100'
                             ),
           ),
+          'tc_header_desktop_sticky' => array(
+                            'default'   => 'stick_up',
+                            'control'   => 'CZR_controls',
+                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('header menu visibility on scroll', 'customizr') ),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'no_stick'      => __( 'Not visible when scrolling the page', 'customizr'),
+                                'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
+                                'stick_always'  => __( 'Always visible', 'customizr')
+                            ),
+                            'priority'  => 30,
+                            'ubq_section'   => array(
+                                'section' => 'menu_locations',
+                                'priority' => '120'
+                            )
+          ),
+
+
           /* end new */
+
           'tc_sticky_header'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -590,7 +611,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 40,
                             'transport'     => 'postMessage',
           ),
-          /* Removed in c4*/
+          /* Removed in modern */
           'tc_woocommerce_header_cart_sticky' => array(
                             'default'   => 1,
                             'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
