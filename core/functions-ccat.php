@@ -202,10 +202,12 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
 }
 
 //@return boolean
-//states if registered and possible
+//states if registered or possible
 //useful is a check has to be done in the template before "instant" registration.
-if ( ! function_exists( 'czr_fn_has' ) ) {
-      function czr_fn_has( $_t, $_id = null, $only_registered = false ) {
+//takes the template base name $_t ( which usually matches the model id )
+//a specific model $_id can also be provided, in this case it will used to check the registration state and the controller
+if ( ! function_exists( 'czr_fn_is_registered_or_possible' ) ) {
+      function czr_fn_is_registered_or_possible( $_t, $_id = null, $only_registered = false ) {
             $_model_id = is_null($_id) ? $_t : $_id;
 
             if ( CZR() -> collection -> czr_fn_is_registered( $_model_id ) ) {

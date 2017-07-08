@@ -27,11 +27,11 @@ if ( have_posts() ) {
           $loop_item_model = array( 'model_id' => 'post_list_grid' );
           //$to_render = array( 'loop_item' => array( 'modules/grid/grid_wrapper', array( 'model_id' => 'post_list_grid' ) ) );
 
-          if ( czr_fn_has('post_list') ) {
+          if ( czr_fn_is_registered_or_possible('post_list') ) {
                 $loop_item_tmpl = 'content/post-lists/post_list_alternate';
                 $loop_item_model = array();
                 //$to_render = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
-          } elseif ( czr_fn_has('post_list_plain') ) {
+          } elseif ( czr_fn_is_registered_or_possible('post_list_plain') ) {
                 $loop_item_tmpl = 'content/post-lists/post_list_plain';
                 $loop_item_model = array();
                 //$to_render = array( 'loop_item' => array('content/post-lists/post_list_plain' ));

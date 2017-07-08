@@ -14,7 +14,7 @@ if ( ! apply_filters( 'tc_render_comments_template', true ) )
 <div id="comments" class="comments_container">
   <section class="post-comments">
     <?php
-      if ( czr_fn_has('comment_list') ) {
+      if ( czr_fn_is_registered_or_possible('comment_list') ) {
         czr_fn_render_template( 'content/singular/comments/comment_list' );
       }
       comment_form( array(

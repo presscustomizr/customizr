@@ -11,7 +11,7 @@
   <div class="header-navbars__wrapper <?php czr_fn_echo('elements_container_class') ?>">
     <div class="container-fluid topnav-navbars__container">
       <?php
-        if ( czr_fn_has('topbar') ) {
+        if ( czr_fn_is_registered_or_possible('topbar') ) {
             czr_fn_render_template( 'header/topbar',
               array(
                 'model_args' => array(
@@ -22,8 +22,8 @@
         }
       ?>
       <?php
-        if ( czr_fn_has('navbar_wrapper') ) {
-            czr_fn_render_template( 'header/' . czr_fn_get_property( 'navbar_template' ),
+        if ( czr_fn_is_registered_or_possible('navbar_wrapper') ) {
+            czr_fn_render_template( 'header/' . czr_fn_get_property( 'navbar_template' ),//<=header/navbar_wrapper
               array(
                 'model_args' => array(
                   'element_class' => czr_fn_get_property( 'primary_nbwrapper_class' )

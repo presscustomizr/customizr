@@ -12,7 +12,7 @@
     // singular thumbnail
     do_action( '__before_regular_heading_title' );
     ?>
-    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas' ) ) : ?>
+    <?php if ( czr_fn_is_registered_or_possible('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas' ) ) : ?>
         <div class="tax__container post-info entry-meta">
           <?php echo $cat ?>
         </div>
@@ -26,7 +26,7 @@
 
     endif;
 
-    if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+    if ( czr_fn_is_registered_or_possible('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
         czr_fn_edit_button( array( 'link'  => $edit_post_link ) );
 
     // This hook is used to render the following elements(ordered by priorities) :
@@ -39,7 +39,7 @@
 
           $comment_info  = czr_fn_comment_info( array( 'echo' => false ) );
 
-          if ( $has_meta = czr_fn_has('post_metas') ) :
+          if ( $has_meta = czr_fn_is_registered_or_possible('post_metas') ) :
 
         ?>
           <span class="entry-meta">
