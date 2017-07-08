@@ -154,23 +154,22 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         $wp_customize -> get_setting( 'blogdescription' )->transport = 'postMessage';
       }
 
+      //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
+      //=> REMOVE CUSTOMIZR FAV ICON CONTROL
+      //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
+      global $wp_version;
+      if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
+        $tc_option_group = CZR_THEME_OPTIONS;
 
-      //ONLY FOR OLD CUSTOMIZR
-      if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
-
-        //IF WP VERSION >= 4.3 AND SITE_ICON SETTING EXISTS
-        //=> REMOVE CUSTOMIZR FAV ICON CONTROL
-        //=> CHANGE SITE ICON DEFAULT WP SECTION TO CUSTOMIZR LOGO SECTION
-        global $wp_version;
-        if ( version_compare( $wp_version, '4.3', '>=' ) && is_object( $wp_customize -> get_control( 'site_icon' ) ) ) {
-          $tc_option_group = CZR_THEME_OPTIONS;
+        //ONLY FOR OLD CUSTOMIZR
+        if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {
           $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
-          //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
-          $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
-
-        }//end ALTER SITE ICON
-
+        }
+        //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
+        $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
       }
+      //end ALTER SITE ICON
+
 
 
       //CHANGE MENUS PROPERTIES

@@ -8,8 +8,6 @@
     <?php
       if ( czr_fn_has('logo') )
         czr_fn_render_template( 'header/logo' );
-      if ( czr_fn_has('sticky_logo') )
-        czr_fn_render_template( 'header/logo', array( 'model_id' => 'sticky_logo' ) );
     ?>
   </a>
 </div>

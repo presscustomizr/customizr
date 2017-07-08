@@ -12,15 +12,34 @@
     <div class="container-fluid topnav-navbars__container">
       <?php
         if ( czr_fn_has('topbar') ) {
-            czr_fn_render_template( 'header/topbar', array(
-                  'model_class' => 'header/topbar'
-            ) );
+            czr_fn_render_template( 'header/topbar',
+              array(
+                'model_args' => array(
+                  'element_class' => czr_fn_get_property( 'topbar_nbwrapper_class' )
+                )
+              )
+            );
         }
       ?>
       <?php
         if ( czr_fn_has('navbar_wrapper') ) {
-            czr_fn_render_template( 'header/' . czr_fn_get_property( 'navbar_template' ) );
+            czr_fn_render_template( 'header/' . czr_fn_get_property( 'navbar_template' ),
+              array(
+                'model_args' => array(
+                  'element_class' => czr_fn_get_property( 'primary_nbwrapper_class' )
+                )
+              )
+            );
         }
+      ?>
+      <?php
+        czr_fn_render_template( 'header/mobile_navbar_wrapper',
+          array(
+            'model_args' => array(
+              'element_class' => czr_fn_get_property( 'mobile_nbwrapper_class' )
+            )
+          )
+        )
       ?>
     </div>
   </div>
