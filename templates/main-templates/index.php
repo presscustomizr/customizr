@@ -16,11 +16,11 @@
 
   <?php
     /* SLIDERS : standard or slider of posts */
-    if ( czr_fn_has('main_slider') ) {
+    if ( czr_fn_is_registered_or_possible('main_slider') ) {
       czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_slider') );
     }
 
-    elseif( czr_fn_has( 'main_posts_slider' ) ) {
+    elseif( czr_fn_is_registered_or_possible( 'main_posts_slider' ) ) {
       czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_posts_slider') );
     }
 
@@ -41,11 +41,11 @@
           <?php  if ( apply_filters( 'big_heading_enabled', false && ! czr_fn_is_home() && ! is_404() ) ): ?>
             <div class="container-fluid">
               <?php
-                if ( czr_fn_has( 'archive_heading' ) )
+                if ( czr_fn_is_registered_or_possible( 'archive_heading' ) )
                   $_heading_template = 'content/post-lists/headings/archive_heading';
-                elseif ( czr_fn_has( 'search_heading' ) )
+                elseif ( czr_fn_is_registered_or_possible( 'search_heading' ) )
                   $_heading_template = 'content/post-lists/headings/search_heading';
-                elseif ( czr_fn_has('post_heading') )
+                elseif ( czr_fn_is_registered_or_possible('post_heading') )
                   $_heading_template = 'content/singular/headings/post_heading';
                 else //pages and fallback
                   $_heading_template = 'content/singular/headings/page_heading';
@@ -60,11 +60,11 @@
 
           <?php
             /* FEATURED PAGES */
-            if ( czr_fn_has( 'featured_pages' ) )
+            if ( czr_fn_is_registered_or_possible( 'featured_pages' ) )
               czr_fn_render_template( 'modules/featured-pages/featured_pages' );
           ?>
 
-          <?php if ( czr_fn_has('breadcrumb') ) : ?>
+          <?php if ( czr_fn_is_registered_or_possible('breadcrumb') ) : ?>
             <div class="container">
               <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
             </div>
@@ -86,13 +86,13 @@
                   /* Archive regular headings */
                   if ( apply_filters( 'regular_heading_enabled', ! czr_fn_is_home() && ! is_404() ) ):
 
-                    if ( czr_fn_has( 'archive_heading' ) )
+                    if ( czr_fn_is_registered_or_possible( 'archive_heading' ) )
                       czr_fn_render_template( 'content/post-lists/headings/regular_archive_heading',
                         array(
                           'model_class' => 'content/post-lists/headings/archive_heading'
                         )
                       );
-                    elseif ( czr_fn_has( 'search_heading' ) )
+                    elseif ( czr_fn_is_registered_or_possible( 'search_heading' ) )
                       czr_fn_render_template( 'content/post-lists/headings/regular_search_heading' );
 
                   endif;
@@ -157,10 +157,10 @@
                 */
                 /* By design do not display sidebars in 404 or home empty */
                 if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
-                  if ( czr_fn_has('left_sidebar') )
+                  if ( czr_fn_is_registered_or_possible('left_sidebar') )
                     get_sidebar( 'left' );
 
-                  if ( czr_fn_has('right_sidebar') )
+                  if ( czr_fn_is_registered_or_possible('right_sidebar') )
                     get_sidebar( 'right' );
 
                 }
@@ -169,21 +169,21 @@
 
             <?php do_action('__after_content_wrapper'); ?>
 
-            <?php if ( czr_fn_has('single_author_info') || czr_fn_has('related_posts') ) : ?>
+            <?php if ( czr_fn_is_registered_or_possible('single_author_info') || czr_fn_is_registered_or_possible('related_posts') ) : ?>
               <div class="row single-post-info">
                 <div class="col-12">
                 <?php
-                  if ( czr_fn_has('single_author_info') )
+                  if ( czr_fn_is_registered_or_possible('single_author_info') )
                      czr_fn_render_template( 'content/singular/authors/author_info' );
 
-                  if ( czr_fn_has('related_posts') )
+                  if ( czr_fn_is_registered_or_possible('related_posts') )
                     czr_fn_render_template( 'modules/related-posts/related_posts' )
                 ?>
                 </div>
               </div>
             <?php endif ?>
 
-            <?php if ( czr_fn_has('comments') ) : ?>
+            <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
               <div class="row">
                 <div class="col-12">
                   <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
@@ -200,7 +200,7 @@
     <?php do_action('__after_main_wrapper'); ?>
 
     <?php
-      if ( czr_fn_has('posts_navigation') ) :
+      if ( czr_fn_is_registered_or_possible('posts_navigation') ) :
     ?>
       <div class="container-fluid">
         <div class="row">

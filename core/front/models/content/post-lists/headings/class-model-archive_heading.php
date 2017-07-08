@@ -79,7 +79,7 @@ class CZR_archive_heading_model_class extends CZR_Model {
     else
       $_controlled = 'posts_list_description';
 
-    if ( ! czr_fn_has( $_controlled ) )
+    if ( ! czr_fn_is_registered_or_possible( $_controlled ) )
       return '';
 
     switch ( $context ) {
