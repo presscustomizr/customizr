@@ -1,11 +1,15 @@
 <?php
 class CZR_header_model_class extends CZR_Model {
-  public $elements_container_class;
+
+  public $primary_nbwrapper_class;
+  public $topbar_nbwrapper_class;
+  public $mobile_nbwrapper_class;
+
   public $navbar_template;
 
   /**
   * @override
-  * fired before the model properties are parsed
+  * fired before the model properties are parsed in the constructor
   *
   * return model params array()
   */
@@ -41,7 +45,6 @@ class CZR_header_model_class extends CZR_Model {
     }
 
     $element_class            = array( $element_class );
-    $elements_container_class = array();
 
 
     /* Is the header absolute ? add absolute and header-transparent classes
@@ -86,6 +89,21 @@ class CZR_header_model_class extends CZR_Model {
       array_push( $elements_container_class, 'navbar-to-stick' );
     }*/
 
+    /*
+    * Set the desktop and mobile navbar classes (bp visibility and stickiness )
+    * TODO: allow breakpoint changes
+    */
+    $_desktop_primary_navbar_class  = array( 'hidden-md-down' );
+    $_desktop_topbar_navbar_class   = array( 'hidden-md-down' );
+    $_mobile_navbar_class           = array( 'hidden-lg-up' );
+
+    /*
+    * Desktop sticky header
+    */
+    if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_desktop_sticky' ) ) ) {
+      $_desktop_primary_navbar_class[] = 'desktop-sticky';
+    }
+
     /* TOP BORDER */
     if ( 1 == esc_attr( czr_fn_opt( 'tc_top_border') ) ) {
       $element_class[] = 'border-top';
@@ -101,29 +119,73 @@ class CZR_header_model_class extends CZR_Model {
     }
 
     return array_merge( $model, array(
-      'element_class'            => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
-      'elements_container_class' => array_filter( apply_filters( 'czr_header_elements_container_class', $elements_container_class ) ),
-      'navbar_template'          => $navbar_template
-     ) );
+        'element_class'                 => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
+        'navbar_template'               => $navbar_template,
+        'primary_nbwrapper_class'       => $_desktop_primary_navbar_class,
+        'topbar_nbwrapper_class'        => $_desktop_topbar_navbar_class,
+        'mobile_nbwrapper_class'        => $_mobile_navbar_class
+    ) );
   }
 
 
+  //this is fired in the constructor
   function czr_fn_setup_children() {
     $children = array(
       //* Registered as children here as they need to filter the header class and add custom style css */
       array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
-      array( 'id' => 'sticky_logo', 'model_class' => array( 'parent' => 'header/logo', 'name' => 'header/logo_sticky') ),
       array( 'model_class' => 'header/title', 'id' => 'title' ),
-      //secondary and primary menu registered here because of the extending
-      array( 'id' => 'navbar_primary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/navbar_primary_menu' ) ),
-      array( 'id' => 'navbar_secondary_menu', 'model_class' => array( 'parent' => 'header/menu', 'name' => 'header/navbar_secondary_menu' ) ),
 
-      array( 'id' => 'topbar_menu', 'model_class' => 'header/menu' ),
 
-      array( 'id' => 'sidenav_menu', 'model_class' => 'header/menu' ),
+      //primary menu in the navbar
+      array(
+        'id' => 'navbar_primary_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'primary_navbar'
+        )
+      ),
 
-      //here because it acts on the header class
-      array( 'id' => 'tagline', 'model_class' => 'header/tagline' ),
+      //secondary menu in the navbar
+      array(
+        'id' => 'navbar_secondary_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'secondary_navbar'
+        ),
+      ),
+
+      //topbar menu
+      array(
+        'id' => 'topbar_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'topbar'
+        ),
+      ),
+
+      //sidenav menu
+      array(
+        'id' => 'sidenav_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'sidenav'
+        ),
+      ),
+
+      //mobile menu
+      array(
+        'id' => 'mobile_menu',
+        'model_class' => 'header/menu',
+        'args' => array(
+          'czr_menu_location' => 'mobile'
+        ),
+      ),
+
+      array(
+        'id' => 'tagline',
+        'model_class' => 'header/tagline'
+      ),
+
     );
 
     return $children;

@@ -1,0 +1,32 @@
+.vertical-nav {
+
+  // Always expand dropdowns
+  .czr-dropdown-menu {
+    display: block !important;
+  }
+
+  .dropdown-menu.czr-dropdown-menu {
+      position: static;
+      float: none;
+      width: 100%;
+  }
+
+  .dropdown-item.current-active::before,
+  .dropdown-item:hover::before {
+      width: 0;
+  }
+
+  .czr-dropdown .menu-item-has-children {
+    padding-bottom: 0;
+  }
+
+  .czr-dropdown-menu .dropdown-item {
+    padding: 0 0 0 $base-line-height-fixed; //in rtl we shuould to the opposite
+
+    /* Maximum 4 indentations */
+    .dropdown-item .dropdown-item .dropdown-item .dropdown-item {
+      padding: 0;
+    }
+  }
+
+}
