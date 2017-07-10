@@ -72,10 +72,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                         ),
                   ),
             ),
-            /*
-            'big-media'  => array
-            'full-image' => array
-            */
 
             'show_thumb_first'      => true,
             'alternate'             => false,
@@ -314,7 +310,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             }
 
 
-            $is_big_media                  = !$is_full_image && in_array( $_current_post_format, array( 'video', 'image' ) ) && ! $this->has_narrow_layout;
+            $is_big_media                  = !$is_full_image && in_array( $_current_post_format, array( 'video', 'image' ) );
 
 
             if ( $is_big_media )
