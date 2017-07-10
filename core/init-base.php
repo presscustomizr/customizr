@@ -24,7 +24,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         public $tc_thumb_size;
         public $slider_full_size;
         public $slider_size;
-        public $tc_grid_full_size;
+
         public $tc_grid_size;
 
 
@@ -70,7 +70,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
             $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
             $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-            $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
+
             $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
 
             //Main skin color array : array( link color, link hover color )
@@ -717,27 +717,30 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                   );
                   add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
                 }
+
+
+
+                /***********
+                *** GRID ***
+                ***********/
+                if ( isset( $_options['tc_grid_thumb_height'] ) ) {
+                    $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
+                }
+
+                $tc_grid_full_size     = $this -> tc_grid_full_size;
+                $tc_grid_size          = $this -> tc_grid_size;
+                $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
+
+                add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
+                add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
+
+                if ( $_user_grid_height != $tc_grid_full_size['height'] )
+                  add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
+                if ( $_user_grid_height != $tc_grid_size['height'] )
+                  add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
+
             }
 
-
-            /***********
-            *** GRID ***
-            ***********/
-            if ( isset( $_options['tc_grid_thumb_height'] ) ) {
-                $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
-
-            }
-            $tc_grid_full_size     = $this -> tc_grid_full_size;
-            $tc_grid_size          = $this -> tc_grid_size;
-            $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
-
-            add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
-            add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
-
-            if ( $_user_grid_height != $tc_grid_full_size['height'] )
-              add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
-            if ( $_user_grid_height != $tc_grid_size['height'] )
-              add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
         }
 
 

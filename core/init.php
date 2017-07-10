@@ -150,10 +150,10 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
 
-
+            //Default images sizes
             //Thumbs definition
             $this -> tc_sq_thumb_size      = array( 'width' => 510 , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
-            $this -> tc_ws_thumb_size      = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb
+            $this -> tc_ws_thumb_size      = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb, replaces also tc_grid_full_size for modern style
         }
 
 
