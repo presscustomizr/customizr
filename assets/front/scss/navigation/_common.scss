@@ -186,14 +186,14 @@
     }
 }
 
+.regular-nav {
+  /*
+  * Fade submenu only in desktops and only for horizontal menus
+  * only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
+  * sidenav is not impacted
+  */
 
-/*
-* Fade submenu only in desktops and only for horizontal menus
-* only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
-* sidenav is not impacted
-*/
-@include media-breakpoint-up(lg) {
-  //lets use a tricky to make this not impact on the snake
+  //lets use a trick to make this not impact on the snake
   //basically we know that assigning a perspective to an element
   //plus position:relative creates a new system
   //where fixed elements behave like absolute elements relative to the parent
@@ -201,7 +201,8 @@
   //though, as fixed element, even if overflowing the tc-page-wrap, will not
   //make the orizontal scrollbar appear!
 
- .czr-submenu-fade .menu-item-has-children {
+ .czr-submenu-fade & {
+    .menu-item-has-children {
       @include perspective(1000px);
       z-index: 100;
       > ul {
@@ -212,34 +213,40 @@
         @include transition( all 0.3s ease-in-out );
         @include transform( translate( 0, -20px ) );
       }
-  }
+    }
 
-  .czr-submenu-fade li.show {
-      @include perspective( none );
-      > ul {
-        position: absolute;
-        visibility: visible;
-        opacity: 1;
-        @include transform( translate( 0, 0) );
-      }
-  }
+    li.show {
+          @include perspective( none );
+          > ul {
+            position: absolute;
+            visibility: visible;
+            opacity: 1;
+            @include transform( translate( 0, 0) );
+          }
+    }
 
+    @at-root .czr-submenu-fade .topbar-nav__container .regular-nav .menu-item-has-children {
+      z-index: 101;
+    }
+
+  }
   /*end fade effect */
 
   /* submenu link move */
-  .czr-submenu-move .dropdown-menu > li > a {
+  .czr-submenu-move & {
+    .dropdown-menu > li > a {
       -webkit-transition: all ease 0.241s;
       -moz-transition: all ease 0.241s;
       -o-transition: all ease 0.241s;
       transition: all ease 0.241s;
       @include transform( translate( 0, 0) );
-  }
-  .czr-submenu-move .dropdown-item > a:hover {
+    }
+    .dropdown-item > a:hover {
       @include transform( translate( 5px, 0) );
+    }
   }
   /* end subemnu link move */
 }
-
 
 /**
 * Dropdown menu direction [SNAKE]

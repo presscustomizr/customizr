@@ -568,6 +568,24 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '100'
                             ),
           ),
+          'tc_header_mobile_sticky' => array(
+                            'default'   => 'stick_up',
+                            'control'   => 'CZR_controls',
+                            'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' ) , __('header menu visibility on scroll', 'customizr') ),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'no_stick'      => __( 'Not visible when scrolling the page', 'customizr'),
+                                'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
+                                'stick_always'  => __( 'Always visible', 'customizr')
+                            ),
+                            'priority'  => 29,
+                            'ubq_section'   => array(
+                                'section' => 'menu_locations',
+                                'priority' => '120'
+                            )
+          ),
+
           'tc_header_desktop_sticky' => array(
                             'default'   => 'stick_up',
                             'control'   => 'CZR_controls',
