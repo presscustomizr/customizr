@@ -114,7 +114,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   'thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
                   'show_thumb'            => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
                   'content_wrapper_width' => $content_wrapper_width,
-                  'format_icon_media'     => ! in_array( 'narrow', $content_wrapper_width ),
                   'excerpt_length'        => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
                   'contained'             => false,
                   'cover_sections'        => true,
@@ -326,22 +325,27 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             $media_info                    = $current_post_info[ isset( $current_post_info['tcthumb'] ) && $thumb_shape ? 'tcthumb' : 'default' ]['media'];
 
-            $post_media                    = $this->show_thumb ? $this->czr_fn__get_post_media (
+            //no icon shown in narrow layouts
+            $post_media                    = $this->show_thumb ? $this->czr_fn__get_post_media ( array(
 
-                    $post_id = null,
-                    $post_format = $_current_post_format,
-                    $type = 'all',
-                    $use_img_placeholder = false,
-                    $maybe_has_format_icon_media,
-                    $force_format_icon_media,
-                    $media_info['thumb_size']
+                  'post_format'           => $_current_post_format,
+                  'has_format_icon_media' => $maybe_has_format_icon_media,
+                  'force_icon'            => $force_format_icon_media,
+                  'use_icon'              => $maybe_has_format_icon_media,
+                  'thumb_size'            => $media_info['thumb_size']
 
-            ) : false;
+            ) ) : false;
 
+
+
+            //no format icon in narrow layouts
+            if ( 'format-icon' == $post_media && $this->has_narrow_layout ) {
+                  $post_media = false;
+            }
 
             $has_post_media                = !empty( $post_media );
 
-            $has_format_icon_media         = $maybe_has_format_icon_media && 'format-icon' == $post_media ;
+            $has_format_icon_media         = $maybe_has_format_icon_media && 'format-icon' == $post_media;
 
             $cover_sections                = $this->cover_sections && !( $thumb_shape && !$has_format_icon_media );
 
@@ -352,63 +356,16 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             /* End define variables */
 
             /* Process different cases */
-            /*
-            * $is_full_image: Gallery and images (with no text) should
-            * - not be vertically centered
-            * - avoid the media-content alternation
-            */
-        //    if ( ! $is_full_image && $has_post_media ) {
 
-                  /*
-                  * Video post formats
-                  * In the new alternate layout video takes more space when global layout has less than 2 sidebars
-                  * same thing for the image post format with text
-                  *
-                  */
-                //  if ( $is_media_bigger_than_content ) {
-                        /* Swap the layouts */
-                //        $_t_l                    = $_layout[ 'media' ];
-                //        $_layout[ 'media' ]      = $_layout[ 'content' ];
-                //        $_layout[ 'content' ]    = $_t_l;
-                //  }
-
-
-                  // conditions to swap thumb with content are:
-                  // 1) show_thumb_first is false && alternate not on
-                  // or
-                  // 2) show_thumb_first is false && alternate on and current post number is odd (1,3,..). (First post is 0 )
-                  // or
-                  // 3) show_thumb_first is true && alternate on and current post number is even (2,4,..). (First post is 0 )
-               //   $swap = !$_layout['show_thumb_first'] && !$_layout[ 'alternate' ];
-              //    $swap = $swap || $_layout[ 'alternate' ] &&  0 == ( $wp_query -> current_post + (int)$_layout['show_thumb_first'] ) % 2 ;
-
-            //      $_sections_wrapper_class[] = $swap ? 'flex-row-reverse' : 'flex-row';
-
-          //        if ( ! $this->has_narrow_layout )
-                        //allow centering sections
-        //                array_push( $_sections_wrapper_class, !$cover_sections ? 'czr-center-sections' : 'czr-cover-sections');
-      //      }
-    //        elseif ( $is_full_image && $has_post_media ) {
-
-                  /*
-                  * $is_full_image: Gallery and images (with no text) should
-                  * - be displayed in full-width
-                  * - media comes first, content will overlap
-                  */
-  //                $_layout[ 'content' ] = $_layout[ 'media' ] = array();
-
-//            }
-
-          //  elseif ( ! $has_post_media ) {
-
-                  //full width content
-//                  $_layout[ 'content' ] = array('', '', '', '', '12');
-
-  //          }
             if ( $has_post_media ) {
 
                   $media_layout   = $media_info['col_widths'][$_layout['content_wrapper_width']];
 
+                  /*
+                  * $is_full_image: Gallery and images (with no text) should
+                  * - not be vertically centered
+                  * - avoid the media-content alternation
+                  */
                   //maybe swap
                   if ( 'full-image' !== $post_info_key ) {
                         // conditions to swap thumb with content are:
@@ -618,8 +575,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       */
       function czr_fn_maybe_has_format_icon_media( $current_post_format ) {
 
-          if ( ! $this -> format_icon_media )
-            return false;
 
           return in_array( $current_post_format, array( 'quote', 'link', 'status', 'aside', 'chat', ''/*stays for standard*/ ) );
 
@@ -627,9 +582,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
       function czr_fn_force_format_icon_media( $current_post_format ) {
-
-          if ( ! $this -> format_icon_media )
-            return false;
 
           return in_array( $current_post_format, array( 'quote', 'link') );
 
@@ -705,7 +657,22 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
 
 
-      protected function czr_fn__get_post_media( $post_id = null, $post_format = null, $type = 'all', $use_img_placeholder = false, $has_format_icon_media = false, $force_icon = false, $thumb_size = 'full' ) {
+      protected function czr_fn__get_post_media( $media_args = array() ) {
+            $defaults = array(
+                  'post_id'               => null,
+                  'post_format'           => null,
+                  'type'                  => 'all',
+                  'use_img_placeholder'   => false,
+                  'has_format_icon_media' => false,
+                  'force_icon'            => false,
+                  'use_icon'              => true,
+                  'thumb_size'            => 'full',
+                  'image_centering'       => $this->image_centering
+            );
+
+            $media_args = wp_parse_args( $media_args, $defaults );
+
+
 
             $_id       = czr_fn_maybe_register( array(
 
@@ -720,18 +687,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   return false;
 
             //setup the media
-            $_instance -> czr_fn_setup( array(
-
-                  'post_id'               => $post_id,
-                  'post_format'           => $post_format,
-                  'media_type'            => $type,
-                  'use_thumb_placeholder' => $use_img_placeholder,
-                  'use_icon'              => $has_format_icon_media,
-                  'force_icon'            => $force_icon,
-                  'thumb_size'            => $thumb_size,
-                  'image_centering'       => $this->image_centering
-
-            ) );
+            $_instance -> czr_fn_setup( $media_args );
 
 
             return $_instance -> czr_fn_get_raw_media();
