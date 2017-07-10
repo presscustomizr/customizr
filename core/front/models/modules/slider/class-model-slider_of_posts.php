@@ -239,9 +239,10 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
 
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
-        if ( file_exists( CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' ) ) {
+        $placeholder_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' );
+        if ( $placeholder_src ) {
             $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-%2$s tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                CZR_BASE_URL_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png',
+                $placeholder_src,
                 $img_size
             );
         } else {
