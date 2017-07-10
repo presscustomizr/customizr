@@ -14,7 +14,7 @@
     <?php
       endif;//has_header_format_icon
 
-      if ( czr_fn_has('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get_property('cat_limit') ) ) ) : ?>
+      if ( czr_fn_is_registered_or_possible('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit'  => czr_fn_get_property('cat_limit') ) ) ) : ?>
         <div class="tax__container post-info entry-meta">
           <?php echo $cat ?>
         </div>
@@ -32,7 +32,7 @@
 
       czr_fn_comment_info( array( 'before' => '<div class="post-info">', 'after' => '</div>') );
 
-      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+      if ( czr_fn_is_registered_or_possible('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
         czr_fn_edit_button( array( 'link'  => $edit_post_link ) );
     ?>
   </div>

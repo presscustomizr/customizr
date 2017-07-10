@@ -1588,11 +1588,11 @@ var czrapp = czrapp || {};
               var self = this;
               this.stickyCandidatesMap = {
                     mobile : {
-                          mediaRule : 'only screen and (max-width: 719px)',
+                          mediaRule : 'only screen and (max-width: 991px)',
                           selector : 'mobile-sticky'
                     },
                     desktop : {
-                          mediaRule : 'only screen and (min-width: 720px)',
+                          mediaRule : 'only screen and (min-width: 992px)',
                           selector : 'desktop-sticky'
                     }
               };
@@ -1604,17 +1604,24 @@ var czrapp = czrapp || {};
               this.hasStickyCandidate     = new czrapp.Value( false );
               this.stickyHeaderAnimating  = new czrapp.Value( false );
               this.userStickyOpt          = new czrapp.Value( self._setUserStickyOpt() );//set on init and on resize : stick_always, no_stick, stick_up
+              this.isFixedPositionned     = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
+
+              //distance from the top where we should decide if fixed or not. => function of topbar height + admin bar height
+              //=> set on instantiation and reset on resize
+              this.topStickPoint          = new czrapp.Value( self._getTopStickPoint() );
 
               //// SETUP LISTENERS ////
               //react to current sticky selector
               //will be set on init and reset on resize
               this.currentStickySelector.bind( function( to, from ) {
                     var _reset = function() {
-                          czrapp.$_header.css( { 'height' : '' }).removeClass( 'fixed-header-on' );
+                          czrapp.$_header.css( { 'height' : '' });
+                          self.isFixedPositionned( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
                           self.stickyMenuDown( false );
                           self.stickyMenuWrapper = false;
                           self.hasStickyCandidate( false );
                     };
+
                     //we have a candidate
                     if ( ! _.isEmpty( to ) ) {
                           self.hasStickyCandidate( 1 == czrapp.$_header.find( to ).length );
@@ -1624,40 +1631,41 @@ var czrapp = czrapp || {};
                           } else {
                                 //cache the menu wrapper now
                                 self.stickyMenuWrapper = czrapp.$_header.find( to );
-                                //make sure we have the transition class in any cases
                                 // + Always set the header height on dom ready
                                 //=> will prevent any wrong value being assigned if menu is expanded before scrolling
-                                //If the header has an image, defer setting the height when the .site-image is loaded
-                                //=> otherwise the header height might be wrong because based on an empty img
-                                var $_header_image = $('#header-image-wrap').find('.site-image');
-                                if ( 1 == $_header_image.length ) {
-
-                                      //We introduce a custom event here
-                                      //=> because we need to handle the case when the image is already loaded. This way we don't need to fire the load() function twice.
-                                      //=> This fixes : https://wordpress.org/support/topic/navbar-not-full-width-until-scroll/
-                                      // reported here : https://github.com/presscustomizr/hueman/issues/508
-                                      $_header_image.bind( 'header-image-loaded', function() {
-                                            czrapp.$_header.css( { 'height' : czrapp.$_header.height() }).addClass( 'fixed-header-on' );
-                                      });
-
-                                      //If the image status is "complete", then trigger the custom event right away, else bind the "load" event
-                                      //http://stackoverflow.com/questions/1948672/how-to-tell-if-an-image-is-loaded-or-cached-in-jquery
-                                      if ( $_header_image[0].complete ) {
-                                            $_header_image.trigger('header-image-loaded');
-                                      } else {
-                                        $_header_image.load( function( img ) {
-                                              $_header_image.trigger('header-image-loaded');
-                                        } );
-                                      }
-                                } else {
-                                      czrapp.$_header.css( { 'height' : czrapp.$_header.height() }).addClass( 'fixed-header-on' );
-                                }
+                                czrapp.$_header.css( { 'height' : czrapp.$_header.height() });
                           }
                     } else {//we don't have a candidate
                           _reset();
                     }
               });
 
+              //FIXED POSITION LISTENER
+              // we don't want to set the fixed position blindly in every cases:
+              // if the topStickPoint is > 0 ( typically when the sticky candidate is the primary and there's a topbar )
+              // AND
+              // the sticky option is 'stick_up'
+              // => we won't set position to fixed on first scroll down
+              // self.isFixedPositionned.validate = function( value ) {
+              //       if ( ! self.hasStickyCandidate() )
+              //         return false;
+
+              //       if ( 'stick_up' != self.userStickyOpt() )
+              //         return value;
+
+              //       if ( 'stick_up' == self.userStickyOpt() && 'down' == self.scrollDirection() )
+              //         return false;
+              //       else
+              //         return value;
+              // };
+
+
+              //adding the 'fixed-header-on' class makes the sticky candidate position:fixed
+              this.isFixedPositionned.bind( function( isFixed ) {
+                    czrapp.$_header.toggleClass( 'fixed-header-on', isFixed );
+              });
+
+              //SCROLL POSITION LISTENER
               //Animate based on scroll position.
               //Must have a sticky candidate
               this.scrollPosition.bind( function( to, from ) {
@@ -1666,7 +1674,14 @@ var czrapp = czrapp || {};
                     //Set up only when scroll up is significant => avoid revealing the menu for minor scroll up actions on mobile devices
                     if ( Math.abs( to - from ) <= 5 )
                       return;
-                    self.stickyMenuDown( to < from );
+
+
+                    //The sticky candidate starts not fixed
+                    //=> when scrolling, the fixed position can be set / unset depending on the self.topStickPoint()
+                    self.isFixedPositionned( to > self.topStickPoint() );
+                    self.stickyMenuDown( to < from ).done( function() {
+                          //self.isFixedPositionned( to > self.topStickPoint() );//adds css class 'fixed-header-on' from the czrapp.$_header element
+                    });
               });
 
 
@@ -1678,6 +1693,8 @@ var czrapp = czrapp || {};
               czrapp.bind( 'scrolling-finished', _maybeResetTop );//react on scrolling finished <=> after the timer
               czrapp.bind( 'topbar-collapsed', _maybeResetTop );//react on topbar collapsed, @see topNavToLife
 
+
+              //STICKY MENU DOWN LISTENER
               //animate : make sure we don't hide the menu when too close from top
               //only animate when user option is set to stick_up
               self.stickyMenuDown.validate = function( value ) {
@@ -1697,6 +1714,11 @@ var czrapp = czrapp || {};
                     }
               };
 
+              //This czrapp.Value() is bound with a callback returning a promise ( => in this case an animation lasting a few ms )
+              //This allows to write this type of code :
+              //self.stickyMenuDown( false ).done( function() {
+              //    $('#header').css( 'padding-top', '' );
+              //});
               self.stickyMenuDown.bind( function( to, from, args ){
                     if ( ! _.isBoolean( to ) || ! self.hasStickyCandidate() ) {
                           return $.Deferred( function() { return this.resolve().promise(); } );
@@ -1728,11 +1750,17 @@ var czrapp = czrapp || {};
                     //reset the current sticky selector
                     self._setStickySelector();
 
+                    //reset the topStickPoint Value
+                    self.topStickPoint( self._getTopStickPoint() );
+
                     if ( self.hasStickyCandidate() ) {
                           self.stickyMenuDown( self.scrollPosition() < self.stickyHeaderThreshold ,  { fast : true } ).done( function() {
-                                czrapp.$_header.css( 'height' , '' ).removeClass( 'fixed-header-on' );
+                                czrapp.$_header.css( 'height' , '' );
+                                self.isFixedPositionned( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
                                 if ( self.hasStickyCandidate() ) {
-                                      czrapp.$_header.css( 'height' , czrapp.$_header.height() ).addClass( 'fixed-header-on' );
+                                      czrapp.$_header.css( 'height' , czrapp.$_header.height() );
+                                      //make sure we don't set the position to fixed if not scrolled enough : self.scrollPosition() must be > self.topStickPoint()
+                                      self.isFixedPositionned( self.scrollPosition() > self.topStickPoint() );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
                                 }
                           });
                     } else {
@@ -1749,6 +1777,7 @@ var czrapp = czrapp || {};
                           //Make sure the transform property is reset when swithing from desktop to mobile on resize
                           self._mayBeresetTopPosition();
                     }
+
               } );//resize();
 
 
@@ -1790,34 +1819,48 @@ var czrapp = czrapp || {};
         // };
         _setStickySelector : function() {
               var self = this,
-                  _match_ = false;
+                  _selector = false;
 
               // self.currentStickySelector = self.currentStickySelector || new czrapp.Value('');
               _.each( self.stickyCandidatesMap, function( _params, _device ) {
                     if ( _.isFunction( window.matchMedia ) && matchMedia( _params.mediaRule ).matches && 'no_stick' != self.userStickyOpt() ) {
-                          _match_ = [ '.' + self.stickyHeaderClass, _params.selector ].join('.');
+                          _selector = [ '.' + self.stickyHeaderClass, _params.selector ].join('.');
                     }
               });
-              self.currentStickySelector( _match_ );
+              self.currentStickySelector( _selector );
         },
 
         //@return string : no_stick, stick_up, stick_always
         //falls back on no_stick
         _setUserStickyOpt : function( device ) {
-              return 'stick_up';
-              // var self = this;
-              // if ( _.isUndefined( device ) ) {
-              //       // self.currentStickySelector = self.currentStickySelector || new czrapp.Value('');
-              //       _.each( self.stickyCandidatesMap, function( _params, _device ) {
-              //             if ( _.isFunction( window.matchMedia ) && matchMedia( _params.mediaRule ).matches ) {
-              //                   device = _device;
-              //             }
-              //       });
-              // }
-              // device = device || 'desktop';
+              var self = this;
+              if ( _.isUndefined( device ) ) {
+                    // self.currentStickySelector = self.currentStickySelector || new czrapp.Value('');
+                    _.each( self.stickyCandidatesMap, function( _params, _device ) {
+                          if ( _.isFunction( window.matchMedia ) && matchMedia( _params.mediaRule ).matches ) {
+                                device = _device;
+                          }
+                    });
+              }
+              device = device || 'desktop';
 
-              // return ( HUParams.menuStickyUserSettings && HUParams.menuStickyUserSettings[ device ] ) ? HUParams.menuStickyUserSettings[ device ] : 'no_stick';
+              return ( czrapp.localized.menuStickyUserSettings && czrapp.localized.menuStickyUserSettings[ device ] ) ? czrapp.localized.menuStickyUserSettings[ device ] : 'no_stick';
         },
+
+
+        //@return a number
+        //used to set the topStickPoint Value
+        //the question is, if the current sticky candidate is not the topbar AND that there is a topbar, let's return this topbar's height
+        _getTopStickPoint : function() {
+              //Do we have a topbar ?
+              if ( 1 !== czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).length && 1 !== czrapp.$_header.find( '[data-czr-template="header/topbar"]' ).length )
+                return 0;
+              //if there's a topbar, is this topbar the current sticky candidate ?
+              if ( czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).hasClass( 'desktop-sticky') )
+                return 0;
+              return czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).height();
+        },
+
 
         //This is specific to Hueman
         _adjustDesktopTopNavPaddingTop : function() {
@@ -1853,7 +1896,7 @@ var czrapp = czrapp || {};
               }
 
               //Always add this class => make sure the transition is smooth
-              //czrapp.$_header.addClass( 'fixed-header-on' );
+              //self.isFixedPositionned( true );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
               self.stickyMenuDown( true, { force : true, fast : true } ).done( function() {
                     self.stickyHeaderAnimating( true );
                     ( function() {
@@ -1899,16 +1942,16 @@ var czrapp = czrapp || {};
               if ( ! $menu_wrapper.length )
                 return dfd.resolve().promise();
 
-              if ( ! czrapp.$_header.hasClass( 'fixed-header-on' ) ) {
-                    czrapp.$_header.addClass( 'fixed-header-on' );
-              }
+              //Make sure we are position:fixed with the 'fixed-header-on' css class before doing anything
+              self.isFixedPositionned( true );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
+
               var _do = function() {
                     var translateYUp = $menu_wrapper.outerHeight(),
                         translateYDown = 0,
                         _translate;
 
                     if ( args.fast ) {
-                          $menu_wrapper.addClass('fast');
+                          $menu_wrapper.addClass( 'fast' );
                     }
                     //Handle the specific case of user logged in ( wpadmin bar length not false ) and previewing website with a mobile device < 600 px
                     //=> @media screen and (max-width: 600px)
@@ -1934,6 +1977,7 @@ var czrapp = czrapp || {};
                           transform: _translate
                     });
 
+                    //this delay is tied to hardcoded css animation delay
                     _.delay( function() {
                           //Say it ain't so
                           self.stickyHeaderAnimating( false );

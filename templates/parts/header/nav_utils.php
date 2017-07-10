@@ -7,12 +7,12 @@
  * (Socials)
  */
 ?>
-<div class="primary-nav__utils nav__utils hidden-md-down col col-auto" <?php czr_fn_echo('element_attributes') ?>>
+<div class="primary-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
     <ul class="nav utils row flex-row flex-nowrap">
       <?php
-      if ( czr_fn_has( 'nav_search' ) ) czr_fn_render_template( 'header/nav_search' );
+      if ( czr_fn_is_registered_or_possible( 'nav_search' ) ) czr_fn_render_template( 'header/nav_search' );
 
-      if ( czr_fn_has( 'woocommerce_cart', null, $only_registered = true ) ) :
+      if ( czr_fn_is_registered_or_possible( 'woocommerce_cart', null, $only_registered = true ) ) :
 
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
@@ -22,7 +22,7 @@
 
       endif;
 
-      if ( czr_fn_has( 'sidenav' ) ) :
+      if ( czr_fn_is_registered_or_possible( 'sidenav' ) ) :
           czr_fn_render_template( 'header/menu_button', array(
             'model_args' => array(
               'data_attributes' => 'data-toggle="sidenav" aria-expanded="false"',

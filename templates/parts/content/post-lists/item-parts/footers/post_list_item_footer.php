@@ -7,7 +7,7 @@
  */
 ?>
 <footer class="entry-footer" <?php czr_fn_echo('element_attributes') ?>>
-  <?php if ( czr_fn_has('post_metas') ) :?>
+  <?php if ( czr_fn_is_registered_or_possible('post_metas') ) :?>
     <?php if ( czr_fn_get_property( 'tag_list', 'post_metas' ) ) : ?>
       <div class="post-tags entry-meta">
         <ul class="tags">

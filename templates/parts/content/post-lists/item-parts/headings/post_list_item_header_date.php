@@ -14,7 +14,7 @@
     <?php
       endif;//has_header_format_icon
 
-      if ( czr_fn_has('post_metas') && $date = czr_fn_get_property( 'publication_date', 'post_metas', array( 'permalink' => true ) ) ) : ?>
+      if ( czr_fn_is_registered_or_possible('post_metas') && $date = czr_fn_get_property( 'publication_date', 'post_metas', array( 'permalink' => true ) ) ) : ?>
       <div class="entry-meta post-info">
           <?php echo $date ?>
       </div>
@@ -31,7 +31,7 @@
 
       czr_fn_comment_info( array( 'before' => '<div class="post-info">', 'after' => '</div>') );
 
-      if ( czr_fn_has('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
+      if ( czr_fn_is_registered_or_possible('edit_button') && (bool) $edit_post_link = get_edit_post_link() )
         czr_fn_edit_button( array( 'link'  => $edit_post_link ) );
     ?>
   </div>

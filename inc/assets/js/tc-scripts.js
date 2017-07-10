@@ -6996,6 +6996,9 @@ var czrapp = czrapp || {};
 
                 this.scrollingDelay   = 1 != TCParams.timerOnScrollAllBrowsers && czrapp.$_body.hasClass('ie') ? 50 : 5;
 
+                //isHeaderSticky is set on-load and on scroll the following way :
+                //self.isHeaderSticky( czrapp.$_window.scrollTop() > self.triggerHeight );
+                //Then, it is listened to by isHeaderStickyReact() to set the relevant css classes and fire the relevant actions
                 this.isHeaderSticky   = new czrapp.Value( false );
                 this.isHeaderSticky.bind( function( isSticky ) { self._isHeaderStickyReact( isSticky ); } );
 
