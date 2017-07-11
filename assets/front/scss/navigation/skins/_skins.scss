@@ -46,10 +46,14 @@ $secondary-color-dark   : $grey;
   }
 
 
+  .topnav-navbars__container,
+  .topnav-navbars__container [class*=navbar__wrapper],
+  .mobile-nav__container,
+  .mobile-nav__nav {
+    background: inherit;
+  }
 
   #tc-sn .tc-sn-inner,
-  .primary-navbar__wrapper,
-  .mobile-navbar__warpper,
   .header-navbars__wrapper  {
     background: $background-color;
   }

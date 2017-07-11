@@ -223,8 +223,9 @@ class CZR_header_model_class extends CZR_Model {
       $_css = sprintf("%s%s",
         $_css,
         "
-        .czr-sticky-mobile .nav-collapse.active.limited-height,
-        .navbar-sticky, .header-absolute .topnav_navbars__wrapper {
+        .mobile-sticky .mobile-nav__nav,
+        .fixed-header-on .mobile-sticky,
+        .fixed-header-on .desktop-sticky {
           z-index:{$_custom_z_index}
         }"
       );
