@@ -1,0 +1,33 @@
+<?php
+/**
+ * The template for displaying the primary navbar utils.
+ * Contains:
+ * Search Button
+ * ( Woocommerce Cart Icon )
+ * ( Sidenav Menu)
+ */
+?>
+<div class="topbar-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
+    <ul class="nav utils row flex-row flex-nowrap regular-nav">
+      <?php
+      if ( czr_fn_is_registered_or_possible( 'desktop_topbar_search' ) ) {
+
+        czr_fn_render_template( 'header/desktop_search', array(
+          'model_id' => 'desktop_topbar_search'
+        ) );
+
+      }
+
+      if ( czr_fn_is_registered_or_possible( 'desktop_topbar_wc_cart' ) ) :
+
+          czr_fn_render_template( 'header/woocommerce_cart', array(
+            'model_args' => array(
+              'element_class' => array('primary-nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
+            )
+          ) );
+
+      endif;
+
+      ?>
+    </ul>
+</div>

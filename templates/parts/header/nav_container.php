@@ -36,7 +36,7 @@
       ?>
     </nav>
     <?php
-      if ( czr_fn_get_property('with_nav_utils') && czr_fn_is_registered_or_possible('nav_utils') ) czr_fn_render_template( 'header/nav_utils' )
+      if ( czr_fn_is_registered_or_possible( 'primary_nav_utils' ) ) czr_fn_render_template( 'header/primary_nav_utils' )
     ?>
   </div>
 </div>

@@ -488,16 +488,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                                 'priority' => '30'
                                              )
           ),
-          'tc_woocommerce_header_cart' => array(
-                           'default'   => 1,
-                           'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ),
-                           'control'   => 'CZR_controls' ,
-                           'section'   => 'header_layout_sec',
-                           'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
-                           'type'      => 'checkbox' ,
-                           'priority'  => 18,
-                           'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
-          ),
           'tc_social_in_header' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in header' , 'customizr' ),
@@ -524,15 +514,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                                 'priority' => '2'
                                              )
           ),
-          'tc_search_in_header' => array(
-                            'default'   => 1,
-                            'label'     => __( 'Display a search button in the header' , 'customizr' ),
-                            'control'   => 'CZR_controls' ,
-                            'section'   => 'header_layout_sec',
-                            'type'      => 'checkbox' ,
-                            'priority'  => 24,
 
-          ),
           'tc_header_skin'  =>  array(
                             'default'       => 'light',
                             'control'       => 'CZR_controls' ,
@@ -586,11 +568,43 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             )
           ),
 
+          'tc_header_desktop_search' => array(
+                            'default'   => 'topbar',
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display a search button in the header' , 'customizr' ) ),
+                            'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'none'          => __( 'Do not display', 'customizr'),
+                                'topbar'        => __( 'Display in the topbar', 'customizr'),
+                                'navbar'        => __( 'Display in the primary navbar', 'customizr')
+                            ),
+                            'priority'  => 29,
+
+          ),
+
+          'tc_header_desktop_wc_cart' => array(
+                            'default'   => 'topbar',
+                            'default'   => 'topbar',
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'none'          => __( 'Do not display', 'customizr'),
+                                'topbar'        => __( 'Display in the topbar', 'customizr'),
+                                'navbar'        => __( 'Display in the primary navbar', 'customizr')
+                            ),
+                            'priority'  => 29,
+                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+          ),
+
           'tc_header_desktop_sticky' => array(
                             'default'   => 'stick_up',
                             'control'   => 'CZR_controls',
-                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('header menu visibility on scroll', 'customizr') ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('primary navbar menu visibility on scroll', 'customizr') ),
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
                             'choices'   => array(
@@ -599,13 +613,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'stick_always'  => __( 'Always visible', 'customizr')
                             ),
                             'priority'  => 30,
-                            'ubq_section'   => array(
-                                'section' => 'menu_locations',
-                                'priority' => '120'
-                            )
           ),
-
-
           /* end new */
 
           'tc_sticky_header'  =>  array(

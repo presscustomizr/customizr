@@ -79,7 +79,7 @@ $secondary-color-dark   : $grey;
   }
 
 
-  .primary-nav__utils {
+  .nav__utils {
      color: $primary-color;
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
       .ham-toggler-menu.collapsed:hover {

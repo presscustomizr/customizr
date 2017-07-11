@@ -187,11 +187,11 @@
 }
 
 .regular-nav {
-  /*
-  * Fade submenu only in desktops and only for horizontal menus
-  * only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
-  * sidenav is not impacted
-  */
+  //
+  // Fade submenu only in desktops and only for horizontal menus
+  // only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
+  // sidenav is not impacted
+  //
 
   //lets use a trick to make this not impact on the snake
   //basically we know that assigning a perspective to an element
@@ -230,9 +230,9 @@
     }
 
   }
-  /*end fade effect */
+  // end fade effect
 
-  /* submenu link move */
+  // submenu link move
   .czr-submenu-move & {
     .dropdown-menu > li > a {
       -webkit-transition: all ease 0.241s;
@@ -245,13 +245,13 @@
       @include transform( translate( 5px, 0) );
     }
   }
-  /* end subemnu link move */
+  // end subemnu link move
 }
 
-/**
-* Dropdown menu direction [SNAKE]
-* available only in header
-*/
+//
+// Dropdown menu direction [SNAKE]
+// available only in header
+//
 .tc-header {
     .dropdown-menu {
         &.open-right {
@@ -278,9 +278,9 @@
     }
 }
 
-/* end common drodpowns */
+// end common drodpowns
 
-/* Utils nav */
+// Utils nav
 .utils_links {
   padding: $base-line-height 15px;
   -webkit-align-self: center;
@@ -352,67 +352,4 @@
   width: 28px;
 }
 
-
-
-/* END ANOTHER BUTTON */
-/*end ham */
-
-
-
-/* Sticky stuff */
-/*
-* Header types: Absolute or Standard(pushing) and Sticky
-*/
-/*
-* On sticky: visibilities
-*/
-.sticky-enabled {
-  .czr-menu-off .regular-nav.nav__menu,
-  .czr-title-logo-off .navbar-brand,
-  .czr-tagline-off .navbar-brand-tagline {
-    display: none !important;
-  }
-}
-
-.navbar-sticky,
-.header-absolute .topnav_navbars__wrapper {
-  left: 0;
-  right: 0;
-  z-index: 100
-}
-@include media-breakpoint-up(lg) {
-  .header-absolute {
-    .topnav_navbars__wrapper,
-    #sticky-placeholder {
-      position: absolute;
-    }
-  }
-}
-.navbar-sticky.animating { top: -20% !important }
-
-/* Sticky header */
-.navbar-to-stick.navbar-sticky {
-  position: fixed;
-
-  &:not(.animating) {
-    top: 0;
-    .admin-bar & {
-      @media screen and ( min-width: 783px ) {
-        top: 30px;
-      }
-      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
-        top: 46px;
-      }
-    }
-  }
-  @include transition(top 0.5s, height 0.5s,background 0.5s ease-in-out);
-  @include transform(translateZ(0));
-  @include transform-style(preserve-3d);
-
-  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
-  .header-transparent & {
-    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
-  }
-  .topbar-navbar__wrapper  { display:none; }
-}
-/* end sticky stuff */
+// end ham

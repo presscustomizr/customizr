@@ -122,8 +122,60 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
 
-    function czr_fn_display_view_nav_search()  {
-      return czr_fn_opt( 'tc_search_in_header' );
+
+    /* Header wc cart */
+    function czr_fn_display_view_desktop_primary_wc_cart() {
+      //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
+      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+        return false;
+
+      return 'navbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
     }
+
+
+    function czr_fn_display_view_desktop_topbar_wc_cart() {
+      //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
+      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+        return false;
+      return 'topbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
+    }
+
+
+    /* Header search */
+    function czr_fn_display_view_desktop_primary_search()  {
+      return 'navbar' == czr_fn_opt( 'tc_header_desktop_search' );
+    }
+
+
+    function czr_fn_display_view_desktop_topbar_search()  {
+      return 'topbar' == czr_fn_opt( 'tc_header_desktop_search' );
+    }
+
+
+    function czr_fn_display_view_mobile_search()  {
+      return czr_fn_opt( 'tc_header_mobile_search' );
+    }
+
+
+    /*
+    * Display primary_nav_utils only if one of the below are possible
+    * - primary nav search in desktops
+    * - primary woocommerce cart in desktops
+    * - sidenav menut button in the primary navbar
+    */
+    function czr_fn_display_view_primary_nav_utils() {
+      return $this->czr_fn_display_view_desktop_primary_search() || $this->czr_fn_display_view_desktop_primary_wc_cart() || $this->czr_fn_display_view_sidenav_navbar_menu_button();
+    }
+
+    /*
+    * Display primary_nav_utils only if one of the below are possible
+    * - primary nav search in desktops
+    * - primary woocommerce cart in desktops
+    * -
+    */
+    function czr_fn_display_view_topbar_nav_utils() {
+      return $this->czr_fn_display_view_desktop_topbar_search() || $this->czr_fn_display_view_desktop_topbar_wc_cart() ;
+    }
+
   }//end of class
 endif;

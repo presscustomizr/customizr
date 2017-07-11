@@ -4,19 +4,25 @@
  * Contains:
  * Search Button
  * ( Woocommerce Cart Icon )
- * (Socials)
+ * ( Sidenav Menu)
  */
 ?>
-<div class="primary-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
-    <ul class="nav utils row flex-row flex-nowrap">
+<div class="topbar-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
+    <ul class="nav utils row flex-row flex-nowrap regular-nav">
       <?php
-      if ( czr_fn_is_registered_or_possible( 'nav_search' ) ) czr_fn_render_template( 'header/nav_search' );
+      if ( czr_fn_is_registered_or_possible( 'desktop_primary_search' ) ) {
 
-      if ( czr_fn_is_registered_or_possible( 'woocommerce_cart', null, $only_registered = true ) ) :
+        czr_fn_render_template( 'header/desktop_search', array(
+          'model_id' => 'desktop_primary_search'
+        ) );
+
+      }
+
+      if ( czr_fn_is_registered_or_possible( 'desktop_primary_wc_cart' ) ) :
 
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
-              'element_class' => array('primary-nav__woocart', 'hidden-md-down', 'menu-item-has-children', 'czr-dropdown'),
+              'element_class' => array('primary-nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
             )
           ) );
 

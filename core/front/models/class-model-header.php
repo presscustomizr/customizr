@@ -196,6 +196,13 @@ class CZR_header_model_class extends CZR_Model {
         'model_class' => 'header/tagline'
       ),
 
+
+      //header cart
+      /*array(
+        'model_class' => 'header/woocommerce_cart',
+        'id' => 'woocommerce_cart',
+        'controller' => 'czr_fn_woocommerce_wc_cart_enabled' )
+      )*/
     );
 
     return $children;
