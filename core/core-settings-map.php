@@ -458,7 +458,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
           /*new*/
           'tc_header_topbar'  =>  array(
-                            'default'       => 0,
+                            'default'       => 1,
                             'control'       => 'CZR_controls' ,
                             'label'         => __( "Display the topbar" , "customizr" ),
                             'section'       => 'header_layout_sec' ,
@@ -501,19 +501,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                                 'priority' => '1'
                                              )
           ),
-          /* new */
-          'tc_social_in_topnav' =>  array(
-                            'default'       => 0,
-                            'label'       => __( 'Social links in topnav' , 'customizr' ),
-                            'control'   =>  'CZR_controls' ,
-                            'section'     => 'header_layout_sec' ,
-                            'type'        => 'checkbox' ,
-                            'priority'      => 22,
-                            'ubq_section'   => array(
-                                                'section' => 'socials_sec',
-                                                'priority' => '2'
-                                             )
-          ),
+
 
           'tc_header_skin'  =>  array(
                             'default'       => 'light',
@@ -527,11 +515,12 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'          => 'select' ,
                             'priority'      => 26,
           ),
+          /* Mobile */
           'tc_header_mobile_menu_layout' => array(
                             'default'   => 'mobile_menu',
                             'control'   => 'CZR_controls',
-                            'title'     => sprintf( '%1$s %2$s', __( 'Menus settings for', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
-                            'label'     => __( 'Select the menu(s) to use for mobile devices', 'customizr'),
+                            'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
+                            'label'     => sprintf( '%1$s : %2$s', __( 'Mobile devices', 'customizr' ) , __( 'Select the menu(s) to use for mobile devices', 'customizr') ),
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
                             'choices'   => array(
@@ -550,6 +539,26 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '100'
                             ),
           ),
+          'tc_header_mobile_search' => array(
+                            'default'   => 1,
+                            'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'checkbox',
+                            'priority'  => 28,
+
+          ),
+          'tc_header_mobile_wc_cart' => array(
+                            'default'   => 1,
+                            'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
+                            'type'      => 'checkbox',
+                            'priority'  => 28,
+                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+          ),
+
           'tc_header_mobile_sticky' => array(
                             'default'   => 'stick_up',
                             'control'   => 'CZR_controls',
@@ -567,6 +576,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '120'
                             )
           ),
+          /* Mobile end */
 
           'tc_header_desktop_search' => array(
                             'default'   => 'topbar',
@@ -604,7 +614,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           'tc_header_desktop_sticky' => array(
                             'default'   => 'stick_up',
                             'control'   => 'CZR_controls',
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('primary navbar menu visibility on scroll', 'customizr') ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('header visibility on scroll', 'customizr') ),
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
                             'choices'   => array(
@@ -614,19 +624,20 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             ),
                             'priority'  => 30,
           ),
-          /* end new */
 
-          'tc_sticky_header'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'title'         => __( 'Sticky header settings' , 'customizr'),
-                            'label'         => __( "Sticky on scroll" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 30,
-                            'transport'     => 'postMessage',
-                            'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
+          'tc_header_desktop_to_stick' => array(
+                            'default'   => 'primary',
+                            'control'   => 'CZR_controls',
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('Select menu visibility on scroll', 'customizr') ),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'topbar'        => __( 'Topbar', 'customizr'),
+                                'primary'      => __( 'Primary navbar', 'customizr'),
+                            ),
+                            'priority'  => 31,
           ),
+
           /* end new */
           'tc_sticky_show_tagline'  =>  array(
                             'default'       => 0,
