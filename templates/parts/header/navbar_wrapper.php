@@ -17,7 +17,6 @@
   ) ) ?>
   <?php czr_fn_render_template(  'header/nav_container', array(
     'model_args' => array(
-      'with_nav_utils' => true,
       'element_class'  => 'justify-content-lg-around col col-lg-auto flex-lg-column',
     )
   ) ) ?>

@@ -186,14 +186,14 @@
     }
 }
 
+.regular-nav {
+  //
+  // Fade submenu only in desktops and only for horizontal menus
+  // only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
+  // sidenav is not impacted
+  //
 
-/*
-* Fade submenu only in desktops and only for horizontal menus
-* only the header.tc-header has the classes czr-submenu-fade and czr-submenu-move
-* sidenav is not impacted
-*/
-@include media-breakpoint-up(lg) {
-  //lets use a tricky to make this not impact on the snake
+  //lets use a trick to make this not impact on the snake
   //basically we know that assigning a perspective to an element
   //plus position:relative creates a new system
   //where fixed elements behave like absolute elements relative to the parent
@@ -201,7 +201,8 @@
   //though, as fixed element, even if overflowing the tc-page-wrap, will not
   //make the orizontal scrollbar appear!
 
- .czr-submenu-fade .menu-item-has-children {
+ .czr-submenu-fade & {
+    .menu-item-has-children {
       @include perspective(1000px);
       z-index: 100;
       > ul {
@@ -212,39 +213,45 @@
         @include transition( all 0.3s ease-in-out );
         @include transform( translate( 0, -20px ) );
       }
+    }
+
+    li.show {
+          @include perspective( none );
+          > ul {
+            position: absolute;
+            visibility: visible;
+            opacity: 1;
+            @include transform( translate( 0, 0) );
+          }
+    }
+
+    @at-root .czr-submenu-fade .topbar-navbar__wrapper .menu-item-has-children {
+      z-index: 101;
+    }
+
   }
+  // end fade effect
 
-  .czr-submenu-fade li.show {
-      @include perspective( none );
-      > ul {
-        position: absolute;
-        visibility: visible;
-        opacity: 1;
-        @include transform( translate( 0, 0) );
-      }
-  }
-
-  /*end fade effect */
-
-  /* submenu link move */
-  .czr-submenu-move .dropdown-menu > li > a {
+  // submenu link move
+  .czr-submenu-move & {
+    .dropdown-menu > li > a {
       -webkit-transition: all ease 0.241s;
       -moz-transition: all ease 0.241s;
       -o-transition: all ease 0.241s;
       transition: all ease 0.241s;
       @include transform( translate( 0, 0) );
-  }
-  .czr-submenu-move .dropdown-item > a:hover {
+    }
+    .dropdown-item > a:hover {
       @include transform( translate( 5px, 0) );
+    }
   }
-  /* end subemnu link move */
+  // end subemnu link move
 }
 
-
-/**
-* Dropdown menu direction [SNAKE]
-* available only in header
-*/
+//
+// Dropdown menu direction [SNAKE]
+// available only in header
+//
 .tc-header {
     .dropdown-menu {
         &.open-right {
@@ -271,9 +278,9 @@
     }
 }
 
-/* end common drodpowns */
+// end common drodpowns
 
-/* Utils nav */
+// Utils nav
 .utils_links {
   padding: $base-line-height 15px;
   -webkit-align-self: center;
@@ -345,67 +352,4 @@
   width: 28px;
 }
 
-
-
-/* END ANOTHER BUTTON */
-/*end ham */
-
-
-
-/* Sticky stuff */
-/*
-* Header types: Absolute or Standard(pushing) and Sticky
-*/
-/*
-* On sticky: visibilities
-*/
-.sticky-enabled {
-  .czr-menu-off .regular-nav.nav__menu,
-  .czr-title-logo-off .navbar-brand,
-  .czr-tagline-off .navbar-brand-tagline {
-    display: none !important;
-  }
-}
-
-.navbar-sticky,
-.header-absolute .topnav_navbars__wrapper {
-  left: 0;
-  right: 0;
-  z-index: 100
-}
-@include media-breakpoint-up(lg) {
-  .header-absolute {
-    .topnav_navbars__wrapper,
-    #sticky-placeholder {
-      position: absolute;
-    }
-  }
-}
-.navbar-sticky.animating { top: -20% !important }
-
-/* Sticky header */
-.navbar-to-stick.navbar-sticky {
-  position: fixed;
-
-  &:not(.animating) {
-    top: 0;
-    .admin-bar & {
-      @media screen and ( min-width: 783px ) {
-        top: 30px;
-      }
-      @media screen and ( max-width: 782px ) and  ( min-width: 601px ) {
-        top: 46px;
-      }
-    }
-  }
-  @include transition(top 0.5s, height 0.5s,background 0.5s ease-in-out);
-  @include transform(translateZ(0));
-  @include transform-style(preserve-3d);
-
-  //@include box-shadow(0, 0, 3px, rgba(0, 0, 0, 0.15) );
-  .header-transparent & {
-    @include box-shadow(1px, 2px, 1px, rgba(102, 102, 102, .08));
-  }
-  .topbar-navbar__wrapper  { display:none; }
-}
-/* end sticky stuff */
+// end ham

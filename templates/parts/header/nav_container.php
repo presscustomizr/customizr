@@ -4,26 +4,7 @@
  */
 ?>
 <div class="primary-nav__container <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <div class="hidden-md-down nav__container-top row flex-lg-row justify-content-lg-end align-items-center">
-    <?php if ( czr_fn_is_registered_or_possible( 'tagline' ) )
-      czr_fn_render_template( 'header/tagline', array(
-                'model_args' => array(
-                  'element_class' => 'col col-auto',
-                )
-      ));
-    ?>
-    <?php if ( czr_fn_is_registered_or_possible('navbar_social_block') ) : ?>
-      <div class="navbar-nav__socials social-links hidden-md-down col col-auto">
-        <?php czr_fn_render_template( 'modules/common/social_block',array(
-                'model_args' => array(
-                  'element_class' => '',
-                )
-              ));
-        ?>
-      </div>
-    <?php endif ?>
-  </div>
-  <div class="primary-nav__wrapper navbar-toggleable-md flex-lg-row justify-content-lg-between">
+  <div class="primary-nav__wrapper navbar-toggleable-md flex-lg-row justify-content-end">
      <nav class="collapse navbar-collapse primary-nav__nav col-lg" id="primary-nav">
       <?php
 
@@ -36,7 +17,7 @@
       ?>
     </nav>
     <?php
-      if ( czr_fn_get_property('with_nav_utils') && czr_fn_is_registered_or_possible('nav_utils') ) czr_fn_render_template( 'header/nav_utils' )
+      if ( czr_fn_is_registered_or_possible( 'primary_nav_utils' ) ) czr_fn_render_template( 'header/primary_nav_utils' )
     ?>
   </div>
 </div>

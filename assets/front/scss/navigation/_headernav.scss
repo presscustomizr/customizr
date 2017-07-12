@@ -4,7 +4,7 @@
     @extend .display-flex;
     width: 100%;
 
-    @include media-breakpoint-up(lg) {
+    .primary-navbar__wrapper & {
         max-width: 33%;
         width: auto;
     }
@@ -13,10 +13,9 @@
         @extend .display-flex;
         padding: $base-line-height 0;
         overflow: hidden;
-        max-width: 70%;
 
-        @include media-breakpoint-up(lg) {
-            max-width: none;
+        .mobile-navbar__wrapper & {
+          max-width: 60%;
         }
 
         .navbar-brand {
@@ -30,15 +29,14 @@
             }
 
         }
-        .navbar-brand-tagline {
-              font-size: 0.8em;
+        .header-tagline {
+              font-size: 0.9em;
               line-height: normal;
               padding: 0;
               margin: 0;
               width: 100%;
-              @extend .bold;
         }
-        .navbar-brand + .navbar-brand-tagline {
+        .navbar-brand + .header-tagline {
               margin-top: 2/3*$base-line-height;
         }
 
@@ -53,7 +51,7 @@
 }
 
 
-.navbar-brand-tagline {
+.header-tagline {
   font-style: italic;
 }
 
@@ -90,11 +88,6 @@
     }
 }
 
-.nav__container-top .col {
-    margin-top: $base-line-height-fixed/1.5;
-    margin-bottom: $base-line-height-fixed/1.5;
-}
-
 /* Mobile stuff */
 .mobile-search__container {
     width: 100%;
@@ -115,125 +108,114 @@
 /*
 * HEADER LAYOUTS
 */
-@include media-breakpoint-up(lg) {
 
-  .primary-navbar__wrapper {
-    /* ensure the navbar elements do not wrap in a new line */
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
 
-    .branding__container,
-    .primary-nav__utils li,
-    .primary-nav__wrapper,
-    .primary-nav__menu-wrapper {
+.primary-navbar__wrapper {
+  /* ensure the navbar elements do not wrap in a new line */
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
+  .branding__container,
+  .primary-nav__utils li,
+  .primary-nav__wrapper,
+  .primary-nav__menu-wrapper {
 
-    }
-    .primary-nav__wrapper {
-        margin: 0 -15px;
-    }
-
-    .primary-nav__container {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-              flex-grow: 1;
-      -webkit-flex-basis: 0;
-        -ms-flex-preferred-size: 0;
-            flex-basis: 0;
-    }
-    .primary-nav__menu-wrapper {
-      width: 100%;
-    }
-    .primary-nav__nav {
-      flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
-    }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
 
   }
+  .primary-nav__wrapper {
+      margin: 0 -15px;
+  }
 
-  /*
-  * LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
-  * that's why is handled only with CSS
-  */
-  body:not(.sticky-enabled) .logo_centered .primary-navbar__wrapper {
-
-      -webkit-box-orient: vertical !important;
-      -webkit-box-direction: normal !important;
-      -webkit-flex-direction: column !important;
-          -ms-flex-direction: column !important;
-              flex-direction: column !important;
-
-      .branding__container {
-          max-width: 100%;
-      }
-
-      .primary-nav__container {
-              -webkit-box-flex: 0;
-              -webkit-flex: 0 0 auto;
-              -ms-flex: 0 0 auto;
-              flex: 0 0 auto;
-                  width: 66.666667%;
-              max-width: 66.666667%;;
-
-                  flex-basis: auto
-      }
-
-      .nav__container-top {
-                 -webkit-box-pack: justify !important;
-          -webkit-justify-content: space-between !important;
-                    -ms-flex-pack: justify !important;
-                  justify-content: space-between !important;
-
-          .col {
-            margin-top: $base-line-height-fixed;
-            margin-bottom: $base-line-height-fixed;
-          }
-
-      }
-
-      .navbar-toggleable-md {
-          width: auto !important;
-          -webkit-box-pack: center !important;
-          -webkit-justify-content: center !important;
-              -ms-flex-pack: center !important;
-                  justify-content: center !important;
-      }
-
-      .navbar-toggleable-md .navbar-collapse {
-          width: auto;
-           -webkit-align-self: center !important;
-          -ms-flex-item-align: center !important;
-           -ms-grid-row-align: center !important;
-                   align-self: center !important;
-
-            -webkit-flex-basis: auto;
-       -ms-flex-preferred-size: auto;
-                    flex-basis: auto;
-
-          -webkit-flex-grow: 0;
-              -ms-flex-positive: 0;
-                  flex-grow: 0;
-      }
+  .primary-nav__container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+  }
+  .primary-nav__menu-wrapper {
+    width: 100%;
+  }
+  .primary-nav__nav {
+    flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
   }
 
 }
 
 /*
+* LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
+* that's why is handled only with CSS
+*/
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper {
+
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: column !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+
+    .branding__container {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .primary-nav__container {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+                width: 66.666667%;
+            max-width: 66.666667%;;
+
+                flex-basis: auto
+    }
+
+
+    .navbar-toggleable-md {
+        width: auto !important;
+        -webkit-box-pack: center !important;
+        -webkit-justify-content: center !important;
+            -ms-flex-pack: center !important;
+                justify-content: center !important;
+    }
+
+    .navbar-toggleable-md .navbar-collapse {
+        width: auto;
+         -webkit-align-self: center !important;
+        -ms-flex-item-align: center !important;
+         -ms-grid-row-align: center !important;
+                 align-self: center !important;
+
+          -webkit-flex-basis: auto;
+     -ms-flex-preferred-size: auto;
+                  flex-basis: auto;
+
+        -webkit-flex-grow: 0;
+            -ms-flex-positive: 0;
+                flex-grow: 0;
+    }
+}
+
+
+
+/*
 * Revert header (not topbar) elements order when logo right
 */
-[class*=logo_right] .primary-navbar__wrapper {
-  &,
+[class*=logo_right] {
+  .mobile-navbar__wrapper,
+  .primary-navbar__wrapper,
   .branding__container,
   .primary-nav__wrapper,
-  .nav__container-top,
   .nav__utils .utils {
     -webkit-box-direction: reverse !important;
     -webkit-flex-direction: row-reverse !important;
@@ -243,6 +225,7 @@
 }
 
 /* EXPERIMENTAL */
+.mobile-sticky,
 .desktop-sticky {
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
   box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
@@ -251,15 +234,33 @@
   -o-transition: -o-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
   transition: transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
 }
+
+
+.mobile-sticky .mobile-nav__nav {
+  position: absolute;
+  max-height: 70vh;
+  z-index: 100;
+  overflow: auto;
+}
+.fixed-header-on .mobile-sticky,
 .fixed-header-on .desktop-sticky {
   position: fixed;
-  z-index:1000;
+  z-index:100;
   /* background: rgba(255, 255, 255, 0.7); */
   width: 100%;
   top: 0;
 }
 
 
-.admin-bar .fixed-header-on .desktop-sticky {
-    top: 32px;
+.admin-bar .fixed-header-on {
+  @media screen and (min-width: 601px) and (max-width: 782px) {
+    .mobile-sticky, .desktop-sticky {
+      top: 46px;
+    }
+  }
+  @media screen and (min-width: 783px) {
+    .mobile-sticky, .desktop-sticky {
+      top: 32px;
+    }
+  }
 }

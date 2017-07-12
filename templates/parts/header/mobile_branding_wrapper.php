@@ -11,7 +11,7 @@
     } else
       czr_fn_render_template( 'header/title' );
 
-    if ( czr_fn_is_registered_or_possible( 'branding_tagline' ) )
+    if ( czr_fn_is_registered_or_possible( 'mobile_tagline' ) )
       czr_fn_render_template( 'header/tagline' );
 
   ?>
@@ -19,15 +19,19 @@
   <div class="mobile-utils__wrapper nav__utils">
     <ul class="nav utils row flex-row flex-nowrap">
 <?php
-      if ( czr_fn_is_registered_or_possible('woocommerce_cart', null, $only_registered = true ) ) :
+      if ( czr_fn_is_registered_or_possible( 'mobile_wc_cart' ) ) :
+
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
               'element_class'  => array('mobile-woocart__container'),
               'display_widget' => false
             )
           ) );
+
       endif;
-      czr_fn_render_template( 'header/menu_button' );
+      if ( czr_fn_is_registered_or_possible( 'mobile_menu_button' ) ) :
+        czr_fn_render_template( 'header/menu_button' );
+      endif;
 ?>
     </ul>
   </div>

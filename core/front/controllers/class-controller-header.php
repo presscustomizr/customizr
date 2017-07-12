@@ -7,51 +7,39 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return true;
     }
 
-    function czr_fn_display_view_header_social_block() {
-      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_opt( "tc_social_in_header" ) );
-    }
-
-    function czr_fn_display_view_navbar_social_block() {
-      $_topbar_on        = $this->czr_fn_display_view_topbar();
-      $_social_in_navbar = $_topbar_on ? 1 != esc_attr( czr_fn_opt( "tc_social_in_topnav" ) ) : true;
-
-      return $this -> czr_fn_display_view_header_social_block() && $_social_in_navbar;
-
-    }
-
-    function czr_fn_display_view_topbar_social_block() {
-      return $this -> czr_fn_display_view_header_social_block() && 1 == esc_attr( czr_fn_opt( "tc_social_in_topnav" ) );
-    }
-
-    function czr_fn_display_view_branding_tagline() {
-      return 1 == esc_attr( czr_fn_opt( "tc_tagline_branding" ) );
-    }
-
-
     function czr_fn_display_view_topbar() {
       return 1 == esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
     }
 
+    function czr_fn_display_view_topbar_social_block() {
+      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_opt( 'tc_social_in_header' ) );
+    }
+
+
+    function czr_fn_display_view_branding_tagline() {
+      return 'brand' == esc_attr( czr_fn_opt( 'tc_header_desktop_tagline' ) );
+    }
+
+    function czr_fn_display_view_topbar_tagline() {
+      return 'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_tagline' ) );
+    }
 
     function czr_fn_display_view_mobile_tagline() {
-      return $this -> czr_fn_display_view_tagline();
+      return  1 == esc_attr( czr_fn_opt( 'tc_header_mobile_tagline' ) );
     }
 
-    //do not display the tagline when:
-    //1) not in customizer preview (we just hide it in the model)
-    //2) the user choose to not display it
-    function czr_fn_display_view_tagline() {
-      return czr_fn_is_customizing() || ! ( 0 == esc_attr( czr_fn_opt( 'tc_show_tagline') ) );
-    }
+
 
     function czr_fn_display_view_title() {
       return ! $this -> czr_fn_display_view_logo_wrapper();
     }
 
+
     function czr_fn_display_view_logo_wrapper() {
       //display the logo wrapper
       return $this -> czr_fn_display_view_logo();
     }
+
 
     function czr_fn_display_view_logo() {
       $_logo_atts = czr_fn_get_logo_atts();
@@ -110,9 +98,10 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
     //when the 'mobile menu button' is allowed?
     //1) menu button allowed
-    //2) menu style is not aside (no sidenav)
+    // or
+    //2) mobile search allowed
     function czr_fn_display_view_mobile_menu_button() {
-      return $this -> czr_fn_display_view_menu() && ! $this -> czr_fn_display_view_sidenav();
+      return $this -> czr_fn_display_view_menu() || $this -> czr_fn_display_view_mobile_search();
     }
 
     //when the 'menu button' is allowed?
@@ -122,8 +111,69 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
 
-    function czr_fn_display_view_nav_search()  {
-      return czr_fn_opt( 'tc_search_in_header' );
+
+    /* Header wc cart */
+    function czr_fn_display_view_desktop_primary_wc_cart() {
+      //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
+      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+        return false;
+
+      return 'navbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
     }
+
+
+    function czr_fn_display_view_desktop_topbar_wc_cart() {
+      //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
+      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+        return false;
+
+      return 'topbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
+    }
+
+    function czr_fn_display_view_mobile_wc_cart() {
+      //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
+      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+        return false;
+
+      return czr_fn_opt( 'tc_header_mobile_wc_cart' );
+    }
+
+
+    /* Header search */
+    function czr_fn_display_view_desktop_primary_search()  {
+      return 'navbar' == czr_fn_opt( 'tc_header_desktop_search' );
+    }
+
+
+    function czr_fn_display_view_desktop_topbar_search()  {
+      return 'topbar' == czr_fn_opt( 'tc_header_desktop_search' );
+    }
+
+
+    function czr_fn_display_view_mobile_search()  {
+      return czr_fn_opt( 'tc_header_mobile_search' );
+    }
+
+
+    /*
+    * Display primary_nav_utils only if one of the below are possible
+    * - primary nav search in desktops
+    * - primary woocommerce cart in desktops
+    * - sidenav menut button in the primary navbar
+    */
+    function czr_fn_display_view_primary_nav_utils() {
+      return $this->czr_fn_display_view_desktop_primary_search() || $this->czr_fn_display_view_desktop_primary_wc_cart() || $this->czr_fn_display_view_sidenav_navbar_menu_button();
+    }
+
+    /*
+    * Display primary_nav_utils only if one of the below are possible
+    * - primary nav search in desktops
+    * - primary woocommerce cart in desktops
+    * -
+    */
+    function czr_fn_display_view_topbar_nav_utils() {
+      return $this->czr_fn_display_view_desktop_topbar_search() || $this->czr_fn_display_view_desktop_topbar_wc_cart() ;
+    }
+
   }//end of class
 endif;

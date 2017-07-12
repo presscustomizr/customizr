@@ -294,7 +294,7 @@ class CZR_utils_settings_map {
                   'tc_link_hover_effect'  =>  array(
                                 'default'       => 1,
                                 'control'     => 'CZR_controls' ,
-                                'label'         => __( "Fade effect on link hover" , "customizr" ),
+                                'label'         => __( "Fade effect on link hover" , 'customizr' ),
                                 'section'       => 'links_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 20,
@@ -315,7 +315,7 @@ class CZR_utils_settings_map {
                   'tc_show_title_icon'  =>  array(
                                     'default'       => 1,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "Display icons next to titles" , "customizr" ),
+                                    'label'         => __( "Display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'priority'      => 10,
@@ -325,7 +325,7 @@ class CZR_utils_settings_map {
                   'tc_show_page_title_icon'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => __( "Display a page icon next to the page title" , "customizr" ),
+                                    'label'         => __( "Display a page icon next to the page title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'priority'      => 20,
@@ -334,7 +334,7 @@ class CZR_utils_settings_map {
                   'tc_show_post_title_icon'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.0', '1.0.11' ) ? 1 : 0,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "Display a post icon next to the single post title" , "customizr" ),
+                                    'label'         => __( "Display a post icon next to the single post title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'priority'      => 30,
@@ -343,7 +343,7 @@ class CZR_utils_settings_map {
                   'tc_show_archive_title_icon'  =>  array(
                                     'default'       => 1,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "Display an icon next to the archive title" , "customizr" ),
+                                    'label'         => __( "Display an icon next to the archive title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'notice'    => __( 'When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
@@ -353,7 +353,7 @@ class CZR_utils_settings_map {
                   'tc_show_post_list_title_icon'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.0' , '1.0.11' ) ? 1 : 0,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "Display an icon next to each post title in an archive page" , "customizr" ),
+                                    'label'         => __( "Display an icon next to each post title in an archive page" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'notice'    => __( 'When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
@@ -363,7 +363,7 @@ class CZR_utils_settings_map {
                   'tc_show_sidebar_widget_icon'  =>  array(
                                     'default'       => 1,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "WP sidebar widgets : display icons next to titles" , "customizr" ),
+                                    'label'         => __( "WP sidebar widgets : display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'priority'      => 60,
@@ -372,7 +372,7 @@ class CZR_utils_settings_map {
                   'tc_show_footer_widget_icon'  =>  array(
                                     'default'       => 1,
                                     'control'     => 'CZR_controls' ,
-                                    'label'         => __( "WP footer widgets : display icons next to titles" , "customizr" ),
+                                    'label'         => __( "WP footer widgets : display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
                                     'type'          => 'checkbox',
                                     'priority'      => 70,
@@ -408,7 +408,7 @@ class CZR_utils_settings_map {
                  'tc_display_slide_loader'  =>  array(
                                     'default'       => 1,
                                     'control'   => 'CZR_controls' ,
-                                    'label'       => __( "Sliders : display on loading icon before rendering the slides" , "customizr" ),
+                                    'label'       => __( "Sliders : display on loading icon before rendering the slides" , 'customizr' ),
                                     'section'     => 'images_sec' ,
                                     'type'        => 'checkbox' ,
                                     'priority'    => 15,
@@ -458,9 +458,24 @@ class CZR_utils_settings_map {
             //to unset
             $_to_unset = array(
                   'tc_header_topbar',
-                  'tc_social_in_topnav',
-                  'tc_search_in_header',
+
+                  'tc_header_desktop_search',
+                  'tc_header_mobile_search',
+
+                  'tc_header_desktop_wc_cart',
+                  'tc_header_mobile_wc_cart',
+
+                  'tc_header_desktop_tagline',
+                  'tc_header_mobile_tagline',
+
+                  'tc_header_desktop_to_stick',
+
+                  'tc_header_desktop_sticky',
+                  'tc_header_mobile_sticky',
+
+
                   'tc_header_skin',
+
                   'tc_header_mobile_menu_layout'
             );
 
@@ -470,15 +485,49 @@ class CZR_utils_settings_map {
 
             //to add
             $_to_add  = array(
+                  'tc_show_tagline'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Display the tagline in the header" , "customizr" ),
+                                    'section'       => 'header_layout_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'priority'      => 15,
+                                    'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                                    'ubq_section'   => array(
+                                                        'section' => 'title_tagline',
+                                                        'priority' => '30'
+                                                     )
+                  ),
+                  'tc_woocommerce_header_cart' => array(
+                                   'default'   => 1,
+                                   'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , 'customizr' ) ),
+                                   'control'   => 'CZR_controls' ,
+                                   'section'   => 'header_layout_sec',
+                                   'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
+                                   'type'      => 'checkbox' ,
+                                   'priority'  => 18,
+                                   'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+                  ),
                   'tc_display_boxed_navbar'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.3.13', '1.0.18' ) ? 1 : 0,
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => __( "Display menu in a box" , "customizr" ),
+                                    'label'         => __( "Display menu in a box" , 'customizr' ),
                                     'section'       => 'header_layout_sec' ,
                                     'type'          => 'checkbox' ,
                                     'priority'      => 25,
                                     'transport'     => 'postMessage',
                                     'notice'        => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
+                  ),
+                  'tc_sticky_header'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'title'         => __( 'Sticky header settings' , 'customizr'),
+                                    'label'         => __( "Sticky on scroll" , 'customizr' ),
+                                    'section'       => 'header_layout_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'priority'      => 30,
+                                    'transport'     => 'postMessage',
+                                    'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
                   ),
             );
 
@@ -503,7 +552,7 @@ class CZR_utils_settings_map {
                   'tc_menu_resp_dropdown_limit_to_viewport'  =>  array(
                                     'default'       => 0,
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport." , "customizr" ) ),
+                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport." , 'customizr' ) ),
                                     'section'       => 'nav' ,
                                     'type'          => 'checkbox' ,
                                     'priority'      => 35,
@@ -512,7 +561,7 @@ class CZR_utils_settings_map {
                   'tc_display_menu_label'  =>  array(
                                     'default'       => 0,
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => __( "Display a label next to the menu button." , "customizr" ),
+                                    'label'         => __( "Display a label next to the menu button." , 'customizr' ),
                                     'section'       => 'nav' ,
                                     'type'          => 'checkbox' ,
                                     'priority'      => 45,
@@ -522,7 +571,7 @@ class CZR_utils_settings_map {
                   'tc_menu_position'  =>  array(
                                     'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => __( 'Menu position (for "main" menu)' , "customizr" ),
+                                    'label'         => __( 'Menu position (for "main" menu)' , 'customizr' ),
                                     'section'       => 'nav' ,
                                     'type'          =>  'select' ,
                                     'choices'       => array(
@@ -533,9 +582,9 @@ class CZR_utils_settings_map {
                                     'priority'      => 50,
                                     'transport'     => 'postMessage',
                                     'notice'        => sprintf( '%1$s <a href="%2$s">%3$s</a>.',
-                                        __("Note : the menu centered position is available only when" , "customizr"),
+                                        __("Note : the menu centered position is available only when" , 'customizr'),
                                         "javascript:wp.customize.section('header_layout_sec').focus();",
-                                        __("the logo is centered", "customizr")
+                                        __("the logo is centered", 'customizr')
                                     )
                   ),
                   //override
@@ -543,7 +592,7 @@ class CZR_utils_settings_map {
                                     'default'       => 'pull-menu-left',
                                     'control'       => 'CZR_controls' ,
                                     'title'         => __( 'Secondary (horizontal) menu design' , 'customizr'),
-                                    'label'         => __( 'Menu position (for the horizontal menu)' , "customizr" ),
+                                    'label'         => __( 'Menu position (for the horizontal menu)' , 'customizr' ),
                                     'section'       => 'nav' ,
                                     'type'          =>  'select' ,
                                     'choices'       => array(
@@ -554,15 +603,15 @@ class CZR_utils_settings_map {
                                     'priority'      => 55,
                                     'transport'     => 'postMessage',
                                     'notice'        => sprintf( '%1$s <a href="%2$s">%3$s</a>.',
-                                        __("Note : the menu centered position is available only when" , "customizr"),
+                                        __("Note : the menu centered position is available only when" , 'customizr'),
                                         "javascript:wp.customize.section('header_layout_sec').focus();",
-                                        __("the logo is centered", "customizr")
+                                        __("the logo is centered", 'customizr')
                                     )
                   ),
                   'tc_second_menu_resp_setting'  =>  array(
                                     'default'       => 'in-sn-before',
                                     'control'       => 'CZR_controls' ,
-                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "Choose a mobile devices (responsive) behaviour for the secondary menu." , "customizr" ) ),
+                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "Choose a mobile devices (responsive) behaviour for the secondary menu." , 'customizr' ) ),
                                     'section'       => 'nav',
                                     'type'      =>  'select',
                                     'choices'     => array(
@@ -603,7 +652,7 @@ class CZR_utils_settings_map {
                                     'default'       => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 'buttons' : 'no-buttons',
                                     'control'       => 'CZR_controls' ,
                                     'title'         => __( 'Metas Design' , 'customizr' ),
-                                    'label'         => __( "Select a design for the post metas" , "customizr" ),
+                                    'label'         => __( "Select a design for the post metas" , 'customizr' ),
                                     'section'       => 'post_metas_sec' ,
                                     'type'          =>  'select' ,
                                     'choices'       => array(
@@ -615,7 +664,7 @@ class CZR_utils_settings_map {
                   'tc_post_metas_update_date_format'  =>  array(
                                     'default'       => 'days',
                                     'control'       => 'CZR_controls',
-                                    'label'         => __( "Select the last update format" , "customizr" ),
+                                    'label'         => __( "Select the last update format" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
                                     'type'          =>  'select' ,
                                     'choices'       => array(
@@ -629,7 +678,7 @@ class CZR_utils_settings_map {
                                     'default'       => czr_fn_user_started_before_version( '3.3.2' , '1.0.11' ) ? 1 : 0,
                                     'control'       => 'CZR_controls',
                                     'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
-                                    'label'         => __( "Display a recent update notice" , "customizr" ),
+                                    'label'         => __( "Display a recent update notice" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
                                     'type'          => 'checkbox',
                                     'priority'      => 65,
@@ -639,7 +688,7 @@ class CZR_utils_settings_map {
                                     'default'       => 10,
                                     'control'       => 'CZR_controls',
                                     'sanitize_callback' => 'czr_fn_sanitize_number',
-                                    'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , "customizr" ),
+                                    'label'         => __( "Display the notice if the last update is less (strictly) than n days old" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
                                     'type'          => 'number' ,
                                     'step'          => 1,
@@ -648,9 +697,9 @@ class CZR_utils_settings_map {
                                     'notice'    => __( 'Set a maximum interval (in days) during which the last update notice will be displayed.' , 'customizr' ),
                   ),
                   'tc_post_metas_update_notice_text'  =>  array(
-                                    'default'       => __( "Recently updated !" , "customizr" ),
+                                    'default'       => __( "Recently updated !" , 'customizr' ),
                                     'control'       => 'CZR_controls',
-                                    'label'         => __( "Update notice text" , "customizr" ),
+                                    'label'         => __( "Update notice text" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
                                     'type'          => 'text',
                                     'priority'      => 75,
@@ -659,7 +708,7 @@ class CZR_utils_settings_map {
                   'tc_post_metas_update_notice_format'  =>  array(
                                     'default'       => 'label-default',
                                     'control'       => 'CZR_controls',
-                                    'label'         => __( "Update notice style" , "customizr" ),
+                                    'label'         => __( "Update notice style" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
                                     'type'          =>  'select' ,
                                     'choices'       => array(
