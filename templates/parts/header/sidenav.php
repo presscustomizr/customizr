@@ -10,7 +10,7 @@
     <nav class="tc-sn side-nav__nav" <?php czr_fn_echo('element_attributes') ?>>
       <div class="tc-sn-inner">
         <?php
-          if ( czr_fn_has('sidenav_menu_button') ) {
+          if ( czr_fn_is_registered_or_possible('sidenav_menu_button') ) {
             czr_fn_render_template( 'header/menu_button', array(
               'model_args' => array(
                 'data_attributes' => 'data-toggle="sidenav" aria-expanded="false"',
@@ -18,7 +18,7 @@
               )
             ) );
           }
-          if ( czr_fn_has('sidenav_menu') ) {
+          if ( czr_fn_is_registered_or_possible('sidenav_menu') ) {
             czr_fn_render_template( 'header/menu', array(
               'model_id'   => 'sidenav_menu',
             ));

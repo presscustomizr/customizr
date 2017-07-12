@@ -22,7 +22,7 @@ class CZR_main_content_model_class extends CZR_Model {
             $context =  is_single() ? 'post' : 'page';
 
             //do nothing if we don't display regular {context} heading
-            if ( ! czr_fn_has( "regular_{$context}_heading" ) )
+            if ( ! czr_fn_is_registered_or_possible( "regular_{$context}_heading" ) )
                   return;
 
             //__before_main_wrapper, 200

@@ -6,7 +6,7 @@
 <div class="right sidebar tc-sidebar text-md-right <?php czr_fn_echo('element_class')?>" <?php czr_fn_echo('element_attributes') ?>>
   <div id="right" class="widget-area" role="complementary">
     <?php do_action( '__before_inner_right_sidebar' ) ?>
-    <?php if ( czr_fn_has('rights_social_block') ) : ?>
+    <?php if ( czr_fn_is_registered_or_possible('rights_social_block') ) : ?>
       <aside class="social-block widget widget_social">
         <div class="social-links">
           <?php czr_fn_render_template( 'modules/common/social_block' ) ?>

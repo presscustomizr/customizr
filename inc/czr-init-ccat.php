@@ -269,8 +269,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -2030,8 +2029,25 @@ class CZR_utils_settings_map {
                   return $_map;
             }
 
+            global $wp_version;
 
             $_to_add = array(
+                  'tc_sticky_logo_upload'  => array(
+                                    'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
+                                    'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
+                                    'section'   =>  'logo_sec' ,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'priority'  => 20,
+                            //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
+                                    'width'     => 75,
+                                    'height'    => 30,
+                                    'flex_width' => true,
+                                    'flex_height' => true,
+                                    //to keep the selected cropped size
+                                    'dst_width'  => false,
+                                    'dst_height'  => false,
+                                    'notice'    => __( "Use this upload control to specify a different logo on sticky header mode." , 'customizr')
+                  ),
                   //favicon
                   'tc_fav_upload' => array(
                                     'control'   =>  'CZR_Customize_Upload_Control' ,
@@ -2040,6 +2056,7 @@ class CZR_utils_settings_map {
                                     'section'   =>  'logo_sec' ,
                                     'type'      => 'tc_upload',
                                     'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'priority'  => 25,
                   )
             );
 
@@ -2275,6 +2292,7 @@ class CZR_utils_settings_map {
                   'tc_social_in_topnav',
                   'tc_search_in_header',
                   'tc_header_skin',
+                  'tc_header_mobile_menu_layout'
             );
 
             foreach ( $_to_unset as $key ) {

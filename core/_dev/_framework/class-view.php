@@ -68,17 +68,18 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
         if ( $czr_fn_print_debug ) {
             echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
-
-            /* Maybe merge debug info into the model element attributes */
-            $this -> model -> element_attributes =  join( ' ', array_filter( array(
-                $this -> model -> element_attributes,
-                'data-model_id="'. $this -> model -> id .'"',
-                isset( $this -> model -> template ) ? 'data-template="'. $this -> model -> template .'"' : ''
-            )) );
             echo "<!-- START RENDERING VIEW ID : {$this -> model -> id} -->";
         }
 
-          $this -> czr_fn_render();
+        //ADD ATTRIBUTES TO THE WRAPPER
+        /* Maybe merge debug info into the model element attributes */
+        $this -> model -> element_attributes =  join( ' ', array_filter( array(
+            $this -> model -> element_attributes,
+            'data-czr-model_id="'. $this -> model -> id .'"',
+            isset( $this -> model -> template ) ? 'data-czr-template="'. $this -> model -> template .'"' : ''
+        )) );
+
+        $this -> czr_fn_render();
 
         if ( $czr_fn_print_debug ) {
             echo "<!-- END OF RENDERING VIEW ID : {$this -> model -> id} -->";

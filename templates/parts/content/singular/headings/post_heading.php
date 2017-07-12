@@ -20,7 +20,7 @@
 ?>
   <div class="container header-content">
     <div class="header-content-inner">
-    <?php if ( czr_fn_has('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
+    <?php if ( czr_fn_is_registered_or_possible('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
         <div class="entry-meta">
           <div class="tax__container">
             <?php echo $cat ?>
@@ -33,8 +33,8 @@
           czr_fn_edit_button( array( 'class' => 'inverse', 'link'  => $edit_post_link ) );
         }
 
-        $pub_date     = czr_fn_has('post_metas') ? czr_fn_get_property( 'publication_date', 'post_metas' ) : false;
-        $author       = czr_fn_has('post_metas') ? czr_fn_get_property( 'author', 'post_metas' ) : false;
+        $pub_date     = czr_fn_is_registered_or_possible('post_metas') ? czr_fn_get_property( 'publication_date', 'post_metas' ) : false;
+        $author       = czr_fn_is_registered_or_possible('post_metas') ? czr_fn_get_property( 'author', 'post_metas' ) : false;
 
 
     ?>
