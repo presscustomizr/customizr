@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           );
 
           $this -> font_selectors     = array(
-              'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.navbar-brand-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
+              'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.header-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
               'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body') ) )
           );
 

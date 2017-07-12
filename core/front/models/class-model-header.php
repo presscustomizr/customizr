@@ -102,7 +102,10 @@ class CZR_header_model_class extends CZR_Model {
     * Desktop sticky header
     */
     if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_desktop_sticky' ) ) ) {
-      $_desktop_primary_navbar_class[] = 'desktop-sticky';
+      if (  'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_to_stick' ) ) )
+        $_desktop_topbar_navbar_class[] = 'desktop-sticky';
+      else
+        $_desktop_primary_navbar_class[] = 'desktop-sticky';
     }
 
     /*
@@ -191,18 +194,6 @@ class CZR_header_model_class extends CZR_Model {
         ),
       ),
 
-      array(
-        'id' => 'tagline',
-        'model_class' => 'header/tagline'
-      ),
-
-
-      //header cart
-      /*array(
-        'model_class' => 'header/woocommerce_cart',
-        'id' => 'woocommerce_cart',
-        'controller' => 'czr_fn_woocommerce_wc_cart_enabled' )
-      )*/
     );
 
     return $children;

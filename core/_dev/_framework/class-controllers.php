@@ -18,42 +18,42 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
 
               'head',
 
+              'topbar',
+
               'title',
               'logo_wrapper',
               'logo',
 
-              'tagline',
+              'topbar_tagline',
+              'branding_tagline',
               'mobile_tagline',
 
-              'menu',
-              'sidenav',
-              'topbar_menu',
-              'topbar',
-
-              'branding_tagline',
 
               'navbar_primary_menu',
               'navbar_secondary_menu',
+              'sidenav',
+              'topbar_menu',
 
               'menu_button',
               'mobile_menu_button',
+
               'sidenav_menu_button',
               'sidenav_navbar_menu_button',
 
-              'navbar_social_block',
               'topbar_social_block',
 
               'desktop_topbar_search',
               'desktop_primary_search',
-
               'mobile_search',
 
               'desktop_topbar_wc_cart',
               'desktop_primary_wc_cart',
+              'mobile_wc_cart',
 
               'primary_nav_utils',
               'topbar_nav_utils'
             ),
+
             'content' => array(
               'post_list',
               'post_list_masonry',

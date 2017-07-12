@@ -7,8 +7,8 @@
  * ( Sidenav Menu)
  */
 ?>
-<div class="topbar-nav__utils nav__utils col col-auto" <?php czr_fn_echo('element_attributes') ?>>
-    <ul class="nav utils row flex-row flex-nowrap regular-nav">
+<div class="topbar-nav__utils nav__utils col-auto" <?php czr_fn_echo('element_attributes') ?>>
+    <ul class="nav utils flex-row flex-nowrap regular-nav">
       <?php
       if ( czr_fn_is_registered_or_possible( 'desktop_topbar_search' ) ) {
 
@@ -22,7 +22,7 @@
 
           czr_fn_render_template( 'header/woocommerce_cart', array(
             'model_args' => array(
-              'element_class' => array('primary-nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
+              'element_class' => array('nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
             )
           ) );
 
