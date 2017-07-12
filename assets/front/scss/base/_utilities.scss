@@ -27,7 +27,8 @@
   }
   li:before { content: none }
 }
-.no-hover, .no-hover * {
+.no-hover, .no-hover *,
+.is-scrolling, .is-scrolling * {
   pointer-events: none;
 }
 .shadow {
