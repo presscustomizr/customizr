@@ -475,19 +475,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
                             'priority'      => 10
           ),
-          'tc_show_tagline'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display the tagline in the header" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 15,
-                            'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
-                            'ubq_section'   => array(
-                                                'section' => 'title_tagline',
-                                                'priority' => '30'
-                                             )
-          ),
+
           'tc_social_in_header' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in header' , 'customizr' ),
@@ -539,6 +527,19 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '100'
                             ),
           ),
+          'tc_header_mobile_tagline'  =>  array(
+                            'default'       => 0,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display the tagline in the header' , 'customizr' ) ),
+                            'section'       => 'header_layout_sec',
+                            'type'          => 'checkbox' ,
+                            'priority'      => 28,
+                            'ubq_section'   => array(
+                                                'section' => 'title_tagline',
+                                                'priority' => '30'
+                                             )
+          ),
+
           'tc_header_mobile_search' => array(
                             'default'   => 1,
                             'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
@@ -577,11 +578,24 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             )
           ),
           /* Mobile end */
+          'tc_header_desktop_tagline' => array(
+                            'default'   => 'brand',
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display the tagline in the header' , 'customizr' ) ),
+                            'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
+                            'control'   => 'CZR_controls' ,
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'none'          => __( 'Do not display', 'customizr'),
+                                'topbar'        => __( 'Display in the topbar', 'customizr'),
+                                'brand'        => __( 'Display below the logo', 'customizr')
+                            ),
+                            'priority'  => 29,
+          ),
 
           'tc_header_desktop_search' => array(
                             'default'   => 'topbar',
                             'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display a search button in the header' , 'customizr' ) ),
-                            'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                             'control'   => 'CZR_controls' ,
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
@@ -595,7 +609,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
 
           'tc_header_desktop_wc_cart' => array(
-                            'default'   => 'topbar',
                             'default'   => 'topbar',
                             'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
                             'control'   => 'CZR_controls' ,
@@ -633,12 +646,14 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'      => 'select',
                             'choices'   => array(
                                 'topbar'        => __( 'Topbar', 'customizr'),
-                                'primary'      => __( 'Primary navbar', 'customizr'),
+                                'primary'       => __( 'Primary navbar', 'customizr'),
                             ),
                             'priority'  => 31,
           ),
 
           /* end new */
+
+          /*TODO: decide what to do with these */
           'tc_sticky_show_tagline'  =>  array(
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
