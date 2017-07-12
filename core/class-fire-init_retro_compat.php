@@ -8,6 +8,7 @@
 */
 
 //copy old options in the new framework
+//and port classic style to modern style options
 //only if user is logged in
 //then each routine has to decide what to do also depending on the user started before
 if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
@@ -16,26 +17,47 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 
   if ( ! empty( $theme_options ) ) {
 
-    $_new_options_w_socials = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
+    $_new_options_w_socials              = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
 
     if ( ! empty( $_new_options_w_socials ) ) {
-      $theme_options              = $_new_options_w_socials;
-      $_to_update                 = true;
+      $theme_options                     = $_new_options_w_socials;
+      $_to_update                        = true;
     }
 
 
     //Custom css
-    $_new_options_w_custom_css  = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
+    $_new_options_w_custom_css           = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
     if ( ! empty( $_new_options_w_custom_css ) ) {
-      $theme_options              = $_new_options_w_custom_css;
-      $_to_update                 = true;
+      $theme_options                     = $_new_options_w_custom_css;
+      $_to_update                        = true;
     }
 
-    //old skin
-    $_new_options_w_skin        = czr_fn_maybe_move_old_skin_to_czr4( $theme_options );
-    if ( ! empty( $_new_options_w_skin ) ) {
-      $theme_options              = $_new_options_w_skin;
-      $_to_update                 = true;
+    //classic style skin port
+    $_new_options_w_modern_skin          = czr_fn_maybe_move_classic_skin_to_modern( $theme_options );
+    if ( ! empty( $_new_options_w_modern_skin ) ) {
+      $theme_options                     = $_new_options_w_modern_skin;
+      $_to_update                        = true;
+    }
+
+    //classic style sticky header port
+    $_new_options_w_modern_sticky        = czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options );
+    if ( ! empty( $_new_options_w_modern_sticky ) ) {
+      $theme_options                     = $_new_options_w_modern_sticky;
+      $_to_update                        = true;
+    }
+
+    //classic style header wccart port
+    $_new_options_w_modern_header_wccart = czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options );
+    if ( ! empty( $_new_options_w_modern_header_wccart ) ) {
+      $theme_options                     = $_new_options_w_modern_header_wccart;
+      $_to_update                        = true;
+    }
+
+    //classic style header tagline port
+    $_new_options_w_modern_header_tagline = czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options );
+    if ( ! empty( $_new_options_w_modern_header_tagline ) ) {
+      $theme_options                     = $_new_options_w_modern_header_tagline;
+      $_to_update                        = true;
     }
 
     if ( $_to_update ) {
@@ -180,36 +202,35 @@ function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
 /*
 * returns array() the new set of options or empty if there's nothing to move
 */
-function czr_fn_maybe_move_old_skin_to_czr4( $theme_options ) {
+function czr_fn_maybe_move_classic_skin_to_modern( $theme_options ) {
 
-      $_options = $theme_options;
 
       //nothing to do if already moved
-      if ( isset( $_options[ '__moved_opts' ] ) && in_array( 'old_skin', $_options[ '__moved_opts' ] ) ) {
+      if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_skin', $theme_options[ '__moved_opts' ] ) ) {
 
             return array();
 
       }
 
       /*
-      * If old skin not set or new skin color set just flag the old skin ported and return the modified theme_options
+      * If classic skin not set or new skin color set just flag the classic skin ported and return the modified theme_options
       * so that, next time, we don't do what follows
       */
 
-      $_old_skin_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
-      $_new_skin_set = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
+      $_classic_skin_is_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
+      $_new_skin_is_set     = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
 
-      if ( !$_old_skin_set || $_new_skin_set ) {
+      if ( !$_classic_skin_is_set || $_new_skin_is_set ) {
 
             //save the state in the options
             $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-            $theme_options[ '__moved_opts' ][]  = 'old_skin';
+            $theme_options[ '__moved_opts' ][]  = 'classic_skin';
 
             return $theme_options;
       }
 
 
-      //get skin color from old skin value, which is in the form color_name.css
+      //get skin color from classic skin value, which is in the form color_name.css
       $_color_map    = CZR___::$instance -> skin_classic_color_map;
 
       $_active_skin  = $theme_options[ 'tc_skin' ];
@@ -241,8 +262,185 @@ function czr_fn_maybe_move_old_skin_to_czr4( $theme_options ) {
       */
       //save the state in the options
       $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-      $theme_options[ '__moved_opts' ][]  = 'old_skin';
+      $theme_options[ '__moved_opts' ][]  = 'classic_skin';
 
       return $theme_options;
+
+}
+
+/*
+* In the classic Customizr style we have only one option that controls the sticky header behavior 'tc_sticky_header' (boolean)
+* In the modern Customizr style this option is splitted in two 'tc_header_desktop_sticky', 'tc_header_mobile_sticky'
+* These modern options define the sticky behavior as an array of the type:
+* array(
+*  'no_stick',
+*  'stick_up' (default),
+*  'stick_always'
+* )
+* We'll move the classic option following this map
+* //tc_sticky_header (bool) => 'tc_header_desktop_sticky' (string) | 'tc_header_mobile_sticky' (string)
+*  0 (false) => 'no_stick' | 'no_stick'
+*  1 (true)  => 'stick_up' | 'sticky_up'
+*/
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options ) {
+
+    /*
+    * When Memcached is active transients (object cached) might be not persistent
+    * we cannot really rely on them :/
+    */
+    //nothing to do if new user
+    //if ( czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+    //  return array();
+    //nothing to do if already moved
+    if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_sticky_header', $theme_options[ '__moved_opts' ] ) ) {
+        return array();
+    }
+
+
+    $_classic_sticky_header = $theme_options[ 'tc_sticky_header' ];
+
+
+
+    if ( isset( $_classic_sticky_header ) ) {
+        //let's now port the classic option to the modern if classic sticky option set and modern not set
+        if ( $_classic_sticky_header ) {
+            if ( !isset( $theme_options[ 'tc_header_desktop_sticky' ] ) )
+                $theme_options[ 'tc_header_desktop_sticky' ] = 'stick_up';
+            if ( !isset( $theme_options[ 'tc_header_mobile_sticky' ] ) )
+                $theme_options[ 'tc_header_mobile_sticky' ] = 'stick_up';
+        } else {
+            if ( !isset( $theme_options[ 'tc_header_desktop_sticky' ] ) )
+                $theme_options[ 'tc_header_desktop_sticky' ] = 'no_stick';
+            if ( !isset( $theme_options[ 'tc_header_mobile_sticky' ] ) )
+                $theme_options[ 'tc_header_mobile_sticky' ] = 'no_stick';
+        }
+    }
+
+    //In any case let's mark the porting done
+    //save the state in the options
+    $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+    $theme_options[ '__moved_opts' ][]  = 'classic_sticky_header';
+
+
+    return $theme_options;
+
+}
+
+/*
+* In the classic Customizr style we have only one option that controls the wc cart displaying in the header 'tc_woocommerce_header_cart' (bool)
+* In the modern Customizr style this option is splitted in two 'tc_header_desktop_wc_cart' (string), 'tc_header_mobile_wc_cart' (bool)
+* 'tc_header_desktop_wc_cart' is an array of the type:
+* array(
+*  'none',
+*  'topbar' (default),
+*  'navbar'
+* )
+* We'll move the classic option following this map
+* //'tc_woocommerce_header_cart' (bool) => 'tc_header_desktop_wc_cart' (string) | 'tc_header_mobile_wc_cart' (bool)
+*  0 (false) => 'none' | 0 (false)
+*  1 (true)  => 'topbar' | 1 (true)
+*/
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
+
+    /*
+    * When Memcached is active transients (object cached) might be not persistent
+    * we cannot really rely on them :/
+    */
+    //nothing to do if new user
+    //if ( czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+    //  return array();
+    //nothing to do if already moved
+    if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_header_wccart', $theme_options[ '__moved_opts' ] ) ) {
+        return array();
+    }
+
+
+
+    $_classic_header_wc_cart = $theme_options[ 'tc_woocommerce_header_cart' ];
+
+
+
+    if ( isset( $_classic_header_wc_cart ) ) {
+
+        //let's now port the classic option to the modern if classic wccart option set and modern not set
+
+        if ( !isset( $theme_options[ 'tc_header_desktop_wc_cart' ] ) )
+          $theme_options[ 'tc_header_desktop_wc_cart' ] = $_classic_header_wc_cart ? 'topbar' : 'none';
+
+        if ( !isset( $theme_options[ 'tc_header_mobile_wc_cart' ] ) )
+          $theme_options[ 'tc_header_mobile_wc_cart' ] = $_classic_header_wc_cart;
+    }
+
+    //In any case let's mark the porting done
+    //save the state in the options
+    $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+    $theme_options[ '__moved_opts' ][]  = 'classic_header_wccart';
+
+
+    return $theme_options;
+
+}
+
+/*
+* In the classic Customizr style we have only one option that controls the tagline displaying in the header 'tc_show_tagline' (bool)
+* In the modern Customizr style this option is splitted in two 'tc_header_desktop_tagline' (string), 'tc_header_mobile_tagline' (bool)
+* 'tc_header_desktop_wc_cart' is an array of the type:
+* array(
+*  'none',
+*  'topbar',
+*  'brand' (default)
+* )
+* We'll move the classic option following this map
+* //'tc_show_tagline' (bool) => 'tc_header_desktop_tagline' (string) | 'tc_header_mobile_tagline' (bool)
+*  0 (false) => 'none' | 0 (false)
+*  1 (true)  => 'brand' | 1 (true)
+*/
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options ) {
+
+    /*
+    * When Memcached is active transients (object cached) might be not persistent
+    * we cannot really rely on them :/
+    */
+    //nothing to do if new user
+    //if ( czr_fn_user_started_before_version( '3.4.39', '1.2.40' ) )
+    //  return array();
+    //nothing to do if already moved
+    if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_header_tagline', $theme_options[ '__moved_opts' ] ) ) {
+        return array();
+    }
+
+
+
+    $_classic_header_tagline = $theme_options[ 'tc_show_tagline' ];
+
+
+
+    if ( isset( $_classic_header_wc_cart ) ) {
+
+        //let's now port the classic option to the modern if classic wccart option set and modern not set
+
+        if ( !isset( $theme_options[ 'tc_header_desktop_tagline' ] ) )
+          $theme_options[ 'tc_header_desktop_tagline' ] = $_classic_header_tagline ? 'brand' : 'none';
+
+        if ( !isset( $theme_options[ 'tc_header_mobile_tagline' ] ) )
+          $theme_options[ 'tc_header_mobile_tagline' ] = $_classic_header_tagline;
+    }
+
+    //In any case let's mark the porting done
+    //save the state in the options
+    $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+    $theme_options[ '__moved_opts' ][]  = 'classic_header_tagline';
+
+
+    return $theme_options;
 
 }
