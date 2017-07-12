@@ -46,10 +46,14 @@ $secondary-color-dark   : $grey;
   }
 
 
+  .topnav-navbars__container,
+  .topnav-navbars__container [class*=navbar__wrapper],
+  .mobile-nav__container,
+  .mobile-nav__nav {
+    background: inherit;
+  }
 
   #tc-sn .tc-sn-inner,
-  .primary-navbar__wrapper,
-  .mobile-navbar__warpper,
   .header-navbars__wrapper  {
     background: $background-color;
   }
@@ -75,7 +79,7 @@ $secondary-color-dark   : $grey;
   }
 
 
-  .primary-nav__utils {
+  .nav__utils {
      color: $primary-color;
       a, a:focus, a:active { color: $primary-color; @include transition (all 0.3s ease);  }
       .ham-toggler-menu.collapsed:hover {
@@ -119,7 +123,7 @@ $secondary-color-dark   : $grey;
     }
 
   }
-  .navbar-brand-tagline { color: $secondary-color }
+  .header-tagline { color: $secondary-color }
   .mobile-woocart__container a { color:$primary-color; }
 
 

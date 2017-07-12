@@ -4,9 +4,7 @@
 
 .woocommerce {
 
-
   //buttons
-
   #respond input#submit,
   input#submit,
   input.button,
@@ -86,7 +84,7 @@
 
 
 // WooCart
-.primary-nav__woocart {
+.nav__woocart {
   position: relative;
   .product_list_widget {
     min-height: 3em;

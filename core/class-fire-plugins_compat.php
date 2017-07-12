@@ -917,14 +917,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return '__return_true';
       }
 
-      if ( ! is_admin() )
-        //register wc cart in front
-        add_action( 'wp', 'czr_fn_woocommerce_register_wc_cart' );
-
-      function czr_fn_woocommerce_register_wc_cart() {
-        czr_fn_register( array( 'model_class' => 'header/woocommerce_cart', 'id' => 'woocommerce_cart', 'controller' => 'czr_fn_woocommerce_wc_cart_enabled' ) );
-      }
-
       //additional woocommerce skin style
       foreach ( array(
                   'skin_color_color',

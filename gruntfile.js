@@ -81,8 +81,9 @@ module.exports = function(grunt) {
           'concat:front_main_parts_js_classic',
           'concat:front_js_classic',
           'lineending:front_js',
-          'uglify:part_front_js',
-          'uglify:main_front_js',
+          // 'uglify:part_front_js',
+          // 'uglify:main_front_js',
+          'uglify:main_front_js_classic',
           //modern style
           'concat:front_main_fmk_js_modern',
           'concat:front_js_modern',

@@ -97,12 +97,25 @@ class CZR_header_model_class extends CZR_Model {
     $_desktop_topbar_navbar_class   = array( 'hidden-md-down' );
     $_mobile_navbar_class           = array( 'hidden-lg-up' );
 
+
     /*
     * Desktop sticky header
     */
     if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_desktop_sticky' ) ) ) {
-      $_desktop_primary_navbar_class[] = 'desktop-sticky';
+      if (  'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_to_stick' ) ) )
+        $_desktop_topbar_navbar_class[] = 'desktop-sticky';
+      else
+        $_desktop_primary_navbar_class[] = 'desktop-sticky';
     }
+
+    /*
+    * Mobile sticky header
+    */
+    if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_mobile_sticky' ) ) ) {
+      $_mobile_navbar_class[] = 'mobile-sticky';
+    }
+
+
 
     /* TOP BORDER */
     if ( 1 == esc_attr( czr_fn_opt( 'tc_top_border') ) ) {
@@ -181,11 +194,6 @@ class CZR_header_model_class extends CZR_Model {
         ),
       ),
 
-      array(
-        'id' => 'tagline',
-        'model_class' => 'header/tagline'
-      ),
-
     );
 
     return $children;
@@ -213,8 +221,9 @@ class CZR_header_model_class extends CZR_Model {
       $_css = sprintf("%s%s",
         $_css,
         "
-        .czr-sticky-mobile .nav-collapse.active.limited-height,
-        .navbar-sticky, .header-absolute .topnav_navbars__wrapper {
+        .mobile-sticky .mobile-nav__nav,
+        .fixed-header-on .mobile-sticky,
+        .fixed-header-on .desktop-sticky {
           z-index:{$_custom_z_index}
         }"
       );
