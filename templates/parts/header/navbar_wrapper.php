@@ -12,8 +12,8 @@
 <div class="primary-navbar__wrapper row align-items-center flex-lg-row <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <?php czr_fn_render_template(  'header/parts/branding_wrapper', array(
     'model_args' => array(
-      'element_class'         => 'col col-auto justify-content-between align-items-center',
-      'inner_branding_class'  => 'brand_below' == czr_fn_opt( 'tc_header_desktop_tagline' ) ? 'flex-column' : 'flex-row'
+      'element_class'         => 'col col-auto',
+      'inner_branding_class'  => 'brand_below' == czr_fn_opt( 'tc_header_desktop_tagline' ) ? 'flex-column tagline-below' : 'flex-row tagline-aside'
     )
   ) ) ?>
   <?php czr_fn_render_template(  'header/parts/nav_container', array(

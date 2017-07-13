@@ -24,14 +24,13 @@
   ?>
   <?php if ( czr_fn_is_registered_or_possible( 'topbar_social_block' ) ) : ?>
     <div class="topbar-nav__socials social-links col col-auto">
-      <?php czr_fn_render_template( 'modules/common/social_block',array(
-              'model_args' => array(
-                'element_class' => is_rtl() ? 'float-left' : 'float-right',
-              )
-            ));
+      <?php
+        czr_fn_render_template( 'modules/common/social_block' );
       ?>
     </div>
   <?php endif;
-  if ( czr_fn_is_registered_or_possible( 'topbar_nav_utils' ) ) czr_fn_render_template( 'header/parts/topbar_nav_utils' );
+
+    czr_fn_render_template( 'header/parts/topbar_nav_utils' );
+
   ?>
 </div>
