@@ -440,7 +440,7 @@ blockquote p {
   display: none !important;
 }
 
-.display-flex, .branding__container, .branding, .branding__container .branding,
+.display-flex, .branding__container, .branding__container .branding,
 .branding__container .mobile-utils__wrapper, .nav__utils, .nav__utils li {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1693,7 +1693,8 @@ select:-webkit-autofill {
 }
 
 .branding {
-  padding: 1.25em 0;
+  padding-top: 0.625em;
+  padding-bottom: 0.625em;
   overflow: hidden;
 }
 
@@ -1723,6 +1724,11 @@ select:-webkit-autofill {
 
 .branding .navbar-brand + .header-tagline {
   margin-top: 0.833333em;
+}
+
+.branding.tagline-aside .header-tagline {
+  margin: 0 10px;
+  width: auto;
 }
 
 .branding__container .branding,
@@ -1826,10 +1832,10 @@ select:-webkit-autofill {
 }
 
 /*
-* LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
-* that's why is handled only with CSS
+* LOGO CENTERED:
 */
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky),
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky {
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
   -webkit-flex-direction: column !important;
@@ -1837,12 +1843,14 @@ select:-webkit-autofill {
   flex-direction: column !important;
 }
 
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper .branding__container {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .branding__container,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .branding__container {
   max-width: 100%;
   text-align: center;
 }
 
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper .primary-nav__container {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-nav__container,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .primary-nav__container {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
@@ -1852,7 +1860,8 @@ select:-webkit-autofill {
   flex-basis: auto;
 }
 
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper .navbar-toggleable-md {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .navbar-toggleable-md,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .navbar-toggleable-md {
   width: auto !important;
   -webkit-box-pack: center !important;
   -webkit-justify-content: center !important;
@@ -1860,7 +1869,8 @@ select:-webkit-autofill {
   justify-content: center !important;
 }
 
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper .navbar-toggleable-md .navbar-collapse {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .navbar-toggleable-md .navbar-collapse,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .navbar-toggleable-md .navbar-collapse {
   width: auto;
   -webkit-align-self: center !important;
   -ms-flex-item-align: center !important;
@@ -1925,13 +1935,6 @@ select:-webkit-autofill {
   .admin-bar .fixed-header-on .mobile-sticky, .admin-bar .fixed-header-on .desktop-sticky {
     top: 32px;
   }
-}
-
-.topbar-nav__socials {
-  flex-shrink: 0;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
 }
 
 /* ie fix */
