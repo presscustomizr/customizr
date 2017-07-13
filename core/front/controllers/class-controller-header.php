@@ -17,7 +17,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
 
     function czr_fn_display_view_branding_tagline() {
-      return 'brand' == esc_attr( czr_fn_opt( 'tc_header_desktop_tagline' ) );
+      return in_array( esc_attr( czr_fn_opt( 'tc_header_desktop_tagline' ) ), array( 'brand_below', 'brand_next' ) );
     }
 
     function czr_fn_display_view_topbar_tagline() {

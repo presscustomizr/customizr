@@ -579,7 +579,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           ),
           /* Mobile end */
           'tc_header_desktop_tagline' => array(
-                            'default'   => 'brand',
+                            'default'   => 'brand_below',
                             'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display the tagline in the header' , 'customizr' ) ),
                             'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                             'control'   => 'CZR_controls' ,
@@ -587,8 +587,9 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'type'      => 'select',
                             'choices'   => array(
                                 'none'          => __( 'Do not display', 'customizr'),
-                                'topbar'        => __( 'Display in the topbar', 'customizr'),
-                                'brand'        => __( 'Display below the logo', 'customizr')
+                                'topbar'        => __( 'In the topbar', 'customizr'),
+                                'brand_below'   => __( 'Below the logo', 'customizr'),
+                                'brand_next'    => __( 'Next to the logo', 'customizr')
                             ),
                             'priority'  => 29,
           ),

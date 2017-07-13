@@ -387,12 +387,13 @@ function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
 * array(
 *  'none',
 *  'topbar',
-*  'brand' (default)
+*  'brand_below' (default),
+*  'brand_next'
 * )
 * We'll move the classic option following this map
 * //'tc_show_tagline' (bool) => 'tc_header_desktop_tagline' (string) | 'tc_header_mobile_tagline' (bool)
 *  0 (false) => 'none' | 0 (false)
-*  1 (true)  => 'brand' | 1 (true)
+*  1 (true)  => 'brand_below' | 1 (true)
 */
 /*
 * returns array() the new set of options or empty if there's nothing to move
@@ -417,7 +418,7 @@ function czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options ) {
         //let's now port the classic option to the modern if classic wccart option set and modern not set
 
         if ( !isset( $theme_options[ 'tc_header_desktop_tagline' ] ) )
-          $theme_options[ 'tc_header_desktop_tagline' ] = $_classic_header_tagline ? 'brand' : 'none';
+          $theme_options[ 'tc_header_desktop_tagline' ] = $_classic_header_tagline ? 'brand_below' : 'none';
 
         if ( !isset( $theme_options[ 'tc_header_mobile_tagline' ] ) )
           $theme_options[ 'tc_header_mobile_tagline' ] = $_classic_header_tagline;
