@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         add_filter( '__get_option'            , 'czr_fn_opt' , 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                    , 'czr_fn_id' );//deprecated
+        add_filter( '__ID'                    , 'czr_fn_get_id' );//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
         add_filter( '__is_home'               , 'czr_fn_is_home' );
         add_filter( '__is_home_empty'         , 'czr_fn_is_home_empty' );
