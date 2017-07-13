@@ -1609,7 +1609,8 @@ var czrapp = czrapp || {};
               this.hasStickyCandidate     = new czrapp.Value( false );
               this.stickyHeaderAnimating  = new czrapp.Value( false );
               this.userStickyOpt          = new czrapp.Value( self._setUserStickyOpt() );//set on init and on resize : stick_always, no_stick, stick_up
-              this.isFixedPositionned     = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
+              this.isFixedPositioned     = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
+              this.isSticky               = new czrapp.Value( false );
 
               //// SETUP LISTENERS ////
               //react to current sticky selector
@@ -1617,7 +1618,7 @@ var czrapp = czrapp || {};
               this.currentStickySelector.bind( function( to, from ) {
                     var _reset = function() {
                           czrapp.$_header.css( { 'height' : '' });
-                          self.isFixedPositionned( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
+                          self.isFixedPositioned( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
                           self.stickyMenuDown( false );
                           self.stickyMenuWrapper = false;
                           self.hasStickyCandidate( false );
@@ -1654,7 +1655,7 @@ var czrapp = czrapp || {};
               // AND
               // the sticky option is 'stick_up'
               // => we won't set position to fixed on first scroll down
-              // self.isFixedPositionned.validate = function( value ) {
+              // self.isFixedPositioned.validate = function( value ) {
               //       if ( ! self.hasStickyCandidate() )
               //         return false;
 
@@ -1669,8 +1670,14 @@ var czrapp = czrapp || {};
 
 
               //adding the 'fixed-header-on' class makes the sticky candidate position:fixed
-              this.isFixedPositionned.bind( function( isFixed ) {
-                    czrapp.$_header.toggleClass( 'fixed-header-on', isFixed );
+              this.isFixedPositioned.bind( function( isFixed ) {
+                    return $.Deferred( function() { return czrapp.$_header.toggleClass( 'fixed-header-on', isFixed ); } );
+              }, { deferred : true } );
+
+
+              //STICKY STATE LISTENER
+              this.isSticky.bind( function( _isSticky ) {
+                    czrapp.$_header.toggleClass( 'is-sticky', _isSticky );
               });
 
 
@@ -1687,9 +1694,9 @@ var czrapp = czrapp || {};
 
                     //The sticky candidate starts not fixed
                     //=> when scrolling, the fixed position can be set / unset depending on the self.topStickPoint()
-                    self.isFixedPositionned( to > self.topStickPoint() );
+                    self.isSticky( to > self.topStickPoint() );
                     self.stickyMenuDown( to < from ).done( function() {
-                          //self.isFixedPositionned( to > self.topStickPoint() );//adds css class 'fixed-header-on' from the czrapp.$_header element
+                          //self.isFixedPositioned( to > self.topStickPoint() );//adds css class 'fixed-header-on' from the czrapp.$_header element
                     });
               });
 
@@ -1768,11 +1775,11 @@ var czrapp = czrapp || {};
                     if ( self.hasStickyCandidate() ) {
                           self.stickyMenuDown( self.scrollPosition() < self.stickyHeaderThreshold ,  { fast : true } ).done( function() {
                                 czrapp.$_header.css( 'height' , '' );
-                                self.isFixedPositionned( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
+                                self.isSticky( false );//removes css class 'fixed-header-on' from the czrapp.$_header element
                                 if ( self.hasStickyCandidate() ) {
                                       czrapp.$_header.css( 'height' , czrapp.$_header[0].getBoundingClientRect().height );
                                       //make sure we don't set the position to fixed if not scrolled enough : self.scrollPosition() must be > self.topStickPoint()
-                                      self.isFixedPositionned( self.scrollPosition() > self.topStickPoint() );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
+                                      self.isSticky( self.scrollPosition() > self.topStickPoint() );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
                                 }
                           });
                     } else {
@@ -1792,11 +1799,18 @@ var czrapp = czrapp || {};
 
               } );//resize();
 
+
+
               /*-----------------------------------------------------
               * INITIAL ACTIONS
               ------------------------------------------------------*/
               //Set initial sticky selector
               self._setStickySelector();
+              //always fixed if there's a sticky candidate
+              this.isFixedPositioned( self.hasStickyCandidate() ).done( function() {
+                    console.log( self._getTopStickPoint() );
+                    self.stickyMenuWrapper.css( { top : self._getTopStickPoint() + 'px' } );
+              } );
 
               //distance from the top where we should decide if fixed or not. => function of topbar height + admin bar height
               //=> set on instantiation and reset on resize
@@ -1867,7 +1881,7 @@ var czrapp = czrapp || {};
         //the question is, if the current sticky candidate is not the topbar AND that there is a topbar, let's return this topbar's height
         _getTopStickPoint : function() {
               // //Do we have a topbar ?
-              // if ( 1 !== czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).length && 1 !== czrapp.$_header.find( '[data-czr-template="header/topbar"]' ).length )
+              // if ( 1 !== czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).length && 1 !== czrapp.$_header.find( '[data-czr-template="header/topbar_wrapper"]' ).length )
               //   return 0;
               // //if there's a topbar, is this topbar the current sticky candidate ?
               // if ( czrapp.$_header.find( '[data-czr-model_id="topbar"]' ).hasClass( 'desktop-sticky') )
@@ -1881,7 +1895,7 @@ var czrapp = czrapp || {};
 
               //Do we have a topbar
               //todo: refer to a common jQuery selector (class or id)
-              var $_topbar = $_navbars_wrapper.find( '[data-czr-template="header/topbar"]');
+              var $_topbar = $_navbars_wrapper.find( '[data-czr-template="header/topbar_wrapper"]');
 
               //if there's a topbar, is this topbar the current sticky candidate ?
               if ( $_topbar.length > 0  ) {
@@ -1932,7 +1946,7 @@ var czrapp = czrapp || {};
               }
 
               //Always add this class => make sure the transition is smooth
-              //self.isFixedPositionned( true );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
+              //self.isSticky( true );//toggles the css class 'is-sticky' from the czrapp.$_header element
               self.stickyMenuDown( true, { force : true, fast : true } ).done( function() {
                     self.stickyHeaderAnimating( true );
                     ( function() {
@@ -1979,7 +1993,7 @@ var czrapp = czrapp || {};
                 return dfd.resolve().promise();
 
               //Make sure we are position:fixed with the 'fixed-header-on' css class before doing anything
-              self.isFixedPositionned( true );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
+              self.isFixedPositioned( true );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
 
               var _do = function() {
                     var translateYUp = $menu_wrapper[0].getBoundingClientRect().height,
