@@ -153,10 +153,14 @@
 }
 
 /*
-* LOGO CENTERED: IS VALID ONLY WHEN NOT STICKY
-* that's why is handled only with CSS
+* LOGO CENTERED:
 */
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper {
+//
+// IS VALID ONLY WHEN THE PRIMARY NAVBAR WRAPPER IS NOT STICKY
+// that's why is handled only with CSS
+//
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky),
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky {
 
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
