@@ -17,10 +17,14 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?> class="no-js">
 <!--<![endif]-->
-  <?php czr_fn_render_template( 'header/head' ) ?>
+  <?php czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . 'head-no-model.php' ) ?>
 
   <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
-    <?php if ( czr_fn_is_registered_or_possible('sidenav') && czr_fn_is_registered_or_possible('header') ) czr_fn_render_template( 'header/sidenav' ) ?>
+    <?php
+        if ( czr_fn_is_registered_or_possible('sidenav') && czr_fn_is_registered_or_possible('header') ) {
+          czr_fn_render_template( 'header/parts/sidenav' );
+        }
+    ?>
 
     <?php do_action('__before_page_wrapper'); ?>
 

@@ -12,7 +12,7 @@
       <?php
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_search' ) ) {
 
-        czr_fn_render_template( 'header/desktop_search', array(
+        czr_fn_render_template( 'header/parts/desktop_search', array(
           'model_id' => 'desktop_primary_search'
         ) );
 
@@ -20,7 +20,7 @@
 
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_wc_cart' ) ) :
 
-          czr_fn_render_template( 'header/woocommerce_cart', array(
+          czr_fn_render_template( 'header/parts/woocommerce_cart', array(
             'model_args' => array(
               'element_class' => array('nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
             )
@@ -29,7 +29,7 @@
       endif;
 
       if ( czr_fn_is_registered_or_possible( 'sidenav' ) ) :
-          czr_fn_render_template( 'header/menu_button', array(
+          czr_fn_render_template( 'header/parts/menu_button', array(
             'model_args' => array(
               'data_attributes' => 'data-toggle="sidenav" aria-expanded="false"',
             )

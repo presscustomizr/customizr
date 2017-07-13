@@ -6,19 +6,6 @@ class CZR_sidebar_model_class extends CZR_Model {
       'left'   => 'l'
   );
 
-  function czr_fn_setup_children() {
-
-    $children = array( /*
-      //helpblock in left/right sidebar
-      array(
-        'hook'        => "__before_inner_{$this->position}_sidebar",
-        'id'          => "{$this->position}_sidebar_help_block",
-        'template'    => 'modules/help_block',
-        'model_class' => array( 'parent' => 'modules/help_block', 'name' => "modules/{$this->position}_sidebar_help_block" )
-      ),*/
-    );
-    return $children;
-  }
 
   /*
   * @override

@@ -3,7 +3,7 @@
  * The template for displaying the site head
  */
 ?>
-<head <?php czr_fn_echo('element_attributes') ?>>
+<head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 <?php if ( ! function_exists( '_wp_render_title_tag' ) ) :?>

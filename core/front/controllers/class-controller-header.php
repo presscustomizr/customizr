@@ -7,7 +7,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return true;
     }
 
-    function czr_fn_display_view_topbar() {
+    function czr_fn_display_view_topbar_wrapper() {
       return 1 == esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
     }
 

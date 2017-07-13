@@ -7,12 +7,12 @@
   <div class="branding flex-column">
   <?php
     if ( czr_fn_is_registered_or_possible('logo_wrapper') ){
-      czr_fn_render_template( 'header/logo_wrapper' );
+      czr_fn_render_template( 'header/parts/logo_wrapper' );
     } else
-      czr_fn_render_template( 'header/title' );
+      czr_fn_render_template( 'header/parts/title' );
 
     if ( czr_fn_is_registered_or_possible( 'branding_tagline' ) )
-      czr_fn_render_template( 'header/tagline' );
+      czr_fn_render_template( 'header/parts/tagline' );
   ?>
   </div>
 </div>

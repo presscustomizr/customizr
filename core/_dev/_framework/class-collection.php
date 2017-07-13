@@ -586,17 +586,6 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
 
 
 
-    //@return array of child models
-    //@return false if has no children
-    private function czr_fn_get_children($id) {
-      if ( ! $this -> czr_fn_has_children($id) )
-        return;
-
-      $model = $this -> czr_fn_get_model($id);
-      return ! empty( $model['children'] ) ? $model['children'] : false;
-    }
-
-
     //checks if a model exists in the collection
     //@param string id
     //@return bool

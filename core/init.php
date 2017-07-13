@@ -94,7 +94,7 @@ This set of models consists of:
 2) the content (contains the logic to retrieve which model/template needs to be passed to the loop)
 3) the footer
 
-Each model then can register, at instantiation time, a set of children models.
+Each model then can register, at instantiation time, a set of models
 For instance, in the content model we register the grid wrapper or the slider's model as they need to act on the user options style.
 
 See templates/index.php for rendering flow.

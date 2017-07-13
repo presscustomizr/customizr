@@ -9,7 +9,7 @@
       <?php
 
         if ( czr_fn_is_registered_or_possible('navbar_primary_menu') || czr_fn_is_registered_or_possible( 'navbar_secondary_menu' ) ) {
-          czr_fn_render_template( 'header/menu', array(
+          czr_fn_render_template( 'header/parts/menu', array(
             'model_id'   =>  czr_fn_is_registered_or_possible('navbar_primary_menu') ? 'navbar_primary_menu' : 'navbar_secondary_menu',
           ) );
         };
@@ -17,7 +17,7 @@
       ?>
     </nav>
     <?php
-      if ( czr_fn_is_registered_or_possible( 'primary_nav_utils' ) ) czr_fn_render_template( 'header/primary_nav_utils' )
+      if ( czr_fn_is_registered_or_possible( 'primary_nav_utils' ) ) czr_fn_render_template( 'header/parts/primary_nav_utils' )
     ?>
   </div>
 </div>

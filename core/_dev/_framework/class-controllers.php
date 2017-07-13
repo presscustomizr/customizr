@@ -18,7 +18,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
 
               'head',
 
-              'topbar',
+              'topbar_wrapper',
 
               'title',
               'logo_wrapper',

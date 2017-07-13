@@ -7,6 +7,69 @@ class CZR_header_model_class extends CZR_Model {
 
   public $navbar_template;
 
+
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
+
+    $children = array(
+      //* Registered as children here as they need to filter the header class and add custom style css */
+      array( 'id' => 'logo', 'model_class' => 'header/parts/logo',  ),
+      array( 'model_class' => 'header/parts/title', 'id' => 'title' ),
+
+
+      //primary menu in the navbar
+      array(
+        'id' => 'navbar_primary_menu',
+        'model_class' => 'header/parts/menu',
+        'args' => array(
+          'czr_menu_location' => 'primary_navbar'
+        )
+      ),
+
+      //secondary menu in the navbar
+      array(
+        'id' => 'navbar_secondary_menu',
+        'model_class' => 'header/parts/menu',
+        'args' => array(
+          'czr_menu_location' => 'secondary_navbar'
+        ),
+      ),
+
+      //topbar menu
+      array(
+        'id' => 'topbar_menu',
+        'model_class' => 'header/parts/menu',
+        'args' => array(
+          'czr_menu_location' => 'topbar'
+        ),
+      ),
+
+      //sidenav menu
+      array(
+        'id' => 'sidenav_menu',
+        'model_class' => 'header/parts/menu',
+        'args' => array(
+          'czr_menu_location' => 'sidenav'
+        ),
+      ),
+
+      //mobile menu
+      array(
+        'id' => 'mobile_menu',
+        'model_class' => 'header/parts/menu',
+        'args' => array(
+          'czr_menu_location' => 'mobile'
+        ),
+      ),
+
+    );
+
+    foreach ( $children as $id => $model ) {
+      CZR() -> collection -> czr_fn_register( $model );
+    }//foreach
+  }//_construct
+
+
   /**
   * @override
   * fired before the model properties are parsed in the constructor
@@ -140,64 +203,6 @@ class CZR_header_model_class extends CZR_Model {
     ) );
   }
 
-
-  //this is fired in the constructor
-  function czr_fn_setup_children() {
-    $children = array(
-      //* Registered as children here as they need to filter the header class and add custom style css */
-      array( 'id' => 'logo', 'model_class' => 'header/logo',  ),
-      array( 'model_class' => 'header/title', 'id' => 'title' ),
-
-
-      //primary menu in the navbar
-      array(
-        'id' => 'navbar_primary_menu',
-        'model_class' => 'header/menu',
-        'args' => array(
-          'czr_menu_location' => 'primary_navbar'
-        )
-      ),
-
-      //secondary menu in the navbar
-      array(
-        'id' => 'navbar_secondary_menu',
-        'model_class' => 'header/menu',
-        'args' => array(
-          'czr_menu_location' => 'secondary_navbar'
-        ),
-      ),
-
-      //topbar menu
-      array(
-        'id' => 'topbar_menu',
-        'model_class' => 'header/menu',
-        'args' => array(
-          'czr_menu_location' => 'topbar'
-        ),
-      ),
-
-      //sidenav menu
-      array(
-        'id' => 'sidenav_menu',
-        'model_class' => 'header/menu',
-        'args' => array(
-          'czr_menu_location' => 'sidenav'
-        ),
-      ),
-
-      //mobile menu
-      array(
-        'id' => 'mobile_menu',
-        'model_class' => 'header/menu',
-        'args' => array(
-          'czr_menu_location' => 'mobile'
-        ),
-      ),
-
-    );
-
-    return $children;
-  }
 
 
   /**

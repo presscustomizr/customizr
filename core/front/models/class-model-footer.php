@@ -1,22 +1,15 @@
 <?php
 class CZR_footer_model_class extends CZR_Model {
 
-  function czr_fn_setup_children() {
-    $children = array(
+  function __construct( $model = array() ) {
+    parent::__construct( $model );
 
-      /* Needs to access the body class */
-      /*********************************************
-      * FOOTER PUSH
-      *********************************************/
-      array(
+    CZR() -> collection -> czr_fn_register( array(
         'id'          => 'footer_push',
         'template'    => 'footer/footer_push',
         'hook'        => '__after_main_container'
-      ),
-    );
-
-    return $children;
-  }
+      ) );
+  }//_construct
 
   /*
   * Callback of czr_fn_user_options_style hook

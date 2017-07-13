@@ -13,7 +13,7 @@
     <div class="container-fluid topnav-navbars__container">
           <?php
             //czr_fn_render_template always check if the model is registered or possible.
-            czr_fn_render_template( 'header/topbar',
+            czr_fn_render_template( 'header/topbar_wrapper',
               array(
                 'model_args' => array(
                   'element_class' => czr_fn_get_property( 'topbar_nbwrapper_class' )

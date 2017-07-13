@@ -10,7 +10,6 @@
 //Once alive, a model's job is :
 //- instantiate its view. The model must check if its related view has to be instantiated with the default view class or a child of it.
 //- assign the view to its rendering hook
-//- register its child models if any
 
 
 if ( ! class_exists( 'CZR_Model' ) ) :
@@ -35,8 +34,6 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     public $callback = "";
     public $cb_params = array();
     public $early_setup = false;
-    public $parent = '';//stores the model id string from which a child has been instantiated.
-    public $children = array();
     public $controller = "";
     public $visibility = true;//can be typically overriden by a check on a user option
 
@@ -81,11 +78,6 @@ if ( ! class_exists( 'CZR_Model' ) ) :
             $CZR -> collection -> czr_fn_delete( $this -> id );
             return;
           }
-          //set-up the children
-          $this -> czr_fn_maybe_setup_children();
-
-          //Registers its children if any
-          $this -> czr_fn_maybe_register_children();
 
           //maybe alter body class
           if ( method_exists( $this, 'czr_fn_body_class' ) )
@@ -157,19 +149,6 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     }//fn
 
 
-    /**********************************************************************************
-    * ACTIONS ON MODEL INSTANCIATION : MAYBE SETUP CHILDREN FOR SUCCESSIVE REGISTRATION
-    ***********************************************************************************/
-    public function czr_fn_maybe_setup_children() {
-          //set-up the children
-          if ( ! method_exists( $this, 'czr_fn_setup_children') )
-            return;
-
-          $children = apply_filters( "czr_{$this -> id}_children_list", $this -> czr_fn_setup_children() );
-          $this -> czr_fn_set_property( 'children', $children );
-          $this -> czr_fn_set_property( 'parent', $this -> id );
-    }//fn
-
 
     /***********************************************************************************
     * ACTIONS ON VIEW READY
@@ -224,44 +203,9 @@ if ( ! class_exists( 'CZR_Model' ) ) :
     }
 
 
-
-    /**********************************************************************************
-    * ACTIONS ON MODEL INSTANCIATION : REGISTERS CHILD MODEL
-    ***********************************************************************************/
-    //hook : view ready
-    //=> the collection here can be the full collection or a partial set of views (children for example)
-    public function czr_fn_maybe_register_children() {
-          if ( ! $this -> czr_fn_has_children() )
-            return;
-
-          $CZR            = CZR();
-          $children_collection = array();
-          foreach ( $this -> children as $id => $model ) {
-            //re-inject the id into the view_params
-     //       $model['id'] = $id;
-            $id = $CZR -> collection -> czr_fn_register( $model );
-            if ( $id )
-              $children_collection[$id] = $model;
-          }//foreach
-
-          //update the children property, at this stage will contain a list of the model ids of the registered children
-          $this -> czr_fn_set_property( 'children', array_keys( $children_collection ) );
-          //emit an event if a children collection has been registered
-          //=> will fire the instantiation of the children collection with czr_fn_maybe_instantiate_collection
-          do_action( 'children_registered', $children_collection );
-    }
-
-
     /***********************************************************************************
     * EXPOSED GETTERS / SETTERS
     ***********************************************************************************/
-    //Checks if a registered view has child views
-    //@return boolean
-    public function czr_fn_has_children() {
-          return ! empty($this -> children);
-    }
-
-
     //normalizes the way we can access and change a single model property
     //=> emit an event to update the collection
     //@return void()
