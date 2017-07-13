@@ -1720,14 +1720,11 @@ select:-webkit-autofill {
   padding: 0;
   margin: 0;
   width: 100%;
-}
-
-.branding .navbar-brand + .header-tagline {
-  margin-top: 0.833333em;
+  margin: 0.833333em 5px 0;
 }
 
 .branding.tagline-aside .header-tagline {
-  margin: 0 10px;
+  margin-top: 0;
   width: auto;
 }
 
