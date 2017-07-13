@@ -253,6 +253,7 @@
   z-index: 100;
   overflow: auto;
 }
+
 .fixed-header-on .mobile-sticky,
 .fixed-header-on .desktop-sticky {
   position: fixed;
@@ -261,6 +262,31 @@
   width: 100%;
   top: 0;
 }
+
+// Shrink logo/title: for desktop only
+.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding {
+
+  //allow transition effect
+  .navbar-brand img,
+  .navbar-brand,
+  .header-tagline {
+    @include transition( all .15s );
+  }
+  //title ( and tagline )
+  .navbar-brand {
+    font-size: 1.2em;
+  }
+  .header-tagline {
+    font-size: 0.8em;
+  }
+  //logo
+  .navbar-brand img {
+      height: 30px!important;
+      width: auto!important;
+  }
+
+}
+
 
 
 .admin-bar .fixed-header-on {

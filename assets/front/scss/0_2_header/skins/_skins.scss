@@ -45,6 +45,10 @@ $secondary-color-dark   : $grey;
     a:hover { color: $secondary-color-light; }
   }
 
+  #tc-sn .tc-sn-inner,
+  .header-navbars__wrapper {
+    background: $background-color;
+  }
 
   .topnav-navbars__container,
   .topnav-navbars__container [class*=navbar__wrapper],
@@ -53,10 +57,22 @@ $secondary-color-dark   : $grey;
     background: inherit;
   }
 
-  #tc-sn .tc-sn-inner,
-  .header-navbars__wrapper  {
-    background: $background-color;
+  // Sticky header transparency
+  .sticky-transparent.is-sticky {
+    .mobile-sticky,
+    .desktop-sticky {
+      background: rgba( $background-color, 0.7 );
+    }
+    .mobile-nav__nav {
+      background: rgba( $background-color, 0.9 );
+      .dropdown-menu,
+      .dropdown-item:focus,
+      .dropdown-item:hover {
+        background: none;
+      }
+    }
   }
+
   .header-navbars__wrapper  {
     border-bottom: 1px solid rgba($primary-color, 0.09);
   }

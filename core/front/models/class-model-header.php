@@ -124,33 +124,12 @@ class CZR_header_model_class extends CZR_Model {
     //  array_push( $element_class, 'header-absolute', 'header-transparent' );
 
 
-    //regular menu
-    //if ( 'side' != esc_attr( czr_fn_opt( 'tc_menu_style') ) )
-    //  array_push( $element_class, 'czr-regular-menu' );
-
-
-    //header class for the secondary menu
-    //if ( czr_fn_is_secondary_menu_enabled() )
-    //  array_push(  $element_class,
-    //    'czr-second-menu-on',
-    //    'czr-second-menu-' . esc_attr( czr_fn_opt( 'tc_second_menu_resp_setting' ) ) . '-when-mobile'
-    //  );
-
-
     /* Sticky header treatment */
-    /*$_sticky_header  = esc_attr( czr_fn_opt( "tc_sticky_header") ) || czr_fn_is_customizing();
-
-    if ( $_sticky_header ) {
-      array_push( $element_class,
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_mobile' ) ) ? 'czr-sticky-mobile' : '',
-        0 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart_sticky' ) ) ? 'czr-wccart-on' : 'czr-wccart-off',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_tagline') ) ? 'czr-tagline-on' : 'czr-tagline-off',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_menu') ) ? 'czr-menu-on' : 'czr-menu-off',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'czr-shrink-on' : 'czr-shrink-off',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') ) ? 'czr-title-logo-on' : 'czr-title-logo-off'
-      );
-      array_push( $elements_container_class, 'navbar-to-stick' );
-    }*/
+    //Classes added here to the header will be the used in CSS and JS to obtain the desired style/effect
+    array_push( $element_class,
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'sticky-brand-shrink-on' : 'sticky-brand-shrink-on',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_transparent_on_scroll') ) ? 'sticky-transparent' : 'sticky-transparent'
+    );
 
     /*
     * Set the desktop and mobile navbar classes (bp visibility and stickiness )
