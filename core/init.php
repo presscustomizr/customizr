@@ -88,7 +88,7 @@ file path of the template we're about to render.
 
 
 *** Loading a page ***
-In core/init.php at wp action hook we register the main set of models that we'll render afterwards from our main templates (main-templates/index.php|header.php etc. etc.)
+In core/init.php at wp action hook we register the main set of models that we'll render afterwards from our main templates (templates/index.php|header.php etc. etc.)
 This set of models consists of:
 1) the header
 2) the content (contains the logic to retrieve which model/template needs to be passed to the loop)
@@ -97,7 +97,7 @@ This set of models consists of:
 Each model then can register, at instantiation time, a set of children models.
 For instance, in the content model we register the grid wrapper or the slider's model as they need to act on the user options style.
 
-See main-templates/index.php for rendering flow.
+See templates/index.php for rendering flow.
 
 */
 /**
@@ -180,7 +180,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
 
         /**
-        * The purpose of this callback is to load the modern style main templates
+        * The purpose of this callback is to load the modern style main templates located at the root of /templates
         * hook : czr_modern_style_tmpl
         * @return  void
         */

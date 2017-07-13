@@ -6,7 +6,7 @@ if ( have_posts() ) {
     do_action( '__loop_start' );
 
       //WHAT DO WE WANT TO RENDER ?
-      //=> FOR THE MOMENT WE ONLY HAVE A WP QUERY, which could be altered if set when invoking the following functions in templates/main-templates/index.php
+      //=> FOR THE MOMENT WE ONLY HAVE A WP QUERY, which could be altered if set when invoking the following functions in templates/index.php
       //czr_fn_render_template(
           // 'loop',
           // 'model_args' = array(
