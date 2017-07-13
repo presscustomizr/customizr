@@ -140,7 +140,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             if( ! defined( 'CZR_IS_MODERN_STYLE' ) ) define( 'CZR_IS_MODERN_STYLE' , true );
 
             //this action callback is the one responsible to load new czr main templates
-            add_action( 'czr_modern_style_tmpl'       , array( $this , 'czr_fn_modern_template_redirect' ), 10 , 1 );
+            //Those templates have no models there are invoked from the WP templates with this kind of syntax : do_action( 'czr_modern_style_tmpl', 'header' );
+            add_action( 'czr_modern_style_tmpl'       , array( $this , 'czr_fn_load_modern_template_with_no_model' ), 10 , 1 );
 
             //filters to 'the_content', 'wp_title' => in utils
             add_action( 'wp_head' , 'czr_fn_wp_filters' );
@@ -181,12 +182,13 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         /**
         * The purpose of this callback is to load the modern style main templates located at the root of /templates
+        * No model is associated with template called by this code.
         * hook : czr_modern_style_tmpl
         * @return  void
         */
-        public function czr_fn_modern_template_redirect( $template = null ) {
+        public function czr_fn_load_modern_template_with_no_model( $template = null ) {
             $template = $template ? $template : 'index';
-            $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template . '.php' );
+            $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template . '-no-model.php' );
         }
 
 

@@ -504,6 +504,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
     /**********************************************************************************
     * REGISTER A MODEL TO THE COLLECTION
     ***********************************************************************************/
+
     public function czr_fn_register( $model = array() ) {
       $_model_params_array = $model;
 
@@ -531,7 +532,9 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       if ( ! $this -> czr_fn_can_register_model( $model ) )
         return;
 
-
+      //INSTANTIATE THE MODEL
+      // => the model object will instantiate the view
+      // => if already  did_action( 'template_redirect' ) and render == true, the view will be rendered
       //Instantiates the model object : at this stage the 'wp' hook has been fired and we're ready to instantiate the (maybe pre-registered) model
       //at this stage, the model is an array and :
       //- has an id
@@ -541,14 +544,14 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
       //=> let's instantiate
       $_model_id = isset( $model['id'] ) ? $model['id'] : 'undefined';
 
-      $model = $this -> czr_fn_instantiate_model($model);
+      $model = $this -> czr_fn_instantiate_model( $model );
 
       //Silent aborting for those models which "decided" in their constructor they're not allowed to be registered
       if ( isset( $model -> id ) && $this -> czr_fn_has_registered_deletion( $model -> id ) )
         return;
 
       //abort if the model has not been instantiated
-      if ( ! is_object($model) ) {
+      if ( ! is_object( $model ) ) {
         $_model_id = isset( $model -> id ) ? $model -> id : 'undefined';
         do_action('czr_dev_notice', "The model ( " . $_model_id . ") was not instantiated and could not be registered into the collection." );
         return;

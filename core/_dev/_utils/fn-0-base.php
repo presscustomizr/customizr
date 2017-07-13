@@ -148,7 +148,7 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
 
             //extract
             $_t                  =  $template;
-            $_model_id           =  ! empty( $args['model_id'] )    ? $args['model_id'] : basename($_t);
+            $_model_id           =  ! empty( $args['model_id'] )    ? $args['model_id'] : basename( $_t );
             $_model_class        =  ! empty( $args['model_class'] ) ? $args['model_class'] : '';
             $_model_args         =  ! empty( $args['model_args'] )  ? $args['model_args']  : array();
 
@@ -188,6 +188,13 @@ if ( ! function_exists( 'czr_fn_render_template' ) ) {
 
                 czr_fn_get_view_instance( $_model_id ) -> czr_fn_maybe_render();
             } else {
+                //REGISTERS AND RENDERS
+                //This is typically the case when we invoke the function inside a template, when the model is not yet registered
+                //=> the render param is therefore set to true ( @see class model : czr_fn_maybe_hook_or_render_view  :
+                //if ( did_action( 'template_redirect' ) && $this -> render ) {
+                //     $instance -> czr_fn_maybe_render();
+                //     return;//this is the end, beautiful friend.
+                // })
                 czr_fn_register(
                     array(
                       'id'          => $_model_id,

@@ -28,6 +28,11 @@
 
       <?php
         //will fire do_action( '__before_header' )
+
+        //as of the 13th of July 2017, the header model associated with the header template has been registered already on wp.
+        //Unlike most of the other models, that are registered on the fly ( or on the flight like Rocco can say .. AH AH AH)
+        //in this case the following function prints the template located in templates/part/header.php
         czr_fn_render_template( 'header' );
+
         //will fire do_action( '__after_header' )
       ?>

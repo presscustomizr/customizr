@@ -8,8 +8,8 @@
  * @since Customizr 1.0
  */
 if ( apply_filters( 'czr_modern_style', false ) ) {
-    //in core init => add_action( 'czr_modern_style_tmpl', array( $this , 'czr_fn_modern_template_redirect' ), 10 , 1 );
-    //function czr_fn_modern_template_redirect( $template = null ) {
+    //in core init => add_action( 'czr_modern_style_tmpl', array( $this , 'czr_fn_load_modern_template_with_no_model' ), 10 , 1 );
+    //function czr_fn_load_modern_template_with_no_model( $template = null ) {
     //     $template = $template ? $template : 'index';
     //     $this -> czr_fn_require_once( CZR_MAIN_TEMPLATES_PATH . $template . '.php' );
     // }
