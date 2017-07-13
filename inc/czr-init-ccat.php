@@ -2360,6 +2360,45 @@ class CZR_utils_settings_map {
                                     'transport'     => 'postMessage',
                                     'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
                   ),
+                  'tc_sticky_show_tagline'  =>  array(
+                                    'default'       => 0,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Sticky header : display the tagline" , "customizr" ),
+                                    'section'       => 'header_layout_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'priority'      => 40,
+                                    'transport'     => 'postMessage',
+                  ),
+                  'tc_woocommerce_header_cart_sticky' => array(
+                                    'default'   => 1,
+                                    'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
+                                    'control'   => 'CZR_controls' ,
+                                    'section'   => 'header_layout_sec',
+                                    'type'      => 'checkbox' ,
+                                    'priority'  => 45,
+                                    'transport' => 'postMessage',
+                                    'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
+                                    'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
+                  ),
+                  'tc_sticky_show_title_logo'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Sticky header : display the title / logo" , "customizr" ),
+                                    'section'       => 'header_layout_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'priority'      => 50,
+                                    'transport'     => 'postMessage',
+                  ),
+                  'tc_sticky_show_menu'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Sticky header : display the menu" , "customizr" ),
+                                    'section'       => 'header_layout_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'priority'      => 60,
+                                    'transport'     => 'postMessage',
+                                    'notice'        => __('Also applied to the secondary menu if any.' , 'customizr')
+                  ),
             );
 
             return array_merge( $_map, $_to_add );
@@ -3161,7 +3200,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         add_filter( '__get_option'            , 'czr_fn_opt' , 10, 2 );//deprecated
 
         //some useful filters
-        add_filter( '__ID'                    , 'czr_fn_id' );//deprecated
+        add_filter( '__ID'                    , 'czr_fn_get_id' );//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
         add_filter( '__is_home'               , 'czr_fn_is_home' );
         add_filter( '__is_home_empty'         , 'czr_fn_is_home_empty' );

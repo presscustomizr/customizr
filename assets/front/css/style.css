@@ -1857,8 +1857,6 @@ select:-webkit-autofill {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  width: 66.666667%;
-  max-width: 66.666667%;
   flex-basis: auto;
 }
 

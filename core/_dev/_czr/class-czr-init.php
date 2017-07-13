@@ -504,6 +504,10 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             }
           }
 
+          //The post message callbacks and css are not implement yet as of July 2017 for the modern style.
+          //=> let's force the "refresh" for all transport. => this will also disable any partial refreshs added to the controls
+          $option_settings['transport'] = CZR_IS_MODERN_STYLE ? 'refresh' : $option_settings['transport'];
+
           //add setting
           if ( class_exists('CZR_Customize_Setting') )
             $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );

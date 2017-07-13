@@ -654,37 +654,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
 
           /* end new */
 
-          /*TODO: decide what to do with these */
-          'tc_sticky_show_tagline'  =>  array(
-                            'default'       => 0,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky header : display the tagline" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 40,
-                            'transport'     => 'postMessage',
-          ),
-          /* Removed in modern */
-          'tc_woocommerce_header_cart_sticky' => array(
-                            'default'   => 1,
-                            'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
-                            'control'   => 'CZR_controls' ,
-                            'section'   => 'header_layout_sec',
-                            'type'      => 'checkbox' ,
-                            'priority'  => 45,
-                            'transport' => 'postMessage',
-                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
-                            'notice'    => __( 'WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling.' , 'customizr' )
-          ),
-          'tc_sticky_show_title_logo'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky header : display the title / logo" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 50,
-                            'transport'     => 'postMessage',
-          ),
           'tc_sticky_shrink_title_logo'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -694,17 +663,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 60,
                             'transport'     => 'postMessage',
           ),
-          'tc_sticky_show_menu'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky header : display the menu" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 60,
-                            'transport'     => 'postMessage',
-                            'notice'        => __('Also applied to the secondary menu if any.' , 'customizr')
-          ),
-          /* Removed in c4*/
           'tc_sticky_transparent_on_scroll'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
