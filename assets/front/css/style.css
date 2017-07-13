@@ -1849,6 +1849,11 @@ select:-webkit-autofill {
   text-align: center;
 }
 
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .branding .navbar-brand,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .branding .navbar-brand {
+  margin: auto;
+}
+
 .logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-nav__container,
 .logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .primary-nav__container {
   -webkit-box-flex: 0;

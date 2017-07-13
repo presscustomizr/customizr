@@ -1,36 +1,37 @@
-@import 'base/mixins';
-@import 'base/variables';
-@import 'base/colours';
-@import 'base/typography';
-@import 'base/icons';
+@import '0_1_base/mixins';
+@import '0_1_base/variables';
+@import '0_1_base/colours';
+@import '0_1_base/typography';
+@import '0_1_base/icons';
 
-@import 'base/utilities';
+@import '0_1_base/utilities';
 
-@import 'base/base';
-
-
-@import 'navigation/skins/skins';
-@import 'navigation/common';
-@import 'navigation/verticalnav';
-@import 'navigation/headernav';
-@import 'navigation/topbar';
-@import 'navigation/sidenav';
+@import '0_1_base/base';
 
 
-@import 'components/temp'; //temporary, to merge
+@import '0_2_header/skins/skins';
+@import '0_2_header/common';
+@import '0_2_header/verticalnav';
+@import '0_2_header/headernav';
+@import '0_2_header/topbar';
+@import '0_2_header/sidenav';
 
-@import 'components/components';
-@import 'components/forms';
-@import 'components/gallery';
-@import 'components/overlays';
 
-@import 'layout/content';
-@import 'layout/grid';
-@import 'layout/article';
-@import 'layout/sidebar';
-@import 'layout/footer';
+@import '0_3_components/temp'; //temporary, to merge
 
-@import 'components/plugins';
+@import '0_3_components/components';
+@import '0_3_components/forms';
+@import '0_3_components/gallery';
+@import '0_3_components/overlays';
 
-@import 'skin/skin';
+@import '0_4_layout/content';
+@import '0_4_layout/grid';
+@import '0_4_layout/article';
+@import '0_4_layout/sidebar';
+
+@import '0_5_footer/footer';
+
+@import '0_3_components/plugins';
+
+@import '0_6_skin/skin';
 
