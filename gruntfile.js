@@ -99,8 +99,8 @@ module.exports = function(grunt) {
 
           'concat:czr_control_js',
           'concat:czr_control_js_modern',
-          'comments:czr_control_js',
-          'comments:czr_control_js_modern',
+          //'comments:czr_control_js',
+          //'comments:czr_control_js_modern',
 
           'concat:czr_preview_js',
           'concat:czr_preview_js_modern',
@@ -127,6 +127,7 @@ module.exports = function(grunt) {
           'prod_front_css',
           'prod_front_js',
           'prod_admin_css_js',
+          'comments',
           'prod_build'
         ],
 
