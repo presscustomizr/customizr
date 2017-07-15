@@ -16,7 +16,7 @@
             czr_fn_render_template( 'header/topbar_wrapper',
               array(
                 'model_args' => array(
-                  'element_class' => czr_fn_get_property( 'topbar_nbwrapper_class' )
+                  'element_class' => czr_fn_get_property( 'topbar_nbwrapper_class' )//for ex : 'hidden-md-down desktop-sticky'
                 )
               )
             );
@@ -26,7 +26,7 @@
                 array(
                   'model_id' => 'navbar_wrapper',
                   'model_args' => array(
-                    'element_class' => czr_fn_get_property( 'primary_nbwrapper_class' )
+                    'element_class' => czr_fn_get_property( 'primary_nbwrapper_class' )//for ex : 'primary-navbar__wrapper row align-items-center flex-lg-row hidden-md-down'
                   )
                 )
               );

@@ -1027,6 +1027,7 @@ var czrapp = czrapp || {};
               this.currentStickySelector  = new czrapp.Value( '' );//<= will be set on init and on resize
               this.hasStickyCandidate     = new czrapp.Value( false );
               this.stickyHeaderAnimating  = new czrapp.Value( false );
+              this.animationPromise       = $.Deferred( function() { return this.resolve(); });
               this.userStickyOpt          = new czrapp.Value( self._setUserStickyOpt() );//set on init and on resize : stick_always, no_stick, stick_up
               this.isFixedPositionned     = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
               this.stickyStage            = new czrapp.Value( '_not_set_' );
@@ -1054,9 +1055,11 @@ var czrapp = czrapp || {};
               this.isFixedPositionned.bind( function( isFixed ) {
                     czrapp.$_header.toggleClass( 'fixed-header-on', isFixed ).toggleClass( 'is-sticky', isFixed );
               });
-              this.scrollPosition.bind( function( to, from ) {
+              var _doScrollPosReact = function( to, from ) {
                     if ( ! self.hasStickyCandidate() )
                       return;
+                    to = to || self.scrollPosition();
+                    from = from || 0;
                     if ( Math.abs( to - from ) <= 5 )
                       return;
 
@@ -1068,22 +1071,19 @@ var czrapp = czrapp || {};
                           self.isFixedPositionned( false );
                           self.stickyMenuDown( true );
 
-                    } else if ( 'down' == self.scrollDirection() && to > ( self.topStickPoint() + _h ) && to < ( self.topStickPoint() + ( _h * 1.2 ) ) ) {
+                    } else if ( 'down' == self.scrollDirection() && to > ( self.topStickPoint() + _h ) && to < ( self.topStickPoint() + ( _h * 2 ) ) ) {
                           self.stickyStage( 'down_middle' );
                           self.isFixedPositionned( false );
                           self.stickyMenuDown( false );
 
-                    } else if ( 'down' == self.scrollDirection() && to >= ( self.topStickPoint() + ( _h * 1.2 ) ) ) {
+                    } else if ( 'down' == self.scrollDirection() && to >= ( self.topStickPoint() + ( _h * 2 ) ) ) {
                           if ( 'stick_always' == self.userStickyOpt()  ) {
                                 var _dodo = function() {
-                                      self.stickyMenuDown( false, { fast : true } ).done( function() {
+                                      self.stickyMenuDown( false, { fast : true,  } ).done( function() {
                                             self.stickyMenuDown( true, { forceFixed : true } ).done( function() {});
                                             self.stickyStage( 'down_after' );
                                       });
                                 };
-                                if ( 'up' == self.stickyStage() ) {
-                                      _dodo();
-                                }
                                 if ( ! self.stickyHeaderAnimating() && ( ( 'down_after' != self.stickyStage() && 'up' != self.stickyStage() ) || true !== self.stickyMenuDown() ) ) {
                                      _dodo();
                                 }
@@ -1097,13 +1097,19 @@ var czrapp = czrapp || {};
                           self.stickyMenuDown( true ).done( function() {});
                           self.isFixedPositionned( to > self.topStickPoint() );
                     }
-              });
+              };
+
+
+              this.scrollPosition.bind( _doScrollPosReact );
               var _maybeResetTop = function() {
                     if ( 'up' == self.scrollDirection() )
                         self._mayBeresetTopPosition();
               };
-              czrapp.bind( 'scrolling-finished', _maybeResetTop );//react on scrolling finished <=> after the timer
-              czrapp.bind( 'topbar-collapsed', _maybeResetTop );//react on topbar collapsed, @see topNavToLife
+              czrapp.bind( 'scrolling-finished', _maybeResetTop );
+              czrapp.bind( 'scrolling-finished', function() {
+                    _.delay( _doScrollPosReact, 500 );
+              });
+              czrapp.bind( 'topbar-collapsed', _maybeResetTop );
               self.stickyMenuDown.validate = function( value ) {
                     if ( ! self.hasStickyCandidate() )
                       return false;
@@ -1175,11 +1181,15 @@ var czrapp = czrapp || {};
 
         },//stickify
         _animate : function( args ) {
+              console.log('ANIMATE NOW ');
               var dfd = $.Deferred(),
                   self = this,
                   $menu_wrapper = ! args.menu_wrapper.length ? czrapp.$_header.find( self.currentStickySelector() ) : args.menu_wrapper,
                   _startPosition = self.scrollPosition(),
                   _endPosition = _startPosition;
+
+
+              this.animationPromise = dfd;
               if ( ! $menu_wrapper.length )
                 return dfd.resolve().promise();
               self.isFixedPositionned( self.isFixedPositionned() ? true : ( 'up' == self.scrollDirection() || args.forceFixed ) );//toggles the css class 'fixed-header-on' from the czrapp.$_header element
@@ -1214,18 +1224,14 @@ var czrapp = czrapp || {};
                     }, args.fast ? 100 : 350 );
               };//_do
 
-              var _scheduleDo = function() {
-                    _do();
-              };
-
               _.delay( function() {
                     var sticky_menu_id = _.isString( $menu_wrapper.attr('data-menu-id') ) ? $menu_wrapper.attr('data-menu-id') : '';
                     if ( czrapp.userXP.mobileMenu && czrapp.userXP.mobileMenu.has( sticky_menu_id ) ) {
                           czrapp.userXP.mobileMenu( sticky_menu_id )( 'collapsed' ).done( function() {
-                                _scheduleDo();
+                                _do();
                           });
                     } else {
-                          _scheduleDo();
+                          _do();
                     }
               }, 10 );
               return dfd.promise();

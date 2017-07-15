@@ -76,7 +76,7 @@ if ( ! class_exists( 'CZR_View' ) ) :
         $this -> model -> element_attributes =  join( ' ', array_filter( array(
             $this -> model -> element_attributes,
             'data-czr-model_id="'. $this -> model -> id .'"',
-            isset( $this -> model -> template ) ? 'data-czr-template="'. $this -> model -> template .'"' : ''
+            isset( $this -> model -> template ) ? 'data-czr-template="templates/parts/'. $this -> model -> template .'"' : ''
         )) );
 
         $this -> czr_fn_render();

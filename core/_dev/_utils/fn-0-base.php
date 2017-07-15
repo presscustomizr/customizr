@@ -91,8 +91,8 @@ if ( ! function_exists( 'czr_fn_get_property' ) ) {
 
 
 //shortcut function to get a current model
-if ( ! function_exists( 'czr_fn_get_current_model' ) ) {
-      function czr_fn_get_current_model() {
+if ( ! function_exists( 'czr_fn_get_model' ) ) {
+      function czr_fn_get_model() {
             return CZR() -> czr_fn_get_current_model();
       }
 }
