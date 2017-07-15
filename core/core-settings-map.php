@@ -440,6 +440,7 @@ function czr_fn_smoothscroll_option_map( $get_default = null ) {
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_header_design_option_map( $get_default = null ) {
   return array(
+
           'tc_header_layout'  =>  array(
                           'default'       => 'left',
                           'title'         => __( 'Header design and layout' , 'customizr'),
@@ -455,6 +456,18 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                           'priority'      => 5,
                           'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                           'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
+          ),
+          'tc_header_skin'  =>  array(
+                            'default'       => 'light',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( 'Header style', 'customizr'),
+                            'choices'       => array(
+                                  'dark'   => __( 'Dark' , 'customizr' ),
+                                  'light'  => __( 'Light' , 'customizr')
+                            ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'select' ,
+                            'priority'      => 6,
           ),
           /*new*/
           'tc_header_topbar'  =>  array(
@@ -490,19 +503,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                              )
           ),
 
-
-          'tc_header_skin'  =>  array(
-                            'default'       => 'light',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Header skin', 'customizr'),
-                            'choices'       => array(
-                                  'dark'   => __( 'Dark' , 'customizr' ),
-                                  'light'  => __( 'Light' , 'customizr')
-                            ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'select' ,
-                            'priority'      => 26,
-          ),
           /* Mobile */
           'tc_header_mobile_menu_layout' => array(
                             'default'   => 'mobile_menu',
@@ -580,7 +580,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           /* Mobile end */
           'tc_header_desktop_tagline' => array(
                             'default'   => 'brand_below',
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display the tagline in the header' , 'customizr' ) ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Tagline location in the header' , 'customizr' ) ),
                             'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                             'control'   => 'CZR_controls' ,
                             'section'   => 'header_layout_sec',
@@ -596,7 +596,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
 
           'tc_header_desktop_search' => array(
                             'default'   => 'topbar',
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Display a search button in the header' , 'customizr' ) ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Search button location in the header' , 'customizr' ) ),
                             'control'   => 'CZR_controls' ,
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
@@ -625,24 +625,10 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
           ),
 
-          'tc_header_desktop_sticky' => array(
-                            'default'   => 'stick_up',
-                            'control'   => 'CZR_controls',
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('header visibility on scroll', 'customizr') ),
-                            'section'   => 'header_layout_sec',
-                            'type'      => 'select',
-                            'choices'   => array(
-                                'no_stick'      => __( 'Not visible when scrolling the page', 'customizr'),
-                                'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
-                                'stick_always'  => __( 'Always visible', 'customizr')
-                            ),
-                            'priority'  => 30,
-          ),
-
           'tc_header_desktop_to_stick' => array(
                             'default'   => 'primary',
                             'control'   => 'CZR_controls',
-                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('Select menu visibility on scroll', 'customizr') ),
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('Select the header to stick on scroll', 'customizr') ),
                             'section'   => 'header_layout_sec',
                             'type'      => 'select',
                             'choices'   => array(
@@ -651,6 +637,22 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             ),
                             'priority'  => 31,
           ),
+
+          'tc_header_desktop_sticky' => array(
+                            'default'   => 'stick_up',
+                            'control'   => 'CZR_controls',
+                            'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('Header visibility on scroll', 'customizr') ),
+                            'section'   => 'header_layout_sec',
+                            'type'      => 'select',
+                            'choices'   => array(
+                                'no_stick'      => __( 'Not visible when scrolling the page', 'customizr'),
+                                'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
+                                'stick_always'  => __( 'Always visible', 'customizr')
+                            ),
+                            'priority'  => 32,
+          ),
+
+
 
           /* end new */
 
@@ -1927,7 +1929,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
           'tc_footer_skin'  =>  array(
                             'default'       => 'dark',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Footer skin', 'customizr'),
+                            'label'         => __( 'Footer style', 'customizr'),
                             'choices'       => array(
                                   'dark'   => __( 'Dark' , 'customizr' ),
                                   'light'  => __( 'Light' , 'customizr')
@@ -2318,7 +2320,7 @@ function czr_fn_popul_section_map( $_sections ) {
     'post_lists_sec'        => array(
                         'title'     =>  __( 'Post lists : blog, archives, ...' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 16 : 20,
-                        'description' =>  __( 'Set up post lists options' , 'customizr' ),
+                        'description' =>  __( 'Set up post lists options : blog page, archives like tag or category, search results.' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'single_posts_sec'        => array(

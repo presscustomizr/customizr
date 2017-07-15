@@ -127,8 +127,8 @@ class CZR_header_model_class extends CZR_Model {
     /* Sticky header treatment */
     //Classes added here to the header will be the used in CSS and JS to obtain the desired style/effect
     array_push( $element_class,
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'sticky-brand-shrink-on' : 'sticky-brand-shrink-on',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_transparent_on_scroll') ) ? 'sticky-transparent' : 'sticky-transparent'
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'sticky-brand-shrink-on' : '',
+        0 != esc_attr( czr_fn_opt( 'tc_sticky_transparent_on_scroll') ) ? 'sticky-transparent' : ''
     );
 
     /*

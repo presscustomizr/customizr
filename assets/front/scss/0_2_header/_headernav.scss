@@ -257,7 +257,7 @@
 .fixed-header-on .mobile-sticky,
 .fixed-header-on .desktop-sticky {
   position: fixed;
-  z-index:100;
+  z-index:1000;
   /* background: rgba(255, 255, 255, 0.7); */
   width: 100%;
   top: 0;
