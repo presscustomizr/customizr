@@ -1,6 +1,6 @@
 (function (wp, $) {
         var api = api || wp.customize;
-        
+
         $( function($) {
                 /* GRID */
                 var _build_control_id = function( _control ) {
@@ -108,7 +108,7 @@
                     *    this option is available only when the header layout is "centered" (logo centered)
                     * 2) reset to default the horizontal menus position ONLY if the user switches from an header
                     *    centered layout to a logo right/left layout.
-                    * 
+                    *
                     */
                     (function() {
                         var _hm_primary_position_option    = 'tc_theme_options[tc_menu_position]',
@@ -119,24 +119,24 @@
 
                         //if the initial header layout value is not centered
                         //we have to disable the select option 'pull-menu-center'
-                        if ( 'centered' != _header_layout_setting.get() )   
+                        if ( 'centered' != _header_layout_setting.get() )
                             toggle_select_option_visibility( false );
 
 
                         //when user switches the header layout:
                         // if the previous option value was "centered"
-                        //1) make sure the menu is correctly aligned if the current header layout is not 'centered' 
-                        //   and the previous was 'centered' 
+                        //1) make sure the menu is correctly aligned if the current header layout is not 'centered'
+                        //   and the previous was 'centered'
                         //2) disable/enable 'pull-menu-center' menu position option
-                        _header_layout_setting.callbacks.add( function(to, from ) {                                                       
-                     
+                        _header_layout_setting.callbacks.add( function(to, from ) {
+
                               //1)
                               if ( 'centered' != to && 'centered' == from ) {
                                     reset_menu_position_option();
                               }
                               //2)
-                              toggle_select_option_visibility( 'centered' == to );                        
-                        
+                              toggle_select_option_visibility( 'centered' == to );
+
                         } );
 
                         function reset_menu_position_option() {
@@ -161,10 +161,29 @@
                                 $_select.find( 'option[value="pull-menu-center"]' )[ is_header_centered ? 'removeAttr': 'attr']('disabled', 'disabled');
                                 $_select.selecter( 'destroy' ).selecter();
 
-                            });  
+                            });
                         }
 
                     })();
+                });
+
+                //style select
+                api.when( 'tc_theme_options[tc_style]', function( _set ) {
+                      _set.bind( function() {
+                            api.previewer.save().always( function() {
+                                  if ( _wpCustomizeSettings && _wpCustomizeSettings.url && _wpCustomizeSettings.url.parent ) {
+                                        var url = [ _wpCustomizeSettings.url.parent ];
+                                        url.push( 'customize.php?&autofocus%5Bcontrol%5D=' + _set.id );
+                                        _.delay( function() {
+                                              window.location.href = url.join('');
+                                        }, 500 );
+                                  } else {
+                                        _.delay( function() {
+                                              window.parent.location.reload();
+                                        });
+                                  }
+                            });
+                      });
                 });
         });
 }) ( wp, jQuery );

@@ -119,7 +119,8 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_custom_css_option_map',
     'czr_fn_performance_option_map',
     'czr_fn_placeholders_notice_map',
-    'czr_fn_external_resources_option_map'
+    'czr_fn_external_resources_option_map',
+    'czr_fn_style_option_map'
   );
 
   $_settings_sections = apply_filters( 'czr_settings_sections', $_settings_sections );
@@ -2084,6 +2085,27 @@ function czr_fn_external_resources_option_map( $get_default = null ) {
 }
 
 
+/*-----------------------------------------------------------------------------------------------------
+                          THEME STYLE SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_style_option_map( $get_default = null ) {
+  return array(
+          'tc_style'  =>  array(
+                            'default'    => czr_fn_user_started_before_version( '4.0.0' , '2.0.0') ? 'classic': 'modern',
+                            'control'   => 'CZR_controls',
+                            'label'       => __( "Select a style for the Customizr theme", 'customizr' ),
+                            'section'     => 'style_sec',
+                            'type'        => 'select',
+                            'choices'       => array(
+                                  'modern'      => __( 'Modern' , 'customizr' ),
+                                  'classic'     => __( 'Classical' , 'customizr' ),
+                            ),
+          )
+
+  );
+}
+
+
 /***************************************************************
 * POPULATE PANELS
 ***************************************************************/
@@ -2414,6 +2436,11 @@ function czr_fn_popul_section_map( $_sections ) {
     ),
     'extresources_sec'    => array(
                         'title'     =>  __( 'Front-end Icons (Font Awesome)' , 'customizr' ),
+                        'priority'    => 40,
+                        'panel'   => 'tc-advanced-panel'
+    ),
+    'style_sec'    => array(
+                        'title'     =>  __( 'Theme style' , 'customizr' ),
                         'priority'    => 40,
                         'panel'   => 'tc-advanced-panel'
     )

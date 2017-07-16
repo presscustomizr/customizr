@@ -1,19 +1,4 @@
 <?php
-/*
- * @since 3.5.0
- */
-if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
-      function czr_fn_is_modern_style() {
-            //do not allow theme style switching via $_GET param czr_modern_style when is Pro
-            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() )
-              $_czr_is_modern_style = true;
-            else
-              $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : false;
-
-            return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
-      }
-}
-
 
 /**
 * The czr_fn__f() function is a wrapper of the WP built-in apply_filters() where the $value param becomes optional.
@@ -40,6 +25,22 @@ if( ! function_exists( 'tc__f' ) ) :
         return czr_fn__f( $tag , $value, $arg_one, $arg_two , $arg_three, $arg_four, $arg_five );
     }
 endif;
+
+/*
+ * @since 3.5.0
+ */
+if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
+      function czr_fn_is_modern_style() {
+            $_czr_is_modern_style = 'modern' == czr_fn_opt( 'tc_style' );
+            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
+              $_czr_is_modern_style = true;
+            } else {
+              $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $_czr_is_modern_style;
+            }
+
+            return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
+      }
+}
 
 if ( ! function_exists( 'czr_fn_setup_constants' ) ):
     function czr_fn_setup_constants() {
@@ -357,13 +358,18 @@ if ( ! function_exists( 'czr_fn_is_customizing' ) ) {
 function czr_fn_opt( $option_name , $option_group = null, $use_default = true ) {
     //do we have to look for a specific group of option (plugin?)
     $option_group = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
-    //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
-    $_db_options  = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
+
+    if ( class_exists( 'CZR___' ) ) {
+        //when customizing, the db_options property is refreshed each time the preview is refreshed in 'customize_preview_init'
+        $_db_options  = empty(CZR___::$db_options) ? czr_fn_cache_db_options() : CZR___::$db_options;
+    } else {
+        $_db_options = false === get_option( $option_group ) ? array() : (array)get_option( $option_group );
+    }
 
     //do we have to use the default ?
     $__options    = $_db_options;
     $_default_val = false;
-    if ( $use_default ) {
+    if ( $use_default && class_exists( 'CZR___' ) ) {
       $_defaults      = CZR___::$default_options;
       if ( isset($_defaults[$option_name]) )
         $_default_val = $_defaults[$option_name];

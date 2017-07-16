@@ -119,6 +119,25 @@
                           return state.text;// optgroup different than google font
                         return '<span class="tc-select2-font">' + state.text + '</span>';
                     }
+                });//$.when( selectFocusResults ).done()
+
+                //style select
+                api.when( 'tc_theme_options[tc_style]', function( _set ) {
+                      _set.bind( function() {
+                            api.previewer.save().always( function() {
+                                  if ( _wpCustomizeSettings && _wpCustomizeSettings.url && _wpCustomizeSettings.url.parent ) {
+                                        var url = [ _wpCustomizeSettings.url.parent ];
+                                        url.push( 'customize.php?&autofocus%5Bcontrol%5D=' + _set.id );
+                                        _.delay( function() {
+                                              window.location.href = url.join('');
+                                        }, 500 );
+                                  } else {
+                                        _.delay( function() {
+                                              window.parent.location.reload();
+                                        });
+                                  }
+                            });
+                      });
                 });
         });
 }) ( wp, jQuery );
