@@ -111,22 +111,7 @@ ol {
 }
 ul:not(.socials):not(.tags) {
   .tc-content-inner & {
-    list-style: square;
-    li { margin-left: $base-line-height; }
-  }
-
-  &.dash, &.dash ul {
-    list-style: none;
-    li::before {
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      margin-left:-$base-line-height;
-      width: $base-line-height;
-      height: 1px;
-      background: black;
-      margin-right: $base-line-height;
-    }
+    list-style: square inside;
   }
 }
 ol, ul {

@@ -289,12 +289,11 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $thumb_img           = '';
 
       if ( $has_thumb ) {
-        $thumb_model                   = czr_fn_get_thumbnail_model(
-            $thumb_size                = $this -> czr_fn_get_thumb_size_name( $section_cols ),
-            null, null, null,
-            $_filtered_thumb_size_name = $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
-            $_placehoder               = $this -> use_thumb_placeholder
-        );
+          $thumb_model                   = czr_fn_get_thumbnail_model( array(
+              'requested_size'              => $this -> czr_fn_get_thumb_size_name( $section_cols ),
+              'filtered_thumb_size_name'    => $this -> czr_fn_get_filtered_thumb_size_name( $section_cols ),
+              'placeholder'                 => $this -> use_thumb_placeholder
+          ));
 
         if ( ! isset( $thumb_model['tc_thumb'] ) )
           return;
@@ -395,16 +394,16 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * get the thumb size name to use according to the grid element width
   */
   function czr_fn_get_thumb_size_name( $section_cols ){
-    return ( 1 == $section_cols ) ? 'tc-grid-full' : 'tc-grid';
+    return ( 1 == $section_cols ) ? 'tc-ws-thumb' : 'tc-grid';
   }
 
 
   /*
   * get the thumb size name to set the proper inline style
-  * if needed, accordint to the grid element width
+  * if needed, according to the grid element width
   */
   function czr_fn_get_filtered_thumb_size_name( $section_cols ){
-    return ( 1 == $section_cols ) ? 'tc_grid_full_size' : 'tc_grid_size';
+    return ( 1 == $section_cols ) ? 'tc_ws_thumb_size' : 'tc_grid_size';
   }
 
 

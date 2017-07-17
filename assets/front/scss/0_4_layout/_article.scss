@@ -46,7 +46,7 @@
 }
 /* end regular headings */
 
-article .entry-content a:not(.btn) {
+article .entry-content a:not(.btn):not(.button):not(.remove) {
   text-decoration: underline;
 }
 .page__header {
