@@ -129,6 +129,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         public $tc_sq_thumb_size;
         public $tc_ws_thumb_size;
+        public $tc_ws_small_thumb_size;
 
         function __construct( $_args = array()) {
 
@@ -153,8 +154,13 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             //Default images sizes
             //Thumbs definition
-            $this -> tc_sq_thumb_size      = array( 'width' => 510 , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
-            $this -> tc_ws_thumb_size      = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb, replaces also tc_grid_full_size for modern style
+            $this -> tc_sq_thumb_size         = array( 'width' => 510 , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
+
+            //the width of 1170 kept for backward compatibility, the actual bootstrap4 container width is 1110
+            $this -> tc_ws_thumb_size         = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb, replaces also tc_grid_full_size for modern style
+
+            $this -> tc_ws_small_thumb_size  = array( 'width' => 400 , 'height' => 225, 'crop' => true ); //size name : tc-ws-small-thumb, used by wp as responsive image of tc-ws-thumb
+
         }
 
 

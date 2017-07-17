@@ -69,6 +69,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //Default images sizes
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
             $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+
+            //the width of 1170 kept for backward compatibility, the actual bootstrap4 container width is 1110
             $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
 
             $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
@@ -337,6 +339,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               //wide screen thumb (16:9) used in post list alternate for image and galleries post formats
               $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR___::$instance -> tc_ws_thumb_size );
               add_image_size( 'tc-ws-thumb' , $tc_ws_thumb_size['width'] , $tc_ws_thumb_size['height'], $tc_ws_thumb_size['crop'] );
+
+              //wide screen small thumb (16:9)
+              //used by wp as responsive image of tc-ws-thumb
+              $tc_ws_small_thumb_size = apply_filters( 'tc_ws_small_thumb_size' , CZR___::$instance -> tc_ws_small_thumb_size );
+              add_image_size( 'tc-ws-small-thumb' , $tc_ws_small_thumb_size['width'] , $tc_ws_small_thumb_size['height'], $tc_ws_small_thumb_size['crop'] );
 
             }
 
