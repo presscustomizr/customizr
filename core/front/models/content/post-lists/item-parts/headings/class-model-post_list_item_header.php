@@ -23,7 +23,8 @@ class CZR_post_list_item_header_model_class extends CZR_Model {
     $the_title       = $this -> the_title ? $this -> the_title : get_the_title();
     $element_class[] = ! empty( $the_title ) ? '' : 'no-title';
 
-    $this -> czr_fn_update( compact( 'element_class', 'the_title' ) );
+    $this -> czr_fn_set_property( 'element_class', $element_class );
+    $this -> czr_fn_set_property( 'the_title', $the_title );
   }
 
 }
