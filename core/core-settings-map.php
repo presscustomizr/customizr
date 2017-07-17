@@ -1310,31 +1310,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'type'          => 'checkbox',
                             'priority'      => 47
           ),
-          'tc_grid_in_blog'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 57
-          ),
-          'tc_grid_in_archive'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 58
-          ),
-          'tc_grid_in_search'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 60,
-                            'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
-          ),
+
           'tc_grid_shadow'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,

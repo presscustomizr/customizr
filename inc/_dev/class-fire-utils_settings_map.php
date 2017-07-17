@@ -833,6 +833,32 @@ class CZR_utils_settings_map {
                                             ),
                                     'priority'       => 20,
                   ),
+                  //classic grid
+                  'tc_grid_in_blog'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'checkbox',
+                                    'priority'      => 57
+                  ),
+                  'tc_grid_in_archive'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'checkbox',
+                                    'priority'      => 58
+                  ),
+                  'tc_grid_in_search'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'checkbox',
+                                    'priority'      => 60,
+                                    'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
+                  ),
                   /* Used only for the standard grid: Removed in c4 */
                   'tc_post_list_default_thumb'  => array(
                                     'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
