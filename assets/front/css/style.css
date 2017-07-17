@@ -538,15 +538,6 @@ img.v-centered {
   display: block;
   padding: 0;
   overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  -moz-perspective: 1000px;
-  perspective: 1000px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
 }
 
 [class*=czr__r-w]::before {
@@ -589,6 +580,15 @@ img.v-centered {
   /* this actually depends on the thumb size */
   margin: 8px auto;
   position: relative;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .czr__r-wTCT::before {
@@ -596,7 +596,7 @@ img.v-centered {
 }
 
 .czr__r-wTCT img {
-  position: absolute !important;
+  position: absolute;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -4054,26 +4054,7 @@ ol li:before {
 }
 
 .tc-content-inner ul:not(.socials):not(.tags) {
-  list-style: square;
-}
-
-.tc-content-inner ul:not(.socials):not(.tags) li {
-  margin-left: 1.25em;
-}
-
-ul:not(.socials):not(.tags).dash, ul:not(.socials):not(.tags).dash ul {
-  list-style: none;
-}
-
-ul:not(.socials):not(.tags).dash li::before, ul:not(.socials):not(.tags).dash ul li::before {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: -1.25em;
-  width: 1.25em;
-  height: 1px;
-  background: black;
-  margin-right: 1.25em;
+  list-style: square inside;
 }
 
 ol ol, ol ul, ul ol, ul ul {
@@ -4221,6 +4202,29 @@ dl dd {
 
 .format-image .icn-format:before {
   content: '\e803';
+}
+
+.format-aside .icn-format:before,
+.format-status .icn-format:before,
+.format-chat .icn-format:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.format-chat .icn-format:before {
+  content: '\f086';
+}
+
+.format-aside .icn-format:before {
+  content: '\f08d';
+}
+
+.format-status .icn-format:before {
+  content: '\f0e7';
 }
 
 .post-type__icon {
@@ -5018,35 +5022,13 @@ a.czr-format-link:hover::before {
   height: 380px;
 }
 
-.grid-container__alternate.semi-narrow {
-  /*.czr-r-sidebar & { padding: 0 $base-line-height*2 0 0  }
-  .czr-l-sidebar & { padding: 0 0 0 $base-line-height*2 }*/
-  /*.format-video .video-container  {
-    iframe {
-      height: 305px;
-    }
-  }*/
-}
-
 .grid-container__alternate.semi-narrow .tc-content {
   padding: 1.25em 15px;
   font-size: 90%;
 }
 
-.grid-container__alternate.semi-narrow .no-thumb .tc-content {
-  padding: 2.5em;
-}
-
 .grid-container__alternate.semi-narrow .format-audio .audio-container iframe {
   height: auto;
-}
-
-.grid-container__alternate.narrow .format-video .video-container iframe {
-  height: 305px;
-}
-
-.grid-container__alternate.narrow .format-audio .audio-container iframe {
-  height: 80px;
 }
 
 .grid-container__alternate .entry-quote, .grid-container__alternate .entry-link,
@@ -5373,7 +5355,7 @@ a.czr-format-link:hover::before {
 }
 
 /* end regular headings */
-article .entry-content a:not(.btn) {
+article .entry-content a:not(.btn):not(.button):not(.remove) {
   text-decoration: underline;
 }
 

@@ -17,6 +17,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     public $is_customizing;
     public static $tc_option_group;
 
+    public $tc_grid_full_size;
+
     function __construct () {
         //following R. Aliberti advise
         if( ! defined( 'CZR_IS_MODERN_STYLE' ) )            define( 'CZR_IS_MODERN_STYLE' , false );
@@ -81,6 +83,11 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
+
+        //Default images sizes
+        //grid full size only available for classic style
+        //replaced by tc_ws_thumb_size in modern style
+        $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
 
         //theme class groups instanciation
         //$this -> czr_fn__();
@@ -2219,6 +2226,9 @@ class CZR_utils_settings_map {
       ------------------------------------------------------------------------------------------------------*/
       function czr_fn_images_option_map( $_map, $get_default = null ) {
 
+            global $wp_version;
+
+
             if ( !is_array( $_map ) || empty( $_map ) ) {
                   return $_map;
             }
@@ -2247,6 +2257,25 @@ class CZR_utils_settings_map {
                   ),
 
             );
+
+            //add responsive image settings for wp >= 4.4
+            if ( version_compare( $wp_version, '4.4', '>=' ) ) {
+                  $_to_add[ 'tc_resp_thumbs_img' ] =  array(
+                                    'default'     => 0,
+                                    'control'     => 'CZR_controls' ,
+                                    'label'       => __( "Enable the WordPress responsive image feature for the theme's thumbnails" , "customizr" ),
+                                    'section'     => 'images_sec' ,
+                                    'type'        => 'checkbox' ,
+                                    'priority'    => 30,
+                  );
+
+                  //move the notice in the new control
+                  if ( isset( $_map[ 'tc_resp_slider_img' ] ) && isset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] ) ) {
+                        $_to_add[ 'tc_resp_thumbs_img' ][ 'notice' ] = $_map[ 'tc_resp_slider_img' ]['notice'];
+                        unset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] );
+                  }
+
+            }
 
             return array_merge( $_map, $_to_add );
       }

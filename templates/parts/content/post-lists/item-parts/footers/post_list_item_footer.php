@@ -7,35 +7,37 @@
  */
 ?>
 <footer class="entry-footer" <?php czr_fn_echo('element_attributes') ?>>
-  <?php if ( czr_fn_is_registered_or_possible('post_metas') && czr_fn_get_property( 'tag_list', 'post_metas' ) ) : ?>
-    <div class="post-tags entry-meta">
-      <ul class="tags">
-        <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
-      </ul>
-    </div>
-  <?php endif; ?>
-    <div class="post-info clearfix entry-meta">
+  <?php if ( czr_fn_is_registered_or_possible('post_metas') ) :?>
+    <?php if ( czr_fn_get_property( 'tag_list', 'post_metas' ) ) : ?>
+      <div class="post-tags entry-meta">
+        <ul class="tags">
+          <?php czr_fn_echo( 'tag_list', 'post_metas' ) ?>
+        </ul>
+      </div>
+    <?php endif; ?>
+      <div class="post-info clearfix entry-meta">
 
-      <div class="row flex-row">
-        <div class="col col-auto">
+        <div class="row flex-row">
+          <div class="col col-auto">
 
-        <?php
-          if ( $author = czr_fn_get_property( 'author', 'post_metas' ) )
-            echo $author;
-        ?>
-        </div>
-        <div class="col col-auto">
-          <div class="row">
           <?php
-            if ( $date = czr_fn_get_property( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
-              echo '<div class="col col-auto">' . $date . '</div>';
-
-            if ( $up_date = czr_fn_get_property( 'update_date', 'post_metas', array( 'permalink' => true ) ) )
-              echo '<div class="col col-auto">' . $up_date . '</div>';
-
+            if ( $author = czr_fn_get_property( 'author', 'post_metas' ) )
+              echo $author;
           ?>
+          </div>
+          <div class="col col-auto">
+            <div class="row">
+            <?php
+              if ( $date = czr_fn_get_property( 'publication_date', 'post_metas', array( 'permalink' => true ) ) )
+                echo '<div class="col col-auto">' . $date . '</div>';
+
+              if ( $up_date = czr_fn_get_property( 'update_date', 'post_metas', array( 'permalink' => true ) ) )
+                echo '<div class="col col-auto">' . $up_date . '</div>';
+
+            ?>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <?php endif; ?>
 </footer>

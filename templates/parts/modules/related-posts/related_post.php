@@ -12,6 +12,7 @@
           'model_args' => array(
               'element_class'         => czr_fn_get_property('media_cols'),
               'media_type'            => 'czr-thumb',
+              'thumb_size'            => 'tc-sq-thumb',
               'use_thumb_placeholder' => true
           )
         )

@@ -104,7 +104,6 @@ class CZR_main_content_model_class extends CZR_Model {
             $_hook                = array_key_exists( $_hook, $_compat_location_hook_map ) ? $_compat_location_hook_map[ $_hook ] : '__before_regular_heading_title';
 
 
-
             //let's prepare the thumb
             //register the model and the template for displaying the thumbnail at a specific hook
             $singular_thumb_model_id = czr_fn_register( array( 'template' => 'content/common/media',
@@ -116,26 +115,25 @@ class CZR_main_content_model_class extends CZR_Model {
                         'media_type'               => 'wp_thumb',
                         'has_permalink'            => false,
                         'has_lightbox'             => false,
-                        'element_class'            => 'tc-single-post-thumbnail-wrapper tc-singular-thumbnail-wrapper'
-                        //TODO: img size depending on the location?
-                        //consider that we decided to not have image sizes for the slider so...
+                        'element_class'            => 'tc-singular-thumbnail-wrapper',
+                        //slider full when __before_main_wrapper otherwise take the original one
+                        'thumb_size'               => '__before_main_wrapper' == $_hook ? 'slider-full' : null
                   ),
                   'controller' => 'singular_thumbnail'
             ) );
 
-            //control the vsibility
+            //control the visibility
             add_filter( "czr_do_render_view_{$singular_thumb_model_id}", array( $this, 'czr_fn_display_view_singular_thumbnail' ), 100, 2 );
 
             //css
-            //needed only when not __after_regular_heading_title
-            if ( '__after_regular_heading_title' != $_hook ) {
+            //needed only when not __after_regular_heading_title?
+            //if ( '__after_regular_heading_title' != $_hook ) {
 
-                  add_filter( 'czr_user_options_style'    , array( $this , 'czr_fn_write_thumbnail_inline_css') );
+            add_filter( 'czr_user_options_style'    , array( $this , 'czr_fn_write_thumbnail_inline_css') );
 
-            }
+            //}
 
       }
-
 
 
       /*
