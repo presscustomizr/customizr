@@ -46,10 +46,11 @@ $secondary-color-dark   : $grey;
   }
 
   #tc-sn .tc-sn-inner,
-  .header-navbars__wrapper {
+  .tc-header {
     background: $background-color;
   }
 
+  .header-navbars__wrapper,
   .topnav-navbars__container,
   .topnav-navbars__container [class*=navbar__wrapper],
   .mobile-nav__container,
