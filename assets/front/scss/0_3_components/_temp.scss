@@ -19,18 +19,11 @@
 embed, iframe, object, video {
   max-width: 100%;
 }
-/* Alternate and Masonry special formats patch*/
-.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe{
-  display: block;
-}
-
 
 
 
 .article-container .grid-container__alternate .full-image .entry-header,
-.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header,
-.article-container .grid-container__masonry .full-image .entry-header,
-.article-container .grid-container__masonry .full-image .entry-header{ position: relative;}
+.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header{ position: relative }
 
 
 .article-container .grid-container__alternate .entry-footer {
@@ -51,14 +44,6 @@ embed, iframe, object, video {
 }
 
 /* Some thumbnail container sizes ideas */
-
-.grid-container__masonry .full-image .tc-thumbnail img{
-    width: auto;
-    height: 100%;
-    max-width: none;
-
-}
-
 .full-image .tc-thumbnail {
   background: #B4B4B4 ;
 }

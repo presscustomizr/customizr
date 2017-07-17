@@ -605,11 +605,15 @@ a.czr-format-link {
       @include transition(all, 0.3s ease);
     }
     .entry-summary {
-      color: $white;
-      font-weight: 500;
-      position:relative;
-      @include opacity(0);
-      @include transition(all, 0.3s ease);
+      display: none;
+      //we do not display the entry-summary for the full-image posts types in list of posts:
+      //gallery, image formats
+
+      //color: $white;
+      //font-weight: 500;
+      //position:relative;
+      //@include opacity(0);
+      //@include transition(all, 0.3s ease);
     }
     .entry-title {
       max-width: 80%
@@ -625,32 +629,6 @@ a.czr-format-link {
     }
   }
 }
-
-.grid-container__masonry {
-  .post-type__icon {
-    background: transparent;
-    right: -3/2 * $base-line-height;
-    width: $base-line-height*3;
-    height:$base-line-height*3;
-    line-height: 4em;
-    border-radius: 0;
-    font-size: 1em;
-    top: -3/2 * $base-line-height;
-  }
-  .format-image { .post-type__icon {top:0;  right:0; } }
-  .grid__item { @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.025)); }
-  .tc-content  { @extend .small; }
-  .hover .grid__item {
-    @include box-shadow(0, 6px, 10px, rgba(0, 0, 0, 0.055) );
-    @include transform(translate(0, -4px));
-  }
-  .entry-footer {
-    margin-top:$base-line-height*2;
-    position: relative;
-  }
-  .format-audio .audio-container iframe { height: 80px; }
-}
-
 
 [class*=czr__r-w] .video-container,
 [class*=czr__r-w] .audio-container {
@@ -731,14 +709,6 @@ a.czr-format-link {
 
     //.avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
-
-  //.post-info.tax__container {
-  //  margin-top:$base-line-height;
-  // /* .tax__link {
-  //    overflow: hidden;
-  //    text-overflow: ellipsis;
-  //  }*/
-  //}
 
   &.split .tax__container {
     overflow:hidden;
