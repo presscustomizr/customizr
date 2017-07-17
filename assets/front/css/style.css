@@ -816,10 +816,11 @@ select:-webkit-autofill {
 }
 
 .header-skin-light #tc-sn .tc-sn-inner,
-.header-skin-light .header-navbars__wrapper {
+.header-skin-light .tc-header {
   background: #fff;
 }
 
+.header-skin-light .header-navbars__wrapper,
 .header-skin-light .topnav-navbars__container,
 .header-skin-light .topnav-navbars__container [class*=navbar__wrapper],
 .header-skin-light .mobile-nav__container,
@@ -1101,10 +1102,11 @@ select:-webkit-autofill {
 }
 
 .header-skin-dark #tc-sn .tc-sn-inner,
-.header-skin-dark .header-navbars__wrapper {
+.header-skin-dark .tc-header {
   background: #202020;
 }
 
+.header-skin-dark .header-navbars__wrapper,
 .header-skin-dark .topnav-navbars__container,
 .header-skin-dark .topnav-navbars__container [class*=navbar__wrapper],
 .header-skin-dark .mobile-nav__container,
@@ -1920,6 +1922,7 @@ select:-webkit-autofill {
 [class*=logo_right] .mobile-navbar__wrapper,
 [class*=logo_right] .primary-navbar__wrapper,
 [class*=logo_right] .branding__container,
+[class*=logo_right] .branding__container .flex-row,
 [class*=logo_right] .primary-nav__wrapper,
 [class*=logo_right] .nav__utils .utils {
   -webkit-box-direction: reverse !important;
