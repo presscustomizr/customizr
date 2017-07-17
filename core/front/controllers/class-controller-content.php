@@ -142,16 +142,15 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
     function czr_fn_display_view_post_metas() {
 
-      //disable in attachment context, attachment post metas have their own class
-      /*if ( is_attachment() )
-        $post_metas = false;*/
-
+      //As of 17/07/2017 post metas customizer control transport is 'refresh'
       //post metas are always insantiated in customizing context
-      if ( czr_fn_is_customizing() )
-        $post_metas = true;
+      //if ( czr_fn_is_customizing() )
+      //  $post_metas = true;
 
-      elseif ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) )
+      //elseif ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) )
+      if ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) )
         $post_metas = false;
+
 
       elseif ( is_singular() && ! is_page() && ! czr_fn_is_home() )
         $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) );
