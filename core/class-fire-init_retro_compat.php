@@ -12,59 +12,59 @@
 //only if user is logged in
 //then each routine has to decide what to do also depending on the user started before
 if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
-  $theme_options            = czr_fn_get_admin_option( CZR_THEME_OPTIONS );
-  $_to_update               = false;
+    $theme_options            = czr_fn_get_admin_option( CZR_THEME_OPTIONS );
+    $_to_update               = false;
 
-  if ( ! empty( $theme_options ) ) {
+    if ( ! empty( $theme_options ) ) {
 
-    $_new_options_w_socials              = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
+        $_new_options_w_socials              = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
 
-    if ( ! empty( $_new_options_w_socials ) ) {
-      $theme_options                     = $_new_options_w_socials;
-      $_to_update                        = true;
+        if ( ! empty( $_new_options_w_socials ) ) {
+            $theme_options                     = $_new_options_w_socials;
+            $_to_update                        = true;
+        }
+
+
+        //Custom css
+        $_new_options_w_custom_css           = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
+        if ( ! empty( $_new_options_w_custom_css ) ) {
+            $theme_options                     = $_new_options_w_custom_css;
+            $_to_update                        = true;
+        }
+
+        //classic style skin port
+        $_new_options_w_modern_skin          = czr_fn_maybe_move_classic_skin_to_modern( $theme_options );
+        if ( ! empty( $_new_options_w_modern_skin ) ) {
+            $theme_options                     = $_new_options_w_modern_skin;
+            $_to_update                        = true;
+        }
+
+        //classic style sticky header port
+        $_new_options_w_modern_sticky        = czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options );
+        if ( ! empty( $_new_options_w_modern_sticky ) ) {
+            $theme_options                     = $_new_options_w_modern_sticky;
+            $_to_update                        = true;
+        }
+
+        //classic style header wccart port
+        $_new_options_w_modern_header_wccart = czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options );
+        if ( ! empty( $_new_options_w_modern_header_wccart ) ) {
+            $theme_options                     = $_new_options_w_modern_header_wccart;
+            $_to_update                        = true;
+        }
+
+        //classic style header tagline port
+        $_new_options_w_modern_header_tagline = czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options );
+        if ( ! empty( $_new_options_w_modern_header_tagline ) ) {
+            $theme_options                     = $_new_options_w_modern_header_tagline;
+            $_to_update                        = true;
+        }
+
+        if ( $_to_update ) {
+            update_option( CZR_THEME_OPTIONS, $theme_options );
+        }
+
     }
-
-
-    //Custom css
-    $_new_options_w_custom_css           = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
-    if ( ! empty( $_new_options_w_custom_css ) ) {
-      $theme_options                     = $_new_options_w_custom_css;
-      $_to_update                        = true;
-    }
-
-    //classic style skin port
-    $_new_options_w_modern_skin          = czr_fn_maybe_move_classic_skin_to_modern( $theme_options );
-    if ( ! empty( $_new_options_w_modern_skin ) ) {
-      $theme_options                     = $_new_options_w_modern_skin;
-      $_to_update                        = true;
-    }
-
-    //classic style sticky header port
-    $_new_options_w_modern_sticky        = czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options );
-    if ( ! empty( $_new_options_w_modern_sticky ) ) {
-      $theme_options                     = $_new_options_w_modern_sticky;
-      $_to_update                        = true;
-    }
-
-    //classic style header wccart port
-    $_new_options_w_modern_header_wccart = czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options );
-    if ( ! empty( $_new_options_w_modern_header_wccart ) ) {
-      $theme_options                     = $_new_options_w_modern_header_wccart;
-      $_to_update                        = true;
-    }
-
-    //classic style header tagline port
-    $_new_options_w_modern_header_tagline = czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options );
-    if ( ! empty( $_new_options_w_modern_header_tagline ) ) {
-      $theme_options                     = $_new_options_w_modern_header_tagline;
-      $_to_update                        = true;
-    }
-
-    if ( $_to_update ) {
-      update_option( CZR_THEME_OPTIONS, $theme_options );
-    }
-
-  }
 }
 
 /*
@@ -204,68 +204,60 @@ function czr_fn_maybe_move_old_css_to_wp_embed( $theme_options ) {
 */
 function czr_fn_maybe_move_classic_skin_to_modern( $theme_options ) {
 
+    //nothing to do if already moved
+    if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_skin', $theme_options[ '__moved_opts' ] ) ) {
+          return array();
+    }
 
-      //nothing to do if already moved
-      if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_skin', $theme_options[ '__moved_opts' ] ) ) {
+    /*
+    * If classic skin not set or new skin color set just flag the classic skin ported and return the modified theme_options
+    * so that, next time, we don't do what follows
+    */
 
-            return array();
+    $_classic_skin_is_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
+    $_new_skin_is_set     = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
 
-      }
+    if ( ! $_classic_skin_is_set || $_new_skin_is_set ) {
 
-      /*
-      * If classic skin not set or new skin color set just flag the classic skin ported and return the modified theme_options
-      * so that, next time, we don't do what follows
-      */
+          //save the state in the options
+          $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+          $theme_options[ '__moved_opts' ][]  = 'classic_skin';
 
-      $_classic_skin_is_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
-      $_new_skin_is_set     = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
-
-      if ( !$_classic_skin_is_set || $_new_skin_is_set ) {
-
-            //save the state in the options
-            $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-            $theme_options[ '__moved_opts' ][]  = 'classic_skin';
-
-            return $theme_options;
-      }
+          return $theme_options;
+    }
 
 
-      //get skin color from classic skin value, which is in the form color_name.css
-      $_color_map    = CZR___::$instance -> skin_classic_color_map;
+    //get skin color from classic skin value, which is in the form color_name.css
+    $_color_map    = CZR___::$instance -> skin_classic_color_map;
 
-      $_active_skin  = $theme_options[ 'tc_skin' ];
+    $_active_skin  = $theme_options[ 'tc_skin' ];
 
-      //mapped skin case
-      if ( ( false != $_active_skin && isset( $_color_map[$_active_skin][0] ) ) ) {
+    //mapped skin case
+    if ( ( false != $_active_skin && isset( $_color_map[$_active_skin][0] ) ) ) {
 
-            $_skin_color   =  $_color_map[$_active_skin][0];
+          $_skin_color   =  $_color_map[$_active_skin][0];
 
-      } //treat custom skin color case: in the form custom-skin-{hex}.css
-      else {
-
-            $match         = 0;
-            $_skin_color   = preg_replace( '|^custom\-skin\-((?:[A-Fa-f0-9]{3}){1,2})\.css$|', '$1', $_active_skin, 1, $match );
-            $_skin_color   = $match ? "{#$_skin_color}" : false;
-
-      }
+    } //treat custom skin color case: in the form custom-skin-{hex}.css
+    else {
+          $match         = 0;
+          $_skin_color   = preg_replace( '|^custom\-skin\-((?:[A-Fa-f0-9]{3}){1,2})\.css$|', '$1', $_active_skin, 1, $match );
+          $_skin_color   = $match ? "{#$_skin_color}" : false;
+    }
 
 
-      if ( $_skin_color ) {
+    if ( $_skin_color ) {
+          $theme_options[ 'tc_skin_color' ] = "$_skin_color";
+    }
 
-            $theme_options[ 'tc_skin_color' ] = "$_skin_color";
+    /*
+    * Whether or not the skin color match is found we did what we had to
+    * so flag it and return $theme_options
+    */
+    //save the state in the options
+    $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+    $theme_options[ '__moved_opts' ][]  = 'classic_skin';
 
-      }
-
-      /*
-      * Whether or not the skin color match is found we did what we had to
-      * so flag it and return $theme_options
-      */
-      //save the state in the options
-      $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
-      $theme_options[ '__moved_opts' ][]  = 'classic_skin';
-
-      return $theme_options;
-
+    return $theme_options;
 }
 
 /*
@@ -286,7 +278,6 @@ function czr_fn_maybe_move_classic_skin_to_modern( $theme_options ) {
 * returns array() the new set of options or empty if there's nothing to move
 */
 function czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options ) {
-
     /*
     * When Memcached is active transients (object cached) might be not persistent
     * we cannot really rely on them :/
@@ -298,7 +289,6 @@ function czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options ) {
     if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_sticky_header', $theme_options[ '__moved_opts' ] ) ) {
         return array();
     }
-
 
     if ( isset( $theme_options[ 'tc_sticky_header' ] ) ) {
         $_classic_sticky_header = $theme_options[ 'tc_sticky_header' ];
@@ -321,9 +311,7 @@ function czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options ) {
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
     $theme_options[ '__moved_opts' ][]  = 'classic_sticky_header';
 
-
     return $theme_options;
-
 }
 
 /*
@@ -344,7 +332,6 @@ function czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options ) {
 * returns array() the new set of options or empty if there's nothing to move
 */
 function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
-
     /*
     * When Memcached is active transients (object cached) might be not persistent
     * we cannot really rely on them :/
@@ -356,13 +343,10 @@ function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
     if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_header_wccart', $theme_options[ '__moved_opts' ] ) ) {
         return array();
     }
-
     if ( isset( $theme_options[ 'tc_woocommerce_header_cart' ]) ) {
-
         $_classic_header_wc_cart = $theme_options[ 'tc_woocommerce_header_cart' ];
 
         //let's now port the classic option to the modern if classic wccart option set and modern not set
-
         if ( !isset( $theme_options[ 'tc_header_desktop_wc_cart' ] ) )
           $theme_options[ 'tc_header_desktop_wc_cart' ] = $_classic_header_wc_cart ? 'topbar' : 'none';
 
@@ -375,9 +359,7 @@ function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
     $theme_options[ '__moved_opts' ][]  = 'classic_header_wccart';
 
-
     return $theme_options;
-
 }
 
 /*
@@ -399,7 +381,6 @@ function czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options ) {
 * returns array() the new set of options or empty if there's nothing to move
 */
 function czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options ) {
-
     /*
     * When Memcached is active transients (object cached) might be not persistent
     * we cannot really rely on them :/
@@ -411,7 +392,6 @@ function czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options ) {
     if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'classic_header_tagline', $theme_options[ '__moved_opts' ] ) ) {
         return array();
     }
-
 
     if ( isset( $theme_options[ 'tc_show_tagline' ] ) ) {
         $_classic_header_tagline = $theme_options[ 'tc_show_tagline' ];
@@ -429,7 +409,5 @@ function czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options ) {
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
     $theme_options[ '__moved_opts' ][]  = 'classic_header_tagline';
 
-
     return $theme_options;
-
 }
