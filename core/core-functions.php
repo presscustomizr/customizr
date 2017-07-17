@@ -1219,6 +1219,10 @@ function czr_fn_slider_choices() {
 }
 
 
+
+/***************************************************************
+* CUSTOMIZER ACTIVE CALLBACKS
+***************************************************************/
 /**
 * active callback of section 'customizr_go_pro'
 * @return  bool
@@ -1226,6 +1230,7 @@ function czr_fn_slider_choices() {
 function czr_fn_pro_section_active_cb() {
     return ! czr_fn_isprevdem();
 }
+
 
 
 

@@ -75,7 +75,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       $this->czr_fn_customize_preview_localize();
 
       if ( 'modern' != $this->_style_version_suffix )
-        add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_old' ) );
+        add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_classic' ) );
     }
 
 
@@ -110,8 +110,10 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
 
 
-    //only for the old
-    function czr_fn_write_preview_style_old( $_css ) {
+    //only for the classic
+    //adds specific preview style for partial refresh to the user option style
+    //hook : 'tc_user_options_style'
+    function czr_fn_write_preview_style_classic( $_css ) {
       //specific preview style
       return sprintf( "%s\n%s",
           $_css,
@@ -179,7 +181,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
         wp_enqueue_script(
           'tc-customizer-controls-vdr',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
+          sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready.js', CZR_BASE_URL ),
           array( 'tc-customizer-controls' ),
           time(),
           true
@@ -262,7 +264,9 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'faviconOptionName' => 'tc_fav_upload',
 
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
-            'isRTL'           => is_rtl()
+            'isRTL'           => is_rtl(),
+            'isChildTheme'    => is_child_theme(),
+            'isModernStyle'   => czr_fn_is_modern_style()
           )
         )
       );

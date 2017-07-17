@@ -2100,6 +2100,7 @@ function czr_fn_style_option_map( $get_default = null ) {
                                   'modern'      => __( 'Modern' , 'customizr' ),
                                   'classic'     => __( 'Classical' , 'customizr' ),
                             ),
+                            'notice'      => ! is_child_theme() ? '' :  __( "Add the the following code to your wp-config.php file to switch between the classical and modern styles : <br/>define( 'CZR_MODERN_STYLE', true );.", 'customizr' )
           )
 
   );
