@@ -24,8 +24,9 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         public $tc_thumb_size;
         public $slider_full_size;
         public $slider_size;
-        public $tc_grid_full_size;
+
         public $tc_grid_size;
+
 
         //print comments template once : plugins compatibility
         public static $comments_rendered = false;
@@ -69,7 +70,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
             $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
             $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
-            $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
+
             $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
 
             //Main skin color array : array( link color, link hover color )
@@ -320,6 +321,24 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //slider boxed
             $slider_size      = apply_filters( 'tc_slider_size' , CZR___::$instance -> slider_size );
             add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
+
+
+            //thumbs defined only for the modern style
+            if ( CZR_IS_MODERN_STYLE ) {
+              /*
+              * Do we want these to be filterable?
+              * I don't think som as we want this aspect ratio to be preserved!
+              */
+              //square thumb used in post list alternate for standard posts and regular shape
+              //also used in related posts
+              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR___::$instance -> tc_sq_thumb_size );
+              add_image_size( 'tc-sq-thumb' , $tc_sq_thumb_size['width'] , $tc_sq_thumb_size['height'], $tc_sq_thumb_size['crop'] );
+
+              //wide screen thumb (16:9) used in post list alternate for image and galleries post formats
+              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR___::$instance -> tc_ws_thumb_size );
+              add_image_size( 'tc-ws-thumb' , $tc_ws_thumb_size['width'] , $tc_ws_thumb_size['height'], $tc_ws_thumb_size['crop'] );
+
+            }
 
             //add support for svg and svgz format in media upload
             add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
@@ -698,27 +717,30 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                   );
                   add_image_size( 'tc_rectangular_size' , $_rectangular_size['width'] , $_rectangular_size['height'], $_rectangular_size['crop'] );
                 }
+
+
+
+                /***********
+                *** GRID ***
+                ***********/
+                if ( isset( $_options['tc_grid_thumb_height'] ) ) {
+                    $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
+                }
+
+                $tc_grid_full_size     = $this -> tc_grid_full_size;
+                $tc_grid_size          = $this -> tc_grid_size;
+                $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
+
+                add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
+                add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
+
+                if ( $_user_grid_height != $tc_grid_full_size['height'] )
+                  add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
+                if ( $_user_grid_height != $tc_grid_size['height'] )
+                  add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
+
             }
 
-
-            /***********
-            *** GRID ***
-            ***********/
-            if ( isset( $_options['tc_grid_thumb_height'] ) ) {
-                $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
-
-            }
-            $tc_grid_full_size     = $this -> tc_grid_full_size;
-            $tc_grid_size          = $this -> tc_grid_size;
-            $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
-
-            add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
-            add_image_size( 'tc-grid', $tc_grid_size['width'], $_user_grid_height, $tc_grid_size['crop'] );
-
-            if ( $_user_grid_height != $tc_grid_full_size['height'] )
-              add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
-            if ( $_user_grid_height != $tc_grid_size['height'] )
-              add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
         }
 
 

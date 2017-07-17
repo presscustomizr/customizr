@@ -91,9 +91,6 @@ img.v-centered {
   display: block;
   padding: 0;
   overflow: hidden;
-  @include backface-visibility( hidden );
-  @include perspective( 1000px );
-  @include transform-style( preserve-3d );
 
   &::before {
     display: block;
@@ -138,9 +135,12 @@ img.v-centered {
   max-width: 270px; /* this actually depends on the thumb size */
   margin: 8px auto;
   position: relative;
+  @include backface-visibility( hidden );
+  @include perspective( 1000px );
+  @include transform-style( preserve-3d );
   img {
-    position: absolute !important;
-    @include transform( translate3d(0 ,0, 0) );
+    position: absolute;
+    @include transform( translate3d(0, 0, 0) );
     //fix holder transform in ie11
     &.tc-holder-img {
       -ms-transform: none;

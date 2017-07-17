@@ -13,20 +13,32 @@
 * @package Customizr
 * @since Customizr 1.0
 */
-function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , $_custom_thumb_id = null, $_enable_wp_responsive_imgs = true, $_filtered_thumb_size_name = null, $_placeholder = false ) {
+function czr_fn_get_thumbnail_model( $args = array() ) {
 
-    if ( ! czr_fn_has_thumb( $_post_id, $_custom_thumb_id ) ) {
-      if ( ! $_placeholder )
+    $defaults = array(
+      'requested_size'            => null,
+      'post_id'                   => null,
+      'custom_thumb_id'           => null,
+      'enable_wp_responsive_imgs' => true,
+      'filtered_thumb_size_name'  => null,
+      'placeholder'               => false
+    );
+
+    $args = wp_parse_args( $args, $defaults);
+    extract( $args );
+
+    if ( ! czr_fn_has_thumb( $post_id, $custom_thumb_id ) ) {
+      if ( ! $placeholder )
         return array();
       else
         return array( 'tc_thumb' => czr_fn_get_placeholder_thumb(), 'is_placeholder' => true );
     }
 
     $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
-    $_post_id                   = is_null($_post_id) ? get_the_ID() : $_post_id;
+    $post_id                    = is_null($post_id) ? get_the_ID() : $post_id;
 
-    $_filtered_thumb_size_name  = ! is_null( $_filtered_thumb_size_name ) ? $_filtered_thumb_size_name : 'tc_thumb_size';
-    $_filtered_thumb_size       = apply_filters( $_filtered_thumb_size_name, $_filtered_thumb_size_name ? CZR___::$instance -> $_filtered_thumb_size_name : null );
+    $filtered_thumb_size_name   = ! is_null( $filtered_thumb_size_name ) ? $filtered_thumb_size_name : 'tc_thumb_size';
+    $_filtered_thumb_size       = apply_filters( $filtered_thumb_size_name, $filtered_thumb_size_name ? CZR___::$instance -> $filtered_thumb_size_name : null );
 
     $_model                     = array();
     $_img_attr                  = array();
@@ -37,10 +49,10 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     //because this method is also called from the slider of posts which refers to the slider responsive image setting
     //limit this just for wp version >= 4.4
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
+      $enable_wp_responsive_imgs = is_null( $enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $enable_wp_responsive_imgs;
 
     //try to extract $_thumb_id and $_thumb_type
-    extract( czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
+    extract( czr_fn_get_thumb_info( $post_id, $custom_thumb_id ) );
     if ( ! isset($_thumb_id) || ! $_thumb_id || is_null($_thumb_id) )
       return array();
 
@@ -63,7 +75,7 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
     $_img_attr              = apply_filters( 'czr_post_thumbnail_img_attributes' , $_img_attr );
 
     //we might not want responsive images
-    if ( false === $_enable_wp_responsive_imgs ) {
+    if ( false === $enable_wp_responsive_imgs ) {
       //trick, will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
       //only when the passed srcset attr is not empty. This will avoid us to:
       //a) add a filter to get rid of already computed srcset
@@ -77,9 +89,9 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
       add_filter( 'wp_get_attachment_image_attributes', 'czr_fn_remove_srcset_attr' );
     }
     //get the thumb html
-    if ( is_null($_custom_thumb_id) && has_post_thumbnail( $_post_id ) )
+    if ( is_null($custom_thumb_id) && has_post_thumbnail( $post_id ) )
       //get_the_post_thumbnail( $post_id, $size, $attr )
-      $tc_thumb = get_the_post_thumbnail( $_post_id , $tc_thumb_size , $_img_attr);
+      $tc_thumb = get_the_post_thumbnail( $post_id , $tc_thumb_size , $_img_attr);
     else
       //wp_get_attachment_image( $attachment_id, $size, $icon, $attr )
       $tc_thumb = wp_get_attachment_image( $_thumb_id, $tc_thumb_size, false, $_img_attr );
@@ -90,15 +102,15 @@ function czr_fn_get_thumbnail_model( $requested_size = null, $_post_id = null , 
       $tc_thumb_width         = $image[1];
     }
     //used for smart load when enabled
-    $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $_post_id, $_custom_thumb_id );
+    $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $post_id, $custom_thumb_id );
 
     return apply_filters( 'czr_get_thumbnail_model',
       isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width", "_thumb_id" ) : array(),
-      $_post_id,
+      $post_id,
       $_thumb_id,
-      $_enable_wp_responsive_imgs
+      $enable_wp_responsive_imgs
     );
-  }
+}
 
 
 

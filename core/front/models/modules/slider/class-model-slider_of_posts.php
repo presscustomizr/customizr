@@ -12,7 +12,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'full' ) {
+  protected function czr_fn_get_the_slides( $slider_name_id, $img_size = 'slider-full' ) {
     return apply_filters( 'czr_the_slides', $this -> czr_fn_get_the_posts_slides( $slider_name_id, $img_size ) );
   }
 
@@ -227,21 +227,23 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
     $ID                     = $_post->ID;
 
     //attachment image
-    $thumb                  = czr_fn_get_thumbnail_model(
-      $img_size, //$requested_size
-      $ID, //post ID
-      null, //$_custom_thumb_id
-      isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null,//$_enable_wp_responsive_imgs
-      $_placeholder = false
-    );
+    $thumb                  = czr_fn_get_thumbnail_model( array(
+        'requested_size'            => $img_size,
+        'post_id'                   => $ID,
+        'enable_wp_responsive_imgs' => isset($args['slider_responsive_images']) ? $args['slider_responsive_images'] : null,
+        'placeholder'               => false
+    ));
+
 
     $slide_background       = isset($thumb) && isset($thumb['tc_thumb']) ? $thumb['tc_thumb'] : null;
 
     // we assign a default thumbnail if needed.
     if ( ! $slide_background ) {
-        if ( file_exists( CZR_BASE_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' ) ) {
-            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-slider-full tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
-                CZR_BASE_URL_CHILD . CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png'
+        $placeholder_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/img/slide-placeholder.png' );
+        if ( $placeholder_src ) {
+            $slide_background = sprintf('<img width="1200" height="500" src="%1$s" class="attachment-%2$s tc-thumb-type-thumb wp-post-image wp-post-image" alt="">',
+                $placeholder_src,
+                $img_size
             );
         } else {
             return false;

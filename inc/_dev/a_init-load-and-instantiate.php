@@ -17,6 +17,8 @@ if ( ! class_exists( 'CZR___' ) ) :
     public $is_customizing;
     public static $tc_option_group;
 
+    public $tc_grid_full_size;
+
     function __construct () {
         //following R. Aliberti advise
         if( ! defined( 'CZR_IS_MODERN_STYLE' ) )            define( 'CZR_IS_MODERN_STYLE' , false );
@@ -81,6 +83,11 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load' , array( $this , 'czr_fn_set_files_to_load' ) );
+
+        //Default images sizes
+        //grid full size only available for classic style
+        //replaced by tc_ws_thumb_size in modern style
+        $this -> tc_grid_full_size  = array( 'width' => 1170 , 'height' => 350, 'crop' => true ); //size name : tc-grid-full
 
         //theme class groups instanciation
         //$this -> czr_fn__();

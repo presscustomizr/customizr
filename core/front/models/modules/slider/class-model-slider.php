@@ -11,7 +11,7 @@ class CZR_slider_model_class extends CZR_Model {
   public $slider_name_id;
   public $layout;
 
-//  public $img_size;
+  public $img_size;
 
   public $left_control_class  = '';
   public $right_control_class = '';
@@ -44,17 +44,9 @@ class CZR_slider_model_class extends CZR_Model {
 
     $layout             = $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id );
 
-    /*
-    * We decided to not have slider image size anymore
-
-
-    $layout             = 0 == $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id ) ? 'boxed' : 'full';
-
     $img_size           = apply_filters( 'czr_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
-    $slides             = $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
-    */
-    $slides             = $this -> czr_fn_get_slides( $slider_name_id );
+    $slides             = $this -> czr_fn_get_slides( $slider_name_id, $img_size );
     //We need a way to silently fail when the model "decides" it doesn't have to be instantiated
     if ( empty( $slides ) ){
       $model['id'] = FALSE;
@@ -109,12 +101,12 @@ class CZR_slider_model_class extends CZR_Model {
   }
 
 
-  protected function czr_fn_get_slides( $slider_name_id/*, $img_size*/ ) {
+  protected function czr_fn_get_slides( $slider_name_id, $img_size ) {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
       return apply_filters( 'tc_default_slides', $this -> czr_fn_get_default_slides() );
     else
-      return $this -> czr_fn_get_the_slides( $slider_name_id );
+      return $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
   }
 
 
@@ -127,10 +119,12 @@ class CZR_slider_model_class extends CZR_Model {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_the_slides( $slider_name_id/*, /*$img_size*/) {
+  protected function czr_fn_get_the_slides( $slider_name_id, $img_size ) {
+
     //if not demo or tc_posts_slider, we get slides from options
     $all_sliders    = czr_fn_opt( 'tc_sliders');
     $saved_slides   = ( isset($all_sliders[$slider_name_id]) ) ? $all_sliders[$slider_name_id] : false;
+
     //if the slider not longer exists or exists but is empty, return false
     if ( ! $this -> czr_fn_slider_exists( $saved_slides) )
       return;
@@ -141,16 +135,21 @@ class CZR_slider_model_class extends CZR_Model {
     $_loop_index        = 0;
     //GENERATE SLIDES ARRAY
     foreach ( $saved_slides as $s ) {
+
       $slide_object           = get_post($s);
       //next loop if attachment does not exist anymore (has been deleted for example)
       if ( ! isset( $slide_object) )
         continue;
+
       $id                     = $slide_object -> ID;
-      $slide_model = $this -> czr_fn_get_single_slide_model( $slider_name_id, $_loop_index, $id/*, $img_size*/);
+      $slide_model            = $this -> czr_fn_get_single_slide_model( $slider_name_id, $_loop_index, $id, $img_size );
+
       if ( ! $slide_model )
         continue;
+
       $slides[$id] = $slide_model;
       $_loop_index++;
+
     }//end of slides loop
 
     //returns the slides or false if nothing
@@ -166,7 +165,7 @@ class CZR_slider_model_class extends CZR_Model {
   * @since Customizr 3.0.15
   *
   */
-  protected function czr_fn_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size = 'full' ) {
+  protected function czr_fn_get_single_slide_model( $slider_name_id, $_loop_index , $id , $img_size = 'slider-full' ) {
     //check if slider enabled for this attachment and go to next slide if not
     $slider_checked         = esc_attr(get_post_meta( $id, $key = 'slider_check_key' , $single = true ));
     if ( ! isset( $slider_checked) || $slider_checked != 1 )
