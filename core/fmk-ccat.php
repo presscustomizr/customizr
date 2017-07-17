@@ -1237,6 +1237,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'featured_pages',
               'search_full_page',
               'social_share',
+              'author_socials',
               'related_posts'
             ),
           );

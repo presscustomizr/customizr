@@ -168,7 +168,7 @@ blockquote p {
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__masonry .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -2170,15 +2170,8 @@ embed, iframe, object, video {
   max-width: 100%;
 }
 
-/* Alternate and Masonry special formats patch*/
-.format-video .sections-wrapper .video-container iframe, .format-audio .sections-wrapper .audio-container iframe {
-  display: block;
-}
-
 .article-container .grid-container__alternate .full-image .entry-header,
-.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header,
-.article-container .grid-container__masonry .full-image .entry-header,
-.article-container .grid-container__masonry .full-image .entry-header {
+.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header {
   position: relative;
 }
 
@@ -2198,12 +2191,6 @@ embed, iframe, object, video {
 }
 
 /* Some thumbnail container sizes ideas */
-.grid-container__masonry .full-image .tc-thumbnail img {
-  width: auto;
-  height: 100%;
-  max-width: none;
-}
-
 .full-image .tc-thumbnail {
   background: #B4B4B4;
 }
@@ -4939,17 +4926,7 @@ a.czr-format-link:hover::before {
 }
 
 [class*=grid-container__] .full-image .tc-content .entry-summary {
-  color: #fff;
-  font-weight: 500;
-  position: relative;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  -moz-opacity: 0;
-  -khtml-opacity: 0;
-  opacity: 0;
-  -webkit-transition: all 0.2s, 0.3s ease;
-  -o-transition: all 0.2s, 0.3s ease;
-  transition: all 0.2s, 0.3s ease;
+  display: none;
 }
 
 [class*=grid-container__] .full-image .tc-content .entry-title {
@@ -4965,46 +4942,6 @@ a.czr-format-link:hover::before {
 [class*=grid-container__] .full-image .tc-content .entry-footer .post-info {
   margin-top: 1.25em;
   padding-top: 0.625em;
-}
-
-.grid-container__masonry .post-type__icon {
-  background: transparent;
-  right: -1.875em;
-  width: 3.75em;
-  height: 3.75em;
-  line-height: 4em;
-  border-radius: 0;
-  font-size: 1em;
-  top: -1.875em;
-}
-
-.grid-container__masonry .format-image .post-type__icon {
-  top: 0;
-  right: 0;
-}
-
-.grid-container__masonry .grid__item {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
-}
-
-.grid-container__masonry .hover .grid__item {
-  -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
-  -moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.055);
-  -webkit-transform: translate(0, -4px);
-  -moz-transform: translate(0, -4px);
-  transform: translate(0, -4px);
-}
-
-.grid-container__masonry .entry-footer {
-  margin-top: 2.5em;
-  position: relative;
-}
-
-.grid-container__masonry .format-audio .audio-container iframe {
-  height: 80px;
 }
 
 [class*=czr__r-w] .video-container,
