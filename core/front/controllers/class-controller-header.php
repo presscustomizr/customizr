@@ -8,7 +8,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_topbar_wrapper() {
-      return 1 == esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
+      return 1 == esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
     }
 
     function czr_fn_display_view_topbar_social_block() {
@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) topbar is displayed
     function czr_fn_display_view_topbar_menu() {
-      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_opt( 'tc_header_topbar' ) );
+      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
     }
 
     //when the sidenav menu is allowed?

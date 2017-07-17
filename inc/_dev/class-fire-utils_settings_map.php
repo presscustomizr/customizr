@@ -157,6 +157,8 @@ class CZR_utils_settings_map {
                   'czr_fn_images_option_map',
                   //HEADER
                   'czr_fn_header_design_option_map',
+                  'czr_fn_header_desktop_option_map',
+                  'czr_fn_header_mobile_option_map',
                   'czr_fn_navigation_option_map',
                   //CONTENT
                   'czr_fn_post_metas_option_map',
@@ -479,26 +481,7 @@ class CZR_utils_settings_map {
 
             //to unset
             $_to_unset = array(
-                  'tc_header_topbar',
-
-                  'tc_header_desktop_search',
-                  'tc_header_mobile_search',
-
-                  'tc_header_desktop_wc_cart',
-                  'tc_header_mobile_wc_cart',
-
-                  'tc_header_desktop_tagline',
-                  'tc_header_mobile_tagline',
-
-                  'tc_header_desktop_to_stick',
-
-                  'tc_header_desktop_sticky',
-                  'tc_header_mobile_sticky',
-
-
-                  'tc_header_skin',
-
-                  'tc_header_mobile_menu_layout'
+                  'tc_header_skin'
             );
 
             foreach ( $_to_unset as $key ) {
@@ -595,6 +578,50 @@ class CZR_utils_settings_map {
             return array_merge( $_map, $_to_add );
 
       }
+
+
+      function czr_fn_header_desktop_option_map( $_map, $get_default = null ) {
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_header_desktop_topbar',
+                  'tc_header_desktop_search',
+                  'tc_header_desktop_wc_cart',
+                  'tc_header_desktop_tagline',
+                  'tc_header_desktop_to_stick',
+                  'tc_header_desktop_sticky',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+            return $_map;
+      }
+
+
+      function czr_fn_header_mobile_option_map( $_map, $get_default = null ) {
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_header_mobile_search',
+                  'tc_header_mobile_wc_cart',
+                  'tc_header_mobile_tagline',
+                  'tc_header_mobile_sticky',
+                  'tc_header_mobile_menu_layout'
+            );
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+            return $_map;
+      }
+
 
 
 
