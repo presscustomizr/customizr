@@ -8,7 +8,7 @@
  */
 ?>
 <?php if ( czr_fn_get_property( 'print_start_wrapper' ) ) : ?>
-<div class="grid-container__plain <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="grid-container grid-container__plain <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="plain__wrapper row">
 <?php endif ?>
     <article <?php czr_fn_echo( 'article_selectors' ) ?> >

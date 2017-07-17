@@ -10,7 +10,7 @@
 
 /* Are we at the start of the loop? in this case print a section wrapper element */
 if ( czr_fn_get_property( 'print_start_wrapper' ) ) : ?>
-<div id="<?php czr_fn_echo('element_id') ?>" class="grid-container__classic <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div id="<?php czr_fn_echo('element_id') ?>" class="grid-container grid-container__classic <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="grid__wrapper grid">
 <?php
 endif;
