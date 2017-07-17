@@ -27,6 +27,10 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     function czr_fn_display_view_social_share() {
       return false;
     }
+    /* Will be in pro */
+    function czr_fn_display_view_author_socials() {
+      return false;
+    }
 
     function czr_fn_display_view_main_slider() {
       if ( ! $this -> czr_fn_display_main_slider() )

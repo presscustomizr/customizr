@@ -16,7 +16,7 @@
       </a>
       <!-- fake need to have social links somewhere -->
       <?php
-        if ( czr_fn_is_registered_or_possible('author_socials') )
+        if ( czr_fn_is_registered_or_possible( 'author_socials' ) )
           czr_fn_render_template( 'modules/common/social_block', array( 'model_id' => 'author_socials' ) );
       ?>
     </figcaption>
