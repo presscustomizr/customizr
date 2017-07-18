@@ -21,6 +21,7 @@
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_wc_cart' ) ) :
 
           czr_fn_render_template( 'header/parts/woocommerce_cart', array(
+            'model_id'   => 'woocommerce_cart',
             'model_args' => array(
               'element_class' => array('nav__woocart', 'menu-item-has-children', 'czr-dropdown'),
             )
