@@ -432,7 +432,7 @@
       position: absolute;
       width: 100%;
       height: $height;
-      bottom: 0;
+      bottom: $height/2;
       left: 0;
       visibility: visible;
       background-color: $color;
@@ -447,7 +447,7 @@
     position: absolute;
     width: 100%;
     height: $height;
-    bottom: 0;
+    bottom: $height/2;
     left: 0;
     background-color: $color;
     visibility: hidden;
@@ -473,7 +473,7 @@
     position: absolute;
     width: 100%;
     height: $height;
-    bottom: 0;
+    bottom: $height/2;
     left: 0;
     visibility: hidden;
     @include transform( translate3d(0,0,0) scaleX(0) );
