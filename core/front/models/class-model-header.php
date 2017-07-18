@@ -64,8 +64,20 @@ class CZR_header_model_class extends CZR_Model {
 
     );
 
-    foreach ( $children as $id => $model ) {
-      CZR() -> collection -> czr_fn_register( $model );
+    //register a single woocommerce cart model in the header
+    //needs to be registered early to use 'woocommerce_add_to_cart_fragments'
+    if ( apply_filters( 'tc_woocommerce_options_enabled', false )  ) {
+
+        if ( 'none' != esc_attr( czr_fn_opt( 'tc_header_desktop_wc_cart' ) ) || esc_attr( czr_fn_opt( 'tc_header_mobile_wc_cart' ) ) ) {
+            $children[] =  array(
+              'model_class' => 'header/parts/woocommerce_cart',
+              'id'          => 'woocommerce_cart',
+          );
+        }
+    }
+
+    foreach ( $children as $child_model ) {
+        CZR() -> collection -> czr_fn_register( $child_model );
     }//foreach
   }//_construct
 
