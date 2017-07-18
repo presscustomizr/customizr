@@ -29,18 +29,48 @@ class CZR_main_content_model_class extends CZR_Model {
                   /* Need to be registered before rendering because of the custom style*/
                   array(
 
-                        'model_class' => 'modules/slider/slider',
-                        'id'          => 'main_slider'
+                        'template'    => 'modules/slider/slider',
+                        'id'          => 'main_slider',
+                        'hook'        => '__before_main_wrapper',
+                        'priority'    => 10
 
                   ),
                   //slider of posts
                   array(
 
                         'id'          => 'main_posts_slider',
-                        'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' )
-
+                        'model_class' => array( 'parent' => 'modules/slider/slider', 'name' => 'modules/slider/slider_of_posts' ),
+                        'template'    => 'modules/slider/slider',
+                        'hook'        => '__before_main_wrapper',
+                        'priority'    => 10
                   ),
+
                   /** end slider **/
+
+                  /*********************************************
+                  * Featured Pages
+                  *********************************************/
+                  /* contains the featured page item registration */
+                  array(
+                        'id'          => 'featured_pages',
+                        'template'    => 'modules/featured-pages/featured_pages',
+                        'hook'        => '__before_main_container',
+                        'priority'    => 10
+                  ),
+                  /** end featured pages **/
+
+                  /*********************************************
+                  * Breadcrumbs
+                  *********************************************/
+                  /* contains the featured page item registration */
+                  array(
+                        'id'          => 'breadcrumb',
+                        'template'    => 'modules/common/breadcrumb',
+                        'hook'        => '__before_main_container',
+                        'priority'    => 20
+                  ),
+                  /** end featured pages **/
+
 
                   /* Needs to access the czr_user_options_style */
                   /*********************************************
@@ -119,6 +149,7 @@ class CZR_main_content_model_class extends CZR_Model {
                         //slider full when __before_main_wrapper otherwise take the original one
                         'thumb_size'               => '__before_main_wrapper' == $_hook ? 'slider-full' : null
                   ),
+                  'priority'   => 15,
                   'controller' => 'singular_thumbnail'
             ) );
 

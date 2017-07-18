@@ -341,15 +341,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'id'             => 'header'
                   ),
 
-                  /*********************************************
-                  * Featured Pages
-                  *********************************************/
-                  /* contains the featured page item registration */
-                  array(
-                    'id'          => 'featured_pages',
-                    'model_class' => 'modules/featured-pages/featured_pages',
-                  ),
-                  /** end featured pages **/
 
                   /*********************************************
                   * CONTENT

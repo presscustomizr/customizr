@@ -1216,19 +1216,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     /* no archive headings */
     function czr_fn_mainwrapper_start() {
 
-      /* SLIDERS : standard or slider of posts */
-      if ( czr_fn_is_registered_or_possible('main_slider') ) {
-        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_slider') );
-      }
-
-      elseif( czr_fn_is_registered_or_possible( 'main_posts_slider' ) ) {
-        czr_fn_render_template( 'modules/slider/slider', array( 'model_id' => 'main_posts_slider') );
-      }
-
-
-      do_action('__before_main_wrapper');
-
+        // This hook is used to render the following elements(ordered by priorities) :
+        // slider
+        // singular thumbnail
+        do_action('__before_main_wrapper')
       ?>
+
       <div id="main-wrapper" class="section">
 
 
@@ -1254,19 +1247,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           </div>
         <?php endif ?>
 
-        <?php do_action('__before_main_container') ?>
-
         <?php
-          /* FEATURED PAGES */
-          if ( czr_fn_is_registered_or_possible( 'featured_pages' ) )
-            czr_fn_render_template( 'modules/featured-pages/featured_pages' );
+          /*
+          * Featured Pages | 10
+          * Breadcrumbs | 20
+          */
+          do_action('__before_main_container')
         ?>
-
-        <?php if ( czr_fn_is_registered_or_possible('breadcrumb') ) : ?>
-          <div class="container">
-            <?php czr_fn_render_template( 'modules/common/breadcrumb' ) ?>
-          </div>
-        <?php endif ?>
 
 
         <div class="<?php czr_fn_main_container_class() ?>" role="main">

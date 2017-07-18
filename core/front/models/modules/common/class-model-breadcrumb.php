@@ -15,7 +15,8 @@
 */
 
 class CZR_breadcrumb_model_class extends CZR_Model {
-  public $breadcrumb;
+  public  $breadcrumb;
+
   private $_args;
 
   function czr_fn_extend_params( $model = array() ) {
@@ -41,14 +42,15 @@ class CZR_breadcrumb_model_class extends CZR_Model {
 
   function _get_args() {
     $args =  array(
-      'container'  => 'nav' , // div, nav, p, etc.
-      'separator'  => !is_rtl() ? '&raquo;' : '&laquo;' ,
-      'before'     => false,
-      'after'      => false,
-      'front_page' => true,
-      'show_home'  => __( 'Home' , 'customizr' ),
-      'network'    => false,
-      'echo'       => false
+      'container'       => 'nav' , // div, nav, p, etc.
+      'container_class' => 'col-12',
+      'separator'       => !is_rtl() ? '&raquo;' : '&laquo;' ,
+      'before'          => false,
+      'after'           => false,
+      'front_page'      => true,
+      'show_home'       => __( 'Home' , 'customizr' ),
+      'network'         => false,
+      'echo'            => false,
     );
 
     /* Set up the default arguments for the breadcrumb. */
@@ -119,7 +121,7 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     if ( !empty( $trail ) && is_array( $trail ) ) {
 
       /* Open the breadcrumb trail containers. */
-      $breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumbs" itemprop="breadcrumb">';
+      $breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumbs ' . $args[ 'container_class' ] . '" itemprop="breadcrumb">';
 
       /* If $before was set, wrap it in a container. */
       $breadcrumb .= ( !empty( $args['before'] ) ? '<span class="trail-before">' . $args['before'] . '</span> ' : '' );
