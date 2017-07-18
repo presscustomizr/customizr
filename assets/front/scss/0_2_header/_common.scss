@@ -9,23 +9,28 @@
   .menu-item {
     margin: 0 $base-line-height-fixed/3;
     padding: 0;
-  }
-  .menu-item a {
-    padding: $base-line-height $base-line-height-fixed/3;
-    @include display-flex();
-      -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
 
+    a {
+      overflow: hidden;
+      & > span:first-of-type {
+        padding: $base-line-height 0;
+      }
 
+      padding: 0 $base-line-height-fixed/3;
+      @include display-flex();
+        -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
 
+    }
   }
 }
+
 .nav li:not(.mini_cart_item) > a {
   &:focus,
   &:hover {
@@ -34,17 +39,6 @@
 }
 .regular-nav.nav__menu {
     margin: 0 -1*$base-line-height-fixed/1.5;
-
-    //only first menu item in desktops
-    @include media-breakpoint-up(lg) { //min-width: 992px
-        > .menu-item > a {
-          padding: 0 $base-line-height-fixed/3;
-
-            & > span:first-of-type {
-                padding: $base-line-height 0;
-            }
-        }
-    }
 }
 
 
@@ -54,33 +48,27 @@
     position: relative;
 }
 
-/* Dropdown menu ul */
+/* Dropdown menu ul ( vertical menu like sidenav and mobile menu will override this)*/
 .czr-dropdown-menu {
-    display: block;
-
-    @include media-breakpoint-up(lg) { //min-width: 992px
-        & {
-            display: none;
-            max-width: 350px;
-            a {
-              white-space: normal;
-            }
-        }
+    display: none;
+    max-width: 50vw;
+    a {
+      white-space: normal;
     }
 }
+
 .dropdown-menu.czr-dropdown-menu {
     border-radius: 0;
     border:0;
     margin: 0;
     padding: 0;
     font-size: inherit;
-
     a {
         @extend .bold;
         position: relative;
         vertical-align: middle;
         white-space: nowrap;
-        padding: $base-line-height $base-line-height-fixed;
+        padding: 0 $base-line-height-fixed;
         margin: 0 -1/2*$base-line-height-fixed;
     }
 
@@ -93,7 +81,6 @@
     .dropdown-item {
         margin: 0;
 
-
         @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler i {
           @include transform( translateZ(0) rotate(-90deg));
           -ms-transform: rotate(-90deg);
@@ -105,12 +92,10 @@
           padding: 0 $base-line-height;
         }
 
+        @at-root .mobile-nav__menu .czr-dropdown > .dropdown-menu > .dropdown-item:last-of-type {
+          margin-bottom: $base-line-height/2;
+        }
 
-        @include media-breakpoint-down(md) {
-            @at-root .czr-dropdown > .dropdown-menu > .dropdown-item:last-of-type {
-              margin-bottom: $base-line-height/2;
-            }
-       }
     }
 
     .czr-dropdown-menu {
@@ -156,7 +141,7 @@
 .caret__dropdown-toggler {
   display: none;
 
-  @include media-breakpoint-up(lg) { //min-width:992px
+
     .regular-nav & {
       display: inline-block;
       width: 1.5em;
@@ -165,7 +150,7 @@
       cursor: pointer;
       position: relative;
     }
-  }
+
 }
 
 .caret__dropdown-toggler i {
