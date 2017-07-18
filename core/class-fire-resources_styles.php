@@ -66,6 +66,11 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                //Customizr main stylesheet
                wp_enqueue_style( 'customizr-common'         , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
 
+               //Modular scale resopnd
+               //Customizr main stylesheet
+               if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {
+                  wp_enqueue_style( 'customizr-ms-respond'     , czr_fn_get_theme_file_url( "{$_path}style-ms{$_ext}"), array(), $_ver, 'all' );
+               }
 
                //Customizer user defined style options : the custom CSS is written with a high priority here
                wp_add_inline_style( 'customizr-common'      , apply_filters( 'czr_user_options_style' , '' ) );
