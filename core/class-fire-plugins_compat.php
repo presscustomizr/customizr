@@ -860,10 +860,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
       }
 
-      function czr_fn_woocommerce_wc_cart_enabled() {
-        return 1 == esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) );
-      }
-
       //when in the woocommerce shop page use the "shop" id
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
 
