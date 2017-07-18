@@ -281,8 +281,9 @@ if ( ! class_exists( 'CZR_controls' ) ) :
     */
     public function to_json() {
       parent::to_json();
-      if ( is_array( $this->ubq_section ) && array_key_exists( 'section', $this->ubq_section ) )
+      if ( is_array( $this->ubq_section ) && array_key_exists( 'section', $this->ubq_section ) ) {
         $this->json['ubq_section'] = $this->ubq_section;
+      }
     }
   }//end of class
 endif;

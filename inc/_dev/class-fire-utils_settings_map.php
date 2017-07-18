@@ -206,7 +206,7 @@ class CZR_utils_settings_map {
                   'tc_sticky_logo_upload'  => array(
                                     'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
                                     'label'     =>  __( 'Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
-                                    'section'   =>  'logo_sec' ,
+                                    'section'   =>  'title_tagline' ,
                                     'sanitize_callback' => 'czr_fn_sanitize_number',
                                     'priority'  => 20,
                             //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
@@ -224,7 +224,7 @@ class CZR_utils_settings_map {
                                     'control'   =>  'CZR_Customize_Upload_Control' ,
                                     'label'       => __( 'Favicon Upload (supported formats : .ico, .png, .gif)' , 'customizr' ),
                                     'title'     => __( 'FAVICON' , 'customizr'),
-                                    'section'   =>  'logo_sec' ,
+                                    'section'   =>  'title_tagline' ,
                                     'type'      => 'tc_upload',
                                     'sanitize_callback' => 'czr_fn_sanitize_number',
                                     'priority'  => 25,
@@ -297,7 +297,7 @@ class CZR_utils_settings_map {
                                 'default'       => 1,
                                 'control'     => 'CZR_controls' ,
                                 'label'         => __( "Fade effect on link hover" , 'customizr' ),
-                                'section'       => 'links_sec' ,
+                                'section'       => 'formatting_sec' ,
                                 'type'          => 'checkbox' ,
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'

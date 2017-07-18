@@ -81,6 +81,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
+      if ( class_exists('CZR_Customize_Sections') )
+        $manager -> register_panel_type( 'CZR_Customize_Sections');
+
       if ( !CZR_IS_PRO && class_exists('CZR_Customize_Section_Pro') ) {
         $manager -> register_section_type( 'CZR_Customize_Section_Pro');
       }
@@ -166,7 +169,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
         }
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
-        $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
+        $wp_customize -> get_control( 'site_icon' )->section = 'title_tagline';
       }
       //end ALTER SITE ICON
 
@@ -302,8 +305,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'theme_supports',
                 'type',
                 'active_callback',
+
                 'pro_text',
-                'pro_url'
+                'pro_url',
+
+                'ubq_panel'
           ),
           'settings' => array(
                 'default'     =>  null,

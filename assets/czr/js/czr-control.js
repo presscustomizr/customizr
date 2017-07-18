@@ -120,6 +120,36 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
             });
       }
 
+
+      /*****************************************************************************
+      * OBSERVE UBIQUE CONTROL'S PANELS EXPANSION
+      *****************************************************************************/
+      if ( 'function' === typeof api.Panel ) {
+            api.section.bind( 'add', function( _sec ) {
+                  if ( _sec.params.ubq_panel && _sec.params.ubq_panel.panel ) {
+                        _sec.params.original_priority = _sec.params.priority;
+                        _sec.params.original_panel  = _sec.params.panel;
+
+                        api.panel.when( _sec.params.ubq_panel.panel, function( _panel_instance ) {
+                                _panel_instance.expanded.bind( function( expanded ) {
+                                      if ( expanded ) {
+                                            if ( _sec.params.ubq_panel.priority ) {
+                                                  _sec.priority( _sec.params.ubq_panel.priority );
+                                            }
+                                            _sec.panel( _sec.params.ubq_panel.panel );
+                                      }
+                                      else {
+                                            _sec.priority( _sec.params.original_priority );
+                                            _sec.panel( _sec.params.original_panel );
+                                      }
+                                });
+
+                        } );
+                  }
+            });
+      }
+
+
       /*****************************************************************************
       * CLOSE THE MOD OPTION PANEL ( if exists ) ON : section change, panel change, skope switch
       *****************************************************************************/
@@ -10750,7 +10780,10 @@ $.extend( CZRLayoutSelectMths , {
 
             /* CHECKBOXES */
             api.czrSetupCheckbox = function( controlId, refresh ) {
-                  $('input[type=checkbox]', api.control(controlId).container ).each( function() {
+                  var _ctrl = api.control( controlId );
+                  $('input[type=checkbox]', _ctrl.container ).each( function() {
+                        if ( 'tc_font_customizer_settings' == _ctrl.params.section )
+                          return;
                         if ( 0 === $(this).val() || '0' == $(this).val() || 'off' == $(this).val() || _.isEmpty($(this).val() ) ) {
                               $(this).prop('checked', false);
                         } else {
@@ -10783,8 +10816,11 @@ $.extend( CZRLayoutSelectMths , {
 
             /* NUMBER INPUT */
             api.czrSetupStepper = function( controlId, refresh ) {
-                  $('input[type="number"]', api.control(controlId).container ).each( function() {
-                        $(this).stepper();
+                  var _ctrl = api.control( controlId );
+                  $('input[type="number"]', _ctrl.container ).each( function() {
+                        if ( 'tc_font_customizer_settings' != _ctrl.params.section ) {
+                            $(this).stepper();
+                        }
                   });
             };//api.czrSetupStepper()
 

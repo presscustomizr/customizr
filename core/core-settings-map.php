@@ -86,14 +86,14 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
   $_new_map = array();
   $_settings_groups = array(
     //GLOBAL SETTINGS
-    'czr_fn_logo_favicon_option_map',
+    'czr_fn_site_identity_option_map',
     'czr_fn_skin_option_map',
     'czr_fn_fonts_option_map',
     'czr_fn_social_option_map',
 
-    'czr_fn_links_option_map',
+    'czr_fn_formatting_option_map',
     'czr_fn_images_option_map',
-
+    'czr_fn_sliders_option_map',
     'czr_fn_authors_option_map',
     'czr_fn_smoothscroll_option_map',
 
@@ -113,7 +113,6 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_single_post_option_map',
     'czr_fn_single_page_option_map',
     'czr_fn_gallery_option_map', //No gallery options in modern style ( v4+ ) as of now
-    'czr_fn_paragraph_option_map',
     'czr_fn_post_navigation_option_map',
 
     //SIDEBARS
@@ -158,16 +157,16 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
 ******************************************************************************************************/
 
 /*-----------------------------------------------------------------------------------------------------
-                               LOGO & FAVICON SECTION
+                              SITE IDENTITY LOGO & FAVICON SECTION
 ------------------------------------------------------------------------------------------------------*/
-function czr_fn_logo_favicon_option_map( $get_default = null ) {
+function czr_fn_site_identity_option_map( $get_default = null ) {
   global $wp_version;
   return array(
           'tc_logo_upload'  => array(
                             'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',
                             'label'     =>  __( 'Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)' , 'customizr' ),
                             'title'     => __( 'LOGO' , 'customizr'),
-                            'section'   => 'logo_sec',
+                            'section'   => 'title_tagline',
                             'sanitize_callback' => 'czr_fn_sanitize_number',
                             'priority'  => 10,
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
@@ -185,7 +184,7 @@ function czr_fn_logo_favicon_option_map( $get_default = null ) {
                             'default'   =>  1,
                             'label'     =>  __( 'Force logo dimensions to max-width:250px and max-height:100px' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
-                            'section'   =>  'logo_sec' ,
+                            'section'   =>  'title_tagline' ,
                             'type'        => 'checkbox' ,
                             'priority'  => 15,
                             'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
@@ -202,13 +201,14 @@ function czr_fn_skin_option_map( $get_default = null ) {
             'tc_skin_color' => array(
                               'default'     => '#5a5a5a',
                               'control'     => 'WP_Customize_Color_Control',
-                              'label'       => __( 'Skin color' , 'customizr' ),
+                              'label'       => __( 'Primary color' , 'customizr' ),
                               'section'     => 'skins_sec',
                               'type'        =>  'color' ,
                               'priority'    => 30,
                               'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
                               'sanitize_js_callback' => 'maybe_hash_hex_color',
-                              'transport'   => 'refresh' //postMessage
+                              'transport'   => 'refresh', //postMessage
+                              'notice'    => __( "This is the color used to style your links and other clickable elements of the theme like buttons and slider arrows." , 'customizr')
             ),
       );//end of skin options
 }
@@ -268,15 +268,15 @@ function czr_fn_social_option_map( $get_default = null ) {
 
 
 /*-----------------------------------------------------------------------------------------------------
-                               LINKS SECTION
+                               FORMATTING SECTION
 ------------------------------------------------------------------------------------------------------*/
-function czr_fn_links_option_map( $get_default = null ) {
+function czr_fn_formatting_option_map( $get_default = null ) {
   return array(
           'tc_link_scroll'  =>  array(
                             'default'       => 0,
                             'control'   => 'CZR_controls' ,
                             'label'       => __( 'Smooth scroll on click' , 'customizr' ),
-                            'section'     => 'links_sec' ,
+                            'section'     => 'formatting_sec' ,
                             'type'        => 'checkbox' ,
                             'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.', 'customizr') )
           ),
@@ -284,9 +284,8 @@ function czr_fn_links_option_map( $get_default = null ) {
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
                             'label'         => __( "Display an icon next to external links" , "customizr" ),
-                            'section'       => 'links_sec' ,
+                            'section'       => 'formatting_sec' ,
                             'type'          => 'checkbox' ,
-                            'priority'      => 30,
                             'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                             'transport'     => 'postMessage'
           ),
@@ -295,15 +294,60 @@ function czr_fn_links_option_map( $get_default = null ) {
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,
                             'label'         => __( "Open external links in a new tab" , "customizr" ),
-                            'section'       => 'links_sec' ,
+                            'section'       => 'formatting_sec' ,
                             'type'          => 'checkbox' ,
-                            'priority'      => 40,
                             'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                             'transport'     => 'postMessage'
+          ),
+          'tc_enable_dropcap'  =>  array(
+                            'default'       => 0,
+                            'title'         => __( 'Drop caps', 'customizr'),
+                            'label'         => __('Enable drop caps' , 'customizr'),
+                            'control'       => 'CZR_controls' ,
+                            'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'checkbox',
+          ),
+          'tc_dropcap_minwords'  =>  array(
+                            'default'       => 50,
+                            'sanitize_callback' => 'czr_fn_sanitize_number',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
+                            'notice'         => __( "(number of words)" , "customizr" ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'number' ,
+                            'step'          => 1,
+                            'min'           => 1,
+          ),
+          'tc_dropcap_design' => array(
+                            'default'     => 'skin-shadow',
+                            'control'     => 'CZR_controls',
+                            'label'       => __( 'Drop cap style' , 'customizr' ),
+                            'section'     => 'formatting_sec',
+                            'type'      =>  'select' ,
+                            'choices'     => array(
+                                    'skin-shadow'    => __( "Primary theme color with a shadow" , 'customizr' ),
+                                    'simple-black'   => __( 'Simple black' , 'customizr' ),
+                            ),
+          ),
+          'tc_post_dropcap'  =>  array(
+                            'default'       => 0,
+                            'label'         => __('Enable drop caps in posts' , 'customizr'),
+                            'control'       => 'CZR_controls' ,
+                            'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'checkbox',
+          ),
+          'tc_page_dropcap'  =>  array(
+                            'default'       => 0,
+                            'label'         => __('Enable drop caps in pages' , 'customizr'),
+                            'control'       => 'CZR_controls' ,
+                            'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'checkbox',
           )
-  );//end of links options
+  );
 }
-
 
 
 
@@ -340,16 +384,6 @@ function czr_fn_images_option_map( $get_default = null ) {
                                 __( "Open the description page of the Regenerate thumbnails plugin" , 'customizr')
                             )
           ),
-          'tc_slider_parallax'  =>  array(
-                            'default'       => 1,
-                            'control'   => 'CZR_controls' ,
-                            'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
-                            'section'     => 'images_sec' ,
-                            'type'        => 'checkbox' ,
-                            'priority'    => 10,
-                            'notice'    => __( 'If enabled, your slides scroll slower than the page (parallax effect).' , 'customizr' ),
-          ),
-
           'tc_center_slider_img'  =>  array(
                             'default'       => 1,
                             'control'   => 'CZR_controls' ,
@@ -386,6 +420,23 @@ function czr_fn_images_option_map( $get_default = null ) {
   return $_image_options;
 }
 
+
+/*-----------------------------------------------------------------------------------------------------
+                              SLIDERS SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_sliders_option_map( $get_default = null ) {
+  return array(
+          'tc_slider_parallax'  =>  array(
+                            'default'       => 1,
+                            'control'   => 'CZR_controls' ,
+                            'label'       => __( "Sliders : use parallax scrolling" , "customizr" ),
+                            'section'     => 'sliders_sec' ,
+                            'type'        => 'checkbox' ,
+                            'priority'    => 10,
+                            'notice'    => __( 'If enabled, your slides scroll slower than the page (parallax effect).' , 'customizr' ),
+          )
+  );
+}
 
 
 
@@ -540,9 +591,9 @@ function czr_fn_header_desktop_option_map() {
                           'priority'      => 20,
                           'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                           'ubq_section'   => array(
-                                              'section' => 'socials_sec',
-                                              'priority' => '1'
-                                           )
+                              'section' => 'socials_sec',
+                              'priority' => '1'
+                           )
         ),
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
@@ -658,7 +709,7 @@ function czr_fn_header_mobile_option_map() {
                           'priority'      => 28,
                           'ubq_section'   => array(
                                               'section' => 'title_tagline',
-                                              'priority' => '30'
+                                              'priority' => '10'
                                            )
         ),
 
@@ -1688,68 +1739,6 @@ function czr_fn_gallery_option_map( $get_default = null ){
 
 
 /*-----------------------------------------------------------------------------------------------------
-                               PARAGRAPHS SECTION
-------------------------------------------------------------------------------------------------------*/
-function czr_fn_paragraph_option_map( $get_default = null ){
-  return array(
-          'tc_enable_dropcap'  =>  array(
-                            'default'       => 0,
-                            'title'         => __( 'Drop caps', 'customizr'),
-                            'label'         => __('Enable drop caps' , 'customizr'),
-                            'control'       => 'CZR_controls' ,
-                            'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
-                            'section'       => 'paragraphs_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 1
-          ),
-          'tc_dropcap_minwords'  =>  array(
-                            'default'       => 50,
-                            'sanitize_callback' => 'czr_fn_sanitize_number',
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
-                            'notice'         => __( "(number of words)" , "customizr" ),
-                            'section'       => 'paragraphs_sec' ,
-                            'type'          => 'number' ,
-                            'step'          => 1,
-                            'min'           => 1,
-                            'priority'      => 10
-          ),
-          'tc_dropcap_design' => array(
-                            'default'     => 'skin-shadow',
-                            'control'     => 'CZR_controls',
-                            'label'       => __( 'Drop cap style' , 'customizr' ),
-                            'section'     => 'paragraphs_sec',
-                            'type'      =>  'select' ,
-                            'choices'     => array(
-                                    'skin-shadow'    => __( "Skin color with shadow" , 'customizr' ),
-                                    'simple-black'   => __( 'Simple black' , 'customizr' ),
-                            ),
-                            'priority'    => 20,
-          ),
-          'tc_post_dropcap'  =>  array(
-                            'default'       => 0,
-                            'label'         => __('Enable drop caps in posts' , 'customizr'),
-                            'control'       => 'CZR_controls' ,
-                            'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
-                            'section'       => 'paragraphs_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 30
-          ),
-          'tc_page_dropcap'  =>  array(
-                            'default'       => 0,
-                            'label'         => __('Enable drop caps in pages' , 'customizr'),
-                            'control'       => 'CZR_controls' ,
-                            'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
-                            'section'       => 'paragraphs_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 40
-          )
-  );
-}
-
-
-
-/*-----------------------------------------------------------------------------------------------------
                                COMMENTS SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_comment_option_map( $get_default = null ) {
@@ -2101,7 +2090,7 @@ function czr_fn_popul_panels_map( $panel_map ) {
               'priority'       => 10,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Global settings' , 'customizr' ),
-              'description'    => __( "Global settings for the Customizr theme :skin, socials, links..." , 'customizr' ),
+              'description'    => __( "Global settings for the Customizr theme : primary color, socials, links..." , 'customizr' ),
               'type'           => 'czr_panel'
     ),
     'tc-header-panel' => array(
@@ -2233,57 +2222,64 @@ function czr_fn_popul_section_map( $_sections ) {
     /*---------------------------------------------------------------------------------------------
     -> PANEL : GLOBAL SETTINGS
     ----------------------------------------------------------------------------------------------*/
+    //the title_tagline section holds the default WP setting for the Site Title and the Tagline
+    //This section has been previously removed from its initial location and is added back here
     'title_tagline'         => array(
-                        'title'    => __( 'Site Title & Tagline', 'customizr' ),
+                        'title'    => __( 'Site Identity : Logo, Title, Tagline and Site Icon', 'customizr' ),
                         'priority' => $_is_wp_version_before_4_0 ? 7 : 0,
-                        'panel'   => 'tc-global-panel'
-    ),
-    'logo_sec'            => array(
-                        'title'     =>  __( 'Logo &amp; Favicon' , 'customizr' ),
-                        'priority'    =>  $_is_wp_version_before_4_0 ? 8 : 5,
-                        'description' =>  __( 'Set up logo and favicon options' , 'customizr' ),
-                        'panel'   => 'tc-global-panel'
+                        'panel'   => 'tc-global-panel',
+                        'section_class' => 'CZR_Customize_Sections',
+                        'ubq_panel'   => array(
+                            'panel' => 'tc-header-panel',
+                            'priority' => '1'
+                        )
     ),
     'skins_sec'         => array(
-                        'title'     =>  __( 'Skin' , 'customizr' ),
+                        'title'     =>  __( 'Primary color of the theme' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 1 : 7,
-                        'description' =>  __( 'Select a skin for Customizr' , 'customizr' ),
+                        'description' =>  __( 'Pick a primary color for the theme' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
     'fonts_sec'          => array(
                         'title'     =>  __( 'Fonts' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 40 : 10,
-                        'description' =>  __( 'Set up the font global settings' , 'customizr' ),
+                        //'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
     'socials_sec'        => array(
                         'title'     =>  __( 'Social links' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 9 : 20,
-                        'description' =>  __( 'Set up your social links' , 'customizr' ),
+                        //'description' =>  __( 'Set up your social links' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
-    'links_sec'         => array(
-                        'title'     =>  __( 'Links style and effects' , 'customizr' ),
+    'formatting_sec'         => array(
+                        'title'     =>  __( 'Formatting : links, paragraphs ...' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 22 : 30,
-                        'description' =>  __( 'Various links settings' , 'customizr' ),
+                        //'description' =>  __( 'Various links settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
     'images_sec'         => array(
                         'title'     =>  __( 'Image settings' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 95 : 50,
-                        'description' =>  __( 'Various images settings' , 'customizr' ),
+                        //'description' =>  __( 'Various images settings' , 'customizr' ),
+                        'panel'   => 'tc-global-panel'
+    ),
+    'sliders_sec'               => array(
+                        'title'     =>  __( 'Sliders options' , 'customizr' ),
+                        'priority'    =>  $_is_wp_version_before_4_0 ? 96 : 60,
+                        //'description' =>  __( 'Post authors settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
     'authors_sec'               => array(
                         'title'     =>  __( 'Authors' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 220 : 70,
-                        'description' =>  __( 'Post authors settings' , 'customizr' ),
+                        //'description' =>  __( 'Post authors settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
     'smoothscroll_sec'          => array(
                         'title'     =>  __( 'Smooth Scroll' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 97 : 75,
-                        'description' =>  __( 'Smooth Scroll settings' , 'customizr' ),
+                        //'description' =>  __( 'Smooth Scroll settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
 
@@ -2365,12 +2361,6 @@ function czr_fn_popul_section_map( $_sections ) {
                         'title'     =>  __( 'Galleries' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 20 : 55,
                         'description' =>  __( 'Set up gallery options' , 'customizr' ),
-                        'panel'   => 'tc-content-panel'
-    ),
-    'paragraphs_sec'        => array(
-                        'title'     =>  __( 'Paragraphs' , 'customizr' ),
-                        'priority'    =>  $_is_wp_version_before_4_0 ? 20 : 55,
-                        'description' =>  __( 'Set up paragraphs options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'comments_sec'          => array(

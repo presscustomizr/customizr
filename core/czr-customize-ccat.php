@@ -81,6 +81,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
+      if ( class_exists('CZR_Customize_Sections') )
+        $manager -> register_panel_type( 'CZR_Customize_Sections');
+
       if ( !CZR_IS_PRO && class_exists('CZR_Customize_Section_Pro') ) {
         $manager -> register_section_type( 'CZR_Customize_Section_Pro');
       }
@@ -166,7 +169,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           $wp_customize -> remove_control( "{$tc_option_group}[tc_fav_upload]" );
         }
         //note : the setting is kept because used in the customizer js api to handle the transition between Customizr favicon to WP site icon.
-        $wp_customize -> get_control( 'site_icon' )->section = 'logo_sec';
+        $wp_customize -> get_control( 'site_icon' )->section = 'title_tagline';
       }
       //end ALTER SITE ICON
 
@@ -302,8 +305,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'theme_supports',
                 'type',
                 'active_callback',
+
                 'pro_text',
-                'pro_url'
+                'pro_url',
+
+                'ubq_panel'
           ),
           'settings' => array(
                 'default'     =>  null,
@@ -1299,8 +1305,9 @@ if ( ! class_exists( 'CZR_controls' ) ) :
     */
     public function to_json() {
       parent::to_json();
-      if ( is_array( $this->ubq_section ) && array_key_exists( 'section', $this->ubq_section ) )
+      if ( is_array( $this->ubq_section ) && array_key_exists( 'section', $this->ubq_section ) ) {
         $this->json['ubq_section'] = $this->ubq_section;
+      }
     }
   }//end of class
 endif;
@@ -1742,6 +1749,92 @@ if ( ! class_exists( 'CZR_Customize_Panels') ) :
   }
 endif;
 ?><?php
+/**
+ * Base customizer section.
+ */
+class CZR_Customize_Sections extends WP_Customize_Section {
+
+    /**
+     * The type of customize section being rendered.
+     *
+     * @var    string
+     */
+    public $type = 'czr-customize-sections';
+
+    public $ubq_panel;
+
+
+    /**
+     * Add custom parameters to pass to the JS via JSON.
+     *
+     * @return void
+     * @override
+     */
+    public function json() {
+      $json = parent::json();
+      if ( is_array( $this->ubq_panel ) && array_key_exists( 'panel', $this->ubq_panel ) ) {
+        $json['ubq_panel'] = $this->ubq_panel;
+      }
+      return $json;
+    }
+}
+?>
+<?php
+/**
+ * Pro customizer section.
+ * highly based on
+ * https://github.com/justintadlock/trt-customizer-pro/blob/master/example-1/section-pro.php
+ */
+class CZR_Customize_Section_Pro extends WP_Customize_Section {
+
+    /**
+     * The type of customize section being rendered.
+     *
+     * @var    string
+     */
+    public $type ='czr-customize-section-pro';
+
+    /**
+     * Custom button text to output.
+     *
+     * @var    string
+     */
+
+    public $pro_text = '';
+    /**
+     *
+     * @var    string
+     */
+    public $pro_url = '';
+
+
+    /**
+     * Add custom parameters to pass to the JS via JSON.
+     *
+     * @return void
+     * @override
+     */
+    public function json() {
+      $json = parent::json();
+      $json['pro_text'] = $this->pro_text;
+      $json['pro_url']  = esc_url( $this->pro_url );
+      return $json;
+    }
+
+    //overrides the default template
+    protected function render_template() { ?>
+      <li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
+          <h3 class="accordion-section-title">
+            {{ data.title }}
+            <# if ( data.pro_text && data.pro_url ) { #>
+              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
+            <# } #>
+          </h3>
+        </li>
+    <?php }
+}
+?>
+<?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1803,60 +1896,6 @@ if ( ! class_exists( 'CZR_Customize_Setting') ) :
   }
 endif;
 ?><?php
-/**
- * Pro customizer section.
- * highly based on
- * https://github.com/justintadlock/trt-customizer-pro/blob/master/example-1/section-pro.php
- */
-class CZR_Customize_Section_Pro extends WP_Customize_Section {
-
-    /**
-     * The type of customize section being rendered.
-     *
-     * @var    string
-     */
-    public $type ='czr-customize-section-pro';
-
-    /**
-     * Custom button text to output.
-     *
-     * @var    string
-     */
-
-    public $pro_text = '';
-    /**
-     *
-     * @var    string
-     */
-    public $pro_url = '';
-
-
-    /**
-     * Add custom parameters to pass to the JS via JSON.
-     *
-     * @return void
-     * @override
-     */
-    public function json() {
-      $json = parent::json();
-      $json['pro_text'] = $this->pro_text;
-      $json['pro_url']  = esc_url( $this->pro_url );
-      return $json;
-    }
-
-    //overrides the default template
-    protected function render_template() { ?>
-      <li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
-          <h3 class="accordion-section-title">
-            {{ data.title }}
-            <# if ( data.pro_text && data.pro_url ) { #>
-              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
-            <# } #>
-          </h3>
-        </li>
-    <?php }
-}
-?><?php
 add_filter('czr_js_customizer_control_params', 'czr_fn_add_social_module_data');
 
 
@@ -1872,7 +1911,8 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?><?php
+?>
+<?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
