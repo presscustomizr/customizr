@@ -237,11 +237,7 @@ section[class^="post-"] {
   .post-next a {
     right: $base-line-height;
   }
-  a:hover i {
-    // SKINNED
-    //color: $skin-link-color-hover;
-    //color:$black;
-  }
+
   .meta-nav {
     display: -webkit-box;
     display: -webkit-flex;
@@ -250,12 +246,10 @@ section[class^="post-"] {
   }
   .meta-nav-title {
     display:none;
-    // SKINNED
-    //color: $black;
-    //color: $skin-link-color-hover;
+
   }
 
-  @include media-breakpoint-up(lg) {/*lg*/
+  @include media-breakpoint-up(lg) {
       .meta-nav-title { display: inline-block;}
       .post-prev a {
         left: $base-line-height;

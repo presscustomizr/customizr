@@ -42,13 +42,13 @@
 }
 
 
-/* Dropdowns */
+// Dropdowns
 //menu items with children
 .czr-dropdown {
     position: relative;
 }
 
-/* Dropdown menu ul ( vertical menu like sidenav and mobile menu will override this)*/
+// Dropdown menu ul ( vertical menu like sidenav and mobile menu will override this)
 .czr-dropdown-menu {
     display: none;
     max-width: 50vw;
@@ -111,7 +111,7 @@
 }
 
 
-/* dropdown-item (level > 1) hover effect */
+// dropdown-item (level > 1) hover effect
 .dropdown-item {
   position: relative;
 }
@@ -137,7 +137,7 @@
     }
 }
 
-/* Caret */
+// Caret
 .caret__dropdown-toggler {
   display: none;
 

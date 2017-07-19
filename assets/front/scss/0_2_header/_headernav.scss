@@ -58,7 +58,7 @@
   font-style: italic;
 }
 
-/* This styles the utils in desktop and mobiles */
+// This styles the utils in desktop and mobiles
 .nav__utils {
     @extend .display-flex;
     flex-shrink: 0;
@@ -78,7 +78,7 @@
         @extend .display-flex;
     }
 
-    /* utils li a centered aligned */
+    // utils li a centered aligned
     @at-root .woocart.cart-contents, .desktop_search__link {
         @extend .utils_links;
     }
@@ -91,7 +91,7 @@
     }
 }
 
-/* Mobile stuff */
+// Mobile stuff
 .mobile-search__container {
     width: 100%;
 }
@@ -114,7 +114,7 @@
 
 
 .primary-navbar__wrapper {
-  /* ensure the navbar elements do not wrap in a new line */
+  // ensure the navbar elements do not wrap in a new line
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -219,9 +219,9 @@
 
 
 
-/*
-* Revert header (not topbar) elements order when logo right
-*/
+//
+// Revert header (not topbar) elements order when logo right
+//
 [class*=logo_right] {
   .mobile-navbar__wrapper,
   .primary-navbar__wrapper,

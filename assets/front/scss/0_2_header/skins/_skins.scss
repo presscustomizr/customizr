@@ -21,14 +21,14 @@ $secondary-color-dark   : $grey;
       $secondary-color : $grey-dark;
   }
 
-  /* overlays skin */
+  // overlays skin
   .overlay {
     background: rgba($background-color, 0.98);
     color: $primary-color;
     a { color: $secondary-color-light; }
     a:hover { color: $primary-color; }
   }
-  /* end overlays skins */
+  // end overlays skins
 
 
   #tc-sn {
@@ -146,7 +146,7 @@ $secondary-color-dark   : $grey;
 
   [class*=nav__menu] {
 
-    & li > a, .caret__dropdown-toggler {
+    & li > a {
       color: $primary-color;
     }
 
@@ -154,21 +154,24 @@ $secondary-color-dark   : $grey;
       @include underlined ($primary-color, 2px);
       .topbar-nav__nav & { @include underlined ($primary-color, 1px); }
     }
+
     & li.show:not(.dropdown-item) > a > span:first-of-type,
     &  li:not(.dropdown-item).current-active > a > span:first-of-type,
     &  li.current-menu-item > a > span:first-of-type {
-      color: $secondary-color;
       @include underlined_highlight_before($primary-color);
     }
-    & li.show {
-      .caret__dropdown-toggler__span:after,
-      .caret__dropdown-toggler__span:before  {
-        background: $secondary-color-dark;
-      }
+
+    & li > a:hover,
+    & li.show:not(.dropdown-item) > a,
+    &  li:not(.dropdown-item).current-active > a,
+    &  li.current-menu-item > a {
+      color: $secondary-color;
     }
+
+
     .dropdown-menu a { color: $primary-color; }
     .dropdown-item  a { color: $secondary-color; }
-    .dropdown-item:hover a { color: $primary-color; }
+    .dropdown-item > a:hover { color: $primary-color; }
 
   }
 
@@ -208,7 +211,7 @@ $secondary-color-dark   : $grey;
   }
 
 }
-/* end mixin */
+// end mixin
 
 .header-skin-light  {
   @include headerskin($white, $black);
