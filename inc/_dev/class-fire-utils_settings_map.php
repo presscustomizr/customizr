@@ -152,6 +152,8 @@ class CZR_utils_settings_map {
                   //GLOBAL SETTINGS
                   'czr_fn_logo_favicon_option_map',
                   'czr_fn_skin_option_map',
+                  'czr_fn_links_option_map',
+                  'czr_fn_formatting_option_map',
                   'czr_fn_images_option_map',
                   //HEADER
                   'czr_fn_header_design_option_map',
@@ -276,6 +278,111 @@ class CZR_utils_settings_map {
                               'type'      => 'checkbox',
                               'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
                   ),
+            );
+
+            return array_merge( $_map, $_to_add );
+      }
+
+
+      /*-----------------------------------------------------------------------------------------------------
+                                     LINKS SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_links_option_map( $_map, $get_default = null ) {
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            $_to_add = array(
+                  'tc_link_hover_effect'  =>  array(
+                                'default'       => 1,
+                                'control'     => 'CZR_controls' ,
+                                'label'         => __( "Fade effect on link hover" , 'customizr' ),
+                                'section'       => 'formatting_sec' ,
+                                'type'          => 'checkbox' ,
+                                'priority'      => 20,
+                                'transport'   => 'postMessage'
+                  ),
+            );
+
+            return array_merge( $_map, $_to_add );
+      }
+
+
+
+      function czr_fn_formatting_option_map( $_map, $get_default = null ) {
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            $_to_add = array(
+                  'tc_ext_link_style'  =>  array(
+                                    'default'       => 0,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Display an icon next to external links" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
+                                    'transport'     => 'postMessage'
+                  ),
+
+                  'tc_ext_link_target'  =>  array(
+                                    'default'       => 0,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Open external links in a new tab" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'checkbox' ,
+                                    'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
+                                    'transport'     => 'postMessage'
+                  ),
+                  'tc_enable_dropcap'  =>  array(
+                                    'default'       => 0,
+                                    'title'         => __( 'Drop caps', 'customizr'),
+                                    'label'         => __('Enable drop caps' , 'customizr'),
+                                    'control'       => 'CZR_controls' ,
+                                    'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'checkbox',
+                  ),
+                  'tc_dropcap_minwords'  =>  array(
+                                    'default'       => 50,
+                                    'sanitize_callback' => 'czr_fn_sanitize_number',
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( "Apply a drop cap when the paragraph includes at least the following number of words :" , "customizr" ),
+                                    'notice'         => __( "(number of words)" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'number' ,
+                                    'step'          => 1,
+                                    'min'           => 1,
+                  ),
+                  'tc_dropcap_design' => array(
+                                    'default'     => 'skin-shadow',
+                                    'control'     => 'CZR_controls',
+                                    'label'       => __( 'Drop cap style' , 'customizr' ),
+                                    'section'     => 'formatting_sec',
+                                    'type'      =>  'select' ,
+                                    'choices'     => array(
+                                            'skin-shadow'    => __( "Primary theme color with a shadow" , 'customizr' ),
+                                            'simple-black'   => __( 'Simple black' , 'customizr' ),
+                                    ),
+                  ),
+                  'tc_post_dropcap'  =>  array(
+                                    'default'       => 0,
+                                    'label'         => __('Enable drop caps in posts' , 'customizr'),
+                                    'control'       => 'CZR_controls' ,
+                                    'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'checkbox',
+                  ),
+                  'tc_page_dropcap'  =>  array(
+                                    'default'       => 0,
+                                    'label'         => __('Enable drop caps in pages' , 'customizr'),
+                                    'control'       => 'CZR_controls' ,
+                                    'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
+                                    'section'       => 'formatting_sec' ,
+                                    'type'          => 'checkbox',
+                  )
             );
 
             return array_merge( $_map, $_to_add );
