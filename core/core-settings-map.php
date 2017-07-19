@@ -517,7 +517,18 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
                             'priority'      => 10
           ),
-
+          'tc_header_title_underline'  => array(
+                            'default' =>  1,
+                            'label'     =>  __( 'Underline the site title in the header' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'header_layout_sec' ,
+                            'type'        => 'checkbox' ,
+                            'priority'  => 15,
+                            'ubq_section'   => array(
+                                'section' => 'title_tagline',
+                                'priority' => '5'
+                            )
+          ),
           'tc_sticky_shrink_title_logo'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,

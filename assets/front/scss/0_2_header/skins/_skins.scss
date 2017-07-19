@@ -128,7 +128,7 @@ $secondary-color-dark   : $grey;
   .branding {
     a {
       color:$primary-color;
-      span::after {
+      &.czr-underline span::after {
         content: "";
         position: absolute;
         width: 33%;
