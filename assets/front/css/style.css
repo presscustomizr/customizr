@@ -179,14 +179,9 @@ blockquote p {
   width: 1em;
   margin-right: .2em;
   text-align: center;
-  /* opacity: .8; */
-  /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
   margin-left: .2em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -196,122 +191,98 @@ blockquote p {
   content: '\e800';
 }
 
-/* '' */
 .icn-shoppingcart:before {
   content: '\e801';
 }
 
-/* '' */
 .icn-search:before {
   content: '\e802';
 }
 
-/* '' */
 .icn-grid-empty:before {
   content: '\e803';
 }
 
-/* '' */
 .icn-grid-filled:before {
   content: '\e804';
 }
 
-/* '' */
 .icn-plus:before {
   content: '\e805';
 }
 
-/* '' */
 .icn-quote:before {
   content: '\e808';
 }
 
-/* '' */
 .icn-expand-thin:before {
   content: '\e809';
 }
 
-/* '' */
 .icn-plus-thin:before {
   content: '\e80a';
 }
 
-/* '' */
 .icn-close-thin:before {
   content: '\e80b';
 }
 
-/* '' */
 .icn-arrow-l:before {
   content: '\e80d';
 }
 
-/* '' */
 .icn-arrow-r:before {
   content: '\e80e';
 }
 
-/* '' */
 .icn-down-small:before {
   content: '\e80f';
 }
 
-/* '' */
 .icn-up-small:before {
   content: '\e810';
 }
 
-/* '' */
 .icn-text:before {
   content: '\e811';
 }
 
-/* '' */
 .icn-link:before {
   content: '\e812';
 }
 
-/* '' */
 .icn-left-open-big:before {
   content: '\e813';
 }
 
-/* '' */
 .icn-right-open-big:before {
   content: '\e814';
 }
 
-/* '' */
 .icn-expand-small:before {
   content: '\e815';
 }
 
-/* '' */
 .icn-expand:before {
   content: '\e816';
 }
 
-/* '' */
 .icn-edit:before {
   content: '\e817';
 }
 
-/* '' */
 .icn-arrow-r-long:before {
   content: '\e819';
 }
 
-/* '' */
 .icn-arrow-l-long:before {
   content: '\e81a';
 }
 
-/* '' */
 .icn-article:before {
   content: '\e81c';
 }
 
-/* '' */
 .bg-transparent {
   background: transparent;
 }
@@ -665,12 +636,6 @@ select:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 3000px #eceeef inset !important;
 }
 
-/* end mixin */
-.header-skin-light {
-  /* overlays skin */
-  /* end overlays skins */
-}
-
 .header-skin-light .overlay {
   background: rgba(255, 255, 255, 0.98);
   color: #202020;
@@ -806,7 +771,7 @@ select:-webkit-autofill {
   color: #202020;
 }
 
-.header-skin-light .branding a span::after {
+.header-skin-light .branding a.czr-underline span::after {
   content: "";
   position: absolute;
   width: 33%;
@@ -824,7 +789,7 @@ select:-webkit-autofill {
   color: #202020;
 }
 
-.header-skin-light [class*=nav__menu] li > a, .header-skin-light [class*=nav__menu] .caret__dropdown-toggler {
+.header-skin-light [class*=nav__menu] li > a {
   color: #202020;
 }
 
@@ -886,12 +851,6 @@ select:-webkit-autofill {
   transform: translate3d(0, 0, 0) scaleX(1);
 }
 
-.header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a > span:first-of-type,
-.header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a > span:first-of-type,
-.header-skin-light [class*=nav__menu] li.current-menu-item > a > span:first-of-type {
-  color: #777;
-}
-
 .header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a > span:first-of-type::before,
 .header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a > span:first-of-type::before,
 .header-skin-light [class*=nav__menu] li.current-menu-item > a > span:first-of-type::before {
@@ -902,9 +861,11 @@ select:-webkit-autofill {
   transform: translate3d(0, 0, 0) scaleX(1);
 }
 
-.header-skin-light [class*=nav__menu] li.show .caret__dropdown-toggler__span:after,
-.header-skin-light [class*=nav__menu] li.show .caret__dropdown-toggler__span:before {
-  background: #B4B4B4;
+.header-skin-light [class*=nav__menu] li > a:hover,
+.header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a,
+.header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a,
+.header-skin-light [class*=nav__menu] li.current-menu-item > a {
+  color: #777;
 }
 
 .header-skin-light [class*=nav__menu] .dropdown-menu a {
@@ -915,7 +876,7 @@ select:-webkit-autofill {
   color: #777;
 }
 
-.header-skin-light [class*=nav__menu] .dropdown-item:hover a {
+.header-skin-light [class*=nav__menu] .dropdown-item > a:hover {
   color: #202020;
 }
 
@@ -950,11 +911,6 @@ select:-webkit-autofill {
 .header-skin-light header .czr-form .form-control, .header-skin-light .overlay .czr-form .form-control {
   color: #202020;
   border-color: #202020;
-}
-
-.header-skin-dark {
-  /* overlays skin */
-  /* end overlays skins */
 }
 
 .header-skin-dark .overlay {
@@ -1092,7 +1048,7 @@ select:-webkit-autofill {
   color: #fff;
 }
 
-.header-skin-dark .branding a span::after {
+.header-skin-dark .branding a.czr-underline span::after {
   content: "";
   position: absolute;
   width: 33%;
@@ -1110,7 +1066,7 @@ select:-webkit-autofill {
   color: #fff;
 }
 
-.header-skin-dark [class*=nav__menu] li > a, .header-skin-dark [class*=nav__menu] .caret__dropdown-toggler {
+.header-skin-dark [class*=nav__menu] li > a {
   color: #fff;
 }
 
@@ -1172,12 +1128,6 @@ select:-webkit-autofill {
   transform: translate3d(0, 0, 0) scaleX(1);
 }
 
-.header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a > span:first-of-type,
-.header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a > span:first-of-type,
-.header-skin-dark [class*=nav__menu] li.current-menu-item > a > span:first-of-type {
-  color: #eceeef;
-}
-
 .header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a > span:first-of-type::before,
 .header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a > span:first-of-type::before,
 .header-skin-dark [class*=nav__menu] li.current-menu-item > a > span:first-of-type::before {
@@ -1188,9 +1138,11 @@ select:-webkit-autofill {
   transform: translate3d(0, 0, 0) scaleX(1);
 }
 
-.header-skin-dark [class*=nav__menu] li.show .caret__dropdown-toggler__span:after,
-.header-skin-dark [class*=nav__menu] li.show .caret__dropdown-toggler__span:before {
-  background: #B4B4B4;
+.header-skin-dark [class*=nav__menu] li > a:hover,
+.header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a,
+.header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a,
+.header-skin-dark [class*=nav__menu] li.current-menu-item > a {
+  color: #eceeef;
 }
 
 .header-skin-dark [class*=nav__menu] .dropdown-menu a {
@@ -1201,7 +1153,7 @@ select:-webkit-autofill {
   color: #eceeef;
 }
 
-.header-skin-dark [class*=nav__menu] .dropdown-item:hover a {
+.header-skin-dark [class*=nav__menu] .dropdown-item > a:hover {
   color: #fff;
 }
 
@@ -1272,12 +1224,10 @@ select:-webkit-autofill {
   margin: 0 -12.5px;
 }
 
-/* Dropdowns */
 .czr-dropdown {
   position: relative;
 }
 
-/* Dropdown menu ul ( vertical menu like sidenav and mobile menu will override this)*/
 .czr-dropdown-menu {
   display: none;
   max-width: 50vw;
@@ -1340,7 +1290,6 @@ select:-webkit-autofill {
   top: 55%;
 }
 
-/* dropdown-item (level > 1) hover effect */
 .dropdown-item {
   position: relative;
 }
@@ -1363,7 +1312,6 @@ select:-webkit-autofill {
   width: 100%;
 }
 
-/* Caret */
 .caret__dropdown-toggler {
   display: none;
 }
@@ -1645,10 +1593,8 @@ select:-webkit-autofill {
   font-style: italic;
 }
 
-/* This styles the utils in desktop and mobiles */
 .nav__utils {
   flex-shrink: 0;
-  /* utils li a centered aligned */
 }
 
 .nav__utils .utils {
@@ -1673,7 +1619,6 @@ select:-webkit-autofill {
   top: 0;
 }
 
-/* Mobile stuff */
 .mobile-search__container {
   width: 100%;
 }
@@ -1695,7 +1640,6 @@ select:-webkit-autofill {
 * HEADER LAYOUTS
 */
 .primary-navbar__wrapper {
-  /* ensure the navbar elements do not wrap in a new line */
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -1792,9 +1736,6 @@ select:-webkit-autofill {
   flex-grow: 0;
 }
 
-/*
-* Revert header (not topbar) elements order when logo right
-*/
 [class*=logo_right] .mobile-navbar__wrapper,
 [class*=logo_right] .primary-navbar__wrapper,
 [class*=logo_right] .branding__container,
@@ -1930,9 +1871,6 @@ select:-webkit-autofill {
   width: 350px;
   max-width: 100%;
   padding: 0;
-  /* test */
-  /* test */
-  /* Animation stuff */
 }
 
 #tc-sn .side-nav__nav, #tc-sn .tc-sn-inner {
@@ -3207,6 +3145,14 @@ svg.czr-svg-placeholder {
   z-index: 2;
 }
 
+.czr-link-hover-underline-off .comment-author a::before, .czr-link-hover-underline-off .comment-link::before,
+.czr-link-hover-underline-off .czr-format-link::before,
+.czr-link-hover-underline-off .widget__wrapper a:hover::before, .czr-link-hover-underline-off .widget-area a:hover::before,
+.czr-link-hover-underline-off [class*=nav__menu] li.show > a > span:first-of-type::before,
+.czr-link-hover-underline-off li > a > span:first-of-type:hover::before {
+  content: none !important;
+}
+
 /* search forms */
 .search-form label {
   *zoom: 1;
@@ -3339,11 +3285,6 @@ form.czr-form .czr-search-field {
   padding-right: 2em;
 }
 
-.gallery-item {
-  /* do not style standard gallery */
-  /* do not style standard gallery */
-}
-
 .gallery-item dt {
   text-align: inherit;
   padding: 0.8rem;
@@ -3365,12 +3306,6 @@ form.czr-form .czr-search-field {
 section[class^="post-"] .gallery.row {
   margin-top: 18.75px;
   margin-bottom: 18.75px;
-}
-
-.czr-gallery {
-  /*
-  * Gallery needs a better implementation
-  */
 }
 
 .czr-gallery .czr-gallery-icon {
@@ -5422,9 +5357,6 @@ section[class^="post-"] .entry-meta {
 }
 
 @media (min-width: 992px) {
-  .post-navigation {
-    /*lg*/
-  }
   .post-navigation .meta-nav-title {
     display: inline-block;
   }
@@ -6009,6 +5941,11 @@ section.post-content {
   color: #fff;
 }
 
+.footer-skin-dark .footer__wrapper a:hover.btn, .footer-skin-dark .footer__wrapper a .socials a:hover.btn {
+  background: transparent;
+  border-color: #eceeef;
+}
+
 .footer-skin-dark .footer__wrapper .widget:not(.widget_tag_cloud):not(.widget_shopping_cart) a {
   position: relative;
 }
@@ -6058,6 +5995,11 @@ section.post-content {
 
 .footer-skin-light .footer__wrapper a:hover, .footer-skin-light .footer__wrapper a .socials a:hover {
   color: #202020;
+}
+
+.footer-skin-light .footer__wrapper a:hover.btn, .footer-skin-light .footer__wrapper a .socials a:hover.btn {
+  background: transparent;
+  border-color: #eceeef;
 }
 
 .footer-skin-light .footer__wrapper .widget:not(.widget_tag_cloud):not(.widget_shopping_cart) a {
