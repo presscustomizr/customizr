@@ -119,8 +119,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           $_classes = is_array( $_classes ) ? $_classes : array();
 
-          if ( 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) )
-            $_classes[] = 'czr-fade-hover-links';
+          $_classes[] = 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) ? 'czr-link-hover-underline' : 'czr-link-hover-underline-off';
+
           if ( czr_fn_is_customizing() )
             $_classes[] = 'is-customizing';
           if ( wp_is_mobile() )

@@ -27,8 +27,15 @@
 
   a {
     color: $secondary-colour;
-    &:hover, .socials a:hover { color: $primary-color; }
+    &:hover, .socials a:hover {
+      color: $primary-color;
+      &.btn {
+        background: transparent;
+        border-color: $grey-light;
+      }
+    }
   }
+
   .widget {
       &:not(.widget_tag_cloud):not(.widget_shopping_cart) a { @include underlined(rgba($primary-color, 0.5), 1px ) }
   }

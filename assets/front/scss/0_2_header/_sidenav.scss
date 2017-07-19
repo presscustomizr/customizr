@@ -17,7 +17,7 @@
     height: 100%;
   }
 
-  /* test */
+  // test
   .nav__menu-wrapper {
     height: 85vh;
     overflow-y: auto;
@@ -32,7 +32,7 @@
   }
 
 
-  /* test */
+  // test
   .side-nav__nav  {
     width:100%;
     text-align:left;
@@ -64,7 +64,7 @@
     }
   }
 
-  /* Animation stuff */
+  // Animation stuff
   .animating & {
     @include transition( transform 0.5s ease-in-out );
     z-index: 2;

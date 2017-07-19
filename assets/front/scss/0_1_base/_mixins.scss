@@ -466,7 +466,7 @@
   }
 }
 
-@mixin underlined_nocolor ( $height) {
+@mixin underlined_nocolor ( $height ) {
   position: relative;
   &:before {
     content: "";

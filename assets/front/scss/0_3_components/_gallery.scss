@@ -1,6 +1,6 @@
 
 .gallery-item {
-  /* do not style standard gallery */
+  // do not style standard gallery
   dt {
     text-align: inherit;
     &::before { content: none }
@@ -11,7 +11,7 @@
     margin: 0;
     &::before { content: none }
   }
-  /* do not style standard gallery */
+  // do not style standard gallery
 }
 
 section[class^="post-"] .gallery.row {
@@ -22,7 +22,6 @@ section[class^="post-"] .gallery.row {
 
 //let's style only our gallery
 .czr-gallery {
-
 
   .czr-gallery-icon {
     overflow: hidden;
@@ -48,9 +47,9 @@ section[class^="post-"] .gallery.row {
 
   }
 
-  /*
-  * Gallery needs a better implementation
-  */
+  //
+  // Gallery needs a better implementation
+  //
   @for $i from 1 through 9 {
     &.gallery-columns-#{$i} {
       .gallery-item {

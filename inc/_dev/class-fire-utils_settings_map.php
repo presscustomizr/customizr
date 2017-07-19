@@ -153,7 +153,6 @@ class CZR_utils_settings_map {
                   //GLOBAL SETTINGS
                   'czr_fn_logo_favicon_option_map',
                   'czr_fn_skin_option_map',
-                  'czr_fn_links_option_map',
                   'czr_fn_images_option_map',
                   //HEADER
                   'czr_fn_header_design_option_map',
@@ -276,31 +275,6 @@ class CZR_utils_settings_map {
                               'section'   => 'skins_sec',
                               'type'      => 'checkbox',
                               'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
-                  ),
-            );
-
-            return array_merge( $_map, $_to_add );
-      }
-
-
-      /*-----------------------------------------------------------------------------------------------------
-                                     LINKS SECTION
-      ------------------------------------------------------------------------------------------------------*/
-      function czr_fn_links_option_map( $_map, $get_default = null ) {
-
-            if ( !is_array( $_map ) || empty( $_map ) ) {
-                  return $_map;
-            }
-
-            $_to_add = array(
-                  'tc_link_hover_effect'  =>  array(
-                                'default'       => 1,
-                                'control'     => 'CZR_controls' ,
-                                'label'         => __( "Fade effect on link hover" , 'customizr' ),
-                                'section'       => 'formatting_sec' ,
-                                'type'          => 'checkbox' ,
-                                'priority'      => 20,
-                                'transport'   => 'postMessage'
                   ),
             );
 
