@@ -35,8 +35,13 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
+            //Set image options set by user @since v3.2.0
+            //! must be available in admin for plugins like regenerate thumbnails
+            add_action( 'after_setup_theme'       , array( $this, 'czr_fn_set_user_defined_settings'));
+
+
             //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ));
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ) );
 
             //IMPORTANT : this callback needs to be ran AFTER czr_fn_init_properties.
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
@@ -52,9 +57,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //Javascript detection
             add_action( 'wp_head'                 , array( $this, 'czr_fn_javascript_detection'), 0 );
 
-            //Set image options set by user @since v3.2.0
-            //! must be available in admin for plugins like regenerate thumbnails
-            add_action( 'after_setup_theme'       , array( $this, 'czr_fn_set_user_defined_settings'));
 
             //registers the menus
             add_action( 'after_setup_theme'       , array( $this, 'czr_fn_register_menus'));
@@ -70,8 +72,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
             $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
 
-            //the width of 1170 kept for backward compatibility, the actual bootstrap4 container width is 1110
-            $this -> slider_size        = array( 'width' => 1170 , 'height' => 500, 'crop' => true ); //size name : slider
+            //The actual bootstrap4 container width is 1110, while it was 1170 in bootstrap2
+            $this -> slider_size        = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => 500, 'crop' => true ); //size name : slider
 
             $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
 
@@ -333,17 +335,21 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               */
               //square thumb used in post list alternate for standard posts and regular shape
               //also used in related posts
-              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR___::$instance -> tc_sq_thumb_size );
+              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR() -> tc_sq_thumb_size );
               add_image_size( 'tc-sq-thumb' , $tc_sq_thumb_size['width'] , $tc_sq_thumb_size['height'], $tc_sq_thumb_size['crop'] );
 
               //wide screen thumb (16:9) used in post list alternate for image and galleries post formats
-              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR___::$instance -> tc_ws_thumb_size );
+              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR() -> tc_ws_thumb_size );
               add_image_size( 'tc-ws-thumb' , $tc_ws_thumb_size['width'] , $tc_ws_thumb_size['height'], $tc_ws_thumb_size['crop'] );
 
               //wide screen small thumb (16:9)
               //used by wp as responsive image of tc-ws-thumb
-              $tc_ws_small_thumb_size = apply_filters( 'tc_ws_small_thumb_size' , CZR___::$instance -> tc_ws_small_thumb_size );
+              $tc_ws_small_thumb_size = apply_filters( 'tc_ws_small_thumb_size' , CZR() -> tc_ws_small_thumb_size );
               add_image_size( 'tc-ws-small-thumb' , $tc_ws_small_thumb_size['width'] , $tc_ws_small_thumb_size['height'], $tc_ws_small_thumb_size['crop'] );
+
+              //used by wp as responsive image of tc-slider tc-slider-full
+              $tc_slider_small_size = apply_filters( 'tc_slider_small_size' , CZR() -> tc_slider_small_size  );
+              add_image_size( 'tc-slider-small' , $tc_slider_small_size['width'] , $tc_slider_small_size['height'], $tc_slider_small_size['crop'] );
 
             }
 
@@ -708,9 +714,15 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $_options = get_option('tc_theme_options');
 
             if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
-                add_filter( 'tc_slider_full_size'    , array($this,  'czr_fn_set_slider_img_height') );
-                add_filter( 'tc_slider_size'         , array($this,  'czr_fn_set_slider_img_height') );
+                add_filter( 'tc_slider_full_size'          , array($this,  'czr_fn_set_slider_img_height') );
+                add_filter( 'tc_slider_size'               , array($this,  'czr_fn_set_slider_img_height') );
+
+                //ONLY FOR MODERN STYLE
+                if ( CZR_IS_MODERN_STYLE ) {
+                    add_filter( 'tc_slider_small_size'         , array($this,  'czr_fn_set_slider_small_img_height') );
+                }
             }
+
 
             //ONLY FOR CLASSICAL STYLE
             if ( ! CZR_IS_MODERN_STYLE ) {
@@ -763,6 +775,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $_options = get_option('tc_theme_options');
 
             $_default_size['height'] = esc_attr( $_options['tc_slider_default_height'] );
+
             return $_default_size;
         }
 
@@ -784,14 +797,29 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
 
+        /*
+        * Slider small thumbs
+        */
+        //@hook 'tc_slider_small_size'
+        function czr_fn_set_slider_small_img_height( $_default_size ) {
+
+            $_options                     = get_option('tc_theme_options');
+
+            //original slider size
+            $_slider_size                 = CZR() -> slider_size;
+            $_custom_height               = esc_attr( $_options['tc_slider_default_height'] );
 
 
 
+            if ( isset( $_slider_size[ 'height'] ) && $_slider_size[ 'height'] != 0 ) {
 
+                $_default_size['height']  = $_default_size['height'] * $_custom_height /  $_slider_size[ 'height' ];
 
+            }
 
+            return $_default_size;
 
-
+        }
 
 
 

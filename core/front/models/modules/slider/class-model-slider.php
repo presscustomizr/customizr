@@ -24,6 +24,8 @@ class CZR_slider_model_class extends CZR_Model {
 
   private $queried_id;
 
+  public $allow_resp_images;
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -40,13 +42,17 @@ class CZR_slider_model_class extends CZR_Model {
     //gets the actual page id if we are displaying the posts page
     $this -> queried_id = $queried_id = $this -> czr_fn_get_real_id();
 
+    $this -> allow_resp_images = 1 == esc_attr( czr_fn_opt('tc_resp_thumbs_img') );
+
     $slider_name_id     = czr_fn_get_current_slider( $queried_id );
 
     $layout             = $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id );
 
     $img_size           = apply_filters( 'czr_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
+
     $slides             = $this -> czr_fn_get_slides( $slider_name_id, $img_size );
+
     //We need a way to silently fail when the model "decides" it doesn't have to be instantiated
     if ( empty( $slides ) ){
       $model['id'] = FALSE;
@@ -105,8 +111,21 @@ class CZR_slider_model_class extends CZR_Model {
     //returns the default slider if requested
     if ( 'demo' == $slider_name_id )
       return apply_filters( 'tc_default_slides', $this -> czr_fn_get_default_slides() );
-    else
-      return $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
+    else {
+      //If we allow responsive images make sure the slider resp image is added to the srcset
+      //this is especially needed for the full width slider layout as the generated small thumb
+      //basically will never have the same aspect ratio of the slider-full img size
+      if ( $this -> allow_resp_images )
+        add_filter( 'wp_calculate_image_srcset', array( $this, 'czr_maybe_add_resp_slide_img_size_to_the_srcset' ), 10, 5 );
+
+      $the_slides = $this -> czr_fn_get_the_slides( $slider_name_id, $img_size );
+
+      //remove the filter
+      if ( $this -> allow_resp_images )
+        remove_filter( 'wp_calculate_image_srcset', array( $this, 'czr_maybe_add_resp_slide_img_size_to_the_srcset' ), 10 );
+
+      return $the_slides;
+    }
   }
 
 
@@ -199,6 +218,7 @@ class CZR_slider_model_class extends CZR_Model {
     $color_style            = ( $text_color != null) ? 'style="color:'.$text_color.'"' : '';
     //attachment image
     $alt                    = apply_filters( 'czr_slide_background_alt' , trim(strip_tags(get_post_meta( $id, '_wp_attachment_image_alt' , true))) );
+
     $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> czr_fn_set_wp_responsive_slide_img_attr() ) );
 
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
@@ -230,7 +250,7 @@ class CZR_slider_model_class extends CZR_Model {
   protected function czr_fn_set_wp_responsive_slide_img_attr() {
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      if ( 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ) {
+      if ( !$this->allow_resp_images ) {
         //trick, => will produce an empty attr srcset as in wp-includes/media.php the srcset is calculated and added
         //only when the passed srcset attr is not empty. This will avoid us to:
         //a) add a filter to get rid of already computed srcset
@@ -244,6 +264,66 @@ class CZR_slider_model_class extends CZR_Model {
         return array( 'srcset' => ' ');
       }
     return array();
+  }
+
+
+
+  //@hook: 'wp_calculate_image_srcset'
+  function czr_maybe_add_resp_slide_img_size_to_the_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+    if ( count( $sources ) ) {
+
+        if ( is_array( $size_array) && ! empty( $image_meta['sizes'] ) ){
+
+            // Retrieve the uploads sub-directory from the full size image.
+            $dirname = _wp_get_attachment_relative_path( $image_src );
+
+            if ( $dirname ) {
+              $dirname = trailingslashit( $dirname );
+            }
+
+            $upload_dir    = wp_get_upload_dir();
+            $image_baseurl = trailingslashit( $upload_dir['baseurl'] ) . $dirname;
+
+
+            if ( is_ssl() && 'https' !== substr( $image_baseurl, 0, 5 ) && parse_url( $image_baseurl, PHP_URL_HOST ) === $_SERVER['HTTP_HOST'] ) {
+              $image_baseurl = set_url_scheme( $image_baseurl, 'https' );
+            }
+
+
+            if ( ! empty( $image_meta['sizes']['tc-slider-small'] ) ) {
+                $image = $image_meta['sizes']['tc-slider-small'];
+                //if available use the slider small size
+                $sources[ $image['width'] ] = array(
+                  'url'        => $image_baseurl . $image['file'],
+                  'descriptor' => 'w',
+                  'value'      => $image['width'],
+                );
+
+            }
+            else {
+                //Grab all the available scaled images
+                //The cons of this method is that you can have images that are really far by the "desired" aspect ratio
+                foreach ( $image_meta[ 'sizes' ] as $img_size => $image ) {
+                    $source = array(
+                      'url'        => $image_baseurl . $image['file'],
+                      'descriptor' => 'w',
+                      'value'      => $image['width'],
+                    );
+
+                    // The 'src' image has to be the first in the 'srcset', because of a bug in iOS8. See wp #35030.
+                    if ( $image['file'] == basename( $image_src ) ) {
+                        unset( $sources[ $image['width'] ] );
+                        $sources = array( $image['width'] => $source ) + $sources;
+                    } elseif( ! isset( $sources[ $image['width'] ] ) ){
+                        $sources[ $image['width'] ] = $source;
+                    }
+                }
+            }//else
+        }
+    }
+
+    return $sources;
+
   }
 
 
@@ -603,25 +683,21 @@ class CZR_slider_model_class extends CZR_Model {
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( czr_fn_opt( 'tc_slider_default_height') );
+    $_custom_height     = ( !czr_fn_is_real_home() && 0 == esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) ) ? 500 : $_custom_height;
+
     $_custom_height     = apply_filters( 'czr_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
 
     $_slider_inline_css = "";
 
-    //When shall we append custom slider style to the global custom inline stylesheet?
-    $_bool = ( czr_fn_is_real_home() || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_resp_shrink_ratios = CZR()->slider_resp_shrink_ratio;
 
-    if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
-      return $_slider_inline_css;
-
-    $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
-      array('1199' => 0.77 , '991' => 0.618, '543' => 0.38 )
-    );
     //this slider element id;
     $slider_html_element_id = "#customizr-slider-{$this->id}";
 
     $_slider_inline_css = "
       $slider_html_element_id.czr-carousel {
         height:{$_custom_height}px;
+
       }
       $slider_html_element_id .czr-slider-loader-wrapper {
         line-height: {$_custom_height}px;
@@ -631,16 +707,15 @@ class CZR_slider_model_class extends CZR_Model {
     foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
       if ( ! is_numeric($_ratio) )
         continue;
-      $_item_dyn_height     = $_custom_height * $_ratio;
-      $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
+      $_dyn_height         = $_custom_height * $_ratio;
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
           $slider_html_element_id.czr-carousel {
-            height:{$_item_dyn_height}px;
+            height:{$_dyn_height}px;
           }
           $slider_html_element_id .czr-slider-loader-wrapper {
-            line-height: {$_item_dyn_height}px;
-            height:{$_item_dyn_height}px;
+            line-height: {$_dyn_height}px;
+            height:{$_dyn_height}px;
           }
         }";
     }//end foreach
