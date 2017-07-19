@@ -126,6 +126,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_performance_option_map',
     'czr_fn_placeholders_notice_map',
     'czr_fn_external_resources_option_map',
+    'czr_fn_responsive_option_map',
     'czr_fn_style_option_map'
   );
 
@@ -2058,6 +2059,24 @@ function czr_fn_external_resources_option_map( $get_default = null ) {
   );
 }
 
+/*-----------------------------------------------------------------------------------------------------
+                          RESPONSIVE SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_responsive_option_map( $get_default = null ) {
+  return array(
+          'tc_ms_respond_css'  =>  array(
+                            'default'     => 1,
+                            'control'     => 'CZR_controls',
+                            'label'       => __( 'Automatically adapt the font size to the width of the devices', 'customizr' ),
+                            'section'     => 'responsive_sec',
+                            'type'        => 'checkbox',
+                            'notice'    => __( 'When this options is enabled, your font size will automatically resize to be better displayed in mobile devices.' , 'customizr' )
+          )
+
+  );
+}
+
+
 
 /*-----------------------------------------------------------------------------------------------------
                           THEME STYLE SECTION
@@ -2422,6 +2441,11 @@ function czr_fn_popul_section_map( $_sections ) {
     ),
     'extresources_sec'    => array(
                         'title'     =>  __( 'Front-end Icons (Font Awesome)' , 'customizr' ),
+                        'priority'    => 40,
+                        'panel'   => 'tc-advanced-panel'
+    ),
+    'responsive_sec'    => array(
+                        'title'     =>  __( 'Mobile devices' , 'customizr' ),
                         'priority'    => 40,
                         'panel'   => 'tc-advanced-panel'
     ),
