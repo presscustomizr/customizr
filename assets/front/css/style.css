@@ -4,128 +4,32 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
-  line-height: 1.5;
-  font-size: 0.833em;
-}
-
-@media (min-width: 20em) and (max-width: 40em) {
-  body {
-    line-height: calc( 1.5 + 0.15 * ( ( 100vw - 20em) / 20 ));
-  }
-}
-
-@media (min-width: 40em) {
-  body {
-    line-height: 1.65;
-  }
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  body {
-    font-size: calc( 0.833em + 0.1045 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  body {
-    font-size: 0.9375em;
-  }
+  line-height: 1.65;
+  font-size: 0.9375em;
 }
 
 h1 {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h1 {
-    font-size: calc( 1em + 1.48832 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h1 {
-    font-size: 2.48832em;
-  }
+  font-size: 2.48832em;
 }
 
 h2 {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h2 {
-    font-size: calc( 1em + 1.0736 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h2 {
-    font-size: 2.0736em;
-  }
+  font-size: 2.0736em;
 }
 
 h3 {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h3 {
-    font-size: calc( 1em + 0.728 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h3 {
-    font-size: 1.728em;
-  }
+  font-size: 1.728em;
 }
 
 h4 {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h4 {
-    font-size: calc( 1em + 0.44 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h4 {
-    font-size: 1.44em;
-  }
+  font-size: 1.44em;
 }
 
 h5 {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h5 {
-    font-size: calc( 1em + 0.2 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h5 {
-    font-size: 1.2em;
-  }
+  font-size: 1.2em;
 }
 
 h6 {
   font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  h6 {
-    font-size: calc( 1em + 0 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  h6 {
-    font-size: 1em;
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -140,22 +44,6 @@ h6  {
   color: #B4B4B4;
   text-transform: uppercase;
   letter-spacing: 2px;
-}
-
-.display {
-  font-size: 1em;
-}
-
-@media (min-width: 20em) and (max-width: 60em) {
-  .display {
-    font-size: calc( 1em + 4.15978 * ( ( 100vw - 20em) / 40 ));
-  }
-}
-
-@media (min-width: 60em) {
-  .display {
-    font-size: 5.15978em;
-  }
 }
 
 blockquote p {
@@ -4008,6 +3896,9 @@ section[class^="post-"] .gallery.row {
   position: relative;
   height: 100%;
   width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #main-wrapper .section.custom {
