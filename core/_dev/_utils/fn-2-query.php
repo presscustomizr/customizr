@@ -61,7 +61,7 @@ function czr_fn_is_single_post() {
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
         && ! czr_fn_is_home_empty()
-        && ! czr_fn_is_home()
+        && ! czr_fn_is_real_home()
         );
 }
 
@@ -92,7 +92,7 @@ function czr_fn_is_single_page() {
 function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id  = czr_fn_get_id();
-    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_real_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
 }
 
 

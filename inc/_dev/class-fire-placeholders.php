@@ -463,7 +463,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! czr_fn_is_home(),
+        ! is_admin() && ! czr_fn_is_real_home(),
         'tc_posts_slider' != czr_fn_opt('tc_front_slider'),
         'disabled' == get_transient("tc_slider_notice"),
         ! czr_fn_is_front_help_enabled()
@@ -526,7 +526,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! czr_fn_is_home(),
+        ! is_admin() && ! czr_fn_is_real_home(),
         ! (bool)czr_fn_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> czr_fn_is_one_fp_set(),

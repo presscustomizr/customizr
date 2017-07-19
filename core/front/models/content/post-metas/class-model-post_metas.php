@@ -276,9 +276,9 @@ class CZR_post_metas_model_class extends CZR_Model {
        $_classes[] = 'hide-all-post-metas';
 
     if (
-        ( is_singular() && ! is_page() && ! czr_fn_is_home() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
-        ( ! is_singular() && ! czr_fn_is_home() && ! is_page() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
-        ( czr_fn_is_home() ) && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) )
+        ( is_singular() && ! is_page() && ! czr_fn_is_real_home() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) ||
+        ( ! is_singular() && ! czr_fn_is_real_home() && ! is_page() && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) ||
+        ( czr_fn_is_real_home() ) && 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) )
     )
       $_classes[] = 'hide-post-metas';
 

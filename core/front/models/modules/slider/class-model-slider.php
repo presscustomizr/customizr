@@ -388,7 +388,7 @@ class CZR_slider_model_class extends CZR_Model {
   */
   protected function czr_fn_get_slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
-    $layout_value                 = czr_fn_is_home() ? czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
+    $layout_value                 = czr_fn_is_real_home() ? czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
     $layout_value                 = apply_filters( 'czr_slider_layout', $layout_value, $queried_id );
 
     /* For backward compatibility this can be:
@@ -424,7 +424,7 @@ class CZR_slider_model_class extends CZR_Model {
     //We have to show the slider edit link to
     //a) users who can edit theme options for the slider in home -> deep link in the customizer
     //b) users who can edit the post/page where the slider is displayed for users who can edit the post/page -> deep link in the post/page slider section
-    if ( czr_fn_is_home() )
+    if ( czr_fn_is_real_home() )
       $show_slider_edit_link = current_user_can('edit_theme_options') ? true : false;
     else if ( is_singular() ) // we have a snippet to display sliders in categories, we don't want the slider edit link displayed there
       $show_slider_edit_link = ( current_user_can('edit_pages') || current_user_can( 'edit_posts' ) ) ? true : false;
@@ -439,7 +439,7 @@ class CZR_slider_model_class extends CZR_Model {
   *
   */
   function czr_fn_get_slider_edit_link() {
-    if ( czr_fn_is_home() )
+    if ( czr_fn_is_real_home() )
       $slider_edit_link            = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
     elseif ( is_singular() ) {
       global $post;
@@ -608,7 +608,7 @@ class CZR_slider_model_class extends CZR_Model {
     $_slider_inline_css = "";
 
     //When shall we append custom slider style to the global custom inline stylesheet?
-    $_bool = ( czr_fn_is_home() || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = ( czr_fn_is_real_home() || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
 
     if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
       return $_slider_inline_css;

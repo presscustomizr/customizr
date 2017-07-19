@@ -259,7 +259,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         }
 
       }
-
     }
 
 
@@ -378,7 +377,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           foreach( $args['panels'] as $p_set) {
             $panel_options[$p_set] = isset( $p_options[$p_set]) ?  $p_options[$p_set] : null;
           }
-          if ( class_exists( ' CZR_Customize_Panels ' ) ) {
+          if ( class_exists( 'CZR_Customize_Panels' ) ) {
             $wp_customize -> add_panel( new CZR_Customize_Panels( $wp_customize, $p_key, $panel_options ) );
           } else {
             $wp_customize -> add_panel( $p_key, $panel_options );

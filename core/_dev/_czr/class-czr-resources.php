@@ -291,7 +291,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
         if (  false === strpos($prop, 'is_') )
           continue;
         if ( 'is_home' == $prop )
-          $val = czr_fn_is_home();
+          $val = czr_fn_is_real_home();
 
         $_wp_conditionals[$prop] = $val;
       }

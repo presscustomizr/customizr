@@ -1230,7 +1230,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             //this was the previous implementation of the big heading.
             //The next one will be implemented with the slider module
           ?>
-        <?php  if ( apply_filters( 'big_heading_enabled', false && ! czr_fn_is_home() && ! is_404() ) ): ?>
+        <?php  if ( apply_filters( 'big_heading_enabled', false && ! czr_fn_is_real_home() && ! is_404() ) ): ?>
           <div class="container-fluid">
             <?php
               if ( czr_fn_is_registered_or_possible( 'archive_heading' ) )

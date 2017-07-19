@@ -43,7 +43,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         //some useful filters
         add_filter( '__ID'                    , 'czr_fn_get_id' );//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'               , 'czr_fn_is_home' );
+        add_filter( '__is_home'               , 'czr_fn_is_real_home' );
         add_filter( '__is_home_empty'         , 'czr_fn_is_home_empty' );
         add_filter( '__post_type'             , 'czr_fn_get_post_type' );
         add_filter( '__is_no_results'         , 'czr_fn_is_no_results' );

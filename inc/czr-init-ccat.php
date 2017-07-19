@@ -1963,8 +1963,7 @@ class CZR_utils_settings_map {
 
             $_settings_sections = array(
 
-                'czr_fn_icons_option_map', //Removed in c4
-                'czr_fn_responsive_option_map', //Removed in c4, handled with Bootstrap css
+                'czr_fn_icons_option_map', //Removed in modern style
 
             );
 
@@ -2005,6 +2004,7 @@ class CZR_utils_settings_map {
                   'czr_fn_single_post_option_map',
                   //SIDEBARS
                   'czr_fn_sidebars_option_map',
+                  'czr_fn_responsive_option_map',
                   //FOOTER
                   'czr_fn_footer_global_settings_option_map'
             );
@@ -2283,23 +2283,9 @@ class CZR_utils_settings_map {
       }
 
 
-      /*-----------------------------------------------------------------------------------------------------
-                                    RESPONSIVE SETTINGS SECTION
-      ------------------------------------------------------------------------------------------------------*/
-      function czr_fn_responsive_option_map( $get_default = null ) {
 
-            return array(
-                  'tc_block_reorder'  =>  array(
-                                    'default'       => 1,
-                                    'control'   => 'CZR_controls' ,
-                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( 'Dynamic sidebar reordering on small devices' , 'customizr' ) ),
-                                    'section'     => 'responsive_sec' ,
-                                    'type'        => 'checkbox' ,
-                                    'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
-                  )
-            );
 
-      }
+
 
 
       /******************************************************************************************************
@@ -2907,6 +2893,39 @@ class CZR_utils_settings_map {
             return array_merge( $_map, $_to_add );
       }
 
+      /*-----------------------------------------------------------------------------------------------------
+                                    RESPONSIVE SETTINGS SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_responsive_option_map( $_map, $get_default = null ) {
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_ms_respond_css'
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+            //to add
+            $_to_add  = array(
+                  'tc_block_reorder'  =>  array(
+                                    'default'       => 1,
+                                    'control'   => 'CZR_controls' ,
+                                    'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( 'Dynamic sidebar reordering on small devices' , 'customizr' ) ),
+                                    'section'     => 'responsive_sec' ,
+                                    'type'        => 'checkbox' ,
+                                    'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
+                  )
+            );
+
+
+            return array_merge( $_map, $_to_add );
+
+      }
 
 
       /******************************************************************************************************
@@ -2968,7 +2987,7 @@ class CZR_utils_settings_map {
                   ),
             );
 
-            return array_merge( $_old_sections, $_sections );
+            return array_merge( $_sections, $_old_sections );
       }
 
 
@@ -3284,7 +3303,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
         //some useful filters
         add_filter( '__ID'                    , 'czr_fn_get_id' );//deprecated
         add_filter( '__screen_layout'         , array( $this , 'czr_fn_get_layout' ) , 10 , 2 );//deprecated
-        add_filter( '__is_home'               , 'czr_fn_is_home' );
+        add_filter( '__is_home'               , 'czr_fn_is_real_home' );
         add_filter( '__is_home_empty'         , 'czr_fn_is_home_empty' );
         add_filter( '__post_type'             , 'czr_fn_get_post_type' );
         add_filter( '__is_no_results'         , 'czr_fn_is_no_results' );
@@ -4831,7 +4850,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! czr_fn_is_home(),
+        ! is_admin() && ! czr_fn_is_real_home(),
         'tc_posts_slider' != czr_fn_opt('tc_front_slider'),
         'disabled' == get_transient("tc_slider_notice"),
         ! czr_fn_is_front_help_enabled()
@@ -4894,7 +4913,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
 
       $_dont_display_conditions = array(
         ! is_user_logged_in() || ! current_user_can('edit_theme_options'),
-        ! is_admin() && ! czr_fn_is_home(),
+        ! is_admin() && ! czr_fn_is_real_home(),
         ! (bool)czr_fn_opt('tc_show_featured_pages'),
         'disabled' == get_transient("tc_fp_notice"),
         self::$instance -> czr_fn_is_one_fp_set(),

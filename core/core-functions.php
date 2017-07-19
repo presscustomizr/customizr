@@ -1082,15 +1082,23 @@ function czr_fn_regex_callback( $matches ) {
     }
 }
 
+/**
+* helper
+* Check if we are displaying posts lists or front page
+* => not real home
+* @return  bool
+*/
+function czr_fn_is_home() {
+    //get info whether the front page is a list of last posts or a page
+    return is_home() || ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) ) || is_front_page();
+}
 
 
 /**
 * Check if we are displaying posts lists or front page
 *
-* @since Customizr 3.0.6
-*
 */
-function czr_fn_is_home() {
+function czr_fn_is_real_home() {
   //get info whether the front page is a list of last posts or a page
   return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) )
     || ( 0 == get_option( 'page_on_front' ) && 'page' == get_option( 'show_on_front' ) )//<= this is the case when the user want to display a page on home but did not pick a page yet
@@ -1131,7 +1139,7 @@ function czr_fn_wp_title( $title, $sep ) {
 
     // Add the site description for the home/front page.
     $site_description = get_bloginfo( 'description' , 'display' );
-    if ( $site_description && czr_fn_is_home() )
+    if ( $site_description && czr_fn_is_real_home() )
       $title = "$title $sep $site_description";
 
     // Add a page number if necessary.

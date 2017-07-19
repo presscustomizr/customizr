@@ -54,7 +54,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_set_single_page_thumbnail_hooks() {
-      if ( $this -> czr_fn_page_display_controller() && ! czr_fn_is_home() ) {
+      if ( $this -> czr_fn_page_display_controller() && ! czr_fn_is_real_home() ) {
         add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
       }
 
@@ -233,7 +233,7 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_show_single_page_thumbnail() {
-      return ! czr_fn_is_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
+      return ! czr_fn_is_real_home() && $this -> czr_fn_page_display_controller() && apply_filters( 'tc_show_single_page_thumbnail', 'hide' != esc_attr( czr_fn_opt( 'tc_single_page_thumb_location' ) ) );
     }
 
 

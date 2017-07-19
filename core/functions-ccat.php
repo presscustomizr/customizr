@@ -654,7 +654,7 @@ function czr_fn_return_cb_result_array( $cb, $params = array() ) {
 function czr_fn_is_slider_active( $queried_id = null ) {
   $queried_id = $queried_id ? $queried_id : czr_fn_get_real_id();
   //is the slider set to on for the queried id?
-  if ( czr_fn_is_home() && czr_fn_opt( 'tc_front_slider' ) )
+  if ( czr_fn_is_real_home() && czr_fn_opt( 'tc_front_slider' ) )
     return apply_filters( 'czr_slider_active_status', true , $queried_id );
 
   $_slider_on = esc_attr( get_post_meta( $queried_id, $key = 'post_slider_check_key' , $single = true ) );
@@ -675,7 +675,7 @@ function czr_fn_get_current_slider( $queried_id = null ) {
   $queried_id = $queried_id ? $queried_id : czr_fn_get_real_id();
   //gets the current slider id
   $_home_slider     = czr_fn_opt( 'tc_front_slider' );
-  $slider_name_id   = ( czr_fn_is_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
+  $slider_name_id   = ( czr_fn_is_real_home() && $_home_slider ) ? $_home_slider : esc_attr( get_post_meta( $queried_id, $key = 'post_slider_key' , $single = true ) );
   return apply_filters( 'czr_slider_name_id', $slider_name_id , $queried_id );
 }
 
@@ -851,7 +851,7 @@ function czr_fn_is_single_post() {
         && 'page' != $post -> post_type
         && 'attachment' != $post -> post_type
         && ! czr_fn_is_home_empty()
-        && ! czr_fn_is_home()
+        && ! czr_fn_is_real_home()
         );
 }
 
@@ -882,7 +882,7 @@ function czr_fn_is_single_page() {
 function czr_fn_get_real_id() {
     global $wp_query;
     $queried_id  = czr_fn_get_id();
-    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
+    return apply_filters( 'czr_get_real_id', ( ! czr_fn_is_real_home() && ! empty($queried_id) ) ?  $queried_id : get_the_ID() );
 }
 
 

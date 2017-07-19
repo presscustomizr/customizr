@@ -1203,6 +1203,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
                           'step'        => 1,
                           'min'         => 1,
                           'priority'       => 10,
+                          'notice'      => __( 'This option defines the maximum number of posts or search results displayed in any list of posts of your website : blog page, archive page, search page. If the number of items to displayed is greater than your setting, the theme will automatically add a pagination link block at the bottom of the page.' , 'customizr' ),
           ),
 
           //Page sidebar layout
@@ -1750,9 +1751,9 @@ function czr_fn_comment_option_map( $get_default = null ) {
   return array(
           'tc_comment_show_bubble'  =>  array(
                             'default'       => 1,
-                            'title'         => __('Comments bubbles' , 'customizr'),
+                            //'title'         => __('Comments bubbles' , 'customizr'),
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display the number of comments in a bubble next to the post title" , "customizr" ),
+                            'label'         => czr_fn_is_modern_style() ? __( "Display the number of comments below the post titles" , "customizr" ) : __( "Display the number of comments in a bubble next to the post title" , "customizr" ),
                             'section'       => 'comments_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 1
@@ -1933,7 +1934,8 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'section'       => 'footer_global_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 1,
-                            'transport'     => 'postMessage'
+                            'transport'     => 'postMessage',
+                            'notice'      =>__( "Enabling this option will glue your footer to the bottom of the screen, when pages are shorter than the viewport's height." , 'customizr' )
           ),
           'tc_show_back_to_top'  =>  array(
                             'default'       => 1,
@@ -2082,18 +2084,19 @@ function czr_fn_responsive_option_map( $get_default = null ) {
                           THEME STYLE SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_style_option_map( $get_default = null ) {
+  $_notice = __( 'The Modern style provides a "material design" look and feel. It relies on the flexbox css mode, offering a better support for the most recent mobile devices and browsers. The Classical style provides a more "flat design" feeling, with icons next to titles for example. It supports both modern and older devices and browsers.', 'customizr' );
   return array(
           'tc_style'  =>  array(
                             'default'    => czr_fn_user_started_before_version( '4.0.0' , '2.0.0') ? 'classic': 'modern',
                             'control'   => 'CZR_controls',
-                            'label'       => __( "Select a style for the Customizr theme", 'customizr' ),
+                            'label'       => is_child_theme() ? __( "Set the Modern or Classical design style", 'customizr' ) : __( "Select a design style for the theme", 'customizr' ),
                             'section'     => 'style_sec',
                             'type'        => 'select',
                             'choices'       => array(
                                   'modern'      => __( 'Modern' , 'customizr' ),
                                   'classic'     => __( 'Classical' , 'customizr' ),
                             ),
-                            'notice'      => ! is_child_theme() ? '' :  __( "Add the the following code to your wp-config.php file to switch between the classical and modern styles : <br/>define( 'CZR_MODERN_STYLE', true );.", 'customizr' )
+                            'notice'      => ! is_child_theme() ? $_notice :  sprintf( '%1$s <br/><br/> %2$s', $_notice, __( "Add the the following code to your wp-config.php file to switch between the classical and modern styles : <br/>define( 'CZR_MODERN_STYLE', true );.<br/><br/>The two styles can use different template files. If you have overriden templates in your child theme, it is recommended to switch style in a staging site before production.", 'customizr' ) )
           )
 
   );
@@ -2113,42 +2116,41 @@ function czr_fn_popul_panels_map( $panel_map ) {
               'priority'       => 10,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Global settings' , 'customizr' ),
-              'description'    => __( "Global settings for the Customizr theme : primary color, socials, links..." , 'customizr' ),
+              'czr_subtitle'   => __( 'Title, Logo, Fonts, Primary color, Social, ...', 'hueman'),
               'type'           => 'czr_panel'
     ),
     'tc-header-panel' => array(
               'priority'       => 20,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Header' , 'customizr' ),
-              'description'    => __( "Header settings for the Customizr theme." , 'customizr' ),
+              'czr_subtitle'   => __( 'Style, Desktops and mobiles layout, Menus, Search, ...', 'hueman'),
               'type'           => 'czr_panel'
     ),
     'tc-content-panel' => array(
               'priority'       => 30,
               'capability'     => 'edit_theme_options',
-              'title'          => __( 'Content : home, posts, ...' , 'customizr' ),
-              'description'    => __( "Content settings for the Customizr theme." , 'customizr' ),
+              'title'          => __( 'Main Content' , 'customizr' ),
+              'czr_subtitle'   => __( 'Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ...', 'hueman'),
               'type'           => 'czr_panel'
     ),
     'tc-sidebars-panel' => array(
               'priority'       => 30,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Sidebars' , 'customizr' ),
-              'description'    => __( "Sidebars settings for the Customizr theme." , 'customizr' ),
               'type'           => 'czr_panel'
     ),
     'tc-footer-panel' => array(
               'priority'       => 40,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Footer' , 'customizr' ),
-              'description'    => __( "Footer settings for the Customizr theme." , 'customizr' ),
+              'czr_subtitle'   => __( 'Style, Back to top button, Sticky mode, ... ', 'hueman'),
               'type'           => 'czr_panel'
     ),
     'tc-advanced-panel' => array(
               'priority'       => 1000,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Advanced options' , 'customizr' ),
-              'description'    => __( "Advanced settings for the Customizr theme." , 'customizr' ),
+              'czr_subtitle'   => __( 'Performances, Custom CSS ...', 'hueman'),
               'type'           => 'czr_panel'
     )
   );
@@ -2285,7 +2287,12 @@ function czr_fn_popul_section_map( $_sections ) {
                         'title'     =>  __( 'Image settings' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 95 : 50,
                         //'description' =>  __( 'Various images settings' , 'customizr' ),
-                        'panel'   => 'tc-global-panel'
+                        'section_class' => 'CZR_Customize_Sections',
+                        'panel'   => 'tc-global-panel',
+                        'ubq_panel'   => array(
+                            'panel' => 'tc-content-panel',
+                            'priority' => '100'
+                        )
     ),
     'sliders_sec'               => array(
                         'title'     =>  __( 'Sliders options' , 'customizr' ),
@@ -2337,65 +2344,71 @@ function czr_fn_popul_section_map( $_sections ) {
     -> PANEL : CONTENT
     ----------------------------------------------------------------------------------------------*/
     'frontpage_sec'       => array(
-                        'title'     =>  __( 'Front Page' , 'customizr' ),
+                        'title'     =>  __( 'Front Page Content' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 12 : 10,
-                        'description' =>  __( 'Set up front page options' , 'customizr' ),
-                        'panel'   => 'tc-content-panel'
+                        //'description' =>  __( 'Set up front page options' , 'customizr' ),
+                        'panel'   => '',//tc-content-panel',
+                        'active_callback' => 'czr_fn_is_home'
     ),
 
     'post_layout_sec'        => array(
                         'title'     =>  __( 'Pages &amp; Posts Layout' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 15 : 15,
-                        'description' =>  __( 'Set up layout options' , 'customizr' ),
+                        //'description' =>  __( 'Set up layout options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
 
     'post_lists_sec'        => array(
                         'title'     =>  __( 'Post lists : blog, archives, ...' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 16 : 20,
-                        'description' =>  __( 'Set up post lists options : blog page, archives like tag or category, search results.' , 'customizr' ),
+                        //'description' =>  __( 'Set up post lists options : blog page, archives like tag or category, search results.' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'single_posts_sec'        => array(
                         'title'     =>  __( 'Single posts' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 17 : 24,
-                        'description' =>  __( 'Set up single posts options' , 'customizr' ),
+                        //'description' =>  __( 'Set up single posts options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'single_pages_sec'        => array(
                         'title'     =>  __( 'Single pages' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 17 : 24,
-                        'description' =>  __( 'Set up single pages options' , 'customizr' ),
+                        //'description' =>  __( 'Set up single pages options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'breadcrumb_sec'        => array(
                         'title'     =>  __( 'Breadcrumb' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 11 : 30,
-                        'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
+                        //'description' =>  __( 'Set up breadcrumb options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'post_metas_sec'        => array(
                         'title'     =>  __( 'Post metas (category, tags, custom taxonomies)' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 20 : 50,
-                        'description' =>  __( 'Set up post metas options' , 'customizr' ),
+                        //'description' =>  __( 'Set up post metas options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'galleries_sec'        => array(
                         'title'     =>  __( 'Galleries' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 20 : 55,
-                        'description' =>  __( 'Set up gallery options' , 'customizr' ),
+                        //'description' =>  __( 'Set up gallery options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
     'comments_sec'          => array(
                         'title'     =>  __( 'Comments' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 25 : 60,
-                        'description' =>  __( 'Set up comments options' , 'customizr' ),
-                        'panel'   => 'tc-content-panel'
+                        //'description' =>  __( 'Set up comments options' , 'customizr' ),
+                        'panel'   => 'tc-content-panel',
+                        'section_class' => 'CZR_Customize_Sections',
+                        'ubq_panel'   => array(
+                            'panel' => 'tc-global-panel',
+                            'priority' => '100'
+                        )
     ),
     'post_navigation_sec'          => array(
                         'title'     =>  __( 'Post/Page Navigation' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 30 : 65,
-                        'description' =>  __( 'Set up post/page navigation options' , 'customizr' ),
+                        //'description' =>  __( 'Set up post/page navigation options' , 'customizr' ),
                         'panel'   => 'tc-content-panel'
     ),
 
@@ -2405,9 +2418,9 @@ function czr_fn_popul_section_map( $_sections ) {
     ----------------------------------------------------------------------------------------------*/
     'sidebar_socials_sec'          => array(
                         'title'     =>  __( 'Socials in Sidebars' , 'customizr' ),
-                        'priority'    =>  10,
-                        'description' =>  __( 'Set up your social profiles links in the sidebar(s).' , 'customizr' ),
-                        'panel'   => 'tc-sidebars-panel'
+                        'priority'    =>  110,
+                        //'description' =>  __( 'Set up your social profiles links in the sidebar(s).' , 'customizr' ),
+                        'panel'   => 'tc-content-panel'
     ),
     /*---------------------------------------------------------------------------------------------
     -> PANEL : FOOTER
@@ -2415,7 +2428,7 @@ function czr_fn_popul_section_map( $_sections ) {
     'footer_global_sec'          => array(
                         'title'     =>  __( 'Footer global settings' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 40 : 10,
-                        'description' =>  __( 'Set up footer global options' , 'customizr' ),
+                        //'description' =>  __( 'Set up footer global options' , 'customizr' ),
                         'panel'   => 'tc-footer-panel'
     ),
 
@@ -2431,7 +2444,7 @@ function czr_fn_popul_section_map( $_sections ) {
     'performances_sec'      => array(
                         'title'     =>  __( 'Website Performances' , 'customizr' ),
                         'priority'    => 20,
-                        'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
+                        //'description' =>  __( 'On the web, speed is key ! Improve the load time of your pages with those options.' , 'customizr' ),
                         'panel'   => 'tc-advanced-panel'
     ),
     'placeholder_sec'     => array(

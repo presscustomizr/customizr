@@ -259,7 +259,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         }
 
       }
-
     }
 
 
@@ -378,7 +377,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           foreach( $args['panels'] as $p_set) {
             $panel_options[$p_set] = isset( $p_options[$p_set]) ?  $p_options[$p_set] : null;
           }
-          if ( class_exists( ' CZR_Customize_Panels ' ) ) {
+          if ( class_exists( 'CZR_Customize_Panels' ) ) {
             $wp_customize -> add_panel( new CZR_Customize_Panels( $wp_customize, $p_key, $panel_options ) );
           } else {
             $wp_customize -> add_panel( $p_key, $panel_options );
@@ -966,7 +965,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
         if (  false === strpos($prop, 'is_') )
           continue;
         if ( 'is_home' == $prop )
-          $val = czr_fn_is_home();
+          $val = czr_fn_is_real_home();
 
         $_wp_conditionals[$prop] = $val;
       }
@@ -1778,8 +1777,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1833,8 +1831,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
+?><?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1911,8 +1908,7 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?>
-<?php
+?><?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
