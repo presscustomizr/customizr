@@ -27,11 +27,20 @@ $ms-range:
   0.833   20em,
   $body-base-ratio  60em;
 
+// suspend modular scale respond
+//body {
+//  font-family: $baseFont;
+//  @include ms-respond(line-height, 1, $line-height, 1);
+//  @include ms-respond(font-size, 1 );
+//}
+
+// statically set body font-size and line-height
 body {
   font-family: $baseFont;
-  @include ms-respond(line-height, 1, $line-height, 1);
-  @include ms-respond(font-size, 1 );
+  line-height: 1.65;
+  font-size: $body-base-ratio * 1em;
 }
+
 
 $ms-range:
   1   20em,
@@ -41,10 +50,37 @@ $line-height:
   1.4  20em,
   1.75 40em;
 
-@for $i from 1 through 6 {
-  h#{$i} {
-    @include ms-respond(font-size, ($i - 6) * -1);
-  }
+// suspend modular scale respond
+//@for $i from 1 through 6 {
+//  h#{$i} {
+//    @include ms-respond(font-size, ($i - 6) * -1);
+//  }
+//}
+
+// statically set headings font-sizes
+h1 {
+  font-size: 2.48832em;
+}
+
+h2 {
+  font-size: 2.0736em;
+}
+
+h3 {
+  font-size: 1.728em;
+}
+
+h4 {
+  font-size: 1.44em;
+}
+
+h5 {
+  font-size: 1.2em;
+}
+
+
+h6 {
+  font-size: 1em;
 }
 
 
@@ -63,9 +99,11 @@ h6 {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-.display {
-  @include ms-respond(font-size, 9);
-}
+
+//we don't use this
+//.display {
+//  @include ms-respond(font-size, 9);
+//}
 
 $line-height:
   1.4    20em,

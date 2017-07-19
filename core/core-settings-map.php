@@ -126,6 +126,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_performance_option_map',
     'czr_fn_placeholders_notice_map',
     'czr_fn_external_resources_option_map',
+    'czr_fn_responsive_option_map',
     'czr_fn_style_option_map'
   );
 
@@ -2058,6 +2059,23 @@ function czr_fn_external_resources_option_map( $get_default = null ) {
   );
 }
 
+/*-----------------------------------------------------------------------------------------------------
+                          RESPONSIVE SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_responsive_option_map( $get_default = null ) {
+  return array(
+          'tc_ms_respond_css'  =>  array(
+                            'default'     => false,
+                            'control'     => 'CZR_controls',
+                            'label'       => __( 'Include responsive font size stylesheet', 'customizr' ),
+                            'section'     => 'responsive_sec',
+                            'type'        => 'checkbox',
+          )
+
+  );
+}
+
+
 
 /*-----------------------------------------------------------------------------------------------------
                           THEME STYLE SECTION
@@ -2422,6 +2440,11 @@ function czr_fn_popul_section_map( $_sections ) {
     ),
     'extresources_sec'    => array(
                         'title'     =>  __( 'Front-end Icons (Font Awesome)' , 'customizr' ),
+                        'priority'    => 40,
+                        'panel'   => 'tc-advanced-panel'
+    ),
+    'responsive_sec'    => array(
+                        'title'     =>  __( 'Responsiveness' , 'customizr' ),
                         'priority'    => 40,
                         'panel'   => 'tc-advanced-panel'
     ),

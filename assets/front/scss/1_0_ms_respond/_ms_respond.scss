@@ -1,0 +1,37 @@
+@import '../0_9_utils_calcs/modular-scale';
+
+$ms-base: 1em;
+$ms-ratio: 1.2;
+$ms-base-fixed: 15px;
+$body-base-ratio: 15/16; //<-was 1em when html was 15px
+
+$line-height:
+  1.5    20em,//line-height and viewport
+  1.65   40em;
+
+$ms-range:
+  0.833   20em,
+  $body-base-ratio  60em;
+
+body {
+  @include ms-respond(line-height, 1, $line-height, 1);
+  @include ms-respond(font-size, 1 );
+}
+
+$ms-range:
+  1   20em,
+  1.2 60em;
+
+$line-height:
+  1.4  20em,
+  1.75 40em;
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @include ms-respond(font-size, ($i - 6) * -1);
+  }
+}
+
+.display {
+  @include ms-respond(font-size, 9);
+}
