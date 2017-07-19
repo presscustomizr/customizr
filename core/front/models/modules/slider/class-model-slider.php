@@ -603,25 +603,24 @@ class CZR_slider_model_class extends CZR_Model {
     // 1) Do we have a custom height ?
     // 2) check if the setting must be applied to all context
     $_custom_height     = esc_attr( czr_fn_opt( 'tc_slider_default_height') );
+    $_custom_height     = ( !czr_fn_is_home() && 0 == esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) ) ? 500 : $_custom_height;
+
     $_custom_height     = apply_filters( 'czr_slider_height' , 'demo' != $slider_name_id ? $_custom_height : $this -> czr_fn_set_demo_slider_height( $_custom_height ) );
 
     $_slider_inline_css = "";
 
-    //When shall we append custom slider style to the global custom inline stylesheet?
-    $_bool = ( czr_fn_is_home() || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
-
-    if ( ! apply_filters( 'czr_print_slider_inline_css' , $_bool ) )
-      return $_slider_inline_css;
 
     $_resp_shrink_ratios = apply_filters( 'czr_slider_resp_shrink_ratios',
-      array('1199' => 0.77 , '991' => 0.618, '543' => 0.38 )
+      array( '1199' => 0.77 , '991' => 0.618, '575' => 0.38, '320' => 0.28 )
     );
+
     //this slider element id;
     $slider_html_element_id = "#customizr-slider-{$this->id}";
 
     $_slider_inline_css = "
       $slider_html_element_id.czr-carousel {
         height:{$_custom_height}px;
+
       }
       $slider_html_element_id .czr-slider-loader-wrapper {
         line-height: {$_custom_height}px;
@@ -631,16 +630,15 @@ class CZR_slider_model_class extends CZR_Model {
     foreach ( $_resp_shrink_ratios as $_w => $_ratio) {
       if ( ! is_numeric($_ratio) )
         continue;
-      $_item_dyn_height     = $_custom_height * $_ratio;
-      $_caption_dyn_height  = $_custom_height * ( $_ratio - 0.1 );
+      $_dyn_height         = $_custom_height * $_ratio;
       $_slider_inline_css .= "
         @media (max-width: {$_w}px) {
           $slider_html_element_id.czr-carousel {
-            height:{$_item_dyn_height}px;
+            height:{$_dyn_height}px;
           }
           $slider_html_element_id .czr-slider-loader-wrapper {
-            line-height: {$_item_dyn_height}px;
-            height:{$_item_dyn_height}px;
+            line-height: {$_dyn_height}px;
+            height:{$_dyn_height}px;
           }
         }";
     }//end foreach
