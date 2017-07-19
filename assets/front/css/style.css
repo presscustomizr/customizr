@@ -6174,6 +6174,62 @@ section.post-content {
   margin: 1em 0;
 }
 
+/* Welcome Note
+/* ------------------------------------ */
+#bottom-welcome-note {
+  bottom: -100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px 0;
+  position: fixed;
+  text-align: center;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+  color: #fff;
+  display: block;
+  -webkit-transition: all 0.45s ease-in-out;
+  -moz-transition: all, 0.45s ease-in-out;
+  -ms-transition: all, 0.45s ease-in-out;
+  -o-transition: all, 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+
+#bottom-welcome-note h2 {
+  font-size: 1.5em;
+  line-height: 1.6em;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+#bottom-welcome-note a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+#bottom-welcome-note p {
+  line-height: 2em;
+}
+
+#bottom-welcome-note .note-content {
+  display: inline-block;
+  line-height: 20px;
+  width: 80%;
+}
+
+#bottom-welcome-note .fa:before {
+  top: 2px;
+  position: relative;
+  padding-left: 2px;
+}
+
+#bottom-welcome-note .close-note {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 31px;
+  cursor: pointer;
+}
+
 .woocommerce span.onsale {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;

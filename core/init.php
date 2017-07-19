@@ -184,7 +184,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         }
 
-
+        //fired at the bottom of core/init.php
         public static function czr_fn_instance() {
             if ( ! isset( self::$instance ) && ! ( self::$instance instanceof CZR___ ) ) {
               self::$instance = new CZR___();
@@ -314,7 +314,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                 }
             }
 
-
             //load the new framework classes
             if ( CZR_DEV_MODE ) {
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
@@ -331,7 +330,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             //may be load pro
             if ( CZR_IS_PRO ) {
-                new CZR_init_pro(CZR___::$theme_name );
+                new CZR_init_pro( CZR___::$theme_name );
             }
 
         }//czf_fn_load()
@@ -353,31 +352,28 @@ if ( ! class_exists( 'CZR___' ) ) :
             return apply_filters(
                 'czr_model_map',
                 array(
+                    /*********************************************
+                    * HEADER
+                    *********************************************/
+                    array(
+                      'model_class'    => 'header',
+                      'id'             => 'header'
+                    ),
 
-                  /*********************************************
-                  * HEADER
-                  *********************************************/
-                  array(
-                    'model_class'    => 'header',
-                    'id'             => 'header'
-                  ),
-
-
-                  /*********************************************
-                  * CONTENT
-                  *********************************************/
-                  array(
-                    'id'             => 'main_content',
-                    'model_class'    => 'main_content',
-                  ),
-
-                  /*********************************************
-                  * FOOTER
-                  *********************************************/
-                  array(
-                    'id'           => 'footer',
-                    'model_class'  => 'footer',
-                  ),
+                    /*********************************************
+                    * CONTENT
+                    *********************************************/
+                    array(
+                      'id'             => 'main_content',
+                      'model_class'    => 'main_content',
+                    ),
+                    /*********************************************
+                    * FOOTER
+                    *********************************************/
+                    array(
+                      'id'           => 'footer',
+                      'model_class'  => 'footer',
+                    )
                 )
             );
         }
@@ -408,19 +404,19 @@ if ( ! class_exists( 'CZR___' ) ) :
             //---2.2) IS RIGHT PANEL => preview
             if ( ! czr_fn_is_customizing() ) {
                 if ( is_admin() ) {
-                  //load
-                  czr_fn_require_once( CZR_CORE_PATH . 'czr-admin-ccat.php' );
+                    //load
+                    czr_fn_require_once( CZR_CORE_PATH . 'czr-admin-ccat.php' );
 
-                  //if doing ajax, we must not exclude the placeholders
-                  //because ajax actions are fired by admin_ajax.php where is_admin===true.
-                  if ( defined( 'DOING_AJAX' ) )
-                    $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
-                  else
-                    $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placehloders' ) );
+                    //if doing ajax, we must not exclude the placeholders
+                    //because ajax actions are fired by admin_ajax.php where is_admin===true.
+                    if ( defined( 'DOING_AJAX' ) )
+                      $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
+                    else
+                      $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placehloders' ) );
                 }
                 else {
-                  //Skips all admin classes
-                  $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/admin|admin_init', 'fire|core/admin|admin_page') );
+                    //Skips all admin classes
+                    $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'admin' ), array( 'fire|core/admin|admin_init', 'fire|core/admin|admin_page') );
                 }
             }
             //Customizing

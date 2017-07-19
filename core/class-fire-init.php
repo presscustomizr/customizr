@@ -34,12 +34,14 @@ if ( ! class_exists( 'CZR_init' ) ) :
           add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ));
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
-          add_filter('body_class'                              , array( $this , 'czr_fn_set_body_classes') );
+          add_filter('body_class'               , array( $this , 'czr_fn_set_body_classes') );
           //Add the context
-          add_filter ( 'body_class'                            , 'czr_fn_set_post_list_context_class' );
+          add_filter ( 'body_class'             , 'czr_fn_set_post_list_context_class' );
 
           //Add custom search form
-          add_filter( 'get_search_form'                        , array( $this, 'czr_fn_search_form' ), 0 );
+          add_filter( 'get_search_form'         , array( $this, 'czr_fn_search_form' ), 0 );
+
+          add_action( 'template_redirect'       , array( $this, 'czr_fn_ajax_response' ) );
 
           //Default layout settings
           $this -> global_layout      = array(
@@ -219,19 +221,6 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       /*
       * hook : get_search_form
       *
@@ -244,6 +233,40 @@ if ( ! class_exists( 'CZR_init' ) ) :
           $form = ob_get_clean();
 
           return $form;
+      }
+
+      //@return void()
+      //hook : template_redirect
+      function czr_fn_ajax_response() {
+          //check
+          if ( ! czr_fn_is_ajax() )
+              return false;
+
+          //do nothing if not doing a specific huajax call
+          if ( ! ( isset( $_GET[ 'czrajax' ] ) && $_GET[ 'czrajax' ] ) )
+              return false;
+
+          // Require an action parameter
+          if ( ! isset( $_REQUEST['action'] ) || empty( $_REQUEST['action'] ) )
+              die( '0' );
+
+          // Will be used by hu_is_ajax();
+          if ( ! defined( 'DOING_AJAX' ) )
+              define( 'DOING_AJAX', true );
+
+          //Nonce is not needed as long as we don't write in the db
+          //Furthermore, when a cache plugin is used, front nonces can not be used.
+          //@see https://github.com/presscustomizr/hueman/issues/512
+          //'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) )
+          if ( isset( $_REQUEST['withNonce'] ) && true == $_REQUEST['withNonce'] )
+            check_ajax_referer( 'czr-front-nonce', 'CZRFrontNonce' );
+
+          @header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset' ) );
+          send_nosniff_header();
+
+          $action = $_REQUEST['action'];//we know it is set at this point
+          do_action( "czr_ajax_{$action}"  );
+          die( '0' );
       }
 
 

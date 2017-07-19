@@ -338,11 +338,11 @@ if ( ! function_exists( 'czr_fn_is_customizing' ) ) {
 }
 
 
-
-
-
-
-
+//@return boolean
+//Is used to check if we can display specific notes including deep links to the customizer
+function czr_fn_user_can_see_customize_notices_on_front() {
+    return ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' ) && is_super_admin();
+}
 
 
 
@@ -632,6 +632,25 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
 }
 
 
+
+//@return bool
+function czr_fn_user_started_with_current_version() {
+    if ( czr_fn_is_pro() )
+      return;
+
+    $_trans = 'started_using_customizr';
+    //the transient is set in CZR___::czr_fn_init_properties()
+    if ( ! get_transient( $_trans ) )
+      return false;
+
+    $_start_version_infos = explode( '|', esc_attr( get_transient( $_trans ) ) );
+
+    //make sure we're good at this point
+    if ( ! is_string( CUSTOMIZR_VER ) || ! is_array( $_start_version_infos ) || count( $_start_version_infos ) < 2 )
+      return false;
+
+    return 'with' == $_start_version_infos[0] && version_compare( $_start_version_infos[1] , CUSTOMIZR_VER, '==' );
+}
 
 
 /**
