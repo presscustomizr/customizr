@@ -98,12 +98,13 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
       'show_excerpt'             => esc_attr( czr_fn_opt( 'tc_posts_slider_text' ) ),
       'button_text'              => esc_attr( czr_fn_opt( 'tc_posts_slider_button_text' ) ),
       'posts_per_page'           => esc_attr( czr_fn_opt( 'tc_posts_slider_number' ) ),
-      'link_type'                => esc_attr( czr_fn_opt( 'tc_posts_slider_link') ),
-      'slider_responsive_images' => esc_attr( czr_fn_opt( 'tc_resp_slider_img') ) ? true : false,
+      'link_type'                => esc_attr( czr_fn_opt( 'tc_posts_slider_link') )
     );
 
     $args         = apply_filters( 'czr_get_pre_posts_slides_args', wp_parse_args( $args, $defaults ) );
     extract( $args );
+
+    $slider_responsive_images   = $this->allow_resp_images;
 
     //retrieve posts from the db
     $queried_posts    = $this -> czr_fn_query_posts_slider( $args );

@@ -131,17 +131,23 @@ if ( ! class_exists( 'CZR___' ) ) :
         public $tc_ws_thumb_size;
         public $tc_ws_small_thumb_size;
 
+        public $tc_slider_small_size;
+
+        public $slider_resp_shrink_ratio;
+
+
+
         function __construct( $_args = array()) {
-
-            //call CZR_BASE constructor
-            parent::__construct( $_args );
-
             //allow modern_style templates
             add_filter( 'czr_modern_style'             , '__return_true' );
             //define a constant we can use everywhere
             //that will tell us we're in the new Customizr:
             //Will be highly used during the transion between the two themes
             if( ! defined( 'CZR_IS_MODERN_STYLE' ) ) define( 'CZR_IS_MODERN_STYLE' , true );
+
+
+            //call CZR_BASE constructor
+            parent::__construct( $_args );
 
             //this action callback is the one responsible to load new czr main templates
             //Those templates have no models there are invoked from the WP templates with this kind of syntax : do_action( 'czr_modern_style_tmpl', 'header' );
@@ -152,14 +158,29 @@ if ( ! class_exists( 'CZR___' ) ) :
 
             add_action( 'czr_dev_notice', array( $this, 'czr_fn_print_r') );
 
+            //Slider responsive ratio
+            $this -> slider_resp_shrink_ratio = apply_filters( 'czr_slider_resp_shrink_ratios',
+              array( '1199' => 0.77 , '991' => 0.618, '767' => 0.5, '575' => 0.38, '320' => 0.28 )
+            );
+
+
             //Default images sizes
             //Thumbs definition
-            $this -> tc_sq_thumb_size         = array( 'width' => 510 , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
+            $this -> tc_sq_thumb_size            = array( 'width' => 510  , 'height' => 510, 'crop' => true ); //size name : tc-sq-thumb
 
-            //the width of 1170 kept for backward compatibility, the actual bootstrap4 container width is 1110
-            $this -> tc_ws_thumb_size         = array( 'width' => 1170 , 'height' => 658, 'crop' => true ); //size name : tc-ws-thumb, replaces also tc_grid_full_size for modern style
+            //The actual bootstrap4 container width is 1110, while it was 1170 in bootstrap2
+            $this -> tc_ws_thumb_size            = array( 'width' => 1110 , 'height' => 624, 'crop' => true ); //size name : tc-ws-thumb, replaces also tc_grid_full_size for modern style
 
-            $this -> tc_ws_small_thumb_size  = array( 'width' => 400 , 'height' => 225, 'crop' => true ); //size name : tc-ws-small-thumb, used by wp as responsive image of tc-ws-thumb
+            //Small thumbs : (set at a viewport of 575px : upper limit for extra small devices )
+            $this -> tc_ws_small_thumb_size      = array( 'width' => 528  , 'height' => 297, 'crop' => true ); //size name : tc-ws-small-thumb, used by wp as responsive image of tc-ws-thumb
+
+            //Slider's small thumb
+
+            //The actual bootstrap4 container width is 1110, while it was 1170 in bootstrap2
+            //to keep the same aspect ratio of the slider boxed thumb we set the width to 517px
+            //and the height as as 517 * 500 (default height) / 1110 (default width) = (around) 422
+            //NOTE: we'll use the same small size both for the full and the boxed slider layout
+            $this -> tc_slider_small_size        = array( 'width' => 517  , 'height' => 235, 'crop' => true ); //size name : tc-slider-small
 
         }
 
