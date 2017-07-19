@@ -91,6 +91,9 @@
   position: relative;
   height: 100%;
   width: 100%;
+  //avoid visible fine line on loading in some viewports
+  //due to the not integer height in px
+  @include transform ( translateZ(0) );
 }
 
 #main-wrapper .section.custom  {
