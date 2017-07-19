@@ -26,6 +26,7 @@ class CZR_slider_model_class extends CZR_Model {
 
   public $allow_resp_images;
 
+
   /**
   * @override
   * fired before the model properties are parsed
@@ -46,7 +47,7 @@ class CZR_slider_model_class extends CZR_Model {
 
     $slider_name_id     = czr_fn_get_current_slider( $queried_id );
 
-    $layout             = $this -> czr_fn_get_slider_layout( $queried_id, $slider_name_id );
+    $layout             = $this -> czr_fn_get__slider_layout( $queried_id, $slider_name_id );
 
     $img_size           = apply_filters( 'czr_slider_img_size' , ( 'boxed' == $layout ) ? 'slider' : 'slider-full');
 
@@ -452,10 +453,19 @@ class CZR_slider_model_class extends CZR_Model {
   * @return string
   */
   protected function czr_fn_get_slider_inner_attrs() {
-    if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
-      return sprintf( 'data-parallax-ratio="%s"',
+    $atts = array();
+
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) ) {
+      $atts[] = sprintf( 'data-parallax-ratio="%s"',
         apply_filters('tc_parallax_ratio', 0.55 )
       );
+    }
+
+    $atts[] = sprintf( 'data-slider-delay="%s"',
+      czr_fn_is_real_home() ? czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_delay_key' , $single = true )
+    );
+
+    return czr_fn_stringify_array( $atts );
   }
 
   /*
@@ -466,7 +476,7 @@ class CZR_slider_model_class extends CZR_Model {
   *
   * @return bool
   */
-  protected function czr_fn_get_slider_layout( $queried_id, $slider_name_id ) {
+  protected function czr_fn_get__slider_layout( $queried_id, $slider_name_id ) {
     //gets slider options if any
     $layout_value                 = czr_fn_is_real_home() ? czr_fn_opt( 'tc_slider_width' ) : esc_attr( get_post_meta( $queried_id, $key = 'slider_layout_key' , $single = true ) );
     $layout_value                 = apply_filters( 'czr_slider_layout', $layout_value, $queried_id );
@@ -489,6 +499,7 @@ class CZR_slider_model_class extends CZR_Model {
 
     return $layout;
   }
+
 
   /**
   * helper
