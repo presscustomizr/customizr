@@ -424,20 +424,18 @@ class CZR_utils_settings_map {
 
             //add responsive image settings for wp >= 4.4
             if ( version_compare( $wp_version, '4.4', '>=' ) ) {
-                  $_to_add[ 'tc_resp_thumbs_img' ] =  array(
+                  $_to_add[ 'tc_resp_slider_img' ] =  array(
                                     'default'     => 0,
                                     'control'     => 'CZR_controls' ,
-                                    'label'       => __( "Enable the WordPress responsive image feature for the theme's thumbnails" , "customizr" ),
+                                    'label'       => __( 'Improve your page speed by loading smaller slider images for mobile devices' , 'customizr' ),
                                     'section'     => 'images_sec' ,
                                     'type'        => 'checkbox' ,
-                                    'priority'    => 30,
+                                    'priority'    => 24,
+                                    'ubq_section'   => array(
+                                        'section' => 'performances_sec',
+                                        'priority' => '1'
+                                    )
                   );
-
-                  //move the notice in the new control
-                  if ( isset( $_map[ 'tc_resp_slider_img' ] ) && isset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] ) ) {
-                        $_to_add[ 'tc_resp_thumbs_img' ][ 'notice' ] = $_map[ 'tc_resp_slider_img' ]['notice'];
-                        unset( $_map[ 'tc_resp_slider_img' ][ 'notice' ] );
-                  }
 
             }
 
