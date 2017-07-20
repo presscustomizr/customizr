@@ -308,8 +308,8 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             }
 
-
-            $is_big_media                  = !$is_full_image && in_array( $_current_post_format, array( 'video', 'image' ) );
+            $big_media_post_formats_array  = $thumb_shape ?  array( 'video' ) : array( 'video', 'image' );
+            $is_big_media                  = !$is_full_image && in_array( $_current_post_format, $big_media_post_formats_array );
 
 
             if ( $is_big_media )
