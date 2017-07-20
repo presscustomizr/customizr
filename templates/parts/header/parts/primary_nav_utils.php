@@ -7,7 +7,7 @@
  * ( Sidenav Menu)
  */
 ?>
-<div class="topbar-nav__utils nav__utils col-auto" <?php czr_fn_echo('element_attributes') ?>>
+<div class="primary-nav__utils nav__utils col-auto" <?php czr_fn_echo('element_attributes') ?>>
     <ul class="nav utils flex-row flex-nowrap regular-nav">
       <?php
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_search' ) ) {

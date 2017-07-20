@@ -61,7 +61,7 @@ class CZR_menu_model_class extends CZR_Model {
                     'element_class'       => array( 'primary-nav__menu-wrapper', $menu_position_class ),
                     'theme_location'      => 'main',
                     'menu_id'             => 'primary-nav',
-                    'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'navbar-nav', 'nav__menu' ),
+                    'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
 
                 );
 
@@ -86,7 +86,7 @@ class CZR_menu_model_class extends CZR_Model {
                     'element_class'       => array( 'primary-nav__menu-wrapper', $menu_position_class ),
                     'theme_location'      => 'secondary',
                     'menu_id'             => 'secondary-nav',
-                    'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'navbar-nav', 'nav__menu' ),
+                    'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
 
 
                 );

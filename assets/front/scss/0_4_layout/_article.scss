@@ -510,7 +510,10 @@ section.post-related-articles {
 
   &:first-of-type { border: none; margin-top: 0 }
 
-  .excerpt { border-bottom: 1px solid;}
+  .excerpt {
+    border-bottom: 1px solid;
+    @extend .bold;
+  }
 
   sup {
     font-family: $serviceFont;

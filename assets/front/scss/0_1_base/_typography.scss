@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6, p {
   margin-top: $base-line-height;
 }
 
-h6 {
+h6 {
   @extend .semi-bold;
   color:$grey ;
   text-transform: uppercase;
@@ -127,11 +127,11 @@ blockquote p {
 }
 .normal {
   font-weight: 400;
- }
- .semi-bold {
-   font-weight: 500;
- }
- .bold {
+}
+.semi-bold {
+  font-weight: 500;
+}
+.bold {
   font-weight: 600;
 }
 .thick, strong {
@@ -144,18 +144,6 @@ blockquote p {
 }
 .caps {
   text-transform: uppercase;
-}
-.right-aligned {
-  text-align:right;
-}
-.left-aligned {
-  text-align:left;
-}
-.centered {
-  text-align:center;
-}
-.justified {
-  text-align: justify;
 }
 .letter-spacing-075 {
   letter-spacing: 0.075px;
@@ -176,4 +164,22 @@ blockquote p {
   border-bottom-color: $grey-lightest;
   box-shadow: inset 0 -5px 0 $grey-lightest;
 }
-.underline { text-decoration: underline }
+
+.underline {
+  text-decoration: underline
+}
+
+.big-text-10 {
+  font-size: 10em
+}
+
+// Responsive alignment (bs-inspired)
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#{$infix}-left   { text-align: left !important; }
+    .text#{$infix}-right  { text-align: right !important; }
+    .text#{$infix}-center { text-align: center !important; }
+  }
+}

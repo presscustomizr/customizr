@@ -4,7 +4,6 @@
  * Contains:
  * Search Button
  * ( Woocommerce Cart Icon )
- * ( Sidenav Menu)
  */
 ?>
 <div class="topbar-nav__utils nav__utils col-auto" <?php czr_fn_echo('element_attributes') ?>>

@@ -156,7 +156,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 * @since Customizr 3.5
 */
 function czr_fn_get_column_content_wrapper_class() {
-    return apply_filters( 'czr_column_content_wrapper_classes' , array('row', 'column-content-wrapper') );
+    return apply_filters( 'czr_column_content_wrapper_classes' , array( 'flex-row', 'row', 'column-content-wrapper') );
 }
 
 /**
