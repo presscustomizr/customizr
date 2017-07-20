@@ -264,8 +264,8 @@
           'tc_body_font_size' : function( to ) {
             var fontSelectors  = CZRPreviewParams.fontSelectors;
             $( fontSelectors.body ).css( {
-              'font-size' : to + 'px!important',
-              'line-height' : '1.5em!important'
+              'font-size' : to + 'px',
+              'line-height' : '1.6em'
             });
           },
           'tc_link_hover_effect' : function( to ) {

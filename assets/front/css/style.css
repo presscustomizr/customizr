@@ -4873,23 +4873,23 @@ select:-webkit-autofill {
   top: 0;
 }
 
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .navbar-brand img,
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .navbar-brand,
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .header-tagline {
-  -webkit-transition: all 0.15s;
-  -o-transition: all 0.15s;
-  transition: all 0.15s;
+.sticky-brand-shrink-on .desktop-sticky .navbar-brand img,
+.sticky-brand-shrink-on .desktop-sticky .navbar-brand,
+.sticky-brand-shrink-on .desktop-sticky .header-tagline {
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .navbar-brand {
+.is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand {
   font-size: 1.2em;
 }
 
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .header-tagline {
+.is-sticky.sticky-brand-shrink-on .desktop-sticky .header-tagline {
   font-size: 0.8em;
 }
 
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding .navbar-brand img {
+.is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand img {
   height: 30px !important;
   width: auto !important;
 }
@@ -4903,6 +4903,40 @@ select:-webkit-autofill {
 @media screen and (min-width: 783px) {
   .admin-bar .fixed-header-on .mobile-sticky, .admin-bar .fixed-header-on .desktop-sticky {
     top: 32px;
+  }
+}
+
+.mobile-navbar__wrapper .branding {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.mobile-navbar__wrapper .navbar-brand-sitelogo img {
+  max-height: 36px !important;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+.mobile-navbar__wrapper .nav__menu-wrapper {
+  margin-bottom: 20px;
+}
+
+.mobile-navbar__wrapper .czr-underline span {
+  margin-bottom: 5px;
+  display: block;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .mobile-navbar__wrapper .branding {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .mobile-navbar__wrapper .navbar-brand-sitelogo img {
+    max-height: 45px !important;
+    max-width: 100%;
   }
 }
 

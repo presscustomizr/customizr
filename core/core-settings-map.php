@@ -168,7 +168,7 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
                             'title'     => __( 'LOGO' , 'customizr'),
                             'section'   => 'title_tagline',
                             'sanitize_callback' => 'czr_fn_sanitize_number',
-                            'priority'  => 10,
+                            'priority'  => 12,
                     //we can define suggested cropping area and allow it to be flexible (def 150x150 and not flexible)
                             'width'     => 250,
                             'height'    => 100,
@@ -459,7 +459,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'  => 15,
                             'ubq_section'   => array(
                                 'section' => 'title_tagline',
-                                'priority' => '5'
+                                'priority' => '10'
                             )
           ),
           'tc_sticky_transparent_on_scroll'  =>  array(
@@ -666,7 +666,7 @@ function czr_fn_header_mobile_option_map() {
                           'priority'      => 28,
                           'ubq_section'   => array(
                                               'section' => 'title_tagline',
-                                              'priority' => '10'
+                                              'priority' => '11'
                                            )
         ),
 

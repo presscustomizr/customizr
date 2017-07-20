@@ -309,3 +309,47 @@
     }
   }
 }
+
+
+
+//MOBILE HEADER
+.mobile-navbar__wrapper {
+  //LOGO DIMENSIONS ON MOBILE
+  .branding {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .navbar-brand-sitelogo img {
+    max-height: 36px!important;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+  }
+
+  //MORE SPACE AT THE BOTTOM WHEN EXPANDED
+  .nav__menu-wrapper {
+     margin-bottom: 20px;
+  }
+
+  //When the site title is underlined, when need to adjust the vertical centering with this hard coded margin
+  .czr-underline span {
+    margin-bottom: 5px;
+    display: block;
+    position: relative;
+  }
+}
+
+//@media screen and (min-width: 768px)
+@include media-breakpoint-up(md) {
+  .mobile-navbar__wrapper  {
+    .branding {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .navbar-brand-sitelogo img {
+      max-height: 45px!important;
+      max-width: 100%;
+    }
+  }
+}
