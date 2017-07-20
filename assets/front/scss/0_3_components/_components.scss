@@ -6,7 +6,21 @@
   }
 }
 
+
+//
+// Base styles (bs based)
+//
+
 %btn_base {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
   border-width: 2px;
   border-style: solid;
@@ -15,13 +29,47 @@
   cursor: pointer;
   text-decoration: none;
   @include transition( all 0.2s ease-in-out );
+
+  // Share hover and focus styles
+  @include hover-focus {
+    text-decoration: none;
+  }
+  &:focus,
+  &.focus {
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+            box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    cursor: $cursor-disabled;
+    opacity: .65;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+            box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+  }
 }
 
-// SKINNED
+
 .btn {
   @extend %btn_base;
 }
 
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+// SKINNED
 // .btn modifier
 .btn-skin {
   background-color: $skin;

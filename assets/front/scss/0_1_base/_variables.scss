@@ -1,3 +1,7 @@
+$cursor-disabled:                not-allowed !default;
+//used in mixins hover-focus
+$enable-hover-media-query:  false !default;
+
 // Grid breakpoints
 //
 // Define the minimum dimensions at which your layout will change,

@@ -24,6 +24,11 @@
             line-height: 1.5em;
             margin: 0;
             vertical-align: middle;
+            display: inline-block;
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+            white-space: nowrap;
+
             @at-root .navbar-brand img {
               width: auto;
               max-width: 100%;
@@ -239,26 +244,27 @@
 /* EXPERIMENTAL */
 .mobile-sticky,
 .desktop-sticky {
+  position: relative;
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
   box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
   -webkit-transition: -webkit-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
   -moz-transition: -moz-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
   -o-transition: -o-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
   transition: transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  z-index: 100;
 }
 
 
 .mobile-sticky .mobile-nav__nav {
   position: absolute;
   max-height: 70vh;
-  z-index: 100;
   overflow: auto;
 }
 
 .fixed-header-on .mobile-sticky,
 .fixed-header-on .desktop-sticky {
   position: fixed;
-  z-index:1000;
+  z-index:100;
   /* background: rgba(255, 255, 255, 0.7); */
   width: 100%;
   top: 0;
