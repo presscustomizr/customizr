@@ -2039,7 +2039,7 @@ function czr_fn_style_option_map( $get_default = null ) {
   $_notice = __( 'The Modern style provides a "material design" look and feel. It relies on the flexbox css mode, offering a better support for the most recent mobile devices and browsers. The Classical style provides a more "flat design" feeling, with icons next to titles for example. It supports both modern and older devices and browsers.', 'customizr' );
   return array(
           'tc_style'  =>  array(
-                            'default'    => czr_fn_user_started_before_version( '4.0.0' , '2.0.0') ? 'classic': 'modern',
+                            'default'    => czr_fn_user_started_before_version( '4.0.0' , '2.0.0') ? 'classic' : 'modern',
                             'control'   => 'CZR_controls',
                             'label'       => is_child_theme() ? __( "Set the Modern or Classical design style", 'customizr' ) : __( "Select a design style for the theme", 'customizr' ),
                             'section'     => 'style_sec',
@@ -2068,21 +2068,21 @@ function czr_fn_popul_panels_map( $panel_map ) {
               'priority'       => 10,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Global settings' , 'customizr' ),
-              'czr_subtitle'   => __( 'Title, Logo, Fonts, Primary color, Social, ...', 'hueman'),
+              'czr_subtitle'   => __( 'Title, Logo, Fonts, Primary color, Social, ...', 'customizr'),
               'type'           => 'czr_panel'
     ),
     'tc-header-panel' => array(
               'priority'       => 20,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Header' , 'customizr' ),
-              'czr_subtitle'   => __( 'Style, Desktops and mobiles layout, Menus, Search, ...', 'hueman'),
+              'czr_subtitle'   => __( 'Style, Desktops and mobiles layout, Menus, Search, ...', 'customizr'),
               'type'           => 'czr_panel'
     ),
     'tc-content-panel' => array(
               'priority'       => 30,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Main Content' , 'customizr' ),
-              'czr_subtitle'   => __( 'Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ...', 'hueman'),
+              'czr_subtitle'   => __( 'Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ...', 'customizr'),
               'type'           => 'czr_panel'
     ),
     'tc-sidebars-panel' => array(
@@ -2095,14 +2095,14 @@ function czr_fn_popul_panels_map( $panel_map ) {
               'priority'       => 40,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Footer' , 'customizr' ),
-              'czr_subtitle'   => __( 'Style, Back to top button, Sticky mode, ... ', 'hueman'),
+              'czr_subtitle'   => __( 'Style, Back to top button, Sticky mode, ... ', 'customizr'),
               'type'           => 'czr_panel'
     ),
     'tc-advanced-panel' => array(
               'priority'       => 1000,
               'capability'     => 'edit_theme_options',
               'title'          => __( 'Advanced options' , 'customizr' ),
-              'czr_subtitle'   => __( 'Performances, Custom CSS ...', 'hueman'),
+              'czr_subtitle'   => __( 'Performances, Custom CSS ...', 'customizr'),
               'type'           => 'czr_panel'
     )
   );

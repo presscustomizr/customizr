@@ -31,14 +31,17 @@ endif;
  */
 if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
       function czr_fn_is_modern_style() {
-            $_czr_is_modern_style = 'modern' == czr_fn_opt( 'tc_style' );
-            if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
-              $_czr_is_modern_style = true;
-            } else {
-              $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $_czr_is_modern_style;
-            }
+          $_czr_is_modern_style = 'modern' == czr_fn_opt( 'tc_style' );
+          if ( ! in_array( $_czr_is_modern_style, array('modern', 'classic' ) ) ) {
+              $_czr_is_modern_style = ! czr_fn_user_started_before_version( '4.0.0' , '2.0.0');
+          }
+          if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
+            $_czr_is_modern_style = true;
+          } else {
+            $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $_czr_is_modern_style;
+          }
 
-            return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
+          return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
       }
 }
 
