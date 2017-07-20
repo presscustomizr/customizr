@@ -847,7 +847,10 @@ var czrapp = czrapp || {};
 
                   var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]');
                   if ( $_main_slider.length > 0 ) {
-                        var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length;
+                        var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length,
+                            _autoPlay           = $_main_slider.data('slider-delay');
+
+                        _autoPlay           =  ( _.isNumber( _autoPlay ) && _autoPlay > 0 ) ? _autoPlay : false;
 
                         $_main_slider.flickity({
                             prevNextButtons: false,
@@ -863,7 +866,7 @@ var czrapp = czrapp || {};
 
                             dragThreshold: 10,
 
-                            autoPlay: true, // {Number in milliseconds }
+                            autoPlay: _autoPlay, // {Number in milliseconds }
 
                             accessibility: false,
                         });
@@ -1544,7 +1547,7 @@ var czrapp = czrapp || {};
                   czrapp.$_body.removeClass('full-search-opened');
             });
             if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-                  czrapp.$_body.on( 'shown.czr.czrDropdown', '.primary-nav__woocart', function() {
+                  czrapp.$_body.on( 'shown.czr.czrDropdown', '.nav__woocart', function() {
                      var $_to_scroll = $(this).find('.product_list_widget');
                      if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
                         $_to_scroll.mCustomScrollbar({
@@ -2281,7 +2284,7 @@ var czrapp = czrapp || {};
       DATA_TOGGLE: '[data-toggle="czr-dropdown"]',
       FORM_CHILD: '.czr-dropdown form',
       MENU: '.dropdown-menu',
-      NAVBAR_NAV: '.navbar-nav',
+      NAVBAR_NAV: '.regular-nav',
       VISIBLE_ITEMS: '.dropdown-menu .dropdown-item:not(.disabled)'
     };
 
