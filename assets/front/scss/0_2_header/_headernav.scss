@@ -271,29 +271,30 @@
 }
 
 // Shrink logo/title: for desktop only
-.sticky-brand-shrink-on.is-sticky .desktop-sticky .branding {
-
-  //allow transition effect
-  .navbar-brand img,
-  .navbar-brand,
-  .header-tagline {
-    @include transition( all .15s );
-  }
-  //title ( and tagline )
-  .navbar-brand {
-    font-size: 1.2em;
-  }
-  .header-tagline {
-    font-size: 0.8em;
-  }
-  //logo
-  .navbar-brand img {
-      height: 30px!important;
-      width: auto!important;
-  }
-
+.sticky-brand-shrink-on .desktop-sticky {
+    //allow transition effect
+    .navbar-brand img,
+    .navbar-brand,
+    .header-tagline {
+        @include transition( all .3s );
+    }
 }
 
+.is-sticky.sticky-brand-shrink-on .desktop-sticky {
+    //title ( and tagline )
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+    .header-tagline {
+        font-size: 0.8em;
+    }
+
+    //logo
+    .navbar-brand img {
+        height: 30px!important;
+        width: auto!important;
+    }
+}
 
 
 .admin-bar .fixed-header-on {
