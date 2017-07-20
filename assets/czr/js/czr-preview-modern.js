@@ -246,10 +246,11 @@
             });
           },
           'tc_body_font_size' : function( to ) {
+            console.log('ALORS.///');
             var fontSelectors  = CZRPreviewParams.fontSelectors;
             $( fontSelectors.body ).css( {
-              'font-size' : to + 'px',
-              'line-height' : '1.6em'
+              'font-size' : to + 'px!important',
+              'line-height' : '1.5em!important'
             });
           },
           'tc_link_hover_effect' : function( to ) {

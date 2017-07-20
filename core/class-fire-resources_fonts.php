@@ -149,17 +149,38 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       */
       if ( 15 != $_body_font_size ) {
 
-        //turn into rem
-        $remsize      = $_body_font_size / 16;
-        $remsize      = number_format( (float)$remsize, 2, '.', '');
-
-        $_line_height = apply_filters('czr_body_line_height_ratio', 1.75 );
-        $_css .= "
-          {$body} {
-            font-size : {$remsize}rem;
-            line-height : {$_line_height}em;
-          }\n";
-        }
+          $_line_height = apply_filters('czr_body_line_height_ratio', 1.5 );
+          if ( ! czr_fn_is_checked( 'tc_ms_respond_css' ) ) {
+            //turn into rem
+            $remsize      = $_body_font_size / 16;
+            $remsize      = number_format( (float)$remsize, 2, '.', '');
+            $_css .= "
+              {$body} {
+                font-size : {$remsize}rem;
+                line-height : {$_line_height}em;
+              }\n";
+          } else {
+            $emsize_medium = $_body_font_size * 0.833 / 16;//@see assets/css/front/stye-modular-scale.css
+            $emsize_medium = number_format( (float)$emsize_medium, 2, '.', '');
+            $emsize_large = $_body_font_size * 0.9375 / 16;
+            $emsize_large = number_format( (float)$emsize_large, 2, '.', '');
+            $_css .= "
+              {$body} {
+                font-size : {$emsize_medium}em!important;
+                line-height : {$_line_height}em!important;
+              }
+              @media (min-width: 20em) and (max-width: 60em) {
+                {$body} {
+                  font-size: calc( {$emsize_medium}em + 0.1045 * ( ( 100vw - 20em) / 40 ))!important;
+                }
+              }
+              @media (min-width: 60em) {
+                {$body} {
+                  font-size: {$emsize_large}em!important;
+                }
+              }\n";
+          }
+      }
 
       return $_css;
     }//end of fn

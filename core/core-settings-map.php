@@ -20,36 +20,36 @@ function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
     }
 
     if ( ! empty( CZR___::$customizer_map ) ) {
-      $_customizer_map = CZR___::$customizer_map;
+        $_customizer_map = CZR___::$customizer_map;
     } else {
-      //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
-      add_filter( 'czr_add_panel_map'           , 'czr_fn_popul_panels_map');
-      add_filter( 'czr_remove_section_map'      , 'czr_fn_popul_remove_section_map');
-      //theme switcher's enabled when user opened the customizer from the theme's page
-      add_filter( 'czr_remove_section_map'      , 'czr_fn_set_theme_switcher_visibility');
-      add_filter( 'czr_add_section_map'         , 'czr_fn_popul_section_map');
-      //add controls to the map
-      add_filter( 'czr_add_setting_control_map' , 'czr_fn_popul_setting_control_map', 10, 2 );
+        //POPULATE THE MAP WITH DEFAULT CUSTOMIZR SETTINGS
+        add_filter( 'czr_add_panel_map'           , 'czr_fn_popul_panels_map');
+        add_filter( 'czr_remove_section_map'      , 'czr_fn_popul_remove_section_map');
+        //theme switcher's enabled when user opened the customizer from the theme's page
+        add_filter( 'czr_remove_section_map'      , 'czr_fn_set_theme_switcher_visibility');
+        add_filter( 'czr_add_section_map'         , 'czr_fn_popul_section_map');
+        //add controls to the map
+        add_filter( 'czr_add_setting_control_map' , 'czr_fn_popul_setting_control_map', 10, 2 );
 
 
-      //FILTER SPECIFIC SETTING-CONTROL MAPS
-      //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
-      add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages', 10, 2 );
+        //FILTER SPECIFIC SETTING-CONTROL MAPS
+        //ADDS SETTING / CONTROLS TO THE RELEVANT SECTIONS
+        add_filter( 'czr_fn_front_page_option_map', 'czr_fn_generates_featured_pages', 10, 2 );
 
-      //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
-      add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
+        //MAYBE FORCE REMOVE SECTIONS (e.g. CUSTOM CSS section for wp >= 4.7 )
+        add_filter( 'czr_add_section_map'         , 'czr_fn_force_remove_section_map' );
 
-      //CACHE THE GLOBAL CUSTOMIZER MAP
-      $_customizer_map = array_merge(
-        array( 'add_panel'           => apply_filters( 'czr_add_panel_map', array() ) ),
-        array( 'remove_section'      => apply_filters( 'czr_remove_section_map', array() ) ),
-        array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
-        array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
-      );
-      CZR___::$customizer_map = $_customizer_map;
+        //CACHE THE GLOBAL CUSTOMIZER MAP
+        $_customizer_map = array_merge(
+            array( 'add_panel'           => apply_filters( 'czr_add_panel_map', array() ) ),
+            array( 'remove_section'      => apply_filters( 'czr_remove_section_map', array() ) ),
+            array( 'add_section'         => apply_filters( 'czr_add_section_map', array() ) ),
+            array( 'add_setting_control' => apply_filters( 'czr_add_setting_control_map', array(), $get_default ) )
+        );
+        CZR___::$customizer_map = $_customizer_map;
     }
     if ( is_null($what) ) {
-      return apply_filters( 'tc_customizer_map', $_customizer_map );
+        return apply_filters( 'tc_customizer_map', $_customizer_map );
     }
 
     $_to_return = $_customizer_map;
@@ -238,7 +238,7 @@ function czr_fn_fonts_option_map( $get_default = null ) {
                             'control'       =>  'CZR_controls',
                             'section'       => 'fonts_sec',
                             'type'          => 'number' ,
-                            'step'          => 1,
+                            'step'          => 0.5,
                             'min'           => 0,
                             'priority'      => 20,
                             'transport'     => 'postMessage',
@@ -413,7 +413,7 @@ function czr_fn_smoothscroll_option_map( $get_default = null ) {
                             'type'          => 'checkbox',
                             'priority'      => 1,
                             'notice'    => __( 'This option enables a smoother page scroll.' , 'customizr' ),
-                            'transport'     => 'postMessage'
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           )
   );
 }
@@ -462,15 +462,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'priority' => '5'
                             )
           ),
-          'tc_sticky_shrink_title_logo'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( "Sticky header : shrink title / logo" , "customizr" ),
-                            'section'       => 'header_layout_sec' ,
-                            'type'          => 'checkbox' ,
-                            'priority'      => 60,
-                            'transport'     => 'postMessage',
-          ),
           'tc_sticky_transparent_on_scroll'  =>  array(
                             'default'       => 1,
                             'control'       => 'CZR_controls' ,
@@ -478,7 +469,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 67,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
           ),
           'tc_sticky_z_index'  =>  array(
                             'default'       => 100,
@@ -490,7 +481,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'step'          => 1,
                             'min'           => 0,
                             'priority'      => 70,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
                             'notice'    => sprintf('%1$s <a href="%2$s" target="_blank">%3$s</a> ?',
                                 __( "What is" , 'customizr' ),
                                 esc_url('https://developer.mozilla.org/en-US/docs/Web/CSS/z-index'),
@@ -509,7 +500,7 @@ function czr_fn_header_desktop_option_map() {
     return array(
         'tc_header_layout'  =>  array(
                         'default'       => 'left',
-                        'title'         => __( 'Header design and layout' , 'customizr'),
+                        //'title'         => __( 'Header design and layout' , 'customizr'),
                         'control'       => 'CZR_controls' ,
                         'label'         => __( "Choose a layout for the header" , "customizr" ),
                         'section'       => czr_fn_is_modern_style() ? 'header_desktop_sec' : 'header_layout_sec',
@@ -547,7 +538,7 @@ function czr_fn_header_desktop_option_map() {
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
                           'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'Tagline location in the header' , 'customizr' ) ),
-                          'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
+                          //'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
@@ -557,6 +548,10 @@ function czr_fn_header_desktop_option_map() {
                               'brand_below'   => __( 'Below the logo', 'customizr'),
                               'brand_next'    => __( 'Next to the logo', 'customizr')
                           ),
+                          'ubq_section'   => array(
+                                'section' => 'title_tagline',
+                                'priority' => '11'
+                            )
                           //'priority'  => 29,
         ),
 
@@ -616,7 +611,20 @@ function czr_fn_header_desktop_option_map() {
                               'stick_always'  => __( 'Always visible', 'customizr')
                           ),
                           //'priority'  => 32,
-        )
+        ),
+
+        'tc_sticky_shrink_title_logo'  =>  array(
+                            'default'       => 1,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Sticky header : shrink title / logo" , "customizr" ),
+                            'section'       => czr_fn_is_modern_style() ? 'header_desktop_sec' : 'header_layout_sec',
+                            'type'          => 'checkbox' ,
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
+                            'ubq_section'   => array(
+                                'section' => 'title_tagline',
+                                'priority' => '20'
+                            )
+          ),
     );
 
 }
@@ -746,7 +754,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                                     'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                             ),
                             'priority'      => 50,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
           ),
           'tc_second_menu_position'  =>  array(
                             'default'       => 'pull-menu-left',
@@ -760,7 +768,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                                     'pull-menu-right'     => __( 'Menu on the right' , 'customizr' )
                             ),
                             'priority'      => 55,
-                            'transport'     => 'postMessage'
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           //The hover menu type has been introduced in v3.1.0.
           //For users already using the theme (no theme's option set), the default choice is click, for new users, it is hover.
@@ -783,7 +791,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'section'       => 'nav' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 70,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
           ),
           'tc_menu_submenu_item_move_effect'  =>  array(
                             'default'       => 1,
@@ -792,7 +800,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'section'       => 'nav' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 80,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
           ),
           'tc_hide_all_menus'  =>  array(
                             'default'       => 0,
@@ -892,7 +900,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'section'       => 'frontpage_sec',
                             'type'          => 'checkbox',
                             'priority'      => 1,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
           ),
           //page for posts
           'tc_blog_restrict_by_cat'       => array(
@@ -1032,7 +1040,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'step'      => 1,
                             'min'       => 0,
                             'priority'      => 52,
-                            'transport' => 'postMessage'
+                            'transport' => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_slider_default_height_apply_all'  =>  array(
                             'default'       => 1,
@@ -1084,7 +1092,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
           //display featured page images
           'tc_featured_page_button_text' => array(
                             'default'       => __( 'Read more &raquo;' , 'customizr' ),
-                            'transport'     =>  'postMessage',
+                            'transport'     =>  czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
                             'label'       => __( 'Button text' , 'customizr' ),
                             'section'     => 'frontpage_sec' ,
                             'type'        => 'text' ,
@@ -1334,7 +1342,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'section'       => 'post_lists_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 61,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_grid_bottom_border'  =>  array(
                             'default'       => 1,
@@ -1343,7 +1351,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'section'       => 'post_lists_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 62,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_grid_icons'  =>  array(
                             'default'       => 1,
@@ -1352,7 +1360,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'section'       => 'post_lists_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 63,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_grid_num_words'  =>  array(
                             'default'       => 10,
@@ -1418,7 +1426,7 @@ function czr_fn_single_post_option_map( $get_default = null ) {
                         'step'        => 1,
                         'min'         => 0,
                         'priority'      => 20,
-                        'transport'   => 'postMessage'
+                        'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
       ),
       'tc_related_posts' => array(
                         'default'   => 'categories',
@@ -1477,7 +1485,7 @@ function czr_fn_single_page_option_map( $get_default = null ) {
                         'step'        => 1,
                         'min'         => 0,
                         'priority'      => 20,
-                        'transport'   => 'postMessage'
+                        'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
       )
   );
 
@@ -1567,7 +1575,7 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'type'          => 'checkbox',
                             'notice'    => __( 'When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles.' , 'customizr' ),
                             'priority'      => 5,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_show_post_metas_home'  =>  array(
                             'default'       => 0,
@@ -1577,7 +1585,7 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'section'       => 'post_metas_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 15,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_show_post_metas_single_post'  =>  array(
                             'default'       => 1,
@@ -1586,7 +1594,7 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'section'       => 'post_metas_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 20,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_show_post_metas_post_lists'  =>  array(
                             'default'       => 1,
@@ -1595,7 +1603,7 @@ function czr_fn_post_metas_option_map( $get_default = null ){
                             'section'       => 'post_metas_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 25,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
 
           'tc_show_post_metas_categories'  =>  array(
@@ -1680,7 +1688,7 @@ function czr_fn_gallery_option_map( $get_default = null ){
                             'notice'         => __( "Apply nice on hover expansion effect to the galleries images" , "customizr" ),
                             'section'       => 'galleries_sec' ,
                             'type'          => 'checkbox',
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
                             'priority'      => 1
           )
   );
@@ -1760,7 +1768,7 @@ function czr_fn_post_navigation_option_map( $get_default = null ) {
                             'type'          => 'checkbox',
                             'notice'    => __( 'When this option is checked, the posts navigation is displayed below the posts' , 'customizr' ),
                             'priority'      => 5,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
 
           'tc_show_post_navigation_page'  =>  array(
@@ -1771,7 +1779,7 @@ function czr_fn_post_navigation_option_map( $get_default = null ) {
                             'section'       => 'post_navigation_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 10,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_show_post_navigation_single'  =>  array(
                             'default'       => 1,
@@ -1780,7 +1788,7 @@ function czr_fn_post_navigation_option_map( $get_default = null ) {
                             'section'       => 'post_navigation_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 20,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
           'tc_show_post_navigation_archive'  =>  array(
                             'default'       => 1,
@@ -1789,7 +1797,7 @@ function czr_fn_post_navigation_option_map( $get_default = null ) {
                             'section'       => 'post_navigation_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 25,
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
   );
 }
@@ -1878,7 +1886,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'section'       => 'footer_global_sec' ,
                             'type'          => 'checkbox',
                             'priority'      => 1,
-                            'transport'     => 'postMessage',
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
                             'notice'      =>__( "Enabling this option will glue your footer to the bottom of the screen, when pages are shorter than the viewport's height." , 'customizr' )
           ),
           'tc_show_back_to_top'  =>  array(
@@ -1900,7 +1908,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                                   'right'     => __( 'Right' , 'customizr'),
                             ),
                             'priority'      => 5,
-                            'transport'     => 'postMessage'
+                            'transport'     => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
   );
 }
@@ -1933,7 +1941,7 @@ function czr_fn_custom_css_option_map( $get_default = null ) {
                                 __( 'How to create and use a child theme ?' , 'customizr'),
                                 CZR_WEBSITE
                             ),
-                            'transport'   => 'postMessage'
+                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
   );//end of custom_css_options
 }
@@ -2498,7 +2506,7 @@ function czr_fn_generates_featured_pages( $_original_map ) {
     $priority = $priority + $incr;
     $fp_setting_control['tc_featured_text_' . $id]   = array(
                   'sanitize_callback' => 'czr_fn_sanitize_textarea',
-                  'transport'   => 'postMessage',
+                  'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage',
                   'control'   => 'CZR_controls' ,
                   'label'       => isset($default['text'][$id]) ? $default['text'][$id] : sprintf( __('Featured text %1$s (200 char. max)' , 'customizr' ) , $id ),
                   'section'     => 'frontpage_sec' ,

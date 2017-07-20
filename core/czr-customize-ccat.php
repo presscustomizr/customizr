@@ -511,7 +511,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
           //The post message callbacks and css are not implement yet as of July 2017 for the modern style.
           //=> let's force the "refresh" for all transport. => this will also disable any partial refreshs added to the controls
-          $option_settings['transport'] = CZR_IS_MODERN_STYLE ? 'refresh' : $option_settings['transport'];
+          //$option_settings['transport'] = CZR_IS_MODERN_STYLE ? 'refresh' : $option_settings['transport'];
 
           //add setting
           if ( class_exists('CZR_Customize_Setting') )
@@ -1778,8 +1778,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1833,8 +1832,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
+?><?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1911,8 +1909,7 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?>
-<?php
+?><?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////

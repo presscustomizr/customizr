@@ -1444,3 +1444,30 @@ if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
         echo czr_fn_get_social_networks();
     }
 }
+
+/* HELPER FOR CHECKBOX OPTIONS */
+//the new options use 1 and 0
+function czr_fn_is_checked( $opt_name = '') {
+    $val = czr_fn_opt( $opt_name );
+    //cast to string if array
+    $val = is_array($val) ? $val[0] : $val;
+    return czr_fn_booleanize_checkbox_val( $val );
+}
+
+function czr_fn_booleanize_checkbox_val( $val ) {
+    if ( ! $val )
+      return false;
+    if ( is_bool( $val ) && $val )
+      return true;
+    switch ( (string) $val ) {
+      case 'off':
+      case '' :
+      case 'false' :
+        return false;
+      case 'on':
+      case '1' :
+      case 'true' :
+        return true;
+      default : return false;
+    }
+}

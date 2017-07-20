@@ -36,21 +36,47 @@
             }
           },
           'tc_fonts' : function( to ) {
-            var font_groups = CZRPreviewParams.fontPairs;
-            $.each( font_groups , function( key, group ) {
-              if ( group.list[to]) {
-                if ( -1 != to.indexOf('_g_') )
-                  _addGfontLink( group.list[to][1] );
-                _toStyle( group.list[to][1] );
-              }
-            });
+              var font_groups = CZRPreviewParams.fontPairs;
+              $.each( font_groups , function( key, group ) {
+                if ( group.list[to]) {
+                  if ( -1 != to.indexOf('_g_') )
+                    _addGfontLink( group.list[to][1] );
+                  _toStyle( group.list[to][1] );
+                }
+              });
+
+              _.delay( function() {
+                  czrapp.$_header.trigger( 'refresh-sticky-header' );
+              }, 100 );
           },
           'tc_body_font_size' : function( to ) {
             var fontSelectors  = CZRPreviewParams.fontSelectors;
-            $( fontSelectors.body ).css( {
-              'font-size' : to + 'px',
-              'line-height' : '1.6em'
+            var $font_size_style_element = ( 0 === $('#live-font-size-css').length ) ? $('<style>' , { id : 'live-font-size-css' , type : "text/css" }) : $('#live-font-size-css');
+            if (  0 === $('#live-font-size-css').length )
+                $('head').append( $font_size_style_element );
+
+            $.when( $font_size_style_element.html( [
+                  fontSelectors.body,
+                  '{',
+                  'font-size:',
+                  to + 'px!important',
+                  '}'
+              ].join('') ) ).done( function() {
+                  _.delay( function() {
+                      czrapp.$_header.trigger( 'refresh-sticky-header' );
+                  }, 100 );
             });
+
+            // $.when( $( fontSelectors.body ).attr( 'style', 'font-size: ' + to + 'px!important' ) ).done( function() {
+            //       czrapp.$_header.trigger( 'refresh-sticky-header' );
+            // });
+            // $.when( $( fontSelectors.body ).attr( 'style', 'font-size: ' + to + 'px!important' ) ).done( function() {
+            //       czrapp.$_header.trigger( 'refresh-sticky-header' );
+            // });
+            // $( fontSelectors.body ).css( {
+            //   'font-size' : to + 'px',
+            //   'line-height' : '1.5em'
+            // });
           },
           'tc_link_hover_effect' : function( to ) {
             if ( false === to )

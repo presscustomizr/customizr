@@ -9209,7 +9209,21 @@ var czrapp = czrapp || {};
                           }
                           else {
                                 self.stickyMenuWrapper = czrapp.$_header.find( to );
-                                czrapp.$_header.css( { 'height' : czrapp.$_header[0].getBoundingClientRect().height });
+                                var $_header_logo = self.stickyMenuWrapper.find('.navbar-brand-sitelogo img');
+                                if ( 1 == $_header_logo.length ) {
+                                      $_header_logo.bind( 'header-logo-loaded', function() {
+                                            czrapp.$_header.css( { 'height' : czrapp.$_header[0].getBoundingClientRect().height });
+                                      });
+                                      if ( $_header_logo[0].complete ) {
+                                            $_header_logo.trigger('header-logo-loaded');
+                                      } else {
+                                        $_header_logo.load( function( img ) {
+                                              $_header_logo.trigger('header-logo-loaded');
+                                        } );
+                                      }
+                                } else {
+                                    czrapp.$_header.css( { 'height' : czrapp.$_header[0].getBoundingClientRect().height });
+                                }
                           }
                     } else {//we don't have a candidate
                           _reset();
@@ -9311,7 +9325,7 @@ var czrapp = czrapp || {};
                           }
                     );
               }, { deferred : true } );
-              self.isResizing.bind( function( is_resizing ) {
+              var refreshOrResizeReact = function() {
                     self.userStickyOpt( self._setUserStickyOpt() );
                     self._setStickySelector();
                     self.topStickPoint( self._getTopStickPoint() );
@@ -9338,7 +9352,10 @@ var czrapp = czrapp || {};
                           self._mayBeresetTopPosition();
                     }
 
-              } );//resize();
+              };
+
+              self.isResizing.bind( refreshOrResizeReact );//resize();
+              czrapp.$_header.on( 'refresh-sticky-header', refreshOrResizeReact );
               self._setStickySelector();
               this.topStickPoint          = new czrapp.Value( self._getTopStickPoint() );
               if ( ! self._isMobile() && self.hasStickyCandidate() ) {
