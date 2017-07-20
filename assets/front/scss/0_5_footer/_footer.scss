@@ -27,7 +27,7 @@
 
   a {
     color: $secondary-colour;
-    &:hover, .socials a:hover {
+    &:hover, &:active, &:focus {
       color: $primary-color;
       &.btn {
         background: transparent;

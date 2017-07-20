@@ -43,26 +43,27 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           add_action( 'template_redirect'       , array( $this, 'czr_fn_ajax_response' ) );
 
+          $right_sidebar_text_alignment = is_rtl() ? 'text-md-left' : 'text-md-right';
           //Default layout settings
           $this -> global_layout      = array(
               'r' => array(
                   'content'       => 'col-12 col-md-9',
                   'l-sidebar'     => false,
-                  'r-sidebar'     => 'col-12 col-md-3',
+                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
                   'customizer'    => __( 'Right sidebar' , 'customizr' ),
                   'metabox'       => __( 'Right sidebar' , 'customizr' ),
               ),
               'l' => array(
-                  'content'       => 'col-12 col-md-9 push-md-3',
-                  'l-sidebar'     => 'col-12 col-md-3 pull-md-9',
+                  'content'       => 'col-12 col-md-9',
+                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
                   'r-sidebar'     => false,
                   'customizer'    => __( 'Left sidebar' , 'customizr' ),
                   'metabox'       => __( 'Left sidebar' , 'customizr' ),
               ),
               'b' => array(
-                  'content'       => 'col-12 col-md-6 push-md-3',
-                  'l-sidebar'     => 'col-12 col-md-3 pull-md-6',
-                  'r-sidebar'     => 'col-12 col-md-3',
+                  'content'       => 'col-12 col-md-6',
+                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
+                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
                   'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
                   'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
               ),
