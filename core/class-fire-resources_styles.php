@@ -49,29 +49,29 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          */
          function czr_fn_enqueue_front_styles() {
 
-               $_path       = CZR_ASSETS_PREFIX . 'front/css/';
-               $_ver        = $this->_resouces_version;
-               $_ext        = $this->_is_css_minified ? '.min.css' : '.css';
-               wp_enqueue_style( 'customizr-bs'             , czr_fn_get_theme_file_url( "{$_path}custom-bs/custom-bootstrap{$_ext}" ) , array(), $_ver, 'all' );
-               wp_enqueue_style( 'customizr-flickity'       , czr_fn_get_theme_file_url( "{$_path}flickity{$_ext}" ), array(), $_ver, 'all' );
-               wp_enqueue_style( 'customizr-magnific'       , czr_fn_get_theme_file_url( "{$_path}magnific-popup{$_ext}" ), array(), $_ver, 'all' );
-               wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
+              $_path       = CZR_ASSETS_PREFIX . 'front/css/';
+              $_ver        = $this->_resouces_version;
+              $_ext        = $this->_is_css_minified ? '.min.css' : '.css';
 
-               //Customizr main stylesheet
-               wp_enqueue_style( 'customizr-common'         , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
+              wp_enqueue_style( 'customizr-flickity'       , czr_fn_get_theme_file_url( "{$_path}flickity{$_ext}" ), array(), $_ver, 'all' );
+              wp_enqueue_style( 'customizr-magnific'       , czr_fn_get_theme_file_url( "{$_path}magnific-popup{$_ext}" ), array(), $_ver, 'all' );
+              wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
 
-               //Modular scale resopnd
-               //Customizr main stylesheet
-               if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {
-                  wp_enqueue_style( 'customizr-ms-respond'     , czr_fn_get_theme_file_url( "{$_path}style-ms{$_ext}"), array(), $_ver, 'all' );
-               }
+              //Customizr main stylesheet
+              wp_enqueue_style( 'customizr-main'         , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
 
-               //Customizer user defined style options : the custom CSS is written with a high priority here
-               wp_add_inline_style( 'customizr-common'      , apply_filters( 'czr_user_options_style' , '' ) );
+              //Modular scale resopnd
+              //Customizr main stylesheet
+              if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {
+                  wp_enqueue_style( 'customizr-ms-respond'     , czr_fn_get_theme_file_url( "{$_path}style-modular-scale{$_ext}"), array(), $_ver, 'all' );
+              }
 
-               //Customizr stylesheet (style.css)
-               wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style{$_ext}"), array(), $_ver, 'all' );
+              //Customizer user defined style options : the custom CSS is written with a high priority here
+              wp_add_inline_style( 'customizr-main'      , apply_filters( 'czr_user_options_style' , '' ) );
 
+              //Customizr stylesheet (style.css)
+              if ( czr_fn_is_child() )
+                  wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style{$_ext}"), array(), $_ver, 'all' );
          }
 
          /**

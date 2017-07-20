@@ -292,9 +292,10 @@ var Collapse = function ($) {
     Collapse.prototype.show = function show() {
       var _this = this;
 
-      if (this._isTransitioning) {
-        throw new Error('Collapse is transitioning');
-      }
+      //@custom
+      // if ( this._isTransitioning ) {
+      //   throw new Error('Collapse is transitioning');
+      // }
 
       if ($(this._element).hasClass(ClassName.SHOW)) {
         return;
