@@ -438,7 +438,7 @@
   }
 }
 
-/* Custom mixins */
+// Custom mixins
 
 @mixin czr-valign() {
   @include transform( translate(0, 50%) );
@@ -466,12 +466,12 @@
       top:0;
       height:100%;
       bottom:0;
-      /* #{$side} : -$mp; */
+      // #{$side} : -$mp;
       left:0;
       background: $color;
       @if $active == 0 { width: 0; }
       @else { width: 1px } ;
-      /* border-#{$side}: 1px solid $color; */
+      // border-#{$side}: 1px solid $color;
   }
 }
 

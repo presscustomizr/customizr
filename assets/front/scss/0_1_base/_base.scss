@@ -1,10 +1,3 @@
-
-*,
-*::after,
-*::before {
-  @include box-sizing( border-box );
-}
-
 body, html {
   padding: 0;
   margin: 0;
@@ -26,7 +19,6 @@ a {
 
 a {
   text-decoration: none;
-  //color: $skin;
   color: $skin-link-color;
 }
 a:hover,
@@ -132,10 +124,6 @@ img::selection {
 img::-moz-selection {
   background: transparent;
 }
-
-//body {
-//  -webkit-tap-highlight-color: $skin;
-//}
 
 .alignleft {
   float: left;

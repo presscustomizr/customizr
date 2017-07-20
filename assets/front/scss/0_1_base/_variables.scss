@@ -1,6 +1,10 @@
-$cursor-disabled:                not-allowed !default;
+$phi              : 1.618034;
+$golden           : $phi;
+$cursor-disabled  : not-allowed !default;
+
 //used in mixins hover-focus
 $enable-hover-media-query:  false !default;
+
 
 // Grid breakpoints
 //
