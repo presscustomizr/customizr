@@ -3,7 +3,7 @@
 * Template for dislplaying the right sidebar
 */
 ?>
-<div class="right sidebar tc-sidebar text-md-right <?php czr_fn_echo('element_class')?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="right sidebar tc-sidebar <?php czr_fn_echo('element_class')?>" <?php czr_fn_echo('element_attributes') ?>>
   <div id="right" class="widget-area" role="complementary">
     <?php do_action( '__before_inner_right_sidebar' ) ?>
     <?php if ( czr_fn_is_registered_or_possible('rights_social_block') ) : ?>
