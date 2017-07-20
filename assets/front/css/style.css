@@ -3505,6 +3505,23 @@ section[class^="post-"] .gallery.row {
   }
 }
 
+.tc-grid-figure img,
+.widget-front .tc-thumbnail img,
+.js-centering.entry-media__holder img,
+.js-centering.entry-media__wrapper img {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+
+.no-js img,
+img.h-centered,
+img.v-centered,
+img.opacity-forced {
+  opacity: 1 !important;
+}
+
 .overlay {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);

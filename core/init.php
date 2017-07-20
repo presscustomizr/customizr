@@ -182,7 +182,10 @@ if ( ! class_exists( 'CZR___' ) ) :
             //NOTE: we'll use the same small size both for the full and the boxed slider layout
             $this -> tc_slider_small_size        = array( 'width' => 517  , 'height' => 235, 'crop' => true ); //size name : tc-slider-small
 
+            add_action( 'czr_after_load'         , array( $this, 'czr_maybe_prevdem') );
+
         }
+
 
         //fired at the bottom of core/init.php
         public static function czr_fn_instance() {
@@ -665,6 +668,14 @@ if ( ! class_exists( 'CZR___' ) ) :
             <?php
         }
 
+        //hook : 'czr_after_init'
+        function czr_maybe_prevdem() {
+            if ( ! czr_fn_isprevdem() )
+              return;
+            $this -> czr_fn_require_once( CZR_CORE_PATH . 'class-fire-prevdem.php' );
+            if (  class_exists('CZR_prevdem') )
+              new CZR_prevdem();
+        }
   }//end of class
 endif;//endif;
 

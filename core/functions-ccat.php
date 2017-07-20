@@ -1051,13 +1051,13 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
 
     //try to extract $_thumb_id and $_thumb_type
     extract( czr_fn_get_thumb_info( $post_id, $custom_thumb_id ) );
-    if ( ! isset($_thumb_id) || ! $_thumb_id || is_null($_thumb_id) )
+    if ( ! apply_filters( 'tc_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
       return array();
 
     //Try to get the image
     $image                      = wp_get_attachment_image_src( $_thumb_id, $tc_thumb_size);
-    if ( empty( $image[0] ) )
-      return array();
+    if ( ! apply_filters('tc_has_wp_thumb_image', ! empty( $image[0] ) ) )
+        return array();
 
     //check also if this array value isset. (=> JetPack photon bug)
     if ( isset($image[3]) && false == $image[3] && 'tc-thumb' == $tc_thumb_size )
@@ -1100,7 +1100,7 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
       $tc_thumb_width         = $image[1];
     }
     //used for smart load when enabled
-    $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $post_id, $custom_thumb_id );
+    $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $post_id, $custom_thumb_id, $_img_attr, $tc_thumb_size );
 
     return apply_filters( 'czr_get_thumbnail_model',
       isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width", "_thumb_id" ) : array(),
@@ -1156,7 +1156,7 @@ function czr_fn_has_thumb( $_post_id = null , $_thumb_id = null ) {
 
     //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
     extract( czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
-    return wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id);
+    return apply_filters( 'tc_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
 }
 
 

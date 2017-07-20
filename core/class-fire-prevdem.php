@@ -18,6 +18,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter( 'pre_option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
 
       //FEATURED PAGES
+      add_filter( 'tc_opt_tc_show_featured_pages', '__return_true' );
       add_filter( 'fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
       add_filter( 'tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
       add_filter( 'tc_fp_text', array( $this, 'czr_fn_set_fp_text'), 100 );
@@ -27,7 +28,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter( 'tc_has_thumb', '__return_true');
       add_filter( 'tc_has_thumb_info', '__return_true');
       add_filter( 'tc_has_wp_thumb_image', '__return_true');
-      add_filter( 'tc_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
+      add_filter( 'czr_thumb_html', array( $this, 'czr_fn_filter_thumb_src'), 10, 6 );
 
       //SLIDER
       add_filter( 'tc_opt_tc_front_slider', array( $this, 'czr_fn_set_slider') );
@@ -109,7 +110,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- */
     //hook : fp_img_src
     function czr_fn_set_fp_img_src($fp_img) {
-      return CZR_featured_pages::$instance -> czr_fn_get_fp_img( 'tc-thumb' );
+      return czr_fn_get_thumbnail_model( array( 'requested_size' => 'tc-thumb' ) );
     }
 
     function czr_fn_set_fp_title( $text, $fp_single_id, $featured_page_id ) {

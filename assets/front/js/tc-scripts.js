@@ -8762,119 +8762,147 @@ var czrapp = czrapp || {};
 })(jQuery, czrapp);
 var czrapp = czrapp || {};
 (function($, czrapp) {
-  var _methods = {
+      var _methods = {
+            centerImagesWithDelay : function( delay ) {
+                  var self = this;
+                  setTimeout( function(){ self.emit('centerImages'); }, delay || 50 );
+            },
+            imgSmartLoad : function() {
+                  var smartLoadEnabled = 1 == czrapp.localized.imgSmartLoadEnabled,
+                      _where           = czrapp.localized.imgSmartLoadOpts.parentSelectors.join();
+                  if (  smartLoadEnabled ) {
+                        $( _where ).imgSmartLoad(
+                          _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {}
+                        );
+                  }
+                  if ( 1 == czrapp.localized.centerAllImg ) {
+                        var self                   = this,
+                            $_to_center            = smartLoadEnabled ?
+                               $( _.filter( $( _where ).find('img'), function( img ) {
+                                  return $(img).is(czrapp.localized.imgSmartLoadOpts.opts.excludeImg.join());
+                                }) ): //filter
+                                $( _where ).find('img');
+                            $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
+                                return $(img).hasClass('tc-holder-img');
+                            }) );
+                        setTimeout( function(){
+                              self.triggerSimpleLoad( $_to_center_with_delay );
+                        }, 300 );
+                        self.triggerSimpleLoad( $_to_center );
+                  }
+            },
+            centerImages : function() {
+                  $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
+                        enableCentering : 1,
+                        oncustom : ['smartload', 'refresh-height', 'simple_load'],
+                        zeroTopAdjust: 0,
+                        enableGoldenRatio : false,
+                  } );
 
-    centerImagesWithDelay : function( delay ) {
-      var self = this;
-      setTimeout( function(){ self.emit('centerImages'); }, delay || 100 );
-    },
-    imgSmartLoad : function() {
-      var smartLoadEnabled = 1 == czrapp.localized.imgSmartLoadEnabled,
-          _where           = czrapp.localized.imgSmartLoadOpts.parentSelectors.join();
-      if (  smartLoadEnabled )
-        $( _where ).imgSmartLoad(
-          _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {}
-        );
-      if ( 1 == czrapp.localized.centerAllImg ) {
-        var self                   = this,
-            $_to_center            = smartLoadEnabled ?
-               $( _.filter( $( _where ).find('img'), function( img ) {
-                  return $(img).is(czrapp.localized.imgSmartLoadOpts.opts.excludeImg.join());
-                }) ): //filter
-                $( _where ).find('img');
-            $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
-                return $(img).hasClass('tc-holder-img');
-            }) );
-        setTimeout( function(){
-          self.triggerSimpleLoad( $_to_center_with_delay );
-        }, 300 );
-        self.triggerSimpleLoad( $_to_center );
-      }
-    },
-    centerImages : function() {
-      $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
-        enableCentering : 1,
-        oncustom : ['smartload', 'refresh-height', 'simple_load'],
-        zeroTopAdjust: 0,
-        enableGoldenRatio : false,
-      } );
+                  $('.js-centering.entry-media__holder, .js-centering.entry-media__wrapper').centerImages({
+                        enableCentering : 1,
+                        oncustom : ['smartload', 'refresh-height', 'simple_load'],
+                        enableGoldenRatio : false, //true
+                        zeroTopAdjust: 0,
+                        setOpacityWhenCentered : true,//will set the opacity to 1
+                        opacity : 1
+                  });
+                  var _mayBeForceOpacity = function( params ) {
+                        params = _.extend( {
+                              el : {},
+                              delay : 0
+                        }, _.isObject( params ) ? params : {} );
 
-      $('.js-centering.entry-media__holder, .js-centering.entry-media__wrapper').centerImages({
-        enableCentering : 1,
-        oncustom : ['smartload', 'refresh-height', 'simple_load'],
-        enableGoldenRatio : false, //true
-        zeroTopAdjust: 0,
-        setOpacityWhenCentered : true,//will set the opacity to 1
-        opacity : 1
-      });
+                        if ( 1 !== params.el.length  || ( params.el.hasClass( 'h-centered') || params.el.hasClass( 'v-centered') ) )
+                          return;
 
+                        _.delay( function() {
+                              params.el.addClass( 'opacity-forced');
+                        }, params.delay );
 
-    },//center_images
-
-    parallax : function() {
-      $( '.parallax-item' ).czrParallax();
-      $('.ham__navbar-toggler').on('click', function(){
-        setTimeout( function(){
-        Waypoint.refreshAll(); }, 400 ); }
-      );
-    },
-
-    lightBox : function() {
-      var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
-      $( '[class*="grid-container__"]' ).magnificPopup({
-        delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
-        type: 'image'
-      });
-      $( '.czr-gallery' ).each(function(){
-        $(this).magnificPopup({
-          delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
-          type: 'image',
-          gallery: {
-           enabled: true,
-           arrowMarkup: _arrowMarkup
-          }
-        });
-      });
-      $('article .tc-content-inner').magnificPopup({
-        delegate: '[data-lb-type="grouped-post"]',
-        type: 'image',
-        gallery: {
-         enabled: true,
-         arrowMarkup: _arrowMarkup
-        }
-      });
-      czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
-            e.preventDefault();
-
-            var $_expand_btn    = $( this ),
-                $_gallery_crsl  = $_expand_btn.closest( '.czr-carousel' );
-
-              if ( $_gallery_crsl.length > 0 ) {
-
-                  if ( ! $_gallery_crsl.data( 'mfp' ) ) {
-                        $_gallery_crsl.magnificPopup({
-                            delegate: '.gallery-img',
-                            type: 'image',
-                            gallery: {
-                              enabled: true,
-                              arrowMarkup: _arrowMarkup
-                            }
+                  };
+                  if ( czrapp.localized.imgSmartLoadEnabled ) {
+                        czrapp.$_body.on( 'smartload', 'img' , function( ev ) {
+                              if ( 1 != $( ev.target ).length )
+                                return;
+                              _mayBeForceOpacity( { el : $( ev.target ), delay : 200 } );
                         });
-                        $_gallery_crsl.data( 'mfp', true );
+                  } else {
+                        $('img').each( function() {
+                              _mayBeForceOpacity( { el : $(this), delay : 300 } );
+                        });
                   }
+                  _.delay( function() {
+                        $('img').each( function() {
+                              _mayBeForceOpacity( { el : $(this), delay : 0 } );
+                        });
+                  }, 1000 );
+            },//center_images
 
-                  if ( $_gallery_crsl.data( 'mfp' ) ) {
-                        $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');
-                  }
+            parallax : function() {
+                  $( '.parallax-item' ).czrParallax();
+                  $('.ham__navbar-toggler').on('click', function(){
+                        setTimeout( function(){
+                        Waypoint.refreshAll(); }, 400 ); }
+                  );
+            },
 
-            }//endif
-      });
-    },
+            lightBox : function() {
+                  var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+                  $( '[class*="grid-container__"]' ).magnificPopup({
+                    delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+                    type: 'image'
+                  });
+                  $( '.czr-gallery' ).each(function(){
+                        $(this).magnificPopup({
+                              delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
+                              type: 'image',
+                              gallery: {
+                                    enabled: true,
+                                    arrowMarkup: _arrowMarkup
+                              }
+                        });
+                  });
+                  $('article .tc-content-inner').magnificPopup({
+                        delegate: '[data-lb-type="grouped-post"]',
+                        type: 'image',
+                        gallery: {
+                             enabled: true,
+                             arrowMarkup: _arrowMarkup
+                        }
+                  });
+                  czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
+                        e.preventDefault();
 
-  };//_methods{}
+                        var $_expand_btn    = $( this ),
+                            $_gallery_crsl  = $_expand_btn.closest( '.czr-carousel' );
 
-  czrapp.methods.JQPlugins = {};
-  $.extend( czrapp.methods.JQPlugins , _methods );
+                          if ( $_gallery_crsl.length > 0 ) {
+
+                              if ( ! $_gallery_crsl.data( 'mfp' ) ) {
+                                    $_gallery_crsl.magnificPopup({
+                                        delegate: '.gallery-img',
+                                        type: 'image',
+                                        gallery: {
+                                          enabled: true,
+                                          arrowMarkup: _arrowMarkup
+                                        }
+                                    });
+                                    $_gallery_crsl.data( 'mfp', true );
+                              }
+
+                              if ( $_gallery_crsl.data( 'mfp' ) ) {
+                                    $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');
+                              }
+
+                        }//endif
+                  });
+            },
+
+      };//_methods{}
+
+      czrapp.methods.JQPlugins = {};
+      $.extend( czrapp.methods.JQPlugins , _methods );
 
 
 })(jQuery, czrapp);var czrapp = czrapp || {};
@@ -9559,39 +9587,38 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
    var _methods =   {
       outline: function() {
-         if ( 'function' == typeof( tcOutline ) )
-            tcOutline();
+            if ( 'function' == typeof( tcOutline ) )
+                tcOutline();
       },
       variousHoverActions : function() {
-         if ( czrapp.$_body.hasClass( 'czr-is-mobile' ) )
-            return;
-         $( '.grid-container__alternate, .grid-container__square-mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-media__holder, article.full-image .tc-content', _toggleArticleParentHover );
-         $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid__item', _toggleArticleParentHover );
-         czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front', _toggleThisHover );
-         czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOn );
+            if ( czrapp.$_body.hasClass( 'czr-is-mobile' ) )
+                return;
+            $( '.grid-container__alternate, .grid-container__square-mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-media__holder, article.full-image .tc-content', _toggleArticleParentHover );
+            $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid__item', _toggleArticleParentHover );
+            czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front', _toggleThisHover );
+            czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOn );
 
-         function _toggleArticleParentHover( evt ) {
-            _toggleElementClassOnHover( $(this).closest('article'), 'hover', evt );
-         }
+            function _toggleArticleParentHover( evt ) {
+                  _toggleElementClassOnHover( $(this).closest('article'), 'hover', evt );
+            }
 
-         function _toggleThisHover( evt ) {
-            _toggleElementClassOnHover( $(this), 'hover', evt );
-         }
+            function _toggleThisHover( evt ) {
+                  _toggleElementClassOnHover( $(this), 'hover', evt );
+            }
 
-         function _toggleThisOn( evt ) {
-            _toggleElementClassOnHover( $(this), 'on', evt );
-         }
+            function _toggleThisOn( evt ) {
+                  _toggleElementClassOnHover( $(this), 'on', evt );
+            }
 
-         function _toggleElementClassOnHover( $_el, _class, _evt ) {
-            if ( 'mouseenter' == _evt.type )
-               $_el.addClass( _class );
-            else if ( 'mouseleave' == _evt.type )
-               $_el.removeClass( _class );
-         }
-
+            function _toggleElementClassOnHover( $_el, _class, _evt ) {
+                  if ( 'mouseenter' == _evt.type )
+                     $_el.addClass( _class );
+                  else if ( 'mouseleave' == _evt.type )
+                     $_el.removeClass( _class );
+            }
       },
       formFocusAction : function() {
-         var _input_types       = [
+            var _input_types       = [
                   'input[type="url"]',
                   'input[type="email"]',
                   'input[type="text"]',
@@ -9605,105 +9632,107 @@ var czrapp = czrapp || {};
             _inputs             = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
             $_focusable_inputs  = $( _input_types.join() );
             _maybe_fire         = $_focusable_inputs.length > 0;
-         if ( _maybe_fire ) {
-            $_focusable_inputs.each( function() {
-               var $_this = $(this);
-               if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
-                  $(this)
-                        .addClass('czr-focusable')
-                        .parent().addClass(_focusable_class)
-                        .closest('form').addClass(_czr_form_class);
-               }
-            });
-         }else
-            return;
-
-         czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
-
-         function _toggleThisFocusClass( evt ) {
-            var $_el       = $(this),
-                  $_parent = $_el.closest(_parent_selector);
-
-            if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
-               $_parent.addClass( _focus_class );
+            if ( _maybe_fire ) {
+                  $_focusable_inputs.each( function() {
+                     var $_this = $(this);
+                     if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
+                        $(this)
+                              .addClass('czr-focusable')
+                              .parent().addClass(_focusable_class)
+                              .closest('form').addClass(_czr_form_class);
+                     }
+                  });
             } else {
-               $_parent.removeClass( _focus_class );
+                  return;
             }
-         }
-         $(_inputs).trigger( 'in-focus-load.czr-focus' );
-         czrapp.$_body.on( 'click tap', '.icn-close', function() {
-            $(this).closest('form').find('.czr-search-field').val('').focus();
-         });
+
+            var _toggleThisFocusClass = function( evt ) {
+                var $_el       = $(this),
+                      $_parent = $_el.closest(_parent_selector);
+
+                if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
+                   $_parent.addClass( _focus_class );
+                } else {
+                   $_parent.removeClass( _focus_class );
+                }
+            };
+
+            czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
+            $(_inputs).trigger( 'in-focus-load.czr-focus' );
+            czrapp.$_body.on( 'click tap', '.icn-close', function() {
+                $(this).closest('form').find('.czr-search-field').val('').focus();
+            });
       },
 
       variousHeaderActions : function() {
-         var _mobile_viewport                   = 992;
-         czrapp.$_body.on( 'click tap', '.desktop_search__link', function(evt) {
-            evt.preventDefault();
-            czrapp.$_body.toggleClass('full-search-opened');
-         });
-         czrapp.$_body.on( 'click tap', '.search-close_btn', function(evt) {
-            evt.preventDefault();
-            czrapp.$_body.removeClass('full-search-opened');
-         });
-         if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-            czrapp.$_body.on( 'shown.czr.czrDropdown', '.primary-nav__woocart', function() {
-               var $_to_scroll = $(this).find('.product_list_widget');
-               if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
-                  $_to_scroll.mCustomScrollbar({
-                     theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
-                  });
-               }
+            var _mobile_viewport                   = 992;
+            czrapp.$_body.on( 'click tap', '.desktop_search__link', function(evt) {
+                  evt.preventDefault();
+                  czrapp.$_body.toggleClass('full-search-opened');
             });
-         }
-         czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
-            var $_this                  = $( this ),
-                  $_customScrollbar = $_this.hasClass('mCustomScrollbar') ? $_this : $_this.closest('.mCustomScrollbar');
-            if ( $_customScrollbar.length )
-               $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
-         });
-
-
+            czrapp.$_body.on( 'click tap', '.search-close_btn', function(evt) {
+                  evt.preventDefault();
+                  czrapp.$_body.removeClass('full-search-opened');
+            });
+            if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                  czrapp.$_body.on( 'shown.czr.czrDropdown', '.primary-nav__woocart', function() {
+                     var $_to_scroll = $(this).find('.product_list_widget');
+                     if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
+                        $_to_scroll.mCustomScrollbar({
+                           theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
+                        });
+                     }
+                  });
+            }
+            czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
+                  var $_this                  = $( this ),
+                      $_customScrollbar = $_this.hasClass('mCustomScrollbar') ? $_this : $_this.closest('.mCustomScrollbar');
+                  if ( $_customScrollbar.length ) {
+                       $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
+                  }
+            });
       },
       smoothScroll: function() {
-         if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled )
-            smoothScroll( CZRParams.SmoothScroll.Options );
+            if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled ) {
+                smoothScroll( CZRParams.SmoothScroll.Options );
+            }
       },
+
+
 
       pluginsCompatibility: function() {
-         var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
-         if ( $_ssbar.length )
-            $_ssbar.detach().prependTo('.article-container');
+            var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
+            if ( $_ssbar.length )
+              $_ssbar.detach().prependTo('.article-container');
       },
       featuredPagesAlignment : function() {
-
-         var $_featured_pages   = $('.featured-page .widget-front'),
+          var $_featured_pages   = $('.featured-page .widget-front'),
                _n_featured_pages = $_featured_pages.length,
                doingAnimation      = false,
                _lastWinWidth       = '';
 
 
-         if ( _n_featured_pages < 2 )
+          if ( _n_featured_pages < 2 )
             return;
 
-         var $_fp_elements       = new Array( _n_featured_pages ),
+          var $_fp_elements       = new Array( _n_featured_pages ),
                _n_elements          = new Array( _n_featured_pages );
-         $.each( $_featured_pages, function( _fp_index, _fp ) {
-            $_fp_elements[_fp_index]   = $(_fp).find( '[class^=fp-]' );
-            _n_elements[_fp_index]      = $_fp_elements[_fp_index].length;
-         });
+          $.each( $_featured_pages, function( _fp_index, _fp ) {
+                $_fp_elements[_fp_index]   = $(_fp).find( '[class^=fp-]' );
+                _n_elements[_fp_index]      = $_fp_elements[_fp_index].length;
+          });
 
-         _n_elements = Math.max.apply(Math, _n_elements );
+          _n_elements = Math.max.apply(Math, _n_elements );
 
-         if ( ! _n_elements )
+          if ( ! _n_elements )
             return;
 
-         var _offsets      = new Array( _n_elements ),
+          var _offsets      = new Array( _n_elements ),
                _maxs          = new Array( _n_elements );
          for (var i = 0; i < _n_elements; i++)
-            _offsets[i] = new Array( _n_featured_pages);
-         maybeSetElementsPosition();
-         czrapp.$_window.on('resize', maybeSetElementsPosition );
+            _offsets[i] = new Array( _n_featured_pages );
+          maybeSetElementsPosition();
+          czrapp.$_window.on( 'resize', _.debounce( maybeSetElementsPosition, 20 ) );
 
          function maybeSetElementsPosition() {
 
@@ -9723,116 +9752,106 @@ var czrapp = czrapp || {};
 
             }
          }
+        function setElementsPosition() {
+              var _fp_offsets = [];
+              for ( _element_index = 0; _element_index < _n_elements; _element_index++ ) {
+                  for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+                    var $_el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                          _offset = 0,
+                          $_fp      = $($_featured_pages[_fp_index]);
 
+                    if ( $_el.length > 0 ) {
+                       $_el.css( 'paddingTop', '' );
+                       _offset = $_el.offset().top;
 
-         function setElementsPosition() {
-            var _fp_offsets = [];
+                    }
+                    _offsets[_element_index][_fp_index] = _offset;
+                    if ( _fp_offsets.length < _n_featured_pages )
+                       _fp_offsets[_fp_index] = parseFloat( $_fp.offset().top);
+                 }//endfor
+                 if ( 1 != _.uniq(_fp_offsets).length )
+                    continue;
+                 _maxs[_element_index] = Math.max.apply(Math, _offsets[_element_index] );
+                 for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
+                    var $__el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
+                          __offset;
 
-            for ( _element_index = 0; _element_index < _n_elements; _element_index++ ) {
-
-               for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
-                  var $_el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
-                        _offset = 0,
-                        $_fp      = $($_featured_pages[_fp_index]);
-
-                  if ( $_el.length > 0 ) {
-                     $_el.css( 'paddingTop', '' );
-                     _offset = $_el.offset().top;
-
-                  }
-                  _offsets[_element_index][_fp_index] = _offset;
-                  if ( _fp_offsets.length < _n_featured_pages )
-                     _fp_offsets[_fp_index] = parseFloat( $_fp.offset().top);
-               }//endfor
-               if ( 1 != _.uniq(_fp_offsets).length )
-                  continue;
-               _maxs[_element_index] = Math.max.apply(Math, _offsets[_element_index] );
-               for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
-                  var $__el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
-                        __offset;
-
-                  if ( $__el.length > 0 ) {
-                     __offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
-                     if ( __offset )
-                        $__el.css( 'paddingTop', parseFloat($__el.css('paddingTop')) + __offset );
-                  }
-               }//endfor
-            }//endfor
-         }//endfunction
+                    if ( $__el.length > 0 ) {
+                       __offset = +_maxs[_element_index] - _offsets[_element_index][_fp_index];
+                       if ( __offset )
+                          $__el.css( 'paddingTop', parseFloat($__el.css('paddingTop')) + __offset );
+                    }
+                 }//endfor
+              }//endfor
+          }//endfunction
       },//endmethod
       bttArrow : function() {
-         var doingAnimation = false,
-            $_btt_arrow         = $('.czr-btta');
+            var doingAnimation = false,
+                $_btt_arrow = $( '.czr-btta' );
 
-         if ( 0 === $_btt_arrow.length )
-            return;
+            if ( 0 === $_btt_arrow.length )
+                return;
+            var bttArrowVisibility = function() {
+                  if ( ! doingAnimation ) {
+                     doingAnimation = true;
 
-         czrapp.$_window.on( 'scroll', bttArrowVisibility );
-         bttArrowVisibility();
+                     window.requestAnimationFrame( function() {
+                          $_btt_arrow.toggleClass( 'show', czrapp.$_window.scrollTop() > ( czrapp.$_window.height() ) );
+                          doingAnimation = false;
+                     });
+                  }
+            };//bttArrowVisibility
 
-         function bttArrowVisibility() {
-            if ( ! doingAnimation ) {
-               doingAnimation = true;
-
-               window.requestAnimationFrame( function() {
-                  if ( czrapp.$_window.scrollTop() > 100 )
-                     $_btt_arrow.addClass('show');
-                  else
-                     $_btt_arrow.removeClass('show');
-
-                  doingAnimation = false;
-               });
-            }
-         }//bttArrowVisibility
-
+            czrapp.$_window.on( 'scroll', _.throttle( bttArrowVisibility, 20 ) );
+            bttArrowVisibility();
       },//bttArrow
       backToTop : function() {
-         var $_html = $("html, body"),
-               _backToTop = function( evt ) {
-                  return ( evt.which > 0 || "mousedown" === evt.type || "mousewheel" === evt.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
-               };
+            var $_html = $("html, body"),
+                 _backToTop = function( evt ) {
+                      return ( evt.which > 0 || "mousedown" === evt.type || "mousewheel" === evt.type) && $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+                 };
 
-         czrapp.$_body.on( 'click touchstart touchend czr-btt', '.czr-btt', function ( evt ) {
-
-            evt.preventDefault();
-            evt.stopPropagation();
-            $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
-            $_html.animate({
-                  scrollTop: 0
-            }, 1e3, function () {
-                  $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
-            });
-         });
+            czrapp.$_body.on( 'click touchstart touchend czr-btt', '.czr-btt', function ( evt ) {
+                  evt.preventDefault();
+                  evt.stopPropagation();
+                  $_html.on( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+                  $_html.animate({
+                        scrollTop: 0
+                  }, 1e3, function () {
+                        $_html.stop().off( "scroll mousedown DOMMouseScroll mousewheel keyup", _backToTop );
+                  });
+           });
       },
       anchorSmoothScroll : function() {
-        if ( ! czrapp.localized.anchorSmoothScroll || 'easeOutExpo' != czrapp.localized.anchorSmoothScroll )
-              return;
+            if ( ! czrapp.localized.anchorSmoothScroll || 'easeOutExpo' != czrapp.localized.anchorSmoothScroll )
+                return;
 
-        var _excl_sels = ( czrapp.localized.anchorSmoothScrollExclude && _.isArray( czrapp.localized.anchorSmoothScrollExclude.simple ) ) ? czrapp.localized.anchorSmoothScrollExclude.simple.join(',') : '',
-            self = this,
-            $_links = $('a[href^="#"]', '#content').not(_excl_sels);
-        _deep_excl = _.isObject( czrapp.localized.anchorSmoothScrollExclude.deep ) ? czrapp.localized.anchorSmoothScrollExclude.deep : null ;
-        if ( _deep_excl )
-          _links = _.toArray($_links).filter( function ( _el ) {
-            return ( 2 == ( ['ids', 'classes'].filter(
-                          function( sel_type) {
-                              return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
-                          } ) ).length
-                  );
-          });
-        $(_links).click( function () {
-            var anchor_id = $(this).attr("href");
-            if ( ! $(anchor_id).length )
-              return;
-
-            if ('#' != anchor_id) {
-                $('html, body').animate({
-                    scrollTop: $(anchor_id).offset().top
-                }, 700, czrapp.localized.anchorSmoothScroll);
+            var _excl_sels = ( czrapp.localized.anchorSmoothScrollExclude && _.isArray( czrapp.localized.anchorSmoothScrollExclude.simple ) ) ? czrapp.localized.anchorSmoothScrollExclude.simple.join(',') : '',
+                self = this,
+                $_links = $('a[href^="#"]', '#content').not(_excl_sels);
+            _deep_excl = _.isObject( czrapp.localized.anchorSmoothScrollExclude.deep ) ? czrapp.localized.anchorSmoothScrollExclude.deep : null ;
+            if ( _deep_excl ) {
+                  _links = _.toArray($_links).filter( function ( _el ) {
+                    return ( 2 == ( ['ids', 'classes'].filter(
+                                  function( sel_type) {
+                                      return self.isSelectorAllowed( $(_el), _deep_excl, sel_type);
+                                  } ) ).length
+                          );
+                  });
             }
-            return false;
-        });//click
-      },
+            $(_links).click( function () {
+                  var anchor_id = $(this).attr("href");
+                  if ( ! $(anchor_id).length )
+                    return;
+
+                  if ('#' != anchor_id) {
+                      $('html, body').animate({
+                          scrollTop: $(anchor_id).offset().top
+                      }, 700, czrapp.localized.anchorSmoothScroll);
+                  }
+                  return false;
+            });//click
+          },
    };//_methods{}
 
    czrapp.methods.UserXP = czrapp.methods.UserXP || {};

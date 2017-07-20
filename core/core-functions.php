@@ -132,7 +132,7 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
     }
 endif;
 
-if ( !( function_exists( 'czr_fn_isprevdem' ) ) ) :
+
 //@return bool
 function czr_fn_isprevdem() {
     global $wp_customize;
@@ -145,9 +145,10 @@ function czr_fn_isprevdem() {
         //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
         $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
     }
-    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! czr_fn_is_pro() );
+    //return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! czr_fn_is_pro() );
+    return apply_filters( 'czr_fn_isprevdem', false );
 }
-endif;
+
 
 
 
