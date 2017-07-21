@@ -4552,7 +4552,7 @@ select:-webkit-autofill {
 .ham__toggler-span-wrapper .line {
   display: block;
   width: 20px;
-  height: 1.8px;
+  height: 1.5px;
   position: absolute;
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;

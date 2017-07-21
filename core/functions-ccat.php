@@ -1186,10 +1186,6 @@ function czr_fn_set_thumb_info( $post_id = null , $_thumb_id = null, $_return = 
         $_thumb_id    = czr_fn_get_id_from_attachment( $post_id );
         $_thumb_type  = false !== $_thumb_id ? 'attachment' : $_thumb_type;
       }
-      if ( ! $_thumb_id || empty( $_thumb_id ) ) {
-        $_thumb_id    = esc_attr( czr_fn_opt( 'tc_post_list_default_thumb' ) );
-        $_thumb_type  = ( false !== $_thumb_id && ! empty($_thumb_id) ) ? 'default' : $_thumb_type;
-      }
     }
     $_thumb_id = ( ! $_thumb_id || empty($_thumb_id) || ! is_numeric($_thumb_id) ) ? false : $_thumb_id;
 

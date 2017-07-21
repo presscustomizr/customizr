@@ -138,6 +138,7 @@ endif;
 
 //@return bool
 function czr_fn_isprevdem() {
+    //return true;
     global $wp_customize;
     $is_dirty = false;
     if ( is_object( $wp_customize ) && method_exists( $wp_customize, 'unsanitized_post_values' ) ) {
@@ -1439,12 +1440,16 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 
 /**
 * helper
-* Prints the social links
+* Prints the social links. Used as partial refresh callback
 * @return  void
 */
 if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
     function czr_fn_print_social_links() {
-        echo czr_fn_get_social_networks();
+        if ( ! czr_fn_is_modern_style() ) {
+          echo czr_fn_get_social_networks();
+        } else {
+          czr_fn_render_template( 'modules/common/social_block' );
+        }
     }
 }
 
