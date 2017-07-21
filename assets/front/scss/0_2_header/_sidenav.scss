@@ -1,6 +1,6 @@
 #tc-sn {
   position: fixed;
-
+  visibility: hidden;
   @include perspective( 1000px );
   @include transform-style( preserve-3d );
   @include backface-visibility( hidden );
@@ -65,15 +65,16 @@
   }
 
   // Animation stuff
-  .animating & {
+  .animating &, .tc-sn-visible:not(.animating) &  {
+    visibility: visible;
     @include transition( transform 0.5s ease-in-out );
     z-index: 2;
   }
 
   .tc-sn-visible:not(.animating) & {
     @include transform( translate(0, 0) );
-    z-index: 2;
   }
+
   .animating.sn-open & {
     @include transform( translate3d(0, 0, 0) );
     //ms-hack
