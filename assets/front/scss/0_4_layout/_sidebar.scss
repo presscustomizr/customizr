@@ -9,8 +9,12 @@
 .widget-area {
   .widget {
     margin-bottom: $base-line-height*3;
-    li:not(:last-of-type) { margin-bottom: $base-line-height/2 }
-    li::before { content: none }
+    li:not(:last-of-type) {
+      margin-bottom: $base-line-height/2
+    }
+    li::before {
+      content: none
+    }
     @at-root .widget-area a {
       display: inline-block;
       color: $grey;
@@ -22,12 +26,10 @@
   }
 
   .social-block {
-
       margin-bottom: $base-line-height;
       .socials {
         font-size: $base-line-height;
       }
-
   }//.social-block
 
 }
@@ -48,9 +50,10 @@
       height:2px;
       bottom:0;
       left:0;
-      background: $black;
+
     }
   }
+
   .widget_search input[type="text"] {
     border-bottom-color: $black;
   }
