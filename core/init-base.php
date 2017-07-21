@@ -845,6 +845,9 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               // default_options
               // started using customizr(-pro) transient
               do_action( 'czr_before_caching_options' );
+              if ( CZR_IS_PRO && ! get_option( 'started_customizr_pro_with_version' ) ) {
+                  update_option( 'started_customizr_pro_with_version', CUSTOMIZR_VER );
+              }
 
               self::$theme_name         = CZR_SANITIZED_THEMENAME;
 
@@ -855,12 +858,13 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               //What was the theme version when the user started to use Customizr?
               //new install = no options yet
               //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-              if ( 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
-                set_transient(
-                  $_trans,
-                  sprintf('%s|%s' , 1 >= count( self::$db_options ) ? 'with' : 'before', CUSTOMIZR_VER ),
-                  60*60*24*9999
-                );
+              $is_czr_pro_fresh_install = CZR_IS_PRO && CUSTOMIZR_VER == get_option( 'started_customizr_pro_with_version');
+              if ( $is_czr_pro_fresh_install || 1 >= count( self::$db_options ) || ! esc_attr( get_transient( $_trans ) ) ) {
+                  set_transient(
+                    $_trans,
+                    sprintf('%s|%s' , ( 1 >= count( self::$db_options ) || $is_czr_pro_fresh_install ) ? 'with' : 'before', CUSTOMIZR_VER ),
+                    60*60*24*9999
+                  );
               }
 
               //fire an action hook after theme main properties have been set up
