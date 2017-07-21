@@ -728,6 +728,12 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @since Customizr 3.2.18
   */
   function czr_fn_user_options_style_cb( $_css ){
+    return $_css;
+  }
+  /*
+  * TODO: USE fittext instead?
+  */
+  /*function czr_fn_user_options_style_cb( $_css ){
     $_col_nb  = $this -> czr_fn_get_grid_cols();
     // Not used anymore:
 
@@ -739,6 +745,6 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
        // $_current_col_figure_css
     );
     return $_css;
-  }
+  }*/
 
 }
