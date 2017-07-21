@@ -3,7 +3,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
   final class CZR_prevdem {
     function __construct() {
       //SKIN
-      add_filter( 'tc_opt_tc_skin' , array( $this, 'czr_fn_set_skin' ) );
+      add_filter( 'tc_opt_tc_skin_color' , array( $this, 'czr_fn_set_skin_color' ) );
 
       //FONT
       add_filter( 'tc_opt_tc_fonts', array( $this, 'czr_fn_set_font') );
@@ -59,14 +59,9 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     /* ------------------------------------------------------------------------- *
      *  Skin
     /* ------------------------------------------------------------------------- */
-    //hook : tc_opt_tc_skin
-    function czr_fn_set_skin( $skin ) {
-      $theme_skins = CZR_init::$instance -> skins;
-      $new_skin = 'grey.css';
-      if ( ! isset( $theme_skins[$new_skin] ) )
-        return $skin;
-
-      return $new_skin;
+    //hook : tc_opt_tc_skin_color
+    function czr_fn_set_skin_color( $skin ) {
+      return '#5a5a5a';
     }
 
 

@@ -97,36 +97,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     //hook : customize_register
     function czr_fn_register_partials( WP_Customize_Manager $wp_customize ) {
 
-        //ONLY FOR OLD CZR at the moment
-        if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE )
-          return;
-
-
-
         //Bail if selective refresh is not available (old versions) or disabled (for skope for example)
         if ( ! isset( $wp_customize->selective_refresh ) || ! czr_fn_is_partial_refreshed_on() ) {
             return;
         }
-        /* Header */
-        $wp_customize->selective_refresh->add_partial( 'main_header', array(
-            'selector'            => 'header.tc-header',
-            'settings'            => array(
-              CZR_THEME_OPTIONS . '[tc_header_layout]',
-              CZR_THEME_OPTIONS . '[tc_show_tagline]',
-              CZR_THEME_OPTIONS . '[tc_social_in_header]',
-            ),
-            'container_inclusive' => true,
-            'render_callback'     => 'czr_fn_render_main_header',
-            'fallback_refresh'    => false,
-        ) );
-        /* Tagline text */
-        $wp_customize->selective_refresh->add_partial( 'blogdescription', array(
-            'selector'            => '.site-description',
-            'settings'            => array( 'blogdescription' ),
-            'container_inclusive' => false,
-            'render_callback'     => 'czr_fn_get_tagline_text',
-            'fallback_refresh'    => false,
-        ) );
+
         /* Social links*/
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',
@@ -135,6 +110,29 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             'fallback_refresh'    => false,
         ) );
 
+        //ONLY FOR OLD CZR at the moment
+        if ( czr_fn_is_modern_style() ) {
+            /* Header */
+            $wp_customize->selective_refresh->add_partial( 'main_header', array(
+                'selector'            => 'header.tc-header',
+                'settings'            => array(
+                  CZR_THEME_OPTIONS . '[tc_header_layout]',
+                  CZR_THEME_OPTIONS . '[tc_show_tagline]',
+                  CZR_THEME_OPTIONS . '[tc_social_in_header]',
+                ),
+                'container_inclusive' => true,
+                'render_callback'     => 'czr_fn_render_main_header',
+                'fallback_refresh'    => false,
+            ) );
+            /* Tagline text */
+            $wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+                'selector'            => '.site-description',
+                'settings'            => array( 'blogdescription' ),
+                'container_inclusive' => false,
+                'render_callback'     => 'czr_fn_get_tagline_text',
+                'fallback_refresh'    => false,
+            ) );
+        }
     }
 
 
@@ -1778,8 +1776,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1833,8 +1830,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
+?><?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1911,8 +1907,7 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?>
-<?php
+?><?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
