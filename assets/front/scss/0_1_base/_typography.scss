@@ -85,8 +85,9 @@ h6 {
 
 
 h1, h2, h3, h4, h5, h6 {
-  @extend .thick;
+  // @extend .thick;
   position:relative;
+  font-weight: normal;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -94,7 +95,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h6 {
-  @extend .semi-bold;
+  // @extend .semi-bold;
   color:$grey ;
   text-transform: uppercase;
   letter-spacing: 2px;

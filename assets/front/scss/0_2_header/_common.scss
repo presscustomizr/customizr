@@ -13,7 +13,8 @@
     a {
       overflow: hidden;
       & > span:first-of-type {
-        padding: $base-line-height 0;
+        padding: $base-line-height 0 $base-line-height/2 0;
+        margin-bottom: $base-line-height/2
       }
 
       padding: 0 $base-line-height-fixed/3;
@@ -220,14 +221,14 @@
   // submenu link move
   .czr-submenu-move & {
     .dropdown-menu > li > a {
-      -webkit-transition: all ease 0.241s;
-      -moz-transition: all ease 0.241s;
-      -o-transition: all ease 0.241s;
-      transition: all ease 0.241s;
+      -webkit-transition: all ease 0.25s;
+      -moz-transition: all ease 0.25s;
+      -o-transition: all ease 0.25s;
+      transition: all ease 0.25s;
       @include transform( translate( 0, 0) );
     }
     .dropdown-item > a:hover {
-      @include transform( translate( 5px, 0) );
+      @include transform( translate( 3px, 0) );
     }
   }
   // end subemnu link move

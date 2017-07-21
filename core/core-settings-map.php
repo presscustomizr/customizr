@@ -279,6 +279,14 @@ function czr_fn_formatting_option_map( $get_default = null ) {
                             'section'     => 'formatting_sec' ,
                             'type'        => 'checkbox' ,
                             'notice'      => sprintf( '%s<br/><strong>%s</strong> : %s', __( 'If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page.' , 'customizr' ), __( 'Important note' , 'customizr' ), __('this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option.', 'customizr') )
+          ),
+          'tc_link_hover_effect'  =>  array(
+                            'default'       => 1,
+                            'control'     => 'CZR_controls' ,
+                            'label'         => CZR_IS_MODERN_STYLE ?  __( 'Animated underline effect on link hover' , 'customizr' ) : __( 'Fade effect on link hover' , 'customizr' ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'checkbox' ,
+                            'transport'   => 'postMessage'
           )
   );
 }
