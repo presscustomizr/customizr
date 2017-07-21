@@ -375,7 +375,7 @@ a[target="_blank"]:hover:after {
     background-color: $skin-dark-color-shade-low;
   }
   color: $white;
-
+  display: none;
   width: 51px;
   height: 50px;
   position: fixed !important;
@@ -407,6 +407,10 @@ a[target="_blank"]:hover:after {
     &.right {
       right: -1px
     }
+  }
+  //(min-width: 576px)
+  @include media-breakpoint-up(sm) {
+    display: block
   }
 }
 /* Quote and link formats */
