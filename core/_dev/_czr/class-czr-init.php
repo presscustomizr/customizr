@@ -102,7 +102,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
             return;
         }
 
-        /* Social links*/
+        //SOCIALS
         $wp_customize->selective_refresh->add_partial( 'social_links', array(
             'selector'            => '.social-links',
             'settings'            => array( CZR_THEME_OPTIONS . '[tc_social_links]' ),
@@ -111,7 +111,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
         ) );
 
         //ONLY FOR OLD CZR at the moment
-        if ( czr_fn_is_modern_style() ) {
+        if ( ! czr_fn_is_modern_style() ) {
             /* Header */
             $wp_customize->selective_refresh->add_partial( 'main_header', array(
                 'selector'            => 'header.tc-header',
