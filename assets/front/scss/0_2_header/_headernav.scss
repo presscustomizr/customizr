@@ -49,7 +49,9 @@
               width: auto;
               max-width: 100%;
             }
-
+            + .header-tagline {
+              margin: 2px 0 0;
+            } 
         }
         .header-tagline {
             font-size: 0.9em;
@@ -57,7 +59,7 @@
             padding: 0;
             margin: 0;
             width: 100%;
-            margin-top: 2/3*$base-line-height;
+            margin: 2/3*$base-line-height 0;
 
         }
         &.tagline-aside .header-tagline {
