@@ -4,7 +4,7 @@
 */
 ?>
 <article <?php czr_fn_echo('article_selectors') ?> <?php czr_fn_echo('element_attributes') ?>>
-  <div class="grid__item">
+  <div class="grid__item flex-wrap flex-lg-nowrap flex-row">
     <?php
       czr_fn_render_template(
         'content/common/media',
