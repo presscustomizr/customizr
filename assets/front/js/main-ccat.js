@@ -698,7 +698,7 @@ var czrapp = czrapp || {};
                         });
                   } else {
                         $('img').each( function() {
-                              _mayBeForceOpacity( { el : $(this), delay : 300 } );
+                              _mayBeForceOpacity( { el : $(this), delay : 100 } );
                         });
                   }
                   _.delay( function() {

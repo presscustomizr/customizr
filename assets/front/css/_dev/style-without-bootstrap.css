@@ -1244,8 +1244,8 @@ select:-webkit-autofill {
 }
 
 .nav__menu .menu-item a > span:first-of-type {
-  padding: 1.25em 0 0.625em 0;
-  margin-bottom: 0.625em;
+  padding: 10px 0 5px 0;
+  margin-bottom: 5px;
 }
 
 .nav li:not(.mini_cart_item) > a:focus, .nav li:not(.mini_cart_item) > a:hover {
@@ -1575,19 +1575,37 @@ select:-webkit-autofill {
   width: 100%;
 }
 
-.primary-navbar__wrapper .branding__container {
+.primary-navbar__wrapper.has-horizontal-menu .branding__container {
   max-width: 33%;
   width: auto;
 }
 
+.primary-navbar__wrapper .branding__container {
+  max-width: 85%;
+  width: auto;
+}
+
 .branding {
-  padding-top: 0.625em;
-  padding-bottom: 0.625em;
+  padding-top: 0.425em;
+  padding-bottom: 0.425em;
   overflow: hidden;
 }
 
+.branding .navbar-brand-sitename span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.branding .navbar-brand-sitename.czr-underline span {
+  position: relative;
+  padding-bottom: 0.25em;
+  margin-bottom: 5px;
+}
+
 .mobile-navbar__wrapper .branding {
-  max-width: 60%;
+  max-width: calc( 100% - 100px);
 }
 
 .branding .navbar-brand {
@@ -1599,6 +1617,7 @@ select:-webkit-autofill {
   padding-top: .25rem;
   padding-bottom: .25rem;
   white-space: nowrap;
+  width: 100%;
 }
 
 .navbar-brand img {
@@ -1864,8 +1883,6 @@ select:-webkit-autofill {
 
 .mobile-navbar__wrapper .czr-underline span {
   margin-bottom: 5px;
-  display: block;
-  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -1919,7 +1936,8 @@ select:-webkit-autofill {
 }
 
 .topbar-nav__menu.nav__menu > .menu-item > a > span:first-of-type {
-  padding: 0.625em 0;
+  padding: 8px 0 4px 0;
+  margin-bottom: 4px;
 }
 
 #tc-sn {

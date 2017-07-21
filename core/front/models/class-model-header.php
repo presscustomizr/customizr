@@ -151,7 +151,19 @@ class CZR_header_model_class extends CZR_Model {
     $_desktop_topbar_navbar_class   = array( 'hidden-md-down' );
     $_mobile_navbar_class           = array( 'hidden-lg-up' );
 
-
+    /*
+    * Informations about the current active blocks in the primary header navbar :
+    * => do we have the tagline ? is there a secondary horizontal menu, do we have a primary sidebar menu ? etc.
+    */
+    if ( czr_fn_is_registered_or_possible( 'navbar_primary_menu' ) || czr_fn_is_registered_or_possible( 'navbar_secondary_menu' ) ) {
+        $_desktop_primary_navbar_class[] = 'has-horizontal-menu';
+    }
+    if ( czr_fn_is_registered_or_possible( 'navbar_primary_menu' ) || czr_fn_is_registered_or_possible( 'navbar_secondary_menu' ) ) {
+        $_desktop_primary_navbar_class[] = 'has-horizontal-menu';
+    }
+    if ( czr_fn_is_registered_or_possible( 'branding_tagline' ) && 'brand_next' == czr_fn_opt( 'tc_header_desktop_tagline' ) ) {
+        $_desktop_primary_navbar_class[] = 'has-tagline-aside';
+    }
     /*
     * Desktop sticky header
     */

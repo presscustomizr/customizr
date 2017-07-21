@@ -13,8 +13,10 @@
     a {
       overflow: hidden;
       & > span:first-of-type {
-        padding: $base-line-height 0 $base-line-height/2 0;
-        margin-bottom: $base-line-height/2
+        padding: 10px 0 5px 0;
+        margin-bottom: 5px;
+        //padding: $base-line-height 0 $base-line-height/2 0;
+        //margin-bottom: $base-line-height/2
       }
 
       padding: 0 $base-line-height-fixed/3;

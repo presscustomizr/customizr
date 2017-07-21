@@ -4,19 +4,34 @@
     @extend .display-flex;
     width: 100%;
 
-    .primary-navbar__wrapper & {
-        max-width: 33%;
-        width: auto;
+    .primary-navbar__wrapper.has-horizontal-menu & {
+      max-width: 33%;
+      width: auto;
     }
-
+    .primary-navbar__wrapper & {
+      max-width: 85%;
+      width: auto;
+    }
     @at-root .branding {
         //@extend .display-flex;
-        padding-top: $base-line-height/2;
-        padding-bottom: $base-line-height/2;
+        padding-top: 0.425em;
+        padding-bottom: 0.425em;
         overflow: hidden;
 
+        .navbar-brand-sitename span{
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .navbar-brand-sitename.czr-underline span{
+          position: relative;
+          padding-bottom: 0.25em;
+          margin-bottom: 5px;
+        }
         .mobile-navbar__wrapper & {
-          max-width: 60%;
+          max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
         }
 
         .navbar-brand {
@@ -28,7 +43,7 @@
             padding-top: .25rem;
             padding-bottom: .25rem;
             white-space: nowrap;
-
+            width: 100%;
             @at-root .navbar-brand img {
               width: auto;
               max-width: 100%;
@@ -335,8 +350,6 @@
   //When the site title is underlined, when need to adjust the vertical centering with this hard coded margin
   .czr-underline span {
     margin-bottom: 5px;
-    display: block;
-    position: relative;
   }
 }
 

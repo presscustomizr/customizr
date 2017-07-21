@@ -25,7 +25,9 @@
         > a {
             padding: 0 0.25rem;
             > span:first-of-type {
-                padding: $base-line-height/2 0;
+                padding: 8px 0 4px 0;
+                margin-bottom: 4px;
+                //padding: $base-line-height/2 0;
             }
         }
 

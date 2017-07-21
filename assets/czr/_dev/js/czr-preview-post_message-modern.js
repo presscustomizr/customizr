@@ -11,13 +11,13 @@
         * GLOBAL SETTINGS
         ******************************************/
           'blogname' : function(to) {
-            $( 'a.site-title' ).text( to );
+            $( 'a.navbar-brand-sitename span' ).text( to );
           },
           'blogdescription' : function(to) {
             //do nothing if this setting has partial refresh
-            if ( _customizePartialRefreshExports && 'undefined' !== typeof _customizePartialRefreshExports.partials && 'undefined' !== typeof _customizePartialRefreshExports.partials.blogdescription )
+            if ( _customizePartialRefreshExports && ! _.isUndefined( _customizePartialRefreshExports.partials ) && ! _.isUndefined( _customizePartialRefreshExports.partials.blogdescription ) )
               return;
-            $( '.navbar-brand-tagline ' ).text( to );
+            $( '.header-tagline' ).text( to );
           },
           'tc_skin' : function( to ) {
             if ( CZRPreviewParams && CZRPreviewParams.themeFolder ) {

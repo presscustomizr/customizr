@@ -4307,8 +4307,8 @@ select:-webkit-autofill {
 }
 
 .nav__menu .menu-item a > span:first-of-type {
-  padding: 1.25em 0 0.625em 0;
-  margin-bottom: 0.625em;
+  padding: 10px 0 5px 0;
+  margin-bottom: 5px;
 }
 
 .nav li:not(.mini_cart_item) > a:focus, .nav li:not(.mini_cart_item) > a:hover {
@@ -4638,19 +4638,37 @@ select:-webkit-autofill {
   width: 100%;
 }
 
-.primary-navbar__wrapper .branding__container {
+.primary-navbar__wrapper.has-horizontal-menu .branding__container {
   max-width: 33%;
   width: auto;
 }
 
+.primary-navbar__wrapper .branding__container {
+  max-width: 85%;
+  width: auto;
+}
+
 .branding {
-  padding-top: 0.625em;
-  padding-bottom: 0.625em;
+  padding-top: 0.425em;
+  padding-bottom: 0.425em;
   overflow: hidden;
 }
 
+.branding .navbar-brand-sitename span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.branding .navbar-brand-sitename.czr-underline span {
+  position: relative;
+  padding-bottom: 0.25em;
+  margin-bottom: 5px;
+}
+
 .mobile-navbar__wrapper .branding {
-  max-width: 60%;
+  max-width: calc( 100% - 100px);
 }
 
 .branding .navbar-brand {
@@ -4662,6 +4680,7 @@ select:-webkit-autofill {
   padding-top: .25rem;
   padding-bottom: .25rem;
   white-space: nowrap;
+  width: 100%;
 }
 
 .navbar-brand img {
@@ -4927,8 +4946,6 @@ select:-webkit-autofill {
 
 .mobile-navbar__wrapper .czr-underline span {
   margin-bottom: 5px;
-  display: block;
-  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -4982,7 +4999,8 @@ select:-webkit-autofill {
 }
 
 .topbar-nav__menu.nav__menu > .menu-item > a > span:first-of-type {
-  padding: 0.625em 0;
+  padding: 8px 0 4px 0;
+  margin-bottom: 4px;
 }
 
 #tc-sn {
@@ -5762,6 +5780,9 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
 
 /* go-to-top button */
 .czr-btta {
+  background-color: rgba(59, 59, 59, 0.2);
+  color: #fff;
+  display: none;
   width: 51px;
   height: 50px;
   position: fixed !important;
@@ -5775,6 +5796,10 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
   z-index: 100;
   border-width: 1px;
   padding: 0;
+}
+
+.czr-btta:hover, .czr-btta:focus, .czr-btta:active {
+  background-color: rgba(59, 59, 59, 0.8);
 }
 
 .czr-btta.right {
@@ -5809,6 +5834,12 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
 
 .czr-btta.show.right {
   right: -1px;
+}
+
+@media (min-width: 576px) {
+  .czr-btta {
+    display: block;
+  }
 }
 
 /* Quote and link formats */
@@ -8507,6 +8538,10 @@ section[class^="post-"] .entry-meta {
   margin-left: 1.25em;
 }
 
+.post-navigation {
+  background-color: #eceeef;
+}
+
 .row > .post-navigation[class*=col-], .post-navigation {
   padding: 0;
   margin: 0;
@@ -8537,11 +8572,11 @@ section[class^="post-"] .entry-meta {
   -webkit-transition: all 0.2s, 0.6s ease;
   -o-transition: all 0.2s, 0.6s ease;
   transition: all 0.2s, 0.6s ease;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  -moz-opacity: 0;
-  -khtml-opacity: 0;
-  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
   display: inline-block;
   vertical-align: middle;
 }
@@ -8585,6 +8620,14 @@ section[class^="post-"] .entry-meta {
   display: none;
 }
 
+.post-navigation a:hover .meta-nav-title {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
+
 @media (min-width: 992px) {
   .post-navigation .meta-nav-title {
     display: inline-block;
@@ -8594,13 +8637,6 @@ section[class^="post-"] .entry-meta {
   }
   .post-navigation .post-next a {
     right: 1.25em;
-  }
-  .post-navigation a:hover .meta-nav-title {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    filter: alpha(opacity=100);
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
-    opacity: 1;
   }
 }
 
@@ -9571,10 +9607,6 @@ section.post-content {
 
 .pagination {
   color: #3b3b3b;
-}
-
-.post-navigation {
-  background-color: rgba(141, 141, 141, 0.2);
 }
 
 a.czr-format-link:hover,
