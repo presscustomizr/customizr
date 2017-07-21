@@ -31,7 +31,7 @@ if ( null != $prev_link || null != $next_link ) :
       <li class="next col-2 col-sm-4">
       <?php if ( null != $next_link ) : ?>
         <span class="sr-only"><?php echo $_newer_label ?></span>
-        <span class="nav-next"><?php echo $next_link ?></span>
+        <span class="nav-next nav-dir"><?php echo $next_link ?></span>
       <?php endif ?>
       </li>
       <li class="pagination col-8 col-sm-4">
@@ -51,7 +51,7 @@ if ( null != $prev_link || null != $next_link ) :
       <li class="previous col-2 col-sm-4">
       <?php if ( null != $prev_link ) : ?>
         <span class="sr-only"><?php echo $_older_label ?></span>
-        <span class="nav-previous"><?php echo $prev_link ?></span>
+        <span class="nav-previous nav-dir"><?php echo $prev_link ?></span>
       <?php endif; ?>
       </li>
   </ul>
