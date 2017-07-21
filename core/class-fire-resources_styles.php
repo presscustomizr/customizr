@@ -254,16 +254,6 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                            )
                      ),
 
-                     'skin_lightest_color_shade_high' => array(
-                           'color'  => $skin_lightest_color_shade_high,
-                           'rules'  => array(
-                                 'background-color' => array(
-                                       '.post-navigation',
-                                 )
-                           )
-                     ),
-
-
                      'skin_dark_color' => array(
                            'color'  => $skin_dark_color,
                            'rules'  => array(
