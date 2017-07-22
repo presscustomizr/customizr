@@ -123,7 +123,7 @@
 
                                   if ( 'tc_posts_slider' == to ) {
                                     if ( 0 !== $_label.length && ! $('.czr-notice' , $_label ).length ) {
-                                      var $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.translatedStrings.postSliderNote || '' } );
+                                      var $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.i18n.postSliderNote || '' } );
                                       $_label.append( $_notice );
                                     }
                                     else {
@@ -511,7 +511,7 @@
                                     var $_container = api.control(api.CZR_Helpers.build_setId( servusShortId )).container;
                                         $_notice    = $_container.children('.czr-notice');
                                     if ( 0 === $_notice.length ) {
-                                      $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.translatedStrings.sidenavNote || '' } );
+                                      $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.i18n.sidenavNote || '' } );
 
                                       $_container.append( $_notice );
                                     }
