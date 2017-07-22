@@ -2045,7 +2045,7 @@ function czr_fn_style_option_map( $get_default = null ) {
   $_notice = __( 'The Modern style provides a "material design" look and feel. It relies on the flexbox css mode, offering a better support for the most recent mobile devices and browsers. The Classical style provides a more "flat design" feeling, with icons next to titles for example. It supports both modern and older devices and browsers.', 'customizr' );
   return array(
           'tc_style'  =>  array(
-                            'default'    => czr_fn_user_started_before_version( '4.0.0' , '2.0.0') ? 'classic' : 'modern',
+                            'default'    => ! czr_fn_is_modern_style() ? 'classic' : 'modern',
                             'control'   => 'CZR_controls',
                             'label'       => is_child_theme() ? __( "Set the Modern or Classical design style", 'customizr' ) : __( "Select a design style for the theme", 'customizr' ),
                             'section'     => 'style_sec',

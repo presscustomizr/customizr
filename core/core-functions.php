@@ -31,17 +31,45 @@ endif;
  */
 if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
       function czr_fn_is_modern_style() {
-          $_czr_is_modern_style = 'modern' == czr_fn_opt( 'tc_style' );
-          if ( ! in_array( $_czr_is_modern_style, array('modern', 'classic' ) ) ) {
-              $_czr_is_modern_style = ! czr_fn_user_started_before_version( '4.0.0' , '2.0.0');
-          }
-          if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
-            $_czr_is_modern_style = true;
-          } else {
-            $_czr_is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $_czr_is_modern_style;
+          $is_modern_style = true;
+
+          $_czr_modern_style_option_value = czr_fn_opt( 'tc_style', CZR_THEME_OPTIONS, false );//false for no default
+
+          switch ( $_czr_modern_style_option_value ) {
+            case 'modern':
+                $is_modern_style = true;
+              break;
+
+            case 'classic':
+                $is_modern_style = false;
+              break;
+
+            default :
+              //the modern option is not set
+              //=> if version is > 4.0 for free or 2.0 for free, it is true for a fresh install
+              //free to free or pro to pro
+              if ( CZR_IS_PRO ) {
+                  //if user started using the pro before 2.0
+                  if ( czr_fn_user_started_before_version( '4.0.0' , '2.0.0', 'pro' ) ) {
+                      $is_modern_style = false;
+                  } else {
+                    if ( czr_fn_user_started_before_version( '4.0.0' , '2.0.0', 'free' ) ) {
+                      $is_modern_style = false;
+                    }
+                  }
+              } else {
+                  $is_modern_style = ! czr_fn_user_started_before_version( '4.0.0' , '2.0.0', 'free' );
+              }
+              break;
           }
 
-          return apply_filters( 'czr_is_modern_style', $_czr_is_modern_style );
+          if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
+            $is_modern_style = true;
+          } else {
+            $is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $is_modern_style;
+          }
+
+          return apply_filters( 'czr_is_modern_style', $is_modern_style );
       }
 }
 
@@ -599,8 +627,12 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 * @package Customizr
 * @since Customizr 3.2.9
 */
-function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null ) {
-    $_ispro = CZR_IS_PRO;
+function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null, $what_to_check = null  ) {
+    if ( is_null( $what_to_check ) ) {
+        $_ispro = CZR_IS_PRO;
+    } else {
+        $_ispro = 'pro' == $what_to_check;
+    }
 
     //the transient is set in CZR___::czr_fn_init_properties()
     $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
