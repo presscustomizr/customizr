@@ -354,15 +354,12 @@ section.post-related-articles {
       @include clearfix();
 
       .related-posts_title {
-        float:left;
         text-transform: uppercase;
       }
 
 
       @at-root .related-posts_nav {
-        float: right;
         margin-top: $base-line-height*4;
-        margin-right: 2px;
         .slider-control {
           width: 3em;
           height: 3em;
