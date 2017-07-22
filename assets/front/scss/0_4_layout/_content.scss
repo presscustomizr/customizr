@@ -152,9 +152,12 @@ dl {
 
 
 /* featured pages*/
-.marketing { margin-bottom: $base-line-height * 4 }
+.marketing {
+  margin-bottom: $base-line-height * 5;
+  margin-top: 0.5em;
+}
 .featured-page {
-  margin-top: $base-line-height * 2;
+  margin-top: 2em;
   position: relative;
   text-align:center;
 
@@ -170,12 +173,11 @@ dl {
     backface-visibility: hidden;
   }
   .center-images-disabled & img {
-    /* temporary CSS centering */
-    @include transform( translate(-50%, -50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    // temporary CSS centering
+    @include transform( translate(-50%, -50%) ); // fallback for those browsers w/o translate3d transform property
     @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
-    /*position: relative;*/
   }
   @at-root .fp-title,
            .fp-button,
@@ -186,7 +188,6 @@ dl {
   }
 
   @at-root .fp-title {
-   /* @extend .semi-bold;*/
     line-height: $base-line-height;
     margin-top : $base-line-height/2;
     margin-bottom: $base-line-height;
@@ -214,14 +215,13 @@ dl {
   @at-root [class*=fp-text-] {
     margin: $base-line-height*2 auto;
     color: $grey-dark;
-   /* @extend .small;*/
   }
 
   @at-root .fp-button {
     display: inline-block;
     padding: 0;
     .btn-more {
-      margin-bottom: $base-line-height*2
+      margin-bottom: $base-line-height
     }
   }
 

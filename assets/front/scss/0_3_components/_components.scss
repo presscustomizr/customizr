@@ -10,7 +10,6 @@
 //
 // Base styles (bs based)
 //
-
 %btn_base {
   display: inline-block;
   font-weight: normal;
@@ -368,7 +367,7 @@ a[target="_blank"]:hover:after {
   }
 }
 
-/* go-to-top button */
+// go-to-top button
 .czr-btta {
   background-color: $skin-dark-color-shade-high;
   &:hover, &:focus, &:active {
@@ -413,7 +412,7 @@ a[target="_blank"]:hover:after {
     display: block
   }
 }
-/* Quote and link formats */
+// Quote and link formats
 blockquote, .entry-link {
     position: relative;
     margin: $base-line-height*2 0;
@@ -444,7 +443,7 @@ blockquote, .entry-link {
     }
 }
 
-/* Blockquotes and cites */
+// Blockquotes and cites
 blockquote {
   p {
     margin-left: 5em;
@@ -487,9 +486,9 @@ cite {
     float: left
   }
 }
-/* Blockquotes and cites END */
+// Blockquotes and cites END
 
-/* Link */
+// Link
 .entry-link {
   a {
     margin-left: 10em;
@@ -502,7 +501,7 @@ cite {
     content: '\e812';
   }
 }
-/* link */
+// link
 
 
 .tags {
@@ -533,7 +532,7 @@ cite {
 
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
 
-/* tabs */
+// tabs
 .tabs {
   border-bottom: 2px solid $grey-light;
   @extend .bold;
@@ -574,15 +573,15 @@ cite {
     margin-top: $base-line-height;
 }
 
-/* end tabs */
+// end tabs
 
-/* CSS Loader */
+// CSS Loader
 .czr-img-gif-loader {
   width: 100%;
   display: inline-block;
   height: 100%;
 }
-/* Pure CSS loader */
+// Pure CSS loader
 @-webkit-keyframes czr-mr-loader {
   0% {
     -webkit-transform: scale(0.1);
@@ -659,23 +658,23 @@ cite {
   animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
 }
 
-/*  slider/gallery */
+//  slider/gallery
 
-/* Loader */
+// Loader
 html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
-/* Gif Loader if center slide option is checked */
+// Gif Loader if center slide option is checked
 .czr-slider-loader-wrapper {
   height: 100%;
   width: 100%;
   position: absolute;
   z-index: 99;
-  /*less than the default sticky-header z-index */
+  //less than the default sticky-header z-index
   background: #ffffff;
 }
 /* end loader */
 
-/* Carousel dots for the main slider */
+// Carousel dots for the main slider
 [id^=customizr-slider-] {
   .flickity-page-dots {
     bottom: 30px;
@@ -686,7 +685,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
 }
 
-/* slider/gallery arrows  */
+// slider/gallery arrows
 .czr-carousel-control {
  letter-spacing: 0;
  font-family: inherit;
@@ -736,7 +735,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
 }
 
-/* caousel */
+// carousel
 
 .czr-carousel {
   position: relative;
@@ -750,7 +749,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     z-index: 3;
     overflow: hidden;
 
-    /* temporary centering */
+    // temporary centering
     transform: translate(-50%, -50%);
     transform: translate3d(-50%, -50%, 0);
     top: 50%;
@@ -764,7 +763,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   }
 
   @at-root .center-slides-disabled .carousel-image img {
-    /* temporary CSS centering */
+    // temporary CSS centering
     transform: translate(-50%, -50%);
     transform: translate3d(-50%, -50%, 0);
     top: 50%;
@@ -772,7 +771,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     position: absolute;
   }
 
-  /* If automatic centering is enabled */
+  // If automatic centering is enabled
   .center-slides-enabled > .item > .carousel-image img {
     display: block;
     position: relative;
@@ -816,19 +815,19 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     @include transform-style( preserve-3d );
     position: absolute;
     width: 63%;
-    /*
-    * this refers to the parent width, allowing us to have a perfect square despite the parent
-    * as it has the same element's width percentage value.
-    */
+    //
+    // this refers to the parent width, allowing us to have a perfect square despite the parent
+    // as it has the same element's width percentage value.
+    //
     padding-bottom: 63%;
     content: '';
     z-index: 1;
     /* Centering */
     left: 50%;
     top: 50%;
-    @include transform ( translate(-50%,-50%) ); /* fallback for those browsers w/o translate3d transform property*/
+    @include transform ( translate(-50%,-50%) ); // fallback for those browsers w/o translate3d transform property
     @include transform ( translate3d(-50%,-50%, 0) );
-    /* end of centering */
+    // end of centering
     border: 150px solid;
     border-color: inherit;
     .ie9 & {
@@ -841,7 +840,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
     .expanded  &,
     .czr-link-mask-p.hover & {
-      @include transform ( translate(-50%,-50%) scale(1.4) ); /* fallback for those browsers w/o translate3d transform property*/
+      @include transform ( translate(-50%,-50%) scale(1.4) ); // fallback for those browsers w/o translate3d transform property
       @include transform ( translate3d(-50%,-50%, 0) scale(1.4) );
     }
   }
