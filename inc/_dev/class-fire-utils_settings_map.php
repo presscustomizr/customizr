@@ -952,6 +952,15 @@ class CZR_utils_settings_map {
                                     'priority'      => 60,
                                     'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
                   ),
+                  'tc_grid_icons'  =>  array(
+                                    'default'       => 1,
+                                    'control'       => 'CZR_controls' ,
+                                    'label'         => __( 'Display post format icons' , "customizr" ),
+                                    'section'       => 'post_lists_sec' ,
+                                    'type'          => 'checkbox',
+                                    'priority'      => 63,
+                                    'transport'     => 'postMessage'
+                  ),
                   /* Used only for the standard grid: Removed in c4 */
                   'tc_post_list_default_thumb'  => array(
                                     'control'   =>  version_compare( $wp_version, '4.3', '>=' ) ? 'CZR_Customize_Cropped_Image_Control' : 'CZR_Customize_Upload_Control',

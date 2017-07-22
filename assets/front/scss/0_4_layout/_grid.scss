@@ -91,12 +91,7 @@
 .comments__link { white-space: nowrap; }
 .grid-title_size {
   line-height:1.4;
-  @media (min-width: 20em) and (max-width: 60em) {
-      & { font-size: calc(1em + 0.728 * ( ( 100vw - 20em) / 40 ) ); }
-  }
-  @media (min-width: 60em) {
-      & { font-size: 1.728em; }
-  }
+  font-size: 1.728em;
 }
 
 .post-action  {
@@ -266,13 +261,13 @@ a.czr-format-link {
     .entry-meta { margin-bottom: $base-line-height; }
 
     &.no-title .entry-meta { margin-bottom: 0 }
-
-    .entry-title {
-      @extend .grid-title_size;
-      margin-top:0;
-    }
-
   }
+
+  .entry-title {
+    @extend .grid-title_size;
+    margin-top:0;
+  }
+
   .entry-footer {
     .post-info {
       padding-top: $base-line-height;
@@ -356,17 +351,36 @@ a.czr-format-link {
 
 }
 
+//
+// Grid style/effects
+//
+.grid__item {
+  .tc-grid-shadow &  {
+    @include box-shadow( 0, 0, 6px, rgba(0, 0, 0, 0.075), false, 2px );
+  }
+  .tc-grid-shadow-soft & {
+    @include box-shadow( 0, 1px, 3px, rgba(0, 0, 0, 0.025));
+  }
+  .tc-grid-border & {
+    border-bottom: 3px solid transparent;
+  }
+  .tc-grid-hover-move & {
+    @include backface-visibility( hidden );
+    @include transition(transform 0.1s ease-in-out);
+    overflow: hidden;
+    position: relative;
+  }
+  .tc-grid-hover-move .hover & {
+    @include box-shadow(0, 6px, 10px, rgba(0, 0, 0, 0.055) );
+    @include transform(translate(0, -4px));
+  }
+
+}
 
 /* CLASSIC */
 .grid-container__classic {
   .tc-content {
     @extend .small
-  }
-  &.tc-grid-shadow .grid__item {
-    @include box-shadow( 0, 0, 6px, rgba(0, 0, 0, 0.075), false, 2px );
-  }
-  &.tc-grid-border .grid__item {
-    border-bottom: 3px solid transparent;
   }
   .tc-grid-figure {
     position: relative;

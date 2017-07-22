@@ -24,6 +24,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       'show_thumb'             => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
       'grid_bottom_border'     => esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ),
       'grid_shadow'            => esc_attr( czr_fn_opt( 'tc_grid_shadow') ),
+      'grid_hover_move'        => true,
       //'grid_thumb_height'     => esc_attr( czr_fn_opt( 'tc_grid_thumb_height') ),
       'grid_thumb_shape'       => esc_attr( czr_fn_opt( 'tc_grid_thumb_shape') ),
       'use_thumb_placeholder'  => esc_attr( czr_fn_opt( 'tc_post_list_thumb_placeholder' ) ),
@@ -441,6 +442,8 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       $_classes[] = 'tc-grid-shadow';
     if ( ! empty( $this->grid_bottom_border ) )
       $_classes[] = 'tc-grid-border';
+    if ( ! empty( $this->grid_hover_move ) )
+      $_classes[] = 'tc-grid-hover-move';
     if ( ! empty( $this->contained ) )
       $_classes[] = 'container';
 
@@ -725,6 +728,12 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * @since Customizr 3.2.18
   */
   function czr_fn_user_options_style_cb( $_css ){
+    return $_css;
+  }
+  /*
+  * TODO: USE fittext instead?
+  */
+  /*function czr_fn_user_options_style_cb( $_css ){
     $_col_nb  = $this -> czr_fn_get_grid_cols();
     // Not used anymore:
 
@@ -736,6 +745,6 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
        // $_current_col_figure_css
     );
     return $_css;
-  }
+  }*/
 
 }

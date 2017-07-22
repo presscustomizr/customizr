@@ -1361,15 +1361,7 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'priority'      => 62,
                             'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
           ),
-          'tc_grid_icons'  =>  array(
-                            'default'       => 1,
-                            'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Display post format icons' , "customizr" ),
-                            'section'       => 'post_lists_sec' ,
-                            'type'          => 'checkbox',
-                            'priority'      => 63,
-                            'transport'   => czr_fn_is_modern_style() ? 'refresh' : 'postMessage'
-          ),
+
           'tc_grid_num_words'  =>  array(
                             'default'       => 10,
                             'sanitize_callback' => 'czr_fn_sanitize_number',
