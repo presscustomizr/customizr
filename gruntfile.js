@@ -73,6 +73,7 @@ module.exports = function(grunt) {
           //modern style
           'sass:front',
           'sass:front_ms_respond',
+          'concat:front_css_modern',
           'lineending:front_css_modern',
           'cssmin:prod_front_modern'
         ],
