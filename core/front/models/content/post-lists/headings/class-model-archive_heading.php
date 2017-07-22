@@ -9,8 +9,7 @@ class CZR_archive_heading_model_class extends CZR_Model {
     //the controller will check if we're in (not singular) context
     //context
     $this -> context  = $this -> czr_fn_get_the_posts_list_context();
-    if ( ! $this -> context )
-      return;
+
     $model['pre_title']         = apply_filters( "czr_{$this -> context}_archive_title" , $this -> czr_fn_get_posts_list_pre_title() );
     $model['title']             = apply_filters( "czr_{$this -> context}_title", $this -> czr_fn_get_posts_list_title_content() );
     $model['description']       = apply_filters( "czr_{$this -> context}_description", $this -> czr_fn_get_posts_list_description() );
@@ -39,8 +38,13 @@ class CZR_archive_heading_model_class extends CZR_Model {
         return 'tag';
       if ( apply_filters('czr_show_tax_archive_title', true ) )
         return 'tax';
+
     }
-    return false;
+    if ( is_post_type_archive() ) {
+        return 'post_type_archive';
+    }
+
+    return 'unknown';
   }
 
   function czr_fn_get_posts_list_pre_title( $context = null ) {
@@ -59,14 +63,18 @@ class CZR_archive_heading_model_class extends CZR_Model {
   function czr_fn_get_posts_list_title_content( $context = null ) {
     $context = $context ? $context : $this -> context;
     switch ( $context ) {
-      case 'page_for_posts' : return get_the_title( get_option('page_for_posts') );
-      case 'author'         : return '<span class="vcard">' . get_the_author_meta( 'display_name' , get_query_var( 'author' ) ) . '</span>';
-      case 'category'       : return single_cat_title( '', false );
-      case 'day'            : return '<span>' . get_the_date() . '</span>';
-      case 'month'          : return '<span>' . get_the_date( _x( 'F Y' , 'monthly archives date format' , 'customizr' ) ) . '</span>';
-      case 'year'           : return '<span>' . get_the_date( _x( 'Y' , 'yearly archives date format' , 'customizr' ) ) . '</span>';
-      case 'tag'            : return single_tag_title( '', false );
-      case 'tax'            : return get_the_archive_title();
+      case 'page_for_posts'    : return get_the_title( get_option('page_for_posts') );
+      case 'author'            : return '<span class="vcard">' . get_the_author_meta( 'display_name' , get_query_var( 'author' ) ) . '</span>';
+      case 'category'          : return single_cat_title( '', false );
+      case 'day'               : return '<span>' . get_the_date() . '</span>';
+      case 'month'             : return '<span>' . get_the_date( _x( 'F Y' , 'monthly archives date format' , 'customizr' ) ) . '</span>';
+      case 'year'              : return '<span>' . get_the_date( _x( 'Y' , 'yearly archives date format' , 'customizr' ) ) . '</span>';
+      case 'tag'               : return single_tag_title( '', false );
+      case 'tax'               : return get_the_archive_title();
+      case 'post_type_archive' : return post_type_archive_title( '', false );
+
+      //unknown
+      default                  : return get_the_title( get_queried_object_id() );
     }
   }
 
