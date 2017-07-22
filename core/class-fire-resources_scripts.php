@@ -511,7 +511,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                               __('a short guide here.', 'customizr')
                           );
                       ?>
-                      <span class="fa fa-times close-note" title="Close"></span>
+                      <span class="fa fa-times close-note" title="<?php esc_attr_e( 'Permanently dismiss', 'customizr' ); ?>"></span>
                   </div>
                 </div>
               <?php

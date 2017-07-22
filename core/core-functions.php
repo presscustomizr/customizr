@@ -166,7 +166,6 @@ endif;
 
 //@return bool
 function czr_fn_isprevdem() {
-    //return true;
     global $wp_customize;
     $is_dirty = false;
     if ( is_object( $wp_customize ) && method_exists( $wp_customize, 'unsanitized_post_values' ) ) {
@@ -177,8 +176,7 @@ function czr_fn_isprevdem() {
         //There might be cases when the unsanitized post values contains old widgets infos on initial preview load, giving a wrong dirtyness information
         $is_dirty             = ( ! empty( $real_cust ) && ! $_is_first_preview ) || $_doing_ajax_partial;
     }
-    //return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! czr_fn_is_pro() );
-    return apply_filters( 'czr_fn_isprevdem', false );
+    return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! czr_fn_is_pro() );
 }
 
 
