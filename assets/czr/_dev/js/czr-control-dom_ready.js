@@ -59,6 +59,8 @@
 
 
               $.when( selectFocusResults ).done( function( customResultsAdapter ) {
+
+
                       //SKIN ( only relevant for classical style)
                       var _skin_select2_params = {
                           minimumResultsForSearch: -1, //no search box needed
@@ -85,26 +87,28 @@
                                   closeOnSelect: false,
                             } );
                       }
+
                       //http://ivaynberg.github.io/select2/#documentation
                       $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').select2( _skin_select2_params );
 
                       //Skins handled with select2
-                      var paintSkinOptionElement = function(state) {
+                      function paintSkinOptionElement(state) {
+                        console.log( 'here' );
                               if (!state.id) return state.text; // optgroup
                               return '<span class="tc-select2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
-                      };
+                      }
 
 
-                    //FONTS
-                    $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]').select2( _fonts_select2_params );
+                      //FONTS
+                      $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]').select2( _fonts_select2_params );
 
-                    function paintFontOptionElement(state) {
-                          if ( ! state.id && ( -1 != state.text.indexOf('Google') ) )
-                            return '<img class="tc-google-logo" src="//www.google.com/images/logos/google_logo_41.png" height="20"/> Font pairs'; // google font optgroup
-                          else if ( ! state.id )
-                            return state.text;// optgroup different than google font
-                          return '<span class="tc-select2-font">' + state.text + '</span>';
-                    }
+                      function paintFontOptionElement(state) {
+                            if ( ! state.id && ( -1 != state.text.indexOf('Google') ) )
+                              return '<img class="tc-google-logo" src="//www.google.com/images/logos/google_logo_41.png" height="20"/> Font pairs'; // google font optgroup
+                            else if ( ! state.id )
+                              return state.text;// optgroup different than google font
+                            return '<span class="tc-select2-font">' + state.text + '</span>';
+                      }
               });//$.when( selectFocusResults )
 
 
