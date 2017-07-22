@@ -35,7 +35,7 @@ if ( null != $prev_link || null != $next_link ) :
       <li class="previous col-5">
       <?php if ( null != $prev_link ) : ?>
         <span class="sr-only"><?php _e('Previous post', 'customizr') ?></span>
-        <span class="nav-previous"><?php echo $prev_link ?></span>
+        <span class="nav-previous nav-dir"><?php echo $prev_link ?></span>
       <?php endif; ?>
       </li>
       <li class="nav-back col-2">
@@ -49,7 +49,7 @@ if ( null != $prev_link || null != $next_link ) :
       <li class="next col-5">
       <?php if ( null != $next_link ) : ?>
         <span class="sr-only"><?php _e('Next post', 'customizr') ?></span>
-        <span class="nav-next"><?php echo $next_link ?></span>
+        <span class="nav-next nav-dir"><?php echo $next_link ?></span>
       <?php endif ?>
       </li>
   </ul>

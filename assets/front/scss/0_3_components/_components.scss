@@ -375,8 +375,8 @@ a[target="_blank"]:hover:after {
   }
   color: $white;
   display: none;
-  width: 51px;
-  height: 50px;
+  width: 46px;
+  height: 45px;
   position: fixed !important;
   bottom: 100px;
   cursor: pointer;
@@ -385,13 +385,13 @@ a[target="_blank"]:hover:after {
   border-width: 1px;
   padding: 0;
   &.right {
-    right: -50px;
+    right: -45px;
   }
   &.left {
-    left: -50px;
+    left: -45px;
   }
   i {
-    line-height: 47px;
+    line-height: 43px;
     display: inline-block;
     &:before {
       font-weight: 700;

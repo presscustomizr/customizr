@@ -208,11 +208,11 @@ section[class^="post-"] {
   li:last-of-type  {
     text-align: right;
   }
-  .meta-nav-title {
-    @include transition(all, 0.6s ease);
-    @include opacity(0.5);
-    display: inline-block;
-    vertical-align: middle;
+  .nav-dir {
+    display: block;
+    > a {
+      max-width: 100%;
+    }
   }
   a i.arrow {
     font-size: $base-line-height;
@@ -238,21 +238,22 @@ section[class^="post-"] {
   .post-next a {
     right: $base-line-height;
   }
-
   .meta-nav {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    @extend .display-flex;
+    @include transition(all, 0.6s ease);
+    @include opacity(0.5);
+  }
+  a:hover {
+    .meta-nav {
+      @include opacity(1);
+    }
   }
   .meta-nav-title {
     display:none;
-  }
-
-  a:hover {
-    .meta-nav-title {
-      @include opacity(1);
-    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
   }
   //(min-width: 992px)
   @include media-breakpoint-up(lg) {
