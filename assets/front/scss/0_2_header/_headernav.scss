@@ -21,9 +21,8 @@
 
         .navbar-brand-sitename span{
           display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          white-space: normal;
+          word-break: break-all;
         }
 
         .navbar-brand-sitename.czr-underline span{
