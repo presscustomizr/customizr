@@ -45,6 +45,19 @@
         display: initial;
     }
   }
+
+  .czr-form {
+    .form-group label {
+       color: $primary-color;
+    }
+     .form-group.in-focus label {
+       color: $secondary-color-light;
+     }
+     .form-control {
+       color: $primary-color;
+       border-color: $primary-color;
+     }
+  }
 }
 
 .footer__wrapper {
