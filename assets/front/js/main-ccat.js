@@ -1741,6 +1741,44 @@ var czrapp = czrapp || {};
                   return false;
             });//click
           },
+          singularContentBlocksEmulateFlex : function() {
+              if ( ! _.isFunction( window.matchMedia ) )
+                return;
+              if ( 0 === $('.tc-sidebar').length || 0 === $( '#content' ).length )
+                return;
+              var _mobileMove = function() {
+                  if ( 0 !== $('.czr-comments-block').length ) {
+                        var $comments = $('.czr-comments-block');
+                        $( '#content' ).after( $comments );
+                  }
+                  if ( 0 !== $('.single-post-info').length ) {
+                        var $postInfos = $('.single-post-info');
+                        $( '#content' ).after( $postInfos );
+                  }
+              };
+              var _desktopMove = function() {
+                  if ( 0 !== $('.czr-comments-block').length ) {
+                        var $comments = $('.czr-comments-block');
+                        $('.tc-sidebar').last().after( $comments );
+                  }
+                  if ( 0 !== $('.single-post-info').length ) {
+                        var $postInfos = $('.single-post-info');
+                        $('.tc-sidebar').last().after( $postInfos );
+                  }
+              };
+              var _mayBeMoveOnResize = function() {
+                    if ( matchMedia( 'only screen and (min-width: 768px)' ).matches ) {
+                          _desktopMove();
+                    } else {
+                          _mobileMove();
+                    }
+              };
+
+              _mayBeMoveOnResize();
+
+              czrapp.$_window.resize( _.debounce( _mayBeMoveOnResize, 50 ) );
+          }
+
    };//_methods{}
 
    czrapp.methods.UserXP = czrapp.methods.UserXP || {};
@@ -2811,7 +2849,9 @@ var czrapp = czrapp || {};
 
                             'anchorSmoothScroll',
 
-                            'mayBePrintWelcomeNote'
+                            'mayBePrintWelcomeNote',
+
+                            'singularContentBlocksEmulateFlex'
                       ]
                 },
                 stickyFooter : {

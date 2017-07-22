@@ -188,6 +188,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-h-dark.inverted:active',
                                        '.btn-skin-h-dark.inverted:focus',
                                        '.btn-skin-h-dark.inverted:hover',
+                                       '.sidebar .widget-title::after'
                                  )
                            )
                      ),

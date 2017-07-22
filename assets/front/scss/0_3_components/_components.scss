@@ -535,7 +535,7 @@ cite {
 // tabs
 .tabs {
   border-bottom: 2px solid $grey-light;
-  @extend .bold;
+  //@extend .bold;
   li {
       position: relative;
       font-size: ms(2);

@@ -13,7 +13,7 @@
 .archive-header .archive-title,
 .entry-header .entry-title {
   word-wrap: break-word;
-  margin-top: 0.4em;
+  margin-top: 0em;
 }
 .archive-header .header-bottom,
 .entry-header .header-bottom {
@@ -134,7 +134,7 @@ article .entry-content a:not(.btn):not(.button):not(.remove) {
 }
 .page-breadcrumbs {
   margin-top: 2*$base-line-height;
-  margin-bottom: 3*$base-line-height;
+  margin-bottom: 2*$base-line-height;
   @extend .demi-small;
 }
 
@@ -146,9 +146,9 @@ article .entry-content a:not(.btn):not(.button):not(.remove) {
   color: $black;
 }
 section[class^="post-"] {
-  margin: $base-line-height*4 0 $base-line-height*2 0;
+  margin: 2em 0 2em 0;
   .row { margin-top: $base-line-height*4; margin-bottom: $base-line-height*2 }
-  .entry-meta { margin: 5em -15px }
+  .entry-meta { margin: 2em -15px }
 }
 
 
@@ -185,7 +185,7 @@ section[class^="post-"] {
 }
 
 .post-navigation {
-  background-color: $grey-light;
+  background-color: $grey-lightest;
 
   .row > &[class*=col-],//<- to avoid other bootstrap plugin overriding this
   & {
@@ -215,7 +215,7 @@ section[class^="post-"] {
     }
   }
   a i.arrow {
-    font-size: $base-line-height;
+    font-size: 0.9em;
   }
   .page-numbers, a {
     font-family: $serviceFont;
@@ -249,17 +249,15 @@ section[class^="post-"] {
     }
   }
   .meta-nav-title {
-    display:none;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: middle;
+    font-size: 0.9em;
   }
   //(min-width: 992px)
   @include media-breakpoint-up(lg) {
-      .meta-nav-title {
-        display: inline-block;
-      }
       .post-prev a {
         left: $base-line-height;
       }
@@ -344,6 +342,11 @@ section[class^="post-"] {
 
 }
 
+.single-post-info {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
 section.post-related-articles {
     margin-top: 0;
 
@@ -352,9 +355,7 @@ section.post-related-articles {
 
       .related-posts_title {
         float:left;
-        font-weight: 600;
-        margin-top:
-        $base-line-height*2;
+        text-transform: uppercase;
       }
 
 

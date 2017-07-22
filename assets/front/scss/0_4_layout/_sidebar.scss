@@ -36,13 +36,17 @@
 
 .sidebar {
   @extend .small;
+  .widget:first-child .widget-title {
+    margin-top: 0;
+    padding-top: 0;
+  }
   .widget-title {
     @extend .caps;
     @extend .letter-spacing-2;
     position: relative;
     margin: $base-line-height 0;
     padding: $base-line-height 0;
-    font-size: 1em;
+    font-size: 1.1em;
     &::after {
       content: "";
       position: absolute;

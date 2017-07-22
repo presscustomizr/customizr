@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
             $_css .= "
               {$body} {
                 font-size : {$emsize_medium}em!important;
-                line-height : {$_line_height}em!important;
+                line-height : {$_line_height}em;
               }
               @media (min-width: 20em) and (max-width: 60em) {
                 {$body} {

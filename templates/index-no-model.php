@@ -60,119 +60,116 @@
 
             <div class="<?php czr_fn_column_content_wrapper_class() ?>">
 
-              <?php do_action('__before_content'); ?>
+                <?php do_action('__before_content'); ?>
 
-              <div id="content" class="<?php czr_fn_article_container_class() ?>">
+                <div id="content" class="<?php czr_fn_article_container_class() ?>">
+
+                  <?php
+
+                    /* Archive regular headings */
+                    if ( apply_filters( 'regular_heading_enabled', ! czr_fn_is_real_home() && ! is_404() ) ):
+
+                      if ( czr_fn_is_registered_or_possible( 'archive_heading' ) )
+                        czr_fn_render_template( 'content/post-lists/headings/regular_archive_heading',
+                          array(
+                            'model_class' => 'content/post-lists/headings/archive_heading'
+                          )
+                        );
+                      elseif ( czr_fn_is_registered_or_possible( 'search_heading' ) )
+                        czr_fn_render_template( 'content/post-lists/headings/regular_search_heading' );
+
+                    endif;
+
+
+                    do_action( '__before_loop' );
+
+                    if ( ! czr_fn_is_home_empty() ) {
+                        if ( have_posts() ) {
+                            //Problem to solve : we want to be able to inject any loop item ( grid-wrapper, alternate, etc ... ) in the loop model
+                            //=> since it's not set yet, it has to be done now.
+                            //How to do it ?
+
+                            //How does the loop works ?
+                            //The loop has its model CZR_loop_model_class
+                            //This loop model might setup a custom query if passed in model args
+                            //this loop model needs a loop item which looks like :
+                            // Array = 'loop_item' => array(
+                            //    (
+                            //        [0] => modules/grid/grid_wrapper
+                            //        [1] => Array
+                            //            (
+                            //                [model_id] => post_list_grid
+                            //            )
+
+                            //      )
+                            // )
+                            // A loop item will be turned into 2 properties :
+                            // 1) 'loop_item_template',
+                            // 2) 'loop_item_args'
+                            //
+                            //Then, when comes the time of rendering the loop view with the loop template ( templates/parts/loop ), we will fire :
+                            //czr_fn_render_template(
+                            //     czr_fn_get_property( 'loop_item_template' ),//the loop item template is set the loop model. Example : "modules/grid/grid_wrapper"
+                            //     czr_fn_get_property( 'loop_item_args' ) <= typically : the model that we inject in the loop item that we want to render
+                            // );
+
+                            //Here, we inject a specific loop item, the main_content, inside the loop
+                            //What is the main_content ?
+                            //=> depends on the current context, @see czr_fn_get_main_content_loop_item() in core/functions-ccat.php
+
+
+                            czr_fn_render_template('loop');
+
+                        } else {//no results
+
+                            if ( is_search() )
+                              czr_fn_render_template( 'content/no-results/search_no_results' );
+                            else
+                              czr_fn_render_template( 'content/no-results/404' );
+                        }
+                    }//not home empty
+                    do_action( '__after_loop' );
+                  ?>
+                </div>
+
+                <?php do_action('__after_content'); ?>
 
                 <?php
+                  /*
+                  * SIDEBARS
+                  */
+                  /* By design do not display sidebars in 404 or home empty */
+                  if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
+                    if ( czr_fn_is_registered_or_possible('left_sidebar') )
+                      get_sidebar( 'left' );
 
-                  /* Archive regular headings */
-                  if ( apply_filters( 'regular_heading_enabled', ! czr_fn_is_real_home() && ! is_404() ) ):
+                    if ( czr_fn_is_registered_or_possible('right_sidebar') )
+                      get_sidebar( 'right' );
 
-                    if ( czr_fn_is_registered_or_possible( 'archive_heading' ) )
-                      czr_fn_render_template( 'content/post-lists/headings/regular_archive_heading',
-                        array(
-                          'model_class' => 'content/post-lists/headings/archive_heading'
-                        )
-                      );
-                    elseif ( czr_fn_is_registered_or_possible( 'search_heading' ) )
-                      czr_fn_render_template( 'content/post-lists/headings/regular_search_heading' );
-
-                  endif;
-
-
-                  do_action( '__before_loop' );
-
-                  if ( ! czr_fn_is_home_empty() ) {
-                      if ( have_posts() ) {
-                          //Problem to solve : we want to be able to inject any loop item ( grid-wrapper, alternate, etc ... ) in the loop model
-                          //=> since it's not set yet, it has to be done now.
-                          //How to do it ?
-
-                          //How does the loop works ?
-                          //The loop has its model CZR_loop_model_class
-                          //This loop model might setup a custom query if passed in model args
-                          //this loop model needs a loop item which looks like :
-                          // Array = 'loop_item' => array(
-                          //    (
-                          //        [0] => modules/grid/grid_wrapper
-                          //        [1] => Array
-                          //            (
-                          //                [model_id] => post_list_grid
-                          //            )
-
-                          //      )
-                          // )
-                          // A loop item will be turned into 2 properties :
-                          // 1) 'loop_item_template',
-                          // 2) 'loop_item_args'
-                          //
-                          //Then, when comes the time of rendering the loop view with the loop template ( templates/parts/loop ), we will fire :
-                          //czr_fn_render_template(
-                          //     czr_fn_get_property( 'loop_item_template' ),//the loop item template is set the loop model. Example : "modules/grid/grid_wrapper"
-                          //     czr_fn_get_property( 'loop_item_args' ) <= typically : the model that we inject in the loop item that we want to render
-                          // );
-
-                          //Here, we inject a specific loop item, the main_content, inside the loop
-                          //What is the main_content ?
-                          //=> depends on the current context, @see czr_fn_get_main_content_loop_item() in core/functions-ccat.php
-
-
-                          czr_fn_render_template('loop');
-
-                      } else {//no results
-
-                          if ( is_search() )
-                            czr_fn_render_template( 'content/no-results/search_no_results' );
-                          else
-                            czr_fn_render_template( 'content/no-results/404' );
-                      }
-                  }//not home empty
-                  do_action( '__after_loop' );
+                  }
                 ?>
-              </div>
+                <?php if ( czr_fn_is_registered_or_possible('single_author_info') || czr_fn_is_registered_or_possible('related_posts') ) : ?>
+                  <div class="col-12 single-post-info">
+                    <?php
+                      if ( czr_fn_is_registered_or_possible('single_author_info') )
+                         czr_fn_render_template( 'content/singular/authors/author_info' );
 
-              <?php do_action('__after_content'); ?>
+                      if ( czr_fn_is_registered_or_possible('related_posts') )
+                        czr_fn_render_template( 'modules/related-posts/related_posts' )
+                    ?>
+                  </div>
+                <?php endif ?>
 
-              <?php
-                /*
-                * SIDEBARS
-                */
-                /* By design do not display sidebars in 404 or home empty */
-                if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
-                  if ( czr_fn_is_registered_or_possible('left_sidebar') )
-                    get_sidebar( 'left' );
+                <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
+                  <div class="col-12 czr-comments-block">
+                      <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
+                  </div>
+                <?php endif ?>
 
-                  if ( czr_fn_is_registered_or_possible('right_sidebar') )
-                    get_sidebar( 'right' );
-
-                }
-              ?>
             </div><!-- .column-content-wrapper -->
 
             <?php do_action('__after_content_wrapper'); ?>
 
-            <?php if ( czr_fn_is_registered_or_possible('single_author_info') || czr_fn_is_registered_or_possible('related_posts') ) : ?>
-              <div class="row single-post-info">
-                <div class="col-12">
-                <?php
-                  if ( czr_fn_is_registered_or_possible('single_author_info') )
-                     czr_fn_render_template( 'content/singular/authors/author_info' );
-
-                  if ( czr_fn_is_registered_or_possible('related_posts') )
-                    czr_fn_render_template( 'modules/related-posts/related_posts' )
-                ?>
-                </div>
-              </div>
-            <?php endif ?>
-
-            <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
-              <div class="row">
-                <div class="col-12">
-                  <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
-                </div>
-              </div>
-            <?php endif ?>
 
           </div><!-- .container -->
 

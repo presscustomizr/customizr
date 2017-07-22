@@ -447,7 +447,8 @@ a.czr-format-link {
         @extend .small;
         text-rendering: geometricPrecision;
         overflow: hidden;
-        @at-root .grid-container__classic:not(.tc-gc) {
+        //:not(.tc-gc) because this is the one added in pro and we don't want this mask effect there
+        @at-root .grid-container__classic:not(.tc-gc) .entry-summary {
           @extend .bottom-mask;
         }
       }
