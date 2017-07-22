@@ -149,3 +149,8 @@ img.v-centered {
     z-index: -1;
   }
 }
+
+.bottom-mask {
+  mask-image: linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
+  -webkit-mask-image: -webkit-linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
+}

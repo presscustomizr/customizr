@@ -22,7 +22,7 @@
         'modules/related-posts/related_post',
         array(
           'model_args' => array(
-            'article_selectors' => czr_fn_get_property( 'article_selectors' ),
+            'article_selectors'  => czr_fn_get_property( 'article_selectors' ),
             'media_cols'         => czr_fn_get_property('media_cols'),
             'content_cols'       => czr_fn_get_property('content_cols')
           )

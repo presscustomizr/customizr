@@ -8,22 +8,12 @@
 
 
 /* FLICKITY SLIDER  */
-/*.carousel { z-index: 4;}*/
+
 .carousel-cell { width: 100%; overflow: hidden;}
 .carousel img { min-width: 100%;}
 
 
-/* Patches */
-
-
-embed, iframe, object, video {
-  max-width: 100%;
-}
-
-
-
-.article-container .grid-container__alternate .full-image .entry-header,
-.article-container .grid-container__alternate .full-image .sections-wrapper .entry-header{ position: relative }
+// Patches
 
 
 .article-container .grid-container__alternate .entry-footer {
@@ -31,8 +21,8 @@ embed, iframe, object, video {
   margin-top: 2.5em;
 }
 
-
-@media (max-width: 991px) {
+//max-width: 991px
+@include media-breakpoint-down(md) {
   .article-container .grid-container__alternate .entry-header {
     margin-top: 0;
   }
@@ -73,20 +63,17 @@ embed, iframe, object, video {
   position: relative;
 }
 
-/* thanks flex */
-.czr-center-sections {
+// thanks flex
+.czr-center-sections,
+.czr-cover-sections {
   align-items: center;
-}
-.czr-cover-sections  {
-  align-items: center;
+
 }
 .czr-cover-sections > section {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  @extend .display-flex;
 }
-/* element to strech class needed */
+
+// element to strech class needed
 .czr-cover-sections > .entry-media__holder {
   align-self: stretch;
 }

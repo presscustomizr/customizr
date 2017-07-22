@@ -433,6 +433,9 @@ a.czr-format-link {
         @extend .small;
         text-rendering: geometricPrecision;
         overflow: hidden;
+        @at-root .grid-container__classic:not(.tc-gc) {
+          @extend .bottom-mask;
+        }
       }
 
       @at-root .grid-container__classic .expanded {
@@ -765,6 +768,8 @@ a.czr-format-link {
   }
 }//.post.format-video
 
+
+//grid square mini - related posts
 .grid-container__square-mini {
   font-size: $base-line-height*3/5;
   margin-top: $base-line-height*2 !important;
@@ -800,12 +805,11 @@ a.czr-format-link {
       max-width: 100%;
   }
 
-  article {
+  .czr-related-post {
     margin-bottom: 0;
-    padding: 0;
+    padding: 0 5px;
     display: inline-block;
     float: none;
-    background: $grey-lightest;
     white-space: normal;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -816,34 +820,23 @@ a.czr-format-link {
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
     perspective: 1000px;
+    @extend .small;
+
   }
 
   .grid__item {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    white-space: wrap;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    background: inherit;
-    @include media-breakpoint-up(sm) {
-      white-space: nowrap;
-      -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-    }
+    @extend .display-flex;
+    background: $grey-lightest;
   }
 
   section {
     background: inherit;
     padding: 0;
     @include transform( translate(0,0) );
-    &.entry-content__holder::before {
-      //@media screen and (max-width: 575px)
-      @include media-breakpoint-down(xs)  {
-        padding-top: 50%
+
+    &.entry-content__holder {
+      &::before {
+        display: none;
       }
     }
   }
@@ -856,14 +849,12 @@ a.czr-format-link {
     width: $base-line-height*2;
     height: 2px;
     //SKINNED
-    background: $black;
+    background-color: $black;
     @include transition (all 0.3s ease);
   }
 
   .entry-title {
-    //@include text-truncate();
     white-space: normal;
-    font-weight: 600;
     margin-top: $base-line-height/2;
     padding-bottom: $base-line-height/2;
   }
@@ -877,35 +868,69 @@ a.czr-format-link {
 
   .entry-header {
     @extend .small;
-    .entry-meta {
+    .entry-meta, .comments_link {
       font-size: 1.3em
+    }
+    .btn-edit {
+      font-size: 1em
     }
   }
 
   .entry-content__wrapper {
-    position: absolute;
-    left: $base-line-height;
-    right: $base-line-height;
-    top: $base-line-height;
-    bottom: $base-line-height;
-    overflow: hidden;
-    width: auto;
-    height: auto;
+    padding: $base-line-height;
   }
 
   .tc-content-inner {
     white-space: normal;
-    font-size: 1.5em; margin-top: $base-line-height;
-    //@media screen and ( min-width: 992px )
-    @include media-breakpoint-up(lg) {
-      font-size: $base-line-height
-    }
+    margin-top: $base-line-height;
+    font-size: $base-line-height;
+    display: none;
   }
 
   blockquote{
     @extend .small;
     margin: 0;
     padding: 0;
-    p,cite { font-size: 1em}
+    p,cite {
+      font-size: 1em
+    }
+  }
+
+  //Media queries
+  //min-width: 1200px
+  @include media-breakpoint-up(xl) {
+      .czr-related-post {
+          font-size: 1em;
+      }
+  }
+  //@media screen and ( min-width: 992px )
+  @include media-breakpoint-up(lg) {
+      .czr-related-post {
+          padding: 0;
+      }
+
+      section.entry-content__holder {
+          &::before {
+            display: block;
+          }
+      }
+
+      .entry-content__wrapper {
+          padding: 0;
+          position: absolute;
+          left: $base-line-height;
+          right: $base-line-height;
+          top: $base-line-height;
+          bottom: $base-line-height;
+          overflow: hidden;
+          width: auto;
+          height: auto;
+          mask-image: linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
+          -webkit-mask-image: -webkit-linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
+      }
+
+      .tc-content-inner {
+          display: block;
+      }
   }
 }
