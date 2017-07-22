@@ -20,9 +20,9 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //FEATURED PAGES
       add_filter( 'tc_opt_tc_show_featured_pages', '__return_true' );
       add_filter( 'fp_img_src', array( $this, 'czr_fn_set_fp_img_src'), 100 );
-      add_filter( 'tc_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
-      add_filter( 'tc_fp_text', array( $this, 'czr_fn_set_fp_text'), 100 );
-      add_filter( 'tc_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
+      add_filter( 'czr_fp_title', array( $this, 'czr_fn_set_fp_title'), 100, 3 );
+      add_filter( 'czr_fp_text', array( $this, 'czr_fn_set_fp_text'), 100 );
+      add_filter( 'czr_fp_link_url', array( $this, 'czr_fn_set_fp_link'), 100 );
 
       //THUMBNAILS
       add_filter( 'tc_has_thumb', '__return_true');
@@ -34,7 +34,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter( 'tc_opt_tc_front_slider', array( $this, 'czr_fn_set_slider') );
       add_filter( 'tc_default_slides', array( $this, 'czr_fn_set_default_slides') );
       //adds infos in the caption data of the demo slider
-      add_filter( 'tc_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
+      add_filter( 'czr_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
       add_filter( 'tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
 
       //SINGLE POSTS AND PAGES
@@ -51,7 +51,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //WIDGETS
       add_action( 'dynamic_sidebar_before', array( $this, 'czr_fn_set_widgets'), 10, 2 );
       add_filter( 'tc_has_footer_widgets', '__return_true');
-      add_filter( 'tc_has_footer_widgets_zone', '__return_true');
+      //add_filter( 'tc_has_footer_widgets_zone', '__return_true');
       add_filter( 'tc_has_sidebar_widgets', '__return_true');
     }//construct
 

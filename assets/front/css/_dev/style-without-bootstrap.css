@@ -55,7 +55,7 @@ blockquote p {
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__classic .entry-summary, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
   font-size: 0.833333em;
 }
 
@@ -723,7 +723,7 @@ embed, iframe, object, video {
 
 .header-skin-light .sticky-transparent.is-sticky .mobile-sticky,
 .header-skin-light .sticky-transparent.is-sticky .desktop-sticky {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .header-skin-light .sticky-transparent.is-sticky .mobile-nav__nav {
@@ -3652,6 +3652,7 @@ section[class^="post-"] .gallery.row {
 
 .tc-grid-figure img,
 .widget-front .tc-thumbnail img,
+.fpc-widget-front .fp-thumb-wrapper img,
 .js-centering.entry-media__holder img,
 .js-centering.entry-media__wrapper img {
   opacity: 0;
@@ -4248,7 +4249,7 @@ dl dd {
 
 .grid-title_size, .grid .entry-title {
   line-height: 1.4;
-  font-size: 1.728em;
+  font-size: 1.9em;
 }
 
 .post-action {
@@ -4689,6 +4690,7 @@ a.czr-format-link:hover::before {
   padding: 0;
   width: 100%;
   text-align: left;
+  font-size: 0.9em;
   text-rendering: geometricPrecision;
   overflow: hidden;
 }
@@ -5686,14 +5688,11 @@ section.post-related-articles > header:after {
 }
 
 section.post-related-articles > header .related-posts_title {
-  float: left;
   text-transform: uppercase;
 }
 
 .related-posts_nav {
-  float: right;
   margin-top: 5em;
-  margin-right: 2px;
 }
 
 .related-posts_nav .slider-control {
@@ -5988,7 +5987,7 @@ section.post-content {
 }
 
 .widget-area .widget {
-  margin-bottom: 3.75em;
+  margin-bottom: 2.5em;
 }
 
 .widget-area .widget li:not(:last-of-type) {

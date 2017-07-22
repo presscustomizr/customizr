@@ -6,7 +6,7 @@ $primary-color-inverted : $white;
 $secondary-color-light  : $grey-light;
 $secondary-color-dark   : $grey;
 
-@mixin headerskin($skin-overlay-color, $text-color) {
+@mixin headerskin($skin-overlay-color, $text-color, $skin ) {
 
   $primary-color           : $text-color;
   $background-color        : $skin-overlay-color;
@@ -14,7 +14,7 @@ $secondary-color-dark   : $grey;
   $secondary-color-light   : $grey;
   $secondary-color: null;
 
-  @if ($primary-color == $white) {
+  @if ( $primary-color == $white) {
      $secondary-color : $grey-light;
   }
   @else {
@@ -60,9 +60,16 @@ $secondary-color-dark   : $grey;
 
   // Sticky header transparency
   .sticky-transparent.is-sticky {
-    .mobile-sticky,
-    .desktop-sticky {
-      background: rgba( $background-color, 0.7 );
+    @if ( 'light' == $skin ) {
+      .mobile-sticky,
+      .desktop-sticky {
+        background: rgba( $background-color, 0.9 );
+      }
+    } @else {
+      .mobile-sticky,
+      .desktop-sticky {
+        background: rgba( $background-color, 0.7 );
+      }
     }
     .mobile-nav__nav {
       background: rgba( $background-color, 0.9 );
@@ -214,8 +221,8 @@ $secondary-color-dark   : $grey;
 // end mixin
 
 .header-skin-light  {
-  @include headerskin($white, $black);
+  @include headerskin($white, $black, 'light');
 }
 .header-skin-dark  {
-  @include headerskin($black, $white);
+  @include headerskin($black, $white, 'dark');
 }

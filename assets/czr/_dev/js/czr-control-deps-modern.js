@@ -558,6 +558,14 @@
                                   return _is_checked(to);
                             }
                     },
+                    {
+                            dominus : 'tc_header_desktop_topbar',
+                            servi   : ['tc_social_in_header'],
+                            visibility: function ( to ) {
+                                  return _is_checked( to );
+                            }
+                    },
+
                 ]//dominiDeps {}
           );//_.extend()
 

@@ -91,7 +91,7 @@
 .comments__link { white-space: nowrap; }
 .grid-title_size {
   line-height:1.4;
-  font-size: 1.728em;
+  font-size: 1.9em;
 }
 
 .post-action  {
@@ -444,7 +444,8 @@ a.czr-format-link {
         padding: 0;
         width:100%;
         text-align: left;
-        @extend .small;
+        //@extend .small;
+        font-size:0.9em;
         text-rendering: geometricPrecision;
         overflow: hidden;
         //:not(.tc-gc) because this is the one added in pro and we don't want this mask effect there

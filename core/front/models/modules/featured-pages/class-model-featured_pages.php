@@ -126,10 +126,10 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $customizr_link                 = '';
 
         if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
-            $customizr_link              = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+            $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" style="text-decoration:underline;font-weight:bold;padding-top: 1em;padding-top: 1em;display: inline-block;display: inline-block;text-transform:uppercase;">%3$s</a>',
                 czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
-                __( 'Edit now.' , 'customizr' )
+                __( 'Customize it now' , 'customizr' )
             );
             $featured_page_link          = apply_filters( 'czr_fp_link_url', czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
           }

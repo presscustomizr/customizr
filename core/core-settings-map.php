@@ -523,12 +523,13 @@ function czr_fn_header_desktop_option_map() {
                         'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
         ),
         'tc_header_desktop_topbar'  =>  array(
-                          'default'       => 1,
+                          'default'       => 0,
                           'control'       => 'CZR_controls' ,
-                          'label'         => __( "Display the topbar" , "customizr" ),
+                          'label'         => __( "Display a topbar" , "customizr" ),
                           'section'       => 'header_desktop_sec' ,
                           'type'          => 'checkbox' ,
                           'priority'      => 10,
+                          'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
         ),
         'tc_social_in_header' =>  array(
                           'default'       => 1,
@@ -536,7 +537,7 @@ function czr_fn_header_desktop_option_map() {
                           'control'   =>  'CZR_controls' ,
                           'section'     => czr_fn_is_modern_style() ? 'header_desktop_sec' : 'header_layout_sec',
                           'type'        => 'checkbox' ,
-                          'priority'      => 20,
+                          'priority'      => 11,
                           'transport'    => ( ! czr_fn_is_modern_style() && czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
                           'ubq_section'   => array(
                               'section' => 'socials_sec',
@@ -550,6 +551,7 @@ function czr_fn_header_desktop_option_map() {
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
+                          'priority'      => 12,
                           'choices'   => array(
                               'none'          => __( 'Do not display', 'customizr'),
                               'topbar'        => __( 'In the topbar', 'customizr'),
@@ -564,7 +566,7 @@ function czr_fn_header_desktop_option_map() {
         ),
 
         'tc_header_desktop_search' => array(
-                          'default'   => 'topbar',
+                          'default'   => 'navbar',
                           'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'set the search button location' , 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
@@ -574,7 +576,7 @@ function czr_fn_header_desktop_option_map() {
                               'topbar'        => __( 'Display in the topbar', 'customizr'),
                               'navbar'        => __( 'Display in the primary navbar', 'customizr')
                           ),
-                          //'priority'  => 29,
+                          'priority'  => 15,
 
         ),
 
@@ -590,7 +592,7 @@ function czr_fn_header_desktop_option_map() {
                               'topbar'        => __( 'Display in the topbar', 'customizr'),
                               'navbar'        => __( 'Display in the primary navbar', 'customizr')
                           ),
-                          //'priority'  => 29,
+                          'priority'  => 20,
                           'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
         ),
 
@@ -605,7 +607,7 @@ function czr_fn_header_desktop_option_map() {
                               'stick_up'      => __( 'Reveal on scroll up', 'customizr'),
                               'stick_always'  => __( 'Always visible', 'customizr')
                           ),
-                          //'priority'  => 32,
+                          'priority'  => 25,
         ),
 
         'tc_header_desktop_to_stick' => array(
@@ -618,7 +620,7 @@ function czr_fn_header_desktop_option_map() {
                               'topbar'        => __( 'Topbar', 'customizr'),
                               'primary'       => __( 'Primary navbar', 'customizr'),
                           ),
-                          //'priority'  => 31,
+                          'priority'  => 30,
         ),
 
         'tc_sticky_shrink_title_logo'  =>  array(
@@ -631,7 +633,8 @@ function czr_fn_header_desktop_option_map() {
                             'ubq_section'   => array(
                                 'section' => 'title_tagline',
                                 'priority' => '20'
-                            )
+                            ),
+                            'priority'  => 35,
           ),
     );
 
@@ -725,6 +728,9 @@ function czr_fn_header_mobile_option_map() {
 //NOTE : priorities 10 and 20 are "used" bu menus main and secondary
 function czr_fn_navigation_option_map( $get_default = null ) {
   $menu_style = czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'navbar' : 'aside';
+  if ( czr_fn_is_modern_style() ) {
+      $menu_style = czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ? $menu_style : 'navbar';
+  }
 
   return array(
           'tc_display_second_menu'  =>  array(

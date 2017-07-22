@@ -20,11 +20,11 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
       $footer_widgets = apply_filters( 'czr_footer_widgets', CZR_init::$instance -> footer_widgets );
       foreach ( $footer_widgets as $key => $area ) {
         if ( is_active_sidebar( $key ) ) {
-          return true;
+          return apply_filters( 'tc_has_footer_widgets', true );
         }
       }
 
-      return false;
+      return apply_filters( 'tc_has_footer_widgets', false );
     }
 
   }//end of class
