@@ -36,7 +36,7 @@
         }
 
         .navbar-brand {
-            font-size: 1.5em;
+            font-size: 1.8em;
             line-height: 1.5em;
             margin: 0;
             vertical-align: middle;
@@ -51,7 +51,7 @@
             }
             + .header-tagline {
               margin: 2px 0 0;
-            } 
+            }
         }
         .header-tagline {
             font-size: 0.9em;
@@ -66,7 +66,9 @@
             margin: 0 5px;
             width: auto;
         }
-
+        &.tagline-below .header-tagline {
+            padding-bottom: 0.25rem;
+        }
     }
 
 
@@ -202,6 +204,7 @@
 
     .branding .navbar-brand {
       margin: auto;
+      font-size: 2.25em;
     }
 
     .primary-nav__container {
@@ -302,7 +305,7 @@
 .is-sticky.sticky-brand-shrink-on .desktop-sticky {
     //title ( and tagline )
     .navbar-brand {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
     .header-tagline {
         font-size: 0.8em;
@@ -337,6 +340,9 @@
   .branding {
     padding-top: 4px;
     padding-bottom: 4px;
+    .navbar-brand {
+      font-size: 1.5em;
+    }
   }
   .navbar-brand-sitelogo img {
     max-height: 36px!important;

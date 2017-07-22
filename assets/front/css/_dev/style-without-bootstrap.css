@@ -1617,7 +1617,7 @@ embed, iframe, object, video {
 }
 
 .branding .navbar-brand {
-  font-size: 1.5em;
+  font-size: 1.8em;
   line-height: 1.5em;
   margin: 0;
   vertical-align: middle;
@@ -1649,6 +1649,10 @@ embed, iframe, object, video {
 .branding.tagline-aside .header-tagline {
   margin: 0 5px;
   width: auto;
+}
+
+.branding.tagline-below .header-tagline {
+  padding-bottom: 0.25rem;
 }
 
 .branding__container .branding,
@@ -1768,6 +1772,7 @@ embed, iframe, object, video {
 .logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .branding .navbar-brand,
 .logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .branding .navbar-brand {
   margin: auto;
+  font-size: 2.25em;
 }
 
 .logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-nav__container,
@@ -1852,7 +1857,7 @@ embed, iframe, object, video {
 }
 
 .is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 .is-sticky.sticky-brand-shrink-on .desktop-sticky .header-tagline {
@@ -1879,6 +1884,10 @@ embed, iframe, object, video {
 .mobile-navbar__wrapper .branding {
   padding-top: 4px;
   padding-bottom: 4px;
+}
+
+.mobile-navbar__wrapper .branding .navbar-brand {
+  font-size: 1.5em;
 }
 
 .mobile-navbar__wrapper .navbar-brand-sitelogo img {
@@ -6170,6 +6179,19 @@ section.post-content {
   display: initial;
 }
 
+.footer-skin-dark .footer__wrapper .czr-form .form-group label {
+  color: #fff;
+}
+
+.footer-skin-dark .footer__wrapper .czr-form .form-group.in-focus label {
+  color: #eceeef;
+}
+
+.footer-skin-dark .footer__wrapper .czr-form .form-control {
+  color: #fff;
+  border-color: #fff;
+}
+
 .footer-skin-light .footer__wrapper {
   color: #313131;
   background: #fff;
@@ -6224,6 +6246,19 @@ section.post-content {
 
 .footer-skin-light .footer__wrapper .colophon__row a {
   display: initial;
+}
+
+.footer-skin-light .footer__wrapper .czr-form .form-group label {
+  color: #313131;
+}
+
+.footer-skin-light .footer__wrapper .czr-form .form-group.in-focus label {
+  color: #eceeef;
+}
+
+.footer-skin-light .footer__wrapper .czr-form .form-control {
+  color: #313131;
+  border-color: #313131;
 }
 
 .footer__wrapper a {
