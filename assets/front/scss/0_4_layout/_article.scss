@@ -186,27 +186,12 @@ section[class^="post-"] {
 
 .post-navigation {
   background-color: $grey-lightest;
-
-  .row > &[class*=col-],//<- to avoid other bootstrap plugin overriding this
-  & {
-    padding: 0;
-    margin:0;
-  }
   nav {
-    padding: $base-line-height;
+    padding-top: $base-line-height;
+    padding-bottom: $base-line-height;
   }
   li {
-    float:left;
-    text-align: center;
-  }
-  .pagination li {
-    width: auto;
-  }
-  li:first-of-type {
-    text-align: left;
-  }
-  li:last-of-type  {
-    text-align: right;
+    display: inline-block;
   }
   .nav-dir {
     display: block;
@@ -232,12 +217,12 @@ section[class^="post-"] {
   .page-numbers {
     font-family: inherit;
   }
-  .post-prev a {
-    left: $base-line-height;
-  }
-  .post-next a {
-    right: $base-line-height;
-  }
+  //.post-prev a {
+  //  left: $base-line-height;
+  //}
+  //.post-next a {
+  //  right: $base-line-height;
+  //}
   .meta-nav {
     @extend .display-flex;
     @include transition(all, 0.6s ease);
@@ -256,16 +241,6 @@ section[class^="post-"] {
     vertical-align: middle;
     font-size: 0.9em;
   }
-  //(min-width: 992px)
-  @include media-breakpoint-up(lg) {
-      .post-prev a {
-        left: $base-line-height;
-      }
-      .post-next a {
-        right: $base-line-height;
-      }
-  }
-
 }
 
 .col-avatar-80   { width: 80px; float:left; display:block; }
@@ -393,12 +368,12 @@ section.post-related-articles {
 
   .current { font-weight: 600;}
 
-  li,
-  a + *,
-  span + * {
-    margin-left: 1.25em;
+  .pag-list > * {
+    margin: 0 5px;
   }
-  li:first-of-type { margin-left: 0 }
+  .pag-list {
+    margin: 0 -5px;
+  }
 }
 
 .action-link {

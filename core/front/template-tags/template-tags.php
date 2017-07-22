@@ -188,8 +188,8 @@ if ( ! function_exists( 'czr_fn_link_pages' ) ) :
 function czr_fn_link_pages( $echo = true ) {
 
       wp_link_pages( array(
-            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12">',
-            'after'         => '</div></div>',
+            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12"><ul class="pag-list">',
+            'after'         => '</ul></div></div>',
             'link_before'   => '<span>',
             'link_after'    => '</span>',
             'echo'          => $echo
