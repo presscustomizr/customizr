@@ -61,6 +61,11 @@
   border-color: $skin-dark;
 }
 
+//sidebar widget underline
+.sidebar .widget-title::after {
+  @extend %skin-dark-background-color;
+}
+
 //Widget areas
 .widget-area {
     a:not(.btn):hover {
