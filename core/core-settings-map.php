@@ -542,7 +542,14 @@ function czr_fn_header_desktop_option_map() {
                           'ubq_section'   => array(
                               'section' => 'socials_sec',
                               'priority' => '1'
-                           )
+                          ),
+                          'notice'    => sprintf( __('You need to enable your topbar to display social links in your header %s.' , "customizr"),
+                              sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
+                                  "javascript:wp.customize.control('tc_theme_options[tc_header_desktop_topbar]').focus();",
+                                  __("Jump to the topbar option" , "customizr")
+                              )
+                          )
+
         ),
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
