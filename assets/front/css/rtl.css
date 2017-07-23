@@ -3422,7 +3422,7 @@ blockquote p {
 }
 
 .inline-list li + li, .socials li + li, .tags li + li {
-  margin-left: 1.25em;
+  margin-right: 1.25em;
 }
 
 .inline-list li:before, .socials li:before, .tags li:before {
@@ -3444,6 +3444,7 @@ img.h-centered {
   width: auto !important;
   max-width: none !important;
   position: relative;
+  float: left;
 }
 
 img.v-centered {
@@ -3880,7 +3881,7 @@ embed, iframe, object, video {
   width: 33%;
   height: 3px;
   bottom: 0;
-  left: 0;
+  right: 0;
   background: #313131;
 }
 
@@ -4157,7 +4158,7 @@ embed, iframe, object, video {
   width: 33%;
   height: 3px;
   bottom: 0;
-  left: 0;
+  right: 0;
   background: #fff;
 }
 
@@ -5214,7 +5215,7 @@ embed, iframe, object, video {
 }
 
 .socials li + li {
-  margin-left: .833rem;
+  margin-right: .833rem;
 }
 
 .socials a {
@@ -5678,7 +5679,7 @@ input[type=submit] {
 }
 
 .btn-edit {
-  padding: 0 1.25em 0 0.625em;
+  padding: 0 0.625em 0 1.25em;
   line-height: 2em;
   vertical-align: middle;
   display: inline-block;
@@ -5695,9 +5696,9 @@ input[type=submit] {
 }
 
 .btn-edit i {
-  margin-right: 1.25em;
-  border-right: 2px solid #eceeef;
-  padding-right: 0.625em;
+  margin-left: 1.25em;
+  border-left: 2px solid #eceeef;
+  padding-left: 0.625em;
   line-height: 2em;
   height: 2em;
   display: inline-block;
@@ -5943,12 +5944,12 @@ cite::first-child {
 
 .tagcloud a,
 .tags li {
-  margin: 0.3125em 0.3125em 0.3125em 0;
+  margin: 0.3125em 0 0.3125em 0.3125em;
 }
 
 .tagcloud a + a,
 .tags li + li {
-  margin-left: 0;
+  margin-right: 0;
 }
 
 .v-separator {
@@ -5964,7 +5965,7 @@ cite::first-child {
   position: relative;
   font-size: 1.44em;
   margin-bottom: -2px;
-  text-align: left;
+  text-align: right;
 }
 
 .tabs .nav-link {
@@ -6410,11 +6411,11 @@ form fieldset {
 }
 
 label .required {
-  float: left;
+  float: right;
 }
 
 label i {
-  float: right;
+  float: left;
   width: 2em;
   height: 2em;
   text-align: center;
@@ -6438,11 +6439,11 @@ form.czr-form .czr-focus label {
 }
 
 form.czr-form .czr-focus label span {
-  float: left;
+  floar: right;
 }
 
 form.czr-form .czr-focus label i.icn-close {
-  margin-right: -2em;
+  margin-left: -2em;
   border-radius: 100%;
   height: 2em;
   width: 2em;
@@ -6497,7 +6498,7 @@ form.czr-form .czr-focus.in-focus > label i.icn-close {
 }
 
 form.czr-form .czr-search-field {
-  padding-right: 2em;
+  padding-left: 2em;
 }
 
 .gallery-item dt {
@@ -8223,7 +8224,7 @@ a.czr-format-link:hover::before {
   content: "";
   position: absolute;
   bottom: 4px;
-  left: 0;
+  right: 0;
   width: 2.5em;
   height: 2px;
   background-color: #313131;
@@ -8804,7 +8805,7 @@ section.post-related-articles .entry-meta {
 
 /* Comments */
 .comment-section .col-avatar {
-  float: left;
+  float: right;
   width: 10%;
 }
 
@@ -8815,7 +8816,7 @@ section.post-related-articles .entry-meta {
 
 .comment-body {
   display: block;
-  padding-left: 12%;
+  padding-right: 12%;
   width: 100%;
 }
 
@@ -9132,13 +9133,13 @@ section.post-content {
 }
 
 @media (min-width: 768px) {
-  .sidebar.left {
+  .sidebar.right {
     padding-right: 2.5em;
   }
-  .sidebar.right {
+  .sidebar.left {
     padding-left: 2.5em;
   }
-  .sidebar.right .widget-title::after {
+  .sidebar.left .widget-title::after {
     right: 0;
     left: auto;
   }
@@ -9598,4 +9599,4 @@ a.czr-format-link:hover,
   color: #3b3b3b;
 }
 
-/*# sourceMappingURL=style-without-bootstrap.css.map */
+/*# sourceMappingURL=style-rtl-without-bootstrap.css.map */

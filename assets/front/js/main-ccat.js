@@ -588,7 +588,7 @@ var czrapp = czrapp || {};
                   return 0 === _filtered.length;
             },
             _isMobile : function() {
-                  return ( _.isFunction( window.matchMedia ) && matchMedia( 'only screen and (max-width: 720px)' ).matches ) || ( this._isCustomizing() && 'desktop' != this.previewDevice() );
+                  return ( _.isFunction( window.matchMedia ) && matchMedia( 'only screen and (max-width: 768px)' ).matches ) || ( this._isCustomizing() && 'desktop' != this.previewDevice() );
             },
             _isCustomizing : function() {
                   return czrapp.$_body.hasClass('is-customizing') || ( 'undefined' !== typeof wp && 'undefined' !== typeof wp.customize );
@@ -1277,16 +1277,33 @@ var czrapp = czrapp || {};
                           }
                           dfd.resolve();
                     }, args.fast ? 100 : 350 );
+                    return dfd;
               };//_do
 
               _.delay( function() {
-                    var sticky_menu_id = _.isString( $menu_wrapper.attr('data-menu-id') ) ? $menu_wrapper.attr('data-menu-id') : '';
+                    if ( _.isFunction( window.matchMedia ) && matchMedia( 'only screen and (max-width: 992px)' ).matches && 1 == $('.mobile-navbar__wrapper').length ) {
+                          var $mobile_menu = $('.mobile-navbar__wrapper'),
+                              _isExpanded = 1 == $mobile_menu.find('.ham-toggler-menu').length && "true" == $mobile_menu.find('.ham-toggler-menu').attr('aria-expanded');
+                          if ( _isExpanded ) {
+                                $.Deferred( function() {
+                                      $mobile_menu.find('.ham-toggler-menu').trigger('click');
+                                      _.delay( function() {
+                                            _do().done( function() { self._mayBeresetTopPosition(); } );
+                                      }, 350 );
+                                }).done( function() {
+                                      _do();
+                                });
+                          } else {
+                                _do();
+                          }
+                    } else {
+                          _do();
+                    }
+
                     if ( czrapp.userXP.mobileMenu && czrapp.userXP.mobileMenu.has( sticky_menu_id ) ) {
                           czrapp.userXP.mobileMenu( sticky_menu_id )( 'collapsed' ).done( function() {
                                 _do();
                           });
-                    } else {
-                          _do();
                     }
               }, 10 );
               return dfd.promise();

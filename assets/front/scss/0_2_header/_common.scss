@@ -198,7 +198,7 @@
         opacity: 0;
         visibility: hidden;
         display: block;
-        @include transition( all 0.3s ease-in-out );
+        @include transition( all 0.25s ease-in-out );
         @include transform( translate( 0, -20px ) );
       }
     }
