@@ -147,7 +147,7 @@ article .entry-content a:not(.btn):not(.button):not(.remove) {
 }
 section[class^="post-"] {
   margin: 2em 0 2em 0;
-  .row { margin-top: $base-line-height*4; margin-bottom: $base-line-height*2 }
+  .row { margin-top: $base-line-height*2; margin-bottom: $base-line-height*2 }
   .entry-meta { margin: 2em -15px }
 }
 
@@ -327,7 +327,10 @@ section.post-related-articles {
 
     > header {
       @include clearfix();
-
+      &.row {
+        margin-top: $base-line-height;
+        margin-bottom: 0;
+      }
       .related-posts_title {
         text-transform: uppercase;
       }
