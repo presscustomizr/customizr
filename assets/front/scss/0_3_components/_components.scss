@@ -1,12 +1,12 @@
 .socials {
   @extend .inline-list;
-    li + li { 
+    li + li {
       @if ( true == $is_rtl ) {
         margin-right: .833rem;
       }
       @else {
         margin-left: .833rem;
-      }   
+      }
     }
   a {
     display:block;
@@ -357,7 +357,7 @@ a[target="_blank"]:hover:after {
   &:not([id^=wp-calendar]) {
     border: 2px solid $grey-lightest;
     th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
-    th, td { @extend .small; padding: $base-line-height; border: 1px solid $grey-lightest; }
+    th, td { @extend .demi-small; padding: $base-line-height; border: 1px solid $grey-lightest; }
     td { color: $grey-dark; }
   }
 }
@@ -545,7 +545,7 @@ cite {
   }
   @else {
     margin: $base-line-height/4 $base-line-height/4 $base-line-height/4 0;
-  }   
+  }
 }
 
 .tagcloud a + a,
@@ -555,7 +555,7 @@ cite {
   }
   @else {
        margin-left:0;
-  }  
+  }
 }
 
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }

@@ -13,7 +13,7 @@ form  {
     color: $black;
 
     font-family: $serviceFont;
-    @extend .small;
+    @extend .demi-small;
     @extend .caps;
     @extend .thick;
     @extend .letter-spacing-2;
@@ -72,7 +72,7 @@ form.czr-form {
       }
       @else {
           float: left;
-      } 
+      }
     }
 
     i.icn-close {
@@ -115,6 +115,6 @@ form.czr-form {
     @else {
         padding-right: 2em;
     }
-    
+
   }
 }

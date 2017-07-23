@@ -39,6 +39,7 @@ body {
   font-family: $baseFont;
   line-height: 1.65;
   font-size: $body-base-ratio * 1em;
+  color: #333;
 }
 
 
@@ -88,6 +89,8 @@ h1, h2, h3, h4, h5, h6 {
   // @extend .thick;
   position:relative;
   font-weight: normal;
+  color: $post-title;
+  line-height: $base-line-height;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -121,7 +124,7 @@ blockquote p {
   font-size: ms(-1);
 }
 .demi-small {
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 .thin {
   font-weight: 300;

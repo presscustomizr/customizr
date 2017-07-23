@@ -35,7 +35,7 @@
 }
 
 .sidebar {
-  @extend .small;
+  @extend .demi-small;
   .widget:first-child .widget-title {
     margin-top: 0;
     padding-top: 0;
@@ -101,7 +101,7 @@
   @if ( true == $is_rtl ) {
 
       .sidebar.right  {
-        padding-right: $base-line-height*2; 
+        padding-right: $base-line-height*2;
       }
       .sidebar.left {
         padding-left: $base-line-height*2;
@@ -115,7 +115,7 @@
   @else {
 
       .sidebar.left  {
-        padding-right: $base-line-height*2; 
+        padding-right: $base-line-height*2;
       }
       .sidebar.right {
         padding-left: $base-line-height*2;
@@ -124,6 +124,6 @@
           left:auto;
         }
       }
-  
+
   }
 }

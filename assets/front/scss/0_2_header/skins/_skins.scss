@@ -20,7 +20,13 @@ $secondary-color-dark   : $grey;
   @else {
       $secondary-color : $grey-dark;
   }
-
+  @if $primary-color == $white {
+      .tc-header {
+        h1, h2, h3, h4, h5, h6 {
+          color: $primary-color;
+        }
+      }
+  }
   // overlays skin
   .overlay {
     background: rgba($background-color, 0.98);

@@ -160,7 +160,7 @@ dl {
   margin-top: 2em;
   position: relative;
   text-align:center;
-
+  font-size: 1.15em;
   .czr-thumb-wrapper {
     overflow: hidden;
   }
@@ -213,7 +213,7 @@ dl {
   .btn-edit { margin: -1em 0 0 }
 
   @at-root [class*=fp-text-] {
-    margin: $base-line-height*2 auto;
+    margin: $base-line-height*1.2 auto;
     color: $grey-dark;
   }
 

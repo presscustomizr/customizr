@@ -740,7 +740,7 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                             'section'       => 'nav' ,
                             'type'          => 'checkbox' ,
                             'priority'      => 15,//must be located between the two menus
-                            'notice'        => __( 'Displayed in the topnav if enabled' , 'customizr' ),
+                            'notice'        => __( 'An horizontal menu can be displayed in the main header with this option. Make sure you have assigned a menu to this location in the menu panel.' , 'customizr' ),
                             //For old customizr < 4.0
                             //'notice'        => __( "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header." , 'customizr' ),
           ),
@@ -755,7 +755,14 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                                   'navbar'   => __( 'Regular (horizontal)'   ,  'customizr' ),
                                   'aside'    => __( 'Side Menu (vertical)' ,  'customizr' ),
                           ),
-                          'priority'      => 30
+                          'priority'      => 30,
+                          'notice'        => sprintf( __("Make sure that you have assigned your menus to the relevant locations %s." , "customizr"),
+                              sprintf( '<strong><a href="%1$s" title="%3$s">%2$s &raquo;</a><strong>',
+                                  "javascript:wp.customize.section('nav').container.find('.customize-section-back').trigger('click'); wp.customize.panel('nav_menus').focus();",
+                                  __("in the menu panel" , "customizr"),
+                                  __("create/edit menus", "customizr")
+                              )
+                          )
           ),
           'tc_menu_position'  =>  array(
                             'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',
@@ -2199,7 +2206,9 @@ function czr_fn_popul_section_map( $_sections ) {
     );
   }
 
-  $nav_section_desc .= "<br/><br/>". __( 'If a menu location has no menu assigned to it, a default page menu will be used.', 'customizr');
+  if ( ! czr_fn_is_modern_style() ) {
+      $nav_section_desc .= "<br/><br/>". __( 'If a menu location has no menu assigned to it, a default page menu will be used.', 'customizr');
+  }
 
   $_new_sections = array(
     /*---------------------------------------------------------------------------------------------

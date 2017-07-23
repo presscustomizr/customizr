@@ -4,6 +4,7 @@ body {
   font-family: "Source Sans Pro", Arial, sans-serif;
   line-height: 1.65;
   font-size: 0.9375em;
+  color: #333;
 }
 
 h1 {
@@ -33,6 +34,8 @@ h6 {
 h1, h2, h3, h4, h5, h6 {
   position: relative;
   font-weight: normal;
+  color: #303133;
+  line-height: 1.25em;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -40,7 +43,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h6 {
-  color: #aaa;
+  color: #777;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -49,18 +52,18 @@ blockquote p {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
 
-.small, .nav__menu, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
+.small, .tabs .nav-link, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
+  font-size: 0.833333em;
+}
+
+.demi-small, .nav__menu, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
 .woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
 .woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, .tabs .nav-link, form label, .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .sidebar, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, small {
-  font-size: 0.833333em;
-}
-
-.demi-small, .page-breadcrumbs {
-  font-size: 0.9em;
+.woocommerce table.shop_table:not([id^=wp-calendar]) td, form label, .page-breadcrumbs, .sidebar {
+  font-size: 0.95em;
 }
 
 .thin, .widget_recent_comments .comment-author-link {
@@ -567,6 +570,10 @@ ul, ol {
   list-style: none;
 }
 
+ul li, ol li {
+  line-height: 1.875em;
+}
+
 ul, ol {
   margin: 0;
   padding: 0;
@@ -682,7 +689,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .overlay a {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-light .overlay a:hover {
@@ -705,7 +712,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .tc-header .socials a:hover {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-light #tc-sn .tc-sn-inner,
@@ -755,7 +762,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .image__header .header-content a:hover {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-light .image__header .header-content .entry-meta .tax__container:after {
@@ -780,11 +787,11 @@ embed, iframe, object, video {
 .header-skin-light .nav__utils .ham-toggler-menu.collapsed:hover span::after,
 .header-skin-light .nav__utils .ham-toggler-menu.collapsed:hover span::before,
 .header-skin-light .nav__utils .ham-toggler-menu.collapsed:hover span {
-  background-color: #aaa;
+  background-color: #777;
 }
 
 .header-skin-light .nav__utils .ham-toggler-menu__span, .header-skin-light .nav__utils a:hover, .header-skin-light .nav__utils a.current-active {
-  color: #aaa;
+  color: #777;
 }
 
 @media (max-width: 991px) {
@@ -921,7 +928,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .dropdown-item:not(:last-of-type) {
-  border-bottom: 0.5px solid rgba(170, 170, 170, 0.15);
+  border-bottom: 0.5px solid rgba(119, 119, 119, 0.15);
 }
 
 .header-skin-light .vertical-nav > li:not(:last-of-type) {
@@ -945,12 +952,16 @@ embed, iframe, object, video {
 }
 
 .header-skin-light header .czr-form .form-group.in-focus label, .header-skin-light .overlay .czr-form .form-group.in-focus label {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-light header .czr-form .form-control, .header-skin-light .overlay .czr-form .form-control {
   color: #313131;
   border-color: #313131;
+}
+
+.header-skin-dark .tc-header h1, .header-skin-dark .tc-header h2, .header-skin-dark .tc-header h3, .header-skin-dark .tc-header h4, .header-skin-dark .tc-header h5, .header-skin-dark .tc-header h6 {
+  color: #fff;
 }
 
 .header-skin-dark .overlay {
@@ -959,7 +970,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .overlay a {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-dark .overlay a:hover {
@@ -982,7 +993,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .tc-header .socials a:hover {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-dark #tc-sn .tc-sn-inner,
@@ -1032,7 +1043,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .image__header .header-content a:hover {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-dark .image__header .header-content .entry-meta .tax__container:after {
@@ -1057,11 +1068,11 @@ embed, iframe, object, video {
 .header-skin-dark .nav__utils .ham-toggler-menu.collapsed:hover span::after,
 .header-skin-dark .nav__utils .ham-toggler-menu.collapsed:hover span::before,
 .header-skin-dark .nav__utils .ham-toggler-menu.collapsed:hover span {
-  background-color: #aaa;
+  background-color: #777;
 }
 
 .header-skin-dark .nav__utils .ham-toggler-menu__span, .header-skin-dark .nav__utils a:hover, .header-skin-dark .nav__utils a.current-active {
-  color: #aaa;
+  color: #777;
 }
 
 @media (max-width: 991px) {
@@ -1198,7 +1209,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .dropdown-item:not(:last-of-type) {
-  border-bottom: 0.5px solid rgba(170, 170, 170, 0.15);
+  border-bottom: 0.5px solid rgba(119, 119, 119, 0.15);
 }
 
 .header-skin-dark .vertical-nav > li:not(:last-of-type) {
@@ -1222,7 +1233,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark header .czr-form .form-group.in-focus label, .header-skin-dark .overlay .czr-form .form-group.in-focus label {
-  color: #aaa;
+  color: #777;
 }
 
 .header-skin-dark header .czr-form .form-control, .header-skin-dark .overlay .czr-form .form-control {
@@ -1616,7 +1627,7 @@ embed, iframe, object, video {
 }
 
 .branding .navbar-brand {
-  font-size: 1.8em;
+  font-size: 2.4em;
   line-height: 1.5em;
   margin: 0;
   vertical-align: middle;
@@ -1850,9 +1861,9 @@ embed, iframe, object, video {
 .sticky-brand-shrink-on .desktop-sticky .navbar-brand img,
 .sticky-brand-shrink-on .desktop-sticky .navbar-brand,
 .sticky-brand-shrink-on .desktop-sticky .header-tagline {
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand {
@@ -1914,6 +1925,10 @@ embed, iframe, object, video {
     max-height: 45px !important;
     max-width: 100%;
   }
+}
+
+.topbar-navbar__wrapper {
+  min-height: 40px;
 }
 
 /* ie fix */
@@ -2705,7 +2720,7 @@ table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_tot
 
 .tax__container a:not(:last-of-type)::after {
   content: '/';
-  color: #aaa;
+  color: #777;
   z-index: 1;
   pointer-events: none;
   position: absolute;
@@ -2905,7 +2920,7 @@ cite::first-child {
 }
 
 .tabs .nav-link {
-  color: #aaa;
+  color: #777;
   position: relative;
   position: relative;
   text-align: left;
@@ -3410,7 +3425,7 @@ form.czr-form .czr-focus.in-focus > label {
   -webkit-transform: translateY(-110%);
   -moz-transform: translateY(-110%);
   transform: translateY(-110%);
-  color: #aaa;
+  color: #777;
 }
 
 form.czr-form .czr-focus.in-focus > label i.icn-search {
@@ -3729,7 +3744,7 @@ img.opacity-forced {
 }
 
 .overlay .overlay-content [class*="col-"] + [class*="col-"] {
-  border-left: 0.5px solid rgba(170, 170, 170, 0.25);
+  border-left: 0.5px solid rgba(119, 119, 119, 0.25);
 }
 
 .overlay .overlay-content .search__wrapper {
@@ -4068,6 +4083,7 @@ dl dd {
   margin-top: 2em;
   position: relative;
   text-align: center;
+  font-size: 1.15em;
 }
 
 .featured-page .czr-thumb-wrapper {
@@ -4136,7 +4152,7 @@ dl dd {
 }
 
 [class*=fp-text-] {
-  margin: 2.5em auto;
+  margin: 1.5em auto;
   color: #777;
 }
 
@@ -4419,7 +4435,7 @@ a.czr-format-link:hover::before {
 }
 
 .entry-footer .post-info {
-  color: #aaa;
+  color: #777;
   position: relative;
 }
 
@@ -4619,6 +4635,10 @@ a.czr-format-link:hover::before {
 }
 
 /* CLASSIC */
+.grid-container__classic .grid__item {
+  max-height: 350px;
+}
+
 .grid-container__classic .tc-grid-figure {
   position: relative;
   overflow: hidden;
@@ -4786,17 +4806,17 @@ a.czr-format-link:hover::before {
   -webkit-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #aaaaaa 100%);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #aaaaaa));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #777777));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #aaaaaa 100%);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #aaaaaa 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #aaaaaa 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #aaaaaa 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* W3C */
 }
 
@@ -5263,7 +5283,7 @@ a.czr-format-link:hover::before {
 
 .archive-header .header-bottom,
 .entry-header .header-bottom {
-  color: #aaa;
+  color: #777;
   position: relative;
   margin: 0 0 3em 0;
 }
@@ -5285,6 +5305,12 @@ a.czr-format-link:hover::before {
 }
 
 /* end regular headings */
+article .entry-content {
+  font-size: 1.2em;
+  line-height: 1.65em;
+  color: #444;
+}
+
 article .entry-content a:not(.btn):not(.button):not(.remove) {
   text-decoration: underline;
 }
@@ -5718,7 +5744,7 @@ section.post-related-articles .entry-meta {
 }
 
 .action-link:hover, .comment-reply-link:hover {
-  color: #aaa;
+  color: #777;
 }
 
 .action-link span:last-of-type, .comment-reply-link span:last-of-type {
@@ -5797,7 +5823,7 @@ section.post-related-articles .entry-meta {
 }
 
 .comment-meta time span {
-  color: #aaa;
+  color: #777;
 }
 
 .comment-link {
@@ -5890,7 +5916,7 @@ section.post-related-articles .entry-meta {
 
 .pingback-list li.pingback sup {
   font-family: "Roboto", sans-serif;
-  color: #aaa;
+  color: #777;
   top: -1.25em;
 }
 
@@ -5914,7 +5940,7 @@ section.post-content {
 }
 
 .wp-caption-text {
-  color: #aaa;
+  color: #777;
   text-align: left;
   margin: 1.25em 0;
   padding: 0;
@@ -5946,7 +5972,7 @@ section.post-content {
 }
 
 .post-info a:not(.btn) {
-  color: #aaa;
+  color: #777;
 }
 
 .post-info a:not(.btn) span::after, .post-info a:not(.btn) span::before {
@@ -5973,7 +5999,7 @@ section.post-content {
 
 .widget-area a {
   display: inline-block;
-  color: #aaa;
+  color: #777;
 }
 
 .widget-area .widget:not(.widget_shopping_cart) a:not(.btn):not(.social-icon) {
@@ -6037,7 +6063,7 @@ section.post-content {
 }
 
 .widget_recent_comments .comment-author-link {
-  color: #aaa;
+  color: #777;
 }
 
 .widget_calendar table {
@@ -6063,7 +6089,7 @@ section.post-content {
 
 .widget_calendar caption, .widget_calendar tfoot {
   padding: 0.625em 0;
-  color: #aaa;
+  color: #777;
   text-align: left;
   caption-side: top;
 }
@@ -6093,8 +6119,12 @@ section.post-content {
   border-top: 1px solid transparent;
 }
 
+.footer-skin-dark .footer__wrapper h1, .footer-skin-dark .footer__wrapper h2, .footer-skin-dark .footer__wrapper h3, .footer-skin-dark .footer__wrapper h4, .footer-skin-dark .footer__wrapper h5, .footer-skin-dark .footer__wrapper h6 {
+  color: #fff;
+}
+
 .footer-skin-dark .footer__wrapper a {
-  color: #aaa;
+  color: #777;
 }
 
 .footer-skin-dark .footer__wrapper a:hover, .footer-skin-dark .footer__wrapper a:active, .footer-skin-dark .footer__wrapper a:focus {
@@ -6163,7 +6193,7 @@ section.post-content {
 }
 
 .footer-skin-light .footer__wrapper a {
-  color: #aaa;
+  color: #777;
 }
 
 .footer-skin-light .footer__wrapper a:hover, .footer-skin-light .footer__wrapper a:active, .footer-skin-light .footer__wrapper a:focus {
@@ -6287,7 +6317,7 @@ section.post-content {
 }
 
 .colophon__row .footer__credits {
-  color: #aaa;
+  color: #777;
   vertical-align: middle;
   display: inline-block;
   line-height: 2em;

@@ -377,8 +377,11 @@ a.czr-format-link {
 
 }
 
+
+
 /* CLASSIC */
 .grid-container__classic {
+  .grid__item { max-height: 350px; }
   .tc-content {
     @extend .small
   }
@@ -578,6 +581,16 @@ a.czr-format-link {
   }
 }
 /* END CLASSIC */
+
+
+
+
+
+
+
+
+
+
 
 
 //
