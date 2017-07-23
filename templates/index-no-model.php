@@ -183,14 +183,12 @@
       if ( czr_fn_is_registered_or_possible('posts_navigation') ) :
     ?>
       <div class="container-fluid">
-        <div class="row">
         <?php
           if ( !is_singular() )
             czr_fn_render_template( "content/post-lists/navigation/post_list_posts_navigation" );
           else
             czr_fn_render_template( "content/singular/navigation/singular_posts_navigation" );
         ?>
-        </div>
       </div>
     <?php endif ?>
 

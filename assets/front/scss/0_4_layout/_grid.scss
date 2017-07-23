@@ -248,7 +248,7 @@ a.czr-format-link {
   .tc-content {
     padding: $base-line-height*2 15px;
     margin:  0 auto;
-    text-align: left;
+    //text-align: left;
     width:   90%;
   }
 
@@ -402,7 +402,7 @@ a.czr-format-link {
       left: 0;
       right: 0;
       bottom: 0;
-      text-align: center;
+      //text-align: center;
       color: $white;
       padding: 1.25em $base-line-height;
       @include opacity(0);
@@ -443,7 +443,7 @@ a.czr-format-link {
         margin: 0 auto;
         padding: 0;
         width:100%;
-        text-align: left;
+        //text-align: left;
         //@extend .small;
         font-size:0.9em;
         text-rendering: geometricPrecision;
