@@ -40,6 +40,13 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.1 July 23rd 2017 =
+* Fix : WooCommerce compatibility : Grid title truncation might affect products in product archives ( fixes #996 )
+* Fix : Added back the menu locations customizer section
+* Fix : grid caption background issue on mouse hover
+* Fix : fix non existing function as __ID filter callback
+* Added : style option in the customizer
+
 = 3.5.18 June 20th 2017 =
 * Fix: modern : in singulars, no full width featured image if slider on fixes #988
 * Fix: modern - typo producing Class 'CZR__' not found in classical retro compat
@@ -58,7 +65,7 @@ The exceptions to this license are as follows:
 * Fix: fix menu center resulting aligned to the left on IE fixes #944
 * Fix: fix position of structural hook __before_main_container
 * Fix: fix fpc-container alignment when in #content
-* Fix: by default the loop model should not register the loop item model if 
+* Fix: by default the loop model should not register the loop item model if
 * Fix: remove old theme favicon control - is handled in js fixes #954
 * Fix: remove new lines at the end of czr_ classes fixes #957
 * Imp: improve classical grid CSS
