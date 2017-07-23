@@ -159,9 +159,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
           //SIDENAV POSITIONING
           if ( czr_fn_is_possible('sidenav') ) {
 
-            $header_layouts = esc_attr( czr_fn_opt( 'tc_header_layout' ) );
+            $header_layouts  = esc_attr( czr_fn_opt( 'tc_header_layout' ) );
+            $direction_class = strstr( $header_layouts, is_rtl() ? 'left' : 'right' ) ? 'sn-left' : 'sn-right';
 
-            $_classes[] = apply_filters( 'tc_sidenav_body_class', strstr( $header_layouts, 'right' ) ? 'sn-left' : 'sn-right' );
+            $_classes[] = apply_filters( 'tc_sidenav_body_class', $direction_class );
 
           }
 
