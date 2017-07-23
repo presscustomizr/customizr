@@ -141,7 +141,12 @@ $secondary-color-dark   : $grey;
         width: 33%;
         height: 3px;
         bottom: 0;
-        left: 0;
+        @if ( true == $is_rtl ) {
+          right: 0;
+        }
+        @else {
+          left: 0;
+        }
         background: $primary-color;
       }
     }

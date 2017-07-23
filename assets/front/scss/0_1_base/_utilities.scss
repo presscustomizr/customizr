@@ -19,7 +19,14 @@
   li {
     display: inline-block;
 
-    & + li { margin-left: $base-line-height; }
+    & + li {
+      @if ( true == $is_rtl ) {
+        margin-right: $base-line-height; 
+      } 
+      @else {
+        margin-left: $base-line-height;
+      }
+    }
   }
   li:before { content: none }
 }
@@ -31,14 +38,16 @@
     @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
 }
 
-
-
 // JS IMAGE CENTERING
 img.h-centered {
   width: auto!important;
   max-width: none!important;
   position: relative;
+  @if ( true == $is_rtl ) {
+    float: left;;
+  }
 }
+
 img.v-centered {
   height: auto!important;
   max-height: none!important;

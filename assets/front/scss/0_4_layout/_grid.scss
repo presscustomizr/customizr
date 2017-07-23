@@ -861,10 +861,14 @@ a.czr-format-link {
     content: "";
     position: absolute;
     bottom: 4px;
-    left:0;
+    @if ( true == $is_rtl ) {
+      right: 0;
+    }
+    @else {
+      left: 0;
+    }
     width: $base-line-height*2;
     height: 2px;
-    //SKINNED
     background-color: $black;
     @include transition (all 0.3s ease);
   }

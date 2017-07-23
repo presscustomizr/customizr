@@ -57,9 +57,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
               wp_enqueue_style( 'customizr-magnific'       , czr_fn_get_theme_file_url( "{$_path}magnific-popup{$_ext}" ), array(), $_ver, 'all' );
               wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
 
-              //Customizr main stylesheet
-              wp_enqueue_style( 'customizr-main'         , czr_fn_get_theme_file_url( "{$_path}style{$_ext}"), array(), $_ver, 'all' );
+              $main_theme_file_name  = is_rtl() ? 'rtl' : 'style';
+              
+              //Customizr main stylesheets
+              wp_enqueue_style( 'customizr-main'         , czr_fn_get_theme_file_url( "{$_path}{$main_theme_file_name}{$_ext}"), array(), $_ver, 'all' );
 
+              
               //Modular scale resopnd
               //Customizr main stylesheet
               if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {

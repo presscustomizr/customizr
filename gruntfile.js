@@ -72,8 +72,10 @@ module.exports = function(grunt) {
           'cssmin:prod_common_rtl',
           //modern style
           'sass:front',
+          'sass:front_rtl',
           'sass:front_ms_respond',
           'concat:front_css_modern',
+          'concat:front_rtl_css_modern',
           'lineending:front_css_modern',
           'cssmin:prod_front_modern'
         ],

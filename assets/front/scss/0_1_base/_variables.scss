@@ -1,6 +1,7 @@
 $phi              : 1.618034;
 $golden           : $phi;
 $cursor-disabled  : not-allowed !default;
+$is_rtl           : false !default;
 
 //used in mixins hover-focus
 $enable-hover-media-query:  false !default;

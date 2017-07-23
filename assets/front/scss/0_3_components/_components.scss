@@ -1,6 +1,13 @@
 .socials {
   @extend .inline-list;
-  li + li { margin-left: .833rem; }
+    li + li { 
+      @if ( true == $is_rtl ) {
+        margin-right: .833rem;
+      }
+      @else {
+        margin-left: .833rem;
+      }   
+    }
   a {
     display:block;
   }
@@ -310,15 +317,27 @@ input[type=submit] {
       color: $white;
       &:hover { color: $black; background: $grey-light; }
     }
-    padding: 0 $base-line-height 0 $base-line-height/2;
+    @if ( true == $is_rtl ) {
+      padding: 0 $base-line-height/2 0 $base-line-height;
+    }
+    @else {
+      padding: 0 $base-line-height 0 $base-line-height/2;
+    }
     line-height: 2em;
     vertical-align: middle;
     display: inline-block;
     margin-bottom: 1em;
   i {
-    margin-right: $base-line-height;
-    border-right: 2px solid $grey-light;
-    padding-right: $base-line-height/2;
+    @if ( true == $is_rtl ) {
+      margin-left: $base-line-height;
+      border-left: 2px solid $grey-light;
+      padding-left: $base-line-height/2;
+    }
+    @else {
+      margin-right: $base-line-height;
+      border-right: 2px solid $grey-light;
+      padding-right: $base-line-height/2;
+    }
     line-height: 2em;
     height: 2em;
     display:inline-block;
@@ -521,13 +540,22 @@ cite {
 
 .tagcloud a,
 .tags li {
-  margin:$base-line-height/4 0;
-  margin-right:  $base-line-height/4;
+  @if ( true == $is_rtl ) {
+    margin: $base-line-height/4 0 $base-line-height/4 $base-line-height/4;
+  }
+  @else {
+    margin: $base-line-height/4 $base-line-height/4 $base-line-height/4 0;
+  }   
 }
 
 .tagcloud a + a,
 .tags li + li {
-  margin-left:0;
+  @if ( true == $is_rtl ) {
+      margin-right: 0;
+  }
+  @else {
+       margin-left:0;
+  }  
 }
 
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
@@ -540,8 +568,12 @@ cite {
       position: relative;
       font-size: ms(2);
       margin-bottom: -2px;
-      text-align: left;
-
+      @if ( true == $is_rtl ) {
+        text-align: right;
+      }
+      @else {
+        text-align: left;
+      }
   }
   .nav-link {
       color: $grey;

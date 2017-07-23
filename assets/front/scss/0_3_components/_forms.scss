@@ -32,10 +32,22 @@ form  {
   fieldset { margin-top: 3em }
 }
 label .required {
-  float: left;
+  @if ( true == $is_rtl ) {
+    float: right;
+  }
+  @else {
+    float: left;
+  }
 }
+
 label i {
-  float: right; width: 2em;
+  @if ( true == $is_rtl ) {
+    float: left;
+  }
+  @else {
+    float: right;
+  }
+  width: 2em;
   height: 2em;
   text-align: center;
 }
@@ -54,10 +66,22 @@ form.czr-form {
     display: block;
     position: absolute;
     @include transition(transform 0.3s ease);
-    span { float: left; }
+    span {
+      @if ( true == $is_rtl ) {
+          floar: right;
+      }
+      @else {
+          float: left;
+      } 
+    }
 
     i.icn-close {
-      margin-right: -2em;
+      @if ( true == $is_rtl ) {
+          margin-left: -2em;
+      }
+      @else {
+          margin-right: -2em;
+      }
       border-radius:100%;
       height:2em;
       width:2em;
@@ -85,6 +109,12 @@ form.czr-form {
   }
 
   .czr-search-field {
-    padding-right: 2em;
+    @if ( true == $is_rtl ) {
+        padding-left: 2em;
+    }
+    @else {
+        padding-right: 2em;
+    }
+    
   }
 }
