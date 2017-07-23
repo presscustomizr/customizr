@@ -8,37 +8,32 @@
 */
 if ( ! class_exists( 'CZR_resources_styles' ) ) :
    class CZR_resources_styles {
-         //Access any method or var of the class with classname::$instance -> var or method():
-         static $instance;
+        //Access any method or var of the class with classname::$instance -> var or method():
+        static $instance;
 
-         private $_is_css_minified;
-         private $_resources_version;
+        private $_is_css_minified;
+        private $_resources_version;
 
-         function __construct () {
+        function __construct () {
+            self::$instance =& $this;
+            //setup version param and is_css_minified bool
+            add_action( 'after_setup_theme'                   , array( $this, 'czr_fn_setup_properties' ), 20 );
+            add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
+            add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
+            add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
 
-               self::$instance =& $this;
-
-               //setup version param and is_css_minified bool
-               add_action( 'after_setup_theme'                   , array( $this, 'czr_fn_setup_properties' ), 20 );
-
-               add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
-
-               add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
-
-               add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
-
-         }
+        }
 
 
-         //hook: after_setup_theme
-         function czr_fn_setup_properties() {
+        //hook: after_setup_theme
+        function czr_fn_setup_properties() {
 
-               $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+              $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
-               $this->_is_css_minified              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
-               $this->_is_css_minified              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_is_css_minified : false;
+              $this->_is_css_minified              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
+              $this->_is_css_minified              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_is_css_minified : false;
 
-         }
+        }
 
 
 
@@ -48,7 +43,6 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          * @since Customizr 1.1
          */
          function czr_fn_enqueue_front_styles() {
-
               $_path       = CZR_ASSETS_PREFIX . 'front/css/';
               $_ver        = $this->_resouces_version;
               $_ext        = $this->_is_css_minified ? '.min.css' : '.css';
@@ -58,11 +52,11 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
               wp_enqueue_style( 'customizr-scrollbar'      , czr_fn_get_theme_file_url( "{$_path}jquery.mCustomScrollbar.min.css" ), array(), $_ver, 'all' );
 
               $main_theme_file_name  = is_rtl() ? 'rtl' : 'style';
-              
+
               //Customizr main stylesheets
               wp_enqueue_style( 'customizr-main'         , czr_fn_get_theme_file_url( "{$_path}{$main_theme_file_name}{$_ext}"), array(), $_ver, 'all' );
 
-              
+
               //Modular scale resopnd
               //Customizr main stylesheet
               if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {
@@ -73,8 +67,9 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
               wp_add_inline_style( 'customizr-main'      , apply_filters( 'czr_user_options_style' , '' ) );
 
               //Customizr stylesheet (style.css)
-              if ( czr_fn_is_child() )
-                  wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style{$_ext}"), array(), $_ver, 'all' );
+              if ( czr_fn_is_child() ) {
+                  wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style.css"), array(), $_ver, 'all' );
+              }
          }
 
          /**
