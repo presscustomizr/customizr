@@ -1,0 +1,78 @@
+
+//slider section
+
+//slider color
+.section-slider {
+  .filter {
+    @include filter($black, $white, 0.5);
+    + .slider-text { color: $white; }
+  }
+}
+
+
+.slider-text > h2 { margin:0; line-height: 1.1 }
+.slider-text > h2 + h3 { margin-top:0; margin-bottom: $base-line-height; }
+
+.section-slider {
+  @extend %vertical-align-parent;
+  overflow: hidden;
+}
+
+[id^=customizr-slider-] {
+  .czrs-title, .czrs-subtitle {
+    color: #fff;
+  }
+  .carousel-caption > h1 {
+      margin: 0;
+      line-height: 1.1;
+      font-weight: 700;
+      font-size: 2.98598em;
+  }
+
+  h1.very-big {
+    font-size: 65px;
+    line-height: 1.4em;
+    margin-bottom: 0.2em;
+  }
+
+  .czrs-subtitle {
+      margin-top: 0;
+      margin-bottom: 0.5em;
+      font-size: 30px;
+  }
+
+  .bg-link {
+    z-index: 4
+  }
+  .btn-edit {
+    position: absolute;
+    &.slider-btn-edit {
+      bottom: 10px;
+      left: 10px
+    }
+    &.slide-btn-edit {
+      bottom: 10%;
+      right: 10px;
+      z-index: 4
+    }
+  }
+  .carousel-inner,
+  .carousel-cell {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.czr-slider-holder {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  //avoid visible fine line on loading in some viewports
+  //due to the not integer height in px
+  @include transform ( translateZ(0) );
+}
+
+#main-wrapper .section.custom  {
+  margin: $base-line-height*2;
+}
