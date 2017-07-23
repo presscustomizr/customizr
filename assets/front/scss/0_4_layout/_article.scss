@@ -409,7 +409,12 @@ section.post-related-articles {
 /* Comments */
 .comment-section {
   .col-avatar {
-    float: left;
+    @if ( true == $is_rtl ) {
+      float: right;
+    }
+    @else {
+      float: left;
+    }
     width: 10%;
   }
   .col-avatar [class*=avatar-] {
@@ -418,7 +423,12 @@ section.post-related-articles {
   }
   @at-root .comment-body {
     display: block;
-    padding-left: 12%;
+    @if ( true == $is_rtl ) {
+      padding-right: 12%;
+    }
+    @else {
+      padding-left: 12%;
+    }
     width: 100%
   }
   @at-root .comment-content p { color: $grey-dark }
@@ -432,7 +442,12 @@ section.post-related-articles {
       }
     }
     time {
-      float:right;
+      @if ( true == $is_rtl ) {
+        float: left;
+      }
+      @else {
+        float: left;
+      }
       @extend .small;
       @extend .service-font;
       span { color: $grey }
@@ -444,7 +459,9 @@ section.post-related-articles {
     @include underlined_nocolor( 2px );
   }
   @at-root .comment-reply-link { @extend .action-link }
-  @at-root .comment-edit-btn { padding:0.25em 0.67em 0.25em 0.67em }
+  @at-root .comment-edit-btn { 
+    padding:0.25em 0.67em 0.25em 0.67em 
+  }
 }
 
 .comment-form-comment textarea {
