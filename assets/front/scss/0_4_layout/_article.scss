@@ -145,9 +145,6 @@ article .entry-content {
 }
 
 
-.post-comments {
-  .tabs a { font-size: ms(1); }
-}
 .post-content {
   color: $black;
 }
@@ -410,7 +407,7 @@ section.post-related-articles {
   font-family: $serviceFont;
   @extend .bold;
   @extend .caps;
-  color: $black;
+  color: $grey-mid-light;
   @extend .letter-spacing-2;
   &:hover { color: $grey; }
   span:last-of-type {
@@ -441,6 +438,9 @@ section.post-related-articles {
 
 
 /* Comments */
+.post-comments {
+  .tabs a { font-size: ms(1); }
+}
 .comment-section {
   .col-avatar {
     @if ( true == $is_rtl ) {
@@ -465,7 +465,11 @@ section.post-related-articles {
     }
     width: 100%
   }
-  @at-root .comment-content p { color: $grey-dark }
+  @at-root .comment-content {
+    font-size: 1.15em;
+    color: $post-entry;
+    //p { color: $grey-dark }
+  }
   @at-root .comment-meta {
     @at-root .comment-author {
       display: inline-block;

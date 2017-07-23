@@ -5432,10 +5432,6 @@ article .entry-content a:not(.btn):not(.button):not(.remove) {
   margin-bottom: 2.5em;
 }
 
-.post-comments .tabs a {
-  font-size: 1.2em;
-}
-
 .post-content {
   color: #313131;
 }
@@ -5736,7 +5732,7 @@ section.post-related-articles .entry-meta {
   border-bottom-color: #f7f8f9;
   box-shadow: inset 0 -5px 0 #f7f8f9;
   font-family: "Roboto", sans-serif;
-  color: #313131;
+  color: #aaa;
 }
 
 .action-link:hover, .comment-reply-link:hover {
@@ -5762,6 +5758,10 @@ section.post-related-articles .entry-meta {
 }
 
 /* Comments */
+.post-comments .tabs a {
+  font-size: 1.2em;
+}
+
 .comment-section .col-avatar {
   float: right;
   width: 10%;
@@ -5778,8 +5778,9 @@ section.post-related-articles .entry-meta {
   width: 100%;
 }
 
-.comment-content p {
-  color: #777;
+.comment-content {
+  font-size: 1.15em;
+  color: #444;
 }
 
 .comment-author {
