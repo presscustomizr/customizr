@@ -22,7 +22,7 @@
         .navbar-brand-sitename span{
           display: block;
           white-space: normal;
-          word-break: break-all;
+          //word-break: break-all;
         }
 
         .navbar-brand-sitename.czr-underline span{
@@ -262,6 +262,7 @@
   }
 }
 
+
 /* EXPERIMENTAL */
 .mobile-sticky,
 .desktop-sticky {
@@ -278,8 +279,10 @@
 
 .mobile-sticky .mobile-nav__nav {
   position: absolute;
-  max-height: 70vh;
+  max-height: 90vh;
   overflow: auto;
+  //shadow only when mobile menu is sticky.
+  @include box-shadow( 0px, 6px, 8px, rgba(120, 120, 120, 0.9), false, 0px );
 }
 
 .fixed-header-on .mobile-sticky,

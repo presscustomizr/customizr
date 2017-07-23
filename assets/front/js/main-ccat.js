@@ -1888,62 +1888,39 @@ var czrapp = czrapp || {};
 
 })(jQuery, czrapp);var czrapp = czrapp || {};
 (function($, czrapp) {
-  var _methods =  {
+    var _methods =  {
 
-    initOnCzrReady : function() {
+        initOnCzrReady : function() {
 
-      if ( typeof undefined === typeof $.fn.masonry )
-        return;
-      this.$_grid = $('.masonry__wrapper' );
+            if ( typeof undefined === typeof $.fn.masonry )
+                  return;
+                  
+            var $grid_container = $('.masonry__wrapper'),
+                masonryReady = $.Deferred();
+            
+            if ( 1 > $grid_container.length ) {
+                  czrapp.errorLog('Masonry container does not exist in the DOM.');
+                  return;
+            }
 
-      if ( !this.$_grid.length )
-        return;
+            $grid_container.bind( 'masonry-init.customizr', function() {
+                  masonryReady.resolve();
+            });
+            $grid_container.imagesLoaded( function() {
+                  $grid_container.masonry({
+                        itemSelector: '.grid-item',
+                  })
+                  .on( 'smartload simple_load', 'img', function() {
+                        $grid_container.masonry('layout');
+                  })
+                  .trigger( 'masonry-init.customizr' );
+            });
+          
+        }
+    };//_methods{}
 
-      this.$_images = this.$_grid.find('img');
-
-      this._loaded_counter = 0;
-      this._n_images = this.$_images.length;
-
-
-      if ( ! this._n_images )
-        this._czrFireMasonry();
-
-    },
-
-    masonryGridEventListener : function() {
-      var self = this;
-
-      if ( typeof undefined === typeof this.$_grid )
-        return;
-
-      this.$_grid.on( 'images_loaded', function(){ self._czrFireMasonry(); });
-
-      if ( ! this._n_images )
-        return;
-
-      this.$_images.on( 'simple_load', function(){ self._czrMaybeTriggerImagesLoaded(); });
-      this.triggerSimpleLoad( this.$_images );
-    },
-
-    _czrFireMasonry : function() {
-      this.$_grid.masonry({
-          itemSelector: '.grid-item',
-          percentPosition: true
-      });
-    },
-
-    _czrMaybeTriggerImagesLoaded : function() {
-      var self = this;
-      this._loaded_counter++;
-      if ( this._loaded_counter == this._n_images )
-        setTimeout( function(){
-          self.$_grid.trigger('images_loaded');
-        }, 200);
-    }
-  };//_methods{}
-
-  czrapp.methods.MasonryGrid = {};
-  $.extend( czrapp.methods.MasonryGrid , _methods );
+    czrapp.methods.MasonryGrid = {};
+    $.extend( czrapp.methods.MasonryGrid , _methods );
 })(jQuery, czrapp);var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
@@ -2843,7 +2820,6 @@ var czrapp = czrapp || {};
                       ctor  : czrapp.Base.extend( czrapp.methods.MasonryGrid ),
                       ready : [
                             'initOnCzrReady',
-                            'masonryGridEventListener'
                       ]
                 },
                 userXP : {

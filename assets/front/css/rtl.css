@@ -4353,6 +4353,10 @@ embed, iframe, object, video {
   white-space: normal;
 }
 
+.vertical-nav .dropdown-menu.czr-dropdown-menu a, #mobile-nav .dropdown-menu.czr-dropdown-menu a {
+  white-space: normal;
+}
+
 .dropdown-menu.czr-dropdown-menu {
   border-radius: 0;
   border: 0;
@@ -4677,7 +4681,6 @@ embed, iframe, object, video {
 .branding .navbar-brand-sitename span {
   display: block;
   white-space: normal;
-  word-break: break-all;
 }
 
 .branding .navbar-brand-sitename.czr-underline span {
@@ -4909,8 +4912,11 @@ embed, iframe, object, video {
 
 .mobile-sticky .mobile-nav__nav {
   position: absolute;
-  max-height: 70vh;
+  max-height: 90vh;
   overflow: auto;
+  -webkit-box-shadow: 0px 6px 8px 0px rgba(120, 120, 120, 0.9);
+  -moz-box-shadow: 0px 6px 8px 0px rgba(120, 120, 120, 0.9);
+  box-shadow: 0px 6px 8px 0px rgba(120, 120, 120, 0.9);
 }
 
 .fixed-header-on .mobile-sticky,

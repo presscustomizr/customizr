@@ -55,9 +55,9 @@
 .czr-dropdown-menu {
     display: none;
     max-width: 50vw;
-    a {
-      white-space: normal;
-    }
+    a { white-space: normal; }
+    //the sidemenu and mobile menu should break lines
+    @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu a, #mobile-nav .dropdown-menu.czr-dropdown-menu a { white-space: normal; }
 }
 
 .dropdown-menu.czr-dropdown-menu {
