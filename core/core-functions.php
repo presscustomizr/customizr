@@ -179,7 +179,10 @@ function czr_fn_isprevdem() {
     return apply_filters( 'czr_fn_isprevdem', ! $is_dirty && czr_fn_get_raw_option( 'template', null, false ) != get_stylesheet() && ! is_child_theme() && ! czr_fn_is_pro() );
 }
 
-
+//@return bool
+function czr_fn_is_pro_section_on() {
+   return ! CZR_IS_PRO && class_exists( 'CZR_Customize_Section_Pro' ) && ! czr_fn_isprevdem();
+}
 
 
 //@return an array of unfiltered options

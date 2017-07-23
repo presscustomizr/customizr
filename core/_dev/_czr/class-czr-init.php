@@ -84,7 +84,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Sections') )
         $manager -> register_panel_type( 'CZR_Customize_Sections');
 
-      if ( !CZR_IS_PRO && class_exists('CZR_Customize_Section_Pro') ) {
+      if ( czr_fn_is_pro_section_on() ) {
         $manager -> register_section_type( 'CZR_Customize_Section_Pro');
       }
     }

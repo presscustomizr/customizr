@@ -2318,8 +2318,13 @@ function czr_fn_popul_section_map( $_sections ) {
                         'title'     =>  __( 'Front Page Content' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 12 : 10,
                         //'description' =>  __( 'Set up front page options' , 'customizr' ),
+                        'section_class' => 'CZR_Customize_Sections',
                         'panel'   => '',//tc-content-panel',
-                        'active_callback' => 'czr_fn_is_home'
+                        'active_callback' => 'czr_fn_is_home',
+                        'ubq_panel'   => array(
+                            'panel' => 'tc-content-panel',
+                            'priority' => '10'
+                        )
     ),
 
     'post_layout_sec'        => array(
@@ -2440,7 +2445,7 @@ function czr_fn_popul_section_map( $_sections ) {
     )
   );
 
-  if ( ! CZR_IS_PRO ) {
+  if ( czr_fn_is_pro_section_on() ) {
     $_new_sections = array_merge( $_new_sections, array(
         /*---------------------------------------------------------------------------------------------
         -> SECTION : GO-PRO
