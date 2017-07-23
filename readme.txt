@@ -40,6 +40,11 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.2 July 23rd 2017 =
+* fixed : child theme stylesheet wrongly enqueued
+* Imp: main content mobile blocks reorder via flexbox
+* Imp: fix comments date alignment fixes #1073
+
 = 4.0.1 July 23rd 2017 =
 * Fix : WooCommerce compatibility : Grid title truncation might affect products in product archives ( fixes #996 )
 * Fix : Added back the menu locations customizer section

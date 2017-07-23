@@ -5276,15 +5276,6 @@ a.czr-format-link:hover::before {
   max-width: 100%;
 }
 
-/*@media (min-width: 668px)  {
-  .single-post .sidebar { padding:0; }
-}
-@media screen and (min-width: 480px) and (max-width: 667px) {
-  .article-container {
-    padding: 0 $base-line-height*2;
-  }
-}*/
-/* Regular headings */
 .archive-header .archive-title,
 .entry-header .entry-title {
   word-wrap: break-word;
@@ -5670,12 +5661,6 @@ section[class^="post-"] .entry-meta {
   transform-origin: top left;
 }
 
-.single-post-info {
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
 section.post-related-articles {
   margin-top: 0;
 }
@@ -5829,7 +5814,7 @@ section.post-related-articles .entry-meta {
 }
 
 .comment-meta time {
-  float: left;
+  float: right;
 }
 
 .comment-meta time span {
