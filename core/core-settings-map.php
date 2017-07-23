@@ -1204,8 +1204,12 @@ function czr_fn_layout_option_map( $get_default = null ) {
                               POST LISTS SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_post_list_option_map( $get_default = null ) {
-
-  $_post_list_type = czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ? 'alternate' : 'grid';
+  $_post_list_type = ( CZR_IS_PRO && czr_fn_is_modern_style() ) ? 'masonry' : 'grid';
+  if ( czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ) {
+      $_post_list_type = 'alternate';
+  } else if ( czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
+      $_post_list_type = 'grid';
+  }
 
   return array(
           'tc_post_list_excerpt_length'  =>  array(
