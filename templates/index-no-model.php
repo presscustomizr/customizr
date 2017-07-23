@@ -134,6 +134,23 @@
 
                 <?php do_action('__after_content'); ?>
 
+
+                <?php if ( czr_fn_is_registered_or_possible('single_author_info') || czr_fn_is_registered_or_possible('related_posts') || czr_fn_is_registered_or_possible('comments') ) : ?>
+                  <div class="col-12 singular-info-wrapper order-md-last">
+                    <?php
+                      if ( czr_fn_is_registered_or_possible('single_author_info') )
+                         czr_fn_render_template( 'content/singular/authors/author_info' );
+
+                      if ( czr_fn_is_registered_or_possible('related_posts') )
+                        czr_fn_render_template( 'modules/related-posts/related_posts' );
+
+                      if ( czr_fn_is_registered_or_possible('comments') )
+                        czr_fn_render_template( 'content/singular/comments/comments' );
+
+                    ?>
+                  </div>
+                <?php endif ?>
+
                 <?php
                   /*
                   * SIDEBARS
@@ -148,23 +165,6 @@
 
                   }
                 ?>
-                <?php if ( czr_fn_is_registered_or_possible('single_author_info') || czr_fn_is_registered_or_possible('related_posts') ) : ?>
-                  <div class="col-12 single-post-info">
-                    <?php
-                      if ( czr_fn_is_registered_or_possible('single_author_info') )
-                         czr_fn_render_template( 'content/singular/authors/author_info' );
-
-                      if ( czr_fn_is_registered_or_possible('related_posts') )
-                        czr_fn_render_template( 'modules/related-posts/related_posts' )
-                    ?>
-                  </div>
-                <?php endif ?>
-
-                <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
-                  <div class="col-12 czr-comments-block">
-                      <?php czr_fn_render_template( 'content/singular/comments/comments' ) ?>
-                  </div>
-                <?php endif ?>
 
             </div><!-- .column-content-wrapper -->
 
