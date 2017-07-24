@@ -188,18 +188,24 @@
   //this way the actual visual position of the dropdown will not be impacted
   //though, as fixed element, even if overflowing the tc-page-wrap, will not
   //make the orizontal scrollbar appear!
-
  .czr-submenu-fade & {
     .menu-item-has-children {
-      @include perspective(1000px);
-      z-index: 100;
+      @include perspective(1000px);      
       > ul {
         position: fixed;
         opacity: 0;
         visibility: hidden;
         display: block;
         @include transition( all 0.25s ease-in-out );
-        @include transform( translate( 0, -20px ) );
+        @include transform( translate( 0, -20px ) );        
+      }
+      //because of the fact the submenu is displayed
+      //it might still grab the the hover while fading out
+      //let's avoid this resetting its pointer-events
+      //when the li parent hasn't the show class
+      &:not(.show) ul {
+        pointer-events: none;
+        cursor: $cursor-disabled;
       }
     }
 
@@ -212,11 +218,6 @@
             @include transform( translate( 0, 0) );
           }
     }
-
-    @at-root .czr-submenu-fade .topbar-navbar__wrapper .menu-item-has-children {
-      z-index: 101;
-    }
-
   }
   // end fade effect
 
