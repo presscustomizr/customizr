@@ -381,7 +381,6 @@ a.czr-format-link {
 
 /* CLASSIC */
 .grid-container__classic {
-  .grid__item { max-height: 350px; }
   .tc-content {
     @extend .small
   }
@@ -478,13 +477,10 @@ a.czr-format-link {
           background: rgba(0,0,0,.4);
           padding: 8%;
           height: auto;
-
+          max-height: 90%;
           //@media screen and (max-width: 767px)
           @include media-breakpoint-down(sm) {
-            bottom: 0;
-            top: 0;
-            @include transform( translate(0, 0));
-            @include transform( translate3d(0,0,0));
+            max-height: 100%;
             .tc-g-cont { max-height: 70%; }
             .entry-title { margin-top: $base-line-height / 2 }
           }//@media
