@@ -121,14 +121,14 @@ class CZR_gallery_model_class extends CZR_Model {
 
             $gallery_items   = array();
 
-            //$_gallery_ids    = isset( $raw_media[ 'ids' ] ) ? explode( ',',  $raw_media[ 'ids' ] ) : array();
+            $_gallery_ids    = isset( $raw_media[ 'ids' ] ) ? explode( ',',  $raw_media[ 'ids' ] ) : array();
 
             $_index          = 0;
 
             foreach( $raw_media[ 'src' ] as $src ) {
 
-                  /* Cannot use this as the gallery images can be randomly ordered
-                  while the gallery_ids are not
+                  /* Cannot use this as the gallery images can be randomly ordered */
+                  //while the gallery_ids are not
                   //TODO: find an efficient way to retrieve the media id!
 
                   $_original_image  = '';
@@ -141,7 +141,7 @@ class CZR_gallery_model_class extends CZR_Model {
                         $_alt            = get_post_meta( $_gallery_ids[ $_index ], '_wp_attachment_image_alt', true );
 
                   }
-                  */
+                  $src = $_original_image ? $_original_image : $src;
                   $gallery_items[] = array(
 
                         'src'             => $src,
