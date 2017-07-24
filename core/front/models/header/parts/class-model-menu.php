@@ -138,7 +138,7 @@ class CZR_menu_model_class extends CZR_Model {
                 $mobile_menu_location = '_not_set_';
                 $has_menu_assigned = false;
 
-                if ( array_key_exists( $mobile_menu_opt, $location_map ) && has_nav_menu( $location_map[ $mobile_menu_opt ] ) ) {
+                if ( is_string( $mobile_menu_opt ) && array_key_exists( $mobile_menu_opt, $location_map ) && has_nav_menu( $location_map[ $mobile_menu_opt ] ) ) {
                     $mobile_menu_location = $location_map[ $mobile_menu_opt ];
                     $has_menu_assigned = true;
                 } else {
