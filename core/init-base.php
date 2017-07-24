@@ -26,7 +26,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         public $slider_size;
 
         public $tc_grid_size;
-
+        public $tc_grid_full_size;
 
         //print comments template once : plugins compatibility
         public static $comments_rendered = false;
@@ -76,6 +76,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $this -> slider_size        = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => 500, 'crop' => true ); //size name : slider
 
             $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
+            //Default images sizes
+            $this -> tc_grid_full_size  = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => CZR_IS_MODERN_STYLE ? 444 : 350, 'crop' => true ); //size name : tc-grid-full
 
             //Main skin color array : array( link color, link hover color )
             $this -> skin_classic_color_map     = apply_filters( 'tc_skin_color_map' , array(
@@ -723,6 +725,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                 }
             }
 
+            $tc_grid_full_size     = $this -> tc_grid_full_size;
+            $tc_grid_size          = $this -> tc_grid_size;
 
             //ONLY FOR CLASSICAL STYLE
             if ( ! CZR_IS_MODERN_STYLE ) {
@@ -738,7 +742,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                 }
 
 
-
                 /***********
                 *** GRID ***
                 ***********/
@@ -746,8 +749,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                     $_user_height  = esc_attr( $_options['tc_grid_thumb_height'] );
                 }
 
-                $tc_grid_full_size     = $this -> tc_grid_full_size;
-                $tc_grid_size          = $this -> tc_grid_size;
                 $_user_grid_height     = isset( $_options['tc_grid_thumb_height'] ) && is_numeric( $_options['tc_grid_thumb_height'] ) ? esc_attr( $_options['tc_grid_thumb_height'] ) : $tc_grid_full_size['height'];
 
                 add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $_user_grid_height, $tc_grid_full_size['crop'] );
@@ -757,6 +758,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                   add_filter( 'tc_grid_full_size', array( $this,  'czr_fn_set_grid_img_height') );
                 if ( $_user_grid_height != $tc_grid_size['height'] )
                   add_filter( 'tc_grid_size'     , array( $this,  'czr_fn_set_grid_img_height') );
+            }
+            else {
+              //Modern style: not custom height option available
+              add_image_size( 'tc-grid-full', $tc_grid_full_size['width'], $tc_grid_full_size['height'], $tc_grid_full_size['crop'] );
+              add_image_size( 'tc-grid', $tc_grid_size['width'], $tc_grid_size['height'], $tc_grid_size['crop'] );
 
             }
 
