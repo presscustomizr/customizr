@@ -557,7 +557,15 @@
                             visibility: function (to) {
                                   return _is_checked(to);
                             }
+                    },
+                    {
+                            dominus : 'tc_header_mobile_menu_layout',
+                            servi   : ['nav_menu_locations[mobile]'],
+                            visibility: function (to) {
+                                  return 'mobile_menu' == to;
+                            }
                     }
+
                 ]//dominiDeps {}
           );//_.extend()
 
