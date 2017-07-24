@@ -2464,6 +2464,7 @@ var TCParams = TCParams || {};
                 disableGRUnder : 767,//in pixels
                 useImgAttr:false,//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
                 setOpacityWhenCentered : false,//this can be used to hide the image during the time it is centered
+                addCenteredClassWithDelay : 0,//<= a small delay can be required when we rely on the v-centered or h-centered css classes to set the opacity for example
                 opacity : 1
           };
 
@@ -2552,8 +2553,15 @@ var TCParams = TCParams || {};
                   $_img
                       .css( _p.dim.name , _p.dim.val )
                       .css( _not_p.dim.name , self.options.defaultCSSVal[ _not_p.dim.name ] || 'auto' )
-                      .addClass( _p._class ).removeClass( _not_p._class )
                       .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+
+                  if ( 0 !== self.options.addCenteredClassWithDelay && _.isNumber( self.options.addCenteredClassWithDelay ) ) {
+                        _.delay( function() {
+                              $_img.addClass( _p._class ).removeClass( _not_p._class );
+                        }, self.options.addCenteredClassWithDelay );
+                  } else {
+                        $_img.addClass( _p._class ).removeClass( _not_p._class );
+                  }
 
                   return $_img;
             };
@@ -2562,7 +2570,7 @@ var TCParams = TCParams || {};
                         $_img.css( 'opacity', self.options.opacity );
                   });
             } else {
-                  _centerImg( $_img );
+                  _.delay(function() { _centerImg( $_img ); }, 0 );
             }
       };
       Plugin.prototype._get_current_state = function( $_img ) {
