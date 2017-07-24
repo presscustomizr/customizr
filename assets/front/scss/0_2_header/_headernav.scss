@@ -302,11 +302,11 @@
     .navbar-brand img,
     .navbar-brand,
     .header-tagline {
-        @include transition( all .2s );
+        @include transition( all .35s );
     }
 }
 
-.is-sticky.sticky-brand-shrink-on .desktop-sticky {
+.can-shrink-brand.sticky-brand-shrink-on .desktop-sticky {
     //title ( and tagline )
     .navbar-brand {
         font-size: 1.4em;

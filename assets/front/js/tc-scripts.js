@@ -9257,7 +9257,7 @@ var czrapp = czrapp || {};
                     czrapp.$_header.toggleClass( 'fixed-header-on', isFixed ).toggleClass( 'is-sticky', isFixed );
                     self._pushPrimaryNavBarDown( isFixed );
               });
-              var _doScrollPosReact = function( to, from ) {
+              var _setStickynessStatesOnScroll = function( to, from ) {
                     if ( ! self.hasStickyCandidate() )
                       return;
 
@@ -9301,16 +9301,17 @@ var czrapp = czrapp || {};
                           self.isFixedPositionned( to > self.topStickPoint() );
                     }
               };
-
-
-              this.scrollPosition.bind( _doScrollPosReact );
+              this.scrollPosition.bind( function( to, from ) {
+                    _setStickynessStatesOnScroll( to, from );
+                    czrapp.$_header.toggleClass( 'can-shrink-brand', to > czrapp.$_header[0].getBoundingClientRect().height * 2 );
+              } );
               var _maybeResetTop = function() {
                     if ( 'up' == self.scrollDirection() )
                         self._mayBeresetTopPosition();
               };
               czrapp.bind( 'scrolling-finished', _maybeResetTop );
               czrapp.bind( 'scrolling-finished', function() {
-                    _.delay( _doScrollPosReact, 500 );
+                    _.delay( _setStickynessStatesOnScroll, 500 );
               });
               czrapp.bind( 'topbar-collapsed', _maybeResetTop );
               self.stickyMenuDown.validate = function( value ) {
@@ -9497,6 +9498,7 @@ var czrapp = czrapp || {};
         _adjustDesktopTopNavPaddingTop : function() {
         },
         _mayBeresetTopPosition : function() {
+
               var  self = this, $menu_wrapper = self.stickyMenuWrapper;
               if ( 'up' != self.scrollDirection() )
                 return;
@@ -9526,6 +9528,7 @@ var czrapp = czrapp || {};
                                           });
                                     }
                                     self.stickyHeaderAnimating( false );
+                                    self.isFixedPositionned( false );
                                     dfd.resolve();
                               }, 10 );
                           }).promise();

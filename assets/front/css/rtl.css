@@ -4934,20 +4934,20 @@ embed, iframe, object, video {
 .sticky-brand-shrink-on .desktop-sticky .navbar-brand img,
 .sticky-brand-shrink-on .desktop-sticky .navbar-brand,
 .sticky-brand-shrink-on .desktop-sticky .header-tagline {
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.35s;
+  -o-transition: all 0.35s;
+  transition: all 0.35s;
 }
 
-.is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand {
+.can-shrink-brand.sticky-brand-shrink-on .desktop-sticky .navbar-brand {
   font-size: 1.4em;
 }
 
-.is-sticky.sticky-brand-shrink-on .desktop-sticky .header-tagline {
+.can-shrink-brand.sticky-brand-shrink-on .desktop-sticky .header-tagline {
   font-size: 0.8em;
 }
 
-.is-sticky.sticky-brand-shrink-on .desktop-sticky .navbar-brand img {
+.can-shrink-brand.sticky-brand-shrink-on .desktop-sticky .navbar-brand img {
   height: 30px !important;
   width: auto !important;
 }

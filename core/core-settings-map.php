@@ -642,6 +642,7 @@ function czr_fn_header_desktop_option_map() {
                                 'priority' => '20'
                             ),
                             'priority'  => 35,
+                            'notice'    => __( 'When your header ( containing the site title or logo ) is gluing to the top of a page, this option will make the title or logo smaller.' , 'customizr' ),
           ),
     );
 
