@@ -1,8 +1,4 @@
 <?php
-/*
-*
-* TODO: treat case post format image with no text and post format gallery
-*/
 class CZR_post_list_plain_model_class extends CZR_Model {
 
   public $post_class               = array( 'col-12' );
