@@ -53,7 +53,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_primary_menu() {
-      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_opt( 'tc_menu_style' ) );
+      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_opt( 'tc_menu_style' ) ) && ( has_nav_menu( 'main' ) || czr_fn_isprevdem() );;
     }
 
     //when the 'secondary' navbar menu is allowed?
@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) topbar is displayed
     function czr_fn_display_view_topbar_menu() {
-      return $this -> czr_fn_display_view_menu() &&  esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
+      return $this -> czr_fn_display_view_menu() && esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
     }
 
     //when the sidenav menu is allowed?

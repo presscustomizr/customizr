@@ -12,6 +12,8 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //add_filter( 'option_blogname', array( $this, 'czr_fn_set_blogname'), 100 );
       add_filter( 'tc_social_in_header' , array( $this, 'czr_fn_set_header_socials' ) );
       add_filter( 'tc_tagline_display' , array( $this, 'czr_fn_set_header_tagline' ) );
+      add_filter( 'tc_opt_tc_menu_style' , array( $this, 'czr_fn_set_header_menu_style' ) );
+      add_filter( 'tc_opt_tc_menu_position' , array( $this, 'czr_fn_set_header_primay_navbar_menu_position' ) );
 
       //FRONT PAGE
       add_filter( 'option_show_on_front', array( $this, 'czr_fn_set_front_page_content' ), 99999 );
@@ -84,6 +86,15 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     function czr_fn_set_header_tagline() {
       return '';
     }
+
+    function czr_fn_set_header_menu_style() {
+      return 'regular';
+    }
+
+    function czr_fn_set_header_primay_navbar_menu_position() {
+      return 'pull-menu-right';
+    }
+
 
     function czr_fn_set_blogname() {
         return 'Customizr';
