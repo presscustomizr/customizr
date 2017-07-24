@@ -626,26 +626,26 @@ a.czr-format-link {
     .entry-header a, .entry-footer .post-info, .entry-footer a {
       color: $white;
     }
-    a:hover {
-      color: $grey-light;
-      &.btn-edit {
-        color: $black;
+    .entry-header a, .entry-footer .post-info a, .entry-footer a {
+      &:hover {
+        color: #dadada;
       }
     }
+    .btn-skin-dark-oh.inverted:hover {
+        color: #dadada;
+        background-color: transparent;
+        border-color: #dadada;
+    }
+    a.btn-edit:hover {
+      color: $black;
+    }
+
     .entry-header, .entry-footer  {
       @include opacity(1);
       @include transition(all, 0.3s ease);
     }
     .entry-summary {
       display: none;
-      //we do not display the entry-summary for the full-image posts types in list of posts:
-      //gallery, image formats
-
-      //color: $white;
-      //font-weight: 500;
-      //position:relative;
-      //@include opacity(0);
-      //@include transition(all, 0.3s ease);
     }
     .entry-title {
       max-width: 80%
