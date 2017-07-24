@@ -186,7 +186,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
             $id                                  = get_post_thumbnail_id( $post_id );
             if ( $id ) {
                 $post_thumbnail[ '_thumb_id' ]       = $id;
-                $post_thumbnail[ 'tc_thumb' ]        = get_the_post_thumbnail( $post_id, $this->size );
+                $post_thumbnail[ 'tc_thumb' ]        = apply_filters( 'czr_thumb_html', get_the_post_thumbnail( $post_id, $this->size ) );
             }
             else {
                 $post_thumbnail = array();

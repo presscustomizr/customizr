@@ -276,8 +276,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions

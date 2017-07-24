@@ -164,7 +164,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        "[class*='grid-container__'] .entry-title a.czr-title:hover",
                                  ),
                                  'border-color' => array(
-                                       '.czr-slider-loader-wrapper .czr-css-loader > div ',
+                                       '.czr-css-loader > div ',
                                        '.btn-skin',
                                        '.btn-skin:active',
                                        '.btn-skin:focus',

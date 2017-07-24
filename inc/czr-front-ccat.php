@@ -7574,7 +7574,7 @@ class CZR_post_thumbnails {
         $_enable_wp_responsive_imgs = is_null( $_enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $_enable_wp_responsive_imgs;
 
       //try to extract $_thumb_id and $_thumb_type
-      extract( $this -> czr_fn_get_thumb_info( $_post_id, $_custom_thumb_id ) );
+      extract( $this -> czr_fn_maybe_set_and_get_thumb_info( $_post_id, $_custom_thumb_id ) );
       if ( ! apply_filters( 'tc_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
         return array();
 
@@ -7640,7 +7640,7 @@ class CZR_post_thumbnails {
     * inside loop
     * @return array( "_thumb_id" , "_thumb_type" )
     */
-    private function czr_fn_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
+    private function czr_fn_maybe_set_and_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
       $_post_id     = is_null($_post_id) ? get_the_ID() : $_post_id;
       $_meta_thumb  = get_post_meta( $_post_id , 'tc-thumb-fld', true );
       //get_post_meta( $post_id, $key, $single );
@@ -7669,7 +7669,7 @@ class CZR_post_thumbnails {
     public function czr_fn_has_thumb( $_post_id = null , $_thumb_id = null ) {
       $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
       //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
-      extract( $this -> czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
+      extract( $this -> czr_fn_maybe_set_and_get_thumb_info( $_post_id, $_thumb_id ) );
       return apply_filters( 'tc_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
     }
 

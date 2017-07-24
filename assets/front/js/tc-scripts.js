@@ -1271,6 +1271,7 @@ var Tab = function ($) {
                 disableGRUnder : 767,//in pixels
                 useImgAttr:false,//uses the img height and width attributes if not visible (typically used for the customizr slider hidden images)
                 setOpacityWhenCentered : false,//this can be used to hide the image during the time it is centered
+                addCenteredClassWithDelay : 0,//<= a small delay can be required when we rely on the v-centered or h-centered css classes to set the opacity for example
                 opacity : 1
           };
 
@@ -1359,8 +1360,15 @@ var Tab = function ($) {
                   $_img
                       .css( _p.dim.name , _p.dim.val )
                       .css( _not_p.dim.name , self.options.defaultCSSVal[ _not_p.dim.name ] || 'auto' )
-                      .addClass( _p._class ).removeClass( _not_p._class )
                       .css( _p.dir.name, _p.dir.val ).css( _not_p.dir.name, _not_p_dir_val );
+
+                  if ( 0 !== self.options.addCenteredClassWithDelay && _.isNumber( self.options.addCenteredClassWithDelay ) ) {
+                        _.delay( function() {
+                              $_img.addClass( _p._class ).removeClass( _not_p._class );
+                        }, self.options.addCenteredClassWithDelay );
+                  } else {
+                        $_img.addClass( _p._class ).removeClass( _not_p._class );
+                  }
 
                   return $_img;
             };
@@ -1369,7 +1377,7 @@ var Tab = function ($) {
                         $_img.css( 'opacity', self.options.opacity );
                   });
             } else {
-                  _centerImg( $_img );
+                  _.delay(function() { _centerImg( $_img ); }, 0 );
             }
       };
       Plugin.prototype._get_current_state = function( $_img ) {
@@ -8788,21 +8796,37 @@ var czrapp = czrapp || {};
                   }
             },
             centerImages : function() {
-                  $('.tc-grid-figure, .widget-front .tc-thumbnail').centerImages( {
-                        enableCentering : 1,
-                        oncustom : ['smartload', 'refresh-height', 'simple_load'],
-                        zeroTopAdjust: 0,
-                        enableGoldenRatio : false,
-                  } );
-
-                  $('.js-centering.entry-media__holder, .js-centering.entry-media__wrapper').centerImages({
-                        enableCentering : 1,
-                        oncustom : ['smartload', 'refresh-height', 'simple_load'],
-                        enableGoldenRatio : false, //true
-                        zeroTopAdjust: 0,
-                        setOpacityWhenCentered : true,//will set the opacity to 1
-                        opacity : 1
+                  var $wrappersOfCenteredImagesCandidates = $('.tc-grid-figure, .widget-front .tc-thumbnail, .js-centering.entry-media__holder, .js-centering.entry-media__wrapper');
+                  _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
+                  $.when( $wrappersOfCenteredImagesCandidates.each( function() {
+                        $( this ).append(  _css_loader ).find('.czr-css-loader').fadeIn( 'slow');
+                  })).done( function() {
+                        $wrappersOfCenteredImagesCandidates.centerImages({
+                              enableCentering : 1,
+                              oncustom : ['smartload', 'refresh-height', 'simple_load'],
+                              enableGoldenRatio : false, //true
+                              zeroTopAdjust: 0,
+                              setOpacityWhenCentered : false,//will set the opacity to 1
+                              addCenteredClassWithDelay : 50,
+                              opacity : 1
+                        });
+                        _.delay( function() {
+                              $wrappersOfCenteredImagesCandidates.find('.czr-css-loader').fadeOut( {
+                                duration: 500,
+                                done : function() { $(this).remove();}
+                              } );
+                        }, 300 );
                   });
+
+                  $wrappersOfCenteredImagesCandidates.centerImages({
+                            enableCentering : 1,
+                            oncustom : ['smartload', 'refresh-height', 'simple_load'],
+                            enableGoldenRatio : false, //true
+                            zeroTopAdjust: 0,
+                            setOpacityWhenCentered : false,//will set the opacity to 1
+                            addCenteredClassWithDelay : 50,
+                            opacity : 1
+                      });
                   var _mayBeForceOpacity = function( params ) {
                         params = _.extend( {
                               el : {},
@@ -8818,18 +8842,18 @@ var czrapp = czrapp || {};
 
                   };
                   if ( czrapp.localized.imgSmartLoadEnabled ) {
-                        czrapp.$_body.on( 'smartload', 'img' , function( ev ) {
+                        $wrappersOfCenteredImagesCandidates.on( 'smartload', 'img' , function( ev ) {
                               if ( 1 != $( ev.target ).length )
                                 return;
                               _mayBeForceOpacity( { el : $( ev.target ), delay : 200 } );
                         });
                   } else {
-                        $('img').each( function() {
+                        $wrappersOfCenteredImagesCandidates.find('img').each( function() {
                               _mayBeForceOpacity( { el : $(this), delay : 100 } );
                         });
                   }
                   _.delay( function() {
-                        $('img').each( function() {
+                        $wrappersOfCenteredImagesCandidates.find('img').each( function() {
                               _mayBeForceOpacity( { el : $(this), delay : 0 } );
                         });
                   }, 1000 );

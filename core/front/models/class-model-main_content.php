@@ -202,14 +202,6 @@ class CZR_main_content_model_class extends CZR_Model {
               ".tc-singular-thumbnail-wrapper .entry-media__wrapper {
                 max-height: {$_thumb_height}px;
                 height :{$_thumb_height}px
-              }\n
-              .tc-singular-thumbnail-wrapper .js-centering.entry-media__wrapper img {
-                opacity : 0;
-                -webkit-transition: opacity .5s ease-in-out;
-                -moz-transition: opacity .5s ease-in-out;
-                -ms-transition: opacity .5s ease-in-out;
-                -o-transition: opacity .5s ease-in-out;
-                transition: opacity .5s ease-in-out;
               }\n"
             );
       }

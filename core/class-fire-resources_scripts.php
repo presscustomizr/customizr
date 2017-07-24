@@ -286,7 +286,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                $smart_load_opts       = apply_filters( 'tc_img_smart_load_options' , array(
 
                        'parentSelectors' => array(
-                           '[class*=grid-container], .article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles',
+                           '[class*=grid-container], .article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles', '.tc-singular-thumbnail-wrapper'
                        ),
                        'opts'     => array(
                            'excludeImg' => array( '.tc-holder-img' )
@@ -318,7 +318,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                       'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
                       'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
 
-                      'centerAllImg'          => esc_attr( czr_fn_opt( 'tc_center_img') ),
+                      'centerAllImg'          => 1,
                       'HasComments'        => $has_post_comments,
 
                       'LoadModernizr'      => apply_filters( 'tc_load_modernizr' , true ),

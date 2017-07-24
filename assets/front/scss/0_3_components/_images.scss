@@ -6,12 +6,16 @@
 .js-centering.entry-media__holder img,
 .js-centering.entry-media__wrapper img {
   opacity:0;
-  -webkit-transition: opacity 0.5s ease;
-  -o-transition: opacity 0.5s ease;
-  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.35s ease;
+  -o-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease;
+  &.h-centered,
+  &.v-centered,
+  &.opacity-forced {
+    opacity:1
+  }
+  //in case js is disabled or there's an problem when centering the images, the following classes make sure opacity is set to 1
+  @at-root .no-js img { opacity:1!important; }
 }
-//in case js is disabled or there's an problem when centering the images, the following classes make sure opacity is set to 1
-.no-js img,
-img.h-centered,
-img.v-centered,
-img.opacity-forced { opacity:1!important }
+
+

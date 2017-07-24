@@ -1025,6 +1025,8 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
     $args = wp_parse_args( $args, $defaults);
     extract( $args );
 
+    //czr_fn_has_thumb() checks if there is a thumbnail or an attachment img ( typically img embedded in single post ) that we can use
+    //=> the check on the attachement is done if true == czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' )
     if ( ! czr_fn_has_thumb( $post_id, $custom_thumb_id ) ) {
       if ( ! $placeholder )
         return array();
@@ -1050,7 +1052,7 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
       $enable_wp_responsive_imgs = is_null( $enable_wp_responsive_imgs ) ? 1 == czr_fn_opt('tc_resp_thumbs_img') : $enable_wp_responsive_imgs;
 
     //try to extract $_thumb_id and $_thumb_type
-    extract( czr_fn_get_thumb_info( $post_id, $custom_thumb_id ) );
+    extract( czr_fn_maybe_set_and_get_thumb_info( $post_id, $custom_thumb_id ) );
     if ( ! apply_filters( 'tc_has_thumb_info', isset($_thumb_id) && false != $_thumb_id && ! is_null($_thumb_id) ) )
       return array();
 
@@ -1065,7 +1067,11 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
     if ( isset($image[3]) && false == $image[3] && 'tc_rectangular_size' == $tc_thumb_size )
       $tc_thumb_size          = 'slider';
 
-    $_img_attr['class']     = sprintf( 'attachment-%1$s tc-thumb-type-%2$s' , $tc_thumb_size , $_thumb_type );
+    $_img_attr['class']     = sprintf(
+      'attachment-%1$s tc-thumb-type-%2$s czr-img',
+      $tc_thumb_size ,
+      $_thumb_type
+    );
     //Add the style value
     $_style                 = apply_filters( 'czr_post_thumb_inline_style' , '', $image, $_filtered_thumb_size );
     if ( $_style )
@@ -1087,12 +1093,14 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
       add_filter( 'wp_get_attachment_image_attributes', 'czr_fn_remove_srcset_attr' );
     }
     //get the thumb html
-    if ( is_null($custom_thumb_id) && has_post_thumbnail( $post_id ) )
+    if ( is_null($custom_thumb_id) && has_post_thumbnail( $post_id ) ) {
       //get_the_post_thumbnail( $post_id, $size, $attr )
       $tc_thumb = get_the_post_thumbnail( $post_id , $tc_thumb_size , $_img_attr);
-    else
+    }
+    else {
       //wp_get_attachment_image( $attachment_id, $size, $icon, $attr )
       $tc_thumb = wp_get_attachment_image( $_thumb_id, $tc_thumb_size, false, $_img_attr );
+    }
 
     //get height and width if not empty
     if ( ! empty($image[1]) && ! empty($image[2]) ) {
@@ -1116,7 +1124,7 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
 * inside loop
 * @return array( "_thumb_id" , "_thumb_type" )
 */
-function czr_fn_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
+function czr_fn_maybe_set_and_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
     $_post_id     = is_null($_post_id) ? get_the_ID() : $_post_id;
     $_meta_thumb  = get_post_meta( $_post_id , 'tc-thumb-fld', true );
     //get_post_meta( $post_id, $key, $single );
@@ -1140,22 +1148,13 @@ function czr_fn_get_thumb_info( $_post_id = null, $_thumb_id = null ) {
 * EXPOSED HELPERS / SETTERS
 **************************/
 /*
-* @return string
-*/
-function czr_fn_get_single_thumbnail_position() {
-    $_exploded_location     = explode( '|', esc_attr( czr_fn_opt( 'tc_single_post_thumb_location' ) ) );
-    $_hook                  = isset( $_exploded_location[0] ) ? $_exploded_location[0] : '__before_content';
-    return $_hook;
-}
-
-/*
 * @return bool
 */
 function czr_fn_has_thumb( $_post_id = null , $_thumb_id = null ) {
     $_post_id  = is_null($_post_id) ? get_the_ID() : $_post_id;
 
     //try to extract (OVERWRITE) $_thumb_id and $_thumb_type
-    extract( czr_fn_get_thumb_info( $_post_id, $_thumb_id ) );
+    extract( czr_fn_maybe_set_and_get_thumb_info( $_post_id, $_thumb_id ) );
     return apply_filters( 'tc_has_thumb', wp_attachment_is_image($_thumb_id) && isset($_thumb_id) && false != $_thumb_id && ! empty($_thumb_id) );
 }
 

@@ -3684,15 +3684,28 @@ section[class^="post-"] .gallery.row {
 .js-centering.entry-media__holder img,
 .js-centering.entry-media__wrapper img {
   opacity: 0;
-  -webkit-transition: opacity 0.5s ease;
-  -o-transition: opacity 0.5s ease;
-  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.35s ease;
+  -o-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease;
 }
 
-.no-js img,
-img.h-centered,
-img.v-centered,
-img.opacity-forced {
+.tc-grid-figure img.h-centered, .tc-grid-figure img.v-centered, .tc-grid-figure img.opacity-forced,
+.widget-front .tc-thumbnail img.h-centered,
+.widget-front .tc-thumbnail img.v-centered,
+.widget-front .tc-thumbnail img.opacity-forced,
+.fpc-widget-front .fp-thumb-wrapper img.h-centered,
+.fpc-widget-front .fp-thumb-wrapper img.v-centered,
+.fpc-widget-front .fp-thumb-wrapper img.opacity-forced,
+.js-centering.entry-media__holder img.h-centered,
+.js-centering.entry-media__holder img.v-centered,
+.js-centering.entry-media__holder img.opacity-forced,
+.js-centering.entry-media__wrapper img.h-centered,
+.js-centering.entry-media__wrapper img.v-centered,
+.js-centering.entry-media__wrapper img.opacity-forced {
+  opacity: 1;
+}
+
+.no-js img {
   opacity: 1 !important;
 }
 
