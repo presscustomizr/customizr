@@ -96,6 +96,28 @@ class CZR_featured_pages_model_class extends CZR_Model {
   }
 
 
+  /*
+  * Fired just before the view is rendered
+  * @hook: pre_rendering_view_{$this -> id}, 9999
+  */
+  function czr_fn_setup_late_properties() {
+      /*
+      * Allow img parsing
+      * E.g. for the smartloading
+      * The filter callback is added at wp_head in CZR___::__construct
+      */
+      if ( !is_array( $this->featured_pages ) )
+        return;
+
+      foreach ( $this->featured_pages as &$featured_page ) {
+          if ( isset( $featured_page[ 'fp_img' ] ) ) {
+            //this filter is defined is primarily used in czr_fn_get_thumbnail_model()
+            $featured_page[ 'fp_img' ] = apply_filters( 'czr_thumb_html', $featured_page[ 'fp_img' ], $requested_size = 'tc-thumb', $post_id = null , $custom_thumb_id = null, $_img_attr = null, $tc_thumb_size = null );
+          }
+      }
+
+  }
+
   function czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $show_thumb ) {
         $featured_pages = array();
 
