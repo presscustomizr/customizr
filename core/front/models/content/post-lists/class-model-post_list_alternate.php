@@ -107,19 +107,17 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       */
       function czr_fn_get_preset_model() {
 
-            $content_wrapper_width = czr_fn_get_in_content_width_class();
-
             $_preset = array(
-                  'thumb_alternate'       => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
-                  'thumb_position'        => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
-                  'show_thumb'            => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
-                  'content_wrapper_width' => $content_wrapper_width,
-                  'excerpt_length'        => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
-                  'contained'             => false,
-                  'cover_sections'        => true,
-                  'wrapped'               => true,
-                  'image_centering'       => 'js-centering',
-                  'thumb_shape_effect'    => strstr(  esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape' ) ),'rounded' ) ? czr_fn_opt( 'tc_post_list_thumb_shape' ) : 'regular'
+                  'thumb_alternate'         => esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) ),
+                  'thumb_position'          => esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) ),
+                  'show_thumb'              => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
+                  'content_wrapper_breadth' => czr_fn_get_content_breadth(),
+                  'excerpt_length'          => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
+                  'contained'               => false,
+                  'cover_sections'          => true,
+                  'wrapped'                 => true,
+                  'image_centering'         => 'js-centering',
+                  'thumb_shape_effect'      => strstr(  esc_attr( czr_fn_opt( 'tc_post_list_thumb_shape' ) ),'rounded' ) ? czr_fn_opt( 'tc_post_list_thumb_shape' ) : 'regular'
             );
 
             return $_preset;
@@ -135,17 +133,22 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       function czr_fn_extend_params( $model = array() ) {
 
             //merge with args
-            $model                            = parent::czr_fn_extend_params( $model );
+            $model                              = parent::czr_fn_extend_params( $model );
+
+            $model[ 'content_wrapper_breadth' ] = in_array( $model[ 'content_wrapper_breadth' ], array( 'full', 'semi-narrow', 'narrow' ) ) ?
+                  $model[ 'content_wrapper_breadth' ] : 'full';
+
+
+            $model[ 'post_list_layout' ]        = $this -> czr_fn__get_post_list_layout( $model );
 
             //build properties depending on merged defaults and args
+            $model[ 'has_narrow_layout' ]       = 'narrow' == $model[ 'post_list_layout' ]['content_wrapper_breadth'];
 
-            $model[ 'has_narrow_layout' ]     = in_array( 'narrow', $model['content_wrapper_width'] );
 
-            $model[ 'post_list_layout' ]      = $this -> czr_fn__get_post_list_layout( $model );
+            $model[ 'has_post_media']           = $model[ 'show_thumb' ];
 
-            $model[ 'has_post_media']         = $model[ 'show_thumb' ];
+            $this->post_class[]                 = $model[ 'show_thumb' ] ? 'has-media' : 'no-media';
 
-            $this->post_class[]               = $model[ 'show_thumb' ] ? 'has-media' : 'no-media';
 
             return $model;
       }
@@ -158,7 +161,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       */
       function czr_fn_get_element_class() {
 
-            $_classes = is_array( $this->content_wrapper_width ) ? $this->content_wrapper_width : array();
+            $_classes = $this->content_wrapper_breadth ? array( $this->content_wrapper_breadth ) : array();
 
             if ( ! empty( $this->contained ) )
                   $_classes[] = 'container';
@@ -320,7 +323,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   $post_info_key           = 'standard';
 
 
-            $current_post_info             = self::$default_post_list_layout[$post_info_key ];
+            $current_post_info             = self::$default_post_list_layout[ $post_info_key ];
 
 
             $media_info                    = $current_post_info[ isset( $current_post_info['tcthumb'] ) && $thumb_shape ? 'tcthumb' : 'default' ]['media'];
@@ -359,7 +362,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             if ( $has_post_media ) {
 
-                  $media_layout   = $media_info['col_widths'][$_layout['content_wrapper_width']];
+                  $media_layout   = $media_info['col_widths'][$_layout['content_wrapper_breadth']];
 
                   /*
                   * $is_full_image: Gallery and images (with no text) should
@@ -508,20 +511,11 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             //since 3.4.16 the alternate layout is not available when the position is top or bottom
             $_layout[ 'alternate' ]        = ! ( 0 == $model[ 'thumb_alternate' ]  || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
 
-            $_content_wrapper_width       = $model[ 'content_wrapper_width' ];
-            $_content_wrapper_width       = is_array( $_content_wrapper_width ) && in_array( $_content_wrapper_width[0], array( 'full', 'semi-narrow', 'narrow' ) ) ?
-                  $_content_wrapper_width[0] : 'full';
-
+            $_content_wrapper_breadth = $model[ 'content_wrapper_breadth' ];
             if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
-                  $_content_wrapper_width     = 'narrow';
+                  $_content_wrapper_breadth = 'narrow';
 
-
-            /*
-            $_layout['content'] = self::$default_post_list_layout['content'][$_content_wrapper_width ];
-            $_layout['media']   = self::$default_post_list_layout['media'][$_content_wrapper_width ];
-            */
-
-            $_layout[ 'content_wrapper_width' ] = $_content_wrapper_width;
+            $_layout[ 'content_wrapper_breadth' ] = $_content_wrapper_breadth;
 
             return $_layout;
 
