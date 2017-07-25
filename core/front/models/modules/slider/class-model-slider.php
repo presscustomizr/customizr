@@ -658,7 +658,7 @@ class CZR_slider_model_class extends CZR_Model {
     //custom css for the slider loader
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
 
-      $_slider_loader_src = apply_filters( 'czr_slider_loader_src' , sprintf( '%1$s/%2$s' , CZR_BASE_URL . CZR_ASSETS_PREFIX, 'img/slider-loader.gif') );
+      $_slider_loader_src = apply_filters( 'czr_slider_loader_src' , sprintf( '%1$s%2$s' , CZR_FRONT_ASSETS_URL, 'img/slider-loader.gif') );
       //we can load only the gif, or use it as fallback for old browsers (.no-csstransforms3d)
       if ( ! apply_filters( 'czr_slider_loader_gif_only', false ) ) {
         $_slider_loader_gif_class  = '.no-csstransforms3d';
