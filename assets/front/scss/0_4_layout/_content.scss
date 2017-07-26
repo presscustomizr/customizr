@@ -29,11 +29,8 @@
 
 //formatting
 ol {
-  li li {
-    margin-left: $base-line-height;
-  }
   counter-reset: item;
-  li:before {
+  > li:before {
     content: counters(item, ".") ".";
     counter-increment: item;
     padding-right: $base-line-height/2;
@@ -46,7 +43,7 @@ ul:not(.socials):not(.tags) {
 }
 ol, ul {
   ol, ul {
-    margin-left: $base-line-height * .8;
+    margin-left: $base-line-height;
   }
 }
 
