@@ -177,7 +177,7 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
                             //to keep the selected cropped size
                             'dst_width'  => false,
                             'dst_height'  => false,
-                            'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
+                            //'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
           ),
           //force logo resize 250 * 85
           'tc_logo_resize'  => array(
