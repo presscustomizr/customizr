@@ -42,6 +42,11 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+* Imp: code improvements related to the post lists layout dependency
+* Fix: fix fp noy showing up in old php versions
+* Fix: Fix slider loader gif path can be parsed by Google bots
+* Fix: Potential submenu viewport overflow in firefox when fading fixes #1083
+
 = 4.0.3 July 24th 2017 =
 * Fix: fix grid 1 column max height fixes #1088
 * Fix: submenus not sensible to the hover while fading + correctly handle the header z-index (user option)

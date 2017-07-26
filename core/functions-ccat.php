@@ -742,7 +742,36 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
 
 
 
+/**
+ * Check on if there's any header/sidenav menu location assigned
+ * Locations are:
+ * 1) primary navbar menu, or sidenav menu => 'main'
+ * 2) topbar menu => 'topbar'
+ * 2) secondary navbar menu => 'secondary'
+ * @return bool
+ */
+function czr_fn_is_there_any_visible_menu_location_assigned() {
 
+    $menu_locations = array(
+        //location => condition
+        'main'        => true,
+        'topbar'      => 1 == czr_fn_opt( 'tc_header_desktop_topbar' ),
+        'secondary'   => true
+    );
+
+    $menu_assigned = false;
+
+    foreach ( $menu_locations as $menu_location => $condition ) {
+        if ( ! ( $condition && has_nav_menu( $menu_location ) ) ) {
+            continue;
+        }
+
+        $menu_assigned = true;
+        break;
+    }
+
+    return $menu_assigned;
+}
 
 
 
