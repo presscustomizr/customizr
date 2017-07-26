@@ -199,13 +199,21 @@
         @include transition( all 0.25s ease-in-out );
         @include transform( translate( 0, -20px ) );        
       }
-      //because of the fact the submenu is displayed
-      //it might still grab the the hover while fading out
-      //let's avoid this resetting its pointer-events
-      //when the li parent hasn't the show class
-      &:not(.show) ul {
-        pointer-events: none;
-        cursor: $cursor-disabled;
+
+      &:not(.show) {
+        //temporary fix for Firefox : https://github.com/presscustomizr/customizr/issues/1083
+        //the perspective thing seems to not work with this browser
+        //need further investigation
+        overflow: hidden;
+        
+        //because of the fact the submenu is displayed
+        //it might still grab the the hover while fading out
+        //let's avoid this resetting its pointer-events
+        //when the li parent hasn't the show class
+        ul {
+          pointer-events: none;
+          cursor: $cursor-disabled;
+        }
       }
     }
 
