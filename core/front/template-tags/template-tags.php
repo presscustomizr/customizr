@@ -200,7 +200,7 @@ function czr_fn_add_menu_button() {
         czr_fn_edit_button(
             array(
               'class' => 'add-menu-button',
-              'link'  => czr_fn_get_customizer_url( array( 'section' => 'menu_locations' ) ),
+              'link'  => czr_fn_get_customizer_url( array( 'panel' => 'nav_menus' ) ),
               'text'  => __( 'Add a menu', 'customizr' ),
               'title' => __( 'open the customizer menu section', 'customizr'),
             )

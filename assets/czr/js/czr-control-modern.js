@@ -11064,6 +11064,22 @@ $.extend( CZRLayoutSelectMths , {
                             },
                     },
                     {
+                            dominus : 'tc_gc_enabled',
+                            servi   : [
+                              'tc_gc_limit_excerpt_length',
+                              'tc_gc_effect',
+                              'tc_gc_title_caps',
+                              'tc_gc_transp_bg',
+                              'tc_gc_random',
+                              'tc_gc_title_location',
+                              'tc_gc_title_color',
+                              'tc_gc_title_custom_color'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to) && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) )();
+                            },
+                    },
+                    {
                             dominus : 'tc_post_list_grid',
                             servi   : [
                               'tc_grid_columns',
@@ -11078,11 +11094,39 @@ $.extend( CZRLayoutSelectMths , {
                               'tc_grid_num_words',
                               'tc_post_list_thumb_position',
                               'tc_post_list_thumb_alternate',
+                              'tc_post_list_thumb_shape',
+
                               'tc_post_list_grid',//trick, see the actions
+
+                              'tc_post_list_thumb_placeholder',
+
+                              'tc_post_list_use_attachment_as_thumb',
+                              'tc_masonry_columns',
+                              'tc_gc_enabled',
+                              'tc_gc_limit_excerpt_length',
+                              'tc_gc_effect',
+                              'tc_gc_title_caps',
+                              'tc_gc_transp_bg',
+                              'tc_gc_random',
+                              'tc_gc_title_location',
+                              'tc_gc_title_color',
+                              'tc_gc_title_custom_color'
                             ],
                             visibility : function( to, servusShortId ) {
                                   if ( 'tc_post_list_grid' == servusShortId )
                                       return true;
+                                  if ( 'tc_masonry_columns' == servusShortId )
+                                      return 'masonry' == to;
+                                  if (  -1 != servusShortId.indexOf( 'tc_gc_' ) ) {
+                                      if ( 'tc_gc_enabled' == servusShortId ) {
+                                          return 'grid' == to;
+                                      } else {
+                                          return 'grid' == to && '1' == api( api.CZR_Helpers.build_setId( 'tc_gc_enabled' ) )();
+                                      }
+                                  }
+                                  if ( 'tc_post_list_thumb_placeholder' == servusShortId ) {
+                                      return 'grid' == to;
+                                  }
 
                                   if ( _.contains( serverControlParams.gridDesignControls, servusShortId ) ) {
                                       _bool =  $('.tc-grid-toggle-controls').hasClass('open') && 'grid' == to;
@@ -11092,8 +11136,13 @@ $.extend( CZRLayoutSelectMths , {
                                       }
                                       return _bool;
                                   }
-                                  if ( 0 > servusShortId.indexOf('grid') ) {
-
+                                  if ( 'tc_post_list_thumb_position' == servusShortId || 'tc_post_list_thumb_alternate' == servusShortId || 'tc_post_list_thumb_shape' == servusShortId ) {
+                                    return 'alternate' == to && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) )() ) ;
+                                  }
+                                  if ( 'tc_post_list_use_attachment_as_thumb' == servusShortId ) {
+                                    return -1 == to.indexOf('plain');
+                                  }
+                                  if ( -1 == servusShortId.indexOf('grid') ) {
                                     return 'grid' != to;
                                   }
                                   return 'grid' == to;
