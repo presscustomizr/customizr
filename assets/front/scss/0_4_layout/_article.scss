@@ -577,7 +577,12 @@ section.post-content { margin-top:0; }
 .wp-caption-text {
   @extend .small;
   color: $grey;
-  text-align: left;
+  @if ( true == $is_rtl ) {
+    text-align: right;
+  }
+  @else {
+    text-align: left;
+  }
   margin: $base-line-height 0;
   padding: 0;
   &::before {
