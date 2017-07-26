@@ -36,6 +36,12 @@ $secondary-color-dark   : $grey;
   }
   // end overlays skins
 
+  //menu button dark
+  @if ( 'dark' == $skin ) {
+    .add-menu-button {
+      color: $primary-color; @include transition
+    }
+  }
 
   #tc-sn {
     outline: 1px solid rgba($primary-color, 0.09);

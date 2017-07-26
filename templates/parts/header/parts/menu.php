@@ -9,7 +9,7 @@
     'theme_location'  => czr_fn_get_property( 'theme_location' ),
     'container'       => null,
     'menu_class'      => czr_fn_get_property( 'menu_class' ),
-    'fallback_cb'     => czr_fn_isprevdem() ? czr_fn_get_property( 'fallback_cb' ) : '',
+    'fallback_cb'     => czr_fn_get_property( 'fallback_cb' ),
     'walker'          => czr_fn_get_property( 'walker' ),
     'menu_id'         => czr_fn_get_property( 'menu_id' ),
     'link_before'     => '<span>',

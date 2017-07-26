@@ -24,7 +24,7 @@ class CZR_menu_model_class extends CZR_Model {
           'menu_id'             => 'main-menu',
           'def_menu_class'      => array( 'nav' ),
           'menu_class'          => array(),
-          'fallback_cb'         => array( $this, 'czr_fn_page_menu' ),
+          'fallback_cb'         => czr_fn_isprevdem() ? array( $this, 'czr_fn_page_menu' ) : '',
           'walker'              => '',
           'dropdown_type'       => esc_attr( czr_fn_opt( 'tc_menu_type' ) )
       );
@@ -87,7 +87,6 @@ class CZR_menu_model_class extends CZR_Model {
                     'theme_location'      => 'secondary',
                     'menu_id'             => 'secondary-nav',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
-
 
                 );
 
@@ -171,6 +170,24 @@ class CZR_menu_model_class extends CZR_Model {
 
     }
 
+
+    /*
+    * @echo add menu button
+    */
+    function czr_fn_add_menu_button() {
+        czr_fn_edit_button(
+            array(
+              'class' => 'add-menu-button',
+              'link'  => czr_fn_get_customizer_url( array( 'section' => 'menu_locations' ) ),
+              'text'  => __( 'Add a menu', 'customizr' ),
+              'title' => __( 'open the customizer menu section', 'customizr'),
+            )
+        );
+    }
+
+
+
+
     /*
     * Fired just before the view is rendered
     * @hook: pre_rendering_view_{$this -> id}, 9999
@@ -207,7 +224,6 @@ class CZR_menu_model_class extends CZR_Model {
 
         $this->czr_fn_update( compact( 'walker', 'menu_class', 'element_class' ) );
     }
-
 
 
 
