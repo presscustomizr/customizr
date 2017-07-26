@@ -384,7 +384,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_fn_pll_strings_setup() {
         // grab theme options
-        $tc_options = czr_fn__f('__options');
+        $tc_options = czr_fn_get_theme_options();
         // grab settings map, useful for some options labels
         $tc_settings_map = czr_fn_get_customizer_map( $get_default = true );
         $tc_controls_map = $tc_settings_map['add_setting_control'];
@@ -599,7 +599,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           $tc_wpml_options     = array_keys($tc_wpml_option_name);
 
           // grab theme options
-          $tc_options = czr_fn__f('__options');
+          $tc_options = czr_fn_get_theme_options();
 
           // build array of options to translate
           foreach ( $tc_wpml_options as $tc_wpml_option )
