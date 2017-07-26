@@ -43,7 +43,6 @@ The exceptions to this license are as follows:
 
 ## Changelog
 = 4.0.4 July 26th 2017 =
-* Imp: code improvements related to the post lists layout dependency
 * Fix: fix fp noy showing up in old php versions
 * Fix: Fix slider loader gif path can be parsed by Google bots
 * Fix: Potential submenu viewport overflow in firefox when fading fixes #1083
@@ -51,9 +50,11 @@ The exceptions to this license are as follows:
 * Fix: same indentation for ul and ol
 * Fix: fix sidebars list widgets indetation + various rtl fixes
 * Fix: CSS handling of screen reader text fixes #1103 bullet 3
+* Imp: code improvements related to the post lists layout dependency
 * Imp: add menu button if not menu visible in the header
 * Imp: allow loading magnific-popup js in footer and minified
 * Add: add magnific popup js minified version
+* Add: an option to make the dark overlay optional in the modern style slider
 
 = 4.0.3 July 24th 2017 =
 * Fix: fix grid 1 column max height fixes #1088
