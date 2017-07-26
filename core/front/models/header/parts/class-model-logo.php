@@ -23,7 +23,7 @@ class CZR_logo_model_class extends CZR_Model {
         $atts[ 'logo_width' ] ? sprintf( 'width="%1$s"', $atts[ 'logo_width' ] ) : '',
         $atts[ 'logo_height' ] ? sprintf( 'height="%1$s"', $atts[ 'logo_height' ] ) : '',
         //( 1 == $logo_resize ) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
-        ( 1 == $logo_resize ) ? sprintf( 'style="max-height:%2$spx"',
+        ( 1 == $logo_resize ) ? sprintf( 'style="max-width:%1$spx;max-height:%2$spx"',
                                 apply_filters( 'czr_logo_max_width', 250 ),
                                 apply_filters( 'czr_logo_max_height', 100 )
                                 ) : '',
