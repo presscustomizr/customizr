@@ -139,11 +139,11 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
                   $model[ 'content_wrapper_breadth' ] : 'full';
 
 
+            $model[ 'has_narrow_layout' ]       = 'narrow' == $model['content_wrapper_breadth'];
+
             $model[ 'post_list_layout' ]        = $this -> czr_fn__get_post_list_layout( $model );
 
             //build properties depending on merged defaults and args
-            $model[ 'has_narrow_layout' ]       = 'narrow' == $model[ 'post_list_layout' ]['content_wrapper_breadth'];
-
 
             $model[ 'has_post_media']           = $model[ 'show_thumb' ];
 
@@ -362,7 +362,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
 
             if ( $has_post_media ) {
 
-                  $media_layout   = $media_info['col_widths'][$_layout['content_wrapper_breadth']];
+                  $media_layout   = $media_info['col_widths'][ $this->content_wrapper_breadth ];
 
                   /*
                   * $is_full_image: Gallery and images (with no text) should
@@ -510,12 +510,6 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             $_layout[ 'show_thumb_first' ] = in_array( $_layout['position'] , array( 'top', 'left') );
             //since 3.4.16 the alternate layout is not available when the position is top or bottom
             $_layout[ 'alternate' ]        = ! ( 0 == $model[ 'thumb_alternate' ]  || in_array( $_layout['position'] , array( 'top', 'bottom') ) );
-
-            $_content_wrapper_breadth = $model[ 'content_wrapper_breadth' ];
-            if ( in_array( $_layout['position'] , array( 'top', 'bottom') ) )
-                  $_content_wrapper_breadth = 'narrow';
-
-            $_layout[ 'content_wrapper_breadth' ] = $_content_wrapper_breadth;
 
             return $_layout;
 
