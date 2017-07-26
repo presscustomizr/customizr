@@ -1046,13 +1046,6 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
         //do_action( "__before_{$this -> model -> id}" ); <= DO WE REALLY NEED THOSE ?
 
-        $czr_fn_print_debug =  ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can( 'edit_theme_options' );
-
-        if ( $czr_fn_print_debug ) {
-            echo "<!-- HOOK CONTENT HERE : __before_{$this -> model -> id} -->";
-            echo "<!-- START RENDERING VIEW ID : {$this -> model -> id} -->";
-        }
-
         //ADD ATTRIBUTES TO THE WRAPPER
         /* Maybe merge debug info into the model element attributes */
         $this -> model -> element_attributes =  join( ' ', array_filter( array(
@@ -1063,11 +1056,6 @@ if ( ! class_exists( 'CZR_View' ) ) :
 
         $this -> czr_fn_render();
 
-        if ( $czr_fn_print_debug ) {
-            echo "<!-- END OF RENDERING VIEW ID : {$this -> model -> id} -->";
-            echo "<!-- HOOK CONTENT HERE : __after_{$this -> model -> id} -->";
-        }
-        //do_action( "__after_{$this -> model -> id}" ); <= DO WE REALLY NEED THOSE ?
 
         // (the view's model is passed by reference)
         do_action_ref_array( 'post_rendering_view', array(&$this -> model) );
