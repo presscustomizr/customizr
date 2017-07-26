@@ -178,6 +178,9 @@
     flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
   }
 
+  .add-menu-button {
+    margin: 10px 0;
+  }
 }
 
 /*
