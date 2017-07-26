@@ -7,6 +7,9 @@
     @include filter($black, $white, 0.5);
     + .slider-text { color: $white; }
   }
+  .czr-has-no-dark-overlay .filter:before {
+      content :none;
+  }
 }
 
 

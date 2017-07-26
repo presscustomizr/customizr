@@ -3763,6 +3763,10 @@ section[class^="post-"] .gallery.row {
   color: #fff;
 }
 
+.section-slider .czr-has-no-dark-overlay .filter:before {
+  content: none;
+}
+
 .slider-text > h2 {
   margin: 0;
   line-height: 1.1;

@@ -161,6 +161,7 @@ class CZR_utils_settings_map {
                   'czr_fn_header_mobile_option_map',
                   'czr_fn_navigation_option_map',
                   //CONTENT
+                  'czr_fn_front_page_option_map',
                   'czr_fn_post_metas_option_map',
                   'czr_fn_post_list_option_map',
                   'czr_fn_comment_option_map',
@@ -789,6 +790,27 @@ class CZR_utils_settings_map {
       * PANEL : CONTENT
       *******************************************************************************************************
       ******************************************************************************************************/
+
+      /*-----------------------------------------------------------------------------------------------------
+                                    FRONT PAGE SECTION
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_front_page_option_map( $_map, $get_default = null ){
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_home_slider_overlay',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+            return $_map;
+      }
+
       /*-----------------------------------------------------------------------------------------------------
                                     POST METAS SECTION
       ------------------------------------------------------------------------------------------------------*/
