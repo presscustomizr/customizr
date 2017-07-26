@@ -18,26 +18,25 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * return model preset array()
   */
   function czr_fn_get_preset_model() {
-    $content_wrapper_width     = czr_fn_get_in_content_width_class();
 
     $_preset = array(
-      'grid_columns'           => esc_attr( czr_fn_opt( 'tc_grid_columns') ),
-      'grid_title_num_words'   => esc_attr( czr_fn_opt( 'tc_grid_num_words') ),
-      'grid_icons'             => esc_attr( czr_fn_opt( 'tc_grid_icons') ),
-      'grid_expand_featured'   => esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ),
-      'show_thumb'             => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
-      'grid_bottom_border'     => esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ),
-      'grid_shadow'            => esc_attr( czr_fn_opt( 'tc_grid_shadow') ),
-      'grid_hover_move'        => true,
-      'grid_thumb_shape'       => esc_attr( czr_fn_opt( 'tc_grid_thumb_shape') ),
-      'use_thumb_placeholder'  => esc_attr( czr_fn_opt( 'tc_post_list_thumb_placeholder' ) ),
-      'excerpt_length'         => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
-      'wrapped'                => true,
-      'masonry'                => false,
-      'contained'              => false,
-      'title_in_caption_below' => true,
-      'content_wrapper_width'  => czr_fn_get_in_content_width_class(),
-      'image_centering'       => 'js-centering',
+      'grid_columns'             => esc_attr( czr_fn_opt( 'tc_grid_columns') ),
+      'grid_title_num_words'     => esc_attr( czr_fn_opt( 'tc_grid_num_words') ),
+      'grid_icons'               => esc_attr( czr_fn_opt( 'tc_grid_icons') ),
+      'grid_expand_featured'     => esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ),
+      'show_thumb'               => esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) ),
+      'grid_bottom_border'       => esc_attr( czr_fn_opt( 'tc_grid_bottom_border') ),
+      'grid_shadow'              => esc_attr( czr_fn_opt( 'tc_grid_shadow') ),
+      'grid_hover_move'          => true,
+      'grid_thumb_shape'         => esc_attr( czr_fn_opt( 'tc_grid_thumb_shape') ),
+      'use_thumb_placeholder'    => esc_attr( czr_fn_opt( 'tc_post_list_thumb_placeholder' ) ),
+      'excerpt_length'           => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
+      'wrapped'                  => true,
+      'masonry'                  => false,
+      'contained'                => false,
+      'title_in_caption_below'   => true,
+      'content_wrapper_breadth'  => czr_fn_get_content_breadth(),
+      'image_centering'          => 'js-centering',
     );
 
     return $_preset;
@@ -50,9 +49,14 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-    $this -> queried_id           = czr_fn_get_id();
+    $model                              = parent::czr_fn_extend_params( $model );
+    //layout dependency
+    $model[ 'content_wrapper_breadth' ] = in_array( $model[ 'content_wrapper_breadth' ], array('full', 'semi-narrow', 'narrow' ) ) ? $model[ 'content_wrapper_breadth' ] : 'full';
 
-    return parent::czr_fn_extend_params( $model );
+    $this -> queried_id                 = czr_fn_get_id();
+
+    //layout dependency
+    return $model;
   }
 
   /*
@@ -404,10 +408,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_get_thumb_size_name( $section_cols ){
     //layout dependency
-    //can be array( 'narrow' (2 sidebars) | 'semi-narrow'(1 sidebar) | 'full' (no sidebars) );
-    $content_wrapper_width = is_array( $this->content_wrapper_width ) && !empty( $this->content_wrapper_width ) ? $this->content_wrapper_width[0] : 'full';
-
-    return ( 1 == $section_cols && 'narrow' != $content_wrapper_width) ? 'tc-grid-full' : 'tc-grid';
+    return ( 1 == $section_cols && 'narrow' != $this->content_wrapper_breadth ) ? 'tc-grid-full' : 'tc-grid';
   }
 
   /**
@@ -418,10 +419,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
   */
   function czr_fn_get_grid_figure_aspect_ratio_class( $section_cols ){
     //layout dependency
-    //can be array( 'narrow' (2 sidebars) | 'semi-narrow'(1 sidebar) | 'full' (no sidebars) );
-    $content_wrapper_width = is_array( $this->content_wrapper_width ) && !empty( $this->content_wrapper_width ) ? $this->content_wrapper_width[0] : 'full';
-
-    return ( 1 == $section_cols && 'narrow' != $content_wrapper_width ) ? 'czr__r-wGOC' : 'czr__r-wGR';
+    return ( 1 == $section_cols && 'narrow' != $this->content_wrapper_breadth ) ? 'czr__r-wGOC' : 'czr__r-wGR';
   }
 
   /*
@@ -768,21 +766,18 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       );
 
       //layout dependency
-      //can be array( 'narrow' (2 sidebars) | 'semi-narrow'(1 sidebar) | 'full' (no sidebars) );
-      $content_wrapper_width = is_array( $this->content_wrapper_width ) && !empty( $this->content_wrapper_width ) ? $this->content_wrapper_width[0] : 'full';
-
-
-      $_contentwidth_aspectratio_map = array(
+      //$this->content_wrapper_breadth can be 'narrow' (2 sidebars) | 'semi-narrow'(1 sidebar) | 'full' (no sidebars);
+      $_contentbreadth_aspectratio_map = array(
           // 'width (full||semi-narrow||narrow) => ' array( xl, lg, md )
           'full'         => array( '', '', $default_1_column_aspect_ratio ),
           'semi-narrow'  => array( $default_1_column_aspect_ratio, '', '' ),
           'narrow'       => array( '', '', '' )
       );
 
-      if ( ! array_key_exists( $content_wrapper_width, $_contentwidth_aspectratio_map ) )
+      if ( ! array_key_exists( $this->content_wrapper_breadth, $_contentbreadth_aspectratio_map ) )
           return $_css;
 
-      $aspect_ratio_map   = $_contentwidth_aspectratio_map[ $content_wrapper_width ];
+      $aspect_ratio_map   = $_contentbreadth_aspectratio_map[ $this->content_wrapper_breadth ];
       $media_queries      = $this -> czr_fn_get_grid_media_queries();
 
       $_media_queries_css = '';
@@ -814,6 +809,5 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
 
       return $_css;
   }
-
 
 }
