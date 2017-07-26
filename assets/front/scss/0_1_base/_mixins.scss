@@ -352,30 +352,6 @@
   }
 }
 
-// Rows CSS based
-// This will be not needed anymore with the flex :D
-@mixin make-grid-smart-rows( $items: $grid-columns, $offset : 0, $breakpoints: $grid-breakpoints ) {
-  @each $breakpoint in map-keys($breakpoints) {
-
-    $infix    : breakpoint-infix($breakpoint, $breakpoints);
-    $suffix   : if($offset == 0, "", "-#{$offset}");
-    $n_offset : if($offset == 0, "1", "#{$offset+1}");
-
-    //case sticky expanded
-    @include media-breakpoint-only($breakpoint, $breakpoints) {
-
-      @for $i from 1 through $items {
-        $nth_child : $grid-columns/$i;
-        @if ( round($nth-child) == $nth_child ) {
-          .czr-smart-row#{$suffix} .col#{$infix}-#{$i}:nth-child(#{$nth-child}n+#{$n_offset}) {
-            clear: left; //will be right for RTL
-          }
-        }
-      }
-    }
-  }
-}
-
 //hover focus bp based
 @mixin hover {
   // TODO: re-enable along with mq4-hover-shim
@@ -438,7 +414,65 @@
   }
 }
 
+// Only display content to screen readers
+//
+// See: http://a11yproject.com/posts/how-to-hide-content
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+//
+// Useful for "Skip to main content" links; see https://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+//
+// Credit: HTML5 Boilerplate
+
+@mixin sr-only-focusable {
+  &:active,
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+  }
+}
+//end taken from bootstrap
+
 // Custom mixins
+
+// Rows CSS based
+// This will be not needed anymore with the flex :D
+@mixin make-grid-smart-rows( $items: $grid-columns, $offset : 0, $breakpoints: $grid-breakpoints ) {
+  @each $breakpoint in map-keys($breakpoints) {
+
+    $infix    : breakpoint-infix($breakpoint, $breakpoints);
+    $suffix   : if($offset == 0, "", "-#{$offset}");
+    $n_offset : if($offset == 0, "1", "#{$offset+1}");
+
+    //case sticky expanded
+    @include media-breakpoint-only($breakpoint, $breakpoints) {
+
+      @for $i from 1 through $items {
+        $nth_child : $grid-columns/$i;
+        @if ( round($nth-child) == $nth_child ) {
+          .czr-smart-row#{$suffix} .col#{$infix}-#{$i}:nth-child(#{$nth-child}n+#{$n_offset}) {
+            clear: left; //will be right for RTL
+          }
+        }
+      }
+    }
+  }
+}
 
 @mixin czr-valign() {
   @include transform( translate(0, 50%) );
