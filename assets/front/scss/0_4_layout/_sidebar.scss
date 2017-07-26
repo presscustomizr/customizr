@@ -53,8 +53,12 @@
       width: $base-line-height*4;
       height:2px;
       bottom:0;
-      left:0;
-
+      @if ( true == $is_rtl ) {
+        right: 0;
+      }
+      @else {
+        left: 0;
+      }
     }
   }
 
@@ -96,34 +100,50 @@
   }
 }
 
+
 //@media screen and (min-width: 768px)
 @include media-breakpoint-up(md) {
   @if ( true == $is_rtl ) {
 
-      .sidebar.right  {
+      .tc-sidebar.right  {
         padding-right: $base-line-height*2;
       }
-      .sidebar.left {
+      .tc-sidebar.left {
         padding-left: $base-line-height*2;
-        .widget-title::after {
-          right:0;
-          left:auto;
-        }
+
       }
 
+      .tc-sidebar.text-md-left {
+        ol, ul {
+          ol, ul {
+            margin-left: $base-line-height;
+          }
+        }
+        .widget-title::after {
+          left:0;
+          right:auto;
+        }
+      }
   }
   @else {
 
-      .sidebar.left  {
+      .tc-sidebar.left  {
         padding-right: $base-line-height*2;
       }
-      .sidebar.right {
+      .tc-sidebar.right {
         padding-left: $base-line-height*2;
+      }
+
+      .tc-sidebar.text-md-right {
+        ol, ul {
+          ol, ul {
+            margin-right: $base-line-height;
+          }
+        }
         .widget-title::after {
           right:0;
           left:auto;
         }
       }
-
   }
 }
