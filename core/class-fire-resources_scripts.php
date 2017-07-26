@@ -71,8 +71,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      //magnific popup
                      'tc-mfp' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'jquery-magnific-popup.js' ),
-                          'dependencies' => array( 'jquery' )
+                          'files' => array( 'jquery-magnific-popup.js', 'jquery-magnific-popup.min.js' ),
+                          'dependencies' => array( 'jquery' ),
+                          'in_footer' => true,
                      ),
                      //flickity
                      'tc-flickity' => array(
@@ -101,8 +102,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      //mcustom scrollbar
                      'tc-mcs' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'jquery-mCustomScrollbar.js' ),
-                          'dependencies' => array( 'jquery' )
+                          'files' => array( 'jquery-mCustomScrollbar.js', 'jquery-mCustomScrollbar.min.js' ),
+                          'dependencies' => array( 'jquery' ),
                      ),
                      /*
                      * OWNED JQUERY PLUGINS
@@ -162,15 +163,13 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-main-front' => array(
                           'path' => $_front_path,
                           'files' => array( 'main-ccat.js' ),
-                          'dependencies' => $this -> czr_fn_is_lightbox_required() ?
-                                 array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-mfp', 'tc-fittext', 'underscore' ) :
-                                 array( 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
+                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-outline', 'tc-img-original-sizes', 'tc-bootstrap', 'tc-fittext', 'underscore' )
                      ),
                      //concats all scripts
                      'tc-scripts' => array(
                           'path' => $_front_path,
                           'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-                          'dependencies' => $this -> czr_fn_is_lightbox_required() ? array( 'jquery', 'tc-mfp' ) : array( 'jquery' )
+                          'dependencies' => array( 'jquery' )
                      )
                );//end of scripts map
 
@@ -436,14 +435,15 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                else
                      $_filename = $_params['files'][0];
 
-               return array(
+               //default is false
+               $_params[ 'in_footer' ] = isset( $_params[ 'in_footer' ] ) ? $_params[ 'in_footer' ] : false;
 
+               return array(
                      $_handle,
                      sprintf( '%1$s%2$s%3$s', CZR_BASE_URL , $_params['path'], $_filename ),
                      $_params['dependencies'],
                      $this->_resouces_version,
-                     apply_filters( "tc_load_{$_handle}_in_footer", false )
-
+                     apply_filters( "tc_load_{$_handle}_in_footer", $_params['in_footer'] )
                );
          }
 
