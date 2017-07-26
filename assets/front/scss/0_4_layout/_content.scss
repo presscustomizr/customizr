@@ -26,14 +26,10 @@
 
 
 
-
 //formatting
 ol {
-  li li {
-    margin-left: $base-line-height;
-  }
   counter-reset: item;
-  li:before {
+  > li:before {
     content: counters(item, ".") ".";
     counter-increment: item;
     padding-right: $base-line-height/2;
@@ -46,7 +42,12 @@ ul:not(.socials):not(.tags) {
 }
 ol, ul {
   ol, ul {
-    margin-left: $base-line-height * .8;
+    @if ( true == $is_rtl ) {
+      margin-right: $base-line-height;
+    }
+    @else {
+      margin-left: $base-line-height;
+    }
   }
 }
 
@@ -58,7 +59,12 @@ table {
 dl {
   margin-bottom:  $base-line-height;
   dt {
-    text-align: left;
+    @if ( true == $is_rtl ) {
+      text-align: right;
+    }
+    @else {
+      text-align: left;
+    }
     position: relative;
     padding : $base-line-height $base-line-height $base-line-height/2 $base-line-height;
     &::before {
@@ -67,13 +73,23 @@ dl {
       width: $base-line-height;
       height: 2px;
       bottom: calc(#{$base-line-height} - 6px);
-      left: 0;
+      @if ( true == $is_rtl ) {
+        right: 0;
+      }
+      @else {
+        left: 0;
+      }
       background: $black;
     }
   }
   .wp-caption-dt::before { content: none }
   dd {
-    padding-left : $base-line-height;
+    @if ( true == $is_rtl ) {
+      padding-right: $base-line-height;
+    }
+    @else {
+      padding-left: $base-line-height;
+    }
   }
 }
 

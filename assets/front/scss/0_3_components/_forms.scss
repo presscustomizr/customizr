@@ -68,7 +68,7 @@ form.czr-form {
     @include transition(transform 0.3s ease);
     span {
       @if ( true == $is_rtl ) {
-          floar: right;
+          float: right;
       }
       @else {
           float: left;

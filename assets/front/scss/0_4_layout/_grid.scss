@@ -465,8 +465,14 @@ a.czr-format-link {
           @include media-breakpoint-up(md) {
             max-width: 65%;
             height: auto;
-            margin-left: 8%;
-            text-align: left;
+            @if ( true == $is_rtl ) {
+              margin-right: 8%;
+              text-align: right;
+            }
+            @else {
+              margin-left: 8%;
+              text-align: left;
+            }
           }
         }//.expanded .tc-grid-caption
 

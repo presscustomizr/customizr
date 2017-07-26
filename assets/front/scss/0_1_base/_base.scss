@@ -76,8 +76,15 @@ strong {
 
 dl dt {
   overflow: hidden;
-  clear: left;
-  text-align: right;
+
+  @if ( true == $is_rtl ) {
+    clear: right;
+    text-align: left;
+  }
+  @else {
+    clear: left;
+    text-align: right;
+  }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
