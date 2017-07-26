@@ -21,8 +21,8 @@
 
     & + li {
       @if ( true == $is_rtl ) {
-        margin-right: $base-line-height; 
-      } 
+        margin-right: $base-line-height;
+      }
       @else {
         margin-left: $base-line-height;
       }
@@ -162,4 +162,15 @@ img.v-centered {
 .bottom-mask {
   mask-image: linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
   -webkit-mask-image: -webkit-linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
+}
+
+//
+// Screenreaders
+//
+// Text meant only for screen readers
+.screen-reader-text, .sr-only {
+  @include sr-only();
+}
+.screen-reader-text, .sr-only-focusable {
+  @include sr-only-focusable();
 }
