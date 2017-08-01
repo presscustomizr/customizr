@@ -139,7 +139,7 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         function __construct( $_args = array()) {
             //allow modern_style templates
-            add_filter( 'czr_modern_style'             , '__return_true' );
+            add_filter( 'czr_ms'             , '__return_true' );
             //define a constant we can use everywhere
             //that will tell us we're in the new Customizr:
             //Will be highly used during the transion between the two themes
@@ -150,8 +150,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             parent::__construct( $_args );
 
             //this action callback is the one responsible to load new czr main templates
-            //Those templates have no models there are invoked from the WP templates with this kind of syntax : do_action( 'czr_modern_style_tmpl', 'header' );
-            add_action( 'czr_modern_style_tmpl'       , array( $this , 'czr_fn_load_modern_template_with_no_model' ), 10 , 1 );
+            //Those templates have no models there are invoked from the WP templates with this kind of syntax : do_action( 'czr_ms_tmpl', 'header' );
+            add_action( 'czr_ms_tmpl'       , array( $this , 'czr_fn_load_modern_template_with_no_model' ), 10 , 1 );
 
             //filters to 'the_content', 'wp_title' => in utils
             add_action( 'wp_head' , 'czr_fn_wp_filters' );

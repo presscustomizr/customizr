@@ -6,8 +6,8 @@
  * @package Customizr
  * @since Customizr 3.0
  */
-if ( apply_filters( 'czr_modern_style', false ) ) {
-  do_action( 'czr_modern_style_tmpl', 'footer' );
+if ( apply_filters( 'czr_ms', false ) ) {
+  do_action( 'czr_ms_tmpl', 'footer' );
   return;
 }
 

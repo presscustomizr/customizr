@@ -9,8 +9,8 @@
  * @package Customizr
  * @since Customizr 1.0
  */
-if ( apply_filters( 'czr_modern_style', false ) ) {
-  do_action( 'czr_modern_style_tmpl', 'comments' );
+if ( apply_filters( 'czr_ms', false ) ) {
+  do_action( 'czr_ms_tmpl', 'comments' );
   return;
 }
 

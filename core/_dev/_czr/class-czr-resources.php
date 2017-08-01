@@ -266,7 +266,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'gridDesignControls' => CZR_customize::$instance -> czr_fn_get_grid_design_controls(),
             'isRTL'           => is_rtl(),
             'isChildTheme'    => is_child_theme(),
-            'isModernStyle'   => czr_fn_is_modern_style(),
+            'isModernStyle'   => czr_fn_is_ms(),
             'isPro'           => czr_fn_is_pro()
           )
         )

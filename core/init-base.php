@@ -972,4 +972,4 @@ if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
 
 //setup constants
 czr_fn_setup_constants();
-require_once( get_template_directory() . ( czr_fn_is_modern_style() ? '/core/init.php' : '/inc/czr-init-ccat.php' ) );
+require_once( get_template_directory() . ( czr_fn_is_ms() ? '/core/init.php' : '/inc/czr-init-ccat.php' ) );

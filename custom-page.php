@@ -2,8 +2,8 @@
 /*
 Template Name: Custom Page Example
 */
-if ( apply_filters( 'czr_modern_style', false ) ) {
-  do_action( 'czr_modern_style_tmpl' );
+if ( apply_filters( 'czr_ms', false ) ) {
+  do_action( 'czr_ms_tmpl' );
   return;
 }
 ?>

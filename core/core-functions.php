@@ -29,8 +29,8 @@ endif;
 /*
  * @since 3.5.0
  */
-if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
-      function czr_fn_is_modern_style() {
+if ( ! function_exists( 'czr_fn_is_ms' ) ) {
+      function czr_fn_is_ms() {
           $is_modern_style = true;
           if ( ! czr_fn_isprevdem() ) {
               $_czr_modern_style_option_value = czr_fn_opt( 'tc_style', CZR_THEME_OPTIONS, false );//false for no default
@@ -63,7 +63,7 @@ if ( ! function_exists( 'czr_fn_is_modern_style' ) ) {
                   break;
               }
 
-              if ( isset( $_GET['czr_modern_style'] ) && true == $_GET['czr_modern_style'] && !czr_fn_is_pro() ) {
+              if ( isset( $_GET['czr_ms'] ) && true == $_GET['czr_ms'] && !czr_fn_is_pro() ) {
                 $is_modern_style = true;
               } else {
                 $is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $is_modern_style;
@@ -1478,7 +1478,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 */
 if ( ! function_exists( 'czr_fn_print_social_links' ) ) {
     function czr_fn_print_social_links() {
-        if ( ! czr_fn_is_modern_style() ) {
+        if ( ! czr_fn_is_ms() ) {
           echo czr_fn_get_social_networks();
         } else {
           czr_fn_render_template( 'modules/common/social_block' );
