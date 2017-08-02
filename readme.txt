@@ -40,6 +40,12 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.5 August 2nd 2017 =
+* Fix: fix woocommerce generatinc php notice. fixes #1120
+* Fix: fix CSS conflict with ui-datepicker-calendar. fixes #1123
+* Fix: sticky logo option was not displayed in the customizer. fixes #1119
+* Fix: display notice for socials in header in the right context. fixes #1118
+
 = 4.0.4 July 26th 2017 =
 * Fix: fix fp noy showing up in old php versions
 * Fix: Fix slider loader gif path can be parsed by Google bots

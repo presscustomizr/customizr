@@ -3099,13 +3099,13 @@ blockquote p {
   font-size: 0.833333em;
 }
 
-.demi-small, .nav__menu, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td, form label, .page-breadcrumbs, .sidebar {
+.demi-small, .nav__menu, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.woocommerce-cart .cart-collaterals .cart_totals table th,
+.woocommerce-checkout .cart-collaterals .cart_totals table th,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce-cart .cart-collaterals .cart_totals table td,
+.woocommerce-checkout .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table td, form label, .page-breadcrumbs, .sidebar {
   font-size: 0.95em;
 }
 
@@ -3149,10 +3149,10 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.caps, .nav__menu, input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce table.shop_table:not([id^=wp-calendar]) th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
+.caps, .nav__menu, input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.woocommerce-cart .cart-collaterals .cart_totals table th,
+.woocommerce-checkout .cart-collaterals .cart_totals table th,
+.woocommerce table.shop_table th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories, .widget_calendar caption, .widget_calendar tfoot {
   text-transform: uppercase;
 }
 
@@ -3168,10 +3168,10 @@ blockquote p {
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce table.shop_table:not([id^=wp-calendar]) th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
+.letter-spacing-2, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.woocommerce-cart .cart-collaterals .cart_totals table th,
+.woocommerce-checkout .cart-collaterals .cart_totals table th,
+.woocommerce table.shop_table th, .tax__container a, form label, .overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title {
   letter-spacing: 2px;
 }
 
@@ -5750,6 +5750,12 @@ table, #add_payment_method .cart-collaterals .cart_totals table,
 .woocommerce table.shop_table {
   width: 100%;
   border-collapse: collapse;
+  /*&:not([id^=wp-calendar]) {
+    border: 2px solid $grey-lightest;
+    th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
+    th, td { @extend .demi-small; padding: $base-line-height; border: 1px solid $grey-lightest; }
+    td { color: $grey-dark; }
+  }*/
 }
 
 @media (max-width: 767px) {
@@ -5761,35 +5767,35 @@ table, #add_payment_method .cart-collaterals .cart_totals table,
   }
 }
 
-table:not([id^=wp-calendar]), #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]),
-.woocommerce table.shop_table:not([id^=wp-calendar]) {
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar), #add_payment_method .cart-collaterals .cart_totals table,
+.woocommerce-cart .cart-collaterals .cart_totals table,
+.woocommerce-checkout .cart-collaterals .cart_totals table,
+.woocommerce table.shop_table {
   border: 2px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce table.shop_table:not([id^=wp-calendar]) th {
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.woocommerce-cart .cart-collaterals .cart_totals table th,
+.woocommerce-checkout .cart-collaterals .cart_totals table th,
+.woocommerce table.shop_table th {
   font-family: "Roboto", sans-serif;
 }
 
-table:not([id^=wp-calendar]) th, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) th,
-.woocommerce table.shop_table:not([id^=wp-calendar]) th, table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td {
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.woocommerce-cart .cart-collaterals .cart_totals table th,
+.woocommerce-checkout .cart-collaterals .cart_totals table th,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce-cart .cart-collaterals .cart_totals table td,
+.woocommerce-checkout .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table td {
   padding: 1.25em;
   border: 1px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]) td, #add_payment_method .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-cart .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce-checkout .cart-collaterals .cart_totals table:not([id^=wp-calendar]) td,
-.woocommerce table.shop_table:not([id^=wp-calendar]) td {
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce-cart .cart-collaterals .cart_totals table td,
+.woocommerce-checkout .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table td {
   color: #777;
 }
 
