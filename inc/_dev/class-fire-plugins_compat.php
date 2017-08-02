@@ -892,7 +892,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       */
       //disable post lists in woocommerce contexts
       add_filter( 'tc_post_list_controller', 'czr_fn_is_woocommerce_disable');
-      add_filter( 'tc_is_grid_enabled', 'czr_fn_is_woocommerce_disable');
+      add_filter( 'tc_set_grid_hooks', 'czr_fn_is_woocommerce_disable');
 
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'czr_fn_is_woocommerce_disable' );
