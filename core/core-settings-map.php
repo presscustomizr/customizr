@@ -543,12 +543,12 @@ function czr_fn_header_desktop_option_map() {
                               'section' => 'socials_sec',
                               'priority' => '1'
                           ),
-                          'notice'    => sprintf( __('You need to enable your topbar to display social links in your header %s.' , "customizr"),
+                          'notice'    => czr_fn_is_ms() ? sprintf( __('You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s.' , "customizr"),
                               sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
                                   "javascript:wp.customize.control('tc_theme_options[tc_header_desktop_topbar]').focus();",
-                                  __("Jump to the topbar option" , "customizr")
+                                  __("jump to the topbar option" , "customizr")
                               )
-                          )
+                          ) : ''
 
         ),
         'tc_header_desktop_tagline' => array(
