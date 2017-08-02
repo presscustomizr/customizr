@@ -53,7 +53,10 @@ ol, ul {
 
 
 table {
-  @extend %table;
+  @extend %table-base;
+  &:not([id^=wp-calendar]):not(.ui-datepicker-calendar) {
+    @extend %table-style;
+  }
 }
 
 dl {
