@@ -1372,7 +1372,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       */
       //disable post lists in woocommerce contexts
       add_filter( 'tc_post_list_controller', 'czr_fn_is_woocommerce_disable');
-      add_filter( 'tc_is_grid_enabled', 'czr_fn_is_woocommerce_disable');
+      add_filter( 'tc_set_grid_hooks', 'czr_fn_is_woocommerce_disable');
 
       // hide tax archive title
       add_filter( 'tc_show_tax_archive_title', 'czr_fn_is_woocommerce_disable' );
@@ -2069,7 +2069,7 @@ class CZR_utils_settings_map {
             //alter czr4 settings sections
             $_alter_settings_sections = array(
                   //GLOBAL SETTINGS
-                  'czr_fn_logo_favicon_option_map',
+                  'czr_fn_site_identity_option_map',
                   'czr_fn_skin_option_map',
                   'czr_fn_links_option_map',
                   'czr_fn_formatting_option_map',
@@ -2115,7 +2115,7 @@ class CZR_utils_settings_map {
       /*-----------------------------------------------------------------------------------------------------
                                      LOGO & FAVICON SECTION
       ------------------------------------------------------------------------------------------------------*/
-      function czr_fn_logo_favicon_option_map( $_map, $get_default = null ) {
+      function czr_fn_site_identity_option_map( $_map, $get_default = null ) {
 
             if ( !is_array( $_map ) || empty( $_map ) ) {
                   return $_map;

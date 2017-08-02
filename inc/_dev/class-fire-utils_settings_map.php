@@ -150,7 +150,7 @@ class CZR_utils_settings_map {
             //alter czr4 settings sections
             $_alter_settings_sections = array(
                   //GLOBAL SETTINGS
-                  'czr_fn_logo_favicon_option_map',
+                  'czr_fn_site_identity_option_map',
                   'czr_fn_skin_option_map',
                   'czr_fn_links_option_map',
                   'czr_fn_formatting_option_map',
@@ -196,7 +196,7 @@ class CZR_utils_settings_map {
       /*-----------------------------------------------------------------------------------------------------
                                      LOGO & FAVICON SECTION
       ------------------------------------------------------------------------------------------------------*/
-      function czr_fn_logo_favicon_option_map( $_map, $get_default = null ) {
+      function czr_fn_site_identity_option_map( $_map, $get_default = null ) {
 
             if ( !is_array( $_map ) || empty( $_map ) ) {
                   return $_map;
