@@ -348,19 +348,26 @@ a.external { position: relative; @extend .semi-bold; }
 a[target="_blank"]:hover:after {
 }
 
-%table {
+%table-base {
   width: 100%;
   border-collapse: collapse;
   @include media-breakpoint-down(sm) {
     table-layout: fixed;
   }
-  &:not([id^=wp-calendar]) {
+  /*&:not([id^=wp-calendar]) {
     border: 2px solid $grey-lightest;
     th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
     th, td { @extend .demi-small; padding: $base-line-height; border: 1px solid $grey-lightest; }
     td { color: $grey-dark; }
-  }
+  }*/
 }
+%table-style {
+    border: 2px solid $grey-lightest;
+    th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
+    th, td { @extend .demi-small; padding: $base-line-height; border: 1px solid $grey-lightest; }
+    td { color: $grey-dark; }
+}
+
 
 %categories  {
   a {

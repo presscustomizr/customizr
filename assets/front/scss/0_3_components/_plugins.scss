@@ -79,7 +79,8 @@
 .woocommerce-cart .cart-collaterals .cart_totals table,
 .woocommerce-checkout .cart-collaterals .cart_totals table,
 .woocommerce table.shop_table {
-  @extend %table;
+    @extend %table-base;
+    @extend %table-style;
 }
 
 
