@@ -1,14 +1,44 @@
 //definitions
+%skin-border-color {
+  border-color: $skin;
+}
+%skin-background-color {
+  background-color: $skin;
+}
+%skin-light-border-color {
+  border-color: $skin-light;
+}
+%skin-color {
+  color: $skin;  
+}
 %skin-dark-color {
   color: $skin-dark
 }
 %skin-dark-background-color {
   background-color: $skin-dark;
 }
+%skin-dark-border-color {
+  border-color: $skin-dark;
+}
+
+
+//form focus color
+input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']):focus, 
+textarea:focus {
+  @extend %skin-light-border-color;
+}
+
+input[type=radio]:checked::before {
+  @extend %skin-background-color; 
+}
+
+input[type=checkbox]:checked::before {
+  @extend %skin-color; 
+}
 
 //header top border
 .tc-header.border-top {
-  border-color: $skin;
+  @extend %skin-border-color;
 }
 
 .post-info a:not(.btn) {
@@ -58,7 +88,7 @@
 
 //Grid classic with border bottom
 .grid-container__classic.tc-grid-border .grid__item {
-  border-color: $skin-dark;
+  @extend %skin-dark-border-color;
 }
 
 //sidebar widget underline
@@ -109,4 +139,14 @@ a.czr-format-link {
         @extend %skin-dark-background-color;
       }
 
+}
+
+
+//PLUGINS
+.woocommerce {
+  .woocommerce-error-list,
+  .woocommerce-message,
+  .woocommerce-info {
+    @extend %skin-border-color;
+  }
 }

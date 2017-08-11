@@ -47,8 +47,11 @@ article .entry-content {
   font-size: 1.2em;
   line-height: 1.65em;
   color:$post-entry;
-  a:not(.btn):not(.button):not(.remove) {
+  a {
     text-decoration: underline;
+  }
+  a.btn, a.button, a.remove {
+    text-decoration: none;
   }
 }
 
