@@ -82,7 +82,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             'xl', 'lg', 'md', 'sm', 'xs'
       );
 
-      private $post_class     = array('col-12');
+      private $post_class     = array( 'col-12', 'grid-item' );
 
       protected $post_list_items = array();
 
