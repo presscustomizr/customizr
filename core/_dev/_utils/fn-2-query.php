@@ -30,17 +30,6 @@ VARIOUS QUERY HELPERS
 
 
 
-function czr_fn_is_list_of_posts() {
-    //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'czr_is_list_of_posts',
-      ! is_singular()
-      && ! is_404()
-      && ! czr_fn_is_home_empty()
-      && ! is_admin()
-    );
-}
-
-
 function czr_fn_get_query_context() {
     if ( is_page() )
         return 'page';
