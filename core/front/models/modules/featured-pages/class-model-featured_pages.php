@@ -84,8 +84,8 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         $model['fps_text']              = is_array( $model['fps_text'] ) ? $model['fps_text'] : array();
         $model['fps_text']              = array_pad( $model['fps_text'], $model['fp_nb'], '' );
-
-        $model['element_class']         = $_center_imgs ? 'center-images-enabled' : 'center-images-disabled';
+        //force image centering
+        $model['element_class']         = 'center-images-enabled'; //$_center_imgs ? 'center-images-enabled' : 'center-images-disabled';
 
         //to transform the $model array items in object fields
         $this -> czr_fn_update( $model );
