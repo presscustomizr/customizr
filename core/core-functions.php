@@ -1238,6 +1238,21 @@ function czr_fn_is_no_results() {
 }
 
 
+
+/*-----------------------------------------------------------
+/* PREVIOUSLY IN core/functions-ccat.php
+/*----------------------------------------------------------*/
+
+function czr_fn_is_list_of_posts() {
+    //must be archive or search result. Returns false if home is empty in options.
+    return apply_filters( 'czr_is_list_of_posts',
+      ! is_singular()
+      && ! is_404()
+      && ! czr_fn_is_home_empty()
+      && ! is_admin()
+    );
+}
+
 /*-----------------------------------------------------------
 /* PREVIOUSLY IN inc/czr-init-ccat.php (class-fire-utils_settings_map.php) and core/functions-ccat.php
 /*----------------------------------------------------------*/

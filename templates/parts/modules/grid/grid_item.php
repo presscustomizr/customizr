@@ -10,7 +10,7 @@
 ?>
 <article <?php czr_fn_echo( 'article_selectors' ) ?> <?php czr_fn_echo('element_attributes') ?>>
   <section class="grid__item">
-    <div class="tc-grid-figure <?php czr_fn_echo( 'figure_class' ) ?>">
+    <div class="tc-grid-figure entry-media__holder <?php czr_fn_echo( 'figure_class' ) ?>">
       <div class="entry-media__wrapper czr__r-i">
         <a class="bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
         <?php czr_fn_echo( 'thumb_img' ) ?>
