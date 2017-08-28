@@ -34,6 +34,8 @@
           max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
         }
 
+ 
+
         .navbar-brand {
             font-size: 2.4em;
             line-height: 1.5em;
@@ -48,21 +50,24 @@
               width: auto;
               max-width: 100%;
             }
-            + .header-tagline {
-              margin: 2px 0 0;
-            }
         }
         .header-tagline {
             font-size: 0.9em;
             line-height: normal;
             padding: 0;
-            margin: 0;
+            //give some right (left in rtl) margin to the tagline in the branding wrapper
+            //to avoid cut-off https://github.com/presscustomizr/customizr/issues/1128
+            @if ( true == $is_rtl ) {
+              margin: 2px 0 0 .1em;
+            }
+            @else {
+              margin: 2px .1em 0 0;
+            }
             width: 100%;
-            margin: 2/3*$base-line-height 0;
-
         }
+
         &.tagline-aside .header-tagline {
-            margin: 0 5px;
+            margin: 0 7px;
             width: auto;
         }
         &.tagline-below .header-tagline {
@@ -204,9 +209,17 @@
         text-align: center;
     }
 
-    .branding .navbar-brand {
-      margin: auto;
-      font-size: 2.25em;
+    .branding {
+      .navbar-brand {
+        margin: auto;
+        font-size: 2.25em;
+      }
+       //give some balanced (as it's centered) margin to the tagline in the branding wrapper
+      //to avoid cut-off https://github.com/presscustomizr/customizr/issues/1128
+      .header-tagline {
+        margin-right: .1em;
+        margin-left: .1em;
+      }
     }
 
     .primary-nav__container {
