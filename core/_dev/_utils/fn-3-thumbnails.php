@@ -324,12 +324,24 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
     //make sure we did not lose the img_src
     if ( false == $_img_src )
       $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
-    return sprintf( '%1$s%2$s<img class="czr-img-placeholder" src="%3$s" alt="%4$s" data-czr-post-id="%5$s" />',
+
+    $attr = array(
+      'class'             => 'czr-img-placeholder',
+      'src'               => $_img_src,
+      'alt'               => trim( strip_tags( get_the_title() ) ),
+      'data-czr-post-id'  => $_unique_id,   
+    );
+
+    $attr = apply_filters( 'czr_placeholder_image_attributes', $attr );
+    $attr = array_filter( array_map( 'esc_attr', $attr ) );
+
+    return sprintf( '%1$s%2$s<img class="%3$s" src="%4$s" alt="%5$s" data-czr-post-id="%6$s" />',
       isset($_svg_placeholder) ? $_svg_placeholder : '',
       false !== $filter ? $filter : '',
-      $_img_src,
-      get_the_title(),
-      $_unique_id
+      isset( $attr[ 'class' ] ) ? $attr[ 'class' ] : '',
+      isset( $attr[ 'src' ] ) ? $attr[ 'src' ] : '',
+      isset( $attr[ 'alt' ] ) ? $attr[ 'alt' ] : '',
+      isset( $attr[ 'data-czr-post-id' ] ) ? $attr[ 'data-czr-post-id' ] : ''
     );
   }
 }
