@@ -756,7 +756,7 @@ function czr_fn_is_there_any_visible_menu_location_assigned() {
         //location => condition
         'main'        => true,
         'topbar'      => 1 == czr_fn_opt( 'tc_header_desktop_topbar' ),
-        'secondary'   => true
+        'secondary'   => czr_fn_is_secondary_menu_enabled()
     );
 
     $menu_assigned = false;
@@ -847,17 +847,6 @@ function czr_fn_set_post_list_context_class( $_class ) {
 VARIOUS QUERY HELPERS
 *******************************/
 
-
-
-function czr_fn_is_list_of_posts() {
-    //must be archive or search result. Returns false if home is empty in options.
-    return apply_filters( 'czr_is_list_of_posts',
-      ! is_singular()
-      && ! is_404()
-      && ! czr_fn_is_home_empty()
-      && ! is_admin()
-    );
-}
 
 
 function czr_fn_get_query_context() {
@@ -1351,12 +1340,24 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
     //make sure we did not lose the img_src
     if ( false == $_img_src )
       $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
-    return sprintf( '%1$s%2$s<img class="czr-img-placeholder" src="%3$s" alt="%4$s" data-czr-post-id="%5$s" />',
+
+    $attr = array(
+      'class'             => 'czr-img-placeholder',
+      'src'               => $_img_src,
+      'alt'               => trim( strip_tags( get_the_title() ) ),
+      'data-czr-post-id'  => $_unique_id,   
+    );
+
+    $attr = apply_filters( 'czr_placeholder_image_attributes', $attr );
+    $attr = array_filter( array_map( 'esc_attr', $attr ) );
+
+    return sprintf( '%1$s%2$s<img class="%3$s" src="%4$s" alt="%5$s" data-czr-post-id="%6$s" />',
       isset($_svg_placeholder) ? $_svg_placeholder : '',
       false !== $filter ? $filter : '',
-      $_img_src,
-      get_the_title(),
-      $_unique_id
+      isset( $attr[ 'class' ] ) ? $attr[ 'class' ] : '',
+      isset( $attr[ 'src' ] ) ? $attr[ 'src' ] : '',
+      isset( $attr[ 'alt' ] ) ? $attr[ 'alt' ] : '',
+      isset( $attr[ 'data-czr-post-id' ] ) ? $attr[ 'data-czr-post-id' ] : ''
     );
   }
 }

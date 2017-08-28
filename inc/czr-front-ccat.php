@@ -5709,6 +5709,10 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           //Updates the array of font sizes for a given sidebar layout
           add_filter( 'tc_get_grid_font_sizes'      , array( $this , 'czr_fn_set_layout_font_size' ), 10, 4 );
 
+
+          //Layout filter (must filter also the grid cols used in the inline style)
+          add_filter( 'tc_get_grid_cols'            , array( $this, 'czr_fn_set_grid_section_cols'), 20 , 2 );
+
           //append inline style to the custom stylesheet
           //! tc_user_options_style filter is shared by several classes => must always check the local context inside the callback before appending new css
           //fired on hook : wp_enqueue_scripts
@@ -5737,8 +5741,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           add_filter( 'tc_content_title_icon'       , '__return_false', 50 );
           //icon option
           add_filter( 'tc-grid-thumb-html'          , array( $this, 'czr_fn_set_grid_icon_visibility') );
-          //Layout filter
-          add_filter( 'tc_get_grid_cols'            , array( $this, 'czr_fn_set_grid_section_cols'), 20 , 2 );
+
           //pre loop hooks
           add_action( '__before_article_container'  , array( $this, 'czr_fn_set_grid_before_loop_hooks'), 5 );
           //loop hooks
@@ -6543,33 +6546,40 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           global $wp_query, $wpdb;
           $query = ( $query ) ? $query : $wp_query;
 
-          if ( ! $query->is_main_query() )
+          if ( ! $query->is_main_query() ) {
               return false;
+          }
           if ( ! ( ( is_home() && 'posts' == get_option('show_on_front') ) ||
                   $wp_query->is_posts_page ) )
               return false;
 
           $_expand_feat_post_opt = apply_filters( 'tc_grid_expand_featured', esc_attr( czr_fn_opt( 'tc_grid_expand_featured') ) );
 
-          if ( ! $this -> expanded_sticky ) {
-            $_sticky_posts = get_option('sticky_posts');
-            // get last published sticky post
-            if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
-              $_where = implode(',', $_sticky_posts );
-              $this -> expanded_sticky = $wpdb->get_var(
-                     "
-                     SELECT ID
-                     FROM $wpdb->posts
-                     WHERE ID IN ( $_where )
-                     ORDER BY post_date DESC
-                     LIMIT 1
-                     "
-              );
-            }else
-              $this -> expanded_sticky = null;
+          if ( $_expand_feat_post_opt ) {
+
+            if ( ! $this -> expanded_sticky ) {
+              $_sticky_posts = get_option('sticky_posts');
+              // get last published sticky post
+              if ( is_array($_sticky_posts) && ! empty( $_sticky_posts ) ) {
+                $_where = implode(',', $_sticky_posts );
+                $this -> expanded_sticky = $wpdb->get_var(
+                       "
+                       SELECT ID
+                       FROM $wpdb->posts
+                       WHERE ID IN ( $_where )
+                       ORDER BY post_date DESC
+                       LIMIT 1
+                       "
+                );
+              }else
+                $this -> expanded_sticky = null;
+            }
+
+          }else {
+                $this -> expanded_sticky = null;
           }
 
-          if ( ! ( $_expand_feat_post_opt && $this -> expanded_sticky ) )
+          if ( ! $this -> expanded_sticky )
               return false;
 
           return true;

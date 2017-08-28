@@ -970,17 +970,25 @@ var czrapp = czrapp || {};
               });
             },
             widgetsHoverActions : function() {
-              $(".widget-front, article").hover(function () {
-                  $(this).addClass("hover");
-              }, function () {
-                  $(this).removeClass("hover");
-              });
+              czrapp.$_body.on( 'mouseenter mouseleave', '.widget-front, article', _toggleThisHoverClass );
 
-              $(".widget li").hover(function () {
-                  $(this).addClass("on");
-              }, function () {
-                  $(this).removeClass("on");
-              });
+              czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOnClass );
+
+              function _toggleThisHoverClass( evt ) {
+                    _toggleElementClassOnHover( $(this), 'hover', evt );
+              }
+
+              function _toggleThisOnClass( evt ) {
+                    _toggleElementClassOnHover( $(this), 'on', evt );
+              }
+              
+              function _toggleElementClassOnHover( $_el, _class, _evt ) {
+                    if ( 'mouseenter' == _evt.type )
+                       $_el.addClass( _class );
+                    else if ( 'mouseleave' == _evt.type )
+                       $_el.removeClass( _class );
+              }
+
             },
             attachmentsFadeEffect : function() {
               $("article.attachment img").delay(500).animate({
