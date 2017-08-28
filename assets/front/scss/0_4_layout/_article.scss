@@ -12,7 +12,7 @@
   @extend .service-font;
   color: $grey;
   position: relative;
-  margin: 0 0 3em 0;
+  margin: 0 0 2em 0;
   a {
       @extend .semi-bold;
   }
@@ -35,6 +35,19 @@
 }
 .archive-header .featurette-divider {
   margin-top: 1.8*$base-line-height;
+}
+
+//singular not full-width thumbnail vertical spacing depending on the location
+//see #1127
+//only margin-bottom if the thumb is shown before the title (and metas)
+.tc-singular-thumbnail-wrapper.__before_regular_heading_title {
+  margin-bottom: ms(-1); //in our ms configuration is: 0.83333em
+}
+
+//same margin top and bottom if the thumb is shown after the title (and metas)
+//n.b. remember that not floating block element's margins merges
+.tc-singular-thumbnail-wrapper.__after_regular_heading_title {
+  margin: ms(-1) 0; //in our ms configuration is: 0.83333em 0
 }
 /* end regular headings */
 
@@ -139,8 +152,8 @@ article .entry-content {
   }
 }
 .page-breadcrumbs {
-  margin-top: 2*$base-line-height;
-  margin-bottom: 2*$base-line-height;
+  margin-top: 2em;
+  margin-bottom: 2em;
   @extend .demi-small;
 }
 

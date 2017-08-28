@@ -145,7 +145,7 @@ class CZR_main_content_model_class extends CZR_Model {
                         'media_type'               => 'wp_thumb',
                         'has_permalink'            => false,
                         'has_lightbox'             => false,
-                        'element_class'            => 'tc-singular-thumbnail-wrapper',
+                        'element_class'            => array('tc-singular-thumbnail-wrapper', $_hook),
                         //slider full when __before_main_wrapper otherwise take the original one
                         'thumb_size'               => '__before_main_wrapper' == $_hook ? 'slider-full' : null
                   ),
