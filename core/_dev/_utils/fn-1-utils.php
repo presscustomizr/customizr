@@ -450,7 +450,7 @@ function czr_fn_is_there_any_visible_menu_location_assigned() {
         //location => condition
         'main'        => true,
         'topbar'      => 1 == czr_fn_opt( 'tc_header_desktop_topbar' ),
-        'secondary'   => true
+        'secondary'   => czr_fn_is_secondary_menu_enabled()
     );
 
     $menu_assigned = false;
