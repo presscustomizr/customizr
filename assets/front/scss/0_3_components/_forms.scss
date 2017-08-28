@@ -1,105 +1,250 @@
-/* search forms */
+//GENERAL
+label {
+  color: $black;
+  font-family: $serviceFont;
 
-.search-form {
-  label { @include clearfix; width: 100% }
+  @extend .small;
+  @extend .thick;
+  @extend .letter-spacing-2;
+  margin-bottom: 0.3em;
 }
-input:not([type="submit"]), textarea {
-  max-width: 100%;
-  background: transparent;
+
+input,
+textarea,
+select {
+  display: block;
+  line-height: initial;
+  padding: 7.5px 15px 7.5px 15px;
+
+  border: 1px solid $grey-light;
+  border-radius: 2px;
+
+  font: inherit;
+  font-weight: normal;
+
+  //top, left, blur, color, inset, spread
+  @include box-shadow( 0px, 2px, 1px, rgba(0, 0, 0, 0.025), true );
+  @include transition ( border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s );
+
 }
 
-form  {
-  label {
-    color: $black;
 
-    font-family: $serviceFont;
-    @extend .demi-small;
-    @extend .caps;
-    @extend .thick;
-    @extend .letter-spacing-2;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 0;
+  border-style: solid;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: inline-block;
+  font-size: 1em;
+  -webkit-appearance: none;
+  margin: 0;
+
+  padding: 0.5em;
+  position: relative;
+  text-align: center;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+input[type=number] {
+  @extend .small;
+  @if ( true == $is_rtl ) {
+    padding-left: 4px;
+    padding-right: 8px;
   }
-  .form-control,
-  input[type="text"], input[type="url"], input[type="password"], input[type="email"],  input[type="number"], textarea {
+  @else {
+    padding-right: 4px;
+    padding-left: 8px;
+  }
+}
+
+input[type=checkbox]:checked:before,
+input[type=radio]:checked:before {
+  font-family: "FontAwesome";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+input[type=radio] {
+  border-radius: 50%;
+}
+input[type=radio]:checked:before {
+  content: "";
+  border-radius: 100%;
+  width: 50%;
+  height: 50%;
+}
+input[type=checkbox]:checked:before {
+  content: "\f00c";
+}
+input[type="file"],
+input[type="range"] {
+  background-color: transparent !important;
+  padding: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: auto;
+}
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+textarea {
+  width: 100%;
+}
+
+select {
+  max-width: 100%;
+  min-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+
+  text-overflow: "";
+  outline: none;
+
+  @if ( true == $is_rtl ) {
+    padding-left: 30px;
+    background-position: -7.5px center;
+  }
+  @else {
+    padding-right: 30px;
+    background-position: calc( 100% + 7.5px ) center;
+  }
+
+  background-repeat: no-repeat;
+
+  @include box-shadow_none( 'important' );
+}
+
+select:not([multiple]) {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgNTAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjIuNiw4YzAtMC4xLDAtMC4yLDAuMS0wLjJsMC41LTAuNWMwLjEtMC4xLDAuMS0wLjEsMC4yLTAuMWMwLjEsMCwwLjIsMCwwLjIsMC4xbDMuNywzLjdsMy43LTMuN2MwLjEtMC4xLDAuMS0wLjEsMC4yLTAuMXMwLjIsMCwwLjIsMC4xTDMyLDcuOEMzMiw3LjksMzIuMSw4LDMyLjEsOGMwLDAuMSwwLDAuMi0wLjEsMC4ybC00LjQsNC40Yy0wLjEsMC4xLTAuMSwwLjEtMC4yLDAuMXMtMC4yLDAtMC4yLTAuMWwtNC40LTQuNEMyMi43LDguMiwyMi42LDguMSwyMi42LDh6Ii8+PC9zdmc+");
+}
+
+select:focus {
+  outline: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+//.czr-form is used for the search form
+//and the comment reply
+form.czr-form {
+  &.search-form {
+    label { 
+      @include clearfix; 
+      width: 100% 
+    }
+  }
+
+  label {
+    @extend .caps;
+    font-size: ms(0);
+    i {
+      @if ( true == $is_rtl ) {
+        float: left;
+        text-align: left;
+      }
+      @else {
+        float: right;
+        text-align: right;
+      }
+      width: 2em;
+      height: 2em;
+      
+      &::before {
+        margin: 0;
+      }
+    }
+  }
+ 
+
+  input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea {
     outline: none;
     border: none;
     border-bottom: 2px solid $black;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
+    padding: 0 0 2px;
     color: #202020;
     position: relative;
-  }
-  fieldset { margin-top: 3em }
-}
-label .required {
-  @if ( true == $is_rtl ) {
-    float: right;
-  }
-  @else {
-    float: left;
-  }
-}
-
-label i {
-  @if ( true == $is_rtl ) {
-    float: left;
-  }
-  @else {
-    float: right;
-  }
-  width: 2em;
-  height: 2em;
-  text-align: center;
-}
-
-form.czr-form {
-  input[type="text"], input[type="password"], input[type="email"] , textarea {
+    @include box-shadow_none;
     width: 100%;
+    background: transparent;
   }
 
-  .form-group, .czr-focus {
-    position: relative;
-    margin-top: $base-line-height*2;
-  }
 
-  .czr-focus label {
-    display: block;
-    position: absolute;
-    @include transition(transform 0.3s ease);
-    span {
-      @if ( true == $is_rtl ) {
-          float: right;
-      }
-      @else {
-          float: left;
-      }
-    }
-
-    i.icn-close {
-      @if ( true == $is_rtl ) {
-          margin-left: -2em;
-      }
-      @else {
-          margin-right: -2em;
-      }
-      border-radius:100%;
-      height:2em;
-      width:2em;
-      line-height: 2em;
-      @include opacity(0);
-      @include transition(transform 0.3s ease);
-      @include transform(translateY(-110%));
-    }
+  fieldset { 
+    margin-top: 3em 
   }
 
   .czr-focus {
-    .czr-focusable { transition: all 600ms; }
-    &:not(.in-focus) > .czr-focusable { color: transparent; }
+
+    position: relative;
+    margin-top: $base-line-height*2;
+
+    label {
+        display: block;
+        position: absolute;
+        @include transition(transform 0.3s ease);
+        span {
+          @if ( true == $is_rtl ) {
+              float: right;
+          }
+          @else {
+              float: left;
+          }
+        }
+        /* search form */
+        i.icn-close {
+          @if ( true == $is_rtl ) {
+              margin-left: -2em;
+          }
+          @else {
+              margin-right: -2em;
+          }
+          border-radius:100%;
+          height:2em;
+          width:2em;
+          line-height: 2em;
+          @include opacity(0);
+          @include transition(transform 0.3s ease);
+          @include transform(translateY(-110%));
+        }
+    }
+
+    .czr-focusable { 
+      transition: all 600ms; 
+    }
+    &:not(.in-focus) > .czr-focusable { 
+      color: transparent; 
+    }
+
     &.in-focus > label {
       z-index: 1;
       @include transform(translateY(-110%));
       color: $grey;
-      i.icn-search { @include opacity(0); }
+
+      /* search form */
+      i.icn-search { 
+        @include opacity(0); 
+      }
       i.icn-close {
         @include opacity(1);
         @include transform(translateY(110%));
@@ -108,13 +253,27 @@ form.czr-form {
     }
   }
 
-  .czr-search-field {
-    @if ( true == $is_rtl ) {
-        padding-left: 2em;
-    }
-    @else {
-        padding-right: 2em;
-    }
+}
 
+/* search form */
+.czr-search-field {
+  @if ( true == $is_rtl ) {
+      padding-left: 2em;
   }
+  @else {
+      padding-right: 2em;
+  }
+}
+// hack to remove webkit autofill background
+// https://stackoverflow.com/a/37432260
+// which is particularly annoying when clicking the close icon in our search form
+@-webkit-keyframes autofill {
+   to {
+       background: transparent;
+       color: inherit;
+   }
+}
+.czr-search-field:-webkit-autofill {
+ -webkit-animation-name: autofill;
+ -webkit-animation-fill-mode: both;
 }

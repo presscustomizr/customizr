@@ -964,6 +964,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_fn_wc_skin_color_border_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
+            '.woocommerce .woocommerce-info',
+            '.woocommerce .woocommerce-message',
             '.woocommerce #respond input#submit',
             '.woocommerce input#submit',
             '.woocommerce input.button',

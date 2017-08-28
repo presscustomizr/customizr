@@ -117,6 +117,20 @@
 
 }
 
+@mixin box-shadow_none( $important: false ) {
+  $params : none;
+
+  @if ( 'important' == $important ) {
+    $params : $params !important;
+  }
+
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+
+}
+
+
 @mixin backface-visibility ($arguments) {
   -webkit-backface-visibility: $arguments;
      -moz-backface-visibility: $arguments;
@@ -622,10 +636,25 @@
 }
 
 @mixin display-flex() {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin flex-align-items-center() {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+@mixin flex-flow-row-reverse() {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 @mixin flex-justify-content-between() {

@@ -3,6 +3,10 @@
 //
 
 .woocommerce {
+  a.remove {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   //buttons
   #respond input#submit,
@@ -50,10 +54,71 @@
     @include box-sizing( content-box );
   }
 
+  //messages
+  .woocommerce-message, 
+  .woocommerce-error-list,
+  .woocommerce-info {
+      border-width: 2px;
+      border-style: solid;
+      padding: $base-line-height 0 1em;
+      color: $black;
+      font-family: $serviceFont;
+      @extend .small;
+      @extend .thick;
+      @extend .letter-spacing-2;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      position: relative;
+      background: none;
 
-  form .form-row-wide {
-    width: 100%;
-    float: left;
+      &::before {
+        content: none;
+      }
+
+  }
+
+  //form
+  form {
+    .form-row-wide {
+      width: 100%;
+      float: left;
+    }
+
+    .form-row {
+      margin-top: $base-line-height;
+
+      .input-checkbox {
+          display: inline-block;
+          margin: 0;
+      }
+    }
+
+    @at-root #add_payment_method #payment ul.payment_methods li input, 
+    .woocommerce-cart #payment ul.payment_methods li input, 
+    .woocommerce-checkout #payment ul.payment_methods li input {
+      border-color: $grey;
+    }
+
+    #customer_details {
+      margin: 0 -15px;
+      width: auto;
+    }
+  
+    @at-root .woocommerce div.product form.cart .variations {
+      td, 
+      th {
+        vertical-align: middle;
+      }
+
+      label {
+        margin-bottom: 0
+      }
+    }
+    .woocommerce-variation-add-to-cart,
+    &.cart:not(.variations_form) {
+      @extend .display-flex;
+    }
   }
 
   section.up-sells,
@@ -151,7 +216,11 @@
       float: right;
     }
   }
+
 }
+
+
+
 //force fpu background to white if fpu bg set to default color
 //TODO: change default color for czr4 in FPU
 .fpc-container[data-bgcolor="#fafafa"] {
