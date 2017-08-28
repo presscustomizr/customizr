@@ -1,5 +1,5 @@
 
-.overlay {
+.czr-overlay {
   @include opacity(0);
   visibility: hidden;
   width:100%;
@@ -103,7 +103,7 @@
 }
 
 .full-search-opened, .hamburger-menu.opened {
-  .overlay {
+  .czr-overlay {
     @include opacity(1);
     visibility: visible;
     .overlay-content {
