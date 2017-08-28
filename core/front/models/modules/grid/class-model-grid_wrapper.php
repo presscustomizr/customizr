@@ -88,10 +88,13 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $section_class = array( 'grid__section', sprintf( "cols-%s", $this -> czr_fn_get_section_cols() ) );
 
     if ( $this -> czr_fn_is_sticky_expanded() )
-      array_push( $section_class, 'clearfix');
-    else if ( $this -> masonry )
-      array_push( $section_class, 'masonry__wrapper' );
-
+      $section_class[] = 'clearfix grid-section-featured';
+    else {
+      if ( $this -> masonry ) {
+        $section_class[] =  'masonry__wrapper';
+      }
+      $section_class[] =  'grid-section-not-featured';
+    }
     return $section_class;
   }
 
@@ -209,8 +212,6 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     $entry_summary_class    = $this -> czr_fn_get_grid_item_entry_summary_class($is_expanded);
     $gcont_class            = $this -> czr_fn_get_grid_item_gcont_class($is_expanded);
 
-    //js-centering add
-    $media_wrapper_class    = 'js-centering' == $this -> image_centering ? 'no-js-centering' : 'js-centering';
 
     //update the model
     return array_merge(
@@ -229,8 +230,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
           'use_thumb_placeholder',
           'gcont_class',
           'entry_summary_class',
-          'text',
-          'media_wrapper_class'
+          'text'
         )
     );
   }
@@ -327,6 +327,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
       //if current post is the expanded => golden ratio should be disabled
       //add the aspect ratio class for the figure
       $figure_class[]     = $this -> czr_fn_get_grid_figure_aspect_ratio_class( $section_cols );
+      $figure_class[]     = 'js-centering' == $this -> image_centering ?'js-centering' :  'no-js-centering';
 
       return $figure_class;
   }

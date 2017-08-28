@@ -61,10 +61,6 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
 
-    function czr_fn_display_view_post_list_full() {
-      return apply_filters( 'czr_display_view_post_list_full', czr_fn_is_list_of_posts() && 'full' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
-    }
-
     function czr_fn_display_view_post_list() {
       return apply_filters( 'czr_display_view_post_list', czr_fn_is_list_of_posts() && 'alternate' == esc_attr( czr_fn_opt( 'tc_post_list_grid') ) );
     }

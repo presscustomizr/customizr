@@ -400,10 +400,10 @@ class CZR_slider_model_class extends CZR_Model {
   function czr_fn_get_slider_inner_class( $queried_id ) {
     $class = array( 'carousel-inner' );
 
-    if ( (bool) esc_attr( czr_fn_opt( 'tc_center_slider_img') ) )
-      array_push( $class, 'center-slides-enabled' );
+    $class[] = (bool) esc_attr( czr_fn_opt( 'tc_center_slider_img') ) ? 'center-slides-enabled' : 'center-slides-disabled';
+
     if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) )
-      array_push( $class, 'czr-parallax-slider' );
+      $class[] = 'czr-parallax-slider';
 
     //Is the overlay checked for this slider ?
     //gets slider options if any
@@ -411,7 +411,7 @@ class CZR_slider_model_class extends CZR_Model {
     $overlay_value                 = apply_filters( 'czr_slider_overlay', $overlay_value, $queried_id );
     //if the option is unchecked OR has never been set
     if ( 'off' == $overlay_value ) {
-      array_push( $class, 'czr-has-no-dark-overlay' );
+      $class[] = 'czr-has-no-dark-overlay';
     }
 
     return apply_filters( 'czr_carousel_inner_classes', $class );

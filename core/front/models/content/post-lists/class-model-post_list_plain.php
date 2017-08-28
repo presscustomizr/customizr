@@ -1,7 +1,7 @@
 <?php
 class CZR_post_list_plain_model_class extends CZR_Model {
 
-  public $post_class               = array( 'col-12' );
+  public $post_class               = array( 'col-12', 'grid-item' );
   public $post_list_items          = array();
 
   /**
