@@ -28,7 +28,7 @@ $secondary-color-dark   : $grey;
       }
   }
   // overlays skin
-  .overlay {
+  .czr-overlay {
     background: rgba($background-color, 0.98);
     color: $primary-color;
     a { color: $secondary-color-light; }
@@ -221,7 +221,7 @@ $secondary-color-dark   : $grey;
 
   }
 
-  header .czr-form, .overlay .czr-form {
+  header .czr-form, .czr-overlay .czr-form {
     .form-group label {
        color: $primary-color;
     }
