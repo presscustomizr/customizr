@@ -162,6 +162,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.post-type__icon:hover .icn-format',
                                        '.grid-container__classic .post-type__icon:hover .icn-format',
                                        "[class*='grid-container__'] .entry-title a.czr-title:hover",
+                                       'input[type=checkbox]:checked::before',
                                  ),
                                  'border-color' => array(
                                        '.czr-css-loader > div ',
@@ -186,7 +187,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-h-dark.inverted:active',
                                        '.btn-skin-h-dark.inverted:focus',
                                        '.btn-skin-h-dark.inverted:hover',
-                                       '.sidebar .widget-title::after'
+                                       '.sidebar .widget-title::after',
+                                       'input[type=radio]:checked::before'
                                  )
                            )
                      ),
@@ -203,6 +205,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  ),
 
                                  'border-color' => array(
+                                       "input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']):focus", 
+                                       'textarea:focus',
                                        '.btn-skin-light',
                                        '.btn-skin-light.inverted',
                                        '.btn-skin-light:active',
@@ -275,7 +279,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.widget-area a:not(.btn):hover',
                                        'a.czr-format-link:hover',
                                        '.format-link.hover a.czr-format-link',
+                                       'button[type=submit]:hover',
+                                       'button[type=submit]:active',
+                                       'button[type=submit]:focus',
                                        'input[type=submit]:hover',
+                                       'input[type=submit]:active',
+                                       'input[type=submit]:focus',
                                        '.tabs .nav-link:hover',
                                        '.tabs .nav-link.active',
                                        '.tabs .nav-link.active:hover',
@@ -286,6 +295,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.grid-container__classic.tc-grid-border .grid__item',
                                        '.btn-skin-dark',
                                        '.btn-skin-dark.inverted',
+                                       'button[type=submit]',
                                        'input[type=submit]',
                                        '.btn-skin-dark:active',
                                        '.btn-skin-dark:focus',
@@ -305,7 +315,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-dark-oh.inverted:active',
                                        '.btn-skin-dark-oh.inverted:focus',
                                        '.btn-skin-dark-oh.inverted:hover',
+                                       'button[type=submit]:hover',
+                                       'button[type=submit]:active',
+                                       'button[type=submit]:focus',
                                        'input[type=submit]:hover',
+                                       'input[type=submit]:active',
+                                       'input[type=submit]:focus',
 
                                  ),
 
@@ -324,6 +339,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-dark-oh.inverted:focus',
                                        '.btn-skin-dark-oh.inverted:hover',
                                        '.grid-container__classic .post-type__icon:hover',
+                                       'button[type=submit]',
                                        'input[type=submit]',
                                        '.widget-area .widget:not(.widget_shopping_cart) a:not(.btn):before',
                                        "[class*='grid-container__'] .hover .entry-title a::after",

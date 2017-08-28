@@ -263,11 +263,13 @@ fieldset[disabled] a.btn {
   }
 }
 
+button[type="submit"],
 input[type=submit] {
   @extend %btn_base;
   @extend .btn-skin-dark;
   @extend .caps;
   cursor: pointer;
+  line-height: inherit;
 }
 
 //end buttons

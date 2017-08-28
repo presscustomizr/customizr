@@ -221,13 +221,15 @@ $secondary-color-dark   : $grey;
 
   }
 
-  header .czr-form, .czr-overlay .czr-form {
-    .form-group label {
-       color: $primary-color;
-    }
+
+  header .czr-form, .overlay .czr-form {
+      label {
+         color: $primary-color;
+      }
      .form-group.in-focus label {
        color: $secondary-color-light;
      }
+     input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea,
      .form-control {
        color: $primary-color;
        border-color: $primary-color;
