@@ -352,7 +352,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                       'isDevMode'        => CZR_DEBUG_MODE || CZR_DEV_MODE,
                       'isWelcomeNoteOn' => $is_welcome_note_on,
-                      'welcomeContent'  => $welcome_note_content
+                      'welcomeContent'  => $welcome_note_content,
+                      'isModernStyle'    => CZR_IS_MODERN_STYLE
                   ), czr_fn_get_id() )//end of filter
 
               );

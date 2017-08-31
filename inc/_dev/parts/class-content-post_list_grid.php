@@ -228,6 +228,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         */
         private function czr_fn_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html ) {
           ob_start();
+            echo '<div class="grid__item">';
             do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
 
               echo apply_filters( 'tc_grid_single_post_thumb_content',
@@ -238,7 +239,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
                 )
               );
             do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
-
+            echo '</div>';
           $html = ob_get_contents();
           if ($html) ob_end_clean();
 
@@ -389,8 +390,8 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc_post_list_selectors
         */
         function czr_fn_grid_set_article_selectors($selectors){
-          $_class = sprintf( '%1$s tc-grid span%2$s',
-            apply_filters( 'tc_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
+          $_class = sprintf( '%1$stc-grid span%2$s',
+            apply_filters( 'tc_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded ' : '',
             is_numeric( $this -> czr_fn_get_grid_section_cols() ) ? 12 / $this -> czr_fn_get_grid_section_cols() : 6
           );
           return str_replace( 'row-fluid', $_class, $selectors );
@@ -533,10 +534,13 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
           $_current_col_media_css   = $this -> czr_fn_get_grid_font_css( $_col_nb );
 
-          $_css = sprintf("%s\n%s\n%s\n",
+          $_grid_border_skinned_css = $this -> czr_fn_get_grid_boder_skinned_css();
+
+          $_css = sprintf("%s\n%s\n%s\n%s\n",
               $_css,
               $_current_col_media_css,
-              $_current_col_figure_css
+              $_current_col_figure_css,
+              $_grid_border_skinned_css
           );
           return $_css;
         }
@@ -561,6 +565,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           else
             return $_html;
         }
+
 
 
 
@@ -785,6 +790,23 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           return sprintf( 'font-size:%spx;line-height:%spx;' ,
             ceil( $_bs * $_ratio ),
             ceil( $_bs * $_ratio * $_lh_ratio )
+          );
+        }
+
+
+
+        /**
+        * @return string
+        * returns the skinned border css rule
+        */
+        private function czr_fn_get_grid_boder_skinned_css() {
+          //add this reset rule for custom skin users
+          $_reset_old_skinned_border = '.tc-grid-border .tc-grid { border-bottom: none }';
+          $_skin_main_color          = CZR_utils::$instance -> czr_fn_get_skin_color();
+
+          return sprintf( "%s\n%s",
+            $_reset_old_skinned_border,
+            '.tc-grid-border .grid__item { border-bottom: 3px solid ' . $_skin_main_color .'}'
           );
         }
 

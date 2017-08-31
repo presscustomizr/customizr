@@ -309,7 +309,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 ),
                 'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
-                'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV )
+                'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
+                'isModernStyle'    => CZR_IS_MODERN_STYLE
   	        	),
   	        	czr_fn_get_id()
   		    )//end of filter

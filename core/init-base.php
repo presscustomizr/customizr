@@ -613,11 +613,16 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         function czr_fn_filter_home_blog_posts_by_tax( $query ) {
             // when we have to filter?
             // in home and blog page
-            if (
-              ! $query->is_main_query()
+            if ( ! $query->is_main_query()
               || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
             )
               return;
+
+            //temp: do not filter in classic style when classic grid enabled and infinite scroll enabled in home/blog
+            if ( ! CZR_IS_MODERN_STYLE &&
+              'grid'== esc_attr( czr_fn_opt( 'tc_post_list_grid' ) ) &&
+               class_exists( 'PC_init_infinite' ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll' ) ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll_in_home' ) ) )
+            return;
 
             // categories
             // we have to ignore sticky posts (do not prepend them)
@@ -626,9 +631,9 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
             if ( is_array( $cats ) && ! empty( $cats ) ){
-                $query->set('category__in', $cats );
-                $query->set('ignore_sticky_posts', 1 );
-                add_filter('tc_grid_expand_featured', '__return_false');
+               $query->set('category__in', $cats );
+               $query->set('ignore_sticky_posts', 1 );
+               add_filter('tc_grid_expand_featured', '__return_false');
             }
         }
 
