@@ -4745,10 +4745,6 @@ a.czr-format-link:hover::before {
 }
 
 /* ALTERNATE */
-.grid-container__alternate .tc-content {
-  font-size: 90%;
-}
-
 .grid-container__alternate h2.entry-title {
   margin-top: 0.625em;
 }
