@@ -11154,6 +11154,17 @@ $.extend( CZRLayoutSelectMths , {
                             }
                     },
                     {
+                            dominus : 'tc_infinite_scroll',
+                            servi   : [
+                              'tc_infinite_scroll_in_home',
+                              'tc_infinite_scroll_in_archive',
+                              'tc_infinite_scroll_in_search'
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked(to);
+                            }
+                    },
+                    {
                             dominus : 'tc_breadcrumb',
                             servi   : [
                               'tc_show_breadcrumb_home',

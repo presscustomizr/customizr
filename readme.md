@@ -1,4 +1,4 @@
-# Customizr v4.0.5 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.6 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,17 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 4.0.6 August 31st 2017 =
+* Fix: add menu btn was not shown when secondary menu associated but no sidenav shown. fixes #1125
+* Fix: fix singular thumbnail vertical spacing. fixes #1127
+* Fix: fix tagline cut off. fixes #1128
+* Fix: fp imgs always centered, fix handling slider not js centered
+* Fix: js-centering class to the classical grid figure to better target them in js
+* Fix: fix author meta displaying nicename instead of displayname. fixes #1148
+* Imp: allow search full page close on escape key pressed
+* Imp: implement new form style. fixes #1122
+* Imp: add entry-media__holder class to the grid figure (homogeneity)
+
 = 4.0.5 August 2nd 2017 =
 * Fix: fix woocommerce generatinc php notice. fixes #1120
 * Fix: fix CSS conflict with ui-datepicker-calendar. fixes #1123

@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.0.5
+ * Customizr v4.0.6
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6694,10 +6694,10 @@ img.v-centered {
   vertical-align: top;
 }
 /* POST GRID */
-.tc-grid {
+.tc-post-list-grid .grid__item {
   border: 1px solid #EEE;
 }
-.tc-grid-shadow .tc-grid {
+.tc-grid-shadow .grid__item {
   -moz-box-shadow: 0px 0px 6px 2px #ccc;
   -webkit-box-shadow: 0px 0px 6px 2px #cccccc;
   box-shadow: 0px 0px 6px 2px #cccccc;

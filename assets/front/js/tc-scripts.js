@@ -9679,45 +9679,34 @@ var czrapp = czrapp || {};
       },
       formFocusAction : function() {
             var _input_types       = [
-                  'input[type="url"]',
-                  'input[type="email"]',
-                  'input[type="text"]',
-                  'input[type="password"]',
-                  'textarea'
-            ],
-            _focusable_class        = 'czr-focus',
-            _focusable_field_class  = 'czr-focusable',
-            _focus_class            = 'in-focus',
-            _czr_form_class         = 'czr-form',
-            _parent_selector        = '.'+ _czr_form_class + ' .'+_focusable_class,
-            _inputs                 = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
-            $_focusable_inputs      = $( _input_types.join() );
-            _maybe_fire             = $_focusable_inputs.length > 0;
-            if ( _maybe_fire ) {
-                  $_focusable_inputs.each( function() {
-                     var $_this = $(this);
-                     if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
-                        $(this)
-                              .addClass(_focusable_field_class)
-                              .parent().addClass(_focusable_class)
-                     }
-                  });
-            } else {
-                  return;
-            }
+                      'input[type="url"]',
+                      'input[type="email"]',
+                      'input[type="text"]',
+                      'input[type="password"]',
+                      'textarea'
+                ],
+                _focusable_class        = 'czr-focus',
+                _focusable_field_class  = 'czr-focusable',
+                _focus_class            = 'in-focus',
+                _czr_form_class         = 'czr-form',
+                _parent_selector        = '.'+ _czr_form_class + ' .'+_focusable_class,
+                _inputs                 = _.map( _input_types, function( _input_type ){ return _parent_selector + ' ' + _input_type ; } ).join(),
+                $_focusable_inputs      = $( _input_types.join() );
 
-            var _toggleThisFocusClass = function( evt ) {
-                var $_el       = $(this),
-                      $_parent = $_el.closest(_parent_selector);
+            if ( $_focusable_inputs.length <= 0 )
+              return;
+            $_focusable_inputs.each( function() {
+               var $_this = $(this);
+               if ( !$_this.attr('placeholder') && ( $_this.closest( '#buddypress' ).length < 1 ) ) {
+                  $(this)
+                        .addClass(_focusable_field_class)
+                        .parent().addClass(_focusable_class);
+               }
+            });
 
-                if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
-                   $_parent.addClass( _focus_class );
-                } else {
-                   $_parent.removeClass( _focus_class );
-                }
-            };
-
-            czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
+            czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, function( evt ) {
+                  $(this).closest( _parent_selector ).toggleClass( _focus_class, $_el.val() || ( evt && 'focusin' == evt.type ) );
+            } );
             $(_inputs).trigger( 'in-focus-load.czr-focus' );
             czrapp.$_body.on( 'click tap', '.icn-close', function() {
                   var $_search_field = $(this).closest('form').find('.czr-search-field');
@@ -9730,12 +9719,12 @@ var czrapp = czrapp || {};
                               $_search_field.blur();
                         }
                   }
-                
+
             });
       },
       onEscapeKeyPressed : function() {
             var ESCAPE_KEYCODE                  = 27, // KeyboardEvent.which value for Escape (Esc) key
-                
+
                 Event = {
                       KEYEVENT          : 'keydown', //or keyup, if we want to react to the release event
                       SIDENAV_CLOSE     : 'sn-close',
@@ -9744,7 +9733,7 @@ var czrapp = czrapp || {};
                 },
 
                 ClassName = {
-                      SEARCH_FIELD      : 'czr-search-field',                      
+                      SEARCH_FIELD      : 'czr-search-field',
                       OLVERLAY_SHOWN    : 'czr-overlay-opened',
                       SIDENAV_SHOWN     : 'tc-sn-visible'
                 },
@@ -9769,7 +9758,7 @@ var czrapp = czrapp || {};
                               return;
                         }
                         if ( $( Selector.SIDENAV ).length  && czrapp.$_body.hasClass( ClassName.SIDENAV_SHOWN ) ) {
-                              
+
                               $( Selector.SIDENAV ).find( Selector.SIDENAV_TOGGLER ).trigger( Event.SIDENAV_TOGGLER );
                               return;
                         }

@@ -14,7 +14,7 @@
 if ( ! class_exists( 'CZR_header_main' ) ) :
 	class CZR_header_main {
     static $instance;
-    function __construct() {
+    function __construct () {
       self::$instance =& $this;
       //Set header hooks
       //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook
@@ -5261,23 +5261,26 @@ class CZR_post_list {
     if ( ! $this -> czr_fn_post_list_controller() )
       return;
     //displays the article with filtered layout : content + thumbnail
-    add_action ( '__loop'               , array( $this , 'czr_fn_prepare_section_view') );
+    add_action ( '__loop'                    , array( $this , 'czr_fn_prepare_section_view') );
+
+    //ARTICLE CONTAINER CSS CLASSES
+    add_filter( 'tc_article_container_class' , array( $this, 'czr_fn_article_container_set_classes' ) );
 
     //page help blocks
-    add_filter( '__before_loop'         , array( $this , 'czr_fn_maybe_display_img_smartload_help') );
+    add_filter( '__before_loop'              , array( $this , 'czr_fn_maybe_display_img_smartload_help') );
 
     //based on customizer user options
-    add_filter( 'tc_post_list_layout'   , array( $this , 'czr_fn_set_post_list_layout') );
-    add_filter( 'post_class'            , array( $this , 'czr_fn_set_content_class') );
-    add_filter( 'excerpt_length'        , array( $this , 'czr_fn_set_excerpt_length') , 999 );
-    add_filter( 'post_class'            , array( $this , 'czr_fn_add_thumb_shape_name') );
+    add_filter( 'tc_post_list_layout'        , array( $this , 'czr_fn_set_post_list_layout') );
+    add_filter( 'post_class'                 , array( $this , 'czr_fn_set_content_class') );
+    add_filter( 'excerpt_length'             , array( $this , 'czr_fn_set_excerpt_length') , 999 );
+    add_filter( 'post_class'                 , array( $this , 'czr_fn_add_thumb_shape_name') );
 
     //add current context to the body class
-    add_filter( 'body_class'            , array( $this , 'czr_fn_add_post_list_context') );
+    add_filter( 'body_class'                 , array( $this , 'czr_fn_add_post_list_context') );
     //Set thumb shape with customizer options (since 3.2.0)
-    add_filter( 'tc_post_thumb_wrapper' , array( $this , 'czr_fn_set_thumb_shape'), 10 , 2 );
+    add_filter( 'tc_post_thumb_wrapper'      , array( $this , 'czr_fn_set_thumb_shape'), 10 , 2 );
 
-    add_filter( 'tc_the_content'        , array( $this , 'czr_fn_add_support_for_shortcode_special_chars') );
+    add_filter( 'tc_the_content'             , array( $this , 'czr_fn_add_support_for_shortcode_special_chars') );
 
     // => filter the thumbnail inline style tc_post_thumb_inline_style and replace width:auto by width:100%
     // 3 args = $style, $_width, $_height
@@ -5382,6 +5385,7 @@ class CZR_post_list {
   */
   private function czr_fn_render_section_view( $_layout, $_content_model, $_thumb_model ) {
     global $wp_query;
+    echo '<div class="grid__item">';
     //Renders the filtered layout for content + thumbnail
     if ( isset($_layout['alternate']) && $_layout['alternate'] ) {
       if ( 0 == $wp_query->current_post % 2 ) {
@@ -5404,6 +5408,7 @@ class CZR_post_list {
 
     //renders the hr separator after each article
     echo apply_filters( 'tc_post_list_separator', '<hr class="featurette-divider '.current_filter().'">' );
+    echo '</div>';
   }
 
 
@@ -5517,6 +5522,13 @@ class CZR_post_list {
   }
 
 
+  /*
+  * hook : tc_article_container_class
+  */
+  public function czr_fn_article_container_set_classes( $_classes ) {
+    $_classes[] = 'grid-container'; //used by the pro infinite scroll
+    return $_classes;
+  }
 
 
   /**
@@ -5909,6 +5921,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         */
         private function czr_fn_grid_render_single_post( $_classes, $_thumb_html, $_post_content_html ) {
           ob_start();
+            echo '<div class="grid__item">';
             do_action( '__before_grid_single_post');//<= open <section> and maybe display title + metas
 
               echo apply_filters( 'tc_grid_single_post_thumb_content',
@@ -5919,7 +5932,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
                 )
               );
             do_action('__after_grid_single_post');//<= close </section> and maybe display title + metas
-
+            echo '</div>';
           $html = ob_get_contents();
           if ($html) ob_end_clean();
 
@@ -6070,8 +6083,8 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * hook : tc_post_list_selectors
         */
         function czr_fn_grid_set_article_selectors($selectors){
-          $_class = sprintf( '%1$s tc-grid span%2$s',
-            apply_filters( 'tc_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded' : '',
+          $_class = sprintf( '%1$stc-grid span%2$s',
+            apply_filters( 'tc_grid_add_expanded_class', $this -> czr_fn_force_current_post_expansion() ) ? 'expanded ' : '',
             is_numeric( $this -> czr_fn_get_grid_section_cols() ) ? 12 / $this -> czr_fn_get_grid_section_cols() : 6
           );
           return str_replace( 'row-fluid', $_class, $selectors );
@@ -6214,10 +6227,13 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           //GENERATE THE MEDIA QUERY CSS FOR FONT-SIZES
           $_current_col_media_css   = $this -> czr_fn_get_grid_font_css( $_col_nb );
 
-          $_css = sprintf("%s\n%s\n%s\n",
+          $_grid_border_skinned_css = $this -> czr_fn_get_grid_boder_skinned_css();
+
+          $_css = sprintf("%s\n%s\n%s\n%s\n",
               $_css,
               $_current_col_media_css,
-              $_current_col_figure_css
+              $_current_col_figure_css,
+              $_grid_border_skinned_css
           );
           return $_css;
         }
@@ -6242,6 +6258,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           else
             return $_html;
         }
+
 
 
 
@@ -6466,6 +6483,23 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
           return sprintf( 'font-size:%spx;line-height:%spx;' ,
             ceil( $_bs * $_ratio ),
             ceil( $_bs * $_ratio * $_lh_ratio )
+          );
+        }
+
+
+
+        /**
+        * @return string
+        * returns the skinned border css rule
+        */
+        private function czr_fn_get_grid_boder_skinned_css() {
+          //add this reset rule for custom skin users
+          $_reset_old_skinned_border = '.tc-grid-border .tc-grid { border-bottom: none }';
+          $_skin_main_color          = CZR_utils::$instance -> czr_fn_get_skin_color();
+
+          return sprintf( "%s\n%s",
+            $_reset_old_skinned_border,
+            '.tc-grid-border .grid__item { border-bottom: 3px solid ' . $_skin_main_color .'}'
           );
         }
 
