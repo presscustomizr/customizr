@@ -125,8 +125,8 @@ class CZR_post_metas_model_class extends CZR_Model {
         'tc_author_meta',
         sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
             esc_url( get_author_posts_url( get_the_author_meta( 'ID', $author_id ) ) ),
-            esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author_meta('nicename', $author_id ) ) ),
-            get_the_author_meta('nicename', $author_id )
+            esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author_meta( 'display_name', $author_id ) ) ),
+            get_the_author_meta( 'display_name', $author_id )
         )
     );//end filter
   }
