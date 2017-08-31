@@ -619,17 +619,17 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             )
               return;
 
-           // categories
-           // we have to ignore sticky posts (do not prepend them)
-           // disable grid sticky post expansion
-           $cats = czr_fn_opt('tc_blog_restrict_by_cat');
-           $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
+            // categories
+            // we have to ignore sticky posts (do not prepend them)
+            // disable grid sticky post expansion
+            $cats = czr_fn_opt('tc_blog_restrict_by_cat');
+            $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
-           if ( is_array( $cats ) && ! empty( $cats ) ){
-               $query->set('category__in', $cats );
-               $query->set('ignore_sticky_posts', 1 );
-               add_filter('tc_grid_expand_featured', '__return_false');
-           }
+            if ( is_array( $cats ) && ! empty( $cats ) ){
+                $query->set('category__in', $cats );
+                $query->set('ignore_sticky_posts', 1 );
+                add_filter('tc_grid_expand_featured', '__return_false');
+            }
         }
 
 

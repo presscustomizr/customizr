@@ -14,7 +14,7 @@
 if ( ! class_exists( 'CZR_header_main' ) ) :
 	class CZR_header_main {
     static $instance;
-    function __construct () {
+    function __construct() {
       self::$instance =& $this;
       //Set header hooks
       //we have to use 'wp' action hook to show header in multisite wp-signup/wp-activate.php which don't fire template_redirect hook
