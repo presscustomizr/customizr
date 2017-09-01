@@ -9704,9 +9704,18 @@ var czrapp = czrapp || {};
                }
             });
 
-            czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, function( evt ) {
-                  $(this).closest( _parent_selector ).toggleClass( _focus_class, $_el.val() || ( evt && 'focusin' == evt.type ) );
-            } );
+            var _toggleThisFocusClass = function( evt ) {
+                var $_el       = $(this),
+                      $_parent = $_el.closest(_parent_selector);
+
+                if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
+                   $_parent.addClass( _focus_class );
+                } else {
+                   $_parent.removeClass( _focus_class );
+                }
+            };
+
+            czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
             $(_inputs).trigger( 'in-focus-load.czr-focus' );
             czrapp.$_body.on( 'click tap', '.icn-close', function() {
                   var $_search_field = $(this).closest('form').find('.czr-search-field');
