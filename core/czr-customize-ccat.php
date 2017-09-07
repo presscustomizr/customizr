@@ -303,6 +303,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'type',
                 'active_callback',
 
+                'pro_subtitle',
+                'pro_doc_url',
                 'pro_text',
                 'pro_url',
 
@@ -1792,6 +1794,9 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
      */
     public $type ='czr-customize-section-pro';
 
+    public $pro_subtitle = '';
+    public $pro_doc_url = '';
+
     /**
      * Custom button text to output.
      *
@@ -1814,6 +1819,8 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
      */
     public function json() {
       $json = parent::json();
+      $json['pro_subtitle'] = $this->pro_subtitle;
+      $json['pro_doc_url']  = esc_url( $this->pro_doc_url );
       $json['pro_text'] = $this->pro_text;
       $json['pro_url']  = esc_url( $this->pro_url );
       return $json;
@@ -1822,10 +1829,11 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
     //overrides the default template
     protected function render_template() { ?>
       <li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
-          <h3 class="accordion-section-title">
+          <h3 style="padding: 10px 25px 18px 14px;" class="accordion-section-title">
             {{ data.title }}
+            <a href="{{ data.pro_doc_url }}" style="font-size: 0.7em;display: block;float: left;position: absolute;bottom: 0px;font-style: italic;color: #555d66;" target="_blank" title="{{ data.pro_subtitle }}">{{ data.pro_subtitle }}</a>
             <# if ( data.pro_text && data.pro_url ) { #>
-              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank">{{ data.pro_text }}</a>
+              <a href="{{ data.pro_url }}" class="button button-secondary alignright" target="_blank" title="{{ data.pro_text }}" style="margin-top:0px">{{ data.pro_text }}</a>
             <# } #>
           </h3>
         </li>

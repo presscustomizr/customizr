@@ -9298,12 +9298,14 @@ var czrapp = czrapp || {};
                     } else if ( 'up' == self.scrollDirection() ) {
                           self.stickyStage( 'up' );
                           self.stickyMenuDown( true ).done( function() {});
-                          self.isFixedPositionned( to > self.topStickPoint() );
+                          if ( self.isFixedPositionned() ) {
+                                self.isFixedPositionned( to > self.topStickPoint() );
+                          }
                     }
               };
               this.scrollPosition.bind( function( to, from ) {
                     _setStickynessStatesOnScroll( to, from );
-                    czrapp.$_header.toggleClass( 'can-shrink-brand', to > czrapp.$_header[0].getBoundingClientRect().height * 2 );
+                    czrapp.$_header.toggleClass( 'can-shrink-brand', self.isFixedPositionned() ); //was to > czrapp.$_header[0].getBoundingClientRect().height * 2 );
               } );
               var _maybeResetTop = function() {
                     if ( 'up' == self.scrollDirection() )
@@ -10262,7 +10264,6 @@ var czrapp = czrapp || {};
       function _addOpenClass ( evt ) {
 
         var $_el = $(this);
-
         _debounced_addOpenClass = _.debounce( function() {
           if( 'static' == $_el.find( '.'+self.ClassName.DROPDOWN ).css( 'position' ) )
             return false;
@@ -10277,14 +10278,14 @@ var czrapp = czrapp || {};
                 $_data_toggle[0].setAttribute('aria-expanded', 'true');
           }
 
-        }, 150);
+        }, 30);
 
         _debounced_addOpenClass();
       }
+      
       function _removeOpenClass () {
 
         var $_el = $(this);
-
         _debounced_removeOpenClass = _.debounce( function() {
 
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
@@ -10297,7 +10298,7 @@ var czrapp = czrapp || {};
                 $_data_toggle[0].setAttribute('aria-expanded', 'false');
           }
 
-        }, 150);
+        }, 30);
 
         _debounced_removeOpenClass();
       }

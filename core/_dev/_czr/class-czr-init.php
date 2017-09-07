@@ -303,6 +303,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'type',
                 'active_callback',
 
+                'pro_subtitle',
+                'pro_doc_url',
                 'pro_text',
                 'pro_url',
 

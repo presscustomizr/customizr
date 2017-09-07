@@ -2944,7 +2944,7 @@ cite::before {
   background: #313131;
 }
 
-cite::first-child {
+cite:first-child {
   float: left;
 }
 

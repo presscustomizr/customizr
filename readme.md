@@ -1,4 +1,4 @@
-# Customizr v4.0.6 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.7 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
@@ -42,6 +42,12 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 4.0.7 September 7th 2017 =
+* Fix: menu centered wrongly displayed in ie/edge. Fixes #1163
+* Fix: Menu centered in desktop => scrolling up and down close to top is not well handled. Fixes #1161
+* Fix: RTL : search icon not properly left aligned on full screen search. Fixes #1159
+* Imp: Submenus items on mouse hover - reveal faster. Fixes #1154
+
 = 4.0.6 August 31st 2017 =
 * Fix: add menu btn was not shown when secondary menu associated but no sidenav shown. fixes #1125
 * Fix: fix singular thumbnail vertical spacing. fixes #1127

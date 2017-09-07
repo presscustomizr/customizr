@@ -40,6 +40,12 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.7 September 7th 2017 =
+* Fix: menu centered wrongly displayed in ie/edge. Fixes #1163
+* Fix: Menu centered in desktop => scrolling up and down close to top is not well handled. Fixes #1161
+* Fix: RTL : search icon not properly left aligned on full screen search. Fixes #1159
+* Imp: Submenus items on mouse hover - reveal faster. Fixes #1154
+
 = 4.0.6 August 31st 2017 =
 * Fix: add menu btn was not shown when secondary menu associated but no sidenav shown. fixes #1125
 * Fix: fix singular thumbnail vertical spacing. fixes #1127
