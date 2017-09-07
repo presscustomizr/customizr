@@ -510,7 +510,7 @@ cite {
     left:0;
     background: $black;
   }
-  &::first-child {
+  &:first-child {
     float: left
   }
 }
