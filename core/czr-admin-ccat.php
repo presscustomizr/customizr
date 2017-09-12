@@ -545,44 +545,36 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             }
           ?>
 
-          <?php if ( $is_help ) : ?>
+          <?php if ( $is_help && ! CZR_IS_PRO ) : ?>
 
-            <div class="changelog">
-              <div class="about-text tc-welcome">
-              <?php
-                printf( '<p>%1$s</p>',
-                  sprintf( __( "The best way to start is to read the %s." , "customizr" ),
-                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation" , "customizr") )
-                  )
-                );
-                printf( '<p>%1$s</p>',
-                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" )
-                );
-                ?>
-              </div>
-              <?php if ( ! CZR_IS_PRO ) : ?>
-                  <div class="feature-section col two-col">
-                    <div class="col">
-                       <br/>
-                        <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
-                    </div>
-                    <div class="last-feature col">
-                        <a class="button-secondary customizr-help" title="help" href="<?php echo esc_url('wordpress.org/support/theme/customizr'); ?>" target="_blank">
-                          <?php _e( 'Get help in the free support forum','customizr' ); ?>
-                        </a>
-                    </div>
-                  </div><!-- .two-col -->
-              <?php else : ?>
-                  <div class="feature-section">
-                    <div class="col">
-                       <br/>
-                        <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
-                    </div>
-                  </div><!-- .two-col -->
-              <?php endif; ?>
-            </div><!-- .changelog -->
+              <div class="changelog">
+                <div class="about-text tc-welcome">
+                <?php
+                  printf( '<p>%1$s</p>',
+                    sprintf( __( "The best way to start is to read the %s." , "customizr" ),
+                      sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation" , "customizr") )
+                    )
+                  );
+                  printf( '<p>%1$s</p>',
+                    __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" )
+                  );
+                  ?>
+                </div>
 
-          <?php else: ?>
+                    <div class="feature-section col two-col">
+                      <div class="col">
+                         <br/>
+                          <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
+                      </div>
+                      <div class="last-feature col">
+                          <a class="button-secondary customizr-help" title="help" href="<?php echo esc_url('wordpress.org/support/theme/customizr'); ?>" target="_blank">
+                            <?php _e( 'Get help in the free support forum','customizr' ); ?>
+                          </a>
+                      </div>
+                    </div><!-- .two-col -->
+              </div><!-- .changelog -->
+
+          <?php else : ?>
 
             <div class="about-text tc-welcome">
               <?php

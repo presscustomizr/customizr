@@ -40,6 +40,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.8 September 17th 2017 =
+
+
 = 4.0.7 September 7th 2017 =
 * Fix: menu centered wrongly displayed in ie/edge. Fixes #1163
 * Fix: Menu centered in desktop => scrolling up and down close to top is not well handled. Fixes #1161
