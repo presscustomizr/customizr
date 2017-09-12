@@ -93,34 +93,31 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                     sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation" , "customizr") )
                   )
                 );
-                printf( '<p>%1$s</p><p><strong>%2$s</strong></p>',
-                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" ),
-                  CZR_IS_PRO ? '' : sprintf( __( "The easiest way to search in the support forums is to use our Google powered search engine on our %s.", "customizr" ),
-                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('presscustomizr.com'), __("home page" , "customizr") )
-                  )
+                printf( '<p>%1$s</p>',
+                  __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" )
                 );
                 ?>
               </div>
-              <div class="feature-section col two-col">
-                <div class="col">
-                   <br/>
-                    <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
-                </div>
-                <div class="last-feature col">
-                  <br/>
-                    <a class="button-secondary customizr-help" title="faq" href="<?php echo $_faq_url; ?>" target="_blank"><?php _e( 'Check the FAQ','customizr' ); ?></a>
-                 </div>
-              </div><!-- .two-col -->
-              <div class="feature-section col two-col">
-                 <div class="col">
-                    <a class="button-secondary customizr-help" title="code snippets" href="<?php echo CZR_WEBSITE ?>code-snippets/" target="_blank"><?php _e( 'Code snippets for developers','customizr' ); ?></a>
-                </div>
-                 <div class="last-feature col">
-                    <a class="button-secondary customizr-help" title="help" href="<?php echo $_support_url; ?>" target="_blank">
-                      <?php CZR_IS_PRO ? _e( 'Get support','customizr' ) : _e( 'Get help in the free support forum','customizr' ); ?>
-                    </a>
-                 </div>
-              </div><!-- .two-col -->
+              <?php if ( ! CZR_IS_PRO ) : ?>
+                  <div class="feature-section col two-col">
+                    <div class="col">
+                       <br/>
+                        <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
+                    </div>
+                    <div class="last-feature col">
+                        <a class="button-secondary customizr-help" title="help" href="<?php echo esc_url('wordpress.org/support/theme/customizr'); ?>" target="_blank">
+                          <?php _e( 'Get help in the free support forum','customizr' ); ?>
+                        </a>
+                    </div>
+                  </div><!-- .two-col -->
+              <?php else : ?>
+                  <div class="feature-section">
+                    <div class="col">
+                       <br/>
+                        <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
+                    </div>
+                  </div><!-- .two-col -->
+              <?php endif; ?>
             </div><!-- .changelog -->
 
           <?php else: ?>
