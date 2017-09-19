@@ -48,39 +48,69 @@ section[class^="post-"] .gallery.row {
   }
 
   //
-  // Gallery needs a better implementation
+  // gallery columns management inspired by twentyseventeen
   //
-  @for $i from 1 through 9 {
-    &.gallery-columns-#{$i} {
-      .gallery-item {
-        //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / #{$i} );
-        width: percentage( 1 / $i );
-      }
-    }
-  }//for
+  // (1) In extra small devices (max-width 575px) the gallery items take 50% of the container width
+  // (2) except the 1 column case, which is displayed at 100%
+  //
+  // (3) From small devices to desktop (min-width 576px) the 3 columns gallery items take 1/3 of the container width
+  // (4) In small devices (min-width 576px) the 4-9 columns gallery items will take 25% of the container width
+  //     while starting from a ww of 768px they'll take the 100/$i ( $i in [4,9] ) of the container width (see 4.a for exceptions)
+  //
+  // (4.a) when displaying two sidebars, to avoid very very small gallery items, in the min-width 768px and max-width 991px viewport,
+  // we limit the width of the 4-9 columns gallery items to 25% of the container width
+  //
+  // N.B. this map is used also in the CZR_gallery ( core/front/utils/class-content-gallery.php ) to define the reponsive image sizes
 
+  //(1)
+  .gallery-item {
+      width: 50%;
+  }
+
+  //(2)
+  &.gallery-columns-1 .gallery-item {
+      width: 100%;
+  }
+
+  //(3)
+  @include media-breakpoint-up(sm) {
+    &.gallery-columns-3 .gallery-item {
+      width: percentage( 1 / 3 );
+    }
+  }
+
+  //(4)
   @for $i from 4 through 9 {
-    &.gallery-columns-#{$i} {
-      @include media-breakpoint-down(md) {
+    &.gallery-columns-#{$i} {          
+      @include media-breakpoint-up(sm) {
         .gallery-item {
-          //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
-          width: percentage( 2 / $i );
+          width: 25%;
         }
-      }
+      }//min-width 576px
+
+      @include media-breakpoint-up(md) {
+        .gallery-item {
+          width: percentage( 1 / $i );
+        }
+      }//min-width 768px
     }
   }//for
 
-  @for $i from 1 through 3 {
-    &.gallery-columns-#{$i} {
-      @include media-breakpoint-down(xs) {
+
+  //(4.a)
+  //case 2 sidebars
+  @for $i from 4 through 9 {    
+    .czr-b-sidebar #content &.gallery-columns-#{$i} {
+      @include media-breakpoint-between(md, md) {
         .gallery-item {
-          //width: calc( (100% - #{$base-line-height} * (#{$i} - 1) ) / (#{$i} / 2)  );
-          width: percentage( 2 / $i );
+          width: 25%;
         }
-      }
+      }//min-width 768px and max-width 991px
     }
   }//for
 
+
+  //post-action button sizing
   @for $i from 3 through 9 {
     &.gallery-columns-#{$i} {
       .gallery-item {
@@ -97,11 +127,4 @@ section[class^="post-"] .gallery.row {
     }//.gallery-columns-#
   }//for
 
-  @include media-breakpoint-down(sm) {
-    .gallery-item {
-      margin-right: auto;
-      margin-left: auto;
-    }
-  }
 }
-
