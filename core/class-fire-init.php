@@ -22,6 +22,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
       public $footer_widgets;
       public $widgets;
 
+      public $css_container_widths;
+      public $css_mq_breakpoints;
+
+
       //Access any method or var of the class with classname::$instance -> var or method():
       static $instance;
 
@@ -75,6 +79,24 @@ if ( ! class_exists( 'CZR_init' ) ) :
                   'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
               ),
           );
+
+
+
+          //CSS variable definition (as for bootstrap)
+          $this -> css_container_widths = apply_filters( 'czr_css_container_widths',             array(
+                  'xl' => '1140',
+                  'lg' => '960',
+                  'md' => '720',
+                  'sm' => '540'
+          )); 
+
+          $this -> css_mq_breakpoints = apply_filters( 'czr_css_mq_breakpoints', array(
+                  'xl' => '1200',
+                  'lg' => '992',
+                  'md' => '768',
+                  'sm' => '576'
+          ));
+
 
           $this -> font_selectors     = array(
               'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.header-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
