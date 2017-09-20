@@ -430,7 +430,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               $wp_admin_bar->add_menu( array(
                   'parent' => 'top-secondary', // Off on the right side
                   'id' => 'tc-customizr-help' ,
-                  'title' =>  __( 'Help' , 'customizr' ),
+                  'title' =>  '',
                   'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
                   'meta'   => array(
                       'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),

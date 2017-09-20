@@ -69,18 +69,11 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
         ?>
         <div id="customizr-admin-panel" class="wrap about-wrap">
           <?php
-            if ( $is_help ) {
-              printf( '<h1 style="font-size: 2.5em;" class="need-help-title">%1$s %2$s ?</h1>',
-                __( "Need help with", "customizr" ),
-                $_theme_name
-              );
-            } else {
-              printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
-                __( "Welcome to", "customizr" ),
-                $_theme_name,
-                CUSTOMIZR_VER
-              );
-            }
+            printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
+              __( "Thank you for using", "customizr" ),
+              $_theme_name,
+              CUSTOMIZR_VER
+            );
           ?>
 
           <?php if ( $is_help && ! CZR_IS_PRO ) : ?>
