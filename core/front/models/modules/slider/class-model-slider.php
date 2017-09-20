@@ -193,15 +193,15 @@ class CZR_slider_model_class extends CZR_Model {
     //title
     $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
     $default_title_length   = apply_filters( 'czr_slide_title_length', 80 );
-    $title                  = $this -> czr_fn_trim_text( $title, $default_title_length, '...' );
+    $title                  = czr_fn_text_truncate( $title, $default_title_length, '...' );
     //lead text
     $text                   = get_post_meta( $id, $key = 'slide_text_key' , $single = true );
     $default_text_length    = apply_filters( 'czr_slide_text_length', 250 );
-    $text                   = $this -> czr_fn_trim_text( $text, $default_text_length, '...' );
+    $text                   = czr_fn_text_truncate( $text, $default_text_length, '...' );
     //button text
     $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
     $default_button_length  = apply_filters( 'czr_slide_button_length', 80 );
-    $button_text            = $this -> czr_fn_trim_text( $button_text, $default_button_length, '...' );
+    $button_text            = czr_fn_text_truncate( $button_text, $default_button_length, '...' );
     //link post id
     $link_id                = apply_filters( 'czr_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
     //link
@@ -603,32 +603,6 @@ class CZR_slider_model_class extends CZR_Model {
   }
 
 
-  /**
-  * Helper
-  * Returns the passed text trimmed at $text_length char.
-  * with the $more text added
-  *
-  * @return string
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  *
-  */
-  // move this into CZR_utils?
-  function czr_fn_trim_text( $text, $text_length, $more ) {
-    if ( ! $text )
-      return '';
-    $text       = trim( strip_tags( $text ) );
-    if ( ! $text_length )
-      return $text;
-    $end_substr = $_text_length = strlen( $text );
-    if ( $_text_length > $text_length ){
-      $end_substr = strpos( $text, ' ' , $text_length);
-      $end_substr = ( $end_substr !== FALSE ) ? $end_substr : $text_length;
-      $text = substr( $text , 0 , $end_substr );
-    }
-    return ( ( $end_substr < $text_length ) && $more ) ? $text : $text . ' ' .$more ;
-  }
 
   /**
   * hook : tc_slider_height, fired in czr_fn_user_options_style
