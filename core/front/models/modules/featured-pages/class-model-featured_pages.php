@@ -173,8 +173,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
 
         //limit text to 200 car
           $default_fp_text_length         = apply_filters( 'czr_fp_text_length', $this->text_length, $fp_single_id, $featured_page_id );
-          $text                           = ( strlen($text) > $default_fp_text_length ) ? substr( $text , 0 , strpos( $text, ' ' , $default_fp_text_length) ). ' ...' : $text;
-
+          $text                           = czr_fn_text_truncate( $text, $default_fp_text_length, $more = '...', $strip_tags = false ); //tags already stripped
 
           if ( $show_thumb ) {
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
