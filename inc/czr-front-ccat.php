@@ -3777,7 +3777,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
             //limit text to 200 car
             $default_fp_text_length         = apply_filters( 'tc_fp_text_length', 200, $fp_single_id, $featured_page_id );
-            $text                           = ( strlen($text) > $default_fp_text_length ) ? substr( $text , 0 , strpos( $text, ' ' , $default_fp_text_length) ). ' ...' : $text;
+            $text                           = czr_fn_text_truncate( $text, $default_fp_text_length, $more = '...', $strip_tags = false ); //tags already stripped
+
 
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $fp_img_size                    = apply_filters( 'tc_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
@@ -8236,17 +8237,17 @@ class CZR_slider {
     //title
     $title                  = esc_attr(get_post_meta( $id, $key = 'slide_title_key' , $single = true ));
     $default_title_length   = apply_filters( 'tc_slide_title_length', 80 );
-    $title                  = $this -> czr_fn_trim_text( $title, $default_title_length, '...' );
+    $title                  = czr_fn_text_truncate( $title, $default_title_length, '...' );
 
     //lead text
     $text                   = get_post_meta( $id, $key = 'slide_text_key' , $single = true );
     $default_text_length    = apply_filters( 'tc_slide_text_length', 250 );
-    $text                   = $this -> czr_fn_trim_text( $text, $default_text_length, '...' );
+    $text                   = czr_fn_text_truncate( $text, $default_text_length, '...' );
 
     //button text
     $button_text            = esc_attr(get_post_meta( $id, $key = 'slide_button_key' , $single = true ));
     $default_button_length  = apply_filters( 'tc_slide_button_length', 80 );
-    $button_text            = $this -> czr_fn_trim_text( $button_text, $default_button_length, '...' );
+    $button_text            = czr_fn_text_truncate( $button_text, $default_button_length, '...' );
 
     //link post id
     $link_id                = apply_filters( 'tc_slide_link_id', esc_attr(get_post_meta( $id, $key = 'slide_link_key' , $single = true )), $id, $slider_name_id );
@@ -9446,7 +9447,7 @@ class CZR_slider {
     $button_text_length  = apply_filters( 'tc_posts_slider_button_text_length', 80 );
     $more                = apply_filters( 'tc_post_slide_more', '...');
     $button_text         = apply_filters( 'tc_posts_slider_button_text_pre_trim' , $button_text );
-    return $this -> czr_fn_trim_text( $button_text, $button_text_length, $more );
+    return czr_fn_text_truncate( $button_text, $button_text_length, $more );
   }
 
   /**
@@ -9471,7 +9472,7 @@ class CZR_slider {
     }
 
     $title = apply_filters( 'tc_post_title_pre_trim' , $title );
-    return $this -> czr_fn_trim_text( $title, $default_title_length, $more);
+    return czr_fn_text_truncate( $title, $default_title_length, $more);
   }
 
 
@@ -9507,39 +9508,7 @@ class CZR_slider {
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt );
 
     $excerpt = apply_filters( 'tc_post_excerpt_pre_trim' , $excerpt );
-    return $this -> czr_fn_trim_text( $excerpt, $default_text_length, $more);
-  }
-
-
-  /**
-  * Helper
-  * Returns the passed text trimmed at $text_length char.
-  * with the $more text added
-  *
-  * @return string
-  *
-  * @package Customizr
-  * @since Customizr 3.4.9
-  *
-  */
-  // move this into CZR_utils?
-  function czr_fn_trim_text( $text, $text_length, $more ) {
-    if ( ! $text )
-      return '';
-
-    $text       = trim( strip_tags( $text ) );
-
-    if ( ! $text_length )
-      return $text;
-
-    $end_substr = $_text_length = strlen( $text );
-
-    if ( $_text_length > $text_length ){
-      $end_substr = strpos( $text, ' ' , $text_length);
-      $end_substr = ( $end_substr !== FALSE ) ? $end_substr : $text_length;
-      $text = substr( $text , 0 , $end_substr );
-    }
-    return ( ( $end_substr < $text_length ) && $more ) ? $text : $text . ' ' .$more ;
+    return czr_fn_text_truncate( $excerpt, $default_text_length, $more);
   }
 
 } //end of class

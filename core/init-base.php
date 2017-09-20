@@ -425,7 +425,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
       * Add help button
       */
       function czr_fn_add_help_button() {
-          if ( ! czr_fn_is_pro() && current_user_can( 'edit_theme_options' ) ) {
+          if ( current_user_can( 'edit_theme_options' ) ) {
               global $wp_admin_bar;
               $wp_admin_bar->add_menu( array(
                   'parent' => 'top-secondary', // Off on the right side

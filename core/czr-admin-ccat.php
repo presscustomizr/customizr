@@ -2007,13 +2007,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          if(!in_array( 'slide_title_key' ,get_post_custom_keys( $postid))) {
            $title_value = $default_title;
          }
-         if (strlen( $title_value) > $default_title_length) {
-           $title_value = substr( $title_value,0,strpos( $title_value, ' ' , $default_title_length));
-           $title_value = esc_html( $title_value) . ' ...';
-         }
-         else {
-           $title_value = esc_html( $title_value);
-         }
+         $title_value = esc_html( czr_fn_text_truncate( $title_value, $default_title_length, '...' ) );
 
 
          //text_field setup : sanitize and limit length
@@ -2025,14 +2019,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
           //check if we already have a custom key created for this field, if not apply default value
          if(!in_array( 'slide_text_key' ,get_post_custom_keys( $postid)))
            $text_value = $default_description;
+         $text_value = czr_fn_text_truncate( $text_value, $default_text_length, '...' );
 
-         if (strlen( $text_value) > $default_text_length) {
-           $text_value = substr( $text_value,0,strpos( $text_value, ' ' ,$default_text_length));
-           $text_value = $text_value . ' ...';
-         }
-         else {
-           $text_value = $text_value;
-         }
 
           //Color field setup
          $color_id       = 'slide_color_field';
@@ -2041,16 +2029,12 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          //button field setup
          $button_id      = 'slide_button_field';
          $button_value   = esc_attr(get_post_meta( $postid, $key = 'slide_button_key' , $single = true ));
+
          //we define a filter for the slide text_button length
          $default_button_length   = apply_filters( 'czr_slide_button_length', 80 );
+         $button_value   = czr_fn_text_truncate( $button_value, $default_button_length, '...' );
 
-         if (strlen( $button_value) > $default_button_length) {
-           $button_value = substr( $button_value,0,strpos( $button_value, ' ' ,$default_button_length));
-           $button_value = $button_value . ' ...';
-         }
-         else {
-           $button_value = $button_value;
-         }
+
 
          //link field setup
          $link_id        = 'slide_link_field';
@@ -2268,18 +2252,23 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
            foreach ( $tc_slider_fields as $tcid => $tckey) {
                if ( isset( $_POST[$tcid])) {
                  $mydata = sanitize_text_field( $_POST[$tcid] );
+
                   switch ( $tckey) {
                     //different sanitizations
                     case 'slide_text_key':
                         $default_text_length = apply_filters( 'czr_slide_text_length', 250 );
-                        if (strlen( $mydata) > $default_text_length) {
-                          $mydata = substr( $mydata,0,strpos( $mydata, ' ' ,$default_text_length));
-                          $mydata = esc_html( $mydata) . ' ...';
-                        }
-                        else {
-                          $mydata = esc_html( $mydata);
-                        }
-                      break;
+                        $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_text_length, '...' ) );
+                    break;
+
+                    case 'slide_title_key':
+                        $default_title_length = apply_filters( 'czr_slide_title_length', 80 );
+                        $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_title_length, '...' ) );
+                    break;
+
+                    case 'slide_button_key':
+                        $default_button_text_length = apply_filters( 'czr_slide_button_length', 80 );
+                        $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_button_text_length, '...' ) );
+                    break;
 
                     case 'slide_custom_link_key':
                         $mydata = esc_url( $_POST[$tcid] );
@@ -2290,15 +2279,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                         $mydata = esc_attr( $mydata );
                     break;
 
-                    default://for button, color, title and post link field (actually not a link but an id)
-                        $default_title_length = apply_filters( 'czr_slide_title_length', 80 );
-                       if (strlen( $mydata) > $default_title_length) {
-                        $mydata = substr( $mydata,0,strpos( $mydata, ' ' , $default_title_length));
-                        $mydata = esc_attr( $mydata) . ' ...';
-                        }
-                        else {
-                          $mydata = esc_attr( $mydata);
-                        }
+                    default://for color, post link field (actually not a link but an id)
+                        $mydata = esc_attr( $mydata );
                       break;
                   }//end switch
                  //write in DB
