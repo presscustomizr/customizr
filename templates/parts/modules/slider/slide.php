@@ -26,7 +26,7 @@ if ( czr_fn_get_property( 'has_caption' ) ) :
   <div class="carousel-caption slider-text">
     <?php if ( czr_fn_get_property( 'title' ) ): ?>
     <!-- TITLE -->
-      <h1 class="czrs-title display-1 thick very-big" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></h2>
+      <h1 class="czrs-title display-1 thick very-big" <?php czr_fn_echo( 'color_style' ) ?>><?php czr_fn_echo( 'title' ) ?></h1>
     <?php endif; ?>
     <?php if ( czr_fn_get_property( 'subtitle' ) ) : ?>
     <!-- TEXT -->
