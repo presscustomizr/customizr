@@ -451,7 +451,14 @@ blockquote, .entry-link {
     @extend .bold;
     &::before{
       top:$base-line-height*2;
-      left:$base-line-height*2;
+
+      @if ( true == $is_rtl ) {
+        right: $base-line-height*2;
+      }
+      @else {
+        left:$base-line-height*2;
+      }
+
       position: absolute;
       font-size: ms(2);
       display: inline-block;
@@ -461,11 +468,14 @@ blockquote, .entry-link {
       font-weight: normal;
       speak: none;
       width: 1em;
+
       margin-right: .2em;
+      margin-left: .2em;
+
       text-align: center;
       font-variant: normal;
       text-transform: none;
-      margin-left: .2em;
+      
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -474,9 +484,18 @@ blockquote, .entry-link {
 // Blockquotes and cites
 blockquote {
   p {
-    margin-left: 5em;
+    
     max-width: 90%;
-    padding-left:$base-line-height*4;
+
+    @if ( true == $is_rtl ) {
+      margin-right: 5em;
+      padding-right:$base-line-height*4;
+    }
+    @else {
+      margin-left: 5em;
+      padding-left:$base-line-height*4;
+    }
+        
     color: $black;
     cite {
       clear: both;
@@ -497,21 +516,33 @@ cite {
   color: $grey-dark;
   font-weight: 300;
   font-style: normal;
-  padding-left: $base-line-height*4.1;
-  padding-right: $base-line-height/5;
+
+  @if ( true == $is_rtl ) {
+    padding-right: $base-line-height*2.1;
+    padding-left: $base-line-height/5;
+  }
+  @else {
+    padding-left: $base-line-height*2.1;
+    padding-right: $base-line-height/5;
+  }
+
+
   position: relative;
   display: inline-block;
   &::before {
     content: "";
     position: absolute;
-    width: $base-line-height*4;
+    width: $base-line-height*2;
     height:1px;
     bottom:2px;
-    left:0;
+    @if ( true == $is_rtl ) {
+      right: 0;
+    }
+    @else {
+      left:0;
+    }
+
     background: $black;
-  }
-  &:first-child {
-    float: left
   }
 }
 // Blockquotes and cites END
