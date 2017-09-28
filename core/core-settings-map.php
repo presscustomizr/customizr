@@ -442,11 +442,33 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'label'         => __( 'Header style', 'customizr'),
                             'choices'       => array(
                                   'dark'   => __( 'Dark' , 'customizr' ),
-                                  'light'  => __( 'Light' , 'customizr')
+                                  'light'  => __( 'Light' , 'customizr'),
+                                  'custom' => __( 'Custom' , 'customizr'),
                             ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'select' ,
                             'priority'      => 6,
+                            'transport'     => 'postMessage'
+          ),
+          'tc_header_custom_bg_color'  =>  array(
+                            'default'       => '#ffffff',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Header's background color", 'customizr'),
+                            'type'          =>  'color',
+                            'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
+                            'sanitize_js_callback' => 'maybe_hash_hex_color',
+                            'section'       => 'header_layout_sec' ,
+                            'priority'      => 7,
+          ),
+          'tc_header_custom_fg_color'  =>  array(
+                            'default'       => '#313131',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Header's foreground color", 'customizr'),
+                            'type'          =>  'color',
+                            'sanitize_callback'    => 'czr_fn_sanitize_hex_color',
+                            'sanitize_js_callback' => 'maybe_hash_hex_color',
+                            'section'       => 'header_layout_sec' ,
+                            'priority'      => 8,
           ),
           //enable/disable top border
           'tc_top_border' => array(
