@@ -32,21 +32,37 @@ ol {
   > li:before {
     content: counters(item, ".") ".";
     counter-increment: item;
-    padding-right: $base-line-height/2;
-  }
-}
-ul:not(.socials):not(.tags) {
-  .tc-content-inner & {
-    list-style: square inside;
+    padding-right: .5em;
   }
 }
 ol, ul {
-  ol, ul {
+  .tc-content-inner & {
+      
     @if ( true == $is_rtl ) {
-      margin-right: $base-line-height;
+      margin-right: 1em;
     }
     @else {
-      margin-left: $base-line-height;
+      margin-left: 1em;
+    }
+  }
+  @at-root .tc-content-inner ul {
+    list-style: square inside; 
+  }
+}
+ul.socials, ul.tags {
+  .tc-content-inner & {
+    list-style: none;
+    margin: 0;
+  }
+}
+
+ol, ul {
+  ol, ul {
+    @if ( true == $is_rtl ) {
+      margin-right: 1em;
+    }
+    @else {
+      margin-left: 1em;
     }
   }
 }
