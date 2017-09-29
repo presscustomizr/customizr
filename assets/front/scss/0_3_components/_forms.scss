@@ -40,7 +40,7 @@ input[type=checkbox],
 input[type=radio] {
   display: inline-block;
   font-size: 1em;
-  -webkit-appearance: none;
+  -webkit-appearance: none!important;
   margin: 0;
 
   padding: 0.5em;
