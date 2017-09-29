@@ -448,7 +448,6 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'select' ,
                             'priority'      => 6,
-                            'transport'     => 'postMessage'
           ),
           'tc_header_custom_bg_color'  =>  array(
                             'default'       => '#ffffff',
