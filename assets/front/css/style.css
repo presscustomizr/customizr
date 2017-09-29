@@ -4012,17 +4012,17 @@ embed, iframe, object, video {
   border-bottom: 1px solid rgba(49, 49, 49, 0.075);
 }
 
-.header-skin-light header .czr-form label, .header-skin-light .overlay .czr-form label {
+.header-skin-light header .czr-form label, .header-skin-light .czr-overlay .czr-form label {
   color: #313131;
 }
 
-.header-skin-light header .czr-form .form-group.in-focus label, .header-skin-light .overlay .czr-form .form-group.in-focus label {
+.header-skin-light header .czr-form .form-group.in-focus label, .header-skin-light .czr-overlay .czr-form .form-group.in-focus label {
   color: #777;
 }
 
 .header-skin-light header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-light header .czr-form textarea,
-.header-skin-light header .czr-form .form-control, .header-skin-light .overlay .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-light .overlay .czr-form textarea,
-.header-skin-light .overlay .czr-form .form-control {
+.header-skin-light header .czr-form .form-control, .header-skin-light .czr-overlay .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-light .czr-overlay .czr-form textarea,
+.header-skin-light .czr-overlay .czr-form .form-control {
   color: #313131;
   border-color: #313131;
 }
@@ -4299,17 +4299,17 @@ embed, iframe, object, video {
   border-bottom: 1px solid rgba(255, 255, 255, 0.075);
 }
 
-.header-skin-dark header .czr-form label, .header-skin-dark .overlay .czr-form label {
+.header-skin-dark header .czr-form label, .header-skin-dark .czr-overlay .czr-form label {
   color: #fff;
 }
 
-.header-skin-dark header .czr-form .form-group.in-focus label, .header-skin-dark .overlay .czr-form .form-group.in-focus label {
+.header-skin-dark header .czr-form .form-group.in-focus label, .header-skin-dark .czr-overlay .czr-form .form-group.in-focus label {
   color: #777;
 }
 
 .header-skin-dark header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-dark header .czr-form textarea,
-.header-skin-dark header .czr-form .form-control, .header-skin-dark .overlay .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-dark .overlay .czr-form textarea,
-.header-skin-dark .overlay .czr-form .form-control {
+.header-skin-dark header .czr-form .form-control, .header-skin-dark .czr-overlay .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), .header-skin-dark .czr-overlay .czr-form textarea,
+.header-skin-dark .czr-overlay .czr-form .form-control {
   color: #fff;
   border-color: #fff;
 }
@@ -5980,17 +5980,17 @@ blockquote::before, .entry-link::before {
   speak: none;
   width: 1em;
   margin-right: .2em;
+  margin-left: .2em;
   text-align: center;
   font-variant: normal;
   text-transform: none;
-  margin-left: .2em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 blockquote p {
-  margin-left: 5em;
   max-width: 90%;
+  margin-left: 5em;
   padding-left: 5em;
   color: #313131;
 }
@@ -6014,7 +6014,7 @@ cite {
   color: #777;
   font-weight: 300;
   font-style: normal;
-  padding-left: 5.125em;
+  padding-left: 2.625em;
   padding-right: 0.25em;
   position: relative;
   display: inline-block;
@@ -6023,15 +6023,11 @@ cite {
 cite::before {
   content: "";
   position: absolute;
-  width: 5em;
+  width: 2.5em;
   height: 1px;
   bottom: 2px;
   left: 0;
   background: #313131;
-}
-
-cite:first-child {
-  float: left;
 }
 
 .entry-link a {
@@ -6522,7 +6518,7 @@ input[type=checkbox],
 input[type=radio] {
   display: inline-block;
   font-size: 1em;
-  -webkit-appearance: none;
+  -webkit-appearance: none !important;
   margin: 0;
   padding: 0.5em;
   position: relative;
@@ -7378,15 +7374,24 @@ ol {
 ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
-  padding-right: 0.625em;
+  padding-right: .5em;
 }
 
-.tc-content-inner ul:not(.socials):not(.tags) {
+.tc-content-inner ol, .tc-content-inner ul {
+  margin-left: 1em;
+}
+
+.tc-content-inner ul {
   list-style: square inside;
 }
 
+.tc-content-inner ul.socials, .tc-content-inner ul.tags {
+  list-style: none;
+  margin: 0;
+}
+
 ol ol, ol ul, ul ol, ul ul {
-  margin-left: 1.25em;
+  margin-left: 1em;
 }
 
 dl {

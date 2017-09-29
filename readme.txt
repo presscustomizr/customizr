@@ -40,6 +40,15 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.9 September 30th 2017 =
+* Fix : typo in customizer controls
+* Fix : Slider caption elements, default Fittext minsizes too high. fixes #1191
+* Imp : slider bullets closer to the bottom and margin set in em
+* Fix: link whole slide not including the caption. Now this option behavior is consistent among classic and new style. fixes #1140
+* Fix: colors of the search form in dark overlay. Fixes #1185
+* Fix: closing slide's title h1 html tag. Fixes #1188
+* Imp: improve ol/ul margins in .tc-content-inner (.entry-content). Fixes #1183 Also slightly improve the cite element style.
+
 = 4.0.8 September 17th 2017 =
 * Fix: handle user's singular featured image height in singular. Fixes #1166.
 * Fix: correct horizontal positioning of the primary navbar menu. Fixes #1175.
