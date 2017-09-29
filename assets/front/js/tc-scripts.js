@@ -8942,24 +8942,24 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', self._parallax );
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
                     $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
-                                1.5,//<=kompressor
+                                1.2,//<=kompressor
                                 {
                                       maxFontSize : 65,//the default max font-size
-                                      minFontSize : 30,
+                                      minFontSize : 18,
                                 }
                     );
                     $(this).find( '.carousel-caption .czrs-subtitle' ).czrFitText(
-                                1.5,//<=kompressor
+                                1.2,//<=kompressor
                                 {
                                       maxFontSize : 35,//the default max font-size
-                                      minFontSize : 20,
+                                      minFontSize : 16,
                                 }
                     );
                     $(this).find( '.carousel-caption .czrs-cta' ).czrFitText(
-                                1.5,//<=kompressor
+                                1.2,//<=kompressor
                                 {
                                       maxFontSize : 16,//the default max font-size
-                                      minFontSize : 14,
+                                      minFontSize : 12,
                                 }
                     );
                   });

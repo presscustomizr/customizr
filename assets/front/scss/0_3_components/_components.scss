@@ -718,7 +718,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 // Carousel dots for the main slider
 [id^=customizr-slider-] {
   .flickity-page-dots {
-    bottom: 30px;
+    bottom: 0.5em;
     .dot {
       background-color: white;
       &::before { content: none; }

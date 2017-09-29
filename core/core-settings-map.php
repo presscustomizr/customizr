@@ -2020,7 +2020,7 @@ function czr_fn_placeholders_notice_map( $get_default = null ) {
                             'label'       => __( "Display help notices on front-end for logged in users.", 'customizr' ),
                             'section'     => 'placeholder_sec',
                             'type'        => 'checkbox',
-                            'notice'    => __( 'When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities.' , 'customizr' )
+                            'notice'    => __( 'When this option is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities.' , 'customizr' )
           )
   );
 }
@@ -2061,7 +2061,7 @@ function czr_fn_responsive_option_map( $get_default = null ) {
                             'label'       => __( 'Automatically adapt the font size to the width of the devices', 'customizr' ),
                             'section'     => 'responsive_sec',
                             'type'        => 'checkbox',
-                            'notice'    => __( 'When this options is enabled, your font size will automatically resize to be better displayed in mobile devices.' , 'customizr' )
+                            'notice'    => __( 'When this option is enabled, your font size will automatically resize to be better displayed in mobile devices.' , 'customizr' )
           )
 
   );
