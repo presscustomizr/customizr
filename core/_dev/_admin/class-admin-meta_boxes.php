@@ -1407,7 +1407,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   switch ( $tckey) {
                     //different sanitizations
                     case 'slide_text_key':
-                        $default_text_length = apply_filters( 'tc_slide_text_length', apply_filters( 'czr_slide_button_length', 250 ) );
+                        $default_text_length = apply_filters( 'tc_slide_text_length', apply_filters( 'czr_slide_text_length', 250 ) );
                         $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_text_length, '...' ) );
                     break;
 
