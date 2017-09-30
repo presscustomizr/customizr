@@ -124,7 +124,7 @@ $secondary-color-light  : $grey-light;
     color: $primary-color;
   }
 
-  .branding a {
+  .navbar-brand-sitename {
       color:$primary-color;
       &.czr-underline span::after {
         background: $primary-color;

@@ -174,7 +174,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.czr-overlay a:hover',
 
                                        '.dropdown-menu',
-                                       '.tc-header .branding a',
+                                       '.tc-header .navbar-brand-sitename',
                                        '[class*=nav__menu] li > a',
                                        '[class*=nav__menu] .dropdown-menu a',
                                        '[class*=nav__menu] .dropdown-item > a:hover',
@@ -200,7 +200,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  'background-color' => array(
                                        '.ham__toggler-span-wrapper .line',
                                        '[class*=nav__menu] li > a > span:first-of-type::before', 
-                                       '.tc-header .branding a.czr-underline span::after'
+                                       '.tc-header .navbar-brand-sitename.czr-underline span::after'
                                  )
                            )
                      ),

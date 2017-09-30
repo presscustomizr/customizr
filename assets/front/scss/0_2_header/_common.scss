@@ -54,17 +54,12 @@ header:not(.header-transparent) {
 [class*=nav__menu] li > a > span:first-of-type {
   @include underlined_nocolor(2px);
 }
-.topbar-nav__nav [class*=nav__menu] li > a > span:first-of-type::before { 
-  height: 1px;
-  bottom: 0.5px;
-}
 
 & li.show:not(.dropdown-item) > a > span:first-of-type,
 &  li:not(.dropdown-item).current-active > a > span:first-of-type,
 &  li.current-menu-item > a > span:first-of-type {
   @include underlined_highlight_before_nocolor();
 }
-
 
 .nav__menu {
   @extend .demi-small;
