@@ -8,26 +8,21 @@ $secondary-color-light  : $grey-light;
 
 @mixin headerskin($skin-overlay-color, $text-color, $skin ) {
 
-  $primary-color           : $text-color;
-  $background-color        : $skin-overlay-color;
-  $primary-color-inverted  : invert($primary-color);
-  $secondary-color-light   : $grey;
-  $secondary-color: null;
+  $primary-color             : $text-color;
+  $background-color          : $skin-overlay-color;  
+  $primary-color-inverted    : invert($primary-color);
+  $background-color-inverted : invert($background-color);
+  $secondary-color-light     : $grey;
+  $secondary-color           : if ( $primary-color == $white, $grey-light, $grey-dark );
 
-
-  @if ( $primary-color == $white) {
-     $secondary-color : $grey-light;
-  }
-  @else {
-      $secondary-color : $grey-dark;
-  }
-  @if $primary-color == $white {
+  @if ( $primary-color == $white ) {
       .tc-header {
         h1, h2, h3, h4, h5, h6 {
           color: $primary-color;
         }
       }
   }
+
   // overlays skin
   .czr-overlay {
     background: rgba($background-color, 0.98);
@@ -98,19 +93,25 @@ $secondary-color-light  : $grey-light;
         color: $primary-color;
       }
       .ham-toggler-menu.collapsed:hover {
-        span::after,
-        span::before,
-        span {
+        .line {
           background-color: $secondary-color-light;
         }
       }
-      .ham-toggler-menu__span, a:hover, a.current-active { 
+      a:hover, a.current-active { 
         color: $secondary-color-light; 
       }
   }
 
-  .dropdown-item:before {
-    background-color: rgba( $primary-color-inverted, 0.15);
+  //progress bar effect
+  //
+  //was previously based on the primary-color (foreground) inversion,
+  //now based on the background-color inversion.
+  //This because if we choose the primary-color as red, it's inverted
+  //color is some green => not what we want.
+  // it was: background-color: rgba( $primary-color-inverted, 0.15);
+  //primary-color==foreground-color
+  .dropdown-item::before {
+    background-color: rgba( $background-color-inverted, 0.045);
   }
 
   .dropdown-menu,
@@ -167,7 +168,7 @@ $secondary-color-light  : $grey-light;
       border-color: rgba($primary-color, 0.075);
   }
 
-  .tc-header .czr-form, .overlay .czr-form {
+  .tc-header .czr-form, .czr-overlay .czr-form {
       label {
         color: $primary-color;
       }
@@ -187,6 +188,7 @@ $secondary-color-light  : $grey-light;
 .header-skin-light  {
   @include headerskin($white, $black, 'light');
 }
+
 .header-skin-dark  {
   @include headerskin($black, $white, 'dark');
 } 
