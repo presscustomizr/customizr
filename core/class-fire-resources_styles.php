@@ -120,36 +120,46 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
          }
 
+
+
          function czr_fn_maybe_write_header_custom_skink_inline_css( $_css ) {
                //retrieve the current option
-               $skin_color                         = czr_fn_opt( 'tc_header_skin' );
+               $skin_color                             = czr_fn_opt( 'tc_header_skin' );
 
                if ( 'custom' != $skin_color )
                      return;
 
                //retrieve the current option
-               $header_bg_color                     = czr_fn_opt( 'tc_header_custom_bg_color' );
-               $header_fg_color                     = czr_fn_opt( 'tc_header_custom_fg_color' );
+               $header_bg_color                        = czr_fn_opt( 'tc_header_custom_bg_color' );
+               $header_fg_color                        = czr_fn_opt( 'tc_header_custom_fg_color' );
 
-               $header_fg_inverted_color            = czr_fn_hex_invert( $header_fg_color );
+               $header_bg_inverted_color               = czr_fn_hex_invert( $header_bg_color );
 
                //shaded
-               $header_fg_inverted_color_shade_high = czr_fn_hex2rgba( $header_fg_inverted_color, 0.15, $array = false, $make_prop_value = true );
+               $header_bg_inverted_color_shade_highest = czr_fn_hex2rgba( $header_bg_inverted_color, 0.045, $array = false, $make_prop_value = true );
 
-               $header_bg_color_shade_low           = czr_fn_hex2rgba( $header_bg_color, 0.9, $array = false, $make_prop_value = true );
-               $header_bg_color_shade_lowest        = czr_fn_hex2rgba( $header_bg_color, 0.98, $array = false, $make_prop_value = true );
+               $header_bg_color_shade_low              = czr_fn_hex2rgba( $header_bg_color, 0.9, $array = false, $make_prop_value = true );
+               $header_bg_color_shade_lowest           = czr_fn_hex2rgba( $header_bg_color, 0.98, $array = false, $make_prop_value = true );
                
-               $header_fg_color_shade_very_high     = czr_fn_hex2rgba( $header_fg_color, 0.09, $array = false, $make_prop_value = true );
-               $header_fg_color_shade_highest       = czr_fn_hex2rgba( $header_fg_color, 0.075, $array = false, $make_prop_value = true );
-               //$header_fg_color_shade_highest       = czr_fn_hex2rgba( $header_fg_color, 0.09, $array = false, $make_prop_value = true );
+               $header_fg_color_shade_very_high        = czr_fn_hex2rgba( $header_fg_color, 0.09, $array = false, $make_prop_value = true );
+               $header_fg_color_shade_highest          = czr_fn_hex2rgba( $header_fg_color, 0.075, $array = false, $make_prop_value = true );
 
+               //in header _skins.scss this is the $secondary_color which is $grey-light or $grey-dark depending on whether 
+               //the header skin is light or dark, so it's constant and not depending on the primary color.
+               //This color is used for the tagline color, the menu items hover color etc.
+               //In the dynamic skin we want to refer everything to two colors: foreground and backgorund that's why we use a shdaded version
+               //of the foreground color.
+               //Also consider that $grey-dark, for our settings is the same as $grey, and the $secondary-color-light is always $grey-light
+               //So since here we don't differentiate between $grey-light and $grey-dark, we'll use the following color for the $secondary-color-light too.
+               //TODO: unify this in the header _skins.scss too?!
+               $header_fg_color_shade_low              = czr_fn_hex2rgba( $header_fg_color, 0.7, $array = false, $make_prop_value = true );
 
                //LET'S DANCE
                //start computing style
-               $header_skin                         = array();
-               $glue                                = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $header_skin                            = array();
+               $glue                                   = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
 
-               $header_skin_style_map               = array(
+               $header_skin_style_map                  = array(
 
                      'header_fg_color' => array(
                            'color'  => $header_fg_color,
@@ -159,35 +169,34 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.tc-header',
                                        '#tc-sn .tc-sn-inner',
                                        '.czr-overlay',
-
-                                       '.add-menu-button',
-                                       
+                                       '.add-menu-button',                                       
                                        '.tc-header .socials a',
                                        '.tc-header .socials a:focus',
                                        '.tc-header .socials a:active',
-
                                        '.nav__utils',
                                        '.nav__utils a', 
                                        '.nav__utils a:focus', 
                                        '.nav__utils a:active',
-
                                        '.czr-overlay a:hover',
-
                                        '.dropdown-menu',
                                        '.tc-header .navbar-brand-sitename',
                                        '[class*=nav__menu] li > a',
                                        '[class*=nav__menu] .dropdown-menu a',
                                        '[class*=nav__menu] .dropdown-item > a:hover',
-
                                        '.tc-header .czr-form label',
                                        '.czr-overlay .czr-form label',
-
                                        ".tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio'])",
                                        '.tc-header .czr-form textarea',
                                        '.tc-header .czr-form .form-control',
                                        ".czr-overlay .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio'])",
                                        '.czr-overlay .czr-form textarea',
-                                       '.czr-overlay .czr-form .form-control'
+                                       '.czr-overlay .czr-form .form-control',
+                                       '.tc-header h1',
+                                       '.tc-header h2',
+                                       '.tc-header h3',
+                                       '.tc-header h4',
+                                       '.tc-header h5',
+                                       '.tc-header h6',
                                  ),
                                  'border-color' => array(
                                        ".tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio'])",
@@ -204,6 +213,29 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  )
                            )
                      ),
+                     'header_fg_color_shade_low' => array(
+                           'color'  => $header_fg_color_shade_low,
+                           'rules'  => array(
+                                 //prop => selectors
+                                 'color' => array(
+                                         '.header-tagline',
+                                         '[class*=nav__menu] li > a:hover',
+                                         '[class*=nav__menu] li.show:not(.dropdown-item) > a',
+                                         '[class*=nav__menu] li:not(.dropdown-item).current-active > a',
+                                         '[class*=nav__menu] li.current-menu-item > a',
+                                         '[class*=nav__menu] .dropdown-item a',
+                                         '.czr-overlay a',
+                                         '.tc-header .socials a:hover',
+                                         '.nav__utils a:hover', 
+                                         '.nav__utils a.current-active',
+                                         '.tc-header .czr-form .form-group.in-focus label', 
+                                         '.czr-overlay .czr-form .form-group.in-focus label' 
+                                 ),
+                                 'background-color' => array(
+                                         '.nav__utils .ham-toggler-menu.collapsed:hover .line', 
+                                 )
+                           )
+                     ),
                      'header_fg_color_shade_very_high' => array(
                            'color'  => $header_fg_color_shade_very_high,
                            'rules'  => array(
@@ -211,7 +243,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  'border-color' => array(
                                          '.topbar-navbar__wrapper',
                                          '.header-navbars__wrapper',
-                                         '.dropdown-item:not(:last-of-type)' //<- in 
+                                         '.dropdown-item:not(:last-of-type)'
                                  ),
                                  'outline-color' => array(
                                          '#tc-sn'
@@ -230,18 +262,6 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  ),
                            )
                      ),
-                     'header_fg_inverted_color_shade_high' => array(
-                           'color'  => $header_fg_inverted_color_shade_high,
-                           'rules'  => array(
-                                 //prop => selectors
-                                 'background-color' => array(
-                                       '.dropdown-item:before',
-                                 )
-                           )
-                     ),
-
-
-
                      'header_bg_color' => array(
                            'color'  => $header_bg_color,
                            'rules'  => array(
@@ -276,6 +296,15 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  )
                            )
                      ),
+                     'header_bg_inverted_color_shade_highest' => array(
+                           'color'  => $header_bg_inverted_color_shade_highest,                           
+                           'rules'  => array(
+                                 //prop => selectors
+                                 'background-color' => array(
+                                       '.dropdown-item:before',
+                                 )
+                           )
+                     ),
                );
 
                $header_skin  = self::czr_fn_build_inline_style_from_map( $header_skin_style_map, $glue );
@@ -291,7 +320,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
          }
 
 
-
+         //@return string
          function czr_fn_maybe_write_skin_inline_css( $_css ) {
 
                //retrieve the current option
@@ -568,7 +597,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
          }
 
-
+         //@return string
          public static function czr_fn_build_inline_style_from_map( $style_map = array(), $glue = '') {
 
                $style = array();
