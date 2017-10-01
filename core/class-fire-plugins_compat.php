@@ -307,7 +307,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         add_filter( $filter, 'czr_fn_url_lang' );
 
       //outputs the qtranslate translation for slider
-      foreach ( array( 'czr_slide_title', 'czr_slide_text', 'czr_slide_button_text', 'czr_slide_background_alt' ) as $filter )
+      foreach ( array( 'czr_slide_title', 'czr_slide_text', 'czr_slide_button_text', 'czr_slide_background_alt', 'czr_posts_slider_button_text_pre_trim' ) as $filter )
         add_filter( $filter, 'czr_fn_apply_qtranslate' );
       //sets no character limit for slider (title, lead text and button title) => allow users to use qtranslate tags for as many languages they wants ([:en]English text[:de]German text...and so on)
       foreach ( array( 'czr_slide_title_length', 'czr_slide_text_length', 'czr_slide_button_length' ) as $filter )
