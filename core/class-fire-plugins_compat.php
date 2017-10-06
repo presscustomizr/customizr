@@ -677,7 +677,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         }
         /*A) FP*/
         // Featured pages ids "translation"
-        add_filter( 'tc_fp_id', 'czr_fn_wpml_page_id', 20 );
+        add_filter( 'czr_fp_id', 'czr_fn_wpml_page_id', 20 );
         function czr_fn_wpml_page_id( $fp_page_id ) {
           return czr_fn_wpml_object_id( $fp_page_id, 'page');
         }
