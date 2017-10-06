@@ -312,11 +312,13 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                // end computing
                if ( empty ( $header_skin ) ) {
-                     return;
+                     return $_css;
                }
 
                //LET's GET IT ON
-               return implode( "{$glue}{$glue}", $header_skin );
+               $header_skin  = implode( "{$glue}{$glue}", $header_skin );
+
+               return $_css . $header_skin;
          }
 
 
@@ -332,7 +334,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                $def_skin_color                 = isset( $defaults['tc_skin_color'] ) ? $defaults['tc_skin_color'] : false;
 
                if ( in_array( $def_skin_color, array( $skin_color, strtoupper( $skin_color) ) ) )
-                     return;
+                     return $_css;
 
                $skin_dark_color                = czr_fn_darken_hex( $skin_color, '12%' );
                $skin_light_color               = czr_fn_lighten_hex( $skin_color, '15%' );
@@ -585,16 +587,17 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                $skin[]  = '::-moz-selection{background-color:'. $skin_color .'}';
                $skin[]  = '::selection{background-color:'. $skin_color .'}';
 
-               $skin[]  = self::czr_fn_build_inline_style_from_map( $skin_style_map, $glue );
+               $skin    = array_merge( $skin, self::czr_fn_build_inline_style_from_map( $skin_style_map, $glue ) );
 
                // end computing
                if ( empty ( $skin ) ) {
-                     return;
+                     return $_css;
                }
 
                //LET's GET IT ON
-               return implode( "{$glue}{$glue}", $skin );
+               $skin    = implode( "{$glue}{$glue}", $skin );
 
+               return $_css . $skin;
          }
 
          //@return string
