@@ -374,6 +374,17 @@
                     },
                     /* new */
                     {
+                            dominus : 'tc_header_skin',
+                            servi   : [
+                              'tc_header_custom_bg_color',
+                              'tc_header_custom_fg_color',
+                            ],
+                            visibility: function (to) {
+                                  //cross
+                                  return 'custom' == to;
+                            }
+                    },
+                    {
                             dominus : 'tc_header_topnav',
                             servi   : ['tc_social_in_topnav'],
                             visibility: function (to) {

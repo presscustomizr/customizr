@@ -186,7 +186,7 @@
 @function unfoldTransition ($transition) {
   // Default values
   $property: all;
-  $duration: .2s;
+  $duration: if( 'none' == $transition, null, .2s );
   $easing: null; // Browser default is ease, which is what we want
   $delay: null; // Browser default is 0, which is what we want
   $defaultProperties: ($property, $duration, $easing, $delay);
@@ -552,7 +552,7 @@
 
 @mixin underlined ($color, $height) {
   position: relative;
-  &:before {
+  &::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -576,6 +576,14 @@
   }
 }
 
+
+@mixin underlined_highlight_before_nocolor () {
+  &::before {
+    visibility: visible;
+    @include transform( translate3d(0,0,0) scaleX(1) );
+  }
+}
+
 @mixin underlined_nocolor ( $height ) {
   position: relative;
   &:before {
@@ -590,10 +598,7 @@
     @include transition( all 0.3s ease 0s );
   }
   &:hover {
-    &::before {
-      visibility: visible;
-      @include transform( translate3d(0,0,0) scaleX(1) );
-    }
+    @include underlined_highlight_before_nocolor () ;
   }
 }
 

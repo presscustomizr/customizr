@@ -1,9 +1,71 @@
+header:not(.header-transparent) {
+  .header-navbars__wrapper {
+    @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
+  }
+}
+    
+.mobile-nav__nav {
+  border-top: 1px solid;
+}
+.dropdown-item:not(:last-of-type) {
+  border-bottom: 0.5px solid;
+}
+
+.vertical-nav > li:not(:last-of-type),
+.topbar-navbar__wrapper,
+.header-navbars__wrapper,
+.mobile-nav__container,
+.mobile-search__container {
+  border-bottom: 1px solid;
+}
+
+.header-navbars__wrapper,
+.topnav-navbars__container,
+.topnav-navbars__container [class*=navbar__wrapper],
+.mobile-nav__container,
+.mobile-nav__nav {
+  background: inherit;
+}
+.sticky-transparent.is-sticky .mobile-nav__nav {
+  .dropdown-menu,
+  .dropdown-item:active,
+  .dropdown-item:focus,
+  .dropdown-item:hover {
+    background: none;
+  }
+}
+
+//site title underline
+.branding .czr-underline span::after {
+  content: "";
+  position: absolute;
+  width: 33%;
+  height: 3px;
+  bottom: 0;
+  @if ( true == $is_rtl ) {
+    right: 0;
+  }
+  @else {
+    left: 0;
+  }
+}
+
+//menu items underline
+[class*=nav__menu] li > a > span:first-of-type {
+  @include underlined_nocolor(2px);
+}
+
+& li.show:not(.dropdown-item) > a > span:first-of-type,
+&  li:not(.dropdown-item).current-active > a > span:first-of-type,
+&  li.current-menu-item > a > span:first-of-type {
+  @include underlined_highlight_before_nocolor();
+}
+
 .nav__menu {
   @extend .demi-small;
   @extend .caps;
   @extend .bold;
   @extend .letter-spacing-1;
-
 
 
   .menu-item {
