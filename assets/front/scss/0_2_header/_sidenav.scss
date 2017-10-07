@@ -1,6 +1,7 @@
 #tc-sn {
   position: fixed;
   visibility: hidden;
+  outline: 1px solid;
   @include perspective( 1000px );
   @include transform-style( preserve-3d );
   @include backface-visibility( hidden );
