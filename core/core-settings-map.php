@@ -2159,7 +2159,7 @@ function czr_fn_popul_panels_map( $panel_map ) {
 function czr_fn_popul_remove_section_map( $_sections ) {
   //customizer option array
   $remove_section = array(
-    'static_front_page' ,
+    'static_front_page',
     'nav',
     'title_tagline',
     'tc_page_comments'

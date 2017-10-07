@@ -476,18 +476,22 @@ function czr_fn_get_default_options() {
     if ( ! empty($def_options) && czr_fn_is_customizing() )
       return apply_filters( 'czr_default_options', $def_options );
 
+    //Never update the defaults when wp_installing()
+    //prevent issue https://github.com/presscustomizr/hueman/issues/571
     //Always update/generate the default option when (OR) :
     // 1) current user can edit theme options
     // 2) they are not defined
     // 3) theme version not defined
     // 4) versions are different
-    if ( current_user_can('edit_theme_options') || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
-      $def_options          = czr_fn_generate_default_options( czr_fn_get_customizer_map( $get_default_option = 'true' ) , CZR_THEME_OPTIONS );
-      //Adds the version in default
-      $def_options['ver']   =  CUSTOMIZR_VER;
+    if ( ! wp_installing() ) {
+        if ( current_user_can('edit_theme_options') || empty($def_options) || ! isset($def_options['ver']) || 0 != version_compare( $def_options['ver'] , CUSTOMIZR_VER ) ) {
+          $def_options          = czr_fn_generate_default_options( czr_fn_get_customizer_map( $get_default_option = 'true' ) , CZR_THEME_OPTIONS );
+          //Adds the version in default
+          $def_options['ver']   =  CUSTOMIZR_VER;
 
-      //writes the new value in db (merging raw options with the new defaults ).
-      czr_fn_set_option( 'defaults', $def_options, CZR_THEME_OPTIONS );
+          //writes the new value in db (merging raw options with the new defaults ).
+          czr_fn_set_option( 'defaults', $def_options, CZR_THEME_OPTIONS );
+        }
     }
 
     return apply_filters( 'czr_default_options', $def_options );
@@ -1543,7 +1547,7 @@ if ( ! function_exists( 'czr_fn_text_truncate' ) ):
 
       if ( $strip_tags )
         $text       = strip_tags( $text );
-      
+
       if ( ! $max_text_length )
           return $text;
 
@@ -1559,6 +1563,6 @@ if ( ! function_exists( 'czr_fn_text_truncate' ) ):
         return $text . ' ' .$more;
 
       return $text;
-    
+
   }
 endif;
