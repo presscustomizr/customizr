@@ -2468,6 +2468,8 @@ class CZR_utils_settings_map {
             //to unset
             $_to_unset = array(
                   'tc_header_skin',
+                  'tc_header_custom_bg_color',
+                  'tc_header_custom_fg_color',
                   'tc_header_title_underline'
             );
 

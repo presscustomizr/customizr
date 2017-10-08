@@ -49,7 +49,7 @@
         display: initial;
     }
   }
-  
+
   label {
     color: $primary-color;
   }
@@ -61,7 +61,7 @@
       color: $secondary-color-light;
     }
 
-    input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea, 
+    input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea,
     .form-control {
       color: $primary-color;
       border-color: $primary-color;
@@ -90,7 +90,7 @@
 
     @at-root .footer__wrapper .widget > h5  { margin-bottom: $base-line-height; }
     @at-root .footer__wrapper .textwidget   { width:90% }
-  
+
   //  @at-root .footer__wrapper .about {
   //    position:relative;
   //  p {
@@ -149,8 +149,9 @@
         p {
           margin: 0
         }
+        .czr-credits { font-size: 0.8rem; }
       }
-
+      .footer__credits { font-size: 0.9rem; }
       .footer__credits,
       .social-links {
         margin:1em 0;

@@ -9467,6 +9467,14 @@ section.post-content {
   margin: 0;
 }
 
+.colophon__row .footer__credits .czr-credits {
+  font-size: 0.8rem;
+}
+
+.colophon__row .footer__credits {
+  font-size: 0.9rem;
+}
+
 .colophon__row .footer__credits,
 .colophon__row .social-links {
   margin: 1em 0;

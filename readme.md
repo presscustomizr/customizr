@@ -1,7 +1,7 @@
-# Customizr v4.0.9-beta [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.9 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content.
+> Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Press Customizer](http://presscustomizr.com>)) 
@@ -11,13 +11,10 @@ Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://w
 
 
 ## Demo, Documentation, FAQs and Support
-* DEMO : http://demo.presscustomizr.com/
+* DEMO : https://demo.presscustomizr.com/
 * DOCUMENTATION : http://docs.presscustomizr.com/collection/76-customizr-theme
 * FAQs : http://docs.presscustomizr.com/category/90-faq-and-common-issues
-* SUPPORT : https://wordpress.org/support/theme/customizr
-* SNIPPETS : http://presscustomizr.com/code-snippets/
-* HOOKS API : http://presscustomizr.com/customizr/hooks-api/
-
+* SUPPORT FORUM : https://wordpress.org/support/theme/customizr
 
 ## Licenses
 Unless otherwise specified, all the theme files, scripts and images
@@ -42,14 +39,19 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
-= 4.0.9 September 30th 2017 =
+= 4.0.9 October 9th 2017 =
+* Fix: featured pages not translated by wpml. Fixes #1205
+* Fix : don't update the defaults when wp_installing()
+* Fix : preview error on singulars. Fixes #1194
 * Fix : typo in customizer controls
-* Fix : Slider caption elements, default Fittext minsizes too high. fixes #1191
-* Imp : slider bullets closer to the bottom and margin set in em
-* Fix: link whole slide not including the caption. Now this option behavior is consistent among classic and new style. fixes #1140
+* Fix : slider caption elements, default Fittext minsizes too high. Fixes #1191
+* Fix: link whole slide not including the caption. Fixes #1140
 * Fix: colors of the search form in dark overlay. Fixes #1185
 * Fix: closing slide's title h1 html tag. Fixes #1188
-* Imp: improve ol/ul margins in .tc-content-inner (.entry-content). Fixes #1183 Also slightly improve the cite element style.
+* Imp : slider bullets closer to the bottom and margin set in em
+* Imp: improve ol/ul margins in .tc-content-inner (.entry-content). Fixes #1183. Also slightly improve the cite element style.
+* Updated : footer credit links to customizr theme page instead of presscustomizr home page
+* Added : header custom back/fore-ground color options in modern style
 
 = 4.0.8 September 17th 2017 =
 * Fix: handle user's singular featured image height in singular. Fixes #1166.

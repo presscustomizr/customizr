@@ -1994,7 +1994,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $title_id              = 'slide_title_field';
          $title_value           = esc_attr(get_post_meta( $postid, $key = 'slide_title_key' , $single = true ));
          //we define a filter for the slide_text_length
-         $default_title_length   = apply_filters( 'czr_slide_title_length', 80 );
+         $default_title_length   = apply_filters( 'tc_slide_title_length', apply_filters( 'czr_slide_title_length', 80 ) );
 
          //check if we already have a custom key created for this field, if not apply default value
          if(!in_array( 'slide_title_key' ,get_post_custom_keys( $postid))) {
@@ -2007,7 +2007,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $text_id        = 'slide_text_field';
          $text_value     = esc_html(get_post_meta( $postid, $key = 'slide_text_key' , $single = true ));
           //we define a filter for the slide_title_length
-         $default_text_length   = apply_filters( 'czr_slide_text_length', 250 );
+         $default_text_length   = apply_filters( 'tc_slide_text_length', apply_filters( 'czr_slide_text_length', 250 ) );
 
           //check if we already have a custom key created for this field, if not apply default value
          if(!in_array( 'slide_text_key' ,get_post_custom_keys( $postid)))
@@ -2024,7 +2024,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $button_value   = esc_attr(get_post_meta( $postid, $key = 'slide_button_key' , $single = true ));
 
          //we define a filter for the slide text_button length
-         $default_button_length   = apply_filters( 'czr_slide_button_length', 80 );
+         $default_button_length   = apply_filters( 'tc_slide_button_length', apply_filters( 'czr_slide_button_length', 80 ) );
          $button_value   = czr_fn_text_truncate( $button_value, $default_button_length, '...' );
 
 
@@ -2249,17 +2249,17 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   switch ( $tckey) {
                     //different sanitizations
                     case 'slide_text_key':
-                        $default_text_length = apply_filters( 'czr_slide_text_length', 250 );
+                        $default_text_length = apply_filters( 'tc_slide_text_length', apply_filters( 'czr_slide_text_length', 250 ) );
                         $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_text_length, '...' ) );
                     break;
 
                     case 'slide_title_key':
-                        $default_title_length = apply_filters( 'czr_slide_title_length', 80 );
+                        $default_title_length = apply_filters( 'tc_slide_title_length', apply_filters( 'czr_slide_title_length', 80 ) );
                         $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_title_length, '...' ) );
                     break;
 
                     case 'slide_button_key':
-                        $default_button_text_length = apply_filters( 'czr_slide_button_length', 80 );
+                        $default_button_text_length = apply_filters( 'tc_slide_button_length', apply_filters( 'czr_slide_button_length', 80 ) );
                         $mydata = esc_html( czr_fn_text_truncate( $mydata, $default_button_text_length, '...' ) );
                     break;
 

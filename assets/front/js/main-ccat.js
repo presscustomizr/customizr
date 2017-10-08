@@ -79,17 +79,17 @@ var czrapp = czrapp || {};
 
             console.log.apply( console, czrapp._prettyfy( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : arguments } ) );
       };
-      czrapp.doAjax = function( query ) {
-            query = query || ( _.isObject( query ) ? query : {} );
+      czrapp.doAjax = function( queryParams ) {
+            queryParams = queryParams || ( _.isObject( queryParams ) ? queryParams : {} );
 
-            var ajaxUrl = czrapp.localized.ajaxUrl,
+            var ajaxUrl = queryParams.ajaxUrl || czrapp.localized.ajaxUrl,//the ajaxUrl can be specified when invoking doAjax
                 nonce = czrapp.localized.frontNonce,//{ 'id' => 'HuFrontNonce', 'handle' => wp_create_nonce( 'hu-front-nonce' ) },
                 dfd = $.Deferred(),
                 _query_ = _.extend( {
                             action : '',
                             withNonce : false
                       },
-                      query
+                      queryParams
                 );
             if ( "https:" == document.location.protocol ) {
                   ajaxUrl = ajaxUrl.replace( "http://", "https://" );

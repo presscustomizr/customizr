@@ -1390,7 +1390,7 @@ function czr_fn_remove_srcset_attr( $attr ) {
 if ( ! function_exists( 'czr_fn_darken_hex' ) ) {
    function czr_fn_darken_hex( $hex, $percent, $make_prop_value = true ) {
 
-      $hsl      = czr_fn_hex2hsl( $hex, true );
+      $hsl      = czr_fn_hex2hsl( $hex );
 
       $dark_hsl   = czr_fn_darken_hsl( $hsl, $percent );
 
@@ -1404,7 +1404,7 @@ if ( ! function_exists( 'czr_fn_lighten_hex' ) ) {
 
    function czr_fn_lighten_hex($hex, $percent, $make_prop_value = true) {
 
-      $hsl       = czr_fn_hex2hsl( $hex, true );
+      $hsl       = czr_fn_hex2hsl( $hex );
 
       $light_hsl   = czr_fn_lighten_hsl( $hsl, $percent );
 
@@ -1738,6 +1738,30 @@ if ( ! function_exists( 'czr_fn_hue2rgbtone' ) ) {
 
       return round( 255 * $_to_return );
    }
+}
+
+
+/* Returns the complementary hsl color
+/* ------------------------------------ */
+function czr_fn_rgb_invert( $rgb )  {
+   // Adjust Hue 180 degrees
+   //$hsl[0] += ($hsl[0]>180) ? -180:180;
+   $rgb_inverted =  array(
+      255 - $rgb[0],
+      255 - $rgb[1],
+      255 - $rgb[2]
+   );
+   
+   return $rgb_inverted;
+}
+
+/* Returns the complementary hsl color
+/* ------------------------------------ */
+function czr_fn_hex_invert( $hex, $make_prop_value = true )  {   
+   $rgb           = czr_fn_hex2rgb( $hex, $array = true );
+   $rgb_inverted  = czr_fn_rgb_invert( $rgb );
+
+   return czr_fn_rgb2hex( $rgb_inverted, $make_prop_value );
 }
 
 ?>
