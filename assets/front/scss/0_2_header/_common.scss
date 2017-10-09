@@ -354,7 +354,6 @@ header:not(.header-transparent) {
 
 // Hamburger button
 .ham-toggler-menu {
-    -webkit-appearance: initial !important;
     @extend .utils_links;
 }
 .ham__toggler-span-wrapper {
