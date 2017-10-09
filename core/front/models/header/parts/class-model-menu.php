@@ -156,7 +156,7 @@ class CZR_menu_model_class extends CZR_Model {
 
                     'element_class'       => array( 'mobile-nav__menu-wrapper' ),
                     'theme_location'      => $mobile_menu_location,
-                    'menu_id'             => 'mobile-nav',
+                    'menu_id'             => 'mobile-nav-menu',
                     'menu_class'          => array( 'mobile-nav__menu', 'vertical-nav', 'nav__menu', 'flex-column' ),
 
                 );
