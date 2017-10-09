@@ -3,7 +3,7 @@ header:not(.header-transparent) {
     @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
   }
 }
-    
+
 .mobile-nav__nav {
   border-top: 1px solid;
 }
@@ -366,7 +366,7 @@ header:not(.header-transparent) {
 .ham__toggler-span-wrapper .line {
   display: block;
   width: 20px;
-  height: 1.5px;
+  height: 1.4px;
   position: absolute;
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;

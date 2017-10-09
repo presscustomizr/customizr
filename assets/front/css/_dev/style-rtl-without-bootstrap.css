@@ -712,7 +712,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .czr-overlay a {
-  color: #777;
+  color: rgba(49, 49, 49, 0.7);
 }
 
 .header-skin-light .czr-overlay a:hover {
@@ -732,7 +732,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .tc-header .socials a:hover {
-  color: #777;
+  color: rgba(49, 49, 49, 0.7);
 }
 
 .header-skin-light #tc-sn .tc-sn-inner,
@@ -761,11 +761,11 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .nav__utils .ham-toggler-menu.collapsed:hover .line {
-  background-color: #777;
+  background-color: rgba(49, 49, 49, 0.7);
 }
 
 .header-skin-light .nav__utils a:hover, .header-skin-light .nav__utils a.current-active {
-  color: #777;
+  color: rgba(49, 49, 49, 0.7);
 }
 
 .header-skin-light .dropdown-item::before {
@@ -834,7 +834,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .tc-header .czr-form .form-group.in-focus label, .header-skin-light .czr-overlay .czr-form .form-group.in-focus label {
-  color: #777;
+  color: rgba(49, 49, 49, 0.7);
 }
 
 .header-skin-light .tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']),
@@ -856,7 +856,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .czr-overlay a {
-  color: #777;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .header-skin-dark .czr-overlay a:hover {
@@ -880,7 +880,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .tc-header .socials a:hover {
-  color: #777;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .header-skin-dark #tc-sn .tc-sn-inner,
@@ -909,11 +909,11 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .nav__utils .ham-toggler-menu.collapsed:hover .line {
-  background-color: #777;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .header-skin-dark .nav__utils a:hover, .header-skin-dark .nav__utils a.current-active {
-  color: #777;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .header-skin-dark .dropdown-item::before {
@@ -982,7 +982,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .tc-header .czr-form .form-group.in-focus label, .header-skin-dark .czr-overlay .czr-form .form-group.in-focus label {
-  color: #777;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .header-skin-dark .tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']),
@@ -1338,10 +1338,6 @@ li.current-menu-item > a > span:first-of-type::before {
   position: relative;
 }
 
-.ham-toggler-menu {
-  -webkit-appearance: initial !important;
-}
-
 .ham__toggler-span-wrapper {
   height: 12px;
   position: relative;
@@ -1352,7 +1348,7 @@ li.current-menu-item > a > span:first-of-type::before {
 .ham__toggler-span-wrapper .line {
   display: block;
   width: 20px;
-  height: 1.5px;
+  height: 1.4px;
   position: absolute;
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;

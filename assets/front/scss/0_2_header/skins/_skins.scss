@@ -12,7 +12,7 @@ $secondary-color-light  : $grey-light;
   $background-color          : $skin-overlay-color;
   $primary-color-inverted    : invert($primary-color);
   $background-color-inverted : invert($background-color);
-  $secondary-color-light     : $grey;
+  $secondary-color-light     : rgba($primary-color, 0.7);//$grey;
   $secondary-color           : if ( $primary-color == $white, $grey-light, $grey-dark );
 
   @if ( $primary-color == $white ) {
