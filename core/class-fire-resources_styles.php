@@ -21,7 +21,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
             add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
 
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
-            add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_header_custom_skink_inline_css') );
+            add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_header_custom_skin_inline_css') );
 
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
         }
@@ -122,12 +122,12 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
 
          //hook : czr_user_options_style
-         function czr_fn_maybe_write_header_custom_skink_inline_css( $_css ) {
+         function czr_fn_maybe_write_header_custom_skin_inline_css( $_css ) {
                //retrieve the current option
                $skin_color                             = czr_fn_opt( 'tc_header_skin' );
 
                if ( 'custom' != $skin_color )
-                     return;
+                     return $_css;
 
                //retrieve the current option
                $header_bg_color                        = czr_fn_opt( 'tc_header_custom_bg_color' );
