@@ -22,7 +22,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
 
               add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_scripts' ) );
-              add_action( 'czr_ajax_dismiss_welcome_front'      , array( $this , 'czr_fn_dismiss_welcome_front' ) );
+              add_action( 'czr_ajax_dismiss_welcome_note_front'      , array( $this , 'czr_fn_dismiss_welcome_note_front' ) );
+              add_action( 'czr_ajax_dismiss_style_switcher_note_front'      , array( $this , 'czr_fn_dismiss_style_switcher_note_front' ) );
 
               //stores the front scripts map in a property
               $this -> tc_script_map = $this -> czr_fn_get_script_map();
@@ -351,9 +352,23 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                       'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                       'isDevMode'        => CZR_DEBUG_MODE || CZR_DEV_MODE,
-                      'isWelcomeNoteOn' => $is_welcome_note_on,
-                      'welcomeContent'  => $welcome_note_content,
-                      'isModernStyle'    => CZR_IS_MODERN_STYLE
+                      'isModernStyle'    => CZR_IS_MODERN_STYLE,
+
+                      'i18n' => apply_filters( 'czr_front_js_translated_strings',
+                          array(
+                              'Permanently dismiss' => __('Permanently dismiss', 'customizr')
+                          )
+                      ),
+
+                      //FRONT NOTIFICATIONS
+                      //ordered by priority
+                      'frontNotifications' => array(
+                            'welcome' => array(
+                                'enabled' => $is_welcome_note_on,
+                                'content' => $welcome_note_content,
+                                'dismissAction' => 'dismiss_welcome_note_front'
+                            )
+                      )
                   ), czr_fn_get_id() )//end of filter
 
               );
@@ -489,41 +504,38 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
             }
             ob_start();
               ?>
-                <div id="bottom-welcome-note">
-                  <div class="note-content">
-                    <h2><?php printf( '%1$s :D' , __('Welcome in the Customizr theme', 'customizr' ) ); ?></h2>
-                      <?php
-                          printf('<p>%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s</p>',
-                              __('The theme offers a wide range', 'customizr'),
-                               admin_url( 'customize.php'),
-                              __('of customization options', 'customizr'),
-                              __('to let you create the best possible websites.', 'customizr' )
-                          );
-                          printf('<p>%1$s : <a href="%2$s" title="%3$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a>&nbsp;,<a href="%4$s" title="%5$s" target="_blank">%5$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
-                              __("If you need inspiration, you can visit our online demos", 'customizr'),
-                              esc_url('https://wp-themes.com/customizr/'),
-                              __('Customizr Demo 1', 'customizr'),
-                              esc_url('demo.presscustomizr.com/'),
-                              __('Customizr Demo 2', 'customizr')
-                          );
-                          printf( '<br/><br/><p>%1$s <a href="%2$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
-                              __('To help you getting started with Customizr, we have published', 'customizr'),
-                              esc_url('http://docs.presscustomizr.com/article/175-first-steps-with-the-customizr-wordpress-theme'),
-                              __('a short guide here.', 'customizr')
-                          );
-                      ?>
-                      <span class="fa fa-times close-note" title="<?php esc_attr_e( 'Permanently dismiss', 'customizr' ); ?>"></span>
-                  </div>
-                </div>
+              <h2><?php printf( '%1$s :D' , __('Welcome in the Customizr theme', 'customizr' ) ); ?></h2>
+                <?php
+                    printf('<p>%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s</p>',
+                        __('The theme offers a wide range', 'customizr'),
+                         admin_url( 'customize.php'),
+                        __('of customization options', 'customizr'),
+                        __('to let you create the best possible websites.', 'customizr' )
+                    );
+                    printf('<p>%1$s : <a href="%2$s" title="%3$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a>&nbsp;,<a href="%4$s" title="%5$s" target="_blank">%5$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
+                        __("If you need inspiration, you can visit our online demos", 'customizr'),
+                        esc_url('https://wp-themes.com/customizr/'),
+                        __('Customizr Demo 1', 'customizr'),
+                        esc_url('demo.presscustomizr.com/'),
+                        __('Customizr Demo 2', 'customizr')
+                    );
+                    printf( '<br/><br/><p>%1$s <a href="%2$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
+                        __('To help you getting started with Customizr, we have published', 'customizr'),
+                        esc_url('http://docs.presscustomizr.com/article/175-first-steps-with-the-customizr-wordpress-theme'),
+                        __('a short guide here.', 'customizr')
+                    );
+                ?>
               <?php
             $html = ob_get_contents();
             if ($html) ob_end_clean();
             return apply_filters('czr_front_welcome_note_html', $html );
         }
 
-        function czr_fn_dismiss_welcome_front() {
+        //hook : czr_ajax_dismiss_welcome_note_front
+        function czr_fn_dismiss_welcome_note_front() {
             set_transient( 'czr_welcome_note_status', 'dismissed' , 60*60*24*365*20 );//20 years of peace
             wp_send_json_success( array( 'status_note' => 'dismissed' ) );
         }
+
    }//end of CZR_resources_js
 endif;

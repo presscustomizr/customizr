@@ -3821,8 +3821,13 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       public $tc_script_map;
       public $current_random_skin;
 
+      private $_resources_version;
+
 	    function __construct () {
 	        self::$instance =& $this;
+
+          $this->_resouces_version = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+
           add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ) , 0 );
 	        add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_styles' ) );
           add_action( 'wp_enqueue_scripts'						, array( $this , 'czr_fn_enqueue_front_scripts' ) );
@@ -3856,15 +3861,15 @@ if ( ! class_exists( 'CZR_resources' ) ) :
               $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
               wp_enqueue_style( 'customizr-fa',
                   $_path . 'font-awesome.min.css',
-                  array() , CUSTOMIZR_VER, 'all' );
+                  array() , $this->_resouces_version, 'all' );
             }
 
-  	      wp_enqueue_style( 'customizr-common', CZR_init::$instance -> czr_fn_get_style_src( 'common') , array() , CUSTOMIZR_VER, 'all' );
+  	      wp_enqueue_style( 'customizr-common', CZR_init::$instance -> czr_fn_get_style_src( 'common') , array() , $this->_resouces_version, 'all' );
             //Customizr active skin
-  	      wp_register_style( 'customizr-skin', CZR_init::$instance -> czr_fn_get_style_src( 'skin'), array('customizr-common'), CUSTOMIZR_VER, 'all' );
+  	      wp_register_style( 'customizr-skin', CZR_init::$instance -> czr_fn_get_style_src( 'skin'), array('customizr-common'), $this->_resouces_version, 'all' );
   	      wp_enqueue_style( 'customizr-skin' );
   	      //Customizr stylesheet (style.css)
-  	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), CUSTOMIZR_VER , 'all' );
+  	      wp_enqueue_style( 'customizr-style', get_stylesheet_uri(), array( 'customizr-skin' ), $this->_resouces_version , 'all' );
 
   	      //Customizer user defined style options : the custom CSS is written with a high priority here
   	      wp_add_inline_style( 'customizr-skin', apply_filters( 'tc_user_options_style' , '' ) );
@@ -3988,8 +3993,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   	    wp_enqueue_script( 'jquery-ui-core' );
 
   	    wp_enqueue_script(
-          'modernizr'
-          ,
+          'modernizr',
           TC_BASE_URL . 'assets/front/js/libs/modernizr.min.js',
           array(),
           CUSTOMIZR_VER,
@@ -4058,6 +4062,24 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   			$left_sb_class     	= sprintf( '.%1$s.left.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
   	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
+        //Style switcher note
+        $is_style_switch_note_on = czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem();
+        $style_switcher_note_content = '';
+        if ( $is_style_switch_note_on && czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
+            $tc_custom_css = esc_html( czr_fn_opt( 'tc_custom_css') );
+            $tc_custom_css = trim( $tc_custom_css );
+            $wp_custom_css = wp_get_custom_css();
+            $wp_custom_css = trim( $wp_custom_css );
+            $is_style_switch_note_on = $is_style_switch_note_on && empty( $tc_custom_css ) && empty( $wp_custom_css );
+            $is_style_switch_note_on = apply_filters(
+                'czr_is_style_switch_notification_on',
+                $is_style_switch_note_on && ! CZR_IS_MODERN_STYLE && ! is_child_theme() && 'dismissed' != get_transient( 'czr_style_switch_note_status' )
+            );
+            if ( $is_style_switch_note_on ) {
+                $style_switcher_note_content =  $this -> czr_fn_get_style_switcher_note_content();
+            }
+        }
+
   			wp_localize_script(
   	        $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
   	        'TCParams',
@@ -4113,7 +4135,23 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 'frontNonce'   => array( 'id' => 'CZRFrontNonce', 'handle' => wp_create_nonce( 'czr-front-nonce' ) ),
 
                 'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
-                'isModernStyle'    => CZR_IS_MODERN_STYLE
+                'isModernStyle'    => CZR_IS_MODERN_STYLE,
+
+                'i18n' => apply_filters( 'czr_front_js_translated_strings',
+                    array(
+                        'Permanently dismiss' => __('Permanently dismiss', 'customizr')
+                    )
+                ),
+
+                //FRONT NOTIFICATIONS
+                //ordered by priority
+                'frontNotifications' => array(
+                      'styleSwitcher' => array(
+                          'enabled' => $is_style_switch_note_on,
+                          'content' => $style_switcher_note_content,
+                          'dismissAction' => 'dismiss_style_switcher_note_front'
+                      )
+                )
   	        	),
   	        	czr_fn_get_id()
   		    )//end of filter
@@ -4448,7 +4486,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           $_handle,
           sprintf( '%1$s%2$s%3$s',TC_BASE_URL , $_params['path'], $_filename ),
           $_params['dependencies'],
-          CUSTOMIZR_VER,
+          CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER,
           apply_filters( "tc_load_{$_handle}_in_footer", false )
         );
       }
@@ -4498,6 +4536,48 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           }
         }
         return $bool;
+      }
+
+      /* ------------------------------------------------------------------------- *
+       *  STYLE SWITCH NOTE
+      /* ------------------------------------------------------------------------- */
+      //This function is invoked only when :
+      //1) czr_fn_user_started_before_version( '4.0.0', '2.0.0' )
+      //2) AND if the note can be displayed : czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem() && 'dismissed' != get_transient( 'czr_style_switch_note_status' )
+      //It returns a welcome note html string that will be localized in the front js
+      //@return html string
+      function czr_fn_get_style_switcher_note_content() {
+          // beautify notice text using some defaults the_content filter callbacks
+          // => turns emoticon :D into an svg
+          foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback ) {
+            if ( function_exists( $callback ) )
+                add_filter( 'czr_front_style_switch_note_html', $callback );
+          }
+          ob_start();
+            ?>
+            <h2><?php printf( '%1$s :D' , __('Howdy !', 'customizr' ) ); ?></h2>
+                <?php
+                    printf( '<br/><br/><p>%1$s</p><br/>',
+                        sprintf( __('Did you take a look at the Style option recently introduced in the Customizr theme ? Give it a try %s', 'customizr'),
+                            sprintf( '<a href="%1$s">%2$s</a>',
+                                czr_fn_get_customizer_url( array( 'control' => 'tc_style', 'section' => 'style_sec') ),
+                                __('in the live customizer.', 'customizr')
+                            )
+                        )
+                    );
+                ?>
+
+            <?php
+          $html = ob_get_contents();
+          if ($html) ob_end_clean();
+          return apply_filters('czr_front_style_switch_note_html', $html );
+      }
+
+
+      //hook : czr_ajax_dismiss_style_switcher_note_front
+      function czr_fn_dismiss_style_switcher_note_front() {
+          set_transient( 'czr_style_switch_note_status', 'dismissed' , 60*60*24*365*20 );//20 years of peace
+          wp_send_json_success( array( 'status_note' => 'dismissed' ) );
       }
   }//end of CZR_ressources
 endif;

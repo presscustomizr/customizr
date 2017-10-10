@@ -1443,31 +1443,51 @@ var czrapp = czrapp || {};
 })(jQuery, czrapp);var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
-        mayBePrintWelcomeNote : function() {
-              if ( czrapp.localized && ! czrapp.localized.isWelcomeNoteOn )
+        mayBePrintFrontNote : function() {
+              if ( czrapp.localized && _.isUndefined( czrapp.localized.frontNotifications ) )
                 return;
-              var self = this;
-              czrapp.welcomeNoteVisible = new czrapp.Value( false );
-              czrapp.welcomeNoteVisible.bind( function( visible ) {
-                      return self._toggleWelcNote( visible );//returns a promise()
+              if ( _.isEmpty( czrapp.localized.frontNotifications ) || ! _.isObject( czrapp.localized.frontNotifications ) )
+                return;
+
+              var self = this,
+                  _hasCandidate = false;
+              czrapp.frontNotificationVisible = new czrapp.Value( false );
+              _.each( czrapp.localized.frontNotifications, function( _notification, _id ) {
+                    if ( ! _.isUndefined( czrapp.frontNotification ) )
+                      return;
+
+                    if ( ! _.isObject( _notification ) )
+                      return;
+                    _notification = _.extend( {
+                          enabled : false,
+                          content : '',
+                          dismissAction : ''
+                    }, _notification );
+                    if ( _notification.enabled ) {
+                          czrapp.frontNotification = new czrapp.Value( _notification );
+                    }
+
+              });
+              czrapp.frontNotificationVisible.bind( function( visible ) {
+                      return self._toggleNotification( visible );//returns a promise()
               }, { deferred : true } );
 
-              czrapp.welcomeNoteVisible( true );
-        },//mayBePrintWelcomeNote()
+              czrapp.frontNotificationVisible( true );
+        },//mayBePrintFrontNote()
 
 
-        _toggleWelcNote : function( visible ) {
+        _toggleNotification : function( visible ) {
               var self = this,
                   dfd = $.Deferred();
 
               var _hideAndDestroy = function() {
                     return $.Deferred( function() {
                           var _dfd_ = this,
-                              $welcWrap = $('#bottom-welcome-note', '#footer');
-                          if ( 1 == $welcWrap.length ) {
-                                $welcWrap.css( { bottom : '-100%' } );
+                              $notifWrap = $('#bottom-front-notification', '#footer');
+                          if ( 1 == $notifWrap.length ) {
+                                $notifWrap.css( { bottom : '-100%' } );
                                 _.delay( function() {
-                                      $welcWrap.remove();
+                                      $notifWrap.remove();
                                       _dfd_.resolve();
                                 }, 450 );// consistent with css transition: all 0.45s ease-in-out;
                           } else {
@@ -1479,13 +1499,26 @@ var czrapp = czrapp || {};
               var _renderAndSetup = function() {
                     var _dfd_ = $.Deferred(),
                         $footer = $('#footer', '#tc-page-wrap');
+                    if ( _.isUndefined( czrapp.frontNotification ) || ! _.isFunction( czrapp.frontNotification ) || ! _.isObject( czrapp.frontNotification() ) )
+                        return _dfd_.resolve().promise();
                     $.Deferred( function() {
                           var dfd = this,
-                              _html = czrapp.localized.welcomeContent;
-                          if ( 1 == $footer.length ) {
-                                $footer.append( _html );
+                              _notifHtml = czrapp.frontNotification().content,
+                              _wrapHtml = [
+                                    '<div id="bottom-front-notification">',
+                                      '<div class="note-content">',
+                                        '<span class="fa fa-times close-note" title="' + czrapp.localized.i18n['Permanently dismiss'] + '"></span>',
+                                      '</div>',
+                                    '</div>'
+                              ].join('');
+
+                          if ( 1 == $footer.length && ! _.isEmpty( _notifHtml ) ) {
+                                $.when( $footer.append( _wrapHtml ) ).done( function() {
+                                    $(this).find( '.note-content').prepend( _notifHtml );
+                                });
+
                                 _.delay( function() {
-                                      $('#bottom-welcome-note', '#footer').css( { bottom : 0 } );
+                                      $('#bottom-front-notification', '#footer').css( { bottom : 0 } );
                                       dfd.resolve();
                                 }, 500 );
                           } else {
@@ -1498,8 +1531,8 @@ var czrapp = czrapp || {};
                                             trigger   : 'click keydown',
                                             selector  : '.close-note',
                                             actions   : function() {
-                                                  czrapp.welcomeNoteVisible( false ).done( function() {
-                                                        czrapp.doAjax( { action: "dismiss_welcome_front", withNonce : true } );
+                                                  czrapp.frontNotificationVisible( false ).done( function() {
+                                                        czrapp.doAjax( { action: czrapp.frontNotification().dismissAction, withNonce : true } );
                                                   });
                                             }
                                       }
@@ -1520,17 +1553,17 @@ var czrapp = czrapp || {};
                     }, 3000 );
               } else {
                     _hideAndDestroy().done( function() {
-                          czrapp.welcomeNoteVisible( false );//should be already false
+                          czrapp.frontNotificationVisible( false );//should be already false
                           dfd.resolve();
                     });
               }
               _.delay( function() {
-                          czrapp.welcomeNoteVisible( false );
+                          czrapp.frontNotificationVisible( false );
                     },
                     45000
               );
               return dfd.promise();
-        }//_toggleWelcNote
+        }//_toggleNotification
   };//_methods{}
 
   czrapp.methods.UserXP = czrapp.methods.UserXP || {};
@@ -2872,7 +2905,7 @@ var czrapp = czrapp || {};
 
                             'anchorSmoothScroll',
 
-                            'mayBePrintWelcomeNote',
+                            'mayBePrintFrontNote',
                       ]
                 },
                 stickyFooter : {

@@ -7389,6 +7389,62 @@ footer ol {
   text-shadow: 0px 1px 0 #FFF;
   top: -0.06em;
 }
+/* FRONT NOTIFICATIONS
+/* ------------------------------------ */
+#bottom-front-notification {
+  bottom: -100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 10px 0;
+  position: fixed;
+  text-align: center;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+  color: #fff;
+  display: block;
+  -webkit-transition: all 0.45s ease-in-out;
+  -moz-transition: all, 0.45s ease-in-out;
+  -ms-transition: all, 0.45s ease-in-out;
+  -o-transition: all, 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+  font-size: 1.25em;
+}
+#bottom-front-notification h2 {
+  font-size: 1.5em;
+  line-height: 1.6em;
+  color: #fff;
+  margin-bottom: 15px;
+}
+#bottom-front-notification a {
+  color: #fff;
+  text-decoration: underline;
+}
+#bottom-front-notification p {
+  line-height: 2em;
+}
+#bottom-front-notification .note-content {
+  display: inline-block;
+  line-height: 20px;
+  width: 80%;
+  margin-bottom: 1em;
+}
+#bottom-front-notification .note-content p,
+#bottom-front-notification .note-content a {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+#bottom-front-notification .fa:before {
+  top: 2px;
+  position: relative;
+  padding-left: 2px;
+}
+#bottom-front-notification .close-note {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 31px;
+  cursor: pointer;
+}
 /* ADMIN BAR
     -------------------------------------------------- */
 #wp-admin-bar-tc-customizr-help .ab-item:before,

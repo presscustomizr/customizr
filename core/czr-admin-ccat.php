@@ -561,7 +561,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                       </div>
                       <div class="last-feature col">
                           <a class="button-secondary customizr-help" title="help" href="<?php echo esc_url('wordpress.org/support/theme/customizr'); ?>" target="_blank">
-                            <?php _e( 'Get help in the free support forum','customizr' ); ?>
+                            <?php _e( 'Support forum','customizr' ); ?>
                           </a>
                       </div>
                     </div><!-- .two-col -->
