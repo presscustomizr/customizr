@@ -90,3 +90,41 @@ if ( ! function_exists( 'czr_fn_maybe_allow_pro_modern_style' ) ) :
     return ( isset( $_GET['czr_pro_modern_style'] ) && true == $_GET['czr_pro_modern_style'] ) ? czr_fn_is_pro() : $czr_is_modern_style;
   }
 endif;
+
+
+
+/* ------------------------------------------------------------------------- *
+ *  STYLE SWITCH NOTE CONTENT
+/* ------------------------------------------------------------------------- */
+//This function is invoked only when :
+//1) czr_fn_user_started_before_version( '4.0.0', '2.0.0' )
+//2) AND if the note can be displayed : czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem() && 'dismissed' != get_transient( 'czr_style_switch_note_status' )
+//It returns a welcome note html string that will be localized in the front js
+//@return html string
+add_filter( 'czr_style_switcher_note_content', 'czr_fn_get_style_switcher_note_content' );//filter declared in inc/_dev/class-fire-resources.php
+function czr_fn_get_style_switcher_note_content() {
+    // beautify notice text using some defaults the_content filter callbacks
+    // => turns emoticon :D into an svg
+    foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback ) {
+      if ( function_exists( $callback ) )
+          add_filter( 'czr_front_style_switch_note_html', $callback );
+    }
+    ob_start();
+      ?>
+      <h2><?php printf( '%1$s :D' , __('Howdy !', 'customizr' ) ); ?></h2>
+          <?php
+              printf( '<br/><br/><p>%1$s</p><br/>',
+                  sprintf( __('Quick tip : you can choose between two styles for the Customizr theme. Give it a try %s', 'customizr'),
+                      sprintf( '<a href="%1$s">%2$s</a>',
+                          czr_fn_get_customizer_url( array( 'control' => 'tc_style', 'section' => 'style_sec') ),
+                          __('in the live customizer.', 'customizr')
+                      )
+                  )
+              );
+          ?>
+
+      <?php
+    $html = ob_get_contents();
+    if ($html) ob_end_clean();
+    return apply_filters('czr_front_style_switch_note_html', $html );
+}

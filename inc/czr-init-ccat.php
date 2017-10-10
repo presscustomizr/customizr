@@ -3845,6 +3845,9 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           //set random skin
           add_filter ('tc_opt_tc_skin'                , array( $this, 'czr_fn_set_random_skin' ) );
 
+          add_action( 'wp_ajax_dismiss_style_switcher_note_front',  array( $this , 'czr_fn_dismiss_style_switcher_note_front' ) );
+          add_action( 'wp_ajax_nopriv_dismiss_style_switcher_note_front',  array( $this , 'czr_fn_dismiss_style_switcher_note_front' ) );
+
           //stores the front scripts map in a property
           $this -> tc_script_map = $this -> czr_fn_get_script_map();
 	    }//construct
@@ -4063,7 +4066,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   	    $right_sb_class     = sprintf( '.%1$s.right.tc-sidebar', (false != $sidebar_layout) ? $sidebar_layout : 'span3' );
 
         //Style switcher note
-        $is_style_switch_note_on = czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem();
+        $is_style_switch_note_on = czr_fn_is_pro() && czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem();
         $style_switcher_note_content = '';
         if ( $is_style_switch_note_on && czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
             $tc_custom_css = esc_html( czr_fn_opt( 'tc_custom_css') );
@@ -4080,7 +4083,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                 $is_style_switch_note_on && ! CZR_IS_MODERN_STYLE && ! is_child_theme() && 'dismissed' != get_transient( 'czr_style_switch_note_status' )
             );
             if ( $is_style_switch_note_on ) {
-                $style_switcher_note_content =  $this -> czr_fn_get_style_switcher_note_content();
+                $style_switcher_note_content = apply_filters( 'czr_style_switcher_note_content', '' );
             }
         }
 
@@ -4153,7 +4156,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                       'styleSwitcher' => array(
                           'enabled' => $is_style_switch_note_on,
                           'content' => $style_switcher_note_content,
-                          'dismissAction' => 'dismiss_style_switcher_note_front'
+                          'dismissAction' => 'dismiss_style_switcher_note_front',
+                          'ajaxUrl' => admin_url( 'admin-ajax.php' )
                       )
                 )
   	        	),
@@ -4545,39 +4549,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       /* ------------------------------------------------------------------------- *
        *  STYLE SWITCH NOTE
       /* ------------------------------------------------------------------------- */
-      //This function is invoked only when :
-      //1) czr_fn_user_started_before_version( '4.0.0', '2.0.0' )
-      //2) AND if the note can be displayed : czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem() && 'dismissed' != get_transient( 'czr_style_switch_note_status' )
-      //It returns a welcome note html string that will be localized in the front js
-      //@return html string
-      function czr_fn_get_style_switcher_note_content() {
-          // beautify notice text using some defaults the_content filter callbacks
-          // => turns emoticon :D into an svg
-          foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback ) {
-            if ( function_exists( $callback ) )
-                add_filter( 'czr_front_style_switch_note_html', $callback );
-          }
-          ob_start();
-            ?>
-            <h2><?php printf( '%1$s :D' , __('Howdy !', 'customizr' ) ); ?></h2>
-                <?php
-                    printf( '<br/><br/><p>%1$s</p><br/>',
-                        sprintf( __('Did you take a look at the Style option recently introduced in the Customizr theme ? Give it a try %s', 'customizr'),
-                            sprintf( '<a href="%1$s">%2$s</a>',
-                                czr_fn_get_customizer_url( array( 'control' => 'tc_style', 'section' => 'style_sec') ),
-                                __('in the live customizer.', 'customizr')
-                            )
-                        )
-                    );
-                ?>
-
-            <?php
-          $html = ob_get_contents();
-          if ($html) ob_end_clean();
-          return apply_filters('czr_front_style_switch_note_html', $html );
-      }
-
-
       //hook : czr_ajax_dismiss_style_switcher_note_front
       function czr_fn_dismiss_style_switcher_note_front() {
           set_transient( 'czr_style_switch_note_status', 'dismissed' , 60*60*24*365*20 );//20 years of peace

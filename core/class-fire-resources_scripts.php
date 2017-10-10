@@ -21,9 +21,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               $this->_minify_js               = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
 
 
-              add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_scripts' ) );
-              add_action( 'czr_ajax_dismiss_welcome_note_front'      , array( $this , 'czr_fn_dismiss_welcome_note_front' ) );
-              add_action( 'czr_ajax_dismiss_style_switcher_note_front'      , array( $this , 'czr_fn_dismiss_style_switcher_note_front' ) );
+              add_action( 'wp_enqueue_scripts'                    , array( $this , 'czr_fn_enqueue_front_scripts' ) );
+              add_action( 'czr_ajax_dismiss_welcome_note_front'   , array( $this , 'czr_fn_dismiss_welcome_note_front' ) );
 
               //stores the front scripts map in a property
               $this -> tc_script_map = $this -> czr_fn_get_script_map();

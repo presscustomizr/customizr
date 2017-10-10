@@ -1461,7 +1461,8 @@ var czrapp = czrapp || {};
                     _notification = _.extend( {
                           enabled : false,
                           content : '',
-                          dismissAction : ''
+                          dismissAction : '',
+                          ajaxUrl : czrapp.localized.ajaxUrl
                     }, _notification );
                     if ( _notification.enabled ) {
                           czrapp.frontNotification = new czrapp.Value( _notification );
@@ -1532,7 +1533,11 @@ var czrapp = czrapp || {};
                                             selector  : '.close-note',
                                             actions   : function() {
                                                   czrapp.frontNotificationVisible( false ).done( function() {
-                                                        czrapp.doAjax( { action: czrapp.frontNotification().dismissAction, withNonce : true } );
+                                                        czrapp.doAjax( {
+                                                              action: czrapp.frontNotification().dismissAction,
+                                                              withNonce : true,
+                                                              ajaxUrl : czrapp.frontNotification().ajaxUrl
+                                                        });
                                                   });
                                             }
                                       }
