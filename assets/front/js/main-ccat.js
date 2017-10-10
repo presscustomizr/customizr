@@ -2318,19 +2318,18 @@ var czrapp = czrapp || {};
                 $_dropdown.removeClass( 'open-right' ).addClass( 'open-left' );
                 if ( 1 == $_caret.length ) {
                     $_caret.removeClass( 'open-right' ).addClass( 'open-left' );
-                    $_a.prepend( $_caret );
+                    if ( 1 == $_a.length )
+                      $_a.addClass('flex-row-reverse');
                 }
             },
             _openRight = function() {
                 $_dropdown.removeClass( 'open-left' ).addClass( 'open-right' );
                 if ( 1 == $_caret.length ) {
                     $_caret.removeClass( 'open-left' ).addClass( 'open-right' );
-                    $_a.append( $_caret );
+                    if ( 1 == $_a.length )
+                      $_a.removeClass('flex-row-reverse');
                 }
             };
-
-        if ( 1 != $_a.length || 1!= $_caret.length )
-          return;
         if ( $_dropdown.parent().closest( '.'+self.ClassName.DROPDOWN ).hasClass( 'open-left' ) ) {
             _openLeft();
         } else {
