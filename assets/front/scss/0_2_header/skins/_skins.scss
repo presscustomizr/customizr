@@ -13,7 +13,7 @@ $secondary-color-light  : $grey-light;
   $primary-color-inverted    : invert($primary-color);
   $background-color-inverted : invert($background-color);
   $secondary-color-light     : rgba($primary-color, 0.7);//$grey;
-  $secondary-color           : if ( $primary-color == $white, $grey-light, $grey-dark );
+  $secondary-color           : if( $primary-color == $white, $grey-light, $grey-dark );
 
   @if ( $primary-color == $white ) {
       .tc-header {
