@@ -3835,7 +3835,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light .header-tagline {
-  color: if false, #eceeef, #777;
+  color: #777;
 }
 
 .header-skin-light [class*=nav__menu] li > a {
@@ -3850,7 +3850,7 @@ embed, iframe, object, video {
 .header-skin-light [class*=nav__menu] li.show:not(.dropdown-item) > a,
 .header-skin-light [class*=nav__menu] li:not(.dropdown-item).current-active > a,
 .header-skin-light [class*=nav__menu] li.current-menu-item > a {
-  color: if false, #eceeef, #777;
+  color: #777;
 }
 
 .header-skin-light [class*=nav__menu] .dropdown-menu a {
@@ -3858,7 +3858,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-light [class*=nav__menu] .dropdown-item a {
-  color: if false, #eceeef, #777;
+  color: #777;
 }
 
 .header-skin-light [class*=nav__menu] .dropdown-item > a:hover {
@@ -3983,7 +3983,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark .header-tagline {
-  color: if true, #eceeef, #777;
+  color: #eceeef;
 }
 
 .header-skin-dark [class*=nav__menu] li > a {
@@ -3998,7 +3998,7 @@ embed, iframe, object, video {
 .header-skin-dark [class*=nav__menu] li.show:not(.dropdown-item) > a,
 .header-skin-dark [class*=nav__menu] li:not(.dropdown-item).current-active > a,
 .header-skin-dark [class*=nav__menu] li.current-menu-item > a {
-  color: if true, #eceeef, #777;
+  color: #eceeef;
 }
 
 .header-skin-dark [class*=nav__menu] .dropdown-menu a {
@@ -4006,7 +4006,7 @@ embed, iframe, object, video {
 }
 
 .header-skin-dark [class*=nav__menu] .dropdown-item a {
-  color: if true, #eceeef, #777;
+  color: #eceeef;
 }
 
 .header-skin-dark [class*=nav__menu] .dropdown-item > a:hover {

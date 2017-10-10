@@ -4068,8 +4068,12 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         if ( $is_style_switch_note_on && czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
             $tc_custom_css = esc_html( czr_fn_opt( 'tc_custom_css') );
             $tc_custom_css = trim( $tc_custom_css );
-            $wp_custom_css = wp_get_custom_css();
-            $wp_custom_css = trim( $wp_custom_css );
+            $wp_custom_css = '';
+            if ( function_exists( "wp_get_custom_css" ) ) {
+                $wp_custom_css = wp_get_custom_css();
+                $wp_custom_css = trim( $wp_custom_css );
+            }
+
             $is_style_switch_note_on = $is_style_switch_note_on && empty( $tc_custom_css ) && empty( $wp_custom_css );
             $is_style_switch_note_on = apply_filters(
                 'czr_is_style_switch_notification_on',
