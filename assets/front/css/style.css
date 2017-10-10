@@ -4206,6 +4206,13 @@ li.current-menu-item > a > span:first-of-type::before {
   top: -.1em;
 }
 
+.regular-nav .dropdown-menu .caret__dropdown-toggler.open-left i {
+  -webkit-transform: translateZ(0) rotate(-270deg);
+  -moz-transform: translateZ(0) rotate(-270deg);
+  transform: translateZ(0) rotate(-270deg);
+  -ms-transform: rotate(-270deg);
+}
+
 .regular-nav .dropdown-menu .dropdown-item {
   padding: 0 1.25em;
 }
@@ -4282,10 +4289,10 @@ li.current-menu-item > a > span:first-of-type::before {
 }
 
 .menu-item.show > a > .caret__dropdown-toggler i {
-  -webkit-transform: translateZ(0) rotate(-180deg);
-  -moz-transform: translateZ(0) rotate(-180deg);
-  transform: translateZ(0) rotate(-180deg);
-  -ms-transform: rotate(-180deg);
+  -webkit-transform: translateZ(0) rotate(-180deg) !important;
+  -moz-transform: translateZ(0) rotate(-180deg) !important;
+  transform: translateZ(0) rotate(-180deg) !important;
+  -ms-transform: rotate(-180deg) !important;
 }
 
 .czr-submenu-fade .regular-nav .menu-item-has-children {
@@ -4809,7 +4816,7 @@ li#wp-admin-bar-tc-customizr-help a {
 }
 
 .can-shrink-brand.sticky-brand-shrink-on .desktop-sticky .navbar-brand img {
-  height: 30px !important;
+  max-height: 30px !important;
   width: auto !important;
 }
 

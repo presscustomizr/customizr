@@ -153,6 +153,10 @@ header:not(.header-transparent) {
           display: inline-block;
           top: -.1em;
         }
+        @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler.open-left i {
+          @include transform( translateZ(0) rotate(-270deg));
+          -ms-transform: rotate(-270deg);
+        }
         @at-root .regular-nav .dropdown-menu .dropdown-item {
           padding: 0 $base-line-height;
         }
@@ -231,8 +235,8 @@ header:not(.header-transparent) {
       line-height: inherit;
     }
     .menu-item.show > a > & {
-        @include transform( translateZ(0) rotate(-180deg));
-        -ms-transform: rotate(-180deg);
+        @include transform( translateZ(0) rotate(-180deg)!important);
+        -ms-transform: rotate(-180deg)!important;
     }
 }
 

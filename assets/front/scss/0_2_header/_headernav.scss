@@ -34,7 +34,7 @@
           max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
         }
 
- 
+
 
         .navbar-brand {
             font-size: 2.4em;
@@ -336,7 +336,7 @@
 
     //logo
     .navbar-brand img {
-        height: 30px!important;
+        max-height: 30px!important;
         width: auto!important;
     }
 }
