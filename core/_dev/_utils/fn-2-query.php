@@ -48,16 +48,21 @@ function czr_fn_is_single_post() {
     return apply_filters( 'czr_is_single_post', isset($post)
         && is_singular()
         && 'page' != $post -> post_type
-        && 'attachment' != $post -> post_type
+        && ! czr_fn_is_attachment_image()
         && ! czr_fn_is_home_empty()
         && ! czr_fn_is_real_home()
         );
 }
 
+function czr_fn_is_single_attachment_image() {
+    global $post;
+    return apply_filters( 'czr_is_single_attachment_image',
+        ! ( ! isset($post) || empty($post) || ! czr_fn_is_attachment_image() || !is_singular() ) );
+}
 
 function czr_fn_is_single_attachment() {
     global $post;
-    return apply_filters( 'czr_is_single_attacment',
+    return apply_filters( 'czr_is_single_attachment',
         ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() ) );
 }
 
