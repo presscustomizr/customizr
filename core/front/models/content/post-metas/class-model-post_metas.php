@@ -22,10 +22,15 @@ class CZR_post_metas_model_class extends CZR_Model {
         $before = null ) ) : '';
   }
 
+
   public function czr_fn_get_update_date( $permalink = false, $before = null ) {
     return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) &&
            false !== czr_fn_post_has_update() ?
                 $this -> czr_fn_get_meta( 'up_date', array( '', $permalink ) ) : '';
+  }
+
+  public function czr_fn_get_attachment_image_info( $permalink = false, $before = null ) {
+    return $this -> czr_fn_get_meta( 'attachment_image_info' );
   }
   /* END PUBLIC GETTERS */
 
@@ -68,6 +73,22 @@ class CZR_post_metas_model_class extends CZR_Model {
   }
 
 
+  public function czr_fn_meta_generate_attachment_image_info() {
+    $metadata = wp_get_attachment_metadata();
+
+    global $post;
+
+    $_html_parts  = array(
+      ( isset($metadata['width']) && isset($metadata['height']) ) ? '<span class="attachment-size">' . __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a></span>' : '',
+      //when post parent id is 0 means that the media is not attached to any post
+      ( 0 != $post->post_parent ) ? '<span class="attachment-parent">' . __('in' , 'customizr') . '<a href="' . esc_url( get_permalink( $post->post_parent ) ) . '" title="' . the_title_attribute( array( 'before' => __('Return to ' , 'customizr'), 'echo' =>false ) ) .'" rel="gallery"> '.strip_tags( get_the_title( $post->post_parent ) ).'</a></span>' : ''
+    );
+
+    return apply_filters( 'tc_attachment_image_sizes_meta', join( ' ', $_html_parts ) );
+  }
+
+
+
   protected function czr_fn_get_term_css_class( $_is_hierarchical ) {
     $_classes = array();
 
@@ -78,6 +99,10 @@ class CZR_post_metas_model_class extends CZR_Model {
 
     return $_classes;
   }
+
+
+  /* Helpers */
+
 
   /**
   * Helper
@@ -104,6 +129,8 @@ class CZR_post_metas_model_class extends CZR_Model {
         $_format
      );//end filter
   }
+
+
 
   /**
   * Helper
