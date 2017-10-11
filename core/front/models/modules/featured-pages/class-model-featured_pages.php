@@ -128,7 +128,8 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $customizr_link                 = '';
 
         if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
-            $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" style="text-decoration:underline;font-weight:bold;padding-top: 1em;padding-top: 1em;display: inline-block;display: inline-block;text-transform:uppercase;">%3$s</a>',
+            $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" class="btn btn-edit" style="margin-top: 1em;
+    font-weight: bold;"><i class="icn-edit"></i>%3$s</a>',
                 czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Customize it now' , 'customizr' )
