@@ -30,7 +30,7 @@ if ( have_posts() ) {
           if ( czr_fn_is_registered_or_possible('post_list') ) {
                 $loop_item_tmpl = 'content/post-lists/post_list_alternate';
                 $loop_item_model = array();
-                //$to_render = array( 'loop_item' => array('content/post-lists/post_list_alternate' ));
+          
           } elseif ( czr_fn_is_registered_or_possible('post_list_plain') ) {
                 $loop_item_tmpl = 'content/post-lists/post_list_plain';
                 $loop_item_model = array();
@@ -40,8 +40,11 @@ if ( have_posts() ) {
           $loop_item_model = apply_filters( 'czr_post_list_loop_item_model', $loop_item_model );
 
       } elseif ( is_single() ) {
-          $loop_item_tmpl = apply_filters( 'czr_single_loop_item_template', 'content/singular/post_content');
-          //$to_render = array( 'loop_item' => array('content/singular/post_content' ));
+          if ( czr_fn_is_registered_or_possible( 'attachment_image' ) ) {
+                $loop_item_tmpl = apply_filters( 'czr_single_attachment_loop_item_template', 'content/singular/attachment_image_content');
+          } else {
+                $loop_item_tmpl = apply_filters( 'czr_single_loop_item_template', 'content/singular/post_content');  
+          }          
       }
 
       $loop_item = apply_filters( "czr_main_content_loop_item", array(
