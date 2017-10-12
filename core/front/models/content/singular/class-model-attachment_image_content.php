@@ -2,6 +2,15 @@
 class CZR_attachment_image_content_model_class extends CZR_Model {
     //bools    
     private $prepend_attachment_callback_on;
+    public $defaults = array( 'attachment_size' => array( 960, 960 ) );
+
+    public $attachment_gallery; 
+    public $attachment_size; 
+    public $attachment_class;
+    public $attachment_caption;
+    public $attachment_link_url;
+    public $attachment_link_attributes;
+
 
     /*
     * Fired just before the view is rendered
@@ -30,7 +39,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
     function czr_fn_setup_attachment_content() {
 
         global $post;
-        $gallery     = '';
+        $attachment_gallery     = '';
         
         //when the image has been attached to no posts the $post->parent_id value is 0 and the following
         $attachments = array_values( 
@@ -46,8 +55,8 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
         //did we activate the lighbox in customizer?
         $lightbox_on = 0 != esc_attr( czr_fn_opt( 'tc_fancybox' ) );
 
-        //whether or not this attachment image as a specific caption set
-        $has_caption = !empty( $post -> post_excerpt );
+        //Attachment image caption
+        $attachment_caption = !empty( $post->post_excerpt ) ? $post->post_excerpt : null;
 
         if ( !$lightbox_on ) { //lightbox not checked!
             /**
@@ -79,46 +88,46 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
               $next_attachment_url   = wp_get_attachment_url();
             }
 
-            $link_url                = esc_url( $next_attachment_url );
-            $attachment_class        = 'attachment';
-            $link_attributes         = 'rel="attachment"';
+            $attachment_link_url        = esc_url( $next_attachment_url );
+            $attachment_class           = 'attachment';
+            $attachment_link_attributes = 'rel="attachment"';
 
         } 
         else {// if lightbox option checked
 
-            $attachment_infos        = wp_get_attachment_image_src( $post->ID , 'large' );
-            $attachment_src          = $attachment_infos[0];
-            $attachment_class        = 'grouped_elements';
-            $link_url                =  esc_url( $attachment_src );
-            $link_attributes         = 'data-lb-type="grouped-post" rel="gallery"';
+            $attachment_info            = wp_get_attachment_image_src( $post->ID , 'large' );
+            $attachment_src             = $attachment_info[0];
+            $attachment_class           = 'grouped_elements';
+            $attachment_link_url        =  esc_url( $attachment_src );
+            $attachment_link_attributes = 'data-lb-type="grouped-post" rel="gallery"';
 
             foreach ( $attachments as $k => $attachment ) { //get all related gallery attachement for lightbox navigation excluding the current one
                 if ( $attachment -> ID == $post -> ID )
                     continue;
                 
-                $rel_attachment_infos       = wp_get_attachment_image_src( $attachment->ID , 'large' );
-                $rel_attachment_src         = $rel_attachment_infos[0];
-                $gallery                    = sprintf( '%1$s<a href="%2$s" title="%3$s" %4$s></a>',
-                                              $gallery,
+                $rel_attachment_info        = wp_get_attachment_image_src( $attachment->ID , 'large' );
+                $rel_attachment_src         = $rel_attachment_info[0];
+                $attachment_gallery         = sprintf( '%1$s<a href="%2$s" title="%3$s" %4$s></a>',
+                                              $attachment_gallery,
                                               esc_url( $rel_attachment_src ),
                                               !empty( $attachment -> post_excerpt ) ? $attachment -> post_excerpt : the_title_attribute( array( 'echo' =>false, 'post' => $attachment ) ),
-                                              $link_attributes
+                                              $attachment_link_attributes
                                             );
             }
 
         }//end else
 
 
-        $attachment_size            = apply_filters( 'czr_customizr_attachment_size' , array( 960, 960 ) );
+        $attachment_size            = apply_filters( 'czr_customizr_attachment_size' , $this->defaults['attachment_size'] );
         
         //update the model
         $this -> czr_fn_update( compact( 
-            'gallery', 
+            'attachment_gallery', 
             'attachment_size', 
             'attachment_class',
-            'has_caption',
-            'link_url',
-            'link_attributes'
+            'attachment_caption',
+            'attachment_link_url',
+            'attachment_link_attributes'
         ) );
     }
 
