@@ -636,3 +636,19 @@ section.post-content { margin-top:0; }
     }
   }
 }
+//attachment image
+//navigation
+.attachment-image-navigation {
+  margin: 2em 0 1em;
+  //align icon edges
+  .icn-left-open-big:before {
+    margin-left: -.2em;
+  }
+  .icn-right-open-big:before {
+    margin-right: -.2em;
+  }
+}
+//center the figure = image + caption
+.attachment-image-figure {
+  margin: auto;
+}
