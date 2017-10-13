@@ -4137,18 +4137,30 @@ ol {
   counter-reset: item;
 }
 
+ol > li {
+  position: relative;
+  padding: 0.25rem 0.5rem;
+}
+
 ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
-  padding-right: .5em;
+  margin-left: 0.5em;
+  right: -1em;
+  position: absolute;
+  width: 1em;
+}
+
+ul > li {
+  padding: 0.25rem 0.5rem;
 }
 
 .tc-content-inner ol, .tc-content-inner ul {
-  margin-right: 1em;
+  padding: 0.5rem 3rem 1rem 0;
 }
 
 .tc-content-inner ul {
-  list-style: square inside;
+  list-style: square outside;
 }
 
 .tc-content-inner ul.socials, .tc-content-inner ul.tags {

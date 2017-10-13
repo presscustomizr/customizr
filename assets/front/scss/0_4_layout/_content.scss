@@ -27,27 +27,59 @@
 
 
 //formatting
+//http://www.456bereastreet.com/archive/201105/styling_ordered_list_numbers/
+//https://css-tricks.com/almanac/properties/l/list-style/
+//https://en.oxforddictionaries.com/punctuation/bullet-points
 ol {
   counter-reset: item;
-  > li:before {
-    content: counters(item, ".") ".";
-    counter-increment: item;
-    padding-right: .5em;
+  > li {
+    position: relative;
+    padding: 0.25rem 0.5rem;
+  }
+  @if ( true == $is_rtl ) {
+    > li:before {
+      content: counters(item, ".") ".";
+      counter-increment: item;
+      margin-left: 0.5em;
+      right: -1em;
+      position: absolute;
+      width: 1em;
+    }
+  }
+  @else {
+    > li:before {
+      content: counters(item, ".") ".";
+      counter-increment: item;
+      margin-right: 0.5em;
+      left: -1em;
+      position: absolute;
+      width: 1em;
+    }
   }
 }
+ul > li { padding: 0.25rem 0.5rem; }
+
 ol, ul {
   .tc-content-inner & {
-      
+
     @if ( true == $is_rtl ) {
-      margin-right: 1em;
+      padding: 0.5rem 3rem 1rem 0;
     }
     @else {
-      margin-left: 1em;
+      padding: 0.5rem 0 1rem 3rem;;
     }
   }
   @at-root .tc-content-inner ul {
-    list-style: square inside; 
+    list-style: square outside;
   }
+
+  // @at-root .tc-content-inner ol li:before {
+  //   left: 34px;
+  //   position: absolute;
+  //   top: 2px;
+  //   counter-increment: li;
+  //   content: counter(li,decimal) ". ";
+  // }
 }
 ul.socials, ul.tags {
   .tc-content-inner & {
