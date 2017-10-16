@@ -219,17 +219,75 @@ endif;
 
 
 
-if ( ! ( function_exists( 'czr_fn_get_admin_option' ) ) ) :
+if ( ! ( function_exists( 'czr_fn_get_unfiltered_theme_options' ) ) ) :
 //@return an array of options
-function czr_fn_get_admin_option( $option_group = null ) {
-    $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
+//This is mostly a copy of the built-in get_option with the difference that
+//1) by default retrieves only the theme options
+//2) removes the "pre_option_{$name}", "default_option_{$name}", "option_{$name}" filters
+//3) doesn't care about the special case when $option in array array('siteurl', 'home', 'category_base', 'tag_base'),
+//   as they are out of scope here
+//
+// The filter suppression is specially needed due to:
+// a) avoid plugins (qtranslate, other lang plugins) filtering the theme options value, which might mess theme options when we update the options on front 
+// (e.g. to set the defaults, or to perform our retro compat options updates, or either to set the user started before option)
+// b) speed up the theme option retrieval when we are sure we don't need the theme options to be filtered in any case
+function czr_fn_get_unfiltered_theme_options( $option = null, $default = array() ) {
+    $option           = is_null($option) ? CZR_THEME_OPTIONS : $option;
 
-    //here we could hook a callback to remove all the filters on "option_{CZR_THEME_OPTIONS}"
-    do_action( "czr_before_getting_option_{$option_group}" );
-    $options = get_option( $option_group, array() );
-    //here we could hook a callback to re-add all the filters on "option_{CZR_THEME_OPTIONS}"
-    do_action( "czr_after_getting_option_{$option_group}" );
-    return $options;
+    global $wpdb;
+
+    $option_group = trim( $option);
+
+    if ( empty( $option ) )
+        return false;
+
+    if ( defined( 'WP_SETUP_CONFIG' ) )
+        return false;
+
+    if ( ! wp_installing() ) {
+        // prevent non-existent options from triggering multiple queries
+        $notoptions = wp_cache_get( 'notoptions', 'options' );
+        if ( isset( $notoptions[ $option ] ) ) {
+            return $default;
+        }
+
+        $alloptions = wp_load_alloptions();
+
+        if ( isset( $alloptions[$option] ) ) {
+            $value = $alloptions[$option];
+        } else {
+            $value = wp_cache_get( $option, 'options' );
+
+            if ( false === $value ) {
+                $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
+
+                // Has to be get_row instead of get_var because of funkiness with 0, false, null values
+                if ( is_object( $row ) ) {
+                    $value = $row->option_value;
+                    wp_cache_add( $option, $value, 'options' );
+                } else { // option does not exist, so we must cache its non-existence
+                    if ( ! is_array( $notoptions ) ) {
+                         $notoptions = array();
+                    }
+                    $notoptions[$option] = true;
+                    wp_cache_set( 'notoptions', $notoptions, 'options' );
+
+                    return $default;
+                }
+            }
+        }
+    } else {
+        $suppress = $wpdb->suppress_errors();
+        $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", $option ) );
+        $wpdb->suppress_errors( $suppress );
+        if ( is_object( $row ) ) {
+            $value = $row->option_value;
+        } else {
+            return $default;
+        }
+    }
+
+    return maybe_unserialize( $value );
 }
 endif;
 
@@ -574,8 +632,7 @@ function czr_fn_generate_theme_setting_list() {
 * @since Customizr 3.4+
 */
 function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
-    $option_group           = is_null($option_group) ? CZR_THEME_OPTIONS : $option_group;
-    $_options               = czr_fn_get_admin_option( $option_group );
+    $_options               = czr_fn_get_unfiltered_theme_options( $option_group );
     $_options[$option_name] = $option_value;
 
     update_option( $option_group, $_options );
@@ -634,11 +691,8 @@ function czr_fn_setup_started_using_theme_option_and_constant() {
     $user_started_using_theme_value         = null;
     $to_update_user_started_using_theme     = false;
 
-    // get_unfiltered_theme_options will be better for plugins compat
-    // E.g. in class_fire_plugins_compat we have this line:
-    //      remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
-    // and we should apply it here too to avoid problems!!
-    $theme_options                          = czr_fn_get_admin_option( CZR_THEME_OPTIONS );//returns an empty array as default
+    // get_unfiltered_theme_options
+    $theme_options                          = czr_fn_get_unfiltered_theme_options();//returns an empty array as default
 
     $transient_or_option                    = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
@@ -701,7 +755,7 @@ function czr_fn_setup_started_using_theme_option_and_constant() {
       $theme_options[ $transient_or_option ] = $user_started_using_theme_value;
 
       //maybe update the db value, if the user can edit theme options
-      if ( current_user_can('edit_theme_options') && !empty( $user_started_using_theme_value ) ) {
+      if ( is_user_logged_in() && current_user_can('edit_theme_options') && !empty( $user_started_using_theme_value ) ) {
           update_option( CZR_THEME_OPTIONS, $theme_options );
 
           //do we want at this point remove the transient?
