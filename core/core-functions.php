@@ -623,6 +623,104 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 
 
 
+/**
+* Set a theme option which stores at whic theme version started using it
+*
+* @package Customizr
+*/
+function czr_fn_setup_started_using_theme_option_and_constant() {
+    do_action( 'czr_before_setting_started_using_theme' );
+
+    $user_started_using_theme_value         = null;
+    $to_update_user_started_using_theme     = false;
+
+    // get_unfiltered_theme_options will be better for plugins compat
+    // E.g. in class_fire_plugins_compat we have this line:
+    //      remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
+    // and we should apply it here too to avoid problems!!
+    $theme_options                          = czr_fn_get_admin_option( CZR_THEME_OPTIONS );//returns an empty array as default
+
+    $transient_or_option                    = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
+
+    $is_customizr_free_or_pro_fresh_install = 1 >= count( $theme_options );
+
+    //we are sure we have to set the user started using theme if it's a fresh install
+    if ( $is_customizr_free_or_pro_fresh_install ) {
+        $user_started_using_theme_value           = sprintf('%s|%s' , 'with', CUSTOMIZR_VER );
+        $to_update_user_started_using_theme       = true;
+    }
+    elseif ( !isset( $theme_options[ $transient_or_option ] ) ) { //not fresh install, let's check the user started using theme is not defined yet
+        //flag that we have to update the user started using theme
+        $to_update_user_started_using_theme     = true;
+
+        //THERE CAN BE A TRANSIENT SET, if yes, use that value
+        if ( $transient_value = esc_attr( get_transient( $transient_or_option ) ) ) {
+            $user_started_using_theme_value       = $transient_value;
+        }
+        else {
+
+            //it can be a fresh install of the pro because the free options are not enough to check
+            if ( CZR_IS_PRO ) {
+
+                //this might be :
+                //1) a free user updating to pro => with
+                //2) a free user updating and has cleaned transient (edge case but possible ) => before
+                //3) a pro user updating and has cleaned transient ( edge also ) => before
+                //How do make the difference between 1) and ( 2 or 3 )
+                //=> we need something written by the pro => the last update notice in options
+                $is_already_pro_user  = array_key_exists( 'last_update_notice_pro', $theme_options );
+                $is_pro_fresh_install = ! $is_already_pro_user;
+
+                if ( $is_already_pro_user ) {
+                    $pro_infos            = $theme_options['last_update_notice_pro'];
+                    $is_pro_fresh_install = is_array( $pro_infos ) && array_key_exists( 'version', $pro_infos ) && $pro_infos['version'] == CUSTOMIZR_VER;
+                }
+
+                $user_started_with_this_version = $is_pro_fresh_install;
+                if ( $is_already_pro_user && ! $is_pro_fresh_install ) {
+                    $user_started_with_this_version = false;
+                }
+
+                //if already pro user, we are in the case of the transient that have been cleaned in db
+                //if not, then it's a free user upgrading to pro
+                $user_started_using_theme_value     = sprintf('%s|%s' , $user_started_with_this_version ? 'with' : 'before', CUSTOMIZR_VER );
+
+
+            } else {
+                $has_already_installed_free         = array_key_exists( 'last_update_notice', $theme_options );
+                //we are in the case of a free user updating the free theme but has previously cleaned the transients in db
+                $user_started_using_theme_value     = sprintf('%s|%s' , $has_already_installed_free ? 'before' : 'with', CUSTOMIZR_VER );
+            }
+
+        }
+
+    }
+
+    //do we have to update the value?
+    if ( $to_update_user_started_using_theme ) {
+      $theme_options[ $transient_or_option ] = $user_started_using_theme_value;
+
+      //maybe update the db value, if the user can edit theme options
+      if ( current_user_can('edit_theme_options') && !empty( $user_started_using_theme_value ) ) {
+          update_option( CZR_THEME_OPTIONS, $theme_options );
+
+          //do we want at this point remove the transient?
+          //delete_transient( $transient_or_option );
+      }
+    }
+
+    //set a constant that we can use throughout the theme without having to access the options every time
+    //at this point the $theme_options[ $transient_or_option ] is there because
+    //a) if it was a fresh install, we flagged to update this option and set in the block above
+    //b) otherwise if $theme_options[ $transient_or_option ] was not set,we flagged to update this option and set in the block above
+    //c) when not in the above two cases means that it is not a fresh install and the option is already there
+    if ( ! defined( 'CZR_USER_STARTED_USING_THEME' ) ) {
+        define( 'CZR_USER_STARTED_USING_THEME',  esc_attr( $theme_options[ $transient_or_option ] ) );
+    }
+
+    do_action( 'czr_after_setting_started_using_theme' );
+}
+
 
 
 /**
@@ -639,10 +737,11 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null, $what_
         $_ispro = 'pro' == $what_to_check;
     }
 
-    //the transient is set in CZR___::czr_fn_init_properties()
-    $_trans = $_ispro ? 'started_using_customizr_pro' : 'started_using_customizr';
+    //this constant is set in czr_fn_setup_started_using_theme_option_and_constant()
+    //called by init-base.php at the very start of the theme bootstrap, after base constants are set
+    $user_started_using_theme_value = ( defined( 'CZR_USER_STARTED_USING_THEME' ) ) ? CZR_USER_STARTED_USING_THEME : false ;
 
-    if ( ! get_transient( $_trans ) )
+    if ( ! $user_started_using_theme_value )
       return false;
 
     $_ver   = $_ispro ? $_pro_ver : $_czr_ver;
@@ -651,7 +750,7 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null, $what_
       return false;
 
 
-    $_start_version_infos = explode('|', esc_attr( get_transient( $_trans ) ) );
+    $_start_version_infos = explode('|', $user_started_using_theme_value );
 
     if ( ! is_array( $_start_version_infos ) )
       return false;
@@ -680,12 +779,13 @@ function czr_fn_user_started_with_current_version() {
     if ( czr_fn_is_pro() )
       return;
 
-    $_trans = 'started_using_customizr';
-    //the transient is set in CZR___::czr_fn_init_properties()
-    if ( ! get_transient( $_trans ) )
+    //this constant is set in czr_fn_setup_started_using_theme_option_and_constant()
+    //called by init-base.php at the very start of the theme bootstrap, after base constants are set
+    $user_started_using_theme_value = ( defined( 'CZR_USER_STARTED_USING_THEME' ) ) ? CZR_USER_STARTED_USING_THEME : false ;
+    if ( ! $user_started_using_theme_value )
       return false;
 
-    $_start_version_infos = explode( '|', esc_attr( get_transient( $_trans ) ) );
+    $_start_version_infos = explode( '|', $user_started_using_theme_value );
 
     //make sure we're good at this point
     if ( ! is_string( CUSTOMIZR_VER ) || ! is_array( $_start_version_infos ) || count( $_start_version_infos ) < 2 )
