@@ -685,16 +685,18 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 *
 * @package Customizr
 */
-function czr_fn_setup_started_using_theme_option_and_constant() {
+function czr_fn_setup_started_using_theme_option_and_constants() {
     do_action( 'czr_before_setting_started_using_theme' );
 
     $user_started_using_theme_value         = null;
     $to_update_user_started_using_theme     = false;
 
+    $free_transient_or_option               = 'started_using_customizr';
+    $pro_transient_or_option                = 'started_using_customizr_pro';
+    $transient_or_option                    = CZR_IS_PRO ? $pro_transient_or_option : $free_transient_or_option;
+
     // get_unfiltered_theme_options
     $theme_options                          = czr_fn_get_unfiltered_theme_options();//returns an empty array as default
-
-    $transient_or_option                    = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
 
     $is_customizr_free_or_pro_fresh_install = 1 >= count( $theme_options );
 
@@ -763,13 +765,12 @@ function czr_fn_setup_started_using_theme_option_and_constant() {
       }
     }
 
-    //set a constant that we can use throughout the theme without having to access the options every time
-    //at this point the $theme_options[ $transient_or_option ] is there because
-    //a) if it was a fresh install, we flagged to update this option and set in the block above
-    //b) otherwise if $theme_options[ $transient_or_option ] was not set,we flagged to update this option and set in the block above
-    //c) when not in the above two cases means that it is not a fresh install and the option is already there
-    if ( ! defined( 'CZR_USER_STARTED_USING_THEME' ) ) {
-        define( 'CZR_USER_STARTED_USING_THEME',  esc_attr( $theme_options[ $transient_or_option ] ) );
+    //set constants that we can use throughout the theme without having to access the options every time
+    if ( ! defined( 'CZR_USER_STARTED_USING_FREE_THEME' ) ) {
+        define( 'CZR_USER_STARTED_USING_FREE_THEME',  isset( $theme_options[ $free_transient_or_option ] ) ? esc_attr( $theme_options[ $free_transient_or_option ] ) : false );
+    }
+    if ( ! defined( 'CZR_USER_STARTED_USING_PRO_THEME' ) ) {
+        define( 'CZR_USER_STARTED_USING_PRO_THEME',  isset( $theme_options[ $pro_transient_or_option ] ) ? esc_attr( $theme_options[ $pro_transient_or_option ] ) : false );
     }
 
     do_action( 'czr_after_setting_started_using_theme' );
@@ -791,9 +792,14 @@ function czr_fn_user_started_before_version( $_czr_ver, $_pro_ver = null, $what_
         $_ispro = 'pro' == $what_to_check;
     }
 
-    //this constant is set in czr_fn_setup_started_using_theme_option_and_constant()
+
+    //these constants are set in czr_fn_setup_started_using_theme_option_and_constants()
     //called by init-base.php at the very start of the theme bootstrap, after base constants are set
-    $user_started_using_theme_value = ( defined( 'CZR_USER_STARTED_USING_THEME' ) ) ? CZR_USER_STARTED_USING_THEME : false ;
+    if ( $_ispro ) {
+        $user_started_using_theme_value = defined( 'CZR_USER_STARTED_USING_PRO_THEME' ) ? CZR_USER_STARTED_USING_PRO_THEME : false;
+    }else {
+        $user_started_using_theme_value = defined( 'CZR_USER_STARTED_USING_FREE_THEME' ) ? CZR_USER_STARTED_USING_FREE_THEME : false;
+    }
 
     if ( ! $user_started_using_theme_value )
       return false;
@@ -833,9 +839,9 @@ function czr_fn_user_started_with_current_version() {
     if ( czr_fn_is_pro() )
       return;
 
-    //this constant is set in czr_fn_setup_started_using_theme_option_and_constant()
+    //this constant is set in czr_fn_setup_started_using_theme_option_and_constants()
     //called by init-base.php at the very start of the theme bootstrap, after base constants are set
-    $user_started_using_theme_value = ( defined( 'CZR_USER_STARTED_USING_THEME' ) ) ? CZR_USER_STARTED_USING_THEME : false ;
+    $user_started_using_theme_value = ( defined( 'CZR_USER_STARTED_USING_FREE_THEME' ) ) ? CZR_USER_STARTED_USING_FREE_THEME : false ;
     if ( ! $user_started_using_theme_value )
       return false;
 

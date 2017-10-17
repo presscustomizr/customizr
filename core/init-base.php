@@ -926,6 +926,6 @@ if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
 czr_fn_setup_constants();
 
 //setup started using theme option ( before checking czr_fn_is_ms() that uses the user_started_before_Version function to determine it )
-czr_fn_setup_started_using_theme_option_and_constant();
+czr_fn_setup_started_using_theme_option_and_constants();
 
 require_once( get_template_directory() . ( czr_fn_is_ms() ? '/core/init.php' : '/inc/czr-init-ccat.php' ) );
