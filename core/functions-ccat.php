@@ -403,7 +403,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       $is_singular_layout          = false;
 
 
-      if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) ) {
+      if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) || czr_fn_is_attachment_image() ) {
             $_czr_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_post_layout') );
             $is_singular_layout           = true;
       } if ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
@@ -424,13 +424,17 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       //The following lines set the post specific layout if any, and if not keeps the default layout previously defined
       $czr_specific_post_layout    = false;
 
-      //if we are displaying an attachement, we use the parent post/page layout
+      //if we are displaying an attachement, we use the parent post/page layout by default
+      //=> but if the attachment has a layout, it will win.
       if ( isset($post) && is_singular() && 'attachment' == $post->post_type ) {
-            $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
+            $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
+            if ( ! $czr_specific_post_layout ) {
+                $czr_specific_post_layout  = esc_attr( get_post_meta( $post->post_parent , $key = 'layout_key' , $single = true ) );
+            }
       }
 
       //for a singular post or page OR for the posts page
-      elseif ( $is_singular_layout || is_singular() || $wp_query -> is_posts_page ) {
+      elseif ( $is_singular_layout || is_singular() || czr_fn_is_attachment_image() || $wp_query -> is_posts_page ) {
             $czr_specific_post_layout  = esc_attr( get_post_meta( $post_id, $key = 'layout_key' , $single = true ) );
       }
 
@@ -867,16 +871,21 @@ function czr_fn_is_single_post() {
     return apply_filters( 'czr_is_single_post', isset($post)
         && is_singular()
         && 'page' != $post -> post_type
-        && 'attachment' != $post -> post_type
+        && ! czr_fn_is_attachment_image()
         && ! czr_fn_is_home_empty()
         && ! czr_fn_is_real_home()
         );
 }
 
+function czr_fn_is_single_attachment_image() {
+    global $post;
+    return apply_filters( 'czr_is_single_attachment_image',
+        ! ( ! isset($post) || empty($post) || ! czr_fn_is_attachment_image() || !is_singular() ) );
+}
 
 function czr_fn_is_single_attachment() {
     global $post;
-    return apply_filters( 'czr_is_single_attacment',
+    return apply_filters( 'czr_is_single_attachment',
         ! ( ! isset($post) || empty($post) || 'attachment' != $post -> post_type || !is_singular() ) );
 }
 

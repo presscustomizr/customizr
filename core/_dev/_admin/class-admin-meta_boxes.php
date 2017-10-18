@@ -47,6 +47,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          add_action( '__attachment_slider_infos'          , array( $this , 'czr_fn_get_attachment_slider_infos' ));
 
          add_action( 'edit_attachment'                    , array( $this , 'czr_fn_slide_save' ));
+         add_action( 'edit_attachment'                    , array( $this , 'czr_fn_post_fields_save' ));
 
          add_action( '__show_slides'                      , array( $this , 'czr_fn_show_slides' ), 10, 2);
 
@@ -140,6 +141,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
     /**
      * Adds layout and slider metaboxes to pages and posts
+     * hook : add_meta_boxes
      * @package Customizr
      * @since Customizr 1.0
      */
@@ -166,7 +168,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          //2 - Merging with the builtin post types, pages and posts
          $builtin_post_types   = array(
             'page' => 'page',
-              'post' => 'post'
+            'post' => 'post',
+            'attachment' => 'attachment'
          );
 
          $screens                   = array_merge( $custom_post_types, $builtin_post_types );
@@ -185,7 +188,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
       }
 
-
+      //hook : add_meta_boxes_post
       function czr_fn_post_formats_meta_boxes() {
          //if not czr4 return
          if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
@@ -208,7 +211,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
 
 
-
+      //helper
       function czr_fn_build_metabox_arguments( $id, $args ) {
          //order matters!
          //'cause we use call_user_func_array to pass args with a certain order to add_metabox
@@ -242,7 +245,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             'title'    => __( 'Layout Options' , 'customizr' ),
             'callback' => array( $this , 'czr_fn_post_layout_box' ),
             'screen'   => $screen,
-            'context'  => ( 'page' == $screen | 'post' == $screen ) ? 'side' : 'normal',//displays meta box below editor for custom post types
+            'context'  => in_array( $screen, array( 'page', 'post', 'attachment' ) ) ? 'side' : 'normal',//displays meta box below editor for custom post types
             'priority' => 'high',
          );
 
