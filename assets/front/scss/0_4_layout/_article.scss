@@ -651,4 +651,7 @@ section.post-content { margin-top:0; }
 //center the figure = image + caption
 .attachment-image-figure {
   margin: auto;
+  .entry-media__holder {
+    display: inline-block;
+  }
 }
