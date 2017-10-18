@@ -40,10 +40,16 @@
             if ( $author = czr_fn_get_property( 'author', 'post_metas' ) )
               echo $author;
 
-            if ( $date = czr_fn_get_property( 'publication_date', 'post_metas') )
+            // czr_fn_get_property( 'publication_date', 'post_metas', array( false, null, true )
+            // means:
+            // $permalink = false => we don't want the date linking to this very post
+            // $before    = null  => we don't want to print anything special before, the default "Published&nbsp;" will be used
+            // $only_text = true  => we don't want a link at all. This is because generally that meta links to an archive, and by default attachments are not displayed in archives.
+            // So that clicking on that meta we would end up on an 404.
+            if ( $date = czr_fn_get_property( 'publication_date', 'post_metas', array( false, null, true )  ) )
               if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
 
-            if ( $up_date = czr_fn_get_property( 'update_date', 'post_metas') )  {
+            if ( $up_date = czr_fn_get_property( 'update_date', 'post_metas', array( false, null, true ) ) )  {
               if ( $date ) : ?><span class="v-separator">-</span><?php
               elseif( $author ) : ?><span class="v-separator">|</span><?php
               endif;
@@ -52,12 +58,12 @@
 
             }
             if ( $attachment_image_info = czr_fn_get_property( 'attachment_image_info', 'post_metas' ) ) :
-              if ( $date || $update || $author ) : 
+              if ( $date || $update || $author ) :
                 ?><span class="v-separator">-</span><?php ;
               endif;
               echo $attachment_image_info;
             endif;
-              
+
         ?>
           </span>
         <?php endif ?>
