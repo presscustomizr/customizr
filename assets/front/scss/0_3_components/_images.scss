@@ -1,10 +1,13 @@
 //the opacity of following images is set to 1 when centering is done
 //@see the js front czrapp.methods.JQPlugins::centerImages()
+//same for the attachments imgs
+//@see the js front czrapp.methods.UserXP::attachmentsFadeEffect()
 .tc-grid-figure img,
 .widget-front .tc-thumbnail img,
 .js-center-images-enabled .fpc-widget-front img,
 .js-centering.entry-media__holder img,
-.js-centering.entry-media__wrapper img {
+.js-centering.entry-media__wrapper img,
+.attachment-image-figure img {
   opacity:0;
   -webkit-transition: opacity 0.35s ease;
   -o-transition: opacity 0.35s ease;
