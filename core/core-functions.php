@@ -304,16 +304,17 @@ if ( ! function_exists( 'czr_fn_is_pro' ) ) {
 */
 function czr_fn_is_child() {
     // get themedata version wp 3.4+
-    if ( function_exists( 'wp_get_theme' ) ) {
-      //get WP_Theme object of customizr
-      $tc_theme       = wp_get_theme();
-      //define a boolean if using a child theme
-      return $tc_theme -> parent() ? true : false;
-    }
-    else {
-      $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
-      return ! empty($tc_theme['Template']) ? true : false;
-    }
+    // if ( function_exists( 'wp_get_theme' ) ) {
+    //   //get WP_Theme object of customizr
+    //   $tc_theme       = wp_get_theme();
+    //   //define a boolean if using a child theme
+    //   return $tc_theme -> parent() ? true : false;
+    // }
+    // else {
+    //   $tc_theme       = call_user_func('get_' .'theme_data', get_stylesheet_directory().'/style.css' );
+    //   return ! empty($tc_theme['Template']) ? true : false;
+    // }
+    return is_child_theme();
 }
 
 /**
