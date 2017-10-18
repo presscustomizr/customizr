@@ -69,6 +69,9 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
 
               'regular_page_heading',
               'regular_post_heading',
+              'regular_attachment_image_heading',
+
+              'attachment_image',
 
               'archive_heading',
               'author_description',

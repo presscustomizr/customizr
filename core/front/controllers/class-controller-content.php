@@ -41,6 +41,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'regular_heading',  $post_heading );
     }
 
+    function czr_fn_display_view_regular_attachment_image_heading() {
+      $attachment_image_heading = apply_filters( 'czr_display_attachment_image_heading', $this -> czr_fn_display_view_attachment_image() );
+      return apply_filters( 'regular_heading',  $attachment_image_heading );
+    }
+
 
     function czr_fn_display_view_singular_headings() {
       return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_attachment() || ( $this -> czr_fn_display_view_page() && ! is_front_page() );
@@ -117,13 +122,13 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return true;
     }
 
-    function czr_fn_display_view_attachment() {
-      return apply_filters( 'czr_show_attachment_content', czr_fn_is_single_attachment() );
+    function czr_fn_display_view_attachment_image() {
+      return apply_filters( 'czr_show_attachment_content', czr_fn_is_single_attachment_image() );
     }
 
 
     function czr_fn_display_view_singular_article() {
-      return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_page() || $this -> czr_fn_display_view_attachment() ;
+      return $this -> czr_fn_display_view_post() || $this -> czr_fn_display_view_page() || $this -> czr_fn_display_view_attachment_image() ;
     }
 
     function czr_fn_display_view_post_list_title() {
