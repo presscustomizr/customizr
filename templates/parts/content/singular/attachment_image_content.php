@@ -15,18 +15,20 @@ global $post;
   czr_fn_render_template( 'content/singular/navigation/single_attachment_image_navigation' );
   ?>
   <div class="post-entry tc-content-inner">
-    <section class="entry-attachment attachment-content display-flex flex-wrap" >
-      <figure class="attachment-image-figure">
-        <div class="entry-media__holder">
-          <a href="<?php czr_fn_echo( 'attachment_link_url' ) ?>" class="<?php czr_fn_echo( 'attachment_class' ) ?> bg-link" title="<?php the_title_attribute(); ?>" <?php czr_fn_echo( 'attachment_link_attributes' ) ?>></a>
-          <?php echo wp_get_attachment_image( get_the_ID(), czr_fn_get_property( 'attachment_size' ) ) ?>
-        </div>
-        <?php if ( $caption = czr_fn_get_property( 'attachment_caption' )  ) :?>
-          <figcaption class="wp-caption-text entry-caption">
-            <?php echo $caption ?>
-          </figcaption>
-        <?php endif; ?>
-      </figure>
+    <section class="entry-attachment attachment-content" >
+      <div class="attachment-figure-wrapper display-flex flex-wrap" >
+        <figure class="attachment-image-figure">
+          <div class="entry-media__holder">
+            <a href="<?php czr_fn_echo( 'attachment_link_url' ) ?>" class="<?php czr_fn_echo( 'attachment_class' ) ?> bg-link" title="<?php the_title_attribute(); ?>" <?php czr_fn_echo( 'attachment_link_attributes' ) ?>></a>
+            <?php echo wp_get_attachment_image( get_the_ID(), czr_fn_get_property( 'attachment_size' ) ) ?>
+          </div>
+          <?php if ( $caption = czr_fn_get_property( 'attachment_caption' )  ) :?>
+            <figcaption class="wp-caption-text entry-caption">
+              <?php echo $caption ?>
+            </figcaption>
+          <?php endif; ?>
+        </figure>
+      </div>
       <?php /* hidden ligthbox gallery with all the attachments referring to the same post parent */
       czr_fn_echo( 'attachment_gallery' )
       ?>
