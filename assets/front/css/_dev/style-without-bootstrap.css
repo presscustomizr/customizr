@@ -6115,6 +6115,10 @@ section.post-content {
   margin: auto;
 }
 
+.attachment-image-figure .entry-media__holder {
+  display: inline-block;
+}
+
 @media screen and (min-width: 480px) and (max-width: 667px) {
   .sidebar {
     padding: 0 2.5em;
