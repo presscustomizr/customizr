@@ -153,7 +153,7 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
               'image'           => $raw_media[ 'tc_thumb' ],
               //lightbox
-              'lightbox_url'    => $this->has_lightbox && array_key_exists( 'is_placeholder', $raw_media ) && $raw_media[ 'is_placeholder' ] ? '' : wp_get_attachment_url( $raw_media[ '_thumb_id' ] ), //full
+              'lightbox_url'    => $this->has_lightbox && !( array_key_exists( 'is_placeholder', $raw_media ) && $raw_media[ 'is_placeholder' ] ) ? wp_get_attachment_url( $raw_media[ '_thumb_id' ] ) /*full*/ : '',
 
         );
 
@@ -184,9 +184,10 @@ class CZR_thumbnail_model_class extends CZR_Model {
 
             //build array
             $id                                  = get_post_thumbnail_id( $post_id );
+            $post_thumbnail                      = array();
             if ( $id ) {
                 $post_thumbnail[ '_thumb_id' ]       = $id;
-                $post_thumbnail['tc_thumb']          = apply_filters( 'czr_thumb_html',
+                $post_thumbnail[ 'tc_thumb' ]        = apply_filters( 'czr_thumb_html',
                     get_the_post_thumbnail( $post_id, $this->size ),
                     $requested_size = $this->size,
                     $post_id = $id,
@@ -194,9 +195,6 @@ class CZR_thumbnail_model_class extends CZR_Model {
                     $_img_attr = null,
                     $tc_thumb_size = $this->size
                 );
-            }
-            else {
-                $post_thumbnail = array();
             }
 
         }
