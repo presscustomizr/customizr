@@ -6808,7 +6808,8 @@ section[class^="post-"] .gallery.row {
 .widget-front .tc-thumbnail img,
 .js-center-images-enabled .fpc-widget-front img,
 .js-centering.entry-media__holder img,
-.js-centering.entry-media__wrapper img {
+.js-centering.entry-media__wrapper img,
+.attachment-image-figure img {
   opacity: 0;
   -webkit-transition: opacity 0.35s ease;
   -o-transition: opacity 0.35s ease;
@@ -6827,7 +6828,10 @@ section[class^="post-"] .gallery.row {
 .js-centering.entry-media__holder img.opacity-forced,
 .js-centering.entry-media__wrapper img.h-centered,
 .js-centering.entry-media__wrapper img.v-centered,
-.js-centering.entry-media__wrapper img.opacity-forced {
+.js-centering.entry-media__wrapper img.opacity-forced,
+.attachment-image-figure img.h-centered,
+.attachment-image-figure img.v-centered,
+.attachment-image-figure img.opacity-forced {
   opacity: 1;
 }
 
@@ -9137,6 +9141,22 @@ section.post-content {
 
 .post-info a:not(.btn) span::after, .post-info a:not(.btn) span::before {
   background-color: #313131;
+}
+
+.attachment-image-navigation {
+  margin: 2em 0 1em;
+}
+
+.attachment-image-navigation .icn-left-open-big:before {
+  margin-left: -.2em;
+}
+
+.attachment-image-navigation .icn-right-open-big:before {
+  margin-right: -.2em;
+}
+
+.attachment-image-figure {
+  margin: auto;
 }
 
 @media screen and (min-width: 480px) and (max-width: 667px) {

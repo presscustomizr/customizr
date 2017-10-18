@@ -1260,7 +1260,6 @@ function czr_fn_is_list_of_posts() {
 
 //@return bool : whether the current post is an attachment and an image mime type
 function czr_fn_is_attachment_image() {
-    //must be archive or search result. Returns false if home is empty in options.
     return apply_filters( 'czr_fn_is_attachment_image', is_attachment() && wp_attachment_is_image() );
 }
 

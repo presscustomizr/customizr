@@ -766,7 +766,7 @@ var czrapp = czrapp || {};
 
                               if ( ! $_gallery_crsl.data( 'mfp' ) ) {
                                     $_gallery_crsl.magnificPopup({
-                                        delegate: '.gallery-img',
+                                        delegate: '.carousel-cell img',
                                         type: 'image',
                                         gallery: {
                                           enabled: true,
@@ -777,7 +777,7 @@ var czrapp = czrapp || {};
                               }
 
                               if ( $_gallery_crsl.data( 'mfp' ) ) {
-                                    $_gallery_crsl.find( '.is-selected .gallery-img' ).trigger('click');
+                                    $_gallery_crsl.find( '.is-selected img' ).trigger('click');
                               }
 
                         }//endif
@@ -835,9 +835,7 @@ var czrapp = czrapp || {};
 
             },//_init()
 
-
-
-            fireCarousels : function() {
+            fireRelatedPostsCarousel : function() {
                   $('.grid-container__square-mini.carousel-inner').flickity({
                       prevNextButtons: false,
                       pageDots: false,
@@ -849,6 +847,10 @@ var czrapp = czrapp || {};
                       accessibility: false,
                       contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
                   });
+
+            },
+
+            fireGalleriesCarousel : function() {
                   $('.czr-gallery.czr-carousel .carousel-inner').flickity({
                       prevNextButtons: false,
                       pageDots: false,
@@ -860,7 +862,9 @@ var czrapp = czrapp || {};
                       dragThreshold: 10
                   });
 
+            },
 
+            fireMainSlider : function() {
                   var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]');
                   if ( $_main_slider.length > 0 ) {
                         var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length,
@@ -887,6 +891,12 @@ var czrapp = czrapp || {};
                             accessibility: false,
                         });
                   }
+            },
+
+            fireCarousels : function() {
+                  this.fireRelatedPostsCarousel();
+                  this.fireGalleriesCarousel();
+                  this.fireMainSlider();
             },
 
             centerMainSlider : function() {
@@ -1738,8 +1748,9 @@ var czrapp = czrapp || {};
                 smoothScroll( CZRParams.SmoothScroll.Options );
             }
       },
-
-
+      attachmentsFadeEffect : function() {
+            $( '.attachment-image-figure img' ).delay(500).addClass( 'opacity-forced' );
+      },
 
       pluginsCompatibility: function() {
             var $_ssbar = $( '.the_champ_vertical_sharing, .the_champ_vertical_counter', '.article-container' );
@@ -2901,6 +2912,9 @@ var czrapp = czrapp || {};
                             'formFocusAction',
                             'variousHeaderActions',
                             'smoothScroll',
+
+                            'attachmentsFadeEffect',
+                            
                             'onEscapeKeyPressed',
 
                             'featuredPagesAlignment',
