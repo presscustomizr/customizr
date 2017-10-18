@@ -79,7 +79,7 @@ class CZR_post_metas_model_class extends CZR_Model {
     global $post;
 
     $_html_parts  = array(
-      ( isset($metadata['width']) && isset($metadata['height']) ) ? '<span class="attachment-size">' . __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a></span>' : '',
+      ( isset($metadata['width']) && isset($metadata['height']) ) ? '<span class="attachment-size">' . __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'" target="_blank"> '.$metadata['width'].' &times; '.$metadata['height'].'</a></span>' : '',
       //when post parent id is 0 means that the media is not attached to any post
       ( 0 != $post->post_parent ) ? '<span class="attachment-parent">' . __('in' , 'customizr') . '<a href="' . esc_url( get_permalink( $post->post_parent ) ) . '" title="' . the_title_attribute( array( 'before' => __('Return to ' , 'customizr'), 'echo' =>false ) ) .'" rel="gallery"> '.strip_tags( get_the_title( $post->post_parent ) ).'</a></span>' : ''
     );
