@@ -42,40 +42,28 @@ class CZR_gallery {
 
             $post = get_post();
 
-            //do nothing if the customizr gallery is not enabled
-            if ( ! $this -> czr_fn_is_gallery_enabled() )
-                  return $gallery;
-
-            $atts =     shortcode_atts( array(
-                             'order'      => 'ASC',
-                             'orderby'    => 'menu_order ID',
-                             'id'         => $post ? $post->ID : 0,
-                             'columns'    => 3,
-                             'size'       => 'thumbnail',
-                             'include'    => '',
-                             'exclude'    => '',
-                             'link'       => '',
-                             'type'       => 'grid'
+            $atts = shortcode_atts( array(
+                             'order'       => 'ASC',
+                             'orderby'     => 'menu_order ID',
+                             'id'          => $post ? $post->ID : 0,
+                             'columns'     => 3,
+                             'size'        => 'thumbnail',
+                             'include'     => '',
+                             'exclude'     => '',
+                             'link'        => '',
+                             'type'        => 'grid'
                         ), $attr, 'gallery' );
 
 
-            $id            = intval( $atts['id'] );
-            $gallery_class = implode( ' ', array_filter( array(
-                  'czr-gallery',
-                   'row',
-                   'flex-row',
-                  1 == esc_attr( czr_fn_opt( 'tc_gallery_style' ) ) ? 'czr-gallery-style' : ''
-                  )
-            ) );
-            $itemtag       = 'figure';
-            $itemclass     = 'col col-auto';
-            $captiontag    = 'figcaption';
-            $icontag       = 'div';
-            $iconclass     = 'czr-gallery-icon';
+            //do nothing if the customizr gallery is not enabled and type different than "attachments-only"
+            //we use "attachments-only" when retrieving the first post gallery in some lists of posts
+            //see core/front/models/content/common/media/class-model-gallery.php::czr_fn__get_post_gallery()
+            if ( 'attachments-only' != $atts[ 'type' ] && ! $this -> czr_fn_is_gallery_enabled() ) {
+                  return $gallery;
+            }
 
 
-            //test
-            $html5      = true;
+            $id   = intval( $atts['id'] );
 
             if ( ! empty( $atts['include'] ) ) {
                   $_attachments = get_posts( array( 'include' => $atts['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
@@ -89,9 +77,12 @@ class CZR_gallery {
                   $attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $atts['order'], 'orderby' => $atts['orderby'] ) );
             }
 
+
+
             if ( empty( $attachments ) ) {
                   return '';
             }
+
 
             if ( is_feed() ) {
                   $output = "\n";
@@ -100,6 +91,27 @@ class CZR_gallery {
                   }
                   return $output;
             }
+
+            //we use "attachments-only" when retrieving the first post gallery in some lists of posts
+            //see core/front/models/content/common/media/class-model-gallery.php::czr_fn__get_post_gallery()
+            if ( 'attachments-only' == $atts[ 'type' ]  ) {
+                  return $attachments;
+            }
+
+
+            $gallery_class = implode( ' ', array_filter( array(
+                  'czr-gallery',
+                   'row',
+                   'flex-row',
+                  1 == esc_attr( czr_fn_opt( 'tc_gallery_style' ) ) ? 'czr-gallery-style' : ''
+                  )
+            ) );
+
+            $itemtag       = 'figure';
+            $itemclass     = 'col col-auto';
+            $captiontag    = 'figcaption';
+            $icontag       = 'div';
+            $iconclass     = 'czr-gallery-icon';
 
             $columns       = intval( $atts['columns'] );
             $size_class    = sanitize_html_class( $atts['size'] );

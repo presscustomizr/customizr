@@ -547,7 +547,7 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
             *
             */
             //24/07/2017 gallery post format is buggy removed for now
-            $is_full_image           = in_array( $_current_post_format , array( /*'gallery',*/ 'image' ) ) && ( 'image' != $_current_post_format ||
+            $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
                         ( 'image' == $_current_post_format && ! $_get_post_content ) );
 
             return $is_full_image;

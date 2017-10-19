@@ -5,7 +5,7 @@ class CZR_gallery_model_class extends CZR_Model {
 
       protected      $media;
       protected      $gallery_items;
-
+      protected      $size;
 
       /**
       * @override
@@ -24,6 +24,7 @@ class CZR_gallery_model_class extends CZR_Model {
                   'gallery_items'   => null,
                   'post_id'         => null,
                   'visibility'      => true,
+                  'size'            => 'full',
                   'has_lightbox'    => czr_fn_opt( 'tc_fancybox' ),
 
             );
@@ -39,6 +40,7 @@ class CZR_gallery_model_class extends CZR_Model {
             $defaults = array (
 
                   'post_id'         => null,
+                  'size'            => 'full',
 
             );
 
@@ -81,7 +83,9 @@ class CZR_gallery_model_class extends CZR_Model {
 
             if ( is_null( $this->media ) ) {
                   $this -> czr_fn_setup( array(
-                        'post_id'  => $this->post_id
+                        'post_id'         => $this->post_id,
+                        'size'            => $this->size,
+                        'has_lightbox'    => $this->has_lightbox,
                   ) );
             }
 
@@ -116,43 +120,25 @@ class CZR_gallery_model_class extends CZR_Model {
             $raw_media       = $this -> media;
 
             if ( empty( $raw_media ) )
-               return array();
+                  return array();
 
 
             $gallery_items   = array();
-
-            $_gallery_ids    = isset( $raw_media[ 'ids' ] ) ? explode( ',',  $raw_media[ 'ids' ] ) : array();
-
-            $_index          = 0;
-
-            foreach( $raw_media[ 'src' ] as $src ) {
-
-                  /* Cannot use this as the gallery images can be randomly ordered */
-                  //while the gallery_ids are not
-                  //TODO: find an efficient way to retrieve the media id!
-
-                  $_original_image  = '';
-                  $_alt             = '';
-
-                  if ( isset( $_gallery_ids[ $_index ] ) ) {
-                        if ( $this->has_lightbox )
-                              $_original_image = wp_get_attachment_url( $_gallery_ids[ $_index ] ); //'full';
-
-                        $_alt            = get_post_meta( $_gallery_ids[ $_index ], '_wp_attachment_image_alt', true );
-
-                  }
-                  $src = $_original_image ? $_original_image : $src;
-                  $gallery_items[] = array(
-
-                        'src'             => $src,
-                        //lightbox
-                        'data-mfp-src'    => $src,
-                        //$_original_image ? $_original_image : $src,
-                        //'alt'             => $_alt
-
+                        
+            foreach ( array_keys( $raw_media ) as $id ) {
+            
+                  $img_attrs  = $this->has_lightbox ? array(
+                              'data-mfp-src'    => wp_get_attachment_url( $id )                              
+                        ) : array();
+                  
+                  $gallery_items[]          = apply_filters( 'czr_thumb_html', //<- to allow the img smartload
+                          wp_get_attachment_image( $id, $this->size, false, $img_attrs ),
+                          $requested_size = $this->size,
+                          $post_id = $this->post_id,
+                          $custom_thumb_id = null,
+                          $_img_attr = null,
+                          $tc_thumb_size = $this->size
                   );
-
-                  $_index++;
             }
 
             return $gallery_items;
@@ -165,9 +151,49 @@ class CZR_gallery_model_class extends CZR_Model {
       protected function czr_fn__get_post_gallery() {
 
             $post_id          = $this->post_id ? $this->post_id : get_the_ID();
-            $post_gallery     = get_post_gallery( $post_id, false );
+            $post_gallery     = false;
+            
+            //following a simplified version of built-in get_post_galleries() you can find in wp-includes/media.php
+            //get first post gallery 
+            if ( ! $post = get_post( $post_id ) )
+                  return $post_gallery;
+             
+            if ( ! has_shortcode( $post->post_content, 'gallery' ) )
+                  return $post_gallery;
 
-            return empty( $post_gallery ) ? false : $post_gallery;
+            if ( preg_match_all( '/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER ) ) {
+                  foreach ( $matches as $shortcode ) {
+                        if ( 'gallery' === $shortcode[2] ) {
+
+                              $shortcode_attrs = shortcode_parse_atts( $shortcode[3] );
+                              if ( ! is_array( $shortcode_attrs ) ) {
+                                    $shortcode_attrs = array();
+                              }
+
+                              //set our type
+                              $shortcode_attrs[ 'type' ] = 'attachments-only';
+
+                              // Specify the post id of the gallery we're viewing if the shortcode doesn't reference another post already.
+                              if ( ! isset( $shortcode_attrs['id'] ) ) {
+                                   $shortcode_attrs[ 'id' ] = intval( $post->ID );
+                              }
+
+                              if ( ! empty( $shortcode_attrs['ids'] ) ) {
+                                    // 'ids' is explicitly ordered, unless you specify otherwise.
+                                    if ( empty( $shortcode_attrs['orderby'] ) ) {
+                                          $shortcode_attrs['orderby'] = 'post__in';
+                                    }
+                                    $shortcode_attrs['include'] = $shortcode_attrs['ids'];
+                              }
+
+                              $post_gallery = CZR_gallery::$instance->czr_fn_czr_gallery( $post_gallery, $shortcode_attrs, '' );
+                              break;
+                              
+                        }
+                  } 
+            }
+
+            return $post_gallery;
 
       }
 
