@@ -2864,11 +2864,11 @@ $.extend( CZRBaseModuleControlMths, {
               control.czr_moduleCollection.set([]);
               control.moduleCollectionReady = $.Deferred();
               control.moduleCollectionReady.done( function( obj ) {
-                    if ( ! control.isMultiModuleControl( options.params ) ) {
+                    if ( ! control.isMultiModuleControl( options ) ) {
                     }
                     control.czr_moduleCollection.callbacks.add( function() { return control.moduleCollectionReact.apply( control, arguments ); } );
               } );
-              if ( control.isMultiModuleControl( options.params ) ) {
+              if ( control.isMultiModuleControl( options ) ) {
                     control.syncSektionModule = new api.Value();
               }
 
@@ -2956,8 +2956,14 @@ $.extend( CZRBaseModuleControlMths, {
                   return commonDBModel;
               }
       },
-      isMultiModuleControl : function( params ) {
-              return 'czr_multi_module' == ( params || this.params ).type;
+      isMultiModuleControl : function( options ) {
+              var _type, control = this;
+              if ( _.isUndefined( options ) ){
+                  _type = _.has( control, 'params') ? control.params.type : control.type;
+              } else {
+                  _type = _.has( options, 'params') ? options.params.type : options.type;
+              }
+              return 'czr_multi_module' == _type;
       },
       getSyncCollectionControl : function() {
             var control = this;
