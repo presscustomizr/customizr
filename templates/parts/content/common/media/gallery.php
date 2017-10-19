@@ -20,7 +20,9 @@
 <?php
         foreach ( $gallery_items as $gallery_item ) :
 ?>
-    <div class="carousel-cell"><img class="gallery-img wp-post-image" src="<?php echo esc_attr( $gallery_item['src'] ) ?>" data-mfp-src="<?php echo esc_attr( $gallery_item['data-mfp-src'] ) ?>" /></div>
+    <div class="carousel-cell">
+        <?php echo $gallery_item ?>
+    </div>
 <?php
         endforeach;
 ?>

@@ -240,7 +240,6 @@ class CZR_media_model_class extends CZR_Model {
                   break;
 
                   //24/07/2017 gallery post format is buggy removed for now
-                  /*
                   case 'gallery' :
 
 
@@ -258,14 +257,15 @@ class CZR_media_model_class extends CZR_Model {
                         $_instance->czr_fn_setup ( array(
 
                                     'post_id'          => $post_id,
-                                    'has_lightbox'     => $this->has_lightbox
+                                    'has_lightbox'     => $this->has_lightbox,
+                                    'size'             => $this->thumb_size ? $this->thumb_size : 'full',
 
                         ));
 
                         $this->czr_fn__setup_media_to_render( $media = $_instance->czr_fn_get_raw_media(), $media_template = 'content/common/media/gallery', $model_id = $_instance->czr_fn_get_property( 'id' ) );
 
                   break;
-                  */
+
                   default:
 
                         $_instance = $this -> czr_fn__get_instance_from_model_array( array(
