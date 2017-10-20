@@ -543,11 +543,24 @@ class CZR_post_list_alternate_model_class extends CZR_Model {
       protected function czr_fn_is_full_image( $_current_post_format, $_get_post_content ) {
             /*
             *
-            * gallery and image (with no text) post formats
+            * gallery and image (with no excerpt) post formats
             *
             */
-            //24/07/2017 gallery post format is buggy removed for now
-            $is_full_image           = in_array( $_current_post_format , array( 'gallery', 'image' ) ) && ( 'image' != $_current_post_format ||
+
+
+            //24/07/2017 gallery post format is buggy removed for now, gallery post formarts displayed as any other post
+            // meaning that it won't be displayed as a full image (like the image with no excerpt). 
+            // If we want to display the gallery post format as a full image, directly add the 'gallery' to the array below
+            // and remove if ( apply_filters( 'czr_allow_gallery_carousel_in_post_lists', false ) ) block below
+            // the media model will do the rest
+            $full_image_post_formats = array( 'image' );
+
+            //19/10/2017 gallery carousel introduced in pro: we enable the full-image only if carousel allowed
+            if ( apply_filters( 'czr_allow_gallery_carousel_in_post_lists', false ) ) {
+                  $full_image_post_formats[] = 'gallery';
+            }
+
+            $is_full_image           = in_array( $_current_post_format , $full_image_post_formats ) && ( 'image' != $_current_post_format ||
                         ( 'image' == $_current_post_format && ! $_get_post_content ) );
 
             return $is_full_image;
