@@ -270,8 +270,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -3283,7 +3282,7 @@ if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
       //only if user is logged in
       //then each routine has to decide what to do also depending on the user started before
       if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
-        $theme_options            = czr_fn_get_admin_option(CZR_THEME_OPTIONS);
+        $theme_options            = czr_fn_get_unfiltered_theme_options();
         $_to_update               = false;
 
         if ( ! empty( $theme_options ) ) {

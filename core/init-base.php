@@ -854,69 +854,16 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               // theme_name
               // db_options
               // default_options
-              // started using customizr(-pro) transient
               do_action( 'czr_before_caching_options' );
 
               self::$theme_name         = CZR_SANITIZED_THEMENAME;
               self::$db_options         = false === get_option( CZR_THEME_OPTIONS ) ? array() : (array)get_option( CZR_THEME_OPTIONS );
               self::$default_options    = czr_fn_get_default_options();
-              $_trans                   = CZR_IS_PRO ? 'started_using_customizr_pro' : 'started_using_customizr';
-
-              //What was the theme version when the user started to use Customizr?
-              //new install = no options yet
-              //very high duration transient, this transient could actually be an option but as per the themes guidelines, too much options are not allowed.
-              $is_customizr_free_or_pro_fresh_install = 1 >= count( self::$db_options );
-
-              if ( $is_customizr_free_or_pro_fresh_install ) {
-                  set_transient(
-                      $_trans,
-                      sprintf('%s|%s' , 'with', CUSTOMIZR_VER ),
-                      60*60*24*9999
-                  );
-              }
-              //it can be a fresh install of the pro because the free options are not enough to check
-              else if ( ! esc_attr( get_transient( $_trans ) ) ) {
-                  //this might be :
-                  //1) a free user updating to pro => with
-                  //2) a free user updating and has cleaned transient (edge case but possible ) => before
-                  //3) a pro user updating and has cleaned transient ( edge also ) => before
-                  //How do make the difference between 1) and ( 2 or 3 )
-                  //=> we need something written by the pro => the last update notice in options
-                  if ( CZR_IS_PRO ) {
-                      $is_already_pro_user = array_key_exists( 'last_update_notice_pro', self::$db_options );
-                      $is_pro_fresh_install = ! $is_already_pro_user;
-                      if ( $is_already_pro_user ) {
-                          $pro_infos = self::$db_options['last_update_notice_pro'];
-                          $is_pro_fresh_install = is_array( $pro_infos ) && array_key_exists( 'version', $pro_infos ) && $pro_infos['version'] == CUSTOMIZR_VER;
-                      }
-                      $user_starter_with_this_version = $is_pro_fresh_install;
-                      if ( $is_already_pro_user && ! $is_pro_fresh_install ) {
-                        $user_starter_with_this_version = false;
-                      }
-
-                      //if already pro user, we are in the case of the transient that have been cleaned in db
-                      //if not, then it's a free user upgrading to pro
-                      set_transient(
-                          $_trans,
-                          sprintf('%s|%s' , $user_starter_with_this_version ? 'with' : 'before', CUSTOMIZR_VER ),
-                          60*60*24*9999
-                      );
-                  } else {
-                      $has_already_installed_free = array_key_exists( 'last_update_notice', self::$db_options );
-                      //we are in the case of a free user updating the free theme but has previously cleaned the transients in db
-                      set_transient(
-                          $_trans,
-                          sprintf('%s|%s' , $has_already_installed_free ? 'before' : 'with', CUSTOMIZR_VER ),
-                          60*60*24*9999
-                      );
-                  }
-              }
 
               //fire an action hook after theme main properties have been set up
               // theme_name
               // db_options
               // default_options
-              // started using customizr(-pro) transient
               do_action( 'czr_after_caching_options' );
         }
 
@@ -977,4 +924,8 @@ if ( file_exists( get_template_directory() . '/core/init-pro.php' ) )
 
 //setup constants
 czr_fn_setup_constants();
+
+//setup started using theme option ( before checking czr_fn_is_ms() that uses the user_started_before_Version function to determine it )
+czr_fn_setup_started_using_theme_option_and_constants();
+
 require_once( get_template_directory() . ( czr_fn_is_ms() ? '/core/init.php' : '/inc/czr-init-ccat.php' ) );
