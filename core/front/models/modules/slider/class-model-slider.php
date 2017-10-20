@@ -222,7 +222,14 @@ class CZR_slider_model_class extends CZR_Model {
 
     $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> czr_fn_set_wp_responsive_slide_img_attr() ) );
 
+    if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
+        add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_lazyload_attributes'), 999 );
+    }
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
+    if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
+        remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_lazyload_attributes'), 999 );
+    }
+
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
     if ( !isset($slide_background) || empty($slide_background) )
       return;
@@ -242,6 +249,25 @@ class CZR_slider_model_class extends CZR_Model {
       'edit_suffix'         =>  $edit_suffix
     );
   }
+
+
+  /* ------------------------------------------------------------------------- *
+  *  LAZY LOAD IMG FILTER
+  /* ------------------------------------------------------------------------- */
+  //hook : wp_get_attachment_image_attributes
+  function czr_fn_set_lazyload_attributes( $attr ) {
+      $attr['data-flickity-lazyload'] = $attr['src'];
+      unset($attr['src']);
+      //unset($attr['srcset']);
+      // if we lazy load the flickity slider images, let's exclude them from the smart load
+      if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
+          //@see assets/front/js/libs/jquery-plugins/jqueryimgSmartLoad.js
+          $attr['class'] = ( isset( $attr['class'] ) && is_string( $attr['class'] ) ) ? $attr['class'] . ' tc-smart-load-skip' : 'tc-smart-load-skip';
+      }
+      return $attr;
+  }
+
+
 
   /*
   * By default we don't want the slider images to be responsive as wp intends as our slider isnot completely responsive (has fixed heights for different viewports)
@@ -289,7 +315,6 @@ class CZR_slider_model_class extends CZR_Model {
             if ( is_ssl() && 'https' !== substr( $image_baseurl, 0, 5 ) && parse_url( $image_baseurl, PHP_URL_HOST ) === $_SERVER['HTTP_HOST'] ) {
               $image_baseurl = set_url_scheme( $image_baseurl, 'https' );
             }
-
 
             if ( ! empty( $image_meta['sizes']['tc-slider-small'] ) ) {
                 $image = $image_meta['sizes']['tc-slider-small'];

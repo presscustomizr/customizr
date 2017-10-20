@@ -9018,6 +9018,8 @@ var czrapp = czrapp || {};
 
                             imagesLoaded: true,
 
+                            lazyLoad: true,
+
                             setGallerySize: false,
                             cellSelector: '.carousel-cell',
 
