@@ -187,8 +187,12 @@ class CZR_media_model_class extends CZR_Model {
 
             }
 
-            $post_id     = $this->post_id;
-            $media_type  = 'all' != $this->media_type ? $this->media_type : $this->post_format;
+            $post_id                 = $this->post_id;
+            $media_type              = 'all' != $this->media_type ? $this->media_type : $this->post_format;
+
+            if ( 'gallery' == $media_type && ! apply_filters( 'czr_allow_gallery_carousel_in_post_lists', false ) ) {
+                  $media_type        = ''; //<-fall back on the standard post format
+            }
 
             switch ( $media_type ) {
 
@@ -240,6 +244,7 @@ class CZR_media_model_class extends CZR_Model {
                   break;
 
                   //24/07/2017 gallery post format is buggy removed for now
+                  //19/10/2017 gallery carousel introduced in pro
                   case 'gallery' :
 
 
