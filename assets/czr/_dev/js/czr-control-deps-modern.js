@@ -183,15 +183,20 @@
                               'tc_post_list_thumb_alternate',
                               'tc_post_list_thumb_position',
                               'tc_post_list_thumb_height',
-                              'tc_grid_thumb_height'
+                              'tc_grid_thumb_height',
+                              'tc_gallery_carousel_post_list'
                             ],
                             visibility : function( to, servusShortId ) {
                                   if ( 'tc_grid_thumb_height' == servusShortId ) {
-                                    //cross
-                                    return _is_checked(to)
-                                        && $('.tc-grid-toggle-controls').hasClass('open')
-                                        && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) ).get();
+                                      //cross
+                                      return _is_checked(to)
+                                          && $('.tc-grid-toggle-controls').hasClass('open')
+                                          && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) ).get();
                                   }
+                                  if ( 'tc_gallery_carousel_post_list' == servusShortId ) {
+                                      return _is_checked(to) && _.contains( ['masonry', 'alternate'], api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) )() );
+                                  }
+
                                   return _is_checked(to) ;
                             },
                     },
@@ -246,7 +251,8 @@
                               'tc_gc_random',
                               'tc_gc_title_location',
                               'tc_gc_title_color',
-                              'tc_gc_title_custom_color'
+                              'tc_gc_title_custom_color',
+                              'tc_gallery_carousel_post_list'
                             ],
                             visibility : function( to, servusShortId ) {
                                   if ( 'tc_post_list_grid' == servusShortId )
@@ -262,6 +268,10 @@
                                   }
                                   if ( 'tc_post_list_thumb_placeholder' == servusShortId ) {
                                       return 'grid' == to;
+                                  }
+
+                                  if ( 'tc_gallery_carousel_post_list' == servusShortId ) {
+                                     return  _.contains( ['masonry', 'alternate'], to ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) )() );
                                   }
 
                                   if ( _.contains( serverControlParams.gridDesignControls, servusShortId ) ) {
@@ -288,6 +298,20 @@
                                   if ( 'tc_post_list_grid' == servusShortId ) {
                                       $('.tc-grid-toggle-controls').toggle( 'grid' == to );
                                   }
+                            }
+                    },
+                    //this trick is to control the visibility of 'tc_gallery_carousel_post_list'
+                    //as soon as you expand a section where it's placed, whether or not its real dominus which are:
+                    //a) 'tc_post_list_grid' is masonry or alternate
+                    //b) 'tc_post_list_show_thumb'
+                    //are actually present in the same section
+                    {
+                            dominus : 'tc_gallery_carousel_post_list',
+                            servi   : [
+                              'tc_gallery_carousel_post_list',
+                            ],
+                            visibility : function( to ) {
+                                  return _.contains( ['masonry', 'alternate'], api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) )() ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) )() );
                             }
                     },
                     {
