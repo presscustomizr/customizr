@@ -814,16 +814,16 @@ var czrapp = czrapp || {};
                                 }
                     );
                     $(this).find( '.carousel-caption .czrs-subtitle' ).czrFitText(
-                                1.2,//<=kompressor
+                                2,//<=kompressor
                                 {
                                       maxFontSize : 35,//the default max font-size
-                                      minFontSize : 16,
+                                      minFontSize : 15,
                                 }
                     );
-                    $(this).find( '.carousel-caption .czrs-cta' ).czrFitText(
-                                1.2,//<=kompressor
+                    $(this).find( '.carousel-caption .czrs-cta-wrapper' ).czrFitText(
+                                2,//<=kompressor
                                 {
-                                      maxFontSize : 16,//the default max font-size
+                                      maxFontSize : 18,//the default max font-size
                                       minFontSize : 12,
                                 }
                     );
