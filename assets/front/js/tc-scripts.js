@@ -8994,7 +8994,9 @@ var czrapp = czrapp || {};
                       setGallerySize: false,
                       cellSelector: '.carousel-cell',
                       accessibility: false,
-                      dragThreshold: 10
+                      dragThreshold: 10,
+                      lazyLoad: true,
+                      freeScroll: false
                   });
 
             },
@@ -9083,6 +9085,9 @@ var czrapp = czrapp || {};
                         _flickity   = $_this.closest('.czr-carousel').find('.flickity-enabled').data('flickity');
                         $_this.data( 'controls', _flickity );
                   }
+                  if ( ! _flickity )
+                    return;
+
                   if ( 'previous' == side ) {
                         _flickity.previous();
                   }
