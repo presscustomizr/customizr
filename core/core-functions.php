@@ -228,7 +228,7 @@ if ( ! ( function_exists( 'czr_fn_get_unfiltered_theme_options' ) ) ) :
 //   as they are out of scope here
 //
 // The filter suppression is specially needed due to:
-// a) avoid plugins (qtranslate, other lang plugins) filtering the theme options value, which might mess theme options when we update the options on front 
+// a) avoid plugins (qtranslate, other lang plugins) filtering the theme options value, which might mess theme options when we update the options on front
 // (e.g. to set the defaults, or to perform our retro compat options updates, or either to set the user started before option)
 // b) speed up the theme option retrieval when we are sure we don't need the theme options to be filtered in any case
 function czr_fn_get_unfiltered_theme_options( $option = null, $default = array() ) {
@@ -682,7 +682,7 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 
 
 /**
-* Set a theme option which stores at whic theme version started using it
+* Set a theme option which stores at which theme version started using it
 *
 * @package Customizr
 */
@@ -706,7 +706,7 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
         $user_started_using_theme_value           = sprintf('%s|%s' , 'with', CUSTOMIZR_VER );
         $to_update_user_started_using_theme       = true;
     }
-    elseif ( !isset( $theme_options[ $transient_or_option ] ) ) { //not fresh install, let's check the user started using theme is not defined yet
+    elseif ( ! array_key_exists( $transient_or_option, $theme_options ) ) { //not fresh install, let's check the user started using theme is not defined yet
         //flag that we have to update the user started using theme
         $to_update_user_started_using_theme     = true;
 
