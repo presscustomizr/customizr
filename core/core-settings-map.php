@@ -551,6 +551,10 @@ function czr_fn_header_desktop_option_map() {
                           'type'          => 'checkbox' ,
                           'priority'      => 10,
                           'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
+                          'ubq_section'   => array(
+                              'section' => 'menu_locations',
+                              'priority' => '100'
+                          )
         ),
         'tc_social_in_header' =>  array(
                           'default'       => 1,
@@ -1137,7 +1141,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                                     1 => __( 'Enable' , 'customizr' ),
                                     0 => __( 'Disable' , 'customizr' ),
                             ),
-                            'priority'        => 55,
+                            'priority'        => 59,
           ),
 
           //display featured page images
@@ -2026,6 +2030,19 @@ function czr_fn_performance_option_map( $get_default = null ) {
                             'type'        => 'checkbox',
                             'priority'    => 20,
                             'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
+          ),
+          'tc_slider_img_smart_load'  =>  array(
+                            'default'       => 1,
+                            'label'       => __( 'Lazy load the images in sliders' , 'customizr' ),
+                            'control'     =>  'CZR_controls',
+                            'section'     => 'performances_sec',
+                            'type'        => 'checkbox',
+                            'priority'    => 30,
+                            'notice'      => __('Check this option to delay the loading of non visible images in sliders. This can greatly increase the speed of your website.' , 'customizr'),
+                            'ubq_section'   => array(
+                                'section' => 'frontpage_sec',
+                                'priority' => '57'
+                             )
           )
   );
 }

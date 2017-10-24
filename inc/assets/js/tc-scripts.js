@@ -2228,7 +2228,7 @@ var TCParams = TCParams || {};
           defaults = {
                 load_all_images_on_first_scroll : false,
                 attribute : [ 'data-src', 'data-srcset', 'data-sizes' ],
-                excludeImg : [''],
+                excludeImg : [],
                 threshold : 200,
                 fadeIn_options : { duration : 400 },
                 delaySmartLoadEvent : 0,
@@ -2240,10 +2240,11 @@ var TCParams = TCParams || {};
       function Plugin( element, options ) {
             this.element = element;
             this.options = $.extend( {}, defaults, options) ;
-            if ( _.isArray( this.options.excludeImg ) )
-              this.options.excludeImg.push( '.'+skipImgClass );
-            else
-              this.options.excludeImg = [ '.'+skipImgClass ];
+            if ( _.isArray( this.options.excludeImg ) ) {
+                  this.options.excludeImg.push( '.'+skipImgClass );
+            } else {
+                  this.options.excludeImg = [ '.'+skipImgClass ];
+            }
 
             this._defaults = defaults;
             this._name = pluginName;
@@ -4658,7 +4659,7 @@ var czrapp = czrapp || {};
                   $( this ).centerImages( {
                     enableCentering : 1 == TCParams.centerSliderImg,
                     imgSel : '.czr-item .carousel-image img',
-                    oncustom : ['customizr.slid', 'simple_load'],
+                    oncustom : ['customizr.slid', 'simple_load', 'smartload'],
                     defaultCSSVal : { width : '100%' , height : 'auto' },
                     useImgAttr : true
                   });
@@ -4732,11 +4733,36 @@ var czrapp = czrapp || {};
 
             fireSliders : function(name, delay, hover) {
               var _name   = name || TCParams.SliderName,
-                  _delay  = delay || TCParams.SliderDelay;
-                  _hover  = hover || TCParams.SliderHover;
+                  _delay  = delay || TCParams.SliderDelay,
+                  _hover  = hover || TCParams.SliderHover,
+                  _cellSelector = '.czr-item',
+                  _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
 
               if ( 0 === _name.length )
                 return;
+
+              if ( czrapp.localized.imgSmartLoadsForSliders ) {
+                    this.$_sliders.addClass('disable-transitions-for-smartload');
+                    this.$_sliders.find( _cellSelector + '.active').imgSmartLoad().data( 'czr_smartLoaded', true );
+
+                    this.$_sliders.on( 'customizr.slide', _cellSelector, function() {
+                        if ( ! $(this).data('czr_smartLoaded') ) {
+                              $(this).append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                              $(this).imgSmartLoad().data( 'czr_smartLoaded', true );
+                        }
+                    });
+
+                    this.$_sliders.on( 'smartload', _cellSelector , function() {
+                          var $_cell = $(this);
+
+                          $_cell.find('.czr-css-loader').fadeOut( {
+                                duration: 'fast',
+                                done : function() {
+                                    $(this).remove();
+                                }
+                          } );
+                    });
+              }
 
               if ( 0 !== _delay.length && ! _hover ) {
                 this.$_sliders.czrCarousel({

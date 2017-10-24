@@ -310,7 +310,7 @@ if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
 *
 */
 /**
-* hook : after_setup_theme
+* hook : 'wp_head'
 * @package Customizr
 * @since Customizr 3.3.0
 */

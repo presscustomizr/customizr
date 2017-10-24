@@ -222,12 +222,14 @@ class CZR_slider_model_class extends CZR_Model {
 
     $slide_background_attr  = array_filter( array_merge( array( 'class' => 'slide' , 'alt' => $alt ), $this -> czr_fn_set_wp_responsive_slide_img_attr() ) );
 
-    if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
-        add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_lazyload_attributes'), 999 );
-    }
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
-    if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
-        remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_lazyload_attributes'), 999 );
+
+    //Parse img for smartload
+    //Should normally be done with apply_filters( 'czr_thumb_html', $html ), but this filter is added later (  on 'wp_head' ) for plugin compatibility.
+    //=> that's why we invoke czr_fn_parse_imgs() directly here
+    //@see czr_fn_wp_filters
+    if ( ! czr_fn_is_ajax() && czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+        $slide_background = czr_fn_parse_imgs( $slide_background ); //<- to prepare the img smartload
     }
 
     //adds all values to the slide array only if the content exists (=> handle the case when an attachment has been deleted for example). Otherwise go to next slide.
@@ -249,24 +251,6 @@ class CZR_slider_model_class extends CZR_Model {
       'edit_suffix'         =>  $edit_suffix
     );
   }
-
-
-  /* ------------------------------------------------------------------------- *
-  *  LAZY LOAD IMG FILTER
-  /* ------------------------------------------------------------------------- */
-  //hook : wp_get_attachment_image_attributes
-  function czr_fn_set_lazyload_attributes( $attr ) {
-      $attr['data-flickity-lazyload'] = $attr['src'];
-      unset($attr['src']);
-      //unset($attr['srcset']);
-      // if we lazy load the flickity slider images, let's exclude them from the smart load
-      if ( apply_filters( 'czr_use_flickity_lazy_load_in_main_slider', true ) ) {
-          //@see assets/front/js/libs/jquery-plugins/jqueryimgSmartLoad.js
-          $attr['class'] = ( isset( $attr['class'] ) && is_string( $attr['class'] ) ) ? $attr['class'] . ' tc-smart-load-skip' : 'tc-smart-load-skip';
-      }
-      return $attr;
-  }
-
 
 
   /*

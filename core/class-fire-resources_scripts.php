@@ -285,7 +285,11 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                $smart_load_opts       = apply_filters( 'tc_img_smart_load_options' , array(
 
                        'parentSelectors' => array(
-                           '[class*=grid-container], .article-container', '.__before_main_wrapper', '.widget-front', '.post-related-articles', '.tc-singular-thumbnail-wrapper'
+                           '[class*=grid-container], .article-container',
+                           '.__before_main_wrapper',
+                           '.widget-front',
+                           '.post-related-articles',
+                           '.tc-singular-thumbnail-wrapper'
                        ),
                        'opts'     => array(
                            'excludeImg' => array( '.tc-holder-img' )
@@ -331,8 +335,10 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                       'dropcapWhere'      => array( 'post' => esc_attr( czr_fn_opt( 'tc_post_dropcap' ) ) , 'page' => esc_attr( czr_fn_opt( 'tc_page_dropcap' ) ) ),
                       'dropcapMinWords'     => esc_attr( czr_fn_opt( 'tc_dropcap_minwords' ) ),
                       'dropcapSkipSelectors'  => apply_filters( 'tc_dropcap_skip_selectors' , array( 'tags' => array('IMG' , 'IFRAME', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'UL', 'OL'), 'classes' => array('btn') , 'id' => array() ) ),
+
                       'imgSmartLoadEnabled' => $smart_load_enabled,
                       'imgSmartLoadOpts'    => $smart_load_opts,
+                      'imgSmartLoadsForSliders' => czr_fn_is_checked( 'tc_slider_img_smart_load' ),
 
                       'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
                       'isWPMobile' => wp_is_mobile(),

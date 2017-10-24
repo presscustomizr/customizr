@@ -832,6 +832,9 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-gallery.czr-carousel .carousel-inner', self._move_background_link_inside );
                   czrapp.$_body.on( 'click tap prev.czr-carousel', '.czr-carousel-prev', function(e) { self._slider_arrows.apply( this , [ e, 'previous' ] );} );
                   czrapp.$_body.on( 'click tap next.czr-carousel', '.czr-carousel-next', function(e) { self._slider_arrows.apply( this , [ e, 'next' ] );} );
+                  this.fireRelatedPostsCarousel();
+                  this.fireGalleriesCarousel();
+                  this.fireMainSlider().centerMainSlider();
 
             },//_init()
 
@@ -867,9 +870,33 @@ var czrapp = czrapp || {};
             },
 
             fireMainSlider : function() {
-                  var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]');
+                  var $_main_slider = $('.carousel-inner', '[id^="customizr-slider-main"]'),
+                      _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>',
+                      _cellSelector = '.carousel-cell';
+
+                  if ( czrapp.localized.imgSmartLoadsForSliders ) {
+                        $_main_slider.on('czr-flickity-ready.flickity', function() {
+                              var _getSelectedCell = function() {
+                                    return $( $_main_slider.data('flickity').selectedCell.element );
+                              };
+                              $(this).find( _cellSelector + '.is-selected').imgSmartLoad().data( 'czr_smartLoaded', true );
+                              $(this).on('select.flickity', function() {
+                                  if ( ! _getSelectedCell().data('czr_smartLoaded') ) {
+                                        _getSelectedCell().append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                                        _getSelectedCell().imgSmartLoad().data( 'czr_smartLoaded', true );
+                                  }
+                              });
+
+                              $(this).on( 'smartload', _cellSelector , function() {
+                                      _getSelectedCell().find('.czr-css-loader').fadeOut( {
+                                            duration: 'fast',
+                                            done : function() { $(this).remove();}
+                                      } );
+                              });
+                        });
+                  }
                   if ( $_main_slider.length > 0 ) {
-                        var _is_single_slide = 1 == $_main_slider.find( '.carousel-cell' ).length,
+                        var _is_single_slide = 1 == $_main_slider.find( _cellSelector ).length,
                             _autoPlay           = $_main_slider.data('slider-delay');
 
                         _autoPlay           =  ( _.isNumber( _autoPlay ) && _autoPlay > 0 ) ? _autoPlay : false;
@@ -883,10 +910,8 @@ var czrapp = czrapp || {};
 
                             imagesLoaded: true,
 
-                            lazyLoad: true,
-
                             setGallerySize: false,
-                            cellSelector: '.carousel-cell',
+                            cellSelector: _cellSelector,
 
                             dragThreshold: 10,
 
@@ -895,13 +920,9 @@ var czrapp = czrapp || {};
                             accessibility: false,
                         });
                   }
+                  return this;
             },
 
-            fireCarousels : function() {
-                  this.fireRelatedPostsCarousel();
-                  this.fireGalleriesCarousel();
-                  this.fireMainSlider();
-            },
 
             centerMainSlider : function() {
                   setTimeout( function() {
@@ -910,7 +931,7 @@ var czrapp = czrapp || {};
                               $( this ).centerImages( {
                                     enableCentering : 1 == czrapp.localized.centerSliderImg,
                                     imgSel : '.carousel-image img',
-                                    oncustom : ['settle.flickity', 'simple_load'],
+                                    oncustom : ['settle.flickity', 'simple_load', 'smartload'],
                                     defaultCSSVal : { width : '100%' , height : 'auto' },
                                     useImgAttr : true,
                                     zeroTopAdjust: 0
@@ -2911,9 +2932,7 @@ var czrapp = czrapp || {};
                 slider : {
                       ctor : czrapp.Base.extend( czrapp.methods.Slider ),
                       ready : [
-                            'initOnCzrReady',
-                            'fireCarousels',
-                            'centerMainSlider'
+                            'initOnCzrReady',//<= fires all carousels : main, galleries, related posts + center images
                       ]
                 },
                 dropdowns : {
@@ -2940,7 +2959,7 @@ var czrapp = czrapp || {};
                             'smoothScroll',
 
                             'attachmentsFadeEffect',
-                            
+
                             'onEscapeKeyPressed',
 
                             'featuredPagesAlignment',

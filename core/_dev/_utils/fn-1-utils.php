@@ -4,7 +4,7 @@
 *
 */
 /**
-* hook : after_setup_theme
+* hook : 'wp_head'
 * @package Customizr
 * @since Customizr 3.3.0
 */
