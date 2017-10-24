@@ -3,6 +3,10 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
 
     public $defaults = array( 'display_widget' => true );
 
+    public $wc_cart_url;
+    public $wc_cart_count_html;
+    public $display_widget;
+
     private static $_woocart_filter_added;
     private static $_woocart_style_printed;
 
@@ -16,7 +20,17 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
             add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'czr_fn_woocommerce_add_to_cart_fragment' ) );
         }
 
+        // fix for: https://github.com/presscustomizr/customizr/issues/1223
+        // WC_Cart::get_cart_url is <strong>deprecated</strong> since version 2.5! Use wc_get_cart_url instead.
+        //
+        if ( function_exists( 'wc_get_cart_url' ) ) {
+            $this->wc_cart_url = esc_url( wc_get_cart_url() );
+        } else {
+            $this->wc_cart_url = esc_url( WC()->cart->get_cart_url() );
+        }
+
     }
+
 
     function czr_fn_get_display_widget() {
         if ( $this->display_widget ) {
