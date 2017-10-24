@@ -938,10 +938,8 @@ var czrapp = czrapp || {};
                               });
                               var self = this;
                               setTimeout( function() {
-
                                     $( self ).prevAll('.czr-slider-loader-wrapper').fadeOut();
-
-                              }, 500 );
+                              }, 300 );
 
                         });
 
