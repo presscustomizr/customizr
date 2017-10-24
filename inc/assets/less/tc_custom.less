@@ -1570,8 +1570,6 @@ footer#footer .colophon .credits a[class*=icon-] {
 }
 .tc-css-loader {
   display: none;
-}
-.csstransforms3d .tc-css-loader {
   width: 50px;
   height: 50px;
   position: absolute;
@@ -1580,6 +1578,8 @@ footer#footer .colophon .credits a[class*=icon-] {
           transform: translate3d(-50%, -50%, 0);
   top: 50%;
   left: 50%;
+}
+.csstransforms3d .tc-css-loader {
   display: block;
 }
 .tc-mr-loader > div:nth-child(0) {
@@ -1602,8 +1602,10 @@ footer#footer .colophon .credits a[class*=icon-] {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
   position: absolute;
-  top: -4%;
-  left: -4%;
+  /*top: -4%;
+  left: -4%;*/
+  top: -0%;
+  left: -0%;
   width: 100%;
   height: 100%;
   border-radius: 100%;
@@ -3129,83 +3131,4 @@ li#wp-admin-bar-tc-customizr-help a {
   @page {
     margin: 1cm;
     }
-}
-
-
-/* PURE CSS LOADER */
-// Pure CSS loader
-@-webkit-keyframes czr-mr-loader {
-  0% {
-    -webkit-transform: scale(0.1);
-    transform: scale(0.1);
-    opacity: 1;
-  }
-  70% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.0;
-  }
-}
-@keyframes czr-mr-loader {
-  0% {
-    -webkit-transform: scale(0.1);
-    transform: scale(0.1);
-    opacity: 1;
-  }
-  70% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.0;
-  }
-}
-.czr-css-loader {
-  display: none;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
-  top: 50%;
-  left: 50%;
-}
-.csstransforms3d .czr-css-loader {
-  display: block;
-}
-.czr-mr-loader > div:nth-child(0) {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-.czr-mr-loader > div:nth-child(1) {
-  -webkit-animation-delay: -0.6s;
-  animation-delay: -0.6s;
-}
-.czr-mr-loader > div:nth-child(2) {
-  -webkit-animation-delay: -0.4s;
-  animation-delay: -0.4s;
-}
-.czr-mr-loader > div:nth-child(3) {
-  -webkit-animation-delay: -0.2s;
-  animation-delay: -0.2s;
-}
-.czr-mr-loader > div {
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  position: absolute;
-  /*top: -4%;
-  left: -4%;*/
-  top: -0%;
-  left: -0%;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: 2px solid #777;
-  -webkit-animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
-  animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
 }

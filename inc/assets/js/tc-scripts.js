@@ -4736,7 +4736,8 @@ var czrapp = czrapp || {};
                   _delay  = delay || TCParams.SliderDelay,
                   _hover  = hover || TCParams.SliderHover,
                   _cellSelector = '.czr-item',
-                  _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
+                  _cssLoaderClass = 'tc-css-loader',
+                  _css_loader = '<div class="' + _cssLoaderClass + ' tc-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
 
               if ( 0 === _name.length )
                 return;
@@ -4747,7 +4748,7 @@ var czrapp = czrapp || {};
 
                     this.$_sliders.on( 'customizr.slide', _cellSelector, function() {
                         if ( ! $(this).data('czr_smartLoaded') ) {
-                              $(this).append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                              $(this).append( _css_loader ).find( '.' + _cssLoaderClass ).fadeIn( 'slow' );
                               $(this).imgSmartLoad().data( 'czr_smartLoaded', true );
                         }
                     });
@@ -4755,7 +4756,7 @@ var czrapp = czrapp || {};
                     this.$_sliders.on( 'smartload', _cellSelector , function() {
                           var $_cell = $(this);
 
-                          $_cell.find('.czr-css-loader').fadeOut( {
+                          $_cell.find( '.' + _cssLoaderClass ).fadeOut( {
                                 duration: 'fast',
                                 done : function() {
                                     $(this).remove();
