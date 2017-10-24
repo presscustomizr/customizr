@@ -280,59 +280,103 @@ class CZR_slider_model_class extends CZR_Model {
 
 
   //@hook: 'wp_calculate_image_srcset'
+  //this hook is defined in wp-includes/media.php::wp_calculate_image_srcset()
   function czr_maybe_add_resp_slide_img_size_to_the_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
-    if ( count( $sources ) ) {
+      if ( is_array( $sources ) && count( $sources ) ) {
+          /**
+           * if the first image in $sources is not our $image_src, do nothing, as this means that wp_calculate_image_srcset()
+           * has found no matches, hence it will return no srcset whatever image sizes we add to the $sources
+           * as matter of fact, just after the wp_calculate_image_srcset filter hook it makes this check:
+           * // Only return a 'srcset' value if there is more than one source.
+           * if ( ! $src_matched || count( $sources ) < 2 ) {
+           *    return false;
+           * }
+           */
+          $first_image_size_src = reset( $sources );
 
-        if ( is_array( $size_array) && ! empty( $image_meta['sizes'] ) ){
+          if ( ! is_array( $first_image_size_src ) || ! array_key_exists( 'url', $first_image_size_src ) || $image_src !== $first_image_size_src[ 'url' ] ) {
+              return $sources;
+          }
 
-            // Retrieve the uploads sub-directory from the full size image.
-            $dirname = _wp_get_attachment_relative_path( $image_src );
+          if ( is_array( $size_array) && ! empty( $image_meta['sizes'] ) ){
 
-            if ( $dirname ) {
-              $dirname = trailingslashit( $dirname );
-            }
+              // Retrieve the uploads sub-directory from the full size image.
+              $dirname = _wp_get_attachment_relative_path( $image_meta['file'] );
 
-            $upload_dir    = wp_get_upload_dir();
-            $image_baseurl = trailingslashit( $upload_dir['baseurl'] ) . $dirname;
+              if ( $dirname ) {
+                  $dirname = trailingslashit( $dirname );
+              }
+
+              $upload_dir    = wp_get_upload_dir();
+              $image_baseurl = trailingslashit( $upload_dir['baseurl'] ) . $dirname;
 
 
-            if ( is_ssl() && 'https' !== substr( $image_baseurl, 0, 5 ) && parse_url( $image_baseurl, PHP_URL_HOST ) === $_SERVER['HTTP_HOST'] ) {
-              $image_baseurl = set_url_scheme( $image_baseurl, 'https' );
-            }
+              if ( is_ssl() && 'https' !== substr( $image_baseurl, 0, 5 ) && parse_url( $image_baseurl, PHP_URL_HOST ) === $_SERVER['HTTP_HOST'] ) {
+                  $image_baseurl = set_url_scheme( $image_baseurl, 'https' );
+              }
 
-            if ( ! empty( $image_meta['sizes']['tc-slider-small'] ) ) {
-                $image = $image_meta['sizes']['tc-slider-small'];
-                //if available use the slider small size
-                $sources[ $image['width'] ] = array(
-                  'url'        => $image_baseurl . $image['file'],
-                  'descriptor' => 'w',
-                  'value'      => $image['width'],
-                );
+              /*
+               * Images that have been edited in WordPress after being uploaded will
+               * contain a unique hash. Look for that hash and use it later to filter
+               * out images that are leftovers from previous versions.
+               */
+              $image_edited = preg_match( '/-e[0-9]{13}/', wp_basename( $image_src ), $image_edit_hash );
 
-            }
-            else {
-                //Grab all the available scaled images
-                //The cons of this method is that you can have images that are really far by the "desired" aspect ratio
-                foreach ( $image_meta[ 'sizes' ] as $img_size => $image ) {
-                    $source = array(
-                      'url'        => $image_baseurl . $image['file'],
-                      'descriptor' => 'w',
-                      'value'      => $image['width'],
-                    );
+              //always use the tc-slider-small if available and not corrupted
+              //and that is not from previous edits
+              if ( ! empty( $image_meta['sizes']['tc-slider-small'] )
+                && $image_meta['sizes']['tc-slider-small']
+                && ! ( $image_edited && ! strpos( $image['file'], $image_edit_hash[0] ) ) ) {
 
-                    // The 'src' image has to be the first in the 'srcset', because of a bug in iOS8. See wp #35030.
-                    if ( $image['file'] == basename( $image_src ) ) {
-                        unset( $sources[ $image['width'] ] );
-                        $sources = array( $image['width'] => $source ) + $sources;
-                    } elseif( ! isset( $sources[ $image['width'] ] ) ){
-                        $sources[ $image['width'] ] = $source;
-                    }
-                }
-            }//else
-        }
-    }
+                  $image = $image_meta['sizes']['tc-slider-small'];
 
-    return $sources;
+                  //if available use the slider small size
+                  $sources[ $image['width'] ] = array(
+                    'url'        => $image_baseurl . $image['file'],
+                    'descriptor' => 'w',
+                    'value'      => $image['width'],
+                  );
+
+              }
+              else {
+                  //flag to avoid several checks on whether the image sizes we're about to add to the sources
+                  //is not the original src already added by wp-includes/media.php::wp_calculate_image_srcset()
+                  $original_src_matched  = false;
+
+                  //Grab all the available scaled images
+                  //The cons of this method is that you can have images that are really far by the "desired" aspect ratio
+                  foreach ( $image_meta[ 'sizes' ] as $img_size => $image ) {
+
+                      // If the file name is part of the `src`, we're parsing the src itself
+                      // this has already been added by wp-includes/media.php::wp_calculate_image_srcset()
+                      if ( ! $original_src_matched && false !== strpos( $image_src, $dirname . $image['file'] ) ) {
+                          //src attr matched, set $original_src_matched flag so that we don't make the above check again
+                          $original_src_matched = true;
+                          continue;
+                      }
+
+                      // Filter out images that are from previous edits.
+                      if ( $image_edited && ! strpos( $image['file'], $image_edit_hash[0] ) ) {
+                          continue;
+                      }
+
+                      $source = array(
+                        'url'        => $image_baseurl . $image['file'],
+                        'descriptor' => 'w',
+                        'value'      => $image['width'],
+                      );
+
+
+                      // If not already part of the $sources array, add this image size
+                      if( ! isset( $sources[ $image['width'] ] ) ){
+                          $sources[ $image['width'] ] = $source;
+                      }
+                  }
+              }//else
+          }
+      }
+
+      return $sources;
 
   }
 
