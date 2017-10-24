@@ -8942,7 +8942,7 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', self._parallax );
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '[id^="customizr-slider-main"] .carousel-inner', function() {
                     $(this).find( '.carousel-caption .czrs-title' ).czrFitText(
-                                1.2,//<=kompressor
+                                1.5,//<=kompressor
                                 {
                                       maxFontSize : 65,//the default max font-size
                                       minFontSize : 18,

@@ -44,6 +44,10 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       });
 })( wp.customize , jQuery, _);//NOT USED YET
 ( function ( api, $, _ ) {
+      api.czr_skopeReady = $.Deferred();
+      if ( _.isUndefined( serverControlParams.isSkopOn ) || ! serverControlParams.isSkopOn ) {
+            api.czr_skopeReady.resolve();
+      }
       var _prettyPrintLog = function( args ) {
             var _defaults = {
                   bgCol : '#5ed1f5',
@@ -84,7 +88,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       };
 
       api.czr_isSkopOn = function() {
-            return serverControlParams.isSkopOn && _.has( api, 'czr_skopeBase' );
+            return ! _.isUndefined ( serverControlParams.isSkopOn ) && serverControlParams.isSkopOn && _.has( api, 'czr_skopeBase' );
       };
 
       api.czr_isChangeSetOn = function() {
@@ -4341,7 +4345,6 @@ $.extend( CZRMultiModuleControlMths, {
       /*****************************************************************************
       * FIRE SKOPE ON READY
       *****************************************************************************/
-      api.czr_skopeReady = $.Deferred();
       api.bind( 'ready' , function() {
             if ( serverControlParams.isSkopOn ) {
                   api.czr_isLoadingSkope  = new api.Value( false );
@@ -11068,14 +11071,19 @@ $.extend( CZRLayoutSelectMths , {
                               'tc_post_list_thumb_alternate',
                               'tc_post_list_thumb_position',
                               'tc_post_list_thumb_height',
-                              'tc_grid_thumb_height'
+                              'tc_grid_thumb_height',
+                              'tc_gallery_carousel_post_list'
                             ],
                             visibility : function( to, servusShortId ) {
                                   if ( 'tc_grid_thumb_height' == servusShortId ) {
-                                    return _is_checked(to)
-                                        && $('.tc-grid-toggle-controls').hasClass('open')
-                                        && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) ).get();
+                                      return _is_checked(to)
+                                          && $('.tc-grid-toggle-controls').hasClass('open')
+                                          && 'grid' == api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) ).get();
                                   }
+                                  if ( 'tc_gallery_carousel_post_list' == servusShortId ) {
+                                      return _is_checked(to) && _.contains( ['masonry', 'alternate'], api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) )() );
+                                  }
+
                                   return _is_checked(to) ;
                             },
                     },
@@ -11126,7 +11134,8 @@ $.extend( CZRLayoutSelectMths , {
                               'tc_gc_random',
                               'tc_gc_title_location',
                               'tc_gc_title_color',
-                              'tc_gc_title_custom_color'
+                              'tc_gc_title_custom_color',
+                              'tc_gallery_carousel_post_list'
                             ],
                             visibility : function( to, servusShortId ) {
                                   if ( 'tc_post_list_grid' == servusShortId )
@@ -11142,6 +11151,10 @@ $.extend( CZRLayoutSelectMths , {
                                   }
                                   if ( 'tc_post_list_thumb_placeholder' == servusShortId ) {
                                       return 'grid' == to;
+                                  }
+
+                                  if ( 'tc_gallery_carousel_post_list' == servusShortId ) {
+                                     return  _.contains( ['masonry', 'alternate'], to ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) )() );
                                   }
 
                                   if ( _.contains( serverControlParams.gridDesignControls, servusShortId ) ) {
@@ -11167,6 +11180,15 @@ $.extend( CZRLayoutSelectMths , {
                                   if ( 'tc_post_list_grid' == servusShortId ) {
                                       $('.tc-grid-toggle-controls').toggle( 'grid' == to );
                                   }
+                            }
+                    },
+                    {
+                            dominus : 'tc_gallery_carousel_post_list',
+                            servi   : [
+                              'tc_gallery_carousel_post_list',
+                            ],
+                            visibility : function( to ) {
+                                  return _.contains( ['masonry', 'alternate'], api( api.CZR_Helpers.build_setId( 'tc_post_list_grid' ) )() ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_post_list_show_thumb' ) )() );
                             }
                     },
                     {

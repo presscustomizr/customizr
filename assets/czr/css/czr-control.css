@@ -2741,7 +2741,7 @@ body.czr-editing-sektion #customize-preview {
   height: 185px;
 }
 .czr-skop-on .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
-  top: 185px;
+  top: 185px!important;
 }
 .wp-customizer .in-sub-panel .wp-full-overlay-sidebar .wp-full-overlay-header {
   padding: 0 15px;
@@ -2749,8 +2749,13 @@ body.czr-editing-sektion #customize-preview {
 .customize-controls-close {
   border-bottom: 1px solid #ddd;
 }
-
-
+/*
+  * when skope is on, the z-index of the #customize-notifications-area has to be increased
+  * this #customize-notifications-area block has been introduced in WP 4.9
+*/
+.czr-skop-on #customize-controls #customize-notifications-area {
+  z-index: 1000;
+}
 
 .wp-customizer #customize-header-actions {
   border-bottom: 0px;

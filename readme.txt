@@ -38,6 +38,9 @@ The exceptions to this license are as follows:
 
 
 #######################  Changelog ######################
+= 4.0.10 October 25th 2017 =
+
+
 = 4.0.9 October 9th 2017 =
 * Fix : global skin CSS not printed when no custom header skin. Fixes #1215.
 * Fix : various html fixes like duplicated ids or data attributes

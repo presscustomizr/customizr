@@ -1,4 +1,4 @@
-# Customizr v4.0.9 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.10 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -39,6 +39,9 @@ The exceptions to this license are as follows:
 
 
 ## Changelog
+= 4.0.10 October 25th 2017 =
+
+
 = 4.0.9 October 9th 2017 =
 * Fix : global skin CSS not printed when no custom header skin. Fixes #1215.
 * Fix : various html fixes like duplicated ids or data attributes

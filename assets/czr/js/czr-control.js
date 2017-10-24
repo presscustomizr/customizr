@@ -44,6 +44,10 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       });
 })( wp.customize , jQuery, _);//NOT USED YET
 ( function ( api, $, _ ) {
+      api.czr_skopeReady = $.Deferred();
+      if ( _.isUndefined( serverControlParams.isSkopOn ) || ! serverControlParams.isSkopOn ) {
+            api.czr_skopeReady.resolve();
+      }
       var _prettyPrintLog = function( args ) {
             var _defaults = {
                   bgCol : '#5ed1f5',
@@ -84,7 +88,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       };
 
       api.czr_isSkopOn = function() {
-            return serverControlParams.isSkopOn && _.has( api, 'czr_skopeBase' );
+            return ! _.isUndefined ( serverControlParams.isSkopOn ) && serverControlParams.isSkopOn && _.has( api, 'czr_skopeBase' );
       };
 
       api.czr_isChangeSetOn = function() {
@@ -4341,7 +4345,6 @@ $.extend( CZRMultiModuleControlMths, {
       /*****************************************************************************
       * FIRE SKOPE ON READY
       *****************************************************************************/
-      api.czr_skopeReady = $.Deferred();
       api.bind( 'ready' , function() {
             if ( serverControlParams.isSkopOn ) {
                   api.czr_isLoadingSkope  = new api.Value( false );
