@@ -2,12 +2,109 @@
 /*
 Template Name: Custom Page Example
 */
-if ( apply_filters( 'czr_ms', false ) ) {
-  do_action( 'czr_ms_tmpl' );
+if ( apply_filters( 'czr_ms', false ) ):
+    /*
+    *  This is the reference Custom Page Example template if you use the theme Modern style
+    */
+
+    get_header();
+    // This hook is used to render the following elements(ordered by priorities) :
+    // slider
+    // singular thumbnail
+    do_action('__before_main_wrapper')
+  ?>
+
+    <div id="main-wrapper" class="section">
+
+          <?php
+            /*
+            * Featured Pages | 10
+            * Breadcrumbs | 20
+            */
+            do_action('__before_main_container')
+          ?>
+
+          <div class="<?php czr_fn_main_container_class() ?>" role="main">
+
+            <?php do_action('__before_content_wrapper'); ?>
+
+            <div class="<?php czr_fn_column_content_wrapper_class() ?>">
+
+                <?php do_action('__before_content'); ?>
+
+                <div id="content" class="<?php czr_fn_article_container_class() ?>">
+
+                  <?php
+
+                    do_action( '__before_loop' );
+
+                    if ( have_posts() ) {
+                        /**
+                        * this will render the WordPress loop template located in templates/content/loop.php
+                        * that will be responsible to load the page part template located in templates/content/singular/page_content.php
+                        */
+                        czr_fn_render_template( 'loop' );
+                    }
+
+                    do_action( '__after_loop' );
+                  ?>
+                </div>
+
+                <?php do_action('__after_content'); ?>
+
+
+                <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
+                  <div class="col-12 singular-info-wrapper order-md-last">
+                    <?php czr_fn_render_template( 'content/singular/comments/comments' ); ?>
+                  </div>
+                <?php endif ?>
+
+                <?php
+                  /*
+                  * SIDEBARS
+                  */
+                  if ( czr_fn_is_registered_or_possible('left_sidebar') )
+                    get_sidebar( 'left' );
+
+                  if ( czr_fn_is_registered_or_possible('right_sidebar') )
+                    get_sidebar( 'right' );
+                ?>
+
+            </div><!-- .column-content-wrapper -->
+
+            <?php do_action('__after_content_wrapper'); ?>
+
+
+          </div><!-- .container -->
+
+          <?php do_action('__after_main_container'); ?>
+
+    </div><!-- #main-wrapper -->
+
+    <?php do_action('__after_main_wrapper'); ?>
+
+    <?php
+      if ( czr_fn_is_registered_or_possible('posts_navigation') ) :
+    ?>
+      <div class="container-fluid">
+        <?php
+            czr_fn_render_template( "content/singular/navigation/singular_posts_navigation" );
+        ?>
+      </div>
+    <?php endif ?>
+
+<?php get_footer() ?>
+<?php
   return;
-}
+endif;
+
+/*
+*  This is the reference Custom Page Example template if you use the theme Classical style
+*/
+
+do_action( '__before_main_wrapper' ); ##hook of the header with get_header
+
 ?>
-<?php do_action( '__before_main_wrapper' ); ##hook of the header with get_header ?>
 <div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
 
     <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
