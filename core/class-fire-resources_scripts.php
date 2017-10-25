@@ -280,16 +280,15 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                //smart load
                $smart_load_enabled    = esc_attr( czr_fn_opt( 'tc_img_smart_load' ) );
                $smart_load_opts       = apply_filters( 'tc_img_smart_load_options' , array(
-
                        'parentSelectors' => array(
-                           '[class*=grid-container], .article-container',
-                           '.__before_main_wrapper',
-                           '.widget-front',
-                           '.post-related-articles',
-                           '.tc-singular-thumbnail-wrapper'
+                            '[class*=grid-container], .article-container',
+                            '.__before_main_wrapper',
+                            '.widget-front',
+                            '.post-related-articles',
+                            '.tc-singular-thumbnail-wrapper'
                        ),
                        'opts'     => array(
-                           'excludeImg' => array( '.tc-holder-img' )
+                            'excludeImg' => array( '.tc-holder-img' )
                        )
 
                ));

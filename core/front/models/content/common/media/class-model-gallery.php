@@ -125,8 +125,8 @@ class CZR_gallery_model_class extends CZR_Model {
 
             $gallery_items   = array();
 
-            if ( apply_filters( 'czr_use_flickity_lazyload_in_gallery_carousels', true ) ) {
-                add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_lazyload_attributes'), 999 );
+            if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+                add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_smartload_skip_class'), 999 );
             }
             foreach ( array_keys( $raw_media ) as $id ) {
 
@@ -134,11 +134,13 @@ class CZR_gallery_model_class extends CZR_Model {
                               'data-mfp-src'    => wp_get_attachment_url( $id )
                         ) : array();
 
-                  if ( apply_filters( 'czr_use_flickity_lazyload_in_gallery_carousels', true ) ) {
-                      $gallery_items[] = wp_get_attachment_image( $id, $this->size, false, $img_attrs );
+                  $img_html = wp_get_attachment_image( $id, $this->size, false, $img_attrs );
+
+                  if ( ! czr_fn_is_ajax() && czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+                      $gallery_items[] = czr_fn_parse_imgs( $img_html );//<- to prepare the img smartload without using the filter 'czr_thumb_html'  ( not declared if smartload not globally enabled )
                   } else {
                       $gallery_items[] = apply_filters( 'czr_thumb_html', //<- to allow the img smartload
-                          wp_get_attachment_image( $id, $this->size, false, $img_attrs ),
+                          $img_html,
                           $requested_size = $this->size,
                           $post_id = $this->post_id,
                           $custom_thumb_id = null,
@@ -147,26 +149,20 @@ class CZR_gallery_model_class extends CZR_Model {
                       );
                   }
             }
-            if ( apply_filters( 'czr_use_flickity_lazyload_in_gallery_carousels', true ) ) {
-                remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_setlazy_load_attributes'), 999 );
+            if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+                remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_smartload_skip_class'), 999 );
             }
             return $gallery_items;
 
       }
 
       /* ------------------------------------------------------------------------- *
-      *  LAZY LOAD IMG FILTER
+      *  SET SMART LOAD CLASS TO IMG => disable the smartload on load
       /* ------------------------------------------------------------------------- */
       //hook : wp_get_attachment_image_attributes
-      function czr_fn_set_lazyload_attributes( $attr ) {
-          $attr['data-flickity-lazyload'] = $attr['src'];
-          unset($attr['src']);
-          //unset($attr['srcset']);
-          // if we lazy load the flickity slider images, let's exclude them from the smart load
-          if ( apply_filters( 'czr_use_flickity_lazyload_in_gallery_carousels', true ) ) {
-              //@see assets/front/js/libs/jquery-plugins/jqueryimgSmartLoad.js
-              $attr['class'] = ( isset( $attr['class'] ) && is_string( $attr['class'] ) ) ? $attr['class'] . ' tc-smart-load-skip' : 'tc-smart-load-skip';
-          }
+      function czr_fn_set_smartload_skip_class( $attr ) {
+          //@see assets/front/js/libs/jquery-plugins/jqueryimgSmartLoad.js
+          $attr['class'] = ( isset( $attr['class'] ) && is_string( $attr['class'] ) ) ? $attr['class'] . ' tc-smart-load-skip' : 'tc-smart-load-skip';
           return $attr;
       }
 
