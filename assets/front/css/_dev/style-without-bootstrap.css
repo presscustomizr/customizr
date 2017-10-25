@@ -6474,7 +6474,7 @@ section.post-content {
   color: #777;
   vertical-align: middle;
   display: inline-block;
-  line-height: 2em;
+  line-height: 1.6em;
 }
 
 .colophon__row .footer__credits p {
@@ -6482,16 +6482,23 @@ section.post-content {
 }
 
 .colophon__row .footer__credits .czr-credits {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
 }
 
 .colophon__row .footer__credits {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .colophon__row .footer__credits,
 .colophon__row .social-links {
   margin: 1em 0;
+}
+
+@media (max-width: 575px) {
+  .colophon__row {
+    text-align: center;
+  }
 }
 
 /* FRONT NOTIFICATIONS

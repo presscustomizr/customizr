@@ -145,17 +145,20 @@
         color: $grey;
         vertical-align: middle;
         display: inline-block;
-        line-height: 2em;
+        line-height: 1.6em;
         p {
           margin: 0
         }
-        .czr-credits { font-size: 0.8rem; }
+        .czr-credits { font-size: 0.7rem; margin-top: 0.5rem; }
       }
-      .footer__credits { font-size: 0.9rem; }
+      .footer__credits { font-size: 0.82rem; }
       .footer__credits,
       .social-links {
         margin:1em 0;
       }
+    }
+    @include media-breakpoint-down(xs) {
+      @at-root .colophon__row  { text-align: center; }
     }
   }//.colophon__row
 }//.footer__wrapper

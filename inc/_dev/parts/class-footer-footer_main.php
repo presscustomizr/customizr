@@ -244,9 +244,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
                                   )
                               ),
                               apply_filters( 'tc_credit_link',
-                                  sprintf( '<span class="tc-credits-text">%1$s</span> %2$s &middot;',
-                                      __('Designed with', 'customizr'),
-                                      sprintf( '<a href="%1$s">%2$s</a>', esc_url( CZR_WEBSITE . 'customizr' ), __('the Customizr theme', 'customizr') )
+                                  sprintf( '<span class="tc-credits-text">%1$s </span> &middot;',
+                                      sprintf( __('Designed with the %s', 'customizr'), sprintf( '<a class="czr-designer-link" href="%1$s" title="%2$s">%2$s</a>', esc_url( CZR_WEBSITE . 'customizr' ), __('Customizr theme', 'customizr') ) )
                                   )
                               )
   					   )

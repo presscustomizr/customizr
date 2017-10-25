@@ -1462,11 +1462,20 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           $_main_item_class = 'current-menu-item';
         }
 
+        // fix for: https://github.com/presscustomizr/customizr/issues/1223
+        // WC_Cart::get_cart_url is <strong>deprecated</strong> since version 2.5! Use wc_get_cart_url instead.
+        //
+        if ( function_exists( 'wc_get_cart_url' ) ) {
+            $wc_cart_url = esc_url( wc_get_cart_url() );
+        } else {
+            $wc_cart_url = esc_url( WC()->cart->get_cart_url() );
+        }
+
        ?>
        <div class="tc-wc-menu tc-open-on-hover span1">
          <ul class="tc-wc-header-cart nav tc-hover-menu">
            <li class="<?php echo esc_attr( $_main_item_class ); ?> menu-item">
-             <a class="cart-contents" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" title="<?php _e( 'View your shopping cart', 'customizr' ); ?>">
+             <a class="cart-contents" href="<?php echo $wc_cart_url; ?>" title="<?php _e( 'View your shopping cart', 'customizr' ); ?>">
                <span class="count btn-link tc-wc-count"><?php echo $_cart_count ? $_cart_count : '' ?></span>
             </a>
             <?php
