@@ -88,7 +88,12 @@
 [class*=grid-container__masonry] article {
   margin-bottom: 20px
 }
-.comments__link { white-space: nowrap; }
+.comments__link {
+  white-space: nowrap;
+  .czr-related-post .post-info & {
+    font-size: 0.65rem;
+  }
+}
 .grid-title_size {
   line-height:1.4;
   font-size: 1.9em;

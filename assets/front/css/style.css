@@ -7457,6 +7457,10 @@ dl dd {
   white-space: nowrap;
 }
 
+.czr-related-post .post-info .comments__link {
+  font-size: 0.65rem;
+}
+
 .grid-title_size, .grid .entry-title {
   line-height: 1.4;
   font-size: 1.9em;
