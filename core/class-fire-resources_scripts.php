@@ -260,14 +260,11 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                global $wp_query;
                $has_post_comments   = ( 0 != $wp_query -> post_count && comments_open() && get_comments_number() != 0 ) ? true : false;
 
-               //adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
-               $anchor_smooth_scroll        = ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) ) ? 'easeOutExpo' : 'linear';
-
                if ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) )
                      wp_enqueue_script('jquery-effects-core');
 
-               $anchor_smooth_scroll_exclude =  apply_filters( 'czr_anchor_smoothscroll_excl' , array(
 
+               $anchor_smooth_scroll_exclude =  apply_filters( 'czr_anchor_smoothscroll_excl' , array(
                    'simple' => array( '[class*=edd]' , '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
                    'deep'   => array(
                      'classes' => array(),
@@ -317,8 +314,10 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
                       'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
                       'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
-                      'anchorSmoothScroll'         => $anchor_smooth_scroll,
+
+                      'isAnchorScrollEnabled'     => czr_fn_is_checked( 'tc_link_scroll' ), // also adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
                       'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
+
                       'timerOnScrollAllBrowsers' => apply_filters( 'tc_timer_on_scroll_for_all_browser' , true), //<= if false, for ie only
 
                       'centerAllImg'          => 1,
