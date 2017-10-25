@@ -5021,11 +5021,11 @@ a.czr-format-link:hover::before {
 }
 
 [class*=grid-container__] .full-image .bg-link {
-  background: rgba(49, 49, 49, 0.25);
+  background: rgba(49, 49, 49, 0.3);
 }
 
 [class*=grid-container__] .full-image.hover .bg-link {
-  background: rgba(49, 49, 49, 0.35);
+  background: rgba(49, 49, 49, 0.4);
 }
 
 [class*=grid-container__] .full-image .entry-media__holder {

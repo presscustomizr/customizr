@@ -16,8 +16,7 @@
           <div class="czr-wp-the-content">
               <?php czr_fn_echo( 'content' ); ?>
           </div>
-      <?php } ?>
-
+      <?php }
       czr_fn_link_pages();
   ?>
 </div>

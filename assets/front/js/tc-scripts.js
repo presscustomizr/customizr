@@ -8977,17 +8977,22 @@ var czrapp = czrapp || {};
                   if ( czrapp.localized.imgSmartLoadsForSliders ) {
                       this._smartLoadFlickityImg( { sliderEl : $_galleries, cellSelector : _cellSelector });
                   }
-                  $('.czr-gallery.czr-carousel .carousel-inner').flickity({
-                        prevNextButtons: false,
-                        pageDots: false,
-                        wrapAround: true,
-                        imagesLoaded: true,
-                        setGallerySize: false,
-                        cellSelector: _cellSelector,
-                        accessibility: false,
-                        dragThreshold: 10,
-                        lazyLoad: false,
-                        freeScroll: false
+
+                  $('.czr-gallery.czr-carousel .carousel-inner').each( function() {
+                        if ( _.isUndefined( $(this).data('flickity') ) ) {
+                              $(this).flickity({
+                                    prevNextButtons: false,
+                                    pageDots: false,
+                                    wrapAround: true,
+                                    imagesLoaded: true,
+                                    setGallerySize: false,
+                                    cellSelector: _cellSelector,
+                                    accessibility: false,
+                                    dragThreshold: 10,
+                                    lazyLoad: false,
+                                    freeScroll: false
+                              });
+                        }
                   });
 
             },

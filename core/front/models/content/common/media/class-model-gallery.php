@@ -136,7 +136,7 @@ class CZR_gallery_model_class extends CZR_Model {
 
                   $img_html = wp_get_attachment_image( $id, $this->size, false, $img_attrs );
 
-                  if ( ! czr_fn_is_ajax() && czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+                  if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
                       $gallery_items[] = czr_fn_parse_imgs( $img_html );//<- to prepare the img smartload without using the filter 'czr_thumb_html'  ( not declared if smartload not globally enabled )
                   } else {
                       $gallery_items[] = apply_filters( 'czr_thumb_html', //<- to allow the img smartload

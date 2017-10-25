@@ -607,11 +607,11 @@ a.czr-format-link {
   .entry-footer .col, a:not(.bg-link) { z-index: 2; position: relative; }
 
   .bg-link {
-    background: rgba($black, 0.25);
+    background: rgba($black, 0.30);
   }
 
   &.hover .bg-link {
-    background: rgba($black, 0.35);
+    background: rgba($black, 0.40);
   }
   .entry-media__holder {
     z-index: 2;
