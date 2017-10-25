@@ -32,32 +32,51 @@
 //https://en.oxforddictionaries.com/punctuation/bullet-points
 ol {
   counter-reset: item;
-  > li {
-    position: relative;
-    padding: 0.25rem 0.5rem;
+  > li:before {
+    content: counters(item, ".") ".";
+    counter-increment: item;
+    padding-right: .5em;
   }
-  @if ( true == $is_rtl ) {
-    > li:before {
-      content: counters(item, ".") ".";
-      counter-increment: item;
-      margin-left: 0.5em;
-      right: -1em;
-      position: absolute;
-      width: 1em;
+  @at-root .tc-content-inner ol {
+    > li {
+      position: relative;
+      padding: 0.25rem 0.5rem;
     }
-  }
-  @else {
-    > li:before {
-      content: counters(item, ".") ".";
-      counter-increment: item;
-      margin-right: 0.5em;
-      left: -1em;
-      position: absolute;
-      width: 1em;
+    @if ( true == $is_rtl ) {
+      > li:before {
+        content: counters(item, ".") ".";
+        counter-increment: item;
+        margin-left: 0.5em;
+        right: -1em;
+        position: absolute;
+        width: 1em;
+      }
+      > li li:before {
+          right: -1.8em;
+      }
+      > li li li:before {
+          right: -2.5em;
+      }
+    }
+    @else {
+      > li:before {
+        content: counters(item, ".") ".";
+        counter-increment: item;
+        margin-right: 0.5em;
+        left: -1em;
+        position: absolute;
+        width: 1em;
+      }
+      > li li:before {
+          left: -1.8em;
+      }
+       > li li li:before {
+          left: -2.5em;
+      }
     }
   }
 }
-ul > li { padding: 0.25rem 0.5rem; }
+
 
 ol, ul {
   .tc-content-inner & {
@@ -71,6 +90,9 @@ ol, ul {
   }
   @at-root .tc-content-inner ul {
     list-style: square outside;
+    > li {
+      padding: 0.25rem 0.5rem;
+    }
   }
 
   // @at-root .tc-content-inner ol li:before {

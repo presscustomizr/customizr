@@ -354,7 +354,7 @@ input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-
 }
 
 .display-flex, .branding__container, .branding__container .branding,
-.branding__container .mobile-utils__wrapper, .nav__utils, .nav__utils li, .czr-cover-sections > section, .grid-container__square-mini .grid__item, .post-navigation .meta-nav, .woocommerce form .woocommerce-variation-add-to-cart, .woocommerce form.cart:not(.variations_form) {
+.branding__container .mobile-utils__wrapper, .nav__utils, .nav__utils li, .czr-cover-sections > section, .grid-container__square-mini .grid__item, .post-navigation .meta-nav {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4141,12 +4141,18 @@ ol {
   counter-reset: item;
 }
 
-ol > li {
+ol > li:before {
+  content: counters(item, ".") ".";
+  counter-increment: item;
+  padding-right: .5em;
+}
+
+.tc-content-inner ol > li {
   position: relative;
   padding: 0.25rem 0.5rem;
 }
 
-ol > li:before {
+.tc-content-inner ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   margin-left: 0.5em;
@@ -4155,8 +4161,12 @@ ol > li:before {
   width: 1em;
 }
 
-ul > li {
-  padding: 0.25rem 0.5rem;
+.tc-content-inner ol > li li:before {
+  right: -1.8em;
+}
+
+.tc-content-inner ol > li li li:before {
+  right: -2.5em;
 }
 
 .tc-content-inner ol, .tc-content-inner ul {
@@ -4165,6 +4175,10 @@ ul > li {
 
 .tc-content-inner ul {
   list-style: square outside;
+}
+
+.tc-content-inner ul > li {
+  padding: 0.25rem 0.5rem;
 }
 
 .tc-content-inner ul.socials, .tc-content-inner ul.tags {
@@ -6539,6 +6553,17 @@ section.post-content {
   margin-right: auto;
 }
 
+.woocommerce #ship-to-different-address label {
+  font: inherit;
+  margin: 0;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.woocommerce #ship-to-different-address-checkbox {
+  margin: -1px;
+}
+
 .woocommerce span.onsale {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -6566,17 +6591,28 @@ section.post-content {
   content: none;
 }
 
+.woocommerce form {
+  /*
+    .woocommerce-variation-add-to-cart,
+    &.cart:not(.variations_form) {
+      @extend .display-flex;
+    }*/
+}
+
 .woocommerce form .form-row-wide {
   width: 100%;
-  float: left;
 }
 
 .woocommerce form .form-row {
-  margin-top: 1.25em;
+  margin: 0 0 1.25em;
 }
 
 .woocommerce form .form-row .input-checkbox {
   display: inline-block;
+  margin: 0;
+}
+
+.woocommerce form.checkout_coupon .form-row {
   margin: 0;
 }
 
@@ -6591,6 +6627,10 @@ section.post-content {
   width: auto;
 }
 
+.woocommerce form #customer_details h3 {
+  margin-bottom: 1.25em;
+}
+
 .woocommerce div.product form.cart .variations td,
 .woocommerce div.product form.cart .variations th {
   vertical-align: middle;
@@ -6598,6 +6638,10 @@ section.post-content {
 
 .woocommerce div.product form.cart .variations label {
   margin-bottom: 0;
+}
+
+.woocommerce fieldset {
+  margin-top: 2.5em;
 }
 
 .woocommerce section.up-sells,
