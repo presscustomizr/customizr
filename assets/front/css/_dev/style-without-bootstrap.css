@@ -4146,12 +4146,12 @@ ol > li:before {
   padding-right: .5em;
 }
 
-.tc-content-inner ol > li {
+.czr-wp-the-content ol > li {
   position: relative;
   padding: 0.25rem 0.5rem;
 }
 
-.tc-content-inner ol > li:before {
+.czr-wp-the-content ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   margin-right: 0.5em;
@@ -4160,23 +4160,23 @@ ol > li:before {
   width: 1em;
 }
 
-.tc-content-inner ol > li li:before {
+.czr-wp-the-content ol > li li:before {
   left: -1.8em;
 }
 
-.tc-content-inner ol > li li li:before {
+.czr-wp-the-content ol > li li li:before {
   left: -2.5em;
 }
 
-.tc-content-inner ol, .tc-content-inner ul {
+.czr-wp-the-content ol, .czr-wp-the-content ul {
   padding: 0.5rem 0 1rem 3rem;
 }
 
-.tc-content-inner ul {
+.czr-wp-the-content ul {
   list-style: square outside;
 }
 
-.tc-content-inner ul > li {
+.czr-wp-the-content ul > li {
   padding: 0.25rem 0.5rem;
 }
 

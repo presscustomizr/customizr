@@ -13,10 +13,10 @@
   ?>
   <div class="post-entry tc-content-inner">
     <section class="post-content entry-content <?php czr_fn_echo( 'element_class' ) ?>" >
-      <?php
-      czr_post_format_part();
-      the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) );
-      ?>
+      <?php  czr_post_format_part(); ?>
+      <div class="czr-wp-the-content">
+        <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
+      </div>
       <footer class="post-footer clearfix">
         <?php
           czr_fn_link_pages();

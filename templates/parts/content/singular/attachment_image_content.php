@@ -33,7 +33,9 @@ global $post;
       czr_fn_echo( 'attachment_gallery' )
       ?>
       <div class="entry-content">
-        <?php the_content() ?>
+        <div class="czr-wp-the-content">
+          <?php the_content(); ?>
+        </div>
       </div>
       <footer class="post-footer clearfix">
         <?php

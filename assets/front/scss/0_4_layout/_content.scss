@@ -37,7 +37,7 @@ ol {
     counter-increment: item;
     padding-right: .5em;
   }
-  @at-root .tc-content-inner ol {
+  @at-root .czr-wp-the-content ol {
     > li {
       position: relative;
       padding: 0.25rem 0.5rem;
@@ -79,7 +79,7 @@ ol {
 
 
 ol, ul {
-  .tc-content-inner & {
+  .czr-wp-the-content & {
 
     @if ( true == $is_rtl ) {
       padding: 0.5rem 3rem 1rem 0;
@@ -88,7 +88,7 @@ ol, ul {
       padding: 0.5rem 0 1rem 3rem;;
     }
   }
-  @at-root .tc-content-inner ul {
+  @at-root .czr-wp-the-content ul {
     list-style: square outside;
     > li {
       padding: 0.25rem 0.5rem;
