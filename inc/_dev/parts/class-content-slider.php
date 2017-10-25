@@ -152,7 +152,7 @@ class CZR_slider {
       }
     $slide_background       = wp_get_attachment_image( $id, $img_size, false, $slide_background_attr );
 
-    if ( ! czr_fn_is_ajax() && czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+    if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
         $slide_background = czr_fn_parse_imgs( $slide_background ); //<- to prepare the img smartload
     }
 
@@ -236,6 +236,10 @@ class CZR_slider {
 
     //background image
     $slide_background       = apply_filters( 'tc_posts_slide_background', $slide_background, $ID );
+    if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+        $slide_background = czr_fn_parse_imgs( $slide_background ); //<- to prepare the img smartload
+    }
+
 
     // we don't want to show slides with no image
     if ( ! $slide_background )

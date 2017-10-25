@@ -4747,6 +4747,9 @@ var czrapp = czrapp || {};
                     this.$_sliders.find( _cellSelector + '.active').imgSmartLoad().data( 'czr_smartLoaded', true );
 
                     this.$_sliders.on( 'customizr.slide', _cellSelector, function() {
+                        if ( 1 > $(this).find('img[data-src], img[data-smartload]').length )
+                          return;
+
                         if ( ! $(this).data('czr_smartLoaded') ) {
                               $(this).append( _css_loader ).find( '.' + _cssLoaderClass ).fadeIn( 'slow' );
                               $(this).imgSmartLoad().data( 'czr_smartLoaded', true );

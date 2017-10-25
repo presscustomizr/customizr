@@ -251,6 +251,10 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
         }
     }
 
+    if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+        $slide_background = czr_fn_parse_imgs( $slide_background ); //<- to prepare the img smartload
+    }
+
     //title
     $title                  = ( isset( $args['show_title'] ) && $args['show_title'] ) ? $this -> czr_fn_get_post_slide_title( $_post, $ID) : '';
     //lead text

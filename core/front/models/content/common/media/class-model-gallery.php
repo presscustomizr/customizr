@@ -126,7 +126,7 @@ class CZR_gallery_model_class extends CZR_Model {
             $gallery_items   = array();
 
             if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
-                add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_smartload_skip_class'), 999 );
+                add_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_setup_img_for_smartload'), 999 );
             }
             foreach ( array_keys( $raw_media ) as $id ) {
 
@@ -150,17 +150,21 @@ class CZR_gallery_model_class extends CZR_Model {
                   }
             }
             if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
-                remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_set_smartload_skip_class'), 999 );
+                remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'czr_fn_setup_img_for_smartload'), 999 );
             }
             return $gallery_items;
 
       }
 
       /* ------------------------------------------------------------------------- *
-      *  SET SMART LOAD CLASS TO IMG => disable the smartload on load
+      *  SET SMART LOAD CLASS TO IMG
+      *  => disable the smartload on load by "flagging" the image with tc-smart-load-skip
+      * // Use case : the slider of the galleries post format in grids. Grids are globally smartloaded when the option is enabled. ( @see the localized parent selector for smartload : '[class*=grid-container], .article-container' ).
+      * // But we don't want to smartload all the images of a gallery slider. Only the first one, and then the other when sliding.
+      * // => That's why we need to deactivate the front js part with the flag and control it here afterwards
       /* ------------------------------------------------------------------------- */
       //hook : wp_get_attachment_image_attributes
-      function czr_fn_set_smartload_skip_class( $attr ) {
+      function czr_fn_setup_img_for_smartload( $attr ) {
           //@see assets/front/js/libs/jquery-plugins/jqueryimgSmartLoad.js
           $attr['class'] = ( isset( $attr['class'] ) && is_string( $attr['class'] ) ) ? $attr['class'] . ' tc-smart-load-skip' : 'tc-smart-load-skip';
           return $attr;

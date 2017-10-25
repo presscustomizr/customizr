@@ -228,7 +228,7 @@ class CZR_slider_model_class extends CZR_Model {
     //Should normally be done with apply_filters( 'czr_thumb_html', $html ), but this filter is added later (  on 'wp_head' ) for plugin compatibility.
     //=> that's why we invoke czr_fn_parse_imgs() directly here
     //@see czr_fn_wp_filters
-    if ( ! czr_fn_is_ajax() && czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
+    if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
         $slide_background = czr_fn_parse_imgs( $slide_background ); //<- to prepare the img smartload
     }
 

@@ -9077,10 +9077,12 @@ var czrapp = czrapp || {};
                               if ( ! $(this).data('czr_smartLoaded') ) {
                                     $(this).find('img').removeClass('tc-smart-load-skip');
                               }
-
                         });
                         $(this).find( params.cellSelector + '.is-selected').imgSmartLoad().data( 'czr_smartLoaded', true );
                         $(this).on('select.flickity', function() {
+                            if ( 1 > _getSelectedCell().find('img[data-src], img[data-smartload]').length )
+                              return;
+
                             if ( ! _getSelectedCell().data('czr_smartLoaded') ) {
                                   _getSelectedCell().append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
                                   _getSelectedCell().imgSmartLoad().data( 'czr_smartLoaded', true );
