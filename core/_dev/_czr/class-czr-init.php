@@ -78,6 +78,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Cropped_Image_Control') )
         $manager -> register_control_type( 'CZR_Customize_Cropped_Image_Control' );
 
+      if ( class_exists('CZR_Customize_Code_Editor_Control') )
+        $manager -> register_control_type( 'CZR_Customize_Code_Editor_Control' );
+
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
@@ -353,7 +356,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'dst_width',
                 'dst_height',
 
-                'ubq_section'
+                'ubq_section',
+
+                //for the code editor
+                'code_type',
+                'input_attrs'
 
           )
       );
