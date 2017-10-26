@@ -11,12 +11,12 @@
 ?>
 <div class="czr-gallery czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
-        if ( count( $gallery_items ) > 1 ) :
+        if ( !wp_is_mobile() && count( $gallery_items ) > 1 ) :
             czr_fn_carousel_nav();
         endif;
 
 ?>
-  <div class="carousel carousel-inner">
+  <div class="carousel carousel-inner" <?php czr_fn_echo( 'carousel_inner_attributes' ) ?>>
 <?php
         foreach ( $gallery_items as $gallery_item ) :
 ?>
