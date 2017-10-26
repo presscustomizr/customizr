@@ -1082,7 +1082,7 @@ var czrapp = czrapp || {};
             dropdownMenuEventsHandler : function() {
               var $dropdown_ahrefs    = $('.tc-open-on-click .menu-item.menu-item-has-children > a[href!="#"]'),
                   $dropdown_submenus  = $('.tc-open-on-click .dropdown .dropdown-submenu');
-              $dropdown_ahrefs.on('tap click', function(evt) {
+              $dropdown_ahrefs.on('click', function(evt) {
                 if ( ( $(this).next('.dropdown-menu').css('visibility') != 'hidden' &&
                         $(this).next('.dropdown-menu').is(':visible')  &&
                         ! $(this).parent().hasClass('dropdown-submenu') ) ||
@@ -1093,7 +1093,7 @@ var czrapp = czrapp || {};
               $dropdown_submenus.each(function(){
                 var $parent = $(this),
                     $children = $parent.children('[data-toggle="dropdown"]');
-                $children.on('tap click', function(){
+                $children.on('click', function(){
                     var submenu   = $(this).next('.dropdown-menu'),
                         openthis  = false;
                     if ( ! $parent.hasClass('open') ) {
