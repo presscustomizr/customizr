@@ -14984,6 +14984,12 @@ $.extend( CZRLayoutSelectMths , {
             });
       }
 
+      if ( 'function' == typeof api.CodeEditorControl ) {
+            $.extend( api.controlConstructor, {
+                  czr_code_editor : api.CodeEditorControl
+            });
+      }
+
 })( wp.customize, jQuery, _ );
 ( function (api, $, _) {
       var $_nav_section_container,
