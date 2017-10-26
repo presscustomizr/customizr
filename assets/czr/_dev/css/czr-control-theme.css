@@ -179,3 +179,12 @@ li[id*="customize-control-"].tc-sub-control:before {
 .control-panel-nav_menus > .accordion-section-title, .control-panel-widgets > .accordion-section-title {
   margin: 0 0 10px;
 }
+
+/* style custom head and footer scripts textarea */
+#customize-control-tc_theme_options-tc_custom_head_script textarea,
+#customize-control-tc_theme_options-tc_custom_footer_script textarea {
+  font-size: 13px;
+  background: #394143;
+  color: #95ff0c;
+  min-height: 250px;
+}
