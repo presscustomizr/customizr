@@ -805,6 +805,7 @@ class CZR_utils_settings_map {
             //to unset
             $_to_unset = array(
                   'tc_home_slider_overlay',
+                  'tc_home_slider_dots'
             );
 
             foreach ( $_to_unset as $key ) {

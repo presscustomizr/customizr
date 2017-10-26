@@ -1095,7 +1095,19 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             ),
                             'priority'      => 51
           ),
-
+          'tc_home_slider_dots'  =>  array(
+                            'default'       => 'on',
+                            'control'     => 'CZR_controls' ,
+                            'label'         => __( "Display slides navigation dots" , 'customizr' ),
+                            'section'       => 'frontpage_sec',
+                            'type'        => 'select' ,
+                            'choices'     => array(
+                                    'on'       => __( 'Yes' , 'customizr'),
+                                    'off'      => __( 'No' , 'customizr'),
+                            ),
+                            'priority'      => 51,
+                            'notice'        => __( 'When this option is checked, navigation dots will be displayed at the bottom of the home slider, if there are more than one slide', 'customizr' )
+          ),
           'tc_slider_default_height' => array(
                             'default'       => 500,
                             'sanitize_callback' => 'czr_fn_sanitize_number',

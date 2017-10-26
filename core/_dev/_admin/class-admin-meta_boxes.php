@@ -644,9 +644,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $layout_id                = 'slider_layout_field';
          $layout_value             = esc_attr(get_post_meta( $postid, $key = 'slider_layout_key' , $single = true ));
 
-          //overlay field setup
-         $overlay_id                = 'slider_overlay_field';
-         $overlay_value             = esc_attr(get_post_meta( $postid, $key = 'slider_overlay_key' , $single = true ));
+         //overlay field setup
+         $overlay_id               = 'slider_overlay_field';
+         $overlay_value            = esc_attr(get_post_meta( $postid, $key = 'slider_overlay_key' , $single = true ));
+
+         //dots field setup
+         $dots_id                  = 'slider_dots_field';
+         $dots_value               = esc_attr(get_post_meta( $postid, $key = 'slider_dots_key' , $single = true ));
 
          //sliders field
          $slider_id                = 'slider_field';
@@ -728,6 +732,22 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                       ?>
                       <input name="<?php echo $overlay_id; ?>" type="hidden" value="0"/>
                       <input name="<?php echo $overlay_id; ?>" id="<?php echo $overlay_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $overlay_check_value, $current = true, $echo = true ) ?>/>
+                   </div>
+
+                   <div class="meta-box-item-title">
+                      <h4><?php _e("Display slider navigation dots at the bottom of your slider", 'customizr' );  ?></h4>
+                   </div>
+                   <div class="meta-box-item-content">
+                      <?php
+                      if ( $dots_value == null || 'on' == $dots_value || 1 === $dots_value || true === $dots_value ) {
+                        $dots_check_value = true;
+                      }
+                      else {
+                        $dots_check_value = false;
+                      }
+                      ?>
+                      <input name="<?php echo $dots_id; ?>" type="hidden" value="0"/>
+                      <input name="<?php echo $dots_id; ?>" id="<?php echo $dots_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $dots_check_value, $current = true, $echo = true ) ?>/>
                    </div>
               <?php endif; ?>
                <?php if (isset( $current_post_slides)) : ?>
@@ -845,7 +865,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             'post_slider_check_field'   => 'post_slider_check_key',
             'slider_delay_field'        => 'slider_delay_key',
             'slider_layout_field'       => 'slider_layout_key',
-            'slider_overlay_field'       => 'slider_overlay_key',
+            'slider_overlay_field'      => 'slider_overlay_key',
+            'slider_dots_field'         => 'slider_dots_key',
             'post_slider_field'         => 'post_slider_key',
            );
 
@@ -856,7 +877,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          //sanitize user input by looping on the fields
          foreach ( $tc_post_slider_fields as $tcid => $tckey) {
            if ( isset( $_POST[$tcid])) {
-               if ( 'slider_overlay_field' == $tcid ) {
+               if ( in_array( $tcid, array( 'slider_overlay_field', 'slider_dots_field' ) ) ) {
                   $mydata = 0 == $_POST[$tcid] ? 'off' : 'on';
                   $mydata = sanitize_text_field( $mydata );
                } else {
