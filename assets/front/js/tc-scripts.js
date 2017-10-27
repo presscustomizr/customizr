@@ -9017,8 +9017,6 @@ var czrapp = czrapp || {};
                               var _is_single_slide = 1 == $_gallery.find( _cellSelector ).length,
                                   _hasPageDots    = ! _is_single_slide && $_gallery.data( 'has-dots' );
 
-                              console.log('_hasPageDots', _hasPageDots);
-
                               $(this).flickity({
                                     prevNextButtons: false,
                                     wrapAround: true,

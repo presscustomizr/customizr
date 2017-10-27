@@ -270,8 +270,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -2734,6 +2733,7 @@ class CZR_utils_settings_map {
             //to unset
             $_to_unset = array(
                   'tc_home_slider_overlay',
+                  'tc_home_slider_dots'
             );
 
             foreach ( $_to_unset as $key ) {

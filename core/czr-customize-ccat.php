@@ -242,23 +242,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
       //MOVE THE CUSTOM CSS SECTION (introduced in 4.7) INTO THE ADVANCED PANEL
       if ( is_object( $wp_customize->get_section( 'custom_css' ) ) ) {
-
           $wp_customize -> get_section( 'custom_css' ) -> panel = 'tc-advanced-panel';
           $wp_customize -> get_section( 'custom_css' ) -> priority = 10;
-
-
-        //CHANGE CUSTOM_CSS DEFAULT
-        $custom_css_setting_id = sprintf( 'custom_css[%s]', get_stylesheet() );
-        if ( is_object( $wp_customize->get_setting( $custom_css_setting_id ) ) ) {
-          $original = $wp_customize->get_setting( $custom_css_setting_id )->default;
-          $new_def = sprintf( "%s\n%s\n%s\n*/",
-              substr( $original, 0, strlen($original) - 2),
-              __( "Use this field to test small chunks of CSS code. For important CSS customizations, it is recommended to modify the style.css file of a child theme." , 'customizr' ),
-              'http' . esc_url( '//codex.wordpress.org/Child_Themes' )
-          );
-          $wp_customize->get_setting( $custom_css_setting_id )->default = $new_def;
-        }
-
       }
     }
 
@@ -1835,8 +1820,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1896,8 +1880,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
+?><?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1974,8 +1957,7 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?>
-<?php
+?><?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
