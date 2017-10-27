@@ -16,7 +16,7 @@ select {
   line-height: initial;
   padding: 7.5px 15px 7.5px 15px;
 
-  border: 1px solid $grey-light;
+  border: 1px solid $grey-light!important;
   border-radius: 2px;
 
   font: inherit;
@@ -44,7 +44,7 @@ input[type=radio] {
   margin: 0;
 
   padding: 0.5em;
-  position: relative;
+  position: relative!important;
   text-align: center;
   line-height: normal;
   vertical-align: middle;
@@ -149,9 +149,9 @@ input[type=number] {
 //and the comment reply
 form.czr-form {
   &.search-form {
-    label { 
-      @include clearfix; 
-      width: 100% 
+    label {
+      @include clearfix;
+      width: 100%
     }
   }
 
@@ -169,13 +169,13 @@ form.czr-form {
       }
       width: 2em;
       height: 2em;
-      
+
       &::before {
         margin: 0;
       }
     }
   }
- 
+
 
   input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea {
     outline: none;
@@ -190,8 +190,8 @@ form.czr-form {
   }
 
 
-  fieldset { 
-    margin-top: 3em 
+  fieldset {
+    margin-top: 3em
   }
 
   .czr-focus {
@@ -229,11 +229,11 @@ form.czr-form {
         }
     }
 
-    .czr-focusable { 
-      transition: all 600ms; 
+    .czr-focusable {
+      transition: all 600ms;
     }
-    &:not(.in-focus) > .czr-focusable { 
-      color: transparent; 
+    &:not(.in-focus) > .czr-focusable {
+      color: transparent;
     }
 
     &.in-focus > label {
@@ -242,8 +242,8 @@ form.czr-form {
       color: $grey;
 
       /* search form */
-      i.icn-search { 
-        @include opacity(0); 
+      i.icn-search {
+        @include opacity(0);
       }
       i.icn-close {
         @include opacity(1);

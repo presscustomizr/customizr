@@ -6328,7 +6328,7 @@ select {
   display: block;
   line-height: initial;
   padding: 7.5px 15px 7.5px 15px;
-  border: 1px solid #eceeef;
+  border: 1px solid #eceeef !important;
   border-radius: 2px;
   font: inherit;
   font-weight: normal;
@@ -6354,7 +6354,7 @@ input[type=radio] {
   -webkit-appearance: none !important;
   margin: 0;
   padding: 0.5em;
-  position: relative;
+  position: relative !important;
   text-align: center;
   line-height: normal;
   vertical-align: middle;
