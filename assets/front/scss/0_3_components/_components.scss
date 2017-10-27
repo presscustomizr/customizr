@@ -475,7 +475,7 @@ blockquote, .entry-link {
       text-align: center;
       font-variant: normal;
       text-transform: none;
-      
+
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -484,7 +484,7 @@ blockquote, .entry-link {
 // Blockquotes and cites
 blockquote {
   p {
-    
+
     max-width: 90%;
 
     @if ( true == $is_rtl ) {
@@ -495,7 +495,7 @@ blockquote {
       margin-left: 5em;
       padding-left:$base-line-height*4;
     }
-        
+
     color: $black;
     cite {
       clear: both;
@@ -746,11 +746,13 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 }
 /* end loader */
 
-// Carousel dots for the main slider
-[id^=customizr-slider-] {
+// slider dots
+.czr-carousel {
   .flickity-page-dots {
     bottom: 0.5em;
     .dot {
+      position: relative;
+      z-index: 10;
       background-color: white;
       &::before { content: none; }
     }
