@@ -22,7 +22,7 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 
-#######################  Changelog ######################
+####################### Changelog ######################
 = 4.0.10 October 27th 2017 =
 * Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapper in the params property but passed directly instead
 * Fix : image description in attachment not correctly displayed. fixes #1231
