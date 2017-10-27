@@ -17,7 +17,6 @@ class CZR_slider_model_class extends CZR_Model {
   public $right_control_class = '';
 
   public $has_controls        = false;
-  public $has_dots            = false;
   public $has_loader          = false;
 
   public $pure_css_loader     = '';
@@ -72,10 +71,6 @@ class CZR_slider_model_class extends CZR_Model {
       $right_control_class = ! is_rtl() ? 'control-right' : 'control-left';
       $has_controls        = true;
     }
-    //set-up dots
-    if ( apply_filters('czr_show_slider_dots' , count( $slides ) > 1 ) ) {
-      $has_dots        = true;
-    }
 
     //set-up loader
     if ( $this -> czr_fn_is_slider_loader_active( $slider_name_id ) ) {
@@ -97,7 +92,6 @@ class CZR_slider_model_class extends CZR_Model {
         'inner_class',
         'inner_attrs',
         //'img_size',
-        'has_dots',
         'has_controls',
         'layout',
         'left_control_class',
@@ -519,14 +513,22 @@ class CZR_slider_model_class extends CZR_Model {
     $atts = array();
 
     if ( (bool) esc_attr( czr_fn_opt( 'tc_slider_parallax') ) ) {
-      $atts[] = sprintf( 'data-parallax-ratio="%s"',
-        apply_filters('tc_parallax_ratio', 0.55 )
-      );
+        $atts[] = sprintf( 'data-parallax-ratio="%s"',
+          apply_filters('tc_parallax_ratio', 0.55 )
+        );
     }
 
     $atts[] = sprintf( 'data-slider-delay="%s"',
-      czr_fn_is_real_home() ? czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_delay_key' , $single = true )
+        czr_fn_is_real_home() ? czr_fn_opt( 'tc_slider_delay' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_delay_key' , $single = true )
     );
+
+
+    $has_dots  =  czr_fn_is_real_home() ? czr_fn_opt( 'tc_home_slider_dots' ) : get_post_meta( czr_fn_get_id() , $key = 'slider_dots_key' , $single = true );
+
+    //for users who set up a slider in singular before introducing this option the post meta has never been saved
+    $has_dots = 'off' != $has_dots;
+
+    $atts[] = sprintf( 'data-has-dots="%s"', $has_dots );
 
     return czr_fn_stringify_array( $atts );
   }
