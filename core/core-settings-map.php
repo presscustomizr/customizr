@@ -2390,7 +2390,7 @@ function czr_fn_popul_section_map( $_sections ) {
                         //'description' =>  __( 'Set up front page options' , 'customizr' ),
                         'section_class' => 'CZR_Customize_Sections',
                         'panel'   => '',//tc-content-panel',
-                        'active_callback' => 'czr_fn_is_home',
+                        //'active_callback' => 'czr_fn_is_home',
                         'ubq_panel'   => array(
                             'panel' => 'tc-content-panel',
                             'priority' => '10'
