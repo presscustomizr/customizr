@@ -38,9 +38,9 @@ See headers of each files for further details.
 * Fix : hover style on comment date links. Fixes #1114
 * Fix : if comments are displayed by the user ( option is checked ) always show comment history, even if comment are closed. Fixes #1253
 * Fix : removed no results and 404 quotations, probably wrongly attributed to authors. Fixes #1142
-* Fix: make sure the 404 content is always displayed when is_404() even if have_posts() is true. Fixes #1260
+* Fix : make sure the 404 content is always displayed when is_404() even if have_posts() is true. Fixes #1260
 * Imp : better the way to store when the user started using the theme
-* Imp : performance improvement byt implementing lazyloading for the main slider. Images are loaded when the become visible. New specific option in advanced > performance
+* Imp : performance improvement by implementing lazyloading for the main slider. Images are loaded when the become visible. New specific option in advanced > performance
 * Imp : always close the mobile menu expanded when resizing
 * Imp : increased the .comment_link font-size in related posts
 * Imp : an anchor 'linear' scroll effect can be set by adding the attribute data-anchor-link="true" to a link
@@ -52,9 +52,7 @@ See headers of each files for further details.
 * Imp : add specific model and templates to render the post attachment of type image content
 * Imp : slider nav dots made smaller for mobiles @media-breakpoint-down(xs)
 * Imp : better styling for post metas. Fixes #1113
-* Added : [pro] Add gallery carousels for gallery post formats in some lists of posts
 * Added : a layout field meta box option for attachments. => if the layout is not set for a particular attachment, it will be inherited from the parent ( which is the current behaviour )
-* Added : [pro] head and footer script editor in the customizer > advanced panel > additional scripts. Can be used to add Google Analytics code or any custom scripts or stylesheets
 * Added : the anchor scroll for the comment link in single posts
 * Added : new option to control the visibility of the slider navigation bullets. Implement #1207
 
