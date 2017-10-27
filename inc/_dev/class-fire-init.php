@@ -116,16 +116,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //Default 404 content
           $this -> content_404        = array(
-              'quote'             => __( 'Speaking the Truth in times of universal deceit is a revolutionary act.' , 'customizr' ),
-              'author'            => __( 'George Orwell' , 'customizr' ),
-              'text'              => __( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' )
+              'quote'             => '',
+              'author'            => '',
+              'text'              => ''
           );
 
           //Default no search result content
           $this -> content_no_results = array(
-              'quote'             => __( 'Success is the ability to go from one failure to another with no loss of enthusiasm...' , 'customizr' ),
-              'author'            => __( 'Sir Winston Churchill' , 'customizr' ),
-              'text'              => __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.' , 'customizr' )
+              'quote'             => '',
+              'author'            => '',
+              'text'              => ''
           );
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0

@@ -255,13 +255,13 @@ article.format-video .format-icon:before  {
 article.format-status .format-icon:before  {
   content: "\f0e7";
 }
-article.format-quote .format-icon:before, article.error404 .format-icon:before {
+article.format-quote .format-icon:before {
   content: "\f10e";
   font-size: 3em;
 }
 /* ie11 hack: In ie11 looks like the above font-size rule makes the overall icon size too big
 as it multiplicates 4em (general rule) and 3em, instead of override the general rule with the one above */
-.ie11 article.format-quote .format-icon:before, .ie11 article.error404 .format-icon:before {
+.ie11 article.format-quote .format-icon:before {
   font-size: .3em;
 }
 article.format-link .format-icon:before {
@@ -1864,7 +1864,7 @@ article.format-chat .entry-content {
   border-left: 18px solid @FormatQuoteBorder;
 }
 
-article.format-quote .entry-content, article.error404 .entry-content {
+article.format-quote .entry-content {
   & when (@is_rtl = true) {
     padding: 24px 0 24px;
     border-right: 18px solid@FormatQuoteBorder;
@@ -1877,7 +1877,7 @@ article.format-quote .entry-content, article.error404 .entry-content {
   background: @FormatQuoteBg;
 }
 
-article.format-quote .entry-content blockquote , article.error404 .entry-content blockquote {
+article.format-quote .entry-content blockquote {
   border:0px;
   background: inherit;
 }

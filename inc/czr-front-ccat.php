@@ -1801,19 +1801,12 @@ if ( ! class_exists( 'CZR_404' ) ) :
           if ( !is_404() )
               return;
 
-          $content_404    = apply_filters( 'tc_404', CZR_init::$instance -> content_404 );
-
           echo apply_filters( 'tc_404_content',
-              sprintf('<div class="%1$s"><div class="entry-content %2$s">%3$s</div>%4$s</div>',
-                  apply_filters( 'tc_404_wrapper_class', 'tc-content span12 format-quote' ),
-                  apply_filters( 'tc_404_content_icon', 'format-icon' ),
-                  sprintf('<blockquote><p>%1$s</p><cite>%2$s</cite></blockquote><p>%3$s</p>%4$s',
-                                call_user_func( '__' , $content_404['quote'] , 'customizr' ),
-                                call_user_func( '__' , $content_404['author'] , 'customizr' ),
-                                call_user_func( '__' , $content_404['text'] , 'customizr' ),
-                                get_search_form( $echo = false )
-                  ),
-                  apply_filters( 'tc_no_results_separator', '<hr class="featurette-divider '.current_filter().'">' )
+              sprintf('<div class="%1$s"><div class="entry-content"><p>%2$s</p> %3$s</div>%4$s</div>',
+                  'tc-content span12',
+                  __( 'Sorry, but the requested page is not found. You might try a search below.' , 'customizr' ),
+                  get_search_form( $echo = false ),
+                  '<hr class="featurette-divider '.current_filter().'">'
               )
           );
       }
@@ -4549,19 +4542,12 @@ if ( ! class_exists( 'CZR_no_results' ) ) :
           if ( !is_search() || (is_search() && 0 != $wp_query -> post_count) )
               return;
 
-          $content_no_results    = apply_filters( 'tc_no_results', CZR_init::$instance -> content_no_results );
-
           echo apply_filters( 'tc_no_result_content',
-              sprintf('<div class="%1$s"><div class="entry-content %2$s">%3$s</div>%4$s</div>',
-                  apply_filters( 'tc_no_results_wrapper_class', 'tc-content span12 format-quote' ),
-                  apply_filters( 'tc_no_results_content_icon', 'format-icon' ),
-                  sprintf('<blockquote><p>%1$s</p><cite>%2$s</cite></blockquote><p>%3$s</p>%4$s',
-                                call_user_func( '__' , $content_no_results['quote'] , 'customizr' ),
-                                call_user_func( '__' , $content_no_results['author'] , 'customizr' ),
-                                call_user_func( '__' , $content_no_results['text'] , 'customizr' ),
-                                get_search_form( $echo = false )
-                  ),
-                  apply_filters( 'tc_no_results_separator', '<hr class="featurette-divider '.current_filter().'">' )
+              sprintf('<div class="%1$s"><div class="entry-content"><p>%2$s</p> %3$s</div>%4$s</div>',
+                  'tc-content span12',
+                  __( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'customizr' ),
+                  get_search_form( $echo = false ),
+                  '<hr class="featurette-divider '.current_filter().'">'
               )//end sprintf
           );//end filter
       }
