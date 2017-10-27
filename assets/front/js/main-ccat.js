@@ -891,13 +891,18 @@ var czrapp = czrapp || {};
                   }
 
                   $_galleries.each( function() {
+                        var $_gallery = $( this );
                         if ( czrapp.localized.imgSmartLoadsForSliders ) {
-                            self._smartLoadFlickityImg( { sliderEl : $(this), cellSelector : _cellSelector });
+                            self._smartLoadFlickityImg( { sliderEl : $_gallery, cellSelector : _cellSelector });
                         }
-                        if ( _.isUndefined( $(this).data('flickity') ) ) {
+                        if ( _.isUndefined( $_gallery.data('flickity') ) ) {
+                              var _is_single_slide = 1 == $_gallery.find( _cellSelector ).length,
+                                  _hasPageDots    = ! _is_single_slide && $_gallery.data( 'has-dots' );
+
+                              console.log('_hasPageDots', _hasPageDots);
+
                               $(this).flickity({
                                     prevNextButtons: false,
-                                    pageDots: false,
                                     wrapAround: true,
                                     imagesLoaded: true,
                                     setGallerySize: false,
@@ -905,7 +910,9 @@ var czrapp = czrapp || {};
                                     accessibility: false,
                                     dragThreshold: 10,
                                     lazyLoad: false,
-                                    freeScroll: false
+                                    freeScroll: false,
+                                    pageDots: _hasPageDots,
+                                    draggable: !_is_single_slide,
                               });
                         }
                   });
@@ -921,13 +928,14 @@ var czrapp = czrapp || {};
                   }
                   if ( $_main_slider.length > 0 ) {
                         var _is_single_slide = 1 == $_main_slider.find( _cellSelector ).length,
-                            _autoPlay           = $_main_slider.data('slider-delay');
+                            _autoPlay        = $_main_slider.data('slider-delay'),
+                            _hasPageDots    = !_is_single_slide && $_main_slider.data( 'has-dots' );
 
                         _autoPlay           =  ( _.isNumber( _autoPlay ) && _autoPlay > 0 ) ? _autoPlay : false;
 
                         $_main_slider.flickity({
                             prevNextButtons: false,
-                            pageDots: !_is_single_slide,
+                            pageDots: _hasPageDots,
                             draggable: !_is_single_slide,
 
                             wrapAround: true,

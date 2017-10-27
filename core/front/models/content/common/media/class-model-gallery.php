@@ -4,8 +4,12 @@ class CZR_gallery_model_class extends CZR_Model {
       protected      $post_id;
 
       protected      $media;
-      protected      $gallery_items;
+      public         $gallery_items;
+
       protected      $size;
+      protected      $has_dots;
+
+      protected      $carousel_inner_attributes;
 
       /**
       * @override
@@ -20,12 +24,14 @@ class CZR_gallery_model_class extends CZR_Model {
             */
             $this->defaults = array(
 
-                  'media'           => null,
-                  'gallery_items'   => null,
-                  'post_id'         => null,
-                  'visibility'      => true,
-                  'size'            => 'full',
-                  'has_lightbox'    => czr_fn_opt( 'tc_fancybox' ),
+                  'media'                     => null,
+                  'gallery_items'             => null,
+                  'carousel_inner_attributes' => null,
+                  'post_id'                   => null,
+                  'visibility'                => true,
+                  'size'                      => 'full',
+                  'has_dots'                  => true,
+                  'has_lightbox'              => czr_fn_opt( 'tc_fancybox' ),
 
             );
 
@@ -41,6 +47,7 @@ class CZR_gallery_model_class extends CZR_Model {
 
                   'post_id'         => null,
                   'size'            => 'full',
+                  'has_dots'        => true,
 
             );
 
@@ -86,12 +93,13 @@ class CZR_gallery_model_class extends CZR_Model {
                         'post_id'         => $this->post_id,
                         'size'            => $this->size,
                         'has_lightbox'    => $this->has_lightbox,
+                        'has_dots'        => true,
                   ) );
             }
 
 
             $this -> czr_fn__setup_the_gallery_items();
-
+            $this -> czr_fn__setup_the_carousel_inner_attributes();
       }
 
 
@@ -113,6 +121,11 @@ class CZR_gallery_model_class extends CZR_Model {
       }
 
 
+      protected function czr_fn__setup_the_carousel_inner_attributes() {
+
+            $this -> czr_fn_set_property( 'carousel_inner_attributes', $this->czr_fn__get_the_carousel_inner_attributes() );
+
+      }
 
 
       protected function czr_fn__get_the_gallery_items() {
@@ -154,6 +167,14 @@ class CZR_gallery_model_class extends CZR_Model {
             }
             return $gallery_items;
 
+      }
+
+      public function czr_fn__get_the_carousel_inner_attributes() {
+            $atts = array();
+
+            $atts[] = sprintf( 'data-has-dots="%s"', $this->has_dots );
+
+            return $atts;
       }
 
       /* ------------------------------------------------------------------------- *

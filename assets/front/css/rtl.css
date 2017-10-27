@@ -6044,15 +6044,17 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 }
 
 /* end loader */
-[id^=customizr-slider-] .flickity-page-dots {
+.czr-carousel .flickity-page-dots {
   bottom: 0.5em;
 }
 
-[id^=customizr-slider-] .flickity-page-dots .dot {
+.czr-carousel .flickity-page-dots .dot {
+  position: relative;
+  z-index: 10;
   background-color: white;
 }
 
-[id^=customizr-slider-] .flickity-page-dots .dot::before {
+.czr-carousel .flickity-page-dots .dot::before {
   content: none;
 }
 
