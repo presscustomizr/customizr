@@ -758,8 +758,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
       &::before { content: none; }
     }
     //bullets should be smaller
-    & @include media-breakpoint-down(xs) {
-      .flickity-page-dots {
+    @include media-breakpoint-down(xs) {
+      @at-root .czr-carousel .flickity-page-dots {
         bottom: 0.3em;
         .dot {
           width: 7px;
