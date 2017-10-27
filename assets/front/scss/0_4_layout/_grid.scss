@@ -223,12 +223,13 @@ a.czr-format-link {
     align-items: center;
     @extend .service-font;
     .post-info  {
-      color: $grey;
+      color: $grey-mid-light;
+      line-height: 1.55em;
       position: relative;
       a {
         @extend .semi-bold;
       }
-      @extend .small;
+      @extend .very-small;
     }
 }
 
@@ -602,7 +603,7 @@ a.czr-format-link {
 //IT's AVAILABLE ONLY FOR MASONRY & ALTERNATE
 [class*=grid-container__] .full-image {
   .entry-footer .post-info{
-    font-size: 1em;
+    @extend .very-small;//was font-size: 1em;
   }
   .entry-footer .col, a:not(.bg-link) { z-index: 2; position: relative; }
 
@@ -661,6 +662,7 @@ a.czr-format-link {
       .post-info {
         margin-top: $base-line-height;
         padding-top: $base-line-height/2;
+        margin-bottom: 0.5em;//<= otherwise the slider nav dots won't be visible. Overrides the default margin-bottom: -1em; for .grid .entry-footer .post-info {}
       }
     }
   }

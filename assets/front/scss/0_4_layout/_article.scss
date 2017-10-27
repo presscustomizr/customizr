@@ -636,6 +636,10 @@ section.post-content { margin-top:0; }
       background-color: $black;
     }
   }
+  //lighter for entry-footer links like author, published, updated
+  .entry-footer &:not(.btn) {
+    color: $grey-mid-light;
+  }
 }
 //attachment image
 //navigation

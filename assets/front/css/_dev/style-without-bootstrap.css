@@ -52,7 +52,11 @@ blockquote p {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
 
-.small, .tabs .nav-link, label, input[type=number], .entry-footer .post-info, .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
+.very-small, .entry-footer .post-info, [class*=grid-container__] .full-image .entry-footer .post-info {
+  font-size: 0.75em;
+}
+
+.small, .tabs .nav-link, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-info, small {
   font-size: 0.833333em;
@@ -3015,6 +3019,12 @@ html.no-js [id*=czr-slider-loader-wrapper] {
   content: none;
 }
 
+.grid__item .czr-carousel .flickity-page-dots .dot {
+  width: 7px;
+  height: 7px;
+  margin: 0px 4px;
+}
+
 @media (max-width: 575px) {
   .czr-carousel .flickity-page-dots {
     bottom: 0.3em;
@@ -4597,7 +4607,8 @@ a.czr-format-link:hover::before {
 }
 
 .entry-footer .post-info {
-  color: #777;
+  color: #aaa;
+  line-height: 1.55em;
   position: relative;
 }
 
@@ -5024,10 +5035,6 @@ a.czr-format-link:hover::before {
 }
 
 /* END CLASSIC */
-[class*=grid-container__] .full-image .entry-footer .post-info {
-  font-size: 1em;
-}
-
 [class*=grid-container__] .full-image .entry-footer .col, [class*=grid-container__] .full-image a:not(.bg-link) {
   z-index: 2;
   position: relative;
@@ -5107,6 +5114,7 @@ a.czr-format-link:hover::before {
 [class*=grid-container__] .full-image .tc-content .entry-footer .post-info {
   margin-top: 1.25em;
   padding-top: 0.625em;
+  margin-bottom: 0.5em;
 }
 
 [class*=czr__r-w] .video-container,
@@ -6130,6 +6138,10 @@ section.post-content {
 
 .post-info a:not(.btn) span::after, .post-info a:not(.btn) span::before {
   background-color: #313131;
+}
+
+.entry-footer .post-info a:not(.btn) {
+  color: #aaa;
 }
 
 .attachment-image-navigation {

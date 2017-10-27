@@ -756,6 +756,12 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
       z-index: 10;
       background-color: white;
       &::before { content: none; }
+      //should be smaller when printed in the post list sliders
+      .grid__item & {
+        width: 7px;
+        height: 7px;
+        margin: 0px 4px;
+      }
     }
     //bullets should be smaller
     @include media-breakpoint-down(xs) {

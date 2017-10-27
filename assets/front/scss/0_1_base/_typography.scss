@@ -120,8 +120,12 @@ $ms-range:
 blockquote p {
   font-family: $baseFont;
 }
+
+.very-small {
+  font-size: 0.75em;
+}
 .small, small {
-  font-size: ms(-1);
+  font-size: modular-scale(-1);//in our ms configuration is: 0.83333em
 }
 .demi-small {
   font-size: 0.95em;
