@@ -509,6 +509,7 @@ section.post-related-articles {
   }
   @at-root .comment-link {
     color: $black;
+    padding-bottom: 2px;
     @extend .semi-bold;
     @include underlined_nocolor( 2px );
   }
