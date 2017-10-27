@@ -93,7 +93,6 @@
 
                       //Skins handled with select2
                       function paintSkinOptionElement(state) {
-                        console.log( 'here' );
                               if (!state.id) return state.text; // optgroup
                               return '<span class="tc-select2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
                       }

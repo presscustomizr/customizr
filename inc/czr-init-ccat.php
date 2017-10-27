@@ -3836,6 +3836,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       private $_resources_version;
 
 	    function __construct () {
+
 	        self::$instance =& $this;
 
           $this->_resouces_version = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
@@ -4564,7 +4565,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       }
 
       /* ------------------------------------------------------------------------- *
-       *  STYLE SWITCH NOTE
+       *  STYLE NOTE
       /* ------------------------------------------------------------------------- */
       //hook : 'czr_style_note_content'
       //This function is invoked only when :
@@ -4581,9 +4582,8 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         }
         ob_start();
           ?>
-          <h2><?php printf( '%1$s :D' , __('Howdy !', 'customizr' ) ); ?></h2>
               <?php
-                  printf( '<br/><br/><p>%1$s</p><br/>',
+                  printf( '<br/><p>%1$s</p>',
                       sprintf( __('Quick tip : you can choose between two styles for the Customizr theme. Give it a try %s', 'customizr'),
                           sprintf( '<a href="%1$s">%2$s</a>',
                               czr_fn_get_customizer_url( array( 'control' => 'tc_style', 'section' => 'style_sec') ),
@@ -4596,7 +4596,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
           <?php
         $html = ob_get_contents();
         if ($html) ob_end_clean();
-        return apply_filters('czr_front_style_switch_note_html', $html );
+        return $html; //apply_filters('czr_front_style_switch_note_html', $html );
     }
 
 

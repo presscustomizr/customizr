@@ -7412,7 +7412,7 @@ footer ol {
   -ms-transition: all, 0.45s ease-in-out;
   -o-transition: all, 0.45s ease-in-out;
   transition: all 0.45s ease-in-out;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 #bottom-front-notification h2 {
   font-size: 1.5em;
@@ -7435,7 +7435,7 @@ footer ol {
 }
 #bottom-front-notification .note-content p,
 #bottom-front-notification .note-content a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5rem;
 }
 #bottom-front-notification .fa:before {

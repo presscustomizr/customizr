@@ -11621,7 +11621,6 @@ $.extend( CZRLayoutSelectMths , {
                       }
                       $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').select2( _skin_select2_params );
                       function paintSkinOptionElement(state) {
-                        console.log( 'here' );
                               if (!state.id) return state.text; // optgroup
                               return '<span class="tc-select2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
                       }

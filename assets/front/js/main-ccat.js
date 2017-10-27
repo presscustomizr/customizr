@@ -1578,6 +1578,7 @@ var czrapp = czrapp || {};
               var self = this,
                   _hasCandidate = false;
               czrapp.frontNotificationVisible = new czrapp.Value( false );
+              czrapp.frontNotificationRendered = false;
               _.each( czrapp.localized.frontNotifications, function( _notification, _id ) {
                     if ( ! _.isUndefined( czrapp.frontNotification ) )
                       return;
@@ -1607,6 +1608,9 @@ var czrapp = czrapp || {};
               var self = this,
                   dfd = $.Deferred();
 
+              if ( czrapp.frontNotificationRendered && czrapp.frontNotificationVisible() )
+                return dfd.resolve().promise();
+
               var _hideAndDestroy = function() {
                     return $.Deferred( function() {
                           var _dfd_ = this,
@@ -1615,6 +1619,8 @@ var czrapp = czrapp || {};
                                 $notifWrap.css( { bottom : '-100%' } );
                                 _.delay( function() {
                                       $notifWrap.remove();
+                                      czrapp.$_body.find('#tc-footer-btt-wrapper').fadeIn('slow');
+                                      czrapp.frontNotificationRendered = false;
                                       _dfd_.resolve();
                                 }, 450 );// consistent with css transition: all 0.45s ease-in-out;
                           } else {
@@ -1642,6 +1648,8 @@ var czrapp = czrapp || {};
                           if ( 1 == $footer.length && ! _.isEmpty( _notifHtml ) ) {
                                 $.when( $footer.append( _wrapHtml ) ).done( function() {
                                     $(this).find( '.note-content').prepend( _notifHtml );
+                                    czrapp.$_body.find('#tc-footer-btt-wrapper').fadeOut('slow');
+                                    czrapp.frontNotificationRendered = true;
                                 });
 
                                 _.delay( function() {
