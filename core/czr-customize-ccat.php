@@ -78,6 +78,9 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( class_exists('CZR_Customize_Cropped_Image_Control') )
         $manager -> register_control_type( 'CZR_Customize_Cropped_Image_Control' );
 
+      if ( class_exists('CZR_Customize_Code_Editor_Control') )
+        $manager -> register_control_type( 'CZR_Customize_Code_Editor_Control' );
+
       if ( class_exists('CZR_Customize_Panels') )
         $manager -> register_panel_type( 'CZR_Customize_Panels');
 
@@ -353,7 +356,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
                 'dst_width',
                 'dst_height',
 
-                'ubq_section'
+                'ubq_section',
+
+                //for the code editor
+                'code_type',
+                'input_attrs'
 
           )
       );
@@ -1378,6 +1385,56 @@ if ( class_exists('WP_Customize_Cropped_Image_Control') && ! class_exists( 'CZR_
   }//end class
 endif;
 ?><?php
+/*
+*/
+if ( class_exists('WP_Customize_Code_Editor_Control') && ! class_exists( 'CZR_Customize_Code_Editor_Control' ) ) :
+  class CZR_Customize_Code_Editor_Control extends WP_Customize_Code_Editor_Control {
+
+    public $type = 'czr_code_editor';
+    public $title;
+    public $notice;
+
+    /**
+     * Refresh the parameters passed to the JavaScript via JSON.
+     *
+     * @see WP_Customize_Control::json()
+     *
+     * @return array Array of parameters passed to the JavaScript.
+     */
+    public function json() {
+        $json = parent::json();
+        if ( is_array( $json ) ) {
+            $json['title']  = !empty( $this -> title )  ? esc_html( $this -> title ) : '';
+            $json['notice'] = !empty( $this -> notice ) ?           $this -> notice  : '';
+        }
+
+        return $json;
+    }
+
+
+    /**
+    * Render a JS template for the content of the media control.
+    *
+    * @since 3.4.19
+    * @package      Customizr
+    *
+    * @Override
+    * @see WP_Customize_Control::content_template()
+    */
+    public function content_template() {
+      ?>
+      <# if ( data.title ) { #>
+          <h3 class="czr-customizr-title">{{{ data.title }}}</h3>
+        <# } #>
+          <?php parent::content_template(); ?>
+        <# if ( data.notice ) { #>
+          <span class="czr-notice">{{{ data.notice }}}</span>
+        <# } #>
+      <?php
+    }
+  }//end class
+endif;
+?><?php
 /**************************************************************************************************
 * MULTIPICKER CLASSES
 ***************************************************************************************************/
@@ -1778,7 +1835,8 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?><?php
+?>
+<?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1838,7 +1896,8 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?><?php
+?>
+<?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1915,7 +1974,8 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?><?php
+?>
+<?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
