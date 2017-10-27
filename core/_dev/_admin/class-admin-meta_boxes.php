@@ -735,7 +735,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                    </div>
 
                    <div class="meta-box-item-title">
-                      <h4><?php _e("Display slider navigation dots at the bottom of your slider", 'customizr' );  ?></h4>
+                      <h4><?php _e("Display navigation dots at the bottom of your slider.", 'customizr' );  ?></h4>
                    </div>
                    <div class="meta-box-item-content">
                       <?php
