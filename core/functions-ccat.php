@@ -406,7 +406,7 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
       if ( apply_filters( 'czr_is_post_layout', is_single( $post_id ), $post_id ) || czr_fn_is_attachment_image() ) {
             $_czr_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_post_layout') );
             $is_singular_layout           = true;
-      } if ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
+      } elseif ( apply_filters( 'czr_is_page_layout', is_page( $post_id ), $post_id ) ) {
             $_czr_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_page_layout') );
             $is_singular_layout           = true;
       }
