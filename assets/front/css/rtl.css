@@ -6046,6 +6046,7 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 /* end loader */
 .czr-carousel .flickity-page-dots {
   bottom: 0.5em;
+  padding: 0 1em;
 }
 
 .czr-carousel .flickity-page-dots .dot {
@@ -6056,6 +6057,17 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .czr-carousel .flickity-page-dots .dot::before {
   content: none;
+}
+
+@media (max-width: 575px) {
+  .czr-carousel .flickity-page-dots {
+    bottom: 0.3em;
+  }
+  .czr-carousel .flickity-page-dots .dot {
+    width: 7px;
+    height: 7px;
+    margin: 1px 4px;
+  }
 }
 
 .czr-carousel-control {

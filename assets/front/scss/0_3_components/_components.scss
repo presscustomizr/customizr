@@ -750,11 +750,23 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 .czr-carousel {
   .flickity-page-dots {
     bottom: 0.5em;
+    padding: 0 1em;
     .dot {
       position: relative;
       z-index: 10;
       background-color: white;
       &::before { content: none; }
+    }
+    //bullets should be smaller
+    & @include media-breakpoint-down(xs) {
+      .flickity-page-dots {
+        bottom: 0.3em;
+        .dot {
+          width: 7px;
+          height: 7px;
+          margin: 1px 4px;
+        }
+      }
     }
   }
 }
