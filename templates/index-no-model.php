@@ -84,7 +84,7 @@
                     do_action( '__before_loop' );
 
                     if ( ! czr_fn_is_home_empty() ) {
-                        if ( have_posts() ) {
+                        if ( have_posts() && ! is_404() ) {
                             //Problem to solve : we want to be able to inject any loop item ( grid-wrapper, alternate, etc ... ) in the loop model
                             //=> since it's not set yet, it has to be done now.
                             //How to do it ?
