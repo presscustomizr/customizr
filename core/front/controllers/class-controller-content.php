@@ -261,16 +261,17 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         $_bool = ! in_the_loop() ? $_bool && ! czr_fn_is_real_home() && is_singular() : $_bool;
 
         //2) if user has enabled comment for this specific post / page => true
-        //@todo contx : update default value user's value)
-        $_bool = ( 'closed' != $post -> comment_status ) ? $_bool : false;
+        $_bool = ( 'closed' != $post -> comment_status ) ? true : $_bool;
 
         //3) check global user options for pages and posts
-        if ( 'page' == get_post_type() )
+        if ( 'page' == get_post_type() ) {
           $_bool = 1 == esc_attr( czr_fn_opt( 'tc_page_comments' )) && $_bool;
-        else
+        } else {
           $_bool = 1 == esc_attr( czr_fn_opt( 'tc_post_comments' )) && $_bool;
-      } else
+        }
+      } else {
         $_bool = false;
+      }
 
       return apply_filters( 'czr_are_comments_enabled', $_bool );
     }
