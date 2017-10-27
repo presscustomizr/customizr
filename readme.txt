@@ -24,13 +24,13 @@ See headers of each files for further details.
 
 ####################### Changelog ######################
 = 4.0.10 October 27th 2017 =
-* Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapper in the params property but passed directly instead
+* Fix : fix some woocommerce form layout issues. fixes #1243
+* Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapped in the params property but passed directly instead
 * Fix : image description in attachment not correctly displayed. fixes #1231
 * Fix : single attachment date meta should not be a link. fixes #1233
 * Fix : added missing retina (x2) placeholder images
-* Fix : don’t collapse mobile mene when scrolling fixes #1226
+* Fix : don't collapse mobile mene when scrolling fixes #1226
 * Fix : slider caption text size still too big on mobile. fixes #1235
-* Fix : fix some woocommerce form layout issues. fixes #1243
 * Fix : update the way we get woocommerce cart url according to the new api + backward compatibility. fixes #1223
 * Fix : fix possible wrong responsive images URL for sliders in multisite installs. fixes #1247
 * Fix : remove the active callback of the front page content section in the customizer. Fixes #1252
