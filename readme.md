@@ -33,23 +33,30 @@ See headers of each files for further details.
 * Fix : fix some woocommerce form layout issues. fixes #1243
 * Fix : update the way we get woocommerce cart url according to the new api + backward compatibility. fixes #1223
 * Fix : fix possible wrong responsive images URL for sliders in multisite installs. fixes #1247
+* Fix : remove the active callback of the front page content section in the customizer. Fixes #1252
+* Fix : WP4.9 compat customizer additional CSS default. fixes #1255
+* Fix : hover style on comment date links. Fixes #1114
+* Fix : if comments are displayed by the user ( option is checked ) always show comment history, even if comment are closed. Fixes #1253
+* Fix : removed no results and 404 quotations, probably wrongly attributed to authors. Fixes #1142
+* Fix: make sure the 404 content is always displayed when is_404() even if have_posts() is true. Fixes #1260
 * Imp : better the way to store when the user started using the theme
 * Imp : performance improvement byt implementing lazyloading for the main slider. Images are loaded when the become visible. New specific option in advanced > performance
 * Imp : always close the mobile menu expanded when resizing
 * Imp : increased the .comment_link font-size in related posts
-* Imp : An anchor 'linear' scroll effect can be set by adding the attribute data-anchor-link="true" to a link
+* Imp : an anchor 'linear' scroll effect can be set by adding the attribute data-anchor-link="true" to a link
 * Imp : add custom page template for the modern style. fixes #1209
 * Imp : footer credits translation strings and link title.
 * Imp : footer colophon is now text-align:center for smartphones in portrait mode <=> media-breakpoint-down(xs)
 * Imp : bulleted and numbered lists formatting. Second line should be indented to the start of the text of the first line. added more space before and around. fixes #1102 #1183 #1224 #1228
 * Imp : wraps the_content() in the div.czr-wp-the-content element in the templates printing the wp content : singulars ( including attachment ) and plain post grid
 * Imp : add specific model and templates to render the post attachment of type image content
+* Imp : slider nav dots made smaller for mobiles @media-breakpoint-down(xs)
+* Imp : better styling for post metas. Fixes #1113
 * Added : [pro] Add gallery carousels for gallery post formats in some lists of posts
 * Added : a layout field meta box option for attachments. => if the layout is not set for a particular attachment, it will be inherited from the parent ( which is the current behaviour )
 * Added : [pro] head and footer script editor in the customizer > advanced panel > additional scripts. Can be used to add Google Analytics code or any custom scripts or stylesheets
 * Added : the anchor scroll for the comment link in single posts
-
-
+* Added : new option to control the visibility of the slider navigation bullets. Implement #1207
 
 = 4.0.9 October 9th 2017 =
 * Fix : global skin CSS not printed when no custom header skin. Fixes #1215.
