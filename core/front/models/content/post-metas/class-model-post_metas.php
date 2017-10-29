@@ -55,22 +55,22 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   private function czr_fn_meta_generate_author( $before ) {
     $author = $this -> czr_fn_get_meta_author();
-    $before = is_null($before) ? __( 'by&nbsp;', 'customizr' ) :'';
-    return '<span class="author-meta">' . $before . $author . '</span>';
+    $before = is_null($before) ? __( 'by', 'customizr' ) :'';
+    return sprintf( '<span class="author-meta">%1$s %2$s</span>', $before, $author );
   }
 
   private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false, $before = null, $only_text = false ) {
     $date   = $this -> czr_fn_get_meta_date( 'publication', $format, $permalink, $only_text );
-    $before = is_null($before) ? __( 'Published&nbsp;', 'customizr' ) :'';
+    $before = is_null($before) ? __( 'Published', 'customizr' ) :'';
 
-    return $before . $date;
+    return sprintf( '%1$s %2$s', $before , $date );
   }
 
   private function czr_fn_meta_generate_up_date( $format = '', $permalink = false, $before = null, $only_text = false ) {
     $date   = $this -> czr_fn_get_meta_date( 'update', $format, $permalink, $only_text );
-    $before = is_null($before) ? __( 'Updated&nbsp;', 'customizr' ) :'';
+    $before = is_null($before) ? __( 'Updated', 'customizr' ) :'';
 
-    return $before . $date;
+    return sprintf( '%1$s %2$s', $before , $date );
   }
 
 
