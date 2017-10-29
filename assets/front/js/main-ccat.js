@@ -994,27 +994,42 @@ var czrapp = czrapp || {};
                   params.sliderEl.on( 'czr-flickity-ready.flickity', function() {
                         var _getSelectedCell = function() {
                               return $( params.sliderEl.data('flickity').selectedCell.element );
-                        };
+                            };
                         $(this).find( params.cellSelector ).each( function() {
                               if ( ! $(this).data('czr_smartLoaded') ) {
                                     $(this).find('img').removeClass('tc-smart-load-skip');
                               }
                         });
                         $(this).find( params.cellSelector + '.is-selected').imgSmartLoad().data( 'czr_smartLoaded', true );
-                        $(this).on('select.flickity', function() {
+
+                        var _maybeRemoveLoader = function( $_cell ) {
+                              $_cell.find('.czr-css-loader').fadeOut( {
+                                    duration: 'fast',
+                                    done : function() { $(this).remove();}
+                              } );
+                        };
+                        $(this).on( 'select.flickity', function() {
                             if ( 1 > _getSelectedCell().find('img[data-src], img[data-smartload]').length )
                               return;
-
-                            if ( ! _getSelectedCell().data('czr_smartLoaded') ) {
-                                  _getSelectedCell().append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                            if ( ! _getSelectedCell().data( 'czr_smartLoaded' ) ) {
+                                  if ( 1 > _getSelectedCell().find('.czr-css-loader').length ) {
+                                        _getSelectedCell().append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                                  }
                                   _getSelectedCell().imgSmartLoad().data( 'czr_smartLoaded', true );
+                                  _getSelectedCell().data( 'czr_timer' , $.Deferred( function() {
+                                        var self = this;
+                                        _.delay( function() {
+                                              self.resolve();
+                                        }, 2000 );
+                                        return this.promise();
+                                  }) );
+                                  _getSelectedCell().data( 'czr_timer' ).done( function() {
+                                        _maybeRemoveLoader( _getSelectedCell() );
+                                  });
                             }
                         });
                         $(this).on( 'smartload', params.cellSelector , function() {
-                                _getSelectedCell().find('.czr-css-loader').fadeOut( {
-                                      duration: 'fast',
-                                      done : function() { $(this).remove();}
-                                } );
+                              _maybeRemoveLoader( $(this) );
                         });
                   });
             },
