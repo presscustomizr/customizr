@@ -9037,6 +9037,8 @@ $.extend( CZRSkopeMths, {
                   'tc_fpu',
                   'nav',
                   'post_lists_sec',
+                  'galleries_sec',
+                  'footer_customizer_sec',
                   'custom_scripts_sec'
 
             ], function( _secId ) {
@@ -9049,12 +9051,6 @@ $.extend( CZRSkopeMths, {
                   }, 1000 );
             });
             _.each( [
-                  'hu-header-panel',
-                  'hu-content-panel',
-                  'tc-header-panel',
-                  'tc-content-panel',
-                  'tc-footer-panel',
-                  'tc-advanced-panel'
             ], function( _secId ) {
                   api.panel.when( _secId, function( _sec_ ) {
                         if ( 1 >= _sec_.headContainer.length ) {
