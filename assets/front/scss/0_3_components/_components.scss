@@ -803,7 +803,20 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     border: none;
     &:hover{
       opacity: 1;
-      width: 100px;
+      width: 80px;
+    }
+    //should be smaller on mobiles < 576px
+    @include media-breakpoint-down(xs) {
+      @at-root .czr-carousel-nav .czr-carousel-control {
+        top: calc((100% - 45px)/2);
+        height: 45px;
+        line-height: 45px;
+        width: 35px;
+        &:hover{
+          opacity: 1;
+          width: 60px;
+        }
+      }
     }
   }
   .czr-carousel-prev {

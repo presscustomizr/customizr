@@ -6116,7 +6116,20 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .czr-carousel-nav .czr-carousel-control:hover, .mfp-gallery .czr-carousel-control:hover {
   opacity: 1;
-  width: 100px;
+  width: 80px;
+}
+
+@media (max-width: 575px) {
+  .czr-carousel-nav .czr-carousel-control, .mfp-gallery .czr-carousel-control {
+    top: calc((100% - 45px)/2);
+    height: 45px;
+    line-height: 45px;
+    width: 35px;
+  }
+  .czr-carousel-nav .czr-carousel-control:hover, .mfp-gallery .czr-carousel-control:hover {
+    opacity: 1;
+    width: 60px;
+  }
 }
 
 .czr-carousel-nav .czr-carousel-prev, .mfp-gallery .czr-carousel-prev {

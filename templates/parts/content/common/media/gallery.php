@@ -11,7 +11,7 @@
 ?>
 <div class="czr-gallery czr-carousel" <?php czr_fn_echo( 'element_attributes' ) ?>>
 <?php
-        if ( !wp_is_mobile() && count( $gallery_items ) > 1 ) :
+        if ( count( $gallery_items ) > 1 ) :
             czr_fn_carousel_nav();
         endif;
 
