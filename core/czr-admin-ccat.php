@@ -332,7 +332,9 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       $_db_displayed_count  = $last_update_notice_values["display_count"];
 
       //user who just upgraded the theme will be notified until he clicks on the dismiss link
-      //or until the notice has been displayed 5 times.
+      //when clicking on the dismiss link OR when the notice has been displayed 5 times.
+      // - version will be set to CUSTOMIZR_VER
+      // - display_count reset to 0
       if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
         //CASE 1 : displayed less than 5 times
         if ( $_db_displayed_count < 5 ) {

@@ -633,6 +633,8 @@ function czr_fn_generate_theme_setting_list() {
 * @since Customizr 3.4+
 */
 function czr_fn_set_option( $option_name , $option_value, $option_group = null ) {
+    //Always make sure we have an option group, otherwise nothing will be written
+    $option_group           = is_null( $option_group ) ? CZR_THEME_OPTIONS : $option_group;
     $_options               = czr_fn_get_unfiltered_theme_options( $option_group );
     $_options[$option_name] = $option_value;
 
