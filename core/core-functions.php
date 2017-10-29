@@ -691,35 +691,65 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
 function czr_fn_setup_started_using_theme_option_and_constants() {
     do_action( 'czr_before_setting_started_using_theme' );
 
-    $user_started_using_theme_value         = null;
     $to_update_user_started_using_theme     = false;
 
     $free_transient_or_option               = 'started_using_customizr';
     $pro_transient_or_option                = 'started_using_customizr_pro';
-    $transient_or_option                    = CZR_IS_PRO ? $pro_transient_or_option : $free_transient_or_option;
+
 
     // get_unfiltered_theme_options
     $theme_options                          = czr_fn_get_unfiltered_theme_options();//returns an empty array as default
 
     $is_customizr_free_or_pro_fresh_install = 1 >= count( $theme_options );
 
+
     //we are sure we have to set the user started using theme if it's a fresh install
     if ( $is_customizr_free_or_pro_fresh_install ) {
-        $user_started_using_theme_value           = sprintf('%s|%s' , 'with', CUSTOMIZR_VER );
-        $to_update_user_started_using_theme       = true;
+        $to_update_user_started_using_theme    = true;
+
+        $transient_or_option                   = CZR_IS_PRO ? $pro_transient_or_option : $free_transient_or_option;
+        $theme_options[ $transient_or_option ] = sprintf('%s|%s' , 'with', CUSTOMIZR_VER );
     }
-    elseif ( ! array_key_exists( $transient_or_option, $theme_options ) ) { //not fresh install, let's check the user started using theme is not defined yet
-        //flag that we have to update the user started using theme
-        $to_update_user_started_using_theme     = true;
+    else {
+        //This is needed in any case because we might be in an a case were we are updating from an older customizr-free to a new customizr-pro
+        //Do we have to set the user started using the free theme in the theme options?
+        if ( ! array_key_exists( $free_transient_or_option, $theme_options ) ) {
 
-        //THERE CAN BE A TRANSIENT SET, if yes, use that value
-        if ( $transient_value = esc_attr( get_transient( $transient_or_option ) ) ) {
-            $user_started_using_theme_value       = $transient_value;
+            //check the free transient
+            //THERE CAN BE A TRANSIENT SET, if yes, use that value
+            if ( $transient_free_value = esc_attr( get_transient( $free_transient_or_option ) ) ) {
+                $to_update_user_started_using_theme = true;
+                $user_started_using_free_theme_value        = $transient_free_value;
+                $theme_options[ $free_transient_or_option ] = $user_started_using_free_theme_value;
+            } else {
+                //use the last_update_notice set in the theme options
+                $has_already_installed_free           = array_key_exists( 'last_update_notice', $theme_options );
+
+                //When to update the user started using the free theme?
+                //1) Is not pro version
+                //or
+                //2) If CZR_IS_PRO, update the user started using the FREE theme only if the last_update_notice is present
+                //if not, we have no clue
+                if ( CZR_IS_PRO && $has_already_installed_free || !CZR_IS_PRO ) {
+                    $to_update_user_started_using_theme = true;
+                    //we are in the case of a free user updating the free theme but has previously cleaned the transients in db
+                    $user_started_using_free_theme_value  = sprintf('%s|%s' , $has_already_installed_free ? 'before' : 'with', CUSTOMIZR_VER );
+                    $theme_options[ $free_transient_or_option ] = $user_started_using_free_theme_value;
+                }
+            }
+
+
         }
-        else {
 
-            //it can be a fresh install of the pro because the free options are not enough to check
-            if ( CZR_IS_PRO ) {
+        //Do we have to set the user started using the pro theme in the theme options?
+        if ( CZR_IS_PRO && ! array_key_exists( $pro_transient_or_option, $theme_options ) ) {
+
+            $to_update_user_started_using_theme = true;
+
+            //THERE CAN BE A TRANSIENT SET, if yes, use that value
+            if ( $transient_pro_value = esc_attr( get_transient( $pro_transient_or_option ) ) ) {
+                $user_started_using_pro_theme_value       = $transient_pro_value;
+            } else {
 
                 //this might be :
                 //1) a free user updating to pro => with
@@ -742,31 +772,21 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
 
                 //if already pro user, we are in the case of the transient that have been cleaned in db
                 //if not, then it's a free user upgrading to pro
-                $user_started_using_theme_value     = sprintf('%s|%s' , $user_started_with_this_version ? 'with' : 'before', CUSTOMIZR_VER );
-
-
-            } else {
-                $has_already_installed_free         = array_key_exists( 'last_update_notice', $theme_options );
-                //we are in the case of a free user updating the free theme but has previously cleaned the transients in db
-                $user_started_using_theme_value     = sprintf('%s|%s' , $has_already_installed_free ? 'before' : 'with', CUSTOMIZR_VER );
+                $user_started_using_pro_theme_value  = sprintf('%s|%s' , $user_started_with_this_version ? 'with' : 'before', CUSTOMIZR_VER );
             }
 
+            $theme_options[ $pro_transient_or_option ] = $user_started_using_pro_theme_value;
         }
-
     }
 
-    //do we have to update the value?
-    if ( $to_update_user_started_using_theme ) {
-      $theme_options[ $transient_or_option ] = $user_started_using_theme_value;
-
-      //maybe update the db value, if the user can edit theme options
-      if ( is_user_logged_in() && current_user_can('edit_theme_options') && !empty( $user_started_using_theme_value ) ) {
-          update_option( CZR_THEME_OPTIONS, $theme_options );
-
-          //do we want at this point remove the transient?
-          //delete_transient( $transient_or_option );
-      }
+    //maybe update the db value, if the user can edit theme options
+    if ( $to_update_user_started_using_theme && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+        update_option( CZR_THEME_OPTIONS, $theme_options );
+        //do we want at this point remove the transients?
+        //delete_transient( $free_transient_or_option );
+        //delete_transient( $pro_transient_or_option );
     }
+
 
     //set constants that we can use throughout the theme without having to access the options every time
     if ( ! defined( 'CZR_USER_STARTED_USING_FREE_THEME' ) ) {
