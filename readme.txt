@@ -55,6 +55,7 @@ See headers of each files for further details.
 * Added : a layout field meta box option for attachments. => if the layout is not set for a particular attachment, it will be inherited from the parent ( which is the current behaviour )
 * Added : the anchor scroll for the comment link in single posts
 * Added : new option to control the visibility of the slider navigation bullets. Implement #1207
+* Added : Doc search in the theme admin page "About Customizr"
 
 = 4.0.9 October 9th 2017 =
 * Fix : global skin CSS not printed when no custom header skin. Fixes #1215.
