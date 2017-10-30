@@ -5,6 +5,7 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
 
     public $wc_cart_url;
     public $wc_cart_count_html;
+    public $wc_cart_link_attributes;
     public $display_widget;
 
     private static $_woocart_filter_added;
@@ -32,23 +33,35 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
     }
 
 
-    function czr_fn_get_display_widget() {
+    /*
+    * Fired just before the view is rendered
+    * @hook: pre_rendering_view_{$this -> id}, 9999
+    */
+    public function czr_fn_setup_late_properties() {
+
+        //display_widget
         if ( $this->display_widget ) {
-            return function_exists( 'czr_fn_wc_is_checkout_cart' ) ? ! czr_fn_wc_is_checkout_cart() : true;
+            $display_widget = function_exists( 'czr_fn_wc_is_checkout_cart' ) ? ! czr_fn_wc_is_checkout_cart() : true;
+        } else {
+            $display_widget =  false;
         }
 
-        return false;
+        $wc_cart_count_html      = $this->czr_fn__get_wc_cart_count_html();
+        $wc_cart_link_attributes = $display_widget ? 'data-toggle="czr-dropdown"' : '';
+
+        $this->czr_fn_update( compact( 'display_widget', 'wc_cart_count_html', 'wc_cart_link_attributes' ) );
     }
+
 
     // Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
     function czr_fn_woocommerce_add_to_cart_fragment( $fragments ) {
-        $fragments['sup.czr-wc-count'] = $this -> czr_fn_get_wc_cart_count_html();
+        $fragments['sup.czr-wc-count'] = $this -> czr_fn__get_wc_cart_count_html();
 
         return $fragments;
     }
 
 
-    function czr_fn_get_wc_cart_count_html() {
+    function czr_fn__get_wc_cart_count_html() {
         $WC          = WC();
         $_cart_count = $WC->cart->get_cart_contents_count();
         return sprintf( '<sup class="count czr-wc-count">%1$s</sup>', $_cart_count ? $_cart_count : '' );
