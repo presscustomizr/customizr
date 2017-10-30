@@ -24,7 +24,8 @@ See headers of each files for further details.
 
 ####################### Changelog ######################
 = 4.0.10 October 30th 2017 =
-* Fix : fix some woocommerce form layout issues. fixes #1243
+* Fix : WooCommerce, make wc-cart header button act like a dropdown only when displaying the wc-cart widget (so not when displayed in the mobile header). fixes #1274
+* Fix : Some Woocommerce form layout issues. fixes #1243
 * Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapped in the params property but passed directly instead
 * Fix : image description in attachment not correctly displayed. fixes #1231
 * Fix : single attachment date meta should not be a link. fixes #1233
