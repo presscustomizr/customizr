@@ -703,8 +703,8 @@ function czr_is_valid_user_started_infos( $user_started_infos_candidate ) {
     //the first entry can only be 'with' or 'before'
     if ( ! in_array( $exploded[0], array('with', 'before') ) )
       return;
-    //the second string entry must look like a version. Let's check that it includes at least one dot
-    if ( false === strpos( $exploded[1], '.') )
+    //the second string entry must be a string and be a version. Let's check that it includes at least one dot.
+    if ( ! is_string( $exploded[1] ) || false === strpos( $exploded[1], '.') )
       return;
 
     return true;
@@ -770,7 +770,7 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
                     //we fallback on the current theme version
                     $user_started_using_free_theme_value  = sprintf( '%s|%s',
                       'with',
-                      ( $has_already_installed_free && '__not_set__' != $last_update_notice_free_version ) ? $last_update_notice_free_version : CUSTOMIZR_VER;
+                      ( $has_already_installed_free && '__not_set__' != $last_update_notice_free_version ) ? $last_update_notice_free_version : CUSTOMIZR_VER
                     );
 
                     //set it
