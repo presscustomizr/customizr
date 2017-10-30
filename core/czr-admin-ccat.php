@@ -313,6 +313,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     * hook : admin_notices
     */
     function czr_fn_may_be_display_update_notice() {
+      //don't display update notification for a list of versions
+      //typically useful when several versions are released in a short time interval
+      //to avoid hammering the wp admin dashboard with a new admin notice each time
+      if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && ! DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && ! DISPLAY_PRO_UPDATE_NOTIFICATION ) )
+        return;
+
       $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;

@@ -135,6 +135,8 @@ if ( ! class_exists( 'CZR___' ) ) :
 
         public $slider_resp_shrink_ratio;
 
+        private $_hide_update_notification_for_versions;
+
 
 
         function __construct( $_args = array()) {
@@ -183,6 +185,14 @@ if ( ! class_exists( 'CZR___' ) ) :
             $this -> tc_slider_small_size        = array( 'width' => 517  , 'height' => 235, 'crop' => true ); //size name : tc-slider-small
 
             add_action( 'czr_after_load'         , array( $this, 'czr_maybe_prevdem') );
+
+            //don't display update notification for a list of versions
+            //typically useful when several versions are released in a short time interval
+            //to avoid hammering the wp admin dashboard with a new admin notice each time
+            $this -> _hide_update_notification_for_versions = array( '4.0.10' );
+            if( ! defined( 'DISPLAY_UPDATE_NOTIFICATION' ) ) {
+                define( 'DISPLAY_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_update_notification_for_versions ) );
+            }
 
         }
 
