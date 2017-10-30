@@ -23,7 +23,7 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
-= 4.0.10 October 27th 2017 =
+= 4.0.10 October 30th 2017 =
 * Fix : fix some woocommerce form layout issues. fixes #1243
 * Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapped in the params property but passed directly instead
 * Fix : image description in attachment not correctly displayed. fixes #1231
