@@ -681,6 +681,34 @@ function czr_fn_is_option_excluded_from_ctx( $opt_name ) {
     return in_array( $opt_name, czr_fn_get_ctx_excluded_options() );
 }
 
+/**
+* Boolean helper
+* We are in a scenario when we need to use the transient value previouly used to store the user_started_using_the_theme infos, in order to write them in the theme options
+* Those infos must be structured this way {string}|{string}. Example : 'with|4.0.2'
+*
+* @return bool
+*/
+function czr_is_valid_user_started_infos( $user_started_infos_candidate ) {
+    if ( ! is_string( $user_started_infos_candidate ) )
+      return;
+
+    $exploded = explode('|', $user_started_infos_candidate );
+    //$exploded array must have exactly 2 entries
+    // (
+    //     [0] => with
+    //     [1] => 4.0.2
+    // )
+    if ( 2 != count( $exploded ) )
+      return;
+    //the first entry can only be 'with' or 'before'
+    if ( ! in_array( $exploded[0], array('with', 'before') ) )
+      return;
+    //the second string entry must look like a version. Let's check that it includes at least one dot
+    if ( false === strpos( $exploded[1], '.') )
+      return;
+
+    return true;
+}
 
 
 /**
@@ -717,23 +745,35 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
 
             //check the free transient
             //THERE CAN BE A TRANSIENT SET, if yes, use that value
-            if ( $transient_free_value = esc_attr( get_transient( $free_transient_or_option ) ) ) {
+            $transient_free_value = esc_attr( get_transient( $free_transient_or_option ) );
+            //let's make sure that the saved transient is a clean candidate to be saved in the theme options
+            if ( czr_is_valid_user_started_infos( $transient_free_value ) ) {
                 $to_update_user_started_using_theme = true;
                 $user_started_using_free_theme_value        = $transient_free_value;
                 $theme_options[ $free_transient_or_option ] = $user_started_using_free_theme_value;
             } else {
                 //use the last_update_notice set in the theme options
                 $has_already_installed_free           = array_key_exists( 'last_update_notice', $theme_options );
+                $free_infos                           = $theme_options['last_update_notice'];
+                $last_update_notice_free_version      = is_array( $free_infos ) && array_key_exists( 'version', $free_infos ) ? $free_infos['version'] : '__not_set__';
 
                 //When to update the user started using the free theme?
                 //1) Is not pro version
                 //or
                 //2) If CZR_IS_PRO, update the user started using the FREE theme only if the last_update_notice is present
                 //if not, we have no clue
-                if ( CZR_IS_PRO && $has_already_installed_free || !CZR_IS_PRO ) {
+                if ( CZR_IS_PRO && $has_already_installed_free || ! CZR_IS_PRO ) {
                     $to_update_user_started_using_theme = true;
                     //we are in the case of a free user updating the free theme but has previously cleaned the transients in db
-                    $user_started_using_free_theme_value  = sprintf('%s|%s' , $has_already_installed_free ? 'before' : 'with', CUSTOMIZR_VER );
+                    //=> we consider that this user started with the last update notice free version.
+                    //Which is a better approximation than before ( @see the way the function czr_fn_user_started_before_version() works )
+                    //we fallback on the current theme version
+                    $user_started_using_free_theme_value  = sprintf( '%s|%s',
+                      'with',
+                      ( $has_already_installed_free && '__not_set__' != $last_update_notice_free_version ) ? $last_update_notice_free_version : CUSTOMIZR_VER;
+                    );
+
+                    //set it
                     $theme_options[ $free_transient_or_option ] = $user_started_using_free_theme_value;
                 }
             }
@@ -747,7 +787,9 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
             $to_update_user_started_using_theme = true;
 
             //THERE CAN BE A TRANSIENT SET, if yes, use that value
-            if ( $transient_pro_value = esc_attr( get_transient( $pro_transient_or_option ) ) ) {
+            $transient_pro_value = esc_attr( get_transient( $pro_transient_or_option ) );
+            //let's make sure that the saved transient is a clean candidate to be saved in the theme options
+            if ( czr_is_valid_user_started_infos( $transient_pro_value ) ) {
                 $user_started_using_pro_theme_value       = $transient_pro_value;
             } else {
 
