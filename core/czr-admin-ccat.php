@@ -497,7 +497,9 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       //build the support url
       $this -> support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
-      add_action( 'admin_print_styles'      , array( $this, 'czr_fn_fix_wp_footer_link_style') );
+      add_action( 'admin_print_styles'     , array( $this, 'czr_fn_fix_wp_footer_link_style') );
+      //knowledgebase
+      add_action( 'current_screen'         , array( $this , 'czr_schedule_welcome_page_actions') );
     }
 
 
@@ -539,58 +541,33 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
         ?>
         <div id="customizr-admin-panel" class="wrap about-wrap">
           <?php
-            printf( '<h1 class="need-help-title">%1$s %2$s %3$s</h1>',
+            $title = sprintf( '<h1 class="need-help-title">%1$s %2$s %3$s :)</h1>',
               __( "Thank you for using", "customizr" ),
               $_theme_name,
               CUSTOMIZR_VER
             );
+            echo convert_smilies( $title );
           ?>
 
           <?php if ( $is_help && ! CZR_IS_PRO ) : ?>
 
-              <div class="changelog">
-                <div class="about-text tc-welcome">
-                <?php
-                  printf( '<p>%1$s</p>',
-                    sprintf( __( "The best way to start is to read the %s." , "customizr" ),
-                      sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation" , "customizr") )
-                    )
-                  );
-                  printf( '<p>%1$s</p>',
-                    __( "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums.", "customizr" )
-                  );
-                  ?>
-                </div>
+              <div class="">
 
-                    <div class="feature-section col two-col">
-                      <div class="col">
-                         <br/>
-                          <a class="button-secondary customizr-help" title="documentation" href="<?php echo esc_url('docs.presscustomizr.com/') ?>" target="_blank"><?php _e( 'Read the documentation','customizr' ); ?></a>
-                      </div>
-                      <div class="last-feature col">
-                          <a class="button-secondary customizr-help" title="help" href="<?php echo esc_url('wordpress.org/support/theme/customizr'); ?>" target="_blank">
-                            <?php _e( 'Support forum','customizr' ); ?>
-                          </a>
-                      </div>
-                    </div><!-- .two-col -->
               </div><!-- .changelog -->
 
           <?php else : ?>
 
             <div class="about-text tc-welcome">
               <?php
-                printf( '<p><strong>%1$s %2$s <a href="#customizr-changelog">(%3$s)</a></strong></p>',
-                  sprintf( __( "Thank you for using %s!", "customizr" ), $_theme_name ),
-                  sprintf( __( "%s %s has more features, is safer and more stable than ever to help you designing an awesome website.", "customizr" ), $_theme_name, CUSTOMIZR_VER ),
-                  __( "check the changelog", "customizr")
-                );
-
-                printf( '<p><strong>%1$s</strong></p>',
+                printf( '<p>%1$s</p>',
                   sprintf( __( "The best way to start with %s is to read the %s and visit the %s.", "customizr"),
                     $_theme_name,
                     sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation", "customizr") ),
                     sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('demo.presscustomizr.com'), __("demo website", "customizr") )
                   )
+                );
+                printf( '<p><a href="#customizr-changelog">%1$s</a></p>',
+                  __( "Read the changelog", "customizr")
                 );
               ?>
             </div>
@@ -611,6 +588,8 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
               </p>
             </div>
           <?php endif; ?>
+
+          <?php do_action( 'czr_after_welcome_admin_intro' ); ?>
 
           <div class="changelog point-releases"></div>
 
@@ -639,7 +618,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
               <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
 
               <div class="feature-section images-stagger-right">
-                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/customizr-pro.png' ?>" class=""></a>
+                <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a' ); ?>" target="_blank"><img style="border:none;" alt="Customizr Pro" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/customizr-pro.png?'.CUSTOMIZR_VER ?>" class=""></a>
                 <h4 style="text-align: left;max-width:inherit"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
 
                 <p style="text-align: lef;max-width:inherit"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites." , 'customizr') ?>
@@ -843,6 +822,91 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
           .wp-admin #wpfooter {bottom: inherit;}
         </style>
       <?php
+    }
+
+    //hook : current_screen
+    function czr_schedule_welcome_page_actions() {
+        $screen = get_current_screen();
+        if ( 'appearance_page_welcome' != $screen-> id )
+          return;
+
+        add_action( 'czr_after_welcome_admin_intro', array( $this, 'czr_print_hs_doc_content') );
+        add_action( 'admin_enqueue_scripts', array( $this, 'czr_enqueue_hs_assets' ) );
+    }
+
+    //hook : admin_enqueue_scripts
+    function czr_enqueue_hs_assets() {
+        $screen = get_current_screen();
+        if ( 'appearance_page_welcome' != $screen-> id )
+          return;
+        wp_enqueue_style(
+          'czr-admin-hs-css',
+          sprintf('%1$sback/css/czr-hs-doc%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+          array(),
+          ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER
+        );
+        wp_enqueue_script(
+          'czr-hs-js',
+          sprintf('%1$sback/js/czr-hs-doc%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+          array( 'jquery', 'underscore' ),
+          ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER,
+          $in_footer = false
+        );
+
+        $script_settings = array(
+          'debug' => false, // Print debug logs or not
+          'searchDelay' => 750, // Delay time in ms after a user stops typing and before search is performed
+          'minLength' => 3, // Minimum number of characters required to trigger search
+          'limit' => 25, // Max limit for # of results to show
+          'text' => array(
+            //@translators : keep the strings inside brackets ( like {count} and {minLength} ) untranslated as it will be replaced by a number when parsed in javascript
+            'result_found' => __('We found {count} article that may help:' , 'customizr'),
+            'results_found' => __('We found {count} articles that may help:' , 'customizr'),
+            'no_results_found' => __('No results found&hellip;' , 'customizr'),
+            'enter_search' => __('Please enter a search term.' , 'customizr'),
+            'not_long_enough' => __('Search must be at least {minLength} characters.' , 'customizr'),
+            'error' => __('There was an error fetching search results.' , 'customizr'),
+          ),
+          'template' => array(
+            'wrap_class' => 'docs-search-wrap',
+            'before' => '<ul class="docs-search-results">',
+            'item' => sprintf( '<li class="article"><a href="{url}" title="%1$s" target="_blank">{name}<span class="article--open-original" ></span></a><p class="article-preview">{preview} ... <a href="{url}" title="%1$s" target="_blank">%2$s</a></p></li>',
+              __( 'Read the full article', 'customizr' ),
+              __( 'read more', 'customizr' )
+            ),
+            'after' => '</ul>',
+            'results_found' => '<span class="{css_class}">{text}</span>',
+          ),
+          'collections' => array(), // The collection IDs to search in
+
+          // Do not modify
+          '_subdomain' => 'presscustomizr',
+        );
+
+        wp_localize_script( 'czr-hs-js', 'CZRHSParams', $script_settings );
+    }
+
+
+    //hook : czr_after_welcome_admin_intro
+    function czr_print_hs_doc_content() {
+        ?>
+          <form enctype="multipart/form-data" method="post" class="frm-show-form " id="form_m3j26q22">
+            <div class="frm_form_fields ">
+              <fieldset>
+                <div id="frm_field_335_container" class="frm_form_field form-field  frm_top_container helpscout-docs">
+                  <label for="field_6woxqa" class="frm_primary_label">
+                    <h2><?php _e( 'Search the knowledge base', 'customizr' ); ?></h2>
+                    <h4 style="text-align:center;font-style: italic;font-weight: normal;"><?php _e( 'In a few keywords, describe the information you are looking for.', 'customizr' ); ?></h4>
+                      <span class="frm_required"></span>
+                  </label>
+                  <input type="text" id="field_6woxqa" name="item_meta[335]" value="" placeholder="<?php _e( 'Ex. Logo upload', 'customizr' ) ;?>" autocomplete="off">
+
+                  <div class="frm_description"><?php _e('<u>Search tips</u> : If you get too many results, try to narrow down your search by prefixing it with "customizr" for example. If there are no results, try different keywords and / or spelling variations', 'customizr' ); ?> </div>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        <?php
     }
 
   }//end of class
