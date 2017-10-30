@@ -4732,41 +4732,82 @@ var czrapp = czrapp || {};
 
 
             fireSliders : function(name, delay, hover) {
-              var _name   = name || TCParams.SliderName,
+              var self = this,
+                  _name   = name || TCParams.SliderName,
                   _delay  = delay || TCParams.SliderDelay,
                   _hover  = hover || TCParams.SliderHover,
                   _cellSelector = '.czr-item',
                   _cssLoaderClass = 'tc-css-loader',
                   _css_loader = '<div class="' + _cssLoaderClass + ' tc-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
 
-              if ( 0 === _name.length )
+              if ( 0 === _name.length || 1 > self.$_sliders.length )
                 return;
-
               if ( czrapp.localized.imgSmartLoadsForSliders ) {
-                    this.$_sliders.addClass('disable-transitions-for-smartload');
-                    this.$_sliders.find( _cellSelector + '.active').imgSmartLoad().data( 'czr_smartLoaded', true );
+                    self.$_sliders.addClass('disable-transitions-for-smartload');
+                    self.$_sliders.find( _cellSelector + '.active').imgSmartLoad().data( 'czr_smartLoaded', true );
 
-                    this.$_sliders.on( 'customizr.slide', _cellSelector, function() {
-                        if ( 1 > $(this).find('img[data-src], img[data-smartload]').length )
-                          return;
-
-                        if ( ! $(this).data('czr_smartLoaded') ) {
-                              $(this).append( _css_loader ).find( '.' + _cssLoaderClass ).fadeIn( 'slow' );
-                              $(this).imgSmartLoad().data( 'czr_smartLoaded', true );
-                        }
-                    });
-
-                    this.$_sliders.on( 'smartload', _cellSelector , function() {
-                          var $_cell = $(this);
-
-                          $_cell.find( '.' + _cssLoaderClass ).fadeOut( {
+                    var _maybeRemoveLoader = function( $_cell ) {
+                          $_cell.find('.czr-css-loader').fadeOut( {
                                 duration: 'fast',
-                                done : function() {
-                                    $(this).remove();
-                                }
+                                done : function() { $(this).remove();}
                           } );
+                    };
+
+
+                    var _smartLoadCellImg = function( _event_ ) {
+                          _event_ = _event_ || 'czr-smartloaded';
+                          var $_cell = this;
+                          if ( 1 > $_cell.find('img[data-src], img[data-smartload]').length )
+                            return;
+                          if ( ! $_cell.data( 'czr_smartLoaded' ) ) {
+                                if ( 1 > $_cell.find('.czr-css-loader').length ) {
+                                      $_cell.append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                                }
+                                $_cell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( _event_ );
+                                $_cell.data( 'czr_loader_timer' , $.Deferred( function() {
+                                      var self = this;
+                                      _.delay( function() {
+                                            self.resolve();
+                                      }, 2000 );
+                                      return this.promise();
+                                }) );
+                                $_cell.data( 'czr_loader_timer' ).done( function() {
+                                      _maybeRemoveLoader( $_cell );
+                                });
+                          }
+                    };
+                    self.$_sliders.data( 'czr_schedule_select', $.Deferred( function() {
+                          var self = this;
+                          _.delay( function() {
+                                self.resolve();
+                          }, 500 );
+                          return this.promise();
+                    }) );
+
+                    self.$_sliders.data( 'czr_schedule_select' ).done( function() {
+                          self.$_sliders.one( 'customizr.slide', function() {
+                                $(this).find( _cellSelector ).each( function() {
+                                      _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-select' );
+                                });
+                          });
                     });
-              }
+                    self.$_sliders.data( 'czr_schedule_autoload', $.Deferred( function() {
+                          var self = this;
+                          _.delay( function() {
+                                self.resolve();
+                          }, 4000 );
+                          return this.promise();
+                    }) );
+                    self.$_sliders.data( 'czr_schedule_autoload' ).done( function() {
+                          self.$_sliders.find( _cellSelector ).each( function() {
+                                _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
+                          });
+                    });
+
+                    self.$_sliders.on( 'smartload', _cellSelector , function() {
+                          _maybeRemoveLoader( $(this) );
+                    });
+              }//if czrapp.localized.imgSmartLoadsForSliders
 
               if ( 0 !== _delay.length && ! _hover ) {
                 this.$_sliders.czrCarousel({
