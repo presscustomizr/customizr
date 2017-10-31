@@ -2135,7 +2135,13 @@ function czr_fn_style_option_map( $get_default = null ) {
                                   'modern'      => __( 'Modern' , 'customizr' ),
                                   'classic'     => __( 'Classical' , 'customizr' ),
                             ),
-                            'notice'      => ! is_child_theme() ? $_notice :  sprintf( '%1$s <br/><br/> %2$s', $_notice, __( "Add the the following code to your wp-config.php file to switch between the classical and modern styles : <br/>define( 'CZR_MODERN_STYLE', true );.<br/><br/>The two styles can use different template files. If you have overriden templates in your child theme, it is recommended to switch style in a staging site before production.", 'customizr' ) )
+                            'notice'      => ! is_child_theme() ? $_notice :  sprintf( '%1$s <br/><br/> %2$s <br/>%3$s',
+                                $_notice,
+                                sprintf( __( 'You are using a child theme. This option must be changed from the parent theme. Activate the parent from %s.', 'customizr' ),
+                                    sprintf( '<a href="%1$s">%2$s</a>', admin_url( 'themes.php' ), __( 'Appearance > themes', 'customizr') )
+                                ),
+                                __("The two styles can use different template files, that's why it is recommended to change the style option from the parent and test your child theme in a staging site before production.", 'customizr' )
+                            )
           )
 
   );
