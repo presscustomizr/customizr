@@ -4776,34 +4776,58 @@ var czrapp = czrapp || {};
                                 });
                           }
                     };
-                    self.$_sliders.data( 'czr_schedule_select', $.Deferred( function() {
-                          var self = this;
-                          _.delay( function() {
-                                self.resolve();
-                          }, 500 );
-                          return this.promise();
+                    self.$_sliders.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
+                          self.$_sliders.addClass('czr-smartload-scheduled');
                     }) );
+                    self.$_sliders.data( 'czr_schedule_select',
+                          $.Deferred( function() {
+                                var dfd = this;
+                                _.delay( function() {
+                                      self.$_sliders.one( 'customizr.slide' , function() {
+                                          dfd.resolve();
+                                      } );
+                                }, 100 );
+                          }).done( function() {
+                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                    return;
 
-                    self.$_sliders.data( 'czr_schedule_select' ).done( function() {
-                          self.$_sliders.one( 'customizr.slide', function() {
-                                $(this).find( _cellSelector ).each( function() {
+                                self.$_sliders.find( _cellSelector ).each( function() {
                                       _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-select' );
                                 });
-                          });
-                    });
-                    self.$_sliders.data( 'czr_schedule_autoload', $.Deferred( function() {
-                          var self = this;
-                          _.delay( function() {
-                                self.resolve();
-                          }, 4000 );
-                          return this.promise();
-                    }) );
-                    self.$_sliders.data( 'czr_schedule_autoload' ).done( function() {
-                          self.$_sliders.find( _cellSelector ).each( function() {
-                                _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
-                          });
-                    });
+                                self.$_sliders.data( 'czr_smartload_scheduled').resolve();
+                          })
+                    );//data( 'czr_schedule_select' )
+                    self.$_sliders.data( 'czr_schedule_scroll',
+                          $.Deferred( function() {
+                                var dfd = this;
+                                czrapp.$_window.one( 'scroll', function() {
+                                    _.delay( function() { dfd.resolve(); }, 1000 );
+                                });
+                          }).done( function() {
+                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                    return;
 
+                                self.$_sliders.find( _cellSelector ).each( function() {
+                                      _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-scroll' );
+                                });
+                                self.$_sliders.data( 'czr_smartload_scheduled').resolve();
+                          })
+                    );//data( 'czr_schedule_scroll' )
+                    self.$_sliders.data( 'czr_schedule_scroll' );
+                    self.$_sliders.data( 'czr_schedule_autoload',
+                          $.Deferred( function() {
+                                var dfd = this;
+                                _.delay( function() { dfd.resolve(); }, 10000 );
+                          }).done( function() {
+                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                    return;
+
+                                self.$_sliders.find( _cellSelector ).each( function() {
+                                      _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
+                                });
+                                self.$_sliders.data( 'czr_smartload_scheduled').resolve();
+                          })
+                    );
                     self.$_sliders.on( 'smartload', _cellSelector , function() {
                           _maybeRemoveLoader( $(this) );
                     });

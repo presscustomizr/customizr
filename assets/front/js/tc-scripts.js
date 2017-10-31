@@ -9150,33 +9150,58 @@ var czrapp = czrapp || {};
                                     });
                               }
                         };
-                        params.sliderEl.data( 'czr_schedule_select', $.Deferred( function() {
-                              var self = this;
-                              _.delay( function() {
-                                    self.resolve();
-                              }, 1000 );
-                              return this.promise();
+                        params.sliderEl.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
+                              params.sliderEl.addClass('czr-smartload-scheduled');
                         }) );
-                        params.sliderEl.data( 'czr_schedule_select' ).done( function() {
-                              params.sliderEl.one( 'select.flickity' , function() {
-                                    $(this).find( params.cellSelector ).each( function() {
+                        params.sliderEl.data( 'czr_schedule_select',
+                              $.Deferred( function() {
+                                    var dfd = this;
+                                    _.delay( function() {
+                                          params.sliderEl.one( 'select.flickity' , function() {
+                                             dfd.resolve();
+                                          } );
+                                    }, 500 );
+                              }).done( function() {
+                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                        return;
+
+                                    params.sliderEl.find( params.cellSelector ).each( function() {
                                           _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-select' );
                                     });
-                              });
-                        });
-                        params.sliderEl.data( 'czr_schedule_autoload', $.Deferred( function() {
-                              var self = this;
-                              _.delay( function() {
-                                    self.resolve();
-                              }, 4000 );
-                              return this.promise();
-                        }) );
-                        params.sliderEl.data( 'czr_schedule_autoload' ).done( function() {
-                              params.sliderEl.find( params.cellSelector ).each( function() {
-                                    _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
-                              });
-                        });
+                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                              })
+                        );//data( 'czr_schedule_select' )
+                        params.sliderEl.data( 'czr_schedule_scroll',
+                              $.Deferred( function() {
+                                    var dfd = this;
+                                    czrapp.$_window.one( 'scroll', function() {
+                                        _.delay( function() { dfd.resolve(); }, 1000 );
+                                    });
+                              }).done( function() {
+                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                        return;
 
+                                    params.sliderEl.find( params.cellSelector ).each( function() {
+                                          _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-scroll' );
+                                    });
+                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                              })
+                        );//data( 'czr_schedule_scroll' )
+                        params.sliderEl.data( 'czr_schedule_scroll' );
+                        params.sliderEl.data( 'czr_schedule_autoload',
+                              $.Deferred( function() {
+                                    var dfd = this;
+                                    _.delay( function() { dfd.resolve(); }, 10000 );
+                              }).done( function() {
+                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                        return;
+
+                                    params.sliderEl.find( params.cellSelector ).each( function() {
+                                          _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
+                                    });
+                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                              })
+                        );
                   });//on flickity ready
                   params.sliderEl.on( 'smartload', params.cellSelector , function() {
                         _maybeRemoveLoader( $(this) );
