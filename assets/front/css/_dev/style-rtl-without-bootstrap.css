@@ -4220,6 +4220,12 @@ ol > li:before {
   padding: 0.5rem 3rem 1rem 0;
 }
 
+@media (max-width: 575px) {
+  .czr-wp-the-content ol, .czr-wp-the-content ul {
+    padding: 0.5rem 2rem 1rem 0;
+  }
+}
+
 .czr-wp-the-content ul {
   list-style: square outside;
 }
@@ -4228,13 +4234,19 @@ ol > li:before {
   padding: 0.25rem 0.5rem;
 }
 
+ol ol, ol ul, ul ol, ul ul {
+  margin-right: 1em;
+}
+
+@media (max-width: 575px) {
+  ol ol, ol ul, ul ol, ul ul {
+    margin-right: 0;
+  }
+}
+
 .tc-content-inner ul.socials, .tc-content-inner ul.tags {
   list-style: none;
   margin: 0;
-}
-
-ol ol, ol ul, ul ol, ul ul {
-  margin-right: 1em;
 }
 
 dl {
