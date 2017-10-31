@@ -1038,11 +1038,14 @@ var czrapp = czrapp || {};
                         params.sliderEl.data( 'czr_schedule_select',
                               $.Deferred( function() {
                                     var dfd = this;
+                                    params.sliderEl.parent().on( 'click staticClick.flickity pointerDown.flickity dragMove.flickity', function(event) {
+                                        dfd.resolve();
+                                    } );
                                     _.delay( function() {
                                           params.sliderEl.one( 'select.flickity' , function() {
                                              dfd.resolve();
                                           } );
-                                    }, 500 );
+                                    }, 2000 );
                               }).done( function() {
                                     if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
                                         return;
@@ -1053,12 +1056,14 @@ var czrapp = czrapp || {};
                                     params.sliderEl.data( 'czr_smartload_scheduled').resolve();
                               })
                         );//data( 'czr_schedule_select' )
-                        params.sliderEl.data( 'czr_schedule_scroll',
+                        params.sliderEl.data( 'czr_schedule_scroll_resize',
                               $.Deferred( function() {
                                     var dfd = this;
-                                    czrapp.$_window.one( 'scroll', function() {
-                                        _.delay( function() { dfd.resolve(); }, 1000 );
-                                    });
+                                    _.delay( function() {
+                                          czrapp.$_window.one( 'scroll resize', function() {
+                                                dfd.resolve();
+                                          });
+                                    }, 5000 );
                               }).done( function() {
                                     if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
                                         return;
@@ -1068,8 +1073,7 @@ var czrapp = czrapp || {};
                                     });
                                     params.sliderEl.data( 'czr_smartload_scheduled').resolve();
                               })
-                        );//data( 'czr_schedule_scroll' )
-                        params.sliderEl.data( 'czr_schedule_scroll' );
+                        );//data( 'czr_schedule_scroll_resize' )
                         params.sliderEl.data( 'czr_schedule_autoload',
                               $.Deferred( function() {
                                     var dfd = this;
