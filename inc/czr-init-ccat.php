@@ -270,8 +270,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -4084,7 +4083,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
         //Style switcher note
         $is_style_switch_note_on = ! is_multisite() && czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem();
         $style_note_content = '';
-        if ( $is_style_switch_note_on && czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
+        if ( $is_style_switch_note_on && ! czr_fn_is_ms() && false === czr_fn_opt( 'tc_style', CZR_THEME_OPTIONS, false ) ) { //false for not default
             $tc_custom_css = esc_html( czr_fn_opt( 'tc_custom_css') );
             $tc_custom_css = trim( $tc_custom_css );
             $wp_custom_css = '';
