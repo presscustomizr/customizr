@@ -48,9 +48,11 @@ if ( ! function_exists( 'czr_fn_is_ms' ) ) {
                   break;
 
                 default :
-                  //the modern option is not set
-                  //=> if version is > 4.0 for free or > 2.0 for pro, it is true for a fresh install
-                  //free to free or pro to pro
+                  //'tc_style' OPTION STYLE NOT SET YET => WHAT DO WE DO ?
+                  //1) FRESH INSTALL ( not an update )
+                  //=> modern if free version is > 4.0 and pro > 2.0
+                  //=> If pro fresh install, we know that the user started with the current pro version. But the user may have upgraded from free for which he/she started before 4.0
+                  //  => that's why we need to know when he started with the free to decide
                   if ( CZR_IS_PRO ) {
                       //if user started using the pro before 2.0
                       if ( czr_fn_user_started_before_version( '4.0.0' , '2.0.0', 'pro' ) ) {
@@ -755,8 +757,11 @@ function czr_fn_setup_started_using_theme_option_and_constants() {
             } else {
                 //use the last_update_notice set in the theme options
                 $has_already_installed_free           = array_key_exists( 'last_update_notice', $theme_options );
-                $free_infos                           = $theme_options['last_update_notice'];
-                $last_update_notice_free_version      = is_array( $free_infos ) && array_key_exists( 'version', $free_infos ) ? $free_infos['version'] : '__not_set__';
+                $free_infos                           = $has_already_installed_free ? $theme_options['last_update_notice'] : '__not_set__';
+                $last_update_notice_free_version      = '__not_set__';
+                if ( is_array( $free_infos ) && array_key_exists( 'version', $free_infos ) ) {
+                    $last_update_notice_free_version = $free_infos['version'];
+                }
 
                 //When to update the user started using the free theme?
                 //1) Is not pro version
