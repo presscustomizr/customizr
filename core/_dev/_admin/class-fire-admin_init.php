@@ -58,7 +58,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         return;
 
       //if czr4
-      if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) {
+      if ( czr_fn_is_ms() ) {
 
         if ( function_exists( 'czr_fn_set_thumb_info' ) )
           czr_fn_set_thumb_info( $post_id );
@@ -208,23 +208,21 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //array_filter to remove empty array items is not needed as wp function get_editor_stylesheets() (since WP 4.0)
       //will do that for us
 
-      $_stylesheets = array(
-          //we need only the relative path, otherwise get_editor_stylesheets() will treat this as external CSS
-          //which means:
-          //a) child-themes cannot override it
-          //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
-          CZR_ASSETS_PREFIX . 'back/css/editor-style.css',
-          'style.css',
-          //backward compat
-          ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ? 'inc/assets/css/' . esc_attr( czr_fn_opt( 'tc_skin' ) ) : '',
-      );
+      //we need only the relative path, otherwise get_editor_stylesheets() will treat this as external CSS
+      //which means:
+      //a) child-themes cannot override it
+      //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
 
+      //as of v4.0.10 the editor-style.css is for classic
+      $_stylesheets = czr_fn_is_ms() ? array() : array( CZR_ASSETS_PREFIX . 'back/css/editor-style.css' );
+      $_stylesheets[] = 'style.css';
+      if ( ! czr_fn_is_ms() ) {
+        $_stylesheets[] = 'inc/assets/css/' . esc_attr( czr_fn_opt( 'tc_skin' ) );
+      }
 
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
         $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
-
       add_editor_style( $_stylesheets );
-
     }
 
 
@@ -250,8 +248,8 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //maybe add rtl class
       $_mce_body_context = is_rtl() ? 'mce-content-body.rtl' : 'mce-content-body';
 
-      //if czr4
-      if ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) {
+      //if modern
+      if ( czr_fn_is_ms() ) {
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resources_fonts class has to be loaded
         if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )
@@ -276,7 +274,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
         }
 
       }
-      //old customizr
+      //classic
       else {
 
         //some plugins fire tiny mce editor in the customizer
