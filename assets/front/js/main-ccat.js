@@ -636,6 +636,38 @@ var czrapp = czrapp || {};
                   var self = this;
                   setTimeout( function(){ self.emit('centerImages'); }, delay || 50 );
             },
+
+
+            centerInfinity : function() {
+
+                  var centerInfiniteImagesModernStyle = function ( collection, _container ) {
+                      var $_container  = $(_container);
+
+                      if ( 'object' !== typeof collection || 1 > $_container.length )
+                        return;
+                      _.each( collection, function( el, id ) {
+
+                            var $_img = $(  '#' +id+ ' .js-centering.entry-media__holder, #' +id+ ' .js-centering.entry-media__wrapper', $_container ).centerImages( {
+                                  enableCentering : 1,
+                                  enableGoldenRatio : false,
+                                  disableGRUnder : 0,//<= don't disable golden ratio when responsive,
+                                  zeroTopAdjust: 0,
+                                  setOpacityWhenCentered : false,//will set the opacity to 1
+                                  oncustom : [ 'simple_load']
+                            }).find( 'img' );
+                            czrapp.methods.Base.triggerSimpleLoad( $_img );
+                      });
+
+                  };
+                  czrapp.$_body.on( 'post-load', function( e, response ) {
+                        if ( 'success' == response.type && response.collection && response.container ) {
+                              centerInfiniteImagesModernStyle(
+                                  response.collection,
+                                  '#'+response.container //_container
+                              );
+                        }
+                  } );
+            },
             imgSmartLoad : function() {
                   var smartLoadEnabled = 1 == czrapp.localized.imgSmartLoadEnabled,
                       _where           = czrapp.localized.imgSmartLoadOpts.parentSelectors.join();
@@ -3081,6 +3113,7 @@ var czrapp = czrapp || {};
                       ctor : czrapp.Base.extend( czrapp.methods.JQPlugins ),
                       ready : [
                             'centerImagesWithDelay',
+                            'centerInfinity',
                             'imgSmartLoad',
                             'lightBox',
                             'parallax'

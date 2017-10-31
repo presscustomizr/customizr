@@ -337,22 +337,20 @@ class CZR_media_model_class extends CZR_Model {
 
 
 
-
+      //The centering css class will be used to target the container in which we will use the jQuery center image plugin
+      //'image_centering'       => esc_attr( czr_fn_opt( 'tc_center_img' ) ) ? 'js-centering' : 'css-centering',
       protected function czr_fn__setup_media_wrapper() {
 
             if ( in_array( $this -> media_template, array( 'content/common/media/thumbnail', 'content/common/media/gallery' ) ) ) {
 
                   /* Add centering class */
                   switch ( $this -> image_centering ) {
-
                         case 'css-centering' :
-
                               $centering_class = 'css-centering';
                         break;
 
                         case 'no-js-centering' :
                               $centering_class = 'no-centering';
-
                         break;
 
                         default :
@@ -368,7 +366,7 @@ class CZR_media_model_class extends CZR_Model {
 
                   $this->czr_fn_set_property( 'inner_wrapper_class', $inner_wrapper_class );
 
-            }else {
+            } else {
 
                   /* Set availability of background link */
                   $this->czr_fn_set_property( 'has_permalink', false );

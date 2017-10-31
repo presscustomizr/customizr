@@ -4585,6 +4585,52 @@ var czrapp = czrapp || {};
               var self = this;
               setTimeout( function(){ self.emit('centerImages'); }, delay || 300 );
             },
+
+            centerInfinity : function() {
+                  var centerInfiniteImagesClassicStyle = function( collection, _container ) {
+                        var   $_container = $(_container);
+
+                        if ( 'object' !== typeof collection || 1 > $_container.length) {
+                              return;
+                        }
+                        _.each( collection, function( el, id ) {
+                              var $_img = $(  '#' +id+ ' .thumb-wrapper', $_container ).centerImages( {
+                                    enableCentering : 1 == czrapp.localized.centerAllImg,
+                                    enableGoldenRatio : false,
+                                    disableGRUnder : 0,//<= don't disable golden ratio when responsive
+                                    oncustom : [ 'simple_load']
+                              }).find( 'img' );
+
+                              if ( $_img.length < 1 ) {
+                                    $_img = $( '#' +id+ ' .tc-rectangular-thumb',  $_container ).centerImages( {
+                                          enableCentering : 1 == czrapp.localized.centerAllImg,
+                                          enableGoldenRatio : true,
+                                          goldenRatioVal : czrapp.localized.goldenRatio || 1.618,
+                                          disableGRUnder : 0,//<= don't disable golden ratio when responsive
+                                          oncustom : [ 'simple_load']
+                                    }).find( 'img' );
+                              }
+                              if ( $_img.length < 1 ) {
+                                    $_img = $( '#' +id+ ' .tc-grid-figure', $_container ).centerImages( {
+                                          enableCentering : 1 == czrapp.localized.centerAllImg,
+                                          oncustom : [ 'simple_load'],
+                                          enableGoldenRatio : true,
+                                          goldenRatioVal : czrapp.localized.goldenRatio || 1.618,
+                                          goldenRatioLimitHeightTo : czrapp.localized.gridGoldenRatioLimit || 350
+                                    }).find( 'img' );
+                              }
+                              czrapp.methods.Base.triggerSimpleLoad( $_img );
+                        });
+                  };//end centerInfiniteImagesClassicStyle
+                  czrapp.$_body.on( 'post-load', function( e, response ) {
+                        if ( 'success' == response.type && response.collection && response.container ) {
+                              centerInfiniteImagesClassicStyle(
+                                  response.collection,
+                                  '#'+response.container //_container
+                              );
+                        }
+                  } );
+            },
             imgSmartLoad : function() {
               var smartLoadEnabled = 1 == TCParams.imgSmartLoadEnabled,
                   _where           = TCParams.imgSmartLoadOpts.parentSelectors.join();
@@ -4789,7 +4835,7 @@ var czrapp = czrapp || {};
                                       dfd.resolve();
                                 } );
                           }).done( function() {
-                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() || 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
@@ -4805,7 +4851,7 @@ var czrapp = czrapp || {};
                                       _.delay( function() { dfd.resolve(); }, 5000 );
                                 });
                           }).done( function() {
-                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() || 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
@@ -4819,7 +4865,7 @@ var czrapp = czrapp || {};
                                 var dfd = this;
                                 _.delay( function() { dfd.resolve(); }, 10000 );
                           }).done( function() {
-                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() || 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
@@ -6199,6 +6245,7 @@ var czrapp = czrapp || {};
                       ctor : czrapp.Base.extend( czrapp.methods.JQPlugins ),
                       ready : [
                             'centerImagesWithDelay',
+                            'centerInfinity',
                             'imgSmartLoad',
                             'dropCaps',
                             'extLinks',
