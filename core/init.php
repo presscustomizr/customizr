@@ -144,7 +144,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             add_filter( 'czr_ms'             , '__return_true' );
             //define a constant we can use everywhere
             //that will tell us we're in the new Customizr:
-            //Will be highly used during the transion between the two themes
+            //Will be highly used during the transion between the two styles
             if( ! defined( 'CZR_IS_MODERN_STYLE' ) ) define( 'CZR_IS_MODERN_STYLE' , true );
 
 
@@ -189,7 +189,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             //don't display update notification for a list of versions
             //typically useful when several versions are released in a short time interval
             //to avoid hammering the wp admin dashboard with a new admin notice each time
-            $this -> _hide_update_notification_for_versions = array( '4.0.10' );
+            $this -> _hide_update_notification_for_versions = array();
             if( ! defined( 'DISPLAY_UPDATE_NOTIFICATION' ) ) {
                 define( 'DISPLAY_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_update_notification_for_versions ) );
             }

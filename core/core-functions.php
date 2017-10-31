@@ -32,7 +32,10 @@ endif;
 if ( ! function_exists( 'czr_fn_is_ms' ) ) {
       function czr_fn_is_ms() {
           $is_modern_style = true;
-          if ( ! czr_fn_isprevdem() ) {
+          //if defined( 'CZR_IS_MODERN_STYLE' ), declared in core/init.php, let's use it.
+          if (  defined( 'CZR_IS_MODERN_STYLE' ) ) {
+              $is_modern_style = CZR_IS_MODERN_STYLE;
+          } else if ( ! czr_fn_isprevdem() ) {
               $_czr_modern_style_option_value = czr_fn_opt( 'tc_style', CZR_THEME_OPTIONS, false );//false for no default
 
               switch ( $_czr_modern_style_option_value ) {
@@ -46,7 +49,7 @@ if ( ! function_exists( 'czr_fn_is_ms' ) ) {
 
                 default :
                   //the modern option is not set
-                  //=> if version is > 4.0 for free or 2.0 for free, it is true for a fresh install
+                  //=> if version is > 4.0 for free or > 2.0 for pro, it is true for a fresh install
                   //free to free or pro to pro
                   if ( CZR_IS_PRO ) {
                       //if user started using the pro before 2.0
@@ -65,8 +68,6 @@ if ( ! function_exists( 'czr_fn_is_ms' ) ) {
 
               if ( isset( $_GET['czr_ms'] ) && true == $_GET['czr_ms'] && !czr_fn_is_pro() ) {
                 $is_modern_style = true;
-              } else {
-                $is_modern_style = defined( 'CZR_MODERN_STYLE' ) ? CZR_MODERN_STYLE : $is_modern_style;
               }
           }
           return apply_filters( 'czr_is_modern_style', $is_modern_style );
