@@ -8975,7 +8975,9 @@ var czrapp = czrapp || {};
                               if ( $(this).data('flickity') ) {
                                     var $_bg_link = $(this).find('.bg-link');
                                     $(this).closest('.entry-media__wrapper').prepend( $_bg_link );
+
                                     $(this).flickity( 'destroy' );
+                                    $(this).find('.czr-css-loader').remove();
                               }
                         });
                   });
@@ -9153,6 +9155,9 @@ var czrapp = czrapp || {};
                         params.sliderEl.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
                               params.sliderEl.addClass('czr-smartload-scheduled');
                         }) );
+                        var _isSliderDataSetup = function() {
+                              return 1 <= params.sliderEl.length && ! _.isUndefined( params.sliderEl.data( 'czr_smartload_scheduled' ) );
+                        };
                         params.sliderEl.data( 'czr_schedule_select',
                               $.Deferred( function() {
                                     var dfd = this;
@@ -9165,8 +9170,8 @@ var czrapp = czrapp || {};
                                           } );
                                     }, 2000 );
                               }).done( function() {
-                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                        return;
+                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                      return;
 
                                     params.sliderEl.find( params.cellSelector ).each( function() {
                                           _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-select' );
@@ -9183,8 +9188,8 @@ var czrapp = czrapp || {};
                                           });
                                     }, 5000 );
                               }).done( function() {
-                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                        return;
+                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                      return;
 
                                     params.sliderEl.find( params.cellSelector ).each( function() {
                                           _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-scroll' );
@@ -9197,8 +9202,8 @@ var czrapp = czrapp || {};
                                     var dfd = this;
                                     _.delay( function() { dfd.resolve(); }, 10000 );
                               }).done( function() {
-                                    if ( 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                        return;
+                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                      return;
 
                                     params.sliderEl.find( params.cellSelector ).each( function() {
                                           _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );

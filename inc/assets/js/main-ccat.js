@@ -849,6 +849,9 @@ var czrapp = czrapp || {};
                     self.$_sliders.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
                           self.$_sliders.addClass('czr-smartload-scheduled');
                     }) );
+                    var _isSliderDataSetup = function() {
+                          return 1 <= self.$_sliders.length && ! _.isUndefined( self.$_sliders.data( 'czr_smartload_scheduled' ) );
+                    };
                     self.$_sliders.data( 'czr_schedule_select',
                           $.Deferred( function() {
                                 var dfd = this;
@@ -856,7 +859,7 @@ var czrapp = czrapp || {};
                                       dfd.resolve();
                                 } );
                           }).done( function() {
-                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
@@ -872,7 +875,7 @@ var czrapp = czrapp || {};
                                       _.delay( function() { dfd.resolve(); }, 5000 );
                                 });
                           }).done( function() {
-                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
@@ -886,7 +889,7 @@ var czrapp = czrapp || {};
                                 var dfd = this;
                                 _.delay( function() { dfd.resolve(); }, 10000 );
                           }).done( function() {
-                                if ( 'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
+                                if ( ! _isSliderDataSetup() ||  'resolved' == self.$_sliders.data( 'czr_smartload_scheduled' ).state() )
                                     return;
 
                                 self.$_sliders.find( _cellSelector ).each( function() {
