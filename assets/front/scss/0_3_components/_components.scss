@@ -440,6 +440,7 @@ a[target="_blank"]:hover:after {
     display: block
   }
 }
+
 // Quote and link formats
 blockquote, .entry-link {
     position: relative;
@@ -449,30 +450,19 @@ blockquote, .entry-link {
     border-top: 1px solid $grey-lightest;
     border-bottom: 1px solid $grey-lightest;
     @extend .bold;
+
     &::before{
-      top:$base-line-height*2;
-
-      @if ( true == $is_rtl ) {
-        right: $base-line-height*2;
-      }
-      @else {
-        left:$base-line-height*2;
-      }
-
-      position: absolute;
       font-size: ms(2);
-      display: inline-block;
+
       vertical-align: top;
       font-family: "customizr";
       font-style: normal;
       font-weight: normal;
       speak: none;
-      width: 1em;
+      display: block;
 
-      margin-right: .2em;
-      margin-left: .2em;
+      text-align: inherit;
 
-      text-align: center;
       font-variant: normal;
       text-transform: none;
 
@@ -480,33 +470,48 @@ blockquote, .entry-link {
       -moz-osx-font-smoothing: grayscale;
     }
 }
-
-// Blockquotes and cites
-blockquote {
-  p {
-
-    max-width: 90%;
-
-    @if ( true == $is_rtl ) {
-      margin-right: 5em;
-      padding-right:$base-line-height*4;
-    }
-    @else {
-      margin-left: 5em;
-      padding-left:$base-line-height*4;
-    }
-
-    color: $black;
-    cite {
-      clear: both;
-      display: block;
-      margin-top: 1.5em;
-      &::before {
-        top: 1em;
-        bottom: auto;
+//(min-width: 576px)
+@include media-breakpoint-up(sm) {
+  blockquote, .entry-link {
+      &::before{
+        top:$base-line-height*2;
+        display: inline-block;
+        width: 1em;
+        @if ( true == $is_rtl ) {
+          right: $base-line-height*2;
+        }
+        @else {
+          left:$base-line-height*2;
+        }
+        text-align: center;
+        position: absolute;
+        width: 1em;
+        margin-right: .2em;
+        margin-left: .2em;
       }
+  }
+}
+
+// Blockquotes, Links and cites
+blockquote p, .entry-link a {
+    margin-top: $base-line-height;
+    margin-bottom: 1em;
+    word-break: break-word;
+    color: $black;
+}
+
+
+blockquote {
+  cite {
+    clear: both;
+    display: block;
+    margin-top: 1.5em;
+    &::before {
+      top: 1em;
+      bottom: auto;
     }
   }
+
   &::before{
     content: "\e808";
   }
@@ -525,7 +530,6 @@ cite {
     padding-left: $base-line-height*2.1;
     padding-right: $base-line-height/5;
   }
-
 
   position: relative;
   display: inline-block;
@@ -549,19 +553,34 @@ cite {
 
 // Link
 .entry-link {
-  a {
-    margin-left: 10em;
-    max-width: 90%;
-    color: $black;
-    margin-top: $base-line-height;
-    margin-bottom: 1em;
-  }
   &::before{
     content: '\e812';
   }
 }
 // link
+//(min-width: 576px)
+@include media-breakpoint-up(sm) {
+    blockquote p {
+        @if ( true == $is_rtl ) {
+          margin-right: $base-line-height*4;
+          padding-right:$base-line-height*4;
+        }
+        @else {
+          margin-left: $base-line-height*4;
+          padding-left:$base-line-height*4;
+        }
+    }
 
+    .entry-link a {
+        @if ( true == $is_rtl ) {
+          margin-right: $base-line-height*8;
+        }
+        @else {
+          margin-left: $base-line-height*8;
+        }
+    }
+}
+//blockquote, link, cite end
 
 .tags {
     @extend .inline-list;

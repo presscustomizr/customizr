@@ -5781,40 +5781,48 @@ blockquote, .entry-link {
 }
 
 blockquote::before, .entry-link::before {
-  top: 2.5em;
-  right: 2.5em;
-  position: absolute;
   font-size: 1.44em;
-  display: inline-block;
   vertical-align: top;
   font-family: "customizr";
   font-style: normal;
   font-weight: normal;
   speak: none;
-  width: 1em;
-  margin-right: .2em;
-  margin-left: .2em;
-  text-align: center;
+  display: block;
+  text-align: inherit;
   font-variant: normal;
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-blockquote p {
-  max-width: 90%;
-  margin-right: 5em;
-  padding-right: 5em;
+@media (min-width: 576px) {
+  blockquote::before, .entry-link::before {
+    top: 2.5em;
+    display: inline-block;
+    width: 1em;
+    right: 2.5em;
+    text-align: center;
+    position: absolute;
+    width: 1em;
+    margin-right: .2em;
+    margin-left: .2em;
+  }
+}
+
+blockquote p, .entry-link a {
+  margin-top: 1.25em;
+  margin-bottom: 1em;
+  word-break: break-word;
   color: #313131;
 }
 
-blockquote p cite {
+blockquote cite {
   clear: both;
   display: block;
   margin-top: 1.5em;
 }
 
-blockquote p cite::before {
+blockquote cite::before {
   top: 1em;
   bottom: auto;
 }
@@ -5843,16 +5851,18 @@ cite::before {
   background: #313131;
 }
 
-.entry-link a {
-  margin-left: 10em;
-  max-width: 90%;
-  color: #313131;
-  margin-top: 1.25em;
-  margin-bottom: 1em;
-}
-
 .entry-link::before {
   content: '\e812';
+}
+
+@media (min-width: 576px) {
+  blockquote p {
+    margin-right: 5em;
+    padding-right: 5em;
+  }
+  .entry-link a {
+    margin-right: 10em;
+  }
 }
 
 .tags a {
@@ -7822,6 +7832,10 @@ a.czr-format-link:hover::before {
 
 .grid-container__alternate.narrow .no-thumb:not(.format-quote) .tc-thumbnail {
   display: none;
+}
+
+.grid-container__alternate p {
+  word-break: break-word;
 }
 
 .tc-grid-shadow .grid__item {
