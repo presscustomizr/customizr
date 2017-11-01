@@ -602,6 +602,46 @@ var czrapp = czrapp || {};
                   });
                   return to_return;
             },
+            isInWindow : function( $_el, threshold ) {
+                  if ( ! ( $_el instanceof $ ) )
+                    return;
+                  if ( threshold && ! _.isNumber( threshold ) )
+                    return;
+
+                  var wt = $(window).scrollTop(),
+                      wb = wt + $(window).height(),
+                      it  = $_el.offset().top,
+                      ib  = it + $_el.height(),
+                      th = threshold || 0;
+
+                  return ib >= wt - th && it <= wb + th;
+            },
+            fireMeWhenStoppedScrolling : function( params ) {
+                  params = _.extend( {
+                      delay : 3000,
+                      func : '',
+                      instance : {},
+                      args : []
+                  }, params );
+
+                  if ( ! _.isFunction( params.func ) )
+                    return;
+                  var _timer_ = function() {
+                        $.Deferred( function() {
+                              var dfd = this;
+                              _.delay( function() {
+                                  dfd.resolve();
+                              }, params.delay );
+                        }).done( function() {
+                              if ( czrapp.userXP.isScrolling() ) {
+                                    _timer_();
+                              } else {
+                                    params.func.apply( params.instance, params.args );
+                              }
+                        });
+                  };
+                  _timer_();
+            }
       };//_methods{}
 
       czrapp.methods.Base = czrapp.methods.Base || {};
@@ -871,14 +911,14 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'click prev.czr-carousel', '.czr-carousel-prev', function(e) { self._slider_arrows.apply( this , [ e, 'previous' ] );} );
                   czrapp.$_body.on( 'click next.czr-carousel', '.czr-carousel-next', function(e) { self._slider_arrows.apply( this , [ e, 'next' ] );} );
                   this.fireRelatedPostsCarousel();
-                  this.fireGalleriesCarousel();
+                  this.scheduleGalleryCarousels();
                   this.fireMainSlider().centerMainSlider();
                   czrapp.$_body.on( 'post-load', function( e, response ) {
                         if ( 'success' == response.type && response.collection && response.container ) {
                               if ( ! response.html || -1 === response.html.indexOf( 'czr-gallery' ) || -1 === response.html.indexOf( 'czr-carousel' ) ) {
                                     return;
                               }
-                              self.fireGalleriesCarousel();
+                              self.scheduleGalleryCarousels();
                         }
                   } );
                   czrapp.$_body.on( 'before-endlessly-caching', function( e, params ) {
@@ -895,8 +935,92 @@ var czrapp = czrapp || {};
                               }
                         });
                   });
-
+                  self._css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
+                  czrapp.$_window.scroll( _.throttle( function() {
+                        $( self.slidersSelectorMap.galleries ).each( function() {
+                              if ( czrapp.base.isInWindow( $(this) ) ){
+                                    $(this).trigger( 'czr-is-in-window', { el : $(this) } );
+                              }
+                        });
+                  }, 50 ) );
             },//_init()
+            scheduleGalleryCarousels : function( $_gallery_container ) {
+                  var $_galleries,
+                      _cellSelector = '.carousel-cell',
+                      self = this;
+
+                  if ( ! _.isUndefined( $_gallery_container ) && 0 < $_gallery_container.length ) {
+                        $_galleries = $_gallery_container.find( self.slidersSelectorMap.galleries );
+                  } else {
+                        $_galleries = $(self.slidersSelectorMap.galleries);
+                  }
+                  $_galleries.each( function() {
+                        var $_gal = $(this),
+                            $_firstcell = $_gal.find( '.carousel-cell' ).first(),
+                            $_parentGridItem = $_gal.closest('.grid-item');
+
+                        if ( 1 > $_firstcell.length )
+                          return;
+                        if ( czrapp.localized.imgSmartLoadsForSliders ) {
+                              if ( ! $_firstcell.data('czr_smartLoaded') ) {
+                                    $_firstcell.find('img').removeClass('tc-smart-load-skip');
+                                    $_firstcell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( 'czr-smartloaded-on-init');
+                              }
+                        }
+
+                        $_parentGridItem.one( 'click', function() {
+                              self._fireGalleryCarousel( $_gal );
+                        });
+
+                        $_parentGridItem.one( 'smartload czr-is-in-window', function(e, o) {
+                              if ( czrapp.userXP.isScrolling() ) {
+                                    czrapp.$_body.one( 'scrolling-finished', function() {
+                                          self.fireMeWhenStoppedScrolling( { delay : 4000, func : self._fireGalleryCarousel, instance : self, args : [ $_gal ] } );
+                                    });
+                              } else {
+                                    self.fireMeWhenStoppedScrolling( { delay : 4000, func : self._fireGalleryCarousel, instance : self, args : [ $_gal ] } );
+                              }
+                        });
+                  });
+            },
+            _fireGalleryCarousel : function( $_gallery ) {
+                  var _cellSelector = '.carousel-cell',
+                      self = this;
+                  if ( ! ( $_gallery instanceof $ ) || 1 > $_gallery.length ) {
+                        czrapp.errorLog( '_fireGalleryCarousel : the passed element is not printed in the DOM');
+                        return;
+                  }
+                  if ( $_gallery.data( 'czr-gallery-setup' ) )
+                    return;
+
+                  if ( czrapp.localized.imgSmartLoadsForSliders ) {
+                        self._smartLoadFlickityImg({
+                              sliderEl : $_gallery,
+                              cellSelector : _cellSelector,
+                              scheduleLoading : false
+                        });
+                  }
+                  if ( _.isUndefined( $_gallery.data('flickity') ) ) {
+                        var _is_single_slide = 1 == $_gallery.find( _cellSelector ).length,
+                            _hasPageDots    = ! _is_single_slide && $_gallery.data( 'has-dots' );
+
+                        $_gallery.flickity({
+                              prevNextButtons: false,
+                              wrapAround: true,
+                              imagesLoaded: true,
+                              setGallerySize: false,
+                              cellSelector: _cellSelector,
+                              accessibility: false,
+                              dragThreshold: 10,
+                              lazyLoad: false,
+                              freeScroll: false,
+                              pageDots: _hasPageDots,
+                              draggable: ! _is_single_slide,
+                        });
+                  }
+                  $_gallery.data( 'czr-gallery-setup', true );
+            },
+
 
             fireRelatedPostsCarousel : function() {
                   var self = this;
@@ -911,44 +1035,8 @@ var czrapp = czrapp || {};
                         accessibility: false,
                         contain: true /* allows to not show a blank "cell" when the number of cells is odd but we display an even number of cells per viewport */
                   });
-
             },
-            fireGalleriesCarousel : function( $_gallery_container ) {
-                  var $_galleries,
-                      _cellSelector = '.carousel-cell',
-                      self = this;
 
-                  if ( ! _.isUndefined( $_gallery_container ) && 0 < $_gallery_container.length ) {
-                        $_galleries = $_gallery_container.find( self.slidersSelectorMap.galleries );
-                  } else {
-                        $_galleries = $(self.slidersSelectorMap.galleries);
-                  }
-
-                  $_galleries.each( function() {
-                        var $_gallery = $( this );
-                        if ( czrapp.localized.imgSmartLoadsForSliders ) {
-                            self._smartLoadFlickityImg( { sliderEl : $_gallery, cellSelector : _cellSelector });
-                        }
-                        if ( _.isUndefined( $_gallery.data('flickity') ) ) {
-                              var _is_single_slide = 1 == $_gallery.find( _cellSelector ).length,
-                                  _hasPageDots    = ! _is_single_slide && $_gallery.data( 'has-dots' );
-
-                              $(this).flickity({
-                                    prevNextButtons: false,
-                                    wrapAround: true,
-                                    imagesLoaded: true,
-                                    setGallerySize: false,
-                                    cellSelector: _cellSelector,
-                                    accessibility: false,
-                                    dragThreshold: 10,
-                                    lazyLoad: false,
-                                    freeScroll: false,
-                                    pageDots: _hasPageDots,
-                                    draggable: ! _is_single_slide,
-                              });
-                        }
-                  });
-            },
 
             fireMainSlider : function() {
                   var self = this,
@@ -1011,25 +1099,19 @@ var czrapp = czrapp || {};
                   } , 50);
             },
             _smartLoadFlickityImg : function( params ) {
+                  var self = this;
                   if ( ! _.isObject( params )  ) {
                         czrapp.errorLog( '_smartLoadFlickityImg params should be an object' );
                         return;
                   }
                   params = _.extend( {
                       sliderEl : {},
-                      cellSelector : '.carousel-cell'
+                      cellSelector : '.carousel-cell',
+                      scheduleLoading : true
                   }, params );
 
                   if ( ! ( params.sliderEl instanceof $ ) || 1 > params.sliderEl.length )
                     return;
-
-                  var _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
-                  var _maybeRemoveLoader = function( $_cell ) {
-                        $_cell.find('.czr-css-loader').fadeOut( {
-                              duration: 'fast',
-                              done : function() { $(this).remove();}
-                        } );
-                  };
 
                   params.sliderEl.on( 'czr-flickity-ready.flickity', function() {
                         var _getSelectedCell = function() {
@@ -1039,97 +1121,122 @@ var czrapp = czrapp || {};
                               if ( ! $(this).data('czr_smartLoaded') ) {
                                     $(this).find('img').removeClass('tc-smart-load-skip');
                               }
-                              if ( $(this).hasClass( 'is-selected') ) {
+                              if ( $(this).hasClass( 'is-selected') && ! $(this).data('czr_smartLoaded') ) {
                                     $(this).imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( 'czr-smartloaded-on-init');
                               }
                         });
 
-                        var _smartLoadCellImg = function( _event_ ) {
-                              _event_ = _event_ || 'czr-smartloaded';
-                              var $_cell = this;
-                              if ( 1 > $_cell.find('img[data-src], img[data-smartload]').length )
-                                return;
-                              if ( ! $_cell.data( 'czr_smartLoaded' ) ) {
-                                    if ( 1 > $_cell.find('.czr-css-loader').length ) {
-                                          $_cell.append( _css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
-                                    }
-                                    $_cell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( _event_ );
-                                    $_cell.data( 'czr_loader_timer' , $.Deferred( function() {
-                                          var self = this;
-                                          _.delay( function() {
-                                                self.resolve();
-                                          }, 2000 );
-                                          return this.promise();
-                                    }) );
-                                    $_cell.data( 'czr_loader_timer' ).done( function() {
-                                          _maybeRemoveLoader( $_cell );
-                                    });
-                              }
-                        };
-                        params.sliderEl.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
-                              params.sliderEl.addClass('czr-smartload-scheduled');
-                        }) );
-                        var _isSliderDataSetup = function() {
-                              return 1 <= params.sliderEl.length && ! _.isUndefined( params.sliderEl.data( 'czr_smartload_scheduled' ) );
-                        };
-                        params.sliderEl.data( 'czr_schedule_select',
-                              $.Deferred( function() {
-                                    var dfd = this;
-                                    params.sliderEl.parent().on( 'click staticClick.flickity pointerDown.flickity dragMove.flickity', function(event) {
-                                        dfd.resolve();
-                                    } );
-                                    _.delay( function() {
-                                          params.sliderEl.one( 'select.flickity' , function() {
-                                             dfd.resolve();
-                                          } );
-                                    }, 2000 );
-                              }).done( function() {
-                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                      return;
-
-                                    params.sliderEl.find( params.cellSelector ).each( function() {
-                                          _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-select' );
-                                    });
-                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
-                              })
-                        );//data( 'czr_schedule_select' )
-                        params.sliderEl.data( 'czr_schedule_scroll_resize',
-                              $.Deferred( function() {
-                                    var dfd = this;
-                                    _.delay( function() {
-                                          czrapp.$_window.one( 'scroll resize', function() {
-                                                dfd.resolve();
-                                          });
-                                    }, 5000 );
-                              }).done( function() {
-                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                      return;
-
-                                    params.sliderEl.find( params.cellSelector ).each( function() {
-                                          _smartLoadCellImg.call( $(this), 'czr-smartloaded-on-scroll' );
-                                    });
-                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
-                              })
-                        );//data( 'czr_schedule_scroll_resize' )
-                        params.sliderEl.data( 'czr_schedule_autoload',
-                              $.Deferred( function() {
-                                    var dfd = this;
-                                    _.delay( function() { dfd.resolve(); }, 10000 );
-                              }).done( function() {
-                                    if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
-                                      return;
-
-                                    params.sliderEl.find( params.cellSelector ).each( function() {
-                                          _smartLoadCellImg.call( $(this), 'czr-auto-smartloaded' );
-                                    });
-                                    params.sliderEl.data( 'czr_smartload_scheduled').resolve();
-                              })
-                        );
+                        if ( ! params.scheduleLoading ) {
+                              params.sliderEl.find( params.cellSelector ).each( function() {
+                                    self._smartLoadCellImg( { el : $(this), ev : 'czr-smartloaded-on-init' } );
+                              });
+                        } else {
+                              self._scheduleLoadingScenarios( params );
+                        }
                   });//on flickity ready
                   params.sliderEl.on( 'smartload', params.cellSelector , function() {
-                        _maybeRemoveLoader( $(this) );
+                        self._maybeRemoveLoader.call( $(this) );
                   });
             },//_smartLoadFlickityImg
+            _scheduleLoadingScenarios : function( params ) {
+                  var self = this;
+                  params.sliderEl.data( 'czr_smartload_scheduled', $.Deferred().done( function() {
+                        params.sliderEl.addClass('czr-smartload-scheduled');
+                  }) );
+                  var _isSliderDataSetup = function() {
+                        return 1 <= params.sliderEl.length && ! _.isUndefined( params.sliderEl.data( 'czr_smartload_scheduled' ) );
+                  };
+                  params.sliderEl.data( 'czr_schedule_select',
+                        $.Deferred( function() {
+                              var dfd = this;
+                              params.sliderEl.parent().on( 'click staticClick.flickity pointerDown.flickity dragMove.flickity', function(event) {
+                                  dfd.resolve();
+                              } );
+                              _.delay( function() {
+                                    params.sliderEl.one( 'select.flickity' , function() {
+                                       dfd.resolve();
+                                    } );
+                              }, 2000 );
+                        }).done( function() {
+                              if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                return;
+
+                              params.sliderEl.find( params.cellSelector ).each( function() {
+                                    self._smartLoadCellImg( { el : $(this), ev : 'czr-smartloaded-on-select' } );
+                              });
+                              params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                        })
+                  );//data( 'czr_schedule_select' )
+                  params.sliderEl.data( 'czr_schedule_scroll_resize',
+                        $.Deferred( function() {
+                              var dfd = this;
+                              _.delay( function() {
+                                    czrapp.$_window.one( 'scroll resize', function() {
+                                          dfd.resolve();
+                                    });
+                              }, 5000 );
+                        }).done( function() {
+                              if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                return;
+
+                              params.sliderEl.find( params.cellSelector ).each( function() {
+                                    self._smartLoadCellImg( { el : $(this), ev : 'czr-smartloaded-on-scroll' } );
+                              });
+                              params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                        })
+                  );//data( 'czr_schedule_scroll_resize' )
+                  params.sliderEl.data( 'czr_schedule_autoload',
+                        $.Deferred( function() {
+                              var dfd = this;
+                              _.delay( function() { dfd.resolve(); }, 10000 );
+                        }).done( function() {
+                              if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
+                                return;
+
+                              params.sliderEl.find( params.cellSelector ).each( function() {
+                                    self._smartLoadCellImg( { el : $(this), ev : 'czr-auto-smartloaded' } );
+                              });
+                              params.sliderEl.data( 'czr_smartload_scheduled').resolve();
+                        })
+                  );
+            },
+            _smartLoadCellImg : function( params ) {
+                  params = _.extend( {
+                     el : {},
+                     ev : 'czr-smartloaded'
+                  }, params || {} );
+
+                  var _event_ = params.ev,
+                      self = this,
+                      $_cell = params.el;
+                  if ( ! ( $_cell instanceof $ ) || 1 > $_cell.find('img[data-src], img[data-smartload]').length )
+                    return;
+                  if ( ! $_cell.data( 'czr_smartLoaded' ) ) {
+                        if ( 1 > $_cell.find('.czr-css-loader').length ) {
+                              $_cell.append( self._css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
+                        }
+                        $_cell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( _event_ );
+                        $_cell.data( 'czr_loader_timer' , $.Deferred( function() {
+                              var self = this;
+                              _.delay( function() {
+                                    self.resolve();
+                              }, 2000 );
+                              return this.promise();
+                        }) );
+                        $_cell.data( 'czr_loader_timer' ).done( function() {
+                              self._maybeRemoveLoader.call( $_cell );
+                        });
+                  }
+            },
+            _maybeRemoveLoader : function() {
+                  if ( ! ( $(this) instanceof $ ) )
+                    return;
+
+                  $(this).find('.czr-css-loader').fadeOut( {
+                        duration: 'fast',
+                        done : function() { $(this).remove();}
+                  } );
+            },
             _parallax : function( evt ) {
                 var $_parallax_carousel  = $(this),
                       _parallax_data_map = ['parallaxRatio', 'parallaxDirection', 'parallaxOverflowHidden', 'backgroundClass', 'matchMedia'];
@@ -1251,6 +1358,7 @@ var czrapp = czrapp || {};
                     czrapp.$_body.toggleClass( 'is-scrolling', to );
                     if ( ! to ) {
                           czrapp.trigger( 'scrolling-finished' );
+                          czrapp.$_body.trigger( 'scrolling-finished' );
                     }
               });
               this.scrollPosition.bind( function( to, from ) {
