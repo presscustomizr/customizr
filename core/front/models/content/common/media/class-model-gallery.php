@@ -152,14 +152,7 @@ class CZR_gallery_model_class extends CZR_Model {
                   if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
                       $gallery_items[] = czr_fn_parse_imgs( $img_html );//<- to prepare the img smartload without using the filter 'czr_thumb_html'  ( not declared if smartload not globally enabled )
                   } else {
-                      $gallery_items[] = apply_filters( 'czr_thumb_html', //<- to allow the img smartload
-                          $img_html,
-                          $requested_size = $this->size,
-                          $post_id = $this->post_id,
-                          $custom_thumb_id = null,
-                          $_img_attr = null,
-                          $tc_thumb_size = $this->size
-                      );
+                      $gallery_items[] = $img_html;
                   }
             }
             if ( czr_fn_is_checked( 'tc_slider_img_smart_load' ) ) {
