@@ -789,7 +789,7 @@ var czrapp = czrapp || {};
                   if ( 1 < $_fpuEl.length ) {
                         var _isFPUimgCentered = _.isUndefined( czrapp.localized.FPUImgCentered ) ? 1 == czrapp.localized.centerAllImg : 1 == czrapp.localized.FPUImgCentered;
                         $_fpuEl.centerImages( {
-                            onInit : true,
+                            onInit : false,
                             enableCentering : _isFPUimgCentered,
                             enableGoldenRatio : false,
                             disableGRUnder : 0,//<= don't disable golden ratio when responsive
@@ -805,10 +805,14 @@ var czrapp = czrapp || {};
                                     }
                             });
                         }
-                        if ( _isFPUimgCentered ) {
-                              setTimeout( function(){
-                                    czrapp.base.triggerSimpleLoad( $_fpuEl.find("img.tc-holder-img") );
-                              }, 100 );
+                        if ( _isFPUimgCentered && ! czrapp.localized.imgSmartLoadEnabled ) {
+                              var $_holder_img = $_fpuEl.find("img.tc-holder-img");
+                              if ( 0 < $_holder_img.length ) {
+                                  czrapp.base.triggerSimpleLoad( $_holder_img );
+                                  setTimeout( function(){
+                                        czrapp.base.triggerSimpleLoad( $_holder_img );
+                                  }, 100 );
+                              }
                         }
                   }//if ( 1 < $_fpuEl.length )
             },//center_images
@@ -2519,7 +2523,11 @@ var czrapp = czrapp || {};
 
     },
     _init_scrollbar : function() {
-
+      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+        $( '.' + this._sidenav_menu_class, this._sidenav_selector ).mCustomScrollbar({
+            theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
+        });
+      }
     },
     _is_translating : function() {
 
