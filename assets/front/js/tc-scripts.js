@@ -1067,7 +1067,9 @@ var Tab = function ($) {
 
             $_imgs
                   .addClass( skipImgClass )
-                  .bind( 'load_img', {}, function() { self._load_img(this); });
+                  .bind( 'load_img', {}, function() {
+                        self._load_img(this);
+                  });
             $(window).scroll( function( _evt ) { self._better_scroll_event_handler( $_imgs, _evt ); } );
             $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( $_imgs, _evt ); }, 100 ) );
             this._maybe_trigger_load( $_imgs );
@@ -1085,7 +1087,9 @@ var Tab = function ($) {
       Plugin.prototype._maybe_trigger_load = function( $_imgs , _evt ) {
             var self = this;
                 _visible_list = $_imgs.filter( function( ind, _img ) { return self._is_visible( _img ,  _evt ); } );
-            _visible_list.map( function( ind, _img ) { $(_img).trigger( 'load_img' );  } );
+            _visible_list.map( function( ind, _img ) {
+                  $(_img).trigger( 'load_img' );
+            });
       };
       Plugin.prototype._is_visible = function( _img, _evt ) {
             var $_img       = $(_img),
@@ -1113,7 +1117,7 @@ var Tab = function ($) {
                   .removeAttr( this.options.attribute.join(' ') )
                   .attr( 'sizes' , _sizes )
                   .attr( 'srcset' , _src_set )
-                  .attr('src', _src )
+                  .attr( 'src', _src )
                   .load( function () {
                         if ( ! $_img.hasClass('tc-smart-loaded') ) {
                               $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded');
@@ -1130,7 +1134,10 @@ var Tab = function ($) {
                               $_img.attr( 'height', _height );
                         }
 
-                        $_img.trigger('smartload');
+                        if ( ! $_img.data('czr-smart-loaded') ) {
+                              $_img.trigger('smartload');
+                              $_img.data('czr-smart-loaded', true );
+                        }
                   });//<= create a load() fn
             if ( $_img[0].complete ) {
                   $_img.load();
@@ -1258,7 +1265,9 @@ var Tab = function ($) {
           defaults = {
                 enableCentering : true,
                 onresize : true,
+                onInit : true,//<= shall we smartload on init or wait for a custom event, typically smartload ?
                 oncustom : [],//list of event here
+                $containerToListen : null,//<= we might want to listen to custom event trigger to a parent container.Should be a jQuery obj
                 imgSel : 'img',
                 defaultCSSVal : { width : 'auto' , height : 'auto' },
                 leftAdjust : 0,
@@ -1287,7 +1296,8 @@ var Tab = function ($) {
       }
       Plugin.prototype.init = function () {
             var self = this,
-                _do = function() {
+                _do = function( _event_ ) {
+                    _event_ = _event_ || 'init';
                     self._maybe_apply_golden_r();
                     var $_imgs = $( self.options.imgSel , self.container );
                     if ( self.options.enableGoldenRatio ) {
@@ -1298,13 +1308,18 @@ var Tab = function ($) {
                           );
                     }
                     if ( 1 <= $_imgs.length && self.options.enableCentering ) {
-                          self._parse_imgs($_imgs);
+                          self._parse_imgs( $_imgs, _event_ );
                     }
                 };
-            _do();
+            if ( self.options.onInit ) {
+                  _do();
+            }
             if ( $.isArray( self._customEvt ) ) {
                   self._customEvt.map( function( evt ) {
-                        $( self.container ).bind( evt, {} , _do );
+                        var $_containerToListen = ( self.options.$containerToListen instanceof $ && 1 < self.options.$containerToListen.length ) ? self.options.$containerToListen : $( self.container );
+                        $_containerToListen.bind( evt, {} , function() {
+                              _do( evt );
+                        });
                   } );
             }
       };
@@ -1330,26 +1345,28 @@ var Tab = function ($) {
       Plugin.prototype._is_window_width_allowed = function() {
             return $(window).width() > this.options.disableGRUnder - 15;
       };
-      Plugin.prototype._parse_imgs = function( $_imgs ) {
+      Plugin.prototype._parse_imgs = function( $_imgs, _event_ ) {
             var self = this;
             $_imgs.each(function ( ind, img ) {
                   var $_img = $(img);
-                  self._pre_img_cent( $_img );
-                  if ( self.options.onresize ) {
+                  self._pre_img_cent( $_img, _event_ );
+                  if ( self.options.onresize && ! $_img.data('resize-react-bound' ) ) {
+                        $_img.data('resize-react-bound', true );
                         $(window).resize( _.debounce( function() {
-                              self._pre_img_cent( $_img );
-                        }, 200 ) );
+                              self._pre_img_cent( $_img, 'resize');
+                        }, 100 ) );
                   }
-                  if ( $.isArray( self._customEvt ) ) {
-                        self._customEvt.map( function( evt ) {
-                              $_img.bind( evt, {} , function( evt ) {
-                                    self._pre_img_cent( $_img );
-                              } );
-                        } );
-                  }
+
             });//$_imgs.each()
+            if ( $(self.container).attr('data-img-centered-in-container') ) {
+                  var _n = parseInt( $(self.container).attr('data-img-centered-in-container'), 10 ) + 1;
+                  $(self.container).attr('data-img-centered-in-container', _n );
+            } else {
+                  $(self.container).attr('data-img-centered-in-container', 1 );
+            }
       };
-      Plugin.prototype._pre_img_cent = function( $_img ) {
+      Plugin.prototype._pre_img_cent = function( $_img, _event_ ) {
+
             var _state = this._get_current_state( $_img ),
                 self = this,
                 _case  = _state.current,
@@ -1370,7 +1387,12 @@ var Tab = function ($) {
                   } else {
                         $_img.addClass( _p._class ).removeClass( _not_p._class );
                   }
-
+                  if ( $_img.attr('data-img-centered') ) {
+                        var _n = parseInt( $_img.attr('data-img-centered'), 10 ) + 1;
+                        $_img.attr('data-img-centered', _n );
+                  } else {
+                        $_img.attr('data-img-centered', 1 );
+                  }
                   return $_img;
             };
             if ( this.options.setOpacityWhenCentered ) {
@@ -8813,7 +8835,7 @@ var czrapp = czrapp || {};
                                   setOpacityWhenCentered : false,//will set the opacity to 1
                                   oncustom : [ 'simple_load']
                             }).find( 'img' );
-                            czrapp.methods.Base.triggerSimpleLoad( $_img );
+                            czrapp.base.triggerSimpleLoad( $_img );
                       });
 
                   };
@@ -8831,7 +8853,7 @@ var czrapp = czrapp || {};
                       _where           = czrapp.localized.imgSmartLoadOpts.parentSelectors.join();
                   if (  smartLoadEnabled ) {
                         $( _where ).imgSmartLoad(
-                          _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {}
+                            _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {}
                         );
                   }
                   if ( 1 == czrapp.localized.centerAllImg ) {
@@ -8912,6 +8934,31 @@ var czrapp = czrapp || {};
                               _mayBeForceOpacity( { el : $(this), delay : 0 } );
                         });
                   }, 1000 );
+                  var $_fpuEl = $('.fpc-widget-front .fp-thumb-wrapper');
+                  if ( 1 < $_fpuEl.length ) {
+                        $_fpuEl.centerImages( {
+                            onInit : false,
+                            enableCentering : 1 == czrapp.localized.centerAllImg,
+                            enableGoldenRatio : false,
+                            disableGRUnder : 0,//<= don't disable golden ratio when responsive
+                            zeroTopAdjust : 0,
+                            oncustom : ['smartload', 'simple_load', 'block_resized', 'fpu-recenter']
+                        });
+                        if ( ! czrapp.localized.imgSmartLoadEnabled ) {
+                            czrapp.base.triggerSimpleLoad( $_fpuEl.find("img:not(.tc-holder-img)") );
+                        } else {
+                            $_fpuEl.find("img:not(.tc-holder-img)").each( function() {
+                                    if ( $(this).data( 'czr-smart-loaded') ) {
+                                        czrapp.base.triggerSimpleLoad( $(this) );
+                                    }
+                            });
+                        }
+                        if ( 1 == czrapp.localized.centerAllImg ) {
+                              setTimeout( function(){
+                                    czrapp.base.triggerSimpleLoad( $_fpuEl.find("img.tc-holder-img") );
+                              }, 100 );
+                        }
+                  }//if ( 1 < $_fpuEl.length )
             },//center_images
 
             parallax : function() {
@@ -9085,12 +9132,18 @@ var czrapp = czrapp || {};
                                     $_firstcell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( 'czr-smartloaded-on-init');
                               }
                         }
-
+                        $_firstcell.centerImages( {
+                              enableCentering : 1 == czrapp.localized.centerSliderImg,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              oncustom : ['smartload']
+                        } );
                         $_parentGridItem.one( 'click', function() {
                               self._fireGalleryCarousel( $_gal );
                         });
-
                         $_parentGridItem.one( 'smartload czr-is-in-window', function(e, o) {
+                              if ( czrapp.base.matchMedia( 1024 ) )//<= tablets in landscape mode
+                                return;
+
                               if ( czrapp.userXP.isScrolling() ) {
                                     czrapp.$_body.one( 'scrolling-finished', function() {
                                           self.fireMeWhenStoppedScrolling( { delay : 4000, func : self._fireGalleryCarousel, instance : self, args : [ $_gal ] } );
@@ -9134,6 +9187,13 @@ var czrapp = czrapp || {};
                               freeScroll: false,
                               pageDots: _hasPageDots,
                               draggable: ! _is_single_slide,
+                        });
+                        $_gallery.find( _cellSelector ).each( function() {
+                              $(this).centerImages( {
+                                    enableCentering : 1 == czrapp.localized.centerSliderImg,
+                                    onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                                    oncustom : ['smartload']
+                              } );
                         });
                   }
                   $_gallery.data( 'czr-gallery-setup', true );
@@ -9198,14 +9258,15 @@ var czrapp = czrapp || {};
                   var self = this;
                   setTimeout( function() {
                         $.each( $( self.slidersSelectorMap.mainSlider ) , function() {
-
-                              $( this ).centerImages( {
-                                    enableCentering : 1 == czrapp.localized.centerSliderImg,
-                                    imgSel : '.carousel-image img',
-                                    oncustom : ['settle.flickity', 'simple_load', 'smartload'],
-                                    defaultCSSVal : { width : '100%' , height : 'auto' },
-                                    useImgAttr : true,
-                                    zeroTopAdjust: 0
+                              $( this ).find( '.carousel-cell' ).each( function() {
+                                    $(this).centerImages( {
+                                          enableCentering : 1 == czrapp.localized.centerSliderImg,
+                                          imgSel : '.carousel-image img',
+                                          oncustom : ['settle.flickity', 'simple_load', 'smartload'],
+                                          defaultCSSVal : { width : '100%' , height : 'auto' },
+                                          useImgAttr : true,
+                                          zeroTopAdjust: 0
+                                    });
                               });
                               var self = this;
                               setTimeout( function() {
@@ -10059,7 +10120,7 @@ var czrapp = czrapp || {};
                 return;
             $( '.grid-container__alternate, .grid-container__square-mini, .grid-container__plain' ).on( 'mouseenter mouseleave', '.entry-media__holder, article.full-image .tc-content', _toggleArticleParentHover );
             $( '.grid-container__masonry, .grid-container__classic').on( 'mouseenter mouseleave', '.grid__item', _toggleArticleParentHover );
-            czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front', _toggleThisHover );
+            czrapp.$_body.on( 'mouseenter mouseleave', '.gallery-item, .widget-front, .fpc-widget-front', _toggleThisHover );
             czrapp.$_body.on( 'mouseenter mouseleave', '.widget li', _toggleThisOn );
 
             function _toggleArticleParentHover( evt ) {
