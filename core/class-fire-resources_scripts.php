@@ -225,7 +225,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-js-arraymap-proto',
                      //libs
                      'tc-bootstrap',
-                     'tc-smoothscroll',
+                     //'tc-smoothscroll',
                      'tc-outline',
                      'tc-waypoints',
                      //'tc-mcs',
@@ -273,8 +273,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
                ));
 
-
-               $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', ! wp_is_mobile() && 1 == esc_attr( czr_fn_opt( 'tc_smoothscroll') ) );
+               $smooth_scroll_enabled = apply_filters('tc_enable_smoothscroll', czr_fn_is_checked( 'tc_smoothscroll') );
                $smooth_scroll_options = apply_filters('tc_smoothscroll_options', array( 'touchpadSupport' => false ) );
 
                //smart load
@@ -312,7 +311,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   apply_filters( 'tc_customizr_script_params' , array(
                       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
                       'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
-                      'SmoothScroll'      => array( 'Enabled' => $smooth_scroll_enabled, 'Options' => $smooth_scroll_options ),
+
+                      'isLightBoxEnabled'  => $this -> czr_fn_is_lightbox_required(),
+
+                      'SmoothScroll'      => array(
+                          'Enabled' => $smooth_scroll_enabled,
+                          'Options' => $smooth_scroll_options,
+                          'path' => czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/js/libs/smoothscroll.min.js' )
+                      ),
 
                       'isAnchorScrollEnabled'     => czr_fn_is_checked( 'tc_link_scroll' ), // also adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
                       'anchorSmoothScrollExclude' => $anchor_smooth_scroll_exclude,
