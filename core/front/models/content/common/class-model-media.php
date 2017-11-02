@@ -260,10 +260,9 @@ class CZR_media_model_class extends CZR_Model {
                               return;
 
                         $_instance->czr_fn_setup ( array(
-
-                                    'post_id'          => $post_id,
-                                    'has_lightbox'     => $this->has_lightbox,
-                                    'size'             => $this->thumb_size ? $this->thumb_size : 'full',
+                              'post_id'          => $post_id,
+                              'has_lightbox'     => $this->has_lightbox,
+                              'size'             => $this->thumb_size ? $this->thumb_size : 'full'
 
                         ));
 
@@ -342,7 +341,6 @@ class CZR_media_model_class extends CZR_Model {
       protected function czr_fn__setup_media_wrapper() {
 
             if ( in_array( $this -> media_template, array( 'content/common/media/thumbnail', 'content/common/media/gallery' ) ) ) {
-
                   /* Add centering class */
                   switch ( $this -> image_centering ) {
                         case 'css-centering' :
@@ -353,8 +351,13 @@ class CZR_media_model_class extends CZR_Model {
                               $centering_class = 'no-centering';
                         break;
 
+                        // js-centering case is the default
+                        // for gallery carousel, we don't want to js center all hidden cell items => too expensive
+                        // => that's why we flag with this class 'granular-js-centering', which will be excluded from the default js treatment on front
+                        // var $wrappersOfCenteredImagesCandidates = $('.widget-front .tc-thumbnail, .js-centering.entry-media__holder, .js-centering.entry-media__wrapper');
+                        // @see jquery_plugins.part.js
                         default :
-                              $centering_class = 'js-centering';
+                              $centering_class = false === strpos( $this -> media_template, 'gallery') ? 'js-centering' : 'granular-js-centering';
                         break;
                   }
 
