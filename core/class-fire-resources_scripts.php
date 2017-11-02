@@ -228,7 +228,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-smoothscroll',
                      'tc-outline',
                      'tc-waypoints',
-                     'tc-mcs',
+                     //'tc-mcs',
                      'tc-flickity',
                      'tc-vivus',
                      'tc-raf',

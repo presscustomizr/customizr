@@ -2110,13 +2110,15 @@ var czrapp = czrapp || {};
                      }
                   });
             }
-            czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
-                  var $_this                  = $( this ),
-                      $_customScrollbar = $_this.hasClass('mCustomScrollbar') ? $_this : $_this.closest('.mCustomScrollbar');
-                  if ( $_customScrollbar.length ) {
-                       $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
-                  }
-            });
+            if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                  czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
+                        var $_this                  = $( this ),
+                            $_customScrollbar = $_this.hasClass('mCustomScrollbar') ? $_this : $_this.closest('.mCustomScrollbar');
+                        if ( $_customScrollbar.length ) {
+                             $_customScrollbar.mCustomScrollbar( 'scrollTo', $(evt.target) );
+                        }
+                  });
+            }
       },
       smoothScroll: function() {
             if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled ) {
@@ -2517,16 +2519,6 @@ var czrapp = czrapp || {};
 
     },
     _init_scrollbar : function() {
-
-      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-
-        $( '.' + this._sidenav_menu_class, this._sidenav_selector ).mCustomScrollbar({
-
-            theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
-
-        });
-
-      }
 
     },
     _is_translating : function() {
