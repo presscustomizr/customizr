@@ -663,8 +663,8 @@ var czrapp = czrapp || {};
                         if ( 'object' !== typeof collection || 1 > $_container.length) {
                               return;
                         }
-                        _.each( collection, function( el, id ) {
-                              var $_img = $(  '#' +id+ ' .thumb-wrapper', $_container ).centerImages( {
+                        _.each( collection, function( elementSelector ) {
+                              var $_img = $(  elementSelector + ' .thumb-wrapper', $_container ).centerImages( {
                                     enableCentering : 1 == czrapp.localized.centerAllImg,
                                     enableGoldenRatio : false,
                                     disableGRUnder : 0,//<= don't disable golden ratio when responsive
@@ -672,7 +672,7 @@ var czrapp = czrapp || {};
                               }).find( 'img' );
 
                               if ( $_img.length < 1 ) {
-                                    $_img = $( '#' +id+ ' .tc-rectangular-thumb',  $_container ).centerImages( {
+                                    $_img = $( elementSelector + ' .tc-rectangular-thumb',  $_container ).centerImages( {
                                           enableCentering : 1 == czrapp.localized.centerAllImg,
                                           enableGoldenRatio : true,
                                           goldenRatioVal : czrapp.localized.goldenRatio || 1.618,
@@ -681,7 +681,7 @@ var czrapp = czrapp || {};
                                     }).find( 'img' );
                               }
                               if ( $_img.length < 1 ) {
-                                    $_img = $( '#' +id+ ' .tc-grid-figure', $_container ).centerImages( {
+                                    $_img = $( elementSelector + ' .tc-grid-figure', $_container ).centerImages( {
                                           enableCentering : 1 == czrapp.localized.centerAllImg,
                                           oncustom : [ 'simple_load'],
                                           enableGoldenRatio : true,

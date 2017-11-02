@@ -685,17 +685,18 @@ var czrapp = czrapp || {};
 
                       if ( 'object' !== typeof collection || 1 > $_container.length )
                         return;
-                      _.each( collection, function( el, id ) {
+                      _.each( collection, function( elementSelector ) {
 
-                            var $_img = $(  '#' +id+ ' .js-centering.entry-media__holder, #' +id+ ' .js-centering.entry-media__wrapper', $_container ).centerImages( {
+                            var $_imgsToSimpleLoad = $(  elementSelector + ' .js-centering', $_container ).centerImages( {
                                   enableCentering : 1,
                                   enableGoldenRatio : false,
                                   disableGRUnder : 0,//<= don't disable golden ratio when responsive,
                                   zeroTopAdjust: 0,
                                   setOpacityWhenCentered : false,//will set the opacity to 1
-                                  oncustom : [ 'simple_load']
-                            }).find( 'img' );
-                            czrapp.base.triggerSimpleLoad( $_img );
+                                  oncustom : [ 'simple_load', 'smartload' ]
+                            })
+                            .find( 'img:not([src^="data"])' );
+                            czrapp.methods.Base.triggerSimpleLoad( $_imgsToSimpleLoad );
                       });
 
                   };
@@ -735,27 +736,11 @@ var czrapp = czrapp || {};
             centerImages : function() {
                   var $wrappersOfCenteredImagesCandidates = $('.widget-front .tc-thumbnail, .js-centering.entry-media__holder, .js-centering.entry-media__wrapper');
                   _css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
-                  $.when( $wrappersOfCenteredImagesCandidates.each( function() {
+                  $wrappersOfCenteredImagesCandidates.each( function() {
                         $( this ).append(  _css_loader ).find('.czr-css-loader').fadeIn( 'slow');
-                  })).done( function() {
-                        $wrappersOfCenteredImagesCandidates.centerImages({
-                              enableCentering : 1,
-                              oncustom : ['smartload', 'refresh-height', 'simple_load'],
-                              enableGoldenRatio : false, //true
-                              zeroTopAdjust: 0,
-                              setOpacityWhenCentered : false,//will set the opacity to 1
-                              addCenteredClassWithDelay : 50,
-                              opacity : 1
-                        });
-                        _.delay( function() {
-                              $wrappersOfCenteredImagesCandidates.find('.czr-css-loader').fadeOut( {
-                                duration: 500,
-                                done : function() { $(this).remove();}
-                              } );
-                        }, 300 );
                   });
-
                   $wrappersOfCenteredImagesCandidates.centerImages({
+                        onInit : true,
                         enableCentering : 1,
                         oncustom : ['smartload', 'refresh-height', 'simple_load'],
                         enableGoldenRatio : false, //true
@@ -764,6 +749,12 @@ var czrapp = czrapp || {};
                         addCenteredClassWithDelay : 50,
                         opacity : 1
                   });
+                  _.delay( function() {
+                        $wrappersOfCenteredImagesCandidates.find('.czr-css-loader').fadeOut( {
+                          duration: 500,
+                          done : function() { $(this).remove();}
+                        } );
+                  }, 300 );
                   var _mayBeForceOpacity = function( params ) {
                         params = _.extend( {
                               el : {},
