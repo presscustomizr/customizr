@@ -318,19 +318,15 @@ class CZR_slider_model_class extends CZR_Model {
 
               //always use the tc-slider-small if available and not corrupted
               //and that is not from previous edits
-              if ( ! empty( $image_meta['sizes']['tc-slider-small'] )
-                && $image_meta['sizes']['tc-slider-small']
-                && ! ( $image_edited && ! strpos( $image['file'], $image_edit_hash[0] ) ) ) {
+              $small_slider_thumb = ! empty( $image_meta['sizes']['tc-slider-small'] ) ? $image_meta['sizes']['tc-slider-small'] : null;
 
-                  $image = $image_meta['sizes']['tc-slider-small'];
-
+              if ( $small_slider_thumb && ! ( $image_edited && ! strpos( $small_slider_thumb['file'], $image_edit_hash[0] ) ) ) {
                   //if available use the slider small size
-                  $sources[ $image['width'] ] = array(
-                    'url'        => $image_baseurl . $image['file'],
+                  $sources[ $small_slider_thumb['width'] ] = array(
+                    'url'        => $image_baseurl .  $small_slider_thumb['file'],
                     'descriptor' => 'w',
-                    'value'      => $image['width'],
+                    'value'      => $small_slider_thumb['width'],
                   );
-
               }
               else {
                   //flag to avoid several checks on whether the image sizes we're about to add to the sources
