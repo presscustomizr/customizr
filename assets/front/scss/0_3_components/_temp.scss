@@ -37,6 +37,9 @@
 .full-image .tc-thumbnail {
   background: #B4B4B4 ;
 }
+.full-image.format-gallery .tc-thumbnail {
+  background: #ffffff;
+}
 [class*=grid-container__] .czr-carousel,
 [class*=grid-container__] .carousel-inner {
   height: 100%;
