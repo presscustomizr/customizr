@@ -787,9 +787,10 @@ var czrapp = czrapp || {};
                   }, 1000 );
                   var $_fpuEl = $('.fpc-widget-front .fp-thumb-wrapper');
                   if ( 1 < $_fpuEl.length ) {
+                        var _isFPUimgCentered = _.isUndefined( czrapp.localized.FPUImgCentered ) ? 1 == czrapp.localized.centerAllImg : 1 == czrapp.localized.FPUImgCentered;
                         $_fpuEl.centerImages( {
-                            onInit : false,
-                            enableCentering : 1 == czrapp.localized.centerAllImg,
+                            onInit : true,
+                            enableCentering : _isFPUimgCentered,
                             enableGoldenRatio : false,
                             disableGRUnder : 0,//<= don't disable golden ratio when responsive
                             zeroTopAdjust : 0,
@@ -804,7 +805,7 @@ var czrapp = czrapp || {};
                                     }
                             });
                         }
-                        if ( 1 == czrapp.localized.centerAllImg ) {
+                        if ( _isFPUimgCentered ) {
                               setTimeout( function(){
                                     czrapp.base.triggerSimpleLoad( $_fpuEl.find("img.tc-holder-img") );
                               }, 100 );
