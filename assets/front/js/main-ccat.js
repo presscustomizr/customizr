@@ -933,7 +933,7 @@ var czrapp = czrapp || {};
                   czrapp.$_body.on( 'click next.czr-carousel', '.czr-carousel-next', function(e) { self._slider_arrows.apply( this , [ e, 'next' ] );} );
                   this.fireRelatedPostsCarousel();
                   this.scheduleGalleryCarousels();
-                  this.fireMainSlider().centerMainSlider();
+                  this.fireMainSlider();
                   czrapp.$_body.on( 'post-load', function( e, response ) {
                         if ( 'success' == response.type && response.collection && response.container ) {
                               if ( ! response.html || -1 === response.html.indexOf( 'czr-gallery' ) || -1 === response.html.indexOf( 'czr-carousel' ) ) {
@@ -982,17 +982,17 @@ var czrapp = czrapp || {};
 
                         if ( 1 > $_firstcell.length )
                           return;
+                        $_firstcell.centerImages( {
+                              enableCentering : 1 == czrapp.localized.centerSliderImg,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              oncustom : ['smartload']
+                        } );
                         if ( czrapp.localized.imgSmartLoadsForSliders ) {
                               if ( ! $_firstcell.data('czr_smartLoaded') ) {
                                     $_firstcell.find('img').removeClass('tc-smart-load-skip');
                                     $_firstcell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( 'czr-smartloaded-on-init');
                               }
                         }
-                        $_firstcell.centerImages( {
-                              enableCentering : 1 == czrapp.localized.centerSliderImg,
-                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
-                              oncustom : ['smartload']
-                        } );
                         $_parentGridItem.one( 'click', function() {
                               self._fireGalleryCarousel( $_gal );
                         });
@@ -1075,11 +1075,37 @@ var czrapp = czrapp || {};
             fireMainSlider : function() {
                   var self = this,
                       $_main_slider = $(self.slidersSelectorMap.mainSlider),
-                      _cellSelector = '.carousel-cell';
+                      _cellSelector = '.carousel-cell',
+                      $_firstcell = $_main_slider.find( _cellSelector ).first();
+
+                  if ( 1 > $_firstcell.length )
+                    return;
+                  $_main_slider.find( _cellSelector ).each( function() {
+                        $(this).centerImages( {
+                              enableCentering : 1 == czrapp.localized.centerSliderImg,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              oncustom : [ 'simple_load', 'smartload', 'refresh-centering-on-select' ],
+                              defaultCSSVal : { width : '100%' , height : 'auto' },
+                              useImgAttr : true,
+                              zeroTopAdjust: 0
+                        } );
+                  });
+                  $_main_slider.on( 'czr-flickity-ready.flickity', function() {
+                        _.delay( function() {
+                              $(this).on( 'select.flickity', function() {
+                                    if ( $_main_slider.data('flickity').selectedElement && 1 == $( $_main_slider.data('flickity').selectedElement ).length ) {
+                                          $( $_main_slider.data('flickity').selectedElement ).trigger( 'refresh-centering-on-select');
+                                    }
+                              });
+                        }, 500 );
+                  });
 
                   if ( czrapp.localized.imgSmartLoadsForSliders ) {
                         this._smartLoadFlickityImg( { sliderEl : $_main_slider, cellSelector : _cellSelector });
                   }
+                  setTimeout( function() {
+                        $_main_slider.prevAll('.czr-slider-loader-wrapper').fadeOut();
+                  }, 300 );
                   if ( $_main_slider.length > 0 ) {
                         var _is_single_slide = 1 == $_main_slider.find( _cellSelector ).length,
                             _autoPlay        = $_main_slider.data('slider-delay'),
@@ -1107,31 +1133,6 @@ var czrapp = czrapp || {};
                         });
                   }
                   return this;
-            },
-
-
-            centerMainSlider : function() {
-                  var self = this;
-                  setTimeout( function() {
-                        $.each( $( self.slidersSelectorMap.mainSlider ) , function() {
-                              $( this ).find( '.carousel-cell' ).each( function() {
-                                    $(this).centerImages( {
-                                          enableCentering : 1 == czrapp.localized.centerSliderImg,
-                                          imgSel : '.carousel-image img',
-                                          oncustom : ['settle.flickity', 'simple_load', 'smartload'],
-                                          defaultCSSVal : { width : '100%' , height : 'auto' },
-                                          useImgAttr : true,
-                                          zeroTopAdjust: 0
-                                    });
-                              });
-                              var self = this;
-                              setTimeout( function() {
-                                    $( self ).prevAll('.czr-slider-loader-wrapper').fadeOut();
-                              }, 300 );
-
-                        });
-
-                  } , 50);
             },
             _smartLoadFlickityImg : function( params ) {
                   var self = this;
@@ -1181,16 +1182,21 @@ var czrapp = czrapp || {};
                   var _isSliderDataSetup = function() {
                         return 1 <= params.sliderEl.length && ! _.isUndefined( params.sliderEl.data( 'czr_smartload_scheduled' ) );
                   };
+                  var _resolveHandler = function( dfd ) {
+                        dfd.resolve();
+                  };
                   params.sliderEl.data( 'czr_schedule_select',
                         $.Deferred( function() {
                               var dfd = this;
-                              params.sliderEl.parent().on( 'click staticClick.flickity pointerDown.flickity dragMove.flickity', function(event) {
-                                  dfd.resolve();
+                              params.sliderEl.parent().one( 'click staticClick.flickity pointerDown.flickity dragMove.flickity', function() {
+                                    dfd.resolve();
                               } );
                               _.delay( function() {
-                                    params.sliderEl.one( 'select.flickity' , function() {
-                                       dfd.resolve();
-                                    } );
+                                    if ( 'pending' == dfd.state() ) {
+                                          params.sliderEl.one( 'select.flickity' , function() {
+                                                dfd.resolve();
+                                          } );
+                                    }
                               }, 2000 );
                         }).done( function() {
                               if ( ! _isSliderDataSetup() || 'resolved' == params.sliderEl.data( 'czr_smartload_scheduled' ).state() )
@@ -2131,14 +2137,17 @@ var czrapp = czrapp || {};
                               var dfd = this;
                               _.delay( function() {
                                     dfd.resolve();
-                              }, 1000 );
+                              }, 500 );
                         }).done( function() {
-                              $.getScript( CZRParams.SmoothScroll.path)
-                                    .done(function() {
-                                        if ( 'function' != typeof( smoothScroll ) )
-                                          return;
-                                        smoothScroll( CZRParams.SmoothScroll.Options );
-                                    });
+                              $.ajax( {
+                                    url : ( CZRParams.SmoothScroll.path),
+                                    cache : true,
+                                    dataType: "script"
+                              }).done(function() {
+                                    if ( 'function' != typeof( smoothScroll ) )
+                                      return;
+                                    smoothScroll( CZRParams.SmoothScroll.Options );
+                              });
                         });
                   });
 
