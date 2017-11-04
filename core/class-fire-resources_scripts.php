@@ -17,7 +17,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          function __construct () {
               self::$instance =& $this;
 
-              $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+              $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE || CZR_REFRESH_ASSETS ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
               $this->_minify_js               = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
 
 
@@ -469,7 +469,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      $_handle,
                      sprintf( '%1$s%2$s%3$s', CZR_BASE_URL , $_params['path'], $_filename ),
                      $_params['dependencies'],
-                     $this->_resouces_version,
+                     $this-> _resouces_version,
                      apply_filters( "tc_load_{$_handle}_in_footer", $_params['in_footer'] )
                );
          }
@@ -494,7 +494,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          * @since v3.3+
          */
          function czr_fn_load_concatenated_front_scripts() {
-               return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
+              if ( defined( 'CZR_DEBUG_MODE' ) && true === CZR_DEBUG_MODE )
+                return false;
+              return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
          }
 
 
