@@ -1234,6 +1234,10 @@ function czr_fn_layout_option_map( $get_default = null ) {
                           'min'         => 1,
                           'priority'       => 10,
                           'notice'      => __( 'This option defines the maximum number of posts or search results displayed in any list of posts of your website : blog page, archive page, search page. If the number of items to displayed is greater than your setting, the theme will automatically add a pagination link block at the bottom of the page.' , 'customizr' ),
+                          'ubq_section'   => array(
+                              'section' => 'frontpage_sec',
+                              'priority' => '200'
+                           )
           ),
 
           //Page sidebar layout
@@ -1278,7 +1282,11 @@ function czr_fn_post_list_option_map( $get_default = null ) {
                             'type'          => 'number' ,
                             'step'          => 1,
                             'min'           => 0,
-                            'priority'      => 23
+                            'priority'      => 23,
+                            'ubq_section'   => array(
+                                'section' => 'frontpage_sec',
+                                'priority' => '210'
+                             )
           ),
           'tc_post_list_show_thumb'  =>  array(
                             'default'       => 1,
