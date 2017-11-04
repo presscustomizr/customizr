@@ -6512,7 +6512,7 @@ form.czr-form input:not([type='submit']):not([type='button']):not([type='number'
   -moz-box-shadow: none;
   box-shadow: none;
   width: 100%;
-  background: transparent;
+  background: #fff;
 }
 
 form.czr-form fieldset {
@@ -6527,6 +6527,8 @@ form.czr-form .czr-focus {
 form.czr-form .czr-focus label {
   display: block;
   position: absolute;
+  z-index: 1;
+  color: #aaa;
   -webkit-transition: transform 0.3s ease;
   -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;

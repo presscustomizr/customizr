@@ -186,10 +186,8 @@ form.czr-form {
     position: relative;
     @include box-shadow_none;
     width: 100%;
-    background: transparent;
+    background: #fff;
   }
-
-
   fieldset {
     margin-top: 3em
   }
@@ -202,6 +200,8 @@ form.czr-form {
     label {
         display: block;
         position: absolute;
+        z-index: 1;
+        color: $grey-mid-light;
         @include transition(transform 0.3s ease);
         span {
           @if ( true == $is_rtl ) {
