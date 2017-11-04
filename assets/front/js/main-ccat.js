@@ -641,7 +641,8 @@ var czrapp = czrapp || {};
                         });
                   };
                   _timer_();
-            }
+            },
+            scriptLoadingStatus : {},
       };//_methods{}
 
       czrapp.methods.Base = czrapp.methods.Base || {};
@@ -825,14 +826,68 @@ var czrapp = czrapp || {};
                   );
             },
 
+            czrMagnificPopup : function( $lightBoxCandidate, params ) {
+                  if ( 1 > $lightBoxCandidate.length )
+                    return;
+
+                  var _scrollHandle = function() {},//abstract that we can unbind
+                      _do = function() {
+                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+
+                        if ( 'function' == typeof $.fn.magnificPopup ) {
+                                $lightBoxCandidate.magnificPopup( params );
+                        } else {
+                              if ( czrapp.base.scriptLoadingStatus.czrMagnificPopup && 'pending' == czrapp.base.scriptLoadingStatus.czrMagnificPopup.state() ) {
+                                    czrapp.base.scriptLoadingStatus.czrMagnificPopup.done( function() {
+                                          $lightBoxCandidate.magnificPopup( params );
+                                    });
+                                    return;
+                              }
+                              czrapp.base.scriptLoadingStatus.czrMagnificPopup = czrapp.base.scriptLoadingStatus.czrMagnificPopup || $.Deferred();
+                              if ( $('head').find( '#czr-magnific-popup' ).length < 1 ) {
+                                    $('head').append( $('<link/>' , {
+                                          rel : 'stylesheet',
+                                          id : 'czr-magnific-popup',
+                                          type : 'text/css',
+                                          href : czrapp.localized.assetsPath + 'css/magnific-popup.min.css'
+                                    }) );
+                              }
+
+                              $.ajax( {
+                                    url : ( czrapp.localized.assetsPath + 'js/libs/jquery-magnific-popup.min.js'),
+                                    cache : true,// use the browser cached version when available
+                                    dataType: "script"
+                              }).done(function() {
+                                    if ( 'function' != typeof( $.fn.magnificPopup ) )
+                                      return;
+                                    czrapp.base.scriptLoadingStatus.czrMagnificPopup.resolve();
+                                      $lightBoxCandidate.magnificPopup( params );
+                              }).fail( function() {
+                                    czrapp.errorLog( 'Magnific popup instantiation failed for candidate : '  + $lightBoxCandidate.attr( 'class' ) );
+                              });
+                        }
+                  };//_do()
+                  if ( czrapp.base.isInWindow( $lightBoxCandidate ) ) {
+                        _do();
+                  } else {
+                        _scrollHandle = _.throttle( function() {
+                              if ( czrapp.base.isInWindow( $lightBoxCandidate ) ) {
+                                    _do();
+                              }
+                        }, 100 );
+                        czrapp.$_window.on( 'scroll', _scrollHandle );
+                  }
+            },
+
             lightBox : function() {
-                  var _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
-                  $( '[class*="grid-container__"]' ).magnificPopup({
+                  var self = this,
+                      _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
+                  this.czrMagnificPopup( $( '[class*="grid-container__"]' ), {
                     delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
                     type: 'image'
                   });
-                  $( '.czr-gallery' ).each(function(){
-                        $(this).magnificPopup({
+                  $( '.czr-gallery' ).each( function(){
+                        self.czrMagnificPopup( $(this), {
                               delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
                               type: 'image',
                               gallery: {
@@ -841,7 +896,7 @@ var czrapp = czrapp || {};
                               }
                         });
                   });
-                  $('article .tc-content-inner').magnificPopup({
+                  this.czrMagnificPopup( $('article .tc-content-inner'), {
                         delegate: '[data-lb-type="grouped-post"]',
                         type: 'image',
                         gallery: {
@@ -855,10 +910,14 @@ var czrapp = czrapp || {};
                         var $_expand_btn    = $( this ),
                             $_gallery_crsl  = $_expand_btn.closest( '.czr-carousel' );
 
-                          if ( $_gallery_crsl.length > 0 ) {
 
+                        if ( $_gallery_crsl.length < 1 )
+                          return;
+
+                        var _do = function() {
                               if ( ! $_gallery_crsl.data( 'mfp' ) ) {
-                                    $_gallery_crsl.magnificPopup({
+
+                                    self.czrMagnificPopup( $_gallery_crsl, {
                                         delegate: '.carousel-cell img',
                                         type: 'image',
                                         gallery: {
@@ -872,8 +931,15 @@ var czrapp = czrapp || {};
                               if ( $_gallery_crsl.data( 'mfp' ) ) {
                                     $_gallery_crsl.find( '.is-selected img' ).trigger('click');
                               }
+                        };
+                        if ( 0 < $_gallery_crsl.find( '.flickity-slider').length ) {
+                              _do();
+                        } else {
+                              _.delay( function() {
+                                    _do();
+                              }, 500 );//<= let the flickity slider be setup, because the slider is setup on click
+                        }
 
-                        }//endif
                   });
             },
 
@@ -894,14 +960,6 @@ var czrapp = czrapp || {};
                         mainSlider : '[id^="customizr-slider-main"] .carousel-inner',
                         galleries : '.czr-gallery.czr-carousel .carousel-inner',
                         relatedPosts : '.grid-container__square-mini.carousel-inner'
-                  };
-                  var activate = Flickity.prototype.activate;
-                  Flickity.prototype.activate = function() {
-                        if ( this.isActive ) {
-                          return;
-                        }
-                        activate.apply( this, arguments );
-                        this.dispatchEvent( 'czr-flickity-ready', null, this );
                   };
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', '.czr-parallax-slider', self._parallax );
                   czrapp.$_body.on( 'czr-flickity-ready.flickity', self.slidersSelectorMap.mainSlider, function() {
@@ -965,6 +1023,67 @@ var czrapp = czrapp || {};
                         });
                   }, 50 ) );
             },//_init()
+            czrFlickity : function( $_sliderCandidate, params ) {
+                  if ( 1 > $_sliderCandidate.length )
+                    return;
+
+                  var _scrollHandle = function() {};//abstract that we can unbind
+                  var _do = function() {
+                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+
+                        if ( 'function' == typeof $.fn.flickity ) {
+                              if ( ! $_sliderCandidate.data( 'flickity' ) )
+                                $_sliderCandidate.flickity( params );
+                        } else {
+                              if ( czrapp.base.scriptLoadingStatus.flickity && 'pending' == czrapp.base.scriptLoadingStatus.flickity.state() ) {
+                                    czrapp.base.scriptLoadingStatus.flickity.done( function() {
+                                          $_sliderCandidate.flickity( params );
+                                    });
+                                    return;
+                              }
+                              czrapp.base.scriptLoadingStatus.flickity = czrapp.base.scriptLoadingStatus.flickity || $.Deferred();
+                              if ( $('head').find( '#czr-flickity' ).length < 1 ) {
+                                    $('head').append( $('<link/>' , {
+                                          rel : 'stylesheet',
+                                          id : 'czr-flickity',
+                                          type : 'text/css',
+                                          href : czrapp.localized.assetsPath + 'css/flickity.min.css'
+                                    }) );
+                              }
+                              $.ajax( {
+                                    url : ( czrapp.localized.assetsPath + 'js/libs/flickity-pkgd.min.js'),
+                                    cache : true,// use the browser cached version when availabl
+                                    dataType: "script"
+                              }).done(function() {
+                                    if ( 'function' != typeof( $.fn.flickity ) )
+                                      return;
+                                    czrapp.base.scriptLoadingStatus.flickity.resolve();
+                                    var activate = Flickity.prototype.activate;
+                                    Flickity.prototype.activate = function() {
+                                          if ( this.isActive ) {
+                                            return;
+                                          }
+                                          activate.apply( this, arguments );
+                                          this.dispatchEvent( 'czr-flickity-ready', null, this );
+                                    };
+                                    if ( ! $_sliderCandidate.data( 'flickity' ) )
+                                      $_sliderCandidate.flickity( params );
+                              }).fail( function() {
+                                    czrapp.errorLog( 'Flickity instantiation failed for slider candidate : '  + $_sliderCandidate.attr( 'class' ) );
+                              });
+                        }
+                  };//_do()
+                  if ( czrapp.base.isInWindow( $_sliderCandidate ) ) {
+                        _do();
+                  } else {
+                        _scrollHandle = _.throttle( function() {
+                              if ( czrapp.base.isInWindow( $_sliderCandidate ) ) {
+                                    _do();
+                              }
+                        }, 100 );
+                        czrapp.$_window.on( 'scroll', _scrollHandle );
+                  }
+            },
             scheduleGalleryCarousels : function( $_gallery_container ) {
                   var $_galleries,
                       _cellSelector = '.carousel-cell',
@@ -1031,7 +1150,7 @@ var czrapp = czrapp || {};
                         var _is_single_slide = 1 == $_gallery.find( _cellSelector ).length,
                             _hasPageDots    = ! _is_single_slide && $_gallery.data( 'has-dots' );
 
-                        $_gallery.flickity({
+                        self.czrFlickity( $_gallery, {
                               prevNextButtons: false,
                               wrapAround: true,
                               imagesLoaded: true,
@@ -1058,7 +1177,7 @@ var czrapp = czrapp || {};
 
             fireRelatedPostsCarousel : function() {
                   var self = this;
-                  $( self.slidersSelectorMap.relatedPosts ).flickity({
+                  self.czrFlickity( $( self.slidersSelectorMap.relatedPosts ), {
                         prevNextButtons: false,
                         pageDots: false,
                         imagesLoaded: true,
@@ -1113,7 +1232,7 @@ var czrapp = czrapp || {};
 
                         _autoPlay           =  ( _.isNumber( _autoPlay ) && _autoPlay > 0 ) ? _autoPlay : false;
 
-                        $_main_slider.flickity({
+                        self.czrFlickity( $_main_slider, {
                             prevNextButtons: false,
                             pageDots: _hasPageDots,
                             draggable: !_is_single_slide,
@@ -2105,21 +2224,30 @@ var czrapp = czrapp || {};
       },
 
       variousHeaderActions : function() {
-            var _mobile_viewport                   = 992;
+            var _mobile_viewport = 992,
+                self = this;
             czrapp.$_body.on( 'click', '.search-toggle_btn', function(evt) {
                   evt.preventDefault();
                   czrapp.$_body.toggleClass( 'full-search-opened czr-overlay-opened' );
             });
-            if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-                  czrapp.$_body.on( 'shown.czr.czrDropdown', '.nav__woocart', function() {
-                     var $_to_scroll = $(this).find('.product_list_widget');
-                     if ( $_to_scroll.length && !$_to_scroll.hasClass('mCustomScrollbar') ) {
-                        $_to_scroll.mCustomScrollbar({
-                           theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
-                        });
-                     }
-                  });
-            }
+            czrapp.$_body.on( 'shown.czr.czrDropdown', '.nav__woocart', function() {
+                  var $_el = $(this);
+                  var _do = function() {
+                        var $_to_scroll = $_el.find('.product_list_widget');
+                        if ( $_to_scroll.length && ! $_to_scroll.hasClass('mCustomScrollbar') ) {
+                              $_to_scroll.mCustomScrollbar({
+                                    theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
+                              });
+                        }
+                  };
+                  if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                        _do();
+                  } else {
+                        self.maybeLoadCustomScrollAssets().done( function() {
+                            _do();
+                       });
+                  }
+            });
             if ( 'function' == typeof $.fn.mCustomScrollbar ) {
                   czrapp.$_body.on( 'shown.czr.czrDropdown', '.czr-open-on-click.mCustomScrollbar, .czr-open-on-click .mCustomScrollbar, .mCustomScrollbar .czr-open-on-click', function( evt ) {
                         var $_this                  = $( this ),
@@ -2130,27 +2258,34 @@ var czrapp = czrapp || {};
                   });
             }
       },
-      smoothScroll: function() {
-            if ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled && ! czrapp.base.matchMedia( 1024 ) ) {
-                  czrapp.$_window.one( 'scroll', function() {
-                        $.Deferred( function() {
-                              var dfd = this;
-                              _.delay( function() {
-                                    dfd.resolve();
-                              }, 500 );
-                        }).done( function() {
-                              $.ajax( {
-                                    url : ( CZRParams.SmoothScroll.path),
-                                    cache : true,
-                                    dataType: "script"
-                              }).done(function() {
-                                    if ( 'function' != typeof( smoothScroll ) )
-                                      return;
-                                    smoothScroll( CZRParams.SmoothScroll.Options );
-                              });
-                        });
+      maybeLoadCustomScrollAssets : function() {
+            var dfd = $.Deferred();
+            if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                  return dfd.resolve().promise();
+            } else {
+                  $.ajax( {
+                        url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
+                        cache : true,
+                        dataType: "script"
+                  }).done(function() {
+                        if ( 'function' != typeof $.fn.mCustomScrollbar )
+                          return dfd.rejected();
+                        $('head').append( $('<link/>' , {
+                              rel : 'stylesheet',
+                              id : 'czr-custom-scroll-bar',
+                              type : 'text/css',
+                              href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
+                        }) );
+                        dfd.resolve();
+                  }).fail( function() {
+                        czrapp.errorLog( 'mCustomScrollbar instantiation failed' );
                   });
-
+            }
+            return dfd.promise();
+      },
+      smoothScroll: function() {
+            if ( $('body').hasClass( 'czr-infinite-scroll-on' ) || ( czrapp.localized.SmoothScroll && czrapp.localized.SmoothScroll.Enabled && ! czrapp.base.matchMedia( 1024 ) ) ) {
+                  smoothScroll( czrapp.localized.SmoothScroll.Options );
             }
       },
 
@@ -2425,7 +2560,6 @@ var czrapp = czrapp || {};
       this.sideNavEventListener();
 
       this._set_offset_height();
-      this._init_scrollbar();
 
     },//init()
     sideNavEventListener : function() {
@@ -2448,47 +2582,114 @@ var czrapp = czrapp || {};
       });
 
     },
+    maybeLoadScript : function() {
+          var dfd = $.Deferred();
+          if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                return dfd.resolve().promise();
+          } else {
+                if ( czrapp.base.scriptLoadingStatus.mCustomScrollbar && 'pending' == czrapp.base.scriptLoadingStatus.mCustomScrollbar.state() ) {
+                      czrapp.base.scriptLoadingStatus.mCustomScrollbar.done( function() {
+                            dfd.resolve();
+                      });
+                      return dfd.promise();
+                }
+                czrapp.base.scriptLoadingStatus.mCustomScrollbar = czrapp.base.scriptLoadingStatus.mCustomScrollbar || $.Deferred();
+                if ( $('head').find( '#czr-custom-scroll-bar' ).length < 1 ) {
+                      $('head').append( $('<link/>' , {
+                            rel : 'stylesheet',
+                            id : 'czr-custom-scroll-bar',
+                            type : 'text/css',
+                            href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
+                      }) );
+                }
+                $.ajax( {
+                      url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
+                      cache : true,// use the browser cached version when availabl
+                      dataType: "script"
+                }).done(function() {
+                      if ( 'function' != typeof $.fn.mCustomScrollbar )
+                        return dfd.rejected();
+                      czrapp.base.scriptLoadingStatus.mCustomScrollbar.resolve();
 
-
-    sideNavEventHandler : function( evt, evt_name ) {
-      var self = this;
-
-      switch ( evt_name ) {
-        case 'toggle':
-          if ( ! this._is_translating() )
-            this._toggle_callback( evt );
-        break;
-
-        case 'transitionend' :
-           if ( this._is_translating() && evt.target == $( this._sidenav_selector ).get()[0] )
-             this._transition_end_callback();
-        break;
-
-        case 'sn-open'  :
-            this._end_visibility_toggle();
-        break;
-
-        case 'sn-close' :
-            this._end_visibility_toggle();
-            this._set_offset_height();
-        break;
-
-        case 'scroll' :
-        case 'resize' :
-          setTimeout( function() {
-            if ( ! this._doingWindowAnimation  ) {
-              this._doingWindowAnimation  = true;
-              window.requestAnimationFrame( function() {
-                self._set_offset_height();
-                this._doingWindowAnimation  = false;
-              });
-            }
-          }, 200);
-
-        break;
-      }
+                      dfd.resolve();
+                }).fail( function() {
+                      czrapp.errorLog( 'mCustomScrollbar instantiation failed' );
+                });
+          }
+          return dfd.promise();
     },
+    sideNavEventHandler : function( evt, evt_name ) {
+          var self = this;
+          var _do = function() {
+                switch ( evt_name ) {
+                      case 'toggle':
+                        if ( ! self._is_translating() )
+                          self._toggle_callback( evt );
+                      break;
 
+                      case 'transitionend' :
+                         if ( self._is_translating() && evt.target == $( self._sidenav_selector ).get()[0] )
+                           self._transition_end_callback();
+                      break;
+
+                      case 'sn-open'  :
+                          self._end_visibility_toggle();
+                      break;
+
+                      case 'sn-close' :
+                          self._end_visibility_toggle();
+                          self._set_offset_height();
+                      break;
+
+                      case 'scroll' :
+                      case 'resize' :
+                        setTimeout( function() {
+                          if ( ! self._doingWindowAnimation  ) {
+                            self._doingWindowAnimation  = true;
+                            window.requestAnimationFrame( function() {
+                              self._set_offset_height();
+                              self._doingWindowAnimation  = false;
+                            });
+                          }
+                        }, 200);
+
+                      break;
+                }
+          };
+
+          if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                if (  ! $( '.' + self._sidenav_menu_class, self._sidenav_selector).data( 'mCustomScrollbar' ) ) {
+                      self._init_scrollbar();
+                }
+                _do();
+          } else {
+                if ( 0 < $( '.' + self._sidenav_menu_class, self._sidenav_selector ).length ) {
+                      if ( 'toggle' == evt_name ) {
+                            self.maybeLoadScript().done( function() {
+                                  self._init_scrollbar();
+                                  _do();
+                            });
+                      }
+                }
+          }
+    },
+    _init_scrollbar : function() {
+          var self = this;
+          var _init = function() {
+                $( '.' + self._sidenav_menu_class, self._sidenav_selector ).mCustomScrollbar({
+                      theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
+                });
+                $( '.' + self._sidenav_menu_class, self._sidenav_selector).data( 'mCustomScrollbar', true );
+          };
+
+          if ( 'function' == typeof $.fn.mCustomScrollbar ) {
+                _init();
+          } else {
+                self.maybeLoadScript().done( function() {
+                      _init();
+                });
+          }
+    },
 
     _toggle_callback : function ( evt ){
       evt.preventDefault();
@@ -2547,13 +2748,6 @@ var czrapp = czrapp || {};
       $_sidenav_menu.css('height' , newMaxHeight + 'px');
       $_sidenav.css('top', _offset );
 
-    },
-    _init_scrollbar : function() {
-      if ( 'function' == typeof $.fn.mCustomScrollbar ) {
-        $( '.' + this._sidenav_menu_class, this._sidenav_selector ).mCustomScrollbar({
-            theme: czrapp.$_body.hasClass('header-skin-light') ? 'minimal-dark' : 'minimal',
-        });
-      }
     },
     _is_translating : function() {
 

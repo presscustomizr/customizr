@@ -209,9 +209,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                );
 
                if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
-                     if ( $this -> czr_fn_is_lightbox_required() ) {
-                           $this -> czr_fn_enqueue_script( 'tc-mfp' );
-                     }
+                     // if ( $this -> czr_fn_is_lightbox_required() ) {
+                     //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
+                     // }
                      //!!tc-scripts includes underscore, tc-js-arraymap-proto
                      $this -> czr_fn_enqueue_script( 'tc-scripts' );
                }
@@ -225,17 +225,17 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-js-arraymap-proto',
                      //libs
                      'tc-bootstrap',
-                     //'tc-smoothscroll',
+                     'tc-smoothscroll',//fired if  $('body').hasClass( 'czr-infinite-scroll-on' ) || ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled && ! czrapp.base.matchMedia( 1024 )
                      'tc-outline',
                      'tc-waypoints',
-                     //'tc-mcs',
-                     'tc-flickity',
+                     //'tc-mcs',//mCustomScrollBar will be loaded on demand
+                     //'tc-flickity',//flickity will be loaded when needed
                      'tc-vivus',
                      'tc-raf',
                   ) );
 
-                  if ( $this -> czr_fn_is_lightbox_required() )
-                        $this -> czr_fn_enqueue_script( 'tc-mfp' );
+                  // if ( $this -> czr_fn_is_lightbox_required() )
+                  //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
 
                   //plugins and main front
                   $this -> czr_fn_enqueue_script( array(
@@ -309,6 +309,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
                   'CZRParams',
                   apply_filters( 'tc_customizr_script_params' , array(
+
+                      'assetsPath'      => czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/' ),
+
                       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
                       'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
 
@@ -317,7 +320,6 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                       'SmoothScroll'      => array(
                           'Enabled' => $smooth_scroll_enabled,
                           'Options' => $smooth_scroll_options,
-                          'path' => czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/js/libs/smoothscroll.min.js' )
                       ),
 
                       'isAnchorScrollEnabled'     => czr_fn_is_checked( 'tc_link_scroll' ), // also adds the jquery effect library if smooth scroll is enabled => easeOutExpo effect
