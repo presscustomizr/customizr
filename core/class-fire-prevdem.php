@@ -38,6 +38,7 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       //adds infos in the caption data of the demo slider
       add_filter( 'czr_slide_caption_data' , array( $this, 'czr_fn_set_demo_slide_data'), 100, 3 );
       add_filter( 'tc_opt_tc_slider_delay', array( $this, 'czr_fn_set_demo_slider_delay') );
+      add_filter( 'tc_opt_tc_slider_img_smart_load', '__return_false' );
 
       //SINGLE POSTS AND PAGES
       add_filter( 'tc_show_single_post_thumbnail', '__return_true');
