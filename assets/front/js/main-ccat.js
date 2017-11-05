@@ -1104,9 +1104,11 @@ var czrapp = czrapp || {};
 
                         if ( 1 > $_firstcell.length )
                           return;
+                        var _isSmartLoadCandidateImg = 0 < $_firstcell.find('img').length && 0 === $_firstcell.find('img').attr('src').indexOf('data');
+
                         $_firstcell.centerImages( {
                               enableCentering : 1 == czrapp.localized.centerSliderImg,
-                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders || ( czrapp.localized.imgSmartLoadsForSliders && ! _isSmartLoadCandidateImg ),
                               oncustom : ['smartload']
                         } );
                         if ( czrapp.localized.imgSmartLoadsForSliders ) {
@@ -1115,7 +1117,7 @@ var czrapp = czrapp || {};
                                     $_firstcell.on( 'smartload', function() {
                                           self._maybeRemoveLoader.call( $_firstcell );
                                     });
-                                    self._smartLoadCellImg( { el : $_firstcell, ev : 'czr-smartloaded-on-init', delay : 500 } );
+                                    self._smartLoadCellImg( { el : $_firstcell, ev : 'czr-smartloaded-on-init', delay : 800 } );
                               }
                         }
                         $_parentGridItem.one( 'click', function() {
@@ -1206,9 +1208,10 @@ var czrapp = czrapp || {};
                   if ( 1 > $_firstcell.length )
                     return;
                   $_main_slider.find( _cellSelector ).each( function() {
+                        var _isSmartLoadCandidateImg = 0 < $(this).find('img').length && 0 === $(this).find('img').attr('src').indexOf('data');
                         $(this).centerImages( {
                               enableCentering : 1 == czrapp.localized.centerSliderImg,
-                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders || ( czrapp.localized.imgSmartLoadsForSliders && ! _isSmartLoadCandidateImg ),
                               oncustom : [ 'simple_load', 'smartload', 'refresh-centering-on-select' ],
                               defaultCSSVal : { width : '100%' , height : 'auto' },
                               useImgAttr : true,

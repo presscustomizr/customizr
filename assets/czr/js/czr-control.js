@@ -10856,15 +10856,10 @@ $.extend( CZRLayoutSelectMths , {
             /* NUMBER INPUT */
             api.czrSetupStepper = function( controlId, refresh ) {
                   var _ctrl = api.control( controlId );
-                  $('input[type="number"]', _ctrl.container ).each( function() {
-                        if ( 'tc_font_customizer_settings' != _ctrl.params.section ) {
-                            $(this).stepper();
-                        }
-                  });
+                  $('input[type="number"]', _ctrl.container ).each( function() { $(this).stepper(); });
             };//api.czrSetupStepper()
-
-            api.control.each(function(control){
-                  if ( ! _.has(control,'id') )
+            api.control.each( function( control ){
+                  if ( ! _.has( control, 'id' ) )
                     return;
                   if ( 'widget_' != control.id.substring(0, 'widget_'.length ) && 'nav_menu' != control.id.substring( 0, 'nav_menu'.length ) ) {
                         api.czrSetupCheckbox(control.id);
@@ -10872,7 +10867,14 @@ $.extend( CZRLayoutSelectMths , {
                   if ( 'nav_menu_locations' != control.id.substring( 0, 'nav_menu_locations'.length ) ) {
                         api.czrSetupSelect(control.id);
                   }
-                  api.czrSetupStepper(control.id);
+                  var _exclude = [
+                       'publish_settings', //<= the outer section introduced in v4.9 to publish / saved draft / schedule
+                       'tc_font_customizer_settings' //the font customizer plugin has its own way to instantiate the stepper, with custom attributes previously set to the input like step, min, etc...
+                  ];
+
+                  if ( 0 < control.container.find( 'input[type="number"]' ).length && control.params && control.params.section && ! _.contains( _exclude,  control.params.section ) ) {
+                        api.czrSetupStepper(control.id);
+                  }
             });
 
 

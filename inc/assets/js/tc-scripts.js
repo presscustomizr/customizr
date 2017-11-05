@@ -2327,10 +2327,8 @@ var TCParams = TCParams || {};
                               $_img.attr( 'height', _height );
                         }
 
-                        if ( ! $_img.data('czr-smart-loaded') ) {
-                              $_img.trigger('smartload');
-                              $_img.data('czr-smart-loaded', true );
-                        }
+                        $_img.trigger('smartload');
+                        $_img.data('czr-smart-loaded', true );
                   });//<= create a load() fn
             if ( $_img[0].complete ) {
                   $_img.load();

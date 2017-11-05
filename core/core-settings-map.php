@@ -2052,7 +2052,7 @@ function czr_fn_performance_option_map( $get_default = null ) {
                             'notice'      => __('Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images.' , 'customizr')
           ),
           'tc_slider_img_smart_load'  =>  array(
-                            'default'       => czr_fn_user_started_before_version( '4.0.10', '2.0.13' ) ? 0 : 1,
+                            'default'       => czr_fn_user_started_before_version( '4.0.10', '2.0.15' ) ? 0 : 1,
                             'label'       => __( 'Lazy load the images in sliders' , 'customizr' ),
                             'control'     =>  'CZR_controls',
                             'section'     => 'performances_sec',

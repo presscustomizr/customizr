@@ -3584,17 +3584,21 @@ var czrapp = czrapp || {};
                   }
                   if ( 1 == czrapp.localized.centerAllImg ) {
                         var self                   = this,
-                            $_to_center            = smartLoadEnabled ?
-                               $( _.filter( $( _where ).find('img'), function( img ) {
+                            $_to_center;
+                        if ( smartLoadEnabled ) {
+                              $_to_center = $( _.filter( $( _where ).find('img'), function( img ) {
                                   return $(img).is(czrapp.localized.imgSmartLoadOpts.opts.excludeImg.join());
-                                }) ): //filter
-                                $( _where ).find('img');
-                            $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
+                                }) );
+                        } else { //filter
+                              $_to_center = $( _where ).find('img');
+                        }
+
+                        $_to_center_with_delay = $( _.filter( $_to_center, function( img ) {
                                 return $(img).hasClass('tc-holder-img');
-                            }) );
+                        }) );
                         setTimeout( function(){
                               self.triggerSimpleLoad( $_to_center_with_delay );
-                        }, 300 );
+                        }, 800 );
                         self.triggerSimpleLoad( $_to_center );
                   }
             },
@@ -3689,7 +3693,6 @@ var czrapp = czrapp || {};
                         Waypoint.refreshAll(); }, 400 ); }
                   );
             },
-
             czrMagnificPopup : function( $lightBoxCandidate, params ) {
                   if ( 1 > $lightBoxCandidate.length )
                     return;
@@ -3965,15 +3968,20 @@ var czrapp = czrapp || {};
 
                         if ( 1 > $_firstcell.length )
                           return;
+                        var _isSmartLoadCandidateImg = 0 < $_firstcell.find('img').length && 0 === $_firstcell.find('img').attr('src').indexOf('data');
+
                         $_firstcell.centerImages( {
                               enableCentering : 1 == czrapp.localized.centerSliderImg,
-                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders || ( czrapp.localized.imgSmartLoadsForSliders && ! _isSmartLoadCandidateImg ),
                               oncustom : ['smartload']
                         } );
                         if ( czrapp.localized.imgSmartLoadsForSliders ) {
                               if ( ! $_firstcell.data('czr_smartLoaded') ) {
                                     $_firstcell.find('img').removeClass('tc-smart-load-skip');
-                                    $_firstcell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( 'czr-smartloaded-on-init');
+                                    $_firstcell.on( 'smartload', function() {
+                                          self._maybeRemoveLoader.call( $_firstcell );
+                                    });
+                                    self._smartLoadCellImg( { el : $_firstcell, ev : 'czr-smartloaded-on-init', delay : 800 } );
                               }
                         }
                         $_parentGridItem.one( 'click', function() {
@@ -4064,9 +4072,10 @@ var czrapp = czrapp || {};
                   if ( 1 > $_firstcell.length )
                     return;
                   $_main_slider.find( _cellSelector ).each( function() {
+                        var _isSmartLoadCandidateImg = 0 < $(this).find('img').length && 0 === $(this).find('img').attr('src').indexOf('data');
                         $(this).centerImages( {
                               enableCentering : 1 == czrapp.localized.centerSliderImg,
-                              onInit : ! czrapp.localized.imgSmartLoadsForSliders,
+                              onInit : ! czrapp.localized.imgSmartLoadsForSliders || ( czrapp.localized.imgSmartLoadsForSliders && ! _isSmartLoadCandidateImg ),
                               oncustom : [ 'simple_load', 'smartload', 'refresh-centering-on-select' ],
                               defaultCSSVal : { width : '100%' , height : 'auto' },
                               useImgAttr : true,
@@ -4227,7 +4236,8 @@ var czrapp = czrapp || {};
             _smartLoadCellImg : function( params ) {
                   params = _.extend( {
                      el : {},
-                     ev : 'czr-smartloaded'
+                     ev : 'czr-smartloaded',
+                     delay : 0
                   }, params || {} );
 
                   var _event_ = params.ev,
@@ -4239,7 +4249,10 @@ var czrapp = czrapp || {};
                         if ( 1 > $_cell.find('.czr-css-loader').length ) {
                               $_cell.append( self._css_loader ).find('.czr-css-loader').fadeIn( 'slow' );
                         }
-                        $_cell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( _event_ );
+                        _.delay( function() {
+                              $_cell.imgSmartLoad().data( 'czr_smartLoaded', true ).addClass( _event_ );
+                        }, params.delay );
+
                         $_cell.data( 'czr_loader_timer' , $.Deferred( function() {
                               var self = this;
                               _.delay( function() {
@@ -6370,8 +6383,6 @@ var czrapp = czrapp || {};
                             'formFocusAction',
                             'variousHeaderActions',
                             'smoothScroll',
-
-                            'magnificPopup',
 
                             'attachmentsFadeEffect',
 

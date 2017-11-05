@@ -23,7 +23,7 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
-= 4.0.10 October 30th 2017 =
+= 4.0.10 November 4th 2017 =
 * Fix : WooCommerce, make wc-cart header button act like a dropdown only when displaying the wc-cart widget (so not when displayed in the mobile header). fixes #1274
 * Fix : Some Woocommerce form layout issues. fixes #1243
 * Fix : WP 4.9 compatibility => in WP v4.9, the control options are not wrapped in the params property but passed directly instead
@@ -40,6 +40,7 @@ See headers of each files for further details.
 * Fix : if comments are displayed by the user ( option is checked ) always show comment history, even if comment are closed. Fixes #1253
 * Fix : removed no results and 404 quotations, probably wrongly attributed to authors. Fixes #1142
 * Fix : make sure the 404 content is always displayed when is_404() even if have_posts() is true. Fixes #1260
+* Imp : color style of the comment text area. Fixes #1268.
 * Imp : better the way to store when the user started using the theme
 * Imp : performance improvement by implementing lazyloading for the main slider. Images are loaded when the become visible. New specific option in advanced > performance
 * Imp : always close the mobile menu expanded when resizing
