@@ -3462,7 +3462,7 @@ form.czr-form input:not([type='submit']):not([type='button']):not([type='number'
   outline: none;
   border: none;
   border-bottom: 2px solid #313131;
-  padding: 0 0 2px;
+  padding: 0.5rem;
   color: #202020;
   position: relative;
   -webkit-box-shadow: none;
@@ -3484,6 +3484,7 @@ form.czr-form .czr-focus {
 form.czr-form .czr-focus label {
   display: block;
   position: absolute;
+  padding: 0.5rem;
   z-index: 1;
   color: #aaa;
   -webkit-transition: transform 0.3s ease;

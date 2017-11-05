@@ -181,7 +181,7 @@ form.czr-form {
     outline: none;
     border: none;
     border-bottom: 2px solid $black;
-    padding: 0 0 2px;
+    padding: 0.5rem;
     color: #202020;
     position: relative;
     @include box-shadow_none;
@@ -200,6 +200,7 @@ form.czr-form {
     label {
         display: block;
         position: absolute;
+        padding: 0.5rem;
         z-index: 1;
         color: $grey-mid-light;
         @include transition(transform 0.3s ease);
