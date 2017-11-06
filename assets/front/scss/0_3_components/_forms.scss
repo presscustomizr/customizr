@@ -186,7 +186,10 @@ form.czr-form {
     position: relative;
     @include box-shadow_none;
     width: 100%;
-    background: #fff;
+    background: transparent;
+    #czr-comments & {
+      background: #fff;
+    }
   }
   fieldset {
     margin-top: 3em
