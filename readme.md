@@ -1,4 +1,4 @@
-# Customizr v4.0.10 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.11 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,11 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.0.11 November 6th 2017 =
+* Fix : label padding for comment text area applied to other inputs. Fixes #1287
+* Fix : input white background applied to unwanted selectors. fixes #1288
+* Fix : mCustomScrollbar => the scrollers are positionned at the bottom on the first instantiation. Fixes #1285
+
 = 4.0.10 November 4th 2017 =
 * Fix : WooCommerce, make wc-cart header button act like a dropdown only when displaying the wc-cart widget (so not when displayed in the mobile header). fixes #1274
 * Fix : Some Woocommerce form layout issues. fixes #1243

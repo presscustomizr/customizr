@@ -23,6 +23,11 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.11 November 6th 2017 =
+* Fix : label padding for comment text area applied to other inputs. Fixes #1287
+* Fix : input white background applied to unwanted selectors. fixes #1288
+* Fix : mCustomScrollbar => the scrollers are positionned at the bottom on the first instantiation. Fixes #1285
+
 = 4.0.10 November 4th 2017 =
 * Fix : WooCommerce, make wc-cart header button act like a dropdown only when displaying the wc-cart widget (so not when displayed in the mobile header). fixes #1274
 * Fix : Some Woocommerce form layout issues. fixes #1243
