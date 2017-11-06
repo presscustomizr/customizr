@@ -2276,6 +2276,12 @@ var czrapp = czrapp || {};
             if ( 'function' == typeof $.fn.mCustomScrollbar ) {
                   return dfd.resolve().promise();
             } else {
+                  $('head').append( $('<link/>' , {
+                              rel : 'stylesheet',
+                              id : 'czr-custom-scroll-bar',
+                              type : 'text/css',
+                              href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
+                        }) );
                   $.ajax( {
                         url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
                         cache : true,
@@ -2283,12 +2289,6 @@ var czrapp = czrapp || {};
                   }).done(function() {
                         if ( 'function' != typeof $.fn.mCustomScrollbar )
                           return dfd.rejected();
-                        $('head').append( $('<link/>' , {
-                              rel : 'stylesheet',
-                              id : 'czr-custom-scroll-bar',
-                              type : 'text/css',
-                              href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
-                        }) );
                         dfd.resolve();
                   }).fail( function() {
                         czrapp.errorLog( 'mCustomScrollbar instantiation failed' );
