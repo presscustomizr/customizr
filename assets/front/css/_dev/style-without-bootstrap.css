@@ -3461,7 +3461,7 @@ form.czr-form input:not([type='submit']):not([type='button']):not([type='number'
   outline: none;
   border: none;
   border-bottom: 2px solid #313131;
-  padding: 0.5rem;
+  padding: 0 0 2px;
   color: #202020;
   position: relative;
   -webkit-box-shadow: none;
@@ -3473,6 +3473,7 @@ form.czr-form input:not([type='submit']):not([type='button']):not([type='number'
 
 #czr-comments form.czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), #czr-comments form.czr-form textarea {
   background: #fff;
+  padding: 0.5rem;
 }
 
 form.czr-form fieldset {
@@ -3487,7 +3488,6 @@ form.czr-form .czr-focus {
 form.czr-form .czr-focus label {
   display: block;
   position: absolute;
-  padding: 0.5rem;
   z-index: 1;
   color: #aaa;
   -webkit-transition: transform 0.3s ease;
@@ -3517,6 +3517,10 @@ form.czr-form .czr-focus label i.icn-close {
   -webkit-transform: translateY(-110%);
   -moz-transform: translateY(-110%);
   transform: translateY(-110%);
+}
+
+#czr-comments form.czr-form .czr-focus label {
+  padding: 0.5rem;
 }
 
 form.czr-form .czr-focus .czr-focusable {

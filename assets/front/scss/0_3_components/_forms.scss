@@ -181,7 +181,7 @@ form.czr-form {
     outline: none;
     border: none;
     border-bottom: 2px solid $black;
-    padding: 0.5rem;
+    padding: 0 0 2px;
     color: #202020;
     position: relative;
     @include box-shadow_none;
@@ -189,6 +189,7 @@ form.czr-form {
     background: transparent;
     #czr-comments & {
       background: #fff;
+      padding: 0.5rem;
     }
   }
   fieldset {
@@ -203,7 +204,6 @@ form.czr-form {
     label {
         display: block;
         position: absolute;
-        padding: 0.5rem;
         z-index: 1;
         color: $grey-mid-light;
         @include transition(transform 0.3s ease);
@@ -230,6 +230,9 @@ form.czr-form {
           @include opacity(0);
           @include transition(transform 0.3s ease);
           @include transform(translateY(-110%));
+        }
+        #czr-comments & {
+          padding: 0.5rem;
         }
     }
 
