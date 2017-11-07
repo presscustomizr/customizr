@@ -1213,6 +1213,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
 
           //Post sidebar layout
           'tc_sidebar_post_layout'  =>  array(
+                          'control'     => 'CZR_controls' ,
                           'default'       => 'l' ,//Default sidebar layout is on the left
                           'label'       => __( 'Choose the posts default layout' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
@@ -1221,6 +1222,83 @@ function czr_fn_layout_option_map( $get_default = null ) {
                           'priority'      => 30
           ),
 
+
+
+          //Page sidebar layout
+          'tc_sidebar_page_layout'  =>  array(
+                          'control'     => 'CZR_controls',
+                          'default'       => 'l' ,//Default sidebar layout is on the left
+                          'label'       => __( 'Choose the pages default layout' , 'customizr' ),
+                          'section'     => 'post_layout_sec' ,
+                          'type'        => 'select' ,
+                          'choices'   => $get_default ? null : czr_fn_layout_choices(),
+                          'priority'       => 40,
+                          'notice'    => sprintf('<br/> %s<br/>%s',
+                              sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
+                                  sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('http://docs.presscustomizr.com/article/107-customizr-theme-options-pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
+                                  )
+                              ),
+                              sprintf( __("If you need to change the layout design of the front page, then open the 'Front Page' section above this one.", "customizr") )
+                          )
+          ),
+          //Page sidebar layout
+          'tc_single_author_block_location' =>  array(
+                          'control'     => 'CZR_controls',
+                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'title'       => __( 'Pages & Posts blocks location', 'customizr'),
+                          'label'       => __( 'Choose the Author Info box location' , 'customizr' ),
+                          'section'     => 'post_layout_sec' ,
+                          'type'        => 'select' ,
+                          'choices'     => array(
+                            'below_post_content'  => __( 'Below the post content', 'customizr' ),
+                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                          ),
+                          'priority'    => 50,
+          ),
+          //Page sidebar layout
+          'tc_single_related_posts_block_location' =>  array(
+                          'control'     => 'CZR_controls',
+                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'label'       => __( 'Choose the Related Posts section location' , 'customizr' ),
+                          'section'     => 'post_layout_sec' ,
+                          'type'        => 'select' ,
+                          'choices'     => array(
+                            'below_post_content'  => __( 'Below the post content', 'customizr' ),
+                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                          ),
+                          'priority'    => 52,
+          ),
+          //Page sidebar layout
+          'tc_singular_comments_block_location' =>  array(
+                          'control'     => 'CZR_controls',
+                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'label'       => __( 'Choose the Comments section location' , 'customizr' ),
+                          'section'     => 'post_layout_sec' ,
+                          'type'        => 'select' ,
+                          'choices'     => array(
+                            'below_post_content'  => __( 'Below the page/post content', 'customizr' ),
+                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                          ),
+                          'priority'     => 54,
+          ),
+
+  );//end of layout_options
+
+}
+
+
+/*-----------------------------------------------------------------------------------------------------
+                              POST LISTS SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_post_list_option_map( $get_default = null ) {
+  $_post_list_type = ( CZR_IS_PRO && czr_fn_is_ms() ) ? 'masonry' : 'grid';
+  if ( czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ) {
+      $_post_list_type = 'alternate';
+  } else if ( czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
+      $_post_list_type = 'grid';
+  }
+
+  return array(
           //Post per page
           'posts_per_page'  =>  array(
                           'default'     => get_option( 'posts_per_page' ),
@@ -1239,40 +1317,6 @@ function czr_fn_layout_option_map( $get_default = null ) {
                               'priority' => '200'
                            )
           ),
-
-          //Page sidebar layout
-          'tc_sidebar_page_layout'  =>  array(
-                            'default'       => 'l' ,//Default sidebar layout is on the left
-                            'label'       => __( 'Choose the pages default layout' , 'customizr' ),
-                            'section'     => 'post_layout_sec' ,
-                            'type'        => 'select' ,
-                            'choices'   => $get_default ? null : czr_fn_layout_choices(),
-                            'priority'       => 40,
-                            'notice'    => sprintf('<br/> %s<br/>%s',
-                                sprintf( __("The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s.", "customizr"),
-                                    sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s<span style="font-size: 17px;" class="dashicons dashicons-external"></span></a>' , esc_url('http://docs.presscustomizr.com/article/107-customizr-theme-options-pages-and-posts-layout'), __("Customizr theme documentation" , "customizr" )
-                                    )
-                                ),
-                                sprintf( __("If you need to change the layout design of the front page, then open the 'Front Page' section above this one.", "customizr") )
-                            )
-          ),
-  );//end of layout_options
-
-}
-
-
-/*-----------------------------------------------------------------------------------------------------
-                              POST LISTS SECTION
-------------------------------------------------------------------------------------------------------*/
-function czr_fn_post_list_option_map( $get_default = null ) {
-  $_post_list_type = ( CZR_IS_PRO && czr_fn_is_ms() ) ? 'masonry' : 'grid';
-  if ( czr_fn_user_started_before_version( '3.2.18', '1.0.13' ) ) {
-      $_post_list_type = 'alternate';
-  } else if ( czr_fn_user_started_before_version( '4.0.0', '2.0.0' ) ) {
-      $_post_list_type = 'grid';
-  }
-
-  return array(
           'tc_post_list_excerpt_length'  =>  array(
                             'default'       => 50,
                             'sanitize_callback' => 'czr_fn_sanitize_number',
