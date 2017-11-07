@@ -6,7 +6,7 @@
  */
 ?>
 <article <?php echo czr_fn_get_the_singular_article_selectors() ?> <?php czr_fn_echo( 'element_attributes' ) ?>>
-  <?php do_action( '__before_content' ) ?>
+  <?php do_action( '__before_content_inner' ) ?>
   <?php
   /* heading */
   czr_fn_render_template( 'content/singular/headings/regular_post_heading' );
@@ -43,5 +43,5 @@
       </footer>
     </section><!-- .entry-content -->
   </div><!-- .post-entry -->
-  <?php do_action( '__after_content' ) ?>
+  <?php do_action( '__after_content_inner' ) ?>
 </article>
