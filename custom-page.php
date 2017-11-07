@@ -46,18 +46,20 @@ if ( apply_filters( 'czr_ms', false ) ):
                         czr_fn_render_template( 'loop' );
                     }
 
+                    /*
+                     * Optionally attached to this hook :
+                     * Comments | 30
+                     */
                     do_action( '__after_loop' );
                   ?>
                 </div>
 
-                <?php do_action('__after_content'); ?>
-
-
-                <?php if ( czr_fn_is_registered_or_possible('comments') ) : ?>
-                  <div class="col-12 singular-info-wrapper order-md-last">
-                    <?php czr_fn_render_template( 'content/singular/comments/comments' ); ?>
-                  </div>
-                <?php endif ?>
+                <?php
+                  /*
+                   * Optionally attached to this hook :
+                   * Comments | 30
+                   */
+                  do_action('__after_content'); ?>
 
                 <?php
                   /*
