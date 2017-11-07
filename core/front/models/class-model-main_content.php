@@ -11,6 +11,11 @@ class CZR_main_content_model_class extends CZR_Model {
             //in singular context we might want to display the featured image for standard headings
             $this -> czr_fn_process_singular_thumbnail();
 
+            //in singular context handle where to display blocks like:
+            // - author info (single),
+            // - related posts (single),
+            // - comments (page)
+            $this -> czr_fn_process_singular_blocks();
 
             $children = array(
 
@@ -173,7 +178,6 @@ class CZR_main_content_model_class extends CZR_Model {
       * TODO : maybe create a specific model
       * slider and fi before main wrapper xor
       */
-
       function czr_fn_display_view_singular_thumbnail( $bool, $model ) {
 
         if ( !$bool )
@@ -207,4 +211,58 @@ class CZR_main_content_model_class extends CZR_Model {
       }
 
 
+      /**
+      * In singular context handle where to display blocks like:
+      *  - author info (single),
+      *  - related posts (single),
+      *  - comments (singular)
+      *
+      * @return void
+      */
+      private function czr_fn_process_singular_blocks() {
+
+            $_option_name_model_configuration = array(
+                  //option name => model
+                  'tc_single_author_block_location'         => array(
+                      'template' => 'content/singular/authors/author_info',
+                      'priority' => 10,
+                      'controller'       => 'single_author_info'
+
+                  ),
+                  'tc_single_related_posts_block_location'  => array(
+                      'template' => 'modules/related-posts/related_posts',
+                      'priority' => 20
+                  ),
+                  'tc_singular_comments_block_location'     => array(
+                      'template' => 'content/singular/comments/comments',
+                      'priority' => 30
+                  ),
+            );
+
+            $_option_location_hook     = array(
+                  //option value    => hook
+                  'below_post_content' => '__after_loop',
+                  'below_main_content' => '__after_content'
+            );
+
+
+            //register our models using the model configuration array linked to each option
+            foreach ( $_option_name_model_configuration as $_option_name => $model_configuration ) {
+                  //retrieve the location option
+                  $_location_info = esc_attr( czr_fn_opt( $_option_name ) );
+
+                  //let's register our model specifying at which action hook its template must be printed
+                  if ( $_location_info && array_key_exists( $_location_info, $_option_location_hook ) ) {
+                        $model_configuration[ 'hook' ]  =  $_option_location_hook [ $_location_info ];
+                        //when displayed below the main content (__after_content) blocks need additional classes
+                        if ( 'below_main_content' == $_location_info ) {
+                              $model_configuration[ 'args' ]  =  array(
+                                  'element_class' => 'col-12 order-md-last'
+                              );
+                        }
+
+                        czr_fn_register( $model_configuration );
+                  }
+            }
+      }
 }
