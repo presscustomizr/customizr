@@ -777,6 +777,17 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_action('sensei_before_main_content', 'czr_fn_sensei_wrappers', 10);
       add_action('sensei_after_main_content', 'czr_fn_sensei_wrappers', 10);
 
+      //removes related posts on __after_loop/__after_content hook
+      add_filter( 'tc_opt_tc_related_posts', 'czr_fn_sensei_disable_related_posts' );
+      function czr_fn_sensei_disable_related_posts( $bool ) {
+          return ( function_exists('is_sensei') && is_sensei() ) ? 'disabled' : $bool;
+      }
+
+      //removes author info on __after_loop/__after_content hook
+      add_filter( 'tc_opt_tc_show_author_info', 'czr_fn_sensei_disable_author_info' );
+      function czr_fn_sensei_disable_author_info( $bool ) {
+          return ( function_exists('is_sensei') && is_sensei() ) ? false : $bool;
+      }
 
       function czr_fn_sensei_wrappers() {
         switch ( current_filter() ) {
@@ -834,6 +845,11 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_shop_enable( $bool ){
         return ( function_exists('is_woocommerce') && is_woocommerce() && function_exists('is_shop') && is_shop() ) ? true : $bool;
       }
+      //Helper
+      function czr_fn_is_woocommerce_disable( $bool ) {
+        return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
+      }
+
 
       //when in the woocommerce shop page use the "shop" id
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
@@ -846,6 +862,18 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //allow page layout post meta in 'shop'
       add_filter( 'czr_is_page_layout', 'czr_fn_woocommerce_shop_enable' );
 
+
+      //removes post comment action on __after_loop/__after_content hook
+      add_filter( 'czr_are_comments_enabled', 'czr_fn_is_woocommerce_disable' );
+
+      //removes related posts on __after_loop/__after_content hook
+      add_filter( 'tc_opt_tc_related_posts', 'czr_fn_woocommerce_disable_related_posts' );
+      function czr_fn_woocommerce_disable_related_posts( $bool ) {
+          return ( function_exists('is_woocommerce') && is_woocommerce() ) ? 'disabled' : $bool;
+      }
+
+      //removes author info on __after_loop/__after_content hook
+      add_filter( 'tc_opt_tc_show_author_info', 'czr_fn_is_woocommerce_disable' );
 
       //handles the woocomerce sidebar : removes action if sidebars not active
       if ( !is_active_sidebar( 'shop') ) {
@@ -1302,31 +1330,48 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
             <div id="content" class="<?php czr_fn_article_container_class() ?>">
 
-              <?php
+              <?php do_action ('__before_loop');
 
     }
 
 
-    /* no comments, no related posts, no navigation */
+    /* no navigation */
     function czr_fn_mainwrapper_end() {
+                    /*
+                     * Optionally attached to this hook :
+                     * - In single posts:
+                     *   - Author bio | 10
+                     *   - Related posts | 20
+                     * - In posts and pages
+                     *   - Comments | 30
+                     */
+                    do_action ('__after_loop');
       ?>
             </div>
 
-            <?php do_action('__after_content'); ?>
-
             <?php
-              /*
-              * SIDEBARS
-              */
-              /* By design do not display sidebars in 404 or home empty */
-              if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
-                if ( czr_fn_is_registered_or_possible('left_sidebar') )
-                  get_sidebar( 'left' );
+                /*
+                 * Optionally attached to this hook :
+                 * - In single posts:
+                 *   - Author bio | 10
+                 *   - Related posts | 20
+                 * - In posts and pages
+                 *   - Comments | 30
+                 */
+                do_action('__after_content');
 
-                if ( czr_fn_is_registered_or_possible('right_sidebar') )
-                  get_sidebar( 'right' );
+                /*
+                * SIDEBARS
+                */
+                /* By design do not display sidebars in 404 or home empty */
+                if ( ! ( czr_fn_is_home_empty() || is_404() ) ) {
+                  if ( czr_fn_is_registered_or_possible('left_sidebar') )
+                    get_sidebar( 'left' );
 
-              }
+                  if ( czr_fn_is_registered_or_possible('right_sidebar') )
+                    get_sidebar( 'right' );
+
+                }
             ?>
           </div><!-- .column-content-wrapper -->
 
