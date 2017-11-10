@@ -553,7 +553,7 @@ function czr_fn_header_desktop_option_map() {
                           'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
                           'ubq_section'   => array(
                               'section' => 'menu_locations',
-                              'priority' => '100'
+                              'priority' => '0'
                           )
         ),
         'tc_social_in_header' =>  array(
@@ -578,7 +578,7 @@ function czr_fn_header_desktop_option_map() {
         ),
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
-                          'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'set the tagline location' , 'customizr' ) ),
+                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __( 'set the tagline location' , 'customizr' ) ),
                           //'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
@@ -599,7 +599,7 @@ function czr_fn_header_desktop_option_map() {
 
         'tc_header_desktop_search' => array(
                           'default'   => 'navbar',
-                          'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __( 'set the search button location' , 'customizr' ) ),
+                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __( 'set the search button location' , 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
@@ -614,7 +614,7 @@ function czr_fn_header_desktop_option_map() {
 
         'tc_header_desktop_wc_cart' => array(
                           'default'   => 'topbar',
-                          'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
+                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
@@ -631,7 +631,7 @@ function czr_fn_header_desktop_option_map() {
         'tc_header_desktop_sticky' => array(
                           'default'   => 'stick_up',
                           'control'   => 'CZR_controls',
-                          'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('set the header visibility on scroll', 'customizr') ),
+                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __('set the header visibility on scroll', 'customizr') ),
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
                           'choices'   => array(
@@ -645,7 +645,7 @@ function czr_fn_header_desktop_option_map() {
         'tc_header_desktop_to_stick' => array(
                           'default'   => 'primary',
                           'control'   => 'CZR_controls',
-                          'label'     => sprintf( '%1$s : %2$s', __('Desktop devices', 'customizr' ) , __('select the header block to stick on scroll', 'customizr') ),
+                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __('select the header block to stick on scroll', 'customizr') ),
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
                           'choices'   => array(
@@ -681,7 +681,7 @@ function czr_fn_header_mobile_option_map() {
         'tc_header_mobile_menu_layout' => array(
                           'default'   => 'mobile_menu',
                           'control'   => 'CZR_controls',
-                          'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
+                          'title'     => sprintf( __( 'Header settings for %s', 'customizr' ) , __('Mobile devices', 'customizr' ) ),
                           'label'     => sprintf( '%1$s : %2$s', __( 'Mobile devices', 'customizr' ) , __( 'Select the menu(s) to use for mobile devices', 'customizr') ),
                           'section'   => 'header_mobile_sec',
                           'type'      => 'select',
