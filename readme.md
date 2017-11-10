@@ -1,4 +1,4 @@
-# Customizr v4.0.11 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.12 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,9 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.0.12 November 6th 2017 =
+* 
+
 = 4.0.11 November 6th 2017 =
 * Fix : label padding for comment text area applied to other inputs. Fixes #1287
 * Fix : input white background applied to unwanted selectors. fixes #1288

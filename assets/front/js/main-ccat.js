@@ -2226,7 +2226,6 @@ var czrapp = czrapp || {};
                               return;
                         }
                         if ( $( Selector.SIDENAV ).length  && czrapp.$_body.hasClass( ClassName.SIDENAV_SHOWN ) ) {
-
                               $( Selector.SIDENAV ).find( Selector.SIDENAV_TOGGLER ).trigger( Event.SIDENAV_TOGGLER );
                               return;
                         }
@@ -2239,10 +2238,6 @@ var czrapp = czrapp || {};
       variousHeaderActions : function() {
             var _mobile_viewport = 992,
                 self = this;
-            czrapp.$_body.on( 'click', '.search-toggle_btn', function(evt) {
-                  evt.preventDefault();
-                  czrapp.$_body.toggleClass( 'full-search-opened czr-overlay-opened' );
-            });
             czrapp.$_body.on( 'shown.czr.czrDropdown', '.nav__woocart', function() {
                   var $_el = $(this);
                   var _do = function() {
@@ -2271,6 +2266,77 @@ var czrapp = czrapp || {};
                   });
             }
       },
+      headerSearchToLife : function() {
+            var self = this,
+
+                _search_toggle_event            = 'click',
+
+                _search_overlay_toggler_sel     = '.search-toggle_btn.czr-overlay-toggle_btn',
+                _search_overlay_toggle_class    = 'full-search-opened czr-overlay-opened',
+
+                _search_dropdown_wrapper_sel    = '.mobile-utils__wrapper',
+                _search_dropdown_button_sel     = '.search-toggle_btn.czr-dropdown',
+                _search_dropdown_menu_sel       = '.nav__search .czr-dropdown-menu',
+                _search_dropdown_menu_input_sel = '.czr-search-field',
+                _search_dropdown_expanded_class = 'show',
+
+                _mobile_menu_to_close_sel       = '.ham-toggler-menu:not(.collapsed)',
+                _mobile_menu_close_event        = 'click.bs.collapse',
+                _mobile_menu_opened_event       = 'show.bs.collapse', //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
+                _mobile_menu_sel                = '.mobile-nav__nav';
+            czrapp.$_body.on( _search_toggle_event, _search_overlay_toggler_sel, function(evt) {
+                  evt.preventDefault();
+                  czrapp.$_body.toggleClass( _search_overlay_toggle_class );
+            });
+            self.headerSearchExpanded = new czrapp.Value( false );
+            self.headerSearchExpanded.bind( function( exp ) {
+                  return $.Deferred( function() {
+                        var _dfd = this;
+                        $(  _search_dropdown_button_sel, _search_dropdown_wrapper_sel )
+                                  .toggleClass( _search_dropdown_expanded_class, exp )
+                                  .attr('aria-expanded', exp );
+                        if ( exp ) {
+                              $( _mobile_menu_to_close_sel ).trigger( _mobile_menu_close_event );
+                        }
+
+                        $(  _search_dropdown_menu_sel, _search_dropdown_wrapper_sel )
+                            .attr('aria-expanded', exp )
+                            .stop()[ ! exp ? 'slideUp' : 'slideDown' ]( {
+                                  duration : 250,
+                                  complete : function() {
+                                    if ( exp ) {
+                                          $( _search_dropdown_menu_input_sel, $(this) ).focus();
+                                    }
+                                    _dfd.resolve();
+                                  }
+                            } );
+                  }).promise();
+            }, { deferred : true } );
+            czrapp.setupDOMListeners(
+                  [
+                        {
+                              trigger   : _search_toggle_event,
+                              selector  : _search_dropdown_button_sel,
+                              actions   : function(evt) {
+                                    czrapp.userXP.headerSearchExpanded( ! czrapp.userXP.headerSearchExpanded() );
+                              }
+                        },
+                  ],//actions to execute
+                  { dom_el: $( _search_dropdown_wrapper_sel ) },//dom scope
+                  czrapp.userXP //instance where to look for the cb methods
+            );
+            czrapp.userXP.windowWidth.bind( function() {
+                  self.headerSearchExpanded( false );
+            });
+            czrapp.$_body.on( _mobile_menu_opened_event, _mobile_menu_sel, function( evt ) {
+                  self.headerSearchExpanded( false );
+            });
+            if ( czrapp.userXP.stickyHeaderAnimating ) {
+                  czrapp.userXP.stickyHeaderAnimating.bind( function( animating ) {
+                        self.headerSearchExpanded( false );
+                  });
+            }
+      },//toggleHeaderSearch
       maybeLoadCustomScrollAssets : function() {
             var dfd = $.Deferred();
             if ( 'function' == typeof $.fn.mCustomScrollbar ) {
@@ -3518,6 +3584,8 @@ var czrapp = czrapp || {};
                             'variousHoverActions',
                             'formFocusAction',
                             'variousHeaderActions',
+                            'headerSearchToLife',
+
                             'smoothScroll',
 
                             'attachmentsFadeEffect',

@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.12 November 6th 2017 =
+* 
+
 = 4.0.11 November 6th 2017 =
 * Fix : label padding for comment text area applied to other inputs. Fixes #1287
 * Fix : input white background applied to unwanted selectors. fixes #1288

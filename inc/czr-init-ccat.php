@@ -2091,6 +2091,7 @@ class CZR_utils_settings_map {
                   'czr_fn_navigation_option_map',
                   //CONTENT
                   'czr_fn_front_page_option_map',
+                  'czr_fn_layout_option_map',
                   'czr_fn_post_metas_option_map',
                   'czr_fn_post_list_option_map',
                   'czr_fn_comment_option_map',
@@ -2735,6 +2736,29 @@ class CZR_utils_settings_map {
             $_to_unset = array(
                   'tc_home_slider_overlay',
                   'tc_home_slider_dots'
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+            return $_map;
+      }
+
+
+      /*-----------------------------------------------------------------------------------------------------
+                                     PAGES AND POST LAYOUT SETTINGS
+      ------------------------------------------------------------------------------------------------------*/
+      function czr_fn_layout_option_map( $_map, $get_default = null ){
+
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_single_author_block_location',
+                  'tc_single_related_posts_block_location',
+                  'tc_singular_comments_block_location'
             );
 
             foreach ( $_to_unset as $key ) {

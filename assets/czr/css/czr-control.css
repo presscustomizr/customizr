@@ -271,6 +271,7 @@ li[id*="customize-control-"] {
     -webkit-box-shadow: 1px 0px 2px 0px rgba(204, 204, 204, 0.45);
 }
 
+/*<@4.9compat>*/
 /* outer section introduced in v4.9 needs to keep its original width */
 #customize-outer-theme-controls li[id*="customize-control-"] {
   width: 100%;
@@ -279,6 +280,7 @@ li[id*="customize-control-"] {
     float: none;
     min-height: inherit;
 }
+/*</@4.9compat>*/
 
 /* GENERAL STYLE */
 .control-section .accordion-section-content {
@@ -2719,7 +2721,7 @@ body.czr-editing-sektion #czr-sektion-settings-panel {
 body.czr-editing-sektion #customize-preview {
   opacity: 0.7;
 }/* WP SAVE BUTTON */
-.czr-api-dirty input#save {
+/*.czr-api-dirty input#save {
     background-color: #FFBD2E;
     border-color: #d99400;
     color: black;
@@ -2734,7 +2736,7 @@ body.czr-editing-sektion #customize-preview {
 }
 .czr-api-dirty input#save:hover {
     background-color: #fcad06;
-}
+}*/
 
 /* FIX CUSTOMIZE INFO OVERLAPPING SKOPE SWITCHER */
 .czr-skop-on #customize-controls .customize-info.is-in-view, #customize-controls .customize-section-title.is-in-view {

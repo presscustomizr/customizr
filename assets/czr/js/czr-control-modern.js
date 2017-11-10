@@ -11682,6 +11682,9 @@ $.extend( CZRLayoutSelectMths , {
         });//$( function($) {} )
         api.when( 'tc_theme_options[tc_style]', function( _set ) {
               _set.bind( function() {
+                    if ( api.state.has( 'selectedChangesetStatus' ) ) {
+                          api.state( 'selectedChangesetStatus' )( 'publish' );
+                    }
                     api.previewer.save().always( function() {
                           if ( _wpCustomizeSettings && _wpCustomizeSettings.url && _wpCustomizeSettings.url.parent ) {
                                 var url = [ _wpCustomizeSettings.url.parent ];

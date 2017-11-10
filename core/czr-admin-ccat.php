@@ -1424,20 +1424,20 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
            $layout_value         = esc_attr(get_post_meta( $post -> ID, $key = 'layout_key' , $single = true ));
 
            //Generates layouts select list array
-           $layouts             = array();
-           $global_layout        = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
+           $layouts                    = array();
+           $global_layout              = apply_filters( 'tc_global_layout' , CZR_init::$instance -> global_layout );
            foreach ( $global_layout as $key => $value ) {
-             $layouts[$key]      = call_user_func( '__' , $value['metabox'] , 'customizr' );
+             $layouts[$key]            = call_user_func( '__' , $value['metabox'] , 'customizr' );
            }
 
            //by default we apply the global default layout
-           $tc_sidebar_default_layout  = esc_attr( czr_fn_opt('tc_sidebar_global_layout') );
+           $tc_sidebar_default_context_layout  = esc_attr( czr_fn_opt( 'page' == $post -> post_type ? 'tc_sidebar_page_layout' : 'tc_sidebar_post_layout' ) );
 
 
            ?>
            <div class="meta-box-item-content">
              <?php if( $layout_value == null) : ?>
-               <p><?php printf(__( 'Default %1$s layout is set to : %2$s' , 'customizr' ), $post -> post_type == 'page' ? __( 'pages' , 'customizr' ):__( 'posts' , 'customizr' ), '<strong>'.$layouts[$tc_sidebar_default_layout].'</strong>' ) ?></p>
+               <p><?php printf(__( 'Default %1$s layout is set to : %2$s' , 'customizr' ), 'page' == $post -> post_type ? __( 'pages' , 'customizr' ):__( 'posts' , 'customizr' ), '<strong>'.$layouts[$tc_sidebar_default_context_layout].'</strong>' ) ?></p>
              <?php endif; ?>
 
                  <i><?php printf(__( 'You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />' , 'customizr' ),
@@ -1450,7 +1450,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                  <select name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>">
                  <?php //no layout selected ?>
                   <option value="" <?php selected( $layout_value, $current = null, $echo = true ) ?>> <?php printf(__( 'Default layout %1s' , 'customizr' ),
-                        '( '.$layouts[$tc_sidebar_default_layout].' )'
+                        '( '.$layouts[$tc_sidebar_default_context_layout].' )'
                        );
                     ?></option>
                   <?php foreach( $layouts as $key => $l) : ?>

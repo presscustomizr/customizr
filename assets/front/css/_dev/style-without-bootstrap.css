@@ -563,10 +563,6 @@ img {
   height: auto;
 }
 
-button, button:focus {
-  outline: 0;
-}
-
 a {
   transition: color ease 0.3s;
 }
@@ -827,7 +823,7 @@ embed, iframe, object, video {
 
 .header-skin-light .vertical-nav > li:not(:last-of-type),
 .header-skin-light .mobile-nav__container,
-.header-skin-light .mobile-search__container,
+.header-skin-light .header-search__container,
 .header-skin-light .mobile-nav__nav {
   border-color: rgba(49, 49, 49, 0.075);
 }
@@ -975,7 +971,7 @@ embed, iframe, object, video {
 
 .header-skin-dark .vertical-nav > li:not(:last-of-type),
 .header-skin-dark .mobile-nav__container,
-.header-skin-dark .mobile-search__container,
+.header-skin-dark .header-search__container,
 .header-skin-dark .mobile-nav__nav {
   border-color: rgba(255, 255, 255, 0.075);
 }
@@ -1015,7 +1011,7 @@ header:not(.header-transparent) .header-navbars__wrapper {
 .topbar-navbar__wrapper,
 .header-navbars__wrapper,
 .mobile-nav__container,
-.mobile-search__container {
+.header-search__container {
   border-bottom: 1px solid;
 }
 
@@ -1337,7 +1333,7 @@ li.current-menu-item > a > span:first-of-type::before {
   left: auto;
 }
 
-.utils_links, .ham-toggler-menu, .woocart.cart-contents, .desktop_search__link {
+.utils_links, .ham-toggler-menu, .woocart.cart-contents, .search-toggle_btn {
   padding: 1.25em 15px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
@@ -1346,6 +1342,12 @@ li.current-menu-item > a > span:first-of-type::before {
   display: block;
   height: auto;
   position: relative;
+}
+
+@media (max-width: 767px) {
+  .mobile-navbar__wrapper .utils_links, .mobile-navbar__wrapper .ham-toggler-menu, .mobile-navbar__wrapper .woocart.cart-contents, .mobile-navbar__wrapper .search-toggle_btn {
+    padding: 1.25em 10px;
+  }
 }
 
 .ham__toggler-span-wrapper {
@@ -1409,6 +1411,13 @@ li.current-menu-item > a > span:first-of-type::before {
   -moz-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
   transform: translateY(-6px) translateX(-3px) rotate(-45deg);
   width: 28px;
+}
+
+.nav__search .czr-dropdown-menu {
+  width: calc( 100% - 4px);
+  padding: 0 10px;
+  margin: 0 2px;
+  max-width: none;
 }
 
 /* ADMIN BAR
@@ -1510,10 +1519,6 @@ li#wp-admin-bar-tc-customizr-help a {
   margin-bottom: 5px;
 }
 
-.mobile-navbar__wrapper .branding {
-  max-width: calc( 100% - 100px);
-}
-
 .branding .navbar-brand {
   font-size: 2.4em;
   line-height: 1.5em;
@@ -1553,6 +1558,11 @@ li#wp-admin-bar-tc-customizr-help a {
   flex-shrink: 1;
 }
 
+.mobile-utils__wrapper .header-search__container {
+  display: inline-block;
+  border-bottom: none;
+}
+
 .header-tagline {
   font-style: italic;
 }
@@ -1561,15 +1571,11 @@ li#wp-admin-bar-tc-customizr-help a {
   flex-shrink: 0;
 }
 
-.nav__utils .utils {
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+@media (max-width: 767px) {
+  .mobile-navbar__wrapper .nav__utils .utils {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
 }
 
 .woocart.cart-contents {
@@ -1583,17 +1589,14 @@ li#wp-admin-bar-tc-customizr-help a {
   top: 0;
 }
 
-.mobile-search__container {
+.header-search__container {
   width: 100%;
+  margin: 37.5px 0 18.75px 0;
 }
 
-.mobile-search__container .czr-form .form-group {
+.header-search__container .czr-form .form-group {
   margin: 12.5px 0 18.75px 0;
   padding-bottom: 1.25em;
-}
-
-.tc-header .mobile-search__container {
-  margin: 37.5px 0 18.75px 0;
 }
 
 .mobile-nav__container {
@@ -1994,16 +1997,6 @@ li#wp-admin-bar-tc-customizr-help a {
 /* VARIOUS */
 .tc-thumbnail img {
   width: 100%;
-}
-
-/* FLICKITY SLIDER  */
-.carousel-cell {
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel img {
-  min-width: 100%;
 }
 
 .article-container .grid-container__alternate .entry-footer {
@@ -3129,6 +3122,12 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .czr-carousel {
   position: relative;
+  overflow: hidden;
+}
+
+.czr-carousel .carousel-cell {
+  position: relative;
+  width: 100%;
   overflow: hidden;
 }
 
