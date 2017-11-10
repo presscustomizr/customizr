@@ -9646,26 +9646,29 @@ section.post-content {
   font-size: 1.25em;
 }
 
-#bottom-front-notification h2 {
-  font-size: 1.5em;
-  line-height: 1.6em;
-  color: #fff;
-  margin-bottom: 15px;
-}
-
-#bottom-front-notification a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-#bottom-front-notification p {
-  line-height: 2em;
-}
-
 #bottom-front-notification .note-content {
   display: inline-block;
   line-height: 20px;
   width: 80%;
+  font-size: 1rem;
+}
+
+#bottom-front-notification .note-content h2 {
+  font-size: 1.5em;
+  line-height: 1.6em;
+  color: #fff;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+#bottom-front-notification .note-content a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+#bottom-front-notification .note-content p {
+  line-height: 1.5em;
+  margin-top: 0;
 }
 
 #bottom-front-notification .fa:before {
