@@ -11,7 +11,7 @@
 if ( ! apply_filters( 'tc_render_comments_template', true ) )
   return;
 ?>
-<div id="comments" class="comments_container  comments czr-comments-block">
+<div id="comments" class="comments_container comments czr-comments-block">
   <section class="post-comments">
     <?php
       if ( czr_fn_is_registered_or_possible('comment_list') ) {
