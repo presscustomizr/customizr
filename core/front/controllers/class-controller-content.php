@@ -109,10 +109,18 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
     }
 
     function czr_fn_display_view_single_author_info() {
-      if ( ! get_the_author_meta( 'description' ) )
-        return;
 
       if ( !$this -> czr_fn_display_view_post() )
+        return;
+
+      $author_id = false;
+
+      if ( ! in_the_loop() ) {
+        global $post;
+        $author_id = $post->post_author;
+      }
+
+      if ( ! get_the_author_meta( 'description', $author_id ) )
         return;
 
       //@todo check if some conditions below not redundant?
