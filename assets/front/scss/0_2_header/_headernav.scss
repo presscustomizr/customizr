@@ -30,11 +30,10 @@
           padding-bottom: 0.25em;
           margin-bottom: 5px;
         }
-        .mobile-navbar__wrapper & {
-          max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
-        }
-
-
+        //commented because with flex the this element auto adapts
+        //.mobile-navbar__wrapper & {
+        //  max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
+        //}
 
         .navbar-brand {
             font-size: 2.4em;
@@ -81,6 +80,10 @@
         @extend .display-flex;
         flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
     }
+    @at-root .mobile-utils__wrapper .header-search__container {
+        display: inline-block;
+        border-bottom: none;
+    }
 }
 
 
@@ -92,16 +95,12 @@
 .nav__utils {
     @extend .display-flex;
     flex-shrink: 0;
-    .utils {
-        -webkit-flex-wrap: nowrap;
-        -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
 
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row
+    @include media-breakpoint-down( sm ) {
+      .mobile-navbar__wrapper & .utils {
+        margin-right: -10px;
+        margin-left: -10px;
+      }
     }
 
     li {
@@ -109,7 +108,7 @@
     }
 
     // utils li a centered aligned
-    @at-root .woocart.cart-contents, .desktop_search__link {
+    @at-root .woocart.cart-contents, .search-toggle_btn {
         @extend .utils_links;
     }
 
@@ -122,15 +121,13 @@
 }
 
 // Mobile stuff
-.mobile-search__container {
+.header-search__container {
     width: 100%;
-}
-.mobile-search__container .czr-form .form-group {
-    margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
-    padding-bottom: $base-line-height;
-}
-.tc-header .mobile-search__container {
     margin: 2*$base-line-height-fixed 0 $base-line-height-fixed 0;
+    .czr-form .form-group {
+        margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
+        padding-bottom: $base-line-height;
+    }
 }
 
 .mobile-nav__container {

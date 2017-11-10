@@ -256,7 +256,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  //prop => selectors
                                  'border-color' => array(
                                          '.mobile-nav__container',
-                                         '.mobile-search__container',
+                                         '.header-search__container',
                                          '.mobile-nav__nav',
                                          '.vertical-nav > li:not(:last-of-type)'
                                  ),
