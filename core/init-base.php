@@ -390,7 +390,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
             register_nav_menu( 'secondary' , __( 'Secondary (horizontal) Menu' , 'customizr' ) );
             if ( CZR_IS_MODERN_STYLE ) {
-              register_nav_menu( 'topbar' , __( 'Topnav (horizontal) Menu' , 'customizr' ) );
+              register_nav_menu( 'topbar' , __( 'Top Bar Menu (horizontal). The top bar option must be checked to display it.' , 'customizr' ) );
               register_nav_menu( 'mobile' , __( 'Mobile Menu' , 'customizr' ) );
             }
         }
