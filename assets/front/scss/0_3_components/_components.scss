@@ -865,6 +865,12 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
   position: relative;
   overflow: hidden;
 
+  .carousel-cell {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
   @at-root .carousel-caption {
     height: auto;
     max-height: 80%;
