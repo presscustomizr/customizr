@@ -183,8 +183,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '[class*=nav__menu] li > a',
                                        '[class*=nav__menu] .dropdown-menu a',
                                        '[class*=nav__menu] .dropdown-item > a:hover',
-                                       '.tc-header .czr-form label',
-                                       '.czr-overlay .czr-form label',
+                                       '.tc-header form.czr-form label',
+                                       '.czr-overlay form.czr-form label',
                                        ".tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio'])",
                                        '.tc-header .czr-form textarea',
                                        '.tc-header .czr-form .form-control',
@@ -256,7 +256,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  //prop => selectors
                                  'border-color' => array(
                                          '.mobile-nav__container',
-                                         '.mobile-search__container',
+                                         '.header-search__container',
                                          '.mobile-nav__nav',
                                          '.vertical-nav > li:not(:last-of-type)'
                                  ),

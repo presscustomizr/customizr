@@ -11,11 +11,12 @@
     <ul class="nav utils flex-row flex-nowrap regular-nav">
       <?php
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_search' ) ) {
-
-        czr_fn_render_template( 'header/parts/desktop_search', array(
-          'model_id' => 'desktop_primary_search'
+        czr_fn_render_template( 'header/parts/nav_search', array(
+          'model_id' => 'desktop_primary_search',
+          'model_args' => array(
+            'search_toggle_class' => array( 'czr-overlay-toggle_btn' ),
+          )
         ) );
-
       }
 
       if ( czr_fn_is_registered_or_possible( 'desktop_primary_wc_cart' ) ) :

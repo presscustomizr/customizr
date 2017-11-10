@@ -140,18 +140,22 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
 
     /* Header search */
-    function czr_fn_display_view_desktop_primary_search()  {
+    function czr_fn_display_view_desktop_primary_search() {
       return 'navbar' == czr_fn_opt( 'tc_header_desktop_search' );
     }
 
 
-    function czr_fn_display_view_desktop_topbar_search()  {
+    function czr_fn_display_view_desktop_topbar_search() {
       return 'topbar' == czr_fn_opt( 'tc_header_desktop_search' );
     }
 
 
-    function czr_fn_display_view_mobile_search()  {
-      return czr_fn_opt( 'tc_header_mobile_search' );
+    function czr_fn_display_view_mobile_navbar_search() {
+      return 'navbar' == czr_fn_opt( 'tc_header_mobile_search' );
+    }
+
+    function czr_fn_display_view_mobile_menu_search() {
+      return 'menu' == czr_fn_opt( 'tc_header_mobile_search' );
     }
 
 
