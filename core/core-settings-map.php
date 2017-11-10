@@ -715,12 +715,17 @@ function czr_fn_header_mobile_option_map() {
         ),
 
         'tc_header_mobile_search' => array(
-                          'default'   => 1,
+                          'default'   => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'menu' : 'navbar',
                           'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_mobile_sec',
-                          'type'      => 'checkbox',
-                          'priority'  => 28,
+                          'type'      => 'select',
+                          'choices'   => array(
+                              'none'          => __( 'Do not display', 'customizr'),
+                              'navbar'        => __( 'Display in the mobile navbar', 'customizr'),
+                              'menu'          => __( 'Display in the mobile menu', 'customizr'),
+                          ),
+                          'priority'  => 30,
 
         ),
         'tc_header_mobile_wc_cart' => array(

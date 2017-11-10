@@ -18,9 +18,19 @@
 
     ?>
   </div>
-  <div class="mobile-utils__wrapper nav__utils">
+  <div class="mobile-utils__wrapper nav__utils regular-nav">
     <ul class="nav utils row flex-row flex-nowrap">
       <?php
+          if ( czr_fn_is_registered_or_possible( 'mobile_navbar_search' ) ) {
+            czr_fn_render_template( 'header/parts/nav_search', array(
+              'model_id'   => 'mobile_navbar_search',
+              'model_args' => array(
+                'search_toggle_class' => array( 'czr-dropdown' ),
+                'search_toggle_attributes' => 'data-aria-haspopup="true"',
+                'has_dropdown'        => true
+              )
+            ) );
+          }
           if ( czr_fn_is_registered_or_possible( 'mobile_wc_cart' ) ) {
               czr_fn_render_template( 'header/parts/woocommerce_cart', array(
                 'model_id'   => 'woocommerce_cart',
