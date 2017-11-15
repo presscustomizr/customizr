@@ -392,18 +392,8 @@ section.post-related-articles {
         }
       }
     }
-    @include media-breakpoint-down(md) {
-      .col-md-6 & {
-        .col-lg-6 {
-            -webkit-box-flex: 0;
-            -webkit-flex: 0 0 100%;
-            -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-      }
-    }
-    @media (min-width: 992px) {
+    //@media (min-width: 992px)
+    @include media-breakpoint-up(lg) {
       @at-root .grid-container__square-mini .czr-related-post {
           padding: 5px;
       }
@@ -424,7 +414,7 @@ section.post-related-articles {
         }
       }
     }
-}
+}//section.post-related-articles
 
 
 
