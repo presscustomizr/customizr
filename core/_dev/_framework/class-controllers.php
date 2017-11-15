@@ -33,6 +33,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'navbar_secondary_menu',
               'sidenav',
               'topbar_menu',
+              'mobile_menu',
 
               'menu_button',
               'mobile_menu_button',

@@ -80,6 +80,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
       return $this -> czr_fn_display_view_menu() && 'aside' == esc_attr( czr_fn_opt( 'tc_menu_style' ) ) && has_nav_menu( 'main' );
     }
 
+    //to improve
+    function czr_fn_display_view_mobile_menu() {
+      return $this -> czr_fn_display_view_menu();
+    }
+
     function czr_fn_display_view_menu() {
       return ! czr_fn_opt('tc_hide_all_menus');
     }
@@ -99,10 +104,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //when the 'mobile menu button' is allowed?
     //1) menu button allowed
     // or
-    //2) mobile search allowed
+    //2) mobile search in menu allowed
     function czr_fn_display_view_mobile_menu_button() {
-      return $this -> czr_fn_display_view_menu() || $this -> czr_fn_display_view_mobile_search();
+      return $this -> czr_fn_display_view_mobile_menu() || $this -> czr_fn_display_view_mobile_menu_search();
     }
+
 
     //when the 'menu button' is allowed?
     //1) menu allowed
