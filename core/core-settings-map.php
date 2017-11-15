@@ -701,6 +701,14 @@ function czr_fn_header_mobile_option_map() {
                               'priority' => '100'
                           ),
         ),
+        'tc_header_mobile_menu_dropdown_on_click'  => array(
+                          'default'   =>  0,
+                          'control'   =>  'CZR_controls' ,
+                          'label'     =>  __( 'Expand submenus on click' , 'customizr' ),
+                          'section'   =>  'header_mobile_sec',
+                          'type'      =>  'checkbox',
+                          'priority'  =>  28
+        ),
         'tc_header_mobile_tagline'  =>  array(
                           'default'       => 0,
                           'control'       => 'CZR_controls' ,
@@ -713,21 +721,6 @@ function czr_fn_header_mobile_option_map() {
                                               'priority' => '11'
                                            )
         ),
-
-        'tc_header_mobile_search' => array(
-                          'default'   => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'menu' : 'navbar',
-                          'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
-                          'control'   => 'CZR_controls' ,
-                          'section'   => 'header_mobile_sec',
-                          'type'      => 'select',
-                          'choices'   => array(
-                              'none'          => __( 'Do not display', 'customizr'),
-                              'navbar'        => __( 'Display in the mobile navbar', 'customizr'),
-                              'menu'          => __( 'Display in the mobile menu', 'customizr'),
-                          ),
-                          'priority'  => 30,
-
-        ),
         'tc_header_mobile_wc_cart' => array(
                           'default'   => 1,
                           'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
@@ -738,7 +731,6 @@ function czr_fn_header_mobile_option_map() {
                           'priority'  => 28,
                           'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
         ),
-
         'tc_header_mobile_sticky' => array(
                           'default'   => 'stick_up',
                           'control'   => 'CZR_controls',
@@ -755,7 +747,21 @@ function czr_fn_header_mobile_option_map() {
                               'section' => 'menu_locations',
                               'priority' => '120'
                           )
-        )
+        ),
+        'tc_header_mobile_search' => array(
+                          'default'   => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'menu' : 'navbar',
+                          'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
+                          'control'   => 'CZR_controls' ,
+                          'section'   => 'header_mobile_sec',
+                          'type'      => 'select',
+                          'choices'   => array(
+                              'none'          => __( 'Do not display', 'customizr'),
+                              'navbar'        => __( 'Display in the mobile navbar', 'customizr'),
+                              'menu'          => __( 'Display in the mobile menu', 'customizr'),
+                          ),
+                          'priority'  => 30,
+
+        ),
     );
 }
 
@@ -801,6 +807,15 @@ function czr_fn_navigation_option_map( $get_default = null ) {
                                   __("create/edit menus", "customizr")
                               )
                           )
+          ),
+          'tc_side_menu_dropdown_on_click'  => array(
+                            'default'       =>  0,
+                            'control'       =>  'CZR_controls' ,
+                            'label'         =>  __( 'Expand submenus on click' , 'customizr' ),
+                            'title'         => __( 'Primary (vertical) menu design' , 'customizr'),
+                            'section'       =>  'nav' ,
+                            'type'          =>  'checkbox',
+                            'priority'      =>   40
           ),
           'tc_menu_position'  =>  array(
                             'default'       => czr_fn_user_started_before_version( '3.4.0', '1.2.0' ) ? 'pull-menu-left' : 'pull-menu-right',

@@ -684,7 +684,8 @@ class CZR_utils_settings_map {
                   'tc_header_mobile_wc_cart',
                   'tc_header_mobile_tagline',
                   'tc_header_mobile_sticky',
-                  'tc_header_mobile_menu_layout'
+                  'tc_header_mobile_menu_layout',
+                  'tc_header_mobile_menu_dropdown_on_click'
             );
             foreach ( $_to_unset as $key ) {
                   unset( $_map[ $key ] );
@@ -702,6 +703,15 @@ class CZR_utils_settings_map {
 
             if ( !is_array( $_map ) || empty( $_map ) ) {
                   return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_side_menu_dropdown_on_click',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
             }
 
 
