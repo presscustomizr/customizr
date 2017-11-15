@@ -1250,41 +1250,53 @@ function czr_fn_layout_option_map( $get_default = null ) {
           'tc_single_author_block_location' =>  array(
                           'control'     => 'CZR_controls',
                           'default'     => 'below_main_content' ,//Default sidebar layout is on the left
-                          'title'       => __( 'Pages & Posts blocks location', 'customizr'),
-                          'label'       => __( 'Choose the Author Info box location' , 'customizr' ),
+                          'title'       => __( 'Pages & Posts default sections locations', 'customizr'),
+                          'label'       => __( 'Author Infos location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
                           'choices'     => array(
-                            'below_post_content'  => __( 'Below the post content', 'customizr' ),
-                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                            'below_post_content'  => __( 'Right after the post content', 'customizr' ),
+                            'below_main_content'  => __( 'After the content and sidebars columns', 'customizr' )
                           ),
                           'priority'    => 50,
+                          'ubq_section'   => array(
+                              'section' => 'single_posts_sec',
+                              'priority' => '50'
+                           )
           ),
           //Page sidebar layout
           'tc_single_related_posts_block_location' =>  array(
                           'control'     => 'CZR_controls',
                           'default'     => 'below_main_content' ,//Default sidebar layout is on the left
-                          'label'       => __( 'Choose the Related Posts section location' , 'customizr' ),
+                          'label'       => __( 'Related Posts location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
                           'choices'     => array(
-                            'below_post_content'  => __( 'Below the post content', 'customizr' ),
-                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                            'below_post_content'  => __( 'Right after the post content', 'customizr' ),
+                            'below_main_content'  => __( 'After the content and sidebars columns', 'customizr' )
                           ),
                           'priority'    => 52,
+                          'ubq_section'   => array(
+                              'section' => 'single_posts_sec',
+                              'priority' => '50'
+                           )
           ),
           //Page sidebar layout
           'tc_singular_comments_block_location' =>  array(
                           'control'     => 'CZR_controls',
                           'default'     => 'below_main_content' ,//Default sidebar layout is on the left
-                          'label'       => __( 'Choose the Comments section location' , 'customizr' ),
+                          'label'       => __( 'Comments location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
                           'choices'     => array(
-                            'below_post_content'  => __( 'Below the page/post content', 'customizr' ),
-                            'below_main_content'  => __( 'Below the main content', 'customizr' )
+                            'below_post_content'  => __( 'Right after the post content', 'customizr' ),
+                            'below_main_content'  => __( 'After the content and sidebars columns', 'customizr' )
                           ),
                           'priority'     => 54,
+                          'ubq_section'   => array(
+                              'section' => 'single_posts_sec',
+                              'priority' => '50'
+                           )
           ),
 
   );//end of layout_options
