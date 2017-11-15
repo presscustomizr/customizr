@@ -1254,7 +1254,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
           //Page sidebar layout
           'tc_single_author_block_location' =>  array(
                           'control'     => 'CZR_controls',
-                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'default'     => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'below_main_content' : 'below_post_content',//Default sidebar layout is on the left
                           'title'       => __( 'Pages & Posts default sections locations', 'customizr'),
                           'label'       => __( 'Author Infos location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
@@ -1272,7 +1272,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
           //Page sidebar layout
           'tc_single_related_posts_block_location' =>  array(
                           'control'     => 'CZR_controls',
-                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'default'     => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'below_main_content' : 'below_post_content',//Default sidebar layout is on the left
                           'label'       => __( 'Related Posts location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
@@ -1289,7 +1289,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
           //Page sidebar layout
           'tc_singular_comments_block_location' =>  array(
                           'control'     => 'CZR_controls',
-                          'default'     => 'below_main_content' ,//Default sidebar layout is on the left
+                          'default'     => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'below_main_content' : 'below_post_content',//Default sidebar layout is on the left
                           'label'       => __( 'Comments location' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
