@@ -1231,9 +1231,6 @@ function czr_fn_layout_option_map( $get_default = null ) {
                           'choices'   => $get_default ? null : czr_fn_layout_choices(),
                           'priority'      => 30
           ),
-
-
-
           //Page sidebar layout
           'tc_sidebar_page_layout'  =>  array(
                           'control'     => 'CZR_controls',
