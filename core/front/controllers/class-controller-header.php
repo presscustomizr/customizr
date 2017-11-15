@@ -82,7 +82,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
     //to improve
     function czr_fn_display_view_mobile_menu() {
-      return $this -> czr_fn_display_view_menu();
+      return ! czr_fn_opt('tc_hide_all_menus');
     }
 
     function czr_fn_display_view_menu() {
@@ -106,7 +106,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     // or
     //2) mobile search in menu allowed
     function czr_fn_display_view_mobile_menu_button() {
-      return $this -> czr_fn_display_view_mobile_menu() || $this -> czr_fn_display_view_mobile_menu_search();
+      return ! czr_fn_opt('tc_hide_all_menus');
     }
 
 
