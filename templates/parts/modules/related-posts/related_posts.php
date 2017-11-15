@@ -7,7 +7,7 @@
 <section class="post-related-articles czr-carousel <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <header class="row flex-row">
     <h3 class="related-posts_title col"><?php _e('You may also like', 'customizr') ?></h3>
-    <?php if ( $wp_query->post_count > 1 ) :
+    <?php if ( $wp_query->post_count > 2 ) :
         //rtl compliance
         if ( is_rtl() ) {
             $_icon_prev =  'icn-right-open-big';
