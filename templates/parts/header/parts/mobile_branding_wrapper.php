@@ -41,7 +41,9 @@
               ) );
           }
           if ( czr_fn_is_registered_or_possible( 'mobile_menu_button' ) ) {
-            czr_fn_render_template( 'header/parts/menu_button' );
+            czr_fn_render_template( 'header/parts/menu_button', array(
+                'model_id'   => 'woocommerce_cart',
+            ));
           }
       ?>
     </ul>
