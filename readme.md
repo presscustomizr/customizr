@@ -25,8 +25,8 @@ See headers of each files for further details.
 ## Changelog
 = 4.0.12 November 15th 2017 =
 * Fix: post/page layout meta box must show the contextualized default layout. fixes #1266
-* Fix: modern - fix header/overlay search label not custom skinned. fixes #1295
-* Fix: modern - fix potential slider captions overlapping on page load. fixes #1293
+* Fix: fix header/overlay search label not custom skinned. fixes #1295
+* Fix: fix potential slider captions overlapping on page load. fixes #1293
 * Imp : more precis title of the topbar menu
 * Imp: add new options to control the singular blocks location. author box (single post), related posts (single post), comments ( single posts and pages )
 * Imp: add mobile header search location option
