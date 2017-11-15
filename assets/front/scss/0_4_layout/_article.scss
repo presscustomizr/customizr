@@ -383,7 +383,27 @@ section.post-related-articles {
     .entry-meta {
       margin: 0;
     }
-
+    //adapt the post-title font-size when the related posts are inside the #content wrapper
+    //@see option tc_single_related_posts_block_location
+    .col-md-6 & {
+      .entry-title {
+          font-size: 1.6em;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      .col-md-6 & {
+        .entry-title {
+            font-size: 2em;
+        }
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      .col-md-6 & {
+        .entry-title {
+            font-size: 1.5em;
+        }
+      }
+    }
 }
 
 
@@ -551,7 +571,21 @@ section.post-related-articles {
 
 .comment-list li.comment { margin-top:$base-line-height*2; padding-top:$base-line-height*2; border-top:1px solid $grey-light; }
 .comment-list li.comment.depth-1:first-of-type { border:0; margin-top: 0 }
-.comment-list ul.children    { margin-left: calc(3em + #{$base-line-height});   }
+.comment-list ul.children {
+  margin-left: calc(3em + #{$base-line-height});
+  //adapt the threaded comments margin when the comments block is inside the #content wrapper
+  //@see option tc_single_related_posts_block_location
+  .col-md-6 &, .col-md-9 & {
+    margin-left: calc( 1.5em + #{$base-line-height} );
+  }
+}
+//adapt the threaded comments font-size when the comments block is inside the #content wrapper
+//@see option tc_single_related_posts_block_location
+.comment-list .comment-content {
+    .col-md-6 &, .col-md-9 & {
+        font-size: 1em;
+    }
+}
 .pingback-list li.pingback {
   margin-top:$base-line-height; padding-top:$base-line-height;
   border-top: 1px solid $grey-lightest;
