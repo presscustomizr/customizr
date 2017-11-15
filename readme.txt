@@ -31,7 +31,6 @@ See headers of each files for further details.
 * Imp: add new options to control the singular blocks location. author box (single post), related posts (single post), comments ( single posts and pages )
 * Imp: add mobile header search location option
 
-
 = 4.0.11 November 6th 2017 =
 * Fix : label padding for comment text area applied to other inputs. Fixes #1287
 * Fix : input white background applied to unwanted selectors. fixes #1288

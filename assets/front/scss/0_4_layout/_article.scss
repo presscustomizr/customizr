@@ -385,11 +385,6 @@ section.post-related-articles {
     }
     //adapt the post-title font-size when the related posts are inside the #content wrapper
     //@see option tc_single_related_posts_block_location
-    .col-md-6 & {
-      .entry-title {
-          font-size: 1.6em;
-      }
-    }
     @include media-breakpoint-down(md) {
       .col-md-6 & {
         .entry-title {
@@ -397,18 +392,39 @@ section.post-related-articles {
         }
       }
     }
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-down(md) {
       .col-md-6 & {
-        .entry-title {
-            font-size: 1.5em;
+        .col-lg-6 {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 100%;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+      }
+    }
+    @media (min-width: 992px) {
+      @at-root .grid-container__square-mini .czr-related-post {
+          padding: 5px;
+      }
+      .col-md-6 & {
+        .grid__item {
+          -webkit-flex-wrap: wrap !important;
+          -ms-flex-wrap: wrap !important;
+          flex-wrap: wrap !important;
+        }
+      }
+      .col-md-6 & {
+        .grid__item section {
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 100%;
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
         }
       }
     }
 }
-
-
-
-
 
 
 
