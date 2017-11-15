@@ -8,6 +8,7 @@ class CZR_menu_model_class extends CZR_Model {
     protected $fallback_cb;
     protected $walker;
     protected $dropdown_type;
+    protected $dropdown_on;
 
     protected $czr_menu_location; //can be sidenav, topbar, primary_navbar, secondary_navbar, mobile
     /**
@@ -25,8 +26,7 @@ class CZR_menu_model_class extends CZR_Model {
           'def_menu_class'      => array( 'nav' ),
           'menu_class'          => array(),
           'fallback_cb'         => czr_fn_isprevdem() ? array( $this, 'czr_fn_page_menu' ) : '',
-          'walker'              => '',
-          'dropdown_type'       => esc_attr( czr_fn_opt( 'tc_menu_type' ) )
+          'walker'              => ''
       );
 
       return $_preset;
@@ -62,6 +62,8 @@ class CZR_menu_model_class extends CZR_Model {
                     'theme_location'      => 'main',
                     'menu_id'             => 'primary-nav',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
+                    'dropdown_type'       => $this->dropdown_type ? $this->dropdown_type : esc_attr( czr_fn_opt( 'tc_menu_type' ) ),
+                    'dropdown_on'         => 'link-action'
 
                 );
 
@@ -87,6 +89,8 @@ class CZR_menu_model_class extends CZR_Model {
                     'theme_location'      => 'secondary',
                     'menu_id'             => 'secondary-nav',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
+                    'dropdown_type'       => $this->dropdown_type ? $this->dropdown_type : esc_attr( czr_fn_opt( 'tc_menu_type' ) ),
+                    'dropdown_on'         => 'link-action'
 
                 );
 
@@ -101,6 +105,8 @@ class CZR_menu_model_class extends CZR_Model {
                     'menu_id'             => 'topbar-menu',
                     'theme_location'      => 'topbar',
                     'menu_class'          => array( 'topbar-nav__menu', 'regular-nav', 'nav__menu' ),
+                    'dropdown_type'       => $this->dropdown_type ? $this->dropdown_type : esc_attr( czr_fn_opt( 'tc_menu_type' ) ),
+                    'dropdown_on'         => 'link-action'
                 );
 
 
@@ -110,11 +116,17 @@ class CZR_menu_model_class extends CZR_Model {
             case 'sidenav' :
 
                 $_model = array(
-
                     'element_class'       => array( 'side-nav__menu-wrapper' ),
                     'menu_class'          => array( 'side-nav__menu', 'side', 'vertical-nav', 'nav__menu', 'flex-column' ),
-
                 );
+
+                if ( !$this->dropdown_type ) {
+                    $_model[ 'dropdown_type' ] = 1 == esc_attr( czr_fn_opt( 'tc_side_menu_dropdown_on_click' ) ) ? 'click' : '';
+                } else {
+                    $_model[ 'dropdown_type' ] = $this->dropdown_type;
+                }
+
+                $_model[ 'dropdown_on' ] = 'click' == $_model[ 'dropdown_type' ] ? 'caret-click' : '';
 
                 break;
 
@@ -125,7 +137,7 @@ class CZR_menu_model_class extends CZR_Model {
                     'mobile_menu'    => 'mobile',
                     'main_menu'      => 'main',
                     'secondary_menu' => 'secondary',
-                    'top_menu'       => 'topbar',
+                    'top_menu'       => 'topbar'
                 );
 
                 $mobile_menu_opt = czr_fn_opt( 'tc_header_mobile_menu_layout' );
@@ -151,15 +163,20 @@ class CZR_menu_model_class extends CZR_Model {
                 }
 
 
-
                 $_model = array(
-
                     'element_class'       => array( 'mobile-nav__menu-wrapper' ),
                     'theme_location'      => $mobile_menu_location,
                     'menu_id'             => 'mobile-nav-menu',
                     'menu_class'          => array( 'mobile-nav__menu', 'vertical-nav', 'nav__menu', 'flex-column' ),
-
                 );
+
+                if ( !$this->dropdown_type ) {
+                    $_model[ 'dropdown_type' ] = 1 == esc_attr( czr_fn_opt( 'tc_header_mobile_menu_dropdown_on_click' ) ) ? 'click' : '';
+                } else {
+                    $_model[ 'dropdown_type' ] = $this->dropdown_type;
+                }
+
+                $_model[ 'dropdown_on' ] = 'click' == $_model[ 'dropdown_type' ] ? 'caret-click' : '';
 
                 break;
         }
@@ -214,8 +231,9 @@ class CZR_menu_model_class extends CZR_Model {
             $element_class =  $this->element_class;
 
 
-        $_submenu_opening_class = 'hover' == $this -> dropdown_type ? 'czr-open-on-hover' : 'czr-open-on-click';
-        $_submenu_opening_class = !$this -> dropdown_type ? '' : $_submenu_opening_class;
+        $_submenu_opening_class = 'click' == $this -> dropdown_type ? 'czr-open-on-click' : 'czr-open-on-hover';
+
+        $_submenu_opening_class = ! $this->dropdown_type ? '' : $_submenu_opening_class;
 
         $element_class[]        = $_submenu_opening_class;
 

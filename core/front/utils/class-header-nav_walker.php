@@ -18,6 +18,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
       $this -> czr_location = $_location;
 
       add_filter( 'czr_nav_menu_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
+
     }
 
 
@@ -65,43 +66,20 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
     }
 
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+
+      //since WP 3.6.0
+      add_filter( 'nav_menu_link_attributes' , 'czr_fn_add_nav_link_class', 10, 4 );
+
       $item_html = '';
       //ask the parent to do the hard work
       parent::start_el( $item_html, $item, $depth, $args, $id);
 
+
+      //since WP 3.6.0
+      remove_filter( 'nav_menu_link_attributes' , 'czr_fn_add_nav_link_class', 10, 4 );
+
       if ( $item->is_dropdown ) {
-        //3 cases:
-        //1 - dropdown on hover
-        //2 - dropdown on click
-        //3 - no dropdown ( sidenav )
-        switch( $args->dropdown_type ) {
-
-          case 'hover' :
-                    $item_html = str_replace(
-                      array( '<a', '</a>' ),
-                      array(
-                        '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
-                        '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
-                      ),
-                      $item_html
-                    );
-                    break;
-
-          case 'click' :
-                    $item_html = str_replace(
-                      array( '<a', '</a>' ),
-                      array(
-                        '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
-                        '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
-                      ),
-                      $item_html
-                    );
-                    break;
-
-          //no caret for case 3
-
-        }//end switch
-
+        $item_html = czr_fn_maybe_add_dropdown_html( $item_html, $args->dropdown_on );
 
       }else {
 
@@ -151,6 +129,9 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
     function __construct() {
       add_filter( 'page_css_class' , array($this, 'czr_fn_add_bootstrap_classes'), 10, 4 );
+
+
+      //
     }
 
 
@@ -208,44 +189,16 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
     function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
 
+      //since WP 4.8.0
+      add_filter( 'page_menu_link_attributes' , 'czr_fn_add_nav_link_class', 10, 4 );
+
       //since the &$output is passed by reference, it will modify the value on the fly based on the parent method treatment
       //we just have to make some additional treatments afterwards
       parent::start_el( $item_html, $page, $depth, $args, $current_page );
 
       if ( $args['has_children'] ) {
 
-          //3 cases:
-          //1 - dropdown on hover
-          //2 - dropdown on click
-          //3 - no dropdown ( sidenav )
-          switch( $args[ 'dropdown_type' ] ) {
-
-            case 'hover' :
-                      $item_html = str_replace(
-                        array( '<a', '</a>' ),
-                        array(
-                          '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
-                          '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
-                        ),
-                        $item_html
-                      );
-                      break;
-
-            case 'click' :
-                      $item_html = str_replace(
-                        array( '<a', '</a>' ),
-                        array(
-                          '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
-                          '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
-                        ),
-                        $item_html
-                      );
-                      break;
-
-            //no caret for case 3
-
-          }//end switch
-
+          $item_html = czr_fn_maybe_add_dropdown_html( $item_html, $args['dropdown_on'] );
 
       }else {
 
@@ -257,6 +210,15 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
         }
 
       }
+      //add link class attribute
+      //before 4.8 there was no available filter to add a custom class to the link tag
+      //also the link add no possibility to have a class at all, so we can easily add it
+      global $wp_version;
+      if ( version_compare( $wp_version, '4.8', '<' ) ) {
+        $item_html = str_replace( '<a', '<a class="nav__link"', $item_html );
+      }
+
+      remove_filter( 'page_menu_link_attributes' , 'czr_fn_add_nav_link_class', 10, 4 );
 
       $output .= $item_html;
 
@@ -264,3 +226,56 @@ if ( ! class_exists( 'CZR_nav_walker_page' ) ) :
 
  }//end of class
 endif;
+
+
+//maybe alter the item_html to add needed html code for dropdown
+function czr_fn_maybe_add_dropdown_html( $item_html, $dropdown_on ) {
+
+    //3 cases:
+    //1 - dropdown on hover | dropdown on click for regular nav
+    //2 - dropdown on click for vertical navs
+    //3 - no dropdown ( vertical navs )
+    switch( $dropdown_on ) {
+
+      case 'link-action' :
+                $item_html = str_replace(
+                  array( '<a', '</a>' ),
+                  array(
+                    '<a data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false"',
+                    '<span class="caret__dropdown-toggler"><i class="icn-down-small"></i></span></a>'
+                  ),
+                  $item_html
+                );
+                break;
+      case 'caret-click' :
+                $item_html = str_replace(
+                  array( '<a', '</a>' ),
+                  array(
+                    //wrap both the link and the caret toggler in a convenient wrapper
+                    '<span class="display-flex nav__link-wrapper align-items-start"><a',
+                    '</a><button data-toggle="czr-dropdown" aria-haspopup="true" aria-expanded="false" class="caret__dropdown-toggler czr-btn-link"><i class="icn-down-small"></i></button></span>'
+                  ),
+                  $item_html
+                );
+                break;
+      //no caret for case 3
+
+    }//end switch
+
+    return $item_html;
+}
+
+
+//add menu item link class
+function czr_fn_add_nav_link_class( $atts, $item, $args, $depth) {
+    if ( !is_array( $atts ) )
+      return $atts;
+
+    if ( array_key_exists( 'class', $atts ) && ! empty( $atts[ 'class' ] ) ) {
+        $atts['class'] = $atts['class'] . ' nav__link';
+    } else {
+      $atts['class'] = 'nav__link';
+    }
+
+    return $atts;
+}
