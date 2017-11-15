@@ -51,14 +51,21 @@ header:not(.header-transparent) {
 }
 
 //menu items underline
-[class*=nav__menu] li > a > span:first-of-type {
-  @include underlined_nocolor(2px);
-}
+[class*=nav__menu] {
+  .nav__title {
+    @include underlined_nocolor(2px);
+  }
 
-& li.show:not(.dropdown-item) > a > span:first-of-type,
-&  li:not(.dropdown-item).current-active > a > span:first-of-type,
-&  li.current-menu-item > a > span:first-of-type {
-  @include underlined_highlight_before_nocolor();
+  .show:not(.dropdown-item) > .nav__link .nav__title,
+  .show:not(.dropdown-item) > .nav__link-wrapper .nav__title,
+
+  li:not(.dropdown-item).current-active > .nav__link .nav__title,
+  li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__title,
+
+  .current-menu-item > .nav__link .nav__title,
+  .current-menu-item > .nav__link-wrapper .nav__title {
+    @include underlined_highlight_before_nocolor();
+  }
 }
 
 .nav__menu {
@@ -72,36 +79,31 @@ header:not(.header-transparent) {
     margin: 0 $base-line-height-fixed/3;
     padding: 0;
 
-    a {
+    .nav__link {
       overflow: hidden;
-      & > span:first-of-type {
+      padding: 0 $base-line-height-fixed/3;
+      @include display-flex();
+      @include flex-align-items-center();
+      @include flex-justify-content-between();
+
+      .nav__title {
         padding: 10px 0 5px 0;
         margin-bottom: 5px;
         //padding: $base-line-height 0 $base-line-height/2 0;
         //margin-bottom: $base-line-height/2
       }
-
-      padding: 0 $base-line-height-fixed/3;
-      @include display-flex();
-        -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-
     }
   }
 }
 
-.nav li:not(.mini_cart_item) > a {
+
+.nav li:not(.mini_cart_item) a {
   &:focus,
   &:hover {
     background: transparent !important;
   }
 }
+
 .regular-nav.nav__menu {
     margin: 0 -1*$base-line-height-fixed/1.5;
 }
@@ -117,9 +119,11 @@ header:not(.header-transparent) {
 .czr-dropdown-menu {
     display: none;
     max-width: 50vw;
-    a { white-space: normal; }
     //the sidemenu and mobile menu should break lines
-    @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu a, #mobile-nav .dropdown-menu.czr-dropdown-menu a { white-space: normal; }
+    @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu .nav__title {
+      word-break: break-all;
+      white-space: normal;
+    }
 }
 
 .dropdown-menu.czr-dropdown-menu {
@@ -128,7 +132,7 @@ header:not(.header-transparent) {
     margin: 0;
     padding: 0;
     font-size: inherit;
-    a {
+    .nav__link {
         @extend .bold;
         position: relative;
         vertical-align: middle;
@@ -208,36 +212,30 @@ header:not(.header-transparent) {
 
 // Caret
 .caret__dropdown-toggler {
-  display: none;
-
-
-    .regular-nav & {
       display: inline-block;
       width: 1.5em;
       vertical-align: middle;
       z-index: inherit;
       cursor: pointer;
       position: relative;
-    }
-
-}
-
-.caret__dropdown-toggler i {
-    display: inline-block;
-    @include transition (all 0.3s ease);
-    @include transform-style( preserve-3d );
-    @include backface-visibility( hidden );
-    @include perspective(1000px);
-    text-align: center;
-    vertical-align: baseline;
-    line-height: 0;
-    &::before {
-      line-height: inherit;
-    }
-    .menu-item.show > a > & {
-        @include transform( translateZ(0) rotate(-180deg)!important);
-        -ms-transform: rotate(-180deg)!important;
-    }
+      i {
+          display: inline-block;
+          @include transition (all 0.3s ease);
+          @include transform-style( preserve-3d );
+          @include backface-visibility( hidden );
+          @include perspective(1000px);
+          text-align: center;
+          vertical-align: baseline;
+          line-height: 0;
+          &::before {
+            line-height: inherit;
+          }
+          .menu-item.show > span > &,
+          .menu-item.show > a > & {
+              @include transform( translateZ(0) rotate(-180deg)!important);
+              -ms-transform: rotate(-180deg)!important;
+          }
+      }
 }
 
 .regular-nav {

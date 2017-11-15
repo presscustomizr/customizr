@@ -113,6 +113,10 @@ $secondary-color-light  : $grey-light;
   .dropdown-item::before {
     background-color: rgba( $background-color-inverted, 0.045);
   }
+  //clickable caret dropdown toggler (it's not printed in vertical nav if the submenus are expanded by default )
+  .vertical-nav .caret__dropdown-toggler {
+    background-color: rgba( $background-color-inverted, 0.045);
+  }
 
   .dropdown-menu,
   .dropdown-item:active,
@@ -138,26 +142,36 @@ $secondary-color-light  : $grey-light;
 
   [class*=nav__menu] {
 
-    & li > a {
+    .nav__link,
+    .nav__link-wrapper .caret__dropdown-toggler {
       color: $primary-color;
     }
 
-    & li > a > span:first-of-type::before {
+    .nav__title::before {
       background-color: $primary-color;
     }
 
+    .nav__link:hover,
+    .nav__link-wrapper .caret__dropdown-toggler:hover,
 
-    & li > a:hover,
-    & li.show:not(.dropdown-item) > a,
-    &  li:not(.dropdown-item).current-active > a,
-    &  li.current-menu-item > a {
+    .show:not(.dropdown-item) > .nav__link,
+    .show:not(.dropdown-item) > .nav__link-wrapper .nav__link,
+    li:not(.dropdown-item).current-active > .nav__link,
+    li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__link,
+    .current-menu-item > .nav__link,
+    .current-menu-item > .nav__link-wrapper .nav__link {
       color: $secondary-color;
     }
 
-    .dropdown-menu a { color: $primary-color; }
-    .dropdown-item  a { color: $secondary-color; }
-    .dropdown-item > a:hover { color: $primary-color; }
-
+    .dropdown-menu .nav__link {
+      color: $primary-color;
+    }
+    .dropdown-item .nav__link {
+        color: $secondary-color;
+        &:hover {
+          color: $primary-color;
+        }
+    }
   }
 
 
