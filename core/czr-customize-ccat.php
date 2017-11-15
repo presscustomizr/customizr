@@ -1080,7 +1080,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
                 $sliders          = czr_fn_opt( 'tc_sliders' );
 
                 if ( empty( $sliders ) ) {
-                  printf('<div class="czr-notice" style="width:99%; padding: 5px;"><p class="description">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></p>',
+                  printf('<div class="czr-notice" style="width:99%; padding: 5px;"><span class="czr-notice">%1$s<br/><a class="button-primary" href="%2$s" target="_blank">%3$s</a><br/><span class="tc-notice">%4$s <a href="%5$s" title="%6$s" target="_blank">%6$s</a></span></span>',
                     __("You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders.", "customizr" ),
                     admin_url( 'upload.php?mode=list' ),
                     __( 'Create a slider' , 'customizr' ),
@@ -1820,8 +1820,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1881,8 +1880,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
+?><?php
 /***************************************************
 * AUGMENTS WP CUSTOMIZE SETTINGS
 ***************************************************/
@@ -1959,8 +1957,7 @@ function czr_fn_add_social_module_data( $params ) {
     )
   );
 }
-?>
-<?php
+?><?php
 /////////////////////////////////////////////////////
 /// ALL MODULES TMPL  //////////////////////
 /////////////////////////////////////////////////////
