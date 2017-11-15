@@ -10787,6 +10787,9 @@ $.extend( CZRLayoutSelectMths , {
                                      $_label = $( 'label' , $_front_slider_container ),
                                      $_empty_sliders_notice = $( 'div.czr-notice', $_front_slider_container);
 
+                                  if ( 0 < $_empty_sliders_notice.length )
+                                      $_empty_sliders_notice.show();
+
                                   if ( 'tc_posts_slider' == to ) {
                                     if ( 0 !== $_label.length && ! $('.czr-notice' , $_label ).length ) {
                                       var $_notice = $('<span>', { class: 'czr-notice', html : serverControlParams.i18n.postSliderNote || '' } );
@@ -10795,9 +10798,7 @@ $.extend( CZRLayoutSelectMths , {
                                     else {
                                       $('.czr-notice' , $_label ).show();
                                     }
-                                    if ( 0 !== $_empty_sliders_notice.length ) {
-                                      $_empty_sliders_notice.hide();
-                                    }
+
                                   }
                                   else {
                                     if ( 0 !== $( '.czr-notice' , $_label ).length )
