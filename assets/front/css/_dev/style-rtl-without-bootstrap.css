@@ -5930,7 +5930,7 @@ section.post-related-articles .entry-meta {
 }
 
 @media (min-width: 992px) {
-  .grid-container__square-mini .czr-related-post {
+  .col-md-6 section.post-related-articles .grid-container__square-mini .czr-related-post {
     padding: 5px;
   }
   .col-md-6 section.post-related-articles .grid__item {

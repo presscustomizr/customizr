@@ -394,8 +394,10 @@ section.post-related-articles {
     }
     //@media (min-width: 992px)
     @include media-breakpoint-up(lg) {
-      @at-root .grid-container__square-mini .czr-related-post {
+      .col-md-6 & {
+        .grid-container__square-mini .czr-related-post {
           padding: 5px;
+        }
       }
       .col-md-6 & {
         .grid__item {
