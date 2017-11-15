@@ -47,6 +47,10 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
       add_filter( 'tc_single_page_thumb_hook', array( $this, 'czr_fn_set_singular_thumb_hook') );
       add_filter( 'tc_single_post_thumb_height', array( $this, 'czr_fn_set_singular_thumb_height') );
       add_filter( 'tc_single_page_thumb_height', array( $this, 'czr_fn_set_singular_thumb_height') );
+      //block locations
+      add_filter( 'tc_opt_tc_single_author_block_location', array( $this, 'czr_fn_set_single_block_location') );
+      add_filter( 'tc_opt_tc_single_related_posts_block_location', array( $this, 'czr_fn_set_single_block_location') );
+      add_filter( 'tc_opt_tc_singular_comments_block_location', array( $this, 'czr_fn_set_single_block_location') );
 
       //SOCIALS
       add_filter( 'option_tc_theme_options', array( $this, 'czr_fn_set_socials'), 100 );
@@ -338,7 +342,9 @@ if ( ! class_exists( 'CZR_prevdem' ) ) :
     function czr_fn_set_singular_thumb_height() {
       return 350;
     }
-
+    function czr_fn_set_single_block_location() {
+      return 'below_post_content';
+    }
 
 
     /* ------------------------------------------------------------------------- *
