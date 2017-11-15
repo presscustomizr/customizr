@@ -578,7 +578,7 @@ function czr_fn_header_desktop_option_map() {
         ),
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
-                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __( 'set the tagline location' , 'customizr' ) ),
+                          'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , __( 'set the tagline location' , 'customizr' ) ),
                           //'title'     => sprintf( '%1$s %2$s', __( 'Header settings for', 'customizr' ) , __('Desktop devices', 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
@@ -599,22 +599,24 @@ function czr_fn_header_desktop_option_map() {
 
         'tc_header_desktop_search' => array(
                           'default'   => 'navbar',
-                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __( 'set the search button location' , 'customizr' ) ),
+                          'title'     => __( 'Search Icon', 'customizr' ),
+                          'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , __( 'set the search icon location' , 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
                           'choices'   => array(
                               'none'          => __( 'Do not display', 'customizr'),
                               'topbar'        => __( 'Display in the topbar', 'customizr'),
-                              'navbar'        => __( 'Display in the primary navbar', 'customizr')
+                              'navbar'        => __( 'Display in the main header section', 'customizr')
                           ),
                           'priority'  => 15,
+                          'notice'    => __( 'If you want to display the search icon in your topbar, make sure the topbar is displayed by checking "Display a topbar" above.' , 'customizr' )
 
         ),
 
         'tc_header_desktop_wc_cart' => array(
                           'default'   => 'topbar',
-                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
+                          'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_desktop_sec',
                           'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
@@ -622,7 +624,7 @@ function czr_fn_header_desktop_option_map() {
                           'choices'   => array(
                               'none'          => __( 'Do not display', 'customizr'),
                               'topbar'        => __( 'Display in the topbar', 'customizr'),
-                              'navbar'        => __( 'Display in the primary navbar', 'customizr')
+                              'navbar'        => __( 'Display in the main header section', 'customizr')
                           ),
                           'priority'  => 20,
                           'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
@@ -631,7 +633,8 @@ function czr_fn_header_desktop_option_map() {
         'tc_header_desktop_sticky' => array(
                           'default'   => 'stick_up',
                           'control'   => 'CZR_controls',
-                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __('set the header visibility on scroll', 'customizr') ),
+                          'title'     => __( 'Behaviour on scroll', 'customizr' ),
+                          'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , __('set the header visibility on scroll', 'customizr') ),
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
                           'choices'   => array(
@@ -645,12 +648,12 @@ function czr_fn_header_desktop_option_map() {
         'tc_header_desktop_to_stick' => array(
                           'default'   => 'primary',
                           'control'   => 'CZR_controls',
-                          'label'     => sprintf( __('Desktop devices %s', 'customizr' ) , __('select the header block to stick on scroll', 'customizr') ),
+                          'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , __('select the header block to stick on scroll', 'customizr') ),
                           'section'   => 'header_desktop_sec',
                           'type'      => 'select',
                           'choices'   => array(
                               'topbar'        => __( 'Topbar', 'customizr'),
-                              'primary'       => __( 'Primary navbar', 'customizr'),
+                              'primary'       => __( 'Main header section', 'customizr'),
                           ),
                           'priority'  => 30,
         ),
@@ -716,14 +719,15 @@ function czr_fn_header_mobile_option_map() {
 
         'tc_header_mobile_search' => array(
                           'default'   => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'menu' : 'navbar',
-                          'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'Display a search button in the header' , 'customizr' ) ),
+                          'title'     => __( 'Search Icon', 'customizr' ),
+                          'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'display a search icon in the header' , 'customizr' ) ),
                           'control'   => 'CZR_controls' ,
                           'section'   => 'header_mobile_sec',
                           'type'      => 'select',
                           'choices'   => array(
                               'none'          => __( 'Do not display', 'customizr'),
-                              'navbar'        => __( 'Display in the mobile navbar', 'customizr'),
-                              'menu'          => __( 'Display in the mobile menu', 'customizr'),
+                              'navbar'        => __( 'Always visible in the mobile topbar', 'customizr'),
+                              'menu'          => __( 'Revealed in the expanded mobile menu', 'customizr'),
                           ),
                           'priority'  => 30,
 
@@ -742,6 +746,7 @@ function czr_fn_header_mobile_option_map() {
         'tc_header_mobile_sticky' => array(
                           'default'   => 'stick_up',
                           'control'   => 'CZR_controls',
+                          'title'     => __( 'Behaviour on scroll', 'customizr' ),
                           'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' ) , __('header menu visibility on scroll', 'customizr') ),
                           'section'   => 'header_mobile_sec',
                           'type'      => 'select',
