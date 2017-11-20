@@ -101,7 +101,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       * A "CONTEXT AWARE" SET METHD
       *****************************************************************************/
       /**
-      * OVERRIDES BASE api.Value method
+      * OVERRIDES BASE api.Value set method
       * => adds the o {} param, allowing to pass additional contextual informations.
       *
       * Set the value and trigger all bound callbacks.
@@ -191,16 +191,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       };
 })( wp.customize , jQuery, _ );
 ( function ( api, $, _ ) {
-      api.Setting.prototype.initialize = function( id, value, options ) {
-            var setting = this;
-            api.Value.prototype.initialize.call( setting, value, options );
-
-            setting.id = id;
-            setting.transport = setting.transport || 'refresh';
-            setting._dirty = options.dirty || false;
-            setting.notifications = new api.Values({ defaultConstructor: api.Notification });
-            setting.bind( setting.preview );
-      };
       api.Setting.prototype.preview = function( to, from , data ) {
             var setting = this, transport, dfd = $.Deferred();
 

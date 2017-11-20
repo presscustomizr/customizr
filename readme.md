@@ -1,4 +1,4 @@
-# Customizr v4.0.12 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.13 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,9 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.0.13 November 20th 2017 =
+* Fix : WP 4.9 Code Editor issue could impact the custom css customizer option when checking errors in the code
+
 = 4.0.12 November 15th 2017 =
 * Fix: post/page layout meta box must show the contextualized default layout. fixes #1266
 * Fix: fix header/overlay search label not custom skinned. fixes #1295
