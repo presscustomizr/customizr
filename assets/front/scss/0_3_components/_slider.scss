@@ -43,7 +43,10 @@
       margin-bottom: 0.5em;
       font-size: 30px;
   }
-
+  .czrs-cta {
+      white-space: normal; //<-allow long phrases to wrap on a new line
+      word-break: break-word; //<-allow braking long words
+  }
   .bg-link {
     z-index: 4
   }
