@@ -9,7 +9,7 @@
   border-color: $skin-light;
 }
 %skin-color {
-  color: $skin;  
+  color: $skin;
 }
 %skin-dark-color {
   color: $skin-dark
@@ -23,22 +23,22 @@
 
 
 //form focus color
-input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']):focus, 
+input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']):focus,
 textarea:focus {
   @extend %skin-light-border-color;
 }
 
 input[type=radio]:checked::before {
-  @extend %skin-background-color; 
+  @extend %skin-background-color;
 }
 
 input[type=checkbox]:checked::before {
-  @extend %skin-color; 
+  @extend %skin-color;
 }
 
 //header top border
 .tc-header.border-top {
-  @extend %skin-border-color;
+  border-top-color: $skin;
 }
 
 .post-info a:not(.btn) {

@@ -1,7 +1,5 @@
-header:not(.header-transparent) {
-  .header-navbars__wrapper {
+.tc-header:not(.header-transparent) {
     @include box-shadow(0px, 2px, 2px, rgba(102, 102, 102, .08));
-  }
 }
 
 .mobile-nav__nav {
@@ -12,20 +10,22 @@ header:not(.header-transparent) {
 }
 
 .vertical-nav > li:not(:last-of-type),
+.tc-header,
 .topbar-navbar__wrapper,
-.header-navbars__wrapper,
 .mobile-nav__container,
+.mobile-nav__nav,
 .header-search__container {
   border-bottom: 1px solid;
 }
 
-.header-navbars__wrapper,
-.topnav-navbars__container,
-.topnav-navbars__container [class*=navbar__wrapper],
+.mobile-navbar__wrapper,
+.mobile-navbar__wrapper > div,
+.mobile-navbar__row,
 .mobile-nav__container,
 .mobile-nav__nav {
   background: inherit;
 }
+
 .sticky-transparent.is-sticky .mobile-nav__nav {
   .dropdown-menu,
   .dropdown-item:active,

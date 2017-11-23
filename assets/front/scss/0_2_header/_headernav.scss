@@ -195,8 +195,8 @@
 // IS VALID ONLY WHEN THE PRIMARY NAVBAR WRAPPER IS NOT STICKY
 // that's why is handled only with CSS
 //
-.logo_centered .primary-navbar__wrapper:not(.desktop-sticky),
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky {
+.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-navbar__row,
+.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky  .primary-navbar__row{
 
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
@@ -265,8 +265,8 @@
 // Revert header (not topbar) elements order when logo right
 //
 [class*=logo_right] {
-  .mobile-navbar__wrapper,
-  .primary-navbar__wrapper,
+  .mobile-navbar__row,
+  .primary-navbar__row,
   .branding__container,
   .branding__container .flex-row,
   .primary-nav__wrapper,

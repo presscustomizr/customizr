@@ -83,9 +83,11 @@ $secondary-color-light  : $grey-light;
   }
 
   .dropdown-item:not(:last-of-type),
-  .topbar-navbar__wrapper,
-  .header-navbars__wrapper  {
+  .topbar-navbar__wrapper {
     border-color: rgba($primary-color, 0.09);
+  }
+  .tc-header {
+     border-bottom-color: rgba($primary-color, 0.09);
   }
 
   .nav__utils {

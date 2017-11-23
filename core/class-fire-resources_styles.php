@@ -242,8 +242,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  //prop => selectors
                                  'border-color' => array(
                                          '.topbar-navbar__wrapper',
-                                         '.header-navbars__wrapper',
                                          '.dropdown-item:not(:last-of-type)'
+                                 ),
+                                 'border-bottom-color' => array(
+                                         '.tc-header',
                                  ),
                                  'outline-color' => array(
                                          '#tc-sn'
@@ -378,8 +380,11 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.btn-skin-h-dark.inverted:active',
                                        '.btn-skin-h-dark.inverted:focus',
                                        '.btn-skin-h-dark.inverted:hover',
-                                       '.tc-header.border-top',
+
                                  ),
+                                 'border-top-color' => array(
+                                       '.tc-header.border-top'
+                                  ),
                                  'background-color' => array(
                                        "[class*='grid-container__'] .entry-title a:hover::after",
                                        '.grid-container__classic .post-type__icon',

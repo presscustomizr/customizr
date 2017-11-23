@@ -197,12 +197,27 @@ class CZR_header_model_class extends CZR_Model {
       $element_class[] = 'czr-submenu-move';
     }
 
+
+    /**
+     * The following defines the width of the primary navbar, topbar and mobile navbar
+     * particularly useful if we want to wrap the element's header into a '.container'
+     * for different reasons like:
+     * a) we just want to align the element's header to the rest of the page (main-content's elements are wrapped in a container )
+     * b) we want to box the whole tc-page-wrap
+     * In both cases the class to use should be "container"
+     */
+
+    $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container-fluid';
+
     return array_merge( $model, array(
-        'element_class'                 => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
-        'navbar_template'               => $navbar_template,
-        'primary_nbwrapper_class'       => $_desktop_primary_navbar_class,
-        'topbar_nbwrapper_class'        => $_desktop_topbar_navbar_class,
-        'mobile_nbwrapper_class'        => $_mobile_navbar_class
+        'element_class'                      => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
+        'navbar_template'                    => $navbar_template,
+        'primary_nbwrapper_class'            => $_desktop_primary_navbar_class,
+        'topbar_nbwrapper_class'             => $_desktop_topbar_navbar_class,
+        'mobile_nbwrapper_class'             => $_mobile_navbar_class,
+        'primary_nbwrapper_container_class'  => $_desktop_primary_navbar_container_class,
+        'topbar_nbwrapper_container_class'   => $_desktop_topbar_navbar_container_class,
+        'mobile_nbwrapper_container_class'   => $_mobile_navbar_container_class
     ) );
   }
 
