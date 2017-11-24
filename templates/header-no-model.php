@@ -28,7 +28,7 @@
 
     <?php do_action('__before_page_wrapper'); ?>
 
-    <div id="tc-page-wrap">
+    <div id="tc-page-wrap" class="<?php czr_fn_page_wrapper_class() ?>">
 
       <?php
         //will fire do_action( '__before_header' )

@@ -647,6 +647,14 @@ if ( ! class_exists( 'CZR___' ) ) :
             echo empty( $prop_value ) ? '' : $prop_value;
         }
 
+
+        /*
+        * An handly function to print the main container class
+        */
+        function czr_fn_page_wrapper_class() {
+            echo czr_fn_stringify_array( czr_fn_get_page_wrapper_class() );
+        }
+
         /*
         * An handly function to print the content wrapper class
         */

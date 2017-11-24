@@ -1263,6 +1263,15 @@ class CZR_utils_settings_map {
       * hook : tc_add_section_map
       */
       function czr_fn_popul_section_map( $_sections ) {
+            //removed sections
+            //to unset
+            $_sections_to_unset = array(
+                  'site_layout_sec',
+            );
+
+            foreach ( $_sections_to_unset as $key ) {
+                  unset( $_sections[ $key ] );
+            }
 
             $_old_sections = array(
 

@@ -86,6 +86,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
   $_settings_groups = array(
     //GLOBAL SETTINGS
     'czr_fn_site_identity_option_map',
+    'czr_fn_site_layout_option_map',
     'czr_fn_skin_option_map',
     'czr_fn_fonts_option_map',
     'czr_fn_social_option_map',
@@ -188,6 +189,25 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
                             'type'        => 'checkbox' ,
                             'priority'  => 15,
                             'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
+          ),
+
+  );
+}
+
+
+/*-----------------------------------------------------------------------------------------------------
+                              SITE IDENTITY LOGO & FAVICON SECTION
+------------------------------------------------------------------------------------------------------*/
+function czr_fn_site_layout_option_map( $get_default = null ) {
+  return array(
+          'tc_boxed_layout'  => array(
+                            'default'   =>  0,
+                            'label'     =>  __( 'Boxed Layout' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'site_layout_sec' ,
+                            'type'        => 'checkbox' ,
+                            'priority'  => 2,
+                            'notice'    => __( 'Use a boxed layout' , 'customizr')
           ),
 
   );
@@ -2376,6 +2396,11 @@ function czr_fn_popul_section_map( $_sections ) {
                             'panel' => 'tc-header-panel',
                             'priority' => '1'
                         )
+    ),
+    'site_layout_sec'      => array(
+                        'title'     =>  __( 'Site Layout' , 'customizr' ),
+                        'priority'    =>  5,
+                        'panel'   => 'tc-global-panel'
     ),
     'skins_sec'         => array(
                         'title'     =>  __( 'Primary color of the theme' , 'customizr' ),

@@ -88,7 +88,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
                   'lg' => '960',
                   'md' => '720',
                   'sm' => '540'
-          )); 
+          ));
 
           $this -> css_mq_breakpoints = apply_filters( 'czr_css_mq_breakpoints', array(
                   'xl' => '1200',
@@ -174,9 +174,10 @@ if ( ! class_exists( 'CZR_init' ) ) :
             $_classes[] = 'tc-center-images';
           }
 
-          //SKIN CLASS
-          // $_skin = sprintf( 'skin-%s' , basename( $this->czr_fn_get_style_src() ) );
-          // $_classes[] = substr( $_skin , 0 , strpos($_skin, '.') );
+          //BOXED LAYOUT
+          if ( (bool) esc_attr( czr_fn_opt( 'tc_boxed_layout') ) ){
+            $_classes[] = 'tc-boxed';
+          }
 
           //SIDENAV POSITIONING
           if ( czr_fn_is_possible('sidenav') ) {

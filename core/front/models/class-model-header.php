@@ -168,10 +168,12 @@ class CZR_header_model_class extends CZR_Model {
     * Desktop sticky header
     */
     if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_desktop_sticky' ) ) ) {
-      if (  'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_to_stick' ) ) )
+      if (  'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_to_stick' ) ) ) {
         $_desktop_topbar_navbar_class[] = 'desktop-sticky';
-      else
+      }
+      else {
         $_desktop_primary_navbar_class[] = 'desktop-sticky';
+      }
     }
 
     /*
@@ -207,7 +209,13 @@ class CZR_header_model_class extends CZR_Model {
      * In both cases the class to use should be "container"
      */
 
-    $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container-fluid';
+    if ( (bool) esc_attr( czr_fn_opt( 'tc_boxed_layout') ) ) {
+      $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container';
+      $_mobile_navbar_class[] = $_desktop_primary_navbar_class[] = $_desktop_topbar_navbar_class[] = 'tc-boxed';
+    } else {
+      $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container-fluid';
+
+    }
 
     return array_merge( $model, array(
         'element_class'                      => array_filter( apply_filters( 'czr_header_class', $element_class ) ),

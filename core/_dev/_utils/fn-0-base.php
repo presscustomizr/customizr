@@ -5,7 +5,7 @@
 //shortcut function to echo the column content wrapper class
 if ( ! function_exists( 'czr_fn_column_content_wrapper_class' ) ) {
       function czr_fn_column_content_wrapper_class() {
-            return CZR() -> czr_fn_column_content_wrapper_class();
+            CZR() -> czr_fn_column_content_wrapper_class();
       }
 }
 
@@ -15,7 +15,15 @@ if ( ! function_exists( 'czr_fn_column_content_wrapper_class' ) ) {
 //shortcut function to echo the column content wrapper class
 if ( ! function_exists( 'czr_fn_main_container_wrapper_class' ) ) {
       function czr_fn_main_container_class() {
-            return CZR() -> czr_fn_main_container_class();
+            CZR() -> czr_fn_main_container_class();
+      }
+}
+
+
+//shortcut function to echo the #tc-page-wrap class
+if ( ! function_exists( 'czr_fn_page_wrapper_class' ) ) {
+      function czr_fn_page_wrapper_class() {
+            CZR() -> czr_fn_page_wrapper_class();
       }
 }
 
@@ -25,7 +33,7 @@ if ( ! function_exists( 'czr_fn_main_container_wrapper_class' ) ) {
 //shortcut function to echo the article container class
 if ( ! function_exists( 'czr_fn_article_container_class' ) ) {
       function czr_fn_article_container_class() {
-            return CZR() -> czr_fn_article_container_class();
+            CZR() -> czr_fn_article_container_class();
       }
 }
 
