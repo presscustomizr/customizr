@@ -310,10 +310,13 @@
   top: 0;
   width: 100%;
 
+  //this is the starting breakpoint from which the .container has a defined width
+  //we don't want to stretch the sticky elements to 100%, we just want they wrap
+  //their .container inner elements which have a well defined width.
   @include media-breakpoint-up(sm) {
-    &.tc-boxed {
-      width: auto;
-    }
+    .tc-boxed-layout & {
+        width: auto;
+      }
   }
 }
 

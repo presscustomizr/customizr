@@ -199,15 +199,59 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
                               SITE IDENTITY LOGO & FAVICON SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_site_layout_option_map( $get_default = null ) {
+  $_default_header_footer_layout = czr_fn_user_started_before_version( '4.0.14', '2.0.19' ) ? 'wide' : 'boxed';
+
   return array(
-          'tc_boxed_layout'  => array(
-                            'default'   =>  0,
-                            'label'     =>  __( 'Boxed Layout' , 'customizr' ),
+          'tc_site_layout'  => array(
+                            'default'   =>  'wide',
+                            'label'     =>  __( 'Site Layout' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'site_layout_sec' ,
-                            'type'        => 'checkbox' ,
-                            'priority'  => 2,
-                            'notice'    => __( 'Use a boxed layout' , 'customizr')
+                            'type'      => 'select',
+                            'choices'   => array(
+                              'wide'    => __( 'Wide', 'customizr' ),
+                              'boxed'   => __( 'Boxed', 'customizr' ),
+                            ),
+                            'priority'  => 1,
+          ),
+
+          'tc_header_topbar_layout'  => array(
+                            'default'   =>  $_default_header_footer_layout,
+                            'label'     =>  __( 'Header Topbar Layout' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'site_layout_sec' ,
+                            'type'      => 'select',
+                            'choices'   => array(
+                              'wide'    => __( 'Wide', 'customizr' ),
+                              'boxed'   => __( 'Boxed', 'customizr' ),
+                            ),
+                            'priority'  => 10,
+          ),
+
+          'tc_header_navbar_layout'  => array(
+                            'default'   =>  $_default_header_footer_layout,
+                            'label'     =>  __( 'Header Navbar Layout' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'site_layout_sec' ,
+                            'type'      => 'select',
+                            'choices'   => array(
+                              'wide'    => __( 'Wide', 'customizr' ),
+                              'boxed'   => __( 'Boxed', 'customizr' ),
+                            ),
+                            'priority'  => 15,
+          ),
+
+          'tc_footer_colophon_layout'  => array(
+                            'default'   =>  $_default_header_footer_layout,
+                            'label'     =>  __( 'Footer Credits Area Layout' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'site_layout_sec' ,
+                            'type'      => 'select',
+                            'choices'   => array(
+                              'wide'    => __( 'Wide', 'customizr' ),
+                              'boxed'   => __( 'Boxed', 'customizr' ),
+                            ),
+                            'priority'  => 20,
           ),
 
   );

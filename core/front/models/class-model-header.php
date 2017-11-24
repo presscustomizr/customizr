@@ -79,7 +79,14 @@ class CZR_header_model_class extends CZR_Model {
     foreach ( $children as $child_model ) {
         CZR() -> collection -> czr_fn_register( $child_model );
     }//foreach
+
+
+    //Pro bundle: force mc_slide_top when using the site boxed layout
+    add_filter( 'pc_mc_open_effect', array( $this,  'czr_fn_maybe_force_mc_open_with_slide_top' ) );
+
   }//_construct
+
+
 
 
   /**
@@ -209,11 +216,15 @@ class CZR_header_model_class extends CZR_Model {
      * In both cases the class to use should be "container"
      */
 
-    if ( (bool) esc_attr( czr_fn_opt( 'tc_boxed_layout') ) ) {
-      $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container';
-      $_mobile_navbar_class[] = $_desktop_primary_navbar_class[] = $_desktop_topbar_navbar_class[] = 'tc-boxed';
-    } else {
-      $_desktop_primary_navbar_container_class = $_desktop_topbar_navbar_container_class = $_mobile_navbar_container_class = 'container-fluid';
+    if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
+      $_desktop_topbar_navbar_container_class = $_desktop_primary_navbar_container_class  = $_mobile_navbar_container_class = 'container';
+    }
+
+    else {
+
+      $_desktop_primary_navbar_container_class = $_mobile_navbar_container_class = 'boxed' == esc_attr( czr_fn_opt( 'tc_header_navbar_layout' ) ) ? 'container' :  'container-fluid';
+
+      $_desktop_topbar_navbar_container_class = 'boxed' == esc_attr( czr_fn_opt( 'tc_header_topbar_layout' ) ) ? 'container' : 'container-fluid';
 
     }
 
@@ -229,6 +240,17 @@ class CZR_header_model_class extends CZR_Model {
     ) );
   }
 
+
+
+  //Pro bundle: force mc_slide_top when using the site boxed layout
+  //hook: 'pc_mc_open_effect'
+  public function czr_fn_maybe_force_mc_open_with_slide_top( $effect ) {
+      if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
+          return 'mc_slide_top';
+      }
+
+      return $effect;
+  }
 
 
   /**
