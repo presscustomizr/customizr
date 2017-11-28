@@ -314,7 +314,7 @@
   //we don't want to stretch the sticky elements to 100%, we just want they wrap
   //their .container inner elements which have a well defined width.
   @include media-breakpoint-up(sm) {
-    .tc-boxed-layout & {
+    .czr-boxed-layout & {
         width: auto;
       }
   }

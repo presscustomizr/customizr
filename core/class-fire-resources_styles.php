@@ -23,6 +23,8 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_header_custom_skin_inline_css') );
 
+            add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_boxed_layout_inline_css' ) );
+
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_write_custom_css') , apply_filters( 'czr_custom_css_priority', 9999 ) );
         }
 
@@ -30,7 +32,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
         //hook: after_setup_theme
         function czr_fn_setup_properties() {
 
-              $this->_resouces_version        = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
+              $this->_resouces_version             = CZR_DEBUG_MODE || CZR_DEV_MODE ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER;
 
               $this->_is_css_minified              = CZR_DEBUG_MODE || CZR_DEV_MODE ? false : true ;
               $this->_is_css_minified              = esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? $this->_is_css_minified : false;
@@ -604,6 +606,84 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
 
                return $_css . $skin;
          }
+
+
+         //hook : czr_user_options_style
+         function czr_fn_maybe_write_boxed_layout_inline_css( $_css ) {
+               if ( 'boxed' != esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
+                     return $_css;
+               }
+               /**
+                * When we choose a boxed layout we increase the .container right and left paddings from 15px to 30px
+                * though their inner .row still have a negative right and left margin of 15px
+                * and the col-X inside will still have the left and right padding of 15px.
+                * hence to ensure the actual contained elements always have the same width ( e.g. 1110px in desktop)
+                * whether or not we're in a boxed layout, we have to increase the .container widths (for the viewports within it's defined)
+                * of 30px.
+                */
+
+
+               //get default container widths
+               /*
+               CZR_init::$instance->$css_container_width looks like:
+
+               array(
+                   //min-widths: 1200px, 992px, 768px,
+                   //xl, lg, md, sm, xs
+                   '1140', '960', '720', '540' //, no xs => 100%
+
+                   'xl' => '1140',
+                   'lg' => '960',
+                   'md' => '720',
+                   'sm' => '540'
+               )
+               */
+               $css_container_widths   = CZR_init::$instance->css_container_widths;
+
+               /*
+               CZR_init::$instance->$css_mq_breakpoints looks like:
+
+               array(
+                     'xl' => '1200',
+                     'lg' => '992',
+                     'md' => '768',
+                     'sm' => '575'
+               )
+               */
+               $css_mq_breakpoints     = CZR_init::$instance->css_mq_breakpoints;
+               $css_container          = array();
+               $selector               = '.czr-boxed-layout .container';
+               $glue                   = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+
+
+               //add padding
+               $css_container[]        = sprintf( '@media (min-width: %1$spx){ %2$s{ padding-right: 30px; padding-left: 30px; } }',
+                           $css_container_widths[ 'sm' ],
+                           $selector
+               );
+               //define container widths
+               foreach ( array_reverse( $css_mq_breakpoints, true ) as $mq => $mq_w_width ) {
+
+                     $container_width  = $css_container_widths[ $mq ] + 30;
+
+                     $css_container[]  = sprintf( '@media (min-width: %1$spx){ %2$s{ width: %3$spx } }',
+                                 $mq_w_width,
+                                 $selector,
+                                 $container_width
+                     );
+               }
+
+
+
+               //LET's GET IT ON
+               $css_container           = implode( "{$glue}{$glue}", $css_container );
+
+               return $_css . $css_container;
+
+         }
+
+
+
 
          //@return string
          public static function czr_fn_build_inline_style_from_map( $style_map = array(), $glue = '') {

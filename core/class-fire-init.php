@@ -176,7 +176,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           //BOXED LAYOUT
           if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
-            $_classes[] = 'tc-boxed-layout';
+            $_classes[] = 'czr-boxed-layout';
           }
 
           //SIDENAV POSITIONING
