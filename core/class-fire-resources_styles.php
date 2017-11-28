@@ -650,29 +650,31 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                      'sm' => '575'
                )
                */
-               $css_mq_breakpoints     = CZR_init::$instance->css_mq_breakpoints;
-               $css_container          = array();
-               $selector               = '.czr-boxed-layout .container';
-               $glue                   = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $css_mq_breakpoints          = CZR_init::$instance->css_mq_breakpoints;
+               $css_container               = array();
+               $container_selector          = '.czr-boxed-layout .container';
+               $glue                        = $this->_is_css_minified || esc_attr( czr_fn_opt( 'tc_minified_skin' ) ) ? '' : "\n";
+               $additional_width            = 30; //px
 
-
+               //Add some rules from sm up
                //add padding
-               $css_container[]        = sprintf( '@media (min-width: %1$spx){ %2$s{ padding-right: 30px; padding-left: 30px; } }',
+               $css_container[]        = sprintf( '@media (min-width: %1$spx){ %2$s{ padding-right: %3$spx; padding-left:  %3$spx; } }',
                            $css_container_widths[ 'sm' ],
-                           $selector
+                           $container_selector,
+                           $additional_width
                );
+
                //define container widths
                foreach ( array_reverse( $css_mq_breakpoints, true ) as $mq => $mq_w_width ) {
 
-                     $container_width  = $css_container_widths[ $mq ] + 30;
+                     $container_width  = $css_container_widths[ $mq ] + $additional_width;
 
                      $css_container[]  = sprintf( '@media (min-width: %1$spx){ %2$s{ width: %3$spx } }',
                                  $mq_w_width,
-                                 $selector,
+                                 $container_selector,
                                  $container_width
                      );
                }
-
 
 
                //LET's GET IT ON
