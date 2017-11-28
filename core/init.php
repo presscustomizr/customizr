@@ -648,35 +648,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         }
 
 
-        /*
-        * An handly function to print the main container class
-        */
-        function czr_fn_page_wrapper_class() {
-            echo czr_fn_stringify_array( czr_fn_get_page_wrapper_class() );
-        }
-
-        /*
-        * An handly function to print the content wrapper class
-        */
-        function czr_fn_column_content_wrapper_class() {
-            echo czr_fn_stringify_array( czr_fn_get_column_content_wrapper_class() );
-        }
-
-        /*
-        * An handly function to print the main container class
-        */
-        function czr_fn_main_container_class() {
-            echo czr_fn_stringify_array( czr_fn_get_main_container_class() );
-        }
-
-        /*
-        * An handly function to print the article containerr class
-        */
-        function czr_fn_article_container_class() {
-            echo czr_fn_stringify_array( czr_fn_get_article_container_class() );
-        }
-
-
         //hook : czr_dev_notice
         function czr_fn_print_r($message) {
             if ( ! is_user_logged_in() || ! current_user_can( 'edit_theme_options' ) || is_feed() )
