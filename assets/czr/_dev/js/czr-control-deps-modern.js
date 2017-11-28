@@ -82,6 +82,67 @@
                             },
                     },
                     {
+                            dominus : 'tc_site_layout',
+                            servi   : [
+                              'tc_header_topbar_layout',
+                              'tc_header_navbar_layout',
+                              'tc_footer_colophon_layout',
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  //cross
+                                  if ( 'tc_header_topbar_layout' == servusShortId ) {
+                                    return ( 'wide' == to  ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() );
+                                  }
+                                  return  'wide' == to;
+                            },
+                    },
+                    {
+                            dominus : 'tc_header_desktop_topbar',
+                            servi   : [ 'tc_header_topbar_layout' ],
+                            visibility: function (to) {
+                                  //cross
+                                  return _is_checked(to) &&  'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    //this trick is to control the visibility of 'tc_header_topbar_layout', 'tc_header_navbar_layout', 'tc_footer_colophon_layout', 'tc_mc_effect'
+                    //as soon as you expand a section where they're placed, whether or not their real dominus are actually present in the same section
+                    {
+                            dominus : 'tc_header_topbar_layout',
+                            servi   : [
+                              'tc_header_topbar_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() ) &&  'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_header_navbar_layout',
+                            servi   : [
+                              'tc_header_navbar_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_footer_colophon_layout',
+                            servi   : [
+                              'tc_footer_colophon_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_mc_effect',
+                            servi   : [
+                              'tc_mc_effect',
+                            ],
+                            visibility : function( to ) {
+                                  return 'aside' == api( api.CZR_Helpers.build_setId( 'tc_menu_style' ) ).get() && 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
                             dominus : 'tc_show_featured_pages',
                             servi   : serverControlParams.FPControls,
                             visibility : function( to ) {
@@ -410,22 +471,6 @@
                             }
                     },
                     {
-                            dominus : 'tc_header_topnav',
-                            servi   : ['tc_social_in_topnav'],
-                            visibility: function (to) {
-                                  //cross
-                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_social_in_header' ) ).get() );
-                            }
-                    },
-                    {
-                            dominus : 'tc_social_in_header',
-                            servi   : ['tc_social_in_topnav'],
-                            visibility: function (to) {
-                                  //cross
-                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_topnav' ) ).get() );
-                            }
-                    },/* end */
-                    {
                             dominus : 'tc_sticky_show_title_logo',
                             servi   : ['tc_sticky_logo_upload'],
                             visibility: function (to) {
@@ -587,6 +632,9 @@
                                   }
                                   //CASE 2 : side menu choosen
                                   else {
+                                    if ( 'tc_mc_effect' == servusShortId ) {
+                                      return 'boxed' != api( api.CZR_Helpers.build_setId('tc_site_layout') ).get();
+                                    }
                                     if ( _.contains([
                                         'tc_menu_type',
                                         'tc_menu_submenu_fade_effect',

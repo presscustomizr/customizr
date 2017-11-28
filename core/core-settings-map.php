@@ -196,7 +196,7 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
 
 
 /*-----------------------------------------------------------------------------------------------------
-                              SITE IDENTITY LOGO & FAVICON SECTION
+                              SITE LAYOUT SECTION
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_site_layout_option_map( $get_default = null ) {
   $_default_header_footer_layout = czr_fn_user_started_before_version( '4.0.14', '2.0.19' ) ? 'wide' : 'boxed';
@@ -204,7 +204,7 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
   return array(
           'tc_site_layout'  => array(
                             'default'   =>  'wide',
-                            'label'     =>  __( 'Site Layout' , 'customizr' ),
+                            'label'     =>  __( 'Site layout' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'site_layout_sec' ,
                             'type'      => 'select',
@@ -217,7 +217,7 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
 
           'tc_header_topbar_layout'  => array(
                             'default'   =>  $_default_header_footer_layout,
-                            'label'     =>  __( 'Header Topbar Layout' , 'customizr' ),
+                            'label'     =>  __( 'Header topbar layout' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'site_layout_sec' ,
                             'type'      => 'select',
@@ -226,11 +226,15 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                               'boxed'   => __( 'Boxed', 'customizr' ),
                             ),
                             'priority'  => 10,
+                            'ubq_section'   => array(
+                                  'section' => 'header_desktop_sec',
+                                  'priority' => '3'
+                            )
           ),
 
           'tc_header_navbar_layout'  => array(
                             'default'   =>  $_default_header_footer_layout,
-                            'label'     =>  __( 'Header Navbar Layout' , 'customizr' ),
+                            'label'     =>  __( 'Main Header section layout' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'site_layout_sec' ,
                             'type'      => 'select',
@@ -239,11 +243,15 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                               'boxed'   => __( 'Boxed', 'customizr' ),
                             ),
                             'priority'  => 15,
+                            'ubq_section'   => array(
+                                  'section' => 'header_layout_sec',
+                                  'priority' => '9'
+                            )
           ),
 
           'tc_footer_colophon_layout'  => array(
                             'default'   =>  $_default_header_footer_layout,
-                            'label'     =>  __( 'Footer Credits Area Layout' , 'customizr' ),
+                            'label'     =>  __( 'Footer Credits section layout' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'site_layout_sec' ,
                             'type'      => 'select',
@@ -252,6 +260,10 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                               'boxed'   => __( 'Boxed', 'customizr' ),
                             ),
                             'priority'  => 20,
+                            'ubq_section'   => array(
+                                  'section' => 'footer_global_sec',
+                                  'priority' => '0'
+                            )
           ),
 
   );
@@ -2082,7 +2094,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'control'   =>  'CZR_controls' ,
                             'section'     => 'footer_global_sec' ,
                             'type'        => 'checkbox' ,
-                            'priority'       => 0,
+                            'priority'       => 1,
                             'ubq_section'  => array(
                                                 'section' => 'socials_sec',
                                                 'priority' => '4'
