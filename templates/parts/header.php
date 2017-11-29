@@ -34,8 +34,8 @@
             czr_fn_render_template( 'header/mobile_navbar_wrapper',
               array(
                 'model_args' => array(
-                  'element_class' => czr_fn_get_property( 'mobile_nbwrapper_class' ),
-                  'element_inner_class' => czr_fn_get_property( 'mobile_nbwrapper_container_class' )//for ex: 'container-fluid'
+                  'element_class'        => czr_fn_get_property( 'mobile_nbwrapper_class' ),
+                  'inner_elements_class' => czr_fn_get_property( 'mobile_inner_contained_class' )//for ex: 'container-fluid'
                 )
               )
             )

@@ -228,7 +228,7 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                             'priority'  => 10,
                             'ubq_section'   => array(
                                   'section' => 'header_desktop_sec',
-                                  'priority' => '3'
+                                  'priority' => '11'
                             )
           ),
 
@@ -246,7 +246,7 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                             'ubq_section'   => array(
                                   'section' => 'header_layout_sec',
                                   'priority' => '9'
-                            )
+                            ),
           ),
 
           'tc_footer_colophon_layout'  => array(

@@ -3,7 +3,7 @@ class CZR_header_model_class extends CZR_Model {
 
   public $primary_nbwrapper_class;
   public $topbar_nbwrapper_class;
-  public $mobile_nbwrapper_class;
+  public $mobile_inner_contained_class;
 
   public $navbar_template;
 
@@ -236,7 +236,7 @@ class CZR_header_model_class extends CZR_Model {
         'mobile_nbwrapper_class'             => $_mobile_navbar_class,
         'primary_nbwrapper_container_class'  => $_desktop_primary_navbar_container_class,
         'topbar_nbwrapper_container_class'   => $_desktop_topbar_navbar_container_class,
-        'mobile_nbwrapper_container_class'   => $_mobile_navbar_container_class
+        'mobile_inner_contained_class'   => $_mobile_navbar_container_class
     ) );
   }
 
