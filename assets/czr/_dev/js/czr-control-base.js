@@ -600,12 +600,13 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                 is_mod_opt = _.has( inputParentInst() , 'is_mod_opt' );
 
             //bail if already done
-            if ( _.has( inputParentInst, 'czr_Input') && ! _.isEmpty( inputParentInst.inputCollection() ) )
+            //_.has( inputParentInst, 'czr_Input')
+            if ( ! _.isEmpty( inputParentInst.inputCollection() ) )
               return;
 
             //INPUTS => Setup as soon as the view content is rendered
             //the inputParentInst is a collection of inputs, each one has its own view module.
-            inputParentInst.czr_Input = new api.Values();
+            inputParentInst.czr_Input = inputParentInst.czr_Input || new api.Values();
 
             //IS THE PARENT AN ITEM OR A MODULE OPTION ?
             //those default constructors (declared in the module init ) can be overridden by extended item or mod opt constructors inside the modules
@@ -893,10 +894,24 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 
       //GENERIC METHOD TO SETUP EVENT LISTENER
       //NOTE : the args.event must alway be defined
+      //Example of args :
+      //  {
+      //       trigger   : 'click keydown',
+      //       selector  : [ '.' + module.control.css_attr.open_pre_add_btn, '.' + module.control.css_attr.cancel_pre_add_btn ].join(','),
+      //       name      : 'pre_add_item',
+      //       actions   : [
+      //             'closeAllItems',
+      //             'closeRemoveDialogs',
+      //             function(obj) {
+      //                   var module = this;
+      //                   module.preItemExpanded.set( ! module.preItemExpanded() );
+      //             },
+      //       ],
+      // },
       executeEventActionChain : function( args, instance ) {
               var control = this;
 
-              //if the actions param is a anonymous function, fire it and stop there
+              //if the actions param is not an array but is an anonymous function, fire it and stop there
               if ( 'function' === typeof( args.event.actions ) )
                 return args.event.actions.call( instance, args );
 
@@ -913,27 +928,41 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                     if ( _break )
                       return;
 
-                    if ( 'function' != typeof( instance[ _cb ] ) ) {
-                          throw new Error( 'executeEventActionChain : the action : ' + _cb + ' has not been found when firing event : ' + args.event.selector );
+                    var _cbCandidate = function() {};
+
+                    // is the _cb an anonymous function ?
+                    // if not, we expect the method to exist in the provided object instance
+                    if ( 'function' === typeof( _cb ) ) {
+                          _cbCandidate = _cb;
+                    } else {
+                          if ( 'function' != typeof( instance[ _cb ] ) ) {
+                                throw new Error( 'executeEventActionChain : the action : ' + _cb + ' has not been found when firing event : ' + args.event.selector );
+                          } else {
+                                _cbCandidate = instance[ _cb ];
+                          }
                     }
 
-                    //Allow other actions to be bound before action and after
+                    // Allow other actions to be bound before action and after
                     //
-                    //=> we don't want the event in the object here => we use the one in the event map if set
-                    //=> otherwise will loop infinitely because triggering always the same cb from args.event.actions[_cb]
-                    //=> the dom element shall be get from the passed args and fall back to the controler container.
+                    // => we don't want the event in the object here => we use the one in the event map if set
+                    // => otherwise will loop infinitely because triggering always the same cb from args.event.actions[_cb]
+                    // => the dom element shall be get from the passed args and fall back to the controler container.
                     var $_dom_el = ( _.has(args, 'dom_el') && -1 != args.dom_el.length ) ? args.dom_el : control.container;
 
-                    $_dom_el.trigger( 'before_' + _cb, _.omit( args, 'event' ) );
+                    if ( 'string' === typeof( _cb ) ) {
+                          $_dom_el.trigger( 'before_' + _cb, _.omit( args, 'event' ) );
+                    }
 
                     //executes the _cb and stores the result in a local var
-                    var _cb_return = instance[ _cb ].call( instance, args );
+                    var _cb_return = _cbCandidate.call( instance, args );
                     //shall we stop the action chain here ?
                     if ( false === _cb_return )
                       _break = true;
 
-                    //allow other actions to be bound after
-                    $_dom_el.trigger( 'after_' + _cb, _.omit( args, 'event' ) );
+                    if ( 'string' === typeof( _cb ) ) {
+                          //allow other actions to be bound after
+                          $_dom_el.trigger( 'after_' + _cb, _.omit( args, 'event' ) );
+                    }
               });//_.map
       }
 });//$.extend
@@ -2021,6 +2050,22 @@ $.extend( CZRItemMths , {
             item.embedded = $.Deferred();
             item.container = null;//will store the item $ dom element
             item.contentContainer = null;//will store the item content $ dom element
+
+            // this collection will be populated based on the DOM rendered input candidates
+            // will allows us to set and get any individual input : item.czr_Input('font-family')()
+            // declaring the collection Values here allows us to schedule actions for not yet registered inputs
+            // like for example :
+            // => when the font-family input is registered, then listen to it
+            // item.czr_Input.when( 'font-family', function( _input_ ) {
+            //       _input_.bind( function( to, from ) {
+            //             console.log('font-family input changed ', to ,from );
+            //       });
+            // });
+            item.czr_Input = new api.Values();
+
+            // the item.inputCollection stores all instantiated input from DOM at the end of api.CZR_Helpers.setupInputCollectionFromDOM.call( item );
+            // the collection of each individual input object is stored in item.czr_Input()
+            // this inputCollection is designed to be listened to, in order to fire action when the collection has been populated.
             item.inputCollection = new api.Value({});
 
             //VIEW STATES FOR ITEM AND REMOVE DIALOG
@@ -2038,6 +2083,9 @@ $.extend( CZRItemMths , {
 
             //set initial values
             var _initial_model = $.extend( item.defaultItemModel, options.initial_item_model );
+
+            // Check initial model here : to be overriden in each module
+            _initial_model = item.validateItemModelOnInitialize( _initial_model );
 
             //this won't be listened to at this stage
             item.set( _initial_model );
@@ -2099,7 +2147,8 @@ $.extend( CZRItemMths , {
                   item.bind( 'contentRendered', function() {
                         //create the collection of inputs if needed
                         //first time or after a removal
-                        if ( ! _.has( item, 'czr_Input' ) || _.isEmpty( item.inputCollection() ) ) {
+                        // previous condition included :  ! _.has( item, 'czr_Input' )
+                        if ( _.isEmpty( item.inputCollection() ) ) {
                               try {
                                     api.CZR_Helpers.setupInputCollectionFromDOM.call( item );
                                     //the item.container is now available
@@ -2114,7 +2163,7 @@ $.extend( CZRItemMths , {
 
                   //SCHEDULE INPUTS DESTROY
                   item.bind( 'contentRemoved', function() {
-                        if ( _.has(item, 'czr_Input') )
+                        if ( _.has( item, 'czr_Input' ) )
                           api.CZR_Helpers.removeInputCollection.call( item );
                   });
 
@@ -2150,6 +2199,12 @@ $.extend( CZRItemMths , {
             this.isReady.resolve();
       },
 
+
+      // @return validated model object
+      // To be overriden in each module
+      validateItemModelOnInitialize : function( item_model_candidate ) {
+            return item_model_candidate;
+      },
 
       //React to a single item change
       //cb of module.czr_Item( item.id ).callbacks
@@ -2214,33 +2269,33 @@ $.extend( CZRItemMths , {
       //fired on click dom event
       //for dynamic multi input modules
       removeItem : function() {
-              var item = this,
-                  module = this.module,
-                  _new_collection = _.clone( module.itemCollection() );
+            var item = this,
+                module = this.module,
+                _new_collection = _.clone( module.itemCollection() );
 
-              //hook here
-              module.trigger('pre_item_dom_remove', item() );
+            //hook here
+            module.trigger('pre_item_dom_remove', item() );
 
-              //destroy the Item DOM el
-              item._destroyView();
+            //destroy the Item DOM el
+            item._destroyView();
 
-              //new collection
-              //say it
-              _new_collection = _.without( _new_collection, _.findWhere( _new_collection, {id: item.id }) );
-              module.itemCollection.set( _new_collection );
-              //hook here
-              module.trigger('pre_item_api_remove', item() );
+            //new collection
+            //say it
+            _new_collection = _.without( _new_collection, _.findWhere( _new_collection, {id: item.id }) );
+            module.itemCollection.set( _new_collection );
+            //hook here
+            module.trigger('pre_item_api_remove', item() );
 
-              var _item_ = $.extend( true, {}, item() );
-              //remove the item from the collection
-              module.czr_Item.remove( item.id );
-              module.trigger( 'item-removed', _item_ );
+            var _item_ = $.extend( true, {}, item() );
+            //remove the item from the collection
+            module.czr_Item.remove( item.id );
+            module.trigger( 'item-removed', _item_ );
       },
 
       //@return the item {...} from the collection
       //takes a item unique id as param
       getModel : function(id) {
-              return this();
+            return this();
       }
 
 });//$.extend
@@ -2268,10 +2323,46 @@ $.extend( CZRItemMths , {
             });
       },
 
+      //the view wrapper has been rendered by WP
+      //the content ( the various inputs ) is rendered by the following methods
+      //an event is triggered on the control.container when content is rendered
+      renderItemWrapper : function( item_model ) {
+            //=> an array of objects
+            var item = this,
+                module = item.module;
 
-      //fired when item is ready and embedded
-      //define the item view DOM event map
-      //bind actions when the item is embedded
+            item_model = item_model || item();
+
+            //render the item wrapper
+            $_view_el = $('<li>', { class : module.control.css_attr.single_item, 'data-id' : item_model.id,  id : item_model.id } );
+
+            //append the item view to the first module view wrapper
+            //!!note : => there could be additional sub view wrapper inside !!
+            //$( '.' + module.control.css_attr.items_wrapper , module.container).first().append( $_view_el );
+            // module.itemsWrapper has been stored as a $ var in module initialize() when the tmpl has been embedded
+            module.itemsWrapper.append( $_view_el );
+
+            //if module is multi item, then render the item crud header part
+            //Note : for the widget module, the getTemplateEl method is overridden
+            if ( module.isMultiItem() ) {
+                  var _template_selector = module.getTemplateEl( 'rudItemPart', item_model );
+                  //do we have view template script?
+                  if ( 0 === $( '#tmpl-' + _template_selector ).length ) {
+                      throw new Error('Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + module.getTemplateEl( 'rudItemPart', item_model ) );
+                  }
+                  $_view_el.append( $( wp.template( _template_selector )( item_model ) ) );
+            }
+
+
+            //then, append the item content wrapper
+            $_view_el.append( $( '<div/>', { class: module.control.css_attr.item_content } ) );
+
+            return $_view_el;
+      },
+
+      // fired when item is ready and embedded
+      // define the item view DOM event map
+      // bind actions when the item is embedded
       itemWrapperViewSetup : function( item_model ) {
             var item = this,
                 module = this.module;
@@ -2402,6 +2493,7 @@ $.extend( CZRItemMths , {
                         }
 
                         $_alert_el.html( wp.template( module.AlertPart )( { title : ( item().title || item.id ) } ) );
+                        item.trigger( 'remove-dialog-rendered');
                   }
 
                   //Slide it
@@ -2421,69 +2513,32 @@ $.extend( CZRItemMths , {
       },//itemWrapperViewSetup
 
 
-      //the view wrapper has been rendered by WP
-      //the content ( the various inputs ) is rendered by the following methods
-      //an event is triggered on the control.container when content is rendered
-      renderItemWrapper : function( item_model ) {
-            //=> an array of objects
-            var item = this,
-                module = item.module;
-
-            item_model = item_model || item();
-
-            //render the item wrapper
-            $_view_el = $('<li>', { class : module.control.css_attr.single_item, 'data-id' : item_model.id,  id : item_model.id } );
-
-            //append the item view to the first module view wrapper
-            //!!note : => there could be additional sub view wrapper inside !!
-            //$( '.' + module.control.css_attr.items_wrapper , module.container).first().append( $_view_el );
-            // module.itemsWrapper has been stored as a $ var in module initialize() when the tmpl has been embedded
-            module.itemsWrapper.append( $_view_el );
-
-            //if module is multi item, then render the item crud header part
-            //Note : for the widget module, the getTemplateEl method is overridden
-            if ( module.isMultiItem() ) {
-                  var _template_selector = module.getTemplateEl( 'rudItemPart', item_model );
-                  //do we have view template script?
-                  if ( 0 === $( '#tmpl-' + _template_selector ).length ) {
-                      throw new Error('Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + module.getTemplateEl( 'rudItemPart', item_model ) );
-                  }
-                  $_view_el.append( $( wp.template( _template_selector )( item_model ) ) );
-            }
-
-
-            //then, append the item content wrapper
-            $_view_el.append( $( '<div/>', { class: module.control.css_attr.item_content } ) );
-
-            return $_view_el;
-      },
-
 
       //renders saved items views and attach event handlers
       //the saved item look like :
       //array[ { id : 'sidebar-one', title : 'A Title One' }, {id : 'sidebar-two', title : 'A Title Two' }]
       renderItemContent : function( item_model ) {
-              //=> an array of objects
-              var item = this,
-                  module = this.module;
+            //=> an array of objects
+            var item = this,
+                module = this.module;
 
-              item_model = item_model || item();
+            item_model = item_model || item();
 
-              //do we have view content template script?
-              if ( 0 === $( '#tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) ).length ) {
-                  throw new Error('No item content template defined for module ' + module.id + '. The template script id should be : #tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) );
-              }
+            //do we have view content template script?
+            if ( 0 === $( '#tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) ).length ) {
+                throw new Error('No item content template defined for module ' + module.id + '. The template script id should be : #tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) );
+            }
 
-              var  item_content_template = wp.template( module.getTemplateEl( 'itemInputList', item_model ) );
+            var  item_content_template = wp.template( module.getTemplateEl( 'itemInputList', item_model ) );
 
-              //do we have an html template ?
-              if ( ! item_content_template )
-                return this;
+            //do we have an html template ?
+            if ( ! item_content_template )
+              return this;
 
-              //the view content
-              $( item_content_template( item_model )).appendTo( $('.' + module.control.css_attr.item_content, item.container ) );
+            //the view content
+            $( item_content_template( item_model )).appendTo( $('.' + module.control.css_attr.item_content, item.container ) );
 
-              return $( $( item_content_template( item_model )), item.container );
+            return $( $( item_content_template( item_model )), item.container );
       },
 
 
@@ -2509,22 +2564,22 @@ $.extend( CZRItemMths , {
       //Fired on view_rendered:new when a new model has been added
       //Fired on click on edit_view_btn
       setViewVisibility : function( obj, is_added_by_user ) {
-              var item = this,
-                  module = this.module;
-              if ( is_added_by_user ) {
-                    item.viewState.set( 'expanded_noscroll' );
-              } else {
-                    module.closeAllItems( item.id );
-                    if ( _.has(module, 'preItem') ) {
-                      module.preItemExpanded.set(false);
-                    }
-                    item.viewState.set( 'expanded' == item._getViewState() ? 'closed' : 'expanded' );
-              }
+            var item = this,
+                module = this.module;
+            if ( is_added_by_user ) {
+                  item.viewState.set( 'expanded_noscroll' );
+            } else {
+                  module.closeAllItems( item.id );
+                  if ( _.has(module, 'preItem') ) {
+                    module.preItemExpanded.set(false);
+                  }
+                  item.viewState.set( 'expanded' == item._getViewState() ? 'closed' : 'expanded' );
+            }
       },
 
 
       _getViewState : function() {
-              return -1 == this.viewState().indexOf('expanded') ? 'closed' : 'expanded';
+            return -1 == this.viewState().indexOf('expanded') ? 'closed' : 'expanded';
       },
 
 
@@ -2570,12 +2625,12 @@ $.extend( CZRItemMths , {
 
       //removes the view dom module
       _destroyView : function ( duration ) {
-              this.container.fadeOut( {
-                  duration : duration ||400,
-                  done : function() {
-                    $(this).remove();
-                  }
-              });
+            this.container.fadeOut( {
+                duration : duration ||400,
+                done : function() {
+                  $(this).remove();
+                }
+            });
       }
 });//$.extend
 })( wp.customize , jQuery, _ );//extends api.Value
@@ -3345,6 +3400,13 @@ $.extend( CZRModuleMths, {
               var module = this;
               //Prepare the item, make sure its id is set and unique
               item_candidate = module.prepareItemForAPI( item );
+
+              // Display a simple console message if item is null or false, for example if validateItemBeforeInstantiation returned null or false
+              if ( ! item_candidate || _.isNull( item_candidate ) ) {
+                    api.consoleLog( 'item_candidate invalid. InstantiateItem aborted in module ' + module.id );
+                    return;
+              }
+
               //Item id checks !
               if ( ! _.has( item_candidate, 'id' ) ) {
                 throw new Error('CZRModule::instantiateItem() : an item has no id and could not be added in the collection of : ' + this.id );
@@ -3384,10 +3446,16 @@ $.extend( CZRModuleMths, {
                     var _candidate_val = item_candidate[_key];
                     switch( _key ) {
                           case 'id' :
+                              // The id can be specified in a module ( ex: the pre defined item ids of the Font Customizer module )
+                              // => that's why we need to check here if the item id is not already registered here
                               if ( _.isEmpty( _candidate_val ) ) {
-                                  api_ready_item[_key] = module.generateItemId( module.module_type );
+                                    api_ready_item[_key] = module.generateItemId( module.module_type );
                               } else {
-                                  api_ready_item[_key] = _candidate_val;
+                                    if ( module.isItemRegistered( _candidate_val ) ) {
+                                          module.generateItemId( _candidate_val );
+                                    } else {
+                                          api_ready_item[_key] = _candidate_val;
+                                    }
                               }
                           break;
                           case 'initial_item_model' :
@@ -3422,12 +3490,19 @@ $.extend( CZRModuleMths, {
               //Now amend the initial_item_model with the generated id
               api_ready_item.initial_item_model.id = api_ready_item.id;
 
-              return api_ready_item;
+              return module.validateItemBeforeInstantiation( api_ready_item );
       },
 
 
-      //recursive
-      generateItemId : function( module_type, key, i ) {
+      // Designed to be overriden in modules
+      validateItemBeforeInstantiation : function( api_ready_item ) {
+            return api_ready_item;
+      },
+
+
+      // recursive
+      // will generate a unique id with the provided prefix
+      generateItemId : function( prefix, key, i ) {
               //prevent a potential infinite loop
               i = i || 1;
               if ( i > 100 ) {
@@ -3435,17 +3510,17 @@ $.extend( CZRModuleMths, {
               }
               var module = this;
               key = key || module._getNextItemKeyInCollection();
-              var id_candidate = module_type + '_' + key;
+              var id_candidate = prefix + '_' + key;
 
               //do we have a module collection value ?
-              if ( ! _.has(module, 'itemCollection') || ! _.isArray( module.itemCollection() ) ) {
+              if ( ! _.has( module, 'itemCollection' ) || ! _.isArray( module.itemCollection() ) ) {
                     throw new Error('The item collection does not exist or is not properly set in module : ' + module.id );
               }
 
               //make sure the module is not already instantiated
               if ( module.isItemRegistered( id_candidate ) ) {
                 key++; i++;
-                return module.generateItemId( module_type, key, i );
+                return module.generateItemId( prefix, key, i );
               }
               return id_candidate;
       },
@@ -3533,21 +3608,34 @@ $.extend( CZRModuleMths, {
               //normalizes with data
               args = _.extend( { data : {} }, args );
 
-              var item = _.clone( args.item );
+              var item_candidate = _.clone( args.item ),
+                  hasMissingProperty = false;
+
+              // Is the item well formed ? Does it have all the properties of the default model ?
+              // Each module has to declare a defaultItemModel which augments the default one : { id : '', title : '' };
+              // Let's loop on the defaultItemModel property and check that none is missing in the candidate
+              _.each( module.defaultItemModel, function( itemData, key ) {
+                    if ( ! _.has( item_candidate, key ) ) {
+                          throw new Error( 'CZRModuleMths => updateItemsCollection : Missing property "' + key + '" for item candidate' );
+                    }
+              });
+
+              if ( hasMissingProperty )
+                return;
 
               //the item already exist in the collection
-              if ( _.findWhere( _new_collection, { id : item.id } ) ) {
+              if ( _.findWhere( _new_collection, { id : item_candidate.id } ) ) {
                     _.each( _current_collection , function( _item, _ind ) {
-                          if ( _item.id != item.id )
+                          if ( _item.id != item_candidate.id )
                             return;
 
                           //set the new val to the changed property
-                          _new_collection[_ind] = item;
+                          _new_collection[_ind] = item_candidate;
                     });
               }
               //the item has to be added
               else {
-                  _new_collection.push(item);
+                  _new_collection.push( item_candidate );
               }
 
               //updates the collection value
@@ -3938,42 +4026,57 @@ var CZRDynModuleMths = CZRDynModuleMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRDynModuleMths, {
       initialize: function( id, options ) {
-              var module = this;
-              api.CZRModule.prototype.initialize.call( module, id, options );
+            var module = this;
+            api.CZRModule.prototype.initialize.call( module, id, options );
 
-              //extend the module with new template Selectors
-              $.extend( module, {
-                  itemPreAddEl : ''//is specific for each crud module
-              } );
+            //extend the module with new template Selectors
+            $.extend( module, {
+                itemPreAddEl : ''//is specific for each crud module
+            } );
 
-              module.preItemsWrapper = '';//will store the pre items wrapper
+            module.preItemsWrapper = '';//will store the pre items wrapper
 
-              //EXTENDS THE DEFAULT MONO MODEL CONSTRUCTOR WITH NEW METHODS
-              //=> like remove item
-              //module.itemConstructor = api.CZRItem.extend( module.CZRItemDynamicMths || {} );
+            //PRE MODEL VIEW STATE
+            // => will control the rendering / destruction of the DOM view
+            // => the instantiation / destruction of the input Value collection
+            module.preItemExpanded = new api.Value( false );
 
-              //default success message when item added
-              module.itemAddedMessage = serverControlParams.i18n.successMessage;
+            //EXTENDS THE DEFAULT MONO MODEL CONSTRUCTOR WITH NEW METHODS
+            //=> like remove item
+            //module.itemConstructor = api.CZRItem.extend( module.CZRItemDynamicMths || {} );
 
-              ////////////////////////////////////////////////////
-              /// MODULE DOM EVENT MAP
-              ////////////////////////////////////////////////////
-              module.userEventMap = new api.Value( [
-                    //pre add new item : open the dialog box
-                    {
+            //default success message when item added
+            module.itemAddedMessage = serverControlParams.i18n.successMessage;
+
+            ////////////////////////////////////////////////////
+            /// MODULE DOM EVENT MAP
+            ////////////////////////////////////////////////////
+            module.userEventMap = new api.Value( [
+                  //pre add new item : open the dialog box
+                  {
                         trigger   : 'click keydown',
                         selector  : [ '.' + module.control.css_attr.open_pre_add_btn, '.' + module.control.css_attr.cancel_pre_add_btn ].join(','),
                         name      : 'pre_add_item',
-                        actions   : [ 'closeAllItems', 'closeRemoveDialogs', 'renderPreItemView','setPreItemViewVisibility' ],
-                    },
-                    //add new item
-                    {
+                        actions   : [
+                              'closeAllItems',
+                              'closeRemoveDialogs',
+                              // toggles the visibility of the Remove View Block
+                              // => will render or destroy the pre item view
+                              // @param : obj = { event : {}, item : {}, view : ${} }
+                              function(obj) {
+                                    var module = this;
+                                    module.preItemExpanded.set( ! module.preItemExpanded() );
+                              },
+                        ],
+                  },
+                  //add new item
+                  {
                         trigger   : 'click keydown',
                         selector  : '.' + module.control.css_attr.add_new_btn, //'.czr-add-new',
                         name      : 'add_item',
                         actions   : [ 'closeRemoveDialogs', 'closeAllItems', 'addItem' ],
-                    }
-              ]);//module.userEventMap
+                  }
+            ]);//module.userEventMap
       },
 
 
@@ -3981,127 +4084,152 @@ $.extend( CZRDynModuleMths, {
       //When the control is embedded on the page, this method is fired in api.CZRBaseModuleControl:ready()
       //=> right after the module is instantiated.
       ready : function() {
-              var module = this;
-              //Setup the module event listeners
-              module.setupDOMListeners( module.userEventMap() , { dom_el : module.container } );
+            var module = this;
+            //Setup the module event listeners
+            module.setupDOMListeners( module.userEventMap() , { dom_el : module.container } );
 
-              //PRE MODEL VALUE
-              module.preItem = new api.Value( module.getDefaultItemModel() );
+            // Pre Item Value => used to store the preItem model
+            module.preItem = new api.Value( module.getDefaultItemModel() );
 
-              //PRE MODEL EMBED PROMISE
-              module.preItemEmbedded = $.Deferred();//was module.czr_preItem.create('item_content');
-              //Add view rendered listeners
-              module.preItemEmbedded.done( function( $preWrapper ) {
-                    module.preItemsWrapper = $preWrapper;
-                    module.setupPreItemInputCollection();
-              });
+            // Action on pre Item expansion / collapsing
+            module.preItemExpanded.callbacks.add( function( isExpanded ) {
+                  if ( isExpanded ) {
+                        module.renderPreItemView()
+                              .done( function( $preWrapper ) {
+                                    module.preItemsWrapper = $preWrapper;
+                                    //Re-initialize the pre item model
+                                    module.preItem( module.getDefaultItemModel() );
 
-              //PRE MODEL VIEW STATE
-              module.preItemExpanded = new api.Value(false);
-              //add state listeners
-              module.preItemExpanded.callbacks.add( function( to, from ) {
-                    module._togglePreItemViewExpansion( to );
-              });
+                                    module.trigger( 'before-pre-item-input-collection-setup' );
+                                    // Setup the pre item input collection from dom
+                                    module.setupPreItemInputCollection();
 
-              api.CZRModule.prototype.ready.call( module );//fires the parent
+                              })
+                              .fail( function( message ) {
+                                    api.errorLog( 'Pre-Item : ' + message );
+                              });
+                  } else {
+                        $.when( module.preItemsWrapper.remove() ).done( function() {
+                              module.preItem.czr_Input = {};
+                              module.preItemsWrapper = null;
+                              module.trigger( 'pre-item-input-collection-destroyed' );
+                        });
+                  }
+
+                  // Expand / Collapse
+                  module._togglePreItemViewExpansion( isExpanded );
+            });
+
+            api.CZRModule.prototype.ready.call( module );//fires the parent
       },//ready()
+
 
 
       //PRE MODEL INPUTS
       //fired when preItem is embedded.done()
       setupPreItemInputCollection : function() {
-              var module = this;
+            var module = this;
 
-              //Pre item input collection
-              module.preItem.czr_Input = new api.Values();
+            //Pre item input collection
+            module.preItem.czr_Input = new api.Values();
 
-              //creates the inputs based on the rendered items
-              $('.' + module.control.css_attr.pre_add_wrapper, module.container)
-                    .find( '.' + module.control.css_attr.sub_set_wrapper)
-                    .each( function( _index ) {
-                          var _id = $(this).find('[data-type]').attr('data-type') || 'sub_set_' + _index;
-                          //instantiate the input
-                          module.preItem.czr_Input.add( _id, new module.inputConstructor( _id, {//api.CZRInput;
-                                id : _id,
-                                type : $(this).attr('data-input-type'),
-                                container : $(this),
-                                input_parent : module.preItem,
-                                module : module,
-                                is_preItemInput : true
-                          } ) );
+            //creates the inputs based on the rendered items
+            $('.' + module.control.css_attr.pre_add_wrapper, module.container)
+                  .find( '.' + module.control.css_attr.sub_set_wrapper)
+                  .each( function( _index ) {
+                        var _id = $(this).find('[data-type]').attr('data-type') || 'sub_set_' + _index;
+                        //instantiate the input
+                        module.preItem.czr_Input.add( _id, new module.inputConstructor( _id, {//api.CZRInput;
+                              id : _id,
+                              type : $(this).attr('data-input-type'),
+                              container : $(this),
+                              input_parent : module.preItem,
+                              module : module,
+                              is_preItemInput : true
+                        } ) );
 
-                          //fire ready once the input Value() instance is initialized
-                          module.preItem.czr_Input(_id).ready();
-                    });//each
+                        //fire ready once the input Value() instance is initialized
+                        module.preItem.czr_Input( _id ).ready();
+                  });//each
+
+            module.trigger( 'pre-item-input-collection-ready' );
       },
 
+
+      // Designed to be overriden in modules
+      validateItemBeforeAddition : function( item_candidate ) {
+            return item_candidate;
+      },
 
 
       //Fired on user Dom action.
       //the item is manually added.
       //@return a promise() for future sequential actions
       addItem : function(obj) {
-              var module = this,
-                  item = module.preItem(),
-                  collapsePreItem = function() {
-                        module.preItemExpanded.set(false);
-                        module._resetPreItemInputs();
-                        //module.toggleSuccessMessage('off');
-                  },
-                  dfd = $.Deferred();
+            var module = this,
+                item_candidate = module.preItem(),
+                collapsePreItem = function() {
+                      module.preItemExpanded.set( false );
+                      //module.toggleSuccessMessage('off');
+                },
+                dfd = $.Deferred();
 
-              if ( _.isEmpty(item) || ! _.isObject(item) ) {
-                    api.errorLog( 'addItem : an item should be an object and not empty. In : ' + module.id +'. Aborted.' );
-                    return dfd.resolve().promise();
-              }
-              //display a sucess message if item is successfully instantiated
-              collapsePreItem = _.debounce( collapsePreItem, 200 );
+            if ( _.isEmpty(item_candidate) || ! _.isObject(item_candidate) ) {
+                  api.errorLog( 'addItem : an item_candidate should be an object and not empty. In : ' + module.id +'. Aborted.' );
+                  return dfd.resolve().promise();
+            }
+            //display a sucess message if item_candidate is successfully instantiated
+            collapsePreItem = _.debounce( collapsePreItem, 200 );
 
-              //instantiates and fires ready
-              module.instantiateItem( item, true ).ready(); //true == Added by user
+            //allow modules to validate the item_candidate before addition
+            item_candidate = module.validateItemBeforeAddition( item_candidate );
 
-              //this iife job is to close the pre item and to maybe refresh the preview
-              //@return a promise(), then once done the item view is expanded to start editing it
-              ( function() {
-                    return $.Deferred( function() {
-                          var _dfd_ = this;
-                          module.czr_Item( item.id ).isReady.then( function() {
-                                //module.toggleSuccessMessage('on');
-                                collapsePreItem();
+            // Abort here and display a simple console message if item is null or false, for example if validateItemBeforeAddition returned null or false
+            if ( ! item_candidate || _.isNull( item_candidate ) ) {
+                  api.consoleLog( 'item_candidate invalid. InstantiateItem aborted in module ' + module.id );
+                  return;
+            }
 
-                                module.trigger('item-added', item );
-                                //module.doActions( 'item_added_by_user' , module.container, { item : item , dom_event : obj.dom_event } );
 
-                                //refresh the preview frame (only needed if transport is postMessage )
-                                //must be a dom event not triggered
-                                //otherwise we are in the init collection case where the item are fetched and added from the setting in initialize
-                                if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
-                                  api.previewer.refresh().done( function() {
-                                        _dfd_.resolve();
-                                  });
-                                } else {
-                                        _dfd_.resolve();
-                                }
-                          });
-                    }).promise();
-              })().done( function() {
-                      module.czr_Item( item.id ).viewState( 'expanded' );
-              }).always( function() {
-                      dfd.resolve();
-              });
-              return dfd.promise();
-      },
+            //instantiates and fires ready
+            module.instantiateItem( item_candidate, true ).ready(); //true == Added by user
 
-      _resetPreItemInputs : function() {
-              var module = this;
-              module.preItem.set( module.getDefaultItemModel() );
-              module.preItem.czr_Input.each( function( input_instance ) {
-                    var _input_id = input_instance.id;
-                    //do we have a default value ?
-                    if ( ! _.has( module.getDefaultItemModel(), _input_id ) )
-                      return;
-                    input_instance.set( module.getDefaultItemModel()._input_id );
-              });
+            //this iife job is to close the pre item and to maybe refresh the preview
+            //@return a promise(), then once done the item view is expanded to start editing it
+            $.Deferred( function() {
+                  var _dfd_ = this;
+                  module.czr_Item( item_candidate.id ).isReady.then( function() {
+                        //module.toggleSuccessMessage('on');
+                        collapsePreItem();
+
+                        module.trigger('item-added', item_candidate );
+
+                        var resolveWhenPreviewerReady = function() {
+                              api.previewer.unbind( 'ready', resolveWhenPreviewerReady );
+                              _dfd_.resolve();
+                        };
+                        //module.doActions( 'item_added_by_user' , module.container, { item : item_candidate , dom_event : obj.dom_event } );
+
+                        //refresh the preview frame (only needed if transport is postMessage && has no partial refresh set )
+                        //must be a dom event not triggered
+                        //otherwise we are in the init collection case where the items are fetched and added from the setting in initialize
+                        if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                              // api.previewer.refresh().done( function() {
+                              //       _dfd_.resolve();
+                              // });
+                              // It would be better to wait for the refresh promise
+                              api.previewer.bind( 'ready', resolveWhenPreviewerReady );
+                              api.previewer.refresh();
+                        } else {
+                              _dfd_.resolve();
+                        }
+                  });
+            }).done( function() {
+                    module.czr_Item( item_candidate.id ).viewState( 'expanded' );
+            }).always( function() {
+                    dfd.resolve();
+            });
+            return dfd.promise();
       }
 });//$.extend
 })( wp.customize , jQuery, _ );//MULTI CONTROL CLASS
@@ -4118,41 +4246,35 @@ $.extend( CZRDynModuleMths, {
       /// PRE ADD MODEL DIALOG AND VIEW
       //////////////////////////////////////////////////
       renderPreItemView : function( obj ) {
-              var module = this;
+              var module = this, dfd = $.Deferred();
               //is this view already rendered ?
-              if ( 'pending' != module.preItemEmbedded.state() ) //was ! _.isEmpty( module.czr_preItem('item_content')() ) )
-                return;
+              if ( _.isObject( module.preItemsWrapper ) && 0 < module.preItemsWrapper.length ) //was ! _.isEmpty( module.czr_preItem('item_content')() ) )
+                return dfd.resolve( module.preItemsWrapper ).promise();
 
               //do we have view template script?
               if ( ! _.has(module, 'itemPreAddEl') ||  0 === $( '#tmpl-' + module.itemPreAddEl ).length )
-                return this;
+                return dfd.reject( 'Missing itemPreAddEl or template ').promise();
 
               //print the html
               var pre_add_template = wp.template( module.itemPreAddEl );
 
               //do we have an html template and a module container?
               if ( ! pre_add_template  || ! module.container )
-                return this;
+                return dfd.reject( 'Missing html template ').promise();
 
               var $_pre_add_el = $('.' + module.control.css_attr.pre_add_item_content, module.container );
-              $_pre_add_el.prepend( pre_add_template() );
+
+              $_pre_add_el.prepend( $('<div>', { class : 'pre-item-wrapper'} ) );
+              $_pre_add_el.find('.pre-item-wrapper').append( pre_add_template() );
 
               //say it
-              module.preItemEmbedded.resolve( $_pre_add_el );
+              return dfd.resolve( $_pre_add_el.find('.pre-item-wrapper') ).promise();
       },
 
       //@return $ el of the pre Item view
       _getPreItemView : function() {
               var module = this;
               return $('.' +  module.control.css_attr.pre_add_item_content, module.container );
-      },
-
-
-      //toggles the visibility of the Remove View Block
-      //@param : obj = { event : {}, item : {}, view : ${} }
-      setPreItemViewVisibility : function(obj) {
-              var module = this;
-              module.preItemExpanded.set( ! module.preItemExpanded() );
       },
 
 
@@ -5671,7 +5793,8 @@ $.extend( CZRMultiModuleControlMths, {
             content_picker : 'setupContentPicker',
             text_editor    : 'setupTextEditor',
             password : '',
-            range_slider : 'setupRangeSlider'
+            range_slider : 'setupRangeSlider',
+            hidden : ''
       });
 
       //BASE ITEMS => used as constructor when creating the collection of models
