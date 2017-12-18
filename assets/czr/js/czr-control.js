@@ -406,9 +406,9 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
             }
             var module = inputParentInst.module,
                 is_mod_opt = _.has( inputParentInst() , 'is_mod_opt' );
-            if ( _.has( inputParentInst, 'czr_Input') && ! _.isEmpty( inputParentInst.inputCollection() ) )
+            if ( ! _.isEmpty( inputParentInst.inputCollection() ) )
               return;
-            inputParentInst.czr_Input = new api.Values();
+            inputParentInst.czr_Input = inputParentInst.czr_Input || new api.Values();
             inputParentInst.inputConstructor = is_mod_opt ? module.inputModOptConstructor : module.inputConstructor;
 
             var _defaultInputParentModel = is_mod_opt ? inputParentInst.defaultModOptModel : inputParentInst.defaultItemModel;
@@ -603,16 +603,28 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                     if ( _break )
                       return;
 
-                    if ( 'function' != typeof( instance[ _cb ] ) ) {
-                          throw new Error( 'executeEventActionChain : the action : ' + _cb + ' has not been found when firing event : ' + args.event.selector );
+                    var _cbCandidate = function() {};
+                    if ( 'function' === typeof( _cb ) ) {
+                          _cbCandidate = _cb;
+                    } else {
+                          if ( 'function' != typeof( instance[ _cb ] ) ) {
+                                throw new Error( 'executeEventActionChain : the action : ' + _cb + ' has not been found when firing event : ' + args.event.selector );
+                          } else {
+                                _cbCandidate = instance[ _cb ];
+                          }
                     }
                     var $_dom_el = ( _.has(args, 'dom_el') && -1 != args.dom_el.length ) ? args.dom_el : control.container;
 
-                    $_dom_el.trigger( 'before_' + _cb, _.omit( args, 'event' ) );
-                    var _cb_return = instance[ _cb ].call( instance, args );
+                    if ( 'string' === typeof( _cb ) ) {
+                          $_dom_el.trigger( 'before_' + _cb, _.omit( args, 'event' ) );
+                    }
+                    var _cb_return = _cbCandidate.call( instance, args );
                     if ( false === _cb_return )
                       _break = true;
-                    $_dom_el.trigger( 'after_' + _cb, _.omit( args, 'event' ) );
+
+                    if ( 'string' === typeof( _cb ) ) {
+                          $_dom_el.trigger( 'after_' + _cb, _.omit( args, 'event' ) );
+                    }
               });//_.map
       }
 });//$.extend
@@ -1462,12 +1474,14 @@ $.extend( CZRItemMths , {
             item.embedded = $.Deferred();
             item.container = null;//will store the item $ dom element
             item.contentContainer = null;//will store the item content $ dom element
+            item.czr_Input = new api.Values();
             item.inputCollection = new api.Value({});
             item.viewState = new api.Value( 'closed' );
             item.removeDialogVisible = new api.Value( false );
             $.extend( item, options || {} );
             item.defaultItemModel = _.clone( options.defaultItemModel ) || { id : '', title : '' };
             var _initial_model = $.extend( item.defaultItemModel, options.initial_item_model );
+            _initial_model = item.validateItemModelOnInitialize( _initial_model );
             item.set( _initial_model );
             item.userEventMap = new api.Value( [
                   {
@@ -1505,7 +1519,7 @@ $.extend( CZRItemMths , {
                   item.module.updateItemsCollection( { item : item() } );
                   item.callbacks.add( function() { return item.itemReact.apply(item, arguments ); } );
                   item.bind( 'contentRendered', function() {
-                        if ( ! _.has( item, 'czr_Input' ) || _.isEmpty( item.inputCollection() ) ) {
+                        if ( _.isEmpty( item.inputCollection() ) ) {
                               try {
                                     api.CZR_Helpers.setupInputCollectionFromDOM.call( item );
                                     item.module.setupTabNav.call( item );
@@ -1515,7 +1529,7 @@ $.extend( CZRItemMths , {
                         }
                   });
                   item.bind( 'contentRemoved', function() {
-                        if ( _.has(item, 'czr_Input') )
+                        if ( _.has( item, 'czr_Input' ) )
                           api.CZR_Helpers.removeInputCollection.call( item );
                   });
                   item.mayBeRenderItemWrapper();
@@ -1527,6 +1541,9 @@ $.extend( CZRItemMths , {
       },//initialize
       ready : function() {
             this.isReady.resolve();
+      },
+      validateItemModelOnInitialize : function( item_model_candidate ) {
+            return item_model_candidate;
       },
       itemReact : function( to, from, data ) {
             var item = this,
@@ -1563,21 +1580,21 @@ $.extend( CZRItemMths , {
             });
       },
       removeItem : function() {
-              var item = this,
-                  module = this.module,
-                  _new_collection = _.clone( module.itemCollection() );
-              module.trigger('pre_item_dom_remove', item() );
-              item._destroyView();
-              _new_collection = _.without( _new_collection, _.findWhere( _new_collection, {id: item.id }) );
-              module.itemCollection.set( _new_collection );
-              module.trigger('pre_item_api_remove', item() );
+            var item = this,
+                module = this.module,
+                _new_collection = _.clone( module.itemCollection() );
+            module.trigger('pre_item_dom_remove', item() );
+            item._destroyView();
+            _new_collection = _.without( _new_collection, _.findWhere( _new_collection, {id: item.id }) );
+            module.itemCollection.set( _new_collection );
+            module.trigger('pre_item_api_remove', item() );
 
-              var _item_ = $.extend( true, {}, item() );
-              module.czr_Item.remove( item.id );
-              module.trigger( 'item-removed', _item_ );
+            var _item_ = $.extend( true, {}, item() );
+            module.czr_Item.remove( item.id );
+            module.trigger( 'item-removed', _item_ );
       },
       getModel : function(id) {
-              return this();
+            return this();
       }
 
 });//$.extend
@@ -1599,6 +1616,24 @@ $.extend( CZRItemMths , {
                       item.embedded.resolve();
                   }
             });
+      },
+      renderItemWrapper : function( item_model ) {
+            var item = this,
+                module = item.module;
+
+            item_model = item_model || item();
+            $_view_el = $('<li>', { class : module.control.css_attr.single_item, 'data-id' : item_model.id,  id : item_model.id } );
+            module.itemsWrapper.append( $_view_el );
+            if ( module.isMultiItem() ) {
+                  var _template_selector = module.getTemplateEl( 'rudItemPart', item_model );
+                  if ( 0 === $( '#tmpl-' + _template_selector ).length ) {
+                      throw new Error('Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + module.getTemplateEl( 'rudItemPart', item_model ) );
+                  }
+                  $_view_el.append( $( wp.template( _template_selector )( item_model ) ) );
+            }
+            $_view_el.append( $( '<div/>', { class: module.control.css_attr.item_content } ) );
+
+            return $_view_el;
       },
       itemWrapperViewSetup : function( item_model ) {
             var item = this,
@@ -1689,6 +1724,7 @@ $.extend( CZRItemMths , {
                         }
 
                         $_alert_el.html( wp.template( module.AlertPart )( { title : ( item().title || item.id ) } ) );
+                        item.trigger( 'remove-dialog-rendered');
                   }
                   var _slideComplete = function( visible ) {
                         $_alert_el.toggleClass( 'open' , visible );
@@ -1702,39 +1738,21 @@ $.extend( CZRItemMths , {
                     $_alert_el.stop( true, true ).slideUp( 200, function() { _slideComplete( visible ); } );
             });//item.removeDialogVisible.bind()
       },//itemWrapperViewSetup
-      renderItemWrapper : function( item_model ) {
+      renderItemContent : function( item_model ) {
             var item = this,
-                module = item.module;
+                module = this.module;
 
             item_model = item_model || item();
-            $_view_el = $('<li>', { class : module.control.css_attr.single_item, 'data-id' : item_model.id,  id : item_model.id } );
-            module.itemsWrapper.append( $_view_el );
-            if ( module.isMultiItem() ) {
-                  var _template_selector = module.getTemplateEl( 'rudItemPart', item_model );
-                  if ( 0 === $( '#tmpl-' + _template_selector ).length ) {
-                      throw new Error('Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + module.getTemplateEl( 'rudItemPart', item_model ) );
-                  }
-                  $_view_el.append( $( wp.template( _template_selector )( item_model ) ) );
+            if ( 0 === $( '#tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) ).length ) {
+                throw new Error('No item content template defined for module ' + module.id + '. The template script id should be : #tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) );
             }
-            $_view_el.append( $( '<div/>', { class: module.control.css_attr.item_content } ) );
 
-            return $_view_el;
-      },
-      renderItemContent : function( item_model ) {
-              var item = this,
-                  module = this.module;
+            var  item_content_template = wp.template( module.getTemplateEl( 'itemInputList', item_model ) );
+            if ( ! item_content_template )
+              return this;
+            $( item_content_template( item_model )).appendTo( $('.' + module.control.css_attr.item_content, item.container ) );
 
-              item_model = item_model || item();
-              if ( 0 === $( '#tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) ).length ) {
-                  throw new Error('No item content template defined for module ' + module.id + '. The template script id should be : #tmpl-' + module.getTemplateEl( 'itemInputList', item_model ) );
-              }
-
-              var  item_content_template = wp.template( module.getTemplateEl( 'itemInputList', item_model ) );
-              if ( ! item_content_template )
-                return this;
-              $( item_content_template( item_model )).appendTo( $('.' + module.control.css_attr.item_content, item.container ) );
-
-              return $( $( item_content_template( item_model )), item.container );
+            return $( $( item_content_template( item_model )), item.container );
       },
       writeItemViewTitle : function( item_model ) {
             var item = this,
@@ -1747,22 +1765,22 @@ $.extend( CZRItemMths , {
             api.CZR_Helpers.doActions('after_writeViewTitle', item.container , _model, item );
       },
       setViewVisibility : function( obj, is_added_by_user ) {
-              var item = this,
-                  module = this.module;
-              if ( is_added_by_user ) {
-                    item.viewState.set( 'expanded_noscroll' );
-              } else {
-                    module.closeAllItems( item.id );
-                    if ( _.has(module, 'preItem') ) {
-                      module.preItemExpanded.set(false);
-                    }
-                    item.viewState.set( 'expanded' == item._getViewState() ? 'closed' : 'expanded' );
-              }
+            var item = this,
+                module = this.module;
+            if ( is_added_by_user ) {
+                  item.viewState.set( 'expanded_noscroll' );
+            } else {
+                  module.closeAllItems( item.id );
+                  if ( _.has(module, 'preItem') ) {
+                    module.preItemExpanded.set(false);
+                  }
+                  item.viewState.set( 'expanded' == item._getViewState() ? 'closed' : 'expanded' );
+            }
       },
 
 
       _getViewState : function() {
-              return -1 == this.viewState().indexOf('expanded') ? 'closed' : 'expanded';
+            return -1 == this.viewState().indexOf('expanded') ? 'closed' : 'expanded';
       },
       toggleItemExpansion : function( status, from, duration ) {
             var visible = 'closed' != status,
@@ -1795,12 +1813,12 @@ $.extend( CZRItemMths , {
             return dfd.promise();
       },
       _destroyView : function ( duration ) {
-              this.container.fadeOut( {
-                  duration : duration ||400,
-                  done : function() {
-                    $(this).remove();
-                  }
-              });
+            this.container.fadeOut( {
+                duration : duration ||400,
+                done : function() {
+                  $(this).remove();
+                }
+            });
       }
 });//$.extend
 })( wp.customize , jQuery, _ );//extends api.Value
@@ -2278,6 +2296,10 @@ $.extend( CZRModuleMths, {
       instantiateItem : function( item, is_added_by_user ) {
               var module = this;
               item_candidate = module.prepareItemForAPI( item );
+              if ( ! item_candidate || _.isNull( item_candidate ) ) {
+                    api.consoleLog( 'item_candidate invalid. InstantiateItem aborted in module ' + module.id );
+                    return;
+              }
               if ( ! _.has( item_candidate, 'id' ) ) {
                 throw new Error('CZRModule::instantiateItem() : an item has no id and could not be added in the collection of : ' + this.id );
               }
@@ -2301,9 +2323,13 @@ $.extend( CZRModuleMths, {
                     switch( _key ) {
                           case 'id' :
                               if ( _.isEmpty( _candidate_val ) ) {
-                                  api_ready_item[_key] = module.generateItemId( module.module_type );
+                                    api_ready_item[_key] = module.generateItemId( module.module_type );
                               } else {
-                                  api_ready_item[_key] = _candidate_val;
+                                    if ( module.isItemRegistered( _candidate_val ) ) {
+                                          module.generateItemId( _candidate_val );
+                                    } else {
+                                          api_ready_item[_key] = _candidate_val;
+                                    }
                               }
                           break;
                           case 'initial_item_model' :
@@ -2333,22 +2359,25 @@ $.extend( CZRModuleMths, {
               }
               api_ready_item.initial_item_model.id = api_ready_item.id;
 
-              return api_ready_item;
+              return module.validateItemBeforeInstantiation( api_ready_item );
       },
-      generateItemId : function( module_type, key, i ) {
+      validateItemBeforeInstantiation : function( api_ready_item ) {
+            return api_ready_item;
+      },
+      generateItemId : function( prefix, key, i ) {
               i = i || 1;
               if ( i > 100 ) {
                     throw new Error( 'Infinite loop when generating of a module id.' );
               }
               var module = this;
               key = key || module._getNextItemKeyInCollection();
-              var id_candidate = module_type + '_' + key;
-              if ( ! _.has(module, 'itemCollection') || ! _.isArray( module.itemCollection() ) ) {
+              var id_candidate = prefix + '_' + key;
+              if ( ! _.has( module, 'itemCollection' ) || ! _.isArray( module.itemCollection() ) ) {
                     throw new Error('The item collection does not exist or is not properly set in module : ' + module.id );
               }
               if ( module.isItemRegistered( id_candidate ) ) {
                 key++; i++;
-                return module.generateItemId( module_type, key, i );
+                return module.generateItemId( prefix, key, i );
               }
               return id_candidate;
       },
@@ -2391,16 +2420,25 @@ $.extend( CZRModuleMths, {
               }
               args = _.extend( { data : {} }, args );
 
-              var item = _.clone( args.item );
-              if ( _.findWhere( _new_collection, { id : item.id } ) ) {
+              var item_candidate = _.clone( args.item ),
+                  hasMissingProperty = false;
+              _.each( module.defaultItemModel, function( itemData, key ) {
+                    if ( ! _.has( item_candidate, key ) ) {
+                          throw new Error( 'CZRModuleMths => updateItemsCollection : Missing property "' + key + '" for item candidate' );
+                    }
+              });
+
+              if ( hasMissingProperty )
+                return;
+              if ( _.findWhere( _new_collection, { id : item_candidate.id } ) ) {
                     _.each( _current_collection , function( _item, _ind ) {
-                          if ( _item.id != item.id )
+                          if ( _item.id != item_candidate.id )
                             return;
-                          _new_collection[_ind] = item;
+                          _new_collection[_ind] = item_candidate;
                     });
               }
               else {
-                  _new_collection.push(item);
+                  _new_collection.push( item_candidate );
               }
               module.itemCollection.set( _new_collection, args.data );
               return dfd.resolve( { collection : _new_collection, data : args.data } ).promise();
@@ -2664,111 +2702,133 @@ var CZRDynModuleMths = CZRDynModuleMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRDynModuleMths, {
       initialize: function( id, options ) {
-              var module = this;
-              api.CZRModule.prototype.initialize.call( module, id, options );
-              $.extend( module, {
-                  itemPreAddEl : ''//is specific for each crud module
-              } );
+            var module = this;
+            api.CZRModule.prototype.initialize.call( module, id, options );
+            $.extend( module, {
+                itemPreAddEl : ''//is specific for each crud module
+            } );
 
-              module.preItemsWrapper = '';//will store the pre items wrapper
-              module.itemAddedMessage = serverControlParams.i18n.successMessage;
-              module.userEventMap = new api.Value( [
-                    {
+            module.preItemsWrapper = '';//will store the pre items wrapper
+            module.preItemExpanded = new api.Value( false );
+            module.itemAddedMessage = serverControlParams.i18n.successMessage;
+            module.userEventMap = new api.Value( [
+                  {
                         trigger   : 'click keydown',
                         selector  : [ '.' + module.control.css_attr.open_pre_add_btn, '.' + module.control.css_attr.cancel_pre_add_btn ].join(','),
                         name      : 'pre_add_item',
-                        actions   : [ 'closeAllItems', 'closeRemoveDialogs', 'renderPreItemView','setPreItemViewVisibility' ],
-                    },
-                    {
+                        actions   : [
+                              'closeAllItems',
+                              'closeRemoveDialogs',
+                              function(obj) {
+                                    var module = this;
+                                    module.preItemExpanded.set( ! module.preItemExpanded() );
+                              },
+                        ],
+                  },
+                  {
                         trigger   : 'click keydown',
                         selector  : '.' + module.control.css_attr.add_new_btn, //'.czr-add-new',
                         name      : 'add_item',
                         actions   : [ 'closeRemoveDialogs', 'closeAllItems', 'addItem' ],
-                    }
-              ]);//module.userEventMap
+                  }
+            ]);//module.userEventMap
       },
       ready : function() {
-              var module = this;
-              module.setupDOMListeners( module.userEventMap() , { dom_el : module.container } );
-              module.preItem = new api.Value( module.getDefaultItemModel() );
-              module.preItemEmbedded = $.Deferred();//was module.czr_preItem.create('item_content');
-              module.preItemEmbedded.done( function( $preWrapper ) {
-                    module.preItemsWrapper = $preWrapper;
-                    module.setupPreItemInputCollection();
-              });
-              module.preItemExpanded = new api.Value(false);
-              module.preItemExpanded.callbacks.add( function( to, from ) {
-                    module._togglePreItemViewExpansion( to );
-              });
+            var module = this;
+            module.setupDOMListeners( module.userEventMap() , { dom_el : module.container } );
+            module.preItem = new api.Value( module.getDefaultItemModel() );
+            module.preItemExpanded.callbacks.add( function( isExpanded ) {
+                  if ( isExpanded ) {
+                        module.renderPreItemView()
+                              .done( function( $preWrapper ) {
+                                    module.preItemsWrapper = $preWrapper;
+                                    module.preItem( module.getDefaultItemModel() );
 
-              api.CZRModule.prototype.ready.call( module );//fires the parent
+                                    module.trigger( 'before-pre-item-input-collection-setup' );
+                                    module.setupPreItemInputCollection();
+
+                              })
+                              .fail( function( message ) {
+                                    api.errorLog( 'Pre-Item : ' + message );
+                              });
+                  } else {
+                        $.when( module.preItemsWrapper.remove() ).done( function() {
+                              module.preItem.czr_Input = {};
+                              module.preItemsWrapper = null;
+                              module.trigger( 'pre-item-input-collection-destroyed' );
+                        });
+                  }
+                  module._togglePreItemViewExpansion( isExpanded );
+            });
+
+            api.CZRModule.prototype.ready.call( module );//fires the parent
       },//ready()
       setupPreItemInputCollection : function() {
-              var module = this;
-              module.preItem.czr_Input = new api.Values();
-              $('.' + module.control.css_attr.pre_add_wrapper, module.container)
-                    .find( '.' + module.control.css_attr.sub_set_wrapper)
-                    .each( function( _index ) {
-                          var _id = $(this).find('[data-type]').attr('data-type') || 'sub_set_' + _index;
-                          module.preItem.czr_Input.add( _id, new module.inputConstructor( _id, {//api.CZRInput;
-                                id : _id,
-                                type : $(this).attr('data-input-type'),
-                                container : $(this),
-                                input_parent : module.preItem,
-                                module : module,
-                                is_preItemInput : true
-                          } ) );
-                          module.preItem.czr_Input(_id).ready();
-                    });//each
+            var module = this;
+            module.preItem.czr_Input = new api.Values();
+            $('.' + module.control.css_attr.pre_add_wrapper, module.container)
+                  .find( '.' + module.control.css_attr.sub_set_wrapper)
+                  .each( function( _index ) {
+                        var _id = $(this).find('[data-type]').attr('data-type') || 'sub_set_' + _index;
+                        module.preItem.czr_Input.add( _id, new module.inputConstructor( _id, {//api.CZRInput;
+                              id : _id,
+                              type : $(this).attr('data-input-type'),
+                              container : $(this),
+                              input_parent : module.preItem,
+                              module : module,
+                              is_preItemInput : true
+                        } ) );
+                        module.preItem.czr_Input( _id ).ready();
+                  });//each
+
+            module.trigger( 'pre-item-input-collection-ready' );
+      },
+      validateItemBeforeAddition : function( item_candidate ) {
+            return item_candidate;
       },
       addItem : function(obj) {
-              var module = this,
-                  item = module.preItem(),
-                  collapsePreItem = function() {
-                        module.preItemExpanded.set(false);
-                        module._resetPreItemInputs();
-                  },
-                  dfd = $.Deferred();
+            var module = this,
+                item_candidate = module.preItem(),
+                collapsePreItem = function() {
+                      module.preItemExpanded.set( false );
+                },
+                dfd = $.Deferred();
 
-              if ( _.isEmpty(item) || ! _.isObject(item) ) {
-                    api.errorLog( 'addItem : an item should be an object and not empty. In : ' + module.id +'. Aborted.' );
-                    return dfd.resolve().promise();
-              }
-              collapsePreItem = _.debounce( collapsePreItem, 200 );
-              module.instantiateItem( item, true ).ready(); //true == Added by user
-              ( function() {
-                    return $.Deferred( function() {
-                          var _dfd_ = this;
-                          module.czr_Item( item.id ).isReady.then( function() {
-                                collapsePreItem();
+            if ( _.isEmpty(item_candidate) || ! _.isObject(item_candidate) ) {
+                  api.errorLog( 'addItem : an item_candidate should be an object and not empty. In : ' + module.id +'. Aborted.' );
+                  return dfd.resolve().promise();
+            }
+            collapsePreItem = _.debounce( collapsePreItem, 200 );
+            item_candidate = module.validateItemBeforeAddition( item_candidate );
+            if ( ! item_candidate || _.isNull( item_candidate ) ) {
+                  api.consoleLog( 'item_candidate invalid. InstantiateItem aborted in module ' + module.id );
+                  return;
+            }
+            module.instantiateItem( item_candidate, true ).ready(); //true == Added by user
+            $.Deferred( function() {
+                  var _dfd_ = this;
+                  module.czr_Item( item_candidate.id ).isReady.then( function() {
+                        collapsePreItem();
 
-                                module.trigger('item-added', item );
-                                if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
-                                  api.previewer.refresh().done( function() {
-                                        _dfd_.resolve();
-                                  });
-                                } else {
-                                        _dfd_.resolve();
-                                }
-                          });
-                    }).promise();
-              })().done( function() {
-                      module.czr_Item( item.id ).viewState( 'expanded' );
-              }).always( function() {
-                      dfd.resolve();
-              });
-              return dfd.promise();
-      },
+                        module.trigger('item-added', item_candidate );
 
-      _resetPreItemInputs : function() {
-              var module = this;
-              module.preItem.set( module.getDefaultItemModel() );
-              module.preItem.czr_Input.each( function( input_instance ) {
-                    var _input_id = input_instance.id;
-                    if ( ! _.has( module.getDefaultItemModel(), _input_id ) )
-                      return;
-                    input_instance.set( module.getDefaultItemModel()._input_id );
-              });
+                        var resolveWhenPreviewerReady = function() {
+                              api.previewer.unbind( 'ready', resolveWhenPreviewerReady );
+                              _dfd_.resolve();
+                        };
+                        if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                              api.previewer.bind( 'ready', resolveWhenPreviewerReady );
+                              api.previewer.refresh();
+                        } else {
+                              _dfd_.resolve();
+                        }
+                  });
+            }).done( function() {
+                    module.czr_Item( item_candidate.id ).viewState( 'expanded' );
+            }).always( function() {
+                    dfd.resolve();
+            });
+            return dfd.promise();
       }
 });//$.extend
 })( wp.customize , jQuery, _ );//MULTI CONTROL CLASS
@@ -2777,26 +2837,24 @@ var CZRDynModuleMths = CZRDynModuleMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRDynModuleMths, {
       renderPreItemView : function( obj ) {
-              var module = this;
-              if ( 'pending' != module.preItemEmbedded.state() ) //was ! _.isEmpty( module.czr_preItem('item_content')() ) )
-                return;
+              var module = this, dfd = $.Deferred();
+              if ( _.isObject( module.preItemsWrapper ) && 0 < module.preItemsWrapper.length ) //was ! _.isEmpty( module.czr_preItem('item_content')() ) )
+                return dfd.resolve( module.preItemsWrapper ).promise();
               if ( ! _.has(module, 'itemPreAddEl') ||  0 === $( '#tmpl-' + module.itemPreAddEl ).length )
-                return this;
+                return dfd.reject( 'Missing itemPreAddEl or template ').promise();
               var pre_add_template = wp.template( module.itemPreAddEl );
               if ( ! pre_add_template  || ! module.container )
-                return this;
+                return dfd.reject( 'Missing html template ').promise();
 
               var $_pre_add_el = $('.' + module.control.css_attr.pre_add_item_content, module.container );
-              $_pre_add_el.prepend( pre_add_template() );
-              module.preItemEmbedded.resolve( $_pre_add_el );
+
+              $_pre_add_el.prepend( $('<div>', { class : 'pre-item-wrapper'} ) );
+              $_pre_add_el.find('.pre-item-wrapper').append( pre_add_template() );
+              return dfd.resolve( $_pre_add_el.find('.pre-item-wrapper') ).promise();
       },
       _getPreItemView : function() {
               var module = this;
               return $('.' +  module.control.css_attr.pre_add_item_content, module.container );
-      },
-      setPreItemViewVisibility : function(obj) {
-              var module = this;
-              module.preItemExpanded.set( ! module.preItemExpanded() );
       },
       _togglePreItemViewExpansion : function( _is_expanded ) {
               var module = this,
@@ -3757,7 +3815,8 @@ $.extend( CZRMultiModuleControlMths, {
             content_picker : 'setupContentPicker',
             text_editor    : 'setupTextEditor',
             password : '',
-            range_slider : 'setupRangeSlider'
+            range_slider : 'setupRangeSlider',
+            hidden : ''
       });
       api.CZRItem                   = api.Value.extend( CZRItemMths );
       api.CZRModOpt                 = api.Value.extend( CZRModOptMths );

@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.14 December 18th 2017 =
+* Imp: various changed to the header compontents to allow further customizations like boxing elements. First stone for a boxed layout.
+
 = 4.0.13 November 20th 2017 =
 * Fix : WP 4.9 Code Editor issue could impact the custom css customizer option when checking errors in the code
 
