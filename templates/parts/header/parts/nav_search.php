@@ -10,7 +10,8 @@
       <?php
         czr_fn_render_template( 'header/parts/search_form', array(
           'model_args' => array(
-            'element_tag'     => 'li'
+            'element_tag'     => 'li',
+            'element_class'   => czr_fn_get_property( 'search_form_container_class' )
           )
         ) );
       ?>

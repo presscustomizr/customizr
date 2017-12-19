@@ -2,7 +2,6 @@
 .branding__container {
 
     @extend .display-flex;
-    width: 100%;
 
     .primary-navbar__wrapper & {
       max-width: 85%;
@@ -11,6 +10,9 @@
 
     .primary-navbar__wrapper.has-horizontal-menu & {
       max-width: 33%;
+    }
+    .mobile-navbar__wrapper & {
+      position: static;
     }
 
     @at-root .branding {
@@ -81,8 +83,9 @@
         flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
     }
     @at-root .mobile-utils__wrapper .header-search__container {
-        display: inline-block;
+        display: block;
         border-bottom: none;
+        margin: 2*$base-line-height-fixed auto;
     }
 }
 
@@ -122,7 +125,7 @@
 
 // Mobile stuff
 .header-search__container {
-    width: 100%;
+    //width: 100%;
     margin: 2*$base-line-height-fixed 0 $base-line-height-fixed 0;
     .czr-form .form-group {
         margin: 2/3 * $base-line-height-fixed 0 $base-line-height-fixed 0;
@@ -297,10 +300,13 @@
 
 .mobile-sticky .mobile-nav__nav {
   position: absolute;
-  max-height: 90vh;
-  overflow: auto;
+  width: 100%;
   //shadow only when mobile menu is sticky.
   @include box-shadow( 0px, 6px, 8px, rgba(120, 120, 120, 0.9), false, 0px );
+  .mobile-nav__inner {
+    max-height: 90vh;
+    overflow: auto;
+  }
 }
 
 .fixed-header-on .mobile-sticky,
@@ -310,10 +316,13 @@
   top: 0;
   width: 100%;
 
+  //this is the starting breakpoint from which the .container has a defined width
+  //we don't want to stretch the sticky elements to 100%, we just want they wrap
+  //their .container inner elements which have a well defined width.
   @include media-breakpoint-up(sm) {
-    &.tc-boxed {
-      width: auto;
-    }
+    .czr-boxed-layout & {
+        width: auto;
+      }
   }
 }
 

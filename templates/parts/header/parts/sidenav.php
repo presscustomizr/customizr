@@ -6,7 +6,7 @@
  * Sidenav Menu
  */
 ?>
-<div id="tc-sn" class="tc-sn side-nav__container hidden-md-down" aria-expanded="false" <?php czr_fn_echo('element_attributes') ?>>
+<div id="tc-sn" class="tc-sn side-nav__container hidden-md-down" <?php czr_fn_echo('element_attributes') ?>>
     <nav class="tc-sn side-nav__nav" <?php czr_fn_echo('element_attributes') ?>>
       <div class="tc-sn-inner">
         <?php

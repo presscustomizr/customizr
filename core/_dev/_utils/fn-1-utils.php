@@ -156,11 +156,10 @@ function czr_fn_get_layout( $post_id , $sidebar_or_class = 'class' ) {
 * This function returns the column content wrapper class
 *
 * @package Customizr
-* @since Customizr 3.5
 */
 function czr_fn_get_page_wrapper_class() {
-    if ( (bool) esc_attr( czr_fn_opt( 'tc_boxed_layout') ) ) {
-        $tc_page_wrap_class = array( 'container', 'tc-boxed' );
+    if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
+        $tc_page_wrap_class = array( 'container', 'czr-boxed' );
     } else {
         $tc_page_wrap_class = array();
     }
