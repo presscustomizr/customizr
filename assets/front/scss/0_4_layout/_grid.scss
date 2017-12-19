@@ -950,11 +950,10 @@ a.czr-format-link {
           padding: 0;
       }
 
-      section.entry-content__holder {
-          &::before {
-            display: block;
-          }
+      section.entry-content__holder &::before {
+          display: block;
       }
+
 
       .entry-content__wrapper {
           padding: 0;
@@ -970,8 +969,20 @@ a.czr-format-link {
           -webkit-mask-image: -webkit-linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
       }
 
+      //should we keep displaying the .tc-content-inner even in narrow #content?
       .tc-content-inner {
           display: block;
+      }
+
+      //reset squared entry content shape when wrapped in narrow #content
+      .col-md-6 & section.entry-content__holder &::before {
+          display: none;
+      }
+      .col-md-6 & .entry-content__wrapper {
+          position: static;
+          padding: $base-line-height;
+          mask-image: none;
+          -webkit-mask-image: none;
       }
   }
 }
