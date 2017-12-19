@@ -563,6 +563,7 @@
                               'tc_second_menu_position',
                               'nav_menu_locations[secondary]',
                               'tc_second_menu_resp_setting',
+                              'tc_side_menu_dropdown_on_click',
                               'tc_menu_position', /* used to perform actions on menu position */
                               'tc_mc_effect', /* pro */
                               /* to trigger action once */
@@ -574,6 +575,7 @@
                                   //CASE 1 : regular menu choosen
                                   if ( 'aside' != to ) {
                                     if ( _.contains([
+                                        'tc_side_menu_dropdown_on_click',
                                         'tc_display_menu_label',
                                         'tc_display_second_menu',
                                         'nav_menu_locations[secondary]',
