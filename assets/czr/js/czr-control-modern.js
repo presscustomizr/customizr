@@ -10800,6 +10800,63 @@ $.extend( CZRLayoutSelectMths , {
                             },
                     },
                     {
+                            dominus : 'tc_site_layout',
+                            servi   : [
+                              'tc_header_topbar_layout',
+                              'tc_header_navbar_layout',
+                              'tc_footer_colophon_layout',
+                            ],
+                            visibility : function( to, servusShortId ) {
+                                  if ( 'tc_header_topbar_layout' == servusShortId ) {
+                                    return ( 'wide' == to  ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() );
+                                  }
+                                  return  'wide' == to;
+                            },
+                    },
+                    {
+                            dominus : 'tc_header_desktop_topbar',
+                            servi   : [ 'tc_header_topbar_layout' ],
+                            visibility: function (to) {
+                                  return _is_checked(to) &&  'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_header_topbar_layout',
+                            servi   : [
+                              'tc_header_topbar_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() ) &&  'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_header_navbar_layout',
+                            servi   : [
+                              'tc_header_navbar_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_footer_colophon_layout',
+                            servi   : [
+                              'tc_footer_colophon_layout',
+                            ],
+                            visibility : function( to ) {
+                                  return 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
+                            dominus : 'tc_mc_effect',
+                            servi   : [
+                              'tc_mc_effect',
+                            ],
+                            visibility : function( to ) {
+                                  return 'aside' == api( api.CZR_Helpers.build_setId( 'tc_menu_style' ) ).get() && 'wide' == api( api.CZR_Helpers.build_setId( 'tc_site_layout' ) ).get();
+                            }
+                    },
+                    {
                             dominus : 'tc_show_featured_pages',
                             servi   : serverControlParams.FPControls,
                             visibility : function( to ) {
@@ -11111,20 +11168,6 @@ $.extend( CZRLayoutSelectMths , {
                             }
                     },
                     {
-                            dominus : 'tc_header_topnav',
-                            servi   : ['tc_social_in_topnav'],
-                            visibility: function (to) {
-                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_social_in_header' ) ).get() );
-                            }
-                    },
-                    {
-                            dominus : 'tc_social_in_header',
-                            servi   : ['tc_social_in_topnav'],
-                            visibility: function (to) {
-                                  return _is_checked(to) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_topnav' ) ).get() );
-                            }
-                    },/* end */
-                    {
                             dominus : 'tc_sticky_show_title_logo',
                             servi   : ['tc_sticky_logo_upload'],
                             visibility: function (to) {
@@ -11260,6 +11303,7 @@ $.extend( CZRLayoutSelectMths , {
                               'tc_second_menu_position',
                               'nav_menu_locations[secondary]',
                               'tc_second_menu_resp_setting',
+                              'tc_side_menu_dropdown_on_click',
                               'tc_menu_position', /* used to perform actions on menu position */
                               'tc_mc_effect', /* pro */
                               /* to trigger action once */
@@ -11268,6 +11312,7 @@ $.extend( CZRLayoutSelectMths , {
                             visibility : function( to, servusShortId ) {
                                   if ( 'aside' != to ) {
                                     if ( _.contains([
+                                        'tc_side_menu_dropdown_on_click',
                                         'tc_display_menu_label',
                                         'tc_display_second_menu',
                                         'nav_menu_locations[secondary]',
@@ -11280,6 +11325,9 @@ $.extend( CZRLayoutSelectMths , {
                                     }
                                   }
                                   else {
+                                    if ( 'tc_mc_effect' == servusShortId ) {
+                                      return 'boxed' != api( api.CZR_Helpers.build_setId('tc_site_layout') ).get();
+                                    }
                                     if ( _.contains([
                                         'tc_menu_type',
                                         'tc_menu_submenu_fade_effect',
