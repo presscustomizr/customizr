@@ -174,3 +174,12 @@ img.v-centered {
 .screen-reader-text, .sr-only-focusable {
   @include sr-only-focusable();
 }
+
+
+//button link
+.czr-btn-link {
+  -webkit-appearance: none !important;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}

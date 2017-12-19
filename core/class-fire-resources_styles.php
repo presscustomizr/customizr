@@ -180,9 +180,10 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                        '.czr-overlay a:hover',
                                        '.dropdown-menu',
                                        '.tc-header .navbar-brand-sitename',
-                                       '[class*=nav__menu] li > a',
-                                       '[class*=nav__menu] .dropdown-menu a',
-                                       '[class*=nav__menu] .dropdown-item > a:hover',
+                                       '[class*=nav__menu] .nav__link',
+                                       '[class*=nav__menu] .nav__link-wrapper .caret__dropdown-toggler',
+                                       '[class*=nav__menu] .dropdown-menu .nav__link',
+                                       '[class*=nav__menu] .dropdown-item .nav__link:hover',
                                        '.tc-header form.czr-form label',
                                        '.czr-overlay form.czr-form label',
                                        ".tc-header .czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio'])",
@@ -208,7 +209,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  ),
                                  'background-color' => array(
                                        '.ham__toggler-span-wrapper .line',
-                                       '[class*=nav__menu] li > a > span:first-of-type::before',
+                                       '[class*=nav__menu] .nav__title::before',
                                        '.tc-header .navbar-brand-sitename.czr-underline span::after'
                                  )
                            )
@@ -219,11 +220,15 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  //prop => selectors
                                  'color' => array(
                                          '.header-tagline',
-                                         '[class*=nav__menu] li > a:hover',
-                                         '[class*=nav__menu] li.show:not(.dropdown-item) > a',
-                                         '[class*=nav__menu] li:not(.dropdown-item).current-active > a',
-                                         '[class*=nav__menu] li.current-menu-item > a',
-                                         '[class*=nav__menu] .dropdown-item a',
+                                         '[class*=nav__menu] .nav__link:hover',
+                                         '[class*=nav__menu] .nav__link-wrapper .caret__dropdown-toggler:hover',
+                                         '[class*=nav__menu] .show:not(.dropdown-item) > .nav__link',
+                                         '[class*=nav__menu] .show:not(.dropdown-item) > .nav__link-wrapper .nav__link',
+                                         '[class*=nav__menu] li:not(.dropdown-item).current-active > .nav__link',
+                                         '[class*=nav__menu] li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__link',
+                                         '[class*=nav__menu] .current-menu-item > .nav__link',
+                                         '[class*=nav__menu] .current-menu-item > .nav__link-wrapper .nav__link',
+                                         '[class*=nav__menu] .dropdown-item .nav__link',
                                          '.czr-overlay a',
                                          '.tc-header .socials a:hover',
                                          '.nav__utils a:hover',
@@ -304,6 +309,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  //prop => selectors
                                  'background-color' => array(
                                        '.dropdown-item:before',
+                                       '.vertical-nav .caret__dropdown-toggler'
                                  )
                            )
                      ),
