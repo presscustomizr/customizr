@@ -1,41 +1,42 @@
 <?php
 /*
- * @since 3.5.0
- */
-//shortcut function to echo the column content wrapper class
-if ( ! function_exists( 'czr_fn_column_content_wrapper_class' ) ) {
-      function czr_fn_column_content_wrapper_class() {
-            CZR() -> czr_fn_column_content_wrapper_class();
-      }
-}
-
-/*
- * @since 3.5.0
- */
-//shortcut function to echo the column content wrapper class
-if ( ! function_exists( 'czr_fn_main_container_wrapper_class' ) ) {
-      function czr_fn_main_container_class() {
-            CZR() -> czr_fn_main_container_class();
-      }
-}
-
-
+* An handly function to print the page wrapper class
+*/
 //shortcut function to echo the #tc-page-wrap class
 if ( ! function_exists( 'czr_fn_page_wrapper_class' ) ) {
       function czr_fn_page_wrapper_class() {
-            CZR() -> czr_fn_page_wrapper_class();
+            echo czr_fn_stringify_array( czr_fn_get_page_wrapper_class() );
       }
 }
 
 /*
- * @since 3.5.0
- */
-//shortcut function to echo the article container class
-if ( ! function_exists( 'czr_fn_article_container_class' ) ) {
-      function czr_fn_article_container_class() {
-            CZR() -> czr_fn_article_container_class();
+* An handly function to print the content wrapper class
+*/
+if ( ! function_exists( 'czr_fn_column_content_wrapper_class' ) ) {
+      function czr_fn_column_content_wrapper_class() {
+            echo czr_fn_stringify_array( czr_fn_get_column_content_wrapper_class() );
       }
 }
+
+
+/*
+* An handly function to print the main container class
+*/
+if ( ! function_exists( 'czr_fn_main_container_wrapper_class' ) ) {
+      function czr_fn_main_container_class() {
+            echo czr_fn_stringify_array( czr_fn_get_main_container_class() );
+      }
+}
+
+/*
+* An handly function to print the article containerr class
+*/
+if ( ! function_exists( 'czr_fn_article_container_class' ) ) {
+      function czr_fn_article_container_class() {
+            echo czr_fn_stringify_array( czr_fn_get_article_container_class() );
+      }
+}
+
 
 /*
  * @since 3.5.0

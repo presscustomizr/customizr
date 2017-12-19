@@ -3,7 +3,7 @@
  * The template for displaying the branding wrapper
  */
 ?>
-<div class="branding__container <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<div class="branding__container justify-content-between align-items-center <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="branding flex-column">
     <?php
       if ( czr_fn_is_registered_or_possible('logo_wrapper') ){
@@ -25,9 +25,10 @@
             czr_fn_render_template( 'header/parts/nav_search', array(
               'model_id'   => 'mobile_navbar_search',
               'model_args' => array(
-                'search_toggle_class' => array( 'czr-dropdown' ),
-                'search_toggle_attributes' => 'data-aria-haspopup="true"',
-                'has_dropdown'        => true
+                'search_toggle_class'         => array( 'czr-dropdown' ),
+                'search_toggle_attributes'    => 'data-aria-haspopup="true"',
+                'has_dropdown'                => true,
+                'search_form_container_class' => czr_fn_get_property( 'search_form_container_class' )
               )
             ) );
           }

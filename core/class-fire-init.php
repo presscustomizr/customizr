@@ -170,13 +170,13 @@ if ( ! class_exists( 'CZR_init' ) ) :
             );
           }
           //IMAGE CENTERED
-          if ( (bool) esc_attr( czr_fn_opt( 'tc_center_img') ) ){
+          if ( (bool) esc_attr( czr_fn_opt( 'tc_center_img') ) ) {
             $_classes[] = 'tc-center-images';
           }
 
           //BOXED LAYOUT
-          if ( (bool) esc_attr( czr_fn_opt( 'tc_boxed_layout') ) ){
-            $_classes[] = 'tc-boxed';
+          if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
+            $_classes[] = 'czr-boxed-layout';
           }
 
           //SIDENAV POSITIONING
