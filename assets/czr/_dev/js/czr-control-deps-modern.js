@@ -87,11 +87,15 @@
                               'tc_header_topbar_layout',
                               'tc_header_navbar_layout',
                               'tc_footer_colophon_layout',
+                              'tc_mc_effect'
                             ],
                             visibility : function( to, servusShortId ) {
                                   //cross
                                   if ( 'tc_header_topbar_layout' == servusShortId ) {
-                                    return ( 'wide' == to  ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() );
+                                        return ( 'wide' == to  ) && _is_checked( api( api.CZR_Helpers.build_setId( 'tc_header_desktop_topbar' ) ).get() );
+                                  }
+                                  else if ( 'tc_mc_effect' == servusShortId ) {
+                                        return 'aside' == api( api.CZR_Helpers.build_setId( 'tc_menu_style' ) ).get() && 'wide' == to;
                                   }
                                   return  'wide' == to;
                             },
