@@ -1224,7 +1224,7 @@ embed, iframe, object, video {
 }
 
 .regular-nav .dropdown-menu .dropdown-menu {
-  top: 55%;
+  top: 15px;
 }
 
 .dropdown-item {
@@ -1888,7 +1888,7 @@ li#wp-admin-bar-tc-customizr-help a {
   transition: all 0.35s ease-in-out;
 }
 
-.mobile-navbar__wrapper .nav__menu-wrapper {
+.mobile-navbar__wrapper .mobile-nav__inner {
   margin-bottom: 20px;
 }
 

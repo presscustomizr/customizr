@@ -4439,22 +4439,25 @@ var czrapp = czrapp || {};
                           selector : 'desktop-sticky'
                     }
               };
-              this.navbarsWrapperSelector = '.header-navbars__wrapper';
-              this.$_navbars_wrapper      = $( this.navbarsWrapperSelector );
-              this.$_topbar               = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.topbar-navbar__wrapper') : false;
-              this.$_primary_navbar       = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.primary-navbar__wrapper') : false;
+              this.navbarsWrapperSelector   = '.header-navbars__wrapper';
+              this.$_navbars_wrapper        = $( this.navbarsWrapperSelector );
+              this.$_topbar                 = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.topbar-navbar__wrapper') : false;
+              this.$_primary_navbar         = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.primary-navbar__wrapper') : false;
 
-              this.stickyMenuWrapper      = false;
-              this.stickyMenuDown         = new czrapp.Value( '_not_set_' );
-              this.stickyHeaderThreshold  = 50;
-              this.currentStickySelector  = new czrapp.Value( '' );//<= will be set on init and on resize
-              this.hasStickyCandidate     = new czrapp.Value( false );
-              this.stickyHeaderAnimating  = new czrapp.Value( false );
-              this.animationPromise       = $.Deferred( function() { return this.resolve(); });
-              this.userStickyOpt          = new czrapp.Value( self._setUserStickyOpt() );//set on init and on resize : stick_always, no_stick, stick_up
-              this.isFixedPositionned     = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
-              this.stickyStage            = new czrapp.Value( '_not_set_' );
-              this.shrinkBrand            = new czrapp.Value( false );//Toggle a class to maybe shrink the title or logo if the option is on
+              this.mobileMenuOpenedEvent    = 'show.bs.collapse'; //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
+              this.mobileMenuStickySelector = '.mobile-sticky .mobile-nav__nav';
+
+              this.stickyMenuWrapper        = false;
+              this.stickyMenuDown           = new czrapp.Value( '_not_set_' );
+              this.stickyHeaderThreshold    = 50;
+              this.currentStickySelector    = new czrapp.Value( '' );//<= will be set on init and on resize
+              this.hasStickyCandidate       = new czrapp.Value( false );
+              this.stickyHeaderAnimating    = new czrapp.Value( false );
+              this.animationPromise         = $.Deferred( function() { return this.resolve(); });
+              this.userStickyOpt            = new czrapp.Value( self._setUserStickyOpt() );//set on init and on resize : stick_always, no_stick, stick_up
+              this.isFixedPositionned       = new czrapp.Value( false );//is the candidate fixed ? => toggle the 'fixed-header-on' css class to the header
+              this.stickyStage              = new czrapp.Value( '_not_set_' );
+              this.shrinkBrand              = new czrapp.Value( false );//Toggle a class to maybe shrink the title or logo if the option is on
               this.currentStickySelector.bind( function( to, from ) {
                     var _reset = function() {
                           czrapp.$_header.css( { 'height' : '' });
@@ -4611,6 +4614,17 @@ var czrapp = czrapp || {};
               }, { deferred : true } );
               self.isResizing.bind( function() {self._refreshOrResizeReact(); } );//resize();
               czrapp.$_header.on( 'refresh-sticky-header', function() { self._refreshOrResizeReact(); } );
+              czrapp.$_body.on( self.mobileMenuOpenedEvent, self.mobileMenuStickySelector, function() {
+                    var $_mobileMenu         = $(this),
+                        $_mobileMenuNavInner = $_mobileMenu.find( '.mobile-nav__inner' );
+
+                    if ( $_mobileMenu.length > 0 ) {
+                          var _winHeight = 'undefined' !== typeof window.innerHeight ? window.innerHeight : czrapp.$_window.height(),
+                              _maxHeight = _winHeight - $_mobileMenu.closest( '.mobile-nav__container' ).offset().top + czrapp.$_window.scrollTop();
+
+                          $_mobileMenuNavInner.css( 'max-height', _maxHeight + 'px'  );
+                    }
+              });
               self._setStickySelector();
               this.topStickPoint          = new czrapp.Value( self._getTopStickPoint() );
               if ( ! self._isMobile() && self.hasStickyCandidate() ) {
@@ -5866,18 +5880,24 @@ var czrapp = czrapp || {};
             $_caret = $_el.find('.caret__dropdown-toggler').first(),
             _openLeft = function() {
                 $_dropdown.removeClass( 'open-right' ).addClass( 'open-left' );
-                if ( 1 == $_caret.length ) {
-                    $_caret.removeClass( 'open-right' ).addClass( 'open-left' );
-                    if ( 1 == $_a.length )
-                      $_a.addClass('flex-row-reverse');
+
+                if ( $_el.hasClass( 'czr-dropdown-submenu' ) ) {
+                    if ( 1 == $_caret.length ) {
+                        $_caret.removeClass( 'open-right' ).addClass( 'open-left' );
+                        if ( 1 == $_a.length )
+                          $_a.addClass('flex-row-reverse');
+                    }
                 }
             },
             _openRight = function() {
                 $_dropdown.removeClass( 'open-left' ).addClass( 'open-right' );
-                if ( 1 == $_caret.length ) {
-                    $_caret.removeClass( 'open-left' ).addClass( 'open-right' );
-                    if ( 1 == $_a.length )
-                      $_a.removeClass('flex-row-reverse');
+
+                if ( $_el.hasClass( 'czr-dropdown-submenu' ) ) {
+                    if ( 1 == $_caret.length ) {
+                        $_caret.removeClass( 'open-left' ).addClass( 'open-right' );
+                        if ( 1 == $_a.length )
+                          $_a.removeClass('flex-row-reverse');
+                    }
                 }
             };
         if ( $_dropdown.parent().closest( '.'+self.ClassName.DROPDOWN ).hasClass( 'open-left' ) ) {
