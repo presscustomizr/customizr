@@ -3043,7 +3043,10 @@ var czrapp = czrapp || {};
                                               duration : 300,
                                               complete: function() {
                                                     if ( 'show' == evt.type ) {
-                                                          $_customScrollbar = $(this).closest(  '.'+self.ClassName.MCUSTOMSB ).mCustomScrollbar( 'scrollTo', $(this) );
+                                                          var $_customScrollbar = $(this).closest(  '.'+self.ClassName.MCUSTOMSB );
+                                                          if ( $_customScrollbar.length > 0 ) {
+                                                                $_customScrollbar.mCustomScrollbar( 'scrollTo', $(this) );
+                                                          }
                                                     }
                                               }
                                         });
