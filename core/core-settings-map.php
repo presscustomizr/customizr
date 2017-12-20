@@ -781,7 +781,7 @@ function czr_fn_header_mobile_option_map() {
                           ),
         ),
         'tc_header_mobile_menu_dropdown_on_click'  => array(
-                          'default'   =>  0,
+                          'default'   =>  1,
                           'control'   =>  'CZR_controls' ,
                           'label'     =>  __( 'Expand submenus on click' , 'customizr' ),
                           'section'   =>  'header_mobile_sec',
