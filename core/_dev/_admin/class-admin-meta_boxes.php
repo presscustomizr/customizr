@@ -84,8 +84,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          if ( !isset($this->mixed_meta_boxes_map) ) {
 
             $_meta_boxes_map = array (
-               'layout_section',
-               'slider_section',
+               //metabox      => disallowed screens
+               'layout_section' => array(),
+               //The slider section (slider in posts/pages) metabox MUST NOT be added in attachments
+               'slider_section' => array( 'attachment' )
             );
 
             if ( $_cache )
@@ -145,7 +147,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
      * @package Customizr
      * @since Customizr 1.0
      */
-      function czr_fn_mixed_meta_boxes() {//id, title, callback, post_type, context, priority, callback_args
+      function czr_fn_mixed_meta_boxes( $id ) {//id, title, callback, post_type, context, priority, callback_args
          /***
           Determines which screens we display the box
          **/
@@ -179,7 +181,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          //3- Adding the meta-boxes to those screens
          foreach ( $screens as $key => $screen) {
-            foreach ( $mixed_meta_boxes as $meta_box_key ) {
+            foreach ( $mixed_meta_boxes as $meta_box_key => $disallowed_screens_array ) {
+               if ( in_array( $screen, $disallowed_screens_array ) ) {
+                  continue;
+               }
                $this->czr_add_metabox( $meta_box_key, $screen );
                $_metabox_added       = true;
             }//end foreach
@@ -1068,7 +1073,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          //update
          add_post_meta( $post_id, 'czr_video_meta', $czr_video_format_meta, true ) or
-          update_post_meta( $post_id, 'czr_video_meta', $czr_video_format_meta );
+         update_post_meta( $post_id, 'czr_video_meta', $czr_video_format_meta );
 
       }
 
@@ -1083,7 +1088,9 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        * @package Customizr
        * @since Customizr 2.0
        */
-      function czr_fn_attachment_meta_box() {//id, title, callback, post_type, context, priority, callback_args
+      function czr_fn_attachment_meta_box( $id ) {//id, title, callback, post_type, context, priority, callback_args
+         if ( ! wp_attachment_is_image( $id ) )
+            return;
 
          add_meta_box(
             'slider_sectionid' ,
