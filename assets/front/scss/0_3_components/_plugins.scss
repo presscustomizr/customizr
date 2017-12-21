@@ -40,7 +40,7 @@
     color: inherit;
   }
   #ship-to-different-address-checkbox {
-    margin: -1px;
+    margin: -3px 0 0;
   }
 
   input#submit[class*=alt],
@@ -97,16 +97,16 @@
 
       .input-checkbox {
           display: inline-block;
-          margin: 0;
+          margin: -2px 0 0;
       }
     }
     &.checkout_coupon .form-row {
       margin: 0;
     }
 
-    @at-root #add_payment_method #payment ul.payment_methods li input,
-    .woocommerce-cart #payment ul.payment_methods li input,
-    .woocommerce-checkout #payment ul.payment_methods li input {
+    @at-root #add_payment_method #payment input:not([type=submit]),
+    .woocommerce-cart #payment input:not([type=submit]),
+    .woocommerce-checkout #payment input:not([type=submit]) {
       border-color: $grey;
     }
 
@@ -128,11 +128,6 @@
         margin-bottom: 0
       }
     }
-    /*
-    .woocommerce-variation-add-to-cart,
-    &.cart:not(.variations_form) {
-      @extend .display-flex;
-    }*/
   }
 
   fieldset {
