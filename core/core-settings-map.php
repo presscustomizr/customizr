@@ -1306,7 +1306,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
   return array(
           //Global sidebar layout
           'tc_sidebar_global_layout' => array(
-                          'default'       => 'l' ,//Default sidebar layout is on the left
+                          'default'       => czr_fn_user_started_before_version( '4.0.14', '2.0.20' ) ? 'l' : 'f',
                           'label'         => __( 'Choose the global default layout' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'          => 'select' ,
@@ -1339,7 +1339,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
           //Page sidebar layout
           'tc_sidebar_page_layout'  =>  array(
                           'control'     => 'CZR_controls',
-                          'default'       => 'l' ,//Default sidebar layout is on the left
+                          'default'       => czr_fn_user_started_before_version( '4.0.14', '2.0.20' ) ? 'l' : 'f',
                           'label'       => __( 'Choose the pages default layout' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
