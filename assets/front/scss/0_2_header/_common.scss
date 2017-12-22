@@ -127,9 +127,9 @@
 .czr-dropdown-menu {
     display: none;
     max-width: 50vw;
-    //the sidemenu and mobile menu should break lines
+    //the sidemenu and mobile menu should NOT break lines
     @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu .nav__title {
-      word-break: break-all;
+      word-break: break-word;// was break-all; Fixed in dec-2017 @see https://github.com/presscustomizr/customizr/issues/1339
       white-space: normal;
     }
 }
