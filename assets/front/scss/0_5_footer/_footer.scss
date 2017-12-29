@@ -147,6 +147,11 @@
           margin: 0
         }
         .czr-credits { font-size: 0.7rem; margin-top: 0.5rem; }
+
+        //make sure the WordPress icon font-family in the Footer Credits is always FontAwesome
+        //despite any "footer credits link" customization in the Font Customizer
+        footer#footer & a.fa { font-family: 'FontAwesome' !important; }
+
       }
       .footer__credits { font-size: 0.82rem; }
       .footer__credits,
