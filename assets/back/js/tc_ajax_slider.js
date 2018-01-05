@@ -28,7 +28,7 @@ var CzrSlider;
         }
 
         this.$_slider_check_field     = $('input#' + this._check_field);
-        this._color_picker_on         = 'post' == this.$_context ? false : true;
+        this._color_picker_on         = 'post' == this.$_context;
 
         if ( this._color_picker_on )
           this._color_picker_func = ( typeof jQuery.wp === 'object' && typeof jQuery.wp.wpColorPicker === 'function' ) ? 'wpColorPicker' : 'farbtastic' ;
@@ -64,7 +64,7 @@ var CzrSlider;
            self.ajax( self._build_data('select_slider') );
 
         //sort slides
-        }).on( 'sortupdate', '#slider_sectionid #sortable',function(event, ui) {
+        }).on( 'sortupdate', '#slider_sectionid #sortable',function() {
            self.ajax( self._build_data('reorder_slides'), '_reorder_slides_response' );
 
         //create new slider
@@ -103,7 +103,7 @@ var CzrSlider;
       },
 
       //handle reordering slides ajax response
-      _reorder_slides_response : function( response ){
+      _reorder_slides_response : function(){
         var slider_update = $( '<div/>' ).addClass( 'updated' )
           .css( 'opacity' ,0)
           .html( '<div class="message">Slider updated</div>' )
