@@ -161,6 +161,15 @@
     @extend %table-style;
 }
 
+//make woocommerce single product tabs appear like singular wp the content
+//e.g. for lists, see #
+.woocommerce-Tabs-panel.entry-content {
+  @extend .czr-wp-the-content;
+}
+//the above should not be applied to the commentlist in the review tab
+.woocommerce-Tabs-panel.entry-content .commentlist {
+  padding: 0;
+}
 
 // WooCart
 .nav__woocart {
