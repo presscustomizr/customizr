@@ -878,10 +878,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     text-align: center;
     z-index: 3;
     overflow: hidden;
-
-    // temporary centering
-    transform: translate(-50%, -50%);
-    transform: translate3d(-50%, -50%, 0);
+    @include transform( translate(-50%, -50%) );
+    @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
     position: absolute;
@@ -894,8 +892,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
   @at-root .center-slides-disabled .carousel-image img {
     // temporary CSS centering
-    transform: translate(-50%, -50%);
-    transform: translate3d(-50%, -50%, 0);
+    @include transform( translate(-50%, -50%) );
+    @include transform( translate3d(-50%, -50%, 0) );
     top: 50%;
     left: 50%;
     position: absolute;
