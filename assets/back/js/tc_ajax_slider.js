@@ -83,7 +83,7 @@ var CzrSlider;
         this.$_slider_fields_box.find('.spinner').show();
 
         $.post(
-          ajaxurl,
+          ajaxurl,//global var declared by WP when is_admin() => ajaxurl = '/wp-admin/admin-ajax.php',
           _data,
           function( response ){
             if ( _callback ){
