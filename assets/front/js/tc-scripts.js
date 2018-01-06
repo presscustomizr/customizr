@@ -3780,7 +3780,7 @@ var czrapp = czrapp || {};
 
 
 })(jQuery, czrapp, Waypoint);var czrapp = czrapp || {};
-(function($, czrapp, Flickity) {
+(function($, czrapp ) {
       var _methods = {
 
             initOnCzrReady : function() {
@@ -4304,7 +4304,7 @@ var czrapp = czrapp || {};
       czrapp.methods.Slider = {};
       $.extend( czrapp.methods.Slider , _methods );
 
-})(jQuery, czrapp, Flickity);var czrapp = czrapp || {};
+})(jQuery, czrapp );var czrapp = czrapp || {};
 
 (function($, czrapp) {
   var _methods =  {

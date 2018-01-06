@@ -1,4 +1,4 @@
-# Customizr v4.0.14 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.15-beta [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,12 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.0.15 January 6th 2018 =
+* Fix: Wp icon font-family possible override with the pro Font Customizer. Fixes #1350
+* Fix: List in wc product description missing list style type. Fixes #1354
+* Fix: Slider caption not centered in ipad Mini. Fixes #1356
+* Fix: Clicking menu items with children and no URL bring to 404. Fixes #1358
+
 = 4.0.14 December 22nd 2017 =
 * Fix: decrease regular submenu top to 15px. fixes #1333
 * Fix: apply margin-bottom to the right wrapper element, as part of the fix for #1331
