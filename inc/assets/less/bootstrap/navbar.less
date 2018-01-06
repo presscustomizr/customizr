@@ -187,7 +187,9 @@
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  #grid > .core > .span(@gridColumns);
+  //#grid > .core > .span(@gridColumns);
+  //@nikeo january 2018 => hard coded based on the already generated stylesheet, because the above less code triggers an error "NameError: #grid > .core > .span is undefined" since updating npm less module to its latest version
+  width : @gridRowWidth;
 }
 
 // Fixed to top

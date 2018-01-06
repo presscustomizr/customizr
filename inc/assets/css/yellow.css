@@ -83,7 +83,7 @@ blockquote {
   background-color: transparent;
 }
 .btn-primary {
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #d2961d;
   background-image: -moz-linear-gradient(top, #e9a825, #b07b12);
@@ -105,7 +105,7 @@ blockquote {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  color: #ffffff;
+  color: #fff;
   background-color: #b07b12;
   *background-color: #996b0f;
 }
@@ -114,7 +114,7 @@ blockquote {
   background-color: #815b0d \9;
 }
 .btn-info {
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #f0c266;
   background-image: -moz-linear-gradient(top, #f2cd82, #ebb13c);
@@ -136,7 +136,7 @@ blockquote {
 .btn-info.active,
 .btn-info.disabled,
 .btn-info[disabled] {
-  color: #ffffff;
+  color: #fff;
   background-color: #ebb13c;
   *background-color: #e9a825;
 }
@@ -165,7 +165,7 @@ blockquote {
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   outline: 0;
   background-color: #e5a31f;
@@ -193,8 +193,8 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
+  background-color: #fff;
+  border: 1px solid #ccc;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -236,7 +236,7 @@ input[type="checkbox"]:focus {
   outline-offset: -2px;
 }
 .navbar-link {
-  color: #777777;
+  color: #777;
 }
 .navbar-link:hover,
 .navbar-link:focus {
@@ -253,7 +253,7 @@ input[type="checkbox"]:focus {
   padding: 7px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #c28814;
   background-image: -moz-linear-gradient(top, #de9c16, #996b0f);
@@ -278,7 +278,7 @@ input[type="checkbox"]:focus {
 .navbar .btn-navbar.active,
 .navbar .btn-navbar.disabled,
 .navbar .btn-navbar[disabled] {
-  color: #ffffff;
+  color: #fff;
   background-color: #996b0f;
   *background-color: #815b0d;
 }
@@ -299,14 +299,14 @@ input[type="checkbox"]:focus {
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   background-color: #e9a825;
 }
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover,
 .nav-pills > .active > a:focus {
-  color: #ffffff;
+  color: #fff;
   background-color: #e9a825;
 }
 .nav .dropdown-toggle .caret {
