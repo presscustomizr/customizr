@@ -118,6 +118,8 @@ module.exports = function(grunt) {
           'prod_build':  [
             //'gitinfo',
             'replace',
+            'makepot',
+            'potomo',
             'clean:free',
             'clean:in_customizr_pro',
             'copy',
