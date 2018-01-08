@@ -1013,8 +1013,7 @@ svg.czr-svg-placeholder {
     .comment-author a::before, .comment-link::before,
     .czr-format-link::before,
     .widget__wrapper a:hover::before, .widget-area a:hover::before,
-    [class*=nav__menu] li.show > a > span:first-of-type::before,
-    li > a > span:first-of-type:hover::before {
+    [class*=nav__menu] .nav__title::before {
         content: none !important;
     }
 }
