@@ -1,7 +1,7 @@
-# Customizr v4.0.15-beta [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.15-beta-2 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
-> Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
+> Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 ## Copyright
 **Customizr** is a free WordPress theme designed by Nicolas Guillaume in Nice, France. ([website : Press Customizer](http://presscustomizr.com>)) 
@@ -23,7 +23,9 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
-= 4.0.15 January 6th 2018 =
+= 4.0.15 January 10th 2018 =
+* Fix: modern - fix animated underline not removable in some navigation menus. Also do not underline current menu item when the underline hover effect option is disabled. fixes #1363
+* Fix: modern - remove useless @import rules for unused gfonts. fixes #1366
 * Fix: Wp icon font-family possible override with the pro Font Customizer. Fixes #1350
 * Fix: List in wc product description missing list style type. Fixes #1354
 * Fix: Slider caption not centered in ipad Mini. Fixes #1356

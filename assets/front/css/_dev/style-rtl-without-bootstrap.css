@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
   line-height: 1.65;
@@ -111,7 +109,7 @@ input[type=submit], .woocommerce #respond input#submit,
 .woocommerce button.button.alt, .tax__container a, .tagcloud a,
 .tag__link, .entry-header .post-info, .entry-footer, .archive-header .header-bottom,
 .entry-header .header-bottom, .comment-meta time, .widget_calendar thead tr {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   letter-spacing: 1px;
 }
 
@@ -646,7 +644,7 @@ pre code, tt {
   background: transparent;
   border: none;
   padding: 0;
-  font-family: "Roboto Mono", monospace;
+  font-family: monospace;
 }
 
 pre {
@@ -654,7 +652,7 @@ pre {
   padding: 2.5em;
   word-wrap: normal;
   color: #313131;
-  font-family: "Roboto Mono", monospace !important;
+  font-family: monospace !important;
 }
 
 figure {
@@ -2615,7 +2613,7 @@ input[type=submit] {
   letter-spacing: 3px;
   background: transparent;
   border: 1.5px solid #eceeef;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   color: #777;
   padding: 0.65em 1.3em;
   -webkit-transition: all 0.3s ease;
@@ -2693,7 +2691,7 @@ table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_metho
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
 
 table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
@@ -3374,14 +3372,13 @@ svg.czr-svg-placeholder {
 .czr-link-hover-underline-off .comment-author a::before, .czr-link-hover-underline-off .comment-link::before,
 .czr-link-hover-underline-off .czr-format-link::before,
 .czr-link-hover-underline-off .widget__wrapper a:hover::before, .czr-link-hover-underline-off .widget-area a:hover::before,
-.czr-link-hover-underline-off [class*=nav__menu] li.show > a > span:first-of-type::before,
-.czr-link-hover-underline-off li > a > span:first-of-type:hover::before {
+.czr-link-hover-underline-off [class*=nav__menu] .nav__title::before {
   content: none !important;
 }
 
 label {
   color: #313131;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   margin-bottom: 0.3em;
 }
 
@@ -5344,7 +5341,7 @@ a.czr-format-link:hover::before {
   line-height: 48px;
   width: auto;
   text-transform: uppercase;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   letter-spacing: 4px;
 }
 
@@ -5714,7 +5711,7 @@ article .entry-content a.btn, article .entry-content a.button, article .entry-co
 }
 
 .page__header .header-content .post-info {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
 
 .page__header .header-content .archive-meta {
@@ -5821,7 +5818,7 @@ section[class^="post-"] .entry-meta {
 }
 
 .post-navigation .page-numbers, .post-navigation a {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   line-height: 3.75em;
   height: 3.75em;
   display: inline-block;
@@ -5942,7 +5939,7 @@ section[class^="post-"] .entry-meta {
 
 .post-author figure figcaption a:first-of-type {
   float: left;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
 
 .post-author figure figcaption .socials {
@@ -6069,7 +6066,7 @@ section.post-related-articles .entry-meta {
 .action-link, .comment-reply-link {
   border-bottom-color: #f7f8f9;
   box-shadow: inset 0 -5px 0 #f7f8f9;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   color: #aaa;
 }
 
@@ -6211,7 +6208,7 @@ section.post-related-articles .entry-meta {
 
 #cancel-comment-reply-link {
   float: right;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
 
 .comment-respond {
@@ -6259,7 +6256,7 @@ section.post-related-articles .entry-meta {
 }
 
 .pingback-list li.pingback sup {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   color: #777;
   top: -1.25em;
 }
@@ -6800,7 +6797,7 @@ footer#footer .colophon__row .footer__credits a.fa {
   border-style: solid;
   padding: 1.25em 0 1em;
   color: #313131;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   border-left: 0;
   border-right: 0;
   border-top: 0;
