@@ -30,7 +30,7 @@ if ( ! function_exists( 'czr_fn_render_main_header' ) ) {
 */
 if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
   function czr_fn_get_tagline_text( $echo = true ) {
-    $tagline_text = apply_filters( 'tc_tagline_text', esc_attr__( get_bloginfo( 'description' ) ) );
+    $tagline_text = apply_filters( 'tc_tagline_text', get_bloginfo( 'description', 'display' ) );
     if ( ! $echo )
       return $tagline_text;
     echo $tagline_text;
