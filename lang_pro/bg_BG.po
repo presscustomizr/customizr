@@ -1,0 +1,3216 @@
+# Translation of Themes - Customizr in Bulgarian
+# This file is distributed under the same license as the Themes - Customizr package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-03-28 14:10:46+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: bg\n"
+"Project-Id-Version: Themes - Customizr\n"
+
+#. Description of the plugin/theme
+msgid "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content."
+msgstr "Customizr е гъвкава и лесна за персонализиране WordPress тема, която веднага придава професионална визия на вашето онлайн присъствие. Тя позволява на всеки да създаде красив, бърз и оптимизиран за мобилни устройства сайт, който е и съвместим с всички браузъри и устройства. Customizr работи прекрасно с най-известните WordPress плъгини като WooCommerce, bbPress, JetPack и още много. Високо оценена от стотици хора и имаща много активно общество потребители и разработчици, темата Customizr е безопасна и надеждна опция за дизайн, с който да публикувате вашето WordPress съдържание."
+
+#. Theme Name of the plugin/theme
+msgid "Customizr"
+msgstr "Customizr"
+
+#: inc/czr-init.php:5273
+msgid "Single pages"
+msgstr "Единични страници"
+
+#: inc/czr-front.php:4738 inc/czr-init.php:4315
+msgid "Don't know how to set a featured image to a page? Learn how in the %s."
+msgstr "Не знаете как да зададете главно изображение на страница? Научете как в %s."
+
+#: inc/czr-front.php:4734
+msgid "You can display your page's featured image here if you have set one."
+msgstr "Вече можете тук да покажете главното изображение на вашата страница, ако сте задали такова."
+
+#: inc/czr-init.php:4314
+msgid "You can display the featured image (also called the post thumbnail) of your pages before their content, when they are displayed individually."
+msgstr "Можете да зададете главното изображение на страниците (също наречено тъмбнейл на публикацията)  да седи преди тяхното съдържание, когато се отварят поотделно."
+
+#: inc/czr-init.php:5275
+msgid "Set up single pages options"
+msgstr "Настройки на опциите за единични страници"
+
+#: inc/czr-customize.php:960
+msgid "Settings"
+msgstr "Настройки"
+
+#: inc/czr-customize.php:961
+msgid "Options for"
+msgstr "Опции за"
+
+#: inc/czr-customize.php:228
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, it is recommended to modify the style.css file of a child theme."
+msgstr "Използвайте това поле, за да тествате малки части CSS код. За по-важни промени по CSS се препоръчва да модифицирате style.css файла на child тема."
+
+#: inc/czr-customize.php:2014
+msgid "default:"
+msgstr "По подразбиране:"
+
+#: inc/czr-init.php:5385
+msgid "Go Pro"
+msgstr "Преминаване към Pro версия"
+
+#: inc/czr-front.php:9177
+msgid "Discover the Customizr WordPress theme &raquo;"
+msgstr "Откриите WordPress темата Customizr &raquo;"
+
+#: inc/czr-customize.php:2024
+msgid "Link target"
+msgstr "Целева връзка"
+
+#: inc/czr-customize.php:1977
+msgid "Size in px"
+msgstr "Размер в пиксели"
+
+#: inc/czr-customize.php:2008
+msgid "Enter a title"
+msgstr "Въведете заглавие"
+
+#: inc/czr-customize.php:2088 inc/czr-customize.php:2093
+msgid "Select Image"
+msgstr "Изберете изображение"
+
+#: inc/czr-customize.php:2089
+msgid "Change Image"
+msgstr "Променете изображение"
+
+#: inc/czr-customize.php:2092
+msgid "No image selected"
+msgstr "Не е избрано изображение"
+
+#: inc/czr-customize.php:2094
+msgid "Choose Image"
+msgstr "Изберете изображение"
+
+#: inc/czr-customize.php:1831
+msgid "Add New"
+msgstr "Добавете ново"
+
+#: inc/czr-customize.php:2018
+msgid "Set a unique color for your icon."
+msgstr "Изберете уникален цвят за вашата икона"
+
+#: inc/czr-customize.php:1960
+msgid "Select an icon"
+msgstr "Изберете икона"
+
+#: inc/czr-customize.php:942
+msgid "Close Editor"
+msgstr "Затваряне на редактора"
+
+#: inc/czr-customize.php:937
+msgid "Done !"
+msgstr "Готово !"
+
+#: inc/czr-customize.php:2091
+msgid "Default"
+msgstr "По подразбиране"
+
+#: inc/czr-customize.php:2028
+msgid "Check this option to open the link in a another tab of the browser."
+msgstr "Използвайте тази опция ако искате линка да се отвори в друг таб на браузъра"
+
+#: inc/czr-customize.php:2014
+msgid "Icon color"
+msgstr "Цвят на иконка"
+
+#: inc/czr-customize.php:2010
+msgid "This is the text displayed on mouse over."
+msgstr "Това е текстът, който се показва когато се мине отгоре с мишката."
+
+#: inc/czr-customize.php:1992
+msgid "Social icon"
+msgstr "Иконка на социална мрежа"
+
+#: inc/czr-customize.php:1986
+msgid "Id"
+msgstr "Id"
+
+#: inc/czr-customize.php:1966
+msgid "Social link url"
+msgstr "URL адрес към профил в социална мрежа"
+
+#: inc/czr-customize.php:1970 inc/czr-customize.php:2003
+msgid "Enter the full url of your social profile (must be valid url)."
+msgstr "Въведете пълният URL адрес към вашия профил в социалната мрежа (трябва да бъде валиден URL)"
+
+#: inc/czr-customize.php:1968 inc/czr-customize.php:2001
+msgid "http://...,mailto:...,..."
+msgstr "http://...,mailto:...,..."
+
+#: inc/czr-customize.php:1844
+msgid "Yes"
+msgstr "Да"
+
+#: inc/czr-customize.php:1836
+msgid "Cancel"
+msgstr "Отказ"
+
+#: inc/czr-customize.php:1836
+msgid "Add it"
+msgstr "Добави го"
+
+#: inc/czr-customize.php:1681
+msgid "Press return or enter to open this panel"
+msgstr "Натиснете return или enter за да отворите този панел"
+
+#: inc/czr-customize.php:946
+msgid "Slide"
+msgstr "Слайд"
+
+#: inc/czr-customize.php:1843
+msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
+msgstr "Сигурни ли сте, че искате да премахнете : <strong>{{ data.title }} ?</strong>"
+
+#: inc/czr-customize.php:945
+msgid "New Slide created ! Scroll down to edit it."
+msgstr "Създаден е нов слайд! Скролнете надолу, за да го редактирате."
+
+#: inc/czr-customize.php:959
+msgid "Learn more about this in the documentation"
+msgstr "Научете повече за това в документацията"
+
+#: inc/czr-customize.php:936
+msgid "Follow us on"
+msgstr "Последвайте ни в"
+
+#: inc/czr-customize.php:935
+msgid "Select a social icon"
+msgstr "Изберете иконка за социална мрежа"
+
+#: inc/czr-customize.php:934
+msgid "Rss"
+msgstr "RSS"
+
+#: inc/czr-customize.php:198
+msgid "If your freshly created menu is not listed, please refresh the customizer panel."
+msgstr "Ако вашето току-що създадено меню не е изброено, моля опреснете панела на Customizr"
+
+#: inc/czr-customize.php:932
+msgid "Not set"
+msgstr "Не е зададено."
+
+#: inc/czr-init.php:4395
+msgid "customization panel"
+msgstr "Панел за персонализация"
+
+#: inc/czr-init.php:3332
+msgid "Display the tagline in the header"
+msgstr "Показване на подзаглавието в хедъра"
+
+#: inc/czr-init.php:4389
+msgid "Use Yoast SEO breadcrumbs"
+msgstr "Използвай Yoast SEO трохички"
+
+#: inc/czr-customize.php:949
+msgid "The side on which the menu is revealed depends on the choosen header layout."
+msgstr "Страната, от която се разкрива менюто зависи от избрания изглед на хедъра."
+
+#: inc/czr-init.php:5008
+msgid "Load Font Awesome resources"
+msgstr "Зареждане на Font Awesome ресурси"
+
+#: inc/czr-init.php:4396
+msgid "Yoast SEO breadcrumbs settings"
+msgstr "Настройки на Yoast SEO breadcrumbs (трохички)"
+
+#: inc/czr-init.php:4392
+msgid "Jump to the Yoast SEO breadcrumbs %s"
+msgstr "Преминаване към Yoast SEO breadcrumbs (трохички) %s"
+
+#: inc/czr-init.php:5013
+msgid "When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
+msgstr "Когато е включена тази настройка, Font Awesome иконите и CSS ще бъдат заредени на предната част на сайта ви. Може би бихте искали да заредите Font Awesome иконите с ваш персонализиран код или да използвате плъгин да направи това вместо вас."
+
+#: inc/czr-customize.php:1999
+msgid "Social link"
+msgstr "Връзка към профил в социална мрежа"
+
+#: inc/czr-init.php:2999
+msgid "Create and organize your social links"
+msgstr "Създайте и организирайте вашите връзки към профили в социални мрежи"
+
+#: inc/czr-customize.php:938
+msgid "New Social Link created ! Scroll down to edit it."
+msgstr "Нова връзка към профил в социална мрежа е създадена! Скролнете надолу, за да я редактирате."
+
+#: inc/czr-customize.php:1537
+msgid "Please fill the social link inputs with a valid URLs"
+msgstr "Моля попълнете полетата за връзки към профили в социални мрежи с валидни URL адреси"
+
+#: inc/czr-customize.php:1493
+msgid "An error occurred: malformed social links"
+msgstr "Възникна грешка: грешно въведени връзки към профили в социални мрежи"
+
+#: inc/czr-init.php:4911
+msgid "Back to top arrow position"
+msgstr "Позиция на стрелката на бутона \"нагоре\""
+
+#: inc/czr-init.php:831
+msgid "Contact me on Snapchat"
+msgstr "Свържете се с мен чрез Snapchat"
+
+#: inc/czr-init.php:8644
+msgid "Who We Are"
+msgstr "Коие сме ние"
+
+#: inc/czr-init.php:8648
+msgid "What We Do"
+msgstr "Какво правим ние"
+
+#: inc/czr-init.php:8652
+msgid "Contact Us"
+msgstr "Контакт с нас"
+
+#: inc/czr-init.php:8913 inc/czr-init.php:8959
+msgid "Search"
+msgstr "Търсене"
+
+#: inc/czr-init.php:8919 inc/czr-init.php:8937
+msgid "Recent Posts"
+msgstr "Последни публикации"
+
+#: inc/czr-init.php:8828
+msgid "The Customizr theme fits nicely on any mobile devices."
+msgstr "Темата Customizr пасва добре на всички мобилни устройства."
+
+#: inc/czr-init.php:8926 inc/czr-init.php:8948
+msgid "Recent Comments"
+msgstr "Последни коментари"
+
+#: inc/czr-init.php:8836
+msgid "Call to action"
+msgstr "Призив за действие"
+
+#: inc/czr-init.php:8834
+msgid "Engage your visitors with a carousel in any pages."
+msgstr "Заинтересовайте вашите посетители с въртележка на която страница пожелаете."
+
+#: inc/czr-init.php:3178
+msgid "If enabled, your slides scroll slower than the page (parallax effect)."
+msgstr "Ако тази опция е включена, слайдовете ще се скролват по-бавно от самата страница (parallax ефект)"
+
+#: inc/czr-init.php:3175
+msgid "Sliders : use parallax scrolling"
+msgstr "Слайдери: използвай parallax скролване"
+
+#: inc/czr-admin.php:516
+msgid "Get support"
+msgstr "Помощ"
+
+#: inc/czr-admin.php:516
+msgid "Get help in the free support forum"
+msgstr "Получаване на помощ във форума за безплатна поддръжка"
+
+#: inc/czr-admin.php:512
+msgid "Code snippets for developers"
+msgstr "Кодови фрагменти за разработчици"
+
+#: inc/czr-init.php:3404
+msgid "WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling."
+msgstr "WooCommece: ако е избранa, иконата \"количка\" ще остане видима, когато се движи."
+
+#: inc/czr-init.php:5015
+msgid "Check out some example of uses"
+msgstr "Код откъси за разработчици"
+
+#: inc/czr-init.php:5012
+msgid "Use with caution"
+msgstr "Използвайте с повишено внимание"
+
+#: inc/czr-init.php:5372
+msgid "Front-end Icons (Font Awesome)"
+msgstr "Front-end икони (Font Awesome)"
+
+#: inc/czr-init.php:822
+msgid "Follow me on VKontakte"
+msgstr "Последвайте ме във VKontakte"
+
+#: inc/czr-init.php:825
+msgid "Follow me on Yelp"
+msgstr "Последвайте ме в Yelp"
+
+#: inc/czr-init.php:828
+msgid "Follow me on Xing"
+msgstr "Последвайте ме в Xing"
+
+#: inc/czr-init.php:3694
+msgid "Display navigation in your home blog"
+msgstr "Покажи навигация в блога"
+
+#: inc/czr-init.php:3397
+msgid "Sticky header: display the shopping cart"
+msgstr "Sticky (лепкав) хедър: показване на количката"
+
+#: inc/czr-init.php:2343
+msgid "View your shopping cart"
+msgstr "Вижте кошницата си"
+
+#: inc/czr-init.php:3344
+msgid "Display the shopping cart in the header"
+msgstr "Показване на количката за пазаруване в хедъра"
+
+#: inc/czr-init.php:3220
+msgid "Enable the WordPress responsive image feature for the theme's thumbnails"
+msgstr "Включи функцията на WordPress за респонсив тъмбнейли да бъде активна за тъмбнейлите и на тази тема"
+
+#: inc/czr-init.php:3213
+msgid "Enable the WordPress responsive image feature for the slider"
+msgstr "Включи функцията на WordPress за респонсив изображения да бъде активна за този слайдер"
+
+#: inc/czr-init.php:3222
+msgid "This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely."
+msgstr "Тази функция е въведена в WordPress v4.4+ (дек- 2015) и е вероятно да има малки странични ефекти върху някои от вашите съществуващи изображения. Включете / изключете тази опция, за да може без проблем да се уверите, че вашите изображения се визуализират правилно."
+
+#: inc/czr-init.php:3347
+msgid "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline."
+msgstr "WooCommerce: включете тази опция, за да се покаже до заглавието на сайта количка, която показва колко артикули има в нея."
+
+#: inc/czr-init.php:1711
+msgid "Front page slider name"
+msgstr "Име на слайдера на начална страница"
+
+#: inc/czr-init.php:1713
+msgid "Posts slider button text"
+msgstr "Текст на бутона на слайдера"
+
+#: inc/czr-init.php:3752
+msgid "Include only sticky posts"
+msgstr "Обхващане само на sticky (лепкави) публикации"
+
+#: inc/czr-init.php:3757
+msgid "You can choose to display only the sticky posts. If you're not sure how to set a sticky post, check"
+msgstr "Можете да изберете да показвате само sticky (лепкавите) публикации. Ако не сте сигурни как да зададете sticky (лепкава) публикация, проверете"
+
+#: inc/czr-front.php:9835
+msgid "Powered by WordPress"
+msgstr "Задвижван от WordPress"
+
+#: inc/czr-front.php:9834
+msgid "Powered by"
+msgstr "Благодарение на "
+
+#: inc/czr-front.php:9050
+msgid "the posts slider"
+msgstr "Слайдер на публикациите"
+
+#: inc/czr-front.php:9050
+msgid "this slider"
+msgstr "този слайдер"
+
+#: inc/czr-front.php:9049
+msgid "Customize or remove %s"
+msgstr "Настройка или премахване на %s"
+
+#: inc/czr-init.php:8121
+msgid "Did you know you can easily speed up your page load by deferring the loading of the non visible images?"
+msgstr "Знаехте ли, че лесно можете да ускорите вашата страница като отложите зареждането на картинки, които още не се виждат?"
+
+#: inc/czr-init.php:8122
+msgid "%s and check the option 'Load images on scroll' under 'Website Performances' section."
+msgstr "%s и изберете опцията 'зареждане на изображения при скролване' под секцията 'Производителност на сайта'"
+
+#: inc/czr-init.php:783
+msgid "E-mail"
+msgstr "Имейл"
+
+#: inc/czr-init.php:3630
+msgid "Click inside the above field and pick post categories you want to display. No filter will be applied if empty."
+msgstr "Натиснете в горното поле и изберете категориите на публикациите, които искате да покажете. Ако не въведете катории, публикациите няма да бъдат филтритани. "
+
+#: inc/czr-init.php:3632
+msgid "Learn more about post categories in WordPress"
+msgstr "Научете повече за категориите в WordPress"
+
+#: inc/czr-init.php:3639
+msgid "Set the number of posts to display"
+msgstr "Задаване на броя категории, които да се показват"
+
+#: inc/czr-init.php:3703
+msgid "Apply a category filter to your home / blog posts"
+msgstr "Приложете филтър за категории към вашата заглавна страница/публикации"
+
+#: inc/czr-front.php:9539
+msgid "There is no excerpt because this is a protected post."
+msgstr "Няма откъс, защото публикацията е защитена."
+
+#: inc/czr-front.php:9514
+msgid "Protected: %s"
+msgstr "Защитен: %s"
+
+#: inc/czr-init.php:3769
+msgid "The title will be limited to 80 chars max"
+msgstr "Заглавието ще бъде ограничено до 80 символа"
+
+#: inc/czr-init.php:3778
+msgid "The excerpt will be limited to 80 chars max"
+msgstr "Откъса ще бъде ограничен до 80 символа"
+
+#: inc/czr-init.php:3787
+msgid "Call to action button"
+msgstr "Call to action бутон"
+
+#: inc/czr-init.php:3789
+msgid "Entire slide and call to action button"
+msgstr "Целия слайд и call to action бутона"
+
+#: inc/czr-init.php:3800
+msgid "The button text will be limited to 80 chars max. Leave this field empty to hide the button"
+msgstr "Текста на бутона е ограничен до 80 символа. Оставете това поле празно ако искате да скриете бутона"
+
+#: inc/czr-init.php:3810
+msgid "When checked, the front page slider occupies the full viewport's width"
+msgstr "Когато е избрано, слайдъра на началната страница заема ширината на full viewport"
+
+#: inc/czr-init.php:5598
+msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
+msgstr "&mdash; Автоматично генериран слайдър от публикациите на вашия блог &mdash;"
+
+#: inc/czr-init.php:3765
+msgid "Display the title"
+msgstr "Показване на заглавието"
+
+#: inc/czr-init.php:3783
+msgid "Link post with"
+msgstr "Свързване на публикацията с"
+
+#: inc/czr-init.php:3788
+msgid "Entire slide"
+msgstr "Целият слайд"
+
+#: inc/czr-init.php:3758
+msgid "the WordPress documentation."
+msgstr "документацията на WordPress."
+
+#: inc/czr-customize.php:947
+msgid "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any."
+msgstr "Тази опция генерира слайдър на началната страница базиран на вашите публикации, започвайки от последните или избраните(залепените) публикации, ако има такива."
+
+#: inc/czr-admin.php:1807
+msgid "To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page."
+msgstr "За да добавите друг слайд: отидето до ваша медийна библиотека (щракнете на Файлове), отворете прозореца за редактиране на изображението (или добавете ново изображение), и го добавете към вашия избран слайдър ползвайки специалния блок в долната част на страницата"
+
+#: inc/czr-admin.php:1168 inc/czr-admin.php:1808
+msgid "For more informations about sliders, check the documentation page :"
+msgstr "За информация относно слайдърите, проверете страницата с докум,ентация:"
+
+#: inc/czr-admin.php:1170 inc/czr-admin.php:1810
+msgid "Slider documentation"
+msgstr "Документация за слайдъри"
+
+#: inc/czr-init.php:3741
+msgid "Number of posts to display"
+msgstr "Брой публикации за показване"
+
+#: inc/czr-admin.php:314 inc/czr-init.php:5384
+msgid "Upgrade to Customizr Pro"
+msgstr "Настройка до Customizr Pro"
+
+#: inc/czr-init.php:3747
+msgid "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website."
+msgstr "Само публикации с главно изображение или поне едно изображение в тяхното съдържание са валидни за слайдъра. Броят на слайдърите с публикации няма да надвишава броя на публикациите във вашия сайт."
+
+#: inc/czr-customize.php:600
+msgid "SITE ICON"
+msgstr "ИКОНА НА САЙТА"
+
+#: inc/czr-customize.php:931
+msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
+msgstr "Вашата favicon в момента се обработва с един стар метод и няма да се покаже правилно на всички устройства. Може да помислите да качите отново уеб икона с новата контрола долу. "
+
+#: inc/czr-customize.php:950
+msgid "To change the global header layout, %s"
+msgstr "За да промените оформлението на глобалния хедър, %s"
+
+#: inc/czr-customize.php:953
+msgid "jump to the Design and Layout section"
+msgstr "отидете в секцията Дизайн и Оформление"
+
+#: inc/czr-customize.php:954
+msgid "Change the header layout"
+msgstr "Промяна на изгледа на хедъра"
+
+#: inc/czr-front.php:1513
+msgid "Pages"
+msgstr "Страници"
+
+#: inc/czr-front.php:1054
+msgid "%s or %s."
+msgstr "%s или %s."
+
+#: inc/czr-front.php:1082
+msgid "Manage menus in the header"
+msgstr "Управление на менютата в хедъра"
+
+#: inc/czr-front.php:1056
+msgid "change your menu design now"
+msgstr "променете дизайна на вашето меню сега"
+
+#: inc/czr-front.php:1056
+msgid "open the customizer menu section"
+msgstr "отвори секцията за персонализиране на меню"
+
+#: inc/czr-front.php:1055
+msgid "Try it with the demo"
+msgstr "Опитайте с демото"
+
+#: inc/czr-front.php:1081
+msgid "%s or read the %s."
+msgstr "%s или прочетете %s."
+
+#: inc/czr-front.php:1080
+msgid "You can display your main menu or a second menu here horizontally."
+msgstr "Може да покажете хоризонтално основното или второстепенното меню."
+
+#: inc/czr-front.php:864
+msgid "Open the menu"
+msgstr "Отваряне на менюто"
+
+#: inc/czr-front.php:1053
+msgid "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed."
+msgstr "Вече може да показвате своето меню като вертикално и mobile friendly странично меню, което е анимирано когато е разкрито."
+
+#: inc/czr-front.php:1082
+msgid "Manage your menus in the header now"
+msgstr "Управлявайте своите менюта в хедъра сега"
+
+#: inc/czr-front.php:857
+msgid "Menu"
+msgstr "Меню"
+
+#: inc/czr-customize.php:930 inc/czr-front.php:857 inc/czr-front.php:864
+msgid "Close"
+msgstr "Затвори"
+
+#: inc/czr-front.php:3596 inc/czr-front.php:8105 inc/czr-front.php:9108
+#: inc/czr-front.php:9743
+msgid "now"
+msgstr "сега"
+
+#: inc/czr-front.php:801
+msgid "menu creation screen"
+msgstr "Прозорец за създаване на меню"
+
+#: inc/czr-front.php:800
+msgid "change the default menu"
+msgstr "променете стандартното меню"
+
+#: inc/czr-front.php:797
+msgid "This is a default page menu."
+msgstr "Това е меню по подразбиране."
+
+#: inc/czr-front.php:798
+msgid "( If you don't have any pages in your website, then this side menu is empty for the moment. )"
+msgstr "Това меню ще е празно докато не създадете страници във вашия сайт. "
+
+#: inc/czr-front.php:8108 inc/czr-front.php:9745
+msgid "dismiss this notice"
+msgstr "Игнориране на съобщението"
+
+#: inc/czr-front.php:8101
+msgid "Add widgets to this sidebar %s or %s."
+msgstr "Добавяне на джаджи към страничната колона %s или %s."
+
+#: inc/czr-front.php:8097
+msgid "The %s sidebar has no widgets."
+msgstr "Страничната колона %s няма джаджи."
+
+#: inc/czr-front.php:9109
+msgid "remove this demo slider"
+msgstr "Премахване на демо слайдера"
+
+#: inc/czr-front.php:9109
+msgid "Remove the home page slider"
+msgstr "Премахване на слайдера на начална страница"
+
+#: inc/czr-front.php:3597
+msgid "remove them"
+msgstr "Премахване"
+
+#: inc/czr-front.php:8917
+msgid "Go to"
+msgstr "Отиване до"
+
+#: inc/czr-front.php:800
+msgid "replace this default menu by another one"
+msgstr "подмяна на менюто по подразбиране с друго"
+
+#: inc/czr-front.php:3722
+msgid "Edit now."
+msgstr "Редактирайте сега"
+
+#: inc/czr-front.php:9108
+msgid "Select your own slider"
+msgstr "Изберете собствен слайдер"
+
+#: inc/czr-front.php:9742
+msgid "Add widgets to the footer %s or %s."
+msgstr "Добавяне на джаджи към футера %s или %s."
+
+#: inc/czr-init.php:5328
+msgid "Socials in Sidebars"
+msgstr "Иконки на социални мрежи в страничните менюта"
+
+#: inc/czr-front.php:9107
+msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
+msgstr "Изберете собствен слайдер %s, или %s (после ще можете да върнете друг)."
+
+#: inc/czr-init.php:5367
+msgid "Front-end placeholders and help blocks"
+msgstr "Front-end плейсхолдъри и помощни блокове"
+
+#: inc/czr-front.php:4735 inc/czr-front.php:5067
+msgid "%s to display a featured image here."
+msgstr "%s за да покажете основно изображение тук."
+
+#: inc/czr-front.php:799
+msgid "If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s."
+msgstr "Ако вече сте създали меню(та), можете да %s. Ако искате да създадете ново меню, преминете към %s."
+
+#: inc/czr-front.php:5066
+msgid "You can display your post's featured image here if you have set one."
+msgstr "Тук можете да покажете главното изображение на публикацията, ако сте задали такова."
+
+#: inc/czr-front.php:4736 inc/czr-front.php:5068 inc/czr-init.php:8123
+msgid "Jump to the customizer now"
+msgstr "Преминаване към customizer (панел за персонализация)"
+
+#: inc/czr-init.php:5330
+msgid "Set up your social profiles links in the sidebar(s)."
+msgstr "Настройване на връзките към профили в социални мрежи в страничните менюта"
+
+#: inc/czr-front.php:3595
+msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
+msgstr "Редактирайте тези основни (featured) страници %s, или %s (ще можете да добавите и свои после)."
+
+#: inc/czr-front.php:3596
+msgid "Edit those featured pages"
+msgstr "Редактиране на основните страници"
+
+#: inc/czr-front.php:3597
+msgid "Remove the featured pages"
+msgstr "Премахване на основните страници"
+
+#: inc/czr-init.php:5235
+msgid "Navigation Menus"
+msgstr "Навигационни менюта"
+
+#: inc/czr-init.php:3980
+msgid "If you need to change the layout design of the front page, then open the 'Front Page' section above this one."
+msgstr "Ако искате да промените изгледа на заглавната страница, отидете на секцията „Заглавна страница“."
+
+#: inc/czr-init.php:5058
+msgid "Sidebars"
+msgstr "Странични колони"
+
+#: inc/czr-init.php:3603
+msgid "Remove all the menus."
+msgstr "Премахване на всички менюта"
+
+#: inc/czr-init.php:5154
+msgid "in the menu panel"
+msgstr "В панела на менюто"
+
+#: inc/czr-init.php:5147 inc/czr-init.php:5155
+msgid "create/edit menus"
+msgstr "Създаване/редактиране на менютата"
+
+#: inc/czr-init.php:3977
+msgid "Customizr theme documentation"
+msgstr "Документация на темата Customizr"
+
+#: inc/czr-init.php:5220
+msgid "Smooth Scroll"
+msgstr "Гладко скролване"
+
+#: inc/czr-init.php:5222
+msgid "Smooth Scroll settings"
+msgstr "Настройки на гладкото скролкване"
+
+#: inc/czr-init.php:3604
+msgid "Don't display any menus in the header of your website"
+msgstr "Не изобразявай менюта в хедъра на сайта"
+
+#: inc/czr-init.php:4894
+msgid "Stick the footer to the bottom of the page"
+msgstr "Залепете футера към най-долната част на страницата"
+
+#: inc/czr-init.php:5059
+msgid "Sidebars settings for the Customizr theme."
+msgstr "Настройки за страничните ленти в темата Customizr"
+
+#: inc/czr-init.php:4992
+msgid "Display help notices on front-end for logged in users."
+msgstr "Показване на помощни известия когато потребителите са вписани."
+
+#: inc/czr-init.php:4995
+msgid "When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
+msgstr "Когато тази настройка е активирана, най-различни помощни известия и плейсхолдър блокове се показват на предната част на вашия сайт. Те са видими само за вписани подребители с администраторски права."
+
+#: inc/czr-init.php:5143 inc/czr-init.php:5151
+msgid "You can create new menu and edit your menu's content %s."
+msgstr "Можете да създадете ново меню и да редактирате неговото съдържание %s."
+
+#: inc/czr-init.php:5160
+msgid "If a menu location has no menu assigned to it, a default page menu will be used."
+msgstr "Ако към място за меню няма приложено меню ще бъде приложено меню като за страница по подразбиране."
+
+#: inc/czr-front.php:5070 inc/czr-init.php:4273
+msgid "Don't know how to set a featured image to a post? Learn how in the %s."
+msgstr "Не знаете как да зададете главно изображение на публикация? Научете как в %s."
+
+#: inc/czr-init.php:4272
+msgid "You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually."
+msgstr "Можете да зададете главното изображение на публикациите (също наречено тъмбнейл на публикацията)  да седи преди тяхното съдържание, когато се отварят поотделно."
+
+#: inc/czr-init.php:3608
+msgid "Use with caution : provide an alternative way to navigate in your website for your users."
+msgstr "Използвайте с повишено внимание : осигурете алтернативен начин потребителите да навигират из сайта ви"
+
+#: inc/czr-init.php:3976
+msgid "The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."
+msgstr "Горните настройки за изглед ще нагласят изгледа глобално за вашите публикации и страници, но също можете и да настроите различен изглед на всяка публикация и страница поотделно. Научете как в %s."
+
+#: inc/czr-init.php:5146
+msgid "on the Menus screen in the Appearance section"
+msgstr "на екрана с менюта в секцията \"Appearance\""
+
+#: inc/czr-init.php:3595
+msgid "Hide"
+msgstr "Скриване"
+
+#: inc/czr-init.php:3537
+msgid "Menu position (for the horizontal menu)"
+msgstr "Позиция на менюто (за хоризонталното меню)"
+
+#: inc/czr-init.php:3536
+msgid "Secondary (horizontal) menu design"
+msgstr "Дизайн на второстепенното (хоризонтално) меню"
+
+#: inc/czr-init.php:3491
+msgid "Side Menu (vertical)"
+msgstr "Странично меню (вертикално)"
+
+#: inc/czr-init.php:3485
+msgid "Main menu design"
+msgstr "Дизайн на главното меню"
+
+#: inc/czr-init.php:3490
+msgid "Regular (horizontal)"
+msgstr "Нормално (хоризонтално)"
+
+#: inc/czr-init.php:3486
+msgid "Select a design : side menu (vertical) or regular (horizontal)"
+msgstr "Изберете дизайн: странично меню (вертикално) или нормално (хоризонтално)"
+
+#: inc/czr-init.php:3516
+msgid "Menu position (for \"main\" menu)"
+msgstr "Позиция на \"главното\" меню"
+
+#: inc/czr-init.php:3480
+msgid "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header."
+msgstr "Когато сте задали своето главно меню да бъде вертикална странична навигация, можете да включите тази опция, за да се покаже и допълнително хоризонтално меню в хедъра."
+
+#: inc/czr-init.php:3507
+msgid "Display a label next to the menu button."
+msgstr "Показване на надпис до бутона на менюто."
+
+#: inc/czr-init.php:3511
+msgid "Note : the label is hidden on mobile devices."
+msgstr "Забележка : надписа не се вижда на мобилни устройства. "
+
+#: inc/czr-init.php:3594
+msgid "Display in the header"
+msgstr "Показване в хедъра"
+
+#: inc/czr-init.php:3588
+msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
+msgstr "Изберете поведение на второстепенното меню за мобилни устройства (респонсив)."
+
+#: inc/czr-init.php:3432
+msgid "Also applied to the secondary menu if any."
+msgstr "Също се прилага към второстепенното меню, ако има такова."
+
+#: inc/czr-init.php:3476
+msgid "Display a secondary (horizontal) menu in the header."
+msgstr "Покажи второстепенно (хоризонтално) меню в хедъра"
+
+#: inc/czr-init.php:3498
+msgid "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport."
+msgstr "За мобилни устройства (responsive), ограничете височината на блока на падащото меню до видимото полезрение."
+
+#: inc/czr-init.php:3593
+msgid "Move after inside the side menu "
+msgstr "Движене след като е вътре в страничното меню"
+
+#: inc/czr-init.php:3592
+msgid "Move before inside the side menu "
+msgstr "Движене преди да е вътре в страничното меню"
+
+#: inc/czr-init.php:3020
+msgid "Important note"
+msgstr "Важна бележка"
+
+#: inc/czr-init.php:1102
+msgid "Secondary (horizontal) Menu"
+msgstr "Второстепенно (хоризонтално) меню"
+
+#: inc/czr-init.php:3281
+msgid "Enable Smooth Scroll"
+msgstr "Включване на гладко скролване"
+
+#: inc/czr-init.php:3307
+msgid "Choose a layout for the header"
+msgstr "Изберете изглед за хедъра"
+
+#: inc/czr-init.php:3285
+msgid "This option enables a smoother page scroll."
+msgstr "Тази настройка позволява по-гладко скролване по страницата."
+
+#: inc/czr-init.php:3317
+msgid "This setting might impact the side on which the menu is revealed."
+msgstr "Тази настройка може да окаже ефект върху това от коя страна менюто се разкрива."
+
+#: inc/czr-init.php:3020
+msgid "this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option."
+msgstr "тази опция може да създаде конфликт с някои други плъгини, затова се уверете, че всичките ви плъгини (ако имате) работят правилно след като я включите."
+
+#: inc/czr-init.php:2943
+msgid "Disabled if the random option is on."
+msgstr "Изключено ако е пусната опция за произволност."
+
+#: inc/czr-admin.php:495
+msgid "home page"
+msgstr "начална страница"
+
+#: inc/czr-admin.php:527
+msgid "Thank you for using %s!"
+msgstr "Благодарим ви, че използвахте %s!"
+
+#: inc/czr-admin.php:536
+msgid "demo website"
+msgstr "демонстрационен сайт"
+
+#: inc/czr-admin.php:528
+msgid "%s %s has more features, is safer and more stable than ever to help you designing an awesome website."
+msgstr "%s %s има повече функции и е по-безопасен и стабилен от всякога, помагайки ти да създадеш страхотен уебсайт."
+
+#: inc/czr-admin.php:493
+msgid "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums."
+msgstr "Ако не намерите решение на вашия проблем, описано в документацията, не се паникьосвайте! Темата Customizr се използва от нарастващ брой уебмастъри, които докладват бъгове и постоянно правят подобрения. Ако имате проблем с темата, най-вероятно той е бил докладван и оправен във форума за поддръжка."
+
+#: inc/czr-admin.php:494
+msgid "The easiest way to search in the support forums is to use our Google powered search engine on our %s."
+msgstr "Най-лесният начин да търсите във форума за поддръжка е като използвате задвижената от Google търсачка в нашия %s."
+
+#: inc/czr-admin.php:529
+msgid "check the changelog"
+msgstr "Проверете дневника на промените"
+
+#: inc/czr-admin.php:533
+msgid "The best way to start with %s is to read the %s and visit the %s."
+msgstr "Най-добрият начин да започнете с %s е да прочетете %s и посетите %s."
+
+#: inc/czr-admin.php:583
+msgid "Go Customizr Pro"
+msgstr "Преминаванте към Customizr Pro"
+
+#: inc/czr-admin.php:489 inc/czr-admin.php:535 inc/czr-front.php:1083
+msgid "documentation"
+msgstr "документация"
+
+#: inc/czr-admin.php:475
+msgid "Welcome to"
+msgstr "Добре дошли в"
+
+#: inc/czr-admin.php:470
+msgid "Need help with"
+msgstr "Имам нужда от помощ с"
+
+#: inc/czr-admin.php:488
+msgid "The best way to start is to read the %s."
+msgstr "Най-добрият начин да започнете е като прочетете %s."
+
+#: inc/czr-admin.php:321
+msgid "close"
+msgstr "Затваряне"
+
+#: inc/czr-admin.php:301
+msgid "version"
+msgstr "версия"
+
+#: inc/czr-admin.php:310
+msgid "We'd like to introduce the new features we've been working on."
+msgstr "Бихме искали да ви представим новите функции, които разработихме."
+
+#: inc/czr-admin.php:314
+msgid "Visit the demo"
+msgstr "Вижте демото"
+
+#: inc/czr-admin.php:320
+msgid "I already know what's new thanks !"
+msgstr "Вече знам какво е ново, но благодаря все пак!"
+
+#: inc/czr-admin.php:299
+msgid "Good, you've just upgraded to"
+msgstr "Много добре, току-що обновихте към"
+
+#: inc/czr-admin.php:312
+msgid "Read the latest release notes"
+msgstr "Прочетете най-новите бележки по изданието"
+
+#: inc/czr-admin.php:1725
+msgid "Link"
+msgstr "Връзка"
+
+#: inc/czr-admin.php:1528
+msgid "Link the whole slide"
+msgstr "Задаване на линк на целия слайд"
+
+#: inc/czr-customize.php:207 inc/czr-front.php:4739 inc/czr-front.php:5071
+#: inc/czr-init.php:4274 inc/czr-init.php:4316
+msgid "WordPress documentation"
+msgstr "Wordpress документация"
+
+#: inc/czr-admin.php:1521
+msgid "Open link in a new page/tab"
+msgstr "Отваряне на препратката в нова страница/подпрозорец"
+
+#: inc/czr-customize.php:206
+msgid "Create a new menu now"
+msgstr "Създайте ново меню"
+
+#: inc/czr-customize.php:205
+msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
+msgstr "Все още не сте създали менюта. %s или вижте %s, за да научите повече за менютата."
+
+#: inc/czr-admin.php:1515
+msgid "or a custom link (leave this empty if you already selected a page or post above)"
+msgstr "или линк по ваше желание (оставете това поле празно ако вече по-горе сте избрали страница или публикация)"
+
+#: inc/czr-customize.php:194
+msgid "Assign menus to locations"
+msgstr "Задаване местоположения на менютата"
+
+#: inc/czr-customize.php:158
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Избор &mdash;"
+
+#. Template Name of the plugin/theme
+msgid "Custom Page Example"
+msgstr "Пример за персонализирана страница"
+
+#: inc/czr-front.php:805 inc/czr-front.php:1060 inc/czr-front.php:1087
+#: inc/czr-front.php:3601 inc/czr-front.php:4743 inc/czr-front.php:5075
+#: inc/czr-front.php:8121 inc/czr-front.php:9113 inc/czr-front.php:9751
+#: inc/czr-init.php:8127
+msgid "dismiss notice"
+msgstr "Отхвърляне на известието"
+
+#: inc/czr-front.php:9181
+msgid "Discover how to replace or remove this demo slider."
+msgstr "Разберете как да се замени или отхвърли този демо слайдер."
+
+#: inc/czr-front.php:9859
+msgid "Back to top"
+msgstr "Връщане към начало"
+
+#: inc/czr-front.php:307
+msgid "Back Home"
+msgstr "Връщане към начало"
+
+#: inc/czr-front.php:890
+msgid "Add a menu"
+msgstr "Добавяне на меню"
+
+#: inc/czr-front.php:8104 inc/czr-front.php:9743
+msgid "Add widgets"
+msgstr "Добавяне на джаджи"
+
+#: inc/czr-front.php:9738
+msgid "The footer has no widgets"
+msgstr "Не са добавени джаджи към футера."
+
+#: inc/czr-front.php:8117
+msgid "See the theme documentation."
+msgstr "Вижте документацията на темата."
+
+#: inc/czr-front.php:8116
+msgid "Changing the layout in the Customizr theme"
+msgstr "Променяне на изгледа в темата Customizr."
+
+#: inc/czr-front.php:8093 inc/czr-front.php:9734
+msgid "This block is visible for admin users only."
+msgstr "Този блок е видим само за администратори."
+
+#: inc/czr-front.php:8114
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr "Също можете да премахнете тази странична лента като промените изгледа на сегашната страница."
+
+#: inc/czr-front.php:9183
+msgid "Check the slider doc now &raquo;"
+msgstr "Вижте документацията за слайдерите сега &raquo;"
+
+#: inc/czr-front.php:7547
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "По-нови публикации <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:7527
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> По-стари публикации"
+
+#: inc/czr-front.php:7349
+msgid "by"
+msgstr "от"
+
+#: inc/czr-front.php:7459 inc/czr-front.php:7514
+msgid "Post navigation"
+msgstr "Навигация"
+
+#: inc/czr-front.php:7276
+msgid "Open"
+msgstr "Отворени"
+
+#: inc/czr-front.php:7326
+msgid "tagged"
+msgstr "Ключови думи"
+
+#: inc/czr-front.php:7256
+msgid "View all posts by %s"
+msgstr "Всички публикации от %s"
+
+#: inc/czr-front.php:7121
+msgid "View all posts in %s"
+msgstr "Всички публикации в %s"
+
+#: inc/czr-front.php:7040 inc/czr-front.php:7042
+msgid "by %1$s"
+msgstr "от %1$s"
+
+#: inc/czr-front.php:6949
+msgid "Return to "
+msgstr "Връщане към"
+
+#: inc/czr-front.php:7056
+msgid "(updated %s days ago)"
+msgstr "(Обновено преди %s дни)"
+
+#: inc/czr-front.php:7057
+msgid "(updated 1 day ago)"
+msgstr "(Обновено преди 1 ден)"
+
+#: inc/czr-front.php:7056
+msgid "(updated today)"
+msgstr "(Обновено днес)"
+
+#: inc/czr-front.php:7060
+msgid "(updated on %1$s)"
+msgstr "(Обновено на %1$s)"
+
+#: inc/czr-front.php:7026
+msgid "on %1$s"
+msgstr "на %1$s"
+
+#: inc/czr-front.php:7028
+msgid "and posted on %1$s"
+msgstr "и  публикуван на %1$s"
+
+#: inc/czr-front.php:7040
+msgid "This entry was posted"
+msgstr "Този запис бе публикуван"
+
+#: inc/czr-front.php:7024
+msgid "This entry was posted on %1$s"
+msgstr "Този запис бе публикуван на %1$s"
+
+#: inc/czr-front.php:7015
+msgid "This entry was tagged %2$s"
+msgstr "Този запис бе отбелязан като %2$s"
+
+#: inc/czr-front.php:7013
+msgid "This entry was posted in %1$s"
+msgstr "Този запис бе публикуван в %1$s"
+
+#: inc/czr-front.php:7011
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr "Този запис бе публикуван в %1$s и маркиран като %2$s"
+
+#: inc/czr-front.php:6949 inc/czr-front.php:7325
+msgid "in"
+msgstr "във"
+
+#: inc/czr-front.php:6948
+msgid "Link to full-size image"
+msgstr "Връзка към пълния размер на изображението"
+
+#: inc/czr-front.php:6948
+msgid "at dimensions"
+msgstr "с размери"
+
+#: inc/czr-front.php:6945
+msgid "Published"
+msgstr "Публична"
+
+#: inc/czr-front.php:6925
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr "Този запис бе публикуван на %1$s<span class=\"by-author\"> от %2$s</span>."
+
+#: inc/czr-front.php:5000
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Всички публикации от %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4659 inc/czr-front.php:4958 inc/czr-front.php:5440
+msgid "Pages:"
+msgstr "Страници:"
+
+#: inc/czr-front.php:4657 inc/czr-front.php:4957 inc/czr-front.php:5438
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Има още <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4390
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:4390
+msgid "Yearly Archives: %s"
+msgstr "Архив по години: %s"
+
+#: inc/czr-front.php:4389
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:4389
+msgid "Monthly Archives: %s"
+msgstr "Архив по месеци: %s"
+
+#: inc/czr-front.php:4388
+msgid "Archives"
+msgstr "Архив"
+
+#: inc/czr-front.php:4388
+msgid "Daily Archives: %s"
+msgstr "Архив по дни: %s"
+
+#: inc/czr-front.php:4348 inc/czr-front.php:4996
+msgid "About %s"
+msgstr "За %s"
+
+#: inc/czr-customize.php:1844 inc/czr-front.php:4314
+msgid "No"
+msgstr "Не"
+
+#: inc/czr-front.php:4300
+msgid "Ooops, page not found"
+msgstr "Грешка, страницата не е намерена"
+
+#: inc/czr-front.php:4162
+msgid "Permalink to %s"
+msgstr "Постоянна връзка към %s"
+
+#: inc/czr-front.php:4158 inc/czr-front.php:4163
+msgid "{no title} Read the post &raquo;"
+msgstr "{no title} Прочетете публикацията &raquo;"
+
+#: inc/czr-front.php:3945
+msgid "Missing Attachment"
+msgstr "Липсва прикачен файл"
+
+#: inc/czr-front.php:3721
+msgid "Customizer screen"
+msgstr "Панел за персонализация (customizer)"
+
+#: inc/czr-front.php:3729
+msgid "Featured page"
+msgstr "Основна страница"
+
+#: inc/czr-front.php:3733
+msgid "Featured page description text : use the page excerpt or set your own custom text in the Customizr screen."
+msgstr "Описание на основна страница : използвайте откъса на страницата или задайте свой персонализиран текст в менюто на Customizr."
+
+#: inc/czr-front.php:3401
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "Коментар"
+msgstr[1] "Коментари"
+
+#: inc/czr-front.php:3382
+msgid "Comment(s) on"
+msgstr "Коментар(и) на"
+
+#: inc/czr-front.php:3359
+msgid "Leave a comment"
+msgstr "Публикуване на коментар"
+
+#: inc/czr-front.php:3324
+msgid "Comments are closed."
+msgstr "Коментарите са изключени."
+
+#: inc/czr-front.php:3284
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> По-стари коментари"
+
+#: inc/czr-front.php:3292
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "По-нови коментари <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:3278
+msgid "Comment navigation"
+msgstr "Навигация в коментарите"
+
+#: inc/czr-front.php:3243
+msgid "Your comment is awaiting moderation."
+msgstr "Вашият коментар изчаква модерация."
+
+#. translators: 1: date, 2: time
+#: inc/czr-front.php:3238
+msgid "%1$s at %2$s"
+msgstr "%1$s в %2$s"
+
+#: inc/czr-front.php:3231
+msgid "Post author"
+msgstr "Автор"
+
+#: inc/czr-front.php:3218
+msgid "Reply"
+msgstr "Отговор"
+
+#: inc/czr-front.php:3190
+msgid "(Edit)"
+msgstr "(Редактиране)"
+
+#: inc/czr-front.php:3189
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/czr-front.php:3129
+msgid "thoughts on"
+msgstr "мисли относно"
+
+#: inc/czr-front.php:3127
+msgid "One thought on"
+msgstr "Една мисъл относно"
+
+#: inc/czr-front.php:2670
+msgid "Merge"
+msgstr "Сливане"
+
+#: inc/czr-front.php:2821
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:2825
+msgid "F j, Y"
+msgstr "F j, Y"
+
+#: inc/czr-front.php:2666
+msgid "Split"
+msgstr "Разделяне"
+
+#: inc/czr-front.php:2542 inc/czr-front.php:2563 inc/czr-front.php:2565
+#: inc/czr-front.php:2821
+msgid "F"
+msgstr "F"
+
+#: inc/czr-front.php:2545 inc/czr-front.php:2547 inc/czr-front.php:2825
+msgid "d"
+msgstr "d"
+
+#: inc/czr-front.php:2554 inc/czr-front.php:2556
+msgid "W"
+msgstr "W"
+
+#: inc/czr-front.php:2554 inc/czr-front.php:2556
+msgid "Week %1$s"
+msgstr "Седмица %1$s"
+
+#: inc/czr-front.php:2589
+msgid "404 Not Found"
+msgstr "404 Не е намерена"
+
+#: inc/czr-front.php:2595 inc/czr-front.php:2597
+msgid "Page %d"
+msgstr "Страница %d"
+
+#: inc/czr-front.php:2582 inc/czr-front.php:2584
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Резултати от търсене за &quot;%1$s&quot;"
+
+#: inc/czr-front.php:2522
+msgid "Minute %1$s"
+msgstr "Минута %1$s"
+
+#: inc/czr-front.php:2522
+msgid "i"
+msgstr "i"
+
+#: inc/czr-front.php:2541 inc/czr-front.php:2551 inc/czr-front.php:2560
+#: inc/czr-front.php:2571 inc/czr-front.php:2573 inc/czr-front.php:2817
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:2525
+msgid "g a"
+msgstr "H"
+
+#: inc/czr-front.php:2519
+msgid "g:i a"
+msgstr "G:i"
+
+#: inc/czr-front.php:2024
+msgid "Browse:"
+msgstr "Разглеждане: "
+
+#: inc/czr-front.php:1465 inc/czr-front.php:2015 inc/czr-front.php:2027
+msgid "Home"
+msgstr "Начало"
+
+#: inc/czr-front.php:1864
+msgid "Next &rarr;"
+msgstr "Следващ &rarr;"
+
+#: inc/czr-front.php:1863
+msgid "&larr; Previous"
+msgstr "&larr; Предишен"
+
+#: inc/czr-init.php:4228
+msgid "Max. length for post titles (in words)"
+msgstr "Максимална дължина за заглавията на публикациите (брой думи)"
+
+#: inc/czr-init.php:4240
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "Задайте максималната височина на тъмбнейлите при изглед тип решетка"
+
+#: inc/czr-init.php:4239
+msgid "Thumbnails max height for the grid layout"
+msgstr "Максимална височина на тъмбнейлите при изглед тип решетка"
+
+#: inc/czr-init.php:4191
+msgid "Apply the grid layout to Search results"
+msgstr "Прилагане на изглежда тип решетка към резултатите от търсене"
+
+#: inc/czr-init.php:4209
+msgid "Apply a colored bottom border to each grid items"
+msgstr "Прилагане на цветна долна граница към всеки от елементите в изгледа тип решетка"
+
+#: inc/czr-init.php:4200
+msgid "Apply a shadow to each grid items"
+msgstr "Прилагане на сянка към всеки от елементите в изгледа тип решетка"
+
+#: inc/czr-init.php:4218
+msgid "Display post format icons in the background"
+msgstr "Иконите за формата на пубкикациите да се показват във фона"
+
+#: inc/czr-init.php:4195
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr "Непроверените контексти се показват с алтернативния изглед на тъмбнейлите."
+
+#: inc/czr-init.php:4156
+msgid "1"
+msgstr "1"
+
+#: inc/czr-init.php:4157
+msgid "2"
+msgstr "2"
+
+#: inc/czr-init.php:4158
+msgid "3"
+msgstr "3"
+
+#: inc/czr-init.php:4159
+msgid "4"
+msgstr "4"
+
+#: inc/czr-init.php:4139
+msgid "Select a Layout"
+msgstr "Изберете изглед"
+
+#: inc/czr-init.php:4152
+msgid "Number of columns per row"
+msgstr "Брой колони на ред"
+
+#: inc/czr-init.php:4138
+msgid "Post List Design"
+msgstr "Дизайн на списъка с публикации"
+
+#: inc/czr-init.php:3855
+msgid "You might want to regenerate your thumbnails."
+msgstr "Може би ще е добре да генерирате тъмбнейлите наново."
+
+#: inc/czr-init.php:4175
+msgid "Apply the grid layout to Home/Blog"
+msgstr "Прилагане на изгледа тип решетка към Начална страница/Блог"
+
+#: inc/czr-init.php:4183
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr "Прилагане на изгледа тип решетка към Архиви (архиви, категории, авторски публикации)"
+
+#: inc/czr-init.php:4144
+msgid "Grid layout"
+msgstr "Изглед тип решетка"
+
+#: inc/czr-init.php:4147
+msgid "When you select the grid Layout, the post content is limited to the excerpt."
+msgstr "Когато изберете изглед тип решетка, съдържанието на публикацията се ограничава до дължината на откъса."
+
+#: inc/czr-init.php:4162
+msgid "Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts."
+msgstr "Забележка : колоните са ограничени до 3 за изгледи за единични странични ленти и до 2 за изгледи за двойни странични ленти."
+
+#: inc/czr-init.php:4143
+msgid "Alternate thumbnails layout"
+msgstr "Алтернативен изглед за тъмбнейлите"
+
+#: inc/czr-init.php:3854
+msgid "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance."
+msgstr "Ако тази опция е включена, когато качите изображение, то ще бъде автоматично оразмерено по зададената от вас височина. Това има положителен ефект върху цялостната скорост на зареждане."
+
+#: inc/czr-init.php:4167
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr "Разгъване на последната лепкава (sticky) публикация (отнася се само за заглавната страница и блога)"
+
+#: inc/czr-init.php:4791
+msgid "Display navigation in pages"
+msgstr "Показвай навигация в страниците"
+
+#: inc/czr-init.php:4974
+msgid "Load images on scroll"
+msgstr "Зареждай изображенията при скролиране"
+
+#: inc/czr-init.php:4760
+msgid "Display the comment list"
+msgstr "Показване на списък с коментари"
+
+#: inc/czr-init.php:4862
+msgid "Will be hidden if empty"
+msgstr "Няма да се вижда ако остане празно"
+
+#: inc/czr-init.php:3840
+msgid "Apply this height to all sliders"
+msgstr "Задаване на тази височина за всички слайдери"
+
+#: inc/czr-init.php:4744
+msgid "Enable comments on posts"
+msgstr "Разреши коментирането на публикации"
+
+#: inc/czr-init.php:4729
+msgid "Other comments settings"
+msgstr "Други настройки за коментарите"
+
+#: inc/czr-init.php:3830
+msgid "Set slider's height in pixels"
+msgstr "Задайте височината на слайдера в пиксели"
+
+#: inc/czr-init.php:4979
+msgid "Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images."
+msgstr "Включете тази опция за да забавите зареждането на изображения, които все още не се виждат. Изображенията под полезрението ще бъдат зареждани динамично щом се скролне до тях. Това може да увеличи производителността на сайта ви, тъй като дългите страници с много картинки се зареждат по-лесно."
+
+#: inc/czr-init.php:4903
+msgid "Display a back to top arrow on scroll"
+msgstr "Показване на стрелка \"нагоре\" при скролване"
+
+#: inc/czr-init.php:4779
+msgid "Display posts navigation"
+msgstr "Показване навигация на публикациите"
+
+#: inc/czr-init.php:4782
+msgid "When this option is checked, the posts navigation is displayed below the posts"
+msgstr "Когато тази опция е включена, навигацията на публикациите ще се показва под самите тях."
+
+#: inc/czr-init.php:4752
+msgid "You can also change other comments settings in the"
+msgstr "Можете да промените и други настройки на коментарите в"
+
+#: inc/czr-init.php:4736
+msgid "You can also change other comments settings in :"
+msgstr "Можете да промените и други настройки на коментарите в :"
+
+#: inc/czr-init.php:4800
+msgid "Display posts navigation in single posts"
+msgstr "Показване на навигация на публикациите при единични публикации"
+
+#: inc/czr-init.php:4809
+msgid "Display posts navigation in post lists (archives, blog page, categories, search results ..)"
+msgstr "Показване навигация на публикациите при списъци с публикации (архиви, блог страницата, категории, резултати от търсене ..)"
+
+#: inc/czr-init.php:3848
+msgid "Replace the default image slider's height"
+msgstr "Заменяне на първоначалната височина на слайдера за картинки"
+
+#: inc/czr-init.php:4764
+msgid "By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history."
+msgstr "По подразбиране, WordPress показва предишните коментари, дори и коментарите понастоящем да са изключени за публикациите или страниците. Изключването на тази настройка ви позволява да не показвате този списък с предишни коментари."
+
+#: inc/czr-init.php:4749
+msgid "If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the"
+msgstr "Ако е включена, тази настройка позволява да се пишат коментари на всякакви видове единични публикации. Можете да изключите коментарите за отделни публикации, използвайки режима бързо редактиране от"
+
+#: inc/czr-init.php:4735
+msgid "If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen."
+msgstr "Ако е включена, тази опция позволява да се пишат коментари на страници. Можете да изключите коментарите за отделна страница, използвайки режима бързо редактиране в секцията със страниците."
+
+#: inc/czr-init.php:4856
+msgid "Social link title in sidebars"
+msgstr "Заглавия на социални линкове в страничните ленти"
+
+#: inc/czr-init.php:4751
+msgid "post screen"
+msgstr "Екран на публикациите"
+
+#: inc/czr-init.php:4754
+msgid "discussion settings page."
+msgstr "Страницата за настройки на дискусии"
+
+#: inc/czr-init.php:4738
+msgid "the discussion settings page."
+msgstr "страницата с настройки за дискусиите."
+
+#: inc/czr-init.php:4711
+msgid "Custom"
+msgstr "Ръчна"
+
+#: inc/czr-init.php:4265 inc/czr-init.php:4307
+msgid "Don't display"
+msgstr "Да не се показва"
+
+#: inc/czr-front.php:4315 inc/czr-init.php:4126
+msgid "Search Results for :"
+msgstr "Резултати от търсенето за:"
+
+#: inc/czr-init.php:4710
+msgid "Skin color"
+msgstr "Цветова гама"
+
+#: inc/czr-init.php:4698
+msgid "Large bubbles"
+msgstr "Големи мехурчета"
+
+#: inc/czr-init.php:4706 inc/czr-init.php:4718
+msgid "Comments bubble color"
+msgstr "Цвят на мехурчетата на коментарите"
+
+#: inc/czr-init.php:4697
+msgid "Small bubbles"
+msgstr "Малки мехурчета"
+
+#: inc/czr-init.php:4693
+msgid "Comments bubble shape"
+msgstr "Форма на мехучетата на коментарите"
+
+#: inc/czr-init.php:4633
+msgid "(number of words)"
+msgstr "(брой думи)"
+
+#: inc/czr-init.php:4582
+msgid "Enable Customizr galleries"
+msgstr "Включване на галерии Customizr"
+
+#: inc/czr-init.php:4584
+msgid "Apply Customizr effects to galleries images"
+msgstr "Прилагане на ефекти Customizr към изображенията в галериите"
+
+#: inc/czr-init.php:4268 inc/czr-init.php:4310
+msgid "After the title"
+msgstr "След заглавието"
+
+#: inc/czr-init.php:4100
+msgid "Category pages titles"
+msgstr "Заглавия на категориите"
+
+#: inc/czr-init.php:4109
+msgid "Tag pages titles"
+msgstr "Заглавия на страниците за етикети"
+
+#: inc/czr-init.php:4118
+msgid "Author pages titles"
+msgstr "Заглавия на атворските страници"
+
+#: inc/czr-init.php:4261 inc/czr-init.php:4303
+msgid "Post thumbnail position"
+msgstr "Позиция на тъмбнейлите на публикациите"
+
+#: inc/czr-init.php:4099
+msgid "Archive titles"
+msgstr "Заглавия на архивите"
+
+#: inc/czr-init.php:4684
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "Показване на броя коментари в мехурче до заглавието на публикацията"
+
+#: inc/czr-init.php:4591
+msgid "Enable Lightbox effect in galleries"
+msgstr "Включване на Lightbox ефект в галерии"
+
+#: inc/czr-init.php:4593
+msgid "Apply lightbox effects to galleries images"
+msgstr "Прилагане на lightbox ефекти към изображенията в галериите"
+
+#: inc/czr-init.php:4267 inc/czr-init.php:4309
+msgid "Before the title boxed"
+msgstr "В кутийка преди заглавието"
+
+#: inc/czr-init.php:4127
+msgid "Search results page titles"
+msgstr "Заглавия на резултати от търсене"
+
+#: inc/czr-init.php:4682
+msgid "Comments bubbles"
+msgstr "Мехурчета на коментари"
+
+#: inc/czr-init.php:4665
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr "Прилагане на декоративна голяма буква към първия параграф на вашите страници"
+
+#: inc/czr-init.php:4663
+msgid "Enable drop caps in pages"
+msgstr "Включване на декоративни главни букви в страниците"
+
+#: inc/czr-init.php:4656
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr "Прилагане на декоративна голяма буква към първия параграф от съдържанието на вашите публикации"
+
+#: inc/czr-init.php:4654
+msgid "Enable drop caps in posts"
+msgstr "Включване на декоративни главни букви в публикациите"
+
+#: inc/czr-init.php:4647
+msgid "Skin color with shadow"
+msgstr "Цвят на облика с ефект сянка"
+
+#: inc/czr-init.php:4648
+msgid "Simple black"
+msgstr "Просто черно"
+
+#: inc/czr-init.php:4643
+msgid "Drop cap style"
+msgstr "Стил на декоративните големи букви"
+
+#: inc/czr-init.php:4620
+msgid "Drop caps"
+msgstr "Декоративни големи букви"
+
+#: inc/czr-init.php:4621
+msgid "Enable drop caps"
+msgstr "Включване на декоративни големи букви"
+
+#: inc/czr-init.php:4623
+msgid "Apply a drop cap to the first paragraph of your post / page content"
+msgstr "Прилагане на декоративна голяма буква към първия параграф на съдържанието на вашите публикации / страници."
+
+#: inc/czr-init.php:4632
+msgid "Apply a drop cap when the paragraph includes at least the following number of words :"
+msgstr "Прилагане на декоративна голяма буква ако параграфа съдържа поне следния брой думи :"
+
+#: inc/czr-init.php:4602
+msgid "Apply nice on hover expansion effect to the galleries images"
+msgstr "Прилагане на красив уголемяващ ефект при минаване с мишката през изображенията от галерия."
+
+#: inc/czr-init.php:4600
+msgid "Enable Customizr effects on hover"
+msgstr "Включване на Customizr ефекти при минаване с мишката"
+
+#: inc/czr-init.php:4266 inc/czr-init.php:4308
+msgid "Before the title in full width"
+msgstr "В пълна широчина, преди заглавието"
+
+#: inc/czr-init.php:4090
+msgid "Alternate thumbnail/content"
+msgstr "Алтернативен тъмбнейл/съдържание"
+
+#: inc/czr-init.php:4083 inc/czr-init.php:4915
+msgid "Left"
+msgstr "Ляво"
+
+#: inc/czr-init.php:4082
+msgid "Bottom"
+msgstr "Долу"
+
+#: inc/czr-init.php:4081 inc/czr-init.php:4916
+msgid "Right"
+msgstr "Дясно"
+
+#: inc/czr-init.php:4080
+msgid "Top"
+msgstr "Горе"
+
+#: inc/czr-init.php:4487
+msgid "Display the publication date"
+msgstr "Показване на датата на публикуване"
+
+#: inc/czr-init.php:4495
+msgid "Display the author"
+msgstr "Показване на автора "
+
+#: inc/czr-init.php:4503
+msgid "Display the update date"
+msgstr "Показване на датата на обновяване"
+
+#: inc/czr-init.php:4548
+msgid "Update notice text"
+msgstr "Обновяване на текста"
+
+#: inc/czr-init.php:4546
+msgid "Recently updated !"
+msgstr "Наскоро актуализирани!"
+
+#: inc/czr-init.php:4076
+msgid "Thumbnails position"
+msgstr "Позиция на тъмбнейлите"
+
+#: inc/czr-init.php:4046
+msgid "Thumbnails shape"
+msgstr "Форма на тъмбнейлите"
+
+#: inc/czr-init.php:4010
+msgid "Display the post thumbnails"
+msgstr "Показване на тъмбнейлите на публикациите"
+
+#: inc/czr-init.php:4009
+msgid "Thumbnails options"
+msgstr "Опции за тъмбнейлите"
+
+#: inc/czr-init.php:4561
+msgid "Default (grey)"
+msgstr "По подразбиране (сиво)"
+
+#: inc/czr-init.php:4563
+msgid "Alert (orange)"
+msgstr "Внимание (оранжево)"
+
+#: inc/czr-init.php:4564
+msgid "Important (red)"
+msgstr "Важно (червено)"
+
+#: inc/czr-init.php:4565
+msgid "Info (blue)"
+msgstr "Информация (синьо)"
+
+#: inc/czr-init.php:3999
+msgid "Set the excerpt length (in number of words) "
+msgstr "Настройване дължината на откъса (брой думи)"
+
+#: inc/czr-init.php:4562
+msgid "Success (green)"
+msgstr "Успех (зелено)"
+
+#: inc/czr-init.php:4518
+msgid "Date of the last update"
+msgstr "Дата на последното обновяване"
+
+#: inc/czr-init.php:4527
+msgid "Display a recent update notice"
+msgstr "Показване на известие за скорошно обновяване"
+
+#: inc/czr-init.php:4064 inc/czr-init.php:4282 inc/czr-init.php:4324
+msgid "Set the thumbnail's max height in pixels"
+msgstr "Задаване максималната височина на тъмбнейлите в пиксели"
+
+#: inc/czr-init.php:4054
+msgid "Rectangular with no effect"
+msgstr "Правоъгълно без ефект"
+
+#: inc/czr-init.php:4056
+msgid "Rectangular with unblur effect on hover"
+msgstr "Правоъгълно с ефект отмъгляване при минаване с мишката"
+
+#: inc/czr-init.php:4055
+msgid "Rectangular with blur effect on hover"
+msgstr "Правоъгълно с ефект замъгляване при минаване с мишката"
+
+#: inc/czr-init.php:4053
+msgid "Squared, no expansion"
+msgstr "Квадратно, без уголемяване"
+
+#: inc/czr-init.php:4052
+msgid "Squared, expand on hover"
+msgstr "Квадратно, с уголемяване при минаване с мишката"
+
+#: inc/czr-init.php:4051
+msgid "Rounded, no expansion"
+msgstr "Закръглено, без уголемяване"
+
+#: inc/czr-init.php:4050
+msgid "Rounded, expand on hover"
+msgstr "Закръглено с уголемяване при минаване с мишката"
+
+#: inc/czr-init.php:4019
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "Ако няма зададено главно изображение, използвай последната снимка, прикачена към тази публикация."
+
+#: inc/czr-init.php:4014
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr "Забележка : тъмбнейлите винаги се изобразяват когато е избран изглед тип решетка."
+
+#: inc/czr-init.php:4014
+msgid "When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ..."
+msgstr "Когато тази опция е включена, тъмбнейлите на публикациите се показват във всички списъци с пужликации : блог, архиви, авторски страници, резултати от търсене, ..."
+
+#: inc/czr-init.php:4027
+msgid "Upload a default thumbnail"
+msgstr "Качване на основен тъмбнейл"
+
+#: inc/czr-init.php:4045
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "Опции за алтернативен изглед на тъмбейлите"
+
+#: inc/czr-init.php:4531
+msgid "If this option is checked, a customizable recent update notice is displayed next to the post title."
+msgstr "Ако тази опция е включена, до заглавието на публикацията се показва известие за обновавяне, което вие можете предварително да персонализирате."
+
+#: inc/czr-init.php:4526
+msgid "Recent update notice after post titles"
+msgstr "Известия за скорошни обновления след заглавията на публикациите"
+
+#: inc/czr-init.php:4478
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr "Показване на нейерархични таксономии (като етикети)"
+
+#: inc/czr-init.php:4507
+msgid "If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated)."
+msgstr "Ако тази опция е включена, допълнителниия информация за датата на последното обновяване на публикацията може да бъде показана (нищо няма да се покаже ако публикацията никога не е била обновявана)."
+
+#: inc/czr-init.php:4543
+msgid "Set a maximum interval (in days) during which the last update notice will be displayed."
+msgstr "Настройване на максимален интервал (в дни), в който ще се показва последното известие за обновяване."
+
+#: inc/czr-init.php:4557
+msgid "Update notice style"
+msgstr "Стил на известието за обновяване"
+
+#: inc/czr-init.php:4537
+msgid "Display the notice if the last update is less (strictly) than n days old"
+msgstr "Показване на известието ако последното обновяване е (стриктно) преди по-малко от n дни"
+
+#: inc/czr-init.php:4513
+msgid "Select the last update format"
+msgstr "Изберете формата за последното обновяване"
+
+#: inc/czr-init.php:3520 inc/czr-init.php:3541
+msgid "Menu on the left"
+msgstr "Меню в ляво"
+
+#: inc/czr-init.php:3522 inc/czr-init.php:3543
+msgid "Menu on the right"
+msgstr "Меню в дясно"
+
+#: inc/czr-init.php:4432
+msgid "Text only"
+msgstr "Само текст"
+
+#: inc/czr-init.php:3035
+msgid "Display an icon next to external links"
+msgstr "Показване на иконата до външните връзки"
+
+#: inc/czr-init.php:3046
+msgid "Open external links in a new tab"
+msgstr "Отваряне на външните връзки в нов подпрозорец"
+
+#: inc/czr-init.php:4355
+msgid "Display the breadcrumb on home page"
+msgstr "Показване на трохички на начална страница"
+
+#: inc/czr-init.php:4363
+msgid "Display the breadcrumb in pages"
+msgstr "Показване на трохички на вътрешни страници"
+
+#: inc/czr-init.php:4372
+msgid "Display the breadcrumb in single posts"
+msgstr "Показване на трохички на публикациите"
+
+#: inc/czr-init.php:4381
+msgid "Display the breadcrumb in posts lists : blog page, archives, search results..."
+msgstr "Показване на трохички в списъците с публикации: блог публикации, архивни страници, резултати от търсенето"
+
+#: inc/czr-init.php:3066
+msgid "Display icons next to titles"
+msgstr "Показване на иконите до заглавията"
+
+#: inc/czr-init.php:3076
+msgid "Display a page icon next to the page title"
+msgstr "Показване на иконата до заглавието на страницата"
+
+#: inc/czr-init.php:3085
+msgid "Display a post icon next to the single post title"
+msgstr "Показване на иконата до заглавието на публикацията"
+
+#: inc/czr-init.php:3094
+msgid "Display an icon next to the archive title"
+msgstr "Показване на иконата до заглавието на архивната страница"
+
+#: inc/czr-init.php:4468
+msgid "Select the metas to display"
+msgstr "Избор на МЕТА данните, които да се покажат"
+
+#: inc/czr-init.php:4458
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr "Показване на МЕТА данни в списъците с публикации (архивни страници, блог публикации)"
+
+#: inc/czr-init.php:4469
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr "Показване на йерархични таксономии (като категории)"
+
+#: inc/czr-init.php:4431
+msgid "Buttons and text"
+msgstr "Бутони и текст"
+
+#: inc/czr-init.php:4426
+msgid "Metas Design"
+msgstr "Дизайн на мета информацията"
+
+#: inc/czr-init.php:4427
+msgid "Select a design for the post metas"
+msgstr "Изберете дизайн за мета информацията на публикациите"
+
+#: inc/czr-init.php:4416
+msgid "Display posts metas"
+msgstr "Показване мета информацията на публикациите"
+
+#: inc/czr-init.php:3104
+msgid "Display an icon next to each post title in an archive page"
+msgstr "Показване на иконка до всяко заглавие на публикация в архивните страници"
+
+#: inc/czr-init.php:4449
+msgid "Display posts metas for single posts"
+msgstr "Показване на мета информация за единични публикации"
+
+#: inc/czr-init.php:4440
+msgid "Display posts metas on home"
+msgstr "Показване мета информацията на публикациите на заглавната страница"
+
+#: inc/czr-init.php:4439 inc/czr-init.php:4790
+msgid "Select the contexts"
+msgstr "Изберете контекстите"
+
+#: inc/czr-init.php:3457
+msgid "the z-index"
+msgstr "Z-индексът"
+
+#: inc/czr-init.php:3025
+msgid "Fade effect on link hover"
+msgstr "Ефект избледняване при минаване през линка с мишка"
+
+#: inc/czr-init.php:3123
+msgid "WP footer widgets : display icons next to titles"
+msgstr "WP джаджи във футера: показване на икони до заглавията"
+
+#: inc/czr-init.php:3114
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr "WP джаджи в страничните ленти : показване на икони до заглавията"
+
+#: inc/czr-init.php:3070
+msgid "When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets."
+msgstr "Когато тази опция е включена се изобразява контекстуална икона до заглавията на страници, публикации, архиви и вградени джаджи на WordPress."
+
+#: inc/czr-init.php:4419
+msgid "When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles."
+msgstr "Когато тази опция е включена, мета информацията на публикациите (като таксономии, дата и автор) се показва под заглавията."
+
+#: inc/czr-init.php:3107
+msgid "When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Когато тази опция е включена, икона показваща типа на съдържанието се показва отляво на всяко заглавие на публикация в архивните страници. Архивна страница може да бъде: категория, етикет, страница на автор, архив по дата, собствени таксономии, резултати от търсене."
+
+#: inc/czr-init.php:3097
+msgid "When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Когато тази опция е включена, икона обозначаваща архив се показва в лявата страна на заглавието на всички типове архиви. Архивна страница може да бъде: категория, етикет, страница на автор, архив по дата, собствени таксономии, резултати от търсене."
+
+#: inc/czr-init.php:3039 inc/czr-init.php:3050
+msgid "This will be applied to the links included in post or page content only."
+msgstr "Това ще бъде приложено само към линковете, включени в съдържанието на публикации или страници."
+
+#: inc/czr-init.php:3570
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "Разкриване на блоковете на подменюто чрез ефект избледняване"
+
+#: inc/czr-init.php:3579
+msgid "Hover move effect for the sub menu items"
+msgstr "Ефект подвижване при минаване с мишката през елементи от подменюто."
+
+#: inc/czr-init.php:3311
+msgid "Logo / title on the left"
+msgstr "Лого/заглавие вляво"
+
+#: inc/czr-init.php:3312
+msgid "Logo / title centered"
+msgstr "Лого/заглавие центрирано"
+
+#: inc/czr-init.php:3313
+msgid "Logo / title on the right"
+msgstr "Лого/заглавие вдясно"
+
+#: inc/czr-init.php:3378
+msgid "Sticky header settings"
+msgstr "Настройки на фиксирания хедър"
+
+#: inc/czr-init.php:3379
+msgid "Sticky on scroll"
+msgstr "Фиксиран при прелистване"
+
+#: inc/czr-init.php:3384
+msgid "If checked, this option makes the header stick to the top of the page on scroll down."
+msgstr "Когато е отбелязана, тази опция дава възможност хедъра да се фиксира в горната част при прелистване надолу"
+
+#: inc/czr-init.php:3389
+msgid "Sticky header : display the tagline"
+msgstr "Фиксиран хедър: показване на кратко описание"
+
+#: inc/czr-init.php:3409
+msgid "Sticky header : display the title / logo"
+msgstr "Фиксиран хедър: показване на заглавие/лого"
+
+#: inc/czr-init.php:3427
+msgid "Sticky header : display the menu"
+msgstr "Фиксиран хедър: показване на менюто"
+
+#: inc/czr-init.php:3437
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "Фиксиран хедър: полу-прозрачен при прелистване"
+
+#: inc/czr-init.php:3418
+msgid "Sticky header : shrink title / logo"
+msgstr "Фиксиран хедър: свиване на заглавие/лого"
+
+#: inc/czr-init.php:3447
+msgid "Set the header z-index"
+msgstr "Задаване на z-index на хедъра"
+
+#: inc/czr-init.php:3455
+msgid "What is"
+msgstr "Какво е"
+
+#: inc/czr-init.php:2977
+msgid "Set your website default font size in pixels."
+msgstr "Задаване нормалния размер на шрифта"
+
+#: inc/czr-init.php:3368
+msgid "Display menu in a box"
+msgstr "Покажи меню в кутия"
+
+#: inc/czr-init.php:2985
+msgid "This option sets the default font size applied to any text element of your website, when no font size is already applied."
+msgstr "Тази опция задава размера по подразбиране на шрифта, който се прилага когато не е уточнен друг размер."
+
+#: inc/czr-init.php:3373
+msgid "If checked, this option wraps the header menu/tagline/social in a light grey box."
+msgstr "Ако е включена, тази опция обвива хедър менюто/заглавието/връзките към социални мрежи в светло сива кутия."
+
+#: inc/czr-init.php:5305
+msgid "Paragraphs"
+msgstr "Параграфи"
+
+#: inc/czr-init.php:5301
+msgid "Set up gallery options"
+msgstr "Настройки на галериите"
+
+#: inc/czr-init.php:5317
+msgid "Post/Page Navigation"
+msgstr "Навигация на Публикациите/Страниците"
+
+#: inc/czr-init.php:5361
+msgid "Website Performances"
+msgstr "Производителност на сайта"
+
+#: inc/czr-init.php:5363
+msgid "On the web, speed is key ! Improve the load time of your pages with those options."
+msgstr "В интернет, скоростта е ужасно важна! Подобрете скоростта на зареждане на вашите страници с тези настройки."
+
+#: inc/czr-init.php:3945
+msgid "Global Post Lists Settings"
+msgstr "Глобални настройки за списъците с публикации"
+
+#: inc/czr-init.php:3262
+msgid "Display an author box after each single post content"
+msgstr "Показване на кутийка с автор след съдържанието на всяка публикация"
+
+#: inc/czr-init.php:2965
+msgid "Select a beautiful font pair (headings &amp; default fonts) or single font for your website."
+msgstr "Задайте красива двойка шрифтове (заглавия &amp; шрифтове по подразбиране) или един единствен шрифт за вашия уебсайт."
+
+#: inc/czr-init.php:2972
+msgid "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs."
+msgstr "Този инструмент за избиране на шрифт ви позволява да разгледате и изберете от голямо разнообразие двойки и единични шрифтове. Ако изберете двойка шрифтове, първият шрифт ще бъде приложен към главните заглавия на сайта: името на сайта, описанието на сайта, заглавия h1, h2, h3., докато втория ще бъде шрифта по подразбиране на всичкия текст и параграфи."
+
+#: inc/czr-init.php:3266
+msgid "Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile."
+msgstr "Включете тази опция, за да се покаже информационен блок с информация за автора след съдържанието на всяка публикация. Забележка : полето за биографична информация трябва да бъде попълнено в потребителския профил."
+
+#: inc/czr-init.php:5319
+msgid "Set up post/page navigation options"
+msgstr "Настройване на опциите за навигация на публикации/страници"
+
+#: inc/czr-init.php:5347
+msgid "Set up footer global options"
+msgstr "Задаване на глобални настройки на футера"
+
+#: inc/czr-init.php:5307
+msgid "Set up paragraphs options"
+msgstr "Настройки на опциите за параграфите"
+
+#: inc/czr-init.php:3915
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr "Забелецка : изгледа на заглавната страница трябва да бъде настроен в секцията за заглавна страница"
+
+#: inc/czr-init.php:5345
+msgid "Footer global settings"
+msgstr "Глобални настройки на футера"
+
+#: inc/czr-init.php:5299
+msgid "Galleries"
+msgstr "Галерии"
+
+#: inc/czr-init.php:5261
+msgid "Post lists : blog, archives, ..."
+msgstr "Списъци с публикации: блог страници, архивни страници"
+
+#: inc/czr-init.php:5269
+msgid "Set up single posts options"
+msgstr "Настройки на опциите за единични публикации"
+
+#: inc/czr-init.php:5295
+msgid "Set up post metas options"
+msgstr "Настройки на опциите на МЕТА данни на публикациите"
+
+#: inc/czr-init.php:5263
+msgid "Set up post lists options"
+msgstr "Настройки на опциите на списъците с публикации"
+
+#: inc/czr-init.php:5279
+msgid "Breadcrumb"
+msgstr "Хлебна троха"
+
+#: inc/czr-init.php:5267
+msgid "Single posts"
+msgstr "Единични публикации"
+
+#: inc/czr-init.php:5281
+msgid "Set up breadcrumb options"
+msgstr "Настройки на опциите за хлебните трохи"
+
+#: inc/czr-init.php:5293
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr "Мета данни на публикациите (категории, етикети, персонализирани таксономии)"
+
+#: inc/czr-init.php:5140
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
+msgstr[0] "Темата ви поддържа %s меню. Изберете кое меню да се използва."
+msgstr[1] "Темата ви поддържа %s менюта. Изберете кои менюта да се използват."
+
+#: inc/czr-init.php:5230
+msgid "Design and layout"
+msgstr "Дизайн и изглед"
+
+#: inc/czr-init.php:3305 inc/czr-init.php:5230
+msgid "Header design and layout"
+msgstr "Дизайн и изглед на хедъра"
+
+#: inc/czr-init.php:5216
+msgid "Post authors settings"
+msgstr "Настройки за авторите на публикациите"
+
+#: inc/czr-init.php:5184
+msgid "Fonts"
+msgstr "Fonts"
+
+#: inc/czr-init.php:5214
+msgid "Authors"
+msgstr "Автори"
+
+#: inc/czr-init.php:5208
+msgid "Image settings"
+msgstr "Настройки за изображенията"
+
+#: inc/czr-init.php:5196
+msgid "Links style and effects"
+msgstr "Ефекти и стилизиране на връзките"
+
+#: inc/czr-init.php:5186
+msgid "Set up the font global settings"
+msgstr "Настройване на глобалните настройки на шрифта"
+
+#: inc/czr-init.php:5204
+msgid "Set up the titles icons options"
+msgstr "Настройки на иконите до заглавията"
+
+#: inc/czr-init.php:5202
+msgid "Titles icons settings"
+msgstr "Настройки на иконките на заглавията"
+
+#: inc/czr-init.php:5167
+msgid "Site Title & Tagline"
+msgstr "Заглавие и описание на сайта"
+
+#: inc/czr-init.php:3354
+msgid "Social links in header"
+msgstr "Социални линкове в хедъра"
+
+#: inc/czr-init.php:4831
+msgid "Social links in left sidebar"
+msgstr "Социални линкове в лявата странична лента"
+
+#: inc/czr-init.php:4881
+msgid "Social links in footer"
+msgstr "Социални линкове във футъра"
+
+#: inc/czr-init.php:3946
+msgid "Maximum number of posts per page"
+msgstr "Максимален брой публикации на страница"
+
+#: inc/czr-init.php:4949
+msgid "child theme."
+msgstr "дъщерна тема"
+
+#: inc/czr-init.php:4950
+msgid "How to create and use a child theme ?"
+msgstr "Как да направим и използваме дъщерна тема?"
+
+#: inc/czr-init.php:3774 inc/czr-init.php:3961
+msgid "Display the excerpt"
+msgstr "Показване на откъс"
+
+#: inc/czr-init.php:3962
+msgid "Display the full content"
+msgstr "Показване на цялото съдържание"
+
+#: inc/czr-init.php:4730
+msgid "Enable comments on pages"
+msgstr "Включване на коментарите"
+
+#: inc/czr-init.php:3017
+msgid "Smooth scroll on click"
+msgstr "Гладко скролване при кликване"
+
+#: inc/czr-init.php:3192
+msgid "Dynamic slider images centering on any devices"
+msgstr "Динамични изображения на слайдера, които се центрират на всяко устройство."
+
+#: inc/czr-init.php:3200
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "Динамични тъмбнейли, които се центрират на всички устройства"
+
+#: inc/czr-init.php:3167
+msgid "regenerate thumbnails"
+msgstr "Повторно генериране на тъмбнейли"
+
+#: inc/czr-init.php:3165
+msgid "If enabled, your website will include support for high resolution devices."
+msgstr "Ако тази опция е включена, вашия сайт ще поддържа и устройства с висока резолюция."
+
+#: inc/czr-init.php:3166
+msgid "It is strongly recommended to regenerate your media library images in high definition with this free plugin"
+msgstr "Силно се препоръчва да генерирате отново вашите изображения във висока дефиниция с този безплатен плъгин"
+
+#: inc/czr-init.php:3143
+msgid "Lightbox effect on images"
+msgstr "Lightbox ефекти на изображения"
+
+#: inc/czr-init.php:3970
+msgid "Choose the pages default layout"
+msgstr "Изберете желания изглед на страниците"
+
+#: inc/czr-init.php:3933
+msgid "Choose the posts default layout"
+msgstr "Изберете желания изглед на публикациите"
+
+#: inc/czr-init.php:3923
+msgid "Force default layout everywhere"
+msgstr "Форсирайте изгледа по подразбиране да бъде активен навсякъде"
+
+#: inc/czr-init.php:3161
+msgid "High resolution (Retina) support"
+msgstr "Поддържане на висока резолюция (Retina)"
+
+#: inc/czr-init.php:4944
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Добавете вашия собствен CSS тук и виждайте вашите промени на живо! (за напреднали потребители)"
+
+#: inc/czr-init.php:3244
+msgid "Dynamic sidebar reordering on small devices"
+msgstr "Динамично пренареждане на странични ленти при малки устройства"
+
+#: inc/czr-init.php:3020
+msgid "If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page."
+msgstr "При включване, тази опция активира гладко скролване когато се натисне връзка с  анкор на същата страница"
+
+#: inc/czr-init.php:4948
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a"
+msgstr "Използвайте това поле да тествате малки откъси CSS код. За по-важни CSS персонализации е по-добре да модифицирате style.css файла на"
+
+#: inc/czr-init.php:3247
+msgid "Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport."
+msgstr "Активирайте тази настройка за да преместите страничните ленти (ако има такива) да бъдат след блока с главното съдържание при полезрението на смартфони или таблети."
+
+#: inc/czr-init.php:3203
+msgid "This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio."
+msgstr "Тази опция динамично центрира вашите изображения на всички устройства, вертикално или хоризонтално, спрямо тяхното първоначално съотношение."
+
+#: inc/czr-init.php:3186
+msgid "When checked, this option displays a loading icon when the slides are being setup."
+msgstr "Когато е включена, тази опция показва иконка за зареждане когато слайдовете още се настройват."
+
+#: inc/czr-init.php:3183
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr "Слайдери : показване икона за зареждане преди визуализацията на слайдовете"
+
+#: inc/czr-init.php:3169
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr "Отворете страницата с описание на плъгина за регенериране не тъмбнейли."
+
+#: inc/czr-init.php:4844
+msgid "Social links in right sidebar"
+msgstr "Социални линкове в дясната странична лента"
+
+#: inc/czr-init.php:3146
+msgid "If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File."
+msgstr "Когато е включена, тази опция активира вътрешно прозорче със zoom ефект (мащабиране), когато се кликне върху изображение. Забележка : за да активирате този ефект и за изображенията на вашите страници и публикации, изображенията трябва да бъдат свързани с медийния файл."
+
+#: inc/czr-init.php:3155
+msgid "If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "Ако е включена, тази настройка ще накара изображенията да изпълнят екрана при zoom (мащабиране) lightbox"
+
+#: inc/czr-init.php:3152
+msgid "Autoscale images on zoom"
+msgstr "Автоматично оразмеряване на изображенията при zoom (мащабиране)"
+
+#: inc/czr-init.php:3926
+msgid "This option will override the specific layouts on all posts/pages, including the front page."
+msgstr "Тази опция ще пренастрои специфичните изгледи на всички публикации/страници, включително и на заглавната страница."
+
+#: inc/czr-init.php:3957
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Изберете дължината на публикациите в списъци (заглавна страница, търсене, архиви, ...)"
+
+#: inc/czr-init.php:3796 inc/czr-init.php:3889
+msgid "Button text"
+msgstr "Текст на бутона"
+
+#: inc/czr-init.php:4346
+msgid "Display Breadcrumb"
+msgstr "Показване на хлебни трохи"
+
+#: inc/czr-init.php:3911
+msgid "Choose the global default layout"
+msgstr "Изберете глобалния изглед по подразбиране"
+
+#: inc/czr-init.php:3869
+msgid "Disable"
+msgstr "Изключване"
+
+#: inc/czr-init.php:3878
+msgid "Show images"
+msgstr "Показване на изображенията"
+
+#: inc/czr-init.php:3795 inc/czr-init.php:3887
+msgid "Read more &raquo;"
+msgstr "Още на &raquo;"
+
+#: inc/czr-init.php:3881
+msgid "The images are set with the \"featured image\" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images."
+msgstr "Изображенията се задават като изберете основно изображение на всяка страница (в страницата за редакция). Изключете опцията горе, за да изключите картинките на основните страници."
+
+#: inc/czr-init.php:3868
+msgid "Enable"
+msgstr "Разрешаване"
+
+#: inc/czr-init.php:3823
+msgid "in ms : 1000ms = 1s"
+msgstr "в ms : 1000ms = 1s"
+
+#: inc/czr-init.php:3806
+msgid "Full width slider"
+msgstr "Слайдер с пълна широчина"
+
+#: inc/czr-init.php:3730
+msgid "Select front page slider"
+msgstr "Изберете слайдер за заглавната страница"
+
+#: inc/czr-init.php:3818
+msgid "Delay between each slides"
+msgstr "Време между отделните слайдове"
+
+#: inc/czr-init.php:3863
+msgid "Featured pages options"
+msgstr "Настройки на основни страници (featured pages)"
+
+#: inc/czr-init.php:3864
+msgid "Display home featured pages area"
+msgstr "Показване на място за основни страници на заглавната страница (featured pages)"
+
+#: inc/czr-init.php:3729
+msgid "Slider options"
+msgstr "Опции на плъзгача"
+
+#: inc/czr-init.php:3713
+msgid "Set up the front page layout"
+msgstr "Настройки на изгледа на заглавната страница"
+
+#: inc/czr-init.php:3678
+msgid "Front page"
+msgstr "Начална страница"
+
+#: inc/czr-init.php:3686
+msgid "Posts page"
+msgstr "Страница с публикации"
+
+#: inc/czr-init.php:3671
+msgid "Your latest posts"
+msgstr "Последни публикации"
+
+#: inc/czr-init.php:3672
+msgid "A static page"
+msgstr "Статична страница"
+
+#: inc/czr-init.php:3670
+msgid "Don't show any posts or page"
+msgstr "Не показвай никакви публикации и страници"
+
+#: inc/czr-init.php:2880
+msgid "LOGO"
+msgstr "Лого"
+
+#: inc/czr-init.php:3665
+msgid "Front page displays"
+msgstr "Началната страница показва"
+
+#: inc/czr-init.php:2921
+msgid "FAVICON"
+msgstr "FAVICON"
+
+#: inc/czr-init.php:2920
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Качване на Favicon (поддържани формати: .ico, .png, .gif)"
+
+#: inc/czr-init.php:2899
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "Оставете тази опция изключена ако искате да задържите оригиналния размер на логото."
+
+#: inc/czr-init.php:2895
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Насилствено задаване размера на логото към max-width:250px и max-height:100px"
+
+#: inc/czr-init.php:3657
+msgid "Choose content and layout"
+msgstr "Изберете съдържание и изглед"
+
+#: inc/czr-init.php:3322
+msgid "Display top border"
+msgstr "Показване на горна граница"
+
+#: inc/czr-init.php:2879
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Качване на лого (поддържани формати : .jpg, .png, .gif, svg, svgz)"
+
+#: inc/czr-init.php:4970
+msgid "Using the minified version of the stylesheets will speed up your webpage load time."
+msgstr "Използването на минифицираните версии на вашите stylesheets ще ускори зареждането на страницата."
+
+#: inc/czr-init.php:4967
+msgid "Performance : use the minified CSS stylesheets"
+msgstr "Производителност : използване на минифицирани stylesheets"
+
+#: inc/czr-init.php:3326
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Изключете тази опция за да премахнете оцветената горна граница."
+
+#: inc/czr-init.php:2903
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Качване на Sticky Logo (поддържани формати : .jpg, .png, .gif, svg, svgz)"
+
+#: inc/czr-init.php:2914
+msgid "Use this upload control to specify a different logo on sticky header mode."
+msgstr "Използвайте тази настройка, за да изберете различно лого на режима лепкав хедър (sticky header)"
+
+#: inc/czr-init.php:3212 inc/czr-init.php:5334
+msgid "Responsive settings"
+msgstr "Респонсив настройки"
+
+#: inc/czr-init.php:3562
+msgid "Expand submenus on click"
+msgstr "Разгъване на подменюта при клик"
+
+#: inc/czr-init.php:2948
+msgid "Randomize the skin"
+msgstr "Избиране на облик по случаен характер"
+
+#: inc/czr-init.php:2951
+msgid "Apply a random color skin on each page load."
+msgstr "Прилагане на произволен цвят на облика при всяко зареждане на страницата."
+
+#: inc/czr-init.php:2938
+msgid "Choose a predefined skin"
+msgstr "Избиране на предварително зададен облик"
+
+#: inc/czr-init.php:3563
+msgid "Expand submenus on hover"
+msgstr "Разгъване на подменюта при минаване с мишката"
+
+#: inc/czr-init.php:3558
+msgid "Select a submenu expansion option"
+msgstr "Изберете опция за разгъване на подменюта"
+
+#: inc/czr-init.php:5336
+msgid "Various settings for responsive display"
+msgstr "Различни настройки за Responsive дисплей"
+
+#: inc/czr-init.php:5356
+msgid "Custom CSS"
+msgstr "Собствен CSS"
+
+#: inc/czr-init.php:5198
+msgid "Various links settings"
+msgstr "Най-различни настройки на връзките"
+
+#: inc/czr-init.php:5210
+msgid "Various images settings"
+msgstr "Най-различни настройки на изображенията"
+
+#: inc/czr-init.php:5192
+msgid "Set up your social links"
+msgstr "Настройки на линкове към профили в социални мрежи"
+
+#: inc/czr-init.php:4855 inc/czr-init.php:5190
+msgid "Social links"
+msgstr "Социални връзки"
+
+#: inc/czr-init.php:5313
+msgid "Set up comments options"
+msgstr "Нагласяне настройки на коментарите"
+
+#: inc/czr-init.php:5311
+msgid "Comments"
+msgstr "Коментари"
+
+#: inc/czr-init.php:5254
+msgid "Pages &amp; Posts Layout"
+msgstr "Страници &amp; Изглед на публикациите"
+
+#: inc/czr-init.php:5256
+msgid "Set up layout options"
+msgstr "Настройки на опциите на изгледа"
+
+#: inc/czr-init.php:5249
+msgid "Set up front page options"
+msgstr "Настройки на опциите на предната страница"
+
+#: inc/czr-init.php:5247
+msgid "Front Page"
+msgstr "Начална страница"
+
+#: inc/czr-init.php:5072
+msgid "Advanced options"
+msgstr "Разширени настройки"
+
+#: inc/czr-init.php:5178
+msgid "Skin"
+msgstr "Цветова гама"
+
+#: inc/czr-init.php:5180
+msgid "Select a skin for Customizr"
+msgstr "Изберете цветова гама за Customizr"
+
+#: inc/czr-init.php:5172
+msgid "Logo &amp; Favicon"
+msgstr "Лого &amp; Икона"
+
+#: inc/czr-init.php:5073
+msgid "Advanced settings for the Customizr theme."
+msgstr "Разширени настройки за темата Customizr"
+
+#: inc/czr-init.php:5066
+msgid "Footer settings for the Customizr theme."
+msgstr "Настройки за футера на темата Customizr"
+
+#: inc/czr-init.php:5174
+msgid "Set up logo and favicon options"
+msgstr "Настройки на логото и иконката на сайта (favicon)"
+
+#: inc/czr-init.php:5065
+msgid "Footer"
+msgstr "Footer"
+
+#: inc/czr-init.php:5051
+msgid "Content : home, posts, ..."
+msgstr "Съдържание: начало, публикации, ..."
+
+#: inc/czr-init.php:5052
+msgid "Content settings for the Customizr theme."
+msgstr "Настройки за съдържанието на темата Customizr"
+
+#: inc/czr-init.php:5045
+msgid "Header settings for the Customizr theme."
+msgstr "Настройки за хедъра на темата Customizr"
+
+#: inc/czr-init.php:5044
+msgid "Header"
+msgstr "Заглавна картинка"
+
+#: inc/czr-init.php:5037
+msgid "Global settings"
+msgstr "Глобални настройки"
+
+#: inc/czr-init.php:5596
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Без слайдер &mdash;"
+
+#: inc/czr-init.php:5597
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Демо Слайдер &mdash;"
+
+#: inc/czr-init.php:5470
+msgid "You need to select a page first. Leave this field empty if you want to use the page excerpt."
+msgstr "Първо трябва да изберете страница. Оставете това поле празно ако изкате да ползвате откъса на страницата."
+
+#: inc/czr-init.php:5038
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Глобални настройки на темата Customizr: облик, социални мрежи, връзки..."
+
+#: inc/czr-init.php:5451
+msgid "Custom featured page %1$s"
+msgstr "Персонализирана основна страница (featured page) %1$s"
+
+#: inc/czr-init.php:5467
+msgid "Featured text %1$s (200 char. max)"
+msgstr "Основен текст %1$s (200 символа максимум)"
+
+#: inc/czr-init.php:5429
+msgid "Home featured page three"
+msgstr "Трета основна страница на заглавната страница"
+
+#: inc/czr-init.php:5428
+msgid "Home featured page two"
+msgstr "Втора основна страница на заглавната страница"
+
+#: inc/czr-init.php:5427
+msgid "Home featured page one"
+msgstr "Първа основна страница на заглавната страница"
+
+#: inc/czr-init.php:5434
+msgid "Featured text three (200 char. max)"
+msgstr "Основен текст три (200 символа максимум)"
+
+#: inc/czr-init.php:5432
+msgid "Featured text one (200 char. max)"
+msgstr "Основен текст едно (200 символа максимум)"
+
+#: inc/czr-init.php:5433
+msgid "Featured text two (200 char. max)"
+msgstr "Основен текст две (200 символа максимум)"
+
+#: inc/czr-init.php:6495
+msgid "Page %s"
+msgstr "Страница %s"
+
+#: inc/czr-init.php:1289
+msgid "Need help with Customizr? Click here!"
+msgstr "Имате нужда от помощ с Customizr? Натиснете тук!"
+
+#: inc/czr-init.php:1286
+msgid "Help"
+msgstr "Помощ"
+
+#: inc/czr-init.php:1101
+msgid "Main Menu"
+msgstr "Основно меню"
+
+#: inc/czr-init.php:901 inc/czr-init.php:8792 inc/czr-init.php:8798
+msgid "Customizr is a clean responsive theme"
+msgstr "Customizr е изчистена респонсив тема"
+
+#: inc/czr-init.php:915 inc/czr-init.php:8804
+msgid "Many layout and design options are available from the WordPress customizer screen : see your changes live !"
+msgstr "Много опции за дизайн и изглед са достъпни чрез Wordpress панела за персонализация : вижте вашите промени на живо !"
+
+#: inc/czr-init.php:886
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Нищо не отговаря на критериите ви. Моля опитайте отново с различни ключови думи."
+
+#: inc/czr-init.php:855
+msgid "Footer Widget Area Two"
+msgstr "Зона за джаджи 2"
+
+#: inc/czr-init.php:859
+msgid "Footer Widget Area Three"
+msgstr "Зона за джаджи 3"
+
+#: inc/czr-init.php:885
+msgid "Sir Winston Churchill"
+msgstr "Сър Уинстън Чърчил"
+
+#: inc/czr-init.php:878
+msgid "George Orwell"
+msgstr "Джордж Оруел"
+
+#: inc/czr-init.php:879
+msgid "Sorry, but the requested page is not found. You might try a search below."
+msgstr "Извиняваме се, но тази страница не е намерена. Можете да пробвате да потърсите отдолу"
+
+#: inc/czr-init.php:884
+msgid "Success is the ability to go from one failure to another with no loss of enthusiasm..."
+msgstr "Успехът е умението да се премине от един провал към друг, без загуба на ентусиазъм..."
+
+#: inc/czr-init.php:877
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Във времена на всеобщи лъжи да казваш истината е екстремизъм."
+
+#: inc/czr-init.php:851
+msgid "Footer Widget Area One"
+msgstr "Зона за джаджи 1"
+
+#: inc/czr-init.php:852 inc/czr-init.php:856 inc/czr-init.php:860
+msgid "Just use it as you want !"
+msgstr "Просто го ползвайте както пожелаете !"
+
+#: inc/czr-init.php:839
+msgid "Left Sidebar"
+msgstr "Лява странична лента"
+
+#: inc/czr-init.php:840 inc/czr-init.php:844
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Показва се на публикации, статични страници, архиви и страници за търсене"
+
+#: inc/czr-init.php:843
+msgid "Right Sidebar"
+msgstr "Дясна странична лента"
+
+#: inc/czr-init.php:807
+msgid "Follow me on Youtube"
+msgstr "Последвайте ме в Youtube"
+
+#: inc/czr-init.php:804
+msgid "Follow me on WordPress"
+msgstr "Последвайте ме в Wordpress"
+
+#: inc/czr-init.php:819
+msgid "Follow me on LinkedIn"
+msgstr "Последвайте ме в LinkedIn"
+
+#: inc/czr-init.php:810
+msgid "Pin me on Pinterest"
+msgstr "Закачане в Pinterest"
+
+#: inc/czr-init.php:813
+msgid "Follow me on Github"
+msgstr "Последвайте ме в Github"
+
+#: inc/czr-init.php:816
+msgid "Follow me on Dribbble"
+msgstr "Последвайте ме в Dribbble"
+
+#: inc/czr-init.php:789
+msgid "Follow me on Facebook"
+msgstr "Последвайте ме във Facebook"
+
+#: inc/czr-init.php:792
+msgid "Follow me on Google+"
+msgstr "Последвайте ме в Google+"
+
+#: inc/czr-init.php:795
+msgid "Follow me on Instagram"
+msgstr "Последвайте ме в Instagram"
+
+#: inc/czr-init.php:798
+msgid "Follow me on Tumblr"
+msgstr "Последвайте ме в Tumblr"
+
+#: inc/czr-init.php:801
+msgid "Follow me on Flickr"
+msgstr "Последвайте ме във Flickr"
+
+#: inc/czr-init.php:740
+msgid "Single fonts"
+msgstr "Единични шрифтове"
+
+#: inc/czr-init.php:683
+msgid "Light blue "
+msgstr "Светло синьо"
+
+#: inc/czr-init.php:681
+msgid "Light green"
+msgstr "Светло зелено"
+
+#: inc/czr-init.php:682
+msgid "Green blue"
+msgstr "Зелено-синьо"
+
+#: inc/czr-init.php:786
+msgid "Follow me on Twitter"
+msgstr "Следвай ме в Twitter "
+
+#: inc/czr-init.php:710
+msgid "Google fonts pairs"
+msgstr "Google двойки шрифтове"
+
+#: inc/czr-init.php:779
+msgid "Subscribe to my rss feed"
+msgstr "Абонирайте се за моя rss feed"
+
+#: inc/czr-init.php:731
+msgid "Web safe fonts pairs"
+msgstr "Web safe двойки шрифтове"
+
+#: inc/czr-init.php:680
+msgid "Green"
+msgstr "Зелено"
+
+#: inc/czr-init.php:679
+msgid "Flat yellow"
+msgstr "жълто"
+
+#: inc/czr-init.php:678
+msgid "Yellow"
+msgstr "Жълто"
+
+#: inc/czr-init.php:677
+msgid "Flat orange"
+msgstr "оранжево"
+
+#: inc/czr-init.php:676
+msgid "Orange"
+msgstr "Оранжево"
+
+#: inc/czr-init.php:675
+msgid "Red"
+msgstr "Червено"
+
+#: inc/czr-init.php:674
+msgid "Flat red"
+msgstr "червено"
+
+#: inc/czr-init.php:673
+msgid "Purple"
+msgstr "Лилаво"
+
+#: inc/czr-init.php:670
+msgid "Grey"
+msgstr "Сиво"
+
+#: inc/czr-init.php:672
+msgid "Flat purple"
+msgstr "лилаво"
+
+#: inc/czr-init.php:669
+msgid "Flat black"
+msgstr "черно"
+
+#: inc/czr-init.php:671
+msgid "Light grey"
+msgstr "Светло сиво"
+
+#: inc/czr-init.php:668
+msgid "Black"
+msgstr "Черно"
+
+#: inc/czr-init.php:640 inc/czr-init.php:641
+msgid "Left sidebar"
+msgstr "Лява странична лента"
+
+#: inc/czr-init.php:667
+msgid "Blue"
+msgstr "Синьо"
+
+#: inc/czr-init.php:646 inc/czr-init.php:647
+msgid "2 sidebars : Right and Left"
+msgstr "2 странични ленти: Дясно и Ляво"
+
+#: inc/czr-init.php:652 inc/czr-init.php:653
+msgid "No sidebars : full width layout"
+msgstr "Без странични ленти : изглед с пълна широчина"
+
+#: inc/czr-init.php:634 inc/czr-init.php:635
+msgid "Right sidebar"
+msgstr "Дясна странична лента"
+
+#: inc/czr-customize.php:1608 inc/czr-customize.php:1852
+#: inc/czr-customize.php:1923 inc/czr-customize.php:2090
+msgid "Remove"
+msgstr "Изтриване"
+
+#: inc/czr-customize.php:1607
+msgid "Upload"
+msgstr "Качване"
+
+#: inc/czr-customize.php:1037
+msgid "Create a slider"
+msgstr "Създаване на слайдер"
+
+#: inc/czr-customize.php:1038
+msgid "Need help to create a slider ?"
+msgstr "Нуждаете се от помощ за създаване на слайдер?"
+
+#: inc/czr-customize.php:1040
+msgid "Check the documentation"
+msgstr "Преглед на документацията"
+
+#: inc/czr-admin.php:671
+msgid "System Informations"
+msgstr "Системна информация"
+
+#: inc/czr-admin.php:673
+msgid "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr "За да копирате системна информация,кликнете отдолу и после натиснете Ctrl + C (PC) или Cmd + C (Mac)."
+
+#: inc/czr-admin.php:672
+msgid "Please include the following informations when posting support requests"
+msgstr "Моля включете и следната информация когато публикувате заявки за поддръжка (support requests)"
+
+#: inc/czr-admin.php:602
+msgid "Go to Dashboard"
+msgstr "Към таблото"
+
+#: inc/czr-admin.php:573
+msgid "Follow us"
+msgstr "Последвай ни"
+
+#: inc/czr-admin.php:602
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Към таблото &rarr; Начало"
+
+#: inc/czr-admin.php:507
+msgid "Check the FAQ"
+msgstr "Проверете ЧЗВ"
+
+#: inc/czr-admin.php:567
+msgid "Happy user of Customizr?"
+msgstr "Доволни ли сте от Customizr?"
+
+#: inc/czr-admin.php:503
+msgid "Read the documentation"
+msgstr "Преглед на документацията"
+
+#: inc/czr-admin.php:568
+msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr "Ако сте доволни от темата, споделете го на wordpress.org и дайта на Customizr добър отзив! <br />(Ние сме пристрастени към вашите отизиви...)"
+
+#: inc/czr-admin.php:550
+msgid "You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated."
+msgstr "Използвате child тема на Customizr %1$s : винаги проверявайте %2$s след като обновявате, за да видите дали функция или темплейт са вече извън употреба)"
+
+#: inc/czr-admin.php:654
+msgid "Changelog in version %1$s"
+msgstr "Нови неща във версия %1$s"
+
+#: inc/czr-admin.php:587
+msgid "Easily take your web design one step further"
+msgstr "С лекота докарайте вашия уеб дизайн една стъпка по-напред"
+
+#: inc/czr-admin.php:1796
+msgid "Current slide"
+msgstr "Текущ слайд"
+
+#: inc/czr-admin.php:437
+msgid "About Customizr"
+msgstr "Относно Customizr"
+
+#: inc/czr-admin.php:1768
+msgid "No Image Selected"
+msgstr "Не е избрано изображение"
+
+#: inc/czr-admin.php:1794
+msgid "Edit this slide"
+msgstr "Редакция на слайда"
+
+#: inc/czr-admin.php:1726 inc/czr-customize.php:929 inc/czr-customize.php:941
+#: inc/czr-customize.php:1852 inc/czr-customize.php:1865
+#: inc/czr-customize.php:1923 inc/czr-front.php:2641 inc/czr-front.php:2674
+#: inc/czr-front.php:2689 inc/czr-front.php:2717 inc/czr-front.php:3232
+#: inc/czr-front.php:3812 inc/czr-front.php:4217 inc/czr-front.php:9010
+msgid "Edit"
+msgstr "Редакция"
+
+#: inc/czr-admin.php:1723
+msgid "Slide Text"
+msgstr "Текст на слайда"
+
+#: inc/czr-admin.php:1724
+msgid "Button Text"
+msgstr "Текст на бутона"
+
+#: inc/czr-admin.php:1722 inc/czr-customize.php:2006
+msgid "Title"
+msgstr "Заглавие"
+
+#: inc/czr-admin.php:1486
+msgid "Title and text color"
+msgstr "Цвят на заглавието и текста"
+
+#: inc/czr-admin.php:1494
+msgid "Button text (80 char. max length)"
+msgstr "Текст на бутона (максимална дължина: 80 символа)"
+
+#: inc/czr-admin.php:1506
+msgid "No link"
+msgstr "Липсва връзка"
+
+#: inc/czr-admin.php:1556 inc/czr-admin.php:1585
+msgid "Add a slider"
+msgstr "Добавяне на слайдер"
+
+#: inc/czr-admin.php:1721
+msgid "Slide Image"
+msgstr "Изображение на слайда"
+
+#: inc/czr-admin.php:1583
+msgid "You haven't create any slider yet. Write a slider name and click on the button to add you first slider."
+msgstr "Все още не сте създали слайдер. Напишете име за слайдера и после натиснете бутончето, за да сложите вашия първи слайдер."
+
+#: inc/czr-admin.php:1501
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Изберете свързана страница или публикация (от последните 100)."
+
+#: inc/czr-admin.php:1711
+msgid "This slider has not slides to show. Go to the media library and start adding images to it."
+msgstr "Този слайдер няма слайдове за показване. Отидете в медийната библиотека и започнете да добавяте изображения към него."
+
+#: inc/czr-admin.php:1472
+msgid "Title text (80 char. max length)"
+msgstr "Заглавие (максимална дължина 80 символа)"
+
+#: inc/czr-admin.php:1479
+msgid "Description text (below the title, 250 char. max length)"
+msgstr "Описание (максимална дължина 250 символа)"
+
+#: inc/czr-admin.php:1164 inc/czr-customize.php:1035
+msgid "You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders."
+msgstr "Още не сте създали слайдер. Отидете в библиотеката с изображения, влезте за редакция на изображенията и добавете избраните от тях към слайдера."
+
+#: inc/czr-admin.php:1326
+msgid "Add to a slider (create one if needed)"
+msgstr "Добавете към слайдера (създайте слайдер, ако е нужно)"
+
+#: inc/czr-admin.php:970 inc/czr-admin.php:975
+msgid "this page"
+msgstr "тази страница"
+
+#: inc/czr-admin.php:970 inc/czr-admin.php:975
+msgid "this post"
+msgstr "тази публикация"
+
+#: inc/czr-admin.php:971 inc/czr-init.php:3641 inc/czr-init.php:3646
+#: inc/czr-init.php:5017
+msgid "here"
+msgstr "тук"
+
+#: inc/czr-admin.php:1021
+msgid "Add a slider to this post/page"
+msgstr "Добавяне на слайдер към тази публикация/страница"
+
+#: inc/czr-admin.php:1087 inc/czr-admin.php:1535
+msgid "Choose a slider"
+msgstr "Избиране на слайдер"
+
+#: inc/czr-admin.php:1093 inc/czr-admin.php:1550
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Избиране на слайдер &mdash; "
+
+#: inc/czr-admin.php:1116
+msgid "To create a new slider : open the media library, edit your images and add them to your new slider."
+msgstr "За да създадете нов слайдер: отворете библиотеката с изображения, влезте в редакция на изображения и добавете избраните от тях към слайдера."
+
+#: inc/czr-admin.php:1127
+msgid "Slider Layout : set the slider in full width"
+msgstr "Изглед на слайдера: задаване на пълна ширина "
+
+#: inc/czr-admin.php:1152 inc/czr-admin.php:1566
+msgid "Delete slider"
+msgstr "Изтриване на слайдера"
+
+#: inc/czr-admin.php:974
+msgid "Select a specific layout for %1$s"
+msgstr "Задайте конкретен изглед за %1$s"
+
+#: inc/czr-admin.php:1324
+msgid "Add to a slider"
+msgstr "Добавяне към слайдера"
+
+#: inc/czr-admin.php:1144 inc/czr-admin.php:1559
+msgid "Delete this slider"
+msgstr "Изтриване на този слайдер"
+
+#: inc/czr-admin.php:965
+msgid "Change layout options"
+msgstr "Промяна настройките на изгледа"
+
+#: inc/czr-admin.php:978
+msgid "Default layout %1s"
+msgstr "Изглед по подразбиране %1s"
+
+#: inc/czr-admin.php:1149 inc/czr-admin.php:1563
+msgid "The slider will be deleted permanently (images, call to actions and link will be kept)."
+msgstr "Слайдера ще бъде перманентно изтрит (изображенията, призовите към действие и връзките ще бъдат запазени)"
+
+#: inc/czr-admin.php:969
+msgid "You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />"
+msgstr "Може да зададете определен изглед за %1$s, използвайки предварително определените леви и десни странични ленти. Изгледите по подразбиране могат да бъдат зададени в WordPress панела за персонализация %2$s.<br />"
+
+#: inc/czr-admin.php:964
+msgid "You have checked the <i>\"Force global default layout for all posts and pages\"</i>, you must unchecked this option to enable a specific layout for this post."
+msgstr "Вие сте включили <i>\"Форсиране на глобален изглед по пдразбиране за всички публикации и страници\"</i> и трябва да изключите тази настройка, за да активирате специфичен изглед за тази публикация."
+
+#: inc/czr-admin.php:1120
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Закъснение между всеки слайд в милисекунди (по подразбиране : 5000 ms)"
+
+#: inc/czr-admin.php:959
+msgid "posts"
+msgstr "Мнения"
+
+#: inc/czr-admin.php:890 inc/czr-admin.php:1295
+msgid "Slider Options"
+msgstr "Опции на плъзгача"
+
+#: inc/czr-admin.php:959
+msgid "pages"
+msgstr "Страници"
+
+#: inc/czr-admin.php:959
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Изгледа по подразбиране %1$s е нагласен на : %2$s"
+
+#: inc/czr-admin.php:882
+msgid "Layout Options"
+msgstr "Настройки на подредбата"
+
+#: inc/czr-customize.php:636 inc/czr-customize.php:637
+msgid "Upgrade Wordpress Now"
+msgstr "Обновете Wordpress сега"
+
+#: inc/czr-customize.php:633
+msgid "This theme requires WordPress 3.4+"
+msgstr "Тази тема изисква Wordpress 3.4+"
+
+#: inc/czr-customize.php:613 inc/czr-customize.php:614
+msgid "Upgrade WP"
+msgstr "Обновете WP"
+
+#: inc/czr-admin.php:592
+msgid "Discover Customizr Pro"
+msgstr "Разгледайте Customizr Pro"
+
+#: inc/czr-init.php:3644
+msgid "Jump to the blog design options"
+msgstr "Преминаване към опциите за дизайн на публикациите в блога"
+
+#: inc/czr-customize.php:587
+msgid "More grid design options"
+msgstr "Още опции за дизайна на изглед тип решетка"
+
+#. Author URI of the plugin/theme
+msgid "http://presscustomizr.com/"
+msgstr "http://presscustomizr.com/"
+
+#. Author of the plugin/theme
+msgid "nikeo"
+msgstr "nikeo"
+
+#. Theme URI of the plugin/theme
+msgid "http://presscustomizr.com/customizr"
+msgstr "http://presscustomizr.com/customizr"
