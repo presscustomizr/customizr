@@ -123,7 +123,7 @@ module.exports = function(grunt) {
             'clean:free',
             'clean:in_customizr_pro',
             'copy',
-            'clean:customizr_pro_lang',
+            //'clean:customizr_pro_lang',
             'compress'
           ],
           //final build meta task
