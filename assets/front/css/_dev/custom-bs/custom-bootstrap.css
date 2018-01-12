@@ -1731,24 +1731,27 @@ template {
 .fade.show {
   opacity: 1;
 }
-
-.collapse {
+/*
+* @czr_addon : collapse/collapsing class turned to czr-collapse/czr-collapsing
+* see https://github.com/presscustomizr/customizr/issues/1373
+*/
+.czr-collapse {
   display: none;
 }
 
-.collapse.show {
+.czr-collapse.show {
   display: block;
 }
 
-tr.collapse.show {
+tr.czr-collapse.show {
   display: table-row;
 }
 
-tbody.collapse.show {
+tbody.czr-collapse.show {
   display: table-row-group;
 }
 
-.collapsing {
+.czr-collapsing {
   position: relative;
   height: 0;
   overflow: hidden;

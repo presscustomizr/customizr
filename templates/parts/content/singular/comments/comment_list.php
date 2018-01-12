@@ -16,12 +16,12 @@
     $comments_number = count($wp_query->comments_by_type['comment']);
   ?>
   <!-- WITH COMMENTS PAGINATION THE COMMENT/PINGBACK COUNT IS WRONG AS IS COUNTS JUST THE NUMBER OF ELEMENTS OF THE CURRENT (PAEG) QUERY -->
-    <li class="nav-item"><a href="#commentlist-container" class="nav-link active" data-toggle="pill" role="tab"><?php echo $comments_number ?>&nbsp<?php echo _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ?></a></li>
+    <li class="nav-item"><a href="#commentlist-container" class="nav-link active" data-toggle="czr-pill" role="tab"><?php echo $comments_number ?>&nbsp<?php echo _n( 'comment' , 'comments' , $comments_number, 'customizr' ) ?></a></li>
   <?php endif ?>
   <?php if ( ! empty ( $wp_query->comments_by_type['pings'] ) ) :
     $pings_number = count($wp_query->comments_by_type['pings']);
   ?>
-    <li class="nav-item"><a href="#pinglist-container" class="nav-link" data-toggle="pill" role="tab"><?php echo $pings_number ?>&nbsp<?php echo _n( 'pingback' , 'pingbacks' , $pings_number, 'customizr' ) ?></a></li>
+    <li class="nav-item"><a href="#pinglist-container" class="nav-link" data-toggle="czr-pill" role="tab"><?php echo $pings_number ?>&nbsp<?php echo _n( 'pingback' , 'pingbacks' , $pings_number, 'customizr' ) ?></a></li>
   <?php endif ?>
 </ul>
 <div id="comments" class="tab-content">
