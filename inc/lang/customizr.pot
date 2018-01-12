@@ -1,27 +1,23 @@
+# <!=Copyright (C) 2018 nikeo
+# This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15-beta\n"
+"Project-Id-Version: Customizr 4.0.15-beta\n"
 "Report-Msgid-Bugs-To: http://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-09 15:39:00+00:00\n"
-"PO-Revision-Date: 2015-08-22 17:04+0200\n"
-"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
-"Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
-"Language: ko_KR\n"
+"POT-Creation-Date: 2018-01-10 11:50:17+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: assets\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Nicolas <contact@presscustomizr.com>\n"
+"Language-Team: Customizr translation contributors "
+"<contact@presscustomizr.com>\n"
+"X-Generator: grunt-wp-i18n1.0.1\n"
 
 #: build/free/customizr/core/core-settings-map.php:1579
 #: core/core-settings-map.php:1579
 msgid "1"
-msgstr "1"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1580
 #: core/core-settings-map.php:1580
@@ -51,7 +47,7 @@ msgstr ""
 #: inc/_dev/class-fire-init.php:41 inc/czr-init-ccat.php:313
 #: inc/czr-init-ccat.php:314
 msgid "Right sidebar"
-msgstr "오른쪽 사이드바"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:64
 #: build/free/customizr/core/class-fire-init.php:65
@@ -61,7 +57,7 @@ msgstr "오른쪽 사이드바"
 #: inc/_dev/class-fire-init.php:47 inc/czr-init-ccat.php:319
 #: inc/czr-init-ccat.php:320
 msgid "Left sidebar"
-msgstr "왼쪽 사이드바"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:71
 #: build/free/customizr/core/class-fire-init.php:72
@@ -71,7 +67,7 @@ msgstr "왼쪽 사이드바"
 #: inc/_dev/class-fire-init.php:53 inc/czr-init-ccat.php:325
 #: inc/czr-init-ccat.php:326
 msgid "2 sidebars : Right and Left"
-msgstr "사이드바 2개 : 왼쪽&오른쪽"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:78
 #: build/free/customizr/core/class-fire-init.php:79
@@ -81,13 +77,13 @@ msgstr "사이드바 2개 : 왼쪽&오른쪽"
 #: inc/_dev/class-fire-init.php:59 inc/czr-init-ccat.php:331
 #: inc/czr-init-ccat.php:332
 msgid "No sidebars : full width layout"
-msgstr "사이드바 없음 : 전체 "
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:110
 #: build/free/customizr/inc/czr-init-ccat.php:366 core/class-fire-init.php:110
 #: inc/_dev/class-fire-init.php:93 inc/czr-init-ccat.php:366
 msgid "Footer Widget Area One"
-msgstr "바닥 위젯공간1"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:111
 #: build/free/customizr/core/class-fire-init.php:117
@@ -100,27 +96,26 @@ msgstr "바닥 위젯공간1"
 #: inc/_dev/class-fire-init.php:102 inc/czr-init-ccat.php:367
 #: inc/czr-init-ccat.php:371 inc/czr-init-ccat.php:375
 msgid "Just use it as you want !"
-msgstr "원하는곳에다가 원하는 만큼!"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:116
 #: build/free/customizr/inc/czr-init-ccat.php:370 core/class-fire-init.php:116
 #: inc/_dev/class-fire-init.php:97 inc/czr-init-ccat.php:370
 msgid "Footer Widget Area Two"
-msgstr "바닥 위젯공간2"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-init.php:122
 #: build/free/customizr/inc/czr-init-ccat.php:374 core/class-fire-init.php:122
 #: inc/_dev/class-fire-init.php:101 inc/czr-init-ccat.php:374
 msgid "Footer Widget Area Three"
-msgstr "바닥 위젯공간3"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-plugins_compat.php:372
 #: build/free/customizr/inc/czr-init-ccat.php:839
 #: core/class-fire-plugins_compat.php:372
 #: inc/_dev/class-fire-plugins_compat.php:358 inc/czr-init-ccat.php:839
-#, fuzzy
 msgid "Front page slider name"
-msgstr "Première zone de widgets de page d'accueil"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-plugins_compat.php:374
 #: build/free/customizr/inc/czr-init-ccat.php:841
@@ -149,7 +144,7 @@ msgstr ""
 #: build/free/customizr/core/init-base.php:253 core/class-fire-prevdem.php:280
 #: core/class-fire-prevdem.php:286 core/init-base.php:253
 msgid "Customizr is a clean responsive theme"
-msgstr "Customizr는 심플한 반응형 테마입니다."
+msgstr ""
 
 #: build/free/customizr/core/class-fire-prevdem.php:292
 #: build/free/customizr/core/init-base.php:267 core/class-fire-prevdem.php:292
@@ -158,8 +153,6 @@ msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
 msgstr ""
-"대부분의 레이아웃과 디자인 옵션은 워드프레스 사용자정의를 통해서 수정하실 수 "
-"있습니다!"
 
 #: build/free/customizr/core/class-fire-prevdem.php:316
 #: core/class-fire-prevdem.php:316
@@ -191,9 +184,8 @@ msgstr ""
 #: build/free/customizr/core/class-fire-prevdem.php:420
 #: build/free/customizr/core/class-fire-prevdem.php:442
 #: core/class-fire-prevdem.php:420 core/class-fire-prevdem.php:442
-#, fuzzy
 msgid "Recent Comments"
-msgstr "덧글"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:370
 #: build/free/customizr/inc/czr-init-ccat.php:4211
@@ -204,9 +196,8 @@ msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:520
 #: core/class-fire-resources_scripts.php:520
-#, fuzzy
 msgid "Welcome in the Customizr theme"
-msgstr "Customizr의 고급옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:523
 #: core/class-fire-resources_scripts.php:523
@@ -230,15 +221,13 @@ msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:531
 #: core/class-fire-resources_scripts.php:531
-#, fuzzy
 msgid "Customizr Demo 1"
-msgstr "Customizr의 고급옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:533
 #: core/class-fire-resources_scripts.php:533
-#, fuzzy
 msgid "Customizr Demo 2"
-msgstr "Customizr의 고급옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:536
 #: core/class-fire-resources_scripts.php:536
@@ -253,17 +242,17 @@ msgstr ""
 #: build/free/customizr/core/core-functions.php:1442
 #: core/core-functions.php:1442
 msgid "Page %s"
-msgstr "%s 페이지"
+msgstr ""
 
 #: build/free/customizr/core/core-functions.php:1531
 #: core/core-functions.php:1531
 msgid "&mdash; No slider &mdash;"
-msgstr "&mdash; 슬라이더가 없습니다 &mdash;"
+msgstr ""
 
 #: build/free/customizr/core/core-functions.php:1532
 #: core/core-functions.php:1532
 msgid "&mdash; Demo Slider &mdash;"
-msgstr "&mdash; 데모 슬라이더 &mdash;"
+msgstr ""
 
 #: build/free/customizr/core/core-functions.php:1533
 #: core/core-functions.php:1533
@@ -273,7 +262,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:168
 #: core/core-settings-map.php:168
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "로고 업로드 (지원 포맷 :  .jpg, .png, .gif, svg, svgz)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:169
 #: core/core-settings-map.php:169
@@ -283,19 +272,17 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:186
 #: core/core-settings-map.php:186
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
-msgstr "크기가 폭 250px , 높이 100px로 변경됩니다."
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:191
 #: core/core-settings-map.php:191
-#, fuzzy
 msgid "Uncheck this option to keep your original logo dimensions."
-msgstr "위쪽 테두리의 색을 제거하려면 이 옵션의 체크를 풀어주세요"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:207
 #: core/core-settings-map.php:207
-#, fuzzy
 msgid "Site layout"
-msgstr "디자인과 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:212
 #: build/free/customizr/core/core-settings-map.php:225
@@ -317,15 +304,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:220
 #: core/core-settings-map.php:220
-#, fuzzy
 msgid "Header topbar layout"
-msgstr "디자인과 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:237
 #: core/core-settings-map.php:237
-#, fuzzy
 msgid "Main Header section layout"
-msgstr "디자인과 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:254
 #: core/core-settings-map.php:254
@@ -354,11 +339,11 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:308
 #: core/core-settings-map.php:308
 msgid ""
-"This font picker allows you to preview and select among a handy selection of "
-"font pairs and single fonts. If you choose a pair, the first font will be "
-"applied to the site main headings : site name, site description, titles h1, "
-"h2, h3., while the second will be the default font of your website for any "
-"texts or paragraphs."
+"This font picker allows you to preview and select among a handy selection "
+"of font pairs and single fonts. If you choose a pair, the first font will "
+"be applied to the site main headings : site name, site description, titles "
+"h1, h2, h3., while the second will be the default font of your website for "
+"any texts or paragraphs."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:313
@@ -375,9 +360,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:335
 #: core/core-settings-map.php:335
-#, fuzzy
 msgid "Create and organize your social links"
-msgstr "누리소통망 링크 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:354
 #: core/core-settings-map.php:354
@@ -405,16 +389,15 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:362
 #: core/core-settings-map.php:362
-#, fuzzy
 msgid "Animated underline effect on link hover"
-msgstr "링크오버의 페이트효과"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:362
 #: build/free/customizr/inc/czr-init-ccat.php:2231
 #: core/core-settings-map.php:362
 #: inc/_dev/class-fire-utils_settings_map.php:302 inc/czr-init-ccat.php:2231
 msgid "Fade effect on link hover"
-msgstr "링크오버의 페이트효과"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:383
 #: core/core-settings-map.php:383
@@ -424,9 +407,9 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:387
 #: core/core-settings-map.php:387
 msgid ""
-"If enabled, this option activates a popin window whith a zoom effect when an "
-"image is clicked. Note : to enable this effect on the images of your pages "
-"and posts, images have to be linked to the Media File."
+"If enabled, this option activates a popin window whith a zoom effect when "
+"an image is clicked. Note : to enable this effect on the images of your "
+"pages and posts, images have to be linked to the Media File."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:393
@@ -436,8 +419,7 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:398
 #: core/core-settings-map.php:398
-msgid ""
-"If enabled, your website will include support for high resolution devices."
+msgid "If enabled, your website will include support for high resolution devices."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:399
@@ -534,17 +516,15 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:521
 #: build/free/customizr/core/core-settings-map.php:2114
 #: core/core-settings-map.php:521 core/core-settings-map.php:2114
-#, fuzzy
 msgid "Light"
-msgstr "오른쪽"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:522
 #: build/free/customizr/inc/czr-init-ccat.php:3057
 #: core/core-settings-map.php:522
 #: inc/_dev/class-fire-utils_settings_map.php:1128 inc/czr-init-ccat.php:3057
-#, fuzzy
 msgid "Custom"
-msgstr "사용자정의 CSS"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:531
 #: core/core-settings-map.php:531
@@ -559,12 +539,12 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:551
 #: core/core-settings-map.php:551
 msgid "Display top border"
-msgstr "위의 경계 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:555
 #: core/core-settings-map.php:555
 msgid "Uncheck this option to remove the colored top border."
-msgstr "위쪽 테두리의 색을 제거하려면 이 옵션의 체크를 풀어주세요"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:560
 #: core/core-settings-map.php:560
@@ -573,9 +553,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:573
 #: core/core-settings-map.php:573
-#, fuzzy
 msgid "Sticky header : semi-transparent on scroll"
-msgstr "고정 헤더 : 메뉴 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:583
 #: core/core-settings-map.php:583
@@ -600,17 +579,17 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:614
 #: core/core-settings-map.php:614
 msgid "Logo / title on the left"
-msgstr "로고 / 타이틀 왼쪽에 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:615
 #: core/core-settings-map.php:615
 msgid "Logo / title on the right"
-msgstr "로고 / 타이틀 오른쪽에 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:616
 #: core/core-settings-map.php:616
 msgid "Logo / title centered"
-msgstr "로고 / 타이틀 가운데에 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:620
 #: core/core-settings-map.php:620
@@ -619,9 +598,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:625
 #: core/core-settings-map.php:625
-#, fuzzy
 msgid "Display a topbar"
-msgstr "위의 경계 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:629
 #: core/core-settings-map.php:629
@@ -633,7 +611,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:637
 #: core/core-settings-map.php:637
 msgid "Social links in header"
-msgstr "헤더에 누리소통망링크 넣기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:647
 #: core/core-settings-map.php:647
@@ -644,9 +622,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:650
 #: core/core-settings-map.php:650
-#, fuzzy
 msgid "jump to the topbar option"
-msgstr "타이틀 아이콘 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:657
 #: build/free/customizr/core/core-settings-map.php:679
@@ -661,9 +638,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:657
 #: core/core-settings-map.php:657
-#, fuzzy
 msgid "set the tagline location"
-msgstr "타이틀 아이콘 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:664
 #: build/free/customizr/core/core-settings-map.php:684
@@ -673,9 +649,8 @@ msgstr "타이틀 아이콘 옵션 설정"
 #: core/core-settings-map.php:664 core/core-settings-map.php:684
 #: core/core-settings-map.php:701 core/core-settings-map.php:811
 #: core/core-settings-map.php:853
-#, fuzzy
 msgid "Do not display"
-msgstr "표시하지 않음"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:665
 #: core/core-settings-map.php:665
@@ -700,23 +675,20 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:679
 #: core/core-settings-map.php:679
-#, fuzzy
 msgid "set the search icon location"
-msgstr "타이틀 아이콘 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:685
 #: build/free/customizr/core/core-settings-map.php:702
 #: core/core-settings-map.php:685 core/core-settings-map.php:702
-#, fuzzy
 msgid "Display in the topbar"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:686
 #: build/free/customizr/core/core-settings-map.php:703
 #: core/core-settings-map.php:686 core/core-settings-map.php:703
-#, fuzzy
 msgid "Display in the main header section"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:689
 #: core/core-settings-map.php:689
@@ -730,9 +702,8 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:2507
 #: core/core-settings-map.php:695 core/core-settings-map.php:820
 #: inc/_dev/class-fire-utils_settings_map.php:578 inc/czr-init-ccat.php:2507
-#, fuzzy
 msgid "Display the shopping cart in the header"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:698
 #: build/free/customizr/core/core-settings-map.php:823
@@ -747,9 +718,8 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:712
 #: build/free/customizr/core/core-settings-map.php:831
 #: core/core-settings-map.php:712 core/core-settings-map.php:831
-#, fuzzy
 msgid "Behaviour on scroll"
-msgstr "스크롤 고정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:713
 #: core/core-settings-map.php:713
@@ -786,14 +756,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:732
 #: core/core-settings-map.php:732
-#, fuzzy
 msgid "Main header section"
-msgstr "고정 헤더 : 태그라인 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:740
 #: core/core-settings-map.php:740
 msgid "Sticky header : shrink title / logo"
-msgstr "고정 헤더 : 타이틀/로고 크기 줄이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:749
 #: core/core-settings-map.php:749
@@ -804,9 +773,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:763
 #: core/core-settings-map.php:763
-#, fuzzy
 msgid "Header settings for %s"
-msgstr "Customizr의  설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:763
 #: build/free/customizr/core/core-settings-map.php:764
@@ -837,7 +805,7 @@ msgstr ""
 #: build/free/customizr/core/init-base.php:390 core/core-settings-map.php:769
 #: core/init-base.php:390
 msgid "Main Menu"
-msgstr "메인메뉴"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:770
 #: core/core-settings-map.php:770
@@ -846,9 +814,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:771
 #: core/core-settings-map.php:771
-#, fuzzy
 msgid "Topbar Menu"
-msgstr "메인메뉴"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:774
 #: core/core-settings-map.php:774
@@ -871,15 +838,14 @@ msgstr ""
 #: core/core-settings-map.php:786 core/core-settings-map.php:909
 #: core/core-settings-map.php:951
 msgid "Expand submenus on click"
-msgstr "클릭시 하위메뉴 확장"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:794
 #: build/free/customizr/inc/czr-init-ccat.php:2495
 #: core/core-settings-map.php:794
 #: inc/_dev/class-fire-utils_settings_map.php:566 inc/czr-init-ccat.php:2495
-#, fuzzy
 msgid "Display the tagline in the header"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:806
 #: core/core-settings-map.php:806
@@ -908,15 +874,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:854
 #: core/core-settings-map.php:854
-#, fuzzy
 msgid "Display in the mobile navbar"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:855
 #: core/core-settings-map.php:855
-#, fuzzy
 msgid "Display in the mobile menu"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:878
 #: core/core-settings-map.php:878
@@ -952,8 +916,7 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:898
 #: core/core-settings-map.php:898
-msgid ""
-"Make sure that you have assigned your menus to the relevant locations %s."
+msgid "Make sure that you have assigned your menus to the relevant locations %s."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:901
@@ -991,7 +954,7 @@ msgstr ""
 #: inc/_dev/class-fire-utils_settings_map.php:767 inc/czr-init-ccat.php:2675
 #: inc/czr-init-ccat.php:2696
 msgid "Menu on the left"
-msgstr "왼쪽에 위치"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:923
 #: build/free/customizr/core/core-settings-map.php:937
@@ -1002,7 +965,7 @@ msgstr "왼쪽에 위치"
 #: inc/_dev/class-fire-utils_settings_map.php:769 inc/czr-init-ccat.php:2677
 #: inc/czr-init-ccat.php:2698
 msgid "Menu on the right"
-msgstr "오른쪽에 위치"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:931
 #: build/free/customizr/inc/czr-init-ccat.php:2691
@@ -1021,22 +984,22 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:947
 #: core/core-settings-map.php:947
 msgid "Select a submenu expansion option"
-msgstr "하위메뉴 확장옵션 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:952
 #: core/core-settings-map.php:952
 msgid "Expand submenus on hover"
-msgstr "마우스오버시 하위메뉴 확장"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:959
 #: core/core-settings-map.php:959
 msgid "Reveal the sub-menus blocks with a fade effect"
-msgstr "하위메뉴에 페이드 효과"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:968
 #: core/core-settings-map.php:968
 msgid "Hover move effect for the sub menu items"
-msgstr "서브메뉴의 움직임 효과"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:977
 #: core/core-settings-map.php:977
@@ -1069,9 +1032,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1013
 #: core/core-settings-map.php:1013
-#, fuzzy
 msgid "Set the number of posts to display"
-msgstr "페이지당 게시글 최대 수"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1015
 #: build/free/customizr/core/core-settings-map.php:1020
@@ -1085,44 +1047,43 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1018
 #: core/core-settings-map.php:1018
-#, fuzzy
 msgid "Jump to the blog design options"
-msgstr "타이틀 아이콘 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1031
 #: core/core-settings-map.php:1031
 msgid "Choose content and layout"
-msgstr "컨탠츠와 레이아웃 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1039
 #: core/core-settings-map.php:1039
 msgid "Front page displays"
-msgstr "메인페이지 보기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1044
 #: core/core-settings-map.php:1044
 msgid "Don't show any posts or page"
-msgstr "게시글이나 페이지를 표시하지 않음"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1045
 #: core/core-settings-map.php:1045
 msgid "Your latest posts"
-msgstr "마지막 게시글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1046
 #: core/core-settings-map.php:1046
 msgid "A static page"
-msgstr "정적 페이지"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1052
 #: core/core-settings-map.php:1052
 msgid "Front page"
-msgstr "메인페이지"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1060
 #: core/core-settings-map.php:1060
 msgid "Posts page"
-msgstr "게시글 페이지"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1068
 #: core/core-settings-map.php:1068
@@ -1137,23 +1098,22 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1087
 #: core/core-settings-map.php:1087
 msgid "Set up the front page layout"
-msgstr "메인페이지 레이아웃 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1103
 #: core/core-settings-map.php:1103
 msgid "Slider options"
-msgstr "슬라이더 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1104
 #: core/core-settings-map.php:1104
 msgid "Select front page slider"
-msgstr "메인페이지 슬라이더 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1115
 #: core/core-settings-map.php:1115
-#, fuzzy
 msgid "Number of posts to display"
-msgstr "페이지당 게시글 최대 수"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1121
 #: core/core-settings-map.php:1121
@@ -1177,15 +1137,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1132
 #: core/core-settings-map.php:1132
-#, fuzzy
 msgid "the WordPress documentation."
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1139
 #: core/core-settings-map.php:1139
-#, fuzzy
 msgid "Display the title"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1143
 #: core/core-settings-map.php:1143
@@ -1216,9 +1174,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1162
 #: core/core-settings-map.php:1162
-#, fuzzy
 msgid "Entire slide"
-msgstr "이 슬라이드 편집"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1163
 #: core/core-settings-map.php:1163
@@ -1231,13 +1188,13 @@ msgstr ""
 #: core/core-settings-map.php:1169 core/core-settings-map.php:1287
 #: core/front/template-tags/template-tags.php:122
 msgid "Read more &raquo;"
-msgstr "더 많은 정보 : &raquo;"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1170
 #: build/free/customizr/core/core-settings-map.php:1289
 #: core/core-settings-map.php:1170 core/core-settings-map.php:1289
 msgid "Button text"
-msgstr "버튼 텍스트"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1174
 #: core/core-settings-map.php:1174
@@ -1249,7 +1206,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1181
 #: core/core-settings-map.php:1181
 msgid "Full width slider"
-msgstr "전체 폭 슬라이더"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1185
 #: core/core-settings-map.php:1185
@@ -1259,12 +1216,12 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1193
 #: core/core-settings-map.php:1193
 msgid "Delay between each slides"
-msgstr "각각 슬라이드간의 지연시간"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1198
 #: core/core-settings-map.php:1198
 msgid "in ms : 1000ms = 1s"
-msgstr "기준 : ms(1000ms = 1s)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1204
 #: build/free/customizr/core/czr-admin-ccat.php:1638
@@ -1291,38 +1248,34 @@ msgstr ""
 #: core/czr-customize-ccat.php:1986
 #: inc/_dev/parts/class-content-headings.php:338 inc/czr-front-ccat.php:4317
 msgid "No"
-msgstr "아니오"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1216
 #: core/core-settings-map.php:1216
-#, fuzzy
 msgid "Display navigation dots"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1224
 #: core/core-settings-map.php:1224
-#, fuzzy
 msgid ""
 "When this option is checked, navigation dots are displayed at the bottom of "
 "the home slider."
 msgstr ""
-"이 옵션을 체크할 경우, 게시글에 이런 섬네일들이 표시됩니다: 블로그, 아카이"
-"브, 작성자페이지, 검색 페이지"
 
 #: build/free/customizr/core/core-settings-map.php:1230
 #: core/core-settings-map.php:1230
 msgid "Set slider's height in pixels"
-msgstr "슬라이더 높이(단위 : 픽셀)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1240
 #: core/core-settings-map.php:1240
 msgid "Apply this height to all sliders"
-msgstr "모든 슬라이더에 적용"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1248
 #: core/core-settings-map.php:1248
 msgid "Replace the default image slider's height"
-msgstr "기본 이미지 슬라이더의 높이를 교체"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1254
 #: core/core-settings-map.php:1254
@@ -1330,8 +1283,6 @@ msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
-"이 옵션을 선택하면, 당신의 이미지는 슬라이더의 크기대로 조정됩니다. 이는 전"
-"체 로딩에 좋은영향을 끼칩니다."
 
 #: build/free/customizr/core/core-settings-map.php:1255
 #: core/core-settings-map.php:1255
@@ -1341,28 +1292,28 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1263
 #: core/core-settings-map.php:1263
 msgid "Featured pages options"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1264
 #: core/core-settings-map.php:1264
 msgid "Display home featured pages area"
-msgstr "홈페이지 영역 확인"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1268
 #: core/core-settings-map.php:1268
 msgid "Enable"
-msgstr "활성화"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1269
 #: build/free/customizr/core/core-settings-map.php:1690
 #: core/core-settings-map.php:1269 core/core-settings-map.php:1690
 msgid "Disable"
-msgstr "비활성화"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1278
 #: core/core-settings-map.php:1278
 msgid "Show images"
-msgstr "이미지 보기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1281
 #: core/core-settings-map.php:1281
@@ -1370,13 +1321,11 @@ msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
 msgstr ""
-"이미지 (페이지 편집 화면에서) 각 페이지의 \"기능을 갖춘 이미지\"로 설정됩니"
-"다.기능 페이지 이미지를 사용하지 않도록 위의 옵션을 선택 취소합니다."
 
 #: build/free/customizr/core/core-settings-map.php:1310
 #: core/core-settings-map.php:1310
 msgid "Choose the global default layout"
-msgstr "전체 기본 레이아웃 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1314
 #: core/core-settings-map.php:1314
@@ -1386,24 +1335,24 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1322
 #: core/core-settings-map.php:1322
 msgid "Force default layout everywhere"
-msgstr "모든페이지 기본레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1325
 #: core/core-settings-map.php:1325
 msgid ""
-"This option will override the specific layouts on all posts/pages, including "
-"the front page."
-msgstr "이 옵션은 모든 게시글/페이지에 특정 레이아웃을 우선적용합니다."
+"This option will override the specific layouts on all posts/pages, "
+"including the front page."
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1333
 #: core/core-settings-map.php:1333
 msgid "Choose the posts default layout"
-msgstr "게시글 기본 레이아웃 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1343
 #: core/core-settings-map.php:1343
 msgid "Choose the pages default layout"
-msgstr "페이지 기본 레이아웃 선택"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1349
 #: core/core-settings-map.php:1349
@@ -1453,51 +1402,48 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1378
 #: core/core-settings-map.php:1378
-#, fuzzy
 msgid "Related Posts location"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1395
 #: core/core-settings-map.php:1395
-#, fuzzy
 msgid "Comments location"
-msgstr "덧글옵션 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1431
 #: core/core-settings-map.php:1431
-#, fuzzy
 msgid "Global Post Lists Settings"
-msgstr "글로벌 "
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1432
 #: core/core-settings-map.php:1432
 msgid "Maximum number of posts per page"
-msgstr "페이지당 게시글 최대 수"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1438
 #: core/core-settings-map.php:1438
 msgid ""
 "This option defines the maximum number of posts or search results displayed "
-"in any list of posts of your website : blog page, archive page, search page. "
-"If the number of items to displayed is greater than your setting, the theme "
-"will automatically add a pagination link block at the bottom of the page."
+"in any list of posts of your website : blog page, archive page, search "
+"page. If the number of items to displayed is greater than your setting, the "
+"theme will automatically add a pagination link block at the bottom of the "
+"page."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1448
 #: core/core-settings-map.php:1448
-#, fuzzy
 msgid "Set the excerpt length (in number of words) "
-msgstr "길이 설정(글자수)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1462
 #: core/core-settings-map.php:1462
 msgid "Thumbnails options"
-msgstr "섬네일 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1463
 #: core/core-settings-map.php:1463
 msgid "Display the post thumbnails"
-msgstr "게시글 섬네일 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1467
 #: core/core-settings-map.php:1467
@@ -1505,8 +1451,6 @@ msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
 msgstr ""
-"이 옵션을 체크할 경우, 게시글에 이런 섬네일들이 표시됩니다: 블로그, 아카이"
-"브, 작성자페이지, 검색 페이지"
 
 #: build/free/customizr/core/core-settings-map.php:1467
 #: core/core-settings-map.php:1467
@@ -1515,11 +1459,10 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1472
 #: core/core-settings-map.php:1472
-#, fuzzy
 msgid ""
 "If no featured image is set for a post, use the last image attached to this "
 "post."
-msgstr "특별히 이미지를 첨부하지 않으면 게시글에 첨부된 이미지를 사용"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1482
 #: core/core-settings-map.php:1482
@@ -1555,13 +1498,13 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2158
 #: core/core-settings-map.php:1502 core/core-settings-map.php:2158
 msgid "Right"
-msgstr "오른쪽"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1503
 #: build/free/customizr/core/core-settings-map.php:2157
 #: core/core-settings-map.php:1503 core/core-settings-map.php:2157
 msgid "Left"
-msgstr "왼쪽"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1510
 #: core/core-settings-map.php:1510
@@ -1575,9 +1518,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1520
 #: core/core-settings-map.php:1520
-#, fuzzy
 msgid "Category pages titles"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1529
 #: core/core-settings-map.php:1529
@@ -1598,15 +1540,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1547
 #: core/core-settings-map.php:1547
-#, fuzzy
 msgid "Search results page titles"
-msgstr "Rechercher dans les diapositives"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1558
 #: core/core-settings-map.php:1558
-#, fuzzy
 msgid "Post List Design"
-msgstr "글로벌 "
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1559
 #: core/core-settings-map.php:1559
@@ -1620,9 +1560,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1564
 #: core/core-settings-map.php:1564
-#, fuzzy
 msgid "Grid layout"
-msgstr "디자인과 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1566
 #: core/core-settings-map.php:1566
@@ -1631,8 +1570,7 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1570
 #: core/core-settings-map.php:1570
-msgid ""
-"When you select the grid Layout, the post content is limited to the excerpt."
+msgid "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1575
@@ -1681,15 +1619,14 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1652
 #: build/free/customizr/core/core-settings-map.php:1711
 #: core/core-settings-map.php:1652 core/core-settings-map.php:1711
-#, fuzzy
 msgid "Featured Image"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1656
 #: build/free/customizr/core/core-settings-map.php:1715
 #: core/core-settings-map.php:1656 core/core-settings-map.php:1715
 msgid "Don't display"
-msgstr "표시하지 않음"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1657
 #: build/free/customizr/core/core-settings-map.php:1716
@@ -1744,9 +1681,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1684
 #: core/core-settings-map.php:1684
-#, fuzzy
 msgid "Related posts"
-msgstr "마지막 게시글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1685
 #: core/core-settings-map.php:1685
@@ -1785,7 +1721,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1754
 #: core/core-settings-map.php:1754
 msgid "Display Breadcrumb"
-msgstr "이동경로 확인"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1763
 #: core/core-settings-map.php:1763
@@ -1826,9 +1762,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1804
 #: core/core-settings-map.php:1804
-#, fuzzy
 msgid "Yoast SEO breadcrumbs settings"
-msgstr "작성자"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1823
 #: core/core-settings-map.php:1823
@@ -1880,21 +1815,18 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1881
 #: core/core-settings-map.php:1881
-#, fuzzy
 msgid "Display the author"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1889
 #: core/core-settings-map.php:1889
-#, fuzzy
 msgid "Display the publication date"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1899
 #: core/core-settings-map.php:1899
-#, fuzzy
 msgid "Display the update date"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1918
 #: core/core-settings-map.php:1918
@@ -1928,9 +1860,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1958
 #: core/core-settings-map.php:1958
-#, fuzzy
 msgid "Display the number of comments below the post titles"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1958
 #: core/core-settings-map.php:1958
@@ -1939,14 +1870,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1966
 #: core/core-settings-map.php:1966
-#, fuzzy
 msgid "Other comments settings"
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1967
 #: core/core-settings-map.php:1967
 msgid "Enable comments on pages"
-msgstr "페이지에 댓글 활성화"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1972
 #: core/core-settings-map.php:1972
@@ -1957,21 +1887,18 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1973
 #: core/core-settings-map.php:1973
-#, fuzzy
 msgid "You can also change other comments settings in :"
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1975
 #: core/core-settings-map.php:1975
-#, fuzzy
 msgid "the discussion settings page."
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1981
 #: core/core-settings-map.php:1981
-#, fuzzy
 msgid "Enable comments on posts"
-msgstr "페이지에 댓글 활성화"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1986
 #: core/core-settings-map.php:1986
@@ -1982,34 +1909,30 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1988
 #: core/core-settings-map.php:1988
-#, fuzzy
 msgid "post screen"
-msgstr "게시글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1989
 #: core/core-settings-map.php:1989
-#, fuzzy
 msgid "You can also change other comments settings in the"
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1991
 #: core/core-settings-map.php:1991
-#, fuzzy
 msgid "discussion settings page."
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1997
 #: core/core-settings-map.php:1997
-#, fuzzy
 msgid "Display the comment list"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2001
 #: core/core-settings-map.php:2001
 msgid ""
 "By default, WordPress displays the past comments, even if comments are "
-"disabled in posts or pages. Unchecking this option allows you to not display "
-"this comment history."
+"disabled in posts or pages. Unchecking this option allows you to not "
+"display this comment history."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2016
@@ -2044,23 +1967,22 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2069
 #: core/core-settings-map.php:2069
 msgid "Social links in left sidebar"
-msgstr "왼쪽 사이드바에 누리소통망링크 넣기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2082
 #: core/core-settings-map.php:2082
 msgid "Social links in right sidebar"
-msgstr "오른쪽 사이드바에 누리소통망링크 넣기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2111
 #: core/core-settings-map.php:2111
-#, fuzzy
 msgid "Footer style"
-msgstr "바닥글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2122
 #: core/core-settings-map.php:2122
 msgid "Social links in footer"
-msgstr "바닥글에 누리소통망링크 넣기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2135
 #: core/core-settings-map.php:2135
@@ -2070,8 +1992,8 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2140
 #: core/core-settings-map.php:2140
 msgid ""
-"Enabling this option will glue your footer to the bottom of the screen, when "
-"pages are shorter than the viewport's height."
+"Enabling this option will glue your footer to the bottom of the screen, "
+"when pages are shorter than the viewport's height."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2145
@@ -2108,17 +2030,15 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2208
 #: core/core-settings-map.php:2208
-#, fuzzy
 msgid "Performance : use the minified CSS stylesheets"
-msgstr "성능 : 최소한의 CSS 스타일시트 사용"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2211
 #: core/core-settings-map.php:2211
-#, fuzzy
 msgid ""
 "Using the minified version of the stylesheets will speed up your webpage "
 "load time."
-msgstr "최소한의 스킨 스타일시트를 사용하여서 로딩시간을 단축합니다"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2215
 #: core/core-settings-map.php:2215
@@ -2154,8 +2074,8 @@ msgstr ""
 #: core/core-settings-map.php:2249
 msgid ""
 "When this option is enabled, various help notices and some placeholder "
-"blocks are displayed on the front-end of your website. They are only visible "
-"by logged in users with administration capabilities."
+"blocks are displayed on the front-end of your website. They are only "
+"visible by logged in users with administration capabilities."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2262
@@ -2210,9 +2130,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2307
 #: core/core-settings-map.php:2307
-#, fuzzy
 msgid "Select a design style for the theme"
-msgstr "Customizr의 스킨을 선택해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2311
 #: core/core-settings-map.php:2311
@@ -2233,9 +2152,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2317
 #: core/core-settings-map.php:2317
-#, fuzzy
 msgid "Appearance > themes"
-msgstr "Gérer les widgets"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2319
 #: core/core-settings-map.php:2319
@@ -2248,7 +2166,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2339
 #: core/core-settings-map.php:2339
 msgid "Global settings"
-msgstr "글로벌 "
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2340
 #: core/core-settings-map.php:2340
@@ -2267,14 +2185,12 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2353
 #: core/core-settings-map.php:2353
-#, fuzzy
 msgid "Main Content"
-msgstr "메인메뉴"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2354
 #: core/core-settings-map.php:2354
-msgid ""
-"Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
+msgid "Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2360
@@ -2285,7 +2201,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2366
 #: core/core-settings-map.php:2366
 msgid "Footer"
-msgstr "바닥글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2367
 #: core/core-settings-map.php:2367
@@ -2295,7 +2211,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2373
 #: core/core-settings-map.php:2373
 msgid "Advanced options"
-msgstr "고급 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2374
 #: core/core-settings-map.php:2374
@@ -2305,8 +2221,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2445
 #: core/core-settings-map.php:2445
 msgid "Your theme supports %s menu. Select which menu you would like to use."
-msgid_plural ""
-"Your theme supports %s menus. Select which menu appears in each location."
+msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -2335,9 +2250,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2486
 #: core/core-settings-map.php:2486
-#, fuzzy
 msgid "Site Layout"
-msgstr "레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2491
 #: core/core-settings-map.php:2491
@@ -2359,7 +2273,7 @@ msgstr ""
 #: core/core-settings-map.php:2503
 #: inc/_dev/class-fire-utils_settings_map.php:1191 inc/czr-init-ccat.php:3120
 msgid "Social links"
-msgstr "누리소통망 링크"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2509
 #: core/core-settings-map.php:2509
@@ -2369,13 +2283,12 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2515
 #: core/core-settings-map.php:2515
 msgid "Image settings"
-msgstr "이미지 "
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2526
 #: core/core-settings-map.php:2526
-#, fuzzy
 msgid "Sliders options"
-msgstr "슬라이더 옵션"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2532
 #: core/core-settings-map.php:2532
@@ -2389,15 +2302,13 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2548
 #: core/core-settings-map.php:2548
-#, fuzzy
 msgid "Header design and layout"
-msgstr "디자인과 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2548
 #: core/core-settings-map.php:2548
-#, fuzzy
 msgid "General design settings"
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2553
 #: core/core-settings-map.php:2553
@@ -2416,19 +2327,18 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2575
 #: core/core-settings-map.php:2575
-#, fuzzy
 msgid "Front Page Content"
-msgstr "메인화면"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2588
 #: core/core-settings-map.php:2588
 msgid "Pages &amp; Posts Layout"
-msgstr "페이지 &amp; 포스트 레이아웃"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2595
 #: core/core-settings-map.php:2595
 msgid "Post lists : blog, archives, ..."
-msgstr "게시글 리스트 : 블로그, 아카이브, ..."
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2601
 #: core/core-settings-map.php:2601
@@ -2443,7 +2353,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2613
 #: core/core-settings-map.php:2613
 msgid "Breadcrumb"
-msgstr "경로"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2619
 #: core/core-settings-map.php:2619
@@ -2458,7 +2368,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2631
 #: core/core-settings-map.php:2631
 msgid "Comments"
-msgstr "덧글"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2642
 #: core/core-settings-map.php:2642
@@ -2478,7 +2388,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2673
 #: core/core-settings-map.php:2673
 msgid "Custom CSS"
-msgstr "사용자정의 CSS"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2678
 #: core/core-settings-map.php:2678
@@ -2504,15 +2414,13 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:385
 #: core/_dev/_admin/class-fire-admin_init.php:385
 #: core/core-settings-map.php:2711 core/czr-admin-ccat.php:385
-#, fuzzy
 msgid "Upgrade to Customizr Pro"
-msgstr "Customizr %s에 오신것을 환영합니다!"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2712
 #: core/core-settings-map.php:2712
-#, fuzzy
 msgid "Discover the features and benefits"
-msgstr "기능 둘러보기"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2714
 #: core/core-settings-map.php:2714
@@ -2522,53 +2430,49 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:2754
 #: core/core-settings-map.php:2754
 msgid "Home featured page one"
-msgstr "홈 기능 페이지 1"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2755
 #: core/core-settings-map.php:2755
 msgid "Home featured page two"
-msgstr "홈 기능 페이지 2"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2756
 #: core/core-settings-map.php:2756
 msgid "Home featured page three"
-msgstr "홈 기능 페이지 3"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2759
 #: core/core-settings-map.php:2759
-#, fuzzy
 msgid "Featured text one (200 char. max)"
-msgstr "기능 택스트1(최대 한글 100글자,영숫자 200글자)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2760
 #: core/core-settings-map.php:2760
-#, fuzzy
 msgid "Featured text two (200 char. max)"
-msgstr "기능 택스트2(최대 한글 100글자,영숫자 200글자)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2761
 #: core/core-settings-map.php:2761
-#, fuzzy
 msgid "Featured text three (200 char. max)"
-msgstr "기능 택스트3(최대 한글 100글자,영숫자 200글자)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2778
 #: core/core-settings-map.php:2778
 msgid "Custom featured page %1$s"
-msgstr "사용자 정의 기능페이지 %1$s"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2794
 #: core/core-settings-map.php:2794
-#, fuzzy
 msgid "Featured text %1$s (200 char. max)"
-msgstr "기능 택스트 %1$s (최대 한글 100글자,영숫자 200글자)"
+msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2797
 #: core/core-settings-map.php:2797
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
-msgstr "먼저 페이지를 선택한후에 페이지를 발행하기 위해서 필드를 비워주세요"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:370
 #: core/_dev/_admin/class-fire-admin_init.php:370 core/czr-admin-ccat.php:370
@@ -2608,7 +2512,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:511
 #: core/_dev/_admin/class-fire-admin_page.php:43 core/czr-admin-ccat.php:511
 msgid "About Customizr"
-msgstr "Customizr이란?"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:543
 #: core/_dev/_admin/class-fire-admin_page.php:75 core/czr-admin-ccat.php:543
@@ -2634,9 +2538,8 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:568
 #: core/_dev/_admin/class-fire-admin_page.php:100 core/czr-admin-ccat.php:568
-#, fuzzy
 msgid "Read the changelog"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:581
 #: core/_dev/_admin/class-fire-admin_page.php:113 core/czr-admin-ccat.php:581
@@ -2684,9 +2587,8 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:625
 #: core/_dev/_admin/class-fire-admin_page.php:157 core/czr-admin-ccat.php:625
-#, fuzzy
 msgid "Discover Customizr Pro"
-msgstr "Customizr %s에 오신것을 환영합니다!"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:635
 #: core/_dev/_admin/class-fire-admin_page.php:167 core/czr-admin-ccat.php:635
@@ -2696,12 +2598,12 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:635
 #: core/_dev/_admin/class-fire-admin_page.php:167 core/czr-admin-ccat.php:635
 msgid "Go to Dashboard"
-msgstr "대쉬보드로 가기"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:687
 #: core/_dev/_admin/class-fire-admin_page.php:219 core/czr-admin-ccat.php:687
 msgid "Changelog in version %1$s"
-msgstr "%1$s버전의 변경사항"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:704
 #: core/_dev/_admin/class-fire-admin_page.php:236 core/czr-admin-ccat.php:704
@@ -2752,15 +2654,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:872
 #: core/_dev/_admin/class-fire-admin_page.php:404 core/czr-admin-ccat.php:872
-#, fuzzy
 msgid "Read the full article"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:873
 #: core/_dev/_admin/class-fire-admin_page.php:405 core/czr-admin-ccat.php:873
-#, fuzzy
 msgid "read more"
-msgstr "더 많은 정보 : &raquo;"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:896
 #: core/_dev/_admin/class-fire-admin_page.php:428 core/czr-admin-ccat.php:896
@@ -2788,7 +2688,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:1162
 #: core/_dev/_admin/class-admin-meta_boxes.php:250 core/czr-admin-ccat.php:1162
 msgid "Layout Options"
-msgstr "레이아웃 옵션"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1175
 #: build/free/customizr/core/czr-admin-ccat.php:2009
@@ -2796,13 +2696,12 @@ msgstr "레이아웃 옵션"
 #: core/_dev/_admin/class-admin-meta_boxes.php:1097
 #: core/czr-admin-ccat.php:1175 core/czr-admin-ccat.php:2009
 msgid "Slider Options"
-msgstr "슬라이더 옵션"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1187
 #: core/_dev/_admin/class-admin-meta_boxes.php:275 core/czr-admin-ccat.php:1187
-#, fuzzy
 msgid "Format: link"
-msgstr "링크 없음"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1199
 #: core/_dev/_admin/class-admin-meta_boxes.php:287 core/czr-admin-ccat.php:1199
@@ -2826,15 +2725,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1260
 #: core/_dev/_admin/class-admin-meta_boxes.php:348 core/czr-admin-ccat.php:1260
-#, fuzzy
 msgid "Enter the title"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1276
 #: core/_dev/_admin/class-admin-meta_boxes.php:364 core/czr-admin-ccat.php:1276
-#, fuzzy
 msgid "Link URL"
-msgstr "링크"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1281
 #: core/_dev/_admin/class-admin-meta_boxes.php:369 core/czr-admin-ccat.php:1281
@@ -2843,9 +2740,8 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1308
 #: core/_dev/_admin/class-admin-meta_boxes.php:396 core/czr-admin-ccat.php:1308
-#, fuzzy
 msgid "Quote text"
-msgstr "버튼 텍스트"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1313
 #: core/_dev/_admin/class-admin-meta_boxes.php:401 core/czr-admin-ccat.php:1313
@@ -2854,15 +2750,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1328
 #: core/_dev/_admin/class-admin-meta_boxes.php:416 core/czr-admin-ccat.php:1328
-#, fuzzy
 msgid "Quote author"
-msgstr "작성자"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1334
 #: core/_dev/_admin/class-admin-meta_boxes.php:422 core/czr-admin-ccat.php:1334
-#, fuzzy
 msgid "Enter the author"
-msgstr "태그라인 표시"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1361
 #: core/_dev/_admin/class-admin-meta_boxes.php:449 core/czr-admin-ccat.php:1361
@@ -2892,14 +2786,14 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:1445
 #: core/_dev/_admin/class-admin-meta_boxes.php:533 core/czr-admin-ccat.php:1445
 msgid "pages"
-msgstr "페이지"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1445
 #: build/free/customizr/templates/parts/content/singular/authors/author_info.php:15
 #: core/_dev/_admin/class-admin-meta_boxes.php:533 core/czr-admin-ccat.php:1445
 #: templates/parts/content/singular/authors/author_info.php:15
 msgid "posts"
-msgstr "게시글"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1448
 #: core/_dev/_admin/class-admin-meta_boxes.php:536 core/czr-admin-ccat.php:1448
@@ -2933,12 +2827,12 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:1457
 #: core/_dev/_admin/class-admin-meta_boxes.php:545 core/czr-admin-ccat.php:1457
 msgid "Default layout %1s"
-msgstr "기본 레이아웃 %1s"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1503
 #: core/_dev/_admin/class-admin-meta_boxes.php:591 core/czr-admin-ccat.php:1503
 msgid "Add a slider to this post/page"
-msgstr "게시글/페이지에 슬라이더 추가"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1581
 #: build/free/customizr/core/czr-admin-ccat.php:2234
@@ -2946,7 +2840,7 @@ msgstr "게시글/페이지에 슬라이더 추가"
 #: core/_dev/_admin/class-admin-meta_boxes.php:1322
 #: core/czr-admin-ccat.php:1581 core/czr-admin-ccat.php:2234
 msgid "Choose a slider"
-msgstr "슬라이더 선택"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1587
 #: build/free/customizr/core/czr-admin-ccat.php:2249
@@ -2954,7 +2848,7 @@ msgstr "슬라이더 선택"
 #: core/_dev/_admin/class-admin-meta_boxes.php:1337
 #: core/czr-admin-ccat.php:1587 core/czr-admin-ccat.php:2249
 msgid "&mdash; Select a slider &mdash; "
-msgstr "&mdash; 슬라이더 선택 &mdash; "
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1610
 #: core/_dev/_admin/class-admin-meta_boxes.php:698 core/czr-admin-ccat.php:1610
@@ -2984,7 +2878,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1346
 #: core/czr-admin-ccat.php:1672 core/czr-admin-ccat.php:2258
 msgid "Delete this slider"
-msgstr "이 슬라이더 삭제"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1677
 #: build/free/customizr/core/czr-admin-ccat.php:2262
@@ -3002,7 +2896,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1353
 #: core/czr-admin-ccat.php:1680 core/czr-admin-ccat.php:2265
 msgid "Delete slider"
-msgstr "슬라이더 삭제"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1691
 #: build/free/customizr/core/czr-customize-ccat.php:1084
@@ -3010,17 +2904,15 @@ msgstr "슬라이더 삭제"
 #: core/_dev/_czr/controls/class-base-control.php:68
 #: core/czr-admin-ccat.php:1691 core/czr-customize-ccat.php:1084
 msgid ""
-"You haven't create any slider yet. Go to the media library, edit your images "
-"and add them to your sliders."
+"You haven't create any slider yet. Go to the media library, edit your "
+"images and add them to your sliders."
 msgstr ""
-"당신은 아직 어떠한 슬라이더도 만들지 않았습니다. 미디어 라이브러리에 가셔서, "
-"이미지와 당신의 슬라이더를 편집해보세요."
 
 #: build/free/customizr/core/czr-admin-ccat.php:2036
 #: core/_dev/_admin/class-admin-meta_boxes.php:1124
 #: core/czr-admin-ccat.php:2036
 msgid "Add to a slider"
-msgstr "슬라이더 추가"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2038
 #: core/_dev/_admin/class-admin-meta_boxes.php:1126
@@ -3031,29 +2923,26 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2171
 #: core/_dev/_admin/class-admin-meta_boxes.php:1259
 #: core/czr-admin-ccat.php:2171
-#, fuzzy
 msgid "Title text (80 char. max length)"
-msgstr "타이틀 택스트(최대 한글 40글자,영숫자 80글자)"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2178
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
 #: core/czr-admin-ccat.php:2178
-#, fuzzy
 msgid "Description text (below the title, 250 char. max length)"
-msgstr "설명 택스트(제목아래,최대 한글 125자,영숫자 250자)"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2185
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
 #: core/czr-admin-ccat.php:2185
 msgid "Title and text color"
-msgstr "타이틀과 텍스트 색상"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2193
 #: core/_dev/_admin/class-admin-meta_boxes.php:1281
 #: core/czr-admin-ccat.php:2193
-#, fuzzy
 msgid "Button text (80 char. max length)"
-msgstr "버튼 택스트(최대 한글40자,영숫자 80자)"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2200
 #: core/_dev/_admin/class-admin-meta_boxes.php:1288
@@ -3065,7 +2954,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1293
 #: core/czr-admin-ccat.php:2205
 msgid "No link"
-msgstr "링크 없음"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2214
 #: core/_dev/_admin/class-admin-meta_boxes.php:1302
@@ -3093,7 +2982,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1372
 #: core/czr-admin-ccat.php:2255 core/czr-admin-ccat.php:2284
 msgid "Add a slider"
-msgstr "슬라이더 추가"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2282
 #: core/_dev/_admin/class-admin-meta_boxes.php:1370
@@ -3107,15 +2996,15 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1496
 #: core/czr-admin-ccat.php:2408
 msgid ""
-"This slider has not slides to show. Go to the media library and start adding "
-"images to it."
+"This slider has not slides to show. Go to the media library and start "
+"adding images to it."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2418
 #: core/_dev/_admin/class-admin-meta_boxes.php:1506
 #: core/czr-admin-ccat.php:2418
 msgid "Slide Image"
-msgstr "슬라이더 이미지"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2419
 #: build/free/customizr/core/czr-customize-ccat.php:2148
@@ -3123,19 +3012,19 @@ msgstr "슬라이더 이미지"
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:56
 #: core/czr-admin-ccat.php:2419 core/czr-customize-ccat.php:2148
 msgid "Title"
-msgstr "타이틀"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2420
 #: core/_dev/_admin/class-admin-meta_boxes.php:1508
 #: core/czr-admin-ccat.php:2420
 msgid "Slide Text"
-msgstr "슬라이더 택스트"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2421
 #: core/_dev/_admin/class-admin-meta_boxes.php:1509
 #: core/czr-admin-ccat.php:2421
 msgid "Button Text"
-msgstr "버튼 택스트"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2422
 #: core/_dev/_admin/class-admin-meta_boxes.php:1510
@@ -3191,33 +3080,34 @@ msgstr ""
 #: inc/czr-front-ccat.php:3815 inc/czr-front-ccat.php:4220
 #: inc/czr-front-ccat.php:8961
 msgid "Edit"
-msgstr "편집"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2465
 #: core/_dev/_admin/class-admin-meta_boxes.php:1553
 #: core/czr-admin-ccat.php:2465
 msgid "No Image Selected"
-msgstr "이미지가 선택되지 않았습니다"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2491
 #: core/_dev/_admin/class-admin-meta_boxes.php:1579
 #: core/czr-admin-ccat.php:2491
 msgid "Edit this slide"
-msgstr "이 슬라이드 편집"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2493
 #: core/_dev/_admin/class-admin-meta_boxes.php:1581
 #: core/czr-admin-ccat.php:2493
 msgid "Current slide"
-msgstr "현재 슬라이드"
+msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2504
 #: core/_dev/_admin/class-admin-meta_boxes.php:1592
 #: core/czr-admin-ccat.php:2504
 msgid ""
-"To add another slide : navigate to your media library (click on Media), open "
-"the edit screen of an image ( or add a new image ), and add it to your "
-"desired slider by using the dedicated option block at the bottom of the page."
+"To add another slide : navigate to your media library (click on Media), "
+"open the edit screen of an image ( or add a new image ), and add it to your "
+"desired slider by using the dedicated option block at the bottom of the "
+"page."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2505
@@ -3229,15 +3119,13 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2507
 #: core/_dev/_admin/class-admin-meta_boxes.php:1595
 #: core/czr-admin-ccat.php:2507
-#, fuzzy
 msgid "Slider documentation"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:612
 #: core/_dev/_czr/class-czr-init.php:612 core/czr-customize-ccat.php:612
-#, fuzzy
 msgid "More grid design options"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:623
 #: core/_dev/_czr/class-czr-init.php:623 core/czr-customize-ccat.php:623
@@ -3249,7 +3137,7 @@ msgstr ""
 #: core/_dev/_czr/class-czr-init.php:634 core/_dev/_czr/class-czr-init.php:635
 #: core/czr-customize-ccat.php:634 core/czr-customize-ccat.php:635
 msgid "Upgrade WP"
-msgstr "WP 업로드"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:654
 #: core/_dev/_czr/class-czr-init.php:654 core/czr-customize-ccat.php:654
@@ -3285,15 +3173,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:983
 #: core/_dev/_czr/class-czr-resources.php:317 core/czr-customize-ccat.php:983
-#, fuzzy
 msgid "Select a social icon"
-msgstr "누리소통망 링크 설정"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:984
 #: core/_dev/_czr/class-czr-resources.php:318 core/czr-customize-ccat.php:984
-#, fuzzy
 msgid "Follow us on"
-msgstr "제 텀블러를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:985
 #: core/_dev/_czr/class-czr-resources.php:319 core/czr-customize-ccat.php:985
@@ -3310,9 +3196,8 @@ msgstr ""
 #: core/_dev/_czr/class-czr-resources.php:321
 #: core/_dev/_czr/class-czr-resources.php:341 core/czr-customize-ccat.php:987
 #: core/czr-customize-ccat.php:1007
-#, fuzzy
 msgid "Learn more about this in the documentation"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:990
 #: core/_dev/_czr/class-czr-resources.php:324 core/czr-customize-ccat.php:990
@@ -3326,9 +3211,8 @@ msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:993
 #: core/_dev/_czr/class-czr-resources.php:327 core/czr-customize-ccat.php:993
-#, fuzzy
 msgid "Slide"
-msgstr "슬라이더 택스트"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:994
 #: core/_dev/_czr/class-czr-resources.php:328 core/czr-customize-ccat.php:994
@@ -3339,8 +3223,7 @@ msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:996
 #: core/_dev/_czr/class-czr-resources.php:330 core/czr-customize-ccat.php:996
-msgid ""
-"The side on which the menu is revealed depends on the choosen header layout."
+msgid "The side on which the menu is revealed depends on the choosen header layout."
 msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:997
@@ -3360,9 +3243,8 @@ msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1008
 #: core/_dev/_czr/class-czr-resources.php:342 core/czr-customize-ccat.php:1008
-#, fuzzy
 msgid "Settings"
-msgstr "이미지 "
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1009
 #: core/_dev/_czr/class-czr-resources.php:343 core/czr-customize-ccat.php:1009
@@ -3373,21 +3255,19 @@ msgstr ""
 #: core/_dev/_czr/controls/class-base-control.php:70
 #: core/czr-customize-ccat.php:1086
 msgid "Create a slider"
-msgstr "슬라이더 생성"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1087
 #: core/_dev/_czr/controls/class-base-control.php:71
 #: core/czr-customize-ccat.php:1087
-#, fuzzy
 msgid "Need help to create a slider ?"
-msgstr "슬라이더 생성"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1089
 #: core/_dev/_czr/controls/class-base-control.php:73
 #: core/czr-customize-ccat.php:1089
-#, fuzzy
 msgid "Check the documentation"
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1597
 #: core/_dev/_czr/controls/class-modules-control.php:60
@@ -3405,7 +3285,7 @@ msgstr ""
 #: core/_dev/_czr/controls/class-upload-control.php:67
 #: core/czr-customize-ccat.php:1711
 msgid "Upload"
-msgstr "업로드"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1712
 #: build/free/customizr/core/czr-customize-ccat.php:1994
@@ -3418,7 +3298,7 @@ msgstr "업로드"
 #: core/czr-customize-ccat.php:1712 core/czr-customize-ccat.php:1994
 #: core/czr-customize-ccat.php:2065 core/czr-customize-ccat.php:2232
 msgid "Remove"
-msgstr "삭제"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1785
 #: core/_dev/_czr/panels/class-panels.php:63 core/czr-customize-ccat.php:1785
@@ -3440,9 +3320,8 @@ msgstr ""
 #: build/free/customizr/core/czr-customize-ccat.php:1978
 #: core/_dev/_czr/tmpl/modules/all-modules-tmpl.php:16
 #: core/czr-customize-ccat.php:1978
-#, fuzzy
 msgid "Add it"
-msgstr "Gérer les widgets"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:1985
 #: core/_dev/_czr/tmpl/modules/all-modules-tmpl.php:23
@@ -3459,9 +3338,8 @@ msgstr ""
 #: build/free/customizr/core/czr-customize-ccat.php:2108
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:16
 #: core/czr-customize-ccat.php:2108
-#, fuzzy
 msgid "Social link url"
-msgstr "누리소통망 링크"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2110
 #: build/free/customizr/core/czr-customize-ccat.php:2143
@@ -3494,23 +3372,20 @@ msgstr ""
 #: build/free/customizr/core/czr-customize-ccat.php:2134
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:42
 #: core/czr-customize-ccat.php:2134
-#, fuzzy
 msgid "Social icon"
-msgstr "누리소통망 링크"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2141
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:49
 #: core/czr-customize-ccat.php:2141
-#, fuzzy
 msgid "Social link"
-msgstr "누리소통망 링크"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2150
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:58
 #: core/czr-customize-ccat.php:2150
-#, fuzzy
 msgid "Enter a title"
-msgstr "기능 페이지 옵션"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2152
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:60
@@ -3545,25 +3420,22 @@ msgstr ""
 #: build/free/customizr/core/czr-customize-ccat.php:2170
 #: core/_dev/_czr/tmpl/modules/social-module-tmpl.php:78
 #: core/czr-customize-ccat.php:2170
-#, fuzzy
 msgid "Check this option to open the link in a another tab of the browser."
-msgstr "위쪽 테두리의 색을 제거하려면 이 옵션의 체크를 풀어주세요"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2230
 #: build/free/customizr/core/czr-customize-ccat.php:2235
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:55
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:60
 #: core/czr-customize-ccat.php:2230 core/czr-customize-ccat.php:2235
-#, fuzzy
 msgid "Select Image"
-msgstr "슬라이더 이미지"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2231
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:56
 #: core/czr-customize-ccat.php:2231
-#, fuzzy
 msgid "Change Image"
-msgstr "슬라이더 이미지"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2233
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:58
@@ -3574,16 +3446,14 @@ msgstr ""
 #: build/free/customizr/core/czr-customize-ccat.php:2234
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:59
 #: core/czr-customize-ccat.php:2234
-#, fuzzy
 msgid "No image selected"
-msgstr "이미지가 선택되지 않았습니다"
+msgstr ""
 
 #: build/free/customizr/core/czr-customize-ccat.php:2236
 #: core/_dev/_czr/tmpl/inputs/img-uploader-tmpl.php:61
 #: core/czr-customize-ccat.php:2236
-#, fuzzy
 msgid "Choose Image"
-msgstr "슬라이더 선택"
+msgstr ""
 
 #: build/free/customizr/core/front/models/content/common/text/class-model-quote.php:157
 #: build/free/customizr/templates/parts/modules/grid/grid_item.php:27
@@ -3596,21 +3466,18 @@ msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/headings/class-model-archive_heading.php:55
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:55
-#, fuzzy
 msgid "Daily Archives:"
-msgstr "태그 아카이브:"
+msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/headings/class-model-archive_heading.php:56
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:56
-#, fuzzy
 msgid "Monthly Archives:"
-msgstr "카테고리 아카이브:"
+msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/headings/class-model-archive_heading.php:57
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:57
-#, fuzzy
 msgid "Yearly Archives:"
-msgstr "카테고리 아카이브:"
+msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
 #: build/free/customizr/inc/czr-front-ccat.php:4653
@@ -3708,7 +3575,7 @@ msgstr ""
 #: core/front/template-tags/template-tags.php:205
 #: inc/_dev/parts/class-header-menu.php:199 inc/czr-front-ccat.php:890
 msgid "Add a menu"
-msgstr "메뉴 "
+msgstr ""
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:200
 #: build/free/customizr/core/front/template-tags/template-tags.php:206
@@ -3733,7 +3600,7 @@ msgstr ""
 #: inc/_dev/parts/class-header-menu.php:774 inc/czr-front-ccat.php:1465
 #: inc/czr-front-ccat.php:2008 inc/czr-front-ccat.php:2020
 msgid "Home"
-msgstr "홈"
+msgstr ""
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:322
 #: build/free/customizr/inc/czr-front-ccat.php:1513
@@ -3885,7 +3752,7 @@ msgstr ""
 #: core/front/models/modules/common/class-model-breadcrumb.php:570
 #: inc/_dev/parts/class-content-breadcrumb.php:612 inc/czr-front-ccat.php:2582
 msgid "404 Not Found"
-msgstr "404 문서를 찾을 수 없음"
+msgstr ""
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:576
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:578
@@ -3937,9 +3804,8 @@ msgstr ""
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:135
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:135
-#, fuzzy
 msgid "Customize it now"
-msgstr "Customiz'it!"
+msgstr ""
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:142
 #: build/free/customizr/inc/czr-front-ccat.php:3731
@@ -3955,8 +3821,8 @@ msgstr ""
 #: inc/_dev/parts/class-content-featured_pages.php:188
 #: inc/czr-front-ccat.php:3735
 msgid ""
-"Featured page description text : use the page excerpt or set your own custom "
-"text in the Customizr screen."
+"Featured page description text : use the page excerpt or set your own "
+"custom text in the Customizr screen."
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:422
@@ -3985,9 +3851,8 @@ msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:611
 #: core/front/models/modules/slider/class-model-slider.php:611
-#, fuzzy
 msgid "Customize or remove this slider"
-msgstr "이 슬라이더 삭제"
+msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider_of_posts.php:26
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:26
@@ -4010,11 +3875,10 @@ msgstr ""
 
 #: build/free/customizr/core/front/template-tags/template-tags.php:64
 #: core/front/template-tags/template-tags.php:64
-#, fuzzy
 msgid "Comment on"
 msgid_plural "Comments on"
-msgstr[0] "덧글"
-msgstr[1] "덧글"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/free/customizr/core/front/template-tags/template-tags.php:65
 #: build/free/customizr/inc/czr-front-ccat.php:3394
@@ -4022,29 +3886,28 @@ msgstr[1] "덧글"
 #: core/front/template-tags/template-tags.php:65
 #: inc/_dev/parts/class-content-comments.php:367 inc/czr-front-ccat.php:3394
 #: templates/parts/content/singular/comments/comment_list.php:19
-#, fuzzy
 msgid "comment"
 msgid_plural "comments"
-msgstr[0] "덧글"
-msgstr[1] "덧글"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/free/customizr/core/init-base.php:111 core/init-base.php:111
 msgid "Left Sidebar"
-msgstr "왼쪽 사이드바"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:112
 #: build/free/customizr/core/init-base.php:116 core/init-base.php:112
 #: core/init-base.php:116
 msgid "Appears on posts, static pages, archives and search pages"
-msgstr "게시글,정적 페이지,아카이브 그리고 검색페이지를 표시합니다."
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:115 core/init-base.php:115
 msgid "Right Sidebar"
-msgstr "오른쪽 사이드바"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:124 core/init-base.php:124
 msgid "Subscribe to my rss feed"
-msgstr "제 RSS피드에 가입해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:128 core/init-base.php:128
 msgid "E-mail"
@@ -4052,35 +3915,35 @@ msgstr ""
 
 #: build/free/customizr/core/init-base.php:131 core/init-base.php:131
 msgid "Follow me on Twitter"
-msgstr "제 트위터를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:134 core/init-base.php:134
 msgid "Follow me on Facebook"
-msgstr "제 페이스북을 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:137 core/init-base.php:137
 msgid "Follow me on Google+"
-msgstr "제 Google+ 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:140 core/init-base.php:140
 msgid "Follow me on Instagram"
-msgstr "제 인스타그램을 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:143 core/init-base.php:143
 msgid "Follow me on Tumblr"
-msgstr "제 텀블러를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:146 core/init-base.php:146
 msgid "Follow me on Flickr"
-msgstr "제 Flickr를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:149 core/init-base.php:149
 msgid "Follow me on WordPress"
-msgstr "제 워드프레스를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:152 core/init-base.php:152
 msgid "Follow me on Youtube"
-msgstr "제 유투브를 구독 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:155 core/init-base.php:155
 msgid "Pin me on Pinterest"
@@ -4088,7 +3951,7 @@ msgstr ""
 
 #: build/free/customizr/core/init-base.php:158 core/init-base.php:158
 msgid "Follow me on Github"
-msgstr "제 깃허브를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:161 core/init-base.php:161
 msgid "Follow me on Dribbble"
@@ -4099,19 +3962,16 @@ msgid "Follow me on LinkedIn"
 msgstr ""
 
 #: build/free/customizr/core/init-base.php:167 core/init-base.php:167
-#, fuzzy
 msgid "Follow me on VKontakte"
-msgstr "제 트위터를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:170 core/init-base.php:170
-#, fuzzy
 msgid "Follow me on Yelp"
-msgstr "제 유투브를 구독 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:173 core/init-base.php:173
-#, fuzzy
 msgid "Follow me on Xing"
-msgstr "제 Flickr를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:176 core/init-base.php:176
 msgid "Contact me on Snapchat"
@@ -4134,25 +3994,23 @@ msgid "Secondary (horizontal) Menu"
 msgstr ""
 
 #: build/free/customizr/core/init-base.php:393 core/init-base.php:393
-msgid ""
-"Top Bar Menu (horizontal). The top bar option must be checked to display it."
+msgid "Top Bar Menu (horizontal). The top bar option must be checked to display it."
 msgstr ""
 
 #: build/free/customizr/core/init-base.php:394 core/init-base.php:394
-#, fuzzy
 msgid "Mobile Menu"
-msgstr "메인메뉴"
+msgstr ""
 
 #: build/free/customizr/core/init-base.php:436 core/init-base.php:436
 msgid "Need help with Customizr? Click here!"
-msgstr "Customizr에 대한 도움이 필요하신가요? 여길 클릭하세요!"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:307
 #: build/free/customizr/templates/parts/header/parts/logo.php:6
 #: inc/_dev/parts/class-header-header_main.php:307 inc/czr-front-ccat.php:307
 #: templates/parts/header/parts/logo.php:6
 msgid "Back Home"
-msgstr "홈으로"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:797
 #: inc/_dev/parts/class-header-menu.php:106 inc/czr-front-ccat.php:797
@@ -4169,8 +4027,8 @@ msgstr ""
 #: build/free/customizr/inc/czr-front-ccat.php:799
 #: inc/_dev/parts/class-header-menu.php:108 inc/czr-front-ccat.php:799
 msgid ""
-"If you have already created menu(s), you can %s. If you need to create a new "
-"menu, jump to the %s."
+"If you have already created menu(s), you can %s. If you need to create a "
+"new menu, jump to the %s."
 msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:800
@@ -4272,10 +4130,8 @@ msgstr ""
 #: build/free/customizr/templates/parts/content/no-results/404.php:14
 #: inc/_dev/parts/class-content-404.php:41 inc/czr-front-ccat.php:1807
 #: templates/parts/content/no-results/404.php:14
-msgid ""
-"Sorry, but the requested page is not found. You might try a search below."
+msgid "Sorry, but the requested page is not found. You might try a search below."
 msgstr ""
-"요청된 페이지를 찾을 수 없습니다. 아래의 검색상자에서 검색을 시도해보세요"
 
 #: build/free/customizr/inc/czr-front-ccat.php:1856
 #: inc/_dev/parts/class-content-attachment.php:41 inc/czr-front-ccat.php:1856
@@ -4309,23 +4165,23 @@ msgstr ""
 #: build/free/customizr/inc/czr-front-ccat.php:3183
 #: inc/_dev/parts/class-content-comments.php:156 inc/czr-front-ccat.php:3183
 msgid "(Edit)"
-msgstr "(편집)"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:3211
 #: inc/_dev/parts/class-content-comments.php:184 inc/czr-front-ccat.php:3211
 msgid "Reply"
-msgstr "전송"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:3224
 #: build/free/customizr/templates/parts/content/singular/comments/comment.php:22
 #: inc/_dev/parts/class-content-comments.php:197 inc/czr-front-ccat.php:3224
 #: templates/parts/content/singular/comments/comment.php:22
 msgid "Post author"
-msgstr "작성자"
+msgstr ""
 
-#. translators: 1: date, 2: time
 #: build/free/customizr/inc/czr-front-ccat.php:3231
 #: inc/_dev/parts/class-content-comments.php:204 inc/czr-front-ccat.php:3231
+#. translators: 1: date, 2: time
 msgid "%1$s at %2$s"
 msgstr ""
 
@@ -4369,7 +4225,7 @@ msgstr ""
 #: inc/_dev/parts/class-content-comments.php:325 inc/czr-front-ccat.php:3352
 #: templates/comments-no-model.php:21
 msgid "Leave a comment"
-msgstr "덧글 삭제"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:3375
 #: inc/_dev/parts/class-content-comments.php:348 inc/czr-front-ccat.php:3375
@@ -4379,8 +4235,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-front-ccat.php:3589
 #: inc/_dev/parts/class-content-featured_pages.php:42
 #: inc/czr-front-ccat.php:3589
-msgid ""
-"Edit those featured pages %s, or %s (you'll be able to add yours later)."
+msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
 msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:3590
@@ -4443,7 +4298,7 @@ msgstr ""
 #: inc/_dev/parts/class-content-headings.php:324 inc/czr-front-ccat.php:4303
 #: templates/parts/content/no-results/404.php:8
 msgid "Ooops, page not found"
-msgstr "페이지를 찾지 못하였습니다."
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:4351
 #: build/free/customizr/inc/czr-front-ccat.php:4996
@@ -4451,7 +4306,7 @@ msgstr "페이지를 찾지 못하였습니다."
 #: inc/_dev/parts/class-content-post.php:140 inc/czr-front-ccat.php:4351
 #: inc/czr-front-ccat.php:4996
 msgid "About %s"
-msgstr "%s 이란?"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:4391
 #: inc/_dev/parts/class-content-headings.php:412 inc/czr-front-ccat.php:4391
@@ -4480,7 +4335,7 @@ msgstr ""
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
-msgstr "일치하는 검색결과가 존재하지 않습니다. 다른 키워드로 시도해 보세요"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:4655
 #: build/free/customizr/inc/czr-front-ccat.php:4958
@@ -4648,9 +4503,8 @@ msgstr ""
 #: inc/_dev/parts/class-content-sidebar.php:144
 #: inc/_dev/parts/class-footer-footer_main.php:151 inc/czr-front-ccat.php:8047
 #: inc/czr-front-ccat.php:9662
-#, fuzzy
 msgid "Add widgets"
-msgstr "Gérer les widgets"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:8051
 #: build/free/customizr/inc/czr-front-ccat.php:9664
@@ -4667,15 +4521,13 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:8059
 #: inc/_dev/parts/class-content-sidebar.php:156 inc/czr-front-ccat.php:8059
-#, fuzzy
 msgid "Changing the layout in the Customizr theme"
-msgstr "Customizr의  설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:8060
 #: inc/_dev/parts/class-content-sidebar.php:157 inc/czr-front-ccat.php:8060
-#, fuzzy
 msgid "See the theme documentation."
-msgstr "문서 읽기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:8868
 #: build/free/customizr/templates/parts/modules/slider/slide.php:9
@@ -4686,26 +4538,22 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9000
 #: inc/_dev/parts/class-content-slider.php:873 inc/czr-front-ccat.php:9000
-#, fuzzy
 msgid "Customize or remove %s"
-msgstr "Customizr의 고급옵션 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9001
 #: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:9001
-#, fuzzy
 msgid "the posts slider"
-msgstr "이 슬라이더 삭제"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9001
 #: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:9001
-#, fuzzy
 msgid "this slider"
-msgstr "이 슬라이드 편집"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9058
 #: inc/_dev/parts/class-content-slider.php:931 inc/czr-front-ccat.php:9058
-msgid ""
-"Select your own slider %s, or %s (you'll be able to add one back later)."
+msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
 msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9059
@@ -4725,9 +4573,8 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9128
 #: inc/_dev/parts/class-content-slider.php:1001 inc/czr-front-ccat.php:9128
-#, fuzzy
 msgid "Discover the Customizr WordPress theme &raquo;"
-msgstr "Customizr %s에 오신것을 환영합니다!"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9657
 #: inc/_dev/parts/class-footer-footer_main.php:146 inc/czr-front-ccat.php:9657
@@ -4750,9 +4597,8 @@ msgstr ""
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:243 inc/czr-front-ccat.php:9754
 #: templates/parts/footer/footer_credits.php:13
-#, fuzzy
 msgid "Powered by WordPress"
-msgstr "제 워드프레스를 팔로우 해주세요!"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9759
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
@@ -4765,24 +4611,23 @@ msgstr ""
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:248 inc/czr-front-ccat.php:9759
 #: templates/parts/footer/footer_credits.php:13
-#, fuzzy
 msgid "Customizr theme"
-msgstr "Customizr의 고급옵션 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-front-ccat.php:9784
 #: inc/_dev/parts/class-footer-footer_main.php:273 inc/czr-front-ccat.php:9784
 msgid "Back to top"
-msgstr "맨 위로"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:338
 #: inc/_dev/class-fire-init.php:65 inc/czr-init-ccat.php:338
 msgid "Blue"
-msgstr "파랑색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:339
 #: inc/_dev/class-fire-init.php:66 inc/czr-init-ccat.php:339
 msgid "Black"
-msgstr "검은색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:340
 #: inc/_dev/class-fire-init.php:67 inc/czr-init-ccat.php:340
@@ -4792,13 +4637,12 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:341
 #: inc/_dev/class-fire-init.php:68 inc/czr-init-ccat.php:341
 msgid "Grey"
-msgstr "회색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:342
 #: inc/_dev/class-fire-init.php:69 inc/czr-init-ccat.php:342
-#, fuzzy
 msgid "Light grey"
-msgstr "밝은 회색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:343
 #: inc/_dev/class-fire-init.php:70 inc/czr-init-ccat.php:343
@@ -4808,7 +4652,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:344
 #: inc/_dev/class-fire-init.php:71 inc/czr-init-ccat.php:344
 msgid "Purple"
-msgstr "자주색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:345
 #: inc/_dev/class-fire-init.php:72 inc/czr-init-ccat.php:345
@@ -4818,12 +4662,12 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:346
 #: inc/_dev/class-fire-init.php:73 inc/czr-init-ccat.php:346
 msgid "Red"
-msgstr "붉은색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:347
 #: inc/_dev/class-fire-init.php:74 inc/czr-init-ccat.php:347
 msgid "Orange"
-msgstr "주황색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:348
 #: inc/_dev/class-fire-init.php:75 inc/czr-init-ccat.php:348
@@ -4833,23 +4677,22 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:349
 #: inc/_dev/class-fire-init.php:76 inc/czr-init-ccat.php:349
 msgid "Yellow"
-msgstr "노랑색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:350
 #: inc/_dev/class-fire-init.php:77 inc/czr-init-ccat.php:350
-#, fuzzy
 msgid "Flat yellow"
-msgstr "플랫 옐로우"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:351
 #: inc/_dev/class-fire-init.php:78 inc/czr-init-ccat.php:351
 msgid "Green"
-msgstr "초록색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:352
 #: inc/_dev/class-fire-init.php:79 inc/czr-init-ccat.php:352
 msgid "Light green"
-msgstr "연두색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:353
 #: inc/_dev/class-fire-init.php:80 inc/czr-init-ccat.php:353
@@ -4859,7 +4702,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:354
 #: inc/_dev/class-fire-init.php:81 inc/czr-init-ccat.php:354
 msgid "Light blue "
-msgstr "하늘색"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:1479
 #: build/free/customizr/templates/parts/header/parts/woocommerce_cart.php:7
@@ -4870,20 +4713,18 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2140
 #: inc/_dev/class-fire-utils_settings_map.php:211 inc/czr-init-ccat.php:2140
-#, fuzzy
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
-msgstr "로고 업로드 (지원 포맷 :  .jpg, .png, .gif, svg, svgz)"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2152
 #: inc/_dev/class-fire-utils_settings_map.php:223 inc/czr-init-ccat.php:2152
-msgid ""
-"Use this upload control to specify a different logo on sticky header mode."
+msgid "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2157
 #: inc/_dev/class-fire-utils_settings_map.php:228 inc/czr-init-ccat.php:2157
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
-msgstr "파비콘 업로드 (지원 포맷 : .ico, .png, .gif)"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2158
 #: inc/_dev/class-fire-utils_settings_map.php:229 inc/czr-init-ccat.php:2158
@@ -4893,7 +4734,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:2197
 #: inc/_dev/class-fire-utils_settings_map.php:268 inc/czr-init-ccat.php:2197
 msgid "Choose a predefined skin"
-msgstr "사전정의된 스킨 선택"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2202
 #: inc/_dev/class-fire-utils_settings_map.php:273 inc/czr-init-ccat.php:2202
@@ -4920,8 +4761,7 @@ msgstr ""
 #: inc/_dev/class-fire-utils_settings_map.php:328
 #: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2257
 #: inc/czr-init-ccat.php:2267
-msgid ""
-"This will be applied to the links included in post or page content only."
+msgid "This will be applied to the links included in post or page content only."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2264
@@ -4983,9 +4823,8 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2311
 #: inc/_dev/class-fire-utils_settings_map.php:382 inc/czr-init-ccat.php:2311
-#, fuzzy
 msgid "Enable drop caps in pages"
-msgstr "페이지에 댓글 활성화"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2313
 #: inc/_dev/class-fire-utils_settings_map.php:384 inc/czr-init-ccat.php:2313
@@ -5024,8 +4863,8 @@ msgstr ""
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
-"page can be : category, tag, author, date archive, custom taxonomies, search "
-"results."
+"page can be : category, tag, author, date archive, custom taxonomies, "
+"search results."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2370
@@ -5037,8 +4876,8 @@ msgstr ""
 #: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2373
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
-"each post titles in an archive page. An archive page can be : category, tag, "
-"author, date archive, custom taxonomies, search results."
+"each post titles in an archive page. An archive page can be : category, "
+"tag, author, date archive, custom taxonomies, search results."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2380
@@ -5059,7 +4898,8 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:2422
 #: inc/_dev/class-fire-utils_settings_map.php:493 inc/czr-init-ccat.php:2422
 msgid ""
-"If enabled, this option will force images to fit the screen on lightbox zoom."
+"If enabled, this option will force images to fit the screen on lightbox "
+"zoom."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2428
@@ -5076,32 +4916,30 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2442
 #: inc/_dev/class-fire-utils_settings_map.php:513 inc/czr-init-ccat.php:2442
-msgid ""
-"Improve your page speed by loading smaller slider images for mobile devices"
+msgid "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2518
 #: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2518
 msgid "Display menu in a box"
-msgstr "메뉴를 박스안에 표시"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2523
 #: inc/_dev/class-fire-utils_settings_map.php:594 inc/czr-init-ccat.php:2523
 msgid ""
-"If checked, this option wraps the header menu/tagline/social in a light grey "
-"box."
+"If checked, this option wraps the header menu/tagline/social in a light "
+"grey box."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2528
 #: inc/_dev/class-fire-utils_settings_map.php:599 inc/czr-init-ccat.php:2528
-#, fuzzy
 msgid "Sticky header settings"
-msgstr "고정 헤더 : 태그라인 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2529
 #: inc/_dev/class-fire-utils_settings_map.php:600 inc/czr-init-ccat.php:2529
 msgid "Sticky on scroll"
-msgstr "스크롤 고정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2534
 #: inc/_dev/class-fire-utils_settings_map.php:605 inc/czr-init-ccat.php:2534
@@ -5109,35 +4947,33 @@ msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
-"체크할 경우, 여러분들이 위에서 아래로 스크롤을 내리면 로고가 같이 따라옵니다"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2539
 #: inc/_dev/class-fire-utils_settings_map.php:610 inc/czr-init-ccat.php:2539
 msgid "Sticky header : display the tagline"
-msgstr "고정 헤더 : 태그라인 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2547
 #: inc/_dev/class-fire-utils_settings_map.php:618 inc/czr-init-ccat.php:2547
-#, fuzzy
 msgid "Sticky header: display the shopping cart"
-msgstr "고정 헤더 : 메뉴 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2554
 #: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2554
 msgid ""
-"WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
-"scrolling."
+"WooCommerce: if checked, your WooCommerce cart icon will remain visible "
+"when scrolling."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2559
 #: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2559
 msgid "Sticky header : display the title / logo"
-msgstr "고정 헤더 : 타이틀/로고 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2568
 #: inc/_dev/class-fire-utils_settings_map.php:639 inc/czr-init-ccat.php:2568
 msgid "Sticky header : display the menu"
-msgstr "고정 헤더 : 메뉴 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2573
 #: inc/_dev/class-fire-utils_settings_map.php:644 inc/czr-init-ccat.php:2573
@@ -5147,8 +4983,8 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:2652
 #: inc/_dev/class-fire-utils_settings_map.php:723 inc/czr-init-ccat.php:2652
 msgid ""
-"For mobile devices (responsive), limit the height of the dropdown menu block "
-"to the visible viewport."
+"For mobile devices (responsive), limit the height of the dropdown menu "
+"block to the visible viewport."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2661
@@ -5166,9 +5002,8 @@ msgstr ""
 #: inc/_dev/class-fire-utils_settings_map.php:747
 #: inc/_dev/class-fire-utils_settings_map.php:768 inc/czr-init-ccat.php:2676
 #: inc/czr-init-ccat.php:2697
-#, fuzzy
 msgid "Menu centered"
-msgstr "왼쪽에 위치"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2682
 #: build/free/customizr/inc/czr-init-ccat.php:2703
@@ -5183,9 +5018,8 @@ msgstr ""
 #: inc/_dev/class-fire-utils_settings_map.php:755
 #: inc/_dev/class-fire-utils_settings_map.php:776 inc/czr-init-ccat.php:2684
 #: inc/czr-init-ccat.php:2705
-#, fuzzy
 msgid "the logo is centered"
-msgstr "로고 / 타이틀 가운데에 표시"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2711
 #: inc/_dev/class-fire-utils_settings_map.php:782 inc/czr-init-ccat.php:2711
@@ -5219,15 +5053,13 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2797
 #: inc/_dev/class-fire-utils_settings_map.php:868 inc/czr-init-ccat.php:2797
-#, fuzzy
 msgid "Select a design for the post metas"
-msgstr "Customizr의 스킨을 선택해주세요!"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2801
 #: inc/_dev/class-fire-utils_settings_map.php:872 inc/czr-init-ccat.php:2801
-#, fuzzy
 msgid "Buttons and text"
-msgstr "버튼 텍스트"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2802
 #: inc/_dev/class-fire-utils_settings_map.php:873 inc/czr-init-ccat.php:2802
@@ -5268,15 +5100,14 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2833
 #: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2833
-msgid ""
-"Display the notice if the last update is less (strictly) than n days old"
+msgid "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2839
 #: inc/_dev/class-fire-utils_settings_map.php:910 inc/czr-init-ccat.php:2839
 msgid ""
-"Set a maximum interval (in days) during which the last update notice will be "
-"displayed."
+"Set a maximum interval (in days) during which the last update notice will "
+"be displayed."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2842
@@ -5330,12 +5161,12 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:2908
 #: inc/_dev/class-fire-utils_settings_map.php:979 inc/czr-init-ccat.php:2908
 msgid "Select the length of posts in lists (home, search, archives, ...)"
-msgstr "게시글 리스트 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2913
 #: inc/_dev/class-fire-utils_settings_map.php:984 inc/czr-init-ccat.php:2913
 msgid "Display the full content"
-msgstr "전체 컨탠츠 보이기"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2921
 #: inc/_dev/class-fire-utils_settings_map.php:992 inc/czr-init-ccat.php:2921
@@ -5359,15 +5190,13 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2946
 #: inc/_dev/class-fire-utils_settings_map.php:1017 inc/czr-init-ccat.php:2946
-#, fuzzy
 msgid "Display post format icons"
-msgstr "게시글 섬네일 표시"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2955
 #: inc/_dev/class-fire-utils_settings_map.php:1026 inc/czr-init-ccat.php:2955
-#, fuzzy
 msgid "Upload a default thumbnail"
-msgstr "게시글 섬네일 표시"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2985
 #: inc/_dev/class-fire-utils_settings_map.php:1056 inc/czr-init-ccat.php:2985
@@ -5376,9 +5205,8 @@ msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2986
 #: inc/_dev/class-fire-utils_settings_map.php:1057 inc/czr-init-ccat.php:2986
-#, fuzzy
 msgid "Set the post grid thumbnail's max height in pixels"
-msgstr "슬라이더 높이(단위 : 픽셀)"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3001
 #: inc/_dev/class-fire-utils_settings_map.php:1072 inc/czr-init-ccat.php:3001
@@ -5408,12 +5236,12 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:3013
 #: inc/_dev/class-fire-utils_settings_map.php:1084 inc/czr-init-ccat.php:3013
 msgid "Top"
-msgstr "위"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3014
 #: inc/_dev/class-fire-utils_settings_map.php:1085 inc/czr-init-ccat.php:3014
 msgid "Bottom"
-msgstr "아래"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3039
 #: inc/_dev/class-fire-utils_settings_map.php:1110 inc/czr-init-ccat.php:3039
@@ -5468,22 +5296,22 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:3221
 #: inc/_dev/class-fire-utils_settings_map.php:1292 inc/czr-init-ccat.php:3221
 msgid "Titles icons settings"
-msgstr "타이틀 아이콘 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3223
 #: inc/_dev/class-fire-utils_settings_map.php:1294 inc/czr-init-ccat.php:3223
 msgid "Set up the titles icons options"
-msgstr "타이틀 아이콘 옵션 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3231
 #: inc/_dev/class-fire-utils_settings_map.php:1302 inc/czr-init-ccat.php:3231
 msgid "Responsive settings"
-msgstr "응답설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:3233
 #: inc/_dev/class-fire-utils_settings_map.php:1304 inc/czr-init-ccat.php:3233
 msgid "Various settings for responsive display"
-msgstr "출력되는 다양한 응답 설정"
+msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:4631
 #: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4631
@@ -5500,15 +5328,15 @@ msgstr ""
 #: build/free/customizr/inc/czr-init-ccat.php:4946
 #: inc/_dev/class-fire-placeholders.php:213 inc/czr-init-ccat.php:4946
 msgid ""
-"Did you know you can easily speed up your page load by deferring the loading "
-"of the non visible images?"
+"Did you know you can easily speed up your page load by deferring the "
+"loading of the non visible images?"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:4947
 #: inc/_dev/class-fire-placeholders.php:214 inc/czr-init-ccat.php:4947
 msgid ""
-"%s and check the option 'Load images on scroll' under 'Website Performances' "
-"section."
+"%s and check the option 'Load images on scroll' under 'Website "
+"Performances' section."
 msgstr ""
 
 #: build/free/customizr/templates/parts/content/common/media.php:24
@@ -5524,27 +5352,24 @@ msgstr ""
 
 #: build/free/customizr/templates/parts/content/no-results/search_no_results.php:7
 #: templates/parts/content/no-results/search_no_results.php:7
-#, fuzzy
 msgid "Nothing Found"
-msgstr "404 문서를 찾을 수 없음"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/post-lists/headings/archive_heading.php:36
 #: build/free/customizr/templates/parts/content/post-lists/headings/regular_archive_heading.php:23
 #: templates/parts/content/post-lists/headings/archive_heading.php:36
 #: templates/parts/content/post-lists/headings/regular_archive_heading.php:23
-#, fuzzy
 msgid "%s post"
 msgid_plural "%s posts"
-msgstr[0] "게시글"
-msgstr[1] "게시글"
+msgstr[0] ""
+msgstr[1] ""
 
 #: build/free/customizr/templates/parts/content/post-lists/headings/regular_search_heading.php:8
 #: build/free/customizr/templates/parts/content/post-lists/headings/search_heading.php:9
 #: templates/parts/content/post-lists/headings/regular_search_heading.php:8
 #: templates/parts/content/post-lists/headings/search_heading.php:9
-#, fuzzy
 msgid "Search results for:"
-msgstr "Rechercher dans les diapositives"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/post-lists/headings/regular_search_heading.php:15
 #: build/free/customizr/templates/parts/content/post-lists/headings/search_heading.php:15
@@ -5557,21 +5382,18 @@ msgstr[1] ""
 
 #: build/free/customizr/templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:10
 #: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:10
-#, fuzzy
 msgid "Older posts"
-msgstr "슬라이더 옵션"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:11
 #: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:11
-#, fuzzy
 msgid "Newer posts"
-msgstr "게시글"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:31
 #: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:31
-#, fuzzy
 msgid "Posts navigation"
-msgstr "탐색"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/singular/authors/author_info.php:11
 #: templates/parts/content/singular/authors/author_info.php:11
@@ -5585,9 +5407,8 @@ msgstr ""
 
 #: build/free/customizr/templates/parts/content/singular/comments/comment.php:31
 #: templates/parts/content/singular/comments/comment.php:31
-#, fuzzy
 msgid "Edit comment"
-msgstr "덧글"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:24
 #: templates/parts/content/singular/comments/comment_list.php:24
@@ -5598,9 +5419,8 @@ msgstr[1] ""
 
 #: build/free/customizr/templates/parts/content/singular/navigation/single_attachment_image_navigation.php:12
 #: templates/parts/content/singular/navigation/single_attachment_image_navigation.php:12
-#, fuzzy
 msgid "Images navigation"
-msgstr "탐색"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/singular/navigation/single_attachment_image_navigation.php:17
 #: templates/parts/content/singular/navigation/single_attachment_image_navigation.php:17
@@ -5621,9 +5441,8 @@ msgstr ""
 #: build/free/customizr/templates/parts/content/singular/navigation/singular_posts_navigation.php:47
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:45
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:47
-#, fuzzy
 msgid "Back to post list"
-msgstr "맨 위로"
+msgstr ""
 
 #: build/free/customizr/templates/parts/content/singular/navigation/singular_posts_navigation.php:53
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:53
@@ -5656,9 +5475,8 @@ msgid "Next related articles"
 msgstr ""
 
 #. Theme Name of the plugin/theme
-#, fuzzy
 msgid "Customizr"
-msgstr "사용자정의 CSS"
+msgstr ""
 
 #. Theme URI of the plugin/theme
 msgid "https://presscustomizr.com/customizr"
@@ -5667,9 +5485,9 @@ msgstr ""
 #. Description of the plugin/theme
 msgid ""
 "Customizr is a simple and fast WordPress theme designed to help you attract "
-"and engage more visitors. Provides a perfect user experience on smartphones. "
-"Powers more then 100K active sites around the world. Hundreds of 5-stars "
-"reviews received on WordPress.org."
+"and engage more visitors. Provides a perfect user experience on "
+"smartphones. Powers more then 100K active sites around the world. Hundreds "
+"of 5-stars reviews received on WordPress.org."
 msgstr ""
 
 #. Author of the plugin/theme
@@ -5711,250 +5529,3 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
-
-#, fuzzy
-#~ msgid ", developer of the Customizr theme"
-#~ msgstr "Customizr의 고급옵션 설정"
-
-#, fuzzy
-#~ msgid "Make a donation for Customizr"
-#~ msgstr "Customizr의 스킨을 선택해주세요!"
-
-#, fuzzy
-#~ msgid "the Customizr pro theme"
-#~ msgstr "Customizr의 고급옵션 설정"
-
-#~ msgid "Change layout options"
-#~ msgstr "레이아웃 옵션 변경"
-
-#~ msgid "Check the FAQ"
-#~ msgstr "FAQ체크"
-
-#~ msgid "Customizr Showcase"
-#~ msgstr "Customizr 쇼케이스"
-
-#~ msgid "RSS feed (default is the wordpress feed)"
-#~ msgstr "RSS피드(기본:워드프레스피드)"
-
-#~ msgid "Twitter profile url"
-#~ msgstr "트위터 프로필 주소"
-
-#~ msgid "Facebook profile url"
-#~ msgstr "페이스북 프로필 주소"
-
-#~ msgid "Google+ profile url"
-#~ msgstr "Google+ 프로필 주소"
-
-#~ msgid "Instagram profile url"
-#~ msgstr "인스타그램 프로필 주소"
-
-#~ msgid "Tumblr url"
-#~ msgstr " 주소"
-
-#~ msgid "Flickr url"
-#~ msgstr "Flickr 프로필 주소"
-
-#~ msgid "WordPress profile url"
-#~ msgstr "워드 프레스 프로필 주소"
-
-#~ msgid "Youtube profile url"
-#~ msgstr "유투브 프로필 주소"
-
-#~ msgid "Github profile url"
-#~ msgstr "깃허브 프로필 주소"
-
-#~ msgid ""
-#~ "Speaking the Truth in times of universal deceit is a revolutionary act."
-#~ msgstr "\"기만이 가득한 시대에 진실을 말하는 것은 혁명적인 행동이다.\""
-
-#~ msgid "George Orwell"
-#~ msgstr "조지 오웰(George Orwell)"
-
-#~ msgid ""
-#~ "Success is the ability to go from one failure to another with no loss of "
-#~ "enthusiasm..."
-#~ msgstr "\"성공이란 열정을 잃지 않고 실패를 거듭할 수 있는 능력이다.\""
-
-#~ msgid "Sir Winston Churchill"
-#~ msgstr "윈스턴 처칠(Winston Churchill)"
-
-#~ msgid "Help"
-#~ msgstr "도움이 필요하신가요?"
-
-#, fuzzy
-#~ msgid "Comments bubbles"
-#~ msgstr "덧글"
-
-#~ msgid "Global settings for the Customizr theme :skin, socials, links..."
-#~ msgstr "Customizr의 글로벌 설정: 스킨,누리소통망,링크"
-
-#~ msgid "Content : home, posts, ..."
-#~ msgstr "콘탠츠: 홈, 포스트, ..."
-
-#~ msgid "Content settings for the Customizr theme."
-#~ msgstr "Customizr의  설정"
-
-#~ msgid "Footer settings for the Customizr theme."
-#~ msgstr "Customizr의  설정"
-
-#~ msgid "Advanced settings for the Customizr theme."
-#~ msgstr "Customizr의 고급옵션 설정"
-
-#~ msgid "Site Title & Tagline"
-#~ msgstr "누리집 타이틀 & 태그라인"
-
-#~ msgid "Logo &amp; Favicon"
-#~ msgstr "로고 &amp; 파비콘"
-
-#~ msgid "Set up logo and favicon options"
-#~ msgstr "로고와 파비콘 설정"
-
-#~ msgid "Skin"
-#~ msgstr "스킨"
-
-#~ msgid "Select a skin for Customizr"
-#~ msgstr "Customizr의 스킨을 선택해주세요!"
-
-#, fuzzy
-#~ msgid "Set up the font global settings"
-#~ msgstr "메인페이지 레이아웃 설정"
-
-#~ msgid "Links style and effects"
-#~ msgstr "링크 스타일과 효과"
-
-#~ msgid "Various links settings"
-#~ msgstr "다양한 링크 설정"
-
-#~ msgid "Various images settings"
-#~ msgstr "다양한 이미지 설정"
-
-#~ msgid "Design and layout"
-#~ msgstr "디자인과 레이아웃"
-
-#~ msgid "Set up front page options"
-#~ msgstr "메인화면 설정"
-
-#~ msgid "Set up layout options"
-#~ msgstr "레이아웃옵션 설정"
-
-#~ msgid "Set up post lists options"
-#~ msgstr "게시글 리스트 옵션"
-
-#, fuzzy
-#~ msgid "Set up paragraphs options"
-#~ msgstr "메인화면 설정"
-
-#~ msgid "Images"
-#~ msgstr "이미지"
-
-#~ msgid "Add your own CSS"
-#~ msgstr "own CSS 추가"
-
-#~ msgid "Manage menus"
-#~ msgstr "메뉴관리"
-
-#, fuzzy
-#~ msgid "Design and effects"
-#~ msgstr "디자인과 레이아웃"
-
-#~ msgid "Menu position"
-#~ msgstr "메뉴 위치"
-
-#~ msgid "Button Link"
-#~ msgstr "버튼 링크"
-
-#~ msgid "Need help with Customizr ?"
-#~ msgstr "Customizr에 관한 도움이 필요하세요?"
-
-#~ msgid "Welcome to Customizr %s"
-#~ msgstr "Customizr %s에 오신것을 환영합니다!"
-
-#, fuzzy
-#~ msgid "The sidebar : "
-#~ msgstr "왼쪽 사이드바"
-
-#, fuzzy
-#~ msgid "has no widgets"
-#~ msgstr "Gérer les widgets"
-
-#~ msgid "Style your WordPress site live!"
-#~ msgstr "워드프레스 홈페이지를 스타일링!"
-
-#~ msgid "Just try it!"
-#~ msgstr "이제 시작해보세요!"
-
-#~ msgid "Create beautiful sliders"
-#~ msgstr "예쁜 슬라이더 생성"
-
-#~ msgid ""
-#~ "Customizr comes with a cool slider generator : add a slider to any post "
-#~ "or page!"
-#~ msgstr ""
-#~ "Customizr에서는 멋진 슬라이더 제작기를 추가합니다! : 글이나 페이지에 슬라"
-#~ "이더를 추가하실 수 있습니다"
-
-#~ msgid "Header : title, logo, menu, ..."
-#~ msgstr "헤더 : 타이틀, 로고, 메뉴, ..."
-
-#~ msgid "Customize your website at any time!"
-#~ msgstr "언제든지 여러분들의 누리집을 커스터마이징!"
-
-#, fuzzy
-#~ msgid "Ajust the slider size"
-#~ msgstr "Texte de description (sous le titre) de la diapositive"
-
-#, fuzzy
-#~ msgid "Choose a font"
-#~ msgstr "Choisir une page"
-
-#~ msgid "Slide Entry"
-#~ msgstr "Diapositive"
-
-#~ msgid "Edit Slide Entry"
-#~ msgstr "Modifier la diapositive"
-
-#~ msgid "Edit Slider Name"
-#~ msgstr "Modifier le nom du diporama"
-
-#~ msgid "Front Page Widget Area Two"
-#~ msgstr "Deuxième zone de widgets de page d'accueil"
-
-#~ msgid "Front Page Widget Area Three"
-#~ msgstr "Troisième zone de widgets de page d'accueil"
-
-#~ msgid "If this field is empty, it will display an excerpt of the page."
-#~ msgstr "Si le champ est vide, un extrait de la page est affiché."
-
-#~ msgid "Force logo to fit in the left header block"
-#~ msgstr "Forcer le redimensionnement du logo dans le bloc gauche du header"
-
-#~ msgid ""
-#~ "Force default layout for all posts and pages (including front page and "
-#~ "pages/posts with a specific layout)"
-#~ msgstr ""
-#~ "Forcer la structure par défaut pour toutes les pages du sites (y compris "
-#~ "la page d'accueil ainsi que les pages et billets qui ont une structure "
-#~ "spécifique)"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "%"
-#~ msgstr "%"
-
-#~ msgid "View details &raquo;"
-#~ msgstr "Voir les détails &raquo;"
-
-#~ msgid "Length of the excerpt (default 200)"
-#~ msgstr "Longueur de l'extrait (200 car. par défaut)"
-
-#~ msgid " checked=\"checked\""
-#~ msgstr " "
-
-#~ msgid "Sample Checkbox"
-#~ msgstr "Exemple"
-
-#~ msgid ""
-#~ "Appears on posts and pages except the optional Front Page template, which "
-#~ "has its own widgets"
-#~ msgstr "Affichée dans les posts et les pages, hormis l"

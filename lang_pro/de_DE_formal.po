@@ -2,3152 +2,3882 @@
 # This file is distributed under the same license as the Themes - Customizr package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-09-27 13:08:38+0000\n"
+"PO-Revision-Date: 2017-12-23 12:29:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.3.0-alpha\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de\n"
 "Project-Id-Version: Themes - Customizr\n"
 
 #. Description of the plugin/theme
-msgid "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content."
-msgstr "Customizr ist ein vielseitiges und einfach anzupassendes WordPress-Theme, dass Ihrer Online-Präsenz gleich ein professionelles Aussehen verleiht. Mit der Beteiligung des Besuchers im Sinn wurde es so gestaltet, dass jeder eine schöne, schnelle und für Mobilgeräte geeignete Website erstellen kann, die mit allen Browsern und Geräten kompatibel ist. Customizr arbeitet prima mit maßgeblichen WordPress-Plugins wie WooCommerce, bbPress, JetPack und vielen anderen zusammen. Mit hunderten von höchsten Bewertungen und einer sehr aktiven Gemeinschaft aus Benutzern und Entwicklern bietet das Customizr-Theme eine sichere und zuverlässige Gestaltunsvariante, um Ihre WordPress-Inhalte zu veröffentlichen."
+msgid "Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more then 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org."
+msgstr "Customizr ist ein einfaches und schnelles WordPress-Theme, das entwickelt wurde, um mehr Besucher anzulocken und zu gewinnen. Es bietet eine perfekte Benutzererfahrung auf Smartphones. Es ist auf mehr als 100.000 aktive Websites auf der ganzen Welt Aktiviert und hat hunderte von 5-Sterne-Bewertungen auf WordPress.org erhalten."
 
 #. Theme Name of the plugin/theme
 msgid "Customizr"
 msgstr "Customizr"
 
-#: inc/czr-init.php:3083
+#: core/core-settings-map.php:2486
+msgid "Site Layout"
+msgstr "Websitelayout"
+
+#: core/core-settings-map.php:910
+msgid "Primary (vertical) menu design"
+msgstr "Primäre (vertikale) Menügestaltung"
+
+#: core/core-settings-map.php:855
+msgid "Display in the mobile menu"
+msgstr "Im mobilen Menü anzeigen"
+
+#: core/core-settings-map.php:854
+msgid "Display in the mobile navbar"
+msgstr "Anzeige in der mobilen Navigationsleiste"
+
+#: core/core-settings-map.php:848
+msgid "Display a search button in the header"
+msgstr "Zeigen Sie eine Suchschaltfläche im Header an"
+
+#: core/core-settings-map.php:254
+msgid "Footer Credits section layout"
+msgstr "Footer Credits Abschnitt Layout"
+
+#: core/core-settings-map.php:237
+msgid "Main Header section layout"
+msgstr "Haupt-Header Abschnitt Layout"
+
+#: core/core-settings-map.php:220
+msgid "Header topbar layout"
+msgstr "Header-Topbar-Layout"
+
+#: core/core-settings-map.php:213 core/core-settings-map.php:226
+#: core/core-settings-map.php:243 core/core-settings-map.php:260
+msgid "Boxed"
+msgstr "Verpackt"
+
+#: core/core-settings-map.php:212 core/core-settings-map.php:225
+#: core/core-settings-map.php:242 core/core-settings-map.php:259
+msgid "Wide"
+msgstr "Breit"
+
+#: core/core-settings-map.php:207
+msgid "Site layout"
+msgstr "Websitelayout"
+
+#: core/init-base.php:393
+msgid "Top Bar Menu (horizontal). The top bar option must be checked to display it."
+msgstr "Top-Bar Menü (horizontal). Die Top-Bar Option muss aktiviert sein, um sie anzuzeigen."
+
+#: core/core-settings-map.php:1395
+msgid "Comments location"
+msgstr "Kommentar-Position"
+
+#: core/core-settings-map.php:1378
+msgid "Related Posts location"
+msgstr "Position der verwandten Beiträge"
+
+#: core/core-settings-map.php:1366 core/core-settings-map.php:1383
+#: core/core-settings-map.php:1400
+msgid "After the content and sidebars columns"
+msgstr "Nach den Inhalt und Seitenleisten Spalten"
+
+#: core/core-settings-map.php:1365 core/core-settings-map.php:1382
+#: core/core-settings-map.php:1399
+msgid "Right after the post content"
+msgstr "Direkt nach dem Beitrags Inhalt"
+
+#: core/core-settings-map.php:1361
+msgid "Author Infos location"
+msgstr "Position der Autor-Information"
+
+#: core/core-settings-map.php:1360
+msgid "Pages & Posts default sections locations"
+msgstr "Position der Seiten & Beiträge Standardabschnitte"
+
+#: core/core-settings-map.php:813
+msgid "Revealed in the expanded mobile menu"
+msgstr "Aufgedeckt im erweiterten mobilen Menü"
+
+#: core/core-settings-map.php:812
+msgid "Always visible in the mobile topbar"
+msgstr "Immer sichtbar in der mobilen Topbar"
+
+#: core/core-settings-map.php:732
+msgid "Main header section"
+msgstr "Haupt-Header Abschnitt"
+
+#: core/core-settings-map.php:712 core/core-settings-map.php:831
+msgid "Behaviour on scroll"
+msgstr "Verhalten beim Scrollen"
+
+#: core/core-settings-map.php:689
+msgid "If you want to display the search icon in your topbar, make sure the topbar is displayed by checking \"Display a topbar\" above."
+msgstr "Wenn Sie das Suchsymbol in der Top-Bar anzeigen möchten, vergewissern Sie sich, dass die Top-Bar angezeigt wird, indem Sie oben auf \"Anzeige einer Top-Bar\" klicken."
+
+#: core/core-settings-map.php:686 core/core-settings-map.php:703
+msgid "Display in the main header section"
+msgstr "Anzeige im Haupt-Header Abschnitt"
+
+#: core/core-settings-map.php:678 core/core-settings-map.php:805
+msgid "Search Icon"
+msgstr "Suchsymbol"
+
+#: core/core-settings-map.php:657 core/core-settings-map.php:679
+#: core/core-settings-map.php:695 core/core-settings-map.php:713
+#: core/core-settings-map.php:727
+msgid "Desktop devices : %s"
+msgstr "Desktopgeräte: %s"
+
+#: templates/parts/content/singular/navigation/single_attachment_image_navigation.php:24
+msgid "Next"
+msgstr "Weiter"
+
+#: templates/parts/content/singular/navigation/single_attachment_image_navigation.php:17
+msgid "Previous"
+msgstr "Bisherige"
+
+#: templates/parts/content/singular/navigation/single_attachment_image_navigation.php:12
+msgid "Images navigation"
+msgstr "Bilder Navigation"
+
+#: inc/czr-init-ccat.php:4634
+msgid "in the live customizer."
+msgstr "in der Live-Anpassung."
+
+#: inc/czr-init-ccat.php:4631
+msgid "Quick tip : you can choose between two styles for the Customizr theme. Give it a try %s"
+msgstr "Kurzer Tipp: Sie können zwischen zwei Stilen für das Customizr-Thema wählen. Probieren Sie es aus %s"
+
+#: inc/czr-front-ccat.php:9759 templates/parts/footer/footer_credits.php:13
+msgid "Customizr theme"
+msgstr "Customizr-Theme"
+
+#: inc/czr-front-ccat.php:9759 templates/parts/footer/footer_credits.php:13
+msgid "Designed with the %s"
+msgstr "Entworfen mit dem %s"
+
+#: core/front/models/content/post-metas/class-model-post_metas.php:71
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#: core/czr-admin-ccat.php:1655
+msgid "Display navigation dots at the bottom of your slider."
+msgstr "Zeigen Sie Navigationspunkte am unteren Rand Ihres Sliders an."
+
+#: core/czr-admin-ccat.php:902
+msgid "<u>Search tips</u> : If you get too many results, try to narrow down your search by prefixing it with \"customizr\" for example. If there are no results, try different keywords and / or spelling variations"
+msgstr "<u>Suchtipps</u>: Wenn Sie zu viele Ergebnisse erhalten, versuchen Sie, Ihre Suche einzuschränken, indem Sie sie beispielsweise \"customizr\" voranstellen. Wenn es keine Ergebnisse gibt, versuchen Sie es mit anderen Schlüsselwörtern und / oder Schreibvarianten."
+
+#: core/czr-admin-ccat.php:900
+msgid "Ex. Logo upload"
+msgstr "Ex. Logo hochladen"
+
+#: core/czr-admin-ccat.php:897
+msgid "In a few keywords, describe the information you are looking for."
+msgstr "Beschreiben Sie in einigen Stichwörtern die Informationen, nach denen Sie suchen."
+
+#: core/czr-admin-ccat.php:872
+msgid "Read the full article"
+msgstr "Lesen Sie den ganzen Artikel"
+
+#: core/czr-admin-ccat.php:866
+msgid "There was an error fetching search results."
+msgstr "Beim Abrufen der Suchergebnisse ist ein Fehler aufgetreten."
+
+#: core/czr-admin-ccat.php:865
+msgid "Search must be at least {minLength} characters."
+msgstr "Die Suche muss mindestens {minLength} Zeichen lang sein."
+
+#: core/czr-admin-ccat.php:864
+msgid "Please enter a search term."
+msgstr "Bitte geben Sie einen Suchbegriff ein."
+
+#: core/czr-admin-ccat.php:863
+msgid "No results found&hellip;"
+msgstr "Keine Ergebnisse gefunden &hellip;"
+
+#: core/czr-admin-ccat.php:862
+msgid "We found {count} articles that may help:"
+msgstr "Wir haben {count} Artikel gefunden, die helfen können:"
+
+#: core/czr-admin-ccat.php:861
+msgid "We found {count} article that may help:"
+msgstr "Wir haben {count} Artikel gefunden, die helfen können:"
+
+#: core/czr-admin-ccat.php:568
+msgid "Read the changelog"
+msgstr "Lesen Sie den Changelog"
+
+#: core/core-settings-map.php:2319
+msgid "The two styles can use different template files, that's why it is recommended to change the style option from the parent and test your child theme in a staging site before production."
+msgstr "Da die beiden Stile unterschiedliche Vorlagendateien verwenden können, wird empfohlen, die Stiloption des übergeordneten Elements zu ändern und das Child Theme vor der Anwendung in einer Staging-Site zu testen."
+
+#: core/core-settings-map.php:2317
+msgid "Appearance > themes"
+msgstr "Design > Theme"
+
+#: core/core-settings-map.php:2316
+msgid "You are using a child theme. This option must be changed from the parent theme. Activate the parent from %s."
+msgstr "Sie verwenden ein Child Theme. Diese Option muss vom Eltern Theme geändert werden. Aktivieren Sie das Eltern Theme von %s."
+
+#: core/core-settings-map.php:2229
+msgid "Check this option to delay the loading of non visible images in sliders. This can greatly improve the speed of your website."
+msgstr "Aktivieren Sie diese Option, um das Laden nicht sichtbarer Bilder im Slider zu verzögern. Dies kann die Geschwindigkeit Ihrer Website erheblich verbessern."
+
+#: core/core-settings-map.php:2224
+msgid "Lazy load the images in sliders"
+msgstr "Träges Laden der Bilder im Slider"
+
+#: core/core-settings-map.php:1224
+msgid "When this option is checked, navigation dots are displayed at the bottom of the home slider."
+msgstr "Wenn diese Option aktiviert ist, werden Navigationspunkte am unteren Rand des Home-Slider angezeigt."
+
+#: core/core-settings-map.php:1216
+msgid "Display navigation dots"
+msgstr "Navigationspunkte anzeigen"
+
+#: core/czr-admin-ccat.php:896
+msgid "Search the knowledge base"
+msgstr "Durchsuchen Sie die Wissensbank"
+
+#: core/core-settings-map.php:541
+msgid "Header foreground color"
+msgstr "Header-Vordergrundfarbe"
+
+#: core/core-settings-map.php:531
+msgid "Header background color"
+msgstr "Header-Hintergrundfarbe"
+
+#: core/czr-admin-ccat.php:543
+msgid "Thank you for using"
+msgstr "Danke für die Benutzung"
+
+#: core/core-settings-map.php:2712
+msgid "Discover the features and benefits"
+msgstr "Entdecke die Features und Vorteile"
+
+#: core/core-settings-map.php:647
+msgid "You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s."
+msgstr "Sie müssen Ihre Topbar aktivieren um Social Links im Header anzuzeigen. Aktivieren Sie Ihre Topbar in dieser Option-Schaltfläche, oder %s."
+
+#: core/core-settings-map.php:1204 core/czr-admin-ccat.php:1638
+msgid "Apply a dark overlay on your slider's images"
+msgstr "Wenden Sie eine dunkle Überlagerung auf die Bilder Ihres Schiebers an"
+
+#: core/core-settings-map.php:749
+msgid "When your header ( containing the site title or logo ) is gluing to the top of a page, this option will make the title or logo smaller."
+msgstr "Wenn Ihr Header (mit dem Website-Titel oder Logo) an der Oberseite einer Seite klebt, wird diese Option den Titel oder das Logo kleiner machen."
+
+#: core/core-settings-map.php:625
+msgid "Display a topbar"
+msgstr "Topbar anzeigen"
+
+#: inc/czr-init-ccat.php:2442
+msgid "Improve your page speed by loading smaller slider images for mobile devices"
+msgstr "Verbessern Sie Ihre Seitengeschwindigkeit beim Laden von kleineren Slider-Bildern auf Mobilgeräten"
+
+#: inc/czr-init-ccat.php:2297
+msgid "Primary theme color with a shadow"
+msgstr "Primäre Themenfarbe mit einem Schatten"
+
+#: core/init-base.php:394
+msgid "Mobile Menu"
+msgstr "Mobile-Menü"
+
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:135
+msgid "Customize it now"
+msgstr "Jetzt Anpassen"
+
+#: core/core-settings-map.php:2699
+msgid "Theme style"
+msgstr "Theme-Style"
+
+#: core/core-settings-map.php:2575
+msgid "Front Page Content"
+msgstr "Startseiten Inhalt"
+
+#: core/core-settings-map.php:2558
+msgid "Design settings for smartphones and tablets in portrait orientation"
+msgstr "Design-Einstellungen für Smartphones und Tablets in Hochformat"
+
+#: core/core-settings-map.php:2553
+msgid "Design settings for desktop and laptops"
+msgstr "Design-Einstellungen für Desktop-PC und Laptops"
+
+#: core/core-settings-map.php:2548
+msgid "General design settings"
+msgstr "Allgemeine Design-Einstellungen"
+
+#: core/core-settings-map.php:2526
+msgid "Sliders options"
+msgstr "Slider-Optionen"
+
+#: core/core-settings-map.php:2509
+msgid "Formatting : links, paragraphs ..."
+msgstr "Formatierung: Links, Absätze ..."
+
+#: core/core-settings-map.php:2493
+msgid "Pick a primary color for the theme"
+msgstr "Wählen Sie eine Primärfarbe für das Theme"
+
+#: core/core-settings-map.php:2491
+msgid "Primary color of the theme"
+msgstr "Primäre Farbe des Theme"
+
+#: core/core-settings-map.php:2476
+msgid "Site Identity : Logo, Title, Tagline and Site Icon"
+msgstr "Webseite- Identität: Logo, Titel, Tagline und Webseiten-Icon"
+
+#: core/core-settings-map.php:2374
+msgid "Performances, Custom CSS ..."
+msgstr "Performance ,Individuelles CSS"
+
+#: core/core-settings-map.php:2367
+msgid "Style, Back to top button, Sticky mode, ... "
+msgstr "Style, Zurück nach Oben-Button, Sticky-Modus, ..."
+
+#: core/core-settings-map.php:2354
+msgid "Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
+msgstr "Spalten-Layout, Post-Listen Design, Thumbnails, Post Metas, Navigation, ..."
+
+#: core/core-settings-map.php:2353
+msgid "Main Content"
+msgstr "Hauptinhalt"
+
+#: core/core-settings-map.php:2347
+msgid "Style, Desktops and mobiles layout, Menus, Search, ..."
+msgstr "Stil, Desktops- und Mobiles- Layout, Menüs, Suche, ..."
+
+#: core/core-settings-map.php:2340
+msgid "Title, Logo, Fonts, Primary color, Social, ..."
+msgstr "Titel, Logo, Schriftarten, Primärfarbe, Social ..."
+
+#: core/core-settings-map.php:2312
+msgid "Classical"
+msgstr "Klassisch"
+
+#: core/core-settings-map.php:2311
+msgid "Modern"
+msgstr "Modern"
+
+#: core/core-settings-map.php:2307
+msgid "Select a design style for the theme"
+msgstr "Wähle einen Designstil für das Theme"
+
+#: core/core-settings-map.php:2307
+msgid "Set the Modern or Classical design style"
+msgstr "Stellen Sie den modernen oder klassischen Designstil ein"
+
+#: core/core-settings-map.php:2302
+msgid "The Modern style provides a \"material design\" look and feel. It relies on the flexbox css mode, offering a better support for the most recent mobile devices and browsers. The Classical style provides a more \"flat design\" feeling, with icons next to titles for example. It supports both modern and older devices and browsers."
+msgstr "Der moderne Stil bietet ein \"Material Design\" schaue und fühle. Es beruht auf dem Flexbox-CSS-Modus und bietet eine bessere Unterstützung für die neuesten mobilen Geräte und Browser. Der klassische Stil bietet ein \"flaches Design\" -Gefühl, mit Icons neben Titeln zum Beispiel. Es unterstützt sowohl moderne als auch ältere Geräte und Browser."
+
+#: core/core-settings-map.php:2290
+msgid "When this option is enabled, your font size will automatically resize to be better displayed in mobile devices."
+msgstr "Wenn diese Optionen aktiviert sind, wird Ihre Schriftgröße automatisch skaliert, um besser in mobilen Geräten angezeigt zu werden."
+
+#: core/core-settings-map.php:2287
+msgid "Automatically adapt the font size to the width of the devices"
+msgstr "Automatische Anpassung der Schriftgröße an die Breite der Geräte"
+
+#: core/core-settings-map.php:2140
+msgid "Enabling this option will glue your footer to the bottom of the screen, when pages are shorter than the viewport's height."
+msgstr "Wenn Sie diese Option aktivieren, wird die Fußzeile auf die Unterseite des Bildschirms geklebt, wenn Seiten kürzer sind als die Höhe des Ansichtsfensters."
+
+#: core/core-settings-map.php:2111
+msgid "Footer style"
+msgstr "Footer-Stil"
+
+#: core/core-settings-map.php:1958
+msgid "Display the number of comments below the post titles"
+msgstr "Zeigen Sie die Anzahl der Kommentare unterhalb der Beitrag-Titel an"
+
+#: core/core-settings-map.php:1438
+msgid "This option defines the maximum number of posts or search results displayed in any list of posts of your website : blog page, archive page, search page. If the number of items to displayed is greater than your setting, the theme will automatically add a pagination link block at the bottom of the page."
+msgstr "Diese Option definiert die maximale Anzahl von Beiträgen oder Suchergebnissen, die in einer Liste von Beiträgen Ihrer Website angezeigt werden: Blogseite, Archivseite, Suchseite. Wenn die Anzahl der angezeigten Elemente größer als Ihre Einstellung ist, wird das Theme automatisch einen Seitennummerierungs-Block am unteren Rand der Seite hinzufügen."
+
+#: core/core-settings-map.php:898
+msgid "Make sure that you have assigned your menus to the relevant locations %s."
+msgstr "Vergewissern Sie sich, dass Sie Ihre Menüs den entsprechenden Orten zugeordnet haben %s."
+
+#: core/core-settings-map.php:882
+msgid "An horizontal menu can be displayed in the main header with this option. Make sure you have assigned a menu to this location in the menu panel."
+msgstr "Ein horizontales Menü kann im Hauptheader mit dieser Option angezeigt werden. Vergewissern Sie sich, dass Sie diesem Menü ein Platz in der Menü-Oberfläche zugeordnet haben."
+
+#: core/core-settings-map.php:832
+msgid "header menu visibility on scroll"
+msgstr "Header-Menü sichtbar beim scrollen"
+
+#: core/core-settings-map.php:775
+msgid "If the selected menu location has no menu assigned, the theme will try to assign another menu in this order : mobile, main, secondary, topbar."
+msgstr "Wenn dem gewählten Menü-Ort kein Menü zugewiesen ist, wird das Theme versuchen, ein anderes Menü in dieser Reihenfolge zuzuordnen: Mobil, Haupt-, Sekundär-, Topbar."
+
+#: core/core-settings-map.php:774
+msgid "When your visitors are using a smartphone or a tablet, the header becomes a thin bar on top, where the menu is revealed when clicking on the hamburger button. This option let you choose which menu will be displayed."
+msgstr "Wenn Ihre Besucher ein Smartphone oder ein Tablet verwenden, wird der Header zu einem dünnen Balken oben, wo das Menü beim Anklicken der Hamburger-Taste angezeigt wird. Mit dieser Option können Sie wählen, welches Menü angezeigt wird."
+
+#: core/core-settings-map.php:771
+msgid "Topbar Menu"
+msgstr "Topbar Menü"
+
+#: core/core-settings-map.php:770
+msgid "Secondary"
+msgstr "Sekundär"
+
+#: core/core-settings-map.php:768
+msgid "Specific Mobile Menu"
+msgstr "Spezielles mobiles Menü"
+
+#: core/core-settings-map.php:764
+msgid "Select the menu(s) to use for mobile devices"
+msgstr "Wählen Sie das/die Menü/s für mobile Geräte aus"
+
+#: core/core-settings-map.php:763 core/core-settings-map.php:764
+#: core/core-settings-map.php:794 core/core-settings-map.php:806
+#: core/core-settings-map.php:820 core/core-settings-map.php:832
+#: core/core-settings-map.php:848 core/core-settings-map.php:2694
+msgid "Mobile devices"
+msgstr "Mobile Geräte"
+
+#: core/core-settings-map.php:763
+msgid "Header settings for %s"
+msgstr "Header-Einstellungen für %s"
+
+#: core/core-settings-map.php:731
+msgid "Topbar"
+msgstr "Topbar"
+
+#: core/core-settings-map.php:727
+msgid "select the header block to stick on scroll"
+msgstr "wähle den Header-Block aus, um beim scrollen oben zu halten"
+
+#: core/core-settings-map.php:719 core/core-settings-map.php:838
+msgid "Always visible"
+msgstr "Immer sichtbar"
+
+#: core/core-settings-map.php:718 core/core-settings-map.php:837
+msgid "Reveal on scroll up"
+msgstr "beim scrollen aufdecken"
+
+#: core/core-settings-map.php:717 core/core-settings-map.php:836
+msgid "Not visible when scrolling the page"
+msgstr "Nicht sichtbar beim Scrollen der Seite"
+
+#: core/core-settings-map.php:713
+msgid "set the header visibility on scroll"
+msgstr "den Header bei scrollen anzeigen"
+
+#: core/core-settings-map.php:679
+msgid "set the search icon location"
+msgstr "bestimmen Sie die Position des Suchsymbols"
+
+#: core/core-settings-map.php:667
+msgid "Next to the logo"
+msgstr "Neben dem Logo"
+
+#: core/core-settings-map.php:666
+msgid "Below the logo"
+msgstr "Unter dem Logo"
+
+#: core/core-settings-map.php:665
+msgid "In the topbar"
+msgstr "In der Topbar"
+
+#: core/core-settings-map.php:664 core/core-settings-map.php:684
+#: core/core-settings-map.php:701 core/core-settings-map.php:811
+#: core/core-settings-map.php:853
+msgid "Do not display"
+msgstr "Werden nicht angezeigt"
+
+#: core/core-settings-map.php:657
+msgid "set the tagline location"
+msgstr "Setzen Sie den Untertitel-Standort"
+
+#: core/core-settings-map.php:650
+msgid "jump to the topbar option"
+msgstr "springen Sie zu der Topbar-Option"
+
+#: core/core-settings-map.php:629
+msgid "You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart."
+msgstr "Sie können eine Topbar über dem Header mit verschiedenen Blöcken wie einem Menü, Ihren Social-Links, dem Suchsymbol oder dem WooCommerce-Warenkorb anzeigen."
+
+#: core/core-settings-map.php:560
+msgid "Underline the site title in the header"
+msgstr "Unterstreichen Sie den Website-Titel im Header"
+
+#: core/core-settings-map.php:518
+msgid "Header style"
+msgstr "Header Style"
+
+#: core/core-settings-map.php:430
+msgid "Improve your page speed by loading smaller images for mobile devices"
+msgstr "Verbessern Sie Ihre Seitengeschwindigkeit, indem Sie kleinere Bilder für mobile Geräte laden"
+
+#: core/core-settings-map.php:362
+msgid "Animated underline effect on link hover"
+msgstr "Animierter unterstrichener Effekt bei Mauszeigerkontakt auf Link"
+
+#: core/core-settings-map.php:287
+msgid "This is the color used to style your links and other clickable elements of the theme like buttons and slider arrows."
+msgstr "Dies ist die verwendete Farbe, um Ihre Links und andere anklickbare Elemente des Theme wie Schaltflächen und Slider-Pfeile zu gestalten."
+
+#: core/core-settings-map.php:280
+msgid "Primary color"
+msgstr "Primärfarbe"
+
+#: core/class-fire-resources_scripts.php:370 inc/czr-init-ccat.php:4211
+msgid "Permanently dismiss"
+msgstr "Dauerhaft ausblenden"
+
+#: core/class-fire-resources_scripts.php:538
+msgid "a short guide here."
+msgstr "eine kurze Anleitung hier."
+
+#: core/class-fire-resources_scripts.php:536
+msgid "To help you getting started with Customizr, we have published"
+msgstr "Um Ihnen zu helfen, mit Customizr zu beginnen, veröffentlichten wir"
+
+#: core/class-fire-resources_scripts.php:533
+msgid "Customizr Demo 2"
+msgstr "Customizr Demo 2"
+
+#: core/class-fire-resources_scripts.php:531
+msgid "Customizr Demo 1"
+msgstr "Customizr Demo 1"
+
+#: core/class-fire-resources_scripts.php:529
+msgid "If you need inspiration, you can visit our online demos"
+msgstr "Wenn Sie Inspiration brauchen, können Sie unsere Online-Demos besuchen"
+
+#: core/class-fire-resources_scripts.php:526
+msgid "to let you create the best possible websites."
+msgstr "um Sie die bestmöglichen Webseiten entwerfen zu lassen."
+
+#: core/class-fire-resources_scripts.php:525
+msgid "of customization options"
+msgstr "der Anpassungsoptionen"
+
+#: core/class-fire-resources_scripts.php:523
+msgid "The theme offers a wide range"
+msgstr "Das Theme bietet eine breite Palette"
+
+#: core/class-fire-resources_scripts.php:520
+msgid "Welcome in the Customizr theme"
+msgstr "Willkommen im Customizr-Theme"
+
+#: core/core-settings-map.php:1694
+msgid "Display randomized related articles below the post"
+msgstr "Zeigen Sie randomisierte verwandte Artikel unterhalb des Beitrags"
+
+#: core/core-settings-map.php:1692
+msgid "Related by tags"
+msgstr "Verbunden durch Schlagwörter"
+
+#: core/core-settings-map.php:1691
+msgid "Related by categories"
+msgstr "Verbunden durch Kategorien"
+
+#: core/core-settings-map.php:1685
+msgid "Single - Related Posts"
+msgstr "Einzelne - Verbundene Beiträge"
+
+#: core/core-settings-map.php:1684
+msgid "Related posts"
+msgstr "Verbundene Beiträge"
+
+#: core/core-settings-map.php:1652 core/core-settings-map.php:1711
+msgid "Featured Image"
+msgstr "Hervorgehobene Bilder"
+
+#: templates/parts/modules/related-posts/related_posts.php:23
+msgid "Next related articles"
+msgstr "Nächste verbundene Artikel"
+
+#: templates/parts/modules/related-posts/related_posts.php:22
+msgid "Previous related articles"
+msgstr "Vorangegangene verbundene Artikel"
+
+#: templates/parts/footer/footer_credits.php:13
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
+
+#: core/core-settings-map.php:1632
+msgid "Display thumbnail placeholder if no images available"
+msgstr "Zeige Vorschaubild-Platzhalter, wenn keine Bilder verfügbar sind"
+
+#: inc/czr-init-ccat.php:2946
+msgid "Display post format icons"
+msgstr "Zeige Beitragsformat Icons"
+
+#: core/core-settings-map.php:1566
+msgid "Plain full layout"
+msgstr "Einfaches Layout"
+
+#: core/core-settings-map.php:1489
+msgid "Regular"
+msgstr "Normal"
+
+#: core/core-settings-map.php:521 core/core-settings-map.php:2114
+msgid "Light"
+msgstr "Hell"
+
+#: core/core-settings-map.php:520 core/core-settings-map.php:2113
+msgid "Dark"
+msgstr "Dunkel"
+
+#: core/core-settings-map.php:806
+msgid "display a search icon in the header"
+msgstr "Zeige ein Suchsymbol im Header an"
+
+#: core/core-settings-map.php:685 core/core-settings-map.php:702
+msgid "Display in the topbar"
+msgstr "Anzeige in der Topbar"
+
+#: core/front/template-tags/template-tags.php:64
+msgid "Comment on"
+msgid_plural "Comments on"
+msgstr[0] "Kommentar an"
+msgstr[1] "Kommentare an"
+
+#: core/front/models/content/post-metas/class-model-post_metas.php:133
+#: core/front/template-tags/template-tags.php:121
+#: templates/parts/content/common/media.php:14
+msgid "Permalink to:&nbsp;"
+msgstr "Permalink zu:&nbsp;"
+
+#: core/czr-admin-ccat.php:1399
+msgid "Enter the video url"
+msgstr "Video URL eingeben"
+
+#: core/czr-admin-ccat.php:1395
+msgid "Video url"
+msgstr "Video URL"
+
+#: core/czr-admin-ccat.php:1365
+msgid "Enter the audio url"
+msgstr "Audio URL eingeben"
+
+#: core/czr-admin-ccat.php:1361
+msgid "Audio url"
+msgstr "Audio URL"
+
+#: core/czr-admin-ccat.php:1334
+msgid "Enter the author"
+msgstr "Autor eintragen"
+
+#: core/czr-admin-ccat.php:1328
+msgid "Quote author"
+msgstr "Autor zitieren"
+
+#: core/czr-admin-ccat.php:1313
+msgid "Enter the text"
+msgstr "Text eingeben"
+
+#: core/czr-admin-ccat.php:1308
+msgid "Quote text"
+msgstr "Text zitieren"
+
+#: core/czr-admin-ccat.php:1281
+msgid "Enter the URL"
+msgstr "URL eingeben"
+
+#: core/czr-admin-ccat.php:1276
+msgid "Link URL"
+msgstr "Link URL"
+
+#: core/czr-admin-ccat.php:1260
+msgid "Enter the title"
+msgstr "Titel eingeben"
+
+#: core/czr-admin-ccat.php:1255
+msgid "Link title"
+msgstr "Link Titel"
+
+#: core/czr-admin-ccat.php:1223
+msgid "Format: audio"
+msgstr "Format: Audio"
+
+#: core/czr-admin-ccat.php:1211
+msgid "Format: video"
+msgstr "Format: Video"
+
+#: core/czr-admin-ccat.php:1199
+msgid "Format: quote"
+msgstr "Format: Zitat"
+
+#: core/czr-admin-ccat.php:1187
+msgid "Format: link"
+msgstr "Format: Link"
+
+#: core/czr-admin-ccat.php:622
+msgid "The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites."
+msgstr "Das Customizr Pro WordPress Theme erlaubt es allen eine wunderschöne, professionelle und Mobilphone freundliche Webseite in wenigen Minuten zu erstellen. In der Pro Version erhalten Sie alle in der Free Version enthaltenen Features aber auch viele umwandlungsorientierte Features, um Ihre Besucher zu beeindrucken und um Besucher zu gewinnen."
+
+#: inc/czr-init-ccat.php:2684 inc/czr-init-ccat.php:2705
+msgid "the logo is centered"
+msgstr "das Logo ist zentriert"
+
+#: inc/czr-init-ccat.php:2682 inc/czr-init-ccat.php:2703
+msgid "Note : the menu centered position is available only when"
+msgstr "Hinweis: Das zentrierte Menü ist nur verfügbar, wenn"
+
+#: inc/czr-init-ccat.php:2676 inc/czr-init-ccat.php:2697
+msgid "Menu centered"
+msgstr "zentriertes Menü"
+
+#: core/core-settings-map.php:2607
+msgid "Single pages"
+msgstr "Einzelne Seiten"
+
+#: core/core-settings-map.php:1722
+msgid "You can display the featured image (also called the post thumbnail) of your pages before their content, when they are displayed individually."
+msgstr "Sie können das Beitragsbild (auch Beitrags-Vorschaubild genannt) auf Ihren Seiten vor dem Inhalt anzeigen lassen, wenn diese individuell angezeigt werden."
+
+#: core/core-settings-map.php:1723 inc/czr-front-ccat.php:4738
+msgid "Don't know how to set a featured image to a page? Learn how in the %s."
+msgstr "Sie wissen nicht wie man ein Beitragsbild in einer Seite einstellt? Lernen Sie wie es geht in %s"
+
+#: inc/czr-front-ccat.php:4734
+msgid "You can display your page's featured image here if you have set one."
+msgstr "Sie können das Beitragsbild der Seite hier anzeigen, wenn Sie eins eingestellt haben."
+
+#: core/czr-customize-ccat.php:2156
+msgid "default:"
+msgstr "Standard:"
+
+#: core/czr-customize-ccat.php:1009
+msgid "Options for"
+msgstr "Optionen für"
+
+#: core/czr-customize-ccat.php:1008
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: core/core-settings-map.php:2714
+msgid "Go Pro"
+msgstr "Bekomme Pro"
+
+#: core/core-settings-map.php:2267
+msgid "When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
+msgstr "Wenn aktiviert, werden die Font Awesome Icons und CSS im Frontend geladen. Sie könnten die Font Awesome Icons auch mit einem benutzerspezifischen Code oder einem Plugin laden."
+
+#: core/core-settings-map.php:2262
+msgid "Load Font Awesome resources"
+msgstr "Lade Font Awesome Ressourcen"
+
+#: core/core-settings-map.php:1804
+msgid "Yoast SEO breadcrumbs settings"
+msgstr "Yoast SEO Breadcrumb-Einstellungen"
+
+#: core/core-settings-map.php:1803
+msgid "customization panel"
+msgstr "Anpassungsoberfläche"
+
+#: core/core-settings-map.php:1800
+msgid "Jump to the Yoast SEO breadcrumbs %s"
+msgstr "Springe zu Yoast SEO Breadcrumbs %s"
+
+#: core/core-settings-map.php:1797
+msgid "Use Yoast SEO breadcrumbs"
+msgstr "Benutze Yoast SEO Breadcrumbs"
+
+#: core/core-settings-map.php:794 inc/czr-init-ccat.php:2495
+msgid "Display the tagline in the header"
+msgstr "Untertitel im Header anzeigen"
+
+#: core/core-settings-map.php:335
+msgid "Create and organize your social links"
+msgstr "Erstelle und Bearbeite deine Social Links"
+
+#: inc/czr-front-ccat.php:9128
+msgid "Discover the Customizr WordPress theme &raquo;"
+msgstr "Entdecke das Customizr WordPress Theme &raquo;"
+
+#: core/czr-customize-ccat.php:2236
+msgid "Choose Image"
+msgstr "Wähle Abbildung"
+
+#: core/czr-customize-ccat.php:2234
+msgid "No image selected"
+msgstr "Keine Abbildung ausgewählt"
+
+#: core/czr-customize-ccat.php:2233
+msgid "Default"
+msgstr "Voreinstellungen"
+
+#: core/czr-customize-ccat.php:2231
+msgid "Change Image"
+msgstr "Wechsle Abbildung"
+
+#: core/czr-customize-ccat.php:2230 core/czr-customize-ccat.php:2235
+msgid "Select Image"
+msgstr "Wähle Abbildung"
+
+#: core/czr-customize-ccat.php:2170
+msgid "Check this option to open the link in a another tab of the browser."
+msgstr "Wähle diese Option um Links in einer neuen Tab im Browser zu öffnen."
+
+#: core/czr-customize-ccat.php:2166
+msgid "Link target"
+msgstr "Link-Zieladresse"
+
+#: core/czr-customize-ccat.php:2160
+msgid "Set a unique color for your icon."
+msgstr "Setze eine spezifische Farbe für das Icon"
+
+#: core/czr-customize-ccat.php:2156
+msgid "Icon color"
+msgstr "Icon Farbe"
+
+#: core/czr-customize-ccat.php:2152
+msgid "This is the text displayed on mouse over."
+msgstr "Dieser Text wird angezeigt, wenn sich die Maus darüber befindet."
+
+#: core/czr-customize-ccat.php:2150
+msgid "Enter a title"
+msgstr "Titel eintragen"
+
+#: core/czr-customize-ccat.php:2141
+msgid "Social link"
+msgstr "Social Link"
+
+#: core/czr-customize-ccat.php:2134
+msgid "Social icon"
+msgstr "Social Icon"
+
+#: core/czr-customize-ccat.php:2128
+msgid "Id"
+msgstr "ID"
+
+#: core/czr-customize-ccat.php:2119
+msgid "Size in px"
+msgstr "Größe in Pixel"
+
+#: core/czr-customize-ccat.php:2112 core/czr-customize-ccat.php:2145
+msgid "Enter the full url of your social profile (must be valid url)."
+msgstr "Trage Sie die ganze URL Ihres Social Profiles ein (es muss ein gültiger Link sein)"
+
+#: core/czr-customize-ccat.php:2110 core/czr-customize-ccat.php:2143
+msgid "http://...,mailto:...,..."
+msgstr "http://...,mailto:...,..."
+
+#: core/czr-customize-ccat.php:2108
+msgid "Social link url"
+msgstr "Social Link URL"
+
+#: core/czr-customize-ccat.php:2102
+msgid "Select an icon"
+msgstr "Wähle Sie ein Icon"
+
+#: core/core-settings-map.php:1208 core/core-settings-map.php:1220
+#: core/czr-customize-ccat.php:1986
+msgid "Yes"
+msgstr "Ja"
+
+#: core/czr-customize-ccat.php:1985
+msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
+msgstr "Sind Sie sicher, dass Sie das rückgängig machen möchten : <strong>{{ data.title }} ?</strong>"
+
+#: core/czr-customize-ccat.php:1978
+msgid "Add it"
+msgstr "Hinzufügen"
+
+#: core/czr-customize-ccat.php:1978
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: core/czr-customize-ccat.php:1973
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: core/czr-customize-ccat.php:1785
+msgid "Press return or enter to open this panel"
+msgstr "Drücke Sie Rückgängig oder Enter um diese Maske zu öffnen"
+
+#: core/czr-customize-ccat.php:1641
+msgid "Please fill the social link inputs with a valid URLs"
+msgstr "Bitte füllen Sie die Social Link Felder mit gültigen URLs aus"
+
+#: core/czr-customize-ccat.php:1597
+msgid "An error occurred: malformed social links"
+msgstr "Ein Fehler ist aufgetreten: Ungültiger Social Link"
+
+#: core/czr-customize-ccat.php:996
+msgid "The side on which the menu is revealed depends on the choosen header layout."
+msgstr "Die Seite auf der das Menü angezeigt wird hängt von dem gewählten Kopfzeilen-Layout ab."
+
+#: core/czr-customize-ccat.php:993
+msgid "Slide"
+msgstr "Folie"
+
+#: core/czr-customize-ccat.php:992
+msgid "New Slide created ! Scroll down to edit it."
+msgstr "Neue Folie wurde erstellt ! Scrolle Sie herunter um sie zu bearbeiten."
+
+#: core/czr-customize-ccat.php:990
+msgid "Close Editor"
+msgstr "Editor schließen"
+
+#: core/czr-customize-ccat.php:987 core/czr-customize-ccat.php:1007
+msgid "Learn more about this in the documentation"
+msgstr "Erfahren Sie mehr in der Dokumentation"
+
+#: core/czr-customize-ccat.php:986
+msgid "New Social Link created ! Scroll down to edit it."
+msgstr "Neuer Social Link wurde erstellt ! Scrollen Sie herunter um ihn zu bearbeiten."
+
+#: core/czr-customize-ccat.php:985
+msgid "Done !"
+msgstr "Fertig!"
+
+#: core/czr-customize-ccat.php:984
+msgid "Follow us on"
+msgstr "Folge uns auf"
+
+#: core/czr-customize-ccat.php:983
+msgid "Select a social icon"
+msgstr "Wählen Sie ein Social Icon"
+
+#: core/czr-customize-ccat.php:982
+msgid "Rss"
+msgstr "RSS"
+
+#: core/czr-customize-ccat.php:981
+msgid "Not set"
+msgstr "Nicht gesetzt"
+
+#: core/core-settings-map.php:2153
+msgid "Back to top arrow position"
+msgstr "Position des „Nach oben“-Pfeils"
+
+#: core/front/models/modules/slider/class-model-slider_of_posts.php:26
+msgid "Customize or remove the posts slider"
+msgstr "Beitrags-Slider anpassen oder entfernen"
+
+#: templates/parts/modules/search/searchform.php:11
+msgctxt "title"
+msgid "Search &hellip;"
+msgstr "Suche &hellip;"
+
+#: templates/parts/modules/search/searchform.php:10
+msgctxt "label"
+msgid "Search"
+msgstr "Suche"
+
+#: templates/parts/modules/related-posts/related_posts.php:9
+msgid "You may also like"
+msgstr "Vielleicht gefällt Ihnen auch"
+
+#: core/czr-admin-ccat.php:873
+msgid "read more"
+msgstr "Weiterlesen"
+
+#: core/front/models/content/common/text/class-model-quote.php:157
+#: templates/parts/modules/grid/grid_item.php:27
+#: templates/parts/modules/grid/grid_item.php:43
+msgid "Permalink to"
+msgstr "Permalink zu"
+
+#: templates/parts/footer/footer_credits.php:9
+msgid "All rights reserved"
+msgstr "Alle Rechte vorbehalten"
+
+#: templates/parts/content/singular/navigation/singular_posts_navigation.php:53
+msgid "Next post"
+msgstr "Nächster Beitrag"
+
+#: templates/parts/content/singular/navigation/singular_posts_navigation.php:45
+#: templates/parts/content/singular/navigation/singular_posts_navigation.php:47
+msgid "Back to post list"
+msgstr "Zurück zur Beitragsliste"
+
+#: templates/parts/content/singular/navigation/singular_posts_navigation.php:39
+msgid "Previous post"
+msgstr "Vorheriger Beitrag"
+
+#: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:31
+msgid "Posts navigation"
+msgstr "Beitragsnavigation"
+
+#: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:11
+msgid "Newer posts"
+msgstr "Neuere Beiträge"
+
+#: templates/parts/content/post-lists/navigation/post_list_posts_navigation.php:10
+msgid "Older posts"
+msgstr "Ältere Beiträge"
+
+#: templates/parts/content/post-lists/headings/regular_search_heading.php:15
+#: templates/parts/content/post-lists/headings/search_heading.php:15
+msgid "%s result"
+msgid_plural "%s results"
+msgstr[0] "%s Ergebnis"
+msgstr[1] "%s Ergebnisse"
+
+#: templates/parts/content/post-lists/headings/regular_search_heading.php:8
+#: templates/parts/content/post-lists/headings/search_heading.php:9
+msgid "Search results for:"
+msgstr "Suchergebnisse für:"
+
+#: templates/parts/content/post-lists/headings/archive_heading.php:36
+#: templates/parts/content/post-lists/headings/regular_archive_heading.php:23
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s Beitrag"
+msgstr[1] "%s Beiträge"
+
+#: templates/parts/content/no-results/search_no_results.php:7
+msgid "Nothing Found"
+msgstr "Keine Ergebnisse gefunden"
+
+#: templates/parts/content/no-results/404.php:7
+msgid "404"
+msgstr "404"
+
+#: templates/parts/content/singular/comments/comment_list.php:24
+msgid "pingback"
+msgid_plural "pingbacks"
+msgstr[0] "Pingback"
+msgstr[1] "Pingbacks"
+
+#: templates/parts/content/singular/comments/comment.php:31
+msgid "Edit comment"
+msgstr "Kommentar bearbeiten"
+
+#: templates/parts/content/singular/authors/author_info.php:14
+msgid "View all the posts of the author"
+msgstr "Alle Beiträge des Autors anzeigen"
+
+#: templates/parts/content/singular/authors/author_info.php:11
+msgid "AUTHOR"
+msgstr "Autor"
+
+#: core/init-base.php:176
+msgid "Contact me on Snapchat"
+msgstr "Auf Snapchat kontaktieren"
+
+#: templates/parts/content/common/media.php:24
+#: templates/parts/content/post-lists/item-parts/headings/post_list_item_header-no_metas.php:21
+#: templates/parts/content/post-lists/item-parts/headings/post_list_item_header.php:27
+#: templates/parts/content/post-lists/item-parts/headings/post_list_item_header_date.php:26
+msgid "Permalink to "
+msgstr "Permalink zu"
+
+#: core/front/models/content/post-lists/headings/class-model-archive_heading.php:57
+msgid "Yearly Archives:"
+msgstr "Jährliche Archive:"
+
+#: core/front/models/content/post-lists/headings/class-model-archive_heading.php:56
+msgid "Monthly Archives:"
+msgstr "Monatliche Archive:"
+
+#: core/front/models/content/post-lists/headings/class-model-archive_heading.php:55
+msgid "Daily Archives:"
+msgstr "Tägliche Archive:"
+
+#: core/class-fire-prevdem.php:136
+msgid "What We Do"
+msgstr "Was wir tun"
+
+#: core/class-fire-prevdem.php:132
+msgid "Who We Are"
+msgstr "Wer wir sind"
+
+#: core/class-fire-prevdem.php:324
+msgid "Call to action"
+msgstr "Handlungsaufforderung"
+
+#: core/class-fire-prevdem.php:407 core/class-fire-prevdem.php:453
+msgid "Search"
+msgstr "Suche"
+
+#: core/class-fire-prevdem.php:322
+msgid "Engage your visitors with a carousel in any pages."
+msgstr "Mit einem Slider das Interesse Ihrer Besucher auf allen Seiten wecken."
+
+#: core/class-fire-prevdem.php:140
+msgid "Contact Us"
+msgstr "Nimm Kontakt zu uns auf"
+
+#: core/class-fire-prevdem.php:316
+msgid "The Customizr theme fits nicely on any mobile devices."
+msgstr "Das Customizr-Thema passt hervorragend bei jedem mobilen Gerät."
+
+#: core/class-fire-prevdem.php:413 core/class-fire-prevdem.php:431
+msgid "Recent Posts"
+msgstr "Neueste Beiträge"
+
+#: core/class-fire-prevdem.php:420 core/class-fire-prevdem.php:442
+msgid "Recent Comments"
+msgstr "Neueste Kommentare"
+
+#: core/core-settings-map.php:458
 msgid "If enabled, your slides scroll slower than the page (parallax effect)."
 msgstr "Ihre Slides scrollen langsamer als die Seite, wenn dies aktiviert ist (Parallaxen-Effekt)."
 
-#: inc/czr-init.php:3080
+#: core/core-settings-map.php:454
 msgid "Sliders : use parallax scrolling"
-msgstr "Slider: nutze Parallax-Scrollen"
+msgstr "Sliders: Verwende Parallax Scrolling"
 
-#: inc/czr-init.php:3300
+#: inc/czr-init-ccat.php:2554
 msgid "WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling."
 msgstr "WooCommerce: wenn ausgewählt, bleibt Ihr WooCommerce Einkaufswagen-Icon beim Scrollen sichtbar."
 
-#: inc/czr-admin.php:545
-msgid "Get help in the free support forum"
-msgstr "Holen Sie sich Hilfe im frei zugänglichen Support-Forum"
-
-#: inc/czr-admin.php:545
-msgid "Get support"
-msgstr "Support erhalten"
-
-#: inc/czr-admin.php:541
-msgid "Code snippets for developers"
-msgstr "Code-Snippets für Entwickler"
-
-#: inc/czr-init.php:5199
+#: core/core-settings-map.php:2689
 msgid "Front-end Icons (Font Awesome)"
 msgstr "Frontend-Icons (Font Awesome)"
 
-#: inc/czr-init.php:4847
+#: core/core-settings-map.php:2269
 msgid "Check out some example of uses"
 msgstr "Probieren Sie einige Verwendungsbeispiele aus"
 
-#: inc/czr-init.php:4846
-msgid "When checked, the additional Font Awesome CSS stylesheet will be loaded. This stylesheet is not loaded by default to save bandwidth but you might need it if you want to use the whole Font Awesome CSS."
-msgstr "Wenn ausgewählt, werden die zusätzlichen Font Awesome CSS Stylesheets geladen. Dieses Stylesheet wird, um Bandbreite zu sparen, nicht standardmäßig geladen, aber Sie könnten es benötigen, wenn Sie das gesamte Font Awesome CSS verwenden wollen."
-
-#: inc/czr-init.php:4842
-msgid "Load Font Awesome CSS"
-msgstr "Font Awesome CSS laden"
-
-#: inc/czr-init.php:4836
-msgid "When checked, the Font Awesome icons will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
-msgstr "Wenn ausgewählt, werden die Font Awesome-Icons im Frontend geladen. Sie möchten vielleicht die Font Awesome-Icons mit eigenem Code oder über ein Plugin laden."
-
-#: inc/czr-init.php:4835
+#: core/core-settings-map.php:2266
 msgid "Use with caution"
 msgstr "Mit Vorsicht verwenden"
 
-#: inc/czr-init.php:3588
+#: core/core-settings-map.php:1068
 msgid "Display navigation in your home blog"
 msgstr "Navigation in Ihrem Startseiten-Blog anzeigen"
 
-#: inc/czr-init.php:773
-msgid "Xing profile url"
-msgstr "Xing-Profil-URL"
-
-#: inc/czr-init.php:772
+#: core/init-base.php:173
 msgid "Follow me on Xing"
 msgstr "Bei Xing folgen"
 
-#: inc/czr-init.php:768
-msgid "Yelp profile url"
-msgstr "Yelp-Profil-URL"
-
-#: inc/czr-init.php:767
+#: core/init-base.php:170
 msgid "Follow me on Yelp"
 msgstr "Bei Yelp folgen"
 
-#: inc/czr-init.php:763
-msgid "VKontakte profile url"
-msgstr "VKontakte-Profil-URL"
-
-#: inc/czr-init.php:762
+#: core/init-base.php:167
 msgid "Follow me on VKontakte"
 msgstr "Bei VKontakte folgen"
 
-#: inc/czr-init.php:4831
-msgid "Load Font Awesome set of icons"
-msgstr "Font Awesome Icon-Satz laden"
-
-#: inc/czr-init.php:3293
+#: inc/czr-init-ccat.php:2547
 msgid "Sticky header: display the shopping cart"
 msgstr "Oben gehaltener Header: Einkaufswagen anzeigen"
 
-#: inc/czr-init.php:3247
+#: core/core-settings-map.php:698 core/core-settings-map.php:823
+#: inc/czr-init-ccat.php:2510
 msgid "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline."
 msgstr "WooCommerce: Auswählen, um ein Einkaufswagen-Icon anzuzeigen, das die Anzahl von Gegenständen in Ihrem Einkaufswagen neben dem Untertitel Ihres Headers wiedergibt."
 
-#: inc/czr-init.php:3244
+#: core/core-settings-map.php:695 core/core-settings-map.php:820
+#: inc/czr-init-ccat.php:2507
 msgid "Display the shopping cart in the header"
 msgstr "Anzeige des Einkaufswagen im Header"
 
-#: inc/czr-init.php:3127
+#: core/core-settings-map.php:434
 msgid "This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely."
 msgstr "Dieses Feature wurde mit WordPress Version 4.4+ (Dezember 2015) eingeführt und könnte geringfügige Nebeneffekte auf einige Ihrer bestehenden Bilder haben. Wähle/deaktviere diese Einstellung, um sicherzustellen, dass Ihre Bilder richtig angezeigt werden."
 
-#: inc/czr-init.php:3125
-msgid "Enable the WordPress responsive image feature for the theme's thumbnails"
-msgstr "Die WordPress-Funktion für responsive Bilder für die Vorschaubilder des Themes aktivieren"
-
-#: inc/czr-init.php:3118
-msgid "Enable the WordPress responsive image feature for the slider"
-msgstr "Die WordPress-Funktion für responsive Bilder für den Slider aktivieren"
-
-#: inc/czr-init.php:2280
+#: inc/czr-init-ccat.php:1479
+#: templates/parts/header/parts/woocommerce_cart.php:7
 msgid "View your shopping cart"
 msgstr "Ihren Warenkorb ansehen "
 
-#: inc/czr-init.php:3645
+#: core/core-settings-map.php:1131
 msgid "You can choose to display only the sticky posts. If you're not sure how to set a sticky post, check"
 msgstr "Die können auswählen, nur die oben gehaltenen Beitrage anzuzeigen. Wenn Sie sich nicht sicher sind, wie sie einen Beitrag oben halten, sehen Sie nach"
 
-#: inc/czr-init.php:3640
+#: core/core-settings-map.php:1126
 msgid "Include only sticky posts"
 msgstr "Nur oben gehaltene Beiträge einschließen"
 
-#: inc/czr-init.php:1609
+#: core/class-fire-plugins_compat.php:374 inc/czr-init-ccat.php:841
 msgid "Posts slider button text"
 msgstr "Button-Text für Beitrags-Slider"
 
-#: inc/czr-init.php:1607
+#: core/class-fire-plugins_compat.php:372 inc/czr-init-ccat.php:839
 msgid "Front page slider name"
 msgstr "Name des Startseiten-Sliders"
 
-#: inc/czr-front.php:9726
-msgid "Powered by"
-msgstr "Präsentiert von"
+#: inc/czr-front-ccat.php:9754 templates/parts/footer/footer_credits.php:13
+msgid "Powered by WordPress"
+msgstr "Powered by WordPress"
 
-#: inc/czr-front.php:8915
+#: inc/czr-front-ccat.php:9753 templates/parts/footer/footer_credits.php:13
+msgid "Powered by"
+msgstr "Powered by"
+
+#: inc/czr-front-ccat.php:9001
 msgid "this slider"
 msgstr "diesen Slider"
 
-#: inc/czr-front.php:8915
+#: inc/czr-front-ccat.php:9001
 msgid "the posts slider"
 msgstr "der Beitrags-Slider"
 
-#: inc/czr-front.php:8914
+#: inc/czr-front-ccat.php:9000
 msgid "Customize or remove %s"
 msgstr "Anpassen oder Entfernen: %s"
 
-#: inc/czr-init.php:7592
+#: inc/czr-init-ccat.php:4947
 msgid "%s and check the option 'Load images on scroll' under 'Website Performances' section."
 msgstr "%s und schauen Sie sich die Einstellung 'Bilder beim Scrollen laden' im Abschnitt 'Website Performance' an."
 
-#: inc/czr-init.php:7591
+#: inc/czr-init-ccat.php:4946
 msgid "Did you know you can easily speed up your page load by deferring the loading of the non visible images?"
 msgstr "Wussten Sie, dass Sie das Laden Ihrer Seite beschleunigen können, indem Sie das Laden nicht sichtbarer Bilder verzögern?"
 
-#: inc/czr-init.php:697
-msgid "Contact E-mail address"
-msgstr "E-Mail Kontaktadresse"
-
-#: inc/czr-init.php:696
+#: core/init-base.php:128
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: inc/czr-init.php:3597
+#: core/core-settings-map.php:1077
 msgid "Apply a category filter to your home / blog posts"
 msgstr "Wenden Sie einen Kategorie-Filter auf Ihre Startseite/Blogbeiträge an"
 
-#: inc/czr-init.php:3533
+#: core/core-settings-map.php:1013
 msgid "Set the number of posts to display"
 msgstr "Stellen Sie die Anzahl an Beiträgen ein, die angezeigt werden sollen"
 
-#: inc/czr-init.php:3526
+#: core/core-settings-map.php:1006
 msgid "Learn more about post categories in WordPress"
 msgstr "Erfahren Sie mehr über Beitragskategorien in WordPress"
 
-#: inc/czr-init.php:3524
+#: core/core-settings-map.php:1004
 msgid "Click inside the above field and pick post categories you want to display. No filter will be applied if empty."
 msgstr "Klicken Sie in das Feld oberhalb und wählen Sie Beitragskategorien, die Sie anzeigen möchten. Wenn leer, wird kein Filter angewandt."
 
-#: inc/czr-front.php:9427
+#: core/front/models/modules/slider/class-model-slider_of_posts.php:409
+#: inc/czr-front-ccat.php:9490
 msgid "There is no excerpt because this is a protected post."
 msgstr "Es gibt keinen Auszug, weil dies ein geschützter Beitrag ist."
 
-#: inc/czr-front.php:9402
+#: core/front/models/modules/slider/class-model-slider_of_posts.php:386
+#: inc/czr-front-ccat.php:9465
 msgid "Protected: %s"
 msgstr "Geschützt: %s"
 
-#: inc/czr-init.php:5397
+#: core/front/models/modules/slider/class-model-slider.php:611
+msgid "Customize or remove this slider"
+msgstr "Slider anpassen oder entfernen"
+
+#: core/core-functions.php:1533
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr "&mdash; Automatisch aus Ihren Blogbeiträgen erstellter Slider &mdash;"
 
-#: inc/czr-init.php:3698
+#: core/core-settings-map.php:1185
 msgid "When checked, the front page slider occupies the full viewport's width"
 msgstr "Wenn ausgewählt, füllt der Startseiten-Slider die gesamte Bildschirmbreite"
 
-#: inc/czr-init.php:3688
+#: core/core-settings-map.php:1174
 msgid "The button text will be limited to 80 chars max. Leave this field empty to hide the button"
 msgstr "Der Button-Text wird auf maximal 80 Zeichen begrenzt. Lassen Sie dieses Feld leer, um den Button zu verstecken"
 
-#: inc/czr-init.php:3677
+#: core/core-settings-map.php:1163
 msgid "Entire slide and call to action button"
 msgstr "Gesamte Folie und Call to Action-Button"
 
-#: inc/czr-init.php:3676
+#: core/core-settings-map.php:1162
 msgid "Entire slide"
 msgstr "Gesamte Folie"
 
-#: inc/czr-init.php:3675
+#: core/core-settings-map.php:1161
 msgid "Call to action button"
 msgstr "Call to Action-Button"
 
-#: inc/czr-init.php:3671
+#: core/core-settings-map.php:1157
 msgid "Link post with"
 msgstr "Beitrag verlinken mit"
 
-#: inc/czr-init.php:3666
+#: core/core-settings-map.php:1152
 msgid "The excerpt will be limited to 80 chars max"
 msgstr "Der Auszug wird auf maximal 80 Zeichen begrenzt"
 
-#: inc/czr-init.php:3657
+#: core/core-settings-map.php:1143
 msgid "The title will be limited to 80 chars max"
 msgstr "Der Titel wird auf maximal 80 Zeichen begrenzt"
 
-#: inc/czr-init.php:3653
+#: core/core-settings-map.php:1139
 msgid "Display the title"
 msgstr "Den Titel anzeigen"
 
-#: inc/czr-init.php:3646
+#: core/core-settings-map.php:1132
 msgid "the WordPress documentation."
 msgstr "die WordPress-Dokumentation."
 
-#: inc/czr-init.php:3635
+#: core/core-settings-map.php:1121
 msgid "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website."
 msgstr "Nur Beiträge mit Beitragsbild oder wenigstens einem Bild im Beitrag werden für den Slider berücksichtigt. Die Anzahl an Beitrags-Folien, die angezeigt werden, wird nicht die Anzahl verfügbarer Beiträge in Ihrer Website übersteigen."
 
-#: inc/czr-init.php:3631
+#: core/core-settings-map.php:1115
 msgid "Number of posts to display"
 msgstr "Anzahl an Beiträgen, die angezeigt werden sollen"
 
-#: inc/czr-admin.php:1861
+#: core/czr-admin-ccat.php:2507
 msgid "Slider documentation"
 msgstr "Slider-Dokumentation "
 
-#: inc/czr-admin.php:1859
+#: core/czr-admin-ccat.php:2505
 msgid "For more informations about sliders, check the documentation page :"
 msgstr "Für weitere Informationen über Slider schauen Sie bitte auf die Dokumentations-Seite:"
 
-#: inc/czr-admin.php:1858
+#: core/czr-admin-ccat.php:2504
 msgid "To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page."
 msgstr "Um eine neue Folie hinzuzufügen: gehen Sie in Ihre Mediathek (auf Medien klicken), öffnen Sie die Bearbeitungsansicht eines Bildes (oder fügen Sie ein neues Bild hinzu) und fügen Sie es zu Ihrem gewünschten Slider hinzu, in dem sie den entsprechenden Einstellungsabschnitt unten auf der Seite verwenden."
 
-#: inc/czr-customize.php:556 inc/czr-customize.php:567
-#: inc/czr-customize.php:578 inc/czr-customize.php:592
-#: inc/czr-customize.php:606 inc/czr-customize.php:618
+#: core/core-settings-map.php:2711 core/czr-admin-ccat.php:385
 msgid "Upgrade to Customizr Pro"
 msgstr "Upgrade auf Customizr Pro"
 
-#: inc/czr-customize.php:471
+#: core/czr-customize-ccat.php:994
 msgid "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any."
 msgstr "Diese Einstellung erzeugt einen Startseiten-Slider basierend auf Ihren letzten Beiträgen, angefangen beim aktuellsten oder einem hervorgehobenen (Stick) Beitrag/Beiträgen, sofern vorhanden."
 
-#: inc/czr-init.php:3427
+#: core/czr-customize-ccat.php:1001
 msgid "Change the header layout"
 msgstr "Header-Layout ändern"
 
-#: inc/czr-init.php:3426
+#: core/czr-customize-ccat.php:1000
 msgid "jump to the Design and Layout section"
 msgstr "zum Design- und Layout-Abschnitt springen"
 
-#: inc/czr-init.php:3423
+#: core/czr-customize-ccat.php:997
 msgid "To change the global header layout, %s"
 msgstr "Um das globale Header-Layout zu ändern, %s"
 
-#: inc/czr-customize.php:472
-msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
-msgstr "Das Website-Icon nutzt momentan eine veraltete Methode und kann daher auf einigen Geräten nicht richtig angezeigt werden. Es sollte daher mit der hier unten bereitgestellten Steuerung erneut hochgeladen werden."
-
-#: inc/czr-customize.php:150
+#: core/czr-customize-ccat.php:623
 msgid "SITE ICON"
 msgstr "Icon der Website"
 
-#: inc/czr-front.php:884
+#: inc/czr-front-ccat.php:864
 msgid "Open the menu"
 msgstr "Menü öffnen"
 
-#: inc/czr-front.php:1073
+#: inc/czr-front-ccat.php:1053
 msgid "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed."
 msgstr "Das Menü kann als vertikales oder Handy-freundliches Seitenmenü angezeigt werden. Dies wird beim Anzeigen animiert."
 
-#: inc/czr-front.php:1074
+#: inc/czr-front-ccat.php:1054
 msgid "%s or %s."
 msgstr "%s oder %s."
 
-#: inc/czr-front.php:1075
+#: inc/czr-front-ccat.php:1055
 msgid "Try it with the demo"
 msgstr "Mit Demo ausprobieren"
 
-#: inc/czr-front.php:1076
+#: core/front/models/header/parts/class-model-menu.php:200
+#: core/front/template-tags/template-tags.php:206 inc/czr-front-ccat.php:1056
 msgid "open the customizer menu section"
 msgstr "Customizr-Menübereich öffnen"
 
-#: inc/czr-front.php:1076
+#: inc/czr-front-ccat.php:1056
 msgid "change your menu design now"
 msgstr "Menüdesign jetzt ändern"
 
-#: inc/czr-front.php:1100
+#: inc/czr-front-ccat.php:1080
 msgid "You can display your main menu or a second menu here horizontally."
 msgstr "Das Hauptmenü oder ein zweites Menü kann hier horizontal angezeigt werden."
 
-#: inc/czr-front.php:1101
+#: inc/czr-front-ccat.php:1081
 msgid "%s or read the %s."
-msgstr "%s oder lies die %s."
+msgstr "%s oder lesen Sie die %s."
 
-#: inc/czr-front.php:1102
+#: inc/czr-front-ccat.php:1082
 msgid "Manage menus in the header"
-msgstr "Kopfzeilen-Menüs verwalten"
+msgstr "Menüs im Header verwalten"
 
-#: inc/czr-front.php:1102
+#: inc/czr-front-ccat.php:1082
 msgid "Manage your menus in the header now"
-msgstr "Menüs in der Kopfzeilen jetzt verwalten"
+msgstr "Verwalten Sie jetzt Ihre Menüs im Header"
 
-#: inc/czr-front.php:1522
+#: core/front/models/header/parts/class-model-menu.php:322
+#: inc/czr-front-ccat.php:1513
 msgid "Pages"
 msgstr "Seiten"
 
-#: inc/czr-front.php:877
+#: inc/czr-front-ccat.php:857
 msgid "Menu"
 msgstr "Menü"
 
-#: inc/czr-front.php:877 inc/czr-front.php:884
+#: core/czr-customize-ccat.php:980 inc/czr-front-ccat.php:857
+#: inc/czr-front-ccat.php:864
 msgid "Close"
 msgstr "Schließen"
 
-#: inc/czr-init.php:5155
+#: core/core-settings-map.php:2653
 msgid "Socials in Sidebars"
 msgstr "Soziale Links in Seitenleisten"
 
-#: inc/czr-init.php:5157
-msgid "Set up your social profiles links in the sidebar(s)."
-msgstr "Hier wird die Anzeige der sozialen Links für die Seitenleiste(n) eingestellt."
-
-#: inc/czr-init.php:5194
+#: core/core-settings-map.php:2684
 msgid "Front-end placeholders and help blocks"
 msgstr "Platzhalter und Hilfe-Blocks im Front-End"
 
-#: inc/czr-front.php:3569
+#: inc/czr-front-ccat.php:3589
 msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
 msgstr "\"Empfohlene Seiten\" %s ändern, oder %s (kann auch später hinzugefügt werden)."
 
-#: inc/czr-front.php:3570
+#: inc/czr-front-ccat.php:3590
 msgid "Edit those featured pages"
 msgstr "\"Empfohlene Seiten\" ändern"
 
-#: inc/czr-front.php:3570 inc/czr-front.php:7876 inc/czr-front.php:8973
-#: inc/czr-front.php:9631
+#: inc/czr-front-ccat.php:3590 inc/czr-front-ccat.php:8048
+#: inc/czr-front-ccat.php:9059 inc/czr-front-ccat.php:9662
 msgid "now"
 msgstr "jetzt"
 
-#: inc/czr-front.php:3571
+#: inc/czr-front-ccat.php:3591
 msgid "Remove the featured pages"
 msgstr "\"Empfohlene Seiten\" entfernen"
 
-#: inc/czr-front.php:3696
+#: inc/czr-front-ccat.php:3724
 msgid "Edit now."
 msgstr "Jetzt editieren."
 
-#: inc/czr-front.php:3571
+#: inc/czr-front-ccat.php:3591
 msgid "remove them"
 msgstr "entferne sie"
 
-#: inc/czr-front.php:4857
+#: inc/czr-front-ccat.php:5066
 msgid "You can display your post's featured image here if you have set one."
 msgstr "Hier kann das Beitragsbild angezeigt werden, sofern es eingerichtet wurde."
 
-#: inc/czr-front.php:4858
+#: inc/czr-front-ccat.php:4735 inc/czr-front-ccat.php:5067
 msgid "%s to display a featured image here."
 msgstr "%s um hier ein Beitragsbild anzuzeigen."
 
-#: inc/czr-front.php:4859 inc/czr-init.php:7593
+#: inc/czr-front-ccat.php:4736 inc/czr-front-ccat.php:5068
+#: inc/czr-init-ccat.php:4948
 msgid "Jump to the customizer now"
 msgstr "Jetzt zu den Anpassungen springen"
 
-#: inc/czr-front.php:7871
+#: inc/czr-front-ccat.php:8040
 msgid "The %s sidebar has no widgets."
 msgstr "Die %s Seitenleiste hat keine Widgets."
 
-#: inc/czr-front.php:7875
+#: inc/czr-front-ccat.php:8044
 msgid "Add widgets to this sidebar %s or %s."
 msgstr "Hinzufügen von Widgets zu dieser Seitenleiste %s oder %s."
 
-#: inc/czr-front.php:7878 inc/czr-front.php:9633
+#: inc/czr-front-ccat.php:8051 inc/czr-front-ccat.php:9664
 msgid "dismiss this notice"
 msgstr "diesen Hinweis abschalten"
 
-#: inc/czr-front.php:8972
+#: inc/czr-front-ccat.php:9058
 msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
 msgstr "Eigenen Slider auswählen %s, oder %s (kann auch später hinzugefügt werden)."
 
-#: inc/czr-front.php:8782
+#: inc/czr-front-ccat.php:8868 templates/parts/modules/slider/slide.php:9
 msgid "Go to"
 msgstr "Gehe zu"
 
-#: inc/czr-front.php:8973
+#: inc/czr-front-ccat.php:9059
 msgid "Select your own slider"
 msgstr "Eigenen Slider wählen"
 
-#: inc/czr-front.php:8974
+#: inc/czr-front-ccat.php:9060
 msgid "Remove the home page slider"
 msgstr "Startseiten-Slider abschalten"
 
-#: inc/czr-front.php:9630
+#: inc/czr-front-ccat.php:9661
 msgid "Add widgets to the footer %s or %s."
 msgstr "Widgets zu Fußzeile %s oder %s hinzufügen."
 
-#: inc/czr-front.php:8974
+#: inc/czr-front-ccat.php:9060
 msgid "remove this demo slider"
 msgstr "diesen Demo-Slider entfernen"
 
-#: inc/czr-front.php:817
+#: inc/czr-front-ccat.php:797
 msgid "This is a default page menu."
 msgstr "Dies ist ein Standard-Seitenmenü."
 
-#: inc/czr-front.php:818
+#: inc/czr-front-ccat.php:798
 msgid "( If you don't have any pages in your website, then this side menu is empty for the moment. )"
 msgstr "(hat die Website keine Seiten, bleibt dieses seitliche Menü vorerst leer)"
 
-#: inc/czr-front.php:819
+#: inc/czr-front-ccat.php:799
 msgid "If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s."
 msgstr "Wenn Sie bereits Menüs erstellt haben, können Sie %s. Ansonsten gehen Sie zu %s."
 
-#: inc/czr-front.php:820
+#: inc/czr-front-ccat.php:800
 msgid "change the default menu"
 msgstr "Standard-Menü wechseln"
 
-#: inc/czr-front.php:820
+#: inc/czr-front-ccat.php:800
 msgid "replace this default menu by another one"
 msgstr "dieses Standard-Menü durch ein anderes ersetzen"
 
-#: inc/czr-front.php:821
+#: inc/czr-front-ccat.php:801
 msgid "menu creation screen"
 msgstr "Menüerstellungs-Seite"
 
-#: inc/czr-init.php:3497
+#: core/core-settings-map.php:977
 msgid "Remove all the menus."
 msgstr "Alle Menüs entfernen."
 
-#: inc/czr-init.php:3498
+#: core/core-settings-map.php:978
 msgid "Don't display any menus in the header of your website"
 msgstr "Keine Menüs im Header der Website anzeigen"
 
-#: inc/czr-init.php:3502
+#: core/core-settings-map.php:982
 msgid "Use with caution : provide an alternative way to navigate in your website for your users."
 msgstr "Vorsicht: stellen Sie Ihren Benutzern einen alternativen Weg zur Navigation auf Ihrer Website zur Verfügung."
 
-#: inc/czr-init.php:3864
+#: core/core-settings-map.php:1349
 msgid "The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."
 msgstr "Die obigen Layout-Optionen definieren das globale Erscheinungsbild für Beiträge und Seiten. Sie können aber auch das Layout für jeden Beitrag und Seite individuell festlegen. Hier steht wie das geht: %s."
 
-#: inc/czr-init.php:3865
+#: core/core-settings-map.php:1350
 msgid "Customizr theme documentation"
 msgstr "Customizr-Theme-Dokumentation"
 
-#: inc/czr-init.php:3868
+#: core/core-settings-map.php:1353
 msgid "If you need to change the layout design of the front page, then open the 'Front Page' section above this one."
 msgstr "Wenn die Gestaltung der Startseite geändert werden soll, dann bitte den Abschnitt \"Startseite\" über diesem hier öffnen."
 
-#: inc/czr-init.php:4160
+#: core/core-settings-map.php:1663
 msgid "You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually."
 msgstr "Sie können das Beitragsbild Ihrer Beiträge (auch Beitrags-Vorschaubild genannt) vor ihrem Inhalt anzeigen, wenn sie einzeln angezeigt werden."
 
-#: inc/czr-front.php:4861 inc/czr-init.php:4161
+#: core/core-settings-map.php:1664 inc/czr-front-ccat.php:5070
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr "Keine Ahnung wie man eine Beitragsbild erstellt? Hier kann man das lernen: %s."
 
-#: inc/czr-init.php:4718
+#: core/core-settings-map.php:2135
 msgid "Stick the footer to the bottom of the page"
 msgstr "Fußzeile an unterem Seitenrand fixieren"
 
-#: inc/czr-init.php:4815
+#: core/core-settings-map.php:2246
 msgid "Display help notices on front-end for logged in users."
 msgstr "Hinweise im Front-End für angemeldete Benutzer anzeigen"
 
-#: inc/czr-init.php:4818
-msgid "When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
-msgstr "Wenn diese Option aktiviert ist, werden für Administratoren verschiedene hilfreiche Hinweise und Platzhalter-Blöcke im Front-End der Website angezeigt."
+#: core/core-settings-map.php:2249
+msgid "When this option is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
+msgstr "Wenn diese Option aktiviert ist, werden verschiedene Hilfehinweise und einige Platzhalterblöcke am Frontend Ihrer Website angezeigt. Sie sind nur für angemeldete Benutzer mit Administratoren-Berechtigung sichtbar."
 
-#: inc/czr-init.php:4886
+#: core/core-settings-map.php:2360
 msgid "Sidebars"
 msgstr "Seitenleisten"
 
-#: inc/czr-init.php:4887
-msgid "Sidebars settings for the Customizr theme."
-msgstr "Einstellungen für die Seitenleisten im Customizr-Theme."
-
-#: inc/czr-init.php:4976 inc/czr-init.php:4984
+#: core/core-settings-map.php:2448 core/core-settings-map.php:2456
 msgid "You can create new menu and edit your menu's content %s."
 msgstr "Sie können neue Menüs erstellen und den Inhalt Ihrer Menüs bearbeiten %s."
 
-#: inc/czr-init.php:4979
+#: core/core-settings-map.php:2451
 msgid "on the Menus screen in the Appearance section"
 msgstr "auf der Menü-Seite im Abschnitt Design"
 
-#: inc/czr-init.php:4980 inc/czr-init.php:4988
+#: core/core-settings-map.php:902 core/core-settings-map.php:2452
+#: core/core-settings-map.php:2460
 msgid "create/edit menus"
 msgstr "Menüs erstellen/bearbeiten"
 
-#: inc/czr-init.php:4987
+#: core/core-settings-map.php:901 core/core-settings-map.php:2459
 msgid "in the menu panel"
 msgstr "auf der Menü-Seite"
 
-#: inc/czr-init.php:4993
+#: core/core-settings-map.php:2466
 msgid "If a menu location has no menu assigned to it, a default page menu will be used."
 msgstr "Wenn einem Menüplatz kein Menü zugeordnet ist, wird ein Standard-Seitenmenü verwendet."
 
-#: inc/czr-init.php:5053
+#: core/core-settings-map.php:2538
 msgid "Smooth Scroll"
 msgstr "Sanftes Scrollen"
 
-#: inc/czr-init.php:5055
-msgid "Smooth Scroll settings"
-msgstr "Einstellungen Sanftes Scrollen"
-
-#: inc/czr-init.php:5068
+#: core/core-settings-map.php:2563
 msgid "Navigation Menus"
 msgstr "Navigationsmenüs"
 
-#: inc/czr-init.php:3376
-msgid "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header."
-msgstr "Wenn das Hauptmenü als vertikale, seitliche Navigation eingerichtet ist, kann ein zusätzliches, horizontales Untermenü im Header angezeigt werden."
-
-#: inc/czr-init.php:3372
+#: core/core-settings-map.php:878
 msgid "Display a secondary (horizontal) menu in the header."
 msgstr "Untermenü (horizontal) in Kopfzeile anzeigen."
 
-#: inc/czr-init.php:3328
+#: inc/czr-init-ccat.php:2573
 msgid "Also applied to the secondary menu if any."
 msgstr "Wird auch auf Untermenü angewendet (sofern vorhanden)."
 
-#: inc/czr-init.php:3381
+#: core/core-settings-map.php:889
 msgid "Main menu design"
 msgstr "Gestaltung Hauptmenü"
 
-#: inc/czr-init.php:3382
+#: core/core-settings-map.php:890
 msgid "Select a design : side menu (vertical) or regular (horizontal)"
 msgstr "Gestaltung auswählen: seitliche Navigation (vertikal) oder Normal (horizontal )"
 
-#: inc/czr-init.php:3386
+#: core/core-settings-map.php:894
 msgid "Regular (horizontal)"
 msgstr "Normal (horizontal)"
 
-#: inc/czr-init.php:3387
+#: core/core-settings-map.php:895
 msgid "Side Menu (vertical)"
 msgstr "seitliches Menü (vertikal)"
 
-#: inc/czr-init.php:3394
+#: inc/czr-init-ccat.php:2652
 msgid "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport."
-msgstr "Begrenzen Sie für mobile Geräte (responsive) die Höhe des Drohdown-Menüblocks auf das Sichtfenster."
+msgstr "Begrenzen Sie für mobile Geräte (responsive) die Höhe des Dropdown-Menüblocks auf das Sichtfenster."
 
-#: inc/czr-init.php:3403
+#: inc/czr-init-ccat.php:2661
 msgid "Display a label next to the menu button."
 msgstr "Beschriftung neben dem Menü-Button anzeigen."
 
-#: inc/czr-init.php:3407
+#: inc/czr-init-ccat.php:2665
 msgid "Note : the label is hidden on mobile devices."
-msgstr "Hinweis: Beschriftung wird wird auf Mobilgeräten ausgeblendet"
+msgstr "Hinweis: Beschriftung wird auf Mobilgeräten ausgeblendet"
 
-#: inc/czr-init.php:3412
+#: core/core-settings-map.php:918 inc/czr-init-ccat.php:2671
 msgid "Menu position (for \"main\" menu)"
 msgstr "Menüposition (für \"Haupt\"-Menü)"
 
-#: inc/czr-init.php:3422
-msgid "When the menu style is set to \"Side Menu\", the menu position is the side on which the menu will be revealed."
-msgstr "Wenn als Menü-Stil \"Seitliches Menü\" gewählt wurde, ist die Menüposition die Seite, an der das Menü angezeigt wird."
-
-#: inc/czr-init.php:3436
+#: core/core-settings-map.php:931 inc/czr-init-ccat.php:2691
 msgid "Secondary (horizontal) menu design"
 msgstr "Untermenü-Design (horizontal)"
 
-#: inc/czr-init.php:3437
+#: core/core-settings-map.php:932 inc/czr-init-ccat.php:2692
 msgid "Menu position (for the horizontal menu)"
 msgstr "Menü-Position (für das horizontale Menü)"
 
-#: inc/czr-init.php:3482
+#: inc/czr-init-ccat.php:2711
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr "Verhalten des Untermenüs auf mobilen Geräten (responsive) wählen."
 
-#: inc/czr-init.php:3487
+#: inc/czr-init-ccat.php:2716
 msgid "Move after inside the side menu "
 msgstr "Innerhalb des Untermenüs nach hinten bewegen"
 
-#: inc/czr-init.php:3486
+#: inc/czr-init-ccat.php:2715
 msgid "Move before inside the side menu "
 msgstr "Innerhalb des Untermenüs nach vorne bewegen"
 
-#: inc/czr-init.php:3488
+#: inc/czr-init-ccat.php:2717
 msgid "Display in the header"
 msgstr "Im Header anzeigen"
 
-#: inc/czr-init.php:3489
+#: inc/czr-init-ccat.php:2718
 msgid "Hide"
 msgstr "Verbergen"
 
-#: inc/czr-admin.php:626
-msgid "The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and fully responsive website in a few seconds. In the Pro version, you'll get all the features of the free version plus some really cool and even revolutionary ones."
-msgstr "Mit dem Customizr-Pro Wordpress-Theme kann jeder eine schöne, professionelle, responsive Website in wenigen Sekunden erstellen. In der Pro-Version erhalten Sie nicht nur alle Features der kostenlosen Version, sondern zusätzlich noch einige coole, ja fast revolutionäre Features hinzu."
-
-#: inc/czr-init.php:1034
+#: core/init-base.php:391
 msgid "Secondary (horizontal) Menu"
 msgstr "Untermenü (horizontal)"
 
-#: inc/czr-init.php:2858
+#: inc/czr-init-ccat.php:2202
 msgid "Disabled if the random option is on."
 msgstr "Deaktiviert, wenn die Zufallsoption an ist."
 
-#: inc/czr-init.php:2925
+#: core/core-settings-map.php:357
 msgid "Important note"
 msgstr "Wichtiger Hinweis"
 
-#: inc/czr-init.php:2925
+#: core/core-settings-map.php:357
 msgid "this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option."
 msgstr "Diese Option kann zu Konflikten mit manchen Plugins führen. Überprüfen Sie daher nach Aktivierung die Funktionalität der anderen Plugins."
 
-#: inc/czr-init.php:3186
+#: core/core-settings-map.php:495
 msgid "Enable Smooth Scroll"
 msgstr "Sanftes Scrollen aktivieren"
 
-#: inc/czr-init.php:3190
+#: core/core-settings-map.php:499
 msgid "This option enables a smoother page scroll."
 msgstr "Diese Option aktiviert ein sanftes Scrollen auf Seiten."
 
-#: inc/czr-init.php:3212
+#: core/core-settings-map.php:610
 msgid "Choose a layout for the header"
 msgstr "Headerlayout wählen"
 
-#: inc/czr-init.php:3221
+#: core/core-settings-map.php:620
 msgid "This setting might impact the side on which the menu is revealed."
 msgstr "Diese Einstellung beeinflusst evtl. auf welcher Seite das Menü erscheint."
 
-#: inc/czr-admin.php:522
-msgid "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums."
-msgstr "Wenn Sie die Antwort auf Ihre Frage in der Dokumentation nicht finden, bitte keine Panik! Das Customizr-Theme wird von einer schnell wachsenden Gemeinschaft von Webmaster benutzt, die uns Fehler melden und kontinuierlich Verbesserungen einbringen. Wenn Sie ein Problem mit dem Theme haben, stehen die Chancen gut, dass das Problem bereits gemeldet wurde und eine Lösung in den Support-Foren bereit steht."
-
-#: inc/czr-admin.php:523
-msgid "The easiest way to search in the support forums is to use our Google powered search engine on our %s."
-msgstr "Der einfachste Weg in den Support-Foren zu suchen ist, unsere von Google angetrieben Suchmaschine auf unserer %s zu verwenden."
-
-#: inc/czr-admin.php:524
-msgid "home page"
-msgstr "Startseite"
-
-#: inc/czr-admin.php:556
-msgid "Thank you for using %s!"
-msgstr "Danke, dass Sie %s benutzen!"
-
-#: inc/czr-admin.php:557
-msgid "%s %s has more features, is safer and more stable than ever to help you designing an awesome website."
-msgstr "%s %s hat mehr Funktionen und ist sicherer und stabiler als je zuvor, um Sie bei der Gestaltung einer tollen Website unterstützen."
-
-#: inc/czr-admin.php:558
-msgid "check the changelog"
-msgstr "Überprüfen Sie den Change-Log"
-
-#: inc/czr-admin.php:562
+#: core/czr-admin-ccat.php:561
 msgid "The best way to start with %s is to read the %s and visit the %s."
-msgstr "Der beste Weg, um mit % s zu beginnen ist es, %s zu lesen und %s zu besuchen."
+msgstr "Der beste Weg, um mit %s zu beginnen ist es, %s zu lesen und %s zu besuchen."
 
-#: inc/czr-admin.php:620
+#: core/czr-admin-ccat.php:616
 msgid "Go Customizr Pro"
 msgstr "Customizr-Pro holen"
 
-#: inc/czr-admin.php:565
+#: core/czr-admin-ccat.php:564
 msgid "demo website"
 msgstr "Demo-Website"
 
-#: inc/czr-admin.php:499
-msgid "Need help with"
-msgstr "Brauchen Sie Hilfe mit"
-
-#: inc/czr-admin.php:517
-msgid "The best way to start is to read the %s."
-msgstr "Der beste Weg einzusteigen ist, erstmal die %s zu lesen."
-
-#: inc/czr-admin.php:504
-msgid "Welcome to"
-msgstr "Willkommen bei"
-
-#: inc/czr-admin.php:518 inc/czr-admin.php:564 inc/czr-front.php:1103
+#: core/czr-admin-ccat.php:563 inc/czr-front-ccat.php:1083
 msgid "documentation"
 msgstr "Dokumentation"
 
-#: inc/czr-admin.php:328
+#: core/czr-admin-ccat.php:370
 msgid "Good, you've just upgraded to"
 msgstr "Gut, sie haben gerade ein Upgrade durchgeführt auf"
 
-#: inc/czr-admin.php:339
+#: core/czr-admin-ccat.php:381
 msgid "We'd like to introduce the new features we've been working on."
 msgstr "Wir würden gerne die neuen Funktionen vorführen, an denen wir gearbeitet haben."
 
-#: inc/czr-admin.php:330
+#: core/czr-admin-ccat.php:372
 msgid "version"
 msgstr "Version"
 
-#: inc/czr-admin.php:341
+#: core/czr-admin-ccat.php:383
 msgid "Read the latest release notes"
 msgstr "Lesen Sie die neuesten Versionshinweise"
 
-#: inc/czr-admin.php:343
+#: core/czr-admin-ccat.php:385
 msgid "Visit the demo"
 msgstr "Die Demo anschauen"
 
-#: inc/czr-admin.php:349
+#: core/czr-admin-ccat.php:391
 msgid "I already know what's new thanks !"
 msgstr "Ich kenne schon alle Neuigkeiten, Danke!"
 
-#: inc/czr-admin.php:350
+#: core/czr-admin-ccat.php:392
 msgid "close"
 msgstr "schließen"
 
-#: inc/czr-admin.php:1579
+#: core/czr-admin-ccat.php:2227
 msgid "Link the whole slide"
 msgstr "Ganze Folie verlinken"
 
-#: inc/czr-admin.php:1776
+#: core/czr-admin-ccat.php:2422
 msgid "Link"
 msgstr "Link"
 
-#: inc/czr-customize.php:131
-msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
-msgstr "Sie haben noch kein Menü erstellt. %s oder %s auswählen, um mehr über Menüs zu lernen."
-
-#: inc/czr-customize.php:121
-msgid "Assign menus to locations"
-msgstr "Menü Positionen verwalten"
-
-#: inc/czr-customize.php:132
-msgid "Create a new menu now"
-msgstr "Jetzt ein neues Menü erstellen"
-
-#: inc/czr-customize.php:133 inc/czr-front.php:4862 inc/czr-init.php:4162
+#: core/core-settings-map.php:1665 core/core-settings-map.php:1724
+#: inc/czr-front-ccat.php:4739 inc/czr-front-ccat.php:5071
 msgid "WordPress documentation"
 msgstr "WordPress Dokumentation"
 
-#: inc/czr-customize.php:528
-msgid "dismiss"
-msgstr "verwerfen"
-
-#: inc/czr-customize.php:588
-msgid "Rediscover the beauty of your blog posts and increase your visitors engagement with the Grid Customizer."
-msgstr "Entdecken Sie die Schönheit Ihrer Blog-Posts wieder und steigern Sie Ihre Besucherbeteiligung mit dem Grid Customizer."
-
-#: inc/czr-customize.php:602
-msgid "Add creative and engaging reveal animations to your side menu."
-msgstr "Fügen Sie dem Menü kreative und ansprechende Animationen hinzu."
-
-#: inc/czr-customize.php:589
-msgid "Try it in the demo"
-msgstr "Probieren Sie es in dieser Demo aus"
-
-#: inc/czr-customize.php:603
-msgid "Side menu animation demo"
-msgstr "Demo Animation Seitenmenü"
-
-#: inc/czr-admin.php:1566
+#: core/czr-admin-ccat.php:2214
 msgid "or a custom link (leave this empty if you already selected a page or post above)"
 msgstr "oder benutzerdefinierter Link (leer lassen, wenn bereits Seite/Beitrag ausgewählt wurde)"
 
-#: inc/czr-admin.php:1572
+#: core/czr-admin-ccat.php:2220
 msgid "Open link in a new page/tab"
 msgstr "Link auf neuer Seite/Tab öffnen"
 
-#: inc/czr-customize.php:85
-msgid "&mdash; Select &mdash;"
-msgstr "&mdash; Auswählen &mdash;"
-
 #. Template Name of the plugin/theme
 msgid "Custom Page Example"
-msgstr "Beispiel angepasste Seite"
+msgstr "Angepasste Beispielseite"
 
-#: inc/czr-front.php:910
+#: core/front/models/header/parts/class-model-menu.php:199
+#: core/front/template-tags/template-tags.php:205 inc/czr-front-ccat.php:890
 msgid "Add a menu"
 msgstr "Menü hinzufügen"
 
-#: inc/czr-front.php:309
+#: inc/czr-front-ccat.php:307 templates/parts/header/parts/logo.php:6
 msgid "Back Home"
 msgstr "Zurück zur Startseite"
 
-#: inc/czr-front.php:9751
+#: inc/czr-front-ccat.php:9784
 msgid "Back to top"
 msgstr "Zurück nach oben"
 
-#: inc/czr-front.php:9626
+#: inc/czr-front-ccat.php:9657
 msgid "The footer has no widgets"
 msgstr "Fußzeile hat keine Widgets"
 
-#: inc/czr-front.php:9056
+#: core/front/models/modules/slider/class-model-slider.php:430
+#: inc/czr-front-ccat.php:9134
 msgid "Check the slider doc now &raquo;"
 msgstr "Slider-Dokumentation jetzt lesen &raquo;"
 
-#: inc/czr-front.php:9054
+#: core/front/models/modules/slider/class-model-slider.php:428
 msgid "Easily create sliders and add them in any posts or pages."
 msgstr "Slider leicht erstellen zu Seiten oder Beiträgen hinzufügen."
 
-#: inc/czr-front.php:9050
+#: core/front/models/modules/slider/class-model-slider.php:424
 msgid "Check the front page slider doc &raquo;"
 msgstr "Dokumentation für Startseiten-Sliderlesen &raquo;"
 
-#: inc/czr-front.php:9048
+#: core/front/models/modules/slider/class-model-slider.php:422
+#: inc/czr-front-ccat.php:9132
 msgid "Discover how to replace or remove this demo slider."
 msgstr "Herausfinden wie man diesen Demo-Slider enfernt."
 
-#: inc/czr-front.php:825 inc/czr-front.php:1080 inc/czr-front.php:1107
-#: inc/czr-front.php:3575 inc/czr-front.php:4866 inc/czr-front.php:7891
-#: inc/czr-front.php:8978 inc/czr-front.php:9639 inc/czr-init.php:7597
+#: inc/czr-front-ccat.php:805 inc/czr-front-ccat.php:1060
+#: inc/czr-front-ccat.php:1087 inc/czr-front-ccat.php:3595
+#: inc/czr-front-ccat.php:4743 inc/czr-front-ccat.php:5075
+#: inc/czr-front-ccat.php:8064 inc/czr-front-ccat.php:9064
+#: inc/czr-front-ccat.php:9670 inc/czr-init-ccat.php:4952
 msgid "dismiss notice"
 msgstr "Hinweis entfernen"
 
-#: inc/czr-front.php:7887
+#: inc/czr-front-ccat.php:8060
 msgid "See the theme documentation."
 msgstr "Lesen Sie die Theme-Dokumentation."
 
-#: inc/czr-front.php:7886
+#: inc/czr-front-ccat.php:8059
 msgid "Changing the layout in the Customizr theme"
 msgstr "Layout im Customizr-Theme ändern."
 
-#: inc/czr-front.php:7884
+#: inc/czr-front-ccat.php:8057
 msgid "You can also remove this sidebar by changing the current page layout."
 msgstr "Die Seitenleiste kann auch durch Änderung des aktuelle Seitenlayouts entfernt werden."
 
-#: inc/czr-front.php:7876 inc/czr-front.php:9631
+#: inc/czr-front-ccat.php:8047 inc/czr-front-ccat.php:9662
 msgid "Add widgets"
 msgstr "Widgets hinzufügen"
 
-#: inc/czr-front.php:7867 inc/czr-front.php:9622
+#: inc/czr-front-ccat.php:8036 inc/czr-front-ccat.php:9653
 msgid "This block is visible for admin users only."
 msgstr "Dieser Block ist nur für Administratoren sichtbar."
 
-#: inc/czr-front.php:7326
+#: inc/czr-front-ccat.php:7489
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Neuere Beiträge <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/czr-front.php:7306
+#: inc/czr-front-ccat.php:7469
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Beiträge"
 
-#: inc/czr-front.php:7238 inc/czr-front.php:7293
+#: inc/czr-front-ccat.php:7401 inc/czr-front-ccat.php:7456
+#: templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 msgid "Post navigation"
 msgstr "Beitragsnavigation"
 
-#: inc/czr-front.php:7128
+#: core/front/models/content/post-metas/class-model-post_metas.php:58
+#: inc/czr-front-ccat.php:7291
 msgid "by"
 msgstr "von"
 
-#: inc/czr-front.php:7105
+#: inc/czr-front-ccat.php:7268
 msgid "tagged"
 msgstr "gekennzeichnet"
 
-#: inc/czr-front.php:7055
+#: inc/czr-front-ccat.php:7218
 msgid "Open"
 msgstr "Öffnen"
 
-#: inc/czr-front.php:7035
+#: core/front/models/content/post-metas/class-model-post_metas.php:162
+#: inc/czr-front-ccat.php:7198
 msgid "View all posts by %s"
 msgstr "Alle Beiträge von %s anzeigen"
 
-#: inc/czr-front.php:6900
+#: core/front/models/content/post-metas/class-model-post_metas.php:210
+#: inc/czr-front-ccat.php:7063
 msgid "View all posts in %s"
 msgstr "Alle Beiträge vom %s anzeigen"
 
-#: inc/czr-front.php:6839
+#: inc/czr-front-ccat.php:7002
 msgid "(updated on %1$s)"
 msgstr "(aktualisiert am %1$s)"
 
-#: inc/czr-front.php:6836
+#: inc/czr-front-ccat.php:6999
 msgid "(updated 1 day ago)"
 msgstr "(vor 1 Tag aktualisiert)"
 
-#: inc/czr-front.php:6835
+#: inc/czr-front-ccat.php:6998
 msgid "(updated %s days ago)"
 msgstr "(vor %s Tagen aktualisiert)"
 
-#: inc/czr-front.php:6835
+#: inc/czr-front-ccat.php:6998
 msgid "(updated today)"
 msgstr "(heute aktualisiert)"
 
-#: inc/czr-front.php:6819 inc/czr-front.php:6821
+#: inc/czr-front-ccat.php:6982 inc/czr-front-ccat.php:6984
 msgid "by %1$s"
 msgstr "von %1$s"
 
-#: inc/czr-front.php:6819
+#: inc/czr-front-ccat.php:6982
 msgid "This entry was posted"
 msgstr "Dieser Eintrag wurde veröffentlicht"
 
-#: inc/czr-front.php:6807
+#: inc/czr-front-ccat.php:6970
 msgid "and posted on %1$s"
 msgstr "und veröffentlicht am %1$s"
 
-#: inc/czr-front.php:6805
+#: inc/czr-front-ccat.php:6968
 msgid "on %1$s"
 msgstr "am %1$s"
 
-#: inc/czr-front.php:6803
+#: inc/czr-front-ccat.php:6966
 msgid "This entry was posted on %1$s"
 msgstr "Dieser Eintrag wurde veröffentlicht am %1$s"
 
-#: inc/czr-front.php:6794
+#: inc/czr-front-ccat.php:6957
 msgid "This entry was tagged %2$s"
 msgstr "Eintrag gekennzeichnet mit %2$s"
 
-#: inc/czr-front.php:6792
+#: inc/czr-front-ccat.php:6955
 msgid "This entry was posted in %1$s"
 msgstr "Dieser Eintrag wurde veröffentlicht unter %1$s"
 
-#: inc/czr-front.php:6790
+#: inc/czr-front-ccat.php:6953
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "Dieser Eintrag wurde veröffentlicht unter %1$s und gekennzeichnet mit %2$s"
 
-#: inc/czr-front.php:6728
+#: core/front/models/content/post-metas/class-model-post_metas.php:85
+#: inc/czr-front-ccat.php:6891
 msgid "Return to "
 msgstr "Zurück zu "
 
-#: inc/czr-front.php:6728 inc/czr-front.php:7104
+#: core/front/models/content/post-metas/class-model-post_metas.php:85
+#: inc/czr-front-ccat.php:6891 inc/czr-front-ccat.php:7267
 msgid "in"
 msgstr "in"
 
-#: inc/czr-front.php:6727
+#: core/front/models/content/post-metas/class-model-post_metas.php:83
+#: inc/czr-front-ccat.php:6890
 msgid "Link to full-size image"
 msgstr "Link zum Bild in voller Größe"
 
-#: inc/czr-front.php:6727
+#: core/front/models/content/post-metas/class-model-post_metas.php:83
+#: inc/czr-front-ccat.php:6890
 msgid "at dimensions"
 msgstr "mit den Abmessungen"
 
-#: inc/czr-front.php:6724
+#: core/front/models/content/post-metas/class-model-post_metas.php:64
+#: inc/czr-front-ccat.php:6887
 msgid "Published"
 msgstr "Veröffentlicht am"
 
-#: inc/czr-front.php:6705
+#: inc/czr-front-ccat.php:6867
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr "Eintrag veröffentlicht am %1$s<span class=\"by-author\"> von %2$s</span>."
 
-#: inc/czr-front.php:4795
+#: inc/czr-front-ccat.php:5000
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Alle Beiträge von %s ansehen <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/czr-front.php:4595 inc/czr-front.php:4753 inc/czr-front.php:5231
+#: inc/czr-front-ccat.php:4655 inc/czr-front-ccat.php:4958
+#: inc/czr-front-ccat.php:5426
 msgid "Pages:"
 msgstr "Seiten:"
 
-#: inc/czr-front.php:4593 inc/czr-front.php:4752 inc/czr-front.php:5229
+#: core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
+#: inc/czr-front-ccat.php:4653 inc/czr-front-ccat.php:4957
+#: inc/czr-front-ccat.php:5424
+#: templates/parts/content/singular/page_content.php:16
+#: templates/parts/content/singular/post_content.php:18
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Weiterlesen <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/czr-front.php:4364
+#: core/front/models/content/post-lists/headings/class-model-archive_heading.php:71
+#: inc/czr-front-ccat.php:4393
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
 
-#: inc/czr-front.php:4364
+#: inc/czr-front-ccat.php:4393
 msgid "Yearly Archives: %s"
 msgstr "Jährliche Archive: %s"
 
-#: inc/czr-front.php:4363
+#: core/front/models/content/post-lists/headings/class-model-archive_heading.php:70
+#: inc/czr-front-ccat.php:4392
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "F Y"
 
-#: inc/czr-front.php:4363
+#: inc/czr-front-ccat.php:4392
 msgid "Monthly Archives: %s"
 msgstr "Monatliche Archive: %s"
 
-#: inc/czr-front.php:4362
+#: inc/czr-front-ccat.php:4391
 msgid "Archives"
 msgstr "Archive"
 
-#: inc/czr-front.php:4362
+#: inc/czr-front-ccat.php:4391
 msgid "Daily Archives: %s"
 msgstr "Tägliche Archive: %s"
 
-#: inc/czr-front.php:4322 inc/czr-front.php:4791
+#: inc/czr-front-ccat.php:4351 inc/czr-front-ccat.php:4996
 msgid "About %s"
 msgstr "Über %s"
 
-#: inc/czr-front.php:4288
+#: core/core-settings-map.php:1209 core/core-settings-map.php:1221
+#: core/czr-customize-ccat.php:1986 inc/czr-front-ccat.php:4317
 msgid "No"
 msgstr "Keine"
 
-#: inc/czr-front.php:4274
+#: inc/czr-front-ccat.php:4303 templates/parts/content/no-results/404.php:8
 msgid "Ooops, page not found"
-msgstr "Hoppla, Seite nicht gefunden"
+msgstr "Seite nicht gefunden"
 
-#: inc/czr-front.php:4136
+#: inc/czr-front-ccat.php:4165
 msgid "Permalink to %s"
 msgstr "Permalink zu %s"
 
-#: inc/czr-front.php:4132 inc/czr-front.php:4137
+#: inc/czr-front-ccat.php:4161 inc/czr-front-ccat.php:4166
 msgid "{no title} Read the post &raquo;"
 msgstr "{kein Titel} Beitrag lesen &raquo;"
 
-#: inc/czr-front.php:3919
+#: inc/czr-front-ccat.php:3948
 msgid "Missing Attachment"
 msgstr "Fehlender Anhang"
 
-#: inc/czr-front.php:3707
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/czr-front-ccat.php:3735
 msgid "Featured page description text : use the page excerpt or set your own custom text in the Customizr screen."
 msgstr "\"Empfohlene Seite\" Beschreibungstext: Seitenauszug verwenden oder eigenen Text im Customizr-Bildschirm einstellen."
 
-#: inc/czr-front.php:3703
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:142
+#: inc/czr-front-ccat.php:3731
 msgid "Featured page"
 msgstr "Empfohlene Seite"
 
-#: inc/czr-front.php:3695
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:134
+#: inc/czr-front-ccat.php:3723
 msgid "Customizer screen"
 msgstr "Customizr-Bildschirm"
 
-#: inc/czr-front.php:3381
+#: core/front/template-tags/template-tags.php:65 inc/czr-front-ccat.php:3394
+#: templates/parts/content/singular/comments/comment_list.php:19
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: inc/czr-front.php:3362
+#: inc/czr-front-ccat.php:3375
 msgid "Comment(s) on"
 msgstr "Kommentar(e) zu"
 
-#: inc/czr-front.php:3339
+#: inc/czr-front-ccat.php:3352 templates/comments-no-model.php:21
 msgid "Leave a comment"
-msgstr "Kommentar erstellen"
+msgstr "Schreiben Sie einen Kommentar"
 
-#: inc/czr-front.php:3304
+#: inc/czr-front-ccat.php:3317
+#: templates/parts/content/singular/comments/comment_list.php:89
 msgid "Comments are closed."
-msgstr "Kommentare geschlossen."
+msgstr "Kommentare sind geschlossen."
 
-#: inc/czr-front.php:3272
+#: inc/czr-front-ccat.php:3285
+#: templates/parts/content/singular/comments/comment_list.php:80
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Neuere Beiträge <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/czr-front.php:3264
+#: inc/czr-front-ccat.php:3277
+#: templates/parts/content/singular/comments/comment_list.php:72
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
-msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Beiträge"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Kommentare"
 
-#: inc/czr-front.php:3258
+#: inc/czr-front-ccat.php:3271
+#: templates/parts/content/singular/comments/comment_list.php:66
 msgid "Comment navigation"
-msgstr "Kommentarnavigation"
+msgstr "Kommentar-Navigation"
 
-#: inc/czr-front.php:3223
+#: inc/czr-front-ccat.php:3236
+#: templates/parts/content/singular/comments/comment.php:37
 msgid "Your comment is awaiting moderation."
 msgstr "Ihr Kommentar wartet auf Moderation."
 
 #. translators: 1: date, 2: time
-#: inc/czr-front.php:3218
+#: inc/czr-front-ccat.php:3231
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
 
-#: inc/czr-front.php:3211
+#: inc/czr-front-ccat.php:3224
+#: templates/parts/content/singular/comments/comment.php:22
 msgid "Post author"
-msgstr "Beitragsautor"
+msgstr "Autor des Beitrags"
 
-#: inc/czr-front.php:3198
+#: inc/czr-front-ccat.php:3211
 msgid "Reply"
 msgstr "Antwort"
 
-#: inc/czr-front.php:3170
+#: inc/czr-front-ccat.php:3183
 msgid "(Edit)"
 msgstr "(Bearbeiten)"
 
-#: inc/czr-front.php:3169
+#: inc/czr-front-ccat.php:3182
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: inc/czr-front.php:3109
+#: inc/czr-front-ccat.php:3122
+#: templates/parts/content/singular/comments/comment_list.php:11
 msgid "thoughts on"
 msgstr "Gedanken zu"
 
-#: inc/czr-front.php:3107
+#: inc/czr-front-ccat.php:3120
+#: templates/parts/content/singular/comments/comment_list.php:11
 msgid "One thought on"
 msgstr "Ein Gedanke zu"
 
-#: inc/czr-front.php:2805
+#: core/front/models/modules/common/class-model-breadcrumb.php:808
+#: inc/czr-front-ccat.php:2818
 msgid "F j, Y"
 msgstr "j. F Y"
 
-#: inc/czr-front.php:2801
+#: core/front/models/modules/common/class-model-breadcrumb.php:804
+#: inc/czr-front-ccat.php:2814
 msgid "F Y"
 msgstr "F Y"
 
-#: inc/czr-front.php:2650
+#: core/front/models/modules/common/class-model-breadcrumb.php:654
+#: inc/czr-front-ccat.php:2663
 msgid "Merge"
 msgstr "Zusammenführen"
 
-#: inc/czr-front.php:2646
+#: core/front/models/modules/common/class-model-breadcrumb.php:650
+#: inc/czr-front-ccat.php:2659
 msgid "Split"
-msgstr "Aufteilen"
+msgstr "Splitten"
 
-#: inc/czr-front.php:2575 inc/czr-front.php:2577
+#: core/front/models/modules/common/class-model-breadcrumb.php:576
+#: core/front/models/modules/common/class-model-breadcrumb.php:578
+#: inc/czr-front-ccat.php:2588 inc/czr-front-ccat.php:2590
 msgid "Page %d"
 msgstr "Seite %d"
 
-#: inc/czr-front.php:2570
+#: core/front/models/modules/common/class-model-breadcrumb.php:570
+#: inc/czr-front-ccat.php:2582
 msgid "404 Not Found"
 msgstr "404 Seite nicht gefunden"
 
-#: inc/czr-front.php:2563 inc/czr-front.php:2565
+#: core/front/models/modules/common/class-model-breadcrumb.php:563
+#: core/front/models/modules/common/class-model-breadcrumb.php:565
+#: inc/czr-front-ccat.php:2575 inc/czr-front-ccat.php:2577
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Suchergebnisse für &quot;%1$s&quot;"
 
-#: inc/czr-front.php:2535 inc/czr-front.php:2537
+#: core/front/models/modules/common/class-model-breadcrumb.php:535
+#: core/front/models/modules/common/class-model-breadcrumb.php:537
+#: inc/czr-front-ccat.php:2547 inc/czr-front-ccat.php:2549
 msgid "W"
 msgstr "W"
 
-#: inc/czr-front.php:2535 inc/czr-front.php:2537
+#: core/front/models/modules/common/class-model-breadcrumb.php:535
+#: core/front/models/modules/common/class-model-breadcrumb.php:537
+#: inc/czr-front-ccat.php:2547 inc/czr-front-ccat.php:2549
 msgid "Week %1$s"
 msgstr "Woche %1$s"
 
-#: inc/czr-front.php:2526 inc/czr-front.php:2528 inc/czr-front.php:2805
+#: core/front/models/modules/common/class-model-breadcrumb.php:526
+#: core/front/models/modules/common/class-model-breadcrumb.php:528
+#: core/front/models/modules/common/class-model-breadcrumb.php:808
+#: inc/czr-front-ccat.php:2538 inc/czr-front-ccat.php:2540
+#: inc/czr-front-ccat.php:2818
 msgid "d"
 msgstr "d"
 
-#: inc/czr-front.php:2523 inc/czr-front.php:2544 inc/czr-front.php:2546
-#: inc/czr-front.php:2801
+#: core/front/models/modules/common/class-model-breadcrumb.php:523
+#: core/front/models/modules/common/class-model-breadcrumb.php:544
+#: core/front/models/modules/common/class-model-breadcrumb.php:546
+#: core/front/models/modules/common/class-model-breadcrumb.php:804
+#: inc/czr-front-ccat.php:2535 inc/czr-front-ccat.php:2556
+#: inc/czr-front-ccat.php:2558 inc/czr-front-ccat.php:2814
 msgid "F"
 msgstr "F"
 
-#: inc/czr-front.php:2522 inc/czr-front.php:2532 inc/czr-front.php:2541
-#: inc/czr-front.php:2552 inc/czr-front.php:2554 inc/czr-front.php:2797
+#: core/front/models/modules/common/class-model-breadcrumb.php:522
+#: core/front/models/modules/common/class-model-breadcrumb.php:532
+#: core/front/models/modules/common/class-model-breadcrumb.php:541
+#: core/front/models/modules/common/class-model-breadcrumb.php:552
+#: core/front/models/modules/common/class-model-breadcrumb.php:554
+#: core/front/models/modules/common/class-model-breadcrumb.php:800
+#: inc/czr-front-ccat.php:2534 inc/czr-front-ccat.php:2544
+#: inc/czr-front-ccat.php:2553 inc/czr-front-ccat.php:2564
+#: inc/czr-front-ccat.php:2566 inc/czr-front-ccat.php:2810
 msgid "Y"
 msgstr "Y"
 
-#: inc/czr-front.php:2506
+#: core/front/models/modules/common/class-model-breadcrumb.php:506
+#: inc/czr-front-ccat.php:2518
 msgid "g a"
 msgstr "G"
 
-#: inc/czr-front.php:2503
+#: core/front/models/modules/common/class-model-breadcrumb.php:503
+#: inc/czr-front-ccat.php:2515
 msgid "i"
 msgstr "i"
 
-#: inc/czr-front.php:2503
+#: core/front/models/modules/common/class-model-breadcrumb.php:503
+#: inc/czr-front-ccat.php:2515
 msgid "Minute %1$s"
 msgstr "Minute %1$s"
 
-#: inc/czr-front.php:2500
+#: core/front/models/modules/common/class-model-breadcrumb.php:500
+#: inc/czr-front-ccat.php:2512
 msgid "g:i a"
 msgstr "G:i"
 
-#: inc/czr-front.php:2020
+#: core/front/models/modules/common/class-model-breadcrumb.php:60
+#: inc/czr-front-ccat.php:2017
 msgid "Browse:"
 msgstr "Blättern:"
 
-#: inc/czr-front.php:1474 inc/czr-front.php:2011 inc/czr-front.php:2023
+#: core/front/models/header/parts/class-model-menu.php:273
+#: core/front/models/modules/common/class-model-breadcrumb.php:51
+#: core/front/models/modules/common/class-model-breadcrumb.php:63
+#: inc/czr-front-ccat.php:1465 inc/czr-front-ccat.php:2008
+#: inc/czr-front-ccat.php:2020
 msgid "Home"
 msgstr "Startseite"
 
-#: inc/czr-front.php:1860
+#: inc/czr-front-ccat.php:1857
 msgid "Next &rarr;"
-msgstr "Nächster &rarr;"
+msgstr "Weiter &rarr;"
 
-#: inc/czr-front.php:1859
+#: inc/czr-front-ccat.php:1856
 msgid "&larr; Previous"
-msgstr "&larr; Vorheriger"
+msgstr "&larr; Zurück"
 
-#: inc/czr-init.php:4128
+#: inc/czr-init-ccat.php:2986
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "Maximale Höhe für Vorschaubilder in Pixeln für Raster-Layout festlegen"
 
-#: inc/czr-init.php:4127
+#: inc/czr-init-ccat.php:2985
 msgid "Thumbnails max height for the grid layout"
 msgstr "Maximale Vorschaubildhöhe für Raster-Layout"
 
-#: inc/czr-init.php:4116
+#: core/core-settings-map.php:1619
 msgid "Max. length for post titles (in words)"
 msgstr "Maximale Länge für Beitragsüberschriften (in Worten)"
 
-#: inc/czr-init.php:4106
-msgid "Display post format icons in the background"
-msgstr "Beitragsformat-Symbole im Hintergrund anzeigen"
-
-#: inc/czr-init.php:4097
+#: core/core-settings-map.php:1608
 msgid "Apply a colored bottom border to each grid items"
 msgstr "Farbigen unteren Rand auf jedes Rasterelement anwenden"
 
-#: inc/czr-init.php:4088
+#: core/core-settings-map.php:1599
 msgid "Apply a shadow to each grid items"
 msgstr "Schatten auf jedes Rasterelement anwenden"
 
-#: inc/czr-init.php:4083
+#: inc/czr-init-ccat.php:2941
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr "Nicht markierte Inhalte werden mit alternativem Vorschaubild-Layout angezeigt."
 
-#: inc/czr-init.php:4079
+#: inc/czr-init-ccat.php:2937
 msgid "Apply the grid layout to Search results"
 msgstr "Raster-Layout auf Suchergebnisse anwenden"
 
-#: inc/czr-init.php:4071
+#: inc/czr-init-ccat.php:2929
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr "Raster-Layout auf Archive anwenden"
 
-#: inc/czr-init.php:4063
+#: inc/czr-init-ccat.php:2921
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Raster-Layout auf Startseite anwenden"
 
-#: inc/czr-init.php:4055
+#: core/core-settings-map.php:1590
 msgid "Expand the last sticky post (for home and blog page only)"
 msgstr "Letzten \"oben gehaltenen Beitrag\" erweitern (nur auf Start- und Blog-Seite)"
 
-#: inc/czr-init.php:4050
+#: core/core-settings-map.php:1585
 msgid "Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts."
 msgstr "Hinweis: Bei Layout mit einer Seitenleiste ist die Anzahl auf drei Spalten, bei zwei Seitenleisten auf zwei Spalten begrenzt."
 
-#: inc/czr-init.php:4047
+#: core/core-settings-map.php:1582
 msgid "4"
 msgstr "4"
 
-#: inc/czr-init.php:4046
+#: core/core-settings-map.php:1581
 msgid "3"
 msgstr "3"
 
-#: inc/czr-init.php:4045
+#: core/core-settings-map.php:1580
 msgid "2"
 msgstr "2"
 
-#: inc/czr-init.php:4044
+#: core/core-settings-map.php:1579
 msgid "1"
 msgstr "1"
 
-#: inc/czr-init.php:4040
+#: core/core-settings-map.php:1575
 msgid "Number of columns per row"
 msgstr "Anzahl Spalten je Reihe"
 
-#: inc/czr-init.php:4035
+#: core/core-settings-map.php:1570
 msgid "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr "Beim Raster-Layout wird der Beitragsinhalt auf den Auszug beschränkt."
 
-#: inc/czr-init.php:4032
+#: core/core-settings-map.php:1564
 msgid "Grid layout"
 msgstr "Raster-Layout"
 
-#: inc/czr-init.php:4031
+#: core/core-settings-map.php:1563
 msgid "Alternate thumbnails layout"
 msgstr "Alternatives Vorschaubild-Layout"
 
-#: inc/czr-init.php:4027
+#: core/core-settings-map.php:1559
 msgid "Select a Layout"
 msgstr "Layout wählen"
 
-#: inc/czr-init.php:4026
+#: core/core-settings-map.php:1558
 msgid "Post List Design"
 msgstr "Gestaltung Beitragsliste"
 
-#: inc/czr-init.php:3743
+#: core/core-settings-map.php:1255
 msgid "You might want to regenerate your thumbnails."
 msgstr "Sie möchten möglicherweise die Vorschaubilder neu generieren."
 
-#: inc/czr-init.php:3742
+#: core/core-settings-map.php:1254
 msgid "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance."
 msgstr "Ist diese Option ausgewählt, werden Ihre Bilder beim Hochladen an die benutzerdefinierte Höhe angepasst. Dies beschleunigt den Seitenaufbau."
 
-#: inc/czr-init.php:3736
+#: core/core-settings-map.php:1248
 msgid "Replace the default image slider's height"
 msgstr "Ersetze die Höhe des Standard-Sliders"
 
-#: inc/czr-init.php:3728
+#: core/core-settings-map.php:1240
 msgid "Apply this height to all sliders"
 msgstr "Diese Höhe auf alle Slider anwenden"
 
-#: inc/czr-init.php:3718
+#: core/core-settings-map.php:1230
 msgid "Set slider's height in pixels"
 msgstr "Höhe des Sliders in Pixeln"
 
-#: inc/czr-init.php:4802
+#: core/core-settings-map.php:2220
 msgid "Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images."
 msgstr "Die Option bewirkt ein verzögertes, dynamisches Laden von nicht sichtbaren Bilder im unteren Bereich des Browserfensters beim Scrollen. Dadurch wird ein verbessertes Ladeverhalten bei längeren Beiträgen/Seiten mit mehreren Bildern erreicht."
 
-#: inc/czr-init.php:4797
+#: core/core-settings-map.php:2215
 msgid "Load images on scroll"
 msgstr "Bilder beim Scrollen laden"
 
-#: inc/czr-init.php:4689
+#: inc/czr-init-ccat.php:3127
 msgid "Will be hidden if empty"
 msgstr "Wird verborgen falls leer"
 
-#: inc/czr-init.php:4683
+#: inc/czr-init-ccat.php:3121
 msgid "Social link title in sidebars"
 msgstr "Titel der Sozialen Links in Seitenleiste"
 
-#: inc/czr-init.php:4727 inc/czr-init.php:4735
+#: core/core-settings-map.php:2145
 msgid "Display a back to top arrow on scroll"
 msgstr "Anzeige des \"Nach-oben-Pfeils\" beim Scrollen"
 
-#: inc/czr-init.php:4642
+#: core/core-settings-map.php:2046
 msgid "Display posts navigation in post lists (archives, blog page, categories, search results ..)"
 msgstr "Beitragsnavigation in Beitragslisten anzeigen (Archive, Seiten, Kategorien, Suchergebnisse...)"
 
-#: inc/czr-init.php:4633
+#: core/core-settings-map.php:2037
 msgid "Display posts navigation in single posts"
 msgstr "Beitragsnavigation in einzelnen Beiträgen anzeigen"
 
-#: inc/czr-init.php:4624
+#: core/core-settings-map.php:2028
 msgid "Display navigation in pages"
 msgstr "Navigation in den Seiten anzeigen"
 
-#: inc/czr-init.php:4615
+#: core/core-settings-map.php:2019
 msgid "When this option is checked, the posts navigation is displayed below the posts"
 msgstr "Wenn aktiviert, wird unterhalb des Beitrages die Beitragsnavigation angezeigt."
 
-#: inc/czr-init.php:4612
+#: core/core-settings-map.php:2016
 msgid "Display posts navigation"
 msgstr "Beitragsnavigation anzeigen"
 
-#: inc/czr-init.php:4597
+#: core/core-settings-map.php:2001
 msgid "By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history."
 msgstr "Standardmäßig zeigt Wordpress ältere Kommentare auch dann an, wenn Kommentare in Beiträgen oder Seiten deaktiviert werden. Deaktivieren dieser Option hier verhindert das Anzeigen älterer Kommentare."
 
-#: inc/czr-init.php:4593
+#: core/core-settings-map.php:1997
 msgid "Display the comment list"
 msgstr "Kommentarliste anzeigen"
 
-#: inc/czr-init.php:4587
+#: core/core-settings-map.php:1991
 msgid "discussion settings page."
 msgstr "Seite mit Diskussions-Einstellungen"
 
-#: inc/czr-init.php:4585
+#: core/core-settings-map.php:1989
 msgid "You can also change other comments settings in the"
 msgstr "Andere Kommentar-Einstellungen können auch gemacht werden unter"
 
-#: inc/czr-init.php:4584
+#: core/core-settings-map.php:1988
 msgid "post screen"
 msgstr "Beitrags-Ansicht"
 
-#: inc/czr-init.php:4582
+#: core/core-settings-map.php:1986
 msgid "If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the"
 msgstr "Ist diese Option aktiviert, sind Kommentare auf allen Einzelbeiträgen möglich. Kann für einzelne Seiten auch im QuickEdit-Modus individuell deaktiviert werden unter:"
 
-#: inc/czr-init.php:4577
+#: core/core-settings-map.php:1981
 msgid "Enable comments on posts"
 msgstr "Kommentare zu Beiträgen aktivieren"
 
-#: inc/czr-init.php:4571
+#: core/core-settings-map.php:1975
 msgid "the discussion settings page."
 msgstr "Diskussions-Einstellungen"
 
-#: inc/czr-init.php:4569
+#: core/core-settings-map.php:1973
 msgid "You can also change other comments settings in :"
 msgstr "Weitere Kommentar-Einstellungen ändern unter:"
 
-#: inc/czr-init.php:4568
+#: core/core-settings-map.php:1972
 msgid "If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen."
 msgstr "Ist diese Option aktiviert, sind Kommentare möglich. Dies kann für einzelne Seiten im Quick-Edit-Modus individuell deaktiviert werden."
 
-#: inc/czr-init.php:4562
+#: core/core-settings-map.php:1966
 msgid "Other comments settings"
 msgstr "Andere Kommentar-Einstellungen"
 
-#: inc/czr-init.php:4544
+#: core/core-settings-map.php:522 inc/czr-init-ccat.php:3057
 msgid "Custom"
 msgstr "Individuell"
 
-#: inc/czr-init.php:4543
+#: inc/czr-init-ccat.php:3056
 msgid "Skin color"
 msgstr "Farbe des Designs"
 
-#: inc/czr-init.php:4539 inc/czr-init.php:4551
+#: inc/czr-init-ccat.php:3052 inc/czr-init-ccat.php:3065
 msgid "Comments bubble color"
 msgstr "Farbe der Sprechblase"
 
-#: inc/czr-init.php:4531
+#: inc/czr-init-ccat.php:3044
 msgid "Large bubbles"
-msgstr "Große  Sprechblase"
+msgstr "Große Sprechblase"
 
-#: inc/czr-init.php:4530
+#: inc/czr-init-ccat.php:3043
 msgid "Small bubbles"
 msgstr "Kleine Sprechblase"
 
-#: inc/czr-init.php:4526
+#: inc/czr-init-ccat.php:3039
 msgid "Comments bubble shape"
 msgstr "Form der Sprechblase"
 
-#: inc/czr-init.php:4517
+#: core/core-settings-map.php:1958
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Kommentaranzahl in einer Sprechblase neben dem Beitragstitel anzeigen"
 
-#: inc/czr-init.php:4515
-msgid "Comments bubbles"
-msgstr "Kommentar-Sprechblasen"
-
-#: inc/czr-init.php:4498
+#: inc/czr-init-ccat.php:2313
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "Initiale im ersten Absatz des Seiteninhalts anzeigen"
 
-#: inc/czr-init.php:4496
+#: inc/czr-init-ccat.php:2311
 msgid "Enable drop caps in pages"
 msgstr "Initialen auf Seiten aktivieren"
 
-#: inc/czr-init.php:4489
+#: inc/czr-init-ccat.php:2305
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "Initiale im ersten Absatz des Inhalts eines Einzelbeitrages anzeigen"
 
-#: inc/czr-init.php:4487
+#: inc/czr-init-ccat.php:2303
 msgid "Enable drop caps in posts"
 msgstr "Initialen in Beiträgen aktivieren"
 
-#: inc/czr-init.php:4481
+#: inc/czr-init-ccat.php:2298
 msgid "Simple black"
 msgstr "Einfaches Schwarz"
 
-#: inc/czr-init.php:4480
-msgid "Skin color with shadow"
-msgstr "Skin-Farbe mit Schatten"
-
-#: inc/czr-init.php:4476
+#: inc/czr-init-ccat.php:2293
 msgid "Drop cap style"
 msgstr "Initialen-Stil"
 
-#: inc/czr-init.php:4466
+#: inc/czr-init-ccat.php:2284
 msgid "(number of words)"
 msgstr "(Anzahl Wörter)"
 
-#: inc/czr-init.php:4465
+#: inc/czr-init-ccat.php:2283
 msgid "Apply a drop cap when the paragraph includes at least the following number of words :"
 msgstr "Initiale benutzen, wenn der Absatz mindestens diese Anzahl von Wörtern beinhaltet:"
 
-#: inc/czr-init.php:4456
+#: inc/czr-init-ccat.php:2275
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr "Initiale im ersten Absatz des Beitrags-/Seiteninhalts anzeigen"
 
-#: inc/czr-init.php:4454
+#: inc/czr-init-ccat.php:2273
 msgid "Enable drop caps"
 msgstr "Initialen aktivieren"
 
-#: inc/czr-init.php:4453
+#: inc/czr-init-ccat.php:2272
 msgid "Drop caps"
 msgstr "Initialen"
 
-#: inc/czr-init.php:4435
+#: core/core-settings-map.php:1938
 msgid "Apply nice on hover expansion effect to the galleries images"
 msgstr "Einen hübschen Effekt beim Überstreichen von Galeriebildern anwenden"
 
-#: inc/czr-init.php:4433
+#: core/core-settings-map.php:1936
 msgid "Enable Customizr effects on hover"
 msgstr "Customizr-Effekte beim Überfahren aktivieren"
 
-#: inc/czr-init.php:4426
+#: core/core-settings-map.php:1929
 msgid "Apply lightbox effects to galleries images"
 msgstr "Leuchtkasten-Effekte auf Galeriebilder anwenden"
 
-#: inc/czr-init.php:4424
+#: core/core-settings-map.php:1927
 msgid "Enable Lightbox effect in galleries"
 msgstr "Leuchtkasten-Effekte in Galerien aktivieren"
 
-#: inc/czr-init.php:4417
+#: core/core-settings-map.php:1920
 msgid "Apply Customizr effects to galleries images"
 msgstr "Customizr-Effekte auf Galeriebilder anwenden"
 
-#: inc/czr-init.php:4415
+#: core/core-settings-map.php:1918
 msgid "Enable Customizr galleries"
 msgstr "Customizr-Galerien aktivieren"
 
-#: inc/czr-init.php:4156
+#: core/core-settings-map.php:1659 core/core-settings-map.php:1718
 msgid "After the title"
 msgstr "Nach dem Titel"
 
-#: inc/czr-init.php:4155
+#: core/core-settings-map.php:1658 core/core-settings-map.php:1717
 msgid "Before the title boxed"
 msgstr "Kasten vor dem Titel"
 
-#: inc/czr-init.php:4154
+#: core/core-settings-map.php:1657 core/core-settings-map.php:1716
 msgid "Before the title in full width"
 msgstr "Vor dem Titel in voller Breite"
 
-#: inc/czr-init.php:4153
+#: core/core-settings-map.php:1656 core/core-settings-map.php:1715
 msgid "Don't display"
 msgstr "Nicht anzeigen"
 
-#: inc/czr-init.php:4149
+#: core/core-settings-map.php:1651 core/core-settings-map.php:1710
 msgid "Post thumbnail position"
 msgstr "Position des Beitrags-Vorschaubilds"
 
-#: inc/czr-init.php:4015
+#: core/core-settings-map.php:1547
 msgid "Search results page titles"
 msgstr "Überschriften der Suchergebnis-Seiten"
 
-#: inc/czr-front.php:4289 inc/czr-init.php:4014
+#: core/core-settings-map.php:1546 inc/czr-front-ccat.php:4318
 msgid "Search Results for :"
 msgstr "Suchergebnisse zu:"
 
-#: inc/czr-init.php:4006
+#: core/core-settings-map.php:1538
 msgid "Author pages titles"
 msgstr "Überschriften der Autorenseiten"
 
-#: inc/czr-init.php:3997
+#: core/core-settings-map.php:1529
 msgid "Tag pages titles"
 msgstr "Überschriften der Schlagwort-Seiten"
 
-#: inc/czr-init.php:3988
+#: core/core-settings-map.php:1520
 msgid "Category pages titles"
 msgstr "Überschriften der Kategorieseiten"
 
-#: inc/czr-init.php:3987
+#: core/core-settings-map.php:1519
 msgid "Archive titles"
 msgstr "Archivüberschriften"
 
-#: inc/czr-init.php:3978
+#: core/core-settings-map.php:1510
 msgid "Alternate thumbnail/content"
 msgstr "Alternative Vorschaubild/Inhalt"
 
-#: inc/czr-init.php:3971 inc/czr-init.php:4739
+#: core/core-settings-map.php:1503 core/core-settings-map.php:2157
 msgid "Left"
 msgstr "Links"
 
-#: inc/czr-init.php:3970
+#: inc/czr-init-ccat.php:3014
 msgid "Bottom"
 msgstr "Unten"
 
-#: inc/czr-init.php:3969 inc/czr-init.php:4740
+#: core/core-settings-map.php:1502 core/core-settings-map.php:2158
 msgid "Right"
 msgstr "Rechts"
 
-#: inc/czr-init.php:3968
+#: inc/czr-init-ccat.php:3013
 msgid "Top"
 msgstr "Oben"
 
-#: inc/czr-init.php:3964
+#: core/core-settings-map.php:1496
 msgid "Thumbnails position"
-msgstr "Vorschaunbild-Position"
+msgstr "Vorschaubild-Position"
 
-#: inc/czr-init.php:3952 inc/czr-init.php:4170
+#: core/core-settings-map.php:1673 core/core-settings-map.php:1732
+#: inc/czr-init-ccat.php:2973
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Maximale Höhe der Vorschaubilder in Pixeln einstellen"
 
-#: inc/czr-init.php:3944
+#: inc/czr-init-ccat.php:3005
 msgid "Rectangular with unblur effect on hover"
 msgstr "Rechteckig, beim Überfahren schärfen"
 
-#: inc/czr-init.php:3943
+#: inc/czr-init-ccat.php:3004
 msgid "Rectangular with blur effect on hover"
 msgstr "Rechteckig, beim Überfahren unscharf"
 
-#: inc/czr-init.php:3942
+#: inc/czr-init-ccat.php:3003
 msgid "Rectangular with no effect"
 msgstr "Rechteckig, ohne Effekt"
 
-#: inc/czr-init.php:3941
+#: inc/czr-init-ccat.php:3002
 msgid "Squared, no expansion"
 msgstr "Quadratisch, ohne Vergrößerung"
 
-#: inc/czr-init.php:3940
+#: inc/czr-init-ccat.php:3001
 msgid "Squared, expand on hover"
 msgstr "Quadratisch, beim Überfahren vergrößert"
 
-#: inc/czr-init.php:3939
+#: core/core-settings-map.php:1488
 msgid "Rounded, no expansion"
 msgstr "Abgerundet, ohne Vergrößerung"
 
-#: inc/czr-init.php:3938
+#: core/core-settings-map.php:1487
 msgid "Rounded, expand on hover"
 msgstr "Angerundet, beim Überfahren vergrößert"
 
-#: inc/czr-init.php:3934
+#: core/core-settings-map.php:1483
 msgid "Thumbnails shape"
 msgstr "Vorschaubild-Form"
 
-#: inc/czr-init.php:3933
+#: core/core-settings-map.php:1482
 msgid "Thumbnails options for the alternate thumbnails layout"
 msgstr "Vorschaubild-Einstellungen für alternatives Vorschaubild-Layout"
 
-#: inc/czr-init.php:3915
+#: inc/czr-init-ccat.php:2955
 msgid "Upload a default thumbnail"
 msgstr "Standard-Vorschaubild hochladen"
 
-#: inc/czr-init.php:3907
-msgid "If no featured image is set, use the last image attached to this post."
-msgstr "Wurde kein Beitragsbild festgelegt, das zuletzt diesem Beitrag angehangene Bild verwenden."
+#: core/core-settings-map.php:1472
+msgid "If no featured image is set for a post, use the last image attached to this post."
+msgstr "Wenn kein Beitragsbild für einen Beitrag eingestellt ist, verwenden Sie das letzte Bild, das diesem Beitrag beigefügt wurde."
 
-#: inc/czr-init.php:3902
+#: core/core-settings-map.php:1467
 msgid "Note : thumbnails are always displayed when the grid layout is choosen."
 msgstr "Hinweis: Vorschaubilder werden immer angezeigt, wenn Raster-Layout gewählt wurde."
 
-#: inc/czr-init.php:3902
+#: core/core-settings-map.php:1467
 msgid "When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ..."
 msgstr "Wurde diese Einstellung ausgewählt, werden Beitrags-Vorschaubilder in jeder Beitragsliste angezeigt: Blog, Archive, Autorenseite, Suchergebnisse, ..."
 
-#: inc/czr-init.php:3898
+#: core/core-settings-map.php:1463
 msgid "Display the post thumbnails"
 msgstr "Anzeige der Beitrags-Vorschaubilder"
 
-#: inc/czr-init.php:3897
+#: core/core-settings-map.php:1462
 msgid "Thumbnails options"
 msgstr "Vorschaubild-Einstellungen"
 
-#: inc/czr-init.php:3887
+#: core/core-settings-map.php:1448
 msgid "Set the excerpt length (in number of words) "
 msgstr "Auszugslänge begrenzen (als Anzahl der Wörter)"
 
-#: inc/czr-init.php:4398
+#: inc/czr-init-ccat.php:2861
 msgid "Info (blue)"
 msgstr "Info (blau)"
 
-#: inc/czr-init.php:4397
+#: inc/czr-init-ccat.php:2860
 msgid "Important (red)"
 msgstr "Wichtig (rot)"
 
-#: inc/czr-init.php:4396
+#: inc/czr-init-ccat.php:2859
 msgid "Alert (orange)"
 msgstr "Alarm (orange)"
 
-#: inc/czr-init.php:4395
+#: inc/czr-init-ccat.php:2858
 msgid "Success (green)"
 msgstr "Erfolg (grün)"
 
-#: inc/czr-init.php:4394
+#: inc/czr-init-ccat.php:2857
 msgid "Default (grey)"
 msgstr "Standard (grau)"
 
-#: inc/czr-init.php:4390
+#: inc/czr-init-ccat.php:2853
 msgid "Update notice style"
 msgstr "Aussehen des Aktualisierungshinweises"
 
-#: inc/czr-init.php:4381
+#: inc/czr-init-ccat.php:2844
 msgid "Update notice text"
 msgstr "Text des Aktualisierungshinweises"
 
-#: inc/czr-init.php:4379
+#: inc/czr-init-ccat.php:2842
 msgid "Recently updated !"
 msgstr "Kürzlich aktualisiert!"
 
-#: inc/czr-init.php:4376
+#: inc/czr-init-ccat.php:2839
 msgid "Set a maximum interval (in days) during which the last update notice will be displayed."
 msgstr "Setze die maximale Zeit in Tagen, während denen der Änderungshinweis angezeigt wird."
 
-#: inc/czr-init.php:4370
+#: inc/czr-init-ccat.php:2833
 msgid "Display the notice if the last update is less (strictly) than n days old"
 msgstr "Zeige den Hinweis nur, wenn die letzte Änderung weniger als (genau) n Tage alt ist"
 
-#: inc/czr-init.php:4364
+#: inc/czr-init-ccat.php:2827
 msgid "If this option is checked, a customizable recent update notice is displayed next to the post title."
-msgstr "Wurde diese Option aausgewählt, wird ein individuell anpassbarer Aktualisierungshinweis neben dem Beitragstitel angezeigt."
+msgstr "Wurde diese Option ausgewählt, wird ein individuell anpassbarer Aktualisierungshinweis neben dem Beitragstitel angezeigt."
 
-#: inc/czr-init.php:4360
+#: inc/czr-init-ccat.php:2823
 msgid "Display a recent update notice"
 msgstr "Hinweis auf Aktualisierung anzeigen"
 
-#: inc/czr-init.php:4359
+#: inc/czr-init-ccat.php:2822
 msgid "Recent update notice after post titles"
 msgstr "Aktualisierungshinweis hinter Beitragstitel"
 
-#: inc/czr-init.php:4351
+#: inc/czr-init-ccat.php:2814
 msgid "Date of the last update"
 msgstr "Datum der letzten Änderung"
 
-#: inc/czr-init.php:4350
-msgid "Nb of days since last update"
+#: inc/czr-init-ccat.php:2813
+msgid "No. of days since last update"
 msgstr "Anzahl Tage seit letzter Änderung"
 
-#: inc/czr-init.php:4346
+#: inc/czr-init-ccat.php:2809
 msgid "Select the last update format"
 msgstr "Format der letzten Änderung auswählen"
 
-#: inc/czr-init.php:4340
+#: inc/czr-init-ccat.php:2872
 msgid "If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated)."
 msgstr "Wurde diese Option ausgewählt, können zusätzliche Informationen über letzte Beitragsaktualisierung angezeigt werden (es wird nichts angezeigt, wenn der Beitrag nie aktualisiert wurde)."
 
-#: inc/czr-init.php:4336
+#: core/core-settings-map.php:1899
 msgid "Display the update date"
 msgstr "Änderungsdatum anzeigen"
 
-#: inc/czr-init.php:4328
+#: core/core-settings-map.php:1881
 msgid "Display the author"
 msgstr "Autor anzeigen"
 
-#: inc/czr-init.php:4320
+#: core/core-settings-map.php:1889
 msgid "Display the publication date"
 msgstr "Veröffentlichungsdatum anzeigen"
 
-#: inc/czr-init.php:4311
+#: core/core-settings-map.php:1872
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Nicht-hierarchische Taxonomien (wie Schlagwörter) anzeigen"
 
-#: inc/czr-init.php:4302
+#: core/core-settings-map.php:1863
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Hierarchische Taxonomien (wie Kategorien) anzeigen"
 
-#: inc/czr-init.php:4301
+#: core/core-settings-map.php:1862
 msgid "Select the metas to display"
 msgstr "Wählen Sie aus, welche Metadaten angezeigt werden sollen"
 
-#: inc/czr-init.php:4291
+#: core/core-settings-map.php:1852
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "Beitrags-Metadaten auf Beitragslisten (Archiv, Blogseite) anzeigen"
 
-#: inc/czr-init.php:4282
+#: core/core-settings-map.php:1843
 msgid "Display posts metas for single posts"
 msgstr "Beitrags-Matedaten für Einzelbeiträge anzeigen"
 
-#: inc/czr-init.php:4273
+#: core/core-settings-map.php:1834
 msgid "Display posts metas on home"
 msgstr "Beitrags-Metadaten auf Startseite anzeigen"
 
-#: inc/czr-init.php:4272 inc/czr-init.php:4623
+#: core/core-settings-map.php:1833 core/core-settings-map.php:2027
 msgid "Select the contexts"
 msgstr "Anzeigekontext auswählen"
 
-#: inc/czr-init.php:4265
+#: inc/czr-init-ccat.php:2802
 msgid "Text only"
 msgstr "Nur Text"
 
-#: inc/czr-init.php:4264
+#: inc/czr-init-ccat.php:2801
 msgid "Buttons and text"
-msgstr "Buttons & Text"
+msgstr "Buttons und Text"
 
-#: inc/czr-init.php:4260
+#: inc/czr-init-ccat.php:2797
 msgid "Select a design for the post metas"
 msgstr "Darstellungsart für die Beitrags-Metadaten wählen"
 
-#: inc/czr-init.php:4259
+#: inc/czr-init-ccat.php:2796
 msgid "Metas Design"
 msgstr "Darstellung Meta-Daten"
 
-#: inc/czr-init.php:4252
+#: core/core-settings-map.php:1826
 msgid "When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles."
 msgstr "Ist diese Option ausgewählt, werden die Beitrags-Metadaten (wie Klassifizierung, Datum und Autor) unter der Beitragsüberschrift angezeigt."
 
-#: inc/czr-init.php:4249
+#: core/core-settings-map.php:1823
 msgid "Display posts metas"
 msgstr "Beitragsdetails anzeigen"
 
-#: inc/czr-init.php:3028
+#: inc/czr-init-ccat.php:2389
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP Fußzeilen-Widgets: Symbole neben den Titeln anzeigen"
 
-#: inc/czr-init.php:3019
+#: inc/czr-init-ccat.php:2380
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP Sidebar Widgets: Symbole neben Titeln anzeigen"
 
-#: inc/czr-init.php:3012
+#: inc/czr-init-ccat.php:2373
 msgid "When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
 msgstr "Ist diese Option aktiviert, wird ein Beitrags-Symbol links neben jedem Beitragstitel auf einer Archivseite angezeigt. Archivseiten können sein: Kategorie, Schlagwort, Autor, Datum, benutzerdefinierte Taxonomien, Suchergebnisse."
 
-#: inc/czr-init.php:3009
+#: inc/czr-init-ccat.php:2370
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Symbol neben jedem Beitrag auf einer Archivseite anzeigen"
 
-#: inc/czr-init.php:3002
+#: inc/czr-init-ccat.php:2363
 msgid "When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
 msgstr "Ist diese Option aktiviert, wird ein Archiv-Symbol links neben dem jeweiligen Archivtitel angezeigt. Archivseiten können sein: Kategorie, Schlagwort, Autor, Datum, benutzerdefinierte Taxonomien, Suchergebnisse."
 
-#: inc/czr-init.php:2999
+#: inc/czr-init-ccat.php:2360
 msgid "Display an icon next to the archive title"
 msgstr "Symbol neben dem Archivtitel anzeigen."
 
-#: inc/czr-init.php:2990
+#: inc/czr-init-ccat.php:2351
 msgid "Display a post icon next to the single post title"
 msgstr "Beitrags-Symbol neben dem Beitragstitel anzeigen"
 
-#: inc/czr-init.php:2981
+#: inc/czr-init-ccat.php:2342
 msgid "Display a page icon next to the page title"
 msgstr "Seiten-Symbol neben dem Seitentitel anzeigen"
 
-#: inc/czr-init.php:2975
+#: inc/czr-init-ccat.php:2336
 msgid "When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets."
 msgstr "Ist diese Option aktiviert, werden kontextabhängige Symbole neben den Titeln von Seiten, Beiträgen, Archiven und WP-eigenen Widgets angezeigt."
 
-#: inc/czr-init.php:2971
+#: inc/czr-init-ccat.php:2332
 msgid "Display icons next to titles"
 msgstr "Anzeige von Symbolen neben den Titeln"
 
-#: inc/czr-init.php:4230
+#: core/core-settings-map.php:1789
 msgid "Display the breadcrumb in posts lists : blog page, archives, search results..."
 msgstr "Brotkrumen in Beitragslisten (Seiten, Archive, Suchergebnisse ...) anzeigen"
 
-#: inc/czr-init.php:4221
+#: core/core-settings-map.php:1780
 msgid "Display the breadcrumb in single posts"
 msgstr "Brotkrumen bei einzelnen Beiträgen anzeigen"
 
-#: inc/czr-init.php:4212
+#: core/core-settings-map.php:1771
 msgid "Display the breadcrumb in pages"
 msgstr "Brotkrumen auf Seiten anzeigen"
 
-#: inc/czr-init.php:4204
+#: core/core-settings-map.php:1763
 msgid "Display the breadcrumb on home page"
 msgstr "Brotkrumen auf Startseite anzeigen"
 
-#: inc/czr-init.php:2951
+#: inc/czr-init-ccat.php:2264
 msgid "Open external links in a new tab"
 msgstr "Externe Links in neuem Tab/Fenster öffnen"
 
-#: inc/czr-init.php:2944 inc/czr-init.php:2955
+#: inc/czr-init-ccat.php:2257 inc/czr-init-ccat.php:2267
 msgid "This will be applied to the links included in post or page content only."
 msgstr "Wird nur auf Links in Beiträgen oder Seiten angewendet."
 
-#: inc/czr-init.php:2940
+#: inc/czr-init-ccat.php:2254
 msgid "Display an icon next to external links"
 msgstr "Symbol neben externen Links anzeigen"
 
-#: inc/czr-init.php:2930
+#: core/core-settings-map.php:362 inc/czr-init-ccat.php:2231
 msgid "Fade effect on link hover"
 msgstr "Fade-Effekt beim Überfahren eines Links"
 
-#: inc/czr-init.php:3473
+#: core/core-settings-map.php:968
 msgid "Hover move effect for the sub menu items"
 msgstr "Untermenü-Einträge beim Überfahren bewegen"
 
-#: inc/czr-init.php:3464
+#: core/core-settings-map.php:959
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Untermenü mit Überblendeffekt einblenden"
 
-#: inc/czr-init.php:3417 inc/czr-init.php:3442
+#: core/core-settings-map.php:923 core/core-settings-map.php:937
+#: inc/czr-init-ccat.php:2677 inc/czr-init-ccat.php:2698
 msgid "Menu on the right"
 msgstr "Menü rechts"
 
-#: inc/czr-init.php:3416 inc/czr-init.php:3441
+#: core/core-settings-map.php:922 core/core-settings-map.php:936
+#: inc/czr-init-ccat.php:2675 inc/czr-init-ccat.php:2696
 msgid "Menu on the left"
 msgstr "Menü links"
 
-#: inc/czr-init.php:3353
+#: core/core-settings-map.php:593
 msgid "the z-index"
 msgstr "der Z-Index"
 
-#: inc/czr-init.php:3351
+#: core/core-settings-map.php:591
 msgid "What is"
 msgstr "Was ist"
 
-#: inc/czr-init.php:3343
+#: core/core-settings-map.php:583
 msgid "Set the header z-index"
 msgstr "Z-Index des Header festlegen"
 
-#: inc/czr-init.php:3333
+#: core/core-settings-map.php:573
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Feststehender Header: Halbdurchsichtig beim Scrollen"
 
-#: inc/czr-init.php:3323
+#: inc/czr-init-ccat.php:2568
 msgid "Sticky header : display the menu"
 msgstr "Feststehender Header: Menü anzeigen"
 
-#: inc/czr-init.php:3314
+#: core/core-settings-map.php:740
 msgid "Sticky header : shrink title / logo"
 msgstr "Feststehender Header: Überschrift/Logo verkleinern"
 
-#: inc/czr-init.php:3305
+#: inc/czr-init-ccat.php:2559
 msgid "Sticky header : display the title / logo"
 msgstr "Feststehender Header: Überschrift/Logo anzeigen"
 
-#: inc/czr-init.php:3285
+#: inc/czr-init-ccat.php:2539
 msgid "Sticky header : display the tagline"
 msgstr "Feststehender Header: Untertitel anzeigen"
 
-#: inc/czr-init.php:3280
+#: inc/czr-init-ccat.php:2534
 msgid "If checked, this option makes the header stick to the top of the page on scroll down."
 msgstr "Wenn ausgewählt, wird durch diese Einstellungen der Header beim Heruntersollen oben gehalten."
 
-#: inc/czr-init.php:3275
+#: inc/czr-init-ccat.php:2529
 msgid "Sticky on scroll"
 msgstr "Beim Scrollen obenhalten"
 
-#: inc/czr-init.php:3274
+#: inc/czr-init-ccat.php:2528
 msgid "Sticky header settings"
 msgstr "Einstellungen, um den Header oben zu halten"
 
-#: inc/czr-init.php:3218
+#: core/core-settings-map.php:615
 msgid "Logo / title on the right"
 msgstr "Logo/Überschrift rechts"
 
-#: inc/czr-init.php:3217
+#: core/core-settings-map.php:616
 msgid "Logo / title centered"
 msgstr "Logo/Überschrift mittig"
 
-#: inc/czr-init.php:3216
+#: core/core-settings-map.php:614
 msgid "Logo / title on the left"
 msgstr "Logo/Überschrift links"
 
-#: inc/czr-init.php:3269
+#: inc/czr-init-ccat.php:2523
 msgid "If checked, this option wraps the header menu/tagline/social in a light grey box."
 msgstr "Wenn ausgewählt, werden durch diese Einstellung das Header-Menü/Untertitel/Social Media-Links in einer hellgrauen Box dargestellt."
 
-#: inc/czr-init.php:3264
+#: inc/czr-init-ccat.php:2518
 msgid "Display menu in a box"
 msgstr "Menü mit Umgebungsrahmen"
 
-#: inc/czr-init.php:3236
-msgid "Display the tagline"
-msgstr "Untertitel anzeigen"
-
-#: inc/czr-init.php:2900
+#: core/core-settings-map.php:321
 msgid "This option sets the default font size applied to any text element of your website, when no font size is already applied."
 msgstr "Diese Standardschriftgröße wird auf jedes Textelement der Website angewendet, wenn nicht bereits eine andere Schriftgröße angelegt wurde."
 
-#: inc/czr-init.php:2892
+#: core/core-settings-map.php:313
 msgid "Set your website default font size in pixels."
 msgstr "Setzen Sie die Standardschriftgröße Ihrer Website in Pixel."
 
-#: inc/czr-init.php:2887
+#: core/core-settings-map.php:308
 msgid "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs."
 msgstr "Diese Schriftauswahl ermöglicht eine Vorschau und Auswahl von Schriftpaaren oder einzelnen Schriftarten. Wenn Sie ein Schriftpaar auswählen, wird die erste Schrift auf die Überschriften angewendet: Website-Name , Website-Beschreibung, Überschrift h1, h2, h3, während die zweite als Standardschriftart für alle Texte oder Absätze Ihrer Website verwendet wird."
 
-#: inc/czr-init.php:2880
+#: core/core-settings-map.php:301
 msgid "Select a beautiful font pair (headings &amp; default fonts) or single font for your website."
 msgstr "Wählen Sie ein hübsches Schriftpaar (Überschriften &amp; Fließtext) oder eine einzelne Schriftart für Ihre Website aus."
 
-#: inc/czr-init.php:3171
+#: core/core-settings-map.php:478
 msgid "Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile."
 msgstr "Wählen Sie diese Einstellung, um unterhalb der Einzelansicht von Beiträgen einen Block mit Informationen über den Autor anzuzeigen. Hinweis: das Informationsfeld Kurzbit muss im Benutzerprofil ausgefüllt werden."
 
-#: inc/czr-init.php:3167
+#: core/core-settings-map.php:474
 msgid "Display an author box after each single post content"
 msgstr "Autoreninfo unter der Einzelansicht von Beiträgen anzeigen."
 
-#: inc/czr-init.php:3833
+#: core/core-settings-map.php:1431
 msgid "Global Post Lists Settings"
 msgstr "Beitragslisten-Einstellungen"
 
-#: inc/czr-init.php:3803
+#: core/core-settings-map.php:1314
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr "Hinweis: Das Layout der Startseite muss im Abschnitt \"Startseite\" eingestellt werden."
 
-#: inc/czr-init.php:5190
-msgid "On the web, speed is key ! Improve the load time of your pages with those options."
-msgstr "Im Web ist Geschwindigkeit essentiell! Mit diesen Einstellungen kann die Ladezeiten der Seiten verbessert werden."
-
-#: inc/czr-init.php:5188
+#: core/core-settings-map.php:2678
 msgid "Website Performances"
 msgstr "Website-Performance"
 
-#: inc/czr-init.php:5174
-msgid "Set up footer global options"
-msgstr "Einstellen der globalen Fußzeilen-Optionen"
-
-#: inc/czr-init.php:5172
+#: core/core-settings-map.php:2662
 msgid "Footer global settings"
 msgstr "Globale Einstellungen der Fußzeile"
 
-#: inc/czr-init.php:5146
-msgid "Set up post/page navigation options"
-msgstr "Einstellungen für Beitrags-/Seitennavigation vornehmen"
-
-#: inc/czr-init.php:5144
+#: core/core-settings-map.php:2642
 msgid "Post/Page Navigation"
 msgstr "Beitrags-/Seitennavigation"
 
-#: inc/czr-init.php:5134
-msgid "Set up paragraphs options"
-msgstr "Einstellungen für Absätze vornehmen"
-
-#: inc/czr-init.php:5132
-msgid "Paragraphs"
-msgstr "Absätze"
-
-#: inc/czr-init.php:5128
-msgid "Set up gallery options"
-msgstr "Einstellungen für Bildgalerien vornehmen"
-
-#: inc/czr-init.php:5126
+#: core/core-settings-map.php:2625
 msgid "Galleries"
 msgstr "Galerien"
 
-#: inc/czr-init.php:5122
-msgid "Set up post metas options"
-msgstr "Einstellungen für Beitragsdetails vornehmen"
-
-#: inc/czr-init.php:5120
+#: core/core-settings-map.php:2619
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Beitragsdetails (Kategorie, Tags, benutzerdefinierte Klassifikation)"
 
-#: inc/czr-init.php:5108
-msgid "Set up breadcrumb options"
-msgstr "Einstellungen für Brotkrumen vornehmen"
-
-#: inc/czr-init.php:5106
+#: core/core-settings-map.php:2613
 msgid "Breadcrumb"
 msgstr "Breadcrumbs (Brotkrumen)"
 
-#: inc/czr-init.php:5102
-msgid "Set up single posts options"
-msgstr "Einstellungen für Einzelbeiträge vornehmen"
-
-#: inc/czr-init.php:5100
+#: core/core-settings-map.php:2601
 msgid "Single posts"
 msgstr "Einzelbeiträge"
 
-#: inc/czr-init.php:5096
-msgid "Set up post lists options"
-msgstr "Einstellen der Beitragslisten-Optionen"
-
-#: inc/czr-init.php:5094
+#: core/core-settings-map.php:2595
 msgid "Post lists : blog, archives, ..."
 msgstr "Beitragslisten: Blog, Archive, ..."
 
-#: inc/czr-init.php:4973
+#: core/core-settings-map.php:2445
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
 msgstr[0] "Dieses Theme unterstützt %s Menü. Wählen Sie aus, welches Menü Sie verwenden möchten."
 msgstr[1] "Dieses Theme unterstützt %s Menüs. Bitte wählen Sie aus, welches Menü an welcher Stelle erscheinen soll."
 
-#: inc/czr-init.php:5063
-msgid "Design and layout"
-msgstr "Gestaltung und Layout"
-
-#: inc/czr-init.php:3210 inc/czr-init.php:5063
+#: core/core-settings-map.php:2548
 msgid "Header design and layout"
 msgstr "Headerdesign und -layout"
 
-#: inc/czr-init.php:5049
-msgid "Post authors settings"
-msgstr "Einstellungen Beitragsautoren"
-
-#: inc/czr-init.php:5047
+#: core/core-settings-map.php:2532
 msgid "Authors"
 msgstr "Autoren"
 
-#: inc/czr-init.php:5041
+#: core/core-settings-map.php:2515
 msgid "Image settings"
 msgstr "Bildeinstellungen"
 
-#: inc/czr-init.php:5037
+#: inc/czr-init-ccat.php:3223
 msgid "Set up the titles icons options"
 msgstr "Titel-Icons festlegen"
 
-#: inc/czr-init.php:5035
+#: inc/czr-init-ccat.php:3221
 msgid "Titles icons settings"
 msgstr "Einstellungen für Titel-Icons"
 
-#: inc/czr-init.php:5029
-msgid "Links style and effects"
-msgstr "Links-Stil und -Effekte"
-
-#: inc/czr-init.php:5019
-msgid "Set up the font global settings"
-msgstr "Allgemeine Schriftart-Einstellungen vornehmen"
-
-#: inc/czr-init.php:5017
+#: core/core-settings-map.php:2497
 msgid "Fonts"
 msgstr "Schriftarten"
 
-#: inc/czr-init.php:5000
-msgid "Site Title & Tagline"
-msgstr "Seitentitel und Schlagzeile"
-
-#: inc/czr-init.php:4773
+#: core/core-settings-map.php:2191
 msgid "How to create and use a child theme ?"
 msgstr "Wie wird ein Child-Theme erstellt und verwendet?"
 
-#: inc/czr-init.php:4772
+#: core/core-settings-map.php:2190
 msgid "child theme."
 msgstr "Child-Theme."
 
-#: inc/czr-init.php:4771
+#: core/core-settings-map.php:2189
 msgid "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a"
 msgstr "Verwenden Sie dieses Feld, um kleine Abschnitte CSS zu testen. Für wichtige CSS-Anpassungen empfiehlt sich die Änderung der style.css in einem"
 
-#: inc/czr-init.php:4767
+#: core/core-settings-map.php:2185
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr "Fügen Sie hier Ihr eigenes CSS hinzu und gestalten Sie live! (für fortgeschrittene Benutzer)"
 
-#: inc/czr-init.php:3152
+#: inc/czr-init-ccat.php:3160
 msgid "Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport."
 msgstr "Aktivieren Sie diese Einstellung, um die Seitenleisten (sofern vorhanden) für die Anzeige auf Smartphones oder Tablets hinter den Hauptinhaltsblock zu verschieben."
 
-#: inc/czr-init.php:3149
+#: inc/czr-init-ccat.php:3157
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "Dynamische Neuanordnung der Seitenleiste auf keinen Geräten"
 
-#: inc/czr-init.php:2925
+#: core/core-settings-map.php:357
 msgid "If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page."
 msgstr "Wird diese Option aktiviert, erzeugen Links zu Ankern auf der selben Seite einen sanften Wischeffekt beim Ansteuern des Ankers."
 
-#: inc/czr-init.php:2922
+#: core/core-settings-map.php:354
 msgid "Smooth scroll on click"
 msgstr "Sanftes Scrollen beim Anklicken"
 
-#: inc/czr-init.php:3108
+#: core/core-settings-map.php:421
 msgid "This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio."
 msgstr "Diese Einstellung zentriert dynamisch die Bilder auf allen Geräten, je nach ihrem ursprünglichen Seitenverhältnis vertikal oder horizontal."
 
-#: inc/czr-init.php:3105
+#: core/core-settings-map.php:417
 msgid "Dynamic thumbnails centering on any devices"
 msgstr "Dynamisches Zentrieren der Vorschau-Bilder auf jeglichen Geräten"
 
-#: inc/czr-init.php:3097
+#: core/core-settings-map.php:408
 msgid "Dynamic slider images centering on any devices"
 msgstr "Dynamisches Zentrieren der Slider-Bilder auf jeglichen Geräten"
 
-#: inc/czr-init.php:3091
+#: inc/czr-init-ccat.php:2432
 msgid "When checked, this option displays a loading icon when the slides are being setup."
 msgstr "Ist aktiviert, zeigt diese Einstellung ein Lade-Icon, wenn die Folien eingerichtet werden."
 
-#: inc/czr-init.php:3088
+#: inc/czr-init-ccat.php:2428
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Slider: Lade-Icon anzeigen, bevor die Folien gerendert werden"
 
-#: inc/czr-init.php:3074
+#: core/core-settings-map.php:402
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr "Beschreibung des Plugins Regenerate Thumbnails öffnen"
 
-#: inc/czr-init.php:3072
+#: core/core-settings-map.php:400
 msgid "regenerate thumbnails"
 msgstr "Regenerativ Thumbnails"
 
-#: inc/czr-init.php:3071
+#: core/core-settings-map.php:399
 msgid "It is strongly recommended to regenerate your media library images in high definition with this free plugin"
 msgstr "Es wird dringend empfohlen, die Bilder in der Mediathek mit diesem kostenlosen Plugin in hoher Auflösung zu erneuern"
 
-#: inc/czr-init.php:3070
+#: core/core-settings-map.php:398
 msgid "If enabled, your website will include support for high resolution devices."
 msgstr "Wenn aktiviert, unterstützt die Website hochauflösende Displays."
 
-#: inc/czr-init.php:3066
+#: core/core-settings-map.php:393
 msgid "High resolution (Retina) support"
 msgstr "Unterstützung für Hohe Auflösung (Retina)"
 
-#: inc/czr-init.php:3060
+#: inc/czr-init-ccat.php:2422
 msgid "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr "Wenn aktiviert, erzwingt diese Option eine Skalierung der Bilder um das Zoomfenster zu füllen."
 
-#: inc/czr-init.php:3057
+#: inc/czr-init-ccat.php:2418
 msgid "Autoscale images on zoom"
 msgstr "Automatische Zoomskalierung"
 
-#: inc/czr-init.php:3051
+#: core/core-settings-map.php:387
 msgid "If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File."
 msgstr "Wenn aktiviert, erscheint ein Zoomeffekt, wenn ein Bild angeklickt wird. Hinweis: Um diesen Effekt zu nutzen, müssen die Bilder mit der Mediendatei verknüpft sein."
 
-#: inc/czr-init.php:3048
+#: core/core-settings-map.php:383
 msgid "Lightbox effect on images"
 msgstr "Leuchtkasten-Effekt bei Bildern"
 
-#: inc/czr-init.php:4708
+#: core/core-settings-map.php:2122
 msgid "Social links in footer"
 msgstr "Soziale Links in Fußzeile"
 
-#: inc/czr-init.php:4674
+#: core/core-settings-map.php:2082
 msgid "Social links in right sidebar"
 msgstr "Soziale Links in rechter Seitenleiste"
 
-#: inc/czr-init.php:4664
+#: core/core-settings-map.php:2069
 msgid "Social links in left sidebar"
 msgstr "Soziale Links in linker Seitenleiste"
 
-#: inc/czr-init.php:3254
+#: core/core-settings-map.php:637
 msgid "Social links in header"
 msgstr "Soziale Links in Kopfzeile"
 
-#: inc/czr-init.php:4563
+#: core/core-settings-map.php:1967
 msgid "Enable comments on pages"
 msgstr "Kommentare auf Seiten aktivieren"
 
-#: inc/czr-init.php:3858
+#: core/core-settings-map.php:1343
 msgid "Choose the pages default layout"
 msgstr "Standardlayout für Seiten wählen"
 
-#: inc/czr-init.php:3850
+#: inc/czr-init-ccat.php:2913
 msgid "Display the full content"
 msgstr "Gesamten Inhalt anzeigen"
 
-#: inc/czr-init.php:3662 inc/czr-init.php:3849
+#: core/core-settings-map.php:1148 inc/czr-init-ccat.php:2912
 msgid "Display the excerpt"
 msgstr "Auszug anzeigen"
 
-#: inc/czr-init.php:3845
+#: inc/czr-init-ccat.php:2908
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Beitragslänge bei Listenanzeige (Startseite, Suche, Archiv,...)"
 
-#: inc/czr-init.php:3834
+#: core/core-settings-map.php:1432
 msgid "Maximum number of posts per page"
 msgstr "Max. Anzahl von Beiträgen je Seite:"
 
-#: inc/czr-init.php:3821
+#: core/core-settings-map.php:1333
 msgid "Choose the posts default layout"
 msgstr "Wählen Sie das Standardlayout für Beiträge"
 
-#: inc/czr-init.php:3814
+#: core/core-settings-map.php:1325
 msgid "This option will override the specific layouts on all posts/pages, including the front page."
 msgstr "Diese Option überschreibt spezifische Layouts für alle Beiträge/Seiten, einschließlich der Startseite."
 
-#: inc/czr-init.php:3811
+#: core/core-settings-map.php:1322
 msgid "Force default layout everywhere"
 msgstr "Standardlayout überall erzwingen"
 
-#: inc/czr-init.php:3799
+#: core/core-settings-map.php:1310
 msgid "Choose the global default layout"
 msgstr "Wählen Sie das globale Standardlayout"
 
-#: inc/czr-init.php:4195
+#: core/core-settings-map.php:1754
 msgid "Display Breadcrumb"
 msgstr "Brotkrumen anzeigen"
 
-#: inc/czr-init.php:3684 inc/czr-init.php:3777
+#: core/core-settings-map.php:1170 core/core-settings-map.php:1289
 msgid "Button text"
 msgstr "Button-Text"
 
-#: inc/czr-init.php:3683 inc/czr-init.php:3775
+#: core/core-settings-map.php:1169 core/core-settings-map.php:1287
+#: core/front/template-tags/template-tags.php:122
 msgid "Read more &raquo;"
 msgstr "Mehr dazu &raquo;"
 
-#: inc/czr-init.php:3769
+#: core/core-settings-map.php:1281
 msgid "The images are set with the \"featured image\" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images."
 msgstr "Die Bilder werden durch das Beitragsbild auf jeder Seite (in der Ansicht Seite bearbeiten) festgelegt. Wählen Sie die Einstellung oben ab, um die Seiten-Beitragsbilder zu deaktivieren."
 
-#: inc/czr-init.php:3766
+#: core/core-settings-map.php:1278
 msgid "Show images"
 msgstr "Bilder anzeigen"
 
-#: inc/czr-init.php:3757
+#: core/core-settings-map.php:1269 core/core-settings-map.php:1690
 msgid "Disable"
 msgstr "Deaktivieren"
 
-#: inc/czr-init.php:3756
+#: core/core-settings-map.php:1268
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: inc/czr-init.php:3752
+#: core/core-settings-map.php:1264
 msgid "Display home featured pages area"
 msgstr "\"Empfohlene Seiten\" auf Startseite anzeigen"
 
-#: inc/czr-init.php:3751
+#: core/core-settings-map.php:1263
 msgid "Featured pages options"
 msgstr "Einstellungen \"Empfohlene Seiten\""
 
-#: inc/czr-init.php:3711
+#: core/core-settings-map.php:1198
 msgid "in ms : 1000ms = 1s"
 msgstr "in ms: 1000 ms = 1 Sekunde"
 
-#: inc/czr-init.php:3706
+#: core/core-settings-map.php:1193
 msgid "Delay between each slides"
 msgstr "Pause zwischen den Folien"
 
-#: inc/czr-init.php:3694
+#: core/core-settings-map.php:1181
 msgid "Full width slider"
 msgstr "Slider auf volle Breite"
 
-#: inc/czr-init.php:3620
+#: core/core-settings-map.php:1104
 msgid "Select front page slider"
 msgstr "Startseiten-Slider wählen"
 
-#: inc/czr-init.php:3619
+#: core/core-settings-map.php:1103
 msgid "Slider options"
 msgstr "Slider-Einstellungen"
 
-#: inc/czr-init.php:3607
+#: core/core-settings-map.php:1087
 msgid "Set up the front page layout"
 msgstr "Startseitenlayout festlegen"
 
-#: inc/czr-init.php:3580
+#: core/core-settings-map.php:1060
 msgid "Posts page"
 msgstr "Beitragsseite"
 
-#: inc/czr-init.php:3572
+#: core/core-settings-map.php:1052
 msgid "Front page"
 msgstr "Startseite"
 
-#: inc/czr-init.php:3566
+#: core/core-settings-map.php:1046
 msgid "A static page"
 msgstr "Eine statische Seite"
 
-#: inc/czr-init.php:3565
+#: core/core-settings-map.php:1045
 msgid "Your latest posts"
 msgstr "Ihre aktuellsten Beiträge"
 
-#: inc/czr-init.php:3564
+#: core/core-settings-map.php:1044
 msgid "Don't show any posts or page"
 msgstr "Keine Beiträge oder Seite anzeigen"
 
-#: inc/czr-init.php:3559
+#: core/core-settings-map.php:1039
 msgid "Front page displays"
 msgstr "Startseite zeigt"
 
-#: inc/czr-init.php:3551
+#: core/core-settings-map.php:1031
 msgid "Choose content and layout"
 msgstr "Inhalt und Layout wählen"
 
-#: inc/czr-init.php:2836
+#: inc/czr-init-ccat.php:2158
 msgid "FAVICON"
 msgstr "Favicon"
 
-#: inc/czr-init.php:2835
+#: inc/czr-init-ccat.php:2157
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Favicon-Upload (unterstützte Formate: .ico, .png, .gif)"
 
-#: inc/czr-init.php:2829
+#: inc/czr-init-ccat.php:2152
 msgid "Use this upload control to specify a different logo on sticky header mode."
 msgstr "Diesen Upload nutzen um ein anderes Logo für die oben gehaltene Kopfzeilen zu benutzen."
 
-#: inc/czr-init.php:2818
+#: inc/czr-init-ccat.php:2140
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Sticky-Logo-Upload (unterstützte Formate: .jpg, .png, .gif, .svg, .svgz)"
 
-#: inc/czr-init.php:2814
+#: core/core-settings-map.php:191
 msgid "Uncheck this option to keep your original logo dimensions."
 msgstr "Deaktivieren, um die Original-Abmessungen des Logos zu erhalten."
 
-#: inc/czr-init.php:2810
+#: core/core-settings-map.php:186
 msgid "Force logo dimensions to max-width:250px and max-height:100px"
 msgstr "Größe des Logo erzwingen auf max-width:250px und max-height:100px"
 
-#: inc/czr-init.php:2795
+#: core/core-settings-map.php:169
 msgid "LOGO"
 msgstr "Logo"
 
-#: inc/czr-init.php:2794
+#: core/core-settings-map.php:168
 msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Logo-Upload (unterstützte Formate: .jpg, .png, .gif, .svg, .svgz)"
 
-#: inc/czr-init.php:3230
+#: core/core-settings-map.php:555
 msgid "Uncheck this option to remove the colored top border."
 msgstr "Deaktivieren um den farbigen oberen Rand abzuschalten."
 
-#: inc/czr-init.php:3226
+#: core/core-settings-map.php:551
 msgid "Display top border"
 msgstr "Oberen Randstreifen anzeigen"
 
-#: inc/czr-init.php:4793
+#: core/core-settings-map.php:2211
 msgid "Using the minified version of the stylesheets will speed up your webpage load time."
 msgstr "Durch die Verwendung des minimierten Stylesheets wird die Ladezeit Ihrer Webseite verkürzt."
 
-#: inc/czr-init.php:4790
+#: core/core-settings-map.php:2208
 msgid "Performance : use the minified CSS stylesheets"
 msgstr "Performance: Verwenden Sie das minimierte CSS-Stylesheet"
 
-#: inc/czr-init.php:2866
+#: inc/czr-init-ccat.php:2210
 msgid "Apply a random color skin on each page load."
 msgstr "Zufälliges Farb-Erscheinungsbild bei jedem Laden der Seite anwenden"
 
-#: inc/czr-init.php:2863
+#: inc/czr-init-ccat.php:2207
 msgid "Randomize the skin"
 msgstr "Zufalls-Erscheinungsbild"
 
-#: inc/czr-init.php:2853
+#: inc/czr-init-ccat.php:2197
 msgid "Choose a predefined skin"
 msgstr "Vordefiniertes Erscheinungsbild"
 
-#: inc/czr-init.php:3457
+#: core/core-settings-map.php:952
 msgid "Expand submenus on hover"
 msgstr "Untermenüs beim Überfahren vergrößern"
 
-#: inc/czr-init.php:3456
+#: core/core-settings-map.php:786 core/core-settings-map.php:909
+#: core/core-settings-map.php:951
 msgid "Expand submenus on click"
 msgstr "Untermenüs bei Mausklick vergrößern"
 
-#: inc/czr-init.php:3452
+#: core/core-settings-map.php:947
 msgid "Select a submenu expansion option"
 msgstr "Wählen Sie die Art der Vergrößerung des Untermenüs"
 
-#: inc/czr-init.php:5163
+#: inc/czr-init-ccat.php:3233
 msgid "Various settings for responsive display"
 msgstr "Verschiedenste Einstellungen für an Auflösung und Geräte angepasste (responsive) Darstellung"
 
-#: inc/czr-init.php:3117 inc/czr-init.php:5161
+#: inc/czr-init-ccat.php:3231
 msgid "Responsive settings"
 msgstr "Responsive Einstellungen"
 
-#: inc/czr-init.php:5183
+#: core/core-settings-map.php:2673
 msgid "Custom CSS"
 msgstr "Eigenes CSS"
 
-#: inc/czr-init.php:5031
-msgid "Various links settings"
-msgstr "Diverse Link-Einstellungen"
-
-#: inc/czr-init.php:5043
-msgid "Various images settings"
-msgstr "Diverse Bildeinstellungen"
-
-#: inc/czr-init.php:5025
-msgid "Set up your social links"
-msgstr "Soziale Links einstellen"
-
-#: inc/czr-init.php:4682 inc/czr-init.php:5023
+#: core/core-settings-map.php:2503 inc/czr-init-ccat.php:3120
 msgid "Social links"
 msgstr "Soziale Links"
 
-#: inc/czr-init.php:5140
-msgid "Set up comments options"
-msgstr "Einstellungen für Kommentare vornehmen"
-
-#: inc/czr-init.php:5138
+#: core/core-settings-map.php:2631
 msgid "Comments"
 msgstr "Kommentare"
 
-#: inc/czr-init.php:5089
-msgid "Set up layout options"
-msgstr "Layout-Optionen einstellen"
-
-#: inc/czr-init.php:5087
+#: core/core-settings-map.php:2588
 msgid "Pages &amp; Posts Layout"
 msgstr "Seiten-  &amp; Beitragslayout"
 
-#: inc/czr-init.php:5082
-msgid "Set up front page options"
-msgstr "Startseiteneinstellungen"
-
-#: inc/czr-init.php:5080
-msgid "Front Page"
-msgstr "Startseite"
-
-#: inc/czr-init.php:5007
-msgid "Set up logo and favicon options"
-msgstr "Logo- und Favicon-Einstellungen vornehmen"
-
-#: inc/czr-init.php:5005
-msgid "Logo &amp; Favicon"
-msgstr "Logo &amp; Favicon"
-
-#: inc/czr-init.php:5013
-msgid "Select a skin for Customizr"
-msgstr "Farbvorgabe für Customizr auswählen"
-
-#: inc/czr-init.php:5011
-msgid "Skin"
-msgstr "Farbvorgaben"
-
-#: inc/czr-init.php:4899
-msgid "Advanced settings for the Customizr theme."
-msgstr "Erweiterte Einstellungen für das Customizr-Theme."
-
-#: inc/czr-init.php:4898
+#: core/core-settings-map.php:2373
 msgid "Advanced options"
 msgstr "Erweiterte Optionen"
 
-#: inc/czr-init.php:4893
-msgid "Footer settings for the Customizr theme."
-msgstr "Fußzeilen-Einstellungen für das Customizr-Theme."
-
-#: inc/czr-init.php:4892
+#: core/core-settings-map.php:2366
 msgid "Footer"
 msgstr "Fußzeile"
 
-#: inc/czr-init.php:4881
-msgid "Content settings for the Customizr theme."
-msgstr "Inhalts-Einstellungen für das Customizr-Theme."
-
-#: inc/czr-init.php:4880
-msgid "Content : home, posts, ..."
-msgstr "Inhalt: Startseite, Beiträge, ..."
-
-#: inc/czr-init.php:4875
-msgid "Header settings for the Customizr theme."
-msgstr "Header-Einstellungen für das Customizr-Theme."
-
-#: inc/czr-init.php:4874
+#: core/core-settings-map.php:2346
 msgid "Header"
 msgstr "Header"
 
-#: inc/czr-init.php:4869
-msgid "Global settings for the Customizr theme :skin, socials, links..."
-msgstr "Allgemeine Einstellungen für das Customizr-Theme: Farbgestaltung, soziale Links, Verknüpfungen..."
-
-#: inc/czr-init.php:4868
+#: core/core-settings-map.php:2339
 msgid "Global settings"
 msgstr "Allgemeine Einstellungen"
 
-#: inc/czr-init.php:5396
+#: core/core-functions.php:1532
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo-Slider &mdash;"
 
-#: inc/czr-init.php:5395
+#: core/core-functions.php:1531
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Kein Slider &mdash;"
 
-#: inc/czr-init.php:5269
+#: core/core-settings-map.php:2797
 msgid "You need to select a page first. Leave this field empty if you want to use the page excerpt."
 msgstr "Sie müssen erst eine Seite auswählen. Lassen Sie dieses Feld leer, wenn Sie den Seiten-Auszug verwenden möchten."
 
-#: inc/czr-init.php:5266
+#: core/core-settings-map.php:2794
 msgid "Featured text %1$s (200 char. max)"
 msgstr "Hervorgehobener Text %1$s (maximal 200 Zeichen)"
 
-#: inc/czr-init.php:5250
+#: core/core-settings-map.php:2778
 msgid "Custom featured page %1$s"
 msgstr "Benutzerdefinierte \"Empfohlene Seite\" %1$s"
 
-#: inc/czr-init.php:5234
+#: core/core-settings-map.php:2761
 msgid "Featured text three (200 char. max)"
 msgstr "Hervorgehobener Text drei (maximal 200 Zeichen)"
 
-#: inc/czr-init.php:5233
+#: core/core-settings-map.php:2760
 msgid "Featured text two (200 char. max)"
 msgstr "Hervorgehobener Text zwei (maximal 200 Zeichen)"
 
-#: inc/czr-init.php:5232
+#: core/core-settings-map.php:2759
 msgid "Featured text one (200 char. max)"
 msgstr "Hervorgehobener Text eins (maximal 200 Zeichen)"
 
-#: inc/czr-init.php:5229
+#: core/core-settings-map.php:2756
 msgid "Home featured page three"
 msgstr "\"Empfohlene Seite\" Nr. 3"
 
-#: inc/czr-init.php:5228
+#: core/core-settings-map.php:2755
 msgid "Home featured page two"
 msgstr "\"Empfohlene Seite\" Nr. 2"
 
-#: inc/czr-init.php:5227
+#: core/core-settings-map.php:2754
 msgid "Home featured page one"
 msgstr "\"Empfohlene Seite\" Nr. 1"
 
-#: inc/czr-init.php:6033
+#: core/core-functions.php:1442
 msgid "Page %s"
 msgstr "Seite %s"
 
-#: inc/czr-init.php:1221
+#: core/init-base.php:436
 msgid "Need help with Customizr? Click here!"
 msgstr "Brauchen Sie Hilfe zum Customizr-Theme? Klicken Sie hier!"
 
-#: inc/czr-init.php:1218
-msgid "Help"
-msgstr "Hilfe"
-
-#: inc/czr-init.php:1033
+#: core/core-settings-map.php:769 core/init-base.php:390
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: inc/czr-init.php:858 inc/czr-init.php:8601
+#: core/class-fire-prevdem.php:292 core/init-base.php:267
 msgid "Many layout and design options are available from the WordPress customizer screen : see your changes live !"
 msgstr "Viele Layout- und Designoptionen stehen über den WordPress-Customizer zur Verfügung: Sehen Sie gleich Ihre Änderungen!"
 
-#: inc/czr-init.php:844 inc/czr-init.php:8595 inc/czr-init.php:8607
+#: core/class-fire-prevdem.php:280 core/class-fire-prevdem.php:286
+#: core/init-base.php:253
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr ist ein sauberes, responsives Theme"
 
-#: inc/czr-init.php:829
+#: inc/czr-front-ccat.php:4548
+#: templates/parts/content/no-results/search_no_results.php:13
 msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
 msgstr "Leider keine passenden Suchkriterien gefunden. Bitte mit neuen Schlüsselwörtern suchen."
 
-#: inc/czr-init.php:828
-msgid "Sir Winston Churchill"
-msgstr "Sir Winston Churchill"
-
-#: inc/czr-init.php:827
-msgid "Success is the ability to go from one failure to another with no loss of enthusiasm..."
-msgstr "Erfolg ist die Fähigkeit, einen Fehler nach dem anderen zu machen, ohne den Enthusiasmus zu verlieren …"
-
-#: inc/czr-init.php:822
+#: inc/czr-front-ccat.php:1807 templates/parts/content/no-results/404.php:14
 msgid "Sorry, but the requested page is not found. You might try a search below."
 msgstr "Sorry, aber die angeforderte Seite wurde nicht gefunden. Sie könnten die Suche unten ausprobieren."
 
-#: inc/czr-init.php:821
-msgid "George Orwell"
-msgstr "George Orwell"
-
-#: inc/czr-init.php:820
-msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
-msgstr "In Zeiten allgemeiner Täuschung die Wahrheit zu sagen ist eine revolutionäre Tat."
-
-#: inc/czr-init.php:802
+#: core/class-fire-init.php:122 inc/czr-init-ccat.php:374
 msgid "Footer Widget Area Three"
 msgstr "Fußzeilen-Widget-Bereich #3"
 
-#: inc/czr-init.php:798
+#: core/class-fire-init.php:116 inc/czr-init-ccat.php:370
 msgid "Footer Widget Area Two"
 msgstr "Fußzeilen-Widget-Bereich #2"
 
-#: inc/czr-init.php:795 inc/czr-init.php:799 inc/czr-init.php:803
+#: core/class-fire-init.php:111 core/class-fire-init.php:117
+#: core/class-fire-init.php:123 inc/czr-init-ccat.php:367
+#: inc/czr-init-ccat.php:371 inc/czr-init-ccat.php:375
 msgid "Just use it as you want !"
 msgstr "Zur freien Verwendung!"
 
-#: inc/czr-init.php:794
+#: core/class-fire-init.php:110 inc/czr-init-ccat.php:366
 msgid "Footer Widget Area One"
 msgstr "Fußzeilen-Widget-Bereich #1"
 
-#: inc/czr-init.php:782
+#: core/init-base.php:111
 msgid "Left Sidebar"
 msgstr "linke Seitenleiste"
 
-#: inc/czr-init.php:783 inc/czr-init.php:787
+#: core/init-base.php:112 core/init-base.php:116
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "Erscheint auf Beiträgen, statischen Seiten, Archiven und Suchseiten"
 
-#: inc/czr-init.php:786
+#: core/init-base.php:115
 msgid "Right Sidebar"
 msgstr "Rechte Seitenleiste"
 
-#: inc/czr-init.php:758
-msgid "LinkedIn profile url"
-msgstr "LinkedIn-Profil-URL"
-
-#: inc/czr-init.php:757
+#: core/init-base.php:164
 msgid "Follow me on LinkedIn"
 msgstr "Bei LinkedIn folgen"
 
-#: inc/czr-init.php:753
-msgid "Dribbble profile url"
-msgstr "Dribbble-Profil-URL"
-
-#: inc/czr-init.php:752
+#: core/init-base.php:161
 msgid "Follow me on Dribbble"
 msgstr "Bei Dribbble folgen"
 
-#: inc/czr-init.php:748
-msgid "Github profile url"
-msgstr "Github-Profil-URL"
-
-#: inc/czr-init.php:747
+#: core/init-base.php:158
 msgid "Follow me on Github"
 msgstr "Bei Github folgen"
 
-#: inc/czr-init.php:743
-msgid "Pinterest profile url"
-msgstr "Pinterest-Profil-URL"
-
-#: inc/czr-init.php:742
+#: core/init-base.php:155
 msgid "Pin me on Pinterest"
 msgstr "Auf Pinterest folgen"
 
-#: inc/czr-init.php:738
-msgid "Youtube profile url"
-msgstr "Youtube-Profil-URL"
-
-#: inc/czr-init.php:737
+#: core/init-base.php:152
 msgid "Follow me on Youtube"
 msgstr "Bei Youtube folgen"
 
-#: inc/czr-init.php:733
-msgid "WordPress profile url"
-msgstr "Wordpress-Profil-URL"
-
-#: inc/czr-init.php:732
+#: core/init-base.php:149
 msgid "Follow me on WordPress"
 msgstr "Auf WordPress folgen"
 
-#: inc/czr-init.php:728
-msgid "Flickr url"
-msgstr "Flickr Profil-URL"
-
-#: inc/czr-init.php:727
+#: core/init-base.php:146
 msgid "Follow me on Flickr"
 msgstr "Bei Flickr folgen"
 
-#: inc/czr-init.php:723
-msgid "Tumblr url"
-msgstr "Tumblr Profil-URL"
-
-#: inc/czr-init.php:722
+#: core/init-base.php:143
 msgid "Follow me on Tumblr"
 msgstr "Auf Tumblr folgen"
 
-#: inc/czr-init.php:718
-msgid "Instagram profile url"
-msgstr "Instagram-Profil-URL"
-
-#: inc/czr-init.php:717
+#: core/init-base.php:140
 msgid "Follow me on Instagram"
 msgstr "Bei Instagram folgen"
 
-#: inc/czr-init.php:713
-msgid "Google+ profile url"
-msgstr "Google+ Profil-URL"
-
-#: inc/czr-init.php:712
+#: core/init-base.php:137
 msgid "Follow me on Google+"
 msgstr "Bei Google+ folgen"
 
-#: inc/czr-init.php:708
-msgid "Facebook profile url"
-msgstr "Facebook-Profil-URL"
-
-#: inc/czr-init.php:707
+#: core/init-base.php:134
 msgid "Follow me on Facebook"
 msgstr "Bei Facebook folgen"
 
-#: inc/czr-init.php:703
-msgid "Twitter profile url"
-msgstr "Twitter-Profil-URL"
-
-#: inc/czr-init.php:702
+#: core/init-base.php:131
 msgid "Follow me on Twitter"
 msgstr "Bei Twitter folgen"
 
-#: inc/czr-init.php:692
-msgid "RSS feed (default is the wordpress feed)"
-msgstr "RSS-Feed (Standard ist der WordPress-Feed)"
-
-#: inc/czr-init.php:691
+#: core/init-base.php:124
 msgid "Subscribe to my rss feed"
 msgstr "RSS-Feed abonnieren"
 
-#: inc/czr-init.php:653
+#: core/init-base.php:213
 msgid "Single fonts"
 msgstr "Einzelne Schriften"
 
-#: inc/czr-init.php:644
+#: core/init-base.php:204
 msgid "Web safe fonts pairs"
 msgstr "Websichere Schriftpaare"
 
-#: inc/czr-init.php:624
+#: core/init-base.php:183
 msgid "Google fonts pairs"
 msgstr "Google-Schriftpaare"
 
-#: inc/czr-init.php:597
+#: inc/czr-init-ccat.php:354
 msgid "Light blue "
 msgstr "Türkis"
 
-#: inc/czr-init.php:596
+#: inc/czr-init-ccat.php:353
 msgid "Green blue"
 msgstr "Jade"
 
-#: inc/czr-init.php:595
+#: inc/czr-init-ccat.php:352
 msgid "Light green"
 msgstr "Flaschengrün"
 
-#: inc/czr-init.php:594
+#: inc/czr-init-ccat.php:351
 msgid "Green"
 msgstr "Salbeigrün"
 
-#: inc/czr-init.php:593
+#: inc/czr-init-ccat.php:350
 msgid "Flat yellow"
 msgstr "Hellolive"
 
-#: inc/czr-init.php:592
+#: inc/czr-init-ccat.php:349
 msgid "Yellow"
 msgstr "Saharagelb"
 
-#: inc/czr-init.php:591
+#: inc/czr-init-ccat.php:348
 msgid "Flat orange"
 msgstr "Blassorange"
 
-#: inc/czr-init.php:590
+#: inc/czr-init-ccat.php:347
 msgid "Orange"
 msgstr "Orange"
 
-#: inc/czr-init.php:589
+#: inc/czr-init-ccat.php:346
 msgid "Red"
 msgstr "Rot"
 
-#: inc/czr-init.php:588
+#: inc/czr-init-ccat.php:345
 msgid "Flat red"
 msgstr "Mattrot"
 
-#: inc/czr-init.php:587
+#: inc/czr-init-ccat.php:344
 msgid "Purple"
 msgstr "Fuchsie"
 
-#: inc/czr-init.php:586
+#: inc/czr-init-ccat.php:343
 msgid "Flat purple"
 msgstr "Cobaltblau"
 
-#: inc/czr-init.php:585
-msgid "Ligth grey"
-msgstr "Silbergrau"
+#: inc/czr-init-ccat.php:342
+msgid "Light grey"
+msgstr "Hellgrau"
 
-#: inc/czr-init.php:584
+#: inc/czr-init-ccat.php:341
 msgid "Grey"
 msgstr "Grau"
 
-#: inc/czr-init.php:583
+#: inc/czr-init-ccat.php:340
 msgid "Flat black"
 msgstr "Dunkelgrau"
 
-#: inc/czr-init.php:582
+#: inc/czr-init-ccat.php:339
 msgid "Black"
 msgstr "Schwarz"
 
-#: inc/czr-init.php:581
+#: inc/czr-init-ccat.php:338
 msgid "Blue"
 msgstr "Mittelblau"
 
-#: inc/czr-init.php:566 inc/czr-init.php:567
+#: core/class-fire-init.php:78 core/class-fire-init.php:79
+#: inc/czr-init-ccat.php:331 inc/czr-init-ccat.php:332
 msgid "No sidebars : full width layout"
 msgstr "Gesamtbreiten-Layout (ohne Seitenleisten)"
 
-#: inc/czr-init.php:560 inc/czr-init.php:561
+#: core/class-fire-init.php:71 core/class-fire-init.php:72
+#: inc/czr-init-ccat.php:325 inc/czr-init-ccat.php:326
 msgid "2 sidebars : Right and Left"
 msgstr "2 Seitenleisten: rechts und links"
 
-#: inc/czr-init.php:554 inc/czr-init.php:555
+#: core/class-fire-init.php:64 core/class-fire-init.php:65
+#: inc/czr-init-ccat.php:319 inc/czr-init-ccat.php:320
 msgid "Left sidebar"
 msgstr "linke Seitenleiste"
 
-#: inc/czr-init.php:548 inc/czr-init.php:549
+#: core/class-fire-init.php:57 core/class-fire-init.php:58
+#: inc/czr-init-ccat.php:313 inc/czr-init-ccat.php:314
 msgid "Right sidebar"
 msgstr "rechte Seitenleiste"
 
-#: inc/czr-customize.php:1282
+#: core/czr-customize-ccat.php:1712 core/czr-customize-ccat.php:1994
+#: core/czr-customize-ccat.php:2065 core/czr-customize-ccat.php:2232
 msgid "Remove"
 msgstr "Entfernen"
 
-#: inc/czr-customize.php:1281
+#: core/czr-customize-ccat.php:1711
 msgid "Upload"
 msgstr "Hochladen"
 
-#: inc/czr-customize.php:845
+#: core/czr-customize-ccat.php:1089
 msgid "Check the documentation"
 msgstr "Lesen Sie die Dokumentation"
 
-#: inc/czr-customize.php:843
+#: core/czr-customize-ccat.php:1087
 msgid "Need help to create a slider ?"
-msgstr "Hilfe beim Erstellen eines Sliders benötigt?"
+msgstr "Hilfe beim Erstellen eines Sliders nötig?"
 
-#: inc/czr-customize.php:842
+#: core/czr-customize-ccat.php:1086
 msgid "Create a slider"
 msgstr "Slider erstellen"
 
-#: inc/czr-admin.php:732
+#: core/czr-admin-ccat.php:706
 msgid "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
 msgstr "Um die Systeminfo zu kopieren, klicke unterhalb und drücke dann Strg. + C (PC) oder Cmd + C (Mac)."
 
-#: inc/czr-admin.php:731
+#: core/czr-admin-ccat.php:705
 msgid "Please include the following informations when posting support requests"
 msgstr "Bei Supportanfragen bitte folgende Informationen mit angeben"
 
-#: inc/czr-admin.php:730
+#: core/czr-admin-ccat.php:704
 msgid "System Informations"
 msgstr "Systeminformationen"
 
-#: inc/czr-admin.php:655
+#: core/czr-admin-ccat.php:635
 msgid "Go to Dashboard"
 msgstr "Zum Dashboard"
 
-#: inc/czr-admin.php:655
+#: core/czr-admin-ccat.php:635
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Zum Dashboard &rarr; Startseite"
 
-#: inc/czr-admin.php:713
+#: core/czr-admin-ccat.php:687
 msgid "Changelog in version %1$s"
 msgstr "Changelog zu Version %1$s"
 
-#: inc/czr-admin.php:643
-msgid "Do you think you made an awesome website that can inspire people? Submitting a site for review is quick and easy to do."
-msgstr "Glauben Sie, dass Sie eine außerordentliche Website erstellt haben, die Menschen begeistert? Es ist ganz einfach, eine Website für eine Bewertung einzureichen."
-
-#: inc/czr-admin.php:641
-msgid "This showcase aims to show what can be done with Customizr and helping other users to find inspiration for their web design."
-"Project-Id-Version: * Customizr v3.4.35\n"
-
-#: inc/czr-admin.php:640
-msgid "Find inspiration for your next Customizr based website!"
-msgstr "Lassen Sie sich für Ihre nächste Customizr-basierte Website inspirieren!"
-
-#: inc/czr-admin.php:639 inc/czr-admin.php:646
-msgid "Visit the showcase"
-msgstr "Besuchen Sie das Schaufenster"
-
-#: inc/czr-admin.php:636
-msgid "Customizr Showcase"
-msgstr "Customizr-Schaufenster"
-
-#: inc/czr-admin.php:624
+#: core/czr-admin-ccat.php:620
 msgid "Easily take your web design one step further"
 msgstr "Bringen Sie Ihr Webdesign ganz einfach einen Schritt weiter"
 
-#: inc/czr-admin.php:623
-msgid "Visit the extension's page"
-msgstr "Besuchen Sie die Erweiterungen-Seite"
-
-#: inc/czr-admin.php:610
+#: core/czr-admin-ccat.php:606
 msgid "Follow us"
 msgstr "Folgen Sie uns"
 
-#: inc/czr-admin.php:605
+#: core/czr-admin-ccat.php:601
 msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
-msgstr "Wenn Sie mit diesem Theme zufrieden sind, teilen Sie es auf wordpress.org mit und geben Customizr eine positive Bewertung! <br/>(Wir sehnen uns nach Ihrem  Feedback …)"
+msgstr "Wenn Sie mit diesem Theme zufrieden sind, teilen Sie es auf wordpress.org mit und geben Customizr eine positive Bewertung! <br />(Wir sehnen uns nach Ihrem  Feedback…)"
 
-#: inc/czr-admin.php:604
+#: core/czr-admin-ccat.php:600
 msgid "Happy user of Customizr?"
 msgstr "Zufriedener Customizr-Benutzer?"
 
-#: inc/czr-admin.php:597
-msgid "<strong>We do our best do make Customizr the perfect free theme for you!</strong><br/> Please help support it's continued development with a donation of $20, $50, or even $100."
-msgstr "<strong>Wir tun unser Bestes um Customizr zum perfekten, kostenlosen Theme für Sie zu machen!</strong> <br/> Helfen Sie bitte mit einer Spende bei der Weiterentwicklung mit. Ob $20, $50 oder sogar $100 - Jeder Euro zählt ;-) <br/>"
-
-#: inc/czr-admin.php:596
-msgid "We need sponsors!"
-msgstr "Wir brauchen Sponsoren!"
-
-#: inc/czr-admin.php:579
+#: core/czr-admin-ccat.php:581
 msgid "You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated."
 msgstr "Sie verwenden ein untergeordnetes Theme von Customizr %1$s: Überprüfen Sie immer die %2$s nach der Aktualisierung um festzustellen, ob eine Funktion oder eine Vorlage als veraltet gilt."
 
-#: inc/czr-admin.php:536
-msgid "Check the FAQ"
-msgstr "Schauen Sie in den FAQs nach"
-
-#: inc/czr-admin.php:532
-msgid "Read the documentation"
-msgstr "Lesen Sie die Dokumentation"
-
-#: inc/czr-admin.php:466
+#: core/czr-admin-ccat.php:511
 msgid "About Customizr"
 msgstr "Über Customizr"
 
-#: inc/czr-admin.php:1847
+#: core/czr-admin-ccat.php:2493
 msgid "Current slide"
-msgstr "Aktuelle Folie"
+msgstr "Aktueller Slide"
 
-#: inc/czr-admin.php:1845
+#: core/czr-admin-ccat.php:2491
 msgid "Edit this slide"
-msgstr "Diese Folie bearbeiten"
+msgstr "Diesen Slide bearbeiten"
 
-#: inc/czr-admin.php:1819
+#: core/czr-admin-ccat.php:2465
 msgid "No Image Selected"
 msgstr "Kein Bild ausgewählt"
 
-#: inc/czr-admin.php:1777 inc/czr-front.php:2621 inc/czr-front.php:2654
-#: inc/czr-front.php:2669 inc/czr-front.php:2697 inc/czr-front.php:3212
-#: inc/czr-front.php:3786 inc/czr-front.php:4191 inc/czr-front.php:8875
+#: core/czr-admin-ccat.php:2423 core/czr-customize-ccat.php:979
+#: core/czr-customize-ccat.php:989 core/czr-customize-ccat.php:1994
+#: core/czr-customize-ccat.php:2007 core/czr-customize-ccat.php:2065
+#: core/front/models/modules/common/class-model-breadcrumb.php:625
+#: core/front/models/modules/common/class-model-breadcrumb.php:658
+#: core/front/models/modules/common/class-model-breadcrumb.php:673
+#: core/front/models/modules/common/class-model-breadcrumb.php:701
+#: core/front/template-tags/template-tags.php:163
+#: core/front/template-tags/template-tags.php:164 inc/czr-front-ccat.php:2634
+#: inc/czr-front-ccat.php:2667 inc/czr-front-ccat.php:2682
+#: inc/czr-front-ccat.php:2710 inc/czr-front-ccat.php:3225
+#: inc/czr-front-ccat.php:3815 inc/czr-front-ccat.php:4220
+#: inc/czr-front-ccat.php:8961
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: inc/czr-admin.php:1775
+#: core/czr-admin-ccat.php:2421
 msgid "Button Text"
 msgstr "Button-Text"
 
-#: inc/czr-admin.php:1774
+#: core/czr-admin-ccat.php:2420
 msgid "Slide Text"
-msgstr "Folien-Text"
+msgstr "Slider-Text"
 
-#: inc/czr-admin.php:1773
+#: core/czr-admin-ccat.php:2419 core/czr-customize-ccat.php:2148
 msgid "Title"
 msgstr "Titel"
 
-#: inc/czr-admin.php:1772
+#: core/czr-admin-ccat.php:2418
 msgid "Slide Image"
-msgstr "Folien-Bild"
+msgstr "Slider-Bild"
 
-#: inc/czr-admin.php:1762
+#: core/czr-admin-ccat.php:2408
 msgid "This slider has not slides to show. Go to the media library and start adding images to it."
-msgstr "Dieser Slider hat keine Folien zum Anzeigen. Gehen Sie zur Mediathek und beginnen Sie, Bilder hinzufügen."
+msgstr "Dieser Slider hat keine Slides zum Anzeigen. Gehen Sie zur Mediathek und beginnen Sie Bilder hinzufügen."
 
-#: inc/czr-admin.php:1634
+#: core/czr-admin-ccat.php:2282
 msgid "You haven't create any slider yet. Write a slider name and click on the button to add you first slider."
 msgstr "Sie haben bisher keine Slider erstellt. Schreiben Sie einen Slider-Namen und klicken Sie auf den Button, um Ihren ersten Slider hinzuzufügen."
 
-#: inc/czr-admin.php:1607 inc/czr-admin.php:1636
+#: core/czr-admin-ccat.php:2255 core/czr-admin-ccat.php:2284
 msgid "Add a slider"
 msgstr "Slider hinzufügen"
 
-#: inc/czr-admin.php:1557
+#: core/czr-admin-ccat.php:2205
 msgid "No link"
 msgstr "Kein Link"
 
-#: inc/czr-admin.php:1552
+#: core/czr-admin-ccat.php:2200
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Verknüpfte Seite oder Beitrag wählen (unter den letzten 100)."
 
-#: inc/czr-admin.php:1545
+#: core/czr-admin-ccat.php:2193
 msgid "Button text (80 char. max length)"
 msgstr "Button-Text (maximale Länge 80 Zeichen)"
 
-#: inc/czr-admin.php:1537
+#: core/czr-admin-ccat.php:2185
 msgid "Title and text color"
 msgstr "Titel- und Textfarbe"
 
-#: inc/czr-admin.php:1530
+#: core/czr-admin-ccat.php:2178
 msgid "Description text (below the title, 250 char. max length)"
 msgstr "Beschreibungstext (unterhalb des Titels, maximale Länge 250 Zeichen)"
 
-#: inc/czr-admin.php:1523
+#: core/czr-admin-ccat.php:2171
 msgid "Title text (80 char. max length)"
 msgstr "Titel-Text (maximale Länge 80 Zeichen)"
 
-#: inc/czr-admin.php:1377
+#: core/czr-admin-ccat.php:2038
 msgid "Add to a slider (create one if needed)"
 msgstr "Zu Slider hinzufügen (bei Bedarf neuen erstellen)"
 
-#: inc/czr-admin.php:1375
+#: core/czr-admin-ccat.php:2036
 msgid "Add to a slider"
 msgstr "Zu Slider hinzufügen"
 
-#: inc/czr-admin.php:1223 inc/czr-customize.php:840
+#: core/czr-admin-ccat.php:1691 core/czr-customize-ccat.php:1084
 msgid "You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders."
-msgstr "Sie haben noch keinen Slider erstellt. Gehen Sie in die Medienbibliothek, bearbeiten Sie Ihre Bilder und fügen sie diese Ihrem Slider hinzu."
+msgstr "Sie haben noch keinen Slider erstellt. Gehen Sie in die Medienbibliothek, bearbeiten Sie Ihre Bilder und fügen Sie diese Ihrem Slider hinzu."
 
-#: inc/czr-admin.php:1212 inc/czr-admin.php:1617
+#: core/czr-admin-ccat.php:1680 core/czr-admin-ccat.php:2265
 msgid "Delete slider"
 msgstr "Slider löschen"
 
-#: inc/czr-admin.php:1209 inc/czr-admin.php:1614
+#: core/czr-admin-ccat.php:1677 core/czr-admin-ccat.php:2262
 msgid "The slider will be deleted permanently (images, call to actions and link will be kept)."
 msgstr "Der Slider wird dauerhaft gelöscht (Bilder, Aktionsaufrufe und Verknüpfung bleiben erhalten)."
 
-#: inc/czr-admin.php:1204 inc/czr-admin.php:1610
+#: core/czr-admin-ccat.php:1672 core/czr-admin-ccat.php:2258
 msgid "Delete this slider"
 msgstr "Diesen Slider löschen"
 
-#: inc/czr-admin.php:1187
+#: core/czr-admin-ccat.php:1621
 msgid "Slider Layout : set the slider in full width"
 msgstr "Slider-Layout: Stellen Sie den Slider auf volle Breite"
 
-#: inc/czr-admin.php:1180
+#: core/czr-admin-ccat.php:1614
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
-msgstr "Verzögerung zwischen den Folien in Millisekunden (Standard: 5000 ms = 5 Sekunden)"
+msgstr "Verzögerung zwischen den Slides in Millisekunden (Standard: 5000 ms = 5 Sekunden)"
 
-#: inc/czr-admin.php:1176
+#: core/czr-admin-ccat.php:1610
 msgid "To create a new slider : open the media library, edit your images and add them to your new slider."
 msgstr "Neuen Slider erstellen: Öffnen Sie die Medienübersicht, bearbeiten Sie Ihre Bilder und fügen sie diese Ihrem neuen Slider hinzu."
 
-#: inc/czr-admin.php:1153 inc/czr-admin.php:1601
+#: core/czr-admin-ccat.php:1587 core/czr-admin-ccat.php:2249
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Slider auswählen &mdash; "
 
-#: inc/czr-admin.php:1147 inc/czr-admin.php:1586
+#: core/czr-admin-ccat.php:1581 core/czr-admin-ccat.php:2234
 msgid "Choose a slider"
 msgstr "Slider auswählen"
 
-#: inc/czr-admin.php:1081
+#: core/czr-admin-ccat.php:1503
 msgid "Add a slider to this post/page"
 msgstr "Einen Slider zum Beitrag/zur Seite hinzufügen"
 
-#: inc/czr-admin.php:1038
+#: core/czr-admin-ccat.php:1457
 msgid "Default layout %1s"
 msgstr "Standardlayout %1s"
 
-#: inc/czr-admin.php:1034
+#: core/czr-admin-ccat.php:1453
 msgid "Select a specific layout for %1$s"
 msgstr "Wählen Sie ein bestimmtes Layout für %1$s"
 
-#: inc/czr-admin.php:1031 inc/czr-init.php:3535 inc/czr-init.php:3540
-#: inc/czr-init.php:4849
+#: core/core-settings-map.php:1015 core/core-settings-map.php:1020
+#: core/core-settings-map.php:2271 core/czr-admin-ccat.php:1450
 msgid "here"
 msgstr "hier"
 
-#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+#: core/czr-admin-ccat.php:1449 core/czr-admin-ccat.php:1454
 msgid "this post"
 msgstr "dieser Beitrag"
 
-#: inc/czr-admin.php:1030 inc/czr-admin.php:1035
+#: core/czr-admin-ccat.php:1449 core/czr-admin-ccat.php:1454
 msgid "this page"
 msgstr "diese Seite"
 
-#: inc/czr-admin.php:1029
+#: core/czr-admin-ccat.php:1448
 msgid "You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />"
-msgstr "Sie können ein bestimmtes Layout für %1$s definieren, indem Sie die vordefinierte linke und rechte Seitenleiste verwenden. Die Standardlayouts können im WordPress-Customizr-Bildschirm %2$s definiert werden.<br / >"
+msgstr "Sie können ein bestimmtes Layout für %1$s definieren, indem Sie die vordefinierte linke und rechte Seitenleiste verwenden. Die Standardlayouts können im WordPress-Customizer-Bildschirm %2$s definiert werden.<br />"
 
-#: inc/czr-admin.php:1025
-msgid "Change layout options"
-msgstr "Layout-Optionen ändern"
-
-#: inc/czr-admin.php:1024
-msgid "You have checked the <i>\"Force global default layout for all posts and pages\"</i>, you must unchecked this option to enable a specific layout for this post."
-msgstr "Sie haben <i>\"Globales Standardlayout für alle Beiträge und Seiten erzwingen\"</i> ausgewählt, deaktivieren Sie diese Option, um ein bestimmtes Layout für diesen Beitrag zu aktivieren."
-
-#: inc/czr-admin.php:1019
+#: core/czr-admin-ccat.php:1445
+#: templates/parts/content/singular/authors/author_info.php:15
 msgid "posts"
 msgstr "Beiträge"
 
-#: inc/czr-admin.php:1019
+#: core/czr-admin-ccat.php:1445
 msgid "pages"
 msgstr "Seiten"
 
-#: inc/czr-admin.php:1019
+#: core/czr-admin-ccat.php:1445
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "Standard-%1$s-layout ist festgelegt auf: %2$s"
 
-#: inc/czr-admin.php:950 inc/czr-admin.php:1346
+#: core/czr-admin-ccat.php:1175 core/czr-admin-ccat.php:2009
 msgid "Slider Options"
 msgstr "Folien-Optionen"
 
-#: inc/czr-admin.php:942
+#: core/czr-admin-ccat.php:1162
 msgid "Layout Options"
 msgstr "Layout-Optionen"
 
-#: inc/czr-customize.php:672 inc/czr-customize.php:673
+#: core/czr-customize-ccat.php:657 core/czr-customize-ccat.php:658
 msgid "Upgrade Wordpress Now"
-msgstr "Wordpress jetzt aktualisieren"
+msgstr "WordPress jetzt aktualisieren"
 
-#: inc/czr-customize.php:669
+#: core/czr-customize-ccat.php:654
 msgid "This theme requires WordPress 3.4+"
 msgstr "Das Theme erfordert WordPress 3.4 +"
 
-#: inc/czr-customize.php:649 inc/czr-customize.php:650
+#: core/czr-customize-ccat.php:634 core/czr-customize-ccat.php:635
 msgid "Upgrade WP"
 msgstr "WP aktualisieren"
 
-#: inc/czr-customize.php:633
-msgid "rating. Thanks :) !"
-msgstr "Bewertung. Danke :) !"
-
-#: inc/czr-customize.php:631
-msgid "Review the Customizr theme"
-msgstr "Customizr-Theme bewerten"
-
-#: inc/czr-customize.php:629
-msgid "we would love to receive a"
-msgstr "hätten wir gerne eine"
-
-#: inc/czr-customize.php:628
-msgid "the Customizr pro theme"
-msgstr "Customizr-Pro-Theme gefällt"
-
-#: inc/czr-customize.php:628
-msgid "the Customizr theme"
-msgstr "Customizr-Theme gefällt"
-
-#: inc/czr-customize.php:627
-msgid "If you like"
-msgstr "Wenn Ihnen das  "
-
-#: inc/czr-customize.php:616
-msgid "Customize your footer credits with Customizr Pro."
-msgstr "Passen Sie Ihre Fußzeilen-Credits mit Customizr Pro an."
-
-#: inc/czr-customize.php:576
-msgid "Add unlimited featured pages with Customizr Pro."
-msgstr "Unbegrenzt hervorgehobene Seiten hinzufügen mit Customizr-Pro."
-
-#: inc/czr-customize.php:565
-msgid "Need more control on your fonts ? Style any text in live preview ( size, color, font family, effect, ...) with Customizr Pro."
-msgstr "Noch mehr Kontrolle über Schriftarten? Passen Sie jeden beliebigen Text in der Live-Vorschau (Größe, Farbe, Schriftart, Effekt, ...) mit Customizr-Pro an."
-
-#: inc/czr-admin.php:629
+#: core/czr-admin-ccat.php:625
 msgid "Discover Customizr Pro"
 msgstr "Customizr-Pro entdecken"
 
-#: inc/czr-customize.php:546
-msgid "Let me think twice"
-msgstr "Lassen Sie mich nochmal drüber nachdenken"
-
-#: inc/czr-customize.php:545
-msgid "Hide forever"
-msgstr "Endgültig ausblenden"
-
-#: inc/czr-customize.php:544
-msgid "Once clicked the 'Hide forever' button, this donation block will not be displayed anymore.<br/>Either you are using Customizr for personal or business purposes, any kind of sponsorship will be appreciated to support this free theme.<br/><strong>Already donator? Thanks, you rock!<br/><br/> Live long and prosper with Customizr!</strong>"
-msgstr "Nach Anklicken des Buttons 'Endgültig ausblenden' wird dieser Spendenabschnitt nicht mehr angezeigt. <br/>Ob Sie Customizr für persönliche oder geschäftliche Zwecke nutzen, wir freuen uns über jede Art von Sponsoring die uns bei diesem freien Theme unterstützt. <br/> <strong>Sie sind bereits Spender? Danke, Sie sind toll!<br/>Lebe lang und in Frieden mit Customizr!</strong>"
-
-#: inc/czr-customize.php:541
-msgid "Make a donation for Customizr"
-msgstr "Für Customizr spenden"
-
-#: inc/czr-customize.php:533
-msgid ", developer of the Customizr theme"
-msgstr ", Entwickler des Customizr-Themes"
-
-#: inc/czr-customize.php:531
-msgid "Hi! This is"
-msgstr "Hallo! Hier ist"
-
-#: inc/czr-init.php:3538
+#: core/core-settings-map.php:1018
 msgid "Jump to the blog design options"
 msgstr "Zu den Einstellungen des Blog-Design springen"
 
-#: inc/czr-customize.php:363
+#: core/czr-customize-ccat.php:612
 msgid "More grid design options"
 msgstr "Weitere Gitter-Design Optionen"
 
 #. Author URI of the plugin/theme
-msgid "http://presscustomizr.com/"
-msgstr "http://presscustomizr.com/"
+msgid "https://presscustomizr.com/"
+msgstr "https://presscustomizr.com/"
 
 #. Author of the plugin/theme
 msgid "nikeo"
 msgstr "nikeo"
 
 #. Theme URI of the plugin/theme
-msgid "http://presscustomizr.com/customizr"
-msgstr "http://presscustomizr.com/customizr"
+msgid "https://presscustomizr.com/customizr"
+msgstr "https://presscustomizr.com/customizr"
