@@ -5,7 +5,14 @@
 ?>
 <header class="archive-header search-header<?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="archive-header-inner">
-    <h1 class="archive-title"><?php echo __( 'Search results for:', 'customizr' ) . ' ' . get_search_query() ?></h1>
+    <h1 class="archive-title">
+     <?php
+       if( (bool) $pre_title = esc_attr( czr_fn_opt( 'tc_search_title' ) ) ){
+         echo "{$pre_title}&nbsp;";
+       }
+       echo get_search_query();
+     ?>
+    </h1>
     <?php
      global $wp_query;
      if ( $wp_query->found_posts ):
