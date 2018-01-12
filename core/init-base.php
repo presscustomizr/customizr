@@ -293,7 +293,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
              * Makes Customizr available for translation.
              * Translations can be added to the /inc/lang/ directory.
              */
-            load_theme_textdomain( 'customizr' , czr_fn_is_pro() ? TC_BASE . '/inc/lang_pro' : TC_BASE . '/inc/lang' );
+            if ( czr_fn_is_pro() ) {
+              load_theme_textdomain( 'customizr-pro', TC_BASE . 'lang' );
+            }else {
+              load_theme_textdomain( 'customizr' , TC_BASE . '/inc/lang' );
+            }
 
             /* Adds RSS feed links to <head> for posts and comments. */
             add_theme_support( 'automatic-feed-links' );

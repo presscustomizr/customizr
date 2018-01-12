@@ -1,0 +1,3236 @@
+# Translation of Themes - Customizr in Greek
+# This file is distributed under the same license as the Themes - Customizr package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-04-04 15:22:05+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: el_GR\n"
+"Project-Id-Version: Themes - Customizr\n"
+
+#. Description of the plugin/theme
+msgid "Customizr is a versatile and easy to customize WordPress theme, instantly giving a professional look to your online presence. Designed with visitor engagement in mind, it allows anyone to create a beautiful, fast and mobile friendly website compatible with all browsers and devices. Customizr works fine with major WordPress plugins like WooCommerce, bbPress, JetPack and many others. Top rated by hundreds and with a very active community of users and developers, the Customizr theme is a safe and reliable design option to publish your WordPress content."
+msgstr "Το Customizr είναι ένα ευέλικτο και εύκολο στην προσαρμογή θέμα για το WordPress, που δίνει άμεσα μια επαγγελματική εμφάνιση στην online παρουσία σας. Σχεδιασμένο με τη λογική της συμμετοχής των επισκεπτών, επιτρέπει σε οποιονδήποτε να δημιουργήσει μια όμορφη, γρήγορη και φιλική προς τα κινητά ιστοσελίδα, συμβατή με όλους τους browsers και συσκευές. Το Customizr δουλεύει άψογα με όλα τα διάσημα plugins του WordPress όπως WooCommerce, bbPress, JetPack και πολλά άλλα. Με τη μεγαλύτερη βαθμολογία από εκατοντάδες άτομα και με μια πολύ ενεργή κοινότητα χρηστών και προγραμματιστών, το θέμα Customizr είναι μια ασφαλής και αξιόπιστη επιλογή για το σχεδιασμό για τη δημοσίευση περιεχομένου στο WordPress."
+
+#. Theme Name of the plugin/theme
+msgid "Customizr"
+msgstr "Customizr"
+
+#: inc/czr-init.php:3530 inc/czr-init.php:3550
+msgid "the logo is centered"
+msgstr "το λογότυπο κεντραρίστηκε"
+
+#: inc/czr-init.php:3528 inc/czr-init.php:3548
+msgid "Note : the menu centered position is available only when"
+msgstr "Σημείωση: H κεντραρισμένη θέση του μενού είναι διαθέσιμη μόνο όταν"
+
+#: inc/czr-init.php:3526
+msgid "Note : the menu centered position is available only when the logo is centered"
+msgstr "Σημείωση: H κεντραρισμένη θέση του μενού είναι διαθέσιμη μόνο όταν το λογότυπο είναι στο κέντρο"
+
+#: inc/czr-init.php:3521 inc/czr-init.php:3542
+msgid "Menu centered"
+msgstr "Το μενού κεντραρίστηκε"
+
+#: inc/czr-init.php:5275
+msgid "Set up single pages options"
+msgstr "Ρύθμιση επιλογών για τις ανεξάρτητες σελίδες"
+
+#: inc/czr-init.php:5273
+msgid "Single pages"
+msgstr "Ανεξάρτητες σελίδες"
+
+#: inc/czr-init.php:4314
+msgid "You can display the featured image (also called the post thumbnail) of your pages before their content, when they are displayed individually."
+msgstr "Μπορείτε να εμφανίσετε την επιλεγμένη εικόνα (ονομάζεται επίσης μικρογραφία του άρθρου) από τις σελίδες σας πριν από το περιεχόμενό τους, όταν αυτές εμφανίζονται χωριστά."
+
+#: inc/czr-front.php:4738 inc/czr-init.php:4315
+msgid "Don't know how to set a featured image to a page? Learn how in the %s."
+msgstr "Δεν ξέρετε πώς να ορίσετε ένα μια προεπιλεγμένη εικόνα σε μια σελίδα; Μάθετε πώς στο %s."
+
+#: inc/czr-front.php:4734
+msgid "You can display your page's featured image here if you have set one."
+msgstr "Μπορείτε να δείτε την προεπιλεγμένη εικόνα της σελίδας σας εδώ αν ήδη έχετε ορίσει μία."
+
+#: inc/czr-customize.php:2014
+msgid "default:"
+msgstr "προεπιλογή:"
+
+#: inc/czr-customize.php:961
+msgid "Options for"
+msgstr "Επιλογές για"
+
+#: inc/czr-customize.php:960
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: inc/czr-customize.php:228
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, it is recommended to modify the style.css file of a child theme."
+msgstr "Χρησιμοποιήστε αυτό το πεδίο για να δοκιμάσετε μικρά κομμάτια του κώδικα CSS. Για σημαντικές προσαρμογές CSS, συνιστάται να τροποποιήσετε το αρχείο style.css ενός θέματος παιδιού."
+
+#: inc/czr-init.php:5385
+msgid "Go Pro"
+msgstr "Μετάβαση στην έκδοση Pro"
+
+#: inc/czr-init.php:5013
+msgid "When checked, the Font Awesome icons and CSS will be loaded on front end. You might want to load the Font Awesome icons with a custom code, or let a plugin do it for you."
+msgstr "Όταν είναι επιλεγμένα, τα εικονίδια Font Awesome και CSS θα φορτωθούν στην προβολή της ιστοσελίδας. Μπορεί να θέλετε να φορτώσετε τα εικονίδια Font Awesome με προσαρμοσμένο κώδικα, ή να αφήσετε ένα plugin το κάνει για εσάς."
+
+#: inc/czr-init.php:5008
+msgid "Load Font Awesome resources"
+msgstr "Φόρτωση πόρων της γραμματοσειράς Awesome"
+
+#: inc/czr-init.php:4396
+msgid "Yoast SEO breadcrumbs settings"
+msgstr "Επιλογές για τα Yoast SEO breadcrumbs"
+
+#: inc/czr-init.php:4395
+msgid "customization panel"
+msgstr "πίνακας παραμετροποίησης"
+
+#: inc/czr-init.php:4392
+msgid "Jump to the Yoast SEO breadcrumbs %s"
+msgstr "Μετάβαση στα Yoast SEO breadcrumbs %s"
+
+#: inc/czr-init.php:4389
+msgid "Use Yoast SEO breadcrumbs"
+msgstr "Χρήση των Yoast SEO breadcrumbs"
+
+#: inc/czr-init.php:3332
+msgid "Display the tagline in the header"
+msgstr "Εμφάνιση του tagline στην κεφαλίδα"
+
+#: inc/czr-init.php:2999
+msgid "Create and organize your social links"
+msgstr "Δημιουργία και οργάνωση συνδέσμων σε κοινωνικά δίκτυα"
+
+#: inc/czr-front.php:9177
+msgid "Discover the Customizr WordPress theme &raquo;"
+msgstr "Ανακαλύψτε το WordPress  θέμα Customizr &raquo;"
+
+#: inc/czr-customize.php:2094
+msgid "Choose Image"
+msgstr "Επιλογή εικόνας"
+
+#: inc/czr-customize.php:2092
+msgid "No image selected"
+msgstr "Δεν επιλέχθηκε φωτογραφία"
+
+#: inc/czr-customize.php:2091
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: inc/czr-customize.php:2089
+msgid "Change Image"
+msgstr "Αλλαγή εικόνας"
+
+#: inc/czr-customize.php:2088 inc/czr-customize.php:2093
+msgid "Select Image"
+msgstr "Επιλέξτε εικόνα"
+
+#: inc/czr-customize.php:2028
+msgid "Check this option to open the link in a another tab of the browser."
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να ανοίξετε τη σύνδεση σε μια άλλη καρτέλα του προγράμματος περιήγησης."
+
+#: inc/czr-customize.php:2024
+msgid "Link target"
+msgstr "Στόχος συνδέσμου"
+
+#: inc/czr-customize.php:2018
+msgid "Set a unique color for your icon."
+msgstr "Ορίστε ένα μοναδικό χρώμα για το εικονίδιό σας."
+
+#: inc/czr-customize.php:2014
+msgid "Icon color"
+msgstr "Χρώμα εικονιδίου"
+
+#: inc/czr-customize.php:2010
+msgid "This is the text displayed on mouse over."
+msgstr "Αυτό είναι το κείμενο που εμφανίζεται όταν το ποντίκι περάσει από επάνω."
+
+#: inc/czr-customize.php:2008
+msgid "Enter a title"
+msgstr "Εισάγετε έναν τίτλο"
+
+#: inc/czr-customize.php:1999
+msgid "Social link"
+msgstr "Σύνδεσμος κοινωνικού δικτύου"
+
+#: inc/czr-customize.php:1992
+msgid "Social icon"
+msgstr "Εικονίδιο κοινωνικού δικτύου"
+
+#: inc/czr-customize.php:1986
+msgid "Id"
+msgstr "Id"
+
+#: inc/czr-customize.php:1977
+msgid "Size in px"
+msgstr "Μέγεθος σε px"
+
+#: inc/czr-customize.php:1970 inc/czr-customize.php:2003
+msgid "Enter the full url of your social profile (must be valid url)."
+msgstr "Πληκτρολογήστε την πλήρη διεύθυνση URL του κοινωνικού σας προφίλ (πρέπει να είναι έγκυρη διεύθυνση URL)."
+
+#: inc/czr-customize.php:1968 inc/czr-customize.php:2001
+msgid "http://...,mailto:...,..."
+msgstr "http://...,mailto:...,..."
+
+#: inc/czr-customize.php:1966
+msgid "Social link url"
+msgstr "Url κοινωνικού προφίλ"
+
+#: inc/czr-customize.php:1960
+msgid "Select an icon"
+msgstr "Επιλέξτε ένα εικονίδιο"
+
+#: inc/czr-customize.php:1844
+msgid "Yes"
+msgstr "Ναι"
+
+#: inc/czr-customize.php:1843
+msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
+msgstr "Είστε βέβαιοι ότι θέλετε να καταργήσετε το: <strong>{{ data.title }} ;</strong>"
+
+#: inc/czr-customize.php:1836
+msgid "Add it"
+msgstr "Προσθήκη"
+
+#: inc/czr-customize.php:1836
+msgid "Cancel"
+msgstr "Άκυρο"
+
+#: inc/czr-customize.php:1831
+msgid "Add New"
+msgstr "Προσθήκη Νέου"
+
+#: inc/czr-customize.php:1681
+msgid "Press return or enter to open this panel"
+msgstr "Πατήστε return ή enter για να ανοίξετε αυτό το πάνελ"
+
+#: inc/czr-customize.php:1537
+msgid "Please fill the social link inputs with a valid URLs"
+msgstr "Παρακαλούμε συμπληρώστε τις σύνδεση στα κοινωνικά δίκτυα με έγκυρες διευθύνσεις URL"
+
+#: inc/czr-customize.php:1493
+msgid "An error occurred: malformed social links"
+msgstr "Παρουσιάστηκε σφάλμα: ακατάλληλοι σύνδεσμοι στα κοινωνικά δίκτυα"
+
+#: inc/czr-customize.php:949
+msgid "The side on which the menu is revealed depends on the choosen header layout."
+msgstr "Η πλευρά από την οποία θα εμφανίζεται το μενού εξαρτάται από την επιλεγμένη διάταξη της κεφαλίδας."
+
+#: inc/czr-customize.php:946
+msgid "Slide"
+msgstr "Slide"
+
+#: inc/czr-customize.php:945
+msgid "New Slide created ! Scroll down to edit it."
+msgstr "Ένα νέο Slide δημιουργήθηκε! Μετακινηθείτε προς τα κάτω για να το επεξεργαστείτε."
+
+#: inc/czr-customize.php:942
+msgid "Close Editor"
+msgstr "Κλείσιμο διορθωτή"
+
+#: inc/czr-customize.php:959
+msgid "Learn more about this in the documentation"
+msgstr "Μάθετε περισσότερα γι' αυτή την τεκμηρίωση"
+
+#: inc/czr-customize.php:938
+msgid "New Social Link created ! Scroll down to edit it."
+msgstr "Ένας νέος σύνδεσμος για κοινωικό δίκτυο δημιουργήθηκε. Μετακινηθείτε προς τα κάτω για να το επεξεργαστείτε."
+
+#: inc/czr-customize.php:937
+msgid "Done !"
+msgstr "Έγινε !"
+
+#: inc/czr-customize.php:936
+msgid "Follow us on"
+msgstr "Ακολουθήστε μας στο"
+
+#: inc/czr-customize.php:935
+msgid "Select a social icon"
+msgstr "Επιλογή εικονιδίου για το κοινωνικό δίκτυο"
+
+#: inc/czr-customize.php:934
+msgid "Rss"
+msgstr "Rss"
+
+#: inc/czr-customize.php:198
+msgid "If your freshly created menu is not listed, please refresh the customizer panel."
+msgstr "Αν δημιουργήσατε πρόσφατα το μενού και δεν περιλαμβάνεται στη λίστα, παρακαλώ ανανεώστε τον πίνακα προσαρμογής."
+
+#: inc/czr-customize.php:932
+msgid "Not set"
+msgstr "Δεν ορίστηκε"
+
+#: inc/czr-init.php:4911
+msgid "Back to top arrow position"
+msgstr "Θέση του βέλους επιστροφής στην κορυφή"
+
+#: inc/czr-init.php:831
+msgid "Contact me on Snapchat"
+msgstr "Επικοινωνήστε μαζί μας στο Snapchat"
+
+#: inc/czr-init.php:8648
+msgid "What We Do"
+msgstr "Τί κάνουμε"
+
+#: inc/czr-init.php:8644
+msgid "Who We Are"
+msgstr "Ποιοί είμαστε"
+
+#: inc/czr-init.php:8836
+msgid "Call to action"
+msgstr "Προτροπή για ενέργεια"
+
+#: inc/czr-init.php:8913 inc/czr-init.php:8959
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: inc/czr-init.php:8834
+msgid "Engage your visitors with a carousel in any pages."
+msgstr "Προσελκύστε τους επισκέπτες σας με ένα καρουζέλ σε όλες τις σελίδες."
+
+#: inc/czr-init.php:8652
+msgid "Contact Us"
+msgstr "Επικοινωνήστε μαζί μας"
+
+#: inc/czr-init.php:8828
+msgid "The Customizr theme fits nicely on any mobile devices."
+msgstr "Το θέμα Customizr ταιριάζει όμορφα σε οποιεσδήποτε κινητές συσκευές."
+
+#: inc/czr-init.php:8919 inc/czr-init.php:8937
+msgid "Recent Posts"
+msgstr "Πρόσφατα Άρθρα"
+
+#: inc/czr-init.php:8926 inc/czr-init.php:8948
+msgid "Recent Comments"
+msgstr "Πρόσφατα Σχόλια"
+
+#: inc/czr-init.php:3178
+msgid "If enabled, your slides scroll slower than the page (parallax effect)."
+msgstr "Εάν ενεργοποιηθεί, η κύλιση των slides θα είναι πιο αργή από την σελίδα (εφέ parallax)."
+
+#: inc/czr-init.php:3175
+msgid "Sliders : use parallax scrolling"
+msgstr "Sliders: χρήση κύλισης parallax"
+
+#: inc/czr-init.php:3404
+msgid "WooCommerce: if checked, your WooCommerce cart icon will remain visible when scrolling."
+msgstr "WooCommerce: αν επιλεγεί, το εικονίδιο του WooCommerce καλαθιού σας θα παραμείνει ορατό κατά την κύλιση."
+
+#: inc/czr-admin.php:516
+msgid "Get help in the free support forum"
+msgstr "Λάβετε βοήθεια στο φόρουμ δωρεάν υποστήριξης"
+
+#: inc/czr-admin.php:516
+msgid "Get support"
+msgstr "Λάβετε υποστήριξη"
+
+#: inc/czr-admin.php:512
+msgid "Code snippets for developers"
+msgstr "Αποσπάσματα κώδικα για προγραμματιστές"
+
+#: inc/czr-init.php:5372
+msgid "Front-end Icons (Font Awesome)"
+msgstr "Εικονίδια (Font Awesome) προβολής ιστοτόπου"
+
+#: inc/czr-init.php:5015
+msgid "Check out some example of uses"
+msgstr "Ελέγξτε έξω κάποιο παράδειγμα χρήσεών του"
+
+#: inc/czr-init.php:5012
+msgid "Use with caution"
+msgstr "Χρησιμοποιείστε με προσοχή"
+
+#: inc/czr-init.php:3694
+msgid "Display navigation in your home blog"
+msgstr "Προβολή επιλογής μετάβασης στη αρχική σελίδα του ιστολογίου σας"
+
+#: inc/czr-init.php:828
+msgid "Follow me on Xing"
+msgstr "Ακολουθήστε μας στο Xing"
+
+#: inc/czr-init.php:825
+msgid "Follow me on Yelp"
+msgstr "Ακολουθήστε μας στο Yelp"
+
+#: inc/czr-init.php:822
+msgid "Follow me on VKontakte"
+msgstr "Ακολουθήστε μας στο VKontakte"
+
+#: inc/czr-init.php:3397
+msgid "Sticky header: display the shopping cart"
+msgstr "Σταθερή επικεφαλίδα: εμφάνιση του καλαθιού αγορών"
+
+#: inc/czr-init.php:3347
+msgid "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline."
+msgstr "WooCommerce: ενεργοποιήστε το για να εμφανιστεί ένα εικονίδιο στο καλάθι που δείχνει τον αριθμό των στοιχείων στο καλάθι σας δίπλα στη γραμμή της κεφαλίδας σας."
+
+#: inc/czr-init.php:3344
+msgid "Display the shopping cart in the header"
+msgstr "Προβολή καλαθιού αγορών στην κεφαλίδα"
+
+#: inc/czr-init.php:3222
+msgid "This feature has been introduced in WordPress v4.4+ (dec-2015), and might have minor side effects on some of your existing images. Check / uncheck this option to safely verify that your images are displayed nicely."
+msgstr "Αυτό το χαρακτηριστικό έχει εισαχθεί στο WordPress V4.4 + (Δεκ-2015), και μπορεί να έχει μικρές παρενέργειες σε μερικές από τις υπάρχουσες εικόνες σας. Ενεργοποιήστε/απενεργοποιήστε αυτή την επιλογή για να επαληθεύσετε με ασφάλεια ότι οι εικόνες σας εμφανίζονται όμορφα."
+
+#: inc/czr-init.php:3220
+msgid "Enable the WordPress responsive image feature for the theme's thumbnails"
+msgstr "Ενεργοποιήστε το χαρακτηριστικό responsive εικόνων του WordPress για τις μικρογραφίες του θέματος"
+
+#: inc/czr-init.php:3213
+msgid "Enable the WordPress responsive image feature for the slider"
+msgstr "Ενεργοποιήστε το χαρακτηριστικό responsive εικόνων του WordPress για το slider"
+
+#: inc/czr-init.php:2343
+msgid "View your shopping cart"
+msgstr "Δείτε το καλάθι σας"
+
+#: inc/czr-init.php:3757
+msgid "You can choose to display only the sticky posts. If you're not sure how to set a sticky post, check"
+msgstr "Μπορείτε να επιλέξετε την εμφάνιση μόνο των καρφιτσωμένων άρθρων. Εάν δεν είστε σίγουροι πως να καρφιτσώσετε ένα άρθρο, δείτε"
+
+#: inc/czr-init.php:3752
+msgid "Include only sticky posts"
+msgstr "Συμπερίληψη μόνο των καρφιτσωμένων άθρων"
+
+#: inc/czr-init.php:1713
+msgid "Posts slider button text"
+msgstr "Κείμενο του κουμπιού στο slider των άρθρων"
+
+#: inc/czr-init.php:1711
+msgid "Front page slider name"
+msgstr "Όνομα slider της αρχικής σελίδας"
+
+#: inc/czr-front.php:9835
+msgid "Powered by WordPress"
+msgstr "Με τη δύναμη του WordPress"
+
+#: inc/czr-front.php:9834
+msgid "Powered by"
+msgstr "Υλοποιήθηκε από"
+
+#: inc/czr-front.php:9050
+msgid "this slider"
+msgstr "αυτό το slider"
+
+#: inc/czr-front.php:9050
+msgid "the posts slider"
+msgstr "slider άρθρων"
+
+#: inc/czr-front.php:9049
+msgid "Customize or remove %s"
+msgstr "Προσαρμόσετε ή αφαιρέσετε %s"
+
+#: inc/czr-init.php:8122
+msgid "%s and check the option 'Load images on scroll' under 'Website Performances' section."
+msgstr "%s και ενεργοποιήστε την επιλογή 'Φόρτωση εικόνων κατά την κύλιση' κάτω από το τμήμα 'Επιδόσεις Ιστοτόπου'."
+
+#: inc/czr-init.php:8121
+msgid "Did you know you can easily speed up your page load by deferring the loading of the non visible images?"
+msgstr "Γνωρίζατε ότι μπορείτε εύκολα να επιταχύνετε τη φόρτωσης της σελίδας σας με την αναβολή της φόρτωσης των μη ορατών εικόνων;"
+
+#: inc/czr-init.php:783
+msgid "E-mail"
+msgstr "E-mail"
+
+#: inc/czr-init.php:3703
+msgid "Apply a category filter to your home / blog posts"
+msgstr "Εφαρμόστε ένα φίλτρο κατηγορίας στην αρχική σελίδα / άρθρα του blog σας"
+
+#: inc/czr-init.php:3639
+msgid "Set the number of posts to display"
+msgstr "Ορίστε τον αριθμό των άρθρων που θα εμφανίζονται"
+
+#: inc/czr-init.php:3632
+msgid "Learn more about post categories in WordPress"
+msgstr "Μάθετε περισσότερα για μετά τις κατηγορίες στο WordPress"
+
+#: inc/czr-init.php:3630
+msgid "Click inside the above field and pick post categories you want to display. No filter will be applied if empty."
+msgstr "Κάντε κλικ μέσα στο πεδίο και επιλέξτε τις κατηγορίες των άρθρων που θέλετε να εμφανίσετε. Το φίλτρο θα εφαρμοστεί εάν είναι άδειο."
+
+#: inc/czr-front.php:9539
+msgid "There is no excerpt because this is a protected post."
+msgstr "Δεν υπάρχει απόσπασμα διότι το άρθρο είναι προστατευμένο."
+
+#: inc/czr-front.php:9514
+msgid "Protected: %s"
+msgstr "Πρoστατευμένο: %s"
+
+#: inc/czr-init.php:5598
+msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
+msgstr "&mdash; Αυτόματα δημιουργημένο slider από τα άρθρα του ιστολογίου σας &mdash;"
+
+#: inc/czr-init.php:3810
+msgid "When checked, the front page slider occupies the full viewport's width"
+msgstr "Όταν είναι επιλεγμένο, το slider της αρχικής σελίδας καταλαμβάνει όλο το πλάτος του παραθύρου προβολής"
+
+#: inc/czr-init.php:3800
+msgid "The button text will be limited to 80 chars max. Leave this field empty to hide the button"
+msgstr "Το κείμενο του κουμπιού θα πρέπει να περιορίζεται σε 80 χαρακτήρες το μέγιστο. Αφήστε αυτό το πεδίο κενό για να αποκρύψετε το κουμπί"
+
+#: inc/czr-init.php:3789
+msgid "Entire slide and call to action button"
+msgstr "Ολόκληρο το slide και το κουμπί ενέργειας"
+
+#: inc/czr-init.php:3788
+msgid "Entire slide"
+msgstr "Ολόκληρο το slide"
+
+#: inc/czr-init.php:3787
+msgid "Call to action button"
+msgstr "Κουμπί ενέργειας"
+
+#: inc/czr-init.php:3783
+msgid "Link post with"
+msgstr "Σύνδεση του άθρου με"
+
+#: inc/czr-init.php:3778
+msgid "The excerpt will be limited to 80 chars max"
+msgstr "Το απόσπασμα θα πρέπει να περιορίζεται σε 80 χαρακτήρες το μέγιστο"
+
+#: inc/czr-init.php:3769
+msgid "The title will be limited to 80 chars max"
+msgstr "Ο τίτλος θα πρέπει να περιορίζεται σε 80 χαρακτήρες το μέγιστο"
+
+#: inc/czr-init.php:3765
+msgid "Display the title"
+msgstr "Προβολή του τίτλου"
+
+#: inc/czr-init.php:3758
+msgid "the WordPress documentation."
+msgstr "η τεκμηρίωση του WordPress."
+
+#: inc/czr-init.php:3747
+msgid "Only the posts with a featured image or at least an image inside their content will qualify for the slider. The number of post slides displayed won't exceed the number of available posts in your website."
+msgstr "Μόνο οι δημοσιεύσεις με προεπιλεγμένη εικόνα ή με τουλάχιστον μια εικόνα μέσα στο περιεχόμενό τους θα πληρούν τις προϋποθέσεις για το slider. Ο αριθμός των slides των άρθρων που εμφανίζονται δεν θα υπερβαίνει τον αριθμό των διαθέσιμων άρθρων στην ιστοσελίδα σας."
+
+#: inc/czr-init.php:3741
+msgid "Number of posts to display"
+msgstr "Αριθμός άρθρων που θα εμφανιστούν"
+
+#: inc/czr-admin.php:1170 inc/czr-admin.php:1810
+msgid "Slider documentation"
+msgstr "Τεκμηρίωση του slider"
+
+#: inc/czr-admin.php:1168 inc/czr-admin.php:1808
+msgid "For more informations about sliders, check the documentation page :"
+msgstr "Για περισσότερες πληροφορίες για τα sliders, δείτε τη σελίδα της τεκμηρίωσης:"
+
+#: inc/czr-admin.php:1807
+msgid "To add another slide : navigate to your media library (click on Media), open the edit screen of an image ( or add a new image ), and add it to your desired slider by using the dedicated option block at the bottom of the page."
+msgstr "Για να προσθέσετε άλλο ένα slide: μεταβείτε στη βιβλιοθήκη πολυμέσων σας (κάντε κλικ στο Μέσα), ανοίξτε την οθόνη επεξεργασίας μιας εικόνας (ή προσθέσετε μια νέα εικόνα), και προσθέστε την στο επιθυμητό slider σας, χρησιμοποιώντας το ειδικό πλαίσιο επιλογής στο κάτω μέρος της σελίδας."
+
+#: inc/czr-admin.php:314 inc/czr-init.php:5384
+msgid "Upgrade to Customizr Pro"
+msgstr "Αναβάθμιση σε Customizr Pro"
+
+#: inc/czr-customize.php:947
+msgid "This option generates a home page slider based on your last posts, starting from the most recent or the featured (sticky) post(s) if any."
+msgstr "Αυτή η επιλογή δημιουργεί ένα slider αρχικής σελίδας βασισμένο στα τελευταία άρθρα σας, ξεκινώντας από το πιο πρόσφατο ή το επιλεγμένο (καρφιτσωμένο) άρθρο(α) αν υπάρχουν."
+
+#: inc/czr-customize.php:954
+msgid "Change the header layout"
+msgstr "Αλλαγή διάταξης της κεφαλίδας"
+
+#: inc/czr-customize.php:953
+msgid "jump to the Design and Layout section"
+msgstr "μεταβείτε στο τμήμα Σχεδιασμού και Διαμόρφωσης"
+
+#: inc/czr-customize.php:950
+msgid "To change the global header layout, %s"
+msgstr "Για να αλλάξετε τη γενική διάταξη της κεφαλίδας, %s"
+
+#: inc/czr-customize.php:931
+msgid "Your favicon is currently handled with an old method and will not be properly displayed on all devices. You might consider to re-upload your favicon with the new control below."
+msgstr "Το favicon σας προς το παρόν εφαρμόζεται με μια παλιά μέθοδο και δεν θα εμφανίζεται σωστά σε όλες τις συσκευές. Θα μπορούσατε εκ νέου να ανεβάσετε το favicon σας με το νέο έλεγχο παρακάτω."
+
+#: inc/czr-customize.php:600
+msgid "SITE ICON"
+msgstr "ΕΙΚΟΝΙΔΙΟ ΙΣΤΟΤΟΠΟΥ"
+
+#: inc/czr-front.php:864
+msgid "Open the menu"
+msgstr "Ανοίξτε το μενού"
+
+#: inc/czr-front.php:1053
+msgid "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed."
+msgstr "Μπορείτε τώρα να εμφανίσετε το μενού σας ως κάθετο και φιλικό προς τα κινητά πλευρικό μενού, με κίνηση κατά την εμφάνισή του."
+
+#: inc/czr-front.php:1054
+msgid "%s or %s."
+msgstr "%s ή %s."
+
+#: inc/czr-front.php:1055
+msgid "Try it with the demo"
+msgstr "Δοκιμάστε το με το demo"
+
+#: inc/czr-front.php:1056
+msgid "open the customizer menu section"
+msgstr "ανοίξτε την ενότητα του μενού προσαρμογής"
+
+#: inc/czr-front.php:1056
+msgid "change your menu design now"
+msgstr "τροποποίηση του σχεδιασμού του μενού σας τώρα"
+
+#: inc/czr-front.php:1080
+msgid "You can display your main menu or a second menu here horizontally."
+msgstr "Μπορείτε να εμφανίσετε το κύριο μενού σας ή ένα δεύτερο μενού εδώ οριζόντια."
+
+#: inc/czr-front.php:1081
+msgid "%s or read the %s."
+msgstr "%s ή διαβάστε το %s."
+
+#: inc/czr-front.php:1082
+msgid "Manage menus in the header"
+msgstr "Διαχείριση του μενού στην κεφαλίδα"
+
+#: inc/czr-front.php:1082
+msgid "Manage your menus in the header now"
+msgstr "Διαχειριστείτε τα μενού σας στην κεφαλίδα τώρα"
+
+#: inc/czr-front.php:1513
+msgid "Pages"
+msgstr "Σελίδες"
+
+#: inc/czr-front.php:857
+msgid "Menu"
+msgstr "Μενού"
+
+#: inc/czr-customize.php:930 inc/czr-front.php:857 inc/czr-front.php:864
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: inc/czr-init.php:5328
+msgid "Socials in Sidebars"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στις Πλευρικές Στήλες"
+
+#: inc/czr-init.php:5330
+msgid "Set up your social profiles links in the sidebar(s)."
+msgstr "Ρύθμιση των συνδέσμων του κοινωνικού προφίλ σας στην πλευρική στήλη."
+
+#: inc/czr-init.php:5367
+msgid "Front-end placeholders and help blocks"
+msgstr "Θέσεις κράτησης και μπλοκ βοήθειας στην κεντρική σελίδα"
+
+#: inc/czr-front.php:3595
+msgid "Edit those featured pages %s, or %s (you'll be able to add yours later)."
+msgstr "Επεξεργασία αυτών των προεπιλεγμένων σελίδων %s, ή %s (έχετε τη δυνατότητα να προσθέσετε τις δικές σας αργότερα)."
+
+#: inc/czr-front.php:3596
+msgid "Edit those featured pages"
+msgstr "Επεξεργασία αυτών των προεπιλεγμένων σελίδων"
+
+#: inc/czr-front.php:3596 inc/czr-front.php:8105 inc/czr-front.php:9108
+#: inc/czr-front.php:9743
+msgid "now"
+msgstr "τώρα"
+
+#: inc/czr-front.php:3597
+msgid "Remove the featured pages"
+msgstr "Αφαίρεση αυτών των προεπιλεγμένων σελίδων"
+
+#: inc/czr-front.php:3722
+msgid "Edit now."
+msgstr "Επεξεργασία τώρα."
+
+#: inc/czr-front.php:3597
+msgid "remove them"
+msgstr "αφαίρεσή τους"
+
+#: inc/czr-front.php:5066
+msgid "You can display your post's featured image here if you have set one."
+msgstr "Μπορείτε να προβάλετε την προεπιλεγμένη εικόνα του άρθρου εδώ, έαν έχετε ορίσει μια."
+
+#: inc/czr-front.php:4735 inc/czr-front.php:5067
+msgid "%s to display a featured image here."
+msgstr "%s για να προβάλετε την προεπιλεγμένη εικόνα εδώ."
+
+#: inc/czr-front.php:4736 inc/czr-front.php:5068 inc/czr-init.php:8123
+msgid "Jump to the customizer now"
+msgstr "Μετάβαση στην παραμετροποίηση τώρα"
+
+#: inc/czr-front.php:8097
+msgid "The %s sidebar has no widgets."
+msgstr "Η πλευρική στήλη %s δεν έχει μικροεφαρμογές."
+
+#: inc/czr-front.php:8101
+msgid "Add widgets to this sidebar %s or %s."
+msgstr "Προσθήκη μικροεφαρμογών σε αυτή την πλευρική στήλη %s ή %s."
+
+#: inc/czr-front.php:8108 inc/czr-front.php:9745
+msgid "dismiss this notice"
+msgstr "Αγνόησε αυτό το μήνυμα"
+
+#: inc/czr-front.php:9107
+msgid "Select your own slider %s, or %s (you'll be able to add one back later)."
+msgstr "Επιλέξε το δικό σας slider %s, ή %s (έχετε τη δυνατότητα να προσθέσετε κι άλλο αργότερα)."
+
+#: inc/czr-front.php:8917
+msgid "Go to"
+msgstr "Μετάβαση σε"
+
+#: inc/czr-front.php:9108
+msgid "Select your own slider"
+msgstr "Επιλέξτε το δικό σας slider"
+
+#: inc/czr-front.php:9109
+msgid "Remove the home page slider"
+msgstr "Αφαίρεση του slider από την αρχική σελίδα"
+
+#: inc/czr-front.php:9742
+msgid "Add widgets to the footer %s or %s."
+msgstr "Προσθέστε μικροεφαρμογές στο υποσέλιδο %s ή %s."
+
+#: inc/czr-front.php:9109
+msgid "remove this demo slider"
+msgstr "αφαίρεση του δοκιμαστικού slider"
+
+#: inc/czr-front.php:797
+msgid "This is a default page menu."
+msgstr "Αυτό είναι το μενού μιας προεπιλεγμένης σελίδας."
+
+#: inc/czr-front.php:798
+msgid "( If you don't have any pages in your website, then this side menu is empty for the moment. )"
+msgstr "( Εάν δεν έχετε σελίδες στον ιστότοπό σας, τότε αυτή η πλευρά του μενού θα είναι άδεια προς το παρόν. )"
+
+#: inc/czr-front.php:799
+msgid "If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s."
+msgstr "Αν έχετε ήδη δημιουργήσει το μενού, μπορείτε να %s. Εάν χρειάζεστε να δημιουργήσετε ένα νέο μενού, μεταβείτε στο %s."
+
+#: inc/czr-front.php:800
+msgid "change the default menu"
+msgstr "αλλαγή του προεπιλεγμένου μενού"
+
+#: inc/czr-front.php:800
+msgid "replace this default menu by another one"
+msgstr "αντικατάσταση αυτού του προεπιλεγμένου μενού με άλλο"
+
+#: inc/czr-front.php:801
+msgid "menu creation screen"
+msgstr "οθόνη δημιουργίας μενού"
+
+#: inc/czr-init.php:3603
+msgid "Remove all the menus."
+msgstr "Αφαίρεση όλων των μενού"
+
+#: inc/czr-init.php:3604
+msgid "Don't display any menus in the header of your website"
+msgstr "Να μην εμφανίζεται κανένα μενού στην κεφαλίδα της ιστοσελίδας σας"
+
+#: inc/czr-init.php:3608
+msgid "Use with caution : provide an alternative way to navigate in your website for your users."
+msgstr "Χρησιμοποιήστε το με προσοχή: παρέχει έναν εναλλακτικό τρόπο για να περιηγούνται οι χρήστες στην ιστοσελίδα σας."
+
+#: inc/czr-init.php:3976
+msgid "The above layout options will set your layout globally for your post and pages. But you can also define the layout for each post and page individually. Learn how in the %s."
+msgstr "Οι παραπάνω επιλογές διάταξης θα καθοριστούν καθολικά για τα άθρα και τις σελίδες σας. Αλλά μπορείτε επίσης να ορίσετε τη διάταξη για κάθε άρθρο και σελίδα ξεχωριστά. Μάθετε πώς στο %s."
+
+#: inc/czr-init.php:3977
+msgid "Customizr theme documentation"
+msgstr "Τεκμηρίωση του θέματος Customizr"
+
+#: inc/czr-init.php:3980
+msgid "If you need to change the layout design of the front page, then open the 'Front Page' section above this one."
+msgstr "Αν χρειάζεται να αλλάξετε τη σχεδίαση της διάταξης της αρχικής σελίδας, στη συνέχεια, ανοίξτε την ενότητα 'Αρχική σελίδα' πριν από αυτό."
+
+#: inc/czr-init.php:4272
+msgid "You can display the featured image (also called the post thumbnail) of your posts before their content, when they are displayed individually."
+msgstr "Μπορείτε να εμφανίσετε την επιλεγμένη εικόνα (ονομάζεται επίσης μικρογραφία) των άρθρων σας πριν από το περιεχόμενό τους, όταν αυτά εμφανίζονται χωριστά."
+
+#: inc/czr-front.php:5070 inc/czr-init.php:4273
+msgid "Don't know how to set a featured image to a post? Learn how in the %s."
+msgstr "Δεν ξέρω πώς να ορίσετε μια επιλεγμένη εικόνα για ένα άρθρο; Μάθετε πώς στο %s."
+
+#: inc/czr-init.php:4894
+msgid "Stick the footer to the bottom of the page"
+msgstr "Κολλήμα του υποσέλιδου στο κάτω μέρος της σελίδας"
+
+#: inc/czr-init.php:4992
+msgid "Display help notices on front-end for logged in users."
+msgstr "Προβολή ανακοινώσεων βοήθειας στην προβολή ιστοσελίδας για τους συνδεδεμένους χρήστες."
+
+#: inc/czr-init.php:4995
+msgid "When this options is enabled, various help notices and some placeholder blocks are displayed on the front-end of your website. They are only visible by logged in users with administration capabilities."
+msgstr "Όταν είναι ενεργοποιημένη αυτή η επιλογή, οι διάφορες ανακοινώσεις βοήθειας και μερικά τετράγωνα κράτησης θέσης θα εμφανίζονται στην προβολή της ιστοσελίδας σας. Αυτά θα είναι ορατά μόνο από τους συνδεδεμένους χρήστες με δυνατότητες διαχείρισης."
+
+#: inc/czr-init.php:5058
+msgid "Sidebars"
+msgstr "Πλευρικές στήλες"
+
+#: inc/czr-init.php:5059
+msgid "Sidebars settings for the Customizr theme."
+msgstr "Ρυθμίσεις πλευρικών στηλών για το θέμα Customizr."
+
+#: inc/czr-init.php:5143 inc/czr-init.php:5151
+msgid "You can create new menu and edit your menu's content %s."
+msgstr "Μπορείτε να δημιουργήσετε νέο μενού και να επεξεργαστείτε το περιεχόμενο του μενού σας %s."
+
+#: inc/czr-init.php:5146
+msgid "on the Menus screen in the Appearance section"
+msgstr "στην οθόνη των Μενού στην ενότητα Εμφάνιση"
+
+#: inc/czr-init.php:5147 inc/czr-init.php:5155
+msgid "create/edit menus"
+msgstr "δημιουργία/επεξεργασία μενού"
+
+#: inc/czr-init.php:5154
+msgid "in the menu panel"
+msgstr "στον πίνακα των μενού"
+
+#: inc/czr-init.php:5160
+msgid "If a menu location has no menu assigned to it, a default page menu will be used."
+msgstr "Αν μια τοποθεσία μενού δεν της έχει ανατεθεί κάποιο μενού, θα χρησιμοποιηθεί ένα προεπιλεγμένο μενού στη σελίδα."
+
+#: inc/czr-init.php:5220
+msgid "Smooth Scroll"
+msgstr "Ομαλή Κύλιση"
+
+#: inc/czr-init.php:5222
+msgid "Smooth Scroll settings"
+msgstr "Ρυθμίσεις Ομαλής Κύλισης"
+
+#: inc/czr-init.php:5235
+msgid "Navigation Menus"
+msgstr "Μενού πλοήγησης"
+
+#: inc/czr-init.php:3480
+msgid "When you've set your main menu as a vertical side navigation, you can check this option to display a complementary horizontal menu in the header."
+msgstr "Όταν έχετε ορίσει κύριο μενού σας ως μια κάθετη πλευρά πλοήγησης, μπορείτε να ελέγξετε αυτή την επιλογή για να εμφανίσετε ένα συμπληρωματικό οριζόντιο μενού στην κεφαλίδα."
+
+#: inc/czr-init.php:3476
+msgid "Display a secondary (horizontal) menu in the header."
+msgstr "Εμφανίζει μια δευτερεύον (οριζόντιο) μενού στην κεφαλίδα."
+
+#: inc/czr-init.php:3432
+msgid "Also applied to the secondary menu if any."
+msgstr "Επίσης εφαρμόζεται στο δευτερεύον μενού αν υπάρχει."
+
+#: inc/czr-init.php:3485
+msgid "Main menu design"
+msgstr "Σχεδιασμός του κύριου μενού"
+
+#: inc/czr-init.php:3486
+msgid "Select a design : side menu (vertical) or regular (horizontal)"
+msgstr "Επιλέξτε ένα σχεδιασμό: πλευρικό μενού (κάθετα) ή κανονικό (οριζόντια)"
+
+#: inc/czr-init.php:3490
+msgid "Regular (horizontal)"
+msgstr "Κανονικό (οριζόντια)"
+
+#: inc/czr-init.php:3491
+msgid "Side Menu (vertical)"
+msgstr "Πλευρικό μενού (κάθετα)"
+
+#: inc/czr-init.php:3498
+msgid "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport."
+msgstr "Για τις κινητές συσκευές (responsive), να περιοριστεί το ύψος του μπλοκ του αναπτυσσόμενου μενού στο ορατό παράθυρο."
+
+#: inc/czr-init.php:3507
+msgid "Display a label next to the menu button."
+msgstr "Εμφάνιση μιας ετικέτας δίπλα στο κουμπί του μενού."
+
+#: inc/czr-init.php:3511
+msgid "Note : the label is hidden on mobile devices."
+msgstr "Σημείωση: η ετικέτα είναι κρυμμένη σε κινητές συσκευές."
+
+#: inc/czr-init.php:3516
+msgid "Menu position (for \"main\" menu)"
+msgstr "Θέση μενού (για \"το κύριο\" μενού)"
+
+#: inc/czr-init.php:3536
+msgid "Secondary (horizontal) menu design"
+msgstr "Σχεδίαση δευτερεύοντος (οριζόντιου) μενού"
+
+#: inc/czr-init.php:3537
+msgid "Menu position (for the horizontal menu)"
+msgstr "Θέση μενού (για το οριζόντιο μενού)"
+
+#: inc/czr-init.php:3588
+msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
+msgstr "Επιλέξτε μια συμπεριφορά (responsive) για το δευτερεύον μενού στις φορητές συσκευές."
+
+#: inc/czr-init.php:3593
+msgid "Move after inside the side menu "
+msgstr "Μετακίνηση κάτω, μέσα στο πλαϊνό μενού"
+
+#: inc/czr-init.php:3592
+msgid "Move before inside the side menu "
+msgstr "Μετακίνηση πάνω, μέσα στο πλαϊνό μενού "
+
+#: inc/czr-init.php:3594
+msgid "Display in the header"
+msgstr "Προβολή στην κεφαλίδα"
+
+#: inc/czr-init.php:3595
+msgid "Hide"
+msgstr "Απόκρυψη"
+
+#: inc/czr-init.php:1102
+msgid "Secondary (horizontal) Menu"
+msgstr "Δευτερεύον (οριζόντιο) Μενού"
+
+#: inc/czr-init.php:2943
+msgid "Disabled if the random option is on."
+msgstr "Απενεργοποιημένο, αν η τυχαία επιλογή είναι ενεργοποιημένη."
+
+#: inc/czr-init.php:3020
+msgid "Important note"
+msgstr "Σημαντική σημείωση"
+
+#: inc/czr-init.php:3020
+msgid "this option can create conflicts with some plugins, make sure that your plugins features (if any) are working fine after enabling this option."
+msgstr "Αυτή η επιλογή μπορεί να δημιουργήσει συγκρούσεις με κάποια πρόσθετα, βεβαιωθείτε ότι τα χαρακτηριστικά των προσθέτων σας (αν υπάρχουν) λειτουργούν καλά μετά την ενεργοποίηση αυτής της επιλογής."
+
+#: inc/czr-init.php:3281
+msgid "Enable Smooth Scroll"
+msgstr "Ενεργοποίηση ομαλής κύλισης"
+
+#: inc/czr-init.php:3285
+msgid "This option enables a smoother page scroll."
+msgstr "Αυτή η επιλογή επιτρέπει μια ομαλότερη κύλιση της σελίδας."
+
+#: inc/czr-init.php:3307
+msgid "Choose a layout for the header"
+msgstr "Επιλέξτε μια διάταξη για την κεφαλίδα"
+
+#: inc/czr-init.php:3317
+msgid "This setting might impact the side on which the menu is revealed."
+msgstr "Η ρύθμιση αυτή μπορεί να επηρεάσει την πλευρά από την οποία εμφανίζεται το μενού."
+
+#: inc/czr-admin.php:493
+msgid "If you don't find an answer to your issue in the documentation, don't panic! The Customizr theme is used by a growing community of webmasters reporting bugs and making continuous improvements. If you have a problem with the theme, chances are that it's already been reported and fixed in the support forums."
+msgstr "Εάν δεν μπορείτε να βρείτε την απάντηση στο πρόβλημά σας στην τεκμηρίωση, μην πανικοβληθείτε! Το θέμα Customizr χρησιμοποιείται από μια αυξανόμενη κοινότητα διαχειριστών ιστοτόπων που κάνουν αναφορές σφαλμάτων και πραγματοποιούν συνεχείς βελτιώσεις. Αν έχετε κάποιο πρόβλημα με το θέμα, είναι μεγάλες οι πιθανότητες ότι αυτό έχει ήδη αναφερθεί και διορθωθεί στο φόρουμ υποστήριξης."
+
+#: inc/czr-admin.php:494
+msgid "The easiest way to search in the support forums is to use our Google powered search engine on our %s."
+msgstr "Ο ευκολότερος τρόπος για να εξερευνήσετε το φόρουμ υποστήριξης είναι να χρησιμοποιήσετε τη μηχανή αναζήτησης, με τη δύναμη της Google, %s."
+
+#: inc/czr-admin.php:495
+msgid "home page"
+msgstr "αρχική σελίδα"
+
+#: inc/czr-admin.php:527
+msgid "Thank you for using %s!"
+msgstr "Ευχριστούμε που χρησιμποιείτε το %s!"
+
+#: inc/czr-admin.php:528
+msgid "%s %s has more features, is safer and more stable than ever to help you designing an awesome website."
+msgstr "%s %s έχει περισσότερες δυνατότητες, είναι ασφαλέστερο και πιο σταθερό από ποτέ για να σας βοηθήσει να σχεδιάσετε μια φοβερή ιστοσελίδα."
+
+#: inc/czr-admin.php:529
+msgid "check the changelog"
+msgstr "ελέγξτε το αρχείο αλλαγών"
+
+#: inc/czr-admin.php:533
+msgid "The best way to start with %s is to read the %s and visit the %s."
+msgstr "Ο καλύτερος τρόπος για να ξεκινήσετε με το %s είναι να διαβάσετε το %s και να επισκευθείτε το %s."
+
+#: inc/czr-admin.php:583
+msgid "Go Customizr Pro"
+msgstr "Μετάβαση στο Customizr Pro"
+
+#: inc/czr-admin.php:536
+msgid "demo website"
+msgstr "δοκιμαστικός ιστότοπος"
+
+#: inc/czr-admin.php:470
+msgid "Need help with"
+msgstr "Χρειάζεστε βοήθεια με"
+
+#: inc/czr-admin.php:488
+msgid "The best way to start is to read the %s."
+msgstr "Ο καλύτερος τρόπος για να ξεκινήσετε είναι να διαβάσετε το %s."
+
+#: inc/czr-admin.php:475
+msgid "Welcome to"
+msgstr "Καλωσήρθατε στο"
+
+#: inc/czr-admin.php:489 inc/czr-admin.php:535 inc/czr-front.php:1083
+msgid "documentation"
+msgstr "τεκμηρίωση"
+
+#: inc/czr-admin.php:299
+msgid "Good, you've just upgraded to"
+msgstr "Καλώς, έχετε μόλις αναβαθμιστεί σε"
+
+#: inc/czr-admin.php:310
+msgid "We'd like to introduce the new features we've been working on."
+msgstr "Θα θέλαμε να σας παρουσιάσουμε τις νέες δυνατότητες πάνω στις οποίες έχουμε εργαστεί."
+
+#: inc/czr-admin.php:301
+msgid "version"
+msgstr "έκδοση"
+
+#: inc/czr-admin.php:312
+msgid "Read the latest release notes"
+msgstr "Διαβάστε τις τελευταίες σημειώσεις έκδοσης"
+
+#: inc/czr-admin.php:314
+msgid "Visit the demo"
+msgstr "Επισκευθείτε τη demo"
+
+#: inc/czr-admin.php:320
+msgid "I already know what's new thanks !"
+msgstr "Γνωρίζω ήδη τι νέο υπάρχει, ευχαριστώ!"
+
+#: inc/czr-admin.php:321
+msgid "close"
+msgstr "Κλείσιμο"
+
+#: inc/czr-admin.php:1528
+msgid "Link the whole slide"
+msgstr "Σύνδεση ολόκληρου του slide"
+
+#: inc/czr-admin.php:1725
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+#: inc/czr-customize.php:205
+msgid "You haven't created any menu yet. %s or check the %s to learn more about menus."
+msgstr "Δεν έχετε δημιουργήσει ακόμα κάποιο μενού. %s ή ελέγξτε το %s για να μάθετε περισσότερα για τα μενού."
+
+#: inc/czr-customize.php:194
+msgid "Assign menus to locations"
+msgstr "Εκχώρηση μενού σε τοποθεσίες"
+
+#: inc/czr-customize.php:206
+msgid "Create a new menu now"
+msgstr "Δημιουργήστε ένα νέο μενού τώρα"
+
+#: inc/czr-customize.php:207 inc/czr-front.php:4739 inc/czr-front.php:5071
+#: inc/czr-init.php:4274 inc/czr-init.php:4316
+msgid "WordPress documentation"
+msgstr "Τεκμηρίωση του WordPress"
+
+#: inc/czr-admin.php:1515
+msgid "or a custom link (leave this empty if you already selected a page or post above)"
+msgstr "ή μια προσαρμοσμένη σύνδεση (αφήστε αυτό το κενό, αν παραπάνω έχετε ήδη επιλέξει μια σελίδα ή άρθρο)"
+
+#: inc/czr-admin.php:1521
+msgid "Open link in a new page/tab"
+msgstr "Άνοιγμα συνδέσμου σε μια νέα σελίδα/καρτέλα"
+
+#: inc/czr-customize.php:158
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Επιλογή &mdash;"
+
+#. Template Name of the plugin/theme
+msgid "Custom Page Example"
+msgstr "Παράδειγμα Προσαρμοσμένης Σελίδας"
+
+#: inc/czr-front.php:890
+msgid "Add a menu"
+msgstr "Προσθήκη μενού"
+
+#: inc/czr-front.php:307
+msgid "Back Home"
+msgstr "Πίσω στην Αρχική Σελίδα"
+
+#: inc/czr-front.php:9859
+msgid "Back to top"
+msgstr "Πίσω στην κορυφή"
+
+#: inc/czr-front.php:9738
+msgid "The footer has no widgets"
+msgstr "Το υποσέλιδο δεν έχει μικροεφαρμογές"
+
+#: inc/czr-front.php:9183
+msgid "Check the slider doc now &raquo;"
+msgstr "Ελέξτε την τεκμηρίωση του slider τώρα &raquo;"
+
+#: inc/czr-front.php:9181
+msgid "Discover how to replace or remove this demo slider."
+msgstr "Ανακαλύψτε πως να αντικαταστήσετε ή να αφαιρέσετε αυτό το δοκιμαστικό slider."
+
+#: inc/czr-front.php:805 inc/czr-front.php:1060 inc/czr-front.php:1087
+#: inc/czr-front.php:3601 inc/czr-front.php:4743 inc/czr-front.php:5075
+#: inc/czr-front.php:8121 inc/czr-front.php:9113 inc/czr-front.php:9751
+#: inc/czr-init.php:8127
+msgid "dismiss notice"
+msgstr "απόρριψη ειδοποίησης"
+
+#: inc/czr-front.php:8117
+msgid "See the theme documentation."
+msgstr "Προβολή τεκμηρίωσης θέματος."
+
+#: inc/czr-front.php:8116
+msgid "Changing the layout in the Customizr theme"
+msgstr "Αλλαγή της διάταξης στο θέμα Customizr"
+
+#: inc/czr-front.php:8114
+msgid "You can also remove this sidebar by changing the current page layout."
+msgstr "Μπορείτε επίσης να καταργήσετε αυτήν την πλαϊνή στήλη με την αλλαγή της τρέχουσας διάταξης της σελίδας."
+
+#: inc/czr-front.php:8104 inc/czr-front.php:9743
+msgid "Add widgets"
+msgstr "Προσθήκη μικροεφαρμογών"
+
+#: inc/czr-front.php:8093 inc/czr-front.php:9734
+msgid "This block is visible for admin users only."
+msgstr "Αυτή η μονάδα είναι ορατή μόνο για χρήστες με δικαιώματα διαχειριστή."
+
+#: inc/czr-front.php:7547
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Επόμενα άρθρα <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:7527
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Προηγούμενα άρθρα"
+
+#: inc/czr-front.php:7459 inc/czr-front.php:7514
+msgid "Post navigation"
+msgstr "Πλοήγηση δημοσιεύσεων"
+
+#: inc/czr-front.php:7349
+msgid "by"
+msgstr "Από"
+
+#: inc/czr-front.php:7326
+msgid "tagged"
+msgstr "επισημασμένο με ετικέτα"
+
+#: inc/czr-front.php:7276
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: inc/czr-front.php:7256
+msgid "View all posts by %s"
+msgstr "Δείτε όλα τα άρθρα από %s"
+
+#: inc/czr-front.php:7121
+msgid "View all posts in %s"
+msgstr "Προβολή όλων των άρθρων στην %s"
+
+#: inc/czr-front.php:7060
+msgid "(updated on %1$s)"
+msgstr "(ενημερωμένο στις %1$s) "
+
+#: inc/czr-front.php:7057
+msgid "(updated 1 day ago)"
+msgstr "(ενημερωμένο εδώ και 1 μέρα)"
+
+#: inc/czr-front.php:7056
+msgid "(updated %s days ago)"
+msgstr "(ενημερωμένο εδώ και %s μέρες)"
+
+#: inc/czr-front.php:7056
+msgid "(updated today)"
+msgstr "(ενημερωμένο σήμερα)"
+
+#: inc/czr-front.php:7040 inc/czr-front.php:7042
+msgid "by %1$s"
+msgstr "από %1$s"
+
+#: inc/czr-front.php:7040
+msgid "This entry was posted"
+msgstr "Αυτή η εγγραφή δημοσιεύτηκε"
+
+#: inc/czr-front.php:7028
+msgid "and posted on %1$s"
+msgstr "και δημοσιεύτηκε στις %1$s"
+
+#: inc/czr-front.php:7026
+msgid "on %1$s"
+msgstr "στις %1$s"
+
+#: inc/czr-front.php:7024
+msgid "This entry was posted on %1$s"
+msgstr "Αυτή η εγγραφή δημοσιεύτηκε στις %1$s"
+
+#: inc/czr-front.php:7015
+msgid "This entry was tagged %2$s"
+msgstr "Αυτή η εγγραφή επισημένθηκε με ετικέτα %2$s"
+
+#: inc/czr-front.php:7013
+msgid "This entry was posted in %1$s"
+msgstr "Αυτή η εγγραφή δημοσιεύτηκε στο %1$s"
+
+#: inc/czr-front.php:7011
+msgid "This entry was posted in %1$s and tagged %2$s"
+msgstr "Αυτή η εγγραφή δημοσιεύτηκε στις %1$s και επισημάνθημε με ετικέτα %2$s"
+
+#: inc/czr-front.php:6949
+msgid "Return to "
+msgstr "Επιστροφή στην"
+
+#: inc/czr-front.php:6949 inc/czr-front.php:7325
+msgid "in"
+msgstr "στο"
+
+#: inc/czr-front.php:6948
+msgid "Link to full-size image"
+msgstr "Σύνδεσμος προς πλήρες μέγεθος εικόνας"
+
+#: inc/czr-front.php:6948
+msgid "at dimensions"
+msgstr "στις διαστάσεις"
+
+#: inc/czr-front.php:6945
+msgid "Published"
+msgstr "δημοσιευμένο"
+
+#: inc/czr-front.php:6925
+msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
+msgstr "Αυτή η εγγραφή δημοσιεύτηκε στις %1$s<span class=\"by-author\"> από %2$s</span>. "
+
+#: inc/czr-front.php:5000
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Δείτε όλα τα άρθρα του/της %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4659 inc/czr-front.php:4958 inc/czr-front.php:5440
+msgid "Pages:"
+msgstr "Σελίδες:"
+
+#: inc/czr-front.php:4657 inc/czr-front.php:4957 inc/czr-front.php:5438
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Συνέχεια ανάγνωσης <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:4390
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:4390
+msgid "Yearly Archives: %s"
+msgstr "Ετήσια αρχεία: %s"
+
+#: inc/czr-front.php:4389
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:4389
+msgid "Monthly Archives: %s"
+msgstr "Μηνιαία αρχεία: %s"
+
+#: inc/czr-front.php:4388
+msgid "Archives"
+msgstr "Αρχείο"
+
+#: inc/czr-front.php:4388
+msgid "Daily Archives: %s"
+msgstr "Ημερήσια αρχεία: %s"
+
+#: inc/czr-front.php:4348 inc/czr-front.php:4996
+msgid "About %s"
+msgstr "Περί %s"
+
+#: inc/czr-customize.php:1844 inc/czr-front.php:4314
+msgid "No"
+msgstr "Όχι"
+
+#: inc/czr-front.php:4300
+msgid "Ooops, page not found"
+msgstr "Ουουουπς, η σελίδα δεν βρέθηκε"
+
+#: inc/czr-front.php:4162
+msgid "Permalink to %s"
+msgstr "Μόνιμος σύνδεσμος προς %s"
+
+#: inc/czr-front.php:4158 inc/czr-front.php:4163
+msgid "{no title} Read the post &raquo;"
+msgstr "{χωρίς τίτλο} Διαβάστε το άρθρο &raquo;"
+
+#: inc/czr-front.php:3945
+msgid "Missing Attachment"
+msgstr "Το συνημμένο λείπει"
+
+#: inc/czr-front.php:3733
+msgid "Featured page description text : use the page excerpt or set your own custom text in the Customizr screen."
+msgstr "Περιγραφή κειμένου προτεινόμενης σελίδας: χρησιμοποιήστε το απόσπασμα της σελίδας ή να ορίσετε το δικό σας προσαρμοσμένο κείμενο στην οθόνη του Customizr."
+
+#: inc/czr-front.php:3729
+msgid "Featured page"
+msgstr "Προτεινόμενη σελίδα"
+
+#: inc/czr-front.php:3721
+msgid "Customizer screen"
+msgstr "Οθόνη προσαρμογής"
+
+#: inc/czr-front.php:3401
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "Σχόλιο"
+msgstr[1] "Σχόλια"
+
+#: inc/czr-front.php:3382
+msgid "Comment(s) on"
+msgstr "Σχόλιο(α) σε"
+
+#: inc/czr-front.php:3359
+msgid "Leave a comment"
+msgstr "Γράψτε ένα σχόλιο"
+
+#: inc/czr-front.php:3324
+msgid "Comments are closed."
+msgstr "Τα σχόλια είναι απενεργοποιημένα."
+
+#: inc/czr-front.php:3292
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Πρόσφατα Σχόλια <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/czr-front.php:3284
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Παλαιότερα Σχόλια"
+
+#: inc/czr-front.php:3278
+msgid "Comment navigation"
+msgstr "Πλοήγηση σχολίων"
+
+#: inc/czr-front.php:3243
+msgid "Your comment is awaiting moderation."
+msgstr "Το σχόλιό σας περιμένει έγκριση"
+
+#. translators: 1: date, 2: time
+#: inc/czr-front.php:3238
+msgid "%1$s at %2$s"
+msgstr "%1$s, %2$s"
+
+#: inc/czr-front.php:3231
+msgid "Post author"
+msgstr "Συντάκτης άρθρου"
+
+#: inc/czr-front.php:3218
+msgid "Reply"
+msgstr "Σχολιάστε"
+
+#: inc/czr-front.php:3190
+msgid "(Edit)"
+msgstr "(Επεξεργασία)"
+
+#: inc/czr-front.php:3189
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: inc/czr-front.php:3129
+msgid "thoughts on"
+msgstr "σκέψεις για"
+
+#: inc/czr-front.php:3127
+msgid "One thought on"
+msgstr "Μια σκέψη για"
+
+#: inc/czr-front.php:2825
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: inc/czr-front.php:2821
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/czr-front.php:2670
+msgid "Merge"
+msgstr "Συγχώνευση"
+
+#: inc/czr-front.php:2666
+msgid "Split"
+msgstr "Διαχωρισμός"
+
+#: inc/czr-front.php:2595 inc/czr-front.php:2597
+msgid "Page %d"
+msgstr "Σελίδα %d"
+
+#: inc/czr-front.php:2589
+msgid "404 Not Found"
+msgstr "404 Δεν Βρέθηκε"
+
+#: inc/czr-front.php:2582 inc/czr-front.php:2584
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Αποτελέσματα αναζήτησης για &quot;%1$s&quot;"
+
+#: inc/czr-front.php:2554 inc/czr-front.php:2556
+msgid "W"
+msgstr "W"
+
+#: inc/czr-front.php:2554 inc/czr-front.php:2556
+msgid "Week %1$s"
+msgstr "Εβδομάδα %1$s"
+
+#: inc/czr-front.php:2545 inc/czr-front.php:2547 inc/czr-front.php:2825
+msgid "d"
+msgstr "d"
+
+#: inc/czr-front.php:2542 inc/czr-front.php:2563 inc/czr-front.php:2565
+#: inc/czr-front.php:2821
+msgid "F"
+msgstr "F"
+
+#: inc/czr-front.php:2541 inc/czr-front.php:2551 inc/czr-front.php:2560
+#: inc/czr-front.php:2571 inc/czr-front.php:2573 inc/czr-front.php:2817
+msgid "Y"
+msgstr "Y"
+
+#: inc/czr-front.php:2525
+msgid "g a"
+msgstr "g a"
+
+#: inc/czr-front.php:2522
+msgid "i"
+msgstr "i"
+
+#: inc/czr-front.php:2522
+msgid "Minute %1$s"
+msgstr "Λεπτά %1$s"
+
+#: inc/czr-front.php:2519
+msgid "g:i a"
+msgstr "H:i"
+
+#: inc/czr-front.php:2024
+msgid "Browse:"
+msgstr "Πλοήγηση:"
+
+#: inc/czr-front.php:1465 inc/czr-front.php:2015 inc/czr-front.php:2027
+msgid "Home"
+msgstr "Αρχική Σελίδα "
+
+#: inc/czr-front.php:1864
+msgid "Next &rarr;"
+msgstr "Επόμενη →"
+
+#: inc/czr-front.php:1863
+msgid "&larr; Previous"
+msgstr "← Προηγούμενη"
+
+#: inc/czr-init.php:4240
+msgid "Set the post grid thumbnail's max height in pixels"
+msgstr "Ορίστε το μέγιστο ύψος της μικρογραφίας μετά πλέγματος σε εικονοστοιχεία"
+
+#: inc/czr-init.php:4239
+msgid "Thumbnails max height for the grid layout"
+msgstr "Μέγιστο ύψος μικρογραφίας για την διάταξη πλέγματος"
+
+#: inc/czr-init.php:4228
+msgid "Max. length for post titles (in words)"
+msgstr "Μέγιστη μήκος για τον τίτλο των άθρων (σε λέξεις)"
+
+#: inc/czr-init.php:4218
+msgid "Display post format icons in the background"
+msgstr "Εμφάνιση εικονιδίων της μοφής των άθρων στο παρασκήνιο"
+
+#: inc/czr-init.php:4209
+msgid "Apply a colored bottom border to each grid items"
+msgstr "Εφαρμογή ενός έγχρωμου κάτω περθωρίου σε κάθε στοιχείο του πλέγματος"
+
+#: inc/czr-init.php:4200
+msgid "Apply a shadow to each grid items"
+msgstr " Εφαρμογή σκιάς σε κάθε στοιχείο του πλέγματος "
+
+#: inc/czr-init.php:4195
+msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
+msgstr "Τα αποεπιλεγμένα πλαίσια εμφανίζονται με την εναλλακτική διάταξη μικρογραφιών."
+
+#: inc/czr-init.php:4191
+msgid "Apply the grid layout to Search results"
+msgstr "Εφαρμογή της διάταξης πλέγματος στα αποτελέσματα της Αναζήτησης"
+
+#: inc/czr-init.php:4183
+msgid "Apply the grid layout to Archives (archives, categories, author posts)"
+msgstr "Εφαρμογή της διάταξης πλέγματος στην Αρχειοθήκη (αρχειοθήκη, κατηγορίες, συγγραφείς άθρων)"
+
+#: inc/czr-init.php:4175
+msgid "Apply the grid layout to Home/Blog"
+msgstr "Εφαργμογή της διάταξης πλέγματος στην Αρχική σείδα/Ιστολόγιο"
+
+#: inc/czr-init.php:4167
+msgid "Expand the last sticky post (for home and blog page only)"
+msgstr "Επέκταση του τελευταίου επισημασμένου άθρου (για αρχική σελίδα και ιστολόγιο μόνο)"
+
+#: inc/czr-init.php:4162
+msgid "Note : columns are limited to 3 for single sidebar layouts and to 2 for double sidebar layouts."
+msgstr "Σημείωση: Οι στήλες περιορίζονται σε 3 για διάταξη μονής πλευρικής στήλης και έως 2 για τη διάταξη διπλής πλευρικής στήλης."
+
+#: inc/czr-init.php:4159
+msgid "4"
+msgstr "4"
+
+#: inc/czr-init.php:4158
+msgid "3"
+msgstr "3"
+
+#: inc/czr-init.php:4157
+msgid "2"
+msgstr "2"
+
+#: inc/czr-init.php:4156
+msgid "1"
+msgstr "1"
+
+#: inc/czr-init.php:4152
+msgid "Number of columns per row"
+msgstr "Αριθμός στηλών ανά γραμμή"
+
+#: inc/czr-init.php:4147
+msgid "When you select the grid Layout, the post content is limited to the excerpt."
+msgstr "Όταν επιλέγετε τη διάταξη πλέγματος, το περιεχόμενο των άρθρων περιορίζεται στο απόσπασμα."
+
+#: inc/czr-init.php:4144
+msgid "Grid layout"
+msgstr "Διάταξη πλέγματος"
+
+#: inc/czr-init.php:4143
+msgid "Alternate thumbnails layout"
+msgstr "Εναλλακτική διάταξης μικρογραφιών"
+
+#: inc/czr-init.php:4139
+msgid "Select a Layout"
+msgstr "Επιλέξτε μια Διάταξη"
+
+#: inc/czr-init.php:4138
+msgid "Post List Design"
+msgstr "Σχεδίαση Λίστας Άθρων"
+
+#: inc/czr-init.php:3855
+msgid "You might want to regenerate your thumbnails."
+msgstr "Ίσως να θέλετε να αναδημιουργηθούν οι μικρογραφίες σας."
+
+#: inc/czr-init.php:3854
+msgid "If this option is checked, your images will be resized with your custom height on upload. This is better for your overall loading performance."
+msgstr "Αν αυτή η επιλογή είναι ενεργοποιημένη, το μέγεθος των εικόνων σας θα αλλάζει κατά το ανέβασμα, ανάλογα με το ύψος που έχετε ορίσει. Αυτό είναι καλύτερο για τη συνολική απόδοση του ιστοτόπου σας."
+
+#: inc/czr-init.php:3848
+msgid "Replace the default image slider's height"
+msgstr "Αντικαταστήστε το προεπιλεγμένο ύψος της εικόνας του slider"
+
+#: inc/czr-init.php:3840
+msgid "Apply this height to all sliders"
+msgstr "Εφαρμόστε αυτήν ύψος για όλα τα sliders"
+
+#: inc/czr-init.php:3830
+msgid "Set slider's height in pixels"
+msgstr "Ορισμός του ύψους του slider σε pixels"
+
+#: inc/czr-init.php:4979
+msgid "Check this option to delay the loading of non visible images. Images below the viewport will be loaded dynamically on scroll. This can boost performances by reducing the weight of long web pages with images."
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να καθυστερήσει τη φόρτωση των μη ορατών εικόνων. Οι εικόνες που βρίσκονται κάτω από το ορατό παράθυρο θα φορτωθούν δυναμικά κατά την κύλιση. Αυτό μπορεί να αυξήσει τις επιδόσεις με τη μείωση του βάρους των μεγάλων ιστοσελίδων με εικόνες."
+
+#: inc/czr-init.php:4974
+msgid "Load images on scroll"
+msgstr "Φόρτωση εικόνων κατά την κύλιση"
+
+#: inc/czr-init.php:4862
+msgid "Will be hidden if empty"
+msgstr "Θα είναι αόρατο αν το αφήσετε κενό"
+
+#: inc/czr-init.php:4856
+msgid "Social link title in sidebars"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στις πλευρικές στήλες"
+
+#: inc/czr-init.php:4903
+msgid "Display a back to top arrow on scroll"
+msgstr "Προβολή βέλους προς την κορυφή της σελίδας κατά την κύλιση"
+
+#: inc/czr-init.php:4809
+msgid "Display posts navigation in post lists (archives, blog page, categories, search results ..)"
+msgstr "Προβολή στοιχείων πλοήγησης στις λίστες των άθρων (αρχειοθήκες, σελίδα blog, κατηγορίες, αποτελέσματα αναζήτησης ..)"
+
+#: inc/czr-init.php:4800
+msgid "Display posts navigation in single posts"
+msgstr "Εμφάνιση στοιχείων πλοήγησης στην προβολή ενός άρθρου"
+
+#: inc/czr-init.php:4791
+msgid "Display navigation in pages"
+msgstr "Προβολή στοιχείων πλοήγησης στις σελίδες"
+
+#: inc/czr-init.php:4782
+msgid "When this option is checked, the posts navigation is displayed below the posts"
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, τα στοιχεία πλοήγησης εμφανίζονται κάτω από τα άρθρα."
+
+#: inc/czr-init.php:4779
+msgid "Display posts navigation"
+msgstr "Προβολή στοιχείων πλοήγησης των άρθρων"
+
+#: inc/czr-init.php:4764
+msgid "By default, WordPress displays the past comments, even if comments are disabled in posts or pages. Unchecking this option allows you to not display this comment history."
+msgstr "Από προεπιλογή, το WordPress εμφανίζει τα τελευταία σχόλια, ακόμη και αν τα σχόλια έχουν απενεργοποιηθεί στα άρθρα θέσεις ή στις σελίδες. Η κατάργηση της επιλογής αυτής της επιλογής σας δίνει τη δυνατότητα να μην εμφανίζεται αυτό το ιστορικό του σχολιασμού."
+
+#: inc/czr-init.php:4760
+msgid "Display the comment list"
+msgstr "Προβολή της λίστας σχολίων"
+
+#: inc/czr-init.php:4754
+msgid "discussion settings page."
+msgstr "σελίδα ρυθμίσεων για τις συζητήσεις."
+
+#: inc/czr-init.php:4752
+msgid "You can also change other comments settings in the"
+msgstr "Μπορείτε επίσης να αλλάξετε κι άλλες ρυθμίσεις για τον σχολιασμό στο"
+
+#: inc/czr-init.php:4751
+msgid "post screen"
+msgstr "οθόνη άρθρου"
+
+#: inc/czr-init.php:4749
+msgid "If checked, this option enables comments on all types of single posts. You can disable comments for a single post in quick edit mode from the"
+msgstr "Εάν ενεργοποιηθεί, αυτή η επιλογή επιτρέπει σχόλια για όλους τους τύπους των μεμονωμένων άρθρων. Μπορείτε να απενεργοποιήσετε τα σχόλια για μια ένα άρθρο στη λειτουργία γρήγορης επεξεργασίας από το"
+
+#: inc/czr-init.php:4744
+msgid "Enable comments on posts"
+msgstr "Ενεργοποίηση σχολίων στα άρθρα"
+
+#: inc/czr-init.php:4738
+msgid "the discussion settings page."
+msgstr "η σελίδα ρυθμίσεων για τις συζητήσεις. "
+
+#: inc/czr-init.php:4736
+msgid "You can also change other comments settings in :"
+msgstr "Μπορείτε επίσης να αλλάξετε κι άλλες ρυθμίσεις για τον σχολιασμό στο:"
+
+#: inc/czr-init.php:4735
+msgid "If checked, this option will enable comments on pages. You can disable comments for a single page in the quick edit mode of the page list screen."
+msgstr "Αν ενεργοποιηθεί, η επιλογή αυτή θα δώσει τη δυνατότητα σχολιασμού στις σελίδες. Μπορείτε να απενεργοποιήσετε τα σχόλια για μία σελίδα σστη λειτουργία γρήγορης επεξεργασίας από την οθόνη με τη λίστα των σελίδων."
+
+#: inc/czr-init.php:4729
+msgid "Other comments settings"
+msgstr "Άλλες επιλογές σχολιασμού"
+
+#: inc/czr-init.php:4711
+msgid "Custom"
+msgstr "Προσαρμοσμένος"
+
+#: inc/czr-init.php:4710
+msgid "Skin color"
+msgstr "Χρώμα θέματος"
+
+#: inc/czr-init.php:4706 inc/czr-init.php:4718
+msgid "Comments bubble color"
+msgstr "Χρώμα φούσκας σχολίων"
+
+#: inc/czr-init.php:4698
+msgid "Large bubbles"
+msgstr "Μεγάλες φούσκες"
+
+#: inc/czr-init.php:4697
+msgid "Small bubbles"
+msgstr "Μικρές φούσκες"
+
+#: inc/czr-init.php:4693
+msgid "Comments bubble shape"
+msgstr "Σχήμα φούσκας σχολίων"
+
+#: inc/czr-init.php:4684
+msgid "Display the number of comments in a bubble next to the post title"
+msgstr "Εμφάνιση του αριθμού των σχολίων σε μια φυσαλίδα δίπλα στον τίτλο του άρθρου"
+
+#: inc/czr-init.php:4682
+msgid "Comments bubbles"
+msgstr "Φούσκες σχολίων"
+
+#: inc/czr-init.php:4665
+msgid "Apply a drop cap to the first paragraph of your pages"
+msgstr "Εφαρμογή ενός αρχιγράμματος στην πρώτη παράγραφο των σελίδων σας"
+
+#: inc/czr-init.php:4663
+msgid "Enable drop caps in pages"
+msgstr "Ενεργοποίηση αρχιγραμμάτων στις σελίδες"
+
+#: inc/czr-init.php:4656
+msgid "Apply a drop cap to the first paragraph of your single posts content"
+msgstr "Εφαρμογή ενός αρχιγράμματος στην πρώτη παράγραφο του περιεχομένων των μεμονωμένων άρθρων σας"
+
+#: inc/czr-init.php:4654
+msgid "Enable drop caps in posts"
+msgstr "Ενεργοποίηση αρχιγραμμάτων στα άρθρα"
+
+#: inc/czr-init.php:4648
+msgid "Simple black"
+msgstr "Απλό μαύρο"
+
+#: inc/czr-init.php:4647
+msgid "Skin color with shadow"
+msgstr "Χρώμα θέματςο με σκιά"
+
+#: inc/czr-init.php:4643
+msgid "Drop cap style"
+msgstr "Στυλ αρχιγραμμάτων"
+
+#: inc/czr-init.php:4633
+msgid "(number of words)"
+msgstr "(αριθμός των λέξεων)"
+
+#: inc/czr-init.php:4632
+msgid "Apply a drop cap when the paragraph includes at least the following number of words :"
+msgstr "Εφαρμογή αρχιγράμματος, όταν η παράγραφο περιλαμβάνει τουλάχιστον τον ακόλουθο αριθμό των λέξεων:"
+
+#: inc/czr-init.php:4623
+msgid "Apply a drop cap to the first paragraph of your post / page content"
+msgstr "Εφαρμογή αρχιγράμματος στην πρώτη παράγραφο του περιεχομένου του άρθρου / σελίδας σας"
+
+#: inc/czr-init.php:4621
+msgid "Enable drop caps"
+msgstr "Ενεργοποίηση αρχιγραμμάτων"
+
+#: inc/czr-init.php:4620
+msgid "Drop caps"
+msgstr "Αρχιγράμματα"
+
+#: inc/czr-init.php:4602
+msgid "Apply nice on hover expansion effect to the galleries images"
+msgstr "Εφαρμογή εφέ ομαλής επέκτασης όταν περνάει ο δείκτης του ποντικού πάνω από τις εικόνες μιας συλλογής"
+
+#: inc/czr-init.php:4600
+msgid "Enable Customizr effects on hover"
+msgstr "Ενεργοποίηση των εφέ του Customizr κατά το πέρασμα του ποντικού"
+
+#: inc/czr-init.php:4593
+msgid "Apply lightbox effects to galleries images"
+msgstr "Εφαρμογή εφέ lightbox στις συλλογές εικόνων"
+
+#: inc/czr-init.php:4591
+msgid "Enable Lightbox effect in galleries"
+msgstr "Ενεργοποίηση εφέ Lightbox στις συλλογές"
+
+#: inc/czr-init.php:4584
+msgid "Apply Customizr effects to galleries images"
+msgstr "Εφαρμογή των εφέ του Customizr στις συλλογές των εικόνων"
+
+#: inc/czr-init.php:4582
+msgid "Enable Customizr galleries"
+msgstr "Ενεργοποίηση συλλογών του Customizr"
+
+#: inc/czr-init.php:4268 inc/czr-init.php:4310
+msgid "After the title"
+msgstr "Μετά τον τίτλο"
+
+#: inc/czr-init.php:4267 inc/czr-init.php:4309
+msgid "Before the title boxed"
+msgstr "Πριν από το πλαίσιο του τίτλου"
+
+#: inc/czr-init.php:4266 inc/czr-init.php:4308
+msgid "Before the title in full width"
+msgstr "Πριν από τον τίτλο στο πλήρες μήκος"
+
+#: inc/czr-init.php:4265 inc/czr-init.php:4307
+msgid "Don't display"
+msgstr "Να μην προβάλλεται"
+
+#: inc/czr-init.php:4261 inc/czr-init.php:4303
+msgid "Post thumbnail position"
+msgstr "Θέση μικρογραφίας άρθρου"
+
+#: inc/czr-init.php:4127
+msgid "Search results page titles"
+msgstr "Τίτλοι σελίδας των αποτελεσμάτων της αναζήτησης"
+
+#: inc/czr-front.php:4315 inc/czr-init.php:4126
+msgid "Search Results for :"
+msgstr "Αποτελέσματα Αναζήτησης για:"
+
+#: inc/czr-init.php:4118
+msgid "Author pages titles"
+msgstr "Τίτλοι σελίδων συντακτών"
+
+#: inc/czr-init.php:4109
+msgid "Tag pages titles"
+msgstr "Τίτλοι σελίδων ετικετών"
+
+#: inc/czr-init.php:4100
+msgid "Category pages titles"
+msgstr "Τίτλοι σελίδων κατηγοριών"
+
+#: inc/czr-init.php:4099
+msgid "Archive titles"
+msgstr "Τίτλοι σελίδων αρχειοθηκών"
+
+#: inc/czr-init.php:4090
+msgid "Alternate thumbnail/content"
+msgstr "Εναλλακτική μικρογραφία/περιεχόμενο"
+
+#: inc/czr-init.php:4083 inc/czr-init.php:4915
+msgid "Left"
+msgstr "Αριστερά"
+
+#: inc/czr-init.php:4082
+msgid "Bottom"
+msgstr "Κάτω"
+
+#: inc/czr-init.php:4081 inc/czr-init.php:4916
+msgid "Right"
+msgstr "Δεξιά"
+
+#: inc/czr-init.php:4080
+msgid "Top"
+msgstr "Πάνω"
+
+#: inc/czr-init.php:4076
+msgid "Thumbnails position"
+msgstr "Θέση μικρογραφιών"
+
+#: inc/czr-init.php:4064 inc/czr-init.php:4282 inc/czr-init.php:4324
+msgid "Set the thumbnail's max height in pixels"
+msgstr "Ορισμός του μέγιστου ύψους της μικρογραφίας σε pixels"
+
+#: inc/czr-init.php:4056
+msgid "Rectangular with unblur effect on hover"
+msgstr "Ορθογώνιο με εφέ ξεθολώματος κατά το πέρασμα του ποντικιού"
+
+#: inc/czr-init.php:4055
+msgid "Rectangular with blur effect on hover"
+msgstr "Ορθογώνιο με εφέ θολώματος κατά το πέρασμα του ποντικιού "
+
+#: inc/czr-init.php:4054
+msgid "Rectangular with no effect"
+msgstr "Ορθογώνιο δίχως κάποιο εφέ"
+
+#: inc/czr-init.php:4053
+msgid "Squared, no expansion"
+msgstr "Τετράγωνο, χωρίς επέκταση"
+
+#: inc/czr-init.php:4052
+msgid "Squared, expand on hover"
+msgstr "Τετράγωνο, με επέκταση κατά το πέρασμα του ποντικιού"
+
+#: inc/czr-init.php:4051
+msgid "Rounded, no expansion"
+msgstr "Στρογγυλεμένη, χωρίς επέκταση"
+
+#: inc/czr-init.php:4050
+msgid "Rounded, expand on hover"
+msgstr "Στρογγυλεμένη, με επέκταση κατά το πέρασμα του ποντικιού "
+
+#: inc/czr-init.php:4046
+msgid "Thumbnails shape"
+msgstr "Σχήμα μικρογραφιών"
+
+#: inc/czr-init.php:4045
+msgid "Thumbnails options for the alternate thumbnails layout"
+msgstr "Επιλογές για την εναλλακτική διάταξη των μικρογραφιών"
+
+#: inc/czr-init.php:4027
+msgid "Upload a default thumbnail"
+msgstr "Ανεβάστε μια προεπιλεγμένη μικρογραφία"
+
+#: inc/czr-init.php:4019
+msgid "If no featured image is set, use the last image attached to this post."
+msgstr "Αν δεν έχει οριστεί προεπιλεγμένη εικόνα, να χρησιμποιείται η τελευταία εικόνα που είναι συνημμένη στο άρθρο."
+
+#: inc/czr-init.php:4014
+msgid "Note : thumbnails are always displayed when the grid layout is choosen."
+msgstr "Σημείωση: οι μικρογραφίες εμφανίζονται πάντα όταν έχει επιλεγεί η διάταξη πλέγματος."
+
+#: inc/czr-init.php:4014
+msgid "When this option is checked, the post thumbnails are displayed in all post lists : blog, archives, author page, search pages, ..."
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, οι μικρογραφίες του άρθρου εμφανίζονται σε όλες τις λίστες των άρθρων: blog, αρχειοθήκες, σελίδες συντακτών, σελίδες αναζήτησης, ..."
+
+#: inc/czr-init.php:4010
+msgid "Display the post thumbnails"
+msgstr "Προβολή των μικρογραφιών του άρθρου"
+
+#: inc/czr-init.php:4009
+msgid "Thumbnails options"
+msgstr "Επιλογές μικρογραφιών"
+
+#: inc/czr-init.php:3999
+msgid "Set the excerpt length (in number of words) "
+msgstr "Ρύθμιση του μήκους του αποσπάσματος (σε αριθμό λέξεων)"
+
+#: inc/czr-init.php:4565
+msgid "Info (blue)"
+msgstr "Πληροφορίες (μπλε)"
+
+#: inc/czr-init.php:4564
+msgid "Important (red)"
+msgstr "Σημαντικό (κόκκινο)"
+
+#: inc/czr-init.php:4563
+msgid "Alert (orange)"
+msgstr "Συναγερμός (πορτοκαλί)"
+
+#: inc/czr-init.php:4562
+msgid "Success (green)"
+msgstr "Επιτυχία (πράσινο)"
+
+#: inc/czr-init.php:4561
+msgid "Default (grey)"
+msgstr "Προεπιλεγμένο (γκρι)"
+
+#: inc/czr-init.php:4557
+msgid "Update notice style"
+msgstr "Στυλ ειδοποίησης ενημέρωσης"
+
+#: inc/czr-init.php:4548
+msgid "Update notice text"
+msgstr "Κείμενο ειδοποίησης ενημέρωσης"
+
+#: inc/czr-init.php:4546
+msgid "Recently updated !"
+msgstr "Ενημερώθηκε πρόσφατα!"
+
+#: inc/czr-init.php:4543
+msgid "Set a maximum interval (in days) during which the last update notice will be displayed."
+msgstr "Ορίστε το μέγιστο χρονικό διάστημα (σε ημέρες) κατά το οποίο θα εμφανίζεται η τελευταία ειδοποίηση ενημέρωσης."
+
+#: inc/czr-init.php:4537
+msgid "Display the notice if the last update is less (strictly) than n days old"
+msgstr "Εμφάνιση της ειδοποίησης, εφόσον η τελευταία ενημέρωση είναι (αυστηρά)  παλαιότερη από n ημέρες."
+
+#: inc/czr-init.php:4531
+msgid "If this option is checked, a customizable recent update notice is displayed next to the post title."
+msgstr "Αν αυτή η επιλογή είναι ενεργοποιημένη, μια προσαρμόσιμη ανακοίνωση πρόσφατης ενημέρωσης εμφανίζεται δίπλα στον τίτλο του άρθρου."
+
+#: inc/czr-init.php:4527
+msgid "Display a recent update notice"
+msgstr "Εμφάνιση μια ανακοίνωσης πρόσφατης ενημέρωσης"
+
+#: inc/czr-init.php:4526
+msgid "Recent update notice after post titles"
+msgstr "Ανακοίνωση πρόσφατης ενημέρωσης μετά τον τίτλο του άθρου"
+
+#: inc/czr-init.php:4518
+msgid "Date of the last update"
+msgstr "Ημερομηνία τελευταίας ενημέρωσης"
+
+#: inc/czr-init.php:4517
+msgid "No. of days since last update"
+msgstr "Αρ ημερών από την τελευταία ενημέρωση"
+
+#: inc/czr-init.php:4513
+msgid "Select the last update format"
+msgstr "Επιλέξτε την μορφή της τελευταίας ενημέρωσης"
+
+#: inc/czr-init.php:4507
+msgid "If this option is checked, additional date informations about the the last post update can be displayed (nothing will show up if the post has never been updated)."
+msgstr "Αν αυτή η επιλογή είναι ενεργοποιημένη, επιπλέον πληροφορίες ημερομηνίας για την ενημέρωση του τελευταίου άρθρου μπορεί να εμφανίζονται (δεν θα εμφανιστούν αν το άρθρο δεν έχει ενημερωθεί)."
+
+#: inc/czr-init.php:4503
+msgid "Display the update date"
+msgstr "Εμφάνιση της ημερομηνίες ενημέρωσης"
+
+#: inc/czr-init.php:4495
+msgid "Display the author"
+msgstr "Εμφάνιση του συντάκτη"
+
+#: inc/czr-init.php:4487
+msgid "Display the publication date"
+msgstr "Εμφάνιση της ημερομηνίας δημοσίευσης"
+
+#: inc/czr-init.php:4478
+msgid "Display non-hierarchical taxonomies (like tags)"
+msgstr "Προβολή μη ιεραρχικών ταξινομήσεων (όπως οι ετικέτες)"
+
+#: inc/czr-init.php:4469
+msgid "Display hierarchical taxonomies (like categories)"
+msgstr "Προβολή ιεραρχικών ταξινομήσεων (όπως οι κατηγορίες)"
+
+#: inc/czr-init.php:4468
+msgid "Select the metas to display"
+msgstr "Επιλογή μεταστοιχείων για προβολή"
+
+#: inc/czr-init.php:4458
+msgid "Display posts metas in post lists (archives, blog page)"
+msgstr "Προβολή μεταστοιχείων στις λίστες άθρων (αρχειοθήκες, σελίδα blog)"
+
+#: inc/czr-init.php:4449
+msgid "Display posts metas for single posts"
+msgstr "Προβολή μεταστοιχείων για μεμονωμένα άρθρα"
+
+#: inc/czr-init.php:4440
+msgid "Display posts metas on home"
+msgstr "Προβολή μεταστοιχείων των άρθρων στην αρχική σελίδα"
+
+#: inc/czr-init.php:4439 inc/czr-init.php:4790
+msgid "Select the contexts"
+msgstr "Επιλογή των περιεχομένων"
+
+#: inc/czr-init.php:4432
+msgid "Text only"
+msgstr "Κείμενο μόνο"
+
+#: inc/czr-init.php:4431
+msgid "Buttons and text"
+msgstr "Κουμπιά και κείμενο"
+
+#: inc/czr-init.php:4427
+msgid "Select a design for the post metas"
+msgstr "Επιλογή μιας σχεδίασης για τα μεταστοιχεία του άρθρου"
+
+#: inc/czr-init.php:4426
+msgid "Metas Design"
+msgstr "Σχεδίαση Μεταστοιχείων"
+
+#: inc/czr-init.php:4419
+msgid "When this option is checked, the post metas (like taxonomies, date and author) are displayed below the post titles."
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, τα μεταδεδομένα των άρθρων (όπως οι ταξινομήσεις, η ημ/νία και ο συντάκτης) θα εμφανίζονται κάτω από τους τίτλους των άρθρων."
+
+#: inc/czr-init.php:4416
+msgid "Display posts metas"
+msgstr "Προβολή μεταδεδομένων άρθρων"
+
+#: inc/czr-init.php:3123
+msgid "WP footer widgets : display icons next to titles"
+msgstr "Μικροεφαρμογές υποσέλιδου WP: προβολή εικονιδίων δίπλα στους τίτλους"
+
+#: inc/czr-init.php:3114
+msgid "WP sidebar widgets : display icons next to titles"
+msgstr " Μικροεφαρμογές πλευρικής στήλης WP: προβολή εικονιδίων δίπλα στους τίτλους "
+
+#: inc/czr-init.php:3107
+msgid "When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, ένα εικονίδιο του τύπου του άρθρου θα εμφανίζεται στο αριστερό μέρος του τίτλου του κάθε άθρου στη σελίδα της αρχειοθήκης. Μια σελίδα αρχειοθήκης μπορεί να έχει: κατηγορίες, ετικέτες, συντάκτες, ημ/νίες, ταξινομήσεις του χρήστη, αποτελέσματα αναζήτησης."
+
+#: inc/czr-init.php:3104
+msgid "Display an icon next to each post title in an archive page"
+msgstr "Προβολή ενός εικονιδία δίπλα από τον τίτλου του κάθε άρθρου στις σελίδες αρχειοθήκης"
+
+#: inc/czr-init.php:3097
+msgid "When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results."
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, ένα εικονίδιο του τύπου θα εμφανίζεται στην επικεφαλίδα του κάθε τύπου αρχειοθήκης, στα αριστερά του τίτλου της. Μια σελίδα αρχειοθήκης μπορεί να έχει: κατηγορίες, ετικέτες, συντάκτες, ημ/νίες, ταξινομήσεις του χρήστη, αποτελέσματα αναζήτησης. "
+
+#: inc/czr-init.php:3094
+msgid "Display an icon next to the archive title"
+msgstr "Προβολή ενός εικονιδίου δίπλα από τον τίτλο της αρχειοθήκης"
+
+#: inc/czr-init.php:3085
+msgid "Display a post icon next to the single post title"
+msgstr "Προβολή ενός εικονιδίου άθρου δίπλα στον τίτλο του κάθε άθρου"
+
+#: inc/czr-init.php:3076
+msgid "Display a page icon next to the page title"
+msgstr "Προβολή εικονιδίου σελίδας δίπλα στον τίτλο της σελίδας"
+
+#: inc/czr-init.php:3070
+msgid "When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets."
+msgstr "Όταν αυτή η επιλογή είναι ενεργοποιημένη, ένα συμφραζόμενο εικονίδιο εμφανίζεται δίπλα από τους τίτλους των σελίδων, άρθρων, αρχειοθηκών και προεπιλεγμένων μικροεφαρμογών του WP."
+
+#: inc/czr-init.php:3066
+msgid "Display icons next to titles"
+msgstr "Προβολή εικονιδίων δίπλα στους τίτλους"
+
+#: inc/czr-init.php:4381
+msgid "Display the breadcrumb in posts lists : blog page, archives, search results..."
+msgstr "Προβολή breadcrumb στις λίστες των άρθρων: σελίδα ιστολογίου, αρχειοθήκη, αποτελέσματα αναζήτησης..."
+
+#: inc/czr-init.php:4372
+msgid "Display the breadcrumb in single posts"
+msgstr "Προβολή breadcrumb σταμεμονωμένα άθρα"
+
+#: inc/czr-init.php:4363
+msgid "Display the breadcrumb in pages"
+msgstr "Προβολή breadcrumb στις σελίδες"
+
+#: inc/czr-init.php:4355
+msgid "Display the breadcrumb on home page"
+msgstr "Προβολή breadcrumb στην αρχική σελίδα"
+
+#: inc/czr-init.php:3046
+msgid "Open external links in a new tab"
+msgstr "Άνοιγμα εξωτερικών συνδέσων σε νέα καρτέλα"
+
+#: inc/czr-init.php:3039 inc/czr-init.php:3050
+msgid "This will be applied to the links included in post or page content only."
+msgstr "Αυτό θα εφαρμοστεί για συνδέσμους που περιλαμβάνονται σε άρθα και σελίδες μόνο."
+
+#: inc/czr-init.php:3035
+msgid "Display an icon next to external links"
+msgstr "Προβολή ενός εικονιδίου δίπλα στους εξωτερικούς συνδέσμους"
+
+#: inc/czr-init.php:3025
+msgid "Fade effect on link hover"
+msgstr "Εφέ fade κατά το πέρασμα πάνω από συνδέσμους"
+
+#: inc/czr-init.php:3579
+msgid "Hover move effect for the sub menu items"
+msgstr "Εφέ κίνησης των στοιχείων των υπομενού κατά το πέρασμα από πάνω"
+
+#: inc/czr-init.php:3570
+msgid "Reveal the sub-menus blocks with a fade effect"
+msgstr "Εμφάνιση των μπλοκ των υπομενού με εφέ fade"
+
+#: inc/czr-init.php:3522 inc/czr-init.php:3543
+msgid "Menu on the right"
+msgstr "Μενού στα δεξιά"
+
+#: inc/czr-init.php:3520 inc/czr-init.php:3541
+msgid "Menu on the left"
+msgstr "Μενού στα αριστερά"
+
+#: inc/czr-init.php:3457
+msgid "the z-index"
+msgstr "το z-index"
+
+#: inc/czr-init.php:3455
+msgid "What is"
+msgstr "Τι είναι"
+
+#: inc/czr-init.php:3447
+msgid "Set the header z-index"
+msgstr "Ορισμός του z-index της κεφαλίδας"
+
+#: inc/czr-init.php:3437
+msgid "Sticky header : semi-transparent on scroll"
+msgstr "Προσκόλληση κεφαλίδας: ημιδιαφάνεια κατά την κύλιση"
+
+#: inc/czr-init.php:3427
+msgid "Sticky header : display the menu"
+msgstr "Προσκόλληση κεφαλίδας: εμφάνιση του μενού"
+
+#: inc/czr-init.php:3418
+msgid "Sticky header : shrink title / logo"
+msgstr "Προσκόλληση κεφαλίδας: σμίκρυνση του τίτλου / λογοτύπου"
+
+#: inc/czr-init.php:3409
+msgid "Sticky header : display the title / logo"
+msgstr "Προσκόλληση κεφαλίδας: προβολή του τίτλου / λογοτύπου "
+
+#: inc/czr-init.php:3389
+msgid "Sticky header : display the tagline"
+msgstr "Προσκόλληση κεφαλίδας: προβολή της γραμμή υποτίτλου"
+
+#: inc/czr-init.php:3384
+msgid "If checked, this option makes the header stick to the top of the page on scroll down."
+msgstr "Εάν είναι ενεργοποιημένη αυτή η επιλογή κάνει τον τίτλο να προσκολάται στην κορυφή της σελίδας κατά την κύλιση προς τα κάτω."
+
+#: inc/czr-init.php:3379
+msgid "Sticky on scroll"
+msgstr "Προσκόλληση κατά την κύλιση"
+
+#: inc/czr-init.php:3378
+msgid "Sticky header settings"
+msgstr "Ρύθμιση προσκόλλησης κεφαλίδας"
+
+#: inc/czr-init.php:3313
+msgid "Logo / title on the right"
+msgstr "Λογότυπο / τίτλος στα δεξιά"
+
+#: inc/czr-init.php:3312
+msgid "Logo / title centered"
+msgstr "Λογότυπο / τίτλος στο κέντρο"
+
+#: inc/czr-init.php:3311
+msgid "Logo / title on the left"
+msgstr "Λογότυπο / τίτλος στα αριστερά"
+
+#: inc/czr-init.php:3373
+msgid "If checked, this option wraps the header menu/tagline/social in a light grey box."
+msgstr "Εάν είναι ενεργοποιημένη αυτή η επιλογή περικλείει την κεφαλίδα μενού/υπότιτλος/κοινωνικά δίκτυα σε ένα ανοιχτό γκρι πλαίσιο."
+
+#: inc/czr-init.php:3368
+msgid "Display menu in a box"
+msgstr "Προβολή μενού σε πλαίσιο"
+
+#: inc/czr-init.php:2985
+msgid "This option sets the default font size applied to any text element of your website, when no font size is already applied."
+msgstr "Αυτή η επιλογή ρυθμίζει την προεπιλεγμένο μέγεθος της γραμματοσειράς που εφαρμόζεται σε κάθε στοιχείο κειμένου του ιστοτίπου σας, όταν δεν έχει οριστεί κάποιο άλλο μέγεθος γραμματοσειράς."
+
+#: inc/czr-init.php:2977
+msgid "Set your website default font size in pixels."
+msgstr "Ορισμός του προεπιλεγμένου μεγέθους γραμματοσειράς του ιστοτόπου σας σε πίξελς."
+
+#: inc/czr-init.php:2972
+msgid "This font picker allows you to preview and select among a handy selection of font pairs and single fonts. If you choose a pair, the first font will be applied to the site main headings : site name, site description, titles h1, h2, h3., while the second will be the default font of your website for any texts or paragraphs."
+msgstr "Αυτό το εργαλείο επιλογής γραμματοσειρά σας επιτρέπει να δείτε και να επιλέξετε ανάμεσα σε μια εύχρηστη επιλογή των ζευγαριών γραμματοσειρών και μεμονωμένες γραμματοσειρές. Εάν επιλέξετε ένα ζευγάρι, η πρώτη γραμματοσειρά θα εφαρμοστεί στις κύριες κατηγορίες της ιστοσελίδας:. Όνομα του δικτυακού τόπου, περιγραφή του τόπου, τους τίτλους h1, h2, h3, ενώ η δεύτερη θα είναι η προεπιλεγμένη γραμματοσειρά της ιστοσελίδας σας για οποιαδήποτε κείμενα ή παραγράφους."
+
+#: inc/czr-init.php:2965
+msgid "Select a beautiful font pair (headings &amp; default fonts) or single font for your website."
+msgstr "Επιλέξτε ένα όμορφο ζευγάρι γραμματοσειρών (τίτλοι &amp; προεπιλεγμένες γραμματοσειρές) ή μεμονωμένη γραμματοσειράς για τον ιστότοπό σας."
+
+#: inc/czr-init.php:3266
+msgid "Check this option to display an author info block after each single post content. Note : the Biographical info field must be filled out in the user profile."
+msgstr "Ενεργοποιήστε αυτή την επιλογή για την εμφάνιση ενός πλαισίου πληροφοριών συντάκτη μετά από το περιεχόμενο του κάθε μεμονωμένου άθρου. Σημείωση: το πεδιό Βιογραφικών πληροφοριών πρέπει να συμπληρωθεί στο προφίλ του χρήστη."
+
+#: inc/czr-init.php:3262
+msgid "Display an author box after each single post content"
+msgstr "Προβολή ενός πλαισίου συντάκτη μετά από το περιεχόμενο του κάθε μεμονωνμέμου άρθρου"
+
+#: inc/czr-init.php:3945
+msgid "Global Post Lists Settings"
+msgstr "Καθολικές ρυθμίσεις λίστας άθρων"
+
+#: inc/czr-init.php:3915
+msgid "Note : the home page layout has to be set in the home page section"
+msgstr "Σημείωση: η διάταξη της αρχικής σελίδας πρέπει να ρυθμιστεί στην ενότητα αρχικής σελίδας"
+
+#: inc/czr-init.php:5363
+msgid "On the web, speed is key ! Improve the load time of your pages with those options."
+msgstr "Στο διαδίκτυο, η ταχύτητα είναι το κλειδί! Βελτιώστε το χρόνο φόρτωσης των σελίδων σας με αυτές τις επιλογές."
+
+#: inc/czr-init.php:5361
+msgid "Website Performances"
+msgstr "Επιδόσεις ιστοτόπου"
+
+#: inc/czr-init.php:5347
+msgid "Set up footer global options"
+msgstr "Ρύθμιση καθολικών επιλογών υποσέλιδου"
+
+#: inc/czr-init.php:5345
+msgid "Footer global settings"
+msgstr "Καθολικές ρυθμίσεις υποσέλιδου"
+
+#: inc/czr-init.php:5319
+msgid "Set up post/page navigation options"
+msgstr "Ρύθμιση επιλογών πλοήγησης σε άρθρα/σελίδες"
+
+#: inc/czr-init.php:5317
+msgid "Post/Page Navigation"
+msgstr "Πλοήγηση σε άρθρα/σελίδες"
+
+#: inc/czr-init.php:5307
+msgid "Set up paragraphs options"
+msgstr "Ρύθμιση επιλογών των παραγράφων"
+
+#: inc/czr-init.php:5305
+msgid "Paragraphs"
+msgstr "Παράγραφοι"
+
+#: inc/czr-init.php:5301
+msgid "Set up gallery options"
+msgstr "Ρυθμίσεις επιλογών συλλογής"
+
+#: inc/czr-init.php:5299
+msgid "Galleries"
+msgstr "Συλλογές"
+
+#: inc/czr-init.php:5295
+msgid "Set up post metas options"
+msgstr "Ρύθμιση επιλογών μεταδεδομένων των άρθρων"
+
+#: inc/czr-init.php:5293
+msgid "Post metas (category, tags, custom taxonomies)"
+msgstr "Μεταδεδομένα άρθων (κατηγορία, ετικέτες, ταξινομήσεις χρήστη)"
+
+#: inc/czr-init.php:5281
+msgid "Set up breadcrumb options"
+msgstr "Ρύθμιση επιλογών breadcrumb"
+
+#: inc/czr-init.php:5279
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+#: inc/czr-init.php:5269
+msgid "Set up single posts options"
+msgstr "Ρύθμιση επιλογών μεμονωμένων άθρων"
+
+#: inc/czr-init.php:5267
+msgid "Single posts"
+msgstr "Μεμονωμένα άρθρα"
+
+#: inc/czr-init.php:5263
+msgid "Set up post lists options"
+msgstr "Ρύθμιση επιλογών λίστας άρθρων"
+
+#: inc/czr-init.php:5261
+msgid "Post lists : blog, archives, ..."
+msgstr "Λίστες άρθρων: ιστολόγιο, αρχειοθήκη, ..."
+
+#: inc/czr-init.php:5140
+msgid "Your theme supports %s menu. Select which menu you would like to use."
+msgid_plural "Your theme supports %s menus. Select which menu appears in each location."
+msgstr[0] "Επιλέξτε μενού για το θέμα σας"
+msgstr[1] "Επιλέξτε μενού για τις τοποθεσίες μενού (%s) του θέματός σας"
+
+#: inc/czr-init.php:5230
+msgid "Design and layout"
+msgstr "Σχεδιασμός και διαρρύθμιση"
+
+#: inc/czr-init.php:3305 inc/czr-init.php:5230
+msgid "Header design and layout"
+msgstr "Σχεδιασμός και διαρρύθμιση κεφαλίδας"
+
+#: inc/czr-init.php:5216
+msgid "Post authors settings"
+msgstr "Ρυθμίσεις συντακτών άρθρων"
+
+#: inc/czr-init.php:5214
+msgid "Authors"
+msgstr "Συντάκτες"
+
+#: inc/czr-init.php:5208
+msgid "Image settings"
+msgstr "Ρυθμίσεις εικόνας"
+
+#: inc/czr-init.php:5204
+msgid "Set up the titles icons options"
+msgstr "Ρυθμίσεις επιλογών εικονιδίων των τίτλων"
+
+#: inc/czr-init.php:5202
+msgid "Titles icons settings"
+msgstr "Ρυθμίσεις εικονιδίων των τίτλων"
+
+#: inc/czr-init.php:5196
+msgid "Links style and effects"
+msgstr "Στυλ και εφέ συνδέσμων"
+
+#: inc/czr-init.php:5186
+msgid "Set up the font global settings"
+msgstr "Καθολική ρύθμιση επιλογών γραμματοσειρών"
+
+#: inc/czr-init.php:5184
+msgid "Fonts"
+msgstr "Γραμματοσειρές"
+
+#: inc/czr-init.php:5167
+msgid "Site Title & Tagline"
+msgstr "Τίτλος & υπότιτλος ιστότοπου"
+
+#: inc/czr-init.php:4950
+msgid "How to create and use a child theme ?"
+msgstr "Πώς να δημιουργήσετε και χρησιμοποιήσετε ένα θέμα παιδί;"
+
+#: inc/czr-init.php:4949
+msgid "child theme."
+msgstr "θέμα παιδί."
+
+#: inc/czr-init.php:4948
+msgid "Use this field to test small chunks of CSS code. For important CSS customizations, you'll want to modify the style.css file of a"
+msgstr "Χρησιμοποιήστε αυτό το πεδίο για να δοκιμάσετε μικρά τμήματα CSS κώδικα. Για σημαντικές CSS παραμετροποιήσεις είναι καλύτερο να τροποποιήσετε το αρχείο style.css ενός"
+
+#: inc/czr-init.php:4944
+msgid "Add your custom css here and design live! (for advanced users)"
+msgstr "Προσθήκη παραμετροποιημένου css εδώ και ζωντανή σχεδίαση! (για προχωρημένος χρήστες)"
+
+#: inc/czr-init.php:3247
+msgid "Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport."
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να μετακινήσετε τις πλευρικές στήλες (εάν υπάρχουν) μετά την κύρια μπλοκ του περιεχομένου, για smartphone ή tablet."
+
+#: inc/czr-init.php:3244
+msgid "Dynamic sidebar reordering on small devices"
+msgstr "Δυναμική αναδιάταξη πλευρικής στήλες στις μικρές συσκευές"
+
+#: inc/czr-init.php:3020
+msgid "If enabled, this option activates a smooth page scroll when clicking on a link to an anchor of the same page."
+msgstr "Αυτή η επιλογή ενεργοποιεί την ομαλή κύλιση της σελίδας όταν γίνεται κλικ σε έναν σύνδεσμο που δείχνει σε σημείο της ίδιας σελίδας."
+
+#: inc/czr-init.php:3017
+msgid "Smooth scroll on click"
+msgstr "Ομαλή κύλιση με το κλικ"
+
+#: inc/czr-init.php:3203
+msgid "This option dynamically centers your images on any devices, vertically or horizontally according to their initial aspect ratio."
+msgstr "Αυτή η επιλογή κεντράρει δυναμικά τις εικόνες σε όλες τις συσκευές, κάθετα ή οριζόντια ανάλλογα με την αρχική αναλογία των διαστάσεών τους."
+
+#: inc/czr-init.php:3200
+msgid "Dynamic thumbnails centering on any devices"
+msgstr "Δυναμικό κεντράρισμα των μικρογραφιών σε όλες τις συσκευές"
+
+#: inc/czr-init.php:3192
+msgid "Dynamic slider images centering on any devices"
+msgstr "Δυναμικό κεντράρισμα των slider των εικόκων σε όλες τις συσκευές"
+
+#: inc/czr-init.php:3186
+msgid "When checked, this option displays a loading icon when the slides are being setup."
+msgstr "Όταν ενεργοποιηθεί αυτή η επιλογή εμφανίζει ένα εικονίδιο φόρτωσης όταν τα slides αρχικοποιούνται"
+
+#: inc/czr-init.php:3183
+msgid "Sliders : display on loading icon before rendering the slides"
+msgstr "Sliders : προβολή εικονιδίου φόρτωσης πριν την σχεδίαση των slides"
+
+#: inc/czr-init.php:3169
+msgid "Open the description page of the Regenerate thumbnails plugin"
+msgstr "Άνοιγμα της σελίδας περιγραφής για το πρόσθετο αναδημιουργίας μικρογραφιών"
+
+#: inc/czr-init.php:3167
+msgid "regenerate thumbnails"
+msgstr "αναδημιουργία μικρογραφιών"
+
+#: inc/czr-init.php:3166
+msgid "It is strongly recommended to regenerate your media library images in high definition with this free plugin"
+msgstr "Συνιστάται ανεπιφύλακτα η αναδημιουργία της βιβλιοθήκης μέσων για εικόνες υψηλής ανάλυσης με αυτό το ελεύθερο πρόσθετο"
+
+#: inc/czr-init.php:3165
+msgid "If enabled, your website will include support for high resolution devices."
+msgstr "Εάν ενεργοποιηθεί, ο ιστότοπός σας θα συμπεριλάβει υποστήριξη για συσκευές υψηλής ανάλυσης."
+
+#: inc/czr-init.php:3161
+msgid "High resolution (Retina) support"
+msgstr "Υποστήριξη υψυλής ανάλυσης (Retina)"
+
+#: inc/czr-init.php:3155
+msgid "If enabled, this option will force images to fit the screen on lightbox zoom."
+msgstr "Αν ενεργοποιηθεί αυτή η επιλογή επιβάλει την προσαρμογή του μεγέθους των εικόνων στις διαστάσεις της οθόνη με ένα lightbox zoom."
+
+#: inc/czr-init.php:3152
+msgid "Autoscale images on zoom"
+msgstr "Αυτόματη κλίμακα στις εικόνες κατά μεγέθυνση"
+
+#: inc/czr-init.php:3146
+msgid "If enabled, this option activates a popin window whith a zoom effect when an image is clicked. Note : to enable this effect on the images of your pages and posts, images have to be linked to the Media File."
+msgstr "Αν ενεργοποιηθεί αυτή η επιλογή ενεργοποιεί ένα εφέ popin windows όταν η εικόνα έχει πατηθεί. Σημείωση: για να ενεργοποιήσετε αυτό το εφέ για τις εικόνες των σελίδων και των μηνυμάτων σας, οι εικόνες θα πρέπει να συνδέονται με το αρχείο πολυμέσων."
+
+#: inc/czr-init.php:3143
+msgid "Lightbox effect on images"
+msgstr "Εφέ Lightbox στις εικόνες"
+
+#: inc/czr-init.php:4881
+msgid "Social links in footer"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στο υποσέλιδο"
+
+#: inc/czr-init.php:4844
+msgid "Social links in right sidebar"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στη δεξιά πλευρική στήλη"
+
+#: inc/czr-init.php:4831
+msgid "Social links in left sidebar"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στην αριστερή πελυρική στήλη"
+
+#: inc/czr-init.php:3354
+msgid "Social links in header"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων στην κεφαλίδα"
+
+#: inc/czr-init.php:4730
+msgid "Enable comments on pages"
+msgstr "Ενεργοποίηση σχολίων στις σελίδες"
+
+#: inc/czr-init.php:3970
+msgid "Choose the pages default layout"
+msgstr "Επιλέξτε την προεπιλεγμένη διάταξη των σελίδων"
+
+#: inc/czr-init.php:3962
+msgid "Display the full content"
+msgstr "Εμφάνιση του πλήρους περιεχομένου"
+
+#: inc/czr-init.php:3774 inc/czr-init.php:3961
+msgid "Display the excerpt"
+msgstr "Εμφάνιση αποσπάσματος"
+
+#: inc/czr-init.php:3957
+msgid "Select the length of posts in lists (home, search, archives, ...)"
+msgstr "Επιλέξτε το μήκος των άρθρων στις λίστες (αρχική σελίδα, αναζήτηση, αρχειοθήκες, ...)"
+
+#: inc/czr-init.php:3946
+msgid "Maximum number of posts per page"
+msgstr "Μέγιστος αριθμός άρθρων ανά σελίδα"
+
+#: inc/czr-init.php:3933
+msgid "Choose the posts default layout"
+msgstr "Επιλέξτε την προεπιλεγμένη διάταξη των άρθρων"
+
+#: inc/czr-init.php:3926
+msgid "This option will override the specific layouts on all posts/pages, including the front page."
+msgstr "Αυτή η επιλογή θα παραβλέψει τις ειδικές διατάξεις για όλα τα άρθρα/σελίδες, συμπεριλαμβανομένης και της κεντρικής σελίδας."
+
+#: inc/czr-init.php:3923
+msgid "Force default layout everywhere"
+msgstr "Επιβολή προεπιλεγμένης διάταξης παντού"
+
+#: inc/czr-init.php:3911
+msgid "Choose the global default layout"
+msgstr "Επιλέξτε την καθολικά προεπιλεγμένη διάταξη"
+
+#: inc/czr-init.php:4346
+msgid "Display Breadcrumb"
+msgstr "Προβολή Breadcrumb"
+
+#: inc/czr-init.php:3796 inc/czr-init.php:3889
+msgid "Button text"
+msgstr "Κείμενο κουμπιού"
+
+#: inc/czr-init.php:3795 inc/czr-init.php:3887
+msgid "Read more &raquo;"
+msgstr "Διαβάστε περισσότερα &raquo;"
+
+#: inc/czr-init.php:3881
+msgid "The images are set with the \"featured image\" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images."
+msgstr "Οι εικόνες θα ορίζονται με ως \"προεπιλεγμένες εικόνες\" σε κάθε σελίδα (στην οθόνη επεξεργασίας της σελίδας). Καταργήστε την επιλογή παραπάνω για να απενεργοποιήσετε τις προεπιλεγμένες εικόνες στις σελίδες."
+
+#: inc/czr-init.php:3878
+msgid "Show images"
+msgstr "Προβολή εικόνων"
+
+#: inc/czr-init.php:3869
+msgid "Disable"
+msgstr "Απενεργοποίηση"
+
+#: inc/czr-init.php:3868
+msgid "Enable"
+msgstr "Ενεργοποίηση"
+
+#: inc/czr-init.php:3864
+msgid "Display home featured pages area"
+msgstr "Προβολή περιοχής προεπιλεγμένων σελίδων στην αρχική σελίδα"
+
+#: inc/czr-init.php:3863
+msgid "Featured pages options"
+msgstr "Ρυθμίσεις προεπιλεγμένων σελίδων"
+
+#: inc/czr-init.php:3823
+msgid "in ms : 1000ms = 1s"
+msgstr "σε ms : 1000ms = 1s"
+
+#: inc/czr-init.php:3818
+msgid "Delay between each slides"
+msgstr "Καθυστέρηση μεταξύ κάθε slide"
+
+#: inc/czr-init.php:3806
+msgid "Full width slider"
+msgstr "Slide πλήρους πλάτους"
+
+#: inc/czr-init.php:3730
+msgid "Select front page slider"
+msgstr "Επιλογή του slider της αρχικής σελίδας"
+
+#: inc/czr-init.php:3729
+msgid "Slider options"
+msgstr "Επιλογές Κύλισης"
+
+#: inc/czr-init.php:3713
+msgid "Set up the front page layout"
+msgstr "Ρυθμίσεις διάταξης της αρχικής σελίδας"
+
+#: inc/czr-init.php:3686
+msgid "Posts page"
+msgstr "Άρθρα"
+
+#: inc/czr-init.php:3678
+msgid "Front page"
+msgstr "Αρχική Σελίδα"
+
+#: inc/czr-init.php:3672
+msgid "A static page"
+msgstr "Στατική σελίδα"
+
+#: inc/czr-init.php:3671
+msgid "Your latest posts"
+msgstr "Τελευταία άρθρα"
+
+#: inc/czr-init.php:3670
+msgid "Don't show any posts or page"
+msgstr "Να μην προβάλονται άρθρα ή σελίδες"
+
+#: inc/czr-init.php:3665
+msgid "Front page displays"
+msgstr "Η αρχική σελίδα δείχνει"
+
+#: inc/czr-init.php:3657
+msgid "Choose content and layout"
+msgstr "Επιλέξτε περιεχόμενο και διάταξη"
+
+#: inc/czr-init.php:2921
+msgid "FAVICON"
+msgstr "FAVICON"
+
+#: inc/czr-init.php:2920
+msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
+msgstr "Ανέβασμα Favicon (υποστηρίζονται οι μοφρφές: .ico, .png, .gif)"
+
+#: inc/czr-init.php:2914
+msgid "Use this upload control to specify a different logo on sticky header mode."
+msgstr "Χρησιμοποιήστε αυτό το στοιχείο για να καθορίσετε ένα διαφορετικό λογότυπο στην κατάσταση της προσκωλημένης κεφαλίδας."
+
+#: inc/czr-init.php:2903
+msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Ανέβασμα λογότυπου για προσκολημένη κεφαλίς (υποστηρίζονται οι μοφρφές: .jpg, .png, .gif, svg, svgz)"
+
+#: inc/czr-init.php:2899
+msgid "Uncheck this option to keep your original logo dimensions."
+msgstr "Απενεργοποιήστε αυτή την επιλογή για να διατηρήσετε τις αρχικές διαστάσεις του λογότυπου."
+
+#: inc/czr-init.php:2895
+msgid "Force logo dimensions to max-width:250px and max-height:100px"
+msgstr "Επιβολή διαστάσεων του λογότυπου σε μέγιστο πλάτος: 250px και μέγιστο ύψος: 100px"
+
+#: inc/czr-init.php:2880
+msgid "LOGO"
+msgstr "Λογότυπο"
+
+#: inc/czr-init.php:2879
+msgid "Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
+msgstr "Ανέβασμα λογότυπου (υποστηρίζονται οι μοφρφές: .jpg, .png, .gif, svg, svgz)"
+
+#: inc/czr-init.php:3326
+msgid "Uncheck this option to remove the colored top border."
+msgstr "Απενεργοποιήστε αυτή την επιλογή για να αφαιρέσετε το έγχρωμο άνω περιθώριο της σελίδας."
+
+#: inc/czr-init.php:3322
+msgid "Display top border"
+msgstr "Προβολή άνω περιθωρίου"
+
+#: inc/czr-init.php:4970
+msgid "Using the minified version of the stylesheets will speed up your webpage load time."
+msgstr "Η χρήση έκδοσης ελαχιστοποιημένου μεγέθους για τα φύλλα στυλ θα αυξήση την ταχύτητα και τους χρόνους φόρτωσης του ιστοτόπου σας."
+
+#: inc/czr-init.php:4967
+msgid "Performance : use the minified CSS stylesheets"
+msgstr "Επιδόσεις: χρήση έκδοσης ελαχιστοποιημένου μεγέθους για τα φύλλα στυλ "
+
+#: inc/czr-init.php:2951
+msgid "Apply a random color skin on each page load."
+msgstr "Εφαρμογή ενός τυχαίου χρωματικού θέματος σε κάθε φόρτωση της σελίδας."
+
+#: inc/czr-init.php:2948
+msgid "Randomize the skin"
+msgstr "Τυχαία επιλογή χρωματικού θέματος"
+
+#: inc/czr-init.php:2938
+msgid "Choose a predefined skin"
+msgstr "Επιλογή του προκαθορισμένου χρωματικού θέματος"
+
+#: inc/czr-init.php:3563
+msgid "Expand submenus on hover"
+msgstr "Ανάπτυξη υπομενού με πέρασμα από πάνω"
+
+#: inc/czr-init.php:3562
+msgid "Expand submenus on click"
+msgstr "Ανάπτυξη υπομενού με το κλικ"
+
+#: inc/czr-init.php:3558
+msgid "Select a submenu expansion option"
+msgstr "Επιλέξτε τον τρόπο επέκτασης ενός υπομενού"
+
+#: inc/czr-init.php:5336
+msgid "Various settings for responsive display"
+msgstr "Διάφορες ρυθμίσεις για την responsive προβολή"
+
+#: inc/czr-init.php:3212 inc/czr-init.php:5334
+msgid "Responsive settings"
+msgstr "Responsive ρυθμίσεις"
+
+#: inc/czr-init.php:5356
+msgid "Custom CSS"
+msgstr "Προσαρμοσμένο CSS"
+
+#: inc/czr-init.php:5198
+msgid "Various links settings"
+msgstr "Διάφορες ρυθμίσεις συνδέσμων"
+
+#: inc/czr-init.php:5210
+msgid "Various images settings"
+msgstr "Διάφορες ρυθμίσεις εικόνων"
+
+#: inc/czr-init.php:5192
+msgid "Set up your social links"
+msgstr "Ρύθμιση κοινωνικών συνδέσμων"
+
+#: inc/czr-init.php:4855 inc/czr-init.php:5190
+msgid "Social links"
+msgstr "Σύνδεσμοι κοινωνικών δικτύων"
+
+#: inc/czr-init.php:5313
+msgid "Set up comments options"
+msgstr "Ρυθμίσεις σχολίων"
+
+#: inc/czr-init.php:5311
+msgid "Comments"
+msgstr "Σχόλια"
+
+#: inc/czr-init.php:5256
+msgid "Set up layout options"
+msgstr "Ρυθμίσεις διάταξης"
+
+#: inc/czr-init.php:5254
+msgid "Pages &amp; Posts Layout"
+msgstr "Διάταξη Σελίδων &amp; Άρθρων"
+
+#: inc/czr-init.php:5249
+msgid "Set up front page options"
+msgstr "Ρυθμίσεις αρχικής σελίδας"
+
+#: inc/czr-init.php:5247
+msgid "Front Page"
+msgstr "Αρχική Σελίδα"
+
+#: inc/czr-init.php:5174
+msgid "Set up logo and favicon options"
+msgstr "Ρυθμίσεις λογότυπου και εικονιδίου ιστοτόπου"
+
+#: inc/czr-init.php:5172
+msgid "Logo &amp; Favicon"
+msgstr "Λογότυπο &amp; Εικονίδιο"
+
+#: inc/czr-init.php:5180
+msgid "Select a skin for Customizr"
+msgstr "Επιλογή ενός θέματος για το Customizr"
+
+#: inc/czr-init.php:5178
+msgid "Skin"
+msgstr "Θέμα"
+
+#: inc/czr-init.php:5073
+msgid "Advanced settings for the Customizr theme."
+msgstr "Προχωρημένες ρυθμίσεις για το θέμα Customizr"
+
+#: inc/czr-init.php:5072
+msgid "Advanced options"
+msgstr "Προχωρημένες επιλογές"
+
+#: inc/czr-init.php:5066
+msgid "Footer settings for the Customizr theme."
+msgstr "Ρυθμίσεις υποσέλιδου για το θέμα Customizr."
+
+#: inc/czr-init.php:5065
+msgid "Footer"
+msgstr "Υποσέλιδο"
+
+#: inc/czr-init.php:5052
+msgid "Content settings for the Customizr theme."
+msgstr "Ρυθμίσεις περιεχομένου για το θέμα Customizr."
+
+#: inc/czr-init.php:5051
+msgid "Content : home, posts, ..."
+msgstr "Περιεχόμενο : αρχική σελίδα, άρθρα, ..."
+
+#: inc/czr-init.php:5045
+msgid "Header settings for the Customizr theme."
+msgstr "Ρυθμίσεις κεφαλίδας του θέματος Customizr."
+
+#: inc/czr-init.php:5044
+msgid "Header"
+msgstr "Κεφαλίδα"
+
+#: inc/czr-init.php:5038
+msgid "Global settings for the Customizr theme :skin, socials, links..."
+msgstr "Καθολικές ρυθμίσεις για το θέμα Customizr: εμφάνισης, κοινωνικά δίκτυα, σύνδεσμοι..."
+
+#: inc/czr-init.php:5037
+msgid "Global settings"
+msgstr "Γενικές ρυθμίσεις"
+
+#: inc/czr-init.php:5597
+msgid "&mdash; Demo Slider &mdash;"
+msgstr "&mdash; Demo Slider &mdash;"
+
+#: inc/czr-init.php:5596
+msgid "&mdash; No slider &mdash;"
+msgstr "&mdash; Κανένα slider &mdash;"
+
+#: inc/czr-init.php:5470
+msgid "You need to select a page first. Leave this field empty if you want to use the page excerpt."
+msgstr "Θα πρέπει να επιλέξετε μια σελίδα πρώτα. Αφήστε αυτό το πεδίο κενό αν θέλετε να χρησιμοποιήσετε το απόσπασμα της σελίδας."
+
+#: inc/czr-init.php:5467
+msgid "Featured text %1$s (200 char. max)"
+msgstr "Προβαλόμενο κείμενο %1$s (200 χαρ. μέγιστο)"
+
+#: inc/czr-init.php:5451
+msgid "Custom featured page %1$s"
+msgstr "Προσαρμοσμένη προεπιλεγμένη σελίδα %1$s"
+
+#: inc/czr-init.php:5434
+msgid "Featured text three (200 char. max)"
+msgstr "Τρίτο προβαλόμενο κείμενο (200 χαρ. μέγιστο) "
+
+#: inc/czr-init.php:5433
+msgid "Featured text two (200 char. max)"
+msgstr "Δεύτερο προβαλόμενο κείμενο (200 χαρ. μέγιστο) "
+
+#: inc/czr-init.php:5432
+msgid "Featured text one (200 char. max)"
+msgstr "Πρώτο προβαλόμενο κείμενο (200 χαρ. μέγιστο) "
+
+#: inc/czr-init.php:5429
+msgid "Home featured page three"
+msgstr "Τρίτη προεπιλεγμένη σελίδα στην αρχική"
+
+#: inc/czr-init.php:5428
+msgid "Home featured page two"
+msgstr "Δεύτερη προεπιλεγμένη σελίδα στην αρχική"
+
+#: inc/czr-init.php:5427
+msgid "Home featured page one"
+msgstr "Πρώτη προεπιλεγμένη σελίδα στην αρχική"
+
+#: inc/czr-init.php:6495
+msgid "Page %s"
+msgstr "Σελίδα %s"
+
+#: inc/czr-init.php:1289
+msgid "Need help with Customizr? Click here!"
+msgstr "Χρειάζεστε βοήθεια για το Customizr? Πατήστε εδώ!"
+
+#: inc/czr-init.php:1286
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: inc/czr-init.php:1101
+msgid "Main Menu"
+msgstr "Κύριο μενού"
+
+#: inc/czr-init.php:915 inc/czr-init.php:8804
+msgid "Many layout and design options are available from the WordPress customizer screen : see your changes live !"
+msgstr "Πολλές επιλογές διάταξης και σχεδίασης είναι διαθέσιμες από την οθόνη προσαρμογής WordPress: δείτε τις αλλαγές ζωντανά!"
+
+#: inc/czr-init.php:901 inc/czr-init.php:8792 inc/czr-init.php:8798
+msgid "Customizr is a clean responsive theme"
+msgstr "Το Customizr είναι ένα καθαρό responsive θέμα"
+
+#: inc/czr-init.php:886
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Η αναζήτησή σας δεν απέδωσε αποτελέσματα.  Αν θέλετε, δοκιμάστε με διαφορετικούς όρους."
+
+#: inc/czr-init.php:885
+msgid "Sir Winston Churchill"
+msgstr "Sir Winston Churchill"
+
+#: inc/czr-init.php:884
+msgid "Success is the ability to go from one failure to another with no loss of enthusiasm..."
+msgstr "Η επιτυχία είναι η δυνατότητα να πας από τη μία αποτυχία στην άλλη δίχως την απώλεια του ενθουσιασμού..."
+
+#: inc/czr-init.php:879
+msgid "Sorry, but the requested page is not found. You might try a search below."
+msgstr "Λυπούμαστε, αλλά η σελίδα που ζητήσατε δεν βρέθηκε. Μπορείτε να δοκιμάσετε να εκτελέσετε μια αναζήτηση."
+
+#: inc/czr-init.php:878
+msgid "George Orwell"
+msgstr "George Orwell"
+
+#: inc/czr-init.php:877
+msgid "Speaking the Truth in times of universal deceit is a revolutionary act."
+msgstr "Το να λες την αλήθεια σε καιρούς καθολικής εξαπάτησης, είναι μια επαναστατική πράξη."
+
+#: inc/czr-init.php:859
+msgid "Footer Widget Area Three"
+msgstr "Τρίτη περιοχή μικοεφαρμογών υποσέλιδου"
+
+#: inc/czr-init.php:855
+msgid "Footer Widget Area Two"
+msgstr "Δεύτερη περιοχή μικοεφαρμογών υποσέλιδου"
+
+#: inc/czr-init.php:852 inc/czr-init.php:856 inc/czr-init.php:860
+msgid "Just use it as you want !"
+msgstr "Απλά χρησιμοποιήσετε το όπως εσείς θέλετε!"
+
+#: inc/czr-init.php:851
+msgid "Footer Widget Area One"
+msgstr "Πρώτη περιοχή μικοεφαρμογών υποσέλιδου"
+
+#: inc/czr-init.php:839
+msgid "Left Sidebar"
+msgstr "Αριστερή πλευρική στήλη"
+
+#: inc/czr-init.php:840 inc/czr-init.php:844
+msgid "Appears on posts, static pages, archives and search pages"
+msgstr "Εμφανίζεται στα άρθρα, στις στατικές σελίδες, τις αρχειοθήκες και τις σελίδες αναζήτησης"
+
+#: inc/czr-init.php:843
+msgid "Right Sidebar"
+msgstr "Δεξιά πλευρική στήλη"
+
+#: inc/czr-init.php:819
+msgid "Follow me on LinkedIn"
+msgstr "Ακολουθήστε με στο LinkedIn"
+
+#: inc/czr-init.php:816
+msgid "Follow me on Dribbble"
+msgstr "Ακολουθήστε με στο Dribbble"
+
+#: inc/czr-init.php:813
+msgid "Follow me on Github"
+msgstr "Ακολουθήστε με στο Github"
+
+#: inc/czr-init.php:810
+msgid "Pin me on Pinterest"
+msgstr "Καρφιτσώστε με στο Pinterest"
+
+#: inc/czr-init.php:807
+msgid "Follow me on Youtube"
+msgstr "Ακολουθήστε με στο Youtube"
+
+#: inc/czr-init.php:804
+msgid "Follow me on WordPress"
+msgstr "Ακολουθήστε με στο WordPress"
+
+#: inc/czr-init.php:801
+msgid "Follow me on Flickr"
+msgstr "Ακολουθήστε με στο Flickr"
+
+#: inc/czr-init.php:798
+msgid "Follow me on Tumblr"
+msgstr "Ακολουθήστε με στο Tumblr"
+
+#: inc/czr-init.php:795
+msgid "Follow me on Instagram"
+msgstr "Ακολουθήστε με στο Instagram"
+
+#: inc/czr-init.php:792
+msgid "Follow me on Google+"
+msgstr "Ακολουθήστε με στο Google+"
+
+#: inc/czr-init.php:789
+msgid "Follow me on Facebook"
+msgstr "Ακολουθήστε με στο Facebook"
+
+#: inc/czr-init.php:786
+msgid "Follow me on Twitter"
+msgstr "Ακολουθήστε με στο Twitter"
+
+#: inc/czr-init.php:779
+msgid "Subscribe to my rss feed"
+msgstr "Εγγραφείτε στις RSS τροφοδοσίες μου"
+
+#: inc/czr-init.php:740
+msgid "Single fonts"
+msgstr "Μεμονωμένες γραμματοσειρές"
+
+#: inc/czr-init.php:731
+msgid "Web safe fonts pairs"
+msgstr "Ζεύγη ασφαλών web γραμματοσειρών"
+
+#: inc/czr-init.php:710
+msgid "Google fonts pairs"
+msgstr "Ζεύγη γραμματοσειρών Google"
+
+#: inc/czr-init.php:683
+msgid "Light blue "
+msgstr "Ανοιχτό γαλάζιο"
+
+#: inc/czr-init.php:682
+msgid "Green blue"
+msgstr "Γαλαζοπράσινο"
+
+#: inc/czr-init.php:681
+msgid "Light green"
+msgstr "Ανοιχτό πράσινο"
+
+#: inc/czr-init.php:680
+msgid "Green"
+msgstr "Πράσινο"
+
+#: inc/czr-init.php:679
+msgid "Flat yellow"
+msgstr "Επίπεδο πράσινο"
+
+#: inc/czr-init.php:678
+msgid "Yellow"
+msgstr "Κίτρινο"
+
+#: inc/czr-init.php:677
+msgid "Flat orange"
+msgstr "Επίπεδο πορτοκαλί"
+
+#: inc/czr-init.php:676
+msgid "Orange"
+msgstr "Πορτοκαλί"
+
+#: inc/czr-init.php:675
+msgid "Red"
+msgstr "Κόκκινο"
+
+#: inc/czr-init.php:674
+msgid "Flat red"
+msgstr "Επίπεδο κόκκινο"
+
+#: inc/czr-init.php:673
+msgid "Purple"
+msgstr "Μωβ"
+
+#: inc/czr-init.php:672
+msgid "Flat purple"
+msgstr "Επίπεδο μωβ"
+
+#: inc/czr-init.php:671
+msgid "Light grey"
+msgstr "Ανοιχτό γκρι"
+
+#: inc/czr-init.php:670
+msgid "Grey"
+msgstr "Γκρι"
+
+#: inc/czr-init.php:669
+msgid "Flat black"
+msgstr "Επίπεδο μαύρο"
+
+#: inc/czr-init.php:668
+msgid "Black"
+msgstr "Μαύρο"
+
+#: inc/czr-init.php:667
+msgid "Blue"
+msgstr "Μπλε"
+
+#: inc/czr-init.php:652 inc/czr-init.php:653
+msgid "No sidebars : full width layout"
+msgstr "Δίχως πλευρικές στήλες : διάταξη πλήρους πλάτους"
+
+#: inc/czr-init.php:646 inc/czr-init.php:647
+msgid "2 sidebars : Right and Left"
+msgstr "2 πλευρικές στήλες : Δεξιά και Αριστερά"
+
+#: inc/czr-init.php:640 inc/czr-init.php:641
+msgid "Left sidebar"
+msgstr "Αριστερή πλευρική στήλη"
+
+#: inc/czr-init.php:634 inc/czr-init.php:635
+msgid "Right sidebar"
+msgstr "Δεξιά πλευρική στήλη"
+
+#: inc/czr-customize.php:1608 inc/czr-customize.php:1852
+#: inc/czr-customize.php:1923 inc/czr-customize.php:2090
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: inc/czr-customize.php:1607
+msgid "Upload"
+msgstr "Μεταφόρτωση"
+
+#: inc/czr-customize.php:1040
+msgid "Check the documentation"
+msgstr "Ελέγξτε την τεκμηρίωση"
+
+#: inc/czr-customize.php:1038
+msgid "Need help to create a slider ?"
+msgstr "Χρειάζεστε βοήθεια για τη δημιουργία ενός slider;"
+
+#: inc/czr-customize.php:1037
+msgid "Create a slider"
+msgstr "Δημιουργία ενός slider"
+
+#: inc/czr-admin.php:673
+msgid "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr "Για την αντιγραφή των πληροφοριών του συστήματος, κάντε κλικ παρακάτω και πατήστε Ctrl + C (σε PC) ή Cmd + C (σε Mac)."
+
+#: inc/czr-admin.php:672
+msgid "Please include the following informations when posting support requests"
+msgstr "Παρακαλούμε να συμπεριλάβετε τις ακόλουθες πληροφορίες κατά τη δημοσίευση των αιτημάτων υποστήριξης"
+
+#: inc/czr-admin.php:671
+msgid "System Informations"
+msgstr "Πληροφορίες Συστήματος"
+
+#: inc/czr-admin.php:602
+msgid "Go to Dashboard"
+msgstr "Πίνακας ελέγχου"
+
+#: inc/czr-admin.php:602
+msgid "Go to Dashboard &rarr; Home"
+msgstr "Επιστροφή στον Πίνακα ελέγχου"
+
+#: inc/czr-admin.php:654
+msgid "Changelog in version %1$s"
+msgstr "Αρχείο αλλαγών στην έκδοση %1$s"
+
+#: inc/czr-admin.php:587
+msgid "Easily take your web design one step further"
+msgstr "Πάει εύκολα τον σχεδιασμό των ιστοσελίδων σας ένα βήμα παραπέρα"
+
+#: inc/czr-admin.php:573
+msgid "Follow us"
+msgstr "Ακολουθήστε μας"
+
+#: inc/czr-admin.php:568
+msgid "If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)"
+msgstr "Αν είστε ευχαριστημένοι με το θέμα, διαλαλήστε το στο  wordpress.org και δώστε στο Customizr μια ωραία κριτική!<br />(Είμαστε εθισμένοι στις ανατροφοδοτήσεις σας...)"
+
+#: inc/czr-admin.php:567
+msgid "Happy user of Customizr?"
+msgstr "Χαρούμενος χρήστης του Customizr;"
+
+#: inc/czr-admin.php:550
+msgid "You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated."
+msgstr "Χρησιμοποιείτε ένα θέμα παιδί του Customizr  %1$s : πάντα μετά την αναβάθμιση ελέξτε το %2$s για να δείτε αν έχει καταργηθεί κάποια λειτουργία ή πρότυπο."
+
+#: inc/czr-admin.php:507
+msgid "Check the FAQ"
+msgstr "Ελέγξτε τις ΣΕΑ"
+
+#: inc/czr-admin.php:503
+msgid "Read the documentation"
+msgstr "Διαβάστε την τεκμηρίωση"
+
+#: inc/czr-admin.php:437
+msgid "About Customizr"
+msgstr "Σχετικά με το Customizr"
+
+#: inc/czr-admin.php:1796
+msgid "Current slide"
+msgstr "Τρέχον slide"
+
+#: inc/czr-admin.php:1794
+msgid "Edit this slide"
+msgstr "Επεξεργασία αυτού του slide"
+
+#: inc/czr-admin.php:1768
+msgid "No Image Selected"
+msgstr "Δεν επιλέχθηκε κάποια εικόνα"
+
+#: inc/czr-admin.php:1726 inc/czr-customize.php:929 inc/czr-customize.php:941
+#: inc/czr-customize.php:1852 inc/czr-customize.php:1865
+#: inc/czr-customize.php:1923 inc/czr-front.php:2641 inc/czr-front.php:2674
+#: inc/czr-front.php:2689 inc/czr-front.php:2717 inc/czr-front.php:3232
+#: inc/czr-front.php:3812 inc/czr-front.php:4217 inc/czr-front.php:9010
+msgid "Edit"
+msgstr "Διόρθωση"
+
+#: inc/czr-admin.php:1724
+msgid "Button Text"
+msgstr "Κείμενο Κουμπιού"
+
+#: inc/czr-admin.php:1723
+msgid "Slide Text"
+msgstr "Κείμενο slide"
+
+#: inc/czr-admin.php:1722 inc/czr-customize.php:2006
+msgid "Title"
+msgstr "Τίτλος"
+
+#: inc/czr-admin.php:1721
+msgid "Slide Image"
+msgstr "Μεμονωμένη εικόνα"
+
+#: inc/czr-admin.php:1711
+msgid "This slider has not slides to show. Go to the media library and start adding images to it."
+msgstr "Το slider δεν έχει slides προς προβολή. Μεταβείτε στη βιβλιοθήκη μέσω και ξεκινήστε να του προσθέτετε εικόνες."
+
+#: inc/czr-admin.php:1583
+msgid "You haven't create any slider yet. Write a slider name and click on the button to add you first slider."
+msgstr "Δεν έχετε ακόμα δημιουργήσει κάποιο slider. Δώστε ένα όνομα για το slider και κάντε κλικ στο κουμπί για να προσθέτετε το πρώτο σας slider."
+
+#: inc/czr-admin.php:1556 inc/czr-admin.php:1585
+msgid "Add a slider"
+msgstr "Προσθήκη ενός slider"
+
+#: inc/czr-admin.php:1506
+msgid "No link"
+msgstr "Κανένας σύνδεσμος"
+
+#: inc/czr-admin.php:1501
+msgid "Choose a linked page or post (among the last 100)."
+msgstr "Επιλέξτε μια συνδεδεμένη σελίδα ή άρθρο (μεταξύ των τελευταίων 100)."
+
+#: inc/czr-admin.php:1494
+msgid "Button text (80 char. max length)"
+msgstr "Κείμεν κουμπιού (μέγιστο μήκος 80 χαρ.)"
+
+#: inc/czr-admin.php:1486
+msgid "Title and text color"
+msgstr "Χρώμα επικεφαλίδας και κειμένου"
+
+#: inc/czr-admin.php:1479
+msgid "Description text (below the title, 250 char. max length)"
+msgstr "Περιγραφή κειμένου (κάτω από τον τίτλο, 250 χαρ. το μέγιστο)"
+
+#: inc/czr-admin.php:1472
+msgid "Title text (80 char. max length)"
+msgstr "Κείμενο τίτλου (80 χαρ. το μέγιστο)"
+
+#: inc/czr-admin.php:1326
+msgid "Add to a slider (create one if needed)"
+msgstr "Προσθήκη σε ένα slider (δημιουργία του αν απαιτείται)"
+
+#: inc/czr-admin.php:1324
+msgid "Add to a slider"
+msgstr "Προσθήκη σε ένα slider"
+
+#: inc/czr-admin.php:1164 inc/czr-customize.php:1035
+msgid "You haven't create any slider yet. Go to the media library, edit your images and add them to your sliders."
+msgstr "Δεν έχετε δημιουργήσει ακόμα κάποιο slider. Μεταβείτε στη βιβλιοθήκη μέσω, επεξεργαστείτε τις εικόνες σας και προσθέστε τις στα sliders σας."
+
+#: inc/czr-admin.php:1152 inc/czr-admin.php:1566
+msgid "Delete slider"
+msgstr "Διαγραφή slider"
+
+#: inc/czr-admin.php:1149 inc/czr-admin.php:1563
+msgid "The slider will be deleted permanently (images, call to actions and link will be kept)."
+msgstr "Το slider θα διαγραφεί μόνιμα (εικόνες, κουμπιά ενεργειών και σύνδεσμοι θα κρατηθούν)."
+
+#: inc/czr-admin.php:1144 inc/czr-admin.php:1559
+msgid "Delete this slider"
+msgstr "Διαγραφή αυτού του slider"
+
+#: inc/czr-admin.php:1127
+msgid "Slider Layout : set the slider in full width"
+msgstr "Διάταξη Slider : ορίστε το slider σε πλήρες μήκος"
+
+#: inc/czr-admin.php:1120
+msgid "Delay between each slides in milliseconds (default : 5000 ms)"
+msgstr "Καθυστέρηση μεταξύ κάθε εικόνας σε χιλιοστά του δευτερολέπτου (προεπιλογή: 5000 ms)"
+
+#: inc/czr-admin.php:1116
+msgid "To create a new slider : open the media library, edit your images and add them to your new slider."
+msgstr "Για να δημιουργήστε ένα νέο slider : ανοίξτε τη βιβλιοθήκη μέσω, επεξεργαστείτε τις εικόνες σας και προσθέστε τις στο νέο σας slider."
+
+#: inc/czr-admin.php:1093 inc/czr-admin.php:1550
+msgid "&mdash; Select a slider &mdash; "
+msgstr "&mdash; Επιλέξτε ένα slider &mdash; "
+
+#: inc/czr-admin.php:1087 inc/czr-admin.php:1535
+msgid "Choose a slider"
+msgstr "Επιλέξτε ένα slider"
+
+#: inc/czr-admin.php:1021
+msgid "Add a slider to this post/page"
+msgstr "Προσθήκη ενός slider στο άρθρο/σελίδα"
+
+#: inc/czr-admin.php:978
+msgid "Default layout %1s"
+msgstr "Προεπιλεγμένη διάταξη %1s"
+
+#: inc/czr-admin.php:974
+msgid "Select a specific layout for %1$s"
+msgstr "Επιλέξτε μια ειδική διάταξη για το %1$s"
+
+#: inc/czr-admin.php:971 inc/czr-init.php:3641 inc/czr-init.php:3646
+#: inc/czr-init.php:5017
+msgid "here"
+msgstr "εδώ"
+
+#: inc/czr-admin.php:970 inc/czr-admin.php:975
+msgid "this post"
+msgstr "αυτό το άρθρο"
+
+#: inc/czr-admin.php:970 inc/czr-admin.php:975
+msgid "this page"
+msgstr "αυτή η σελίδα"
+
+#: inc/czr-admin.php:969
+msgid "You can define a specific layout for %1$s by using the pre-defined left and right sidebars. The default layouts can be defined in the WordPress customizer screen %2$s.<br />"
+msgstr "Μπορείτε να ορίσετε μια συγκεκριμένη διάταξη για το %1$s χρησιμοποιώντας τις προκαθορισμένες αριστερά και δεξιά πλευρικές στήλες. Οι προεπιλεγμένες διατάξεις είναι δυνατόν να οριστούν στην οθόνη προσαρμογής του WordPress %2$s.<br />"
+
+#: inc/czr-admin.php:965
+msgid "Change layout options"
+msgstr "Αλλαγή των ρυθμίσεων της διάταξης"
+
+#: inc/czr-admin.php:964
+msgid "You have checked the <i>\"Force global default layout for all posts and pages\"</i>, you must unchecked this option to enable a specific layout for this post."
+msgstr "Έχετε επιλέξει το<i>\"Επιβολή της καθολικά προεπιλεγμένης διάταξης για όλα τα άρθρα και τις σελίδες\"</i>, θα πρέπει απενεργοποιήσετε αυτή την επιλογή για να ενεργοποιήσετε μια ειδική διάταξη για το άθρο αυτό."
+
+#: inc/czr-admin.php:959
+msgid "posts"
+msgstr "Άρθρα"
+
+#: inc/czr-admin.php:959
+msgid "pages"
+msgstr "Σελίδες"
+
+#: inc/czr-admin.php:959
+msgid "Default %1$s layout is set to : %2$s"
+msgstr "Η προεπιλεγμένη %1$s διάταξη ορίστηκε σε : %2$s"
+
+#: inc/czr-admin.php:890 inc/czr-admin.php:1295
+msgid "Slider Options"
+msgstr "Επιλογές Κύλισης"
+
+#: inc/czr-admin.php:882
+msgid "Layout Options"
+msgstr "Επιλογές διάταξης"
+
+#: inc/czr-customize.php:636 inc/czr-customize.php:637
+msgid "Upgrade Wordpress Now"
+msgstr "Αναβαθμίστε το Wordpress τώρα"
+
+#: inc/czr-customize.php:633
+msgid "This theme requires WordPress 3.4+"
+msgstr "Αυτό το θέμα απαιτεί WordPress 3.4+"
+
+#: inc/czr-customize.php:613 inc/czr-customize.php:614
+msgid "Upgrade WP"
+msgstr "Αναβάθμιση WP"
+
+#: inc/czr-admin.php:592
+msgid "Discover Customizr Pro"
+msgstr "Ανακαλύψτε το Customizr Pro"
+
+#: inc/czr-init.php:3644
+msgid "Jump to the blog design options"
+msgstr "Μετάβαση στις επιλογές σχεδίασης του ιστολογίου"
+
+#: inc/czr-customize.php:587
+msgid "More grid design options"
+msgstr "Περισσότερες επιλογές σχεδίασης του πλέγματος"
+
+#. Author URI of the plugin/theme
+msgid "http://presscustomizr.com/"
+msgstr "http://presscustomizr.com/"
+
+#. Author of the plugin/theme
+msgid "nikeo"
+msgstr "nikeo"
+
+#. Theme URI of the plugin/theme
+msgid "http://presscustomizr.com/customizr"
+msgstr "http://presscustomizr.com/customizr"
