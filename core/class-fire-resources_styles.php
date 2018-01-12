@@ -239,7 +239,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                          '.czr-overlay .czr-form .form-group.in-focus label'
                                  ),
                                  'background-color' => array(
-                                         '.nav__utils .ham-toggler-menu.collapsed:hover .line',
+                                         '.nav__utils .ham-toggler-menu.czr-collapsed:hover .line',
                                  )
                            )
                      ),

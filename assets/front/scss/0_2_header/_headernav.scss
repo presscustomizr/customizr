@@ -235,8 +235,8 @@
 
                 flex-basis: auto
     }
-
-
+/*
+Since mobile and desktop navbar are different we don't need use the following classes anymore
     .navbar-toggleable-md {
         width: auto !important;
         -webkit-box-pack: center !important;
@@ -260,6 +260,7 @@
             -ms-flex-positive: 0;
                 flex-grow: 0;
     }
+*/
 }
 
 

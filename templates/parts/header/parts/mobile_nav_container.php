@@ -1,5 +1,5 @@
 <div class="mobile-nav__container <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
-   <nav class="mobile-nav__nav flex-column collapse" id="mobile-nav">
+   <nav class="mobile-nav__nav flex-column czr-collapse" id="mobile-nav">
       <div class="mobile-nav__inner <?php czr_fn_echo( 'inner_elements_class' ) ?>">
       <?php
         if ( czr_fn_is_registered_or_possible( 'mobile_menu_search' ) ) {
