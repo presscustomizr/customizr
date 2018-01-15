@@ -254,7 +254,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
         wp_enqueue_style(
           'font-awesome',
-          sprintf('%1$s/css/font-awesome.min.css', CZR_BASE_URL . 'assets/shared/fonts/fa' ),
+          sprintf('%1$s/css/fontawesome-all.min.css', CZR_BASE_URL . 'assets/shared/fonts/fa' ),
           array(),
           CUSTOMIZR_VER,
           $media = 'all'
