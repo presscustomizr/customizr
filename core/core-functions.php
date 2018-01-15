@@ -1692,6 +1692,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         'fa-envelope',
         'fa-envelope-square',
         'fa-mobile',
+        'fa-mobile-alt',
         'fa-phone',
         'fa-phone-square',
         'fa-rss',
