@@ -1,11 +1,13 @@
 @font-face {
-  font-family: 'FontAwesome';
-  src:url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.eot');
-  src:url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.woff2') format('woff2'),
-      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.woff') format('woff'),
-      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.ttf') format('truetype'),
-      url('../../../assets/shared/fonts/fa/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  font-family: 'Font Awesome\ 5 Free';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.eot");
+  src: url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.woff2") format("woff2"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.woff") format("woff"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.ttf") format("truetype"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.svg#fontawesome") format("svg");
 }
 
 .about-wrap h3 {
@@ -67,7 +69,7 @@
     -------------------------------------------------- */
 h1.need-help-title:before,
 #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
-  font-family: 'FontAwesome';
+  font-family: 'Font Awesome\ 5 Free';
   speak: none;
   font-weight: normal;
   font-variant: normal;
