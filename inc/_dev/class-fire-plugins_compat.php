@@ -1074,7 +1074,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                .tc-wc-menu .nav > li > a:before {
                  content: '\\f07a';
                  position:absolute;
-                 font-size:1.6em; left: 0;
+                 font-size:1.35em; left: 0;
                }
                .tc-header .tc-wc-menu .nav > li > a {
                  position: relative;
