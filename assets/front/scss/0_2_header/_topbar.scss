@@ -11,7 +11,9 @@
           flex-grow: 1;
   max-width: 100%;
 }
-
+.topbar-nav__socials {
+  flex-shrink: 1;
+}
 .topbar-nav__nav,
 .topbar-nav__menu {
   width: 100%;
