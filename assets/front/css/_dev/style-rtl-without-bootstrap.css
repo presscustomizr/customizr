@@ -1548,6 +1548,10 @@ li#wp-admin-bar-tc-customizr-help a {
   padding: 0;
 }
 
+.vertical-nav.mobile-nav__menu {
+  margin: 0 -12.5px;
+}
+
 /* Branding */
 .primary-navbar__wrapper .branding__container {
   max-width: 85%;

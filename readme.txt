@@ -31,7 +31,9 @@ See headers of each files for further details.
 * Fix: slider caption not centered in ipad Mini. Fixes #1356
 * Fix: clicking menu items with children and no URL bring to 404. Fixes #1358
 * Fix: remove unwanted vertical separator before comments link in single posts. Fixes #1381
-* Improved : upgraded the Font Awesome icon set to its latest version
+* Improved: improve mobile menu horizontal alignment. fixes #1380
+* Improved: full page search form focus/blur on overlay open/close. fixes #1374
+* Improved: upgraded the Font Awesome icon set to its latest version. adresses #1364
 
 = 4.0.14 December 22nd 2017 =
 * Fix: decrease regular submenu top to 15px. fixes #1333
