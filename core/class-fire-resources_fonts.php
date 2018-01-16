@@ -38,7 +38,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
               if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
                     $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
                     wp_enqueue_style( 'customizr-fa',
-                          $_path . 'font-awesome.min.css',
+                          $_path . 'fontawesome-all.min.css',
                           array(),
                           CUSTOMIZR_VER,
                           'all'

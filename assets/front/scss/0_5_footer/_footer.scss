@@ -150,7 +150,7 @@
 
         //make sure the WordPress icon font-family in the Footer Credits is always FontAwesome
         //despite any "footer credits link" customization in the Font Customizer
-        footer#footer & a.fa { font-family: 'FontAwesome' !important; }
+        footer#footer & a.fab { font-family: 'Font Awesome\ 5 Brands' !important; }
 
       }
       .footer__credits { font-size: 0.82rem; }

@@ -111,15 +111,20 @@ h3#reply-title:before,
 .icon-bubble:before,
 .widget h3:before,
 .colophon .credits a[class*=icon-]:before {
-  font-family: 'FontAwesome';
-  speak: none;
-  font-weight: normal;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
   font-variant: normal;
   text-transform: none;
   font-style: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.colophon .credits a[class*=icon-]:before {
+  font-family: 'Font Awesome\ 5 Brands';
+  font-style: normal;
+  font-weight: normal;
 }
 
 #footer .white-icons .widget-title:before,
@@ -185,7 +190,7 @@ h3#reply-title:before,
   content: "\f0a1";
 }
 .widget_meta h3:before {
-  content: "\f08e";
+  content: "\f35d";
   top: 0.5px;
 }
 .widget_calendar h3:before {
@@ -216,7 +221,7 @@ h3#reply-title:before,
   }
   opacity: 0.2;
   position: relative;
-  top: -1.3px;
+  font-size: .85em;
 }
 .entry-summary.format-icon:before, .entry-content.format-icon:before {
   padding-right: 13px;
@@ -227,11 +232,12 @@ h3#reply-title:before,
   margin-top: -12px;
 }
 article.page .format-icon:before {
-  content: "\f0f6";
+  content: "\f15c";
+  font-weight: 400;
 }
 
 article.format-standard .format-icon:before {
-  content: "\f040";
+  content: "\f303";
 }
 
 article.format-image .format-icon:before, article.format-gallery .format-icon:before, article.attachment .format-icon:before {
@@ -270,7 +276,6 @@ article.format-link .format-icon:before {
 /* ARCHIVES */
 .search .search-header .format-icon:before {
   content: "\f002";
-  top: -1.9px;
 }
 
 .archive.date .archive-header .format-icon:before {
@@ -315,11 +320,10 @@ h2.comments-title:before {
 
 /* External Links style */
 a + span.tc-external:after {
-  content: "\f08e";
+  content: "\f35d";
   line-height: 0;
   padding-left: 0;
   text-decoration: none!important;
-  top: .1em;
   left: .2em;
   position: relative;
 }
@@ -3099,6 +3103,7 @@ footer ul, footer ol {
   margin-right: 0;
   top: 2px;
   position: relative;
+  font-weight: normal;
 }
 
 
