@@ -143,7 +143,7 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $text                           =  apply_filters(
                                                   'tc_fp_text',
                                                   sprintf( '%1$s %2$s',
-                                                  __( 'Featured page description text : use the page excerpt or set your own custom text in the Customizr screen.' , 'customizr' ),
+                                                  __( 'Featured page description text : use the page excerpt or set your own custom text in the customizer screen.' , 'customizr' ),
                                                    $customizr_link
                                                   ),
                                                   $fp_single_id,
