@@ -286,7 +286,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
             return [
               '<a href="' + _url + '" title="' + serverControlParams.i18n.readDocumentation + '" target="_blank">',
               ' ',
-              '<span class="fa fa-question-circle-o"></span>'
+              '<span class="far fa-question-circle"></span>'
             ].join('');
       },
 
@@ -1792,9 +1792,9 @@ $.extend( CZRItemMths , {
 
                       $_edit_icon.toggleClass('active' , visible );
                       if ( visible )
-                        $_edit_icon.removeClass('fa-pencil').addClass('fa-minus-square').attr('title', serverControlParams.i18n.close );
+                        $_edit_icon.removeClass('fa-pencil-alt').addClass('fa-minus-square').attr('title', serverControlParams.i18n.close );
                       else
-                        $_edit_icon.removeClass('fa-minus-square').addClass('fa-pencil').attr('title', serverControlParams.i18n.edit );
+                        $_edit_icon.removeClass('fa-minus-square').addClass('fa-pencil-alt').attr('title', serverControlParams.i18n.edit );
                       if ( 'expanded' == status ) {
                             module._adjustScrollExpandedBlock( item.container );
                       }
@@ -1878,7 +1878,7 @@ $.extend( CZRModOptMths , {
                         $.when( ctrl.container
                               .find('.customize-control-title').first()//was.find('.customize-control-title')
                               .append( $( '<span/>', {
-                                    class : [ ctrl.css_attr.edit_modopt_icon, 'fa fa-cog' ].join(' '),
+                                    class : [ ctrl.css_attr.edit_modopt_icon, 'fas fa-cog' ].join(' '),
                                     title : serverControlParams.i18n['Settings']
                               } ) ) )
                         .done( function(){
@@ -1982,7 +1982,7 @@ $.extend( CZRModOptMths , {
                     class : module.control.css_attr.mod_opt_wrapper,
                     html : [
                           [ '<h2 class="mod-opt-title">', _ctrlLabel , '</h2>' ].join(''),
-                          '<span class="fa fa-times ' + module.control.css_attr.close_modopt_icon + '" title="close"></span>'
+                          '<span class="fas fa-times ' + module.control.css_attr.close_modopt_icon + '" title="close"></span>'
                     ].join('')
               } ) );
               $( '.' + module.control.css_attr.mod_opt_wrapper ).append( $( modOpt_content_template( modOpt_model ) ) );
@@ -2863,9 +2863,9 @@ $.extend( CZRDynModuleMths, {
 
                           $(this).toggleClass('open' , _is_expanded );
                           if ( _is_expanded )
-                            $_btn.find('.fa').removeClass('fa-plus-square').addClass('fa-minus-square');
+                            $_btn.find('.fas').removeClass('fa-plus-square').addClass('fa-minus-square');
                           else
-                            $_btn.find('.fa').removeClass('fa-minus-square').addClass('fa-plus-square');
+                            $_btn.find('.fas').removeClass('fa-minus-square').addClass('fa-plus-square');
                           $_btn.toggleClass( 'active', _is_expanded );
                           $( module.container ).toggleClass(  module.control.css_attr.adding_new, _is_expanded );
                           module._adjustScrollExpandedBlock( $(this), 120 );
@@ -5090,7 +5090,7 @@ $.extend( CZRSkopeBaseMths, {
                       $('.czr-scope-switcher').prepend(
                             $( '<div/>', {
                                   class:'czr-server-notice',
-                                  html:'<span class="czr-server-message"></span><span class="fa fa-times-circle czr-dismiss-notification"></span>'
+                                  html:'<span class="czr-server-message"></span><span class="fas fa-times-circle czr-dismiss-notification"></span>'
                             } )
                       );
                 },
@@ -6824,7 +6824,7 @@ $.extend( CZRSkopeBaseMths, {
                         _overrides = self.getOverridenSkopeTitles();
 
                     return $.trim( [
-                          '<span class="czr-main-title"><span class="czr-toggle-title-notice fa fa-info-circle"></span>',
+                          '<span class="czr-main-title"><span class="czr-toggle-title-notice fas fa-info-circle"></span>',
                           'global' == api.czr_skope( skope_id || api.czr_activeSkopeId() )().skope ? current_title : ['Customizing', current_title ].join(' '),
                           '</span>',
                           '<span class="czr-skope-inherits-from">',
@@ -7461,7 +7461,7 @@ $.extend( CZRSkopeBaseMths, {
                                             ctrl.container
                                                   .find('.customize-control-title').first()//was.find('.customize-control-title')
                                                   .prepend( $( '<span/>', {
-                                                        class : 'czr-setting-reset fa fa-refresh',
+                                                        class : 'czr-setting-reset fas fa-sync',
                                                         title : ''
                                                   } ) ) )
                                       .done( function(){
@@ -7670,7 +7670,7 @@ $.extend( CZRSkopeBaseMths, {
                             $.when( ctrl.container
                                   .find('.customize-control-title').first()//was.find('.customize-control-title')
                                   .append( $( '<span/>', {
-                                        class : 'czr-toggle-notice fa fa-info-circle',
+                                        class : 'czr-toggle-notice fas fa-info-circle',
                                         title : serverControlParams.i18n.skope['Display informations about the scope of this option.']
                                   } ) ) )
                             .done( function(){
@@ -8920,7 +8920,6 @@ $.extend( CZRSocialModuleMths, {
                 'behance',
                 'behance-square',
                 'bitbucket',
-                'bitbucket-square',
                 'black-tie',
                 'btc',
                 'buysellads',
@@ -8939,12 +8938,11 @@ $.extend( CZRSocialModuleMths, {
                 'edge',
                 'empire',
                 'envelope',
-                'envelope-o',
+                'envelope-o', //<- go with far envelope
                 'envelope-square',
                 'expeditedssl',
                 'facebook',
                 'facebook-f (alias)',
-                'facebook-official',
                 'facebook-square',
                 'firefox',
                 'flickr',
@@ -8963,8 +8961,7 @@ $.extend( CZRSocialModuleMths, {
                 'git-square',
                 'google',
                 'google-plus',
-                'google-plus-circle',
-                'google-plus-official',
+                'google-plus-g', //<- added in fa5
                 'google-plus-square',
                 'google-wallet',
                 'gratipay',
@@ -8980,14 +8977,14 @@ $.extend( CZRSocialModuleMths, {
                 'lastfm-square',
                 'leanpub',
                 'linkedin',
-                'linkedin-square',
+                'linkedin-in', //<- added in fa5
                 'linux',
                 'maxcdn',
-                'meanpath',
                 'meetup',
                 'medium',
                 'mixcloud',
                 'mobile',
+                'mobile-alt',//<- added in fa5
                 'modx',
                 'odnoklassniki',
                 'odnoklassniki-square',
@@ -9060,9 +9057,29 @@ $.extend( CZRSocialModuleMths, {
                 'y-combinator',
                 'yelp',
                 'youtube',
-                'youtube-play',
                 'youtube-square'
               ];
+              this.fa_solid_icons = [
+                'fa-envelope',
+                'fa-envelope-square',
+                'fa-mobile',
+                'fa-mobile-alt',
+                'fa-phone',
+                'fa-phone-square',
+                'fa-rss',
+                'fa-rss-square',
+                'fa-share-alt',
+                'fa-share-alt-square'
+              ];
+
+              this.fa_icons_replacement = {
+                'fa-bitbucket-square'     : 'fa-bitbucket',
+                'fa-facebook-official'    : 'fa-facebook-f',
+                'fa-google-plus-circle'   : 'fa-google-plus',
+                'fa-google-plus-official' : 'fa-google-plus',
+                'fa-linkedin-square'      : 'fa-linkedin',
+                'fa-youtube-play'         : 'fa-youtube'
+              }
               module.inputConstructor = api.CZRInput.extend( module.CZRSocialsInputMths || {} );
               module.itemConstructor = api.CZRItem.extend( module.CZRSocialsItem || {} );
               this.defaultModOptModel = {
@@ -9133,26 +9150,46 @@ $.extend( CZRSocialModuleMths, {
       getIconFromTitle : function( title ) {
               return  'fa-' . title.toLowerCase().replace('envelope', 'email');
       },
+      _strReplace : function( $f, $r, $s ) {
+              return $s.replace(new RegExp("(" + (typeof($f) == "string" ? $f.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&") : $f.map(function(i){return i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")}).join("|")) + ")", "g"), typeof($r) == "string" ? $r : typeof($f) == "string" ? $r[0] : function(i){ return $r[$f.indexOf(i)]});
+      },
 
+      buildFaIcon : function( value ) {
+              var _fa_group       = 'fab', //<- brand group by default
+                  _icon_class     = value.toLowerCase(),
+                solidIcons        = this.fa_solid_icons,
+                iconsReplacement  = this.fa_icons_replacement;
 
+              _icon_class = this._strReplace( _.keys( iconsReplacement ),  _.values( iconsReplacement ),_icon_class);
+              if ( _icon_class.match(/-o$/) ) {
+                    _fa_group  = 'far';
+                    _icon_class = _icon_class.replace(/-o$/,'');
+              }
+              else if ( _.contains( solidIcons, _icon_class ) ) {
+                    _fa_group = 'fas';
+              }
 
+              return _fa_group + ' ' +_icon_class;
 
+      },
 
 
 
       CZRSocialsInputMths : {
               setupSelect : function() {
-                    var input        = this,
-                        item         = input.input_parent,
-                        module       = input.module,
-                        socialList   = module.social_icons,
-                        _model       = item(),
-                        is_preItem   = _.isEmpty( _model.id );
+                    var input              = this,
+                        item               = input.input_parent,
+                        module             = input.module,
+                        socialList         = module.social_icons,
+                        solidIcons         = module.fa_solid_icons,
+                        iconsReplacement   = module.fa_icons_eplacement,
+                        _model             = item(),
+                        is_preItem         = _.isEmpty( _model.id );
                     if ( is_preItem ) {
                           socialList = _.union( [ serverControlParams.i18n.selectSocialIcon ], socialList );
                     }
                     _.each( socialList , function( icon_name, k ) {
-                          var _value = ( is_preItem && 0 === k ) ? '' : 'fa-' + icon_name.toLowerCase(),
+                          var _value    = ( is_preItem && 0 === k ) ? '' : 'fa-' + icon_name.toLowerCase(),
                               _attributes = {
                                     value : _value,
                                     html: module.getTitleFromIcon( icon_name )
@@ -9165,8 +9202,8 @@ $.extend( CZRSocialModuleMths, {
 
                     function addIcon( state ) {
                           if (! state.id) { return state.text; }
-                          var $state = $(
-                            '<span class="fa ' + state.element.value.toLowerCase() + '">&nbsp;&nbsp;' + state.text + '</span>'
+                          var  $state = $(
+                            '<span class="' + module.buildFaIcon( state.element.value.toLowerCase() ) + '"></span><span class="social-name">&nbsp;&nbsp;' + state.text + '</span>'
                           );
                           return $state;
                     }
@@ -9229,7 +9266,7 @@ $.extend( CZRSocialModuleMths, {
                       icon = icon || 'fa-' + module.social_icons[0];
                       color = color || serverControlParams.social_el_params.defaultSocialColor;
 
-                      return '<div><span class="fa ' + icon + '" style="color:' + color + '"></span> ' + title + '</div>';
+                      return '<div><span class="' + module.buildFaIcon( icon ) + '" style="color:' + color + '"></span> ' + title + '</div>';
               },
               writeItemViewTitle : function( model ) {
                       var item = this,
@@ -9415,7 +9452,7 @@ $.extend( CZRWidgetAreaModuleMths, {
                           if (! state.id) { return state.text; }
                           if (  _.contains(available_locs, state.element.value) ) { return state.text; }
                           var $state = $(
-                            '<span class="czr-unavailable-location fa fa-ban" title="' + serverControlParams.i18n.unavailableLocation + '">&nbsp;&nbsp;' + state.text + '</span>'
+                            '<span class="czr-unavailable-location fas fa-ban" title="' + serverControlParams.i18n.unavailableLocation + '">&nbsp;&nbsp;' + state.text + '</span>'
                           );
                           return $state;
                     }
@@ -10698,7 +10735,7 @@ $.extend( CZRLayoutSelectMths , {
 
 
             var fireHeaderButtons = function() {
-                  var $home_button = $('<span/>', { class:'customize-controls-home fa fa-home', html:'<span class="screen-reader-text">Home</span>' } );
+                  var $home_button = $('<span/>', { class:'customize-controls-home fas fa-home', html:'<span class="screen-reader-text">Home</span>' } );
                   $.when( $('#customize-header-actions').append( $home_button ) )
                         .done( function() {
                               $home_button
