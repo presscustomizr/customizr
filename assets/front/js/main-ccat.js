@@ -2269,6 +2269,11 @@ var czrapp = czrapp || {};
                 _search_overlay_toggler_sel     = '.search-toggle_btn.czr-overlay-toggle_btn',
                 _search_overlay_toggle_class    = 'full-search-opened czr-overlay-opened',
 
+                transitionEnd                   = 'transitionend webkitTransitionEnd otransitionend oTransitionEnd MSTransitionEnd',
+                _transitioning_el_sel           = '.czr-overlay .overlay-content',
+                _search_input_sel               = '.czr-search-field',
+                _search_overlay_open_class      = 'full-search-opened',
+
                 _search_dropdown_wrapper_sel    = '.mobile-utils__wrapper',
                 _search_dropdown_button_sel     = '.search-toggle_btn.czr-dropdown',
                 _search_dropdown_menu_sel       = '.nav__search .czr-dropdown-menu',
@@ -2282,6 +2287,17 @@ var czrapp = czrapp || {};
             czrapp.$_body.on( _search_toggle_event, _search_overlay_toggler_sel, function(evt) {
                   evt.preventDefault();
                   czrapp.$_body.toggleClass( _search_overlay_toggle_class );
+            });
+            czrapp.$_body.on( transitionEnd, _transitioning_el_sel, function( evt ) {
+                  if ( $( _transitioning_el_sel ).get()[0]  != evt.target )
+                        return;
+
+                  if ( czrapp.$_body.hasClass( _search_overlay_open_class ) ) {
+                        $(this).find(  _search_input_sel ).focus();
+                  }
+                  else {
+                        $(this).find(  _search_input_sel ).blur();
+                  }
             });
             self.headerSearchExpanded = new czrapp.Value( false );
             self.headerSearchExpanded.bind( function( exp ) {
