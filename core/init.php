@@ -286,15 +286,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             require_once( CZR_BASE . CZR_CORE_PATH . 'core-settings-map.php' );
 
             //loads utils
-            if ( CZR_DEV_MODE ) {
-                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-0-base.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-1-utils.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-2-query.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-3-thumbnails.php' );
-                require_once( CZR_BASE . CZR_CORE_PATH . '_dev/_utils/fn-4-colors.php' );
-            } else {
-                require_once( CZR_BASE . CZR_CORE_PATH . 'functions-ccat.php' );
-            }
+            require_once( CZR_BASE . CZR_CORE_PATH . 'functions-ccat.php' );
 
             do_action( 'czr_load' );
 
