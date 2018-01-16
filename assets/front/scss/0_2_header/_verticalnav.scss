@@ -54,4 +54,11 @@
     }
   }
 
+  //mobile menu alignment
+  //this is because menu-items (li) have a margin right-left of $base-line-height-fixed/3
+  //and inner links (li a) have a padding right-left of $base-line-height-fixed/3
+  //we, then, nullify that space by using an equivalent negative margin for the ul container
+  &.mobile-nav__menu {
+    margin: 0 -2*$base-line-height-fixed/3;
+  }
 }
