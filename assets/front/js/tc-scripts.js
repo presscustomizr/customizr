@@ -4863,7 +4863,7 @@ var czrapp = czrapp || {};
                               _wrapHtml = [
                                     '<div id="bottom-front-notification">',
                                       '<div class="note-content">',
-                                        '<span class="fa fa-times close-note" title="' + czrapp.localized.i18n['Permanently dismiss'] + '"></span>',
+                                        '<span class="fas fa-times close-note" title="' + czrapp.localized.i18n['Permanently dismiss'] + '"></span>',
                                       '</div>',
                                     '</div>'
                               ].join('');
