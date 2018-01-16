@@ -3,13 +3,15 @@ Theme Name: customizr
 Description: Used to style the TinyMCE editor.
 */
 @font-face {
-  font-family: 'FontAwesome';
-  src:url('../../shared/fonts/fa/fonts/fontawesome-webfont.eot');
-  src:url('../../shared/fonts/fa/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-      url('../../shared/fonts/fa/fonts/fontawesome-webfont.woff2') format('woff2'),
-      url('../../shared/fonts/fa/fonts/fontawesome-webfont.woff') format('woff'),
-      url('../../shared/fonts/fa/fonts/fontawesome-webfont.ttf') format('truetype'),
-      url('../../shared/fonts/fa/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  font-family: 'Font Awesome\ 5 Free';
+  font-style: normal;
+  font-weight: 900;
+  src: url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.eot");
+  src: url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.woff2") format("woff2"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.woff") format("woff"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.ttf") format("truetype"),
+       url("../../../assets/shared/fonts/fa/webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
 
 body{
@@ -20,9 +22,8 @@ body{
 .post-format-quote:before,
 .post-format-link:before,
 .post-format-aside:before {
-  font-family: 'FontAwesome';
-  speak: none;
-  font-weight: normal;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
   font-variant: normal;
   text-transform: none;
   font-style: normal;

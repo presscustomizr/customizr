@@ -64,7 +64,12 @@ input[type=number] {
 
 input[type=checkbox]:checked:before,
 input[type=radio]:checked:before {
-  font-family: "FontAwesome";
+  font-family: 'Font Awesome\ 5 Free';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
   margin: auto;
   position: absolute;
   top: 0;
@@ -84,6 +89,7 @@ input[type=radio]:checked:before {
 }
 input[type=checkbox]:checked:before {
   content: "\f00c";
+  font-weight: 900;
 }
 input[type="file"],
 input[type="range"] {

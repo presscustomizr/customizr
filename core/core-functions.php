@@ -1685,6 +1685,31 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
     $social_size_css  = empty( $font_size_value ) || $_default_size == $font_size_value ? '' : "font-size:{$font_size_value}px";
 
     $_social_links = array();
+
+    //FA5 backward compatibility with FA4
+    //see https://github.com/presscustomizr/customizr/issues/1364
+    $_fa_solid_icons = array(
+        'fa-envelope',
+        'fa-envelope-square',
+        'fa-mobile',
+        'fa-mobile-alt',
+        'fa-phone',
+        'fa-phone-square',
+        'fa-rss',
+        'fa-rss-square',
+        'fa-share-alt',
+        'fa-share-alt-square'
+    );
+
+    $_fa_icon_replacements = array(
+        'fa-bitbucket-square'     => 'fa-bitbucket',
+        'fa-facebook-official'    => 'fa-facebook-f',
+        'fa-google-plus-circle'   => 'fa-google-plus',
+        'fa-google-plus-official' => 'fa-google-plus',
+        'fa-linkedin-square'      => 'fa-linkedin',
+        'fa-youtube-play'         => 'fa-youtube'
+    );
+
     foreach( $_socials as $key => $item ) {
         //skip if mod_opt
         if ( array_key_exists( 'is_mod_opt', $item ) )
@@ -1696,6 +1721,28 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
                 ' icon-' . str_replace( array('rss', 'envelope'), array('feed', 'mail'), substr( $icon_class, 3, strlen($icon_class) ) ) :
                 '';
 
+
+        //FA5 backward compatibility with FA4
+        //see https://github.com/presscustomizr/customizr/issues/1364
+        //by default they're brands
+        $fa_group = 'fab';
+
+        //perform replacements for missing icons
+        $icon_class = str_replace( array_keys( $_fa_icon_replacements ), array_values( $_fa_icon_replacements ), $icon_class );
+
+        //then treat the -o case: We just use the fa-envelope-o as of now
+        if ( strlen( $icon_class ) - 2 == strpos( $icon_class, '-o' ) ) {
+            $icon_class = str_replace( '-o', '', $icon_class );
+            $fa_group = 'far';
+        }
+        //treat the few solid icons
+        else if ( in_array( $icon_class, $_fa_solid_icons ) ){
+            $fa_group = 'fas';
+        }
+
+        $icon_class   = "{$fa_group} {$icon_class}";
+
+
         /* Maybe build inline style */
         $social_color_css      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
         //if the color is the default one, do not print the inline style css
@@ -1704,7 +1751,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 
         $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
 
-        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="fa %5$s"></i></a>',
+        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="%5$s"></i></a>',
           //do we have an id set ?
           //Typically not if the user still uses the old options value.
           //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
