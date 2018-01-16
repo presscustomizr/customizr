@@ -888,7 +888,9 @@ span.czr-panel-subtitle {
 .czr-item-title h4 {
   margin: 0;
 }
-.czr-item-title .fa:before {
+.czr-item-title .fab::before,
+.czr-item-title .fas::before,
+.czr-item-title .far::before {
   padding-right: 2px;
 }
 .czr-item-btns {
@@ -986,7 +988,9 @@ span.czr-panel-subtitle {
     -webkit-filter: blur(1px);
 }
 
-.czr-item-title .fa {
+.czr-item-title .far,
+.czr-item-title .fab,
+.czr-item-title .fas {
   font-size: 18px;
 }
 
@@ -2952,7 +2956,9 @@ h2.czr-current-skope-title {
     font-weight: normal;
     text-shadow: 1px 1px 0px #dedede;
 }
-.czr-scope .fa {
+.czr-scope .fab,
+.czr-scope .far,
+.czr-scope .fas {
     font-size: 10px;
     padding: 2%;
     color: #585858;
