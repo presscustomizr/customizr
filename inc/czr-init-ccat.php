@@ -1555,7 +1555,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
                .tc-wc-menu .nav > li > a:before {
                  content: '\\f07a';
                  position:absolute;
-                 font-size:1.6em; left: 0;
+                 font-size:1.35em; left: 0;
                }
                .tc-header .tc-wc-menu .nav > li > a {
                  position: relative;
@@ -3922,7 +3922,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
             if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
               $_path = apply_filters( 'tc_font_icons_path' , TC_BASE_URL . 'assets/shared/fonts/fa/css/' );
               wp_enqueue_style( 'customizr-fa',
-                  $_path . 'font-awesome.min.css',
+                  $_path . 'fontawesome-all.min.css',
                   array() , $this->_resouces_version, 'all' );
             }
 
@@ -5381,7 +5381,7 @@ if ( ! function_exists( 'czr_fn_render_main_header' ) ) {
 */
 if ( ! function_exists( 'czr_fn_get_tagline_text' ) ) {
   function czr_fn_get_tagline_text( $echo = true ) {
-    $tagline_text = apply_filters( 'tc_tagline_text', esc_attr__( get_bloginfo( 'description' ) ) );
+    $tagline_text = apply_filters( 'tc_tagline_text', get_bloginfo( 'description', 'display' ) );
     if ( ! $echo )
       return $tagline_text;
     echo $tagline_text;

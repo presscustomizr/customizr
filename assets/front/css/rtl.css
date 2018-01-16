@@ -1731,24 +1731,27 @@ template {
 .fade.show {
   opacity: 1;
 }
-
-.collapse {
+/*
+* @czr_addon : collapse/collapsing class turned to czr-collapse/czr-collapsing
+* see https://github.com/presscustomizr/customizr/issues/1373
+*/
+.czr-collapse {
   display: none;
 }
 
-.collapse.show {
+.czr-collapse.show {
   display: block;
 }
 
-tr.collapse.show {
+tr.czr-collapse.show {
   display: table-row;
 }
 
-tbody.collapse.show {
+tbody.czr-collapse.show {
   display: table-row-group;
 }
 
-.collapsing {
+.czr-collapsing {
   position: relative;
   height: 0;
   overflow: hidden;
@@ -3811,7 +3814,7 @@ embed, iframe, object, video {
   color: #313131;
 }
 
-.header-skin-light .nav__utils .ham-toggler-menu.collapsed:hover .line {
+.header-skin-light .nav__utils .ham-toggler-menu.czr-collapsed:hover .line {
   background-color: rgba(49, 49, 49, 0.7);
 }
 
@@ -3971,7 +3974,7 @@ embed, iframe, object, video {
   color: #fff;
 }
 
-.header-skin-dark .nav__utils .ham-toggler-menu.collapsed:hover .line {
+.header-skin-dark .nav__utils .ham-toggler-menu.czr-collapsed:hover .line {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -4471,18 +4474,18 @@ embed, iframe, object, video {
   width: 26px;
 }
 
-.ham-toggler-menu:not(.collapsed) .line-1 {
+.ham-toggler-menu:not(.czr-collapsed) .line-1 {
   -webkit-transform: translateY(6px) translateX(-3px) rotate(45deg);
   -moz-transform: translateY(6px) translateX(-3px) rotate(45deg);
   transform: translateY(6px) translateX(-3px) rotate(45deg);
   width: 28px;
 }
 
-.ham-toggler-menu:not(.collapsed) .line-2 {
+.ham-toggler-menu:not(.czr-collapsed) .line-2 {
   opacity: 0;
 }
 
-.ham-toggler-menu:not(.collapsed) .line-3 {
+.ham-toggler-menu:not(.czr-collapsed) .line-3 {
   -webkit-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
   -moz-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
   transform: translateY(-6px) translateX(-3px) rotate(-45deg);
@@ -4498,8 +4501,7 @@ embed, iframe, object, video {
 /* ADMIN BAR
 -------------------------------------------------- */
 #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
-  font-family: "FontAwesome";
-  speak: none;
+  font-family: 'Font Awesome\ 5 Free';
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
@@ -4768,6 +4770,32 @@ li#wp-admin-bar-tc-customizr-help a {
   -webkit-flex-direction: column !important;
   -ms-flex-direction: column !important;
   flex-direction: column !important;
+  /*
+Since mobile and desktop navbar are different we don't need use the following classes anymore
+    .navbar-toggleable-md {
+        width: auto !important;
+        -webkit-box-pack: center !important;
+        -webkit-justify-content: center !important;
+            -ms-flex-pack: center !important;
+                justify-content: center !important;
+    }
+
+    .navbar-toggleable-md .navbar-collapse {
+        width: auto;
+         -webkit-align-self: center !important;
+        -ms-flex-item-align: center !important;
+         -ms-grid-row-align: center !important;
+                 align-self: center !important;
+
+          -webkit-flex-basis: auto;
+     -ms-flex-preferred-size: auto;
+                  flex-basis: auto;
+
+        -webkit-flex-grow: 0;
+            -ms-flex-positive: 0;
+                flex-grow: 0;
+    }
+*/
 }
 
 .logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-navbar__row .branding__container,
@@ -4795,30 +4823,6 @@ li#wp-admin-bar-tc-customizr-help a {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   flex-basis: auto;
-}
-
-.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-navbar__row .navbar-toggleable-md,
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .primary-navbar__row .navbar-toggleable-md {
-  width: auto !important;
-  -webkit-box-pack: center !important;
-  -webkit-justify-content: center !important;
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
-}
-
-.logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-navbar__row .navbar-toggleable-md .navbar-collapse,
-.logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky .primary-navbar__row .navbar-toggleable-md .navbar-collapse {
-  width: auto;
-  -webkit-align-self: center !important;
-  -ms-flex-item-align: center !important;
-  -ms-grid-row-align: center !important;
-  align-self: center !important;
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
-  flex-basis: auto;
-  -webkit-flex-grow: 0;
-  -ms-flex-positive: 0;
-  flex-grow: 0;
 }
 
 [class*=logo_right] .mobile-navbar__row,
@@ -4962,6 +4966,10 @@ li#wp-admin-bar-tc-customizr-help a {
   -ms-flex-positive: 1;
   flex-grow: 1;
   max-width: 100%;
+}
+
+.topbar-nav__socials {
+  flex-shrink: 1;
 }
 
 .topbar-nav__nav,
@@ -6470,7 +6478,12 @@ input[type=number] {
 
 input[type=checkbox]:checked:before,
 input[type=radio]:checked:before {
-  font-family: "FontAwesome";
+  font-family: 'Font Awesome\ 5 Free';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
   margin: auto;
   position: absolute;
   top: 0;
@@ -6492,6 +6505,7 @@ input[type=radio]:checked:before {
 
 input[type=checkbox]:checked:before {
   content: "\f00c";
+  font-weight: 900;
 }
 
 input[type="file"],
@@ -7536,12 +7550,16 @@ dl dd {
 .format-aside .icn-format:before,
 .format-status .icn-format:before,
 .format-chat .icn-format:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
   font-size: inherit;
   text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .format-chat .icn-format:before {
@@ -9733,8 +9751,8 @@ section.post-content {
   margin-top: 0.5rem;
 }
 
-footer#footer .colophon__row .footer__credits a.fa {
-  font-family: 'FontAwesome' !important;
+footer#footer .colophon__row .footer__credits a.fab {
+  font-family: 'Font Awesome\ 5 Brands' !important;
 }
 
 .colophon__row .footer__credits {

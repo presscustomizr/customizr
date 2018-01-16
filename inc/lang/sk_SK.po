@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15-beta\n"
-"Report-Msgid-Bugs-To: http://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-09 15:39:00+00:00\n"
+"Project-Id-Version: * Customizr v4.0.15\n"
+"Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
+"POT-Creation-Date: 2018-01-16 10:01:10+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -843,8 +843,8 @@ msgid "Specific Mobile Menu"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:769
-#: build/free/customizr/core/init-base.php:390 core/core-settings-map.php:769
-#: core/init-base.php:390
+#: build/free/customizr/core/init-base.php:394 core/core-settings-map.php:769
+#: core/init-base.php:394
 msgid "Main Menu"
 msgstr "Hlavné Menu"
 
@@ -1296,11 +1296,11 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1209
 #: build/free/customizr/core/core-settings-map.php:1221
 #: build/free/customizr/core/czr-customize-ccat.php:1986
-#: build/free/customizr/inc/czr-front-ccat.php:4317
+#: build/free/customizr/inc/czr-front-ccat.php:4314
 #: core/_dev/_czr/tmpl/modules/all-modules-tmpl.php:24
 #: core/core-settings-map.php:1209 core/core-settings-map.php:1221
 #: core/czr-customize-ccat.php:1986
-#: inc/_dev/parts/class-content-headings.php:338 inc/czr-front-ccat.php:4317
+#: inc/_dev/parts/class-content-headings.php:338 inc/czr-front-ccat.php:4314
 msgid "No"
 msgstr "Nie"
 
@@ -1609,9 +1609,9 @@ msgid "Author pages titles"
 msgstr "Za nadpisom"
 
 #: build/free/customizr/core/core-settings-map.php:1546
-#: build/free/customizr/inc/czr-front-ccat.php:4318
+#: build/free/customizr/inc/czr-front-ccat.php:4315
 #: core/core-settings-map.php:1546
-#: inc/_dev/parts/class-content-headings.php:339 inc/czr-front-ccat.php:4318
+#: inc/_dev/parts/class-content-headings.php:339 inc/czr-front-ccat.php:4315
 msgid "Search Results for :"
 msgstr "Výsledky hľadania pre :"
 
@@ -1737,20 +1737,20 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1664
-#: build/free/customizr/inc/czr-front-ccat.php:5070
+#: build/free/customizr/inc/czr-front-ccat.php:5067
 #: core/core-settings-map.php:1664 inc/_dev/parts/class-content-post.php:214
-#: inc/czr-front-ccat.php:5070
+#: inc/czr-front-ccat.php:5067
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1665
 #: build/free/customizr/core/core-settings-map.php:1724
-#: build/free/customizr/inc/czr-front-ccat.php:4739
-#: build/free/customizr/inc/czr-front-ccat.php:5071
+#: build/free/customizr/inc/czr-front-ccat.php:4736
+#: build/free/customizr/inc/czr-front-ccat.php:5068
 #: core/core-settings-map.php:1665 core/core-settings-map.php:1724
 #: inc/_dev/parts/class-content-page.php:183
-#: inc/_dev/parts/class-content-post.php:215 inc/czr-front-ccat.php:4739
-#: inc/czr-front-ccat.php:5071
+#: inc/_dev/parts/class-content-post.php:215 inc/czr-front-ccat.php:4736
+#: inc/czr-front-ccat.php:5068
 msgid "WordPress documentation"
 msgstr ""
 
@@ -1797,9 +1797,9 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1723
-#: build/free/customizr/inc/czr-front-ccat.php:4738
+#: build/free/customizr/inc/czr-front-ccat.php:4735
 #: core/core-settings-map.php:1723 inc/_dev/parts/class-content-page.php:182
-#: inc/czr-front-ccat.php:4738
+#: inc/czr-front-ccat.php:4735
 msgid "Don't know how to set a featured image to a page? Learn how in the %s."
 msgstr ""
 
@@ -2652,9 +2652,9 @@ msgid "The best way to start with %s is to read the %s and visit the %s."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:563
-#: build/free/customizr/inc/czr-front-ccat.php:1083
+#: build/free/customizr/inc/czr-front-ccat.php:1080
 #: core/_dev/_admin/class-fire-admin_page.php:95 core/czr-admin-ccat.php:563
-#: inc/_dev/parts/class-header-menu.php:392 inc/czr-front-ccat.php:1083
+#: inc/_dev/parts/class-header-menu.php:392 inc/czr-front-ccat.php:1080
 msgid "documentation"
 msgstr ""
 
@@ -3202,14 +3202,14 @@ msgstr ""
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:701
 #: build/free/customizr/core/front/template-tags/template-tags.php:163
 #: build/free/customizr/core/front/template-tags/template-tags.php:164
-#: build/free/customizr/inc/czr-front-ccat.php:2634
-#: build/free/customizr/inc/czr-front-ccat.php:2667
-#: build/free/customizr/inc/czr-front-ccat.php:2682
-#: build/free/customizr/inc/czr-front-ccat.php:2710
-#: build/free/customizr/inc/czr-front-ccat.php:3225
-#: build/free/customizr/inc/czr-front-ccat.php:3815
-#: build/free/customizr/inc/czr-front-ccat.php:4220
-#: build/free/customizr/inc/czr-front-ccat.php:8961
+#: build/free/customizr/inc/czr-front-ccat.php:2631
+#: build/free/customizr/inc/czr-front-ccat.php:2664
+#: build/free/customizr/inc/czr-front-ccat.php:2679
+#: build/free/customizr/inc/czr-front-ccat.php:2707
+#: build/free/customizr/inc/czr-front-ccat.php:3222
+#: build/free/customizr/inc/czr-front-ccat.php:3812
+#: build/free/customizr/inc/czr-front-ccat.php:4217
+#: build/free/customizr/inc/czr-front-ccat.php:8958
 #: core/_dev/_admin/class-admin-meta_boxes.php:1511
 #: core/_dev/_czr/class-czr-resources.php:313
 #: core/_dev/_czr/class-czr-resources.php:323
@@ -3232,11 +3232,11 @@ msgstr ""
 #: inc/_dev/parts/class-content-comments.php:198
 #: inc/_dev/parts/class-content-featured_pages.php:268
 #: inc/_dev/parts/class-content-headings.php:241
-#: inc/_dev/parts/class-content-slider.php:834 inc/czr-front-ccat.php:2634
-#: inc/czr-front-ccat.php:2667 inc/czr-front-ccat.php:2682
-#: inc/czr-front-ccat.php:2710 inc/czr-front-ccat.php:3225
-#: inc/czr-front-ccat.php:3815 inc/czr-front-ccat.php:4220
-#: inc/czr-front-ccat.php:8961
+#: inc/_dev/parts/class-content-slider.php:834 inc/czr-front-ccat.php:2631
+#: inc/czr-front-ccat.php:2664 inc/czr-front-ccat.php:2679
+#: inc/czr-front-ccat.php:2707 inc/czr-front-ccat.php:3222
+#: inc/czr-front-ccat.php:3812 inc/czr-front-ccat.php:4217
+#: inc/czr-front-ccat.php:8958
 msgid "Edit"
 msgstr "Upraviť"
 
@@ -3311,12 +3311,12 @@ msgid "Upgrade Wordpress Now"
 msgstr "Aktualizovať Wordpress Teraz"
 
 #: build/free/customizr/core/czr-customize-ccat.php:980
-#: build/free/customizr/inc/czr-front-ccat.php:857
-#: build/free/customizr/inc/czr-front-ccat.php:864
+#: build/free/customizr/inc/czr-front-ccat.php:854
+#: build/free/customizr/inc/czr-front-ccat.php:861
 #: core/_dev/_czr/class-czr-resources.php:314 core/czr-customize-ccat.php:980
 #: inc/_dev/parts/class-header-menu.php:166
-#: inc/_dev/parts/class-header-menu.php:173 inc/czr-front-ccat.php:857
-#: inc/czr-front-ccat.php:864
+#: inc/_dev/parts/class-header-menu.php:173 inc/czr-front-ccat.php:854
+#: inc/czr-front-ccat.php:861
 msgid "Close"
 msgstr ""
 
@@ -3665,32 +3665,32 @@ msgid "Yearly Archives:"
 msgstr "Ročný archív: %s"
 
 #: build/free/customizr/core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
-#: build/free/customizr/inc/czr-front-ccat.php:4653
-#: build/free/customizr/inc/czr-front-ccat.php:4957
-#: build/free/customizr/inc/czr-front-ccat.php:5424
+#: build/free/customizr/inc/czr-front-ccat.php:4650
+#: build/free/customizr/inc/czr-front-ccat.php:4954
+#: build/free/customizr/inc/czr-front-ccat.php:5421
 #: build/free/customizr/templates/parts/content/singular/page_content.php:16
 #: build/free/customizr/templates/parts/content/singular/post_content.php:18
 #: core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
 #: inc/_dev/parts/class-content-page.php:97
 #: inc/_dev/parts/class-content-post.php:101
-#: inc/_dev/parts/class-content-post_list.php:232 inc/czr-front-ccat.php:4653
-#: inc/czr-front-ccat.php:4957 inc/czr-front-ccat.php:5424
+#: inc/_dev/parts/class-content-post_list.php:232 inc/czr-front-ccat.php:4650
+#: inc/czr-front-ccat.php:4954 inc/czr-front-ccat.php:5421
 #: templates/parts/content/singular/page_content.php:16
 #: templates/parts/content/singular/post_content.php:18
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Čítať ďalej <span class=\"meta-nav\">&rarr;</span>"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:58
-#: build/free/customizr/inc/czr-front-ccat.php:7291
+#: build/free/customizr/inc/czr-front-ccat.php:7288
 #: core/front/models/content/post-metas/class-model-post_metas.php:58
-#: inc/_dev/parts/class-content-post_metas.php:612 inc/czr-front-ccat.php:7291
+#: inc/_dev/parts/class-content-post_metas.php:612 inc/czr-front-ccat.php:7288
 msgid "by"
 msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:64
-#: build/free/customizr/inc/czr-front-ccat.php:6887
+#: build/free/customizr/inc/czr-front-ccat.php:6884
 #: core/front/models/content/post-metas/class-model-post_metas.php:64
-#: inc/_dev/parts/class-content-post_metas.php:208 inc/czr-front-ccat.php:6887
+#: inc/_dev/parts/class-content-post_metas.php:208 inc/czr-front-ccat.php:6884
 msgid "Published"
 msgstr "Publikované"
 
@@ -3700,33 +3700,33 @@ msgid "Updated"
 msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:83
-#: build/free/customizr/inc/czr-front-ccat.php:6890
+#: build/free/customizr/inc/czr-front-ccat.php:6887
 #: core/front/models/content/post-metas/class-model-post_metas.php:83
-#: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6890
+#: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6887
 msgid "at dimensions"
 msgstr "v rozmeroch"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:83
-#: build/free/customizr/inc/czr-front-ccat.php:6890
+#: build/free/customizr/inc/czr-front-ccat.php:6887
 #: core/front/models/content/post-metas/class-model-post_metas.php:83
-#: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6890
+#: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6887
 msgid "Link to full-size image"
 msgstr "Odkaz na obrázok plnej veľkosti"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:85
-#: build/free/customizr/inc/czr-front-ccat.php:6891
-#: build/free/customizr/inc/czr-front-ccat.php:7267
+#: build/free/customizr/inc/czr-front-ccat.php:6888
+#: build/free/customizr/inc/czr-front-ccat.php:7264
 #: core/front/models/content/post-metas/class-model-post_metas.php:85
 #: inc/_dev/parts/class-content-post_metas.php:212
-#: inc/_dev/parts/class-content-post_metas.php:588 inc/czr-front-ccat.php:6891
-#: inc/czr-front-ccat.php:7267
+#: inc/_dev/parts/class-content-post_metas.php:588 inc/czr-front-ccat.php:6888
+#: inc/czr-front-ccat.php:7264
 msgid "in"
 msgstr "v"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:85
-#: build/free/customizr/inc/czr-front-ccat.php:6891
+#: build/free/customizr/inc/czr-front-ccat.php:6888
 #: core/front/models/content/post-metas/class-model-post_metas.php:85
-#: inc/_dev/parts/class-content-post_metas.php:212 inc/czr-front-ccat.php:6891
+#: inc/_dev/parts/class-content-post_metas.php:212 inc/czr-front-ccat.php:6888
 msgid "Return to "
 msgstr "Vrátiť sa na"
 
@@ -3741,92 +3741,92 @@ msgid "Permalink to:&nbsp;"
 msgstr "Permalink na %s"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:162
-#: build/free/customizr/inc/czr-front-ccat.php:7198
+#: build/free/customizr/inc/czr-front-ccat.php:7195
 #: core/front/models/content/post-metas/class-model-post_metas.php:162
-#: inc/_dev/parts/class-content-post_metas.php:519 inc/czr-front-ccat.php:7198
+#: inc/_dev/parts/class-content-post_metas.php:519 inc/czr-front-ccat.php:7195
 msgid "View all posts by %s"
 msgstr "Zobraziť všetky príspevky od %s"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:210
-#: build/free/customizr/inc/czr-front-ccat.php:7063
+#: build/free/customizr/inc/czr-front-ccat.php:7060
 #: core/front/models/content/post-metas/class-model-post_metas.php:210
-#: inc/_dev/parts/class-content-post_metas.php:384 inc/czr-front-ccat.php:7063
+#: inc/_dev/parts/class-content-post_metas.php:384 inc/czr-front-ccat.php:7060
 msgid "View all posts in %s"
 msgstr "Zobraziť všetky príspevky v %s"
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:199
 #: build/free/customizr/core/front/template-tags/template-tags.php:205
-#: build/free/customizr/inc/czr-front-ccat.php:890
+#: build/free/customizr/inc/czr-front-ccat.php:887
 #: core/front/models/header/parts/class-model-menu.php:199
 #: core/front/template-tags/template-tags.php:205
-#: inc/_dev/parts/class-header-menu.php:199 inc/czr-front-ccat.php:890
+#: inc/_dev/parts/class-header-menu.php:199 inc/czr-front-ccat.php:887
 msgid "Add a menu"
 msgstr "Pridať menu "
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:200
 #: build/free/customizr/core/front/template-tags/template-tags.php:206
-#: build/free/customizr/inc/czr-front-ccat.php:1056
+#: build/free/customizr/inc/czr-front-ccat.php:1053
 #: core/front/models/header/parts/class-model-menu.php:200
 #: core/front/template-tags/template-tags.php:206
-#: inc/_dev/parts/class-header-menu.php:365 inc/czr-front-ccat.php:1056
+#: inc/_dev/parts/class-header-menu.php:365 inc/czr-front-ccat.php:1053
 msgid "open the customizer menu section"
 msgstr ""
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:273
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:51
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:63
-#: build/free/customizr/inc/czr-front-ccat.php:1465
-#: build/free/customizr/inc/czr-front-ccat.php:2008
-#: build/free/customizr/inc/czr-front-ccat.php:2020
+#: build/free/customizr/inc/czr-front-ccat.php:1462
+#: build/free/customizr/inc/czr-front-ccat.php:2005
+#: build/free/customizr/inc/czr-front-ccat.php:2017
 #: core/front/models/header/parts/class-model-menu.php:273
 #: core/front/models/modules/common/class-model-breadcrumb.php:51
 #: core/front/models/modules/common/class-model-breadcrumb.php:63
 #: inc/_dev/parts/class-content-breadcrumb.php:38
 #: inc/_dev/parts/class-content-breadcrumb.php:50
-#: inc/_dev/parts/class-header-menu.php:774 inc/czr-front-ccat.php:1465
-#: inc/czr-front-ccat.php:2008 inc/czr-front-ccat.php:2020
+#: inc/_dev/parts/class-header-menu.php:774 inc/czr-front-ccat.php:1462
+#: inc/czr-front-ccat.php:2005 inc/czr-front-ccat.php:2017
 msgid "Home"
 msgstr "Úvod"
 
 #: build/free/customizr/core/front/models/header/parts/class-model-menu.php:322
-#: build/free/customizr/inc/czr-front-ccat.php:1513
+#: build/free/customizr/inc/czr-front-ccat.php:1510
 #: core/front/models/header/parts/class-model-menu.php:322
-#: inc/_dev/parts/class-header-menu.php:822 inc/czr-front-ccat.php:1513
+#: inc/_dev/parts/class-header-menu.php:822 inc/czr-front-ccat.php:1510
 msgid "Pages"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:60
-#: build/free/customizr/inc/czr-front-ccat.php:2017
+#: build/free/customizr/inc/czr-front-ccat.php:2014
 #: core/front/models/modules/common/class-model-breadcrumb.php:60
-#: inc/_dev/parts/class-content-breadcrumb.php:47 inc/czr-front-ccat.php:2017
+#: inc/_dev/parts/class-content-breadcrumb.php:47 inc/czr-front-ccat.php:2014
 msgid "Browse:"
 msgstr "Hľadať:"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:500
-#: build/free/customizr/inc/czr-front-ccat.php:2512
+#: build/free/customizr/inc/czr-front-ccat.php:2509
 #: core/front/models/modules/common/class-model-breadcrumb.php:500
-#: inc/_dev/parts/class-content-breadcrumb.php:542 inc/czr-front-ccat.php:2512
+#: inc/_dev/parts/class-content-breadcrumb.php:542 inc/czr-front-ccat.php:2509
 msgid "g:i a"
 msgstr "g:i a"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:503
-#: build/free/customizr/inc/czr-front-ccat.php:2515
+#: build/free/customizr/inc/czr-front-ccat.php:2512
 #: core/front/models/modules/common/class-model-breadcrumb.php:503
-#: inc/_dev/parts/class-content-breadcrumb.php:545 inc/czr-front-ccat.php:2515
+#: inc/_dev/parts/class-content-breadcrumb.php:545 inc/czr-front-ccat.php:2512
 msgid "Minute %1$s"
 msgstr "minúty %1$s"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:503
-#: build/free/customizr/inc/czr-front-ccat.php:2515
+#: build/free/customizr/inc/czr-front-ccat.php:2512
 #: core/front/models/modules/common/class-model-breadcrumb.php:503
-#: inc/_dev/parts/class-content-breadcrumb.php:545 inc/czr-front-ccat.php:2515
+#: inc/_dev/parts/class-content-breadcrumb.php:545 inc/czr-front-ccat.php:2512
 msgid "i"
 msgstr "i"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:506
-#: build/free/customizr/inc/czr-front-ccat.php:2518
+#: build/free/customizr/inc/czr-front-ccat.php:2515
 #: core/front/models/modules/common/class-model-breadcrumb.php:506
-#: inc/_dev/parts/class-content-breadcrumb.php:548 inc/czr-front-ccat.php:2518
+#: inc/_dev/parts/class-content-breadcrumb.php:548 inc/czr-front-ccat.php:2515
 msgid "g a"
 msgstr "g a"
 
@@ -3836,12 +3836,12 @@ msgstr "g a"
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:552
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:554
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:800
-#: build/free/customizr/inc/czr-front-ccat.php:2534
-#: build/free/customizr/inc/czr-front-ccat.php:2544
-#: build/free/customizr/inc/czr-front-ccat.php:2553
-#: build/free/customizr/inc/czr-front-ccat.php:2564
-#: build/free/customizr/inc/czr-front-ccat.php:2566
-#: build/free/customizr/inc/czr-front-ccat.php:2810
+#: build/free/customizr/inc/czr-front-ccat.php:2531
+#: build/free/customizr/inc/czr-front-ccat.php:2541
+#: build/free/customizr/inc/czr-front-ccat.php:2550
+#: build/free/customizr/inc/czr-front-ccat.php:2561
+#: build/free/customizr/inc/czr-front-ccat.php:2563
+#: build/free/customizr/inc/czr-front-ccat.php:2807
 #: core/front/models/modules/common/class-model-breadcrumb.php:522
 #: core/front/models/modules/common/class-model-breadcrumb.php:532
 #: core/front/models/modules/common/class-model-breadcrumb.php:541
@@ -3853,10 +3853,10 @@ msgstr "g a"
 #: inc/_dev/parts/class-content-breadcrumb.php:583
 #: inc/_dev/parts/class-content-breadcrumb.php:594
 #: inc/_dev/parts/class-content-breadcrumb.php:596
-#: inc/_dev/parts/class-content-breadcrumb.php:840 inc/czr-front-ccat.php:2534
-#: inc/czr-front-ccat.php:2544 inc/czr-front-ccat.php:2553
-#: inc/czr-front-ccat.php:2564 inc/czr-front-ccat.php:2566
-#: inc/czr-front-ccat.php:2810
+#: inc/_dev/parts/class-content-breadcrumb.php:840 inc/czr-front-ccat.php:2531
+#: inc/czr-front-ccat.php:2541 inc/czr-front-ccat.php:2550
+#: inc/czr-front-ccat.php:2561 inc/czr-front-ccat.php:2563
+#: inc/czr-front-ccat.php:2807
 msgid "Y"
 msgstr "Y"
 
@@ -3864,10 +3864,10 @@ msgstr "Y"
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:544
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:546
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:804
-#: build/free/customizr/inc/czr-front-ccat.php:2535
-#: build/free/customizr/inc/czr-front-ccat.php:2556
-#: build/free/customizr/inc/czr-front-ccat.php:2558
-#: build/free/customizr/inc/czr-front-ccat.php:2814
+#: build/free/customizr/inc/czr-front-ccat.php:2532
+#: build/free/customizr/inc/czr-front-ccat.php:2553
+#: build/free/customizr/inc/czr-front-ccat.php:2555
+#: build/free/customizr/inc/czr-front-ccat.php:2811
 #: core/front/models/modules/common/class-model-breadcrumb.php:523
 #: core/front/models/modules/common/class-model-breadcrumb.php:544
 #: core/front/models/modules/common/class-model-breadcrumb.php:546
@@ -3875,116 +3875,116 @@ msgstr "Y"
 #: inc/_dev/parts/class-content-breadcrumb.php:565
 #: inc/_dev/parts/class-content-breadcrumb.php:586
 #: inc/_dev/parts/class-content-breadcrumb.php:588
-#: inc/_dev/parts/class-content-breadcrumb.php:844 inc/czr-front-ccat.php:2535
-#: inc/czr-front-ccat.php:2556 inc/czr-front-ccat.php:2558
-#: inc/czr-front-ccat.php:2814
+#: inc/_dev/parts/class-content-breadcrumb.php:844 inc/czr-front-ccat.php:2532
+#: inc/czr-front-ccat.php:2553 inc/czr-front-ccat.php:2555
+#: inc/czr-front-ccat.php:2811
 msgid "F"
 msgstr "F"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:526
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:528
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:808
-#: build/free/customizr/inc/czr-front-ccat.php:2538
-#: build/free/customizr/inc/czr-front-ccat.php:2540
-#: build/free/customizr/inc/czr-front-ccat.php:2818
+#: build/free/customizr/inc/czr-front-ccat.php:2535
+#: build/free/customizr/inc/czr-front-ccat.php:2537
+#: build/free/customizr/inc/czr-front-ccat.php:2815
 #: core/front/models/modules/common/class-model-breadcrumb.php:526
 #: core/front/models/modules/common/class-model-breadcrumb.php:528
 #: core/front/models/modules/common/class-model-breadcrumb.php:808
 #: inc/_dev/parts/class-content-breadcrumb.php:568
 #: inc/_dev/parts/class-content-breadcrumb.php:570
-#: inc/_dev/parts/class-content-breadcrumb.php:848 inc/czr-front-ccat.php:2538
-#: inc/czr-front-ccat.php:2540 inc/czr-front-ccat.php:2818
+#: inc/_dev/parts/class-content-breadcrumb.php:848 inc/czr-front-ccat.php:2535
+#: inc/czr-front-ccat.php:2537 inc/czr-front-ccat.php:2815
 msgid "d"
 msgstr "d"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:535
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:537
-#: build/free/customizr/inc/czr-front-ccat.php:2547
-#: build/free/customizr/inc/czr-front-ccat.php:2549
+#: build/free/customizr/inc/czr-front-ccat.php:2544
+#: build/free/customizr/inc/czr-front-ccat.php:2546
 #: core/front/models/modules/common/class-model-breadcrumb.php:535
 #: core/front/models/modules/common/class-model-breadcrumb.php:537
 #: inc/_dev/parts/class-content-breadcrumb.php:577
-#: inc/_dev/parts/class-content-breadcrumb.php:579 inc/czr-front-ccat.php:2547
-#: inc/czr-front-ccat.php:2549
+#: inc/_dev/parts/class-content-breadcrumb.php:579 inc/czr-front-ccat.php:2544
+#: inc/czr-front-ccat.php:2546
 msgid "Week %1$s"
 msgstr "Týždeň %1$s"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:535
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:537
-#: build/free/customizr/inc/czr-front-ccat.php:2547
-#: build/free/customizr/inc/czr-front-ccat.php:2549
+#: build/free/customizr/inc/czr-front-ccat.php:2544
+#: build/free/customizr/inc/czr-front-ccat.php:2546
 #: core/front/models/modules/common/class-model-breadcrumb.php:535
 #: core/front/models/modules/common/class-model-breadcrumb.php:537
 #: inc/_dev/parts/class-content-breadcrumb.php:577
-#: inc/_dev/parts/class-content-breadcrumb.php:579 inc/czr-front-ccat.php:2547
-#: inc/czr-front-ccat.php:2549
+#: inc/_dev/parts/class-content-breadcrumb.php:579 inc/czr-front-ccat.php:2544
+#: inc/czr-front-ccat.php:2546
 msgid "W"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:563
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:565
-#: build/free/customizr/inc/czr-front-ccat.php:2575
-#: build/free/customizr/inc/czr-front-ccat.php:2577
+#: build/free/customizr/inc/czr-front-ccat.php:2572
+#: build/free/customizr/inc/czr-front-ccat.php:2574
 #: core/front/models/modules/common/class-model-breadcrumb.php:563
 #: core/front/models/modules/common/class-model-breadcrumb.php:565
 #: inc/_dev/parts/class-content-breadcrumb.php:605
-#: inc/_dev/parts/class-content-breadcrumb.php:607 inc/czr-front-ccat.php:2575
-#: inc/czr-front-ccat.php:2577
+#: inc/_dev/parts/class-content-breadcrumb.php:607 inc/czr-front-ccat.php:2572
+#: inc/czr-front-ccat.php:2574
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Hľadanie výsledkov pre &quot;%1$s&quot;"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:570
-#: build/free/customizr/inc/czr-front-ccat.php:2582
+#: build/free/customizr/inc/czr-front-ccat.php:2579
 #: core/front/models/modules/common/class-model-breadcrumb.php:570
-#: inc/_dev/parts/class-content-breadcrumb.php:612 inc/czr-front-ccat.php:2582
+#: inc/_dev/parts/class-content-breadcrumb.php:612 inc/czr-front-ccat.php:2579
 msgid "404 Not Found"
 msgstr "404 Not Found"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:576
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:578
-#: build/free/customizr/inc/czr-front-ccat.php:2588
-#: build/free/customizr/inc/czr-front-ccat.php:2590
+#: build/free/customizr/inc/czr-front-ccat.php:2585
+#: build/free/customizr/inc/czr-front-ccat.php:2587
 #: core/front/models/modules/common/class-model-breadcrumb.php:576
 #: core/front/models/modules/common/class-model-breadcrumb.php:578
 #: inc/_dev/parts/class-content-breadcrumb.php:618
-#: inc/_dev/parts/class-content-breadcrumb.php:620 inc/czr-front-ccat.php:2588
-#: inc/czr-front-ccat.php:2590
+#: inc/_dev/parts/class-content-breadcrumb.php:620 inc/czr-front-ccat.php:2585
+#: inc/czr-front-ccat.php:2587
 msgid "Page %d"
 msgstr "Strana %d"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:650
-#: build/free/customizr/inc/czr-front-ccat.php:2659
+#: build/free/customizr/inc/czr-front-ccat.php:2656
 #: core/front/models/modules/common/class-model-breadcrumb.php:650
-#: inc/_dev/parts/class-content-breadcrumb.php:689 inc/czr-front-ccat.php:2659
+#: inc/_dev/parts/class-content-breadcrumb.php:689 inc/czr-front-ccat.php:2656
 msgid "Split"
 msgstr "Rozdeliť"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:654
-#: build/free/customizr/inc/czr-front-ccat.php:2663
+#: build/free/customizr/inc/czr-front-ccat.php:2660
 #: core/front/models/modules/common/class-model-breadcrumb.php:654
-#: inc/_dev/parts/class-content-breadcrumb.php:693 inc/czr-front-ccat.php:2663
+#: inc/_dev/parts/class-content-breadcrumb.php:693 inc/czr-front-ccat.php:2660
 msgid "Merge"
 msgstr "Spojiť"
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:804
-#: build/free/customizr/inc/czr-front-ccat.php:2814
+#: build/free/customizr/inc/czr-front-ccat.php:2811
 #: core/front/models/modules/common/class-model-breadcrumb.php:804
-#: inc/_dev/parts/class-content-breadcrumb.php:844 inc/czr-front-ccat.php:2814
+#: inc/_dev/parts/class-content-breadcrumb.php:844 inc/czr-front-ccat.php:2811
 msgid "F Y"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:808
-#: build/free/customizr/inc/czr-front-ccat.php:2818
+#: build/free/customizr/inc/czr-front-ccat.php:2815
 #: core/front/models/modules/common/class-model-breadcrumb.php:808
-#: inc/_dev/parts/class-content-breadcrumb.php:848 inc/czr-front-ccat.php:2818
+#: inc/_dev/parts/class-content-breadcrumb.php:848 inc/czr-front-ccat.php:2815
 msgid "F j, Y"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:134
-#: build/free/customizr/inc/czr-front-ccat.php:3723
+#: build/free/customizr/inc/czr-front-ccat.php:3720
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:134
 #: inc/_dev/parts/class-content-featured_pages.php:176
-#: inc/czr-front-ccat.php:3723
+#: inc/czr-front-ccat.php:3720
 msgid "Customizer screen"
 msgstr "Obrazovka témy Customizr"
 
@@ -3995,27 +3995,27 @@ msgid "Customize it now"
 msgstr "Customiz'it!"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:142
-#: build/free/customizr/inc/czr-front-ccat.php:3731
+#: build/free/customizr/inc/czr-front-ccat.php:3728
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:142
 #: inc/_dev/parts/class-content-featured_pages.php:184
-#: inc/czr-front-ccat.php:3731
+#: inc/czr-front-ccat.php:3728
 msgid "Featured page"
 msgstr "Úvodná predstavovacia stránka"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: build/free/customizr/inc/czr-front-ccat.php:3735
+#: build/free/customizr/inc/czr-front-ccat.php:3732
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3735
+#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:422
-#: build/free/customizr/inc/czr-front-ccat.php:9132
+#: build/free/customizr/inc/czr-front-ccat.php:9129
 #: core/front/models/modules/slider/class-model-slider.php:422
-#: inc/_dev/parts/class-content-slider.php:1005 inc/czr-front-ccat.php:9132
+#: inc/_dev/parts/class-content-slider.php:1005 inc/czr-front-ccat.php:9129
 msgid "Discover how to replace or remove this demo slider."
 msgstr ""
 
@@ -4030,9 +4030,9 @@ msgid "Easily create sliders and add them in any posts or pages."
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:430
-#: build/free/customizr/inc/czr-front-ccat.php:9134
+#: build/free/customizr/inc/czr-front-ccat.php:9131
 #: core/front/models/modules/slider/class-model-slider.php:430
-#: inc/_dev/parts/class-content-slider.php:1007 inc/czr-front-ccat.php:9134
+#: inc/_dev/parts/class-content-slider.php:1007 inc/czr-front-ccat.php:9131
 msgid "Check the slider doc now &raquo;"
 msgstr ""
 
@@ -4048,16 +4048,16 @@ msgid "Customize or remove the posts slider"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider_of_posts.php:386
-#: build/free/customizr/inc/czr-front-ccat.php:9465
+#: build/free/customizr/inc/czr-front-ccat.php:9462
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:386
-#: inc/_dev/parts/class-content-slider.php:1338 inc/czr-front-ccat.php:9465
+#: inc/_dev/parts/class-content-slider.php:1338 inc/czr-front-ccat.php:9462
 msgid "Protected: %s"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider_of_posts.php:409
-#: build/free/customizr/inc/czr-front-ccat.php:9490
+#: build/free/customizr/inc/czr-front-ccat.php:9487
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:409
-#: inc/_dev/parts/class-content-slider.php:1363 inc/czr-front-ccat.php:9490
+#: inc/_dev/parts/class-content-slider.php:1363 inc/czr-front-ccat.php:9487
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
@@ -4070,10 +4070,10 @@ msgstr[0] "Komentár(e) na"
 msgstr[1] "Komentár(e) na"
 
 #: build/free/customizr/core/front/template-tags/template-tags.php:65
-#: build/free/customizr/inc/czr-front-ccat.php:3394
+#: build/free/customizr/inc/czr-front-ccat.php:3391
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:19
 #: core/front/template-tags/template-tags.php:65
-#: inc/_dev/parts/class-content-comments.php:367 inc/czr-front-ccat.php:3394
+#: inc/_dev/parts/class-content-comments.php:367 inc/czr-front-ccat.php:3391
 #: templates/parts/content/singular/comments/comment_list.php:19
 #, fuzzy
 msgid "comment"
@@ -4185,74 +4185,74 @@ msgstr ""
 msgid "Single fonts"
 msgstr "Jednoduché príspevky"
 
-#: build/free/customizr/core/init-base.php:391 core/init-base.php:391
+#: build/free/customizr/core/init-base.php:395 core/init-base.php:395
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:393 core/init-base.php:393
+#: build/free/customizr/core/init-base.php:397 core/init-base.php:397
 msgid ""
 "Top Bar Menu (horizontal). The top bar option must be checked to display it."
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:394 core/init-base.php:394
+#: build/free/customizr/core/init-base.php:398 core/init-base.php:398
 #, fuzzy
 msgid "Mobile Menu"
 msgstr "Hlavné Menu"
 
-#: build/free/customizr/core/init-base.php:436 core/init-base.php:436
+#: build/free/customizr/core/init-base.php:440 core/init-base.php:440
 msgid "Need help with Customizr? Click here!"
 msgstr "Potrebujete pomoc s témou Customizr? Kliknite tu!"
 
-#: build/free/customizr/inc/czr-front-ccat.php:307
+#: build/free/customizr/inc/czr-front-ccat.php:306
 #: build/free/customizr/templates/parts/header/parts/logo.php:6
-#: inc/_dev/parts/class-header-header_main.php:307 inc/czr-front-ccat.php:307
+#: inc/_dev/parts/class-header-header_main.php:306 inc/czr-front-ccat.php:306
 #: templates/parts/header/parts/logo.php:6
 msgid "Back Home"
 msgstr "Späť na úvod"
 
-#: build/free/customizr/inc/czr-front-ccat.php:797
-#: inc/_dev/parts/class-header-menu.php:106 inc/czr-front-ccat.php:797
+#: build/free/customizr/inc/czr-front-ccat.php:794
+#: inc/_dev/parts/class-header-menu.php:106 inc/czr-front-ccat.php:794
 msgid "This is a default page menu."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:798
-#: inc/_dev/parts/class-header-menu.php:107 inc/czr-front-ccat.php:798
+#: build/free/customizr/inc/czr-front-ccat.php:795
+#: inc/_dev/parts/class-header-menu.php:107 inc/czr-front-ccat.php:795
 msgid ""
 "( If you don't have any pages in your website, then this side menu is empty "
 "for the moment. )"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:799
-#: inc/_dev/parts/class-header-menu.php:108 inc/czr-front-ccat.php:799
+#: build/free/customizr/inc/czr-front-ccat.php:796
+#: inc/_dev/parts/class-header-menu.php:108 inc/czr-front-ccat.php:796
 msgid ""
 "If you have already created menu(s), you can %s. If you need to create a new "
 "menu, jump to the %s."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:800
-#: inc/_dev/parts/class-header-menu.php:109 inc/czr-front-ccat.php:800
+#: build/free/customizr/inc/czr-front-ccat.php:797
+#: inc/_dev/parts/class-header-menu.php:109 inc/czr-front-ccat.php:797
 msgid "change the default menu"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:800
-#: inc/_dev/parts/class-header-menu.php:109 inc/czr-front-ccat.php:800
+#: build/free/customizr/inc/czr-front-ccat.php:797
+#: inc/_dev/parts/class-header-menu.php:109 inc/czr-front-ccat.php:797
 msgid "replace this default menu by another one"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:801
-#: inc/_dev/parts/class-header-menu.php:110 inc/czr-front-ccat.php:801
+#: build/free/customizr/inc/czr-front-ccat.php:798
+#: inc/_dev/parts/class-header-menu.php:110 inc/czr-front-ccat.php:798
 msgid "menu creation screen"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:805
-#: build/free/customizr/inc/czr-front-ccat.php:1060
-#: build/free/customizr/inc/czr-front-ccat.php:1087
-#: build/free/customizr/inc/czr-front-ccat.php:3595
-#: build/free/customizr/inc/czr-front-ccat.php:4743
-#: build/free/customizr/inc/czr-front-ccat.php:5075
-#: build/free/customizr/inc/czr-front-ccat.php:8064
-#: build/free/customizr/inc/czr-front-ccat.php:9064
-#: build/free/customizr/inc/czr-front-ccat.php:9670
+#: build/free/customizr/inc/czr-front-ccat.php:802
+#: build/free/customizr/inc/czr-front-ccat.php:1057
+#: build/free/customizr/inc/czr-front-ccat.php:1084
+#: build/free/customizr/inc/czr-front-ccat.php:3592
+#: build/free/customizr/inc/czr-front-ccat.php:4740
+#: build/free/customizr/inc/czr-front-ccat.php:5072
+#: build/free/customizr/inc/czr-front-ccat.php:8061
+#: build/free/customizr/inc/czr-front-ccat.php:9061
+#: build/free/customizr/inc/czr-front-ccat.php:9667
 #: build/free/customizr/inc/czr-init-ccat.php:4952
 #: inc/_dev/class-fire-placeholders.php:219
 #: inc/_dev/parts/class-content-featured_pages.php:48
@@ -4263,70 +4263,70 @@ msgstr ""
 #: inc/_dev/parts/class-footer-footer_main.php:159
 #: inc/_dev/parts/class-header-menu.php:114
 #: inc/_dev/parts/class-header-menu.php:369
-#: inc/_dev/parts/class-header-menu.php:396 inc/czr-front-ccat.php:805
-#: inc/czr-front-ccat.php:1060 inc/czr-front-ccat.php:1087
-#: inc/czr-front-ccat.php:3595 inc/czr-front-ccat.php:4743
-#: inc/czr-front-ccat.php:5075 inc/czr-front-ccat.php:8064
-#: inc/czr-front-ccat.php:9064 inc/czr-front-ccat.php:9670
+#: inc/_dev/parts/class-header-menu.php:396 inc/czr-front-ccat.php:802
+#: inc/czr-front-ccat.php:1057 inc/czr-front-ccat.php:1084
+#: inc/czr-front-ccat.php:3592 inc/czr-front-ccat.php:4740
+#: inc/czr-front-ccat.php:5072 inc/czr-front-ccat.php:8061
+#: inc/czr-front-ccat.php:9061 inc/czr-front-ccat.php:9667
 #: inc/czr-init-ccat.php:4952
 msgid "dismiss notice"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:857
-#: inc/_dev/parts/class-header-menu.php:166 inc/czr-front-ccat.php:857
+#: build/free/customizr/inc/czr-front-ccat.php:854
+#: inc/_dev/parts/class-header-menu.php:166 inc/czr-front-ccat.php:854
 msgid "Menu"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:864
-#: inc/_dev/parts/class-header-menu.php:173 inc/czr-front-ccat.php:864
+#: build/free/customizr/inc/czr-front-ccat.php:861
+#: inc/_dev/parts/class-header-menu.php:173 inc/czr-front-ccat.php:861
 msgid "Open the menu"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1053
-#: inc/_dev/parts/class-header-menu.php:362 inc/czr-front-ccat.php:1053
+#: build/free/customizr/inc/czr-front-ccat.php:1050
+#: inc/_dev/parts/class-header-menu.php:362 inc/czr-front-ccat.php:1050
 msgid ""
 "You can now display your menu as a vertical and mobile friendly side menu, "
 "animated when revealed."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1054
-#: inc/_dev/parts/class-header-menu.php:363 inc/czr-front-ccat.php:1054
+#: build/free/customizr/inc/czr-front-ccat.php:1051
+#: inc/_dev/parts/class-header-menu.php:363 inc/czr-front-ccat.php:1051
 msgid "%s or %s."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1055
-#: inc/_dev/parts/class-header-menu.php:364 inc/czr-front-ccat.php:1055
+#: build/free/customizr/inc/czr-front-ccat.php:1052
+#: inc/_dev/parts/class-header-menu.php:364 inc/czr-front-ccat.php:1052
 msgid "Try it with the demo"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1056
-#: inc/_dev/parts/class-header-menu.php:365 inc/czr-front-ccat.php:1056
+#: build/free/customizr/inc/czr-front-ccat.php:1053
+#: inc/_dev/parts/class-header-menu.php:365 inc/czr-front-ccat.php:1053
 msgid "change your menu design now"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1080
-#: inc/_dev/parts/class-header-menu.php:389 inc/czr-front-ccat.php:1080
+#: build/free/customizr/inc/czr-front-ccat.php:1077
+#: inc/_dev/parts/class-header-menu.php:389 inc/czr-front-ccat.php:1077
 msgid "You can display your main menu or a second menu here horizontally."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1081
-#: inc/_dev/parts/class-header-menu.php:390 inc/czr-front-ccat.php:1081
+#: build/free/customizr/inc/czr-front-ccat.php:1078
+#: inc/_dev/parts/class-header-menu.php:390 inc/czr-front-ccat.php:1078
 msgid "%s or read the %s."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1082
-#: inc/_dev/parts/class-header-menu.php:391 inc/czr-front-ccat.php:1082
+#: build/free/customizr/inc/czr-front-ccat.php:1079
+#: inc/_dev/parts/class-header-menu.php:391 inc/czr-front-ccat.php:1079
 msgid "Manage menus in the header"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1082
-#: inc/_dev/parts/class-header-menu.php:391 inc/czr-front-ccat.php:1082
+#: build/free/customizr/inc/czr-front-ccat.php:1079
+#: inc/_dev/parts/class-header-menu.php:391 inc/czr-front-ccat.php:1079
 msgid "Manage your menus in the header now"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:1807
+#: build/free/customizr/inc/czr-front-ccat.php:1804
 #: build/free/customizr/templates/parts/content/no-results/404.php:14
-#: inc/_dev/parts/class-content-404.php:41 inc/czr-front-ccat.php:1807
+#: inc/_dev/parts/class-content-404.php:41 inc/czr-front-ccat.php:1804
 #: templates/parts/content/no-results/404.php:14
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
@@ -4334,205 +4334,205 @@ msgstr ""
 "Je nám ľúto, ale požadovaná stránka nebola nájdená. Môžete skúsiť "
 "vyhľadávanie nižšie."
 
-#: build/free/customizr/inc/czr-front-ccat.php:1856
-#: inc/_dev/parts/class-content-attachment.php:41 inc/czr-front-ccat.php:1856
+#: build/free/customizr/inc/czr-front-ccat.php:1853
+#: inc/_dev/parts/class-content-attachment.php:41 inc/czr-front-ccat.php:1853
 msgid "&larr; Previous"
 msgstr "&larr; Predchádzajúca"
 
-#: build/free/customizr/inc/czr-front-ccat.php:1857
-#: inc/_dev/parts/class-content-attachment.php:42 inc/czr-front-ccat.php:1857
+#: build/free/customizr/inc/czr-front-ccat.php:1854
+#: inc/_dev/parts/class-content-attachment.php:42 inc/czr-front-ccat.php:1854
 msgid "Next &rarr;"
 msgstr "Ďalšia &rarr;"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3120
+#: build/free/customizr/inc/czr-front-ccat.php:3117
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:11
-#: inc/_dev/parts/class-content-comments.php:93 inc/czr-front-ccat.php:3120
+#: inc/_dev/parts/class-content-comments.php:93 inc/czr-front-ccat.php:3117
 #: templates/parts/content/singular/comments/comment_list.php:11
 msgid "One thought on"
 msgstr "Jedna myšlienka"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3122
+#: build/free/customizr/inc/czr-front-ccat.php:3119
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:11
-#: inc/_dev/parts/class-content-comments.php:95 inc/czr-front-ccat.php:3122
+#: inc/_dev/parts/class-content-comments.php:95 inc/czr-front-ccat.php:3119
 #: templates/parts/content/singular/comments/comment_list.php:11
 msgid "thoughts on"
 msgstr "myšlienky"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3182
-#: inc/_dev/parts/class-content-comments.php:155 inc/czr-front-ccat.php:3182
+#: build/free/customizr/inc/czr-front-ccat.php:3179
+#: inc/_dev/parts/class-content-comments.php:155 inc/czr-front-ccat.php:3179
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3183
-#: inc/_dev/parts/class-content-comments.php:156 inc/czr-front-ccat.php:3183
+#: build/free/customizr/inc/czr-front-ccat.php:3180
+#: inc/_dev/parts/class-content-comments.php:156 inc/czr-front-ccat.php:3180
 msgid "(Edit)"
 msgstr "(Upraviť)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3211
-#: inc/_dev/parts/class-content-comments.php:184 inc/czr-front-ccat.php:3211
+#: build/free/customizr/inc/czr-front-ccat.php:3208
+#: inc/_dev/parts/class-content-comments.php:184 inc/czr-front-ccat.php:3208
 msgid "Reply"
 msgstr "Odpovedať"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3224
+#: build/free/customizr/inc/czr-front-ccat.php:3221
 #: build/free/customizr/templates/parts/content/singular/comments/comment.php:22
-#: inc/_dev/parts/class-content-comments.php:197 inc/czr-front-ccat.php:3224
+#: inc/_dev/parts/class-content-comments.php:197 inc/czr-front-ccat.php:3221
 #: templates/parts/content/singular/comments/comment.php:22
 msgid "Post author"
 msgstr "Autor príspevku"
 
 #. translators: 1: date, 2: time
-#: build/free/customizr/inc/czr-front-ccat.php:3231
-#: inc/_dev/parts/class-content-comments.php:204 inc/czr-front-ccat.php:3231
+#: build/free/customizr/inc/czr-front-ccat.php:3228
+#: inc/_dev/parts/class-content-comments.php:204 inc/czr-front-ccat.php:3228
 msgid "%1$s at %2$s"
 msgstr "%1$s v %2$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3236
+#: build/free/customizr/inc/czr-front-ccat.php:3233
 #: build/free/customizr/templates/parts/content/singular/comments/comment.php:37
-#: inc/_dev/parts/class-content-comments.php:209 inc/czr-front-ccat.php:3236
+#: inc/_dev/parts/class-content-comments.php:209 inc/czr-front-ccat.php:3233
 #: templates/parts/content/singular/comments/comment.php:37
 msgid "Your comment is awaiting moderation."
 msgstr "Váš komentár čaká na schválenie."
 
-#: build/free/customizr/inc/czr-front-ccat.php:3271
+#: build/free/customizr/inc/czr-front-ccat.php:3268
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:66
-#: inc/_dev/parts/class-content-comments.php:244 inc/czr-front-ccat.php:3271
+#: inc/_dev/parts/class-content-comments.php:244 inc/czr-front-ccat.php:3268
 #: templates/parts/content/singular/comments/comment_list.php:66
 msgid "Comment navigation"
 msgstr "Navigácia v komentároch"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3277
+#: build/free/customizr/inc/czr-front-ccat.php:3274
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:72
-#: inc/_dev/parts/class-content-comments.php:250 inc/czr-front-ccat.php:3277
+#: inc/_dev/parts/class-content-comments.php:250 inc/czr-front-ccat.php:3274
 #: templates/parts/content/singular/comments/comment_list.php:72
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Staršie komentáre"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3285
+#: build/free/customizr/inc/czr-front-ccat.php:3282
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:80
-#: inc/_dev/parts/class-content-comments.php:258 inc/czr-front-ccat.php:3285
+#: inc/_dev/parts/class-content-comments.php:258 inc/czr-front-ccat.php:3282
 #: templates/parts/content/singular/comments/comment_list.php:80
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Novšie komentáre <span class=\"meta-nav\">&rarr;</span>"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3317
+#: build/free/customizr/inc/czr-front-ccat.php:3314
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:89
-#: inc/_dev/parts/class-content-comments.php:290 inc/czr-front-ccat.php:3317
+#: inc/_dev/parts/class-content-comments.php:290 inc/czr-front-ccat.php:3314
 #: templates/parts/content/singular/comments/comment_list.php:89
 msgid "Comments are closed."
 msgstr "Komentáre sú uzavreté."
 
-#: build/free/customizr/inc/czr-front-ccat.php:3352
+#: build/free/customizr/inc/czr-front-ccat.php:3349
 #: build/free/customizr/templates/comments-no-model.php:21
-#: inc/_dev/parts/class-content-comments.php:325 inc/czr-front-ccat.php:3352
+#: inc/_dev/parts/class-content-comments.php:325 inc/czr-front-ccat.php:3349
 #: templates/comments-no-model.php:21
 msgid "Leave a comment"
 msgstr "Zanechať komentár "
 
-#: build/free/customizr/inc/czr-front-ccat.php:3375
-#: inc/_dev/parts/class-content-comments.php:348 inc/czr-front-ccat.php:3375
+#: build/free/customizr/inc/czr-front-ccat.php:3372
+#: inc/_dev/parts/class-content-comments.php:348 inc/czr-front-ccat.php:3372
 msgid "Comment(s) on"
 msgstr "Komentár(e) na"
 
-#: build/free/customizr/inc/czr-front-ccat.php:3589
+#: build/free/customizr/inc/czr-front-ccat.php:3586
 #: inc/_dev/parts/class-content-featured_pages.php:42
-#: inc/czr-front-ccat.php:3589
+#: inc/czr-front-ccat.php:3586
 msgid ""
 "Edit those featured pages %s, or %s (you'll be able to add yours later)."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3590
+#: build/free/customizr/inc/czr-front-ccat.php:3587
 #: inc/_dev/parts/class-content-featured_pages.php:43
-#: inc/czr-front-ccat.php:3590
+#: inc/czr-front-ccat.php:3587
 msgid "Edit those featured pages"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3590
-#: build/free/customizr/inc/czr-front-ccat.php:8048
-#: build/free/customizr/inc/czr-front-ccat.php:9059
-#: build/free/customizr/inc/czr-front-ccat.php:9662
+#: build/free/customizr/inc/czr-front-ccat.php:3587
+#: build/free/customizr/inc/czr-front-ccat.php:8045
+#: build/free/customizr/inc/czr-front-ccat.php:9056
+#: build/free/customizr/inc/czr-front-ccat.php:9659
 #: inc/_dev/parts/class-content-featured_pages.php:43
 #: inc/_dev/parts/class-content-sidebar.php:145
 #: inc/_dev/parts/class-content-slider.php:932
-#: inc/_dev/parts/class-footer-footer_main.php:151 inc/czr-front-ccat.php:3590
-#: inc/czr-front-ccat.php:8048 inc/czr-front-ccat.php:9059
-#: inc/czr-front-ccat.php:9662
+#: inc/_dev/parts/class-footer-footer_main.php:151 inc/czr-front-ccat.php:3587
+#: inc/czr-front-ccat.php:8045 inc/czr-front-ccat.php:9056
+#: inc/czr-front-ccat.php:9659
 msgid "now"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3591
+#: build/free/customizr/inc/czr-front-ccat.php:3588
 #: inc/_dev/parts/class-content-featured_pages.php:44
-#: inc/czr-front-ccat.php:3591
+#: inc/czr-front-ccat.php:3588
 msgid "Remove the featured pages"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3591
+#: build/free/customizr/inc/czr-front-ccat.php:3588
 #: inc/_dev/parts/class-content-featured_pages.php:44
-#: inc/czr-front-ccat.php:3591
+#: inc/czr-front-ccat.php:3588
 msgid "remove them"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3724
+#: build/free/customizr/inc/czr-front-ccat.php:3721
 #: inc/_dev/parts/class-content-featured_pages.php:177
-#: inc/czr-front-ccat.php:3724
+#: inc/czr-front-ccat.php:3721
 msgid "Edit now."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:3948
-#: inc/_dev/parts/class-content-gallery.php:61 inc/czr-front-ccat.php:3948
+#: build/free/customizr/inc/czr-front-ccat.php:3945
+#: inc/_dev/parts/class-content-gallery.php:61 inc/czr-front-ccat.php:3945
 msgid "Missing Attachment"
 msgstr "Chýbajúca príloha"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4161
-#: build/free/customizr/inc/czr-front-ccat.php:4166
+#: build/free/customizr/inc/czr-front-ccat.php:4158
+#: build/free/customizr/inc/czr-front-ccat.php:4163
 #: inc/_dev/parts/class-content-headings.php:182
-#: inc/_dev/parts/class-content-headings.php:187 inc/czr-front-ccat.php:4161
-#: inc/czr-front-ccat.php:4166
+#: inc/_dev/parts/class-content-headings.php:187 inc/czr-front-ccat.php:4158
+#: inc/czr-front-ccat.php:4163
 msgid "{no title} Read the post &raquo;"
 msgstr "{žiaden nadpis} Čítať príspevok &raquo;"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4165
-#: inc/_dev/parts/class-content-headings.php:186 inc/czr-front-ccat.php:4165
+#: build/free/customizr/inc/czr-front-ccat.php:4162
+#: inc/_dev/parts/class-content-headings.php:186 inc/czr-front-ccat.php:4162
 msgid "Permalink to %s"
 msgstr "Permalink na %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4303
+#: build/free/customizr/inc/czr-front-ccat.php:4300
 #: build/free/customizr/templates/parts/content/no-results/404.php:8
-#: inc/_dev/parts/class-content-headings.php:324 inc/czr-front-ccat.php:4303
+#: inc/_dev/parts/class-content-headings.php:324 inc/czr-front-ccat.php:4300
 #: templates/parts/content/no-results/404.php:8
 msgid "Ooops, page not found"
 msgstr "Ooops, stránka nenájdená"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4351
-#: build/free/customizr/inc/czr-front-ccat.php:4996
+#: build/free/customizr/inc/czr-front-ccat.php:4348
+#: build/free/customizr/inc/czr-front-ccat.php:4993
 #: inc/_dev/parts/class-content-headings.php:372
-#: inc/_dev/parts/class-content-post.php:140 inc/czr-front-ccat.php:4351
-#: inc/czr-front-ccat.php:4996
+#: inc/_dev/parts/class-content-post.php:140 inc/czr-front-ccat.php:4348
+#: inc/czr-front-ccat.php:4993
 msgid "About %s"
 msgstr "O %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4391
-#: inc/_dev/parts/class-content-headings.php:412 inc/czr-front-ccat.php:4391
+#: build/free/customizr/inc/czr-front-ccat.php:4388
+#: inc/_dev/parts/class-content-headings.php:412 inc/czr-front-ccat.php:4388
 msgid "Daily Archives: %s"
 msgstr "Denný archív: %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4391
-#: inc/_dev/parts/class-content-headings.php:412 inc/czr-front-ccat.php:4391
+#: build/free/customizr/inc/czr-front-ccat.php:4388
+#: inc/_dev/parts/class-content-headings.php:412 inc/czr-front-ccat.php:4388
 msgid "Archives"
 msgstr "Archívy"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4392
-#: inc/_dev/parts/class-content-headings.php:413 inc/czr-front-ccat.php:4392
+#: build/free/customizr/inc/czr-front-ccat.php:4389
+#: inc/_dev/parts/class-content-headings.php:413 inc/czr-front-ccat.php:4389
 msgid "Monthly Archives: %s"
 msgstr "Mesačný archív: %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4393
-#: inc/_dev/parts/class-content-headings.php:414 inc/czr-front-ccat.php:4393
+#: build/free/customizr/inc/czr-front-ccat.php:4390
+#: inc/_dev/parts/class-content-headings.php:414 inc/czr-front-ccat.php:4390
 msgid "Yearly Archives: %s"
 msgstr "Ročný archív: %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4548
+#: build/free/customizr/inc/czr-front-ccat.php:4545
 #: build/free/customizr/templates/parts/content/no-results/search_no_results.php:13
-#: inc/_dev/parts/class-content-no_results.php:36 inc/czr-front-ccat.php:4548
+#: inc/_dev/parts/class-content-no_results.php:36 inc/czr-front-ccat.php:4545
 #: templates/parts/content/no-results/search_no_results.php:13
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
@@ -4541,295 +4541,295 @@ msgstr ""
 "Je nám ľúto, ale zadaným kritériám nič nezodpovedá. Skúste to prosím znova s "
 "inými kľúčovými slovami."
 
-#: build/free/customizr/inc/czr-front-ccat.php:4655
-#: build/free/customizr/inc/czr-front-ccat.php:4958
-#: build/free/customizr/inc/czr-front-ccat.php:5426
+#: build/free/customizr/inc/czr-front-ccat.php:4652
+#: build/free/customizr/inc/czr-front-ccat.php:4955
+#: build/free/customizr/inc/czr-front-ccat.php:5423
 #: inc/_dev/parts/class-content-page.php:99
 #: inc/_dev/parts/class-content-post.php:102
-#: inc/_dev/parts/class-content-post_list.php:234 inc/czr-front-ccat.php:4655
-#: inc/czr-front-ccat.php:4958 inc/czr-front-ccat.php:5426
+#: inc/_dev/parts/class-content-post_list.php:234 inc/czr-front-ccat.php:4652
+#: inc/czr-front-ccat.php:4955 inc/czr-front-ccat.php:5423
 msgid "Pages:"
 msgstr "Strany:"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4734
-#: inc/_dev/parts/class-content-page.php:178 inc/czr-front-ccat.php:4734
+#: build/free/customizr/inc/czr-front-ccat.php:4731
+#: inc/_dev/parts/class-content-page.php:178 inc/czr-front-ccat.php:4731
 msgid "You can display your page's featured image here if you have set one."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:4735
-#: build/free/customizr/inc/czr-front-ccat.php:5067
+#: build/free/customizr/inc/czr-front-ccat.php:4732
+#: build/free/customizr/inc/czr-front-ccat.php:5064
 #: inc/_dev/parts/class-content-page.php:179
-#: inc/_dev/parts/class-content-post.php:211 inc/czr-front-ccat.php:4735
-#: inc/czr-front-ccat.php:5067
+#: inc/_dev/parts/class-content-post.php:211 inc/czr-front-ccat.php:4732
+#: inc/czr-front-ccat.php:5064
 msgid "%s to display a featured image here."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:4736
-#: build/free/customizr/inc/czr-front-ccat.php:5068
+#: build/free/customizr/inc/czr-front-ccat.php:4733
+#: build/free/customizr/inc/czr-front-ccat.php:5065
 #: build/free/customizr/inc/czr-init-ccat.php:4948
 #: inc/_dev/class-fire-placeholders.php:215
 #: inc/_dev/parts/class-content-page.php:180
-#: inc/_dev/parts/class-content-post.php:212 inc/czr-front-ccat.php:4736
-#: inc/czr-front-ccat.php:5068 inc/czr-init-ccat.php:4948
+#: inc/_dev/parts/class-content-post.php:212 inc/czr-front-ccat.php:4733
+#: inc/czr-front-ccat.php:5065 inc/czr-init-ccat.php:4948
 msgid "Jump to the customizer now"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:5000
-#: inc/_dev/parts/class-content-post.php:144 inc/czr-front-ccat.php:5000
+#: build/free/customizr/inc/czr-front-ccat.php:4997
+#: inc/_dev/parts/class-content-post.php:144 inc/czr-front-ccat.php:4997
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Zobraziť všetky príspevky od %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: build/free/customizr/inc/czr-front-ccat.php:5066
-#: inc/_dev/parts/class-content-post.php:210 inc/czr-front-ccat.php:5066
+#: build/free/customizr/inc/czr-front-ccat.php:5063
+#: inc/_dev/parts/class-content-post.php:210 inc/czr-front-ccat.php:5063
 msgid "You can display your post's featured image here if you have set one."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6867
-#: inc/_dev/parts/class-content-post_metas.php:188 inc/czr-front-ccat.php:6867
+#: build/free/customizr/inc/czr-front-ccat.php:6864
+#: inc/_dev/parts/class-content-post_metas.php:188 inc/czr-front-ccat.php:6864
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6953
-#: inc/_dev/parts/class-content-post_metas.php:274 inc/czr-front-ccat.php:6953
+#: build/free/customizr/inc/czr-front-ccat.php:6950
+#: inc/_dev/parts/class-content-post_metas.php:274 inc/czr-front-ccat.php:6950
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "Tento príspevok bol publikovaný %1$s a označený %2$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6955
-#: inc/_dev/parts/class-content-post_metas.php:276 inc/czr-front-ccat.php:6955
+#: build/free/customizr/inc/czr-front-ccat.php:6952
+#: inc/_dev/parts/class-content-post_metas.php:276 inc/czr-front-ccat.php:6952
 msgid "This entry was posted in %1$s"
 msgstr "Tento príspevok bol publikovaný %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6957
-#: inc/_dev/parts/class-content-post_metas.php:278 inc/czr-front-ccat.php:6957
+#: build/free/customizr/inc/czr-front-ccat.php:6954
+#: inc/_dev/parts/class-content-post_metas.php:278 inc/czr-front-ccat.php:6954
 msgid "This entry was tagged %2$s"
 msgstr "Tento príspevok bol označený %2$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6966
-#: inc/_dev/parts/class-content-post_metas.php:287 inc/czr-front-ccat.php:6966
+#: build/free/customizr/inc/czr-front-ccat.php:6963
+#: inc/_dev/parts/class-content-post_metas.php:287 inc/czr-front-ccat.php:6963
 msgid "This entry was posted on %1$s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6968
-#: inc/_dev/parts/class-content-post_metas.php:289 inc/czr-front-ccat.php:6968
+#: build/free/customizr/inc/czr-front-ccat.php:6965
+#: inc/_dev/parts/class-content-post_metas.php:289 inc/czr-front-ccat.php:6965
 msgid "on %1$s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6970
-#: inc/_dev/parts/class-content-post_metas.php:291 inc/czr-front-ccat.php:6970
+#: build/free/customizr/inc/czr-front-ccat.php:6967
+#: inc/_dev/parts/class-content-post_metas.php:291 inc/czr-front-ccat.php:6967
 msgid "and posted on %1$s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6982
-#: inc/_dev/parts/class-content-post_metas.php:303 inc/czr-front-ccat.php:6982
+#: build/free/customizr/inc/czr-front-ccat.php:6979
+#: inc/_dev/parts/class-content-post_metas.php:303 inc/czr-front-ccat.php:6979
 msgid "This entry was posted"
 msgstr "Tento príspevok bol publikovaný"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6982
-#: build/free/customizr/inc/czr-front-ccat.php:6984
+#: build/free/customizr/inc/czr-front-ccat.php:6979
+#: build/free/customizr/inc/czr-front-ccat.php:6981
 #: inc/_dev/parts/class-content-post_metas.php:303
-#: inc/_dev/parts/class-content-post_metas.php:305 inc/czr-front-ccat.php:6982
-#: inc/czr-front-ccat.php:6984
+#: inc/_dev/parts/class-content-post_metas.php:305 inc/czr-front-ccat.php:6979
+#: inc/czr-front-ccat.php:6981
 msgid "by %1$s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6998
-#: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6998
+#: build/free/customizr/inc/czr-front-ccat.php:6995
+#: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6995
 msgid "(updated today)"
 msgstr "(upravené dnes)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6998
-#: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6998
+#: build/free/customizr/inc/czr-front-ccat.php:6995
+#: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6995
 msgid "(updated %s days ago)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:6999
-#: inc/_dev/parts/class-content-post_metas.php:320 inc/czr-front-ccat.php:6999
+#: build/free/customizr/inc/czr-front-ccat.php:6996
+#: inc/_dev/parts/class-content-post_metas.php:320 inc/czr-front-ccat.php:6996
 msgid "(updated 1 day ago)"
 msgstr "(upravené pred jedným dňom)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7002
-#: inc/_dev/parts/class-content-post_metas.php:323 inc/czr-front-ccat.php:7002
+#: build/free/customizr/inc/czr-front-ccat.php:6999
+#: inc/_dev/parts/class-content-post_metas.php:323 inc/czr-front-ccat.php:6999
 msgid "(updated on %1$s)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:7218
-#: inc/_dev/parts/class-content-post_metas.php:539 inc/czr-front-ccat.php:7218
+#: build/free/customizr/inc/czr-front-ccat.php:7215
+#: inc/_dev/parts/class-content-post_metas.php:539 inc/czr-front-ccat.php:7215
 msgid "Open"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:7268
-#: inc/_dev/parts/class-content-post_metas.php:589 inc/czr-front-ccat.php:7268
+#: build/free/customizr/inc/czr-front-ccat.php:7265
+#: inc/_dev/parts/class-content-post_metas.php:589 inc/czr-front-ccat.php:7265
 msgid "tagged"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:7401
-#: build/free/customizr/inc/czr-front-ccat.php:7456
+#: build/free/customizr/inc/czr-front-ccat.php:7398
+#: build/free/customizr/inc/czr-front-ccat.php:7453
 #: build/free/customizr/templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 #: inc/_dev/parts/class-content-post_navigation.php:89
 #: inc/_dev/parts/class-content-post_navigation.php:144
-#: inc/czr-front-ccat.php:7401 inc/czr-front-ccat.php:7456
+#: inc/czr-front-ccat.php:7398 inc/czr-front-ccat.php:7453
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 msgid "Post navigation"
 msgstr "Navigácia v príspevkoch "
 
-#: build/free/customizr/inc/czr-front-ccat.php:7469
+#: build/free/customizr/inc/czr-front-ccat.php:7466
 #: inc/_dev/parts/class-content-post_navigation.php:157
-#: inc/czr-front-ccat.php:7469
+#: inc/czr-front-ccat.php:7466
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Staršie príspevky"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7489
+#: build/free/customizr/inc/czr-front-ccat.php:7486
 #: inc/_dev/parts/class-content-post_navigation.php:177
-#: inc/czr-front-ccat.php:7489
+#: inc/czr-front-ccat.php:7486
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Novšie príspevky <span class=\"meta-nav\">&rarr;</span>"
 
-#: build/free/customizr/inc/czr-front-ccat.php:8036
-#: build/free/customizr/inc/czr-front-ccat.php:9653
+#: build/free/customizr/inc/czr-front-ccat.php:8033
+#: build/free/customizr/inc/czr-front-ccat.php:9650
 #: inc/_dev/parts/class-content-sidebar.php:133
-#: inc/_dev/parts/class-footer-footer_main.php:142 inc/czr-front-ccat.php:8036
-#: inc/czr-front-ccat.php:9653
+#: inc/_dev/parts/class-footer-footer_main.php:142 inc/czr-front-ccat.php:8033
+#: inc/czr-front-ccat.php:9650
 msgid "This block is visible for admin users only."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8040
-#: inc/_dev/parts/class-content-sidebar.php:137 inc/czr-front-ccat.php:8040
+#: build/free/customizr/inc/czr-front-ccat.php:8037
+#: inc/_dev/parts/class-content-sidebar.php:137 inc/czr-front-ccat.php:8037
 msgid "The %s sidebar has no widgets."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8044
-#: inc/_dev/parts/class-content-sidebar.php:141 inc/czr-front-ccat.php:8044
+#: build/free/customizr/inc/czr-front-ccat.php:8041
+#: inc/_dev/parts/class-content-sidebar.php:141 inc/czr-front-ccat.php:8041
 msgid "Add widgets to this sidebar %s or %s."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8047
-#: build/free/customizr/inc/czr-front-ccat.php:9662
+#: build/free/customizr/inc/czr-front-ccat.php:8044
+#: build/free/customizr/inc/czr-front-ccat.php:9659
 #: inc/_dev/parts/class-content-sidebar.php:144
-#: inc/_dev/parts/class-footer-footer_main.php:151 inc/czr-front-ccat.php:8047
-#: inc/czr-front-ccat.php:9662
+#: inc/_dev/parts/class-footer-footer_main.php:151 inc/czr-front-ccat.php:8044
+#: inc/czr-front-ccat.php:9659
 #, fuzzy
 msgid "Add widgets"
 msgstr "Gérer les widgets"
 
-#: build/free/customizr/inc/czr-front-ccat.php:8051
-#: build/free/customizr/inc/czr-front-ccat.php:9664
+#: build/free/customizr/inc/czr-front-ccat.php:8048
+#: build/free/customizr/inc/czr-front-ccat.php:9661
 #: inc/_dev/parts/class-content-sidebar.php:148
-#: inc/_dev/parts/class-footer-footer_main.php:153 inc/czr-front-ccat.php:8051
-#: inc/czr-front-ccat.php:9664
+#: inc/_dev/parts/class-footer-footer_main.php:153 inc/czr-front-ccat.php:8048
+#: inc/czr-front-ccat.php:9661
 msgid "dismiss this notice"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8057
-#: inc/_dev/parts/class-content-sidebar.php:154 inc/czr-front-ccat.php:8057
+#: build/free/customizr/inc/czr-front-ccat.php:8054
+#: inc/_dev/parts/class-content-sidebar.php:154 inc/czr-front-ccat.php:8054
 msgid "You can also remove this sidebar by changing the current page layout."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8059
-#: inc/_dev/parts/class-content-sidebar.php:156 inc/czr-front-ccat.php:8059
+#: build/free/customizr/inc/czr-front-ccat.php:8056
+#: inc/_dev/parts/class-content-sidebar.php:156 inc/czr-front-ccat.php:8056
 #, fuzzy
 msgid "Changing the layout in the Customizr theme"
 msgstr "Nastavenia obsahu témy Customizr."
 
-#: build/free/customizr/inc/czr-front-ccat.php:8060
-#: inc/_dev/parts/class-content-sidebar.php:157 inc/czr-front-ccat.php:8060
+#: build/free/customizr/inc/czr-front-ccat.php:8057
+#: inc/_dev/parts/class-content-sidebar.php:157 inc/czr-front-ccat.php:8057
 #, fuzzy
 msgid "See the theme documentation."
 msgstr "Čítať dokumentáciu"
 
-#: build/free/customizr/inc/czr-front-ccat.php:8868
+#: build/free/customizr/inc/czr-front-ccat.php:8865
 #: build/free/customizr/templates/parts/modules/slider/slide.php:9
-#: inc/_dev/parts/class-content-slider.php:741 inc/czr-front-ccat.php:8868
+#: inc/_dev/parts/class-content-slider.php:741 inc/czr-front-ccat.php:8865
 #: templates/parts/modules/slider/slide.php:9
 msgid "Go to"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9000
-#: inc/_dev/parts/class-content-slider.php:873 inc/czr-front-ccat.php:9000
+#: build/free/customizr/inc/czr-front-ccat.php:8997
+#: inc/_dev/parts/class-content-slider.php:873 inc/czr-front-ccat.php:8997
 #, fuzzy
 msgid "Customize or remove %s"
 msgstr "Obrazovka témy Customizr"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9001
-#: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:9001
+#: build/free/customizr/inc/czr-front-ccat.php:8998
+#: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:8998
 #, fuzzy
 msgid "the posts slider"
 msgstr "Odstrániť tento slajder"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9001
-#: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:9001
+#: build/free/customizr/inc/czr-front-ccat.php:8998
+#: inc/_dev/parts/class-content-slider.php:874 inc/czr-front-ccat.php:8998
 #, fuzzy
 msgid "this slider"
 msgstr "Upraviť tento slajd"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9058
-#: inc/_dev/parts/class-content-slider.php:931 inc/czr-front-ccat.php:9058
+#: build/free/customizr/inc/czr-front-ccat.php:9055
+#: inc/_dev/parts/class-content-slider.php:931 inc/czr-front-ccat.php:9055
 msgid ""
 "Select your own slider %s, or %s (you'll be able to add one back later)."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9059
-#: inc/_dev/parts/class-content-slider.php:932 inc/czr-front-ccat.php:9059
+#: build/free/customizr/inc/czr-front-ccat.php:9056
+#: inc/_dev/parts/class-content-slider.php:932 inc/czr-front-ccat.php:9056
 msgid "Select your own slider"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9060
-#: inc/_dev/parts/class-content-slider.php:933 inc/czr-front-ccat.php:9060
+#: build/free/customizr/inc/czr-front-ccat.php:9057
+#: inc/_dev/parts/class-content-slider.php:933 inc/czr-front-ccat.php:9057
 msgid "Remove the home page slider"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9060
-#: inc/_dev/parts/class-content-slider.php:933 inc/czr-front-ccat.php:9060
+#: build/free/customizr/inc/czr-front-ccat.php:9057
+#: inc/_dev/parts/class-content-slider.php:933 inc/czr-front-ccat.php:9057
 msgid "remove this demo slider"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9128
-#: inc/_dev/parts/class-content-slider.php:1001 inc/czr-front-ccat.php:9128
+#: build/free/customizr/inc/czr-front-ccat.php:9125
+#: inc/_dev/parts/class-content-slider.php:1001 inc/czr-front-ccat.php:9125
 #, fuzzy
 msgid "Discover the Customizr WordPress theme &raquo;"
 msgstr "Vitajte v téme Customizr %s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9657
-#: inc/_dev/parts/class-footer-footer_main.php:146 inc/czr-front-ccat.php:9657
+#: build/free/customizr/inc/czr-front-ccat.php:9654
+#: inc/_dev/parts/class-footer-footer_main.php:146 inc/czr-front-ccat.php:9654
 msgid "The footer has no widgets"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9661
-#: inc/_dev/parts/class-footer-footer_main.php:150 inc/czr-front-ccat.php:9661
+#: build/free/customizr/inc/czr-front-ccat.php:9658
+#: inc/_dev/parts/class-footer-footer_main.php:150 inc/czr-front-ccat.php:9658
 msgid "Add widgets to the footer %s or %s."
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9753
+#: build/free/customizr/inc/czr-front-ccat.php:9750
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
-#: inc/_dev/parts/class-footer-footer_main.php:242 inc/czr-front-ccat.php:9753
+#: inc/_dev/parts/class-footer-footer_main.php:242 inc/czr-front-ccat.php:9750
 #: templates/parts/footer/footer_credits.php:13
 msgid "Powered by"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9754
+#: build/free/customizr/inc/czr-front-ccat.php:9751
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
-#: inc/_dev/parts/class-footer-footer_main.php:243 inc/czr-front-ccat.php:9754
+#: inc/_dev/parts/class-footer-footer_main.php:243 inc/czr-front-ccat.php:9751
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Powered by WordPress"
 msgstr "Sledujte WordPress profil"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9759
+#: build/free/customizr/inc/czr-front-ccat.php:9756
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
-#: inc/_dev/parts/class-footer-footer_main.php:248 inc/czr-front-ccat.php:9759
+#: inc/_dev/parts/class-footer-footer_main.php:248 inc/czr-front-ccat.php:9756
 #: templates/parts/footer/footer_credits.php:13
 msgid "Designed with the %s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9759
+#: build/free/customizr/inc/czr-front-ccat.php:9756
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
-#: inc/_dev/parts/class-footer-footer_main.php:248 inc/czr-front-ccat.php:9759
+#: inc/_dev/parts/class-footer-footer_main.php:248 inc/czr-front-ccat.php:9756
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Customizr theme"
 msgstr "Pokročilé nastavenia témy Customizr."
 
-#: build/free/customizr/inc/czr-front-ccat.php:9784
-#: inc/_dev/parts/class-footer-footer_main.php:273 inc/czr-front-ccat.php:9784
+#: build/free/customizr/inc/czr-front-ccat.php:9781
+#: inc/_dev/parts/class-footer-footer_main.php:273 inc/czr-front-ccat.php:9781
 msgid "Back to top"
 msgstr "Späť hore"
 
@@ -5617,18 +5617,10 @@ msgid_plural "%s posts"
 msgstr[0] "tento príspevok"
 msgstr[1] "tento príspevok"
 
-#: build/free/customizr/templates/parts/content/post-lists/headings/regular_search_heading.php:8
-#: build/free/customizr/templates/parts/content/post-lists/headings/search_heading.php:9
-#: templates/parts/content/post-lists/headings/regular_search_heading.php:8
-#: templates/parts/content/post-lists/headings/search_heading.php:9
-#, fuzzy
-msgid "Search results for:"
-msgstr "Výsledky hľadania pre :"
-
-#: build/free/customizr/templates/parts/content/post-lists/headings/regular_search_heading.php:15
-#: build/free/customizr/templates/parts/content/post-lists/headings/search_heading.php:15
-#: templates/parts/content/post-lists/headings/regular_search_heading.php:15
-#: templates/parts/content/post-lists/headings/search_heading.php:15
+#: build/free/customizr/templates/parts/content/post-lists/headings/regular_search_heading.php:22
+#: build/free/customizr/templates/parts/content/post-lists/headings/search_heading.php:22
+#: templates/parts/content/post-lists/headings/regular_search_heading.php:22
+#: templates/parts/content/post-lists/headings/search_heading.php:22
 msgid "%s result"
 msgid_plural "%s results"
 msgstr[0] ""
@@ -5752,7 +5744,7 @@ msgstr ""
 msgid ""
 "Customizr is a simple and fast WordPress theme designed to help you attract "
 "and engage more visitors. Provides a perfect user experience on smartphones. "
-"Powers more then 100K active sites around the world. Hundreds of 5-stars "
+"Powers more than 100K active sites around the world. Hundreds of 5-stars "
 "reviews received on WordPress.org."
 msgstr ""
 
@@ -5769,17 +5761,17 @@ msgid "Custom Page Example"
 msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/headings/class-model-archive_heading.php:70
-#: build/free/customizr/inc/czr-front-ccat.php:4392
+#: build/free/customizr/inc/czr-front-ccat.php:4389
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:70
-#: inc/_dev/parts/class-content-headings.php:413 inc/czr-front-ccat.php:4392
+#: inc/_dev/parts/class-content-headings.php:413 inc/czr-front-ccat.php:4389
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-lists/headings/class-model-archive_heading.php:71
-#: build/free/customizr/inc/czr-front-ccat.php:4393
+#: build/free/customizr/inc/czr-front-ccat.php:4390
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:71
-#: inc/_dev/parts/class-content-headings.php:414 inc/czr-front-ccat.php:4393
+#: inc/_dev/parts/class-content-headings.php:414 inc/czr-front-ccat.php:4390
 #, fuzzy
 msgctxt "yearly archives date format"
 msgid "Y"
@@ -5796,6 +5788,10 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Search results for:"
+#~ msgstr "Výsledky hľadania pre :"
 
 #, fuzzy
 #~ msgid ", developer of the Customizr theme"

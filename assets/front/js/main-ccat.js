@@ -1570,7 +1570,7 @@ var czrapp = czrapp || {};
               this.$_topbar                 = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.topbar-navbar__wrapper') : false;
               this.$_primary_navbar         = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.primary-navbar__wrapper') : false;
 
-              this.mobileMenuOpenedEvent    = 'show.bs.collapse'; //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
+              this.mobileMenuOpenedEvent    = 'show.czr.czrCollapse'; //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
               this.mobileMenuStickySelector = '.mobile-sticky .mobile-nav__nav';
 
               this.stickyMenuWrapper        = false;
@@ -2275,9 +2275,9 @@ var czrapp = czrapp || {};
                 _search_dropdown_menu_input_sel = '.czr-search-field',
                 _search_dropdown_expanded_class = 'show',
 
-                _mobile_menu_to_close_sel       = '.ham-toggler-menu:not(.collapsed)',
-                _mobile_menu_close_event        = 'click.bs.collapse',
-                _mobile_menu_opened_event       = 'show.bs.collapse', //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
+                _mobile_menu_to_close_sel       = '.ham-toggler-menu:not(.czr-collapsed)',
+                _mobile_menu_close_event        = 'click.czr.czrCollapse',
+                _mobile_menu_opened_event       = 'show.czr.czrCollapse', //('show' : start of the uncollapsing animation; 'shown' : end of the uncollapsing animation)
                 _mobile_menu_sel                = '.mobile-nav__nav';
             czrapp.$_body.on( _search_toggle_event, _search_overlay_toggler_sel, function(evt) {
                   evt.preventDefault();
@@ -2499,7 +2499,7 @@ var czrapp = czrapp || {};
             }
             var   _links,
                   _deep_excl = _.isObject( czrapp.localized.anchorSmoothScrollExclude.deep ) ? czrapp.localized.anchorSmoothScrollExclude.deep : null;
-                  
+
             if ( _deep_excl ) {
                   _links = _.toArray($_links).filter( function ( _el ) {
                     return ( 2 == ( ['ids', 'classes'].filter(
@@ -2798,7 +2798,7 @@ var czrapp = czrapp || {};
     },
 
     _end_visibility_toggle : function() {
-      $( this._toggler_selector ).toggleClass( 'collapsed' );
+      $( this._toggler_selector ).toggleClass( 'czr-collapsed' );
       $( this._sidenav_selector ).toggleClass( this._active_class );
 
     },
