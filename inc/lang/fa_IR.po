@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15\n"
+"Project-Id-Version: * Customizr v4.0.16\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 10:01:10+00:00\n"
+"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
 "PO-Revision-Date: 2015-11-16 23:47+0100\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -3875,9 +3875,6 @@ msgstr "‎صفحه ویژه"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
@@ -5553,6 +5550,17 @@ msgstr ""
 #: templates/parts/modules/related-posts/related_posts.php:23
 msgid "Next related articles"
 msgstr ""
+
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+#, fuzzy
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the customizer screen."
+msgstr ""
+"‎ویژه متن توضیحات صفحه: استفاده از گزیده ای صفحه و یا مجموعه ای متن دلخواه "
+"خود را در روی صفحه نمایش Customizr."
 
 #. Theme Name of the plugin/theme
 #, fuzzy

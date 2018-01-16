@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15\n"
+"Project-Id-Version: * Customizr v4.0.16\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 10:01:10+00:00\n"
+"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:08+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -4088,9 +4088,6 @@ msgstr "特色頁面"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
@@ -5827,6 +5824,16 @@ msgstr ""
 msgid "Next related articles"
 msgstr ""
 
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+#, fuzzy
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the customizer screen."
+msgstr ""
+"特色頁面文字：使用頁面摘錄或者在Customizr螢幕%s上設定您自己的個性化文字"
+
 #. Theme Name of the plugin/theme
 #, fuzzy
 msgid "Customizr"
@@ -6239,12 +6246,6 @@ msgstr "%1s搜尋結果: %2s"
 
 #~ msgid " here"
 #~ msgstr "這裡"
-
-#~ msgid ""
-#~ "Featured page description text : use the page excerpt or set your own "
-#~ "custom text in the Customizr screen%s."
-#~ msgstr ""
-#~ "特色頁面文字：使用頁面摘錄或者在Customizr螢幕%s上設定您自己的個性化文字"
 
 #, fuzzy
 #~ msgid "The sidebar : "

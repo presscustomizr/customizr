@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15\n"
+"Project-Id-Version: * Customizr v4.0.16\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 10:01:10+00:00\n"
+"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
 "PO-Revision-Date: 2016-08-30 15:26+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Rubenas <webmaster@rubenas.com>\n"
@@ -4015,9 +4015,6 @@ msgstr "P&aacute;xina destacada"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
@@ -5740,6 +5737,18 @@ msgstr ""
 msgid "Next related articles"
 msgstr ""
 
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+#, fuzzy
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the customizer screen."
+msgstr ""
+"Texto descriptivo da p&aacute;xina destacada: utilizar o resumo da p&aacute;"
+"xina ou escribir o seu propio texto no campo que aparece en opcións de "
+"personalizaci&oacute;n da p&aacute;xina % s."
+
 #. Theme Name of the plugin/theme
 #, fuzzy
 msgid "Customizr"
@@ -6206,14 +6215,6 @@ msgstr ""
 
 #~ msgid " here"
 #~ msgstr "aqu&iacute;"
-
-#~ msgid ""
-#~ "Featured page description text : use the page excerpt or set your own "
-#~ "custom text in the Customizr screen%s."
-#~ msgstr ""
-#~ "Texto descriptivo da p&aacute;xina destacada: utilizar o resumo da "
-#~ "p&aacute;xina ou escribir o seu propio texto no campo que aparece en "
-#~ "opcións de personalizaci&oacute;n da p&aacute;xina % s."
 
 #, fuzzy
 #~ msgid "The sidebar : "

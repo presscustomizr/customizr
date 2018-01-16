@@ -23,6 +23,10 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.16 January 16th 2018 =
+* Fix: tagline not displayed in the header. fixes #1389
+* Fix: wording typo in the featured pages description placeholder
+
 = 4.0.15 January 10th 2018 =
 * Fix: modern - fix animated underline not removable in some navigation menus. Also do not underline current menu item when the underline hover effect option is disabled. fixes #1363
 * Fix: modern - remove useless @import rules for unused gfonts. fixes #1366

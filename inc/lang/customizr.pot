@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Customizr 4.0.15\n"
+"Project-Id-Version: Customizr 4.0.16\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 13:23:46+00:00\n"
+"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3817,9 +3817,6 @@ msgstr ""
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own "
 "custom text in the Customizr screen."
@@ -5465,6 +5462,14 @@ msgstr ""
 #: build/free/customizr/templates/parts/modules/related-posts/related_posts.php:23
 #: templates/parts/modules/related-posts/related_posts.php:23
 msgid "Next related articles"
+msgstr ""
+
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+msgid ""
+"Featured page description text : use the page excerpt or set your own "
+"custom text in the customizer screen."
 msgstr ""
 
 #. Theme Name of the plugin/theme

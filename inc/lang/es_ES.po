@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.15\n"
+"Project-Id-Version: * Customizr v4.0.16\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 10:01:10+00:00\n"
+"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
 "PO-Revision-Date: 2016-08-31 16:05+0200\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Angel Calzado <angelcalzado@sintaxisweb.es>\n"
@@ -4091,9 +4091,6 @@ msgstr "P&aacute;gina destacada"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the Customizr screen."
@@ -5850,6 +5847,18 @@ msgstr ""
 msgid "Next related articles"
 msgstr ""
 
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+#, fuzzy
+msgid ""
+"Featured page description text : use the page excerpt or set your own custom "
+"text in the customizer screen."
+msgstr ""
+"Texto descriptivo de la p&aacute;gina destacada: utilizar el extracto de la "
+"p&aacute;gina o escribir su propio texto en el campo que aparece en opciones "
+"de personalizaci&oacute;n de la p&aacute;gina % s."
+
 #. Theme Name of the plugin/theme
 #, fuzzy
 msgid "Customizr"
@@ -6348,14 +6357,6 @@ msgstr ""
 
 #~ msgid " here"
 #~ msgstr "aqu&iacute;"
-
-#~ msgid ""
-#~ "Featured page description text : use the page excerpt or set your own "
-#~ "custom text in the Customizr screen%s."
-#~ msgstr ""
-#~ "Texto descriptivo de la p&aacute;gina destacada: utilizar el extracto de "
-#~ "la p&aacute;gina o escribir su propio texto en el campo que aparece en "
-#~ "opciones de personalizaci&oacute;n de la p&aacute;gina % s."
 
 #~ msgid "The sidebar : "
 #~ msgstr "La Barra lateral :"
