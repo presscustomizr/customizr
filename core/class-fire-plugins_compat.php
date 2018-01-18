@@ -850,6 +850,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
+      //enable lightbox for images in the wc short description
+      add_filter( 'czr_enable_lightbox_in_wc_short_description', '__return_true' );
+
+
+      //enable images smartload in the wc short description
+      add_filter( 'czr_enable_img_smart_load_in_wc_short_description', '__return_true' );
+
 
       //when in the woocommerce shop page use the "shop" id
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
