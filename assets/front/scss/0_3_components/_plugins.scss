@@ -163,7 +163,8 @@
 
 //make woocommerce single product tabs appear like singular wp the content
 //e.g. for lists, see #
-.woocommerce-Tabs-panel.entry-content {
+.woocommerce-Tabs-panel.entry-content,
+.woocommerce-product-details__short-description {
   @extend .czr-wp-the-content;
 }
 //the above should not be applied to the commentlist in the review tab
