@@ -325,12 +325,18 @@ if ( ! function_exists( 'czr_fn_maybe_register' ) ) {
 */
 function czr_fn_wp_filters() {
     add_filter( 'the_content'     , 'czr_fn_fancybox_content_filter'  );
+    if ( apply_filters( 'czr_enable_lightbox_in_wc_short_description', false  ) ) {
+        add_filter( 'woocommerce_short_description', 'czr_fn_fancybox_content_filter' );
+    }
     /*
     * Smartload disabled for content retrieved via ajax
     */
     if ( apply_filters( 'czr_globally_enable_img_smart_load', !czr_fn_is_ajax() && esc_attr( czr_fn_opt( 'tc_img_smart_load' ) ) ) ) {
         add_filter( 'the_content'    , 'czr_fn_parse_imgs', PHP_INT_MAX );
         add_filter( 'czr_thumb_html' , 'czr_fn_parse_imgs'  );
+        if ( apply_filters( 'czr_enable_img_smart_load_in_wc_short_description', false  ) ) {
+            add_filter( 'woocommerce_short_description', 'czr_fn_parse_imgs' );
+        }
     }
     add_filter( 'wp_title'        , 'czr_fn_wp_title' , 10, 2 );
 }

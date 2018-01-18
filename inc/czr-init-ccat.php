@@ -1357,6 +1357,16 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return ( function_exists('is_woocommerce') && is_woocommerce() ) ? false : $bool;
       }
 
+
+      //enable fancybox for images in the wc short description
+      add_filter( 'tc_enable_fancybox_in_wc_short_description', '__return_true' );
+
+
+      //enable images smartload in the wc short description
+      add_filter( 'tc_enable_img_smart_load_in_wc_short_description', '__return_true' );
+
+
+
       //when in the woocommerce shop page use the "shop" id
       add_filter( 'czr_id', 'czr_fn_woocommerce_shop_page_id' );
 
@@ -3568,12 +3578,18 @@ if ( ! class_exists( 'CZR_utils' ) ) :
       */
       function czr_fn_wp_filters() {
         add_filter( 'the_content'                         , array( $this , 'czr_fn_fancybox_content_filter' ) );
+        if ( apply_filters( 'tc_enable_fancybox_in_wc_short_description', false  ) ) {
+            add_filter( 'woocommerce_short_description'   , array( $this, 'czr_fn_fancybox_content_filter' ) );
+        }
         /*
         * Smartload disabled for content retrieved via ajax
         */
         if ( apply_filters( 'tc_globally_enable_img_smart_load', ! czr_fn_is_ajax() && esc_attr( czr_fn_opt( 'tc_img_smart_load' ) ) ) ) {
             add_filter( 'the_content'                       , 'czr_fn_parse_imgs', PHP_INT_MAX );
             add_filter( 'tc_thumb_html'                     , 'czr_fn_parse_imgs' );
+            if ( apply_filters( 'tc_enable_img_smart_load_in_wc_short_description', false  ) ) {
+                add_filter( 'woocommerce_short_description' , 'czr_fn_parse_imgs' );
+            }
         }
         add_filter( 'wp_title'                            , 'czr_fn_wp_title' , 10, 2 );
       }

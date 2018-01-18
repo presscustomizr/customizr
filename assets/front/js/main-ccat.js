@@ -896,7 +896,7 @@ var czrapp = czrapp || {};
                               }
                         });
                   });
-                  this.czrMagnificPopup( $('article .tc-content-inner'), {
+                  this.czrMagnificPopup( $('#content'), {
                         delegate: '[data-lb-type="grouped-post"]',
                         type: 'image',
                         gallery: {

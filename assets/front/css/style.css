@@ -7357,12 +7357,14 @@ ol > li:before {
   padding-right: .5em;
 }
 
-.czr-wp-the-content ol > li, .woocommerce-Tabs-panel.entry-content ol > li {
+.czr-wp-the-content ol > li, .woocommerce-Tabs-panel.entry-content ol > li,
+.woocommerce-product-details__short-description ol > li {
   position: relative;
   padding: 0.25rem 0.5rem;
 }
 
-.czr-wp-the-content ol > li:before, .woocommerce-Tabs-panel.entry-content ol > li:before {
+.czr-wp-the-content ol > li:before, .woocommerce-Tabs-panel.entry-content ol > li:before,
+.woocommerce-product-details__short-description ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   margin-right: 0.5em;
@@ -7371,29 +7373,37 @@ ol > li:before {
   width: 1em;
 }
 
-.czr-wp-the-content ol > li li:before, .woocommerce-Tabs-panel.entry-content ol > li li:before {
+.czr-wp-the-content ol > li li:before, .woocommerce-Tabs-panel.entry-content ol > li li:before,
+.woocommerce-product-details__short-description ol > li li:before {
   left: -1.8em;
 }
 
-.czr-wp-the-content ol > li li li:before, .woocommerce-Tabs-panel.entry-content ol > li li li:before {
+.czr-wp-the-content ol > li li li:before, .woocommerce-Tabs-panel.entry-content ol > li li li:before,
+.woocommerce-product-details__short-description ol > li li li:before {
   left: -2.5em;
 }
 
-.czr-wp-the-content ol, .woocommerce-Tabs-panel.entry-content ol, .czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul {
+.czr-wp-the-content ol, .woocommerce-Tabs-panel.entry-content ol,
+.woocommerce-product-details__short-description ol, .czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul,
+.woocommerce-product-details__short-description ul {
   padding: 0.5rem 0 1rem 3rem;
 }
 
 @media (max-width: 575px) {
-  .czr-wp-the-content ol, .woocommerce-Tabs-panel.entry-content ol, .czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul {
+  .czr-wp-the-content ol, .woocommerce-Tabs-panel.entry-content ol,
+  .woocommerce-product-details__short-description ol, .czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul,
+  .woocommerce-product-details__short-description ul {
     padding: 0.5rem 0 1rem 2rem;
   }
 }
 
-.czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul {
+.czr-wp-the-content ul, .woocommerce-Tabs-panel.entry-content ul,
+.woocommerce-product-details__short-description ul {
   list-style: square outside;
 }
 
-.czr-wp-the-content ul > li, .woocommerce-Tabs-panel.entry-content ul > li {
+.czr-wp-the-content ul > li, .woocommerce-Tabs-panel.entry-content ul > li,
+.woocommerce-product-details__short-description ul > li {
   padding: 0.25rem 0.5rem;
 }
 

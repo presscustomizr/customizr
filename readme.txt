@@ -23,6 +23,10 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.17 January 20th 2018 =
+* Imp: Woocommerce - allow lightbox effect and smartload in product short description. fixes #1394
+* Imp: Woocommerce - better u/o list styling for the product short description. fixes #1393
+
 = 4.0.16 January 16th 2018 =
 * Fix: tagline not displayed in the header. fixes #1389
 * Fix: wording typo in the featured pages description placeholder

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.0.16\n"
+"Project-Id-Version: * Customizr v4.0.17-beta\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-01-16 18:43:36+00:00\n"
+"POT-Creation-Date: 2018-01-18 17:14:21+00:00\n"
 "PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -199,7 +199,7 @@ msgstr "Komentar"
 #: build/free/customizr/core/class-fire-resources_scripts.php:370
 #: build/free/customizr/inc/czr-init-ccat.php:4211
 #: core/class-fire-resources_scripts.php:370
-#: inc/_dev/class-fire-resources.php:352 inc/czr-init-ccat.php:4211
+#: inc/_dev/class-fire-resources.php:352 inc/czr-init-ccat.php:4227
 msgid "Permanently dismiss"
 msgstr ""
 
@@ -427,7 +427,7 @@ msgstr "Efek memudar ketika menyentuh link"
 #: build/free/customizr/core/core-settings-map.php:362
 #: build/free/customizr/inc/czr-init-ccat.php:2231
 #: core/core-settings-map.php:362
-#: inc/_dev/class-fire-utils_settings_map.php:302 inc/czr-init-ccat.php:2231
+#: inc/_dev/class-fire-utils_settings_map.php:302 inc/czr-init-ccat.php:2241
 msgid "Fade effect on link hover"
 msgstr "Efek memudar ketika menyentuh link"
 
@@ -567,7 +567,7 @@ msgstr "Kanan"
 #: build/free/customizr/core/core-settings-map.php:522
 #: build/free/customizr/inc/czr-init-ccat.php:3057
 #: core/core-settings-map.php:522
-#: inc/_dev/class-fire-utils_settings_map.php:1128 inc/czr-init-ccat.php:3057
+#: inc/_dev/class-fire-utils_settings_map.php:1128 inc/czr-init-ccat.php:3067
 msgid "Custom"
 msgstr "Kustom"
 
@@ -753,7 +753,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:820
 #: build/free/customizr/inc/czr-init-ccat.php:2507
 #: core/core-settings-map.php:695 core/core-settings-map.php:820
-#: inc/_dev/class-fire-utils_settings_map.php:578 inc/czr-init-ccat.php:2507
+#: inc/_dev/class-fire-utils_settings_map.php:578 inc/czr-init-ccat.php:2517
 msgid "Display the shopping cart in the header"
 msgstr ""
 
@@ -761,7 +761,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:823
 #: build/free/customizr/inc/czr-init-ccat.php:2510
 #: core/core-settings-map.php:698 core/core-settings-map.php:823
-#: inc/_dev/class-fire-utils_settings_map.php:581 inc/czr-init-ccat.php:2510
+#: inc/_dev/class-fire-utils_settings_map.php:581 inc/czr-init-ccat.php:2520
 msgid ""
 "WooCommerce: check to display a cart icon showing the number of items in "
 "your cart next to your header's tagline."
@@ -900,7 +900,7 @@ msgstr "Buka submenu saat di klik"
 #: build/free/customizr/core/core-settings-map.php:794
 #: build/free/customizr/inc/czr-init-ccat.php:2495
 #: core/core-settings-map.php:794
-#: inc/_dev/class-fire-utils_settings_map.php:566 inc/czr-init-ccat.php:2495
+#: inc/_dev/class-fire-utils_settings_map.php:566 inc/czr-init-ccat.php:2505
 #, fuzzy
 msgid "Display the tagline in the header"
 msgstr "Tampilkan di header"
@@ -1006,7 +1006,7 @@ msgstr "Desain menu kedua (horizontal)"
 #: build/free/customizr/core/core-settings-map.php:918
 #: build/free/customizr/inc/czr-init-ccat.php:2671
 #: core/core-settings-map.php:918
-#: inc/_dev/class-fire-utils_settings_map.php:742 inc/czr-init-ccat.php:2671
+#: inc/_dev/class-fire-utils_settings_map.php:742 inc/czr-init-ccat.php:2681
 msgid "Menu position (for \"main\" menu)"
 msgstr "Posisi menu (untuk menu \"utama\")"
 
@@ -1016,8 +1016,8 @@ msgstr "Posisi menu (untuk menu \"utama\")"
 #: build/free/customizr/inc/czr-init-ccat.php:2696
 #: core/core-settings-map.php:922 core/core-settings-map.php:936
 #: inc/_dev/class-fire-utils_settings_map.php:746
-#: inc/_dev/class-fire-utils_settings_map.php:767 inc/czr-init-ccat.php:2675
-#: inc/czr-init-ccat.php:2696
+#: inc/_dev/class-fire-utils_settings_map.php:767 inc/czr-init-ccat.php:2685
+#: inc/czr-init-ccat.php:2706
 msgid "Menu on the left"
 msgstr "Menu di kiri"
 
@@ -1027,22 +1027,22 @@ msgstr "Menu di kiri"
 #: build/free/customizr/inc/czr-init-ccat.php:2698
 #: core/core-settings-map.php:923 core/core-settings-map.php:937
 #: inc/_dev/class-fire-utils_settings_map.php:748
-#: inc/_dev/class-fire-utils_settings_map.php:769 inc/czr-init-ccat.php:2677
-#: inc/czr-init-ccat.php:2698
+#: inc/_dev/class-fire-utils_settings_map.php:769 inc/czr-init-ccat.php:2687
+#: inc/czr-init-ccat.php:2708
 msgid "Menu on the right"
 msgstr "Menu di kanan"
 
 #: build/free/customizr/core/core-settings-map.php:931
 #: build/free/customizr/inc/czr-init-ccat.php:2691
 #: core/core-settings-map.php:931
-#: inc/_dev/class-fire-utils_settings_map.php:762 inc/czr-init-ccat.php:2691
+#: inc/_dev/class-fire-utils_settings_map.php:762 inc/czr-init-ccat.php:2701
 msgid "Secondary (horizontal) menu design"
 msgstr "Desain menu kedua (horizontal)"
 
 #: build/free/customizr/core/core-settings-map.php:932
 #: build/free/customizr/inc/czr-init-ccat.php:2692
 #: core/core-settings-map.php:932
-#: inc/_dev/class-fire-utils_settings_map.php:763 inc/czr-init-ccat.php:2692
+#: inc/_dev/class-fire-utils_settings_map.php:763 inc/czr-init-ccat.php:2702
 msgid "Menu position (for the horizontal menu)"
 msgstr "Posisi menu (untuk menu horizontal)"
 
@@ -1220,7 +1220,7 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1148
 #: build/free/customizr/inc/czr-init-ccat.php:2912
 #: core/core-settings-map.php:1148
-#: inc/_dev/class-fire-utils_settings_map.php:983 inc/czr-init-ccat.php:2912
+#: inc/_dev/class-fire-utils_settings_map.php:983 inc/czr-init-ccat.php:2922
 msgid "Display the excerpt"
 msgstr "Tampilkan kutipan"
 
@@ -1769,7 +1769,7 @@ msgstr "Dokumentasi Wordpress"
 #: build/free/customizr/core/core-settings-map.php:1732
 #: build/free/customizr/inc/czr-init-ccat.php:2973
 #: core/core-settings-map.php:1673 core/core-settings-map.php:1732
-#: inc/_dev/class-fire-utils_settings_map.php:1044 inc/czr-init-ccat.php:2973
+#: inc/_dev/class-fire-utils_settings_map.php:1044 inc/czr-init-ccat.php:2983
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Atur maks tinggi thumbail dengan pixel"
 
@@ -2415,7 +2415,7 @@ msgstr "Font"
 #: build/free/customizr/core/core-settings-map.php:2503
 #: build/free/customizr/inc/czr-init-ccat.php:3120
 #: core/core-settings-map.php:2503
-#: inc/_dev/class-fire-utils_settings_map.php:1191 inc/czr-init-ccat.php:3120
+#: inc/_dev/class-fire-utils_settings_map.php:1191 inc/czr-init-ccat.php:3130
 msgid "Social links"
 msgstr "Link Media Sosial"
 
@@ -4031,9 +4031,13 @@ msgstr "Halaman Pilihan (fitur)"
 
 #: build/free/customizr/core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 #: build/free/customizr/inc/czr-front-ccat.php:3732
+#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
+#: inc/_dev/parts/class-content-featured_pages.php:188
+#: inc/czr-front-ccat.php:3732
+#, fuzzy
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
-"text in the Customizr screen."
+"text in the customizer screen."
 msgstr ""
 "Pilihan teks deskripsi halaman: menggunakan halaman kutipan atau mengatur "
 "teks kustom Anda sendiri di layar Customizr."
@@ -4292,7 +4296,7 @@ msgstr "layar pembuatan menu"
 #: inc/czr-front-ccat.php:3592 inc/czr-front-ccat.php:4740
 #: inc/czr-front-ccat.php:5072 inc/czr-front-ccat.php:8061
 #: inc/czr-front-ccat.php:9061 inc/czr-front-ccat.php:9667
-#: inc/czr-init-ccat.php:4952
+#: inc/czr-init-ccat.php:4968
 msgid "dismiss notice"
 msgstr "Tutup pemberitahuan"
 
@@ -4599,7 +4603,7 @@ msgstr "%s untuk menampilkan gambar yang ditampilkan di sini."
 #: inc/_dev/class-fire-placeholders.php:215
 #: inc/_dev/parts/class-content-page.php:180
 #: inc/_dev/parts/class-content-post.php:212 inc/czr-front-ccat.php:4733
-#: inc/czr-front-ccat.php:5065 inc/czr-init-ccat.php:4948
+#: inc/czr-front-ccat.php:5065 inc/czr-init-ccat.php:4964
 msgid "Jump to the customizer now"
 msgstr "Langsung ke Customizer sekarang"
 
@@ -4950,18 +4954,18 @@ msgstr "Biru muda"
 
 #: build/free/customizr/inc/czr-init-ccat.php:1479
 #: build/free/customizr/templates/parts/header/parts/woocommerce_cart.php:7
-#: inc/_dev/class-fire-plugins_compat.php:998 inc/czr-init-ccat.php:1479
+#: inc/_dev/class-fire-plugins_compat.php:1008 inc/czr-init-ccat.php:1489
 #: templates/parts/header/parts/woocommerce_cart.php:7
 msgid "View your shopping cart"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2140
-#: inc/_dev/class-fire-utils_settings_map.php:211 inc/czr-init-ccat.php:2140
+#: inc/_dev/class-fire-utils_settings_map.php:211 inc/czr-init-ccat.php:2150
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "Unggah Logo Sticky (format didukung : .jpg, .png, .gif, svg, svgz)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2152
-#: inc/_dev/class-fire-utils_settings_map.php:223 inc/czr-init-ccat.php:2152
+#: inc/_dev/class-fire-utils_settings_map.php:223 inc/czr-init-ccat.php:2162
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
@@ -4969,125 +4973,125 @@ msgstr ""
 "sticky"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2157
-#: inc/_dev/class-fire-utils_settings_map.php:228 inc/czr-init-ccat.php:2157
+#: inc/_dev/class-fire-utils_settings_map.php:228 inc/czr-init-ccat.php:2167
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Unggah Favicon (format didukung L .ico, .png, .gif)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2158
-#: inc/_dev/class-fire-utils_settings_map.php:229 inc/czr-init-ccat.php:2158
+#: inc/_dev/class-fire-utils_settings_map.php:229 inc/czr-init-ccat.php:2168
 msgid "FAVICON"
 msgstr "FAVICON"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2197
-#: inc/_dev/class-fire-utils_settings_map.php:268 inc/czr-init-ccat.php:2197
+#: inc/_dev/class-fire-utils_settings_map.php:268 inc/czr-init-ccat.php:2207
 msgid "Choose a predefined skin"
 msgstr "Pilih kulit yang sudah ditetapkan"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2202
-#: inc/_dev/class-fire-utils_settings_map.php:273 inc/czr-init-ccat.php:2202
+#: inc/_dev/class-fire-utils_settings_map.php:273 inc/czr-init-ccat.php:2212
 msgid "Disabled if the random option is on."
 msgstr "Tiadakan jika opsi pengacakan dinyalakan."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2207
-#: inc/_dev/class-fire-utils_settings_map.php:278 inc/czr-init-ccat.php:2207
+#: inc/_dev/class-fire-utils_settings_map.php:278 inc/czr-init-ccat.php:2217
 msgid "Randomize the skin"
 msgstr "Acak kulit"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2210
-#: inc/_dev/class-fire-utils_settings_map.php:281 inc/czr-init-ccat.php:2210
+#: inc/_dev/class-fire-utils_settings_map.php:281 inc/czr-init-ccat.php:2220
 msgid "Apply a random color skin on each page load."
 msgstr "Berlakukan pengacakan warna kulit setiap laman reload."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2254
-#: inc/_dev/class-fire-utils_settings_map.php:325 inc/czr-init-ccat.php:2254
+#: inc/_dev/class-fire-utils_settings_map.php:325 inc/czr-init-ccat.php:2264
 msgid "Display an icon next to external links"
 msgstr "Tampilkan ikon disamping link eksternal"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2257
 #: build/free/customizr/inc/czr-init-ccat.php:2267
 #: inc/_dev/class-fire-utils_settings_map.php:328
-#: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2257
-#: inc/czr-init-ccat.php:2267
+#: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2267
+#: inc/czr-init-ccat.php:2277
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 "Ini akan diterapkan pada link yang termasuk di dalam post atau laman saja."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2264
-#: inc/_dev/class-fire-utils_settings_map.php:335 inc/czr-init-ccat.php:2264
+#: inc/_dev/class-fire-utils_settings_map.php:335 inc/czr-init-ccat.php:2274
 msgid "Open external links in a new tab"
 msgstr "Buka link eksternal di tab baru"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2272
-#: inc/_dev/class-fire-utils_settings_map.php:343 inc/czr-init-ccat.php:2272
+#: inc/_dev/class-fire-utils_settings_map.php:343 inc/czr-init-ccat.php:2282
 msgid "Drop caps"
 msgstr "Hurup besar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2273
-#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2273
+#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2283
 msgid "Enable drop caps"
 msgstr "Aktifkan huruf besar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2275
-#: inc/_dev/class-fire-utils_settings_map.php:346 inc/czr-init-ccat.php:2275
+#: inc/_dev/class-fire-utils_settings_map.php:346 inc/czr-init-ccat.php:2285
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr "Terapkan huruf besar pada paragraf pertama didalam post atau laman"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2283
-#: inc/_dev/class-fire-utils_settings_map.php:354 inc/czr-init-ccat.php:2283
+#: inc/_dev/class-fire-utils_settings_map.php:354 inc/czr-init-ccat.php:2293
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr "Terapkan huruf besar ketika paragraf sekurang-kurangnya sekian huruf :"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2284
-#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2284
+#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2294
 msgid "(number of words)"
 msgstr "(jumlah huruf)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2293
-#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2293
+#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2303
 msgid "Drop cap style"
 msgstr "Gaya huruf besar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2297
-#: inc/_dev/class-fire-utils_settings_map.php:368 inc/czr-init-ccat.php:2297
+#: inc/_dev/class-fire-utils_settings_map.php:368 inc/czr-init-ccat.php:2307
 #, fuzzy
 msgid "Primary theme color with a shadow"
 msgstr "Warna kulit dengan bayangan"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2298
-#: inc/_dev/class-fire-utils_settings_map.php:369 inc/czr-init-ccat.php:2298
+#: inc/_dev/class-fire-utils_settings_map.php:369 inc/czr-init-ccat.php:2308
 msgid "Simple black"
 msgstr "Hitam sederhana"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2303
-#: inc/_dev/class-fire-utils_settings_map.php:374 inc/czr-init-ccat.php:2303
+#: inc/_dev/class-fire-utils_settings_map.php:374 inc/czr-init-ccat.php:2313
 msgid "Enable drop caps in posts"
 msgstr "Bolehkan huruf besar pada post"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2305
-#: inc/_dev/class-fire-utils_settings_map.php:376 inc/czr-init-ccat.php:2305
+#: inc/_dev/class-fire-utils_settings_map.php:376 inc/czr-init-ccat.php:2315
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "Terapkan huruf besar di paragraf pertama pada post tunggal"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2311
-#: inc/_dev/class-fire-utils_settings_map.php:382 inc/czr-init-ccat.php:2311
+#: inc/_dev/class-fire-utils_settings_map.php:382 inc/czr-init-ccat.php:2321
 msgid "Enable drop caps in pages"
 msgstr "Bolehkan huruf besar pada laman"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2313
-#: inc/_dev/class-fire-utils_settings_map.php:384 inc/czr-init-ccat.php:2313
+#: inc/_dev/class-fire-utils_settings_map.php:384 inc/czr-init-ccat.php:2323
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "Terapkan huruf besar di paragraf pertama pada laman"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2332
-#: inc/_dev/class-fire-utils_settings_map.php:403 inc/czr-init-ccat.php:2332
+#: inc/_dev/class-fire-utils_settings_map.php:403 inc/czr-init-ccat.php:2342
 msgid "Display icons next to titles"
 msgstr "Tampilkan ikon disamping judul"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2336
-#: inc/_dev/class-fire-utils_settings_map.php:407 inc/czr-init-ccat.php:2336
+#: inc/_dev/class-fire-utils_settings_map.php:407 inc/czr-init-ccat.php:2346
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -5096,22 +5100,22 @@ msgstr ""
 "laman, post, arsip, dan WP built-in widget."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2342
-#: inc/_dev/class-fire-utils_settings_map.php:413 inc/czr-init-ccat.php:2342
+#: inc/_dev/class-fire-utils_settings_map.php:413 inc/czr-init-ccat.php:2352
 msgid "Display a page icon next to the page title"
 msgstr "Tampilkan ikon laman selanjutnya mengarah ke judul laman"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2351
-#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2351
+#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2361
 msgid "Display a post icon next to the single post title"
 msgstr "Tampilkan ikon post selanjutnya mengarah ke judul post"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2360
-#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2360
+#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2370
 msgid "Display an icon next to the archive title"
 msgstr "Tampilkan ikon selanjutnya mengarah ke judul arsip"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2363
-#: inc/_dev/class-fire-utils_settings_map.php:434 inc/czr-init-ccat.php:2363
+#: inc/_dev/class-fire-utils_settings_map.php:434 inc/czr-init-ccat.php:2373
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -5123,12 +5127,12 @@ msgstr ""
 "kategori, tag, author, tanggal arsip, taxonomies buatan, hasil pencarian."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2370
-#: inc/_dev/class-fire-utils_settings_map.php:441 inc/czr-init-ccat.php:2370
+#: inc/_dev/class-fire-utils_settings_map.php:441 inc/czr-init-ccat.php:2380
 msgid "Display an icon next to each post title in an archive page"
 msgstr "Tampilkan ikon selanjutnya yang mengarah ke judul post di laman arsip"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2373
-#: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2373
+#: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2383
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -5139,22 +5143,22 @@ msgstr ""
 "tanggal arsip, taksonomi buatan, hasil pencarian."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2380
-#: inc/_dev/class-fire-utils_settings_map.php:451 inc/czr-init-ccat.php:2380
+#: inc/_dev/class-fire-utils_settings_map.php:451 inc/czr-init-ccat.php:2390
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "WP sidebar widget : tampilkan ikon selanjutnya setelah judul"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2389
-#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2389
+#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2399
 msgid "WP footer widgets : display icons next to titles"
 msgstr "WP footer widget : tampilkan ikon setelah judul"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2418
-#: inc/_dev/class-fire-utils_settings_map.php:489 inc/czr-init-ccat.php:2418
+#: inc/_dev/class-fire-utils_settings_map.php:489 inc/czr-init-ccat.php:2428
 msgid "Autoscale images on zoom"
 msgstr "Skala otomatis saat zoom"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2422
-#: inc/_dev/class-fire-utils_settings_map.php:493 inc/czr-init-ccat.php:2422
+#: inc/_dev/class-fire-utils_settings_map.php:493 inc/czr-init-ccat.php:2432
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
@@ -5162,12 +5166,12 @@ msgstr ""
 "lightbox zoom."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2428
-#: inc/_dev/class-fire-utils_settings_map.php:499 inc/czr-init-ccat.php:2428
+#: inc/_dev/class-fire-utils_settings_map.php:499 inc/czr-init-ccat.php:2438
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Slider : tampilkan ikon loading sebelum merender slide"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2432
-#: inc/_dev/class-fire-utils_settings_map.php:503 inc/czr-init-ccat.php:2432
+#: inc/_dev/class-fire-utils_settings_map.php:503 inc/czr-init-ccat.php:2442
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
@@ -5176,18 +5180,18 @@ msgstr ""
 "tata."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2442
-#: inc/_dev/class-fire-utils_settings_map.php:513 inc/czr-init-ccat.php:2442
+#: inc/_dev/class-fire-utils_settings_map.php:513 inc/czr-init-ccat.php:2452
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2518
-#: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2518
+#: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2528
 msgid "Display menu in a box"
 msgstr "Tampilkan menu didalam kotak"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2523
-#: inc/_dev/class-fire-utils_settings_map.php:594 inc/czr-init-ccat.php:2523
+#: inc/_dev/class-fire-utils_settings_map.php:594 inc/czr-init-ccat.php:2533
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -5196,17 +5200,17 @@ msgstr ""
 "abu-abu terang."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2528
-#: inc/_dev/class-fire-utils_settings_map.php:599 inc/czr-init-ccat.php:2528
+#: inc/_dev/class-fire-utils_settings_map.php:599 inc/czr-init-ccat.php:2538
 msgid "Sticky header settings"
 msgstr "Pengaturan sticky header"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2529
-#: inc/_dev/class-fire-utils_settings_map.php:600 inc/czr-init-ccat.php:2529
+#: inc/_dev/class-fire-utils_settings_map.php:600 inc/czr-init-ccat.php:2539
 msgid "Sticky on scroll"
 msgstr "Sticky ketika di scroll"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2534
-#: inc/_dev/class-fire-utils_settings_map.php:605 inc/czr-init-ccat.php:2534
+#: inc/_dev/class-fire-utils_settings_map.php:605 inc/czr-init-ccat.php:2544
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
@@ -5215,39 +5219,39 @@ msgstr ""
 "ketika laman di scroll kebawah."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2539
-#: inc/_dev/class-fire-utils_settings_map.php:610 inc/czr-init-ccat.php:2539
+#: inc/_dev/class-fire-utils_settings_map.php:610 inc/czr-init-ccat.php:2549
 msgid "Sticky header : display the tagline"
 msgstr "Sticky header : tampilkan slogan"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2547
-#: inc/_dev/class-fire-utils_settings_map.php:618 inc/czr-init-ccat.php:2547
+#: inc/_dev/class-fire-utils_settings_map.php:618 inc/czr-init-ccat.php:2557
 msgid "Sticky header: display the shopping cart"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2554
-#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2554
+#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2564
 msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2559
-#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2559
+#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2569
 msgid "Sticky header : display the title / logo"
 msgstr "Sticky header : tampilkan judul / logo"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2568
-#: inc/_dev/class-fire-utils_settings_map.php:639 inc/czr-init-ccat.php:2568
+#: inc/_dev/class-fire-utils_settings_map.php:639 inc/czr-init-ccat.php:2578
 msgid "Sticky header : display the menu"
 msgstr "Sticky header : tampilkan menu"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2573
-#: inc/_dev/class-fire-utils_settings_map.php:644 inc/czr-init-ccat.php:2573
+#: inc/_dev/class-fire-utils_settings_map.php:644 inc/czr-init-ccat.php:2583
 msgid "Also applied to the secondary menu if any."
 msgstr "Juga diterapkan pada menu kedua jika ada."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2652
-#: inc/_dev/class-fire-utils_settings_map.php:723 inc/czr-init-ccat.php:2652
+#: inc/_dev/class-fire-utils_settings_map.php:723 inc/czr-init-ccat.php:2662
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
@@ -5256,20 +5260,20 @@ msgstr ""
 "jadi lebih ciamik."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2661
-#: inc/_dev/class-fire-utils_settings_map.php:732 inc/czr-init-ccat.php:2661
+#: inc/_dev/class-fire-utils_settings_map.php:732 inc/czr-init-ccat.php:2671
 msgid "Display a label next to the menu button."
 msgstr "Tampilkan teks label setelah tombol menu"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2665
-#: inc/_dev/class-fire-utils_settings_map.php:736 inc/czr-init-ccat.php:2665
+#: inc/_dev/class-fire-utils_settings_map.php:736 inc/czr-init-ccat.php:2675
 msgid "Note : the label is hidden on mobile devices."
 msgstr "Catatan : label disembunyikan pada perangkat handphone."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2676
 #: build/free/customizr/inc/czr-init-ccat.php:2697
 #: inc/_dev/class-fire-utils_settings_map.php:747
-#: inc/_dev/class-fire-utils_settings_map.php:768 inc/czr-init-ccat.php:2676
-#: inc/czr-init-ccat.php:2697
+#: inc/_dev/class-fire-utils_settings_map.php:768 inc/czr-init-ccat.php:2686
+#: inc/czr-init-ccat.php:2707
 #, fuzzy
 msgid "Menu centered"
 msgstr "Menu di kiri"
@@ -5277,93 +5281,93 @@ msgstr "Menu di kiri"
 #: build/free/customizr/inc/czr-init-ccat.php:2682
 #: build/free/customizr/inc/czr-init-ccat.php:2703
 #: inc/_dev/class-fire-utils_settings_map.php:753
-#: inc/_dev/class-fire-utils_settings_map.php:774 inc/czr-init-ccat.php:2682
-#: inc/czr-init-ccat.php:2703
+#: inc/_dev/class-fire-utils_settings_map.php:774 inc/czr-init-ccat.php:2692
+#: inc/czr-init-ccat.php:2713
 msgid "Note : the menu centered position is available only when"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:2684
 #: build/free/customizr/inc/czr-init-ccat.php:2705
 #: inc/_dev/class-fire-utils_settings_map.php:755
-#: inc/_dev/class-fire-utils_settings_map.php:776 inc/czr-init-ccat.php:2684
-#: inc/czr-init-ccat.php:2705
+#: inc/_dev/class-fire-utils_settings_map.php:776 inc/czr-init-ccat.php:2694
+#: inc/czr-init-ccat.php:2715
 #, fuzzy
 msgid "the logo is centered"
 msgstr "Logo / judul di tengah"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2711
-#: inc/_dev/class-fire-utils_settings_map.php:782 inc/czr-init-ccat.php:2711
+#: inc/_dev/class-fire-utils_settings_map.php:782 inc/czr-init-ccat.php:2721
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr "Pilih (responsif) perangkat ponsel untuk menu kedua."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2715
-#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2715
+#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2725
 msgid "Move before inside the side menu "
 msgstr "Pindahkan ke sebelum menu samping"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2716
-#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2716
+#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2726
 msgid "Move after inside the side menu "
 msgstr "Pindahkan ke setelah menu samping"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2717
-#: inc/_dev/class-fire-utils_settings_map.php:788 inc/czr-init-ccat.php:2717
+#: inc/_dev/class-fire-utils_settings_map.php:788 inc/czr-init-ccat.php:2727
 msgid "Display in the header"
 msgstr "Tampilkan di header"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2718
-#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2718
+#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2728
 msgid "Hide"
 msgstr "Sembunyikan"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2796
-#: inc/_dev/class-fire-utils_settings_map.php:867 inc/czr-init-ccat.php:2796
+#: inc/_dev/class-fire-utils_settings_map.php:867 inc/czr-init-ccat.php:2806
 msgid "Metas Design"
 msgstr "Desain Meta"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2797
-#: inc/_dev/class-fire-utils_settings_map.php:868 inc/czr-init-ccat.php:2797
+#: inc/_dev/class-fire-utils_settings_map.php:868 inc/czr-init-ccat.php:2807
 msgid "Select a design for the post metas"
 msgstr "Pilih desain untuk post meta"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2801
-#: inc/_dev/class-fire-utils_settings_map.php:872 inc/czr-init-ccat.php:2801
+#: inc/_dev/class-fire-utils_settings_map.php:872 inc/czr-init-ccat.php:2811
 msgid "Buttons and text"
 msgstr "Tombol dan teks"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2802
-#: inc/_dev/class-fire-utils_settings_map.php:873 inc/czr-init-ccat.php:2802
+#: inc/_dev/class-fire-utils_settings_map.php:873 inc/czr-init-ccat.php:2812
 msgid "Text only"
 msgstr "Teks saja"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2809
-#: inc/_dev/class-fire-utils_settings_map.php:880 inc/czr-init-ccat.php:2809
+#: inc/_dev/class-fire-utils_settings_map.php:880 inc/czr-init-ccat.php:2819
 msgid "Select the last update format"
 msgstr "Pilih format terakhir di revisi"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2813
-#: inc/_dev/class-fire-utils_settings_map.php:884 inc/czr-init-ccat.php:2813
+#: inc/_dev/class-fire-utils_settings_map.php:884 inc/czr-init-ccat.php:2823
 #, fuzzy
 msgid "No. of days since last update"
 msgstr "Hari sejak di terakhir revisi"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2814
-#: inc/_dev/class-fire-utils_settings_map.php:885 inc/czr-init-ccat.php:2814
+#: inc/_dev/class-fire-utils_settings_map.php:885 inc/czr-init-ccat.php:2824
 msgid "Date of the last update"
 msgstr "Tanggal revisi"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2822
-#: inc/_dev/class-fire-utils_settings_map.php:893 inc/czr-init-ccat.php:2822
+#: inc/_dev/class-fire-utils_settings_map.php:893 inc/czr-init-ccat.php:2832
 msgid "Recent update notice after post titles"
 msgstr "Pemberitahuan revisi setelah judul post"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2823
-#: inc/_dev/class-fire-utils_settings_map.php:894 inc/czr-init-ccat.php:2823
+#: inc/_dev/class-fire-utils_settings_map.php:894 inc/czr-init-ccat.php:2833
 msgid "Display a recent update notice"
 msgstr "Tampilkan pemberitahuan revisi terbaru"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2827
-#: inc/_dev/class-fire-utils_settings_map.php:898 inc/czr-init-ccat.php:2827
+#: inc/_dev/class-fire-utils_settings_map.php:898 inc/czr-init-ccat.php:2837
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -5372,14 +5376,14 @@ msgstr ""
 "setelah judul post."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2833
-#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2833
+#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2843
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Tampilkan pemberitahuan jika revisi kurang dari (dekat) daripada hari ini"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2839
-#: inc/_dev/class-fire-utils_settings_map.php:910 inc/czr-init-ccat.php:2839
+#: inc/_dev/class-fire-utils_settings_map.php:910 inc/czr-init-ccat.php:2849
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -5388,47 +5392,47 @@ msgstr ""
 "akan ditampilkan."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2842
-#: inc/_dev/class-fire-utils_settings_map.php:913 inc/czr-init-ccat.php:2842
+#: inc/_dev/class-fire-utils_settings_map.php:913 inc/czr-init-ccat.php:2852
 msgid "Recently updated !"
 msgstr "Baru-baru ini diperbarui!"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2844
-#: inc/_dev/class-fire-utils_settings_map.php:915 inc/czr-init-ccat.php:2844
+#: inc/_dev/class-fire-utils_settings_map.php:915 inc/czr-init-ccat.php:2854
 msgid "Update notice text"
 msgstr "Teks pemberitahuan revisi"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2853
-#: inc/_dev/class-fire-utils_settings_map.php:924 inc/czr-init-ccat.php:2853
+#: inc/_dev/class-fire-utils_settings_map.php:924 inc/czr-init-ccat.php:2863
 msgid "Update notice style"
 msgstr "Perbarui gaya pemberitahuan"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2857
-#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2857
+#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2867
 msgid "Default (grey)"
 msgstr "Default (abu-abu)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2858
-#: inc/_dev/class-fire-utils_settings_map.php:929 inc/czr-init-ccat.php:2858
+#: inc/_dev/class-fire-utils_settings_map.php:929 inc/czr-init-ccat.php:2868
 msgid "Success (green)"
 msgstr "Sukses (hijau)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2859
-#: inc/_dev/class-fire-utils_settings_map.php:930 inc/czr-init-ccat.php:2859
+#: inc/_dev/class-fire-utils_settings_map.php:930 inc/czr-init-ccat.php:2869
 msgid "Alert (orange)"
 msgstr "Alert (oren)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2860
-#: inc/_dev/class-fire-utils_settings_map.php:931 inc/czr-init-ccat.php:2860
+#: inc/_dev/class-fire-utils_settings_map.php:931 inc/czr-init-ccat.php:2870
 msgid "Important (red)"
 msgstr "Penting (merah)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2861
-#: inc/_dev/class-fire-utils_settings_map.php:932 inc/czr-init-ccat.php:2861
+#: inc/_dev/class-fire-utils_settings_map.php:932 inc/czr-init-ccat.php:2871
 msgid "Info (blue)"
 msgstr "Info (biru)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2872
-#: inc/_dev/class-fire-utils_settings_map.php:943 inc/czr-init-ccat.php:2872
+#: inc/_dev/class-fire-utils_settings_map.php:943 inc/czr-init-ccat.php:2882
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -5439,136 +5443,136 @@ msgstr ""
 "update / revisi)."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2908
-#: inc/_dev/class-fire-utils_settings_map.php:979 inc/czr-init-ccat.php:2908
+#: inc/_dev/class-fire-utils_settings_map.php:979 inc/czr-init-ccat.php:2918
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "Tentukan total post pada daftar (beranda, pencarian, arsip, ...)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2913
-#: inc/_dev/class-fire-utils_settings_map.php:984 inc/czr-init-ccat.php:2913
+#: inc/_dev/class-fire-utils_settings_map.php:984 inc/czr-init-ccat.php:2923
 msgid "Display the full content"
 msgstr "Tampilkan seluruh konten"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2921
-#: inc/_dev/class-fire-utils_settings_map.php:992 inc/czr-init-ccat.php:2921
+#: inc/_dev/class-fire-utils_settings_map.php:992 inc/czr-init-ccat.php:2931
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Terapkan grid layout untuk Beranda/Blog"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2929
-#: inc/_dev/class-fire-utils_settings_map.php:1000 inc/czr-init-ccat.php:2929
+#: inc/_dev/class-fire-utils_settings_map.php:1000 inc/czr-init-ccat.php:2939
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr "Menerapkan layout grid untuk Arsip (arsip, kategori, tulisan penulis)"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2937
-#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2937
+#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2947
 msgid "Apply the grid layout to Search results"
 msgstr "Terapkan grid layout pada Hasil pencarian"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2941
-#: inc/_dev/class-fire-utils_settings_map.php:1012 inc/czr-init-ccat.php:2941
+#: inc/_dev/class-fire-utils_settings_map.php:1012 inc/czr-init-ccat.php:2951
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr "Konteks yang tidak dicentang ditampilkan dengan alternatif layout."
 
 #: build/free/customizr/inc/czr-init-ccat.php:2946
-#: inc/_dev/class-fire-utils_settings_map.php:1017 inc/czr-init-ccat.php:2946
+#: inc/_dev/class-fire-utils_settings_map.php:1017 inc/czr-init-ccat.php:2956
 #, fuzzy
 msgid "Display post format icons"
 msgstr "Tampilkan ikon format post pada background"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2955
-#: inc/_dev/class-fire-utils_settings_map.php:1026 inc/czr-init-ccat.php:2955
+#: inc/_dev/class-fire-utils_settings_map.php:1026 inc/czr-init-ccat.php:2965
 msgid "Upload a default thumbnail"
 msgstr "Unggah default thumbnail"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2985
-#: inc/_dev/class-fire-utils_settings_map.php:1056 inc/czr-init-ccat.php:2985
+#: inc/_dev/class-fire-utils_settings_map.php:1056 inc/czr-init-ccat.php:2995
 msgid "Thumbnails max height for the grid layout"
 msgstr "Maks tinggi thumbnail untuk grid layout"
 
 #: build/free/customizr/inc/czr-init-ccat.php:2986
-#: inc/_dev/class-fire-utils_settings_map.php:1057 inc/czr-init-ccat.php:2986
+#: inc/_dev/class-fire-utils_settings_map.php:1057 inc/czr-init-ccat.php:2996
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "Atur maks ketinggian post grid layout dengan pixel"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3001
-#: inc/_dev/class-fire-utils_settings_map.php:1072 inc/czr-init-ccat.php:3001
+#: inc/_dev/class-fire-utils_settings_map.php:1072 inc/czr-init-ccat.php:3011
 msgid "Squared, expand on hover"
 msgstr "Kotak, melebar ketika disentuh"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3002
-#: inc/_dev/class-fire-utils_settings_map.php:1073 inc/czr-init-ccat.php:3002
+#: inc/_dev/class-fire-utils_settings_map.php:1073 inc/czr-init-ccat.php:3012
 msgid "Squared, no expansion"
 msgstr "Kotak, tidak melebar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3003
-#: inc/_dev/class-fire-utils_settings_map.php:1074 inc/czr-init-ccat.php:3003
+#: inc/_dev/class-fire-utils_settings_map.php:1074 inc/czr-init-ccat.php:3013
 msgid "Rectangular with no effect"
 msgstr "Persegi panjang tanpa efek"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3004
-#: inc/_dev/class-fire-utils_settings_map.php:1075 inc/czr-init-ccat.php:3004
+#: inc/_dev/class-fire-utils_settings_map.php:1075 inc/czr-init-ccat.php:3014
 msgid "Rectangular with blur effect on hover"
 msgstr "Persegi panjang dengan efek blur ketika disentuh"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3005
-#: inc/_dev/class-fire-utils_settings_map.php:1076 inc/czr-init-ccat.php:3005
+#: inc/_dev/class-fire-utils_settings_map.php:1076 inc/czr-init-ccat.php:3015
 msgid "Rectangular with unblur effect on hover"
 msgstr "Persegi panjang tidak ngeblur ketika disentuh"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3013
-#: inc/_dev/class-fire-utils_settings_map.php:1084 inc/czr-init-ccat.php:3013
+#: inc/_dev/class-fire-utils_settings_map.php:1084 inc/czr-init-ccat.php:3023
 msgid "Top"
 msgstr "Atas"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3014
-#: inc/_dev/class-fire-utils_settings_map.php:1085 inc/czr-init-ccat.php:3014
+#: inc/_dev/class-fire-utils_settings_map.php:1085 inc/czr-init-ccat.php:3024
 msgid "Bottom"
 msgstr "Bawah"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3039
-#: inc/_dev/class-fire-utils_settings_map.php:1110 inc/czr-init-ccat.php:3039
+#: inc/_dev/class-fire-utils_settings_map.php:1110 inc/czr-init-ccat.php:3049
 msgid "Comments bubble shape"
 msgstr "Bentuk gelembung komentar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3043
-#: inc/_dev/class-fire-utils_settings_map.php:1114 inc/czr-init-ccat.php:3043
+#: inc/_dev/class-fire-utils_settings_map.php:1114 inc/czr-init-ccat.php:3053
 msgid "Small bubbles"
 msgstr "Gelembung kecil"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3044
-#: inc/_dev/class-fire-utils_settings_map.php:1115 inc/czr-init-ccat.php:3044
+#: inc/_dev/class-fire-utils_settings_map.php:1115 inc/czr-init-ccat.php:3054
 msgid "Large bubbles"
 msgstr "Gelembung besar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3052
 #: build/free/customizr/inc/czr-init-ccat.php:3065
 #: inc/_dev/class-fire-utils_settings_map.php:1123
-#: inc/_dev/class-fire-utils_settings_map.php:1136 inc/czr-init-ccat.php:3052
-#: inc/czr-init-ccat.php:3065
+#: inc/_dev/class-fire-utils_settings_map.php:1136 inc/czr-init-ccat.php:3062
+#: inc/czr-init-ccat.php:3075
 msgid "Comments bubble color"
 msgstr "Warna gelembung komentar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3056
-#: inc/_dev/class-fire-utils_settings_map.php:1127 inc/czr-init-ccat.php:3056
+#: inc/_dev/class-fire-utils_settings_map.php:1127 inc/czr-init-ccat.php:3066
 msgid "Skin color"
 msgstr "Warna kulit"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3121
-#: inc/_dev/class-fire-utils_settings_map.php:1192 inc/czr-init-ccat.php:3121
+#: inc/_dev/class-fire-utils_settings_map.php:1192 inc/czr-init-ccat.php:3131
 msgid "Social link title in sidebars"
 msgstr "Judul link sosial di sidebar"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3127
-#: inc/_dev/class-fire-utils_settings_map.php:1198 inc/czr-init-ccat.php:3127
+#: inc/_dev/class-fire-utils_settings_map.php:1198 inc/czr-init-ccat.php:3137
 msgid "Will be hidden if empty"
 msgstr "Akan disembunyikan jika kosong"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3157
-#: inc/_dev/class-fire-utils_settings_map.php:1228 inc/czr-init-ccat.php:3157
+#: inc/_dev/class-fire-utils_settings_map.php:1228 inc/czr-init-ccat.php:3167
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "Sidebar dinamik mengorder ulang pada perangkat kecil"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3160
-#: inc/_dev/class-fire-utils_settings_map.php:1231 inc/czr-init-ccat.php:3160
+#: inc/_dev/class-fire-utils_settings_map.php:1231 inc/czr-init-ccat.php:3170
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
@@ -5577,47 +5581,47 @@ msgstr ""
 "smartphone atau tablet."
 
 #: build/free/customizr/inc/czr-init-ccat.php:3221
-#: inc/_dev/class-fire-utils_settings_map.php:1292 inc/czr-init-ccat.php:3221
+#: inc/_dev/class-fire-utils_settings_map.php:1292 inc/czr-init-ccat.php:3231
 msgid "Titles icons settings"
 msgstr "Pengaturan ikon judul"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3223
-#: inc/_dev/class-fire-utils_settings_map.php:1294 inc/czr-init-ccat.php:3223
+#: inc/_dev/class-fire-utils_settings_map.php:1294 inc/czr-init-ccat.php:3233
 msgid "Set up the titles icons options"
 msgstr "Mengatur opsi ikon judul"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3231
-#: inc/_dev/class-fire-utils_settings_map.php:1302 inc/czr-init-ccat.php:3231
+#: inc/_dev/class-fire-utils_settings_map.php:1302 inc/czr-init-ccat.php:3241
 msgid "Responsive settings"
 msgstr "Pengaturan responsif"
 
 #: build/free/customizr/inc/czr-init-ccat.php:3233
-#: inc/_dev/class-fire-utils_settings_map.php:1304 inc/czr-init-ccat.php:3233
+#: inc/_dev/class-fire-utils_settings_map.php:1304 inc/czr-init-ccat.php:3243
 msgid "Various settings for responsive display"
 msgstr "Berbagai pengaturan untuk tampilan responsif"
 
 #: build/free/customizr/inc/czr-init-ccat.php:4631
-#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4631
+#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4647
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:4634
-#: inc/_dev/class-fire-resources.php:775 inc/czr-init-ccat.php:4634
+#: inc/_dev/class-fire-resources.php:775 inc/czr-init-ccat.php:4650
 #, fuzzy
 msgid "in the live customizer."
 msgstr "Langsung ke Customizer sekarang"
 
 #: build/free/customizr/inc/czr-init-ccat.php:4946
-#: inc/_dev/class-fire-placeholders.php:213 inc/czr-init-ccat.php:4946
+#: inc/_dev/class-fire-placeholders.php:213 inc/czr-init-ccat.php:4962
 msgid ""
 "Did you know you can easily speed up your page load by deferring the loading "
 "of the non visible images?"
 msgstr ""
 
 #: build/free/customizr/inc/czr-init-ccat.php:4947
-#: inc/_dev/class-fire-placeholders.php:214 inc/czr-init-ccat.php:4947
+#: inc/_dev/class-fire-placeholders.php:214 inc/czr-init-ccat.php:4963
 msgid ""
 "%s and check the option 'Load images on scroll' under 'Website Performances' "
 "section."
@@ -5765,17 +5769,6 @@ msgstr ""
 msgid "Next related articles"
 msgstr ""
 
-#: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
-#: inc/_dev/parts/class-content-featured_pages.php:188
-#: inc/czr-front-ccat.php:3732
-#, fuzzy
-msgid ""
-"Featured page description text : use the page excerpt or set your own custom "
-"text in the customizer screen."
-msgstr ""
-"Pilihan teks deskripsi halaman: menggunakan halaman kutipan atau mengatur "
-"teks kustom Anda sendiri di layar Customizr."
-
 #. Theme Name of the plugin/theme
 #, fuzzy
 msgid "Customizr"
@@ -5833,6 +5826,13 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
+
+#~ msgid ""
+#~ "Featured page description text : use the page excerpt or set your own "
+#~ "custom text in the Customizr screen."
+#~ msgstr ""
+#~ "Pilihan teks deskripsi halaman: menggunakan halaman kutipan atau mengatur "
+#~ "teks kustom Anda sendiri di layar Customizr."
 
 #, fuzzy
 #~ msgid "Search results for:"
