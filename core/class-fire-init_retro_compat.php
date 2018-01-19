@@ -67,6 +67,13 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
             $_to_update                        = true;
         }
 
+        //modern style header topbar port
+        $_new_options_w_modern_header_topbar_visibility = czr_fn_maybe_move_old_header_topbar_to_new( $theme_options );
+        if ( ! empty( $_new_options_w_modern_header_topbar_visibility ) ) {
+            $theme_options                     = $_new_options_w_modern_header_topbar_visibility;
+            $_to_update                        = true;
+        }
+
         if ( $_to_update ) {
             update_option( CZR_THEME_OPTIONS, $theme_options );
         }
@@ -453,6 +460,43 @@ function czr_fn_maybe_move_old_header_mobile_search_to_new( $theme_options ) {
     //save the state in the options
     $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
     $theme_options[ '__moved_opts' ][]  = 'header_mobile_search';
+
+    return $theme_options;
+}
+
+/*
+* Before v.4.0.12(2.0.17) 'tc_header_mobile_search' was a boolean that expressed
+* whether or not displaying the search in the mobile header.
+* Its default value was 1 (true) which meant displaying the mobile search in the mobile menu.
+*
+* Since v.4.0.12(2.0.17) it's a multichoice expressing where to display the search in mobiles
+* 'none' => do not display
+* 'navbar' => in the navbar next to the (wc_cart) menu button
+* 'menu' => inside the collapsing mobile menu
+*
+* We'll move the old option following this map
+*  0 (false) => 'none'
+*  1 (true)  => 'menu'
+*/
+/*
+* returns array() the new set of options or empty if there's nothing to move
+*/
+function czr_fn_maybe_move_old_header_topbar_to_new( $theme_options ) {
+    //nothing to do if already moved
+    if ( isset( $theme_options[ '__moved_opts' ] ) && in_array( 'header_topbar', $theme_options[ '__moved_opts' ] ) ) {
+        return array();
+    }
+
+    if ( isset( $theme_options[ 'tc_header_desktop_topbar' ] ) ) {
+        $_old_header_desktop_topbar = $theme_options[ 'tc_header_desktop_topbar' ];
+
+        $theme_options[ 'tc_header_show_topbar' ] = 0 === $_old_header_desktop_topbar ? 'none' : 'desktop';
+    }
+
+    //In any case let's mark the porting done
+    //save the state in the options
+    $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
+    $theme_options[ '__moved_opts' ][]  = 'header_topbar';
 
     return $theme_options;
 }
