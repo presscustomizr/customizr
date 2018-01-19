@@ -551,7 +551,8 @@ class CZR_utils_settings_map {
                   'tc_header_skin',
                   'tc_header_custom_bg_color',
                   'tc_header_custom_fg_color',
-                  'tc_header_title_underline'
+                  'tc_header_title_underline',
+                  'tc_header_show_topbar',
             );
 
             foreach ( $_to_unset as $key ) {
@@ -657,7 +658,6 @@ class CZR_utils_settings_map {
 
             //to unset
             $_to_unset = array(
-                  'tc_header_desktop_topbar',
                   'tc_header_desktop_search',
                   'tc_header_desktop_wc_cart',
                   'tc_header_desktop_tagline',

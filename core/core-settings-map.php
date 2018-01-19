@@ -227,8 +227,8 @@ function czr_fn_site_layout_option_map( $get_default = null ) {
                             ),
                             'priority'  => 10,
                             'ubq_section'   => array(
-                                  'section' => 'header_desktop_sec',
-                                  'priority' => '11'
+                                  'section' => 'header_layout_sec',
+                                  'priority' => '9'
                             )
           ),
 
@@ -545,6 +545,63 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'       => 'header_layout_sec' ,
                             'priority'      => 8,
           ),
+          'tc_header_show_topbar'  =>  array(
+                            'default'       => 'none',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Display a topbar" , "customizr" ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'select' ,
+                            'choices'       => array(
+                                'none'           => __( 'Do not display', 'customizr'),
+                                'desktop'        => __( 'In desktop devices', 'customizr'),
+                                'mobile'         => __( 'In mobile devices', 'customizr'),
+                                'desktop_mobile' => __( 'In desktop and mobile devices', 'customizr')
+                            ),
+                            'priority'      => 9,
+                            'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
+          ),
+          'tc_header_show_contact_info'  =>  array(
+                            'default'       => 'none',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( "Display contact info block in the topbar" , "customizr" ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'select' ,
+                            'choices'       => array(
+                                'none'           => __( 'Do not display', 'customizr'),
+                                'desktop'        => __( 'In desktop devices', 'customizr'),
+                                'mobile'         => __( 'In mobile devices', 'customizr'),
+                                'desktop_mobile' => __( 'In desktop and mobile devices', 'customizr')
+                            ),
+                            'priority'      => 9,
+                            'notice'    => sprintf ( '%1$s</br>%2$s',
+                                      __( 'You can display a contact info block including your email, phone number, opening hours in the topbar.' , 'customizr' ),
+                                      __( '<strong>Note</strong>: In desktop devices this will replace the Top Bar Menu (horizontal).', 'customizr' )
+                            )
+          ),
+          'tc_contact_info_phone'  =>  array(
+                            'default'       => '',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( 'Phone number' , 'customizr' ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'text' ,
+                            'priority'      => 9,
+          ),
+          'tc_contact_info_opening_hours'  =>  array(
+                            'default'       => '',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( 'Opening hours' , 'customizr' ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'text' ,
+                            'priority'      => 9,
+          ),
+          'tc_contact_info_email'  =>  array(
+                            'default'       => '',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( 'E-mail' , 'customizr' ),
+                            'section'       => 'header_layout_sec' ,
+                            'type'          => 'email' ,
+                            'priority'      => 9,
+          ),
           //enable/disable top border
           'tc_top_border' => array(
                             'default'       =>  1,//top border on by default
@@ -618,19 +675,6 @@ function czr_fn_header_desktop_option_map() {
                         'priority'      => 5,
                         'transport'    => ( ! czr_fn_is_ms() && czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
                         'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
-        ),
-        'tc_header_desktop_topbar'  =>  array(
-                          'default'       => 0,
-                          'control'       => 'CZR_controls' ,
-                          'label'         => __( "Display a topbar" , "customizr" ),
-                          'section'       => 'header_desktop_sec' ,
-                          'type'          => 'checkbox' ,
-                          'priority'      => 10,
-                          'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
-                          'ubq_section'   => array(
-                              'section' => 'menu_locations',
-                              'priority' => '0'
-                          )
         ),
         'tc_social_in_header' =>  array(
                           'default'       => 1,
