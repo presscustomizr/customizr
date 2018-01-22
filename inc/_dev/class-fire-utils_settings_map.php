@@ -551,7 +551,13 @@ class CZR_utils_settings_map {
                   'tc_header_skin',
                   'tc_header_custom_bg_color',
                   'tc_header_custom_fg_color',
-                  'tc_header_title_underline'
+                  'tc_header_title_underline',
+                  'tc_header_show_topbar',
+                  'tc_header_show_contact_info',
+                  'tc_contact_info_phone',
+                  'tc_contact_info_opening_hours',
+                  'tc_contact_info_email',
+                  'tc_header_show_socials'
             );
 
             foreach ( $_to_unset as $key ) {
@@ -560,6 +566,20 @@ class CZR_utils_settings_map {
 
             //to add
             $_to_add  = array(
+                  'tc_social_in_header' =>  array(
+                                    'default'       => 1,
+                                    'label'       => __( 'Social links in header' , 'customizr' ),
+                                    'control'   =>  'CZR_controls' ,
+                                    'section'     => 'header_layout_sec',
+                                    'type'        => 'checkbox' ,
+                                    'priority'      => 11,
+                                    'transport'    => ( czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
+                                    'ubq_section'   => array(
+                                        'section' => 'socials_sec',
+                                        'priority' => '1'
+                                    ),
+
+                  ),
                   'tc_show_tagline'  =>  array(
                                     'default'       => 1,
                                     'control'       => 'CZR_controls' ,
@@ -657,7 +677,6 @@ class CZR_utils_settings_map {
 
             //to unset
             $_to_unset = array(
-                  'tc_header_desktop_topbar',
                   'tc_header_desktop_search',
                   'tc_header_desktop_wc_cart',
                   'tc_header_desktop_tagline',
