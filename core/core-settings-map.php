@@ -607,7 +607,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           'tc_contact_info_phone'  =>  array(
                             'default'       => '',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Phone number' , 'customizr' ),
+                            'label'         => sprintf ( '<i class="fas fa-phone"></i> %1$s', __( 'Phone number' , 'customizr' ) ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'text' ,
                             'priority'      => 10,
@@ -615,7 +615,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           'tc_contact_info_opening_hours'  =>  array(
                             'default'       => '',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'Opening hours' , 'customizr' ),
+                            'label'         => sprintf ( '<i class="fas fa-clock"></i> %1$s', __( 'Opening hours' , 'customizr' ) ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'text' ,
                             'priority'      => 10,
@@ -623,9 +623,10 @@ function czr_fn_header_design_option_map( $get_default = null ) {
           'tc_contact_info_email'  =>  array(
                             'default'       => '',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( 'E-mail' , 'customizr' ),
+                            'label'         => sprintf ( '<i class="fas fa-envelope"></i> %1$s', __( 'E-mail' , 'customizr' ) ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'email' ,
+                            'sanitize_callback' => 'czr_fn_sanitize_email',
                             'priority'      => 10,
           ),
           //enable/disable top border
