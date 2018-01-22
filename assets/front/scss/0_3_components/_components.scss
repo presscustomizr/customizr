@@ -1,19 +1,26 @@
+.czr-contact-info,
 .socials {
-  @extend .inline-list;
-    li + li {
-      @if ( true == $is_rtl ) {
-        margin-right: .833rem;
-      }
-      @else {
-        margin-left: .833rem;
-      }
-    }
+  margin: 0 -6.5px;
+  @extend .inline-list-nospace;
+  li {
+    padding: 0 6.5px;
+  }
   a {
     display:block;
   }
 }
-
-
+.czr-contact-info i + span {
+  @if ( true == $is_rtl ) {
+    padding-right: $base-line-height/4;
+  }
+  @else {
+    padding-left: $base-line-height/4;
+  }
+}
+.czr-contact-info .fa-envelope {
+  position:relative;
+  top: .1em;
+}
 //
 // Base styles (bs based)
 //
@@ -583,7 +590,7 @@ cite {
 //blockquote, link, cite end
 
 .tags {
-    @extend .inline-list;
+    @extend .inline-list-nospace;
     a {
       text-decoration: none !important;
     }
