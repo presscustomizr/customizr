@@ -124,7 +124,7 @@
 
                             if ( is_search() )
                               czr_fn_render_template( 'content/no-results/search_no_results' );
-                            else
+                            elseif ( is_404() )
                               czr_fn_render_template( 'content/no-results/404' );
                         }
                     }//not home empty
