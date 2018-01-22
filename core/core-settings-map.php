@@ -844,21 +844,6 @@ function czr_fn_header_mobile_option_map() {
                                               'priority' => '11'
                                            )
         ),
-        'tc_header_mobile_search' => array(
-                          'default'   => czr_fn_user_started_before_version( '4.0.12', '2.0.17' ) ? 'menu' : 'navbar',
-                          'title'     => __( 'Search Icon', 'customizr' ),
-                          'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' )  , __( 'display a search icon in the header' , 'customizr' ) ),
-                          'control'   => 'CZR_controls' ,
-                          'section'   => 'header_mobile_sec',
-                          'type'      => 'select',
-                          'choices'   => array(
-                              'none'          => __( 'Do not display', 'customizr'),
-                              'navbar'        => __( 'Always visible in the mobile topbar', 'customizr'),
-                              'menu'          => __( 'Revealed in the expanded mobile menu', 'customizr'),
-                          ),
-                          'priority'  => 30,
-
-        ),
         'tc_header_mobile_wc_cart' => array(
                           'default'   => 1,
                           'label'     => sprintf( '%1$s : %2$s', __('Mobile devices', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),
