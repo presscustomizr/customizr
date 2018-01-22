@@ -560,10 +560,36 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'priority'      => 9,
                             'notice'    => __( 'You can display a topbar above the header including various blocks like a menu, your social links, the search icon or the WooCommerce cart.' , 'customizr' ),
           ),
+          'tc_header_show_socials' =>  array(
+                            'default'       => 'desktop',
+                            'label'       => __( 'Social links in the topbar' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'     => 'header_layout_sec',
+                            'type'          => 'select' ,
+                            'choices'       => array(
+                                'none'           => __( 'Do not display', 'customizr'),
+                                'desktop'        => __( 'In desktop devices', 'customizr'),
+                                'mobile'         => __( 'In mobile devices', 'customizr'),
+                                'desktop_mobile' => __( 'In desktop and mobile devices', 'customizr')
+                            ),
+                            'priority'      => 10,
+                            'transport'    =>  'refresh',
+                            'ubq_section'   => array(
+                                'section' => 'socials_sec',
+                                'priority' => '1'
+                            ),
+                            'notice'    => sprintf( __('You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s.' , "customizr"),
+                                sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
+                                    "javascript:wp.customize.control('tc_theme_options[tc_header_desktop_topbar]').focus();",
+                                    __("jump to the topbar option" , "customizr")
+                                )
+                            )
+
+          ),
           'tc_header_show_contact_info'  =>  array(
                             'default'       => 'none',
                             'control'       => 'CZR_controls' ,
-                            'label'         => __( "Display contact info block in the topbar" , "customizr" ),
+                            'label'         => __( 'Display contact info block in the topbar' , 'customizr' ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'select' ,
                             'choices'       => array(
@@ -572,10 +598,10 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'mobile'         => __( 'In mobile devices', 'customizr'),
                                 'desktop_mobile' => __( 'In desktop and mobile devices', 'customizr')
                             ),
-                            'priority'      => 9,
+                            'priority'      => 10,
                             'notice'    => sprintf ( '%1$s</br>%2$s',
                                       __( 'You can display a contact info block including your email, phone number, opening hours in the topbar.' , 'customizr' ),
-                                      __( '<strong>Note</strong>: In desktop devices this will replace the Top Bar Menu (horizontal).', 'customizr' )
+                                      __( '<strong>Note</strong>: In desktop devices this will replace the Top Bar Menu (horizontal), which is, anyways, never displayed in mobile devices', 'customizr' )
                             )
           ),
           'tc_contact_info_phone'  =>  array(
@@ -584,7 +610,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'label'         => __( 'Phone number' , 'customizr' ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'text' ,
-                            'priority'      => 9,
+                            'priority'      => 10,
           ),
           'tc_contact_info_opening_hours'  =>  array(
                             'default'       => '',
@@ -592,7 +618,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'label'         => __( 'Opening hours' , 'customizr' ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'text' ,
-                            'priority'      => 9,
+                            'priority'      => 10,
           ),
           'tc_contact_info_email'  =>  array(
                             'default'       => '',
@@ -600,7 +626,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'label'         => __( 'E-mail' , 'customizr' ),
                             'section'       => 'header_layout_sec' ,
                             'type'          => 'email' ,
-                            'priority'      => 9,
+                            'priority'      => 10,
           ),
           //enable/disable top border
           'tc_top_border' => array(
@@ -610,7 +636,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'       =>  'header_layout_sec' ,
                             'type'          =>  'checkbox' ,
                             'notice'        =>  __( 'Uncheck this option to remove the colored top border.' , 'customizr' ),
-                            'priority'      => 10
+                            'priority'      => 12
           ),
           'tc_header_title_underline'  => array(
                             'default' =>  1,
@@ -676,26 +702,6 @@ function czr_fn_header_desktop_option_map() {
                         'transport'    => ( ! czr_fn_is_ms() && czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
                         'notice'    => __( 'This setting might impact the side on which the menu is revealed.' , 'customizr' ),
         ),
-        'tc_social_in_header' =>  array(
-                          'default'       => 1,
-                          'label'       => __( 'Social links in header' , 'customizr' ),
-                          'control'   =>  'CZR_controls' ,
-                          'section'     => czr_fn_is_ms() ? 'header_desktop_sec' : 'header_layout_sec',
-                          'type'        => 'checkbox' ,
-                          'priority'      => 11,
-                          'transport'    => ( ! czr_fn_is_ms() && czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
-                          'ubq_section'   => array(
-                              'section' => 'socials_sec',
-                              'priority' => '1'
-                          ),
-                          'notice'    => czr_fn_is_ms() ? sprintf( __('You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s.' , "customizr"),
-                              sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
-                                  "javascript:wp.customize.control('tc_theme_options[tc_header_desktop_topbar]').focus();",
-                                  __("jump to the topbar option" , "customizr")
-                              )
-                          ) : ''
-
-        ),
         'tc_header_desktop_tagline' => array(
                           'default'   => 'brand_below',
                           'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , __( 'set the tagline location' , 'customizr' ) ),
@@ -716,7 +722,6 @@ function czr_fn_header_desktop_option_map() {
                             )
                           //'priority'  => 29,
         ),
-
         'tc_header_desktop_search' => array(
                           'default'   => 'navbar',
                           'title'     => __( 'Search Icon', 'customizr' ),
