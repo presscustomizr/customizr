@@ -35,7 +35,7 @@
         ));
       ?>
       <?php if ( czr_fn_is_registered_or_possible( 'topbar_social_block' ) ) : ?>
-        <div class="topbar-nav__socials social-links col col-auto <?php czr_fn_echo( 'socials_class' ) ?>">
+        <div class="topbar-nav__socials social-links col col-auto <?php czr_fn_echo( 'social_block_class' ) ?>">
           <?php
             czr_fn_render_template( 'modules/common/social_block' );
           ?>

@@ -12,7 +12,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_topbar_social_block() {
-      return czr_fn_has_social_links() && 1 == esc_attr( czr_fn_opt( 'tc_social_in_header' ) );
+      return czr_fn_has_social_links() && 'none' !== esc_attr( czr_fn_opt( 'tc_header_show_socials' ) );
     }
 
     function czr_fn_display_view_topbar_contact_info() {
