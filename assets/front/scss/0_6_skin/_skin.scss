@@ -101,7 +101,7 @@ input[type=checkbox]:checked::before {
     a:not(.btn):hover {
       color: $skin-link-color-hover;
     }
-    .widget:not(.widget_shopping_cart) a:not(.btn):before {
+    .widget a:not(.btn):before {
       @extend %skin-dark-background-color;
     }
 }
