@@ -235,6 +235,9 @@ a.czr-format-link {
       }
       @extend .very-small;
     }
+    &:empty {
+      display: none;
+    }
 }
 
 .grid__item {

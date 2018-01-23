@@ -1604,7 +1604,12 @@ function czr_fn_sanitize_url( $value) {
  * @since Customizr 3.4.11
  */
 function czr_fn_sanitize_email( $value) {
-  return sanitize_email( $value );
+  $sanitized_value = sanitize_email( $value );
+  //return a proper WP error if the sanitizaion fails in the customizr
+  if ( czr_fn_is_customizing() && $value && !$sanitized_value ) {
+    return new WP_Error( 'required', __( 'Please fill the email input with a valid email address', 'customizr' ) );
+  }
+  return $sanitized_value;
 }
 
 /**

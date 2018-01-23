@@ -90,17 +90,20 @@ $secondary-color-light  : $grey-light;
      border-bottom-color: rgba($primary-color, 0.09);
   }
 
+  .header-contact__info,
   .nav__utils {
       a, a:focus, a:active {
         color: $primary-color;
       }
+      a:hover, a.current-active {
+        color: $secondary-color-light;
+      }
+  }
+  .nav__utils {
       .ham-toggler-menu.czr-collapsed:hover {
         .line {
           background-color: $secondary-color-light;
         }
-      }
-      a:hover, a.current-active {
-        color: $secondary-color-light;
       }
   }
 

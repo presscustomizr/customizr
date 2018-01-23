@@ -14,22 +14,25 @@
   @include display-flex();
 }
 
-.inline-list {
+.inline-list-nospace {
   list-style : none;
   li {
     display: inline-block;
-
-    & + li {
-      @if ( true == $is_rtl ) {
-        margin-right: $base-line-height;
-      }
-      @else {
-        margin-left: $base-line-height;
-      }
-    }
   }
   li:before { content: none }
 }
+.inline-list {
+  @extend .inline-list-nospace;
+  li + li {
+    @if ( true == $is_rtl ) {
+      margin-right: $base-line-height;
+    }
+    @else {
+      margin-left: $base-line-height;
+    }
+  }
+}
+
 .no-hover, .no-hover *,
 .is-scrolling, .is-scrolling * {
   pointer-events: none;
