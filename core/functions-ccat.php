@@ -810,6 +810,9 @@ function czr_fn_is_there_any_visible_menu_location_assigned() {
 
 
 
+function czr_fn_li_wrap( $el, $attrs = '' ) {
+  return "<li $attrs>$el</li>";
+}
 
 
 

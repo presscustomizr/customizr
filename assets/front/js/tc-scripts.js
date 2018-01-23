@@ -4393,7 +4393,7 @@ var czrapp = czrapp || {};
                           selector : 'desktop-sticky'
                     }
               };
-              this.navbarsWrapperSelector   = '.header-navbars__wrapper';
+              this.navbarsWrapperSelector   = '.tc-header';
               this.$_navbars_wrapper        = $( this.navbarsWrapperSelector );
               this.$_topbar                 = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.topbar-navbar__wrapper') : false;
               this.$_primary_navbar         = 1 == this.$_navbars_wrapper.length ? this.$_navbars_wrapper.find( '.primary-navbar__wrapper') : false;
