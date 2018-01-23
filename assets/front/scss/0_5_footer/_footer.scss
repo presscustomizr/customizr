@@ -41,13 +41,10 @@
   }
 
   .widget {
-      &:not(.widget_tag_cloud):not(.widget_shopping_cart) a { @include underlined(rgba($primary-color, 0.5), 1px ) }
+    a:before { background-color: rgba($primary-color, 0.5) }
   }
   #colophon {
     background: $background-dark;
-    a {
-        display: initial;
-    }
   }
 
   label {
@@ -73,12 +70,6 @@
   .footer-skin-dark  &  { @include footer__skincolor($white); }
   .footer-skin-light &  { @include footer__skincolor($black); }
   font-size: 90%;
-
-  a {
-    display: inline-block;
-    position: relative;
-    width: auto;
-  }
 
   .widget__wrapper {
     padding-top: $base-line-height*3;
