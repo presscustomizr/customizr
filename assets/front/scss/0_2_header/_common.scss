@@ -365,6 +365,10 @@
       padding: $base-line-height 10px;
     }
   }
+  .topbar-navbar__wrapper & {
+    padding-top: 2 * $base-line-height/3;
+    padding-bottom: 2 * $base-line-height/3;
+  }
 }
 
 // Hamburger button

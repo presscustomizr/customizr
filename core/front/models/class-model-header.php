@@ -155,7 +155,26 @@ class CZR_header_model_class extends CZR_Model {
     * TODO: allow breakpoint changes
     */
     $_desktop_primary_navbar_class  = array( 'hidden-md-down' );
-    $_desktop_topbar_navbar_class   = array( 'hidden-md-down' );
+
+    /*
+    * topbar class
+    * 3 cases:
+    * 1) do not display both in mobile and desktop
+    * 2) display in mobile and not in desktop
+    * 3) display in desktop and not in mobile
+    * 4) display in mobile and desktop
+    */
+    $_topbar_visibility = esc_attr( czr_fn_opt( 'tc_header_show_topbar' ) );
+    switch ( $_topbar_visibility ) :
+      case 'desktop' : $_topbar_navbar_class = array( 'hidden-md-down' );
+                       break;
+      case 'mobile'  : $_topbar_navbar_class = array( 'hidden-lg-up' );
+                       break;
+      case 'none'    : $_topbar_navbar_class = array( 'hidden' );
+                       break;
+      default        : $_topbar_navbar_class = array();
+    endswitch;
+
     $_mobile_navbar_class           = array( 'hidden-lg-up' );
 
     /*
@@ -176,7 +195,7 @@ class CZR_header_model_class extends CZR_Model {
     */
     if ( 'no_stick' != esc_attr( czr_fn_opt( 'tc_header_desktop_sticky' ) ) ) {
       if (  'topbar' == esc_attr( czr_fn_opt( 'tc_header_desktop_to_stick' ) ) ) {
-        $_desktop_topbar_navbar_class[] = 'desktop-sticky';
+        $_topbar_navbar_class[]          = 'desktop-sticky';
       }
       else {
         $_desktop_primary_navbar_class[] = 'desktop-sticky';
@@ -217,14 +236,14 @@ class CZR_header_model_class extends CZR_Model {
      */
 
     if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
-      $_desktop_topbar_navbar_container_class = $_desktop_primary_navbar_container_class  = $_mobile_navbar_container_class = 'container';
+      $_topbar_navbar_container_class = $_desktop_primary_navbar_container_class  = $_mobile_navbar_container_class = 'container';
     }
 
     else {
 
       $_desktop_primary_navbar_container_class = $_mobile_navbar_container_class = 'boxed' == esc_attr( czr_fn_opt( 'tc_header_navbar_layout' ) ) ? 'container' :  'container-fluid';
 
-      $_desktop_topbar_navbar_container_class = 'boxed' == esc_attr( czr_fn_opt( 'tc_header_topbar_layout' ) ) ? 'container' : 'container-fluid';
+      $_topbar_navbar_container_class = 'boxed' == esc_attr( czr_fn_opt( 'tc_header_topbar_layout' ) ) ? 'container' : 'container-fluid';
 
     }
 
@@ -232,11 +251,11 @@ class CZR_header_model_class extends CZR_Model {
         'element_class'                      => array_filter( apply_filters( 'czr_header_class', $element_class ) ),
         'navbar_template'                    => $navbar_template,
         'primary_nbwrapper_class'            => $_desktop_primary_navbar_class,
-        'topbar_nbwrapper_class'             => $_desktop_topbar_navbar_class,
+        'topbar_nbwrapper_class'             => $_topbar_navbar_class,
         'mobile_nbwrapper_class'             => $_mobile_navbar_class,
         'primary_nbwrapper_container_class'  => $_desktop_primary_navbar_container_class,
-        'topbar_nbwrapper_container_class'   => $_desktop_topbar_navbar_container_class,
-        'mobile_inner_contained_class'   => $_mobile_navbar_container_class
+        'topbar_nbwrapper_container_class'   => $_topbar_navbar_container_class,
+        'mobile_inner_contained_class'       => $_mobile_navbar_container_class
     ) );
   }
 
