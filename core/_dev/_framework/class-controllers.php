@@ -42,6 +42,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
               'sidenav_navbar_menu_button',
 
               'topbar_social_block',
+              'topbar_contact_info',
 
               'desktop_topbar_search',
               'desktop_primary_search',
