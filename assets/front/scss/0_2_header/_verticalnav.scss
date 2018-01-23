@@ -8,7 +8,7 @@
     .czr-dropdown-menu {
       display: none;
     }
-    .menu-item {
+    .menu-item-has-children {
       @include display-flex();
       @include flex-wrap()
     }

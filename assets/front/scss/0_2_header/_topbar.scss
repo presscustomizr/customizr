@@ -1,18 +1,44 @@
 .topbar-navbar__row {
+  @include media-breakpoint-up(lg) {
     min-height: 40px;
+  }
+  .header-tagline {
+    flex-shrink: 1;
+  }
 }
 /* ie fix */
+.topbar-contact__info,
 .topbar-nav__container,
 .topbar-nav__menu-wrapper {
-  @include display-flex();
+  @extend .display-flex;
+  @include flex-grow();
   flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-          flex-grow: 1;
   max-width: 100%;
+}
+
+.topbar-contact__info {
+  flex-shrink: 0;
+  .czr-contact-info {
+    @include flex-grow();
+  }
+  //contact info block one on top of each other and centered in x-small devices
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+    text-align: center;
+    & ul {
+      li {
+        width: 100%;
+      }
+    }
+  }
 }
 .topbar-nav__socials {
   flex-shrink: 1;
+}
+.topbar-contact__info,
+.topbar-nav__socials {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 .topbar-nav__nav,
 .topbar-nav__menu {
