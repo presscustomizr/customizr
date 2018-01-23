@@ -133,9 +133,6 @@ $secondary-color-light  : $grey-light;
 
   .navbar-brand-sitename {
       color:$primary-color;
-      &.czr-underline span::after {
-        background: $primary-color;
-      }
   }
 
   .header-tagline {

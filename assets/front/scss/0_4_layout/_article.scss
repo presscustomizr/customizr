@@ -520,7 +520,6 @@ section.post-related-articles {
       a {
         color: $black;
         @extend .semi-bold;
-        @include underlined_nocolor( 2px);
       }
     }
     time {
@@ -539,7 +538,12 @@ section.post-related-articles {
     color: $black;
     padding-bottom: 2px;
     @extend .semi-bold;
-    @include underlined_nocolor( 2px );
+  }
+  .czr-link-hover-underline {
+    .comment-link,
+    .comment-author {
+      @include underlined_nocolor( 2px);
+    }
   }
   @at-root .comment-reply-link { @extend .action-link }
   @at-root .comment-edit-btn {

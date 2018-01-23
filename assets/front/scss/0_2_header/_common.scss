@@ -48,7 +48,7 @@
   content: "";
   position: absolute;
   width: 33%;
-  height: 3px;
+  border-bottom: 3px solid;
   bottom: 0;
   @if ( true == $is_rtl ) {
     right: 0;
@@ -59,21 +59,20 @@
 }
 
 //menu items underline
-[class*=nav__menu] {
-  .nav__title {
-    @include underlined_nocolor(2px);
-  }
+.czr-link-hover-underline [class*=nav__menu] {
+    .nav__title {
+      @include underlined_nocolor(2px);
+    }
 
-  .show:not(.dropdown-item) > .nav__link .nav__title,
-  .show:not(.dropdown-item) > .nav__link-wrapper .nav__title,
+    .show:not(.dropdown-item) > .nav__link .nav__title,
+    .show:not(.dropdown-item) > .nav__link-wrapper .nav__title,
+    li:not(.dropdown-item).current-active > .nav__link .nav__title,
+    li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__title,
+    .current-menu-item > .nav__link .nav__title,
+    .current-menu-item > .nav__link-wrapper .nav__title {
+      @include underlined_highlight_before_nocolor();
+    }
 
-  li:not(.dropdown-item).current-active > .nav__link .nav__title,
-  li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__title,
-
-  .current-menu-item > .nav__link .nav__title,
-  .current-menu-item > .nav__link-wrapper .nav__title {
-    @include underlined_highlight_before_nocolor();
-  }
 }
 
 .nav__menu {
@@ -81,7 +80,6 @@
   @extend .caps;
   @extend .bold;
   @extend .letter-spacing-1;
-
 
   .menu-item {
     margin: 0 $base-line-height-fixed/3;
@@ -97,8 +95,6 @@
       .nav__title {
         padding: 10px 0 5px 0;
         margin-bottom: 5px;
-        //padding: $base-line-height 0 $base-line-height/2 0;
-        //margin-bottom: $base-line-height/2
       }
     }
   }

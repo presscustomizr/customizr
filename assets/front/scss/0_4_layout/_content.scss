@@ -226,6 +226,7 @@ dl {
     margin-top : $base-line-height/2;
     margin-bottom: $base-line-height;
     word-break: break-word;
+    position: relative;
     &::after {
       content: "";
       position: absolute;
