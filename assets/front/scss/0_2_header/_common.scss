@@ -153,17 +153,30 @@
 
     .dropdown-item {
         margin: 0;
-
         @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler i {
-          @include transform( translateZ(0) rotate(-90deg));
-          -ms-transform: rotate(-90deg);
+          @if ( true == $is_rtl ) {
+            @include transform( translateZ(0) rotate(90deg));
+            -ms-transform: rotate(90deg);
+          }
+          @else {
+            @include transform( translateZ(0) rotate(-90deg));
+            -ms-transform: rotate(-90deg);
+          }
           position: relative;
           display: inline-block;
           top: -.1em;
         }
-        @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler.open-left i {
-          @include transform( translateZ(0) rotate(-270deg));
-          -ms-transform: rotate(-270deg);
+        @if ( true == $is_rtl ) {
+          @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler.open-right i {
+            @include transform( translateZ(0) rotate(270deg));
+            -ms-transform: rotate(270deg);
+          }
+        }
+        @else {
+          @at-root .regular-nav .dropdown-menu .caret__dropdown-toggler.open-left i {
+            @include transform( translateZ(0) rotate(-270deg));
+            -ms-transform: rotate(-270deg);
+          }
         }
         @at-root .regular-nav .dropdown-menu .dropdown-item {
           padding: 0 $base-line-height;
@@ -199,7 +212,11 @@
       width: 0%;
       height: 100%;
       top: 0;
-      left: 0;
+      @if ( true == $is_rtl ) {
+        right: 0;
+      }@else {
+        left: 0;
+      }
       transition-delay: 0s;
       transition-duration: .6s;
       transition-timing-function: cubic-bezier(.19, 1, .22, 1);
@@ -234,13 +251,21 @@
           &::before {
             line-height: inherit;
           }
+
           .menu-item.show > span > &,
           .menu-item.show > a > & {
-              @include transform( translateZ(0) rotate(-180deg)!important);
-              -ms-transform: rotate(-180deg)!important;
+              @if ( true == $is_rtl ) {
+                @include transform( translateZ(0) rotate(180deg)!important);
+                -ms-transform: rotate(180deg)!important;
+              }
+              @else {
+                @include transform( translateZ(0) rotate(-180deg)!important);
+               -ms-transform: rotate(-180deg)!important;
+              }
           }
       }
 }
+
 
 .regular-nav {
   //
@@ -307,7 +332,12 @@
       @include transform( translate( 0, 0) );
     }
     .dropdown-item > a:hover {
-      @include transform( translate( 3px, 0) );
+      @if ( true == $is_rtl ) {
+        @include transform( translate( -3px, 0) );
+      }
+      @else {
+        @include transform( translate( 3px, 0) );
+      }
     }
   }
   // end subemnu link move
