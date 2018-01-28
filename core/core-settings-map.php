@@ -584,7 +584,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             ),
                             'notice'    => sprintf( __('You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s.' , "customizr"),
                                 sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
-                                    "javascript:wp.customize.control('tc_theme_options[tc_header_desktop_topbar]').focus();",
+                                    "javascript:wp.customize.control('tc_theme_options[tc_header_show_topbar]').focus();",
                                     __("jump to the topbar option" , "customizr")
                                 )
                             )
