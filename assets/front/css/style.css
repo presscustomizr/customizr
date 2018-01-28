@@ -5009,7 +5009,6 @@ Since mobile and desktop navbar are different we don't need use the following cl
   .topbar-contact__info,
   .topbar-nav__socials {
     width: 100%;
-    text-align: center;
   }
   .topbar-contact__info li {
     width: 100%;
@@ -9838,8 +9837,8 @@ footer#footer .colophon__row .footer__credits a.fab {
   margin-top: 0;
 }
 
-#bottom-front-notification .fa:before {
-  top: 2px;
+#bottom-front-notification .fas:before {
+  top: -1px;
   position: relative;
   padding-left: 2px;
 }

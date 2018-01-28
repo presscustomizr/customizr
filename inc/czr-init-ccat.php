@@ -4126,7 +4126,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
   			if ( false != esc_attr( czr_fn_opt( 'tc_link_scroll') ) )
   				wp_enqueue_script('jquery-effects-core');
               $anchor_smooth_scroll_exclude =  apply_filters( 'tc_anchor_smoothscroll_excl' , array(
-                  'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[class*=upme]', '[class*=um-]' ),
+                  'simple' => array( '[class*=edd]' , '.tc-carousel-control', '.carousel-control', '[data-toggle="modal"]', '[data-toggle="dropdown"]', '[data-toggle="tooltip"]', '[data-toggle="popover"]', '[data-toggle="collapse"]', '[data-toggle="tab"]', '[data-toggle="pill"]', '[class*=upme]', '[class*=um-]' ),
                   'deep'   => array(
                     'classes' => array(),
                     'ids'     => array()

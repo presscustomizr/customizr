@@ -4244,20 +4244,20 @@ embed, iframe, object, video {
 }
 
 .regular-nav .dropdown-menu .caret__dropdown-toggler i {
-  -webkit-transform: translateZ(0) rotate(-90deg);
-  -moz-transform: translateZ(0) rotate(-90deg);
-  transform: translateZ(0) rotate(-90deg);
-  -ms-transform: rotate(-90deg);
+  -webkit-transform: translateZ(0) rotate(90deg);
+  -moz-transform: translateZ(0) rotate(90deg);
+  transform: translateZ(0) rotate(90deg);
+  -ms-transform: rotate(90deg);
   position: relative;
   display: inline-block;
   top: -.1em;
 }
 
-.regular-nav .dropdown-menu .caret__dropdown-toggler.open-left i {
-  -webkit-transform: translateZ(0) rotate(-270deg);
-  -moz-transform: translateZ(0) rotate(-270deg);
-  transform: translateZ(0) rotate(-270deg);
-  -ms-transform: rotate(-270deg);
+.regular-nav .dropdown-menu .caret__dropdown-toggler.open-right i {
+  -webkit-transform: translateZ(0) rotate(270deg);
+  -moz-transform: translateZ(0) rotate(270deg);
+  transform: translateZ(0) rotate(270deg);
+  -ms-transform: rotate(270deg);
 }
 
 .regular-nav .dropdown-menu .dropdown-item {
@@ -4287,7 +4287,7 @@ embed, iframe, object, video {
   width: 0%;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 0;
   transition-delay: 0s;
   transition-duration: .6s;
   transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -4333,10 +4333,10 @@ embed, iframe, object, video {
 
 .menu-item.show > span > .caret__dropdown-toggler i,
 .menu-item.show > a > .caret__dropdown-toggler i {
-  -webkit-transform: translateZ(0) rotate(-180deg) !important;
-  -moz-transform: translateZ(0) rotate(-180deg) !important;
-  transform: translateZ(0) rotate(-180deg) !important;
-  -ms-transform: rotate(-180deg) !important;
+  -webkit-transform: translateZ(0) rotate(180deg) !important;
+  -moz-transform: translateZ(0) rotate(180deg) !important;
+  transform: translateZ(0) rotate(180deg) !important;
+  -ms-transform: rotate(180deg) !important;
 }
 
 .czr-submenu-fade .regular-nav .menu-item-has-children {
@@ -4393,9 +4393,9 @@ embed, iframe, object, video {
 }
 
 .czr-submenu-move .regular-nav .dropdown-item > a:hover {
-  -webkit-transform: translate(3px, 0);
-  -moz-transform: translate(3px, 0);
-  transform: translate(3px, 0);
+  -webkit-transform: translate(-3px, 0);
+  -moz-transform: translate(-3px, 0);
+  transform: translate(-3px, 0);
 }
 
 .tc-header .dropdown-menu.open-right {
@@ -5010,7 +5010,6 @@ Since mobile and desktop navbar are different we don't need use the following cl
   .topbar-contact__info,
   .topbar-nav__socials {
     width: 100%;
-    text-align: center;
   }
   .topbar-contact__info li {
     width: 100%;
@@ -9839,8 +9838,8 @@ footer#footer .colophon__row .footer__credits a.fab {
   margin-top: 0;
 }
 
-#bottom-front-notification .fa:before {
-  top: 2px;
+#bottom-front-notification .fas:before {
+  top: -1px;
   position: relative;
   padding-left: 2px;
 }

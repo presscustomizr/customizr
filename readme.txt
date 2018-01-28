@@ -23,10 +23,11 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
-= 4.0.17 January 20th 2018 =
+= 4.0.17 January 28th 2018 =
+* Fix: display the 404 content only when we're really in the 404 context. fixes #266
+* Fix: improve RTL submenu compliance 1) submenu animations -> fixes #1414  2) caret rotation adjustment when is RTL
 * Imp: Woocommerce - allow lightbox effect and smartload in product short description. fixes #1394
 * Imp: Woocommerce - better u/o list styling for the product short description. fixes #1393
-* Fix: display the 404 content only when we're really in the 404 context. fixes #266
 * Added : The topbar can now be displayed on mobile devices
 
 = 4.0.16 January 16th 2018 =

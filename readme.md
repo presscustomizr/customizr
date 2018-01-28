@@ -1,4 +1,4 @@
-# Customizr v4.0.17-beta [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.0.17 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png) 
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,10 +23,11 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
-= 4.0.17 January 20th 2018 =
+= 4.0.17 January 28th 2018 =
+* Fix: display the 404 content only when we're really in the 404 context. fixes #266
+* Fix: improve RTL submenu compliance 1) submenu animations -> fixes #1414  2) caret rotation adjustment when is RTL
 * Imp: Woocommerce - allow lightbox effect and smartload in product short description. fixes #1394
 * Imp: Woocommerce - better u/o list styling for the product short description. fixes #1393
-* Fix: display the 404 content only when we're really in the 404 context. fixes #266
 * Added : The topbar can now be displayed on mobile devices
 
 = 4.0.16 January 16th 2018 =
