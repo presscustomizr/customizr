@@ -29,10 +29,9 @@
 .topbar-nav__socials {
   padding-top: 3px;
   padding-bottom: 3px;
-  //contact info and social blocks one on top of each other and centered in x-small devices
+  //contact info and social blocks one on top of each other
   @include media-breakpoint-down(xs) {
     width: 100%;
-    text-align: center;
     & ul {
       //contact info items one on top of each other x-small devices
       @at-root .topbar-contact__info li {
