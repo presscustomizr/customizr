@@ -525,14 +525,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                         __('of customization options', 'customizr'),
                         __('to let you create the best possible websites.', 'customizr' )
                     );
-                    printf('<p>%1$s : <a href="%2$s" title="%3$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a>&nbsp;,<a href="%4$s" title="%5$s" target="_blank">%5$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
+                    printf('<p>%1$s : <a href="%2$s" title="%3$s" target="_blank">%3$s <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>&nbsp;,<a href="%4$s" title="%5$s" target="_blank">%5$s <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>',
                         __("If you need inspiration, you can visit our online demos", 'customizr'),
                         esc_url('https://wp-themes.com/customizr/'),
                         __('Customizr Demo 1', 'customizr'),
                         esc_url('demo.presscustomizr.com/'),
                         __('Customizr Demo 2', 'customizr')
                     );
-                    printf( '<br/><br/><p>%1$s <a href="%2$s" target="_blank">%3$s <i class="fa fa-external-link" aria-hidden="true"></i></a></p>',
+                    printf( '<br/><br/><p>%1$s <a href="%2$s" target="_blank">%3$s <i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>',
                         __('To help you getting started with Customizr, we have published', 'customizr'),
                         esc_url('http://docs.presscustomizr.com/article/175-first-steps-with-the-customizr-wordpress-theme'),
                         __('a short guide here.', 'customizr')
