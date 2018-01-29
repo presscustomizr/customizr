@@ -558,7 +558,7 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'desktop_mobile' => __( 'In desktop and mobile devices', 'customizr')
                             ),
                             'priority'      => 9,
-                            'notice'    => __( 'You can display a topbar above the header including various blocks like your social links, contact information, and, in desktop devices only, a menu , the search icon or the WooCommerce cart.' , 'customizr' ),
+                            'notice'    => __( 'You can display a content zone above the header, called topbar. The topbar can be populated with various blocks like a menu, your social links, or your contact information ( pro ).' , 'customizr' ),
                             'ubq_section'   => array(
                               'section' => 'menu_locations',
                               'priority' => '0'
@@ -582,8 +582,8 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                                 'section' => 'socials_sec',
                                 'priority' => '1'
                             ),
-                            'notice'    => sprintf( __('You need to enable your topbar to display social links in your header. Enable the topbar in this option panel, or %s.' , "customizr"),
-                                sprintf( '<a href="%1$s" title="%2$s">%2$s &raquo;</a>',
+                            'notice'    => sprintf( __('Make sure the topbar is displayed. You can control the visibility of the topbar in the %s.' , "customizr"),
+                                sprintf( '<a href="%1$s" title="%2$s">Header general design settings</a>',
                                     "javascript:wp.customize.control('tc_theme_options[tc_header_show_topbar]').focus();",
                                     __("jump to the topbar option" , "customizr")
                                 )
