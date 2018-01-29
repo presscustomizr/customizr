@@ -5,30 +5,18 @@
 ?>
 <div class="topbar-navbar__wrapper <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="<?php czr_fn_echo('element_inner_class') ?>">
+    <?php do_action( '__before_topbar_navbar_row' ); ?>
     <div class="row flex-row flex-lg-nowrap justify-content-start justify-content-lg-end align-items-center topbar-navbar__row">
-      <?php if ( czr_fn_is_registered_or_possible( 'topbar_menu' ) || czr_fn_is_registered_or_possible( 'topbar_contact_info' ) ) :?>
-        <div class="topbar-nav__container col col-auto flex-column">
-          <?php if ( czr_fn_is_registered_or_possible( 'topbar_contact_info' ) ) :?>
-            <div class="topbar-contact__info <?php czr_fn_echo( 'contact_info_class' ) ?>">
-              <?php
-                czr_fn_render_template( 'modules/common/contact_info', array(
-                  'model_args' => array(
-                    'element_class' => 'nav header-contact__info'
-                  )
-                ) );
-              ?>
-            </div>
-          <?php
-          endif;
-          if ( czr_fn_is_registered_or_possible( 'topbar_menu' ) ): ?>
-          <nav id="topbar-nav" class="topbar-nav__nav hidden-md-down">
+      <?php do_action( '__before_topbar_navbar_row_inner' ); ?>
+      <?php if ( czr_fn_is_registered_or_possible( 'topbar_menu' ) ) :?>
+        <div class="topbar-nav__container col col-auto hidden-md-down">
+          <nav id="topbar-nav" class="topbar-nav__nav">
             <?php
               czr_fn_render_template( 'header/parts/menu', array(
                 'model_id' => 'topbar_menu',
               ));
             ?>
           </nav>
-          <?php endif ?>
         </div>
       <?php endif ?>
       <?php if ( czr_fn_is_registered_or_possible( 'topbar_tagline' ) )
@@ -52,6 +40,8 @@
           )
         ));
       ?>
+      <?php do_action( '__after_topbar_navbar_row_inner' ); ?>
     </div>
+    <?php do_action( '__after_topbar_navbar_row' ); ?>
   </div>
 </div>
