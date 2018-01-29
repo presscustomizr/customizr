@@ -32,7 +32,7 @@ if ( apply_filters( 'czr_ms', false ) ) {
 		do_action( '__before_body' );
 	?>
 
-	<body <?php body_class(); ?> <?php echo apply_filters('tc_body_attributes' , 'itemscope itemtype="http://schema.org/WebPage"') ?>>
+	<body <?php body_class(); ?> <?php echo apply_filters('tc_body_attributes' , '') ?>>
 
     <?php do_action( '__before_page_wrapper' ); ?>
 
