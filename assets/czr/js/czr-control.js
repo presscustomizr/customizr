@@ -8856,7 +8856,8 @@ $.extend( CZRSkopeMths, {
                   'post_lists_sec',
                   'galleries_sec',
                   'footer_customizer_sec',
-                  'custom_scripts_sec'
+                  'custom_scripts_sec',
+                  'contact_info_sec'
 
             ], function( _secId ) {
                   _.delay( function() {

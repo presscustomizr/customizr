@@ -53,7 +53,7 @@ blockquote p {
   font-size: 0.75em;
 }
 
-.small, .tabs .nav-link, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
+.small, .tabs .nav-link, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption .action-link, .post-author figure figcaption .comment-reply-link, .post-author figure .post-author-title, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-info, small {
   font-size: 0.833333em;
@@ -116,7 +116,7 @@ input[type=submit], .woocommerce #respond input#submit,
 input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
-.woocommerce table.shop_table th, .tax__container a, form.czr-form label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption a:first-of-type, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories li, .widget_calendar caption, .widget_calendar tfoot {
+.woocommerce table.shop_table th, .tax__container a, form.czr-form label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author figure figcaption .action-link, .post-author figure figcaption .comment-reply-link, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories li, .widget_calendar caption, .widget_calendar tfoot {
   text-transform: uppercase;
 }
 
@@ -2200,13 +2200,17 @@ Since mobile and desktop navbar are different we don't need use the following cl
   display: block;
 }
 
+.czr-contact-info i {
+  font-size: 0.9em;
+}
+
 .czr-contact-info i + span {
   padding-right: 0.3125em;
 }
 
 .czr-contact-info .fa-envelope {
   position: relative;
-  top: .1em;
+  top: .05em;
 }
 
 .btn, button[type="submit"],
@@ -6044,33 +6048,30 @@ section[class^="post-"] .entry-meta {
 }
 
 .post-author figure img {
-  float: left;
+  right: 2.5em;
+  position: absolute;
+  border-radius: 50%;
   width: 120px;
   height: 120px;
   top: calc((100% - 120px)/2);
-  position: absolute;
-  left: 2.5em;
-  border-radius: 50%;
 }
 
 @media (max-width: 991px) {
   .post-author figure img {
     width: 60px;
     height: 60px;
-    clear: both;
     display: block;
     position: relative;
     top: 0;
-    left: calc((100% - 60px)/2);
-    right: 0;
-    float: none;
+    right: calc((100% - 60px)/2);
+    left: 0;
   }
 }
 
 .post-author figure figcaption {
-  padding-left: 2.5em;
-  text-align: left;
-  margin-left: 120px;
+  padding-right: 2.5em;
+  text-align: right;
+  margin-right: 120px;
 }
 
 .post-author figure figcaption p {
@@ -6079,19 +6080,19 @@ section[class^="post-"] .entry-meta {
 
 @media (max-width: 991px) {
   .post-author figure figcaption {
-    margin-left: 0;
-    text-align: left;
-    padding-left: 0;
+    margin-right: 0;
+    text-align: right;
+    padding-right: 0;
   }
 }
 
-.post-author figure figcaption a:first-of-type {
-  float: left;
+.post-author figure figcaption .action-link, .post-author figure figcaption .comment-reply-link {
   font-family: sans-serif;
+  float: right;
 }
 
 .post-author figure figcaption .socials {
-  float: right;
+  float: left;
 }
 
 .post-author figure .post-author-name {
@@ -6104,17 +6105,17 @@ section[class^="post-"] .entry-meta {
   border-bottom: 3px solid #313131;
   letter-spacing: 4px;
   padding: 0 1.25em;
-  -webkit-transform: rotate(-90deg) translate3d(-50%, -50%, 0);
-  -moz-transform: rotate(-90deg) translate3d(-50%, -50%, 0);
-  transform: rotate(-90deg) translate3d(-50%, -50%, 0);
   white-space: nowrap;
   position: absolute;
-  left: -12px;
   top: 50%;
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  -o-transform-origin: top left;
-  transform-origin: top left;
+  -webkit-transform: rotate(90deg) translate3d(50%, -50%, 0);
+  -moz-transform: rotate(90deg) translate3d(50%, -50%, 0);
+  transform: rotate(90deg) translate3d(50%, -50%, 0);
+  right: -12px;
+  -webkit-transform-origin: top right;
+  -ms-transform-origin: top right;
+  -o-transform-origin: top right;
+  transform-origin: top right;
 }
 
 section.post-related-articles {
