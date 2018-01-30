@@ -9,17 +9,22 @@
     display:block;
   }
 }
-.czr-contact-info i + span {
-  @if ( true == $is_rtl ) {
-    padding-right: $base-line-height/4;
+.czr-contact-info {
+  i {
+    font-size: 0.9em;
+    + span {
+        @if ( true == $is_rtl ) {
+          padding-right: $base-line-height/4;
+        }
+        @else {
+          padding-left: $base-line-height/4;
+        }
+    }
   }
-  @else {
-    padding-left: $base-line-height/4;
+  .fa-envelope {
+    position:relative;
+    top: .05em;
   }
-}
-.czr-contact-info .fa-envelope {
-  position:relative;
-  top: .1em;
 }
 
 

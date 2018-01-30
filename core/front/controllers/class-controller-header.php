@@ -8,15 +8,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     function czr_fn_display_view_topbar_wrapper() {
-      return 'none' !== esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
+      return 'none' !== esc_attr( czr_fn_opt( 'tc_header_show_topbar' ) );
     }
 
     function czr_fn_display_view_topbar_social_block() {
       return czr_fn_has_social_links() && 'none' !== esc_attr( czr_fn_opt( 'tc_header_show_socials' ) );
-    }
-
-    function czr_fn_display_view_topbar_contact_info() {
-      return apply_filters( 'czr_display_view_topbar_contact_info', false );
     }
 
     function czr_fn_display_view_branding_tagline() {
@@ -56,7 +52,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) menu type is not aside (sidenav)
     function czr_fn_display_view_navbar_primary_menu() {
-      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_opt( 'tc_menu_style' ) ) && ( has_nav_menu( 'main' ) || czr_fn_isprevdem() );;
+      return $this -> czr_fn_display_view_menu() && 'aside' != esc_attr( czr_fn_opt( 'tc_menu_style' ) ) && ( has_nav_menu( 'main' ) || czr_fn_isprevdem() );
     }
 
     //when the 'secondary' navbar menu is allowed?
@@ -72,7 +68,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     //and
     //2) topbar is displayed
     function czr_fn_display_view_topbar_menu() {
-      return $this -> czr_fn_display_view_menu() && esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) );
+      return esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) ) && $this -> czr_fn_display_view_menu() && has_nav_menu( 'topbar' );
     }
 
     //when the sidenav menu is allowed?

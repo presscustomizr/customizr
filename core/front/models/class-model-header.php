@@ -76,6 +76,7 @@ class CZR_header_model_class extends CZR_Model {
         }
     }
 
+    $children = apply_filters( 'czr_header_children_models', $children );
     foreach ( $children as $child_model ) {
         CZR() -> collection -> czr_fn_register( $child_model );
     }//foreach
