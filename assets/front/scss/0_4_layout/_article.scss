@@ -288,7 +288,14 @@ section[class^="post-"] {
     border:2px solid $grey-lightest;
     @include clearfix;
     img {
-      float:left;
+      @if ( true == $is_rtl ) {
+        right: $base-line-height*2
+      }
+      @else {
+        left: $base-line-height*2;
+      }
+      position: absolute;
+      border-radius: 50%;
       width:120px;
       height: 120px;
       top: calc((100% - 120px)/2);
@@ -296,36 +303,65 @@ section[class^="post-"] {
       @include media-breakpoint-down(md) {
         width:60px;
         height: 60px;
-        clear: both;
         display: block;
         position: relative;
         top: 0;
-        left: calc((100% - 60px)/2);
-        right: 0;
-        float: none;
+        @if ( true == $is_rtl ) {
+          right: calc((100% - 60px)/2);
+          left: 0;
+        }
+        @else {
+          left: calc((100% - 60px)/2);
+          right: 0;
+        }
       }
-      position: absolute;
-      left: $base-line-height*2;
-      border-radius: 50%;
     }
     figcaption {
-      padding-left:$base-line-height*2;
-      text-align: left;
-      margin-left: 120px;
-      p { color: $grey-dark; }
+      @if ( true == $is_rtl ) {
+        padding-right:$base-line-height*2;
+        text-align: right;
+        margin-right: 120px;
+      }
+      @else {
+        padding-left:$base-line-height*2;
+        text-align: left;
+        margin-left: 120px;
+      }
+      p {
+        color: $grey-dark;
+      }
       //@media (max-width: 992px)
       @include media-breakpoint-down(md) {
-        margin-left: 0;
-        text-align: left;
-        padding-left: 0;
+        @if ( true == $is_rtl ) {
+          margin-right: 0;
+          text-align: right;
+          padding-right: 0;
+        }
+        @else {
+          margin-left: 0;
+          text-align: left;
+          padding-left: 0;
+        }
        }
-      a:first-of-type {
+      .action-link {
         @extend .small;
         @extend .caps;
-        float:left;
         font-family: $serviceFont;
+        @if ( true == $is_rtl ) {
+          float:right;
+        }
+        @else {
+          float:left;
+        }
       }
-      .socials { float: right; }
+      .socials {
+        @if ( true == $is_rtl ) {
+          float:left;
+        }
+        @else {
+          float:right;
+        }
+      }
     }
     .post-author-name { margin-top:0; }
     .post-author-title {
@@ -336,16 +372,25 @@ section[class^="post-"] {
       @extend .bold;
       letter-spacing: 4px;
       padding: 0 $base-line-height;
-
-      @include transform(rotate(-90deg) translate3d(-50%, -50%, 0));
       white-space: nowrap;
       position: absolute;
-      left: -12px;
       top: 50%;
-      -webkit-transform-origin: top left;
-      -ms-transform-origin: top left;
-      -o-transform-origin: top left;
-      transform-origin: top left;
+      @if ( true == $is_rtl ) {
+        @include transform(rotate(90deg) translate3d(50%, -50%, 0));
+        right: -12px;
+        -webkit-transform-origin: top right;
+        -ms-transform-origin: top right;
+        -o-transform-origin: top right;
+        transform-origin: top right;
+      }
+      @else {
+        @include transform(rotate(-90deg) translate3d(-50%, -50%, 0));
+        left: -12px;
+        -webkit-transform-origin: top left;
+        -ms-transform-origin: top left;
+        -o-transform-origin: top left;
+        transform-origin: top left;
+      }
     }
   }
 
