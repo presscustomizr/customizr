@@ -44,7 +44,7 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     $args =  array(
       'container'       => 'nav' , // div, nav, p, etc.
       'container_class' => 'col-12',
-      'separator'       => !is_rtl() ? '&raquo;' : '&laquo;' ,
+      'separator'       => '&raquo;',
       'before'          => false,
       'after'           => false,
       'front_page'      => true,
