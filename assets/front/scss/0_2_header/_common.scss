@@ -123,6 +123,11 @@
 .czr-dropdown-menu {
     display: none;
     max-width: 50vw;
+    //override default bs positioning for rtl
+    @if ( true == $is_rtl ) {
+      left: auto;
+      right: 0;
+    }
     //the sidemenu and mobile menu should NOT break lines
     @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu .nav__title {
       word-break: break-word;// was break-all; Fixed in dec-2017 @see https://github.com/presscustomizr/customizr/issues/1339
@@ -433,25 +438,34 @@
 
 
 .ham-toggler-menu:hover .line {
-    -webkit-transform: translateX(-3px);
-    -moz-transform: translateX(-3px);
-    transform: translateX(-3px);
+    @if ( true == $is_rtl ) {
+      @include transform( translate( 3px, 0) );
+    }
+    @else {
+      @include transform( translate( -3px, 0) );
+    }
     width: 26px;
 }
 
 .ham-toggler-menu:not(.czr-collapsed) .line-1 {
-  -webkit-transform: translateY(6px) translateX(-3px) rotate(45deg);
-  -moz-transform: translateY(6px) translateX(-3px) rotate(45deg);
-  transform: translateY(6px) translateX(-3px) rotate(45deg);
+  @if ( true == $is_rtl ) {
+    @include transform( translate( 3px, 6px ) rotate(-45deg) );
+  }
+  @else {
+    @include transform( translate( -3px, 6px ) rotate(45deg) );
+  }
   width: 28px;
 }
 .ham-toggler-menu:not(.czr-collapsed) .line-2 {
   opacity: 0;
 }
 .ham-toggler-menu:not(.czr-collapsed) .line-3 {
-  -webkit-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
-  -moz-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
-  transform: translateY(-6px) translateX(-3px) rotate(-45deg);
+  @if ( true == $is_rtl ) {
+    @include transform( translate( 3px, -6px ) rotate(45deg) );
+  }
+  @else {
+    @include transform( translate( -3px, -6px ) rotate(-45deg) );
+  }
   width: 28px;
 }
 
