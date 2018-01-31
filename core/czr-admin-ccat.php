@@ -393,6 +393,17 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
               );
             ?>
           </p>
+          <?php if ( czr_fn_user_started_before_version( '3.4.21', '1.2.24' ) ) : ?>
+            <p>
+              <?php
+              printf(
+                __( 'If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'customizr' ),
+                sprintf( '<strong>%s</strong>', esc_html__( 'the Customizr theme', 'customizr' ) ),
+                '<a href="https://wordpress.org/support/theme/customizr/reviews/?filter=5#new-post" target="_blank" class="czr-rating-link">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+              );
+              ?>
+            </p>
+          <?php endif; ?>
         </div>
         <?php
       $_html = ob_get_contents();
