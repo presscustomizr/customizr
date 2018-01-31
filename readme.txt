@@ -23,12 +23,13 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
-= 4.0.17 January 30th 2018 =
+= 4.0.17 January 31st 2018 =
 * Fix: display the 404 content only when we're really in the 404 context. fixes #266
-* Fix: improve RTL submenu compliance 1) submenu animations -> fixes #1414  2) caret rotation adjustment when is RTL
 * Fix: make author bio RTL compliant. fixes #1419
-* Fix: fix RTL breadcrumb separator displayed with wrong direction. fixes #1420
+* Fix: RTL breadcrumb separator displayed with wrong direction. fixes #1420
+* Fix RTL submenu default opening direction. CSS fix for #1421 additionally fix menu button transform in RTL
 * Imp: Woocommerce - allow lightbox effect and smartload in product short description. fixes #1394
+* Imp: RTL submenu compliance 1) submenu animations -> fixes #1414  2) caret rotation adjustment when is RTL
 * Imp: Woocommerce - better u/o list styling for the product short description. fixes #1393
 * Imp: remove body itemprop itemtype structured data. Fix issues with missing microformats reported by the google-search-console in static pages. fixes #1401 #1344
 * Added : the topbar can now be displayed on mobile devices

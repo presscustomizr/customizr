@@ -2902,7 +2902,8 @@ var czrapp = czrapp || {};
             return false;
 
           if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
-            $_el.addClass(self.ClassName.SHOW)
+            $_el.trigger( self.Event.SHOW )
+                .addClass(self.ClassName.SHOW)
                 .trigger(self.Event.SHOWN);
 
             var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
@@ -2920,9 +2921,9 @@ var czrapp = czrapp || {};
 
         var $_el = $(this);
         var _debounced_removeOpenClass = _.debounce( function() {
-
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-            $_el.removeClass(self.ClassName.SHOW)
+            $_el.trigger( self.Event.HIDE )
+                .removeClass(self.ClassName.SHOW)
                 .trigger( self.Event.HIDDEN );
 
             var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
@@ -3004,52 +3005,67 @@ var czrapp = czrapp || {};
 
         if ( !$_dropdown.length )
           return;
-
-        $_dropdown.css( 'zIndex', '-100' ).css('display', 'block');
+        $_el.css( 'overflow', 'hidden' );
+        $_dropdown.css( {
+          'zIndex'  : '-100',
+          'display' : 'block'
+        });
 
         _maybe_move( $_dropdown, $_el );
-        $_dropdown.css( 'zIndex', '').css('display', '');
-
+        $_dropdown.css({
+          'zIndex'  : '',
+          'display' : ''
+        });
+        $_el.css( 'overflow', '' );
       }
 
 
       function _maybe_move( $_dropdown, $_el ) {
-        var $_a = $_el.find( self.Selector.DATA_TOGGLE ).first(),
-            $_caret = $_el.find('.caret__dropdown-toggler').first(),
-            _openLeft = function() {
-                $_dropdown.removeClass( 'open-right' ).addClass( 'open-left' );
-
-                if ( $_el.hasClass( 'czr-dropdown-submenu' ) ) {
-                    if ( 1 == $_caret.length ) {
-                        $_caret.removeClass( 'open-right' ).addClass( 'open-left' );
-                        if ( 1 == $_a.length ) {
-                          $_a[ false == czrapp.isRTL ? 'addClass' : 'removeClass' ]('flex-row-reverse');
+          var Direction          = czrapp.isRTL ? {
+                    _DEFAULT          : 'left',
+                    _OPPOSITE         : 'right'
+              } : {
+                    _DEFAULT          : 'right',
+                    _OPPOSITE         : 'left'
+              },
+              ClassName          = {
+                    OPEN_PREFIX       : 'open-',
+                    DD_SUBMENU        : 'czr-dropdown-submenu',
+                    CARET_TITLE_FLIP  : 'flex-row-reverse',
+                    CARET             : 'caret__dropdown-toggler'
+              },
+              _caret_title_maybe_flip = function( $_el, _direction, _old_direction ) {
+                    $.each( $_el, function() {
+                        var $_el               = $(this),
+                            $_a                = $_el.find( self.Selector.DATA_TOGGLE ).first(),
+                            $_caret            = $_el.find( '.' + ClassName.CARET).first();
+                        if ( 1 == $_caret.length ) {
+                              $_caret.removeClass( ClassName.OPEN_PREFIX + _old_direction ).addClass( ClassName.OPEN_PREFIX + _direction );
+                              if ( 1 == $_a.length ) {
+                                    $_a.toggleClass( ClassName.CARET_TITLE_FLIP, _direction == Direction._OPPOSITE  );
+                              }
                         }
-                    }
-                }
-            },
-            _openRight = function() {
-                $_dropdown.removeClass( 'open-left' ).addClass( 'open-right' );
+                    });
+              },
+              _setOpenDirection       = function( _direction ) {
+                    var _old_direction = _direction == Direction._OPPOSITE ? Direction._DEFAULT : Direction._OPPOSITE;
+                    $_dropdown.removeClass( ClassName.OPEN_PREFIX + _old_direction ).addClass( ClassName.OPEN_PREFIX + _direction );
 
-                if ( $_el.hasClass( 'czr-dropdown-submenu' ) ) {
-                    if ( 1 == $_caret.length ) {
-                        $_caret.removeClass( 'open-left' ).addClass( 'open-right' );
-                        if ( 1 == $_a.length ) {
-                          $_a[ false == czrapp.isRTL ? 'removeClass' : 'addClass' ]('flex-row-reverse');
-                        }
+                    if ( $_el.hasClass( ClassName.DD_SUBMENU ) ) {
+                          _caret_title_maybe_flip( $_el, _direction, _old_direction );
+                          _caret_title_maybe_flip( $_dropdown.children( '.' + ClassName.DD_SUBMENU ), _direction, _old_direction );
                     }
-                }
-            };
-        if ( $_dropdown.parent().closest( '.'+self.ClassName.DROPDOWN ).hasClass( 'open-left' ) ) {
-            _openLeft();
-        } else {
-          _openRight();
-        }
-        if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() ) {
-          _openLeft();
-        } else if ( $_dropdown.offset().left < 0 ) {
-          _openRight();
-        }
+              };
+          if ( $_dropdown.parent().closest( '.'+self.ClassName.DROPDOWN ).hasClass( ClassName.OPEN_PREFIX + Direction._OPPOSITE ) ) {
+                _setOpenDirection( Direction._OPPOSITE );
+          } else {
+                _setOpenDirection( Direction._DEFAULT );
+          }
+          if ( $_dropdown.offset().left + $_dropdown.width() > czrapp.$_window.width() ) {
+                _setOpenDirection( 'left' );
+          } else if ( $_dropdown.offset().left < 0 ) {
+                _setOpenDirection( 'right' );
+          }
       }
     },
     dropdownOnClickVerticalNav : function() {

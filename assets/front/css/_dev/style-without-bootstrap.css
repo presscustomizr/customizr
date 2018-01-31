@@ -1432,16 +1432,16 @@ embed, iframe, object, video {
 }
 
 .ham-toggler-menu:hover .line {
-  -webkit-transform: translateX(-3px);
-  -moz-transform: translateX(-3px);
-  transform: translateX(-3px);
+  -webkit-transform: translate(-3px, 0);
+  -moz-transform: translate(-3px, 0);
+  transform: translate(-3px, 0);
   width: 26px;
 }
 
 .ham-toggler-menu:not(.czr-collapsed) .line-1 {
-  -webkit-transform: translateY(6px) translateX(-3px) rotate(45deg);
-  -moz-transform: translateY(6px) translateX(-3px) rotate(45deg);
-  transform: translateY(6px) translateX(-3px) rotate(45deg);
+  -webkit-transform: translate(-3px, 6px) rotate(45deg);
+  -moz-transform: translate(-3px, 6px) rotate(45deg);
+  transform: translate(-3px, 6px) rotate(45deg);
   width: 28px;
 }
 
@@ -1450,9 +1450,9 @@ embed, iframe, object, video {
 }
 
 .ham-toggler-menu:not(.czr-collapsed) .line-3 {
-  -webkit-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
-  -moz-transform: translateY(-6px) translateX(-3px) rotate(-45deg);
-  transform: translateY(-6px) translateX(-3px) rotate(-45deg);
+  -webkit-transform: translate(-3px, -6px) rotate(-45deg);
+  -moz-transform: translate(-3px, -6px) rotate(-45deg);
+  transform: translate(-3px, -6px) rotate(-45deg);
   width: 28px;
 }
 
@@ -6557,8 +6557,15 @@ section.post-content {
 .widget_calendar caption, .widget_calendar tfoot {
   padding: 0.625em 0;
   color: #777;
-  text-align: left;
   caption-side: top;
+}
+
+.widget_calendar tfoot #prev {
+  text-align: left;
+}
+
+.widget_calendar tfoot #next {
+  text-align: right;
 }
 
 @media (min-width: 768px) {
