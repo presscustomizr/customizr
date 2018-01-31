@@ -89,8 +89,23 @@
     @extend .small;
     @extend .bold;
     @extend .letter-spacing-1;
-    text-align: left;
     caption-side: top;
+  }
+  @if ( true == $is_rtl ) {
+    tfoot #prev {
+      text-align: right;
+    }
+    tfoot #next {
+      text-align: left;
+    }
+  }
+  @else {
+    tfoot #prev {
+      text-align: left;
+    }
+    tfoot #next {
+      text-align: right;
+    }
   }
 }
 

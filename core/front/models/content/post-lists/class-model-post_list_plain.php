@@ -146,13 +146,13 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
     //split layout
     if ( $this->split_layout && $cat_list && 'narrow' != $this->content_wrapper_breadth ) {
-      $bp = 'narrow' == $this->content_wrapper_breadth ? 'lg' : 'xl';
-
+      $bp                  = 'narrow' == $this->content_wrapper_breadth ? 'lg' : 'xl';
+      $cat_list_text_align = is_rtl() ? 'left' : 'right';
       /* the header inner class (width) depends on the presence of the category list */
       array_push( $entry_header_inner_class, "col-{$bp}-7", "offset-{$bp}-4" );
       /* the content inner class (width) depends on the presence of the category list */
       array_push( $content_inner_class, "col-{$bp}-7", "offset-{$bp}-1" );
-      array_push( $cat_list_class, "col-{$bp}-3 text-{$bp}-right" );
+      array_push( $cat_list_class, "col-{$bp}-3 text-{$bp}-{$cat_list_text_align}" );
     }
 
     $article_selectors           = $this -> czr_fn__get_article_selectors( $cat_list );
