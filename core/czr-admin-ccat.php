@@ -144,9 +144,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     function czr_fn_admin_style() {
       wp_enqueue_style(
         'tc-admincss',
-        sprintf('%1$sback/css/tc_admin%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
+        sprintf('%1$sback/css/tc_admin%2$s.css' ,
+          CZR_BASE_URL . CZR_ASSETS_PREFIX,
+          ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min'
+        ),
         array(),
-        CUSTOMIZR_VER
+        ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER
       );
     }
 
@@ -362,7 +365,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       ob_start();
         ?>
-        <div class="updated" style="position:relative">
+        <div class="updated czr-update-notice" style="position:relative">
           <?php
             echo apply_filters(
               'czr_update_notice',
@@ -377,29 +380,30 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf( '<h4>%1$s</h4><strong><a class="button button-primary" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a> <a class="button button-primary" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
+              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4><strong><a class="button button-primary %6$s" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
                 __( "Read the latest release notes" , "customizr" ),
                 ! CZR_IS_PRO ? esc_url('presscustomizr.com/customizr-pro?ref=a') : esc_url('demo.presscustomizr.com'),
-                ! CZR_IS_PRO ? __( "Upgrade to Customizr Pro", "customizr" ) : __( "Visit the demo", "customizr" )
+                ! CZR_IS_PRO ? __( "Upgrade to Customizr Pro", "customizr" ) : __( "Visit the demo", "customizr" ),
+                ! CZR_IS_PRO ? 'upgrade-to-pro' : ''
               )
             );
           ?>
-          <p style="text-align:right;position: absolute;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
-            <?php printf('<em>%1$s <strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s x ) </a></strong></em>',
+          <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
+            <?php printf('<strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s X ) </a></strong>',
                 __("I already know what's new thanks !", "customizr" ),
                 __('close' , 'customizr')
               );
             ?>
           </p>
-          <?php if ( czr_fn_user_started_before_version( '3.4.21', '1.2.24' ) ) : ?>
+          <?php if ( czr_fn_is_ms() ) : ?>
             <p>
               <?php
               printf(
                 __( 'If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'customizr' ),
                 sprintf( '<strong>%s</strong>', esc_html__( 'the Customizr theme', 'customizr' ) ),
-                '<a href="https://wordpress.org/support/theme/customizr/reviews/?filter=5#new-post" target="_blank" class="czr-rating-link">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+                sprintf( '<a href="%1$s" target="_blank" class="czr-rating-link">&#9733;&#9733;&#9733;&#9733;&#9733;</a>', esc_url( 'wordpress.org/support/theme/customizr/reviews/?filter=5#new-post') )
               );
               ?>
             </p>
