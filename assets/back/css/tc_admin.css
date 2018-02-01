@@ -179,6 +179,11 @@ h1.need-help-title:before {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+/* UPDATE NOTICE */
+.czr-update-notice h3, .czr-update-notice h4 {
+  font-weight: normal;
+}
 .czr-update-notice .button {
   font-weight: normal;
 }

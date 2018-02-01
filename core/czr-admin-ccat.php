@@ -380,19 +380,19 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4><strong><a class="button button-primary %6$s" href="%4$s" title="%5$s" target="_blank">%5$s &raquo;</a></strong>',
+              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4>%4$s',
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
                 __( "Read the latest release notes" , "customizr" ),
-                ! CZR_IS_PRO ? esc_url('presscustomizr.com/customizr-pro?ref=a') : esc_url('demo.presscustomizr.com'),
-                ! CZR_IS_PRO ? __( "Upgrade to Customizr Pro", "customizr" ) : __( "Visit the demo", "customizr" ),
-                ! CZR_IS_PRO ? 'upgrade-to-pro' : ''
+                ! CZR_IS_PRO ? sprintf( '<a class="button button-primary upgrade-to-pro" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
+                  esc_url('presscustomizr.com/customizr-pro?ref=a'),
+                  __( "Upgrade to Customizr Pro", "customizr" )
+                ) : ''
               )
             );
           ?>
           <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
-            <?php printf('<strong><a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %2$s X ) </a></strong>',
-                __("I already know what's new thanks !", "customizr" ),
+            <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
                 __('close' , 'customizr')
               );
             ?>

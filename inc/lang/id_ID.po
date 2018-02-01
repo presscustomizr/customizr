@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.0.17\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-02-01 05:29:05+00:00\n"
+"POT-Creation-Date: 2018-02-01 05:55:54+00:00\n"
 "PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -430,18 +430,10 @@ msgstr "Kami ingin memperkenalkan fitur baru yang sudah kami kerjakan."
 msgid "Read the latest release notes"
 msgstr "Baca nota rilis terbaru"
 
-#: core/_dev/_admin/class-fire-admin_init.php:388
-#: core/core-settings-map.php:2707 core/czr-admin-ccat.php:388
+#: core/_dev/_admin/class-fire-admin_init.php:389
+#: core/core-settings-map.php:2707 core/czr-admin-ccat.php:389
 msgid "Upgrade to Customizr Pro"
 msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_init.php:388 core/czr-admin-ccat.php:388
-msgid "Visit the demo"
-msgstr "Kunjungi demo"
-
-#: core/_dev/_admin/class-fire-admin_init.php:395 core/czr-admin-ccat.php:395
-msgid "I already know what's new thanks !"
-msgstr "Saya sudah tahu apa yang baru itu terimakasih !"
 
 #: core/_dev/_admin/class-fire-admin_init.php:396 core/czr-admin-ccat.php:396
 msgid "close"
@@ -4654,6 +4646,12 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
+
+#~ msgid "Visit the demo"
+#~ msgstr "Kunjungi demo"
+
+#~ msgid "I already know what's new thanks !"
+#~ msgstr "Saya sudah tahu apa yang baru itu terimakasih !"
 
 #, fuzzy
 #~ msgid "display a search icon in the header"

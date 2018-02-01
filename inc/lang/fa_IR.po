@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.0.17\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-02-01 05:29:05+00:00\n"
+"POT-Creation-Date: 2018-02-01 05:55:54+00:00\n"
 "PO-Revision-Date: 2015-11-16 23:47+0100\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -413,17 +413,9 @@ msgstr ""
 msgid "Read the latest release notes"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_init.php:388
-#: core/core-settings-map.php:2707 core/czr-admin-ccat.php:388
+#: core/_dev/_admin/class-fire-admin_init.php:389
+#: core/core-settings-map.php:2707 core/czr-admin-ccat.php:389
 msgid "Upgrade to Customizr Pro"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_init.php:388 core/czr-admin-ccat.php:388
-msgid "Visit the demo"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_init.php:395 core/czr-admin-ccat.php:395
-msgid "I already know what's new thanks !"
 msgstr ""
 
 #: core/_dev/_admin/class-fire-admin_init.php:396 core/czr-admin-ccat.php:396
