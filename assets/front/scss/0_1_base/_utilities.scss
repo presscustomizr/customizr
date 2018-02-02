@@ -34,7 +34,7 @@
 }
 
 .no-hover, .no-hover *,
-.is-scrolling, .is-scrolling * {
+.is-scrolling:not(.allow-pointer-events-on-scroll), .is-scrolling:not(.allow-pointer-events-on-scroll) * {
   pointer-events: none;
 }
 .shadow {
