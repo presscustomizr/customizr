@@ -396,15 +396,26 @@ a[target="_blank"]:hover:after {
     vertical-align:  middle;
   }
   a:not(:last-of-type) {
-    margin-right: 1.5em;
+    @if ( true == $is_rtl ) {
+        margin-left: 1.5em;
+    }
+    @else {
+        margin-right: 1.5em;
+    }
     &::after{
-      content: '/';
       color: $grey;
       z-index: 1;
       pointer-events: none;
       position: absolute;
       top: 0;
-      right: -1em;
+      @if ( true == $is_rtl ) {
+          content: '\\';
+          left: -1em;
+      }
+      @else {
+          content: '/';
+          right: -1em;
+      }
     }
   }
 }
