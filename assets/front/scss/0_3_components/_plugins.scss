@@ -242,7 +242,22 @@
 
 }
 
-
+/*
+* WP Forms plugin compatibility
+* https://github.com/presscustomizr/customizr/issues/1438
+*/
+.wpforms-form {
+  input[type=checkbox] {
+    -webkit-appearance: checkbox !important;
+  }
+  input[type=radio] {
+    -webkit-appearance: radio !important;
+  }
+  input[type=checkbox]:checked::before,
+  input[type=radio]:checked::before  {
+    display: none;
+  }
+}
 
 //force fpu background to white if fpu bg set to default color
 //TODO: change default color for czr4 in FPU
