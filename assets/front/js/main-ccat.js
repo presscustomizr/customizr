@@ -2872,10 +2872,11 @@ var czrapp = czrapp || {};
         CLICK     : 'click' + this.EVENT_KEY,
       };
       this.ClassName = {
-        DROPDOWN         : 'czr-dropdown-menu',
-        SHOW             : 'show',
-        PARENTS          : 'menu-item-has-children',
-        MCUSTOMSB        : 'mCustomScrollbar',
+        DROPDOWN                : 'czr-dropdown-menu',
+        SHOW                    : 'show',
+        PARENTS                 : 'menu-item-has-children',
+        MCUSTOMSB               : 'mCustomScrollbar',
+        ALLOW_POINTER_ON_SCROLL : 'allow-pointer-events-on-scroll'
       };
 
       this.Selector = {
@@ -2902,6 +2903,7 @@ var czrapp = czrapp || {};
             return false;
 
           if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
+            czrapp.$_body.addClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
             $_el.trigger( self.Event.SHOW )
                 .addClass(self.ClassName.SHOW)
                 .trigger(self.Event.SHOWN);
@@ -2922,6 +2924,7 @@ var czrapp = czrapp || {};
         var $_el = $(this);
         var _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
+            czrapp.$_body.removeClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
             $_el.trigger( self.Event.HIDE )
                 .removeClass(self.ClassName.SHOW)
                 .trigger( self.Event.HIDDEN );

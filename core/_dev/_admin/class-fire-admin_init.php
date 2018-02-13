@@ -384,7 +384,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
                 __( "We'd like to introduce the new features we've been working on.", "customizr"),
                 CZR_WEBSITE . "category/customizr-releases/",
                 __( "Read the latest release notes" , "customizr" ),
-                ! CZR_IS_PRO ? sprintf( '<a class="button button-primary upgrade-to-pro" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a>',
+                ! CZR_IS_PRO ? sprintf( '<p style="position: absolute;right: 7px;top: 4px;"><a class="button button-primary upgrade-to-pro" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a></p>',
                   esc_url('presscustomizr.com/customizr-pro?ref=a'),
                   __( "Upgrade to Customizr Pro", "customizr" )
                 ) : ''
