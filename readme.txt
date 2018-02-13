@@ -23,6 +23,14 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.0.18 February 13th 2018 =
+* Fix: tagline visibility in mobiles when shown in desktop topbar. fixes #1458
+* Fix: topbar menu not displayed in fresh installs. fixes #1460
+* Fix: move hardcoded contact-info CSS rule into theme stylesheed. fixes #1436
+* Fix: fix RTL article's hierarchical tax separator. fixes #1434
+* Fix: fix checkbox/radio compatibility with WPForms by reverting the webkit appearance override. fixes #1438
+* Imp: allow pointer events on scroll if submenu opened(hover) CSS. fixes #1439
+
 = 4.0.17 January 31st 2018 =
 * Fix: display the 404 content only when we're really in the 404 context. fixes #266
 * Fix: make author bio RTL compliant. fixes #1419

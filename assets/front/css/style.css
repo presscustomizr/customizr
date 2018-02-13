@@ -3430,7 +3430,7 @@ input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-
 }
 
 .no-hover, .no-hover *,
-.is-scrolling, .is-scrolling * {
+.is-scrolling:not(.allow-pointer-events-on-scroll), .is-scrolling:not(.allow-pointer-events-on-scroll) * {
   pointer-events: none;
 }
 
@@ -4993,6 +4993,7 @@ Since mobile and desktop navbar are different we don't need use the following cl
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-size: 0.9em;
 }
 
 .topbar-nav__socials {
@@ -5837,12 +5838,12 @@ table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_metho
 }
 
 .tax__container a:not(:last-of-type)::after {
-  content: '/';
   color: #777;
   z-index: 1;
   pointer-events: none;
   position: absolute;
   top: 0;
+  content: '/';
   right: -1em;
 }
 
@@ -10040,6 +10041,23 @@ footer#footer .colophon__row .footer__credits a.fab {
 .nav__woocart .widget_shopping_cart .product_list_widget img {
   margin-left: 1em;
   float: right;
+}
+
+/*
+* WP Forms plugin compatibility
+* https://github.com/presscustomizr/customizr/issues/1438
+*/
+.wpforms-form input[type=checkbox] {
+  -webkit-appearance: checkbox !important;
+}
+
+.wpforms-form input[type=radio] {
+  -webkit-appearance: radio !important;
+}
+
+.wpforms-form input[type=checkbox]:checked::before,
+.wpforms-form input[type=radio]:checked::before {
+  display: none;
 }
 
 .fpc-container[data-bgcolor="#fafafa"] {

@@ -2546,7 +2546,7 @@ function czr_fn_popul_section_map( $_sections ) {
                         'panel'   => 'tc-header-panel'
     ),
     'header_desktop_sec'         => array(
-                        'title'    => __( 'Design settings for desktop and laptops', 'customizr' ),
+                        'title'    => __( 'Design settings for desktops and laptops', 'customizr' ),
                         'priority' => 20,
                         'panel'   => 'tc-header-panel'
     ),
