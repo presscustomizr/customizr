@@ -20,6 +20,7 @@
   flex-shrink: 0;
   .czr-contact-info {
     @include flex-grow();
+    font-size: 0.9em;
   }
 }
 .topbar-nav__socials {
