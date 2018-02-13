@@ -64,11 +64,11 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     }
 
     //when the top navbar menu is allowed?
-    //1) menu allowed
+    //1) topbar is displayed in desktops
     //and
-    //2) topbar is displayed
+    //2) menu allowed
     function czr_fn_display_view_topbar_menu() {
-      return esc_attr( czr_fn_opt( 'tc_header_desktop_topbar' ) ) && $this -> czr_fn_display_view_menu() && has_nav_menu( 'topbar' );
+      return in_array( esc_attr( czr_fn_opt( 'tc_header_show_topbar' ) ), array( 'desktop', 'desktop_mobile' ) ) && $this -> czr_fn_display_view_menu() && has_nav_menu( 'topbar' );
     }
 
     //when the sidenav menu is allowed?
