@@ -13,9 +13,12 @@
       }
 
       if ( czr_fn_is_registered_or_possible( 'mobile_tagline' ) ) {
-          czr_fn_render_template( 'header/parts/tagline' );
+          czr_fn_render_template( 'header/parts/tagline', array(
+              'model_args' => array(
+                'element_class' => 'col col-auto',
+              )
+          ));
       }
-
     ?>
   </div>
   <div class="mobile-utils__wrapper nav__utils regular-nav">
