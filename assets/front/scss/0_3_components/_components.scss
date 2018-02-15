@@ -57,8 +57,8 @@
   &:focus,
   &.focus {
     outline: 0;
-    -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
-            box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+    //($top, $left, $blur, $color, $inset: false, $spread_radius: false)
+    @include box-shadow(0, 0, 0, rgba(2, 117, 216, 0.25), false, 2px);
   }
 
   // Disabled comes first so active can properly restyle
@@ -66,15 +66,14 @@
   &:disabled {
     cursor: $cursor-disabled;
     opacity: .65;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    @include box-shadow_none();
   }
 
   &:active,
   &.active {
     background-image: none;
-    -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
-            box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
+    //($top, $left, $blur, $color, $inset: false, $spread_radius: false)
+    @include box-shadow(0, 0, 0, rgba(2, 117, 216, 0.25), false, 2px);
   }
 }
 
@@ -735,9 +734,7 @@ cite {
   width: 50px;
   height: 50px;
   position: absolute;
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
+  @include transform( translate3d(-50%, -50%, 0) );
   top: 50%;
   left: 50%;
 }

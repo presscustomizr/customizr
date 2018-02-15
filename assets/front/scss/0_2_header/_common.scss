@@ -121,17 +121,31 @@
 
 // Dropdown menu ul ( vertical menu like sidenav and mobile menu will override this)
 .czr-dropdown-menu {
+    //from bootstrap
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 10rem;
+    list-style: none;
     display: none;
     max-width: 50vw;
-    //override default bs positioning for rtl
     @if ( true == $is_rtl ) {
-      left: auto;
       right: 0;
+      text-align: right;
+    }
+    @else {
+      left: 0;
+      text-align: left;
     }
     //the sidemenu and mobile menu should NOT break lines
     @at-root .vertical-nav .dropdown-menu.czr-dropdown-menu .nav__title {
       word-break: break-word;// was break-all; Fixed in dec-2017 @see https://github.com/presscustomizr/customizr/issues/1339
       white-space: normal;
+    }
+    .show > & {
+      display: block;
     }
 }
 
@@ -211,6 +225,18 @@
   position: relative;
 }
 .dropdown-item {
+    //from bootstrap
+    display: block;
+    width: 100%;
+    //padding: 3px 1.5rem;
+    clear: both;
+    font-weight: 400;
+    //color: #292b2c;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+
     &::before {
       content: '';
       position: absolute;
@@ -225,14 +251,16 @@
       transition-delay: 0s;
       transition-duration: .6s;
       transition-timing-function: cubic-bezier(.19, 1, .22, 1);
-      -webkit-transform-origin: 0 100%;
-      transform-origin: 0 100%;
+      @include transform-origin(0 100%);
     }
     &.current-active,
     &:hover {
       &::before {
         width: 100%;
       }
+    }
+    &:hover, &:focus {
+      text-decoration: none;
     }
 }
 
@@ -330,10 +358,7 @@
   // submenu link move
   .czr-submenu-move & {
     .dropdown-menu > li > a {
-      -webkit-transition: all ease 0.25s;
-      -moz-transition: all ease 0.25s;
-      -o-transition: all ease 0.25s;
-      transition: all ease 0.25s;
+      @include transition( all 0.25s ease );
       @include transform( translate( 0, 0) );
     }
     .dropdown-item > a:hover {
@@ -383,10 +408,7 @@
 // Utils nav
 .utils_links {
   padding: $base-line-height 15px;
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-          align-self: center;
+  @include flex-align-self-center();
 
   display: block;
   height: auto;
@@ -424,12 +446,8 @@
   -moz-background-clip: padding;
   border-radius: 5px;
   background-clip: padding-box;
-  -webkit-transition: all ease 0.35s;
-  -moz-transition: all ease 0.35s;
-  -o-transition: all ease 0.35s;
-  transition: all ease 0.35s;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  @include transition(all ease 0.35s);
+  @include backface-visibility(hidden);
 }
 
 .ham__toggler-span-wrapper .line.line-1 {top: 0;}

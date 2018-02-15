@@ -68,7 +68,7 @@
   // Animation stuff
   .animating &, .tc-sn-visible:not(.animating) &  {
     visibility: visible;
-    @include transition( transform 0.5s ease-in-out );
+    @include transition-transform( 0.5s ease-in-out );
     z-index: 2;
   }
 
@@ -99,5 +99,4 @@
       -ms-transform: translate(100%,0);
     }
   }
-
 }

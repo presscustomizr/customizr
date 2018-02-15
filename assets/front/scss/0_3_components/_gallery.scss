@@ -36,7 +36,7 @@ section[class^="post-"] .gallery.row {
 
       @at-root .czr-gallery-style .gallery-item {
         img  {
-          @include transition(transform 0.3s ease-in-out);
+          @include transition-transform(0.3s ease-in-out);
         }
         &.hover img {
           @include transform( scale(1.1) );
@@ -81,7 +81,7 @@ section[class^="post-"] .gallery.row {
 
   //(4)
   @for $i from 4 through 9 {
-    &.gallery-columns-#{$i} {          
+    &.gallery-columns-#{$i} {
       @include media-breakpoint-up(sm) {
         .gallery-item {
           width: 25%;
@@ -99,7 +99,7 @@ section[class^="post-"] .gallery.row {
 
   //(4.a)
   //case 2 sidebars
-  @for $i from 4 through 9 {    
+  @for $i from 4 through 9 {
     .czr-b-sidebar #content &.gallery-columns-#{$i} {
       @include media-breakpoint-between(md, md) {
         .gallery-item {
