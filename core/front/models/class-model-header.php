@@ -155,7 +155,7 @@ class CZR_header_model_class extends CZR_Model {
     * Set the desktop and mobile navbar classes (bp visibility and stickiness )
     * TODO: allow breakpoint changes
     */
-    $_desktop_primary_navbar_class  = array( 'hidden-md-down' );
+    $_desktop_primary_navbar_class  = array( 'd-none', 'd-lg-block' );
 
     /*
     * topbar class
@@ -165,18 +165,36 @@ class CZR_header_model_class extends CZR_Model {
     * 3) display in desktop and not in mobile
     * 4) display in mobile and desktop
     */
+    /*
+      Imp: update model and templates to the latest b4 stable
+      in the latest b4 stable the hidden-{breakpoint}-(down|up)
+      have been removed.
+      This, I think, because of the "half pixel" issue with media-queries.
+      Now the logic, always mobile first, can be summed up in the following
+      examples:
+      - if you want to hide something for smartphones, but display it elsewhere
+      (sm up), apply the following classes to your element:
+      a) d-none
+      b) d-lg-(flex|block|inline-block...)*
+      *meaning that you need to exactly know how to display it in lg, either flex
+      or block, etc.
+
+      - say you want to display something in mobiles (tablets and spartphones)
+      but not on large devices (desktop) you just need to apply this class to your element
+      d-lg-none
+    */
     $_topbar_visibility = esc_attr( czr_fn_opt( 'tc_header_show_topbar' ) );
     switch ( $_topbar_visibility ) :
-      case 'desktop' : $_topbar_navbar_class = array( 'hidden-md-down' );
+      case 'desktop' : $_topbar_navbar_class = array( 'd-none', 'd-lg-block' );
                        break;
-      case 'mobile'  : $_topbar_navbar_class = array( 'hidden-lg-up' );
+      case 'mobile'  : $_topbar_navbar_class = array( 'd-lg-none' );
                        break;
-      case 'none'    : $_topbar_navbar_class = array( 'hidden' );
+      case 'none'    : $_topbar_navbar_class = array( 'd-none' );
                        break;
       default        : $_topbar_navbar_class = array();
     endswitch;
 
-    $_mobile_navbar_class           = array( 'hidden-lg-up' );
+    $_mobile_navbar_class           = array( 'd-lg-none' );
 
     /*
     * Informations about the current active blocks in the primary header navbar :

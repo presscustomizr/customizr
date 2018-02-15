@@ -9,7 +9,7 @@
     <div class="row flex-row flex-lg-nowrap justify-content-start justify-content-lg-end align-items-center topbar-navbar__row">
       <?php do_action( '__before_topbar_navbar_row_inner' ); ?>
       <?php if ( czr_fn_is_registered_or_possible( 'topbar_menu' ) ) :?>
-        <div class="topbar-nav__container col col-auto hidden-md-down">
+        <div class="topbar-nav__container col col-auto d-none d-lg-flex">
           <nav id="topbar-nav" class="topbar-nav__nav">
             <?php
               czr_fn_render_template( 'header/parts/menu', array(
@@ -22,7 +22,7 @@
       <?php if ( czr_fn_is_registered_or_possible( 'topbar_tagline' ) )
         czr_fn_render_template( 'header/parts/tagline', array(
           'model_args' => array(
-            'element_class' => 'col col-auto hidden-md-down',
+            'element_class' => 'col col-auto d-none d-lg-flex',
           )
         ));
       ?>
@@ -36,7 +36,7 @@
 
         czr_fn_render_template( 'header/parts/topbar_nav_utils', array(
           'model_args' => array(
-            'element_class' => 'hidden-md-down',
+            'element_class' => 'd-none d-lg-flex',
           )
         ));
       ?>

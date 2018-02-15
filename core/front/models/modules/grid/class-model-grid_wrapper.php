@@ -488,7 +488,7 @@ class CZR_grid_wrapper_model_class extends CZR_Model {
     * viewports, also we could find a way, I'm pretty sure, to avoid the use of the row wrapper
     * putting some element (or with :before :after pseudo-elements) which we can control with
     * CSS classes, e.g.
-    * <hr class="col-sm-12 md-hidden"> after a certain grid-item given a certain layout
+    * <hr class="col-sm-12 d-none d-md-flex"> after a certain grid-item given a certain layout
     */
     preg_match("/(col-md-[0-9]+)/", $_current_layout, $current_md_layout);
     $_current_layout = ! empty( $current_md_layout[0] ) ? $current_md_layout[0] : 'col-md-12';
