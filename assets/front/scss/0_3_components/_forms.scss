@@ -2,7 +2,7 @@
 label {
   color: $black;
   font-family: $serviceFont;
-
+  max-width: 100%;
   @extend .small;
   @extend .thick;
   @extend .letter-spacing-2;
@@ -18,7 +18,7 @@ select {
 
   border: 1px solid $grey-light;
   border-radius: 2px;
-
+  max-width: 100%;
   font: inherit;
   font-weight: normal;
 
@@ -27,7 +27,6 @@ select {
   @include transition ( border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s );
 
 }
-
 
 input:focus,
 textarea:focus,
