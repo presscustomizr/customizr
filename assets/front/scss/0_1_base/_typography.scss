@@ -5,6 +5,9 @@ $baseFont     : 'Source Sans Pro', Arial, sans-serif;
 $monotypeFont : monospace;
 $serviceFont  : sans-serif;
 
+$font-family-sans-serif:      $baseFont;
+$font-family-monospace:       $monotypeFont;
+$font-family-base:            $font-family-sans-serif !default;
 
 $ms-base: 1em;
 $ms-ratio: 1.2;
