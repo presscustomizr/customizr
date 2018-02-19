@@ -376,20 +376,14 @@ section[class^="post-"] {
       position: absolute;
       top: 50%;
       @if ( true == $is_rtl ) {
-        @include transform(rotate(90deg) translate3d(50%, -50%, 0));
         right: -12px;
-        -webkit-transform-origin: top right;
-        -ms-transform-origin: top right;
-        -o-transform-origin: top right;
-        transform-origin: top right;
+        @include transform(rotate(90deg) translate3d(50%, -50%, 0));
+        @include transform-origin(top right);
       }
       @else {
-        @include transform(rotate(-90deg) translate3d(-50%, -50%, 0));
         left: -12px;
-        -webkit-transform-origin: top left;
-        -ms-transform-origin: top left;
-        -o-transform-origin: top left;
-        transform-origin: top left;
+        @include transform(rotate(-90deg) translate3d(-50%, -50%, 0));
+        @include transform-origin(top left);
       }
     }
   }
@@ -446,15 +440,14 @@ section.post-related-articles {
       }
       .col-md-6 & {
         .grid__item {
-          -webkit-flex-wrap: wrap !important;
           -ms-flex-wrap: wrap !important;
           flex-wrap: wrap !important;
+
         }
       }
       .col-md-6 & {
         .grid__item section {
           -webkit-box-flex: 0;
-          -webkit-flex: 0 0 100%;
           -ms-flex: 0 0 100%;
           flex: 0 0 100%;
           max-width: 100%;

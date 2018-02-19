@@ -2,7 +2,7 @@
 label {
   color: $black;
   font-family: $serviceFont;
-
+  max-width: 100%;
   @extend .small;
   @extend .thick;
   @extend .letter-spacing-2;
@@ -18,7 +18,7 @@ select {
 
   border: 1px solid $grey-light;
   border-radius: 2px;
-
+  max-width: 100%;
   font: inherit;
   font-weight: normal;
 
@@ -27,7 +27,6 @@ select {
   @include transition ( border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s );
 
 }
-
 
 input:focus,
 textarea:focus,
@@ -96,15 +95,11 @@ input[type="range"] {
   background-color: transparent !important;
   padding: 0;
   border: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  @include box-shadow_none();
   width: auto;
 }
 input[type="search"] {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   -webkit-appearance: none;
 }
 textarea {
@@ -212,7 +207,7 @@ form.czr-form {
         position: absolute;
         z-index: 1;
         color: $grey-mid-light;
-        @include transition(transform 0.3s ease);
+        @include transition-transform(0.3s ease);
         span {
           @if ( true == $is_rtl ) {
               float: right;
@@ -234,7 +229,7 @@ form.czr-form {
           width:2em;
           line-height: 2em;
           @include opacity(0);
-          @include transition(transform 0.3s ease);
+          @include transition-transform(0.3s ease);
           @include transform(translateY(-110%));
         }
         #czr-comments & {
@@ -243,7 +238,7 @@ form.czr-form {
     }
 
     .czr-focusable {
-      transition: all 600ms;
+      @include transition(all 600ms);
     }
     &:not(.in-focus) > .czr-focusable {
       color: transparent;

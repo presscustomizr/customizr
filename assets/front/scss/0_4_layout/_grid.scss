@@ -380,7 +380,7 @@ a.czr-format-link {
   }
   .tc-grid-hover-move & {
     @include backface-visibility( hidden );
-    @include transition(transform 0.1s ease-in-out);
+    @include transition-transform(0.1s ease-in-out);
     overflow: hidden;
     position: relative;
   }
@@ -388,7 +388,6 @@ a.czr-format-link {
     @include box-shadow(0, 6px, 10px, rgba(0, 0, 0, 0.055) );
     @include transform(translate(0, -4px));
   }
-
 }
 
 
@@ -828,31 +827,18 @@ a.czr-format-link {
   margin-right: 0;
   overflow: hidden;
   white-space: nowrap;
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-perspective: 1000px;
-  -moz-perspective: 1000px;
-  perspective: 1000px;
+  @include flex-nowrap();
+  @include backface-visibility(hidden);
+  @include transform-style(preserve-3d);
+  @include perspective(1000px);
 
   .grid__item {
     outline: none;
   }
 
   .flickity-viewport {
-      -webkit-flex-basis: 0;
-      -ms-flex-preferred-size: 0;
-      flex-basis: 0;
-      -webkit-box-flex: 1;
-      -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-      flex-grow: 1;
+      @include flex-basis_0();
+      @include flex-grow();
       max-width: 100%;
   }
 
@@ -862,17 +848,10 @@ a.czr-format-link {
     display: inline-block;
     float: none;
     white-space: normal;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-perspective: 1000px;
-    -moz-perspective: 1000px;
-    perspective: 1000px;
+    @include backface-visibility(hidden);
+    @include transform-style(preserve-3d);
+    @include perspective(1000px);
     @extend .small;
-
   }
 
   .grid__item {

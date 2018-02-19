@@ -1,4 +1,3 @@
-
 .czr-overlay {
   @include opacity(0);
   visibility: hidden;
@@ -8,7 +7,6 @@
   top: 0;
   left: 0;
   z-index:90;
-  animation: a .3s forwards;
   @include transition (visibility 0.3s cubic-bezier(.19, 1, .22, 1), opacity 0.3s cubic-bezier(.19, 1, .22, 1));
 
   .overlay-content {
@@ -43,7 +41,7 @@
       right: $base-line-height;
       top: 50%;
       transform: translate(0,-50%);//fallback
-      transform: translate3d(0,-50%,0);
+      @include transform(translate3d(0,-50%,0) );
       position: absolute;
     }
     .search-form__container {

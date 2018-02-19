@@ -3,6 +3,9 @@ body, html {
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
+body {
+  text-align: inherit;
+}
 
 .wp-caption,
 img {
@@ -11,9 +14,8 @@ img {
 }
 
 //button, button:focus { outline:0 }
-
 a {
-  transition: color ease 0.3s;
+  @include transition( color 0.3s ease);
 }
 
 
@@ -28,10 +30,6 @@ a.current-active {
   outline: none;
 }
 
-a img {
-  border: none;
-}
-
 a:hover,
 a:focus,
 a:active,
@@ -39,6 +37,10 @@ a.active {
   color: $skin-link-color-hover;
 }
 
+
+a img {
+  border: none;
+}
 
 h1, h2, h3, h4, h5, h6 {
   text-rendering:optimizelegibility;
@@ -90,12 +92,9 @@ dl dt {
 }
 
 pre code, tt {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box-sizing(border-box)
   font-size: inherit;
-  white-space: -moz-pre-wrap;
-  white-space: pre-wrap;
+  white-space: pre-wrap !important;
   background: transparent;
   border: none;
   padding: 0;
@@ -105,6 +104,7 @@ pre {
   background: $grey-lightest;
   padding: $base-line-height*2;
   word-wrap: normal;
+  white-space: pre-wrap !important;
   color: $black;
   font-family: $monotypeFont !important;
 }
@@ -157,7 +157,6 @@ img::-moz-selection {
 p {
   word-wrap: break-word;
 }
-
 
 embed, iframe, object, video {
   max-width: 100%;

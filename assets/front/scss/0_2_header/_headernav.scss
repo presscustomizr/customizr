@@ -32,7 +32,7 @@
           padding-bottom: 0.25em;
           margin-bottom: 5px;
         }
-        //commented because with flex the this element auto adapts
+        //commented because with flex this element auto adapts
         //.mobile-navbar__wrapper & {
         //  max-width: calc( 100% - 100px );// can have the hamburger (50px) + the woocommerce cart next to it (50px)
         //}
@@ -145,45 +145,29 @@
 
 .primary-navbar__wrapper {
   // ensure the navbar elements do not wrap in a new line
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
+  @include flex-nowrap;
 
   .branding__container,
   .primary-nav__utils li,
   .primary-nav__wrapper,
   .primary-nav__menu-wrapper {
-
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-
+    @include display-flex();
   }
   .primary-nav__wrapper {
       margin: 0 -15px;
   }
 
   .primary-nav__container {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-            flex-grow: 1;
-    -webkit-flex-basis: 0;
-      -ms-flex-preferred-size: 0;
-          flex-basis: 0;
+    @include display-flex();
+    @include flex-basis_0();
+    @include flex-grow();
   }
   .primary-nav__menu-wrapper {
     width: 100%;
   }
   .primary-nav__nav {
     flex-shrink: 1; //ie (10 at least) doesn't consider this as default while it should
-    -webkit-flex-basis: auto;
-      -ms-flex-preferred-size: auto;
-          flex-basis: auto;
+    @include flex-basis_auto();
   }
 
   .add-menu-button {
@@ -200,13 +184,7 @@
 //
 .logo_centered .primary-navbar__wrapper:not(.desktop-sticky) .primary-navbar__row,
 .logo_centered:not(.fixed-header-on) .primary-navbar__wrapper.desktop-sticky  .primary-navbar__row{
-
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -webkit-flex-direction: column !important;
-        -ms-flex-direction: column !important;
-            flex-direction: column !important;
-
+    @include flex-column('important');
     .branding__container {
         max-width: 100%;
         text-align: center;
@@ -227,40 +205,12 @@
 
     .primary-nav__container {
             -webkit-box-flex: 0;
-            -webkit-flex: 0 0 auto;
             -ms-flex: 0 0 auto;
             flex: 0 0 auto;
             //     width: 66.666667%;
             // max-width: 66.666667%;
-
-                flex-basis: auto
+            //flex-basis: auto
     }
-/*
-Since mobile and desktop navbar are different we don't need use the following classes anymore
-    .navbar-toggleable-md {
-        width: auto !important;
-        -webkit-box-pack: center !important;
-        -webkit-justify-content: center !important;
-            -ms-flex-pack: center !important;
-                justify-content: center !important;
-    }
-
-    .navbar-toggleable-md .navbar-collapse {
-        width: auto;
-         -webkit-align-self: center !important;
-        -ms-flex-item-align: center !important;
-         -ms-grid-row-align: center !important;
-                 align-self: center !important;
-
-          -webkit-flex-basis: auto;
-     -ms-flex-preferred-size: auto;
-                  flex-basis: auto;
-
-        -webkit-flex-grow: 0;
-            -ms-flex-positive: 0;
-                flex-grow: 0;
-    }
-*/
 }
 
 
@@ -275,10 +225,10 @@ Since mobile and desktop navbar are different we don't need use the following cl
   .branding__container .flex-row,
   .primary-nav__wrapper,
   .nav__utils .utils {
-    -webkit-box-direction: reverse !important;
-    -webkit-flex-direction: row-reverse !important;
-    -ms-flex-direction: row-reverse !important;
-    flex-direction: row-reverse !important
+    @include flex-row-reverse('important');
+  }
+  .navbar-brand {
+    @include flex-align-self-end('important');
   }
 }
 
@@ -290,11 +240,14 @@ Since mobile and desktop navbar are different we don't need use the following cl
 }
 .mobile-sticky,
 .desktop-sticky {
-  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
+  //prefix removed in b4
+  //-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
   box-shadow: 0 0 5px rgba(0,0,0,0.2),0 1px 0 rgba(255,255,255,0.15);
-  -webkit-transition: -webkit-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
-  -moz-transition: -moz-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
-  -o-transition: -o-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  //-webkit-transition: -webkit-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  //-moz-transition: -moz-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  //-o-transition: -o-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  //webkit-transition prefix has been removed in b4, but -webkit prefix is still valid for the transform property
+  transition: -webkit-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
   transition: transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
 }
 
@@ -382,10 +335,7 @@ Since mobile and desktop navbar are different we don't need use the following cl
   }
   .navbar-brand-sitelogo img {
     max-height: 36px!important;
-    -webkit-transition: all 0.35s ease-in-out;
-    -moz-transition: all 0.35s ease-in-out;
-    -o-transition: all 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
+    @include transition( all 0.35s ease-in-out );
   }
 
   //MORE SPACE AT THE BOTTOM WHEN EXPANDED
