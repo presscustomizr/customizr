@@ -417,7 +417,7 @@ if ( ! class_exists( 'CZR___' ) ) :
                     if ( defined( 'DOING_AJAX' ) )
                       $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize' ) );
                     else
-                      $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placehloders' ) );
+                      $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|core/back|customize', 'fire|core|placeholders' ) );
                 }
                 else {
                     //Skips all admin classes
