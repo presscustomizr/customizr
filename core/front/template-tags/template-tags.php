@@ -116,11 +116,12 @@ if ( ! function_exists( 'czr_fn_readmore_button' ) ) :
  */
 function czr_fn_readmore_button( $args = array() ) {
       $defaults = array(
-            'class' => '',
-            'link'  => get_permalink(),
-            'title' => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
-            'text'  => __('Read more &raquo;', 'customizr' ),
-            'echo'  => false,
+            'class'   => '',
+            'link'    => get_permalink(),
+            'title'   => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
+            'text'    => __('Read more &raquo;', 'customizr' ),
+            'esc_url' => true,
+            'echo'    => false,
       );
 
       $args             = wp_parse_args( $args, $defaults );
@@ -129,7 +130,7 @@ function czr_fn_readmore_button( $args = array() ) {
 
       $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-dark" href="%2$s" title="%3$s">%4$s</a></span>',
             esc_attr( $args[ 'class' ] ),
-            esc_url( $args[ 'link' ] ),
+            $args['esc_url'] ? esc_url( $args[ 'link' ] ) : $args[ 'link' ],
             esc_attr( $args[ 'title' ] ),
             $args[ 'text' ]
       );

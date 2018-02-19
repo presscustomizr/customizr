@@ -127,21 +127,26 @@ class CZR_featured_pages_model_class extends CZR_Model {
           $featured_page_link             = '';
           $customizr_link                 = '';
 
-        if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+          if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
             $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" class="btn btn-edit" style="margin-top: 1em;
     font-weight: bold;"><i class="icn-edit"></i>%3$s</a>',
                 czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
                 __( 'Customizer screen' , 'customizr' ),
                 __( 'Customize it now' , 'customizr' )
             );
-            $featured_page_link          = apply_filters( 'czr_fp_link_url', czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') ) );
+            $featured_page_link           = czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') );
           }
-
         //rendering
-          $featured_page_id               =  null;
-          $featured_page_title            =  apply_filters( 'czr_fp_title', __( 'Featured page' , 'customizr' ), $fp_single_id, $featured_page_id);
-          $text                           =  apply_filters(
-                                                  'tc_fp_text',
+          $featured_page_link             = apply_filters( 'czr_fp_link_url', $featured_page_link );
+          /*
+          * treat the case when we filter the fp link url in prevdem returning => 'javascript:void(0)',
+          * we don't want it to be escaped otherwise the customizer preview will turn it in a link to the home page itself
+          */
+          $featured_page_link             = 'javascript:void(0)' == $featured_page_link ? $featured_page_link : esc_url( $featured_page_link );
+          $featured_page_id               = null;
+          $featured_page_title            = apply_filters( 'czr_fp_title', __( 'Featured page' , 'customizr' ), $fp_single_id, $featured_page_id);
+          $text                           = apply_filters(
+                                                  'czr_fp_text',
                                                   sprintf( '%1$s %2$s',
                                                   __( 'Featured page description text : use the page excerpt or set your own custom text in the customizer screen.' , 'customizr' ),
                                                    $customizr_link
@@ -149,10 +154,11 @@ class CZR_featured_pages_model_class extends CZR_Model {
                                                   $fp_single_id,
                                                   $featured_page_id
                                               );
-          $fp_img                         =  $show_thumb ? apply_filters ('fp_img_src' , $this -> fp_holder_img, $fp_single_id , $featured_page_id ) : '';
+          $fp_img                         = $show_thumb ? apply_filters ('fp_img_src', $this -> fp_holder_img, $fp_single_id , $featured_page_id ) : '';
         }
         else {
-          $featured_page_link             = apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id );
+
+          $featured_page_link             = esc_url( apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id ) );
           $featured_page_title            = apply_filters( 'czr_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
 
 
