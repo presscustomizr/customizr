@@ -1,7 +1,5 @@
 <?php
 class CZR_topbar_wrapper_model_class extends CZR_Model {
-
-    public $contact_info_class;
     public $social_block_class;
 
 
@@ -23,18 +21,17 @@ class CZR_topbar_wrapper_model_class extends CZR_Model {
         $_socials_visibility = esc_attr( czr_fn_opt( 'tc_header_show_socials' ) );
 
         switch ( $_socials_visibility ) :
-          case 'desktop' : $_social_block_class = array( 'hidden-md-down' );
+          case 'desktop' : $_social_block_class = array( 'd-none', 'd-lg-block' );
                            break;
-          case 'mobile'  : $_social_block_class = array( 'hidden-lg-up' );
+          case 'mobile'  : $_social_block_class = array( 'd-lg-none' );
                            break;
-          case 'none'    : $_social_block_class = array( 'hidden' );
+          case 'none'    : $_social_block_class = array( 'd-none' );
                            break;
           default        : $_social_block_class = array();
         endswitch;
 
 
         $model = array_merge( $model, array(
-            'contact_info_class' => apply_filters( 'czr_contact_info_class_in_topbar', array() ),
             'social_block_class' => $_social_block_class
         ) );
 

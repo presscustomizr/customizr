@@ -29,6 +29,14 @@
       float: none;
       width: 100%;
       max-width: 100%;
+      .nav__link {
+        @if ( true == $is_rtl ) {
+          margin: 0 -1/2*$base-line-height-fixed 0 0;
+        }
+        @else {
+          margin: 0 0 0 -1/2*$base-line-height-fixed;
+        }
+      }
   }
 
   .dropdown-item.current-active::before,

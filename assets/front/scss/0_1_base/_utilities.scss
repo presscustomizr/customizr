@@ -77,17 +77,13 @@ img.v-centered {
 
 //vertical-alignment
 %vertical-align-parent {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+   @include transform-style(preserve-3d);
 }
 
 %vertical-align {
   position: relative;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  @include transform(translateY(-50%));
 }
 
 .czr-valign { @include czr-valign() }
@@ -167,6 +163,15 @@ img.v-centered {
   -webkit-mask-image: -webkit-linear-gradient(top,#000 70%,rgba(0,0,0,0) 100%);
 }
 
+//button link
+.czr-btn-link {
+  -webkit-appearance: none !important;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+// From bootstrap4
 //
 // Screenreaders
 //
@@ -178,11 +183,38 @@ img.v-centered {
   @include sr-only-focusable();
 }
 
+// (adapted) Transitions
+.fade {
+  opacity: 0;
+  @include transition( opacity 0.15s linear );
 
-//button link
-.czr-btn-link {
-  -webkit-appearance: none !important;
-  cursor: pointer;
-  background: transparent;
-  border: none;
+  &.show {
+    opacity: 1;
+  }
+}
+
+.czr-collapse {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
+tr {
+  &.czr-collapse.show {
+    display: table-row;
+  }
+}
+
+tbody {
+  &.czr-collapse.show {
+    display: table-row-group;
+  }
+}
+
+.czr-collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  @include transition(height 0.35s ease);
 }

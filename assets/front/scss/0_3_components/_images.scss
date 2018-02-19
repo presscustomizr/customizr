@@ -9,9 +9,7 @@
 .js-centering.entry-media__wrapper img,
 .attachment-image-figure img {
   opacity:0;
-  -webkit-transition: opacity 0.35s ease;
-  -o-transition: opacity 0.35s ease;
-  transition: opacity 0.35s ease;
+  @include transition(opacity 0.35s ease);
   &.h-centered,
   &.v-centered,
   &.opacity-forced {
