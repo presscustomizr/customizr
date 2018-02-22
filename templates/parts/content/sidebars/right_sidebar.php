@@ -13,7 +13,9 @@
         </div>
       </aside>
     <?php endif ?>
+    <?php do_action( '__before_right_sidebar_widgets' ) ?>
     <?php dynamic_sidebar( 'right' ) ?>
+    <?php do_action( '__after_right_sidebar_widets' ) ?>
     <?php do_action( '__after_inner_right_sidebar' ) ?>
   </div>
 </div>
