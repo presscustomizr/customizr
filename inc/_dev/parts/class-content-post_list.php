@@ -62,9 +62,6 @@ class CZR_post_list {
     //ARTICLE CONTAINER CSS CLASSES
     add_filter( 'tc_article_container_class' , array( $this, 'czr_fn_article_container_set_classes' ) );
 
-    //page help blocks
-    add_filter( '__before_loop'              , array( $this , 'czr_fn_maybe_display_img_smartload_help') );
-
     //based on customizer user options
     add_filter( 'tc_post_list_layout'        , array( $this , 'czr_fn_set_post_list_layout') );
     add_filter( 'post_class'                 , array( $this , 'czr_fn_set_content_class') );
@@ -468,21 +465,6 @@ class CZR_post_list {
     return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', $_content ) );
   }
 
-
-  /***************************
-  * LIST OF POSTS IMG SMARTLOAD HELP VIEW
-  ****************************/
-  /**
-  * Displays a help block about images smartload for list of posts before the actual list
-  * hook : __before_loop
-  * @since Customizr 3.4+
-  */
-  function czr_fn_maybe_display_img_smartload_help( $the_content ) {
-    if ( ! ( $this -> czr_fn_post_list_controller() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $text = '', $min_img_num = 0 ) ) )
-      return;
-
-    CZR_placeholders::czr_fn_get_smartload_help_block( $echo = true );
-  }
 
 }//end of class
 endif;

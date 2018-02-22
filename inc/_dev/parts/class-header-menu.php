@@ -48,10 +48,8 @@ if ( ! class_exists( 'CZR_menu' ) ) :
       if ( $this -> czr_fn_is_sidenav_enabled() ){
         add_action( 'wp_head'                     , array( $this , 'czr_fn_set_sidenav_hooks') );
         add_filter( 'tc_user_options_style'       , array( $this , 'czr_fn_set_sidenav_style') );
-      } else {
-        // add main menu notice
-        add_action( '__navbar'                    , array( $this, 'czr_fn_maybe_display_main_menu_notice'), 50 );
       }
+
       //this adds css classes to the navbar-wrapper :
       //1) to the main menu if regular (sidenav not enabled)
       //2) to the secondary menu if enabled
@@ -83,8 +81,6 @@ if ( ! class_exists( 'CZR_menu' ) ) :
 
       // add side menu before the page wrapper
       add_action( '__before_page_wrapper'   , array( $this, 'czr_fn_sidenav_display'), 0 );
-      // add side menu help block
-      add_action( '__sidenav'               , array( $this, 'czr_fn_maybe_display_sidenav_help') );
       // add menu button to the sidebar
       add_action( '__sidenav'               , array( $this, 'czr_fn_sidenav_toggle_button_display'), 5 );
       // add menu
@@ -92,31 +88,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     }
 
 
-    /**
-    * Displays a dismissable block of information in the sidenav wrapper when conditions are met
-    * hook : __sidenav
-    */
-    function czr_fn_maybe_display_sidenav_help() {
-      if (  ! CZR_placeholders::czr_fn_is_sidenav_help_on() )
-        return;
-      ?>
-      <div class="tc-placeholder-wrap tc-sidenav-help">
-        <?php
-          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
-              __( "This is a default page menu.", "customizr" ),
-              __( "( If you don't have any pages in your website, then this side menu is empty for the moment. )" , "customizr"),
-              sprintf( __("If you have already created menu(s), you can %s. If you need to create a new menu, jump to the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "change the default menu", "customizr"), __("replace this default menu by another one", "customizr") ),
-                sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a>', admin_url('nav-menus.php'), __( "menu creation screen", "customizr") )
-              )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-                __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
-    }
+
 
 
     /***************************************
@@ -344,34 +316,6 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     }
 
 
-    /***************************************
-    * PLACEHOLDERS VIEW
-    ****************************************/
-    /**
-    * Displays the placeholder view if conditions are met in CZR_placeholders::czr_fn_is_main_menu_notice_on()
-    * fired in czr_fn_menu_display(), hook : __navbar
-    * @since Customizr 3.4+
-    */
-    function czr_fn_maybe_display_main_menu_notice() {
-      if (  ! CZR_placeholders::czr_fn_is_main_menu_notice_on() )
-          return;
-      ?>
-      <div class="tc-placeholder-wrap tc-main-menu-notice">
-        <?php
-          printf('<p><strong>%1$s<br/>%2$s</strong></p>',
-              __( "You can now display your menu as a vertical and mobile friendly side menu, animated when revealed.", "customizr" ),
-              sprintf( __("%s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('demo.presscustomizr.com?design=nav'), __( "Try it with the demo", "customizr") ),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "open the customizer menu section", "customizr"), __("change your menu design now", "customizr") )
-              )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-                __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
-    }
 
 
     /**

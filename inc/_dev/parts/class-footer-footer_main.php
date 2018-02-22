@@ -85,9 +85,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     		$status = is_active_sidebar( $key ) ? true : $status;
     	}
 
-      //if no active widget area yet, display the footer widget placeholder
+      //if no active widget area yet, return
 			if ( ! apply_filters( 'tc_has_footer_widgets', $status ) ) {
-        $this -> czr_fn_display_footer_placeholder();
         return;
       }
 

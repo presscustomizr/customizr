@@ -17,39 +17,6 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
     function __construct () {
         self::$instance =& $this;
         add_action( '__before_main_container'     , array( $this , 'czr_fn_fp_block_display'), 10 );
-        add_action( '__after_fp'                  , array( $this , 'czr_fn_maybe_display_dismiss_notice'));
-    }
-
-
-
-    /******************************
-    * FP NOTICE VIEW
-    *******************************/
-    /**
-    * hook : __after_fp
-    * @since v3.4+
-    */
-    function czr_fn_maybe_display_dismiss_notice() {
-      if ( ! CZR_placeholders::czr_fn_is_fp_notice_on() )
-        return;
-
-      $_customizer_lnk = apply_filters( 'tc_fp_notice_customizer_url', czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) );
-
-      ?>
-      <div class="tc-placeholder-wrap tc-fp-notice">
-        <?php
-          printf('<p><strong>%1$s</strong></p>',
-            sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
-              sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
-              sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
-            )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-            __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
     }
 
 
