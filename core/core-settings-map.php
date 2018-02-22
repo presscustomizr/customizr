@@ -2237,7 +2237,10 @@ function czr_fn_performance_option_map( $get_default = null ) {
 function czr_fn_placeholders_notice_map( $get_default = null ) {
   return array(
           'tc_display_front_help'  =>  array(
-                            'default'       => 1,
+                            //modern users started before 4.1.0 had this option enabled by default, which produced no effects on front
+                            //since 4.1.0 we introduced the front placholders for modern style, so to not 'disturb' old modern users
+                            //that will see the front block all of a sudden, let's set the default value to 1 only for new users.
+                            'default'       => czr_fn_user_started_before_version( '4.1.0', '2.0.27' ) ? 0 : 1,
                             'control'   => 'CZR_controls',
                             'label'       => __( "Display help notices on front-end for logged in users.", 'customizr' ),
                             'section'     => 'placeholder_sec',
