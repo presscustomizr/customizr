@@ -111,8 +111,6 @@ if ( ! class_exists( 'CZR_menu' ) ) :
           $this -> czr_fn_sidenav_toggle_button_display();
           if ( $this -> czr_fn_is_second_menu_enabled() )
             $this -> czr_fn_regular_menu_display( 'secondary' );
-          else
-            $this -> czr_fn_maybe_display_second_menu_placeholder();
         }
 
       $html = ob_get_contents();
@@ -316,33 +314,6 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     }
 
 
-
-
-    /**
-    * Displays the placeholder view if conditions are met in CZR_placeholders::czr_fn_is_second_menu_placeholder_on()
-    * fired in czr_fn_menu_display(), hook : __navbar
-    * @since Customizr 3.4
-    */
-    function czr_fn_maybe_display_second_menu_placeholder() {
-      if (  ! CZR_placeholders::czr_fn_is_second_menu_placeholder_on() )
-          return;
-      ?>
-      <div class="nav-collapse collapse tc-placeholder-wrap tc-menu-placeholder">
-        <?php
-          printf('<p><strong>%1$s<br/>%2$s</strong></p>',
-              __( "You can display your main menu or a second menu here horizontally.", "customizr" ),
-              sprintf( __("%s or read the %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( "section" => "nav") ), __( "Manage menus in the header", "customizr"), __("Manage your menus in the header now", "customizr") ),
-                sprintf( '<a href="%1$s" title="%2$s" target="blank">%2$s</a><span class="tc-external"></span>', esc_url('http://docs.presscustomizr.com/article/101-customizr-theme-options-header-settings/#navigation'), __( "documentation", "customizr") )
-              )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-                __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
-    }
 
 
 
