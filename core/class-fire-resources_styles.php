@@ -70,6 +70,13 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
               //Customizer user defined style options : the custom CSS is written with a high priority here
               wp_add_inline_style( 'customizr-main'      , apply_filters( 'czr_user_options_style' , '' ) );
 
+
+              //enqueue placeholders style
+              if ( apply_filters(  'czr_enqueue_placeholders_resources', false ) ) {
+                  wp_enqueue_style( 'customizr-front-placholders', CZR_FRONT_ASSETS_URL . 'css/style-front-placeholders.css', array(), $_ver, 'all' );
+              }
+
+
               //Customizr stylesheet (style.css)
               if ( czr_fn_is_child() ) {
                   wp_enqueue_style( 'customizr-style'          , czr_fn_get_theme_file_url( "style.css"), array(), $_ver, 'all' );

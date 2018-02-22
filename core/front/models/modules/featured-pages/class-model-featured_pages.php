@@ -161,6 +161,10 @@ class CZR_featured_pages_model_class extends CZR_Model {
           if ( ! czr_fn_is_customizing() ) {
             $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
             $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
+
+            //disallow placeholder
+            //force enqueing holder js
+            add_filter( 'czr_is_one_fp_set', '__return_true' );
           }
 
           $edit_enabled                   = apply_filters( 'czr_edit_in_fp_title', $edit_enabled );
