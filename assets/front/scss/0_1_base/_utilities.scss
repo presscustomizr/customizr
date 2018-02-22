@@ -1,3 +1,6 @@
+@if ( true == $is_rtl ) {
+  @include make-grid-offsets-rtl();
+}
 .bg-transparent {
   background: transparent
 }
