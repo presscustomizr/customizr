@@ -122,47 +122,6 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 
 
 
-    /**
-    * When do we display this placeholder ?
-    * -User logged in
-    * -Admin
-    * -User did not dismiss the notice
-    * @param : string position left or right
-    * @since Customizr 3.3
-    */
-    private function czr_fn_display_footer_placeholder() {
-      if ( ! CZR_placeholders::czr_fn_is_widget_placeholder_enabled( 'footer' ) )
-        return;
-
-      ?>
-      <aside class="tc-placeholder-wrap tc-widget-placeholder">
-        <?php
-          printf('<span class="tc-admin-notice">%1$s</span>',
-            __( 'This block is visible for admin users only.', 'customizr')
-          );
-
-          printf('<h4>%1$s</h4>',
-            __( 'The footer has no widgets', 'customizr')
-          );
-
-          printf('<p><strong>%1$s</strong></p>',
-              sprintf( __("Add widgets to the footer %s or %s.", "customizr"),
-                sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( "Add widgets", "customizr"), __("now", "customizr") ),
-                sprintf('<a class="tc-inline-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s</a>',
-                  __( 'dismiss this notice', 'customizr')
-                )
-              )
-          );
-
-          printf('<a class="tc-dismiss-notice" data-position="footer" href="#" title="%1$s">%1$s x</a>',
-              __( 'dismiss notice', 'customizr')
-          );
-      ?>
-      </aside>
-      <?php
-    }
-
-
 
 	   /**
 		 * Displays the colophon (block below the widgets areas).
