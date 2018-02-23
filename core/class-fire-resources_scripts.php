@@ -379,7 +379,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                                 'content' => $welcome_note_content,
                                 'dismissAction' => 'dismiss_welcome_note_front'
                             )
-                      )
+                      ),
                   ), czr_fn_get_id() )//end of filter
 
               );
@@ -392,16 +392,22 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'holder-js',
                      CZR_FRONT_ASSETS_URL . 'js/libs/holder.min.js',
                      array(),
-                     CUSTOMIZR_VER,
+                     $this-> _resouces_version,
                      $in_footer = true
                   );
               }
 
               //load retina.js in footer if enabled
               if ( apply_filters('tc_load_retinajs', 1 == czr_fn_opt( 'tc_retina_support' ) ) ) {
-                  wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/libs/retina.min.js', array(), CUSTOMIZR_VER, $in_footer = true);
+                  wp_enqueue_script( 'retinajs', CZR_FRONT_ASSETS_URL . 'js/libs/retina.min.js', array(), $this-> _resouces_version, $in_footer = true);
               }
 
+
+              //enqueue placeholders style
+              if ( apply_filters(  'czr_enqueue_placeholders_resources', false ) ) {
+                  //no need to minify this
+                  wp_enqueue_script( 'customizr-front-placholders', CZR_FRONT_ASSETS_URL . 'js/libs/customizr-placeholders.js', array(), $this-> _resouces_version, $in_footer = true );
+              }
          }
 
 

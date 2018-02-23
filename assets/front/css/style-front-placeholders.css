@@ -1,0 +1,51 @@
+.tc-placeholder-wrap {
+    padding: 19px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    box-shadow: inset 0 0 10px rgba(0,0,0,.6);
+    position: relative
+}
+
+.tc-placeholder-wrap .czr-hb-info-icon {
+    padding-left: 0;
+    position: absolute;
+    text-decoration: none!important;
+    top: 5px;
+    left: 5px;
+}
+.tc-placeholder-wrap p {
+    font-style: italic;
+    font-size: 80%;
+    color: #5a5a5a;
+}
+.tc-dismiss-notice {
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    top: 1px;
+    right: 6px;
+}
+.tc-dismiss-notice.tc-inline-dismiss-notice {
+    position: static;
+}
+.tc-placeholder-wrap h4 {
+    font-weight: bold;
+}
+
+.tc-placeholder-wrap a {
+    text-decoration: underline;
+}
+.tc-post-list-smarload-help {
+    margin-bottom: 2em;
+}
+footer#footer .tc-placeholder-wrap .tc-placeholder-content {
+    text-align: center;
+}
+footer#footer .tc-placeholder-wrap a,
+footer#footer .tc-placeholder-wrap h4,
+footer#footer .tc-placeholder-wrap {
+    color: #5a5a5a;
+}
+footer#footer .tc-placeholder-wrap {
+    margin-top: -1px;
+}

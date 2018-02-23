@@ -1292,6 +1292,7 @@ class CZR_utils_settings_map {
             //to unset
             $_sections_to_unset = array(
                   'site_layout_sec',
+                  'placeholder_sec'
             );
 
             foreach ( $_sections_to_unset as $key ) {
