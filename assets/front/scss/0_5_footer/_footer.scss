@@ -153,6 +153,10 @@
     @include media-breakpoint-down(xs) {
       @at-root .colophon__row  { text-align: center; }
     }
+    //in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
+    [class*=col] {
+      max-width: 100%
+    }
   }//.colophon__row
 }//.footer__wrapper
 
