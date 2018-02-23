@@ -2,8 +2,7 @@
 .branding__container {
 
     @extend .display-flex;
-
-    .primary-navbar__wrapper & {
+    .primary-navbar__wrapper &.col {
       max-width: 85%;
       width: auto;
     }
@@ -98,7 +97,8 @@
 .nav__utils {
     @extend .display-flex;
     flex-shrink: 0;
-
+    //in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
+    max-width: 100%;
     @include media-breakpoint-down( sm ) {
       .mobile-navbar__wrapper & .utils {
         margin-right: -10px;
@@ -172,6 +172,10 @@
 
   .add-menu-button {
     margin: 10px 0;
+  }
+  .col {
+    //in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
+    max-width: 100%;
   }
 }
 
