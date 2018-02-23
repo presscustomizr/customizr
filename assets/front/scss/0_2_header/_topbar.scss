@@ -5,6 +5,10 @@
   .header-tagline {
     flex-shrink: 1;
   }
+  //in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
+  .col-auto {
+    max-width: 100%;
+  }
 }
 /* ie fix */
 .topbar-contact__info,

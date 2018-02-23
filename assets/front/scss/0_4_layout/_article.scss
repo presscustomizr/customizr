@@ -744,3 +744,10 @@ section.post-content { margin-top:0; }
     display: inline-block;
   }
 }
+//in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
+.entry-footer [class*=col],
+.tc-content-inner-wrapper .entry-meta .post-tags,
+.tc-content-inner-wrapper .entry-meta .post-share,
+.post-footer .col-sm-auto {
+  max-width: 100%;
+}
