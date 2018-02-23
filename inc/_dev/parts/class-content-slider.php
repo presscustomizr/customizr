@@ -64,12 +64,6 @@ class CZR_slider {
     //wrap the slide into a link
     add_filter( 'tc_slide_background'       , array( $this, 'czr_fn_link_whole_slide'), 5, 5 );
 
-    //display a notice for first time users
-    if ( 'tc_posts_slider' == $slider_name_id ) {
-      //display a notice for first time users
-      add_action( '__after_carousel_inner'   , array( $this, 'czr_fn_maybe_display_dismiss_notice') );
-    }
-
     //display an edit deep link to the Slider section in the Customize or post/page
     add_action( '__after_carousel_inner'    , array( $this, 'czr_fn_render_slider_edit_link_view'), 10, 2 );
 
@@ -913,33 +907,6 @@ class CZR_slider {
   }
 
 
-  /******************************
-  * SLIDER NOTICE VIEW
-  *******************************/
-  /**
-  * hook : __after_carousel_inner
-  * @since v3.4+
-  */
-  function czr_fn_maybe_display_dismiss_notice() {
-    if ( ! CZR_placeholders::czr_fn_is_slider_notice_on() )
-      return;
-    $_customizer_lnk = czr_fn_get_customizer_url( array( 'control' => 'tc_front_slider', 'section' => 'frontpage_sec') );
-    ?>
-    <div class="tc-placeholder-wrap tc-slider-notice">
-      <?php
-        printf('<p><strong>%1$s</strong></p>',
-          sprintf( __("Select your own slider %s, or %s (you'll be able to add one back later)." , "customizr"),
-            sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Select your own slider", "customizr" ), __( "now", "customizr" ), $_customizer_lnk ),
-            sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the home page slider", "customizr" ), __( "remove this demo slider", "customizr" ) )
-          )
-        );
-        printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-          __( 'dismiss notice', 'customizr')
-        );
-      ?>
-    </div>
-    <?php
-  }
 
 
 

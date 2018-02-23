@@ -42,9 +42,6 @@ if ( ! class_exists( 'CZR_post' ) ) :
       add_action( '__loop'              , array( $this , 'czr_fn_post_content' ));
       //posts parts actions
       add_action( '__after_content'     , array( $this , 'czr_fn_post_footer' ));
-      //smartload help block
-      add_filter( 'the_content'         , array( $this, 'czr_fn_maybe_display_img_smartload_help') , PHP_INT_MAX );
-
     }
 
 
@@ -56,10 +53,6 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_single_post_thumbnail_hooks() {
-      if ( $this -> czr_fn_single_post_display_controller() ) {
-        add_action( '__before_content'        , array( $this, 'czr_fn_maybe_display_featured_image_help') );
-      }
-
       //__before_main_wrapper, 200
       //__before_content 0
       //__before_content 20
@@ -189,53 +182,6 @@ if ( ! class_exists( 'CZR_post' ) ) :
           CZR_post_thumbnails::$instance -> czr_fn_render_thumb_view( $_thumb_model, 'span12', false )
         )
       );
-    }
-
-
-    /***************************
-    * SINGLE POST THUMBNAIL HELP VIEW
-    ****************************/
-    /**
-    * Displays a help block about featured images for single posts
-    * hook : __before_content
-    * @since Customizr 3.4
-    */
-    function czr_fn_maybe_display_featured_image_help() {
-      if ( ! CZR_placeholders::czr_fn_is_thumbnail_help_on() )
-        return;
-      ?>
-      <div class="tc-placeholder-wrap tc-thumbnail-help">
-        <?php
-          printf('<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p>',
-              __( "You can display your post's featured image here if you have set one.", "customizr" ),
-              sprintf( __("%s to display a featured image here.", "customizr"),
-                sprintf( '<strong><a href="%1$s" title="%2$s">%2$s</a></strong>', czr_fn_get_customizer_url( array( "section" => "single_posts_sec") ), __( "Jump to the customizer now", "customizr") )
-              ),
-              sprintf( __( "Don't know how to set a featured image to a post? Learn how in the %s.", "customizr" ),
-                sprintf('<a href="%1$s" title="%2$s" target="_blank">%2$s</a><span class="tc-external"></span>' , esc_url('codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail'), __("WordPress documentation" , "customizr" ) )
-              )
-          );
-          printf('<a class="tc-dismiss-notice" href="#" title="%1$s">%1$s x</a>',
-                __( 'dismiss notice', 'customizr')
-          );
-        ?>
-      </div>
-      <?php
-    }
-
-    /***************************
-    * SINGLE POST IMG SMARTLOAD HELP VIEW
-    ****************************/
-    /**
-    * Displays a help block about images smartload for single posts prepended to the content
-    * hook : the_content
-    * @since Customizr 3.4+
-    */
-    function czr_fn_maybe_display_img_smartload_help( $the_content ) {
-      if ( ! ( $this -> czr_fn_single_post_display_controller()  &&  in_the_loop() && CZR_placeholders::czr_fn_is_img_smartload_help_on( $the_content ) ) )
-        return $the_content;
-
-      return CZR_placeholders::czr_fn_get_smartload_help_block() . $the_content;
     }
 
 

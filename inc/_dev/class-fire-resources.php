@@ -333,9 +333,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
                 'pluginCompats'       => apply_filters( 'tc_js_params_plugin_compat', array() ),
 
-                'frontHelpNoticesOn'  => czr_fn_is_front_help_enabled(),
-                'frontHelpNoticeParams' => apply_filters( 'tc_js_params_front_placeholders', array() ),
-
                 //AJAX
                 'adminAjaxUrl'        => admin_url( 'admin-ajax.php' ),
                 'ajaxUrl'             => add_query_arg(

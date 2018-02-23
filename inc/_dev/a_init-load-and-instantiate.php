@@ -37,7 +37,6 @@ if ( ! class_exists( 'CZR___' ) ) :
                   array('inc' , 'init_retro_compat'),
                   array('inc' , 'resources'),//loads front stylesheets (skins) and javascripts
                   array('inc' , 'widgets'),//widget factory
-                  array('inc' , 'placeholders'),//front end placeholders ajax actions for widgets, menus.... Must be fired if is_admin === true to allow ajax actions.
                   array('inc/admin' , 'admin_init'),//loads admin style and javascript ressources. Handles various pure admin actions (no customizer actions)
                   array('inc/admin' , 'admin_page')//creates the welcome/help panel including changelog and system config
               ),
@@ -164,8 +163,6 @@ if ( ! class_exists( 'CZR___' ) ) :
         //Not customizing
         //1) IS NOT CUSTOMIZING : czr_fn_is_customize_left_panel() || czr_fn_is_customize_preview_frame() || czr_fn_doing_customizer_ajax()
         //---1.1) IS ADMIN
-        //-------1.1.a) Doing AJAX
-        //-------1.1.b) Not Doing AJAX
         //---1.2) IS NOT ADMIN
         //2) IS CUSTOMIZING
         //---2.1) IS LEFT PANEL => customizer controls
@@ -176,12 +173,7 @@ if ( ! class_exists( 'CZR___' ) ) :
               //load
               $this -> czr_fn_req_once( 'core/czr-admin-ccat.php' );
 
-              //if doing ajax, we must not exclude the placeholders
-              //because ajax actions are fired by admin_ajax.php where is_admin===true.
-              if ( defined( 'DOING_AJAX' ) )
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
-              else
-                $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize', 'fire|inc|placeholders' ) );
+              $_to_load = $this -> czr_fn_unset_core_classes( $_to_load, array( 'header' , 'content' , 'footer' ), array( 'admin|inc/admin|customize' ) );
             }
             else {
               //load

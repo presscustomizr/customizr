@@ -200,8 +200,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_filter( 'tc_show_post_metas', 'czr_fn_bbpress_disable_feature', 100);
       //disable the grid
       add_filter( 'tc_set_grid_hooks' , 'czr_fn_bbpress_disable_feature', 100 );
-      //disable the smartload help block
-      add_filter( 'tc_is_img_smartload_help_on', 'czr_fn_bbpress_disable_feature' );
     }
 
 

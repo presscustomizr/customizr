@@ -20,7 +20,6 @@ if ( ! class_exists( 'CZR_init' ) ) :
       public $global_layout;
       public $font_selectors;
       public $footer_widgets;
-      public $widgets;
 
       public $css_container_widths;
       public $css_mq_breakpoints;
