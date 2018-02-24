@@ -1,11 +1,11 @@
 <?php
 class CZR_attachment_image_content_model_class extends CZR_Model {
-    //bools    
+    //bools
     private $prepend_attachment_callback_on;
     public $defaults = array( 'attachment_size' => array( 960, 960 ) );
 
-    public $attachment_gallery; 
-    public $attachment_size; 
+    public $attachment_gallery;
+    public $attachment_size;
     public $attachment_class;
     public $attachment_caption;
     public $attachment_link_url;
@@ -17,8 +17,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
     * @hook: pre_rendering_view_{$this -> id}, 9999
     */
     /*
-    * Each time this model view is rendered setup the current post list item
-    * and add it to the post_list_items_array
+    * Each time this model view is rendered setup the relevant model properties
     */
     function czr_fn_setup_late_properties() {
 
@@ -40,15 +39,15 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
 
         global $post;
         $attachment_gallery     = '';
-        
+
         //when the image has been attached to no posts the $post->parent_id value is 0 and the following
-        $attachments = array_values( 
-            get_children( array( 
+        $attachments = array_values(
+            get_children( array(
                 'post_parent' => $post->post_parent,
-                'post_status' => 'inherit', 
+                'post_status' => 'inherit',
                 'post_type' => 'attachment',
-                'post_mime_type' => 'image', 
-                'order' => 'ASC', 
+                'post_mime_type' => 'image',
+                'order' => 'ASC',
                 'orderby' => 'menu_order ID'
         ) ) );
 
@@ -67,7 +66,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
                 if ( $attachment->ID == $post->ID )
                     break;
             }
-            
+
             $k++;
 
             // If there is more than 1 attachment in a gallery
@@ -92,7 +91,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
             $attachment_class           = 'attachment';
             $attachment_link_attributes = 'rel="attachment"';
 
-        } 
+        }
         else {// if lightbox option checked
 
             $attachment_info            = wp_get_attachment_image_src( $post->ID , 'large' );
@@ -104,7 +103,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
             foreach ( $attachments as $k => $attachment ) { //get all related gallery attachement for lightbox navigation excluding the current one
                 if ( $attachment -> ID == $post -> ID )
                     continue;
-                
+
                 $rel_attachment_info        = wp_get_attachment_image_src( $attachment->ID , 'large' );
                 $rel_attachment_src         = $rel_attachment_info[0];
                 $attachment_gallery         = sprintf( '%1$s<a href="%2$s" title="%3$s" %4$s></a>',
@@ -119,11 +118,11 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
 
 
         $attachment_size            = apply_filters( 'czr_customizr_attachment_size' , $this->defaults['attachment_size'] );
-        
+
         //update the model
-        $this -> czr_fn_update( compact( 
-            'attachment_gallery', 
-            'attachment_size', 
+        $this -> czr_fn_update( compact(
+            'attachment_gallery',
+            'attachment_size',
             'attachment_class',
             'attachment_caption',
             'attachment_link_url',
