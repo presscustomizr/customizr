@@ -1944,14 +1944,18 @@ article.format-gallery p.format-icon, article.format-image p.format-icon {
   color: @PostFormatText;
 }
 
-article .author-info , .archive-header .author-info {
+article .author-info-wrapper , .archive-header .author-info {
   background: #FFF;
   padding: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-style: italic;
   font-size: inherit;
 }
-
+article .author-info + .author-info {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
 article .author-info h2 , .archive-header .author-info h2 {
   margin:0px;
 }
