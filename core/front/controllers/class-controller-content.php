@@ -108,7 +108,11 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
       return apply_filters( 'czr_show_single_post_content', czr_fn_is_single_post() );
     }
 
+
+
     function czr_fn_display_view_single_author_info() {
+      if ( ! apply_filters( 'czr_show_author_metas_in_post', esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) ) )
+        return;
 
       if ( !$this -> czr_fn_display_view_post() )
         return;
@@ -120,15 +124,18 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
         $author_id = $post->post_author;
       }
 
-      if ( ! get_the_author_meta( 'description', $author_id ) )
-        return;
+      $authors_id      = apply_filters( 'tc_post_author_id', array( $author_id ) );
+      $authors_id      = is_array( $authors_id ) ? $authors_id : array( $author_id );
+      //author candidates must have a bio to be displayed
+      $authors_id      = array_filter( $authors_id, 'czr_fn_get_author_meta_description_by_id' );
 
-      //@todo check if some conditions below not redundant?
-      if ( ! apply_filters( 'czr_show_author_metas_in_post', esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) ) )
-        return;
+      if ( empty( $authors_id ) )
+        return false;
 
       return true;
     }
+
+
 
     function czr_fn_display_view_attachment_image() {
       return apply_filters( 'czr_show_attachment_content', czr_fn_is_single_attachment_image() );

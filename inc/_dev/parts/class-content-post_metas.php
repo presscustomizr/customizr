@@ -512,14 +512,38 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         private function czr_fn_get_meta_author() {
-            return apply_filters(
-                'tc_author_meta',
-                sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
-                    esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-                    esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author() ) ),
-                    get_the_author()
-                )
-            );//end filter
+
+            $author_id = null;
+
+            if ( is_single() ) {
+                if ( ! in_the_loop() ) {
+                    global $post;
+                    $author_id = $post->post_author;
+                }
+            }
+
+            $author_id_array = apply_filters( 'tc_post_author_id', array( $author_id ) );
+            $author_id_array = is_array( $author_id_array ) ? $author_id_array : array( $author_id );
+
+            $_html  = '';
+            $_i     = 0;
+
+            foreach ( $author_id_array as $author_id ) {
+                $_i         +=1;
+                $author_name = get_the_author_meta( 'display_name', $author_id );
+
+                if ( ! ( 1 == $_i || count( $author_id ) == $_i ) ) {
+                    $_html  .= ', ';
+                }
+
+                $_html      .= sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
+                      esc_url( get_author_posts_url( $author_id ) ),
+                      esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), $author_name ) ),
+                      $author_name
+                );
+            }
+
+            return apply_filters('tc_author_meta', $_html );
         }
 
 

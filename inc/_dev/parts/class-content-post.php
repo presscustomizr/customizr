@@ -114,30 +114,48 @@ if ( ! class_exists( 'CZR_post' ) ) :
       //check conditional tags : we want to show single post or single custom post types
       if ( ! $this -> czr_fn_single_post_display_controller() || ! apply_filters( 'tc_show_single_post_footer', true ) )
           return;
+
       //@todo check if some conditions below not redundant?
-      if ( ! is_singular() || ! get_the_author_meta( 'description' ) || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) )
+      if ( ! is_singular() || ! apply_filters( 'tc_show_author_metas_in_post', true ) || ! esc_attr( czr_fn_opt( 'tc_show_author_info' ) ) ) {
         return;
+      }
 
-      $html = sprintf('<footer class="entry-meta">%1$s<div class="author-info"><div class="%2$s">%3$s %4$s</div></div></footer>',
-                   '<hr class="featurette-divider">',
 
-                  apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
 
-                  sprintf('<div class="%1$s">%2$s</div>',
-                          apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
-                          get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) )
-                    ),
+      $author_id       = get_the_author_meta( 'ID' );
+      $authors_id      = apply_filters( 'tc_post_author_id', array( $author_id ) );
+      $authors_id      = is_array( $authors_id ) ? $authors_id : array( $author_id );
+      //author candidates must have a bio to be displayed
+      $authors_id      = array_filter( $authors_id, 'czr_fn_get_author_meta_description_by_id' );
 
-                  sprintf('<div class="%1$s"><h3>%2$s</h3><p>%3$s</p><div class="author-link">%4$s</div></div>',
-                          apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
-                          sprintf( __( 'About %s' , 'customizr' ), get_the_author() ),
-                          get_the_author_meta( 'description' ),
-                          sprintf( '<a href="%1$s" rel="author">%2$s</a>',
-                            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-                            sprintf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>' , 'customizr' ), get_the_author() )
-                          )
-                    )
-      );//end sprintf
+      if ( empty( $authors_id ) ) {
+        return;
+      }
+
+      $html            = '<footer class="entry-meta"><hr class="featurette-divider"><div class="author-info-wrapper">';
+
+      foreach ( $authors_id as $author_id ) {
+        $author_name   = get_the_author_meta( 'display_name', $author_id );
+        $html         .= sprintf('<div class="author-info"><div class="%1$s">%2$s %3$s</div></div>',
+                            apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
+
+                            sprintf('<div class="%1$s">%2$s</div>',
+                                    apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
+                                    get_avatar( get_the_author_meta( 'user_email', $author_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) )
+                            ),
+                            sprintf('<div class="%1$s"><h3>%2$s</h3><p>%3$s</p><div class="author-link">%4$s</div></div>',
+                                    apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
+                                    sprintf( __( 'About %s' , 'customizr' ),  ),
+                                    get_the_author_meta( 'description', $author_id ),
+                                    sprintf( '<a href="%1$s" rel="author">%2$s</a>',
+                                      esc_url( get_author_posts_url( $author_id ) ),
+                                      sprintf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>' , 'customizr' ), $author_name )
+                                    )
+                            )
+        );//end sprintf
+      }//end for
+      $html .= '</div></footer>';
+
       echo apply_filters( 'tc_post_footer', $html );
     }
 
