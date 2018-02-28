@@ -1,13 +1,6 @@
 <?php
 /**
- * The template for displaying the footer pusher
- * This is a simple template which has reason to exist to allow users
- * to place it wherever they want, after an article, after the main wrapper
- * and so on.. by default it's placed after the main container (.container[role=main])
- * inside the #main-wrapper
- *
- * @package Customizr
- * @since Customizr 3.5.0
+ * The template for displaying the horizontal footer widget area
  */
 ?>
 <div id="footer-horizontal-widget-area" class="<?php czr_fn_echo('element_class') ?> widget__wrapper" role="complementary" <?php czr_fn_echo('element_attributes') ?>>
