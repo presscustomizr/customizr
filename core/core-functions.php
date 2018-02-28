@@ -1082,6 +1082,12 @@ function czr_fn_is_ajax() {
 
 
 
+/*
+* @return string
+*/
+function czr_fn_get_author_meta_description_by_id( $author_ID ) {
+  return get_the_author_meta( 'description', $author_ID ); //falls back on the current post author ID if $author_ID is falsy
+}
 
 
 

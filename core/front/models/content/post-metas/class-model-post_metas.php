@@ -15,6 +15,10 @@ class CZR_post_metas_model_class extends CZR_Model {
     return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
   }
 
+  public function czr_fn_get_author_with_avatar( $before = null ) {
+    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author_with_avatar', array( $before ) ) : '';
+  }
+
   public function czr_fn_get_publication_date( $permalink = false, $before = null, $only_text = false ) {
     return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
         '',
@@ -55,20 +59,27 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   private function czr_fn_meta_generate_author( $before ) {
     $author = $this -> czr_fn_get_meta_author();
-    $before = is_null($before) ? __( 'by', 'customizr' ) :'';
+    $before = is_null($before) ? __( 'by', 'customizr' ) : $before;
     return sprintf( '<span class="author-meta">%1$s %2$s</span>', $before, $author );
   }
 
+  private function czr_fn_meta_generate_author_with_avatar( $before ) {
+    $author = $this -> czr_fn_get_meta_author( $get_avatar = true );
+    $before = is_null($before) ? __( 'by', 'customizr' ) : $before;
+    return sprintf( '<span class="author-meta">%1$s %2$s</span>', $before, $author );
+  }
+
+
   private function czr_fn_meta_generate_pub_date( $format = '', $permalink = false, $before = null, $only_text = false ) {
     $date   = $this -> czr_fn_get_meta_date( 'publication', $format, $permalink, $only_text );
-    $before = is_null($before) ? __( 'Published', 'customizr' ) :'';
+    $before = is_null($before) ? __( 'Published', 'customizr' ) : $before;
 
     return sprintf( '%1$s %2$s', $before , $date );
   }
 
   private function czr_fn_meta_generate_up_date( $format = '', $permalink = false, $before = null, $only_text = false ) {
     $date   = $this -> czr_fn_get_meta_date( 'update', $format, $permalink, $only_text );
-    $before = is_null($before) ? __( 'Updated', 'customizr' ) :'';
+    $before = is_null($before) ? __( 'Updated', 'customizr' ) : $before;
 
     return sprintf( '%1$s %2$s', $before , $date );
   }
@@ -146,23 +157,43 @@ class CZR_post_metas_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  private function czr_fn_get_meta_author() {
+  private function czr_fn_get_meta_author( $get_avatar = false ) {
     $author_id = null;
 
-    if ( is_single() )
+    if ( is_single() ) {
       if ( ! in_the_loop() ) {
         global $post;
         $author_id = $post->post_author;
       }
+    }
 
-    return apply_filters(
-        'tc_author_meta',
-        sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
-            esc_url( get_author_posts_url( get_the_author_meta( 'ID', $author_id ) ) ),
-            esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), get_the_author_meta( 'display_name', $author_id ) ) ),
-            get_the_author_meta( 'display_name', $author_id )
-        )
-    );//end filter
+    $author_id_array = apply_filters( 'tc_post_author_id', array( $author_id ) );
+    $author_id_array = is_array( $author_id_array ) ? $author_id_array : array( $author_id );
+
+    $_html  = '';
+    $_i     = 0;
+
+    foreach ( $author_id_array as $author_id ) {
+      $_i         +=1;
+      $author_name = get_the_author_meta( 'display_name', $author_id );
+
+      if ( ! ( 1 == $_i || count( $author_id ) == $_i ) ){
+        $_html    .= ', ';
+      }
+
+      $_html      .= '<span class="author vcard">';
+      if ( $get_avatar ) {
+        $_html    .= sprintf( '<span class="author-avatar">%1$s</span>', get_avatar( get_the_author_meta( 'user_email', $author_id ), 48 ) );
+      }
+      $_html      .= sprintf( '<span class="author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
+            esc_url( get_author_posts_url( $author_id ) ),
+            esc_attr( sprintf( __( 'View all posts by %s' , 'customizr' ), $author_name ) ),
+            $author_name
+      );
+      $_html      .= '</span>';
+    }
+
+    return apply_filters('tc_author_meta', $_html );
   }
 
 

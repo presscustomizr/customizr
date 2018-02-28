@@ -22,8 +22,16 @@
   @extend .small;
 }
 
-.archive-header .header-bottom {
-  margin-bottom: -1em;
+.archive-header {
+  .header-bottom {
+    margin-bottom: -1em;
+  }
+  .featurette-divider {
+    margin-top: 1.8*$base-line-height;
+  }
+  .author-bio {
+    margin-bottom: 0;
+  }
 }
 
 .archive-header-description {
@@ -32,9 +40,6 @@
   padding-bottom: $base-line-height;
   border-top: 1px solid $grey-lightest;
   border-bottom: 1px solid $grey-lightest;
-}
-.archive-header .featurette-divider {
-  margin-top: 1.8*$base-line-height;
 }
 
 //singular not full-width thumbnail vertical spacing depending on the location
@@ -282,88 +287,12 @@ section[class^="post-"] {
 .col-avatar-48   { width: 48px; float:left; display:block; }
 
 .post-author {
-  figure {
+  .post-author__wrapper {
     position: relative;
-    padding: $base-line-height*2;
     border:2px solid $grey-lightest;
     @include clearfix;
-    img {
-      @if ( true == $is_rtl ) {
-        right: $base-line-height*2
-      }
-      @else {
-        left: $base-line-height*2;
-      }
-      position: absolute;
-      border-radius: 50%;
-      width:120px;
-      height: 120px;
-      top: calc((100% - 120px)/2);
-      //@media (max-width: 992px)
-      @include media-breakpoint-down(md) {
-        width:60px;
-        height: 60px;
-        display: block;
-        position: relative;
-        top: 0;
-        @if ( true == $is_rtl ) {
-          right: calc((100% - 60px)/2);
-          left: 0;
-        }
-        @else {
-          left: calc((100% - 60px)/2);
-          right: 0;
-        }
-      }
-    }
-    figcaption {
-      @if ( true == $is_rtl ) {
-        padding-right:$base-line-height*2;
-        text-align: right;
-        margin-right: 120px;
-      }
-      @else {
-        padding-left:$base-line-height*2;
-        text-align: left;
-        margin-left: 120px;
-      }
-      p {
-        color: $grey-dark;
-      }
-      //@media (max-width: 992px)
-      @include media-breakpoint-down(md) {
-        @if ( true == $is_rtl ) {
-          margin-right: 0;
-          text-align: right;
-          padding-right: 0;
-        }
-        @else {
-          margin-left: 0;
-          text-align: left;
-          padding-left: 0;
-        }
-       }
-      .action-link {
-        @extend .small;
-        @extend .caps;
-        font-family: $serviceFont;
-        @if ( true == $is_rtl ) {
-          float:right;
-        }
-        @else {
-          float:left;
-        }
-      }
-      .socials {
-        @if ( true == $is_rtl ) {
-          float:left;
-        }
-        @else {
-          float:right;
-        }
-      }
-    }
-    .post-author-name { margin-top:0; }
+    padding: 0 $base-line-height*2;
+
     .post-author-title {
       background: $white;
       color: $black;
@@ -374,20 +303,123 @@ section[class^="post-"] {
       padding: 0 $base-line-height;
       white-space: nowrap;
       position: absolute;
-      top: 50%;
+      margin: 0;
+      top: 0;
       @if ( true == $is_rtl ) {
-        right: -12px;
-        @include transform(rotate(90deg) translate3d(50%, -50%, 0));
-        @include transform-origin(top right);
+        right: 50%;
+        @include transform(translate(50%, -100%));
       }
       @else {
-        left: -12px;
-        @include transform(rotate(-90deg) translate3d(-50%, -50%, 0));
-        @include transform-origin(top left);
+        left: 50%;
+        @include transform(translate(-50%, -100%));
+      }
+
+      @include media-breakpoint-up(sm) {
+        top: 50%;
+        @if ( true == $is_rtl ) {
+          right: -12px;
+          @include transform(rotate(90deg) translate(50%, -50%));
+          @include transform-origin(top right);
+        }
+        @else {
+          left: -12px;
+          @include transform(rotate(-90deg) translate(-50%, -50%));
+          @include transform-origin(top left);
+        }
+      }
+    }
+
+    @at-root .post-author__wrapper figure {
+      @include clearfix;
+      position: relative;
+      margin: 0;
+      padding: 2.5em 0;
+      img {
+        @if ( true == $is_rtl ) {
+          right: 0;
+        }
+        @else {
+          left: 0;
+        }
+        position: absolute;
+        border-radius: 50%;
+        width:120px;
+        height: 120px;
+        top: calc((100% - 120px)/2);
+        //@media (max-width: 992px)
+        @include media-breakpoint-down(md) {
+          width:60px;
+          height: 60px;
+          display: block;
+          position: relative;
+          top: 0;
+          @if ( true == $is_rtl ) {
+            right: calc((100% - 60px)/2);
+          }
+          @else {
+            left: calc((100% - 60px)/2);
+          }
+        }
+      }
+      figcaption {
+        @if ( true == $is_rtl ) {
+          padding-right:$base-line-height*2;
+          text-align: right;
+          margin-right: 120px;
+        }
+        @else {
+          padding-left:$base-line-height*2;
+          text-align: left;
+          margin-left: 120px;
+        }
+        p {
+          color: $grey-dark;
+        }
+        //@media (max-width: 992px)
+        @include media-breakpoint-down(md) {
+          @if ( true == $is_rtl ) {
+            margin-right: 0;
+            text-align: right;
+            padding-right: 0;
+          }
+          @else {
+            margin-left: 0;
+            text-align: left;
+            padding-left: 0;
+          }
+         }
+        .action-link {
+          @extend .small;
+          @extend .caps;
+          font-family: $serviceFont;
+          @if ( true == $is_rtl ) {
+            float:right;
+          }
+          @else {
+            float:left;
+          }
+        }
+        .socials {
+          @if ( true == $is_rtl ) {
+            float:left;
+          }
+          @else {
+            float:right;
+          }
+        }
+      }
+      .post-author-name { margin-top:0; }
+      + figure {
+        border-top: 1px solid $grey-lightest;
+        margin-top: -1 * $base-line-height;
+        padding-top: $base-line-height;
+        @include media-breakpoint-up(sm) {
+          margin-top: 0;
+          padding: 2.5em 0;
+        }
       }
     }
   }
-
 }
 
 

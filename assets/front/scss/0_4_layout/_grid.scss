@@ -323,6 +323,9 @@ a.czr-format-link {
   article  {
     position: relative;
     margin:  $base-line-height*2 0;
+    &:first-of-type {
+     margin-top: 0;
+    }
     section { padding:0 }
     .tc-content { padding:$base-line-height*3 $base-line-height*2; }
   }
@@ -726,22 +729,9 @@ a.czr-format-link {
   .post-tags { margin-top: 1.5em; }
   .post-share .socials { margin-top: 1.1em }
 
-  footer .post-info {
-    margin-top: $base-line-height;
-    @media (min-width: 48em) {
-      text-align: right;
-      margin-top: 0;
-    }
-  }//footer .post-info
-
-
   .post-info, .author-info, .post-tags {  @extend .small;  }
   .author-info {
-
     .author-meta {
-      margin-right: $base-line-height;
-      margin-left: $base-line-height;
-
       a {
         @extend .semi-bold;
         line-height: 48px;
@@ -751,7 +741,6 @@ a.czr-format-link {
         letter-spacing: 4px;
       }//a
     }
-
     //.avatar, a { float:none; clear: none; display: inline-block; }
   }//.author-info
 
@@ -796,9 +785,25 @@ a.czr-format-link {
     padding-top: $base-line-height;
     margin-top: $base-line-height*2;
 
-    .post-info { //former .entry-meta
-      margin-top:$base-line-height*2;
-
+    .entry-meta {
+        margin: 0;
+        .author {
+          display: inline-block;
+          @at-root .grid-container__plain .entry-footer .author-avatar {
+            + .author_name {
+              @if ( true == $is_rtl ) {
+                margin-right: 5px;
+              }
+              @else {
+                margin-left: 5px;
+              }
+            }
+          }
+          @at-root .grid-container__plain .entry-footer .author-avatar,
+                   .grid-container__plain .entry-footer .author_name {
+                      display: inline-block;
+                   }
+        }
     }
     .btn-holder {
       text-align: right;
