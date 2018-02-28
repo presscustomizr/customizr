@@ -2113,6 +2113,19 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'type'          => 'select' ,
                             'priority'      => 0
           ),
+          'tc_footer_horizontal_widgets' => array(
+                            'default'       => 'full',
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( 'Horizontal widget area in your footer', 'customizr'),
+                            'choices'       => array(
+                                  'none'   => __( "Don't display" , 'customizr' ),
+                                  'full'  => __( 'Display full-width' , 'customizr'),
+                                  'boxed' => __( 'Display boxed' , 'customizr')
+                            ),
+                            'section'       => 'footer_global_sec' ,
+                            'type'          => 'select' ,
+                            'priority'      => 0,
+          ),
           'tc_social_in_footer' =>  array(
                             'default'       => 1,
                             'label'       => __( 'Social links in footer' , 'customizr' ),

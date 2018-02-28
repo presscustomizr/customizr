@@ -66,9 +66,22 @@
   }
 }
 
+#footer-horizontal-widget-area {
+  .widget__container.container-fluid > .row > .col-12 {
+    //remove widget col padding when in full-width
+    padding-right: 0;
+    padding-left: 0;
+    overflow: hidden;
+  }
+  .czr-gallery.row {
+    figure {
+      margin-bottom: 0;
+    }
+  }
+}
 .footer__wrapper {
-  .footer-skin-dark  &  { @include footer__skincolor($white); }
-  .footer-skin-light &  { @include footer__skincolor($black); }
+  .footer-skin-dark  & { @include footer__skincolor($white); }
+  .footer-skin-light & { @include footer__skincolor($black); }
   font-size: 90%;
 
   .widget__wrapper {

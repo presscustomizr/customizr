@@ -20,6 +20,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
       public $global_layout;
       public $font_selectors;
       public $footer_widgets;
+      public $footer_horizontal_widgets;
 
       public $css_container_widths;
       public $css_mq_breakpoints;
@@ -123,6 +124,16 @@ if ( ! class_exists( 'CZR_init' ) ) :
                               'before_title'            => '<h5 class="widget-title">',
                               'after_title'             => '</h5>'
               )
+          );//end of array
+
+          //Default horizontal footer widget area
+          $this -> footer_horizontal_widgets     = array(
+              'footer_horizontal'    => array(
+                              'name'                 => __( 'Footer Horizontal Widget Area' , 'customizr' ),
+                              'description'          => __( 'Appears before the site footer' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
           );//end of array
       }//end of constructor
 

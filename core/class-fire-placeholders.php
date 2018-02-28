@@ -134,6 +134,27 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
                 ),
                 'controller'               => array( $this, 'czr_fn_is_right_sidebar_widget_placeholder_enabled' )
             ),
+            //footer_horizontal_widgets
+            array(
+                'template'    => false,
+                'hook'        => '__before_footer',
+                'priority'    => '999',
+                'callback'    => $this->placeholder_template_callback,
+                'cb_params'   => array(
+                    'dismiss_action'         => 'dismiss_widget_notice',
+                    'element_tag'            => 'aside',
+                    'element_class'          => 'col-12 horizontal-footer',
+                    'position'               => 'horizontal_footer',
+                    'help_title'             => __( 'The horizontal footer widget area has no widgets', 'customizr'),
+                    'help_message'           => sprintf( __( 'Add widgets to the horizontal footer widget area %s or %s.', 'customizr'),
+                        sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( 'Add widgets', 'customizr'), __('now', 'customizr') ),
+                        sprintf('<a class="tc-inline-dismiss-notice tc-dismiss-notice" href="#" title="%1$s">%1$s</a>',
+                          __( 'dismiss this notice', 'customizr')
+                        )
+                    ),
+                ),
+                'controller'               => array( $this, 'czr_fn_is_horizontal_footer_widgets_placeholder_enabled' )
+            ),
             //footer widgets
             array(
                 'template'    => false,
@@ -298,10 +319,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
             return $did_one;
         }
 
-        $footer_widgets              = apply_filters( 'czr_footer_widgets'  , CZR_init::$instance -> footer_widgets );
-        $sidebar_widgets             = apply_filters( 'czr_sidebar_widgets' , CZR___::$instance -> sidebar_widgets );
-        $widgets                     = apply_filters( 'czr_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
-
+        //gets the filtered default values
+        $widgets                     = CZR_widgets::$instance->widgets;
         //Inline style, we really don't need to add this to our syle css or enqueue a different style, right?
         $placeholder_style           = ' style="background:#fff;padding:7%;text-align:center;border:3px dotted #efb93f;font-size:.875em;"';
         $placeholder_title_style     = ' style="margin:0.5em;font-size:1.5em;color:#444"';
@@ -492,6 +511,11 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     }
 
     //helper
+    function czr_fn_is_horizontal_footer_widgets_placeholder_enabled() {
+        return $this -> czr_fn_is_widget_placeholder_enabled( 'horizontal_footer' ) && !czr_fn_is_registered_or_possible( 'footer_horizontal_widgets' );
+    }
+
+    //helper
     function czr_fn_is_footer_widgets_placeholder_enabled() {
         return $this -> czr_fn_is_widget_placeholder_enabled( 'footer' ) && !czr_fn_is_registered_or_possible( 'footer_widgets' );
     }
@@ -506,7 +530,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         if ( defined('CZR_DEV') && true === CZR_DEV )
             return true;
 
-        $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer') ) : array($_position);
+        $_position = is_null($_position) ? apply_filters('tc_widget_areas_position', array( 'sidebar', 'footer', 'horizontal_footer') ) : array($_position);
 
         return apply_filters( "tc_display_widget_placeholders",
             czr_fn_is_front_help_enabled() && is_user_logged_in() && current_user_can('edit_theme_options')

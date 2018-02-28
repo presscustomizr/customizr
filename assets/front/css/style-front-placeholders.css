@@ -38,6 +38,7 @@
 .tc-post-list-smarload-help {
     margin-bottom: 2em;
 }
+.horizontal-footer.tc-placeholder-wrap .tc-placeholder-content,
 footer#footer .tc-placeholder-wrap .tc-placeholder-content {
     text-align: center;
 }
