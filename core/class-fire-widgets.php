@@ -18,6 +18,8 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
   class CZR_widgets {
     //Access any method or var of the class with classname::$instance -> var or method():
     static $instance;
+    public $widgets;
+
     function __construct () {
       self::$instance =& $this;
       //widgets actions
@@ -50,12 +52,15 @@ if ( ! class_exists( 'CZR_widgets' ) ) :
       );
 
       //gets the filtered default values
-      $footer_widgets           = apply_filters( 'czr_footer_widgets'  , CZR_init::$instance -> footer_widgets );
-      $sidebar_widgets          = apply_filters( 'czr_sidebar_widgets' , CZR___::$instance -> sidebar_widgets );
-      $widgets                  = apply_filters( 'czr_default_widgets' , array_merge( $sidebar_widgets , $footer_widgets ) );
+      $footer_horizontal_widgets = apply_filters( 'czr_footer_horizontal_widgets'  , CZR_init::$instance -> footer_horizontal_widgets );
+      $footer_widgets            = apply_filters( 'czr_footer_widgets'             , CZR_init::$instance -> footer_widgets );
+      $sidebar_widgets           = apply_filters( 'czr_sidebar_widgets'            , CZR___::$instance -> sidebar_widgets );
+      $widgets                   = apply_filters( 'czr_default_widgets'            , array_merge( $sidebar_widgets , $footer_horizontal_widgets, $footer_widgets ) );
+
+      $this->widgets             = $widgets;
 
       //declares the arguments array
-      $args                     = array();
+      $args                      = array();
 
       //fills in the $args array and registers sidebars
       foreach ( $widgets as $id => $infos) {

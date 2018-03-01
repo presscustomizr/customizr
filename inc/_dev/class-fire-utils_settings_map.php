@@ -1271,6 +1271,7 @@ class CZR_utils_settings_map {
             //to unset
             $_to_unset = array(
                   'tc_footer_skin',
+                  'tc_footer_horizontal_widgets'
             );
 
             foreach ( $_to_unset as $key ) {

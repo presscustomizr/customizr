@@ -5,11 +5,29 @@ class CZR_footer_model_class extends CZR_Model {
   function __construct( $model = array() ) {
     parent::__construct( $model );
 
-    CZR() -> collection -> czr_fn_register( array(
+    $children = array(
+      //footer_push
+      array(
         'id'          => 'footer_push',
         'template'    => 'footer/footer_push',
         'hook'        => '__after_main_container'
-    ) );
+      ),
+      //horizontal widget area
+      array(
+        'id'          => 'footer_horizontal_widgets',
+        'template'    => 'footer/footer_horizontal_widgets',
+        'hook'        => '__before_footer',
+        'priority'    => '999',
+        'args'        => array(
+          'inner_container_class' => 'full' == czr_fn_opt( 'tc_footer_horizontal_widgets' ) ? 'container-fluid' : 'container'
+        )
+      ),
+    );
+
+    $children = apply_filters( 'czr_footer_children_models', $children );
+    foreach ( $children as $child_model ) {
+        CZR() -> collection -> czr_fn_register( $child_model );
+    }//foreach
   }
 
   /**
