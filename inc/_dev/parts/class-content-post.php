@@ -145,7 +145,7 @@ if ( ! class_exists( 'CZR_post' ) ) :
                             ),
                             sprintf('<div class="%1$s"><h3>%2$s</h3><p>%3$s</p><div class="author-link">%4$s</div></div>',
                                     apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
-                                    sprintf( __( 'About %s' , 'customizr' ),  ),
+                                    sprintf( __( 'About %s' , 'customizr' ), $author_name ),
                                     get_the_author_meta( 'description', $author_id ),
                                     sprintf( '<a href="%1$s" rel="author">%2$s</a>',
                                       esc_url( get_author_posts_url( $author_id ) ),
