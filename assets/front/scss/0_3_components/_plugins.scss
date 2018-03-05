@@ -9,6 +9,7 @@
   }
 
   //buttons
+
   #respond input#submit,
   input#submit,
   input.button,
@@ -43,6 +44,7 @@
     margin: -3px 0 0;
   }
 
+  button.button,
   input#submit[class*=alt],
   input.button[class*=alt],
   a.button[class*=alt],
@@ -153,6 +155,12 @@
 .select2-hidden-accessible {
   min-width: 0;
 }
+//woocommerce forms can use themeform style
+.variations_form.cart,
+.woocommerce-checkout {
+  @extend .themeform
+}
+
 
 //table
 #add_payment_method .cart-collaterals .cart_totals table,
@@ -243,22 +251,9 @@
   }
 
 }
-
-/*
-* WP Forms plugin compatibility
-* https://github.com/presscustomizr/customizr/issues/1438
-*/
-.wpforms-form {
-  input[type=checkbox] {
-    -webkit-appearance: checkbox !important;
-  }
-  input[type=radio] {
-    -webkit-appearance: radio !important;
-  }
-  input[type=checkbox]:checked::before,
-  input[type=radio]:checked::before  {
-    display: none;
-  }
+//wpcf7 forms can use themeform style
+.wpcf7-form {
+  @extend .themeform;
 }
 
 //force fpu background to white if fpu bg set to default color
