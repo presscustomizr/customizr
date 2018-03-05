@@ -9,7 +9,7 @@
   }
 
   //buttons
-
+  button.button[type=submit],
   #respond input#submit,
   input#submit,
   input.button,
@@ -26,6 +26,7 @@
     @extend %btn_base;
   }
 
+  button.button[type=submit],
   #respond input#submit,
   input#submit,
   input.button,
@@ -44,7 +45,6 @@
     margin: -3px 0 0;
   }
 
-  button.button,
   input#submit[class*=alt],
   input.button[class*=alt],
   a.button[class*=alt],

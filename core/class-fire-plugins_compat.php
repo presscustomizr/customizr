@@ -944,6 +944,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_fn_wc_skin_color_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
+            '.woocommerce button.button[type=submit]:hover',
             '.woocommerce #respond input#submit:hover',
             '.woocommerce input#submit:hover',
             '.woocommerce input.button:hover',
@@ -964,6 +965,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       function czr_fn_wc_skin_color_background_color_prop_selectors( $selectors ) {
          return array_merge( $selectors, array(
+            '.woocommerce button.button[type=submit]',
             '.woocommerce #respond input#submit',
             '.woocommerce input#submit',
             '.woocommerce input.button',
@@ -976,21 +978,25 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
          return array_merge( $selectors, array(
             '.woocommerce .woocommerce-info',
             '.woocommerce .woocommerce-message',
+            '.woocommerce button.button[type=submit]',
             '.woocommerce #respond input#submit',
             '.woocommerce input#submit',
             '.woocommerce input.button',
             '.woocommerce a.button',
             '.woocommerce .button.add_to_cart_button',
+            '.woocommerce button.button[type=submit]:hover',
             '.woocommerce #respond input#submit:hover',
             '.woocommerce input#submit:hover',
             '.woocommerce input.button:hover',
             '.woocommerce a.button:hover',
             '.woocommerce .button.add_to_cart_button:hover',
+            '.woocommerce button.button[type=submit]:focus',
             '.woocommerce #respond input#submit:focus',
             '.woocommerce input#submit:focus',
             '.woocommerce input.button:focus',
             '.woocommerce a.button:focus',
             '.woocommerce .button.add_to_cart_button:focus',
+            '.woocommerce button.button[type=submit]:active',
             '.woocommerce #respond input#submit:active',
             '.woocommerce input#submit:active',
             '.woocommerce input.button:active',
