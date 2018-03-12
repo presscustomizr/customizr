@@ -42,6 +42,9 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   /* HELPERS */
   protected function czr_fn_get_meta( $meta, $params = array(), $separator = '' ) {
+    //we don't don't display metas in pages, e.g. in search results
+    if ( 'page' == czr_fn_get_post_type() )
+      return '';
 
     $params = is_array( $params ) ? $params : array( $params );
     return czr_fn_stringify_array( call_user_func_array( array( $this, "czr_fn_meta_generate_{$meta}" ), $params ), $separator );
