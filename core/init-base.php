@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             add_filter( 'tc_render_comments_template'            , array( $this,  'czr_fn_control_coments_template_rendering' ) );
 
 
-            //remove hentry class when the current $post type is a page, or when metas not displayed in home
+            //remove hentry class when the current $post type is a page
             add_filter( 'post_class'                             , array( $this, 'czr_fn_maybe_remove_hentry_class' ), 20 );
 
 
