@@ -13,9 +13,6 @@
 }
 
 
-.slider-text > h2 { margin:0; line-height: 1.1 }
-.slider-text > h2 + h3 { margin-top:0; margin-bottom: $base-line-height; }
-
 .section-slider {
   @extend %vertical-align-parent;
   overflow: hidden;
@@ -25,22 +22,18 @@
   .czrs-title, .czrs-subtitle {
     color: #fff;
   }
-  .carousel-caption > h1 {
-      margin: 0;
-      line-height: 1.1;
-      font-weight: 700;
-      font-size: 2.98598em;
-  }
 
-  h1.very-big {
-    font-size: 65px;
-    line-height: 1.4em;
-    margin-bottom: 0.4em;
+  .czrs-title {
+    font-weight: 700;
+    margin: 0 0 0.4em;
+    &.very-big {
+      font-size: 65px;
+      line-height: 1.4em;
+    }
   }
 
   .czrs-subtitle {
-      margin-top: 0;
-      margin-bottom: 0.5em;
+      margin: 0 0 0.5em;
       font-size: 30px;
   }
   .czrs-cta {
