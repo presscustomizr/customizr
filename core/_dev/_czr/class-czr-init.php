@@ -483,6 +483,11 @@ if ( ! class_exists( 'CZR_customize' ) ) :
 
           //declares settings array
           $option_settings = array();
+
+          // bail here if the setting is registered dynamically
+          if ( array_key_exists( 'registered_dynamically', $options ) && true === $options[ 'registered_dynamically' ] )
+            continue;
+
           foreach( $args['settings'] as $set => $set_value) {
             if ( $set == 'setting_type' ) {
               $option_settings['type'] = isset( $options['setting_type']) ?  $options['setting_type'] : $args['settings'][$set];

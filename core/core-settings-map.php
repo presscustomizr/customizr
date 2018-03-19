@@ -89,7 +89,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_site_layout_option_map',
     'czr_fn_skin_option_map',
     'czr_fn_fonts_option_map',
-    //'czr_fn_social_option_map',
+    'czr_fn_social_option_map',
 
     'czr_fn_formatting_option_map',
     'czr_fn_images_option_map',
@@ -327,6 +327,8 @@ function czr_fn_fonts_option_map( $get_default = null ) {
 /*-----------------------------------------------------------------------------------------------------
                          SOCIAL NETWORKS + POSITION SECTION
 ------------------------------------------------------------------------------------------------------*/
+// Since March 2018, this setting is registered dynamically
+// We leave it in the map only for building the default options
 function czr_fn_social_option_map( $get_default = null ) {
   return array(
       'tc_social_links' => array(
@@ -338,6 +340,7 @@ function czr_fn_social_option_map( $get_default = null ) {
             'module_type' => 'czr_social_module',
             'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
             'priority'  => 10,
+            'registered_dynamically' => true
       )
   );
 }
@@ -2508,12 +2511,12 @@ function czr_fn_popul_section_map( $_sections ) {
                         //'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
-    'socials_sec'        => array(
-                        'title'     =>  __( 'Social links' , 'customizr' ),
-                        'priority'    =>  $_is_wp_version_before_4_0 ? 9 : 20,
-                        //'description' =>  __( 'Set up your social links' , 'customizr' ),
-                        'panel'   => 'tc-global-panel'
-    ),
+    // 'socials_sec'        => array(
+    //                     'title'     =>  __( 'Social links' , 'customizr' ),
+    //                     'priority'    =>  $_is_wp_version_before_4_0 ? 9 : 20,
+    //                     //'description' =>  __( 'Set up your social links' , 'customizr' ),
+    //                     'panel'   => 'tc-global-panel'
+    // ),
     'formatting_sec'         => array(
                         'title'     =>  __( 'Formatting : links, paragraphs ...' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 22 : 30,

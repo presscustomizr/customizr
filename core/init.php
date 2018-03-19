@@ -306,7 +306,27 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'base_url_path' => CZR_BASE_URL . '/core/czr-modules/social-links/',
                     'version' => CUSTOMIZR_VER,
 
-                    'option_value' => czr_fn_opt( 'tc_social_links' ) // for dynamic registration
+                    'option_value' => czr_fn_opt( 'tc_social_links' ), // for dynamic registration
+                    'setting' => array(
+                        'type' => 'option',
+                        'default'  => array(),
+                        'transport' => 'refresh',
+                        'sanitize_callback' => 'czr_sanitize_callback__czr_social_module',
+                        'validate_callback' => 'czr_validate_callback__czr_social_module'
+                    ),
+
+                    'section' => array(
+                        'id' => 'socials_sec',
+                        'title' => __( 'Social links', 'customizr' ),
+                        'panel' => 'tc-global-panel',
+                        'priority' => 20
+                    ),
+
+                    'control' => array(
+                        'priority' => 10,
+                        'label' => __( 'Create and organize your social links', 'customizr' ),
+                        'type'  => 'czr_module',
+                    )
                 )
             );
 

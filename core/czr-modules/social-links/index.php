@@ -29,26 +29,11 @@ function czr_fn_register_social_links_module( $args ) {
         'module_type' => 'czr_social_module',
         'option_value' => ! is_array( $args['option_value'] ) ? array() : $args['option_value'],
 
-        'setting' => array(
-            'type' => 'option',
-            'default'  => array(),
-            'transport' => 'refresh',
-            'sanitize_callback' => 'czr_sanitize_callback__czr_social_module',
-            'validate_callback' => 'czr_validate_callback__czr_social_module'
-        ),
+        'setting' => $args['setting'],
 
-        'section' => array(
-            'id' => 'social_links',
-            'title' => __( 'Manage your social links', PC_SOCIAL_MODULE_TEXT_DOMAIN ),
-            'panel' => '',
-            'priority' => 10
-        ),
+        'section' => $args['section'],
 
-        'control' => array(
-            'priority' => 10,
-            'label' => __( 'Create and organize your social links', PC_SOCIAL_MODULE_TEXT_DOMAIN ),
-            'type'  => 'czr_module',
-        ),
+        'control' => $args['control'],
 
 
         'customizer_assets' => array(
