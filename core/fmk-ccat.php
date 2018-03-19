@@ -1219,6 +1219,7 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
             'footer' => array(
               'btt_arrow',
               'footer_push',
+              'footer_horizontal_widgets',
               'footer_widgets',
               'colophon',
               'footer_social_block'

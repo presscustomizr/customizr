@@ -97,16 +97,17 @@ module.exports = function(grunt) {
           ],
           'prod_admin_css_js' : [
             'cssmin:prod_admin_css',
-            'concat:czr_css',
-            'cssmin:prod_czr_css',
 
-            'concat:czr_control_js',
-            'concat:czr_control_js_modern',
+            // 'concat:czr_css',
+            // 'cssmin:prod_czr_css',
+
+            // 'concat:czr_control_js',
+            // 'concat:czr_control_js_modern',
             //'comments:czr_control_js',
             //'comments:czr_control_js_modern',
 
-            'concat:czr_preview_js',
-            'concat:czr_preview_js_modern',
+            // 'concat:czr_preview_js',
+            // 'concat:czr_preview_js_modern',
 
             'lineending:czr_js',
             'uglify:prod_admin_js',

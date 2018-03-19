@@ -4752,8 +4752,6 @@ section {
 #wp-admin-bar-tc-customizr-help .ab-item:before,
 li#wp-admin-bar-tc-customizr-help a:before,
 a + span.tc-external:after,
-.tc-placeholder-wrap:before,
-.tc-admin-notice:before,
 h2.comments-title:before,
 h3#reply-title:before,
 .btt-arrow,
@@ -5247,14 +5245,6 @@ h2.site-description {
 }
 /* REGULAR MENU
     -------------------------------------------------- */
-.navbar .tc-main-menu-notice {
-  clear: both;
-  padding: 13px 15px 3px;
-  font-size: 17px;
-}
-.sticky-enabled .tc-main-menu-notice {
-  display: none;
-}
 .dropdown-menu {
   border: 0px solid rgba(0, 0, 0, 0.2);
 }
@@ -5681,17 +5671,6 @@ style when side nav visible is actually rendered inline TC_menu.tc_set_sidenav_s
   margin: 30px 0 0;
   padding-bottom: 30px;
 }
-.navbar .tc-menu-placeholder {
-  float: left;
-  width: 86%;
-  margin-left: 10px;
-  clear: left;
-  padding: 9px 3% 0;
-  font-size: 17px;
-}
-.sticky-enabled .tc-menu-placeholder {
-  display: none;
-}
 /* BREADCRUMB
   -------------------------------------------------- */
 .tc-hot-crumble {
@@ -5845,15 +5824,6 @@ footer#footer .colophon .credits a[class*=icon-] {
 }
 /* SLIDER
     -------------------------------------------------- */
-.customizr-slide .tc-slider-notice {
-  position: absolute;
-  right: 30px;
-  z-index: 50;
-  bottom: 0px;
-  padding: 18px 14px 3px;
-  font-size: 17px;
-  width: 50%;
-}
 /* Carousel base class */
 .carousel {
   margin-bottom: 0px;
@@ -6116,13 +6086,6 @@ footer#footer .colophon .credits a[class*=icon-] {
 }
 /* FEATURED PAGES
     -------------------------------------------------- */
-.marketing .tc-fp-notice {
-  float: right;
-  padding: 18px 14px 3px;
-  font-size: 17px;
-  width: 50%;
-  margin-top: 20px;
-}
 /*
 * round-divs and featured pages container compatibility with bootstrap3+
 *
@@ -6405,13 +6368,18 @@ article.format-image p.format-icon {
   text-shadow: 0px 1px 0px #FFF;
   color: #000;
 }
-article .author-info,
+article .author-info-wrapper,
 .archive-header .author-info {
   background: #FFF;
   padding: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-style: italic;
   font-size: inherit;
+}
+article .author-info + .author-info {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
 }
 article .author-info h2,
 .archive-header .author-info h2 {
@@ -6571,41 +6539,6 @@ video {
 .hide-all-post-metas .entry-header .entry-meta,
 .hide-post-metas .entry-header .entry-meta {
   display: none;
-}
-/* SIDEBARS STUFF
-      -------------------------------------------------- */
-.tc-sidebar .tc-placeholder-wrap {
-  margin-top: 15px;
-}
-.tc-placeholder-wrap p {
-  font-style: italic;
-  font-size: 80%;
-  color: #5A5A5A!important;
-}
-#footer .tc-placeholder-wrap h4 {
-  color: #5A5A5A;
-}
-#footer .tc-placeholder-wrap a,
-.tc-sidebar .tc-placeholder-wrap a {
-  color: #5A5A5A;
-  text-decoration: underline;
-}
-.tc-admin-notice {
-  font-size: 12px;
-  font-weight: bold;
-  color: #5A5A5A!important;
-}
-.tc-dismiss-notice {
-  font-size: 11px;
-  font-weight: bold;
-  position: absolute;
-  top: 1px;
-  right: 6px;
-}
-.tc-admin-notice:before {
-  content: '\f084';
-  font-size: 15px;
-  padding-right: 3px;
 }
 /* POST THUMBNAILS
       -------------------------------------------------- */
@@ -6991,27 +6924,6 @@ article .no-thumb figcaption {
 }
 .hover .tc-grid-fade_expt {
   background: none;
-}
-/*
-PLACEHOLDERS / DISMISS NOTICES
-    -------------------------------------------------- */
-.tc-placeholder-wrap {
-  padding: 19px;
-  background-color: #F5F5F5;
-  border: 1px solid #E3E3E3;
-  -webkit-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.6);
-  position: relative;
-}
-.tc-placeholder-wrap::before {
-  font-size: 1em;
-  content: "\f05a";
-  padding-left: 0;
-  position: absolute;
-  text-decoration: none!important;
-  top: 5px;
-  left: 5px;
 }
 /* WP SPECIFICS
     -------------------------------------------------- */
@@ -9036,11 +8948,6 @@ li#wp-admin-bar-tc-customizr-help a {
     border-bottom: 1px solid #EEE;
   }
   .tc-hover-menu.nav .caret {
-    display: none;
-  }
-  /* second menu placeholder */
-  .navbar .tc-menu-placeholder,
-  .navbar .tc-main-menu-notice {
     display: none;
   }
   /* social blocks */

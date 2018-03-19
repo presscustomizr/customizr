@@ -2015,7 +2015,7 @@ var czrapp = czrapp || {};
                                 $notifWrap.css( { bottom : '-100%' } );
                                 _.delay( function() {
                                       $notifWrap.remove();
-                                      czrapp.$_body.find('#tc-footer-btt-wrapper').fadeIn('slow');
+                                      czrapp.$_body.find('.czr-btt.czr-btta').fadeIn('slow');
                                       czrapp.frontNotificationRendered = false;
                                       _dfd_.resolve();
                                 }, 450 );// consistent with css transition: all 0.45s ease-in-out;
@@ -2044,7 +2044,7 @@ var czrapp = czrapp || {};
                           if ( 1 == $footer.length && ! _.isEmpty( _notifHtml ) ) {
                                 $.when( $footer.append( _wrapHtml ) ).done( function() {
                                     $(this).find( '.note-content').prepend( _notifHtml );
-                                    czrapp.$_body.find('#tc-footer-btt-wrapper').fadeOut('slow');
+                                    czrapp.$_body.find('.czr-btt.czr-btta').fadeOut('slow');
                                     czrapp.frontNotificationRendered = true;
                                 });
 
@@ -2438,7 +2438,7 @@ var czrapp = czrapp || {};
             }
          }
         function setElementsPosition() {
-              var _fp_offsets = [], _element_index, _n_elements, _fp_index;
+              var _fp_offsets = [], _element_index, _fp_index;
               for ( _element_index = 0; _element_index < _n_elements; _element_index++ ) {
                   for ( _fp_index = 0; _fp_index < _n_featured_pages; _fp_index++ ) {
                     var $_el      = $( $_fp_elements[ _fp_index ][ _element_index ] ),
@@ -3450,152 +3450,7 @@ var czrapp = czrapp || {};
       czrapp.customMap.bind( _instantianteAndFireOnDomReady );//<=THE CUSTOM MAP IS LISTENED TO HERE
 
 
-})( czrapp, jQuery, _ );
-var czrapp = czrapp || {};
-(function($, czrapp, _ ) {
-    czrapp.ready.then( function() {
-          if ( czrapp.localized.frontHelpNoticesOn && ! _.isEmpty( frontHelpNoticeParams ) ) {
-                var _doAjax = function( _query_ ) {
-                          var ajaxUrl = czrapp.localized.adminAjaxUrl, dfd = $.Deferred();
-                          $.post( ajaxUrl, _query_ )
-                                .done( function( _r ) {
-                                      if ( '0' === _r ||  '-1' === _r )
-                                        czrapp.errorLog( 'placeHolder dismiss : ajax error for : ', _query_.action, _r );
-                                })
-                                .fail( function( _r ) {
-                                      czrapp.errorLog( 'placeHolder dismiss : ajax error for : ', _query_.action, _r );
-                                })
-                                .always( function() {
-                                      dfd.resolve();
-                                });
-                          return dfd.promise();
-                    },
-                    _ajaxDismiss = function( _params_ ) {
-                          var _query = {},
-                              dfd = $.Deferred();
-
-                          if ( ! _.isObject( _params_ ) ) {
-                                czrapp.errorLog( 'placeHolder dismiss : wrong params' );
-                                return;
-                          }
-                          _params_ = _.extend( {
-                                action : '',
-                                nonce : { 'id' : '', 'handle' : '' },
-                                class : '',
-                                remove_action : null,//for slider and fp
-                                position : null,//for widgets
-                          }, _params_ );
-                          _query.action = _params_.action;
-                          if ( ! _.isNull( _params_.remove_action ) )
-                            _query.remove_action = _params_.remove_action;
-                          if ( ! _.isNull( _params_.position ) )
-                            _query.position = _params_.position;
-
-                          _query[ _params_.nonce.id ] = _params_.nonce.handle;
-                          _doAjax( _query ).done( function() { dfd.resolve(); });
-                          return dfd.promise();
-                    };
-                _.each( frontHelpNoticeParams, function( _params_, _id_ ) {
-                      _params_ = _.extend( {
-                            active : false,
-                            args : {
-                                  action : '',
-                                  nonce : { 'id' : '', 'handle' : '' },
-                                  class : '',
-                                  remove_action : null,//for slider and fp
-                                  position : null,//for widgets
-                            }
-                      }, _params_ );
-
-                      switch( _id_ ) {
-                            case 'thumbnail' :
-                            case 'smartload' :
-                            case 'sidenav' :
-                            case 'secondMenu' :
-                            case 'mainMenu' :
-                                  if ( _params_.active ) {
-                                        $( function($) {
-                                              $( '.tc-dismiss-notice', '.' + _params_.args.class ).click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    var $_el = $(this);
-                                                    _ajaxDismiss( _params_.args ).done( function() {
-                                                          $_el.closest('.' + _params_.args.class ).slideToggle( 'fast' );
-                                                    });
-                                              } );
-                                        } );
-                                  }
-                            break;
-                            case 'slider' :
-                                  if ( _params_.active ) {
-                                        $( function($) {
-                                              $('.tc-dismiss-notice', '.' + _params_.args.class ).click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    var $_el = $(this);
-                                                    _params_.args.remove_action = 'remove_notice';
-                                                    _ajaxDismiss( _params_.args ).done( function() {
-                                                          $_el.closest( '.' + _params_.args.class ).slideToggle('fast');
-                                                    });
-                                              } );
-                                              $('.tc-inline-remove', '.' + _params_.args.class ).click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    _params_.args.remove_action = 'remove_slider';
-                                                    _ajaxDismiss( _params_.args ).done( function() {
-                                                          $( 'div[id*="customizr-slider"]' ).fadeOut('slow');
-                                                    });
-
-                                              } );
-                                        } );
-                                  }
-                            break;
-                            case 'fp' :
-                                  if ( _params_.active ) {
-                                        $( function($) {
-                                              $('.tc-dismiss-notice', '.' + _params_.args.class ).click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    var $_el = $(this);
-                                                    _params_.args.remove_action = 'remove_notice';
-                                                    _ajaxDismiss(  _params_.args ).done( function() {
-                                                          $_el.closest( '.' + _params_.args.class ).slideToggle('fast');
-                                                    });
-                                              } );
-                                              $('.tc-inline-remove', '.' + _params_.args.class ).click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    _params_.args.remove_action = 'remove_fp';
-                                                    _ajaxDismiss( _params_.args ).done( function() {
-                                                          $('#main-wrapper > .marketing').fadeOut('slow');
-                                                    });
-
-                                              } );
-                                        } );
-                                  }
-                            break;
-                            case 'widget' :
-                                  if ( _params_.active ) {
-                                        $( function($) {
-                                              $('.tc-dismiss-notice, .tc-inline-dismiss-notice').click( function( ev ) {
-                                                    ev.preventDefault();
-                                                    var $_el = $(this);
-                                                    var _position = $_el.attr('data-position');
-                                                    if ( ! _position || ! _position.length )
-                                                      return;
-
-                                                     _params_.args.position = _position;
-                                                    _ajaxDismiss(  _params_.args ).done( function() {
-                                                          if ( 'sidebar' == _position )
-                                                            $('.tc-widget-placeholder' , '.tc-sidebar').slideToggle('fast');
-                                                          else
-                                                            $_el.closest('.tc-widget-placeholder').slideToggle('fast');
-                                                    });
-                                              } );
-                                        } );
-                                  }
-                            break;
-                      }//switch
-                });//_.each()
-          }//if czrapp.localized.frontHelpNoticesOn && ! _.isEmpty( frontHelpNoticeParams
-    });
-
-})(jQuery, czrapp, _ );var czrapp = czrapp || {};
+})( czrapp, jQuery, _ );var czrapp = czrapp || {};
 ( function ( czrapp ) {
       czrapp.localized = CZRParams || {};
       var appMap = {
