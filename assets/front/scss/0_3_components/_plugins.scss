@@ -1,7 +1,34 @@
 //
 // Woocommerce
 //
-
+.woocommerce #content div.product .woocommerce-tabs ul.tabs {
+  padding: 0;
+  margin: 0;
+  overflow: inherit;
+  &::before,
+  &::after {
+      display:none;
+  }
+  li {
+    border: none;
+    background-color: transparent;
+    @extend %tabs-li;
+    a {
+      @extend .nav-link;
+      font-size: 1.2em;
+      display: block;
+      font-weight: normal;
+    }
+    &.active a::before {
+        @include transform(scale(1));
+        @extend %skin-dark-background-color;
+    }
+    &::before,
+    &::after {
+      display:none;
+    }
+  }
+}
 .woocommerce {
   a.remove {
     margin-left: auto;

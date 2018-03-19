@@ -645,27 +645,45 @@ cite {
 
 .v-separator { margin: 0  $base-line-height/2; text-align: center; }
 
+
 // tabs
-.tabs {
-  border-bottom: 2px solid $grey-light;
-  //@extend .bold;
-  li {
-      position: relative;
-      font-size: ms(2);
-      margin-bottom: -2px;
+%tabs-li {
+    position: relative;
+    font-size: ms(2);
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 -2px;
+    @include media-breakpoint-up(sm) {
+      width: auto;
       @if ( true == $is_rtl ) {
         text-align: right;
       }
       @else {
         text-align: left;
       }
+      & + li {
+          @if ( true == $is_rtl ) {
+            padding-right: $base-line-height;
+            margin-right: 0;
+          }
+          @else {
+            padding-left: $base-line-height;
+            margin-left: 0;
+          }
+      }
+    }
+}
+.tabs {
+  border-bottom: 2px solid $grey-light;
+  //@extend .bold;
+  li {
+    @extend %tabs-li;
   }
   .nav-link {
       color: $grey;
-      position: relative;
       @include underlined_simple (transparent, 2px);
       @extend .small;
-      text-align: left;
       padding: $base-line-height/2 0;
 
       &::before {
@@ -680,10 +698,6 @@ cite {
       }
   }
   //.nav-link
-  li + li {
-      padding-left: $base-line-height;
-      margin-left: 0 !important;
-  }
 }
 
 .tab-content {

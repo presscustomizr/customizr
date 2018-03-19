@@ -130,15 +130,12 @@ a.czr-format-link {
 
 
 .tabs .nav-link {
-
-      &:hover, &.active, &.active:hover, &.active:focus {
-        @extend %skin-dark-color;
-      }
-
-      &.active::before {
-        @extend %skin-dark-background-color;
-      }
-
+    &:hover, &.active, &.active:hover, &.active:focus {
+      @extend %skin-dark-color;
+    }
+    &.active::before {
+      @extend %skin-dark-background-color;
+    }
 }
 
 
@@ -148,5 +145,10 @@ a.czr-format-link {
   .woocommerce-message,
   .woocommerce-info {
     @extend %skin-border-color;
+  }
+  #content div.product .woocommerce-tabs ul.tabs li {
+    &.active a::before {
+        @extend %skin-dark-background-color;
+    }
   }
 }
