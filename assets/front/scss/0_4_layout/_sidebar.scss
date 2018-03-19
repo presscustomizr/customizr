@@ -66,6 +66,11 @@
   @extend .bold;
   .comment-author-link { color: $grey; @extend .thin }
 }
+//archive and category widget dropdowns can use themeform style
+.widget_categories,
+.widget_archive {
+  @extend .themeform;
+}
 
 .widget_categories li {
   @extend .caps;
