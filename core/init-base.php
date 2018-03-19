@@ -68,6 +68,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //prevent rendering the comments template more than once
             add_filter( 'tc_render_comments_template'            , array( $this,  'czr_fn_control_coments_template_rendering' ) );
 
+
+            //remove hentry class when the current $post type is a page
+            add_filter( 'post_class'                             , array( $this, 'czr_fn_maybe_remove_hentry_class' ), 20 );
+
+
             //Default images sizes
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
             $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
@@ -578,8 +583,22 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
 
+        /**
+        * Remove hentry class when the current $post type is a page
+        * @param array $class
+        * @return array $class
+        * hook : post_class
+        *
+        */
+        function czr_fn_maybe_remove_hentry_class( $class ) {
+            $remove_bool = 'page' == czr_fn_get_post_type();
 
+            if ( apply_filters( 'czr_post_class_remove_hentry_class', $remove_bool ) ) {
+                $class = array_diff( $class, array( 'hentry' ) );
+            }
 
+            return $class;
+        }
 
 
 

@@ -25,6 +25,9 @@ class CZR_related_posts_model_class extends CZR_model {
   function czr_fn_setup_late_properties() {
     $this -> czr_fn_setup_query();
     $this -> czr_fn_setup_text_hooks();
+    //we don't display author metas hence we force the hentry class removal for this model
+    //this filter is documented in core/init-base.php
+    add_filter( 'czr_post_class_remove_hentry_class', '__return_true', 999 );
   }
 
   /*
@@ -34,8 +37,9 @@ class CZR_related_posts_model_class extends CZR_model {
   function czr_fn_reset_late_properties() {
     //all post lists do this
     $this -> czr_fn_reset_text_hooks();
-
     $this -> czr_fn_reset_query();
+
+    remove_filter( 'czr_post_class_remove_hentry_class', '__return_true', 999 );
   }
 
 
