@@ -2117,7 +2117,7 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             'priority'      => 0
           ),
           'tc_footer_horizontal_widgets' => array(
-                            'default'       => 'full',
+                            'default'       => 'boxed',
                             'control'       => 'CZR_controls' ,
                             'label'         => __( 'Horizontal widget area in your footer', 'customizr'),
                             'choices'       => array(
