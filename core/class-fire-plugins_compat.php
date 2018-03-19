@@ -1032,6 +1032,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             '.woocommerce input.button.alt.disabled:active',
             '.woocommerce button.button.alt.disabled:active',
             '.woocommerce a.button.alt.disabled:active',
+            '.woocommerce #content div.product .woocommerce-tabs ul.tabs li a:hover',
+            '.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a',
          ));
       }
 
@@ -1044,7 +1046,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             '.woocommerce input#submit.alt.disabled',
             '.woocommerce input.button.alt.disabled',
             '.woocommerce button.button.alt.disabled',
-            '.woocommerce a.button.alt.disabled'
+            '.woocommerce a.button.alt.disabled',
+            '.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a::before'
          ));
       }
 
