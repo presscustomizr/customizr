@@ -89,7 +89,7 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_site_layout_option_map',
     'czr_fn_skin_option_map',
     'czr_fn_fonts_option_map',
-    'czr_fn_social_option_map',
+    //'czr_fn_social_option_map',
 
     'czr_fn_formatting_option_map',
     'czr_fn_images_option_map',

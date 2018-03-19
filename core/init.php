@@ -289,6 +289,27 @@ if ( ! class_exists( 'CZR___' ) ) :
             //loads utils
             require_once( CZR_BASE . CZR_CORE_PATH . 'functions-ccat.php' );
 
+            // load the czr-base-fmk
+            require_once(  dirname( __FILE__ ) . '/czr-base-fmk/czr-base-fmk.php' );
+            \czr_fn\CZR_Fmk_Base( array(
+               'text_domain' => 'customizr',
+               'base_url' => CZR_BASE_URL . 'core/czr-base-fmk'
+            ) );
+
+            // load the social links module
+            require_once( CZR_BASE . CZR_CORE_PATH . 'czr-modules/social-links/index.php' );
+            czr_fn_register_social_links_module(
+                array(
+                    'id' => 'tc_theme_options[tc_social_links]',
+
+                    'text-domain' => 'customizr',
+                    'base_url_path' => CZR_BASE_URL . '/core/czr-modules/social-links/',
+                    'version' => CUSTOMIZR_VER,
+
+                    'option_value' => czr_fn_opt( 'tc_social_links' ) // for dynamic registration
+                )
+            );
+
             do_action( 'czr_load' );
 
             //loads init

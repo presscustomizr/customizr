@@ -27,7 +27,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       $this->_style_version_suffix  = defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ? '-modern' : '';
 
       //control scripts and style
-      add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );
+      add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 20 );
 
       //preview scripts
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt
@@ -38,75 +38,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
 
     }
-
-
-    //hook : customize_preview_init
-    function czr_fn_customize_preview_js_css() {
-      global $wp_version;
-
-      //DEV MODE
-      if ( $this->_is_dev_mode ) {
-        wp_enqueue_script(
-        'czr-customizer-preview' ,
-          sprintf('%1$s/assets/czr/_dev/js/czr-preview-base.js' , CZR_BASE_URL ),
-          array( 'customize-preview', 'underscore'),
-          time(),
-          true
-        );
-        wp_enqueue_script(
-        'czr-customizer-preview-pm' ,
-          sprintf('%1$s/assets/czr/_dev/js/czr-preview-post_message%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
-          array( 'czr-customizer-preview' ),
-          time(),
-          true
-        );
-      }
-      //PRODUCTION
-      else {
-        wp_enqueue_script(
-          'czr-customizer-preview' ,
-          sprintf('%1$s/assets/czr/js/czr-preview%2$s%3$s.js' , CZR_BASE_URL, $this->_style_version_suffix, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-preview', 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
-
-      $this->czr_fn_customize_preview_localize();
-
-      if ( 'modern' != $this->_style_version_suffix )
-        add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_classic' ) );
-    }
-
-
-
-
-    //shared between the two versions
-    function czr_fn_customize_preview_localize() {
-      global $wp_version;
-
-      //localizes
-      wp_localize_script(
-            'czr-customizer-preview',
-            'CZRPreviewParams',
-            apply_filters('tc_js_customizer_preview_params' ,
-              array(
-                'themeFolder'     => get_template_directory_uri(),
-                //czr4 won't use this
-                'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => czr_fn_get_font( 'list' ),
-                'fontSelectors'   => CZR_init::$instance -> font_selectors,
-                'wpBuiltinSettings' => CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
-                'themeOptions'  => CZR_THEME_OPTIONS,
-                //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
-                'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' ),
-                'blogname' => get_bloginfo('name'),
-                'isRTL'           => is_rtl()
-              )
-            )
-      );
-    }
-
 
 
 
@@ -141,73 +72,31 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
      */
     function czr_fn_customize_controls_js_css() {
 
-
-
-      //DEV MODE
-      if ( $this->_is_dev_mode ) {
-        //CSS
         wp_enqueue_style(
-          'tc-customizer-controls-style',
-          sprintf('%1$sassets/czr/_dev/css/czr-control-base.css', CZR_BASE_URL),
-          array( 'customize-controls' ),
-          time(),
-          $media = 'all'
+            'tc-customizer-controls-theme-style',
+            sprintf('%1$sassets/czr/css/czr-control-theme.css', CZR_BASE_URL),
+            array( 'czr-fmk-controls-style' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            $media = 'all'
         );
 
-        wp_enqueue_style(
-          'tc-customizer-controls-theme-style',
-          sprintf('%1$sassets/czr/_dev/css/czr-control-theme.css', CZR_BASE_URL),
-          array( 'tc-customizer-controls-style' ),
-          time(),
-          $media = 'all'
-        );
 
-        //JS
+        // czr-control-deps-modern.js / czr-control-deps.js
         wp_enqueue_script(
-          'tc-customizer-controls',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-base.js' , CZR_BASE_URL),
-          array( 'customize-controls' , 'underscore'),
-          time(),
-          true
+            'tc-customizer-controls-deps',
+            sprintf('%1$sassets/czr/js/czr-control-deps%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
+            array( 'czr-theme-customizer-fmk' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
         );
 
         wp_enqueue_script(
-          'tc-customizer-controls-deps',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-deps%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
-          array( 'tc-customizer-controls' ),
-          time(),
-          true
+            'tc-customizer-controls-vdr',
+            sprintf('%1$sassets/czr/js/czr-control-dom_ready.js', CZR_BASE_URL ),
+            array( 'czr-theme-customizer-fmk' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
         );
-
-        wp_enqueue_script(
-          'tc-customizer-controls-vdr',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready.js', CZR_BASE_URL ),
-          array( 'tc-customizer-controls' ),
-          time(),
-          true
-        );
-      }
-      //PRODUCTION
-      else {
-        //CSS
-        wp_enqueue_style(
-          'tc-customizer-controls-style',
-          sprintf('%1$sassets/czr/css/czr-control%2$s.css' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' ),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          $media = 'all'
-        );
-
-
-        //JS
-        wp_enqueue_script(
-          'tc-customizer-controls',
-          sprintf('%1$sassets/czr/js/czr-control%2$s%3$s.js' , CZR_BASE_URL, $this->_style_version_suffix, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' , 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
 
         $this->czr_fn_customize_controls_localize();
     }
@@ -237,28 +126,20 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
       //localizes
       wp_localize_script(
-        'tc-customizer-controls',
-        'serverControlParams',
-        apply_filters('czr_js_customizer_control_params' ,
-          array(
-            'FPControls'      => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
-            'AjaxUrl'         => admin_url( 'admin-ajax.php' ),
-            'docURL'          => esc_url('docs.presscustomizr.com/'),
-
-            'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
-            'CZR_THEMENAME'       => CZR___::$theme_name,
-
-            'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
-            'i18n'   => $this -> czr_fn_get_translated_strings(),
-
-            'themeOptions'     => CZR_THEME_OPTIONS,
-
-            'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
-
+        'tc-customizer-controls-deps',
+        'themeServerControlParams',
+        array(
+            //should be included in all themes
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
-            'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
             'isThemeSwitchOn'  => ! CZR_IS_PRO,
             'themeSettingList' => CZR_BASE::$theme_setting_list,
+            'themeOptions'     => CZR_THEME_OPTIONS,
+
+            // Customizr theme specifics
+            'FPControls'      => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
+            'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
+
+            'i18n'   => $this -> czr_fn_get_translated_strings(),
 
             //not used by the new
             'faviconOptionName' => 'tc_fav_upload',
@@ -268,10 +149,44 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'isChildTheme'    => is_child_theme(),
             'isModernStyle'   => czr_fn_is_ms(),
             'isPro'           => czr_fn_is_pro()
-          )
         )
       );
 
+    }
+
+    //hook : customize_preview_init
+    function czr_fn_customize_preview_js_css() {
+        global $wp_version;
+
+        // loads czr-preview-post_message.js / czr-preview-post_message-modern.js
+        wp_enqueue_script(
+            'czr-customizr-theme-preview-js' ,
+            sprintf('%1$s/assets/czr/js/czr-preview-post_message%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
+            array( 'czr-customizer-preview' ),//<= czr-preview-base.js, loaded from the czr-base-fmk
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
+        );
+
+        //localizes
+        wp_localize_script(
+              'czr-customizr-theme-preview-js',
+              'themeServerPreviewParams',// 'CZRPreviewParams',
+              apply_filters('tc_js_customizer_preview_params' ,
+                  array(
+                      //czr4 won't use this
+                      'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
+                      'fontPairs'       => czr_fn_get_font( 'list' ),
+                      'fontSelectors'   => CZR_init::$instance -> font_selectors,
+
+                      'wpBuiltinSettings' => CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
+                      'themeOptionsPrefix'  => CZR_THEME_OPTIONS,
+                  )
+              )
+        );
+
+        if ( 'modern' != $this->_style_version_suffix ) {
+            add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_classic' ) );
+        }
     }
 
 
@@ -307,6 +222,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     }
 
 
+    // the localized translated strings property of the global themeServerControlParams
     function czr_fn_get_translated_strings() {
       return apply_filters('controls_translated_strings',
           array(

@@ -45,10 +45,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //add grid/post list buttons in the control views
       add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
 
-
-      //populate the css_attr property, used both server side and on the customize panel (passed via serverControlParams )
-      $this -> css_attr = $this -> czr_fn_get_controls_css_attr();
-
       //load resources class
       $this -> czr_fn_fire_czr_resources();
 
@@ -430,10 +426,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           }
 
           //add setting
-          if ( class_exists('CZR_Customize_Setting') )
-            $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
-          else
-            $wp_customize -> add_setting( $_opt_name, $option_settings );
+          $wp_customize -> add_setting( $_opt_name, $option_settings );
         }//end for each
       }//end if isset
 
@@ -506,10 +499,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           //$option_settings['transport'] = CZR_IS_MODERN_STYLE ? 'refresh' : $option_settings['transport'];
 
           //add setting
-          if ( class_exists('CZR_Customize_Setting') )
-            $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
-          else
-            $wp_customize -> add_setting( $_opt_name, $option_settings );
+          $wp_customize -> add_setting( $_opt_name, $option_settings );
 
           //generate controls array
           $option_controls = array();
@@ -533,46 +523,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     /* ------------------------------------------------------------------------- *
      *  HELPERS
     /* ------------------------------------------------------------------------- */
-    function czr_fn_get_controls_css_attr() {
-      return apply_filters('controls_css_attr',
-          array(
-            'multi_input_wrapper' => 'czr-multi-input-wrapper',
-            'sub_set_wrapper'     => 'czr-sub-set',
-            'sub_set_input'       => 'czr-input',
-            'img_upload_container' => 'czr-imgup-container',
-
-            'edit_modopt_icon'    => 'czr-toggle-modopt',
-            'close_modopt_icon'   => 'czr-close-modopt',
-            'mod_opt_wrapper'     => 'czr-mod-opt-wrapper',
-
-
-            'items_wrapper'     => 'czr-items-wrapper',
-            'single_item'        => 'czr-single-item',
-            'item_content'      => 'czr-item-content',
-            'item_header'       => 'czr-item-header',
-            'item_title'        => 'czr-item-title',
-            'item_btns'         => 'czr-item-btns',
-            'item_sort_handle'   => 'czr-item-sort-handle',
-
-            //remove dialog
-            'display_alert_btn' => 'czr-display-alert',
-            'remove_alert_wrapper'   => 'czr-remove-alert-wrapper',
-            'cancel_alert_btn'  => 'czr-cancel-button',
-            'remove_view_btn'        => 'czr-remove-button',
-
-            'edit_view_btn'     => 'czr-edit-view',
-            //pre add dialog
-            'open_pre_add_btn'      => 'czr-open-pre-add-new',
-            'adding_new'        => 'czr-adding-new',
-            'pre_add_wrapper'   => 'czr-pre-add-wrapper',
-            'pre_add_item_content'   => 'czr-pre-add-view-content',
-            'cancel_pre_add_btn'  => 'czr-cancel-add-new',
-            'add_new_btn'       => 'czr-add-new',
-            'pre_add_success'   => 'czr-add-success'
-        )
-      );
-    }
-
     //@return array of WP builtin settings
     function czr_fn_get_wp_builtin_settings() {
       return array(

@@ -45,10 +45,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //add grid/post list buttons in the control views
       add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
 
-
-      //populate the css_attr property, used both server side and on the customize panel (passed via serverControlParams )
-      $this -> css_attr = $this -> czr_fn_get_controls_css_attr();
-
       //load resources class
       $this -> czr_fn_fire_czr_resources();
 
@@ -430,10 +426,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           }
 
           //add setting
-          if ( class_exists('CZR_Customize_Setting') )
-            $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
-          else
-            $wp_customize -> add_setting( $_opt_name, $option_settings );
+          $wp_customize -> add_setting( $_opt_name, $option_settings );
         }//end for each
       }//end if isset
 
@@ -506,10 +499,7 @@ if ( ! class_exists( 'CZR_customize' ) ) :
           //$option_settings['transport'] = CZR_IS_MODERN_STYLE ? 'refresh' : $option_settings['transport'];
 
           //add setting
-          if ( class_exists('CZR_Customize_Setting') )
-            $wp_customize -> add_setting( new CZR_Customize_Setting ( $wp_customize, $_opt_name, $option_settings ) );
-          else
-            $wp_customize -> add_setting( $_opt_name, $option_settings );
+          $wp_customize -> add_setting( $_opt_name, $option_settings );
 
           //generate controls array
           $option_controls = array();
@@ -533,46 +523,6 @@ if ( ! class_exists( 'CZR_customize' ) ) :
     /* ------------------------------------------------------------------------- *
      *  HELPERS
     /* ------------------------------------------------------------------------- */
-    function czr_fn_get_controls_css_attr() {
-      return apply_filters('controls_css_attr',
-          array(
-            'multi_input_wrapper' => 'czr-multi-input-wrapper',
-            'sub_set_wrapper'     => 'czr-sub-set',
-            'sub_set_input'       => 'czr-input',
-            'img_upload_container' => 'czr-imgup-container',
-
-            'edit_modopt_icon'    => 'czr-toggle-modopt',
-            'close_modopt_icon'   => 'czr-close-modopt',
-            'mod_opt_wrapper'     => 'czr-mod-opt-wrapper',
-
-
-            'items_wrapper'     => 'czr-items-wrapper',
-            'single_item'        => 'czr-single-item',
-            'item_content'      => 'czr-item-content',
-            'item_header'       => 'czr-item-header',
-            'item_title'        => 'czr-item-title',
-            'item_btns'         => 'czr-item-btns',
-            'item_sort_handle'   => 'czr-item-sort-handle',
-
-            //remove dialog
-            'display_alert_btn' => 'czr-display-alert',
-            'remove_alert_wrapper'   => 'czr-remove-alert-wrapper',
-            'cancel_alert_btn'  => 'czr-cancel-button',
-            'remove_view_btn'        => 'czr-remove-button',
-
-            'edit_view_btn'     => 'czr-edit-view',
-            //pre add dialog
-            'open_pre_add_btn'      => 'czr-open-pre-add-new',
-            'adding_new'        => 'czr-adding-new',
-            'pre_add_wrapper'   => 'czr-pre-add-wrapper',
-            'pre_add_item_content'   => 'czr-pre-add-view-content',
-            'cancel_pre_add_btn'  => 'czr-cancel-add-new',
-            'add_new_btn'       => 'czr-add-new',
-            'pre_add_success'   => 'czr-add-success'
-        )
-      );
-    }
-
     //@return array of WP builtin settings
     function czr_fn_get_wp_builtin_settings() {
       return array(
@@ -693,7 +643,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       $this->_style_version_suffix  = defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ? '-modern' : '';
 
       //control scripts and style
-      add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 10 );
+      add_action( 'customize_controls_enqueue_scripts'        , array( $this, 'czr_fn_customize_controls_js_css' ), 20 );
 
       //preview scripts
       //set with priority 20 to be fired after czr_fn_customize_store_db_opt
@@ -704,75 +654,6 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
 
     }
-
-
-    //hook : customize_preview_init
-    function czr_fn_customize_preview_js_css() {
-      global $wp_version;
-
-      //DEV MODE
-      if ( $this->_is_dev_mode ) {
-        wp_enqueue_script(
-        'czr-customizer-preview' ,
-          sprintf('%1$s/assets/czr/_dev/js/czr-preview-base.js' , CZR_BASE_URL ),
-          array( 'customize-preview', 'underscore'),
-          time(),
-          true
-        );
-        wp_enqueue_script(
-        'czr-customizer-preview-pm' ,
-          sprintf('%1$s/assets/czr/_dev/js/czr-preview-post_message%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
-          array( 'czr-customizer-preview' ),
-          time(),
-          true
-        );
-      }
-      //PRODUCTION
-      else {
-        wp_enqueue_script(
-          'czr-customizer-preview' ,
-          sprintf('%1$s/assets/czr/js/czr-preview%2$s%3$s.js' , CZR_BASE_URL, $this->_style_version_suffix, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-preview', 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
-
-      $this->czr_fn_customize_preview_localize();
-
-      if ( 'modern' != $this->_style_version_suffix )
-        add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_classic' ) );
-    }
-
-
-
-
-    //shared between the two versions
-    function czr_fn_customize_preview_localize() {
-      global $wp_version;
-
-      //localizes
-      wp_localize_script(
-            'czr-customizer-preview',
-            'CZRPreviewParams',
-            apply_filters('tc_js_customizer_preview_params' ,
-              array(
-                'themeFolder'     => get_template_directory_uri(),
-                //czr4 won't use this
-                'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
-                'fontPairs'       => czr_fn_get_font( 'list' ),
-                'fontSelectors'   => CZR_init::$instance -> font_selectors,
-                'wpBuiltinSettings' => CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
-                'themeOptions'  => CZR_THEME_OPTIONS,
-                //patch for old wp versions which don't trigger preview-ready signal => since WP 4.1
-                'preview_ready_event_exists'   => version_compare( $wp_version, '4.1' , '>=' ),
-                'blogname' => get_bloginfo('name'),
-                'isRTL'           => is_rtl()
-              )
-            )
-      );
-    }
-
 
 
 
@@ -807,73 +688,31 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
      */
     function czr_fn_customize_controls_js_css() {
 
-
-
-      //DEV MODE
-      if ( $this->_is_dev_mode ) {
-        //CSS
         wp_enqueue_style(
-          'tc-customizer-controls-style',
-          sprintf('%1$sassets/czr/_dev/css/czr-control-base.css', CZR_BASE_URL),
-          array( 'customize-controls' ),
-          time(),
-          $media = 'all'
+            'tc-customizer-controls-theme-style',
+            sprintf('%1$sassets/czr/css/czr-control-theme.css', CZR_BASE_URL),
+            array( 'czr-fmk-controls-style' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            $media = 'all'
         );
 
-        wp_enqueue_style(
-          'tc-customizer-controls-theme-style',
-          sprintf('%1$sassets/czr/_dev/css/czr-control-theme.css', CZR_BASE_URL),
-          array( 'tc-customizer-controls-style' ),
-          time(),
-          $media = 'all'
-        );
 
-        //JS
+        // czr-control-deps-modern.js / czr-control-deps.js
         wp_enqueue_script(
-          'tc-customizer-controls',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-base.js' , CZR_BASE_URL),
-          array( 'customize-controls' , 'underscore'),
-          time(),
-          true
+            'tc-customizer-controls-deps',
+            sprintf('%1$sassets/czr/js/czr-control-deps%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
+            array( 'czr-theme-customizer-fmk' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
         );
 
         wp_enqueue_script(
-          'tc-customizer-controls-deps',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-deps%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
-          array( 'tc-customizer-controls' ),
-          time(),
-          true
+            'tc-customizer-controls-vdr',
+            sprintf('%1$sassets/czr/js/czr-control-dom_ready.js', CZR_BASE_URL ),
+            array( 'czr-theme-customizer-fmk' ),
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
         );
-
-        wp_enqueue_script(
-          'tc-customizer-controls-vdr',
-          sprintf('%1$sassets/czr/_dev/js/czr-control-dom_ready.js', CZR_BASE_URL ),
-          array( 'tc-customizer-controls' ),
-          time(),
-          true
-        );
-      }
-      //PRODUCTION
-      else {
-        //CSS
-        wp_enqueue_style(
-          'tc-customizer-controls-style',
-          sprintf('%1$sassets/czr/css/czr-control%2$s.css' , CZR_BASE_URL, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' ),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          $media = 'all'
-        );
-
-
-        //JS
-        wp_enqueue_script(
-          'tc-customizer-controls',
-          sprintf('%1$sassets/czr/js/czr-control%2$s%3$s.js' , CZR_BASE_URL, $this->_style_version_suffix, $this->_is_debug_mode ? '' : '.min' ),
-          array( 'customize-controls' , 'underscore'),
-          $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
-          true
-        );
-      }
 
         $this->czr_fn_customize_controls_localize();
     }
@@ -903,28 +742,20 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
 
       //localizes
       wp_localize_script(
-        'tc-customizer-controls',
-        'serverControlParams',
-        apply_filters('czr_js_customizer_control_params' ,
-          array(
-            'FPControls'      => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
-            'AjaxUrl'         => admin_url( 'admin-ajax.php' ),
-            'docURL'          => esc_url('docs.presscustomizr.com/'),
-
-            'TCNonce'         => wp_create_nonce( 'tc-customizer-nonce' ),
-            'CZR_THEMENAME'       => CZR___::$theme_name,
-
-            'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
-            'i18n'   => $this -> czr_fn_get_translated_strings(),
-
-            'themeOptions'     => CZR_THEME_OPTIONS,
-
-            'isDevMode'        => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
-
+        'tc-customizer-controls-deps',
+        'themeServerControlParams',
+        array(
+            //should be included in all themes
             'wpBuiltinSettings'=> CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
-            'css_attr'         => CZR_customize::$instance -> czr_fn_get_controls_css_attr(),
             'isThemeSwitchOn'  => ! CZR_IS_PRO,
             'themeSettingList' => CZR_BASE::$theme_setting_list,
+            'themeOptions'     => CZR_THEME_OPTIONS,
+
+            // Customizr theme specifics
+            'FPControls'      => array_merge( $fp_controls , $page_dropdowns , $text_fields ),
+            'defaultSliderHeight' => 500,//500px, @todo make sure we can hard code it here
+
+            'i18n'   => $this -> czr_fn_get_translated_strings(),
 
             //not used by the new
             'faviconOptionName' => 'tc_fav_upload',
@@ -934,10 +765,44 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
             'isChildTheme'    => is_child_theme(),
             'isModernStyle'   => czr_fn_is_ms(),
             'isPro'           => czr_fn_is_pro()
-          )
         )
       );
 
+    }
+
+    //hook : customize_preview_init
+    function czr_fn_customize_preview_js_css() {
+        global $wp_version;
+
+        // loads czr-preview-post_message.js / czr-preview-post_message-modern.js
+        wp_enqueue_script(
+            'czr-customizr-theme-preview-js' ,
+            sprintf('%1$s/assets/czr/js/czr-preview-post_message%2$s.js' , CZR_BASE_URL, $this->_style_version_suffix ),
+            array( 'czr-customizer-preview' ),//<= czr-preview-base.js, loaded from the czr-base-fmk
+            $this->_is_debug_mode ? time() : CUSTOMIZR_VER,
+            true
+        );
+
+        //localizes
+        wp_localize_script(
+              'czr-customizr-theme-preview-js',
+              'themeServerPreviewParams',// 'CZRPreviewParams',
+              apply_filters('tc_js_customizer_preview_params' ,
+                  array(
+                      //czr4 won't use this
+                      'customSkin'      => apply_filters( 'tc_custom_skin_preview_params' , array( 'skinName' => '', 'fullPath' => '' ) ),
+                      'fontPairs'       => czr_fn_get_font( 'list' ),
+                      'fontSelectors'   => CZR_init::$instance -> font_selectors,
+
+                      'wpBuiltinSettings' => CZR_customize::$instance -> czr_fn_get_wp_builtin_settings(),
+                      'themeOptionsPrefix'  => CZR_THEME_OPTIONS,
+                  )
+              )
+        );
+
+        if ( 'modern' != $this->_style_version_suffix ) {
+            add_filter( 'tc_user_options_style', array( $this, 'czr_fn_write_preview_style_classic' ) );
+        }
     }
 
 
@@ -973,6 +838,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
     }
 
 
+    // the localized translated strings property of the global themeServerControlParams
     function czr_fn_get_translated_strings() {
       return apply_filters('controls_translated_strings',
           array(
@@ -1268,24 +1134,24 @@ if ( ! class_exists( 'CZR_controls' ) ) :
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_style( 'wp-color-picker' );
 
-        wp_enqueue_style(
-          'font-awesome',
-          sprintf('%1$s/css/fontawesome-all.min.css', CZR_BASE_URL . 'assets/shared/fonts/fa' ),
-          array(),
-          CUSTOMIZR_VER,
-          $media = 'all'
-        );
+        // wp_enqueue_style(
+        //   'font-awesome',
+        //   sprintf('%1$s/css/fontawesome-all.min.css', CZR_BASE_URL . 'assets/shared/fonts/fa' ),
+        //   array(),
+        //   CUSTOMIZR_VER,
+        //   $media = 'all'
+        // );
 
 
-        //select2 stylesheet
-        //overriden by some specific style in theme-customzer-control.css
-        wp_enqueue_style(
-          'select2-css',
-          sprintf('%1$s/assets/czr/css/lib/select2.min.css', CZR_BASE_URL ),
-          array( 'customize-controls' ),
-          CUSTOMIZR_VER,
-          $media = 'all'
-        );
+        // //select2 stylesheet
+        // //overriden by some specific style in theme-customzer-control.css
+        // wp_enqueue_style(
+        //   'select2-css',
+        //   sprintf('%1$sassets/czr/css/lib/select2.min.css', CZR_BASE_URL ),
+        //   array( 'customize-controls' ),
+        //   CUSTOMIZR_VER,
+        //   $media = 'all'
+        // );
     }
 
     /**
@@ -1536,113 +1402,6 @@ if ( ! class_exists( 'CZR_Walker_CategoryDropdown_Multipicker' ) ) :
   }
 endif;
 ?><?php
-/*
-* @since 4.0
-*/
-if ( ! class_exists( 'CZR_Customize_Modules' ) ) :
-  class CZR_Customize_Modules extends CZR_controls {
-    public $module_type;
-    public $syncCollection;
-    public $syncSektion;
-
-    /**
-    * Constructor.
-    *
-    */
-    public function __construct($manager, $id, $args = array()) {
-      //let the parent do what it has to
-      parent::__construct($manager, $id, $args );
-
-      //hook validation/sanitization callbacks for the $module_type module
-      foreach ( $this -> settings as $key => $setting ) {
-        foreach ( array( 'validate', 'sanitize', 'sanitize_js' ) as $callback_prefix ) {
-          if ( method_exists( $this, "{$callback_prefix}_callback__{$this->module_type}" )  ) {
-            add_filter( "customize_{$callback_prefix}_{$setting->id}", array( $this, "{$callback_prefix}_callback__{$this->module_type}" ), 0, 3 );
-          }
-        }
-      }
-
-
-    }
-
-    public function render_content(){}
-
-    public function to_json() {
-      parent::to_json();
-      $this->json['syncCollection'] = $this->syncCollection;
-      $this->json['syncSektion'] = $this->syncSektion;
-      $this->json['module_type'] = $this->module_type;
-    }
-
-    /***
-    * Social Module sanitization/validation
-    **/
-    public function sanitize_callback__czr_social_module( $socials ) {
-      if ( empty( $socials ) )
-        return array();
-
-      //sanitize urls and titles for the db
-      foreach ( $socials as $index => &$social ) {
-        if ( ! is_array( $social ) || ! ( array_key_exists( 'social-link', $social) &&  array_key_exists( 'title', $social) ) )
-          continue;
-
-        $social['social-link']  = esc_url_raw( $social['social-link'] );
-        $social['title']        = esc_attr( $social['title'] );
-      }
-      return $socials;
-    }
-
-    public function validate_callback__czr_social_module( $validity, $socials ) {
-      $ids_malformed_url = array();
-      $malformed_message = __( 'An error occurred: malformed social links', 'customizr' );
-
-      if ( empty( $socials ) )
-        return array();
-
-
-      //(
-      //     [0] => Array
-      //         (
-      //             [is_mod_opt] => 1
-      //             [module_id] => tc_social_links_czr_module
-      //             [social-size] => 15
-      //         )
-
-      //     [1] => Array
-      //         (
-      //             [id] => czr_social_module_0
-      //             [title] => Follow us on Renren
-      //             [social-icon] => fa-renren
-      //             [social-link] => http://customizr-dev.dev/feed/rss/
-      //             [social-color] => #6d4c8e
-      //             [social-target] => 1
-      //         )
-      // )
-      //validate urls
-      foreach ( $socials as $index => $item_or_modopt ) {
-        if ( ! is_array( $item_or_modopt ) )
-          return new WP_Error( 'required', $malformed_message );
-
-        //should be an item or a mod opt
-        if ( ! array_key_exists( 'is_mod_opt', $item_or_modopt ) && ! array_key_exists( 'id', $item_or_modopt ) )
-          return new WP_Error( 'required', $malformed_message );
-
-        //if modopt case, skip
-        if ( array_key_exists( 'is_mod_opt', $item_or_modopt ) )
-          continue;
-
-        if ( $item_or_modopt['social-link'] != esc_url_raw( $item_or_modopt['social-link'] ) )
-          array_push( $ids_malformed_url, $item_or_modopt[ 'id' ] );
-      }
-
-      if ( empty( $ids_malformed_url) )
-        return null;
-
-      return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', 'customizr' ), $ids_malformed_url );
-    }
-  }
-endif;
-?><?php
 /*********************************************************************************
 * Old upload control used until v3.4.18, still used if current version of WP is < 4.3
 **********************************************************************************/
@@ -1820,8 +1579,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1881,359 +1639,4 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
-<?php
-/***************************************************
-* AUGMENTS WP CUSTOMIZE SETTINGS
-***************************************************/
-if ( ! class_exists( 'CZR_Customize_Setting') ) :
-  class CZR_Customize_Setting extends WP_Customize_Setting {
-    /**
-     * Fetch the value of the setting.
-     *
-     * @since 3.4.0
-     *
-     * @return mixed The value.
-     */
-    public function value() {
-        // Get the callback that corresponds to the setting type.
-        switch( $this->type ) {
-          case 'theme_mod' :
-            $function = 'get_theme_mod';
-            break;
-          case 'option' :
-            $function = 'get_option';
-            break;
-          default :
-
-            /**
-             * Filter a Customize setting value not handled as a theme_mod or option.
-             *
-             * The dynamic portion of the hook name, `$this->id_date['base']`, refers to
-             * the base slug of the setting name.
-             *
-             * For settings handled as theme_mods or options, see those corresponding
-             * functions for available hooks.
-             *
-             * @since 3.4.0
-             *
-             * @param mixed $default The setting default value. Default empty.
-             */
-            return apply_filters( 'customize_value_' . $this->id_data[ 'base' ], $this->default );
-        }
-
-        // Handle non-array value
-        if ( empty( $this->id_data[ 'keys' ] ) )
-          return $function( $this->id_data[ 'base' ], $this->default );
-
-        // Handle array-based value
-        $values = $function( $this->id_data[ 'base' ] );
-
-        //Ctx future backward compat
-        $_maybe_array = $this->multidimensional_get( $values, $this->id_data[ 'keys' ], $this->default );
-        if ( ! is_array( $_maybe_array ) )
-          return $_maybe_array;
-        if ( isset($_maybe_array['all_ctx']) )
-          return $_maybe_array['all_ctx'];
-        if ( isset($_maybe_array['all_ctx_over']) )
-          return $_maybe_array['all_ctx_over'];
-
-        return $_maybe_array;
-        //$this->default;
-      }
-  }
-endif;
-?><?php
-add_filter('czr_js_customizer_control_params', 'czr_fn_add_social_module_data');
-
-
-function czr_fn_add_social_module_data( $params ) {
-  return array_merge(
-    $params,
-    array(
-        'social_el_params' => array(
-            //Social Module
-            'defaultSocialColor' => 'rgb(90,90,90)',
-            'defaultSocialSize'  => 14
-        )
-    )
-  );
-}
-?>
-<?php
-/////////////////////////////////////////////////////
-/// ALL MODULES TMPL  //////////////////////
-/////////////////////////////////////////////////////
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_module_templates' , 1 );
-function czr_fn_print_module_templates() {
-  $css_attr = CZR_customize::$instance -> css_attr;
-  ?>
-
-    <script type="text/html" id="tmpl-czr-crud-module-part">
-      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'customizr'); ?> <span class="fas fa-plus-square"></span></button>
-      <div class="<?php echo $css_attr['pre_add_wrapper']; ?>">
-        <div class="<?php echo $css_attr['pre_add_success']; ?>"><p></p></div>
-        <div class="<?php echo $css_attr['pre_add_item_content']; ?>">
-
-          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'customizr'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'customizr'); ?></span>
-        </div>
-      </div>
-    </script>
-
-
-    <script type="text/html" id="tmpl-czr-rud-item-alert-part">
-      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'customizr'); ?></p>
-              <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'customizr'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'customizr'); ?></span>
-    </script>
-
-
-
-    <script type="text/html" id="tmpl-czr-rud-item-part">
-        <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
-          <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-          <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
-          <div class="<?php echo $css_attr['remove_alert_wrapper']; ?>"></div>
-        </div>
-    </script>
-
-    <?php
-    //Read + Update Item Part (ru), no Delete
-    //no remove button
-    //no remove alert wrapper
-    ?>
-    <script type="text/html" id="tmpl-czr-ru-item-part">
-        <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
-          <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-            <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a></div>
-          </div>
-        </div>
-    </script>
-
-  <?php
-}
-
-
-
-
-/////////////////////////////////////////////////////
-/// WHEN EMBEDDED IN A CONTROL //////////////////////
-/////////////////////////////////////////////////////
-//add specific js templates for this control
-//this is usually called in the manager for "registered" controls that need to be rendered with js
-//for this control, we'll do it another way because we need several js templates
-//=> that's why this control has not been "registered" and js templates are printed with the following action
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_module_control_templates' , 1 );
-function czr_fn_print_module_control_templates() {
-    $css_attr = CZR_customize::$instance -> css_attr;
-    //Render the control wrapper for the CRUD types modules
-    ?>
-      <?php //Render the control wrapper for the CRUD types modules ?>
-      <script type="text/html" id="tmpl-customize-control-czr_module-content">
-        <label for="{{ data.settings['default'] }}-button">
-
-          <# if ( data.label ) { #>
-            <span class="customize-control-title">{{ data.label }}</span>
-          <# } #>
-          <# if ( data.description ) { #>
-            <span class="description customize-control-description">{{{ data.description }}}</span>
-          <# } #>
-        </label>
-      </script>
-    <?php
-}
-
-
-
-
-/////////////////////////////////////////////////////
-/// WHEN EMBEDDED IN A SEKTION //////////////////////
-/////////////////////////////////////////////////////
-//this is a the wrapper for a single module
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_sektion_module_templates' , 1 );
-function czr_fn_print_sektion_module_templates() {
-  $css_attr = CZR_customize::$instance -> css_attr;
-  ?>
-
-    <script type="text/html" id="tmpl-czr-single-module-wrapper">
-      <li class="czr-single-module" data-module-id="{{ data.id }}">
-          <div class="czr-mod-header">
-              <div class="czr-mod-title">
-                <span class="czr-mod-drag-handler fas fa-arrows-alt"></span>
-                <h4>{{ data.id }}</h4>
-                <div class="czr-mod-buttons">
-
-                  <a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt czr-edit-mod"></a>&nbsp;<a title="<?php _e('Remove', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-trash czr-remove-mod"></a>
-                </div>
-              </div>
-              <div class="<?php echo $css_attr['remove_alert_wrapper']; ?>"></div>
-          </div>
-          <div class="czr-mod-content"></div>
-      </li>
-    </script>
-
-
-    <script type="text/html" id="tmpl-czr-module-sektion-title-part">
-        <div class="czr-module-description-container">
-          <div class="czr-module-title">
-            <button class="czr-module-back" tabindex="0">
-              <span class="screen-reader-text">Back</span>
-            </button>
-            <h3>
-              <span class="customize-action">
-                Customizing Module
-              </span>
-              {{ data.id }}
-            </h3>
-          </div>
-        </div>
-    </script>
-
-  <?php
-}
-?><?php
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_social_tmpls' , 1 );
-
-function czr_fn_print_social_tmpls() {
-  $css_attr = CZR_customize::$instance -> css_attr;
-  ?>
-
-  <script type="text/html" id="tmpl-czr-module-social-pre-add-view-content">
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="select">
-      <div class="customize-control-title"><?php _e('Select an icon', 'customizr'); ?></div>
-      <div class="czr-input">
-        <select data-type="social-icon"></select>
-      </div>
-    </div>
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
-      <div class="customize-control-title"><?php _e('Social link url', 'customizr'); ?></div>
-      <div class="czr-input">
-        <input data-type="social-link" type="text" value="" placeholder="<?php _e('http://...,mailto:...,...', 'customizr'); ?>"></input>
-      </div>
-      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be valid url).', 'customizr'); ?>
-      </span>
-    </div>
-  </script>
-
-  <script type="text/html" id="tmpl-czr-module-social-mod-opt">
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="number" data-transport="postMessage">
-      <div class="customize-control-title"><?php _e('Size in px', 'customizr'); ?></div>
-      <div class="czr-input">
-        <input data-type="social-size" type="number" step="1" min="5" value="{{ data['social-size'] }}" />
-      </div>
-    </div>
-  </script>
-
-  <script type="text/html" id="tmpl-czr-module-social-item-content">
-    <!-- <div class="czr-sub-set">
-      <div class="customize-control-title"><?php _e('Id', 'customizr'); ?></div>
-      <div class="czr-input">
-        <span data-type="id">{{ data.id }}</span>
-      </div>
-    </div> -->
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="select">
-      <div class="customize-control-title"><?php _e('Social icon', 'customizr'); ?></div>
-      <div class="czr-input">
-        <select data-type="social-icon"></select>
-        <!-- <input type="text" value="{{ data['social-icon'] }}"></input> -->
-      </div>
-    </div>
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
-      <div class="customize-control-title"><?php _e('Social link', 'customizr'); ?></div>
-      <div class="czr-input">
-        <input data-type="social-link" type="text" value="{{ data['social-link'] }}" placeholder="<?php _e('http://...,mailto:...,...', 'customizr'); ?>"></input>
-      </div>
-      <span class="czr-notice"><?php _e('Enter the full url of your social profile (must be valid url).', 'customizr'); ?></span>
-    </div>
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="text">
-      <div class="customize-control-title"><?php _e('Title', 'customizr'); ?></div>
-      <div class="czr-input">
-        <input data-type="title" type="text" value="{{ data.title }}" placeholder="<?php _e('Enter a title', 'customizr'); ?>"></input>
-      </div>
-      <span class="czr-notice"><?php _e('This is the text displayed on mouse over.', 'customizr'); ?></span>
-    </div>
-
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?> width-100" data-input-type="color" data-transport="postMessage">
-      <div class="customize-control-title width-100"><?php _e('Icon color', 'customizr'); ?> <i><?php _e('default:', 'customizr'); ?> rgba(255,255,255,0.7)</i></div>
-      <div class="czr-input">
-        <input data-type="social-color" type="text" value="{{ data['social-color'] }}"></input>
-      </div>
-      <span class="czr-notice"><?php _e('Set a unique color for your icon.', 'customizr'); ?></span>
-    </div>
-    <div class="<?php echo $css_attr['sub_set_wrapper']; ?>" data-input-type="check">
-      <#
-        var _checked = ( false != data['social-target'] ) ? "checked=checked" : '';
-      #>
-      <div class="customize-control-title"><?php _e('Link target', 'customizr'); ?></div>
-      <div class="czr-input">
-        <input data-type="social-target" type="checkbox" {{ _checked }}></input>
-      </div>
-      <span class="czr-notice"><?php _e('Check this option to open the link in a another tab of the browser.', 'customizr'); ?></span>
-    </div>
-
-  </script>
-  <?php
-}
-?><?php
-
-//print the image uploader template
-//used in multi input controls for example
-//defined in the parent class
-add_action( 'customize_controls_print_footer_scripts', 'czr_fn_print_image_uploader_template', 1 );
-
-/**
- * Render a JS template for the content of the image control.
- *
- * highly inspired by WP_Customize_Media_Control::content_template() .
- */
-function czr_fn_print_image_uploader_template() {
-?>
-  <script type="text/html" id="tmpl-czr-input-img-uploader-view-content">
-    <# if ( data.attachment && data.attachment.id ) { #>
-      <div class="attachment-media-view attachment-media-view-{{ data.attachment.type }} {{ data.attachment.orientation }}">
-        <div class="thumbnail thumbnail-{{ data.attachment.type }}">
-          <# if ( 'image' === data.attachment.type && data.attachment.sizes && data.attachment.sizes.medium ) { #>
-            <img class="attachment-thumb" src="{{ data.attachment.sizes.medium.url }}" draggable="false" alt="" />
-          <# } else if ( 'image' === data.attachment.type && data.attachment.sizes && data.attachment.sizes.full ) { #>
-            <img class="attachment-thumb" src="{{ data.attachment.sizes.full.url }}" draggable="false" alt="" />
-          <# } #>
-        </div>
-        <div class="actions">
-          <# if ( data.canUpload ) { #>
-          <button type="button" class="button remove-button">{{ data.button_labels.remove }}</button>
-          <button type="button" class="button upload-button control-focus" id="{{ data.settings['default'] }}-button">{{ data.button_labels.change }}</button>
-          <div style="clear:both"></div>
-          <# } #>
-        </div>
-      </div>
-    <# } else { #>
-      <div class="attachment-media-view">
-        <div class="placeholder">
-          {{ data.button_labels.placeholder }}
-        </div>
-        <div class="actions">
-          <# if ( data.canUpload ) { #>
-          <button type="button" class="button upload-button" id="{{ data.settings['default'] }}-button">{{ data.button_labels.select }}</button>
-          <# } #>
-          <div style="clear:both"></div>
-        </div>
-      </div>
-    <# } #>
-  </script>
-<?php
-}
-
-
-//Add image uploader button_labels to translated strings
-add_filter( 'controls_translated_strings', 'czr_fn_add_translated_strings');
-function czr_fn_add_translated_strings( $strings) {
-      return array_merge( $strings, array(
-              'select_image'        => __( 'Select Image', 'customizr' ),
-              'change_image'        => __( 'Change Image', 'customizr' ),
-              'remove_image'        => __( 'Remove', 'customizr' ),
-              'default_image'       => __( 'Default', 'customizr'  ),
-              'placeholder_image'   => __( 'No image selected', 'customizr' ),
-              'frame_title_image'   => __( 'Select Image', 'customizr' ),
-              'frame_button_image'  => __( 'Choose Image', 'customizr' )
-      ));
-}
-?>
+?>
