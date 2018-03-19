@@ -153,10 +153,11 @@ if ( ! class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
             add_action ( 'customize_preview_init' , array( $this, 'ac_customize_load_preview_js' ) );
 
             // When used as standalone plugin with Customizr free or Hueman free, no need to load the customizer module tmpl
-            // add specific js templates for the czr_module control
-            if ( false === strpos( czr_get_parent_theme_slug(), 'customizr' ) && false === strpos( czr_get_parent_theme_slug(), 'hueman' ) ) {
-                add_action( 'customize_controls_print_footer_scripts', array( $this, 'ac_print_module_control_templates' ) , 1 );
-            }
+            // adds specific js templates for the czr_module control
+            add_action( 'customize_controls_print_footer_scripts', array( $this, 'ac_print_module_control_templates' ) , 1 );
+            // if ( false === strpos( czr_get_parent_theme_slug(), 'customizr' ) && false === strpos( czr_get_parent_theme_slug(), 'hueman' ) ) {
+            //     add_action( 'customize_controls_print_footer_scripts', array( $this, 'ac_print_module_control_templates' ) , 1 );
+            // }
         }
 
 

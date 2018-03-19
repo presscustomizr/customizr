@@ -208,7 +208,7 @@ li#customize-control-custom_css textarea {
  }
 
 
-/* PANELS AND SECTIONS TITLES */
+/* PANELS, SECTIONS and CONTROLS TITLES */
 .wp-customizer .control-section.control-panel .accordion-section-title .panel-title {
   font-size: 24px;
   font-weight: inherit;
@@ -229,6 +229,9 @@ li#customize-control-custom_css textarea {
 }
 .customize-control-title {
 	line-height: 19px;
+}
+.customize-control span.customize-control-title:first-child {
+    position: relative;
 }
 
 /* since v4.3 */
