@@ -310,9 +310,9 @@ if ( ! class_exists( 'CZR___' ) ) :
                     'setting' => array(
                         'type' => 'option',
                         'default'  => array(),
-                        'transport' => 'refresh',
-                        'sanitize_callback' => 'czr_sanitize_callback__czr_social_module',
-                        'validate_callback' => 'czr_validate_callback__czr_social_module'
+                        'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                        'sanitize_callback' => 'czr_fn_sanitize_callback__czr_social_module',
+                        'validate_callback' => 'czr_fn_validate_callback__czr_social_module'
                     ),
 
                     'section' => array(
