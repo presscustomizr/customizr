@@ -80,7 +80,6 @@
 ( function ( api, $, _ ) {
 
       api.bind( 'ready', function() {
-            api.consoleLog(' TO DO => register the pro section dynamically => remove the php part' );
             /*****************************************************************************
             * ADD PRO BEFORE SPECIFIC SECTIONS AND PANELS
             *****************************************************************************/
@@ -134,24 +133,22 @@
 
 
             /*****************************************************************************
-            * PRO SECTION CONSTRUCTOR
+            * PRO SECTION OVERRIDE
             *****************************************************************************/
             if ( ! themeServerControlParams.isPro && _.isFunction( api.Section ) ) {
-                  proSectionConstructor = api.Section.extend( {
-                        active : true,
-                        // No events for this type of section.
-                        attachEvents: function () {},
-                        // Always make the section active.
-                        isContextuallyActive: function () {
-                          return this.active();
-                        },
-                        _toggleActive: function(){ return true; },
+                  proSectionInstance = api.section('go_pro_sec');
+                  if ( ! _.isObject( proSectionInstance ) )
+                    return;
 
-                  } );
+                  // No events for this type of section.
+                  proSectionInstance.attachEvents = function () {};
+                  // Always make the section active.
+                  proSectionInstance.isContextuallyActive = function () {
+                    return this.active();
+                  };
+                  proSectionInstance._toggleActive = function(){ return true; };
 
-                  $.extend( api.sectionConstructor, {
-                        'czr-customize-section-pro' : proSectionConstructor
-                  });
+                  proSectionInstance.active( true );
             }
       });
 

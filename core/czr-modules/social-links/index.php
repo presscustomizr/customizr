@@ -127,7 +127,7 @@ function czr_fn_register_social_links_module( $args ) {
 /***
 * Social Module sanitization/validation
 **/
-function czr_sanitize_callback__czr_social_module( $socials ) {
+function czr_fn_sanitize_callback__czr_social_module( $socials ) {
   // error_log( 'IN SANITIZATION CALLBACK' );
   // error_log( print_r( $socials, true ));
   if ( empty( $socials ) )
@@ -144,7 +144,7 @@ function czr_sanitize_callback__czr_social_module( $socials ) {
   return $socials;
 }
 
-function czr_validate_callback__czr_social_module( $validity, $socials ) {
+function czr_fn_validate_callback__czr_social_module( $validity, $socials ) {
   // error_log( 'IN VALIDATION CALLBACK' );
   // error_log( print_r( $socials, true ));
   $ids_malformed_url = array();
