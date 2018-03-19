@@ -19,6 +19,38 @@
 * @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
+if ( !defined( 'CZR_MIN_PHP_VERSION' ) ) define ( 'CZR_MIN_PHP_VERSION', 5.3 );
+if ( !defined( 'CZR_MIN_WP_VERSION' ) ) define ( 'CZR_MIN_WP_VERSION', 4.5 );
+
+if ( version_compare( phpversion(), CZR_MIN_PHP_VERSION, '<' ) ) {
+    add_action( 'admin_notices'             , 'czr_fn_display_min_php_message' );
+    return;
+}
+global $wp_version;
+if ( version_compare( $wp_version, CZR_MIN_WP_VERSION, '<' ) ) {
+    add_action( 'admin_notices'             , 'czr_fn_display_min_wp_message' );
+    return;
+}
+
+function czr_fn_display_min_php_message() {
+    czr_fn_display_min_requirement_notice( __( 'PHP', 'customizr' ), CZR_MIN_PHP_VERSION );
+}
+
+function czr_fn_display_min_wp_message() {
+    czr_fn_display_min_requirement_notice( __( 'WordPress', 'customizr' ), CZR_MIN_WP_VERSION );
+}
+
+
+function czr_fn_display_min_requirement_notice( $requires_what, $requires_what_version ) {
+    $theme = wp_get_theme()->Name;
+    printf( '<div class="error"><p>%1$s</p></div>',
+        sprintf( __( 'The <strong>%1$s</strong> theme requires at least %2$s version %3$s', 'customizr' ),
+            $theme,
+            $requires_what,
+            $requires_what_version
+        )
+    );
+}
 
 /**
 * This is where Customizr starts. This file defines and loads the theme's components :
