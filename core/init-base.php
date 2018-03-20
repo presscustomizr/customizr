@@ -431,10 +431,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
       /**
+      * hook : 'wp_before_admin_bar_render'
       * Add help button
       */
       function czr_fn_add_help_button() {
-          if ( current_user_can( 'edit_theme_options' ) ) {
+          if ( czr_fn_is_pro() ) {
               global $wp_admin_bar;
               $wp_admin_bar->add_menu( array(
                   'parent' => 'top-secondary', // Off on the right side
