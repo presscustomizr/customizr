@@ -1,4 +1,4 @@
-# Customizr v4.1.0-beta-1 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.0-beta-2 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,15 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.0 March 20th 2018 =
+* Fix: do not display post metas for pages in search results
+* Fix: make sure our col*auto always have a max-width of 100%. fixes #1476
+* Imp: overall css improvements
+* Imp: remove post 'hentry' class when current post type is a page since author and published/update metas will not be printed in pages fixes #1344 #917 #864 #694 #1401. In blog/archives or single posts showing those metas is up to the user.
+* Imp: co-authors plus plugin integration
+* Imp: add horizontal widget area before the footer. fixes #1369
+* Imp: add early check on php version (min 5.3) and wp version (min 4.5). Fixes #1496
+
 = 4.0.18 February 13th 2018 =
 * Fix: tagline visibility in mobiles when shown in desktop topbar. fixes #1458
 * Fix: topbar menu not displayed in fresh installs. fixes #1460
