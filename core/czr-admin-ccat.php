@@ -80,6 +80,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
 
     /*
+    * hook : 'delete_term'
     * @return void
     * updates the term pickers related options
     * @package Customizr
@@ -113,6 +114,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
 
     /*
+    * hook : 'czr_add_custom_fonts_to_editor'
     * @return css string
     *
     * @package Customizr
@@ -137,6 +139,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
 
     /**
+   * hook : 'admin_init'
    * enqueue additional styling for admin screens
    * @package Customizr
    * @since Customizr 3.0.4

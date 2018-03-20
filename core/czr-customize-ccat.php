@@ -1584,8 +1584,7 @@ class CZR_Customize_Sections extends WP_Customize_Section {
       return $json;
     }
 }
-?>
-<?php
+?><?php
 /**
  * Pro customizer section.
  * highly based on
@@ -1645,4 +1644,4 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
         </li>
     <?php }
 }
-?>
+?>
