@@ -129,6 +129,49 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
           }
         }
+
+
+        // load the czr-base-fmk
+        require_once( CZR_BASE . CZR_CORE_PATH . 'czr-base-fmk/czr-base-fmk.php' );
+        \czr_fn\CZR_Fmk_Base( array(
+           'text_domain' => 'customizr',
+           'base_url' => CZR_BASE_URL . 'core/czr-base-fmk'
+        ) );
+
+        // load the social links module
+        require_once( CZR_BASE . CZR_CORE_PATH . 'czr-modules/social-links/index.php' );
+        czr_fn_register_social_links_module(
+            array(
+                'id' => 'tc_theme_options[tc_social_links]',
+
+                'text-domain' => 'customizr',
+                'base_url_path' => CZR_BASE_URL . '/core/czr-modules/social-links/',
+                'version' => CUSTOMIZR_VER,
+
+                'option_value' => czr_fn_opt( 'tc_social_links' ), // for dynamic registration
+                'setting' => array(
+                    'type' => 'option',
+                    'default'  => array(),
+                    'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
+                    'sanitize_callback' => 'czr_fn_sanitize_callback__czr_social_module',
+                    'validate_callback' => 'czr_fn_validate_callback__czr_social_module'
+                ),
+
+                'section' => array(
+                    'id' => 'socials_sec',
+                    'title' => __( 'Social links', 'customizr' ),
+                    'panel' => 'tc-global-panel',
+                    'priority' => 20
+                ),
+
+                'control' => array(
+                    'priority' => 10,
+                    'label' => __( 'Create and organize your social links', 'customizr' ),
+                    'type'  => 'czr_module',
+                )
+            )
+        );
+
         return $instances[ $classname ];
     }
 
