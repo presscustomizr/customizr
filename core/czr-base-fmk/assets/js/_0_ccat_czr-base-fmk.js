@@ -116,12 +116,15 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       //SET THE ACTIVE STATE OF THE THEMES SECTION BASED ON WHAT THE SERVER SENT
       api.bind('ready', function() {
             var _do = function() {
-
-                  if ( _.isEmpty( themeServerControlParams ) || _.isUndefined( themeServerControlParams.isThemeSwitchOn ) )
+                  // the themeServerControlParams global is printed only with Customizr and Hueman
+                  if ( _.isUndefined( window.themeServerControlParams ) || _.isUndefined( themeServerControlParams.isThemeSwitchOn ) )
                     return;
-                  //reset the callbacks
-                  api.panel('themes').active.callbacks = $.Callbacks();
-                  api.panel('themes').active( themeServerControlParams.isThemeSwitchOn );
+
+                  if ( ! themeServerControlParams.isThemeSwitchOn ) {
+                      //reset the callbacks
+                      api.panel('themes').active.callbacks = $.Callbacks();
+                      api.panel('themes').active( themeServerControlParams.isThemeSwitchOn );
+                  }
             };
             if ( api.panel.has( 'themes') ) {
                   _do();
@@ -670,7 +673,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
       */
       build_setId : function ( setId ) {
             if ( _.isUndefined( window.themeServerControlParams ) || ! _.isArray( themeServerControlParams.wpBuiltinSettings ) ) {
-                api.errorLog( 'build_setId => missing themeServerControlParams !');
+                //api.errorLog( 'build_setId => missing themeServerControlParams !');
                 return setId;
             }
             //exclude the WP built-in settings like blogdescription, show_on_front, etc
@@ -702,7 +705,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
       */
       getOptionName : function( name ) {
             if ( _.isEmpty( window.themeServerControlParams ) || _.isEmpty( themeServerControlParams.themeOptions ) ) {
-                api.errorLog( 'getOptionName => missing themeServerControlParams !');
+                //api.errorLog( 'getOptionName => missing themeServerControlParams !');
                 return name;
             }
             var self = this;
