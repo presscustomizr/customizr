@@ -38,6 +38,9 @@ module.exports = function(grunt) {
           // New customizer
           czr_assets : 'assets/czr/',
         },
+        vars : {
+          textdomain : 'customizr'
+        },
         //default less modifiers
         is_rtl: 'true',
         //check if a custom color is requested
@@ -119,6 +122,7 @@ module.exports = function(grunt) {
           'prod_build':  [
             //'gitinfo',
             'replace',
+            'addtextdomain',
             'makepot',
             'potomo',
             'clean:free',
