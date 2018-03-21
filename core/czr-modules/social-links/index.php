@@ -72,19 +72,19 @@ function czr_fn_register_social_links_module( $args ) {
             'pre-item' => array(
                 'social-icon' => array(
                     'input_type'  => 'select',
-                    'title'       => __('Select an icon', PC_SOCIAL_MODULE_TEXT_DOMAIN)
+                    'title'       => __('Select an icon', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr')
                 ),
                 'social-link'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Social link url', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'placeholder' => __('http://...,mailto:...,...', PC_SOCIAL_MODULE_TEXT_DOMAIN)
+                    'title'       => __('Social link url', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'placeholder' => __('http://...,mailto:...,...', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr')
                 )
             ),
             'mod-opt' => array(
                 'social-size' => array(
                     'input_type'  => 'number',
-                    'title'       => __('Size in px', PC_SOCIAL_MODULE_TEXT_DOMAIN),
+                    'title'       => __('Size in px', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
                     'step'        => 1,
                     'min'         => 5,
                     'transport' => 'postMessage'
@@ -93,29 +93,29 @@ function czr_fn_register_social_links_module( $args ) {
             'item-inputs' => array(
                 'social-icon' => array(
                     'input_type'  => 'select',
-                    'title'       => __('Social icon', PC_SOCIAL_MODULE_TEXT_DOMAIN)
+                    'title'       => __('Social icon', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr')
                 ),
                 'social-link'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Social link', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'placeholder' => __('http://...,mailto:...,...', PC_SOCIAL_MODULE_TEXT_DOMAIN)
+                    'title'       => __('Social link', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'placeholder' => __('http://...,mailto:...,...', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr')
                 ),
                 'title'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Title', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'notice_after'      => __('This is the text displayed on mouse over.', PC_SOCIAL_MODULE_TEXT_DOMAIN),
+                    'title'       => __('Title', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'notice_after'      => __('This is the text displayed on mouse over.', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
                 ),
                 'social-color'  => array(
                     'input_type'  => 'color',
-                    'title'       => sprintf( '%1$s <i>%2$s %3$s</i>', __('Icon color', PC_SOCIAL_MODULE_TEXT_DOMAIN), __('default:', PC_SOCIAL_MODULE_TEXT_DOMAIN), 'rgba(255,255,255,0.7)' ),
-                    'notice_after'      => __('Set a unique color for your icon.', PC_SOCIAL_MODULE_TEXT_DOMAIN),
+                    'title'       => sprintf( '%1$s <i>%2$s %3$s</i>', __('Icon color', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'), __('default:', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'), 'rgba(255,255,255,0.7)' ),
+                    'notice_after'      => __('Set a unique color for your icon.', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
                     'transport' => 'postMessage'
                 ),
                 'social-target' => array(
                     'input_type'  => 'check',
-                    'title'       => __('Link target', PC_SOCIAL_MODULE_TEXT_DOMAIN),
-                    'notice_after'      => __('Check this option to open the link in a another tab of the browser.', PC_SOCIAL_MODULE_TEXT_DOMAIN),
+                    'title'       => __('Link target', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
+                    'notice_after'      => __('Check this option to open the link in a another tab of the browser.', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr'),
                     'width-100'   => true
                 )
             )
@@ -153,7 +153,7 @@ function czr_fn_validate_callback__czr_social_module( $validity, $socials ) {
   // error_log( 'IN VALIDATION CALLBACK' );
   // error_log( print_r( $socials, true ));
   $ids_malformed_url = array();
-  $malformed_message = __( 'An error occurred: malformed social links', PC_SOCIAL_MODULE_TEXT_DOMAIN);
+  $malformed_message = __( 'An error occurred: malformed social links', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr');
 
   if ( empty( $socials ) )
     return array();
@@ -197,6 +197,6 @@ function czr_fn_validate_callback__czr_social_module( $validity, $socials ) {
   if ( empty( $ids_malformed_url) )
     return null;
 
-  return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', PC_SOCIAL_MODULE_TEXT_DOMAIN ), $ids_malformed_url );
+  return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', PC_SOCIAL_MODULE_TEXT_DOMAIN, 'customizr' ), $ids_malformed_url );
 }
 
