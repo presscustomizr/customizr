@@ -210,4 +210,19 @@
                     });
               } );
         });
+
+
+        //typically sent when clicking on a placeholder icon
+        api.bind( 'ready', function() {
+            _.each( [ 'panel', 'section', 'control' ], function( wot ) {
+                api.previewer.bind( 'czr-' + wot + '-focus', function( _id_ ) {
+                    var _do = function() {
+                        if ( api[ wot ].has( _id_ ) ) {
+                            api[ wot ]( _id_ ).focus();
+                        }
+                    };
+                    try{ _do(); } catch( er ) { console.log( er );}
+                } );
+            });
+        });
 }) ( wp, jQuery );

@@ -322,24 +322,27 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         //gets the filtered default values
         $widgets                     = CZR_widgets::$instance->widgets;
         //Inline style, we really don't need to add this to our syle css or enqueue a different style, right?
-        $placeholder_style           = ' style="background:#fff;padding:7%;text-align:center;border:3px dotted #efb93f;font-size:.875em;"';
-        $placeholder_title_style     = ' style="margin:0.5em;font-size:1.5em;color:#444"';
-        $placeholder_zone_name_style = ' style="font-size: 1.1875em;font-weight:bold"';
+        $placeholder_style           = ' style="background:#f7f8f9;padding:7%;text-align:center;border:2px dotted #008ec2;font-size:.875em;"';
+        $placeholder_title_style     = ' style="margin:0.5em;font-size:1.2em;line-height:1.5em;color:#444"';
+        $placeholder_zone_name_style = ' style="font-weight:bold"';
 
         if ( array_key_exists( $index, $widgets ) ) {
-            printf('<div class="widget"><div class="czr-placeholder-widget"%3$s><h3%4$s>%1$s<br/><span class="zone-name"%5$s>"%2$s"</span></h3></div></div>',
+            printf('<div class="widget" data-czr-panel-focus="widgets">%6$s<div class="czr-placeholder-widget"%3$s><h3%4$s>%1$s<br/><span class="zone-name"%5$s>"%2$s"</span></h3></div></div>',
                 __('Add widgets to the zone :', 'customizr'),
                 isset( $widgets[ $index ][ 'name' ] ) ? $widgets[ $index ][ 'name' ] : $widgets[ $index ],
                 $placeholder_style,
                 $placeholder_title_style,
-                $placeholder_zone_name_style
+                $placeholder_zone_name_style,
+                sprintf( '<div style="position: relative;left: 33px;"><a href="%1$s">%2$s</a></div>',
+                  "javascript:wp.customize.preview.send( 'czr-section-focus', 'sidebar-widgets-{$index}' );",
+                  '<span class="customize-partial-edit-shortcut"><button class="customize-partial-edit-shortcut-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"></path></svg></button></span>'
+                )
             );
             $did_one = true;
         }
 
         return $did_one;
     }
-
 
 
 
@@ -849,8 +852,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         <<?php /* generally a div, can be aside when in a widget area*/
           echo $element_tag
         ?> class="tc-placeholder-wrap <?php echo $element_class ?>" <?php echo czr_fn_stringify_array( $help_block_data ) ?>>
-            <i class="fas fa-info-circle czr-hb-info-icon"></i>
-            <span class="tc-admin-notice"><i class="fas fa-key"></i> <?php _e( 'This block is visible for admin users only.', 'customizr') ?></span>
+            <span class="tc-admin-notice"><i class="fas fa-user-secret"></i> <?php _e( 'This notice is visible for admin users only.', 'customizr') ?></span>
                 <div class="tc-placeholder-content">
                     <?php if ( $help_title ): ?>
                       <h4><?php echo $help_title ?></h4>

@@ -6,13 +6,6 @@
     position: relative
 }
 
-.tc-placeholder-wrap .czr-hb-info-icon {
-    padding-left: 0;
-    position: absolute;
-    text-decoration: none!important;
-    top: 5px;
-    left: 5px;
-}
 .tc-placeholder-wrap p {
     font-style: italic;
     font-size: 80%;
