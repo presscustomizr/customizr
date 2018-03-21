@@ -289,12 +289,17 @@ if ( ! class_exists( 'CZR___' ) ) :
             //loads utils
             require_once( CZR_BASE . CZR_CORE_PATH . 'functions-ccat.php' );
 
-            // load the czr-base-fmk
-            require_once(  dirname( __FILE__ ) . '/czr-base-fmk/czr-base-fmk.php' );
-            \czr_fn\CZR_Fmk_Base( array(
-               'text_domain' => 'customizr',
-               'base_url' => CZR_BASE_URL . 'core/czr-base-fmk'
-            ) );
+            if ( ! isset( $GLOBALS['czr_base_fmk'] ) ) {
+                // load the czr-base-fmk
+                require_once(  dirname( __FILE__ ) . '/czr-base-fmk/czr-base-fmk.php' );
+                \czr_fn\CZR_Fmk_Base( array(
+                   'text_domain' => 'customizr',
+                   'base_url' => CZR_BASE_URL . 'core/czr-base-fmk'
+                ) );
+            } else {
+                error_log(' Warning => the czr_base_fmk should be loaded and instantiated by the theme.');
+            }
+
 
             // load the social links module
             require_once( CZR_BASE . CZR_CORE_PATH . 'czr-modules/social-links/index.php' );

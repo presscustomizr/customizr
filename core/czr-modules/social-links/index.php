@@ -15,6 +15,11 @@ function czr_fn_register_social_links_module( $args ) {
     // set the social module text-domain in the current context => 'customizr', 'hueman', ...
     if ( ! defined( 'PC_SOCIAL_MODULE_TEXT_DOMAIN' ) ) { define( 'PC_SOCIAL_MODULE_TEXT_DOMAIN' , $args['text-domain'] ); }
 
+    if ( ! isset( $GLOBALS['czr_base_fmk'] ) ) {
+        error_log( __FUNCTION__ . ' => global czr_base_fmk not set' );
+        return;
+    }
+
     $czrnamespace = str_replace( 'CZR_Fmk_Base', '', $GLOBALS['czr_base_fmk']);
     //pc\czr_base_fmk\czr_register_module
     $function_name = $czrnamespace . 'czr_register_module';
