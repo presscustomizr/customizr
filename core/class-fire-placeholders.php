@@ -135,26 +135,26 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
                 'controller'               => array( $this, 'czr_fn_is_right_sidebar_widget_placeholder_enabled' )
             ),
             //footer_horizontal_widgets
-            array(
-                'template'    => false,
-                'hook'        => '__before_footer',
-                'priority'    => '999',
-                'callback'    => $this->placeholder_template_callback,
-                'cb_params'   => array(
-                    'dismiss_action'         => 'dismiss_widget_notice',
-                    'element_tag'            => 'aside',
-                    'element_class'          => 'col-12 horizontal-footer',
-                    'position'               => 'horizontal_footer',
-                    'help_title'             => __( 'The horizontal footer widget area has no widgets', 'customizr'),
-                    'help_message'           => sprintf( __( 'Add widgets to the horizontal footer widget area %s or %s.', 'customizr'),
-                        sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( 'Add widgets', 'customizr'), __('now', 'customizr') ),
-                        sprintf('<a class="tc-inline-dismiss-notice tc-dismiss-notice" href="#" title="%1$s">%1$s</a>',
-                          __( 'dismiss this notice', 'customizr')
-                        )
-                    ),
-                ),
-                'controller'               => array( $this, 'czr_fn_is_horizontal_footer_widgets_placeholder_enabled' )
-            ),
+            // array(
+            //     'template'    => false,
+            //     'hook'        => '__before_footer',
+            //     'priority'    => '999',
+            //     'callback'    => $this->placeholder_template_callback,
+            //     'cb_params'   => array(
+            //         'dismiss_action'         => 'dismiss_widget_notice',
+            //         'element_tag'            => 'aside',
+            //         'element_class'          => 'col-12 horizontal-footer',
+            //         'position'               => 'horizontal_footer',
+            //         'help_title'             => __( 'The horizontal footer widget area has no widgets', 'customizr'),
+            //         'help_message'           => sprintf( __( 'Add widgets to the horizontal footer widget area %s or %s.', 'customizr'),
+            //             sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', czr_fn_get_customizer_url( array( 'panel' => 'widgets') ), __( 'Add widgets', 'customizr'), __('now', 'customizr') ),
+            //             sprintf('<a class="tc-inline-dismiss-notice tc-dismiss-notice" href="#" title="%1$s">%1$s</a>',
+            //               __( 'dismiss this notice', 'customizr')
+            //             )
+            //         ),
+            //     ),
+            //     'controller'               => array( $this, 'czr_fn_is_horizontal_footer_widgets_placeholder_enabled' )
+            // ),
             //footer widgets
             array(
                 'template'    => false,
@@ -230,22 +230,22 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
                 'controller'  => array( $this, 'czr_fn_is_post_lists_img_smartload_help_on' )
             ),
             //featured pages
-            array(
-                'template'    => false,
-                'hook'        => '__after_fp',
-                'callback'    => $this->placeholder_template_callback,
-                'cb_params'   => array(
-                    'dismiss_action'         => 'dismiss_fp_notice',
-                    'remove_action'          => 'remove_fp',
-                    'remove_selector'        => '.marketing',
-                    'element_class'          => 'col-12 offset-md-6 col-md-6',
-                    'help_message'           =>  sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
-                      sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) ),
-                      sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
-                    ),
-                ),
-                'controller'               => array( $this, 'czr_fn_is_fp_notice_on' )
-            ),
+            // array(
+            //     'template'    => false,
+            //     'hook'        => '__after_fp',
+            //     'callback'    => $this->placeholder_template_callback,
+            //     'cb_params'   => array(
+            //         'dismiss_action'         => 'dismiss_fp_notice',
+            //         'remove_action'          => 'remove_fp',
+            //         'remove_selector'        => '.marketing',
+            //         'element_class'          => 'col-12 offset-md-6 col-md-6',
+            //         'help_message'           =>  sprintf( __("Edit those featured pages %s, or %s (you'll be able to add yours later)." , "customizr"),
+            //           sprintf( '<a href="%3$s" title="%1$s">%2$s</a>', __( "Edit those featured pages", "customizr" ), __( "now", "customizr" ), czr_fn_get_customizer_url( array( 'control' => 'tc_show_featured_pages', 'section' => 'frontpage_sec') ) ),
+            //           sprintf( '<a href="#" class="tc-inline-remove" title="%1$s">%2$s</a>', __( "Remove the featured pages", "customizr" ), __( "remove them", "customizr" ) )
+            //         ),
+            //     ),
+            //     'controller'               => array( $this, 'czr_fn_is_fp_notice_on' )
+            // ),
         );
 
         //register help blocks
@@ -333,9 +333,8 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
                 $placeholder_style,
                 $placeholder_title_style,
                 $placeholder_zone_name_style,
-                sprintf( '<div style="position: relative;left: 33px;"><a href="%1$s">%2$s</a></div>',
-                  "javascript:wp.customize.preview.send( 'czr-section-focus', 'sidebar-widgets-{$index}' );",
-                  '<span class="customize-partial-edit-shortcut"><button class="customize-partial-edit-shortcut-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13.89 3.39l2.71 2.72c.46.46.42 1.24.03 1.64l-8.01 8.02-5.56 1.16 1.16-5.58s7.6-7.63 7.99-8.03c.39-.39 1.22-.39 1.68.07zm-2.73 2.79l-5.59 5.61 1.11 1.11 5.54-5.65zm-2.97 8.23l5.58-5.6-1.07-1.08-5.59 5.6z"></path></svg></button></span>'
+                sprintf( '<div style="position: relative;left: 33px;">%1$s</div>',
+                   czr_fn_get_customizer_focus_icon( array( 'wot' => 'section', 'id' => 'sidebar-widgets-' . $index ) )
                 )
             );
             $did_one = true;
