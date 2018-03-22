@@ -48,7 +48,7 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
     //overrides the default template
     protected function render_template() { ?>
       <li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }} cannot-expand">
-          <h3 style="padding: 10px 25px 18px 14px;" class="accordion-section-title">
+          <h3 style="padding: 10px 2% 18px 14px;display: inline-block;width: 93%;" class="accordion-section-title">
             {{ data.title }}
             <a href="{{ data.pro_doc_url }}" style="font-size: 0.7em;display: block;float: left;position: absolute;bottom: 0px;font-style: italic;color: #555d66;" target="_blank" title="{{ data.pro_subtitle }}">{{ data.pro_subtitle }}</a>
             <# if ( data.pro_text && data.pro_url ) { #>
