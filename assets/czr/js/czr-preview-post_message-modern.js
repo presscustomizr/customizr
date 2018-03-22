@@ -1,6 +1,6 @@
 // global vars :
 // serverPreviewParams <= printed with the base fmk
-// themeServerControlParams <= printed from the theme
+// themeServerPreviewParams <= printed from the theme
 (function (api, $, _ ) {
       var $_body    = $( 'body' ),
           setting_cbs = api.CZR_preview.prototype.setting_cbs || {},
@@ -46,8 +46,8 @@
                   skinURL = [ serverPreviewParams.themeFolder , '/inc/assets/css/' , skinName ].join('');
 
               //check if the customSkin param is filtered
-              if ( themeServerControlParams.customSkin && themeServerControlParams.customSkin.skinName && themeServerControlParams.customSkin.fullPath )
-                skinURL = to == themeServerControlParams.customSkin.skinName ? themeServerControlParams.customSkin.fullPath : skinURL;
+              if ( themeServerPreviewParams.customSkin && themeServerPreviewParams.customSkin.skinName && themeServerPreviewParams.customSkin.fullPath )
+                skinURL = to == themeServerPreviewParams.customSkin.skinName ? themeServerPreviewParams.customSkin.fullPath : skinURL;
 
               $skin_style_element.attr('href' , skinURL );
               if (  0 === $('#live-skin-css').length )
@@ -55,7 +55,7 @@
             }
           },
           'tc_fonts' : function( to ) {
-              var font_groups = themeServerControlParams.fontPairs;
+              var font_groups = themeServerPreviewParams.fontPairs;
               $.each( font_groups , function( key, group ) {
                 if ( group.list[to]) {
                   if ( -1 != to.indexOf('_g_') )
@@ -69,7 +69,7 @@
               }, 100 );
           },
           'tc_body_font_size' : function( to ) {
-            var fontSelectors  = themeServerControlParams.fontSelectors;
+            var fontSelectors  = themeServerPreviewParams.fontSelectors;
             var $font_size_style_element = ( 0 === $('#live-font-size-css').length ) ? $('<style>' , { id : 'live-font-size-css' , type : "text/css" }) : $('#live-font-size-css');
             if (  0 === $('#live-font-size-css').length )
                 $('head').append( $font_size_style_element );
@@ -548,7 +548,7 @@
           var split         = single_font.split(':'),
               css_properties = {},
               font_family, font_weight = '',
-              fontSelectors  = themeServerControlParams.fontSelectors;
+              fontSelectors  = themeServerPreviewParams.fontSelectors;
 
           css_properties = {
             'font-family' : (split[0]).replace(/[\+|:]/g, ' '),
