@@ -188,22 +188,6 @@ class CZR_menu_model_class extends CZR_Model {
     }
 
 
-    /*
-    * @echo add menu button
-    */
-    function czr_fn_add_menu_button() {
-        czr_fn_edit_button(
-            array(
-              'class' => 'add-menu-button',
-              'link'  => czr_fn_get_customizer_url( array( 'section' => 'menu_locations' ) ),
-              'text'  => __( 'Add a menu', 'customizr' ),
-              'title' => __( 'open the customizer menu section', 'customizr'),
-            )
-        );
-    }
-
-
-
 
     /*
     * Fired just before the view is rendered
