@@ -97,6 +97,7 @@
 .nav__utils {
     @extend .display-flex;
     flex-shrink: 0;
+    padding: 0;
     //in b4 stable col*auto max-width is set to none, we always want it to be set to 100%
     max-width: 100%;
     @include media-breakpoint-down( sm ) {
