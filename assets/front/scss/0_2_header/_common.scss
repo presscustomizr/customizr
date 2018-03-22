@@ -495,6 +495,15 @@
   max-width: none;
 }
 
+//add menu button
+
+.tc-header .add-menu-button {
+  margin: 10px 0;
+}
+.mobile-nav__menu-wrapper .add-menu-button {
+  margin-top: 30px;
+}
+
 /* ADMIN BAR
 -------------------------------------------------- */
 #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
