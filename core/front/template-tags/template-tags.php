@@ -156,7 +156,7 @@ function czr_fn_edit_button( $args = array() ) {
       * No edit buttons if user is not logged in or is customizing
       * Other conditions are checked by the caller
       */
-      if ( !is_user_logged_in() || czr_fn_is_customizing() )
+      if ( ! is_user_logged_in() )
         return;
 
       $defaults = array(
@@ -166,45 +166,65 @@ function czr_fn_edit_button( $args = array() ) {
         'link'      => '#',
         'target'    => '_blank',
         'rel'       => 'nofollow',
-        'echo'      => true
+        'echo'      => true,
+        'customizer_focus_link' => array()
       );
 
       $args             = wp_parse_args( $args, $defaults );
 
-      $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' btn btn-edit' : 'btn btn-edit';
+      /*
+      * No edit buttons if is customizing and no customizer focus param have been specified
+      */
+      if ( empty( $args['customizer_focus_link'] ) && czr_fn_is_customizing() )
+        return;
 
-      $edit_button      = sprintf( '<a class="%1$s" title="%2$s" href="%3$s" target="%4$s" rel="%5$s"><i class="icn-edit"></i>%6$s</a>',
+      $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' btn btn-edit' : 'btn btn-edit';
+      $customizer_focus_args = false;
+
+      if ( czr_fn_is_customizing() && ! empty( $args['customizer_focus_link'] ) && is_array( $args['customizer_focus_link'] ) ) {
+          $customizer_focus_args = wp_parse_args( $args['customizer_focus_link'], array(
+                  'wot' => '', //control, section, panel
+                  'id' => ''  // the wp.customize id of the control, section or panel
+              )
+          );
+      }
+
+      $edit_button      = sprintf( '%7$s<a class="%1$s" title="%2$s" href="%3$s" target="%4$s" rel="%5$s"><i class="icn-edit"></i>%6$s</a>',
           esc_attr( $args[ 'class' ] ),
           esc_attr( $args[ 'title' ] ),
           esc_url( $args[ 'link' ] ),
           esc_attr( $args[ 'target' ] ),
           esc_attr( $args[ 'rel' ] ),
-          $args[ 'text' ]
+          $args[ 'text' ],
+          false === $customizer_focus_args ? '' : sprintf( '<div style="position: relative;left: 33px; width: 1px;height: 1px;">%1$s</div>',
+             czr_fn_get_customizer_focus_icon( array( 'wot' => $customizer_focus_args['wot'], 'id' => $customizer_focus_args['id'] ) )
+          )
       );
 
       if ( !$args[ 'echo' ] )
         return $edit_button;
 
       echo $edit_button;
-
 }
 endif;
 
-if ( ! function_exists( 'czr_fn_add_menu_button' ) ) :
+if ( ! function_exists( 'czr_fn_print_add_menu_button' ) ) :
 /**
  * The template for displaying the add menu button
+ * Invoked from templates/parts/header/parts/nav_container.php
  */
-function czr_fn_add_menu_button() {
+function czr_fn_print_add_menu_button() {
     /*
     * user can edit menu && no visibile menu location is assigned
     */
-    if ( current_user_can( 'edit_theme_options' ) && !czr_fn_is_there_any_visible_menu_location_assigned() ) {
+    if ( current_user_can( 'edit_theme_options' ) && ! czr_fn_is_there_any_visible_menu_location_assigned() ) {
         czr_fn_edit_button(
             array(
               'class' => 'add-menu-button',
               'link'  => czr_fn_get_customizer_url( array( 'panel' => 'nav_menus' ) ),
               'text'  => __( 'Add a menu', 'customizr' ),
               'title' => __( 'open the customizer menu section', 'customizr'),
+              'customizer_focus_link' => array( 'wot' => 'panel', 'id' => 'nav_menus' )
             )
         );
     }
