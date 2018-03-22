@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Customizr 4.1.0-beta-3\n"
+"Project-Id-Version: Customizr 4.1.0\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-03-22 10:58:07+00:00\n"
+"POT-Creation-Date: 2018-03-22 15:58:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3080,12 +3080,12 @@ msgid_plural "comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/front/template-tags/template-tags.php:227
+#: core/front/template-tags/template-tags.php:228
 #: inc/_dev/parts/class-header-menu.php:169 inc/czr-front-ccat.php:857
 msgid "Add a menu"
 msgstr ""
 
-#: core/front/template-tags/template-tags.php:228
+#: core/front/template-tags/template-tags.php:229
 msgid "open the customizer menu section"
 msgstr ""
 

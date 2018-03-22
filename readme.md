@@ -1,4 +1,4 @@
-# Customizr v4.1.0-beta-3 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.0 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,7 +23,7 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
-= 4.1.0 March 20th 2018 =
+= 4.1.0 March 22nd 2018 =
 * Fix: do not display post metas for pages in search results
 * Fix: make sure our col*auto always have a max-width of 100%. fixes #1476
 * Imp: overall css improvements

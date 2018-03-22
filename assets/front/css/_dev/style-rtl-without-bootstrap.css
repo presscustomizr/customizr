@@ -1737,6 +1737,14 @@ embed, iframe, object, video {
   max-width: none;
 }
 
+.tc-header .add-menu-button {
+  margin: 10px 0;
+}
+
+.mobile-nav__menu-wrapper .add-menu-button {
+  margin-top: 30px;
+}
+
 /* ADMIN BAR
 -------------------------------------------------- */
 #wp-admin-bar-tc-customizr-help .ab-item:before, li#wp-admin-bar-tc-customizr-help a:before {
@@ -1921,6 +1929,7 @@ li#wp-admin-bar-tc-customizr-help a {
 
 .nav__utils {
   flex-shrink: 0;
+  padding: 0;
   max-width: 100%;
 }
 
@@ -1994,10 +2003,6 @@ li#wp-admin-bar-tc-customizr-help a {
   flex-shrink: 1;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
-}
-
-.primary-navbar__wrapper .add-menu-button {
-  margin: 10px 0;
 }
 
 .primary-navbar__wrapper .col {

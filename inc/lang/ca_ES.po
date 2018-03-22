@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.0-beta-3\n"
+"Project-Id-Version: * Customizr v4.1.0\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-03-22 10:58:07+00:00\n"
+"POT-Creation-Date: 2018-03-22 15:58:22+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:53+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
@@ -3326,12 +3326,12 @@ msgid_plural "comments"
 msgstr[0] "comentari"
 msgstr[1] "comentari"
 
-#: core/front/template-tags/template-tags.php:227
+#: core/front/template-tags/template-tags.php:228
 #: inc/_dev/parts/class-header-menu.php:169 inc/czr-front-ccat.php:857
 msgid "Add a menu"
 msgstr "Afegeix un menú"
 
-#: core/front/template-tags/template-tags.php:228
+#: core/front/template-tags/template-tags.php:229
 msgid "open the customizer menu section"
 msgstr ""
 

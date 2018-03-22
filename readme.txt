@@ -23,7 +23,7 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
-= 4.1.0 March 20th 2018 =
+= 4.1.0 March 22nd 2018 =
 * Fix: do not display post metas for pages in search results
 * Fix: make sure our col*auto always have a max-width of 100%. fixes #1476
 * Imp: overall css improvements
