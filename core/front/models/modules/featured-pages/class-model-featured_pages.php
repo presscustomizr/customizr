@@ -123,84 +123,96 @@ class CZR_featured_pages_model_class extends CZR_Model {
         //if fps are not set
         if ( ! $featured_page_id || ! $page = get_post($featured_page_id) ) {
 
-        //admin link if user logged in
-          $featured_page_link             = '';
-          $customizr_link                 = '';
+            //admin link if user logged in
+            $featured_page_link             = '';
+            $customizr_link                 = '';
 
-          if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
-            $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" class="btn btn-edit" style="margin-top: 1em;
-    font-weight: bold;"><i class="icn-edit"></i>%3$s</a>',
-                czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
-                __( 'Customizer screen' , 'customizr' ),
-                __( 'Customize it now' , 'customizr' )
-            );
-            $featured_page_link           = czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') );
-          }
-        //rendering
-          $featured_page_link             = apply_filters( 'czr_fp_link_url', $featured_page_link );
-          /*
-          * treat the case when we filter the fp link url in prevdem returning => 'javascript:void(0)',
-          * we don't want it to be escaped otherwise the customizer preview will turn it in a link to the home page itself
-          */
-          $featured_page_link             = 'javascript:void(0)' == $featured_page_link ? $featured_page_link : esc_url( $featured_page_link );
-          $featured_page_id               = null;
-          $featured_page_title            = apply_filters( 'czr_fp_title', __( 'Featured page' , 'customizr' ), $fp_single_id, $featured_page_id);
-          $text                           = apply_filters(
-                                                  'czr_fp_text',
-                                                  sprintf( '%1$s %2$s',
-                                                  __( 'Featured page description text : use the page excerpt or set your own custom text in the customizer screen.' , 'customizr' ),
-                                                   $customizr_link
-                                                  ),
-                                                  $fp_single_id,
-                                                  $featured_page_id
-                                              );
-          $fp_img                         = $show_thumb ? apply_filters ('fp_img_src', $this -> fp_holder_img, $fp_single_id , $featured_page_id ) : '';
+            if ( ! czr_fn_is_customizing() && is_user_logged_in() && current_user_can('edit_theme_options') ) {
+                $customizr_link              = sprintf( '<br/><a href="%1$s" title="%2$s" class="btn btn-edit" style="margin-top: 1em;
+        font-weight: bold;"><i class="icn-edit"></i>%3$s</a>',
+                    czr_fn_get_customizer_url( array( 'control' => 'tc_featured_text_'.$fp_single_id, 'section' => 'frontpage_sec') ),
+                    __( 'Customizer screen' , 'customizr' ),
+                    __( 'Customize it now' , 'customizr' )
+                );
+                $featured_page_link           = czr_fn_get_customizer_url( array( 'control' => 'tc_featured_page_'.$fp_single_id, 'section' => 'frontpage_sec') );
+            } else if ( czr_fn_is_customizing() ) {
+                $customizr_link = sprintf( '<br/>%1$s<a href="%2$s" title="%3$s" class="btn btn-edit" style="margin-top: 1em;
+        font-weight: bold;"><i class="icn-edit"></i>%4$s</a>',
+                    sprintf( '<div style="position: relative;left: 33px;float: left;">%1$s</div>',
+                       czr_fn_get_customizer_focus_icon( array( 'wot' => 'control', 'id' => 'tc_theme_options[tc_featured_page_' . $fp_single_id .']' ) )
+                    ),
+                    czr_fn_get_customizer_focus_link( array( 'wot' => 'control', 'id' => 'tc_theme_options[tc_featured_page_' . $fp_single_id .']' ) ),
+                    __( 'Customizer screen' , 'customizr' ),
+                    __( 'Customize it now' , 'customizr' )
+                );
+                $featured_page_link           = czr_fn_get_customizer_focus_link( array( 'wot' => 'control', 'id' => 'tc_theme_options[tc_featured_page_' . $fp_single_id .']' ) );
+            }
+
+            //rendering
+            $featured_page_link             = apply_filters( 'czr_fp_link_url', $featured_page_link );
+            /*
+            * treat the case when we filter the fp link url in prevdem returning => 'javascript:void(0)',
+            * we don't want it to be escaped otherwise the customizer preview will turn it in a link to the home page itself
+            */
+            $featured_page_link             = 'javascript:void(0)' == $featured_page_link ? $featured_page_link : esc_url( $featured_page_link );
+            $featured_page_id               = null;
+            $featured_page_title            = apply_filters( 'czr_fp_title', __( 'Featured page' , 'customizr' ), $fp_single_id, $featured_page_id);
+            $text                           = apply_filters(
+                                                    'czr_fp_text',
+                                                    sprintf( '%1$s %2$s',
+                                                    __( 'Featured page description text : use the page excerpt or set your own custom text in the customizer screen.' , 'customizr' ),
+                                                     $customizr_link
+                                                    ),
+                                                    $fp_single_id,
+                                                    $featured_page_id
+                                                );
+            $fp_img                         = $show_thumb ? apply_filters ('fp_img_src', $this -> fp_holder_img, $fp_single_id , $featured_page_id ) : '';
         }
         else {
 
-          $featured_page_link             = esc_url( apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id ) );
-          $featured_page_title            = apply_filters( 'czr_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
+            $featured_page_link             = esc_url( apply_filters( 'czr_fp_link_url', get_permalink( $featured_page_id ), $fp_single_id ) );
+            $featured_page_title            = apply_filters( 'czr_fp_title', get_the_title( $featured_page_id ), $fp_single_id, $featured_page_id );
 
 
-        //when are we displaying the edit link?
-          //never display when customizing
-          if ( ! czr_fn_is_customizing() ) {
-            $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
-            $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
+          //when are we displaying the edit link?
+            //never display when customizing
+            if ( ! czr_fn_is_customizing() ) {
+              $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_pages') && is_page( $featured_page_id ) ) ? true : $edit_enabled;
+              $edit_enabled                 = ( (is_user_logged_in()) && current_user_can('edit_post' , $featured_page_id ) && ! is_page( $featured_page_id ) ) ? true : $edit_enabled;
 
-            //disallow placeholder
-            //force enqueing holder js
-            add_filter( 'czr_is_one_fp_set', '__return_true' );
-          }
-
-          $edit_enabled                   = apply_filters( 'czr_edit_in_fp_title', $edit_enabled );
-          $featured_text                  = apply_filters( 'czr_fp_text', $this -> fps_text[$fp_index-1], $fp_single_id, $featured_page_id );
-          $featured_text                  = apply_filters( 'czr_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
-
-
-          //set page excerpt as default text if no $featured_text
-          $text                           = ( empty($featured_text) && !post_password_required($featured_page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
-          $text                           = ( empty($text) && !post_password_required($featured_page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_content )) : $text ;
-
-        //limit text to 200 car
-          $default_fp_text_length         = apply_filters( 'czr_fp_text_length', $this->text_length, $fp_single_id, $featured_page_id );
-          $text                           = czr_fn_text_truncate( $text, $default_fp_text_length, $more = '...', $strip_tags = false ); //tags already stripped
-
-          if ( $show_thumb ) {
-            //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
-            $fp_img_size                    = apply_filters( 'czr_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
-            //allow user to specify a custom image id
-            $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
-
-            $fp_img                         = $this -> czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id);
-
-            //we need the holder if not fp_img
-            if ( ! $fp_img ) {
-              $fp_img                       = $this -> fp_holder_img;
+              //disallow placeholder
+              //force enqueing holder js
+              add_filter( 'czr_is_one_fp_set', '__return_true' );
             }
 
-            $fp_img                         = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
-          }
+            $edit_enabled                   = apply_filters( 'czr_edit_in_fp_title', $edit_enabled );
+            $featured_text                  = apply_filters( 'czr_fp_text', $this -> fps_text[$fp_index-1], $fp_single_id, $featured_page_id );
+            $featured_text                  = apply_filters( 'czr_fp_text_sanitize', strip_tags( html_entity_decode( $featured_text ) ), $fp_single_id, $featured_page_id );
+
+
+            //set page excerpt as default text if no $featured_text
+            $text                           = ( empty($featured_text) && !post_password_required($featured_page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_excerpt )) : $featured_text ;
+            $text                           = ( empty($text) && !post_password_required($featured_page_id) ) ? strip_tags(apply_filters( 'the_content' , $page->post_content )) : $text ;
+
+          //limit text to 200 car
+            $default_fp_text_length         = apply_filters( 'czr_fp_text_length', $this->text_length, $fp_single_id, $featured_page_id );
+            $text                           = czr_fn_text_truncate( $text, $default_fp_text_length, $more = '...', $strip_tags = false ); //tags already stripped
+
+            if ( $show_thumb ) {
+              //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
+              $fp_img_size                    = apply_filters( 'czr_fp_img_size' , 'tc-thumb', $fp_single_id, $featured_page_id );
+              //allow user to specify a custom image id
+              $fp_custom_img_id               = apply_filters( 'fp_img_id', null , $fp_single_id , $featured_page_id );
+
+              $fp_img                         = $this -> czr_fn_get_fp_img( $fp_img_size, $featured_page_id, $fp_custom_img_id);
+
+              //we need the holder if not fp_img
+              if ( ! $fp_img ) {
+                $fp_img                       = $this -> fp_holder_img;
+              }
+
+              $fp_img                         = apply_filters ('fp_img_src' , $fp_img , $fp_single_id , $featured_page_id );
+            }
         }//end else
 
         //is the image the holder?
