@@ -164,9 +164,10 @@ function czr_fn_edit_button( $args = array() ) {
         'title'     => __( 'Edit', 'customizr' ),
         'text'      => __( 'Edit', 'customizr' ),
         'link'      => '#',
-        'target'    => '_blank',
+        'target'    => '',//'_blank',
         'rel'       => 'nofollow',
         'echo'      => true,
+        'visible_when_customizing' => false,
         'customizer_focus_link' => array(),
         'style'     => ''
       );
@@ -174,9 +175,9 @@ function czr_fn_edit_button( $args = array() ) {
       $args             = wp_parse_args( $args, $defaults );
 
       /*
-      * No edit buttons if is customizing and no customizer focus param have been specified
+      * No edit buttons if is customizing and not visible_when_customizing
       */
-      if ( empty( $args['customizer_focus_link'] ) && czr_fn_is_customizing() )
+      if ( ! $args['visible_when_customizing'] && czr_fn_is_customizing() )
         return;
 
       $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' btn btn-edit' : 'btn btn-edit';
@@ -193,7 +194,7 @@ function czr_fn_edit_button( $args = array() ) {
       $edit_button      = sprintf( '%8$s<a class="%1$s" title="%2$s" href="%3$s" target="%4$s" rel="%5$s" style="%6$s"><i class="icn-edit"></i>%7$s</a>',
           esc_attr( $args[ 'class' ] ),
           esc_attr( $args[ 'title' ] ),
-          esc_url( $args[ 'link' ] ),
+          $args[ 'link' ],
           esc_attr( $args[ 'target' ] ),
           esc_attr( $args[ 'rel' ] ),
           $args[ 'style' ],
@@ -223,9 +224,10 @@ function czr_fn_print_add_menu_button() {
         czr_fn_edit_button(
             array(
               'class' => 'add-menu-button',
-              'link'  => czr_fn_get_customizer_url( array( 'panel' => 'nav_menus' ) ),
+              'link'  => czr_fn_is_customizing() ? czr_fn_get_customizer_focus_link( array( 'wot' => 'panel', 'id' => 'nav_menus' ) ) : czr_fn_get_customizer_url( array( 'panel' => 'nav_menus' ) ),
               'text'  => __( 'Add a menu', 'customizr' ),
               'title' => __( 'open the customizer menu section', 'customizr'),
+              'visible_when_customizing' => true,
               'customizer_focus_link' => array( 'wot' => 'panel', 'id' => 'nav_menus' )
             )
         );

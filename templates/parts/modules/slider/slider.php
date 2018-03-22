@@ -27,7 +27,13 @@
 <?php
     do_action( '__after_carousel_inner' );
     if ( czr_fn_get_property( 'has_slider_edit_link' ) ) {
-      czr_fn_edit_button( array( 'class' => 'slider-btn-edit inverse', 'link'  => czr_fn_get_property( 'slider_edit_link' ), 'text'  => czr_fn_get_property( 'slider_edit_link_text' ) ) );
+      echo czr_fn_edit_button( array(
+        'echo' => false,
+        'class' => 'slider-btn-edit inverse',
+        'link'  => czr_fn_is_customizing() ? czr_fn_get_customizer_focus_link( array( 'wot' => 'control', 'id' => 'tc_theme_options[tc_front_slider]' ) ) : czr_fn_get_property( 'slider_edit_link' ),
+        'text'  => czr_fn_get_property( 'slider_edit_link_text' ),
+        'visible_when_customizing' => true
+      ) );
     }
 
     if ( czr_fn_get_property( 'has_controls' ) ) {
