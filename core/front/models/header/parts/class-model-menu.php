@@ -25,7 +25,7 @@ class CZR_menu_model_class extends CZR_Model {
           'menu_id'             => 'main-menu',
           'def_menu_class'      => array( 'nav' ),
           'menu_class'          => array(),
-          'fallback_cb'         => czr_fn_isprevdem() ? array( $this, 'czr_fn_page_menu' ) : '',
+          'fallback_cb'         => czr_fn_isprevdem() ? array( $this, 'czr_fn_page_menu' ) : 'czr_fn_print_add_menu_button',
           'walker'              => ''
       );
 
