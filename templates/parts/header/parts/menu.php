@@ -5,6 +5,7 @@
 ?>
 <div class="nav__menu-wrapper <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <?php
+  ob_start();
   wp_nav_menu( array(
     'theme_location'  => czr_fn_get_property( 'theme_location' ),
     'container'       => null,
@@ -16,5 +17,11 @@
     'link_after'      => '</span>',
     'dropdown_on'     => czr_fn_get_property( 'dropdown_on' )
   ) );
+  $menu_html = ob_get_clean();
+  echo $menu_html;
+  if ( empty( $menu_html ) ) {
+      echo '<br/>';
+      czr_fn_print_add_menu_button();
+  }
   ?>
 </div>
