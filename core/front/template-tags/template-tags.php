@@ -167,7 +167,8 @@ function czr_fn_edit_button( $args = array() ) {
         'target'    => '_blank',
         'rel'       => 'nofollow',
         'echo'      => true,
-        'customizer_focus_link' => array()
+        'customizer_focus_link' => array(),
+        'style'     => ''
       );
 
       $args             = wp_parse_args( $args, $defaults );
@@ -189,12 +190,13 @@ function czr_fn_edit_button( $args = array() ) {
           );
       }
 
-      $edit_button      = sprintf( '%7$s<a class="%1$s" title="%2$s" href="%3$s" target="%4$s" rel="%5$s"><i class="icn-edit"></i>%6$s</a>',
+      $edit_button      = sprintf( '%8$s<a class="%1$s" title="%2$s" href="%3$s" target="%4$s" rel="%5$s" style="%6$s"><i class="icn-edit"></i>%7$s</a>',
           esc_attr( $args[ 'class' ] ),
           esc_attr( $args[ 'title' ] ),
           esc_url( $args[ 'link' ] ),
           esc_attr( $args[ 'target' ] ),
           esc_attr( $args[ 'rel' ] ),
+          $args[ 'style' ],
           $args[ 'text' ],
           false === $customizer_focus_args ? '' : sprintf( '<div style="position: relative;left: 33px; width: 1px;height: 1px;">%1$s</div>',
              czr_fn_get_customizer_focus_icon( array( 'wot' => $customizer_focus_args['wot'], 'id' => $customizer_focus_args['id'] ) )
