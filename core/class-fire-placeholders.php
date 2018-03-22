@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
     function czr_fn_maybe_register_front_placeholders() {
 
         //do nothing when is customizing or is admin or front help notices disabled
-        if ( is_admin() || czr_fn_is_customizing() || !czr_fn_is_front_help_enabled() )
+        if ( is_admin() || czr_fn_is_customizing() || ! czr_fn_is_front_help_enabled() )
             return;
 
         //enqueue resources

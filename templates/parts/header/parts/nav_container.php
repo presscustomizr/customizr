@@ -15,7 +15,7 @@
         </nav>
     <?php }
       else {
-        czr_fn_add_menu_button();
+        czr_fn_print_add_menu_button();
       }
 
       if ( czr_fn_is_registered_or_possible( 'primary_nav_utils' ) ) czr_fn_render_template( 'header/parts/primary_nav_utils' )
