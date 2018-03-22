@@ -2114,10 +2114,10 @@ function czr_fn_footer_global_settings_option_map( $get_default = null ) {
                             ),
                             'section'       => 'footer_global_sec' ,
                             'type'          => 'select' ,
-                            'priority'      => 0
+                            'priority'      => 10
           ),
           'tc_footer_horizontal_widgets' => array(
-                            'default'       => 'boxed',
+                            'default'       => 'none',
                             'control'       => 'CZR_controls' ,
                             'label'         => __( 'Horizontal widget area in your footer', 'customizr'),
                             'choices'       => array(
