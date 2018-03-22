@@ -31,6 +31,10 @@ See headers of each files for further details.
 * Imp: co-authors plus plugin integration
 * Imp: add horizontal widget area before the footer. fixes #1369
 * Imp: add early check on php version (min 5.3) and wp version (min 4.5). Fixes #1496
+* Imp: turn slider .czrs-title from H1 to H2.fixes #1489
+* Imp: fix various form plugins compatibility.fixes #1487, #1486
+* Imp: improve woocommerce single product tabs style
+* Imp: added various dismissable placeholders and notices on front with direct link to the live customizer.
 
 = 4.0.18 February 13th 2018 =
 * Fix: tagline visibility in mobiles when shown in desktop topbar. fixes #1458
