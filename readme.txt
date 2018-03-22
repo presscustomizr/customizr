@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.1 March 23rd 2018 =
+* Fix: wront text-domain for the social links module
+
 = 4.1.0 March 22nd 2018 =
 * Fix: do not display post metas for pages in search results
 * Fix: make sure our col*auto always have a max-width of 100%. fixes #1476

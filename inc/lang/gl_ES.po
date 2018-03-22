@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.0\n"
+"Project-Id-Version: * Customizr v4.1.1\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-03-22 16:09:54+00:00\n"
+"POT-Creation-Date: 2018-03-22 22:27:35+00:00\n"
 "PO-Revision-Date: 2016-08-30 15:26+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Rubenas <webmaster@rubenas.com>\n"
@@ -3335,7 +3335,7 @@ msgstr "Imaxe de slide"
 #: build/free/customizr/core/czr-admin-ccat.php:2437
 #: build/free/customizr/core/czr-modules/social-links/index.php:106
 #: core/_dev/_admin/class-admin-meta_boxes.php:1507
-#: core/czr-admin-ccat.php:2437 core/czr-modules/social-links/index.php:106
+#: core/czr-admin-ccat.php:2437 core/czr-modules/social-links/index.php:102
 msgid "Title"
 msgstr "T&iacute;tulo"
 
@@ -3690,89 +3690,89 @@ msgid "Press return or enter to open this panel"
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:75
-#: core/czr-modules/social-links/index.php:75
+#: core/czr-modules/social-links/index.php:71
 #, fuzzy
 msgid "Select an icon"
 msgstr "Seleccionar contexto"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:79
-#: core/czr-modules/social-links/index.php:79
+#: core/czr-modules/social-links/index.php:75
 #, fuzzy
 msgid "Social link url"
 msgstr "Redes Sociáis"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:80
 #: build/free/customizr/core/czr-modules/social-links/index.php:101
-#: core/czr-modules/social-links/index.php:80
-#: core/czr-modules/social-links/index.php:101
+#: core/czr-modules/social-links/index.php:76
+#: core/czr-modules/social-links/index.php:97
 msgid "Enter the full url of your social profile (must be valid url)."
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:81
 #: build/free/customizr/core/czr-modules/social-links/index.php:102
-#: core/czr-modules/social-links/index.php:81
-#: core/czr-modules/social-links/index.php:102
+#: core/czr-modules/social-links/index.php:77
+#: core/czr-modules/social-links/index.php:98
 msgid "http://...,mailto:...,..."
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:87
-#: core/czr-modules/social-links/index.php:87
+#: core/czr-modules/social-links/index.php:83
 msgid "Size in px"
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:96
-#: core/czr-modules/social-links/index.php:96
+#: core/czr-modules/social-links/index.php:92
 #, fuzzy
 msgid "Social icon"
 msgstr "Redes Sociáis"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:100
-#: core/czr-modules/social-links/index.php:100
+#: core/czr-modules/social-links/index.php:96
 #, fuzzy
 msgid "Social link"
 msgstr "Redes Sociáis"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:107
-#: core/czr-modules/social-links/index.php:107
+#: core/czr-modules/social-links/index.php:103
 msgid "This is the text displayed on mouse over."
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:111
-#: core/czr-modules/social-links/index.php:111
+#: core/czr-modules/social-links/index.php:107
 #, fuzzy
 msgid "Icon color"
 msgstr "Color do tema"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:111
-#: core/czr-modules/social-links/index.php:111
+#: core/czr-modules/social-links/index.php:107
 msgid "default:"
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:112
-#: core/czr-modules/social-links/index.php:112
+#: core/czr-modules/social-links/index.php:108
 msgid "Set a unique color for your icon."
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:117
-#: core/czr-modules/social-links/index.php:117
+#: core/czr-modules/social-links/index.php:113
 msgid "Link target"
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:118
-#: core/czr-modules/social-links/index.php:118
+#: core/czr-modules/social-links/index.php:114
 #, fuzzy
 msgid "Check this option to open the link in a another tab of the browser."
 msgstr "Desactive esta opción para quitar o borde coloreado superior"
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:156
 #: core/_dev/_czr/controls/__DEPRECATED__class-modules-control.php:60
-#: core/czr-modules/social-links/index.php:156
+#: core/czr-modules/social-links/index.php:152
 msgid "An error occurred: malformed social links"
 msgstr ""
 
 #: build/free/customizr/core/czr-modules/social-links/index.php:200
 #: core/_dev/_czr/controls/__DEPRECATED__class-modules-control.php:104
-#: core/czr-modules/social-links/index.php:200
+#: core/czr-modules/social-links/index.php:196
 msgid "Please fill the social link inputs with a valid URLs"
 msgstr ""
 
