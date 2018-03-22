@@ -190,11 +190,13 @@ h1.need-help-title:before {
 .czr-update-notice .button.upgrade-to-pro {
 /*  font-size: 15px;
   line-height: 24px;*/
-  height: 30px;
-  padding: 1px 20px;
+  height: 40px;
+  font-size: 1.2em;
+  padding: 5px 22px;
   display: inline-block;
   color: #de8200;
-  background: white;
+  color: #fff;
+  background: #eea236;
   border: 1px solid #eea236;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
