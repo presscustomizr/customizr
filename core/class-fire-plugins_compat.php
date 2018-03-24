@@ -26,6 +26,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // remove qtranslateX theme options filter
       // TODO: check, might be not needed anymore as we don't re-store filtered options anymore in front
       remove_filter('option_tc_theme_options', 'qtranxf_translate_option', 5);
+
+      /* ------------------------------------------------------------------------- *
+       *  Add filters for tc_theme_options when using the contextualizer
+       *  action "ctx_set_filters_for_opt_group_{$opt_group}" is declared in the contextualizer module => Contx_Options::ctx_setup_option_filters()
+      /* ------------------------------------------------------------------------- */
+      add_action( "ctx_set_filters_for_opt_group___tc_theme_options"  , array( $this , 'czr_fn_add_support_for_contextualizer') );
     }//end of constructor
 
 
@@ -1487,5 +1493,20 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
       return apply_filters( 'tc_get_string_options_to_translate', $string_options );
     }
+
+
+    // hook ctx_set_filters_for_opt_group___tc_theme_options
+    // @param $opt_names = array() of Customizr options short name
+    function czr_fn_add_support_for_contextualizer( $opt_names = array() ) {
+        if ( ! is_array( $opt_names ) || ! function_exists( 'ctx_get_opt_val' ) )
+          return;
+
+        foreach ( $opt_names as $opt_name ) {
+            add_filter( "tc_opt_{$opt_name}", function( $opt_value, $opt_name ) {
+                return ctx_get_opt_val( $opt_value, $opt_name, 'tc_theme_options'  );
+            }, 100, 2 );
+        }
+    }
+
   }//end of class
 endif;
