@@ -11,16 +11,16 @@ function czr_fn_register_social_links_module( $args ) {
     );
     $args = wp_parse_args( $args, $defaults );
 
-    if ( ! isset( $GLOBALS['czr_base_fmk'] ) ) {
+    if ( ! isset( $GLOBALS['czr_base_fmk_namespace'] ) ) {
         error_log( __FUNCTION__ . ' => global czr_base_fmk not set' );
         return;
     }
 
-    $czrnamespace = str_replace( 'CZR_Fmk_Base', '', $GLOBALS['czr_base_fmk']);
-    //pc\czr_base_fmk\czr_register_module
+    $czrnamespace = $GLOBALS['czr_base_fmk_namespace'];
+    //czr_fn\czr_register_module
     $function_name = $czrnamespace . 'czr_register_module';
     if ( ! function_exists( $function_name ) ) {
-        error_log( __FUNCTION__ . ' => Namespace problem' );
+        error_log( __FUNCTION__ . ' => Namespace problem => ' . $function_name );
         return;
     }
 
@@ -68,19 +68,19 @@ function czr_fn_register_social_links_module( $args ) {
             'pre-item' => array(
                 'social-icon' => array(
                     'input_type'  => 'select',
-                    'title'       => __('Select an icon', 'customizr')
+                    'title'       => __('Select an icon', 'text_domain_to_be_replaced')
                 ),
                 'social-link'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Social link url', 'customizr'),
-                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', 'customizr'),
-                    'placeholder' => __('http://...,mailto:...,...', 'customizr')
+                    'title'       => __('Social link url', 'text_domain_to_be_replaced'),
+                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', 'text_domain_to_be_replaced'),
+                    'placeholder' => __('http://...,mailto:...,...', 'text_domain_to_be_replaced')
                 )
             ),
             'mod-opt' => array(
                 'social-size' => array(
                     'input_type'  => 'number',
-                    'title'       => __('Size in px', 'customizr'),
+                    'title'       => __('Size in px', 'text_domain_to_be_replaced'),
                     'step'        => 1,
                     'min'         => 5,
                     'transport' => 'postMessage'
@@ -89,29 +89,29 @@ function czr_fn_register_social_links_module( $args ) {
             'item-inputs' => array(
                 'social-icon' => array(
                     'input_type'  => 'select',
-                    'title'       => __('Social icon', 'customizr')
+                    'title'       => __('Social icon', 'text_domain_to_be_replaced')
                 ),
                 'social-link'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Social link', 'customizr'),
-                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', 'customizr'),
-                    'placeholder' => __('http://...,mailto:...,...', 'customizr')
+                    'title'       => __('Social link', 'text_domain_to_be_replaced'),
+                    'notice_after'      => __('Enter the full url of your social profile (must be valid url).', 'text_domain_to_be_replaced'),
+                    'placeholder' => __('http://...,mailto:...,...', 'text_domain_to_be_replaced')
                 ),
                 'title'  => array(
                     'input_type'  => 'text',
-                    'title'       => __('Title', 'customizr'),
-                    'notice_after'      => __('This is the text displayed on mouse over.', 'customizr'),
+                    'title'       => __('Title', 'text_domain_to_be_replaced'),
+                    'notice_after'      => __('This is the text displayed on mouse over.', 'text_domain_to_be_replaced'),
                 ),
                 'social-color'  => array(
                     'input_type'  => 'color',
-                    'title'       => sprintf( '%1$s <i>%2$s %3$s</i>', __('Icon color', 'customizr'), __('default:', 'customizr'), 'rgba(255,255,255,0.7)' ),
-                    'notice_after'      => __('Set a unique color for your icon.', 'customizr'),
+                    'title'       => sprintf( '%1$s <i>%2$s %3$s</i>', __('Icon color', 'text_domain_to_be_replaced'), __('default:', 'text_domain_to_be_replaced'), 'rgba(255,255,255,0.7)' ),
+                    'notice_after'      => __('Set a unique color for your icon.', 'text_domain_to_be_replaced'),
                     'transport' => 'postMessage'
                 ),
                 'social-target' => array(
                     'input_type'  => 'check',
-                    'title'       => __('Link target', 'customizr'),
-                    'notice_after'      => __('Check this option to open the link in a another tab of the browser.', 'customizr'),
+                    'title'       => __('Link target', 'text_domain_to_be_replaced'),
+                    'notice_after'      => __('Check this option to open the link in a another tab of the browser.', 'text_domain_to_be_replaced'),
                     'width-100'   => true
                 )
             )
@@ -149,7 +149,7 @@ function czr_fn_validate_callback__czr_social_module( $validity, $socials ) {
   // error_log( 'IN VALIDATION CALLBACK' );
   // error_log( print_r( $socials, true ));
   $ids_malformed_url = array();
-  $malformed_message = __( 'An error occurred: malformed social links', 'customizr');
+  $malformed_message = __( 'An error occurred: malformed social links', 'text_domain_to_be_replaced');
 
   if ( empty( $socials ) )
     return array();
@@ -193,6 +193,6 @@ function czr_fn_validate_callback__czr_social_module( $validity, $socials ) {
   if ( empty( $ids_malformed_url) )
     return null;
 
-  return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', 'customizr' ), $ids_malformed_url );
+  return new WP_Error( 'required', __( 'Please fill the social link inputs with a valid URLs', 'text_domain_to_be_replaced' ), $ids_malformed_url );
 }
 

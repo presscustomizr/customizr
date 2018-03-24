@@ -67,7 +67,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                 _truncate = function( string ){
                       if ( ! _.isString( string ) )
                         return '';
-                      return string.length > 200 ? string.substr( 0, 199 ) : string;
+                      return string.length > 300 ? string.substr( 0, 299 ) + '...' : string;
                 };
 
             //if the array to print is not composed exclusively of strings, then let's stringify it
@@ -1066,7 +1066,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                                     api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = _serverTmpl_;
                               }).fail( function( _r_ ) {
                                     //console.log( 'api.CZR_Helpers.getModuleTmpl => ', _r_ );
-                                    dfd.reject( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type );
+                                    dfd.reject( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type + _r_ );
                               });
                   }
             }
@@ -1302,13 +1302,6 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 });//$.extend
 })( wp.customize , jQuery, _);
 (function (api, $, _) {
-  //This promise will let us know when we have the first set of preview query ready to use
-  //This is needed for modules contextually dependant
-  //For example, the slider module will initialize the module model based on the contextual informations, if no items have been set yet.
-
-  api.czr_wpQueryDataReady = $.Deferred();
-  api.czr_wpQueryInfos = api.czr_wpQueryInfos || new api.Value();
-  api.czr_partials = api.czr_partials || new api.Value();
   /*****************************************************************************
   * CAPTURE PREVIEW INFORMATIONS ON REFRESH + REACT TO THEM
   *****************************************************************************/
@@ -1347,14 +1340,24 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 
         /* WP CONDITIONAL TAGS => stores and observes the WP conditional tags sent by the preview */
         api.previewer.bind( 'czr-query-data-ready', function( data ) {
+              api.czr_wpQueryInfos = api.czr_wpQueryInfos || new api.Value();
               api.czr_wpQueryInfos( data );
+
+              //This promise will let us know when we have the first set of preview query ready to use
+              //This is needed for modules contextually dependant
+              //For example, the slider module will initialize the module model based on the contextual informations, if no items have been set yet.
+              api.czr_wpQueryDataReady = api.czr_wpQueryDataReady || $.Deferred();
+
               if ( 'pending' == api.czr_wpQueryDataReady.state() ) {
                     api.czr_wpQueryDataReady.resolve( data );
               }
         });
 
         //PARTIAL REFRESHS => stores and observes the partials data sent by the preview
+        //=> this is used in api.CZR_Helpers.hasPartRefresh( control_id )
+        //=> as of WP4.7.5, there's no way to get the list of control with partial refresh in the customize-control api
         api.previewer.bind( 'czr-partial-refresh-data', function( data ) {
+              api.czr_partials = api.czr_partials || new api.Value();
               api.czr_partials.set( data );
         });
 
@@ -4697,7 +4700,16 @@ $.extend( CZRDynModuleMths, {
                         trigger   : 'click keydown',
                         selector  : '.' + module.control.css_attr.add_new_btn, //'.czr-add-new',
                         name      : 'add_item',
-                        actions   : [ 'closeRemoveDialogs', 'closeAllItems', 'addItem' ],
+                        //@param params : { dom_el : {}, dom_event : {}, event : {}, model {} }
+                        actions   : function( params ) {
+                              module.closeRemoveDialogs( params ).closeAllItems( params ).addItem( params ).done( function( item_id ) {
+                                    module.czr_Item( item_candidate.id, function( _item_ ) {
+                                          _item_.embedded.then( function() {
+                                                module.czr_Item( item_candidate.id ).viewState( 'expanded' );
+                                          });
+                                    } );
+                              });
+                        }
                   }
             ]);//module.userEventMap
       },
@@ -4793,7 +4805,8 @@ $.extend( CZRDynModuleMths, {
       //Fired on user Dom action.
       //the item is manually added.
       //@return a promise() for future sequential actions
-      addItem : function(obj) {
+      //@param params : { dom_el : {}, dom_event : {}, event : {}, model {} }
+      addItem : function( params ) {
             if ( ! this.itemCanBeInstantiated() ) {
 
                   return;
@@ -4827,7 +4840,8 @@ $.extend( CZRDynModuleMths, {
             module.instantiateItem( item_candidate, true ).ready(); //true == Added by user
 
             //this iife job is to close the pre item and to maybe refresh the preview
-            //@return a promise(), then once done the item view is expanded to start editing it
+            //then once done the item view is expanded to start editing it
+            //@return a promise()
             $.Deferred( function() {
                   var _dfd_ = this;
                   module.czr_Item( item_candidate.id ).isReady.then( function() {
@@ -4840,12 +4854,12 @@ $.extend( CZRDynModuleMths, {
                               api.previewer.unbind( 'ready', resolveWhenPreviewerReady );
                               _dfd_.resolve();
                         };
-                        //module.doActions( 'item_added_by_user' , module.container, { item : item_candidate , dom_event : obj.dom_event } );
+                        //module.doActions( 'item_added_by_user' , module.container, { item : item_candidate , dom_event : params.dom_event } );
 
                         //refresh the preview frame (only needed if transport is postMessage && has no partial refresh set )
                         //must be a dom event not triggered
                         //otherwise we are in the init collection case where the items are fetched and added from the setting in initialize
-                        if ( 'postMessage' == api(module.control.id).transport && _.has( obj, 'dom_event') && ! _.has( obj.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                        if ( 'postMessage' == api(module.control.id).transport && _.has( params, 'dom_event') && ! _.has( params.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
                               // api.previewer.refresh().done( function() {
                               //       _dfd_.resolve();
                               // });
@@ -4853,13 +4867,11 @@ $.extend( CZRDynModuleMths, {
                               api.previewer.bind( 'ready', resolveWhenPreviewerReady );
                               api.previewer.refresh();
                         } else {
-                              _dfd_.resolve();
+                              _dfd_.resolve( );
                         }
                   });
-            }).done( function() {
-                    module.czr_Item( item_candidate.id ).viewState( 'expanded' );
             }).always( function() {
-                    dfd.resolve();
+                    dfd.resolve( item_candidate.id );
             });
             return dfd.promise();
       }
@@ -4923,7 +4935,7 @@ $.extend( CZRDynModuleMths, {
                           appendAndResolve( api.CZR_Helpers.parseTemplate( _serverTmpl_ )() );
                     }).fail( function( _r_ ) {
                           //console.log( 'fail response =>', _r_);
-                          dfd.reject( 'renderPreItemView => Problem when fetching the pre-item tmpl from server for module : '+ module.id );
+                          dfd.reject( [ 'renderPreItemView for module : ', module.id , _r_ ].join(' ') );
                     });
               }
               return dfd.promise();

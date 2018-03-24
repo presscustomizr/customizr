@@ -953,7 +953,7 @@ czr_fn_setup_constants();
 czr_fn_setup_started_using_theme_option_and_constants();
 
 // load the czr-base-fmk
-if ( ! isset( $GLOBALS['czr_base_fmk'] ) ) {
+if ( ! isset( $GLOBALS['czr_base_fmk_namespace'] ) ) {
     require_once(  dirname( __FILE__ ) . '/czr-base-fmk/czr-base-fmk.php' );
     \czr_fn\CZR_Fmk_Base( array(
        'text_domain' => 'customizr',

@@ -1,5 +1,13 @@
 <?php
 namespace czr_fn;
+
+if ( isset( $GLOBALS['czr_base_fmk_namespace'] ) ) {
+    error_log(' => ' . __FILE__ . ' The czr_base_fmk has already been loaded');
+    return;
+}
+// Set the namsepace as a global so we know its already loaded
+global $czr_base_fmk_namespace;
+$czr_base_fmk_namespace = __NAMESPACE__ . '\\';
 ////////////////////////////////////////////////////////////////
 // CZR_Fmk_Base
 if ( ! class_exists( 'CZR_Fmk_Base_Construct' ) ) :
@@ -197,23 +205,23 @@ if ( ! class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
                       'isDevMode' => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
                       'docURL'          => esc_url('docs.presscustomizr.com/'),
                       'i18n' => array(
-                            'edit' => __('Edit', 'customizr'),
-                            'close' => __('Close', 'customizr'),
-                            'notset' => __('Not set', 'customizr'),
-                            'successMessage' => __('Done !', 'customizr'),
+                            'edit' => __('Edit', 'text_domain_to_be_replaced'),
+                            'close' => __('Close', 'text_domain_to_be_replaced'),
+                            'notset' => __('Not set', 'text_domain_to_be_replaced'),
+                            'successMessage' => __('Done !', 'text_domain_to_be_replaced'),
 
-                            'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
-                            'Settings' => __('Settings', 'customizr'),
-                            'Options for' => __('Options for', 'customizr'),
+                            'readDocumentation' => __('Learn more about this in the documentation', 'text_domain_to_be_replaced'),
+                            'Settings' => __('Settings', 'text_domain_to_be_replaced'),
+                            'Options for' => __('Options for', 'text_domain_to_be_replaced'),
 
                             // img upload translation
-                            'select_image'        => __( 'Select Image', 'customizr' ),
-                            'change_image'        => __( 'Change Image', 'customizr' ),
-                            'remove_image'        => __( 'Remove', 'customizr' ),
-                            'default_image'       => __( 'Default', 'customizr'  ),
-                            'placeholder_image'   => __( 'No image selected', 'customizr' ),
-                            'frame_title_image'   => __( 'Select Image', 'customizr' ),
-                            'frame_button_image'  => __( 'Choose Image', 'customizr' ),
+                            'select_image'        => __( 'Select Image', 'text_domain_to_be_replaced' ),
+                            'change_image'        => __( 'Change Image', 'text_domain_to_be_replaced' ),
+                            'remove_image'        => __( 'Remove', 'text_domain_to_be_replaced' ),
+                            'default_image'       => __( 'Default', 'text_domain_to_be_replaced'  ),
+                            'placeholder_image'   => __( 'No image selected', 'text_domain_to_be_replaced' ),
+                            'frame_title_image'   => __( 'Select Image', 'text_domain_to_be_replaced' ),
+                            'frame_button_image'  => __( 'Choose Image', 'text_domain_to_be_replaced' ),
                             'isThemeSwitchOn' => true
                       ),
                       'dynamicSettingParams' => apply_filters( 'czr_fmk_dynamic_setting_js_params', array() )
@@ -351,7 +359,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             if ( ! check_ajax_referer( $action, 'nonce', false ) ) {
                  wp_send_json_error( array(
                   'code' => 'invalid_nonce',
-                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.', 'customizr' ),
+                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.' ),
                 ) );
             }
 
@@ -392,12 +400,12 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             switch ( $requested_tmpl ) {
                 case 'crud-module-part' :
                     ?>
-                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'customizr'); ?> <span class="fas fa-plus-square"></span></button>
+                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'text_domain_to_be_replaced'); ?> <span class="fas fa-plus-square"></span></button>
                       <div class="<?php echo $css_attr['pre_add_wrapper']; ?>">
                         <div class="<?php echo $css_attr['pre_add_success']; ?>"><p></p></div>
                         <div class="<?php echo $css_attr['pre_add_item_content']; ?>">
 
-                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'customizr'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'customizr'); ?></span>
+                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'text_domain_to_be_replaced'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'text_domain_to_be_replaced'); ?></span>
                         </div>
                       </div>
                     <?php
@@ -406,7 +414,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
                     ?>
                       <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
                         <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
+                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
                         <div class="<?php echo $css_attr['remove_alert_wrapper']; ?>"></div>
                       </div>
                     <?php
@@ -418,7 +426,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
                     ?>
                       <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
                         <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-                          <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a></div>
+                          <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a></div>
                         </div>
                       </div>
                     <?php
@@ -426,8 +434,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
 
                 case 'rud-item-alert-part' :
                     ?>
-                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'customizr'); ?></p>
-                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'customizr'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'customizr'); ?></span>
+                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'text_domain_to_be_replaced'); ?></p>
+                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'text_domain_to_be_replaced'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'text_domain_to_be_replaced'); ?></span>
                     <?php
                 break;
 
@@ -1148,9 +1156,6 @@ function czr_get_parent_theme_slug() {
 //    'base_url' => PC_AC_BASE_URL . '/inc/czr-base-fmk'
 // )
 function CZR_Fmk_Base( $params = array() ) {
-    // Set the fmk base function as a global so we know its already loaded and we have its namespace
-    global $czr_base_fmk;
-    $czr_base_fmk = __FUNCTION__;
     return CZR_Fmk_Base::czr_fmk_get_instance( $params );
 }
 
