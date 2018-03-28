@@ -161,7 +161,7 @@ class CZR_post_metas_model_class extends CZR_Model {
   * @since Customizr 3.2.6
   */
   private function czr_fn_get_meta_author( $get_avatar = false ) {
-    $author_id = null;
+    $author_id = get_the_author_meta( 'ID' );
 
     if ( is_single() ) {
       if ( ! in_the_loop() ) {
@@ -174,13 +174,13 @@ class CZR_post_metas_model_class extends CZR_Model {
     $author_id_array = is_array( $author_id_array ) ? $author_id_array : array( $author_id );
 
     $_html  = '';
-    $_i     = 0;
+    $_i     = 1;
 
     foreach ( $author_id_array as $author_id ) {
-      $_i         +=1;
+
       $author_name = get_the_author_meta( 'display_name', $author_id );
 
-      if ( ! ( 1 == $_i || count( $author_id ) == $_i ) ){
+      if ( 1 != $_i && count( $author_id_array ) > $_i - 1 ) {
         $_html    .= ', ';
       }
 
@@ -194,6 +194,7 @@ class CZR_post_metas_model_class extends CZR_Model {
             $author_name
       );
       $_html      .= '</span>';
+      $_i         +=1;
     }
 
     return apply_filters('tc_author_meta', $_html );
