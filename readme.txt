@@ -23,8 +23,11 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.2 March 29th 2018 =
+* Fix: author meta link pointing to wrong URL. fixes #1509
+
 = 4.1.1 March 23rd 2018 =
-* Fix: wront text-domain for the social links module
+* Fix: wrong text-domain for the social links module
 
 = 4.1.0 March 22nd 2018 =
 * Fix: do not display post metas for pages in search results

@@ -6962,7 +6962,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         */
         private function czr_fn_get_meta_author() {
 
-            $author_id = null;
+            $author_id = get_the_author_meta( 'ID' );
 
             if ( is_single() ) {
                 if ( ! in_the_loop() ) {
@@ -6975,15 +6975,16 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             $author_id_array = is_array( $author_id_array ) ? $author_id_array : array( $author_id );
 
             $_html  = '';
-            $_i     = 0;
+            $_i     = 1;
 
             foreach ( $author_id_array as $author_id ) {
-                $_i         +=1;
+
                 $author_name = get_the_author_meta( 'display_name', $author_id );
 
-                if ( ! ( 1 == $_i || count( $author_id ) == $_i ) ) {
+                if ( 1 != $_i && count( $author_id_array ) > $_i - 1 ) {
                     $_html  .= ', ';
                 }
+                $_i         +=1;
 
                 $_html      .= sprintf( '<span class="author vcard author_name"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>' ,
                       esc_url( get_author_posts_url( $author_id ) ),
@@ -6991,7 +6992,6 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
                       $author_name
                 );
             }
-
             return apply_filters('tc_author_meta', $_html );
         }
 
