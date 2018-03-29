@@ -2690,7 +2690,9 @@ $.extend( CZRItemMths , {
 
       //fired on click dom event
       //for dynamic multi input modules
-      removeItem : function() {
+      //@return void()
+      //@param params : { dom_el : {}, dom_event : {}, event : {}, model {} }
+      removeItem : function( params ) {
             var item = this,
                 module = this.module,
                 _new_collection = _.clone( module.itemCollection() );
@@ -2709,9 +2711,30 @@ $.extend( CZRItemMths , {
             module.trigger('pre_item_api_remove', item() );
 
             var _item_ = $.extend( true, {}, item() );
-            //remove the item from the collection
+
+            // <REMOVE THE ITEM FROM THE COLLECTION>
             module.czr_Item.remove( item.id );
-            module.trigger( 'item-removed', _item_ );
+            // </REMOVE THE ITEM FROM THE COLLECTION>
+
+            //refresh the preview frame (only needed if transport is postMessage && has no partial refresh set )
+            //must be a dom event not triggered
+            //otherwise we are in the init collection case where the items are fetched and added from the setting in initialize
+            if ( 'postMessage' == api(module.control.id).transport && _.has( params, 'dom_event') && ! _.has( params.dom_event, 'isTrigger' ) && ! api.CZR_Helpers.hasPartRefresh( module.control.id ) ) {
+                  // api.previewer.refresh().done( function() {
+                  //       _dfd_.resolve();
+                  // });
+                  // It would be better to wait for the refresh promise
+                  // The following approach to bind and unbind when refreshing the preview is similar to the one coded in module::addItem()
+                  var triggerEventWhenPreviewerReady = function() {
+                        api.previewer.unbind( 'ready', triggerEventWhenPreviewerReady );
+                        module.trigger( 'item-removed', _item_ );
+                  };
+                  api.previewer.bind( 'ready', triggerEventWhenPreviewerReady );
+                  api.previewer.refresh();
+            } else {
+                  module.trigger( 'item-removed', _item_ );
+            }
+
       },
 
       //@return the item {...} from the collection
