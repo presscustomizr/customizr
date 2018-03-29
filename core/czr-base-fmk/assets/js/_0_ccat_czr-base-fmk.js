@@ -195,14 +195,14 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       *****************************************************************************/
       api.bind('ready', function() {
           // do we have dynamic registration candidates
-          var dynRegistrationCandidates = serverControlParams.dynamicSettingParams || [];
-          if ( ! _.isObject( serverControlParams.dynamicSettingParams ) ) {
-                api.errorLog( 'serverControlParams.dynamicSettingParams should be an array');
+          var dynRegistrationCandidates = serverControlParams.paramsForDynamicRegistration || [];
+          if ( ! _.isObject( serverControlParams.paramsForDynamicRegistration ) ) {
+                api.errorLog( 'serverControlParams.paramsForDynamicRegistration should be an array');
           }
 
-          //console.log( 'serverControlParams.dynamicSettingParams', serverControlParams.dynamicSettingParams );
+          //console.log( 'serverControlParams.paramsForDynamicRegistration', serverControlParams.paramsForDynamicRegistration );
 
-          _.each( serverControlParams.dynamicSettingParams, function( dynParams, setId ) {
+          _.each( serverControlParams.paramsForDynamicRegistration, function( dynParams, setId ) {
                 try { registerDynamicModuleSettingControl( dynParams ); } catch( er ) {
                       api.errorLog( er );
                 }
@@ -239,8 +239,8 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
             }
 
             // the option value must be an array
-            if ( ! _.isArray( args.option_value ) ) {
-                  throw new Error( 'registerDynamicModuleSettingControl => the module values must be an array');
+            if ( ! _.isArray( args.option_value ) && ! _.isObject( args.option_value ) ) {
+                  throw new Error( 'registerDynamicModuleSettingControl => the module values must be an array or an object');
             }
 
             // console.log( "args?", args );
@@ -262,8 +262,8 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                         },
                         {
                               value : args.option_value,
-                              transport : settingArgs.transport,
-                              type : settingArgs.type
+                              transport : settingArgs.transport || 'refresh',
+                              type : settingArgs.type || 'option'
                         }
                   );
                   // assign the value sent from the server
@@ -278,8 +278,8 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
             var sectionArgs = args.section;
 
             // Check if we have a correct section
-            if ( ! _.has( sectionArgs, 'id' ) || ! _.has( sectionArgs, 'title' ) ) {
-                  throw new Error( 'registerDynamicModuleSettingControl => wrong params for the setting section');
+            if ( ! _.has( sectionArgs, 'id' ) ){
+                  throw new Error( 'registerDynamicModuleSettingControl => missing section id for the section of setting : ' + settingId );
             }
 
             if ( ! api.section.has( sectionArgs.id ) ) {
@@ -298,10 +298,10 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                         type: "default",
                       }, {
                         id: sectionArgs.id,
-                        title: sectionArgs.title,
+                        title: sectionArgs.title || sectionArgs.id,
                         description: _.isEmpty( sectionArgs.description ) ? '' : sectionArgs.description,
                         panel: _.isEmpty( sectionArgs.panel ) ? '' : sectionArgs.panel,
-                        priority: sectionArgs.priority
+                        priority: sectionArgs.priority || 10
                       }
                   );
 
@@ -312,41 +312,44 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 
             // REGISTER THE CONTROL
             var controlId = settingId;
-            // start from a copy of a core control object
-            var controlArgs = args.control,
-                defaultControlArgs = $.extend( true, {} , api.settings.controls.blogdescription );
-            // Then update it with our defaults set server side
-            // array(
-            //     'type'      => 'czr_module',
-            //     'module_type' => 'czr_flat_skope_module',
-            //     'section'   => 'flat_skope_sec'
-            // );
-            controlArgs = _.extend(
-                  defaultControlArgs,
-                  {
-                        type : 'czr_module',
-                        module_type : args.module_type,
-                        section : sectionArgs.id,
-                        content : '',
-                        label : controlArgs.label,
-                        priority : controlArgs.priority
+
+            if ( ! api.control.has( controlId ) ) {
+                  // start from a copy of a core control object
+                  var controlArgs = args.control,
+                      defaultControlArgs = $.extend( true, {} , api.settings.controls.blogdescription );
+                  // Then update it with our defaults set server side
+                  // array(
+                  //     'type'      => 'czr_module',
+                  //     'module_type' => 'czr_flat_skope_module',
+                  //     'section'   => 'flat_skope_sec'
+                  // );
+                  controlArgs = _.extend(
+                        defaultControlArgs,
+                        {
+                              type : 'czr_module',
+                              module_type : args.module_type,
+                              section : sectionArgs.id,
+                              content : '',
+                              label : controlArgs.label,
+                              priority : controlArgs.priority
+                        }
+                  );
+
+                  // Then associates the settingId
+                  controlArgs.settings.default = settingId;
+
+                  var ControlConstructor = api.controlConstructor[ controlArgs.type ] || api.Control, options;
+                  options = _.extend( { params: controlArgs }, controlArgs ); // Inclusion of params alias is for back-compat for custom controls that expect to augment this property.
+                  var _ctrl_ = api.control.add( new ControlConstructor( controlId, options ) );
+
+                  // if the currently expanded section is the one of the dynamic control
+                  // Awake the module => fire ready
+                  if ( api.section( sectionArgs.id ).expanded() ) {
+                        api.control( controlId ).trigger( 'set-module-ready' );
                   }
-            );
-
-            // Then associates the settingId
-            controlArgs.settings.default = settingId;
-
-            var ControlConstructor = api.controlConstructor[ controlArgs.type ] || api.Control, options;
-            options = _.extend( { params: controlArgs }, controlArgs ); // Inclusion of params alias is for back-compat for custom controls that expect to augment this property.
-            var _ctrl_ = api.control.add( new ControlConstructor( controlId, options ) );
-
-            // if the currently expanded section is the one of the dynamic control
-            // Awake the module => fire ready
-            if ( api.section( sectionArgs.id ).expanded() ) {
-                  api.control( controlId ).trigger( 'set-module-ready' );
-            }
-            // console.log('registerDynamicModuleSettingControl => CONTROL DATA ?', settingId, options);
-            // console.log('ALORS IN DYNAMIC REGISTRATION ? ', dataForSkopeToRegister, settingId );
+                  // console.log('registerDynamicModuleSettingControl => CONTROL DATA ?', settingId, options);
+                  // console.log('ALORS IN DYNAMIC REGISTRATION ? ', dataForSkopeToRegister, settingId );
+            }//if ( ! api.control.has( controlId ) )
 
             return settingId;
       };//registerDynamicModuleSettingControl

@@ -45,9 +45,11 @@ function czr_fn_register_social_links_module( $args ) {
 
     // czr_fn\czr_register_dynamic_module()
     $CZR_Fmk_Base_fn() -> czr_pre_register_dynamic_module( array(
-
         'dynamic_registration' => true,
         'module_type' => 'czr_social_module',
+
+        'sanitize_callback' => 'czr_fn_sanitize_callback__czr_social_module',
+        'validate_callback' => 'czr_fn_validate_callback__czr_social_module',
 
         'customizer_assets' => array(
             'control_js' => array(

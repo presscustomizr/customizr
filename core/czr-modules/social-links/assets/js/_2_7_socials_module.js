@@ -3,6 +3,10 @@ var CZRSocialModuleMths = CZRSocialModuleMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRSocialModuleMths, {
       initialize: function( id, options ) {
+              if ( _.isUndefined( window.socialModuleLocalized ) ) {
+                    api.errorLog( 'social module => Missing localized js params socialModuleLocalized');
+              }
+
               var module = this;
               //run the parent initialize
               api.CZRDynModule.prototype.initialize.call( module, id, options );
@@ -196,8 +200,8 @@ $.extend( CZRSocialModuleMths, {
                 'fa-youtube-play'         : 'fa-youtube'
               };
 
-              this.defaultSocialColor = ( serverControlParams.social_el_params && serverControlParams.social_el_params.defaultSocialColor ) ? serverControlParams.social_el_params.defaultSocialColor : 'rgb(90,90,90)';
-              this.defaultSocialSize = ( serverControlParams.social_el_params && serverControlParams.social_el_params.defaultSocialSize ) ? serverControlParams.social_el_params.defaultSocialSize : 14;
+              this.defaultSocialColor = socialModuleLocalized.defaultSocialColor ? socialModuleLocalized.defaultSocialColor : 'rgb(90,90,90)';
+              this.defaultSocialSize = socialModuleLocalized.defaultSocialSize ? socialModuleLocalized.defaultSocialSize : 14;
 
               //EXTEND THE DEFAULT CONSTRUCTORS FOR INPUT
               module.inputConstructor = api.CZRInput.extend( module.CZRSocialsInputMths || {} );
@@ -222,7 +226,7 @@ $.extend( CZRSocialModuleMths, {
               };
 
               //overrides the default success message
-              this.itemAddedMessage = serverControlParams.i18n.socialLinkAdded;
+              this.itemAddedMessage = socialModuleLocalized.i18n['New Social Link created ! Scroll down to edit it.'];
 
               //fired ready :
               //1) on section expansion
@@ -276,7 +280,7 @@ $.extend( CZRSocialModuleMths, {
                 _new_color = item.czr_Input('social-color')();
 
               //add text follow us... to the title
-              _new_title = [ serverControlParams.i18n.followUs, _new_title].join(' ');
+              _new_title = [ socialModuleLocalized.i18n['Follow us on'], _new_title].join(' ');
 
               if ( is_preItem ) {
                     _new_model = $.extend( _new_model, { title : _new_title, 'social-color' : _new_color } );
@@ -345,7 +349,7 @@ $.extend( CZRSocialModuleMths, {
 
                     //=> add the select text in the pre Item case
                     if ( is_preItem ) {
-                          socialList = _.union( [ serverControlParams.i18n.selectSocialIcon || 'Select a social icon' ], socialList );
+                          socialList = _.union( [ socialModuleLocalized.i18n['Select a social icon'] || 'Select a social icon' ], socialList );
                     }
                     //generates the options
                     _.each( socialList , function( icon_name, k ) {
