@@ -72,6 +72,12 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         if ( is_admin() || czr_fn_is_customizing() || ! czr_fn_is_front_help_enabled() )
             return;
 
+        //do nothing when user not logged in or cannot edit theme options, unless is CZR_DEV == true
+        if ( !( defined('CZR_DEV') && true === CZR_DEV ) ) {
+            if ( ! ( is_user_logged_in() && current_user_can('edit_theme_options') ) )
+                return;
+        }
+
         //enqueue resources
         add_filter( 'czr_enqueue_placeholders_resources', '__return_true' );
 
