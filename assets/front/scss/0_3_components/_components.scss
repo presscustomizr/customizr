@@ -893,6 +893,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     &::before,
     &::after {
       border: none;
+      margin-right: .2em;
+      margin-left: .2em;
     }
   }
 }
