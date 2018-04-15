@@ -513,7 +513,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             if ( empty( $html ) ) {
                 wp_send_json_error( 'ac_get_all_modules_tmpl => no template was found for tmpl => ' . $requested_tmpl );
             }
-            return $html;
+
+            return $html;//will be sent by wp_send_json_success() in ::ac_set_ajax_czr_tmpl()
         }
     }//class
 endif;
@@ -527,6 +528,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
         ** TMPL BUILDER
         *********************************************************/
         // This is the standard method to be used in a module to generate the item input template
+        // for pre-item, mod-opts and item-inputs
         // fired in self::ac_get_ajax_module_tmpl
         function ac_generate_czr_tmpl_from_map( $tmpl_map ) {
             $html = '';
@@ -576,7 +578,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 }
 
             }
-            return $html;
+            return $html;////will be sent by wp_send_json_success() in ::ac_set_ajax_czr_tmpl()
         }
 
 
@@ -619,6 +621,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
             if ( ! empty( $input_data['input_template'] ) && is_string( $input_data['input_template'] ) ) {
                 echo $input_data['input_template'];
             } else {
+
                 switch ( $input_type ) {
                     /* ------------------------------------------------------------------------- *
                      *  HIDDEN
@@ -703,7 +706,6 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                         <div class="<?php echo $css_attr['img_upload_container']; ?>"></div>
                       <?php
                     break;
-
                 }//switch
             }
             ?>
@@ -715,9 +717,10 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
             <?php
             // </INPUT WRAPPER>
 
-            $tmpl_html = apply_filters( 'ac_get_input_tmpl', ob_get_clean(), $input_id, $input_data );
+            $tmpl_html = apply_filters( "czr_set_input_tmpl___{$input_type}", ob_get_clean(), $input_id, $input_data );
+            //error_log( print_r($tmpl_html, true ) );
             if ( empty( $tmpl_html ) ) {
-                wp_send_json_error( 'ac_get_input_tmpl => no template found for input id : ' . $input_id );
+                wp_send_json_error( 'ac_get_input_tmpl => no html returned for input ' . $input_id );
             }
             return $tmpl_html;
         }//ac_get_input_tmpl()
@@ -1253,10 +1256,10 @@ if ( ! class_exists( 'CZR_Fmk_Base' ) ) :
             // error_log( '</GET AJAX MODULE TMPL>' );
             // the module type is sent in the $posted_params
             if ( ! is_array( $posted_params ) || empty( $posted_params ) ) {
-               wp_send_json_error( 'ac_get_ajax_module_tmpl => empty posted_params' );
+                wp_send_json_error( 'ac_get_ajax_module_tmpl => empty posted_params' );
             }
             if ( ! array_key_exists( 'module_type', $posted_params  ) || empty( $posted_params['module_type'] ) ) {
-               wp_send_json_error( 'ac_get_ajax_module_tmpl => missing module_type' );
+                wp_send_json_error( 'ac_get_ajax_module_tmpl => missing module_type' );
             }
             // if ( ! array_key_exists( 'control_id', $posted_params  ) || empty( $posted_params['control_id'] ) ) {
             //    wp_send_json_error( 'ac_get_ajax_module_tmpl => missing control_id' );
@@ -1275,11 +1278,72 @@ if ( ! class_exists( 'CZR_Fmk_Base' ) ) :
             if ( empty( $tmpl_params ) ) {
                 return;
             }
+            // the requested_tmpl can be pre-item, mod-opt or item-inputs
             $tmpl_map = array_key_exists( $requested_tmpl, $tmpl_params ) ? $tmpl_params[ $requested_tmpl ] : array();
             if ( empty( $tmpl_map ) ) {
                 return;
             }
-            return $this -> ac_generate_czr_tmpl_from_map( $tmpl_map );
+            // Do we have tabs ?
+            // With tabs
+            // 'tabs' => array(
+              // array(
+              //     'title' => __('Spacing', 'text_domain_to_be_replaced'),
+              //     'inputs' => array(
+              //         'padding' => array(
+              //             'input_type'  => 'number',
+              //             'title'       => __('Padding', 'text_domain_to_be_replaced')
+              //         ),
+              //         'margin' => array(
+              //             'input_type'  => 'number',
+              //             'title'       => __('Margin', 'text_domain_to_be_replaced')
+              //         )
+              //     )
+              // ),
+              // array( ... )
+              //
+              //
+              // Without tabs :
+              //  'padding' => array(
+              //       'input_type'  => 'number',
+              //       'title'       => __('Padding', 'text_domain_to_be_replaced')
+              //  ),
+              //   'margin' => array(
+              //      'input_type'  => 'number',
+              //      'title'       => __('Margin', 'text_domain_to_be_replaced')
+              //  )
+            if ( array_key_exists( 'tabs', $tmpl_map ) ) {
+                ob_start();
+                ?>
+                <div class="tabs tabs-style-topline">
+                  <nav>
+                    <ul>
+                      <?php
+                        // print the tabs nav
+                        foreach ( $tmpl_map['tabs'] as $_key => $tab ) {
+                          printf( '<li data-tab-id="section-topline-%1$s"><a href="#"><span>%2$s</span></a></li>',
+                              $_key + 1,
+                              $tab['title']
+                          );
+                        }//foreach
+                      ?>
+                    </ul>
+                  </nav>
+                  <div class="content-wrap">
+                    <?php
+                      foreach ( $tmpl_map['tabs'] as $_key => $tab ) {
+                        printf( '<section id="section-topline-%1$s">%2$s</section>',
+                            $_key + 1,
+                            $this -> ac_generate_czr_tmpl_from_map( $tab['inputs'] )
+                        );
+                      }//foreach
+                    ?>
+                  </div><?php //.content-wrap ?>
+                </div><?php //.tabs ?>
+                <?php
+                return ob_get_clean();
+            } else {
+                return $this -> ac_generate_czr_tmpl_from_map( $tmpl_map );
+            }
         }
 
     }//class

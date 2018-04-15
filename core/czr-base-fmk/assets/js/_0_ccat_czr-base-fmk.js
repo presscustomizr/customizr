@@ -99,8 +99,25 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
               return;
 
             console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : arguments } ) );
+            // if ( serverControlParams.isDevMode ) {
+            //       console.log( 'Unstyled error message : ', arguments );
+            // }
+      };
+
+      api.errare = function( title, error ) {
+            //fix for IE, because console is only defined when in F12 debugging mode in IE
+            if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) )
+              return;
             if ( serverControlParams.isDevMode ) {
-                  console.log( 'Unstyled error message : ', arguments );
+                  if ( _.isUndefined( error ) ) {
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '<' + title + '>' ] } ) );
+                  } else {
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '<' + title + '>' ] } ) );
+                        console.log( error );
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '</' + title + '>' ] } ) );
+                  }
+            } else {
+                  console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ title ] } ) );
             }
       };
 
@@ -883,7 +900,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 
                   //skip if no valid input data-czrtype is found in this node
                   if ( _.isUndefined( _id ) || _.isEmpty( _id ) ) {
-                        api.consoleLog( 'setupInputCollectionFromDOM : missing data-czrtype for ' + module.id );
+                        api.errare( 'setupInputCollectionFromDOM : missing data-czrtype for ' + module.id );
                         return;
                   }
                   //check if this property exists in the current inputParentInst model
@@ -1069,7 +1086,8 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                                     api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = _serverTmpl_;
                               }).fail( function( _r_ ) {
                                     //console.log( 'api.CZR_Helpers.getModuleTmpl => ', _r_ );
-                                    dfd.reject( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type + _r_ );
+                                    api.errare( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type, _r_);
+                                    dfd.reject( _r_ );
                               });
                   }
             }
@@ -1426,9 +1444,11 @@ $.extend( CZRInputMths , {
                 var _meth = api.czrInputMap[ input.type ];
                 if ( _.isFunction( input[_meth]) ) {
                       input[_meth]( options.input_options || null );
+                } else if ( _.isFunction( api.czrInputMap[ input.type ] ) ) {
+                      api.czrInputMap[ input.type ].apply( input, [ options.input_options || null ] );
                 }
           } else {
-                api.consoleLog('Warning the input : ' + input.id + ' with type ' + input.type + ' has no corresponding method defined in api.czrInputMap.');
+                api.errare('Warning the input : ' + input.id + ' with type ' + input.type + ' has no corresponding method defined in api.czrInputMap.');
           }
 
           var trigger_map = {
@@ -2942,7 +2962,7 @@ $.extend( CZRItemMths , {
                               //item.viewState.set('expanded');
                         })
                         .fail( function( _r_ ) {
-                              api.errorLog( "mono-item module => failed item.renderItemContent for module : " + module.id, _r_ );
+                              api.errare( "mono-item module => failed item.renderItemContent for module : " + module.id, _r_ );
                         });
             }
 
@@ -3010,7 +3030,7 @@ $.extend( CZRItemMths , {
                                     item.trigger( 'remove-dialog-rendered');
                               }).fail( function( _r_ ) {
                                     //console.log( 'item.removeDialogVisible => fail response =>', _r_);
-                                    api.errorLog( 'item.removeDialogVisible => Problem when fetching the tmpl from server for module : '+ module.id );
+                                    api.errare( 'item.removeDialogVisible => Problem when fetching the tmpl from server for module : '+ module.id, _r_ );
                               });
                         }
                   }
@@ -3084,7 +3104,7 @@ $.extend( CZRItemMths , {
                         appendAndResolve( api.CZR_Helpers.parseTemplate( _serverTmpl_ )( item_model_for_template_injection ) );
                   }).fail( function( _r_ ) {
                         //console.log( 'renderItemContent => fail response =>', _r_);
-                        dfd.reject( 'renderItemContent> Problem when fetching the tmpl from server for module : '+ module.id );
+                        dfd.reject( _r_ );
                   });
             }
             return dfd.promise();
@@ -5070,6 +5090,9 @@ var CZRBaseModuleControlMths = CZRBaseModuleControlMths || {};
 ( function ( api, $, _ ) {
 $.extend( CZRBaseModuleControlMths, {
       initialize: function( id, options ) {
+              if ( ! api.has( id ) ) {
+                    throw new Error( 'Missing a registered setting for control : ' + id );
+              }
               var control = this;
 
               control.czr_Module = new api.Values();
@@ -5126,7 +5149,14 @@ $.extend( CZRBaseModuleControlMths, {
 
       //////////////////////////////////
       ///READY = CONTROL INSTANTIATED AND DOM ELEMENT EMBEDDED ON THE PAGE
-      ///FIRED BEFORE API READY
+      ///FIRED BEFORE API READY ? still true ?
+      //
+      // WP CORE => After the control is embedded on the page, invoke the "ready" method.
+      // control.deferred.embedded.done( function () {
+      //   control.linkElements(); // Link any additional elements after template is rendered by renderContent().
+      //   control.setupNotifications();
+      //   control.ready();
+      // });
       //////////////////////////////////
       ready : function() {
               var control = this;
