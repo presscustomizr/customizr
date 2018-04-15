@@ -161,3 +161,6 @@ p {
 embed, iframe, object, video {
   max-width: 100%;
 }
+.clearfix {
+  @include clearfix();
+}
