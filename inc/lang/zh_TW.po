@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.2\n"
+"Project-Id-Version: * Customizr v4.1.3\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-03-29 13:25:56+00:00\n"
+"POT-Creation-Date: 2018-04-15 16:40:18+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:08+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -128,21 +128,21 @@ msgid "Appears before the site footer"
 msgstr "在標題之前"
 
 #: build/free/customizr/core/class-fire-placeholders.php:92
-#: core/class-fire-placeholders.php:92
+#: core/class-fire-placeholders.php:98
 #, fuzzy
 msgid "The left sidebar has no widgets"
 msgstr "Gérer les widgets"
 
 #: build/free/customizr/core/class-fire-placeholders.php:93
-#: core/class-fire-placeholders.php:93
+#: core/class-fire-placeholders.php:99
 msgid "Add widgets to this sidebar %s or %s."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:96
 #: build/free/customizr/core/class-fire-placeholders.php:123
 #: build/free/customizr/core/class-fire-placeholders.php:169
-#: core/class-fire-placeholders.php:96 core/class-fire-placeholders.php:123
-#: core/class-fire-placeholders.php:169
+#: core/class-fire-placeholders.php:102 core/class-fire-placeholders.php:129
+#: core/class-fire-placeholders.php:175
 #, fuzzy
 msgid "Add widgets"
 msgstr "添加一個滑塊"
@@ -150,64 +150,64 @@ msgstr "添加一個滑塊"
 #: build/free/customizr/core/class-fire-placeholders.php:97
 #: build/free/customizr/core/class-fire-placeholders.php:123
 #: build/free/customizr/core/class-fire-placeholders.php:169
-#: core/class-fire-placeholders.php:97 core/class-fire-placeholders.php:123
-#: core/class-fire-placeholders.php:169
+#: core/class-fire-placeholders.php:103 core/class-fire-placeholders.php:129
+#: core/class-fire-placeholders.php:175
 msgid "now"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:100
 #: build/free/customizr/core/class-fire-placeholders.php:125
 #: build/free/customizr/core/class-fire-placeholders.php:171
-#: core/class-fire-placeholders.php:100 core/class-fire-placeholders.php:125
-#: core/class-fire-placeholders.php:171
+#: core/class-fire-placeholders.php:106 core/class-fire-placeholders.php:131
+#: core/class-fire-placeholders.php:177
 msgid "dismiss this notice"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:104
 #: build/free/customizr/core/class-fire-placeholders.php:129
-#: core/class-fire-placeholders.php:104 core/class-fire-placeholders.php:129
+#: core/class-fire-placeholders.php:110 core/class-fire-placeholders.php:135
 msgid "You can also remove this sidebar by changing the current page layout."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:106
 #: build/free/customizr/core/class-fire-placeholders.php:131
-#: core/class-fire-placeholders.php:106 core/class-fire-placeholders.php:131
+#: core/class-fire-placeholders.php:112 core/class-fire-placeholders.php:137
 #, fuzzy
 msgid "Changing the layout in the Customizr theme"
 msgstr "Customizr 主題的內容設置"
 
 #: build/free/customizr/core/class-fire-placeholders.php:107
 #: build/free/customizr/core/class-fire-placeholders.php:132
-#: core/class-fire-placeholders.php:107 core/class-fire-placeholders.php:132
+#: core/class-fire-placeholders.php:113 core/class-fire-placeholders.php:138
 #, fuzzy
 msgid "See the theme documentation."
 msgstr "閱讀幫助文檔"
 
 #: build/free/customizr/core/class-fire-placeholders.php:121
-#: core/class-fire-placeholders.php:121
+#: core/class-fire-placeholders.php:127
 #, fuzzy
 msgid "The right sidebar has no widgets"
 msgstr "Gérer les widgets"
 
 #: build/free/customizr/core/class-fire-placeholders.php:122
 #: build/free/customizr/core/class-fire-placeholders.php:168
-#: core/class-fire-placeholders.php:122 core/class-fire-placeholders.php:168
+#: core/class-fire-placeholders.php:128 core/class-fire-placeholders.php:174
 msgid "Add widgets to the footer %s or %s."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:167
-#: core/class-fire-placeholders.php:167
+#: core/class-fire-placeholders.php:173
 msgid "The footer has no widgets"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:184
-#: core/class-fire-placeholders.php:184
+#: core/class-fire-placeholders.php:190
 msgid "You can display your post's featured image here if you have set one."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:186
 #: build/free/customizr/core/class-fire-placeholders.php:205
-#: core/class-fire-placeholders.php:186 core/class-fire-placeholders.php:205
+#: core/class-fire-placeholders.php:192 core/class-fire-placeholders.php:211
 msgid "%s to display a featured image here."
 msgstr ""
 
@@ -215,14 +215,14 @@ msgstr ""
 #: build/free/customizr/core/class-fire-placeholders.php:206
 #: build/free/customizr/core/class-fire-placeholders.php:226
 #: build/free/customizr/core/class-fire-placeholders.php:293
-#: core/class-fire-placeholders.php:187 core/class-fire-placeholders.php:206
-#: core/class-fire-placeholders.php:226 core/class-fire-placeholders.php:293
+#: core/class-fire-placeholders.php:193 core/class-fire-placeholders.php:212
+#: core/class-fire-placeholders.php:232 core/class-fire-placeholders.php:299
 msgid "Jump to the customizer now"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:189
 #: build/free/customizr/core/core-settings-map.php:1663
-#: core/class-fire-placeholders.php:189 core/core-settings-map.php:1663
+#: core/class-fire-placeholders.php:195 core/core-settings-map.php:1663
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr ""
 
@@ -230,25 +230,25 @@ msgstr ""
 #: build/free/customizr/core/class-fire-placeholders.php:209
 #: build/free/customizr/core/core-settings-map.php:1664
 #: build/free/customizr/core/core-settings-map.php:1723
-#: core/class-fire-placeholders.php:190 core/class-fire-placeholders.php:209
+#: core/class-fire-placeholders.php:196 core/class-fire-placeholders.php:215
 #: core/core-settings-map.php:1664 core/core-settings-map.php:1723
 msgid "WordPress documentation"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:203
-#: core/class-fire-placeholders.php:203
+#: core/class-fire-placeholders.php:209
 msgid "You can display your page's featured image here if you have set one."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:208
 #: build/free/customizr/core/core-settings-map.php:1722
-#: core/class-fire-placeholders.php:208 core/core-settings-map.php:1722
+#: core/class-fire-placeholders.php:214 core/core-settings-map.php:1722
 msgid "Don't know how to set a featured image to a page? Learn how in the %s."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:223
 #: build/free/customizr/core/class-fire-placeholders.php:290
-#: core/class-fire-placeholders.php:223 core/class-fire-placeholders.php:290
+#: core/class-fire-placeholders.php:229 core/class-fire-placeholders.php:296
 msgid ""
 "Did you know you can easily speed up your page load by deferring the loading "
 "of the non visible images?"
@@ -256,25 +256,25 @@ msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:225
 #: build/free/customizr/core/class-fire-placeholders.php:292
-#: core/class-fire-placeholders.php:225 core/class-fire-placeholders.php:292
+#: core/class-fire-placeholders.php:231 core/class-fire-placeholders.php:298
 msgid ""
 "%s and check the option 'Load images on scroll' under 'Website Performances' "
 "section."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:331
-#: core/class-fire-placeholders.php:331
+#: core/class-fire-placeholders.php:337
 #, fuzzy
 msgid "Add widgets to the zone :"
 msgstr "添加一個滑塊"
 
 #: build/free/customizr/core/class-fire-placeholders.php:854
-#: core/class-fire-placeholders.php:854
+#: core/class-fire-placeholders.php:860
 msgid "This notice is visible for admin users only."
 msgstr ""
 
 #: build/free/customizr/core/class-fire-placeholders.php:862
-#: core/class-fire-placeholders.php:862
+#: core/class-fire-placeholders.php:868
 msgid "dismiss notice"
 msgstr ""
 

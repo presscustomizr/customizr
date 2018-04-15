@@ -1000,6 +1000,19 @@ embed, iframe, object, video {
   max-width: 100%;
 }
 
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
 .header-skin-light .czr-overlay {
   background: rgba(255, 255, 255, 0.98);
   color: #313131;
@@ -3501,6 +3514,8 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 
 .mfp-gallery [class*=mfp-arrow]::before, .mfp-gallery [class*=mfp-arrow]::after {
   border: none;
+  margin-right: .2em;
+  margin-left: .2em;
 }
 
 .czr-carousel {
@@ -4570,6 +4585,7 @@ section[class^="post-"] .gallery.row {
   position: relative;
   background: inherit;
   z-index: 1;
+  word-wrap: break-word;
 }
 
 #tc-page-wrap.czr-boxed {

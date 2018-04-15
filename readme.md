@@ -1,4 +1,4 @@
-# Customizr v4.1.2 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.3 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,11 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.3 April 15th 2018 =
+* Fix: no need to enqueue the front placeholders assets when user not logged in. fixes #1513
+* Fix: make sure the mfp gallery left arrow is correctly aligned. fixes #1515
+* Fix: set word-wrap break-word for whatever text in the page content. This will avoid text overflowing the parent element width, for example in list items
+
 = 4.1.2 March 29th 2018 =
 * Fix: author meta link pointing to wrong URL. fixes #1509
 
