@@ -212,6 +212,7 @@ form.czr-form {
               float: left;
           }
         }
+
         /* search form */
         i.icn-close {
           @if ( true == $is_rtl ) {
@@ -231,6 +232,9 @@ form.czr-form {
         #czr-comments & {
           padding: 0.5rem;
         }
+    }
+    &:not(.in-focus) label {
+      cursor: pointer;
     }
 
     .czr-focusable {
@@ -261,6 +265,9 @@ form.czr-form {
 
 /* search form */
 .czr-search-field {
+  &::-ms-clear {
+      display: none;
+  }
   @if ( true == $is_rtl ) {
       padding-left: 2em;
   }
