@@ -30,6 +30,10 @@
   }
 }
 .woocommerce {
+  .woocommerce-products-header .page-title {
+    @extend .entry-title;
+    @extend %content-header-entry-title;
+  }
   a.remove {
     margin-left: auto;
     margin-right: auto;
