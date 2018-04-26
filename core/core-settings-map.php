@@ -1677,6 +1677,17 @@ function czr_fn_single_post_option_map( $get_default = null ) {
                         'priority'      => 20,
                         'transport'   => czr_fn_is_ms() ? 'refresh' : 'postMessage'
       ),
+      'tc_single_post_thumb_smartphone_height' => array(
+                        'default'       => 200,
+                        'sanitize_callback' => 'czr_fn_sanitize_number',
+                        'control'   => 'CZR_controls' ,
+                        'label'       => __( "Set the thumbnail's max height in pixels for smartphones" , 'customizr' ),
+                        'section'     => 'single_posts_sec' ,
+                        'type'        => 'number' ,
+                        'step'        => 1,
+                        'min'         => 0,
+                        'priority'      => 20,
+      ),
       'tc_related_posts' => array(
                         'default'   => 'categories',
                         'control'   => 'CZR_controls',
@@ -1735,6 +1746,17 @@ function czr_fn_single_page_option_map( $get_default = null ) {
                         'min'         => 0,
                         'priority'      => 20,
                         'transport'   => czr_fn_is_ms() ? 'refresh' : 'postMessage'
+      ),
+      'tc_single_page_thumb_smartphone_height' => array(
+                        'default'       => 200,
+                        'sanitize_callback' => 'czr_fn_sanitize_number',
+                        'control'   => 'CZR_controls' ,
+                        'label'       => __( "Set the thumbnail's max height in pixels for smartphones" , 'customizr' ),
+                        'section'     => 'single_pages_sec' ,
+                        'type'        => 'number' ,
+                        'step'        => 1,
+                        'min'         => 0,
+                        'priority'      => 20,
       )
   );
 

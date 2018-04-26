@@ -198,16 +198,33 @@ class CZR_main_content_model_class extends CZR_Model {
       function czr_fn_write_thumbnail_inline_css( $_css ) {
             $context =  is_single() ? 'post' : 'page';
 
-            $_thumb_height   = apply_filters( "tc_single_{$context}_thumb_height", esc_attr( czr_fn_opt( "tc_single_{$context}_thumb_height" ) ) );
-            $_thumb_height   = (! $_thumb_height || ! is_numeric($_thumb_height) ) ? 250 : $_thumb_height;
+            $_thumb_smartphone_height   = apply_filters( "tc_single_{$context}_thumb_smartphone_height", esc_attr( czr_fn_opt( "tc_single_{$context}_thumb_smartphone_height" ) ) );
 
-            return sprintf("%s\n%s",
+            $_thumb_smartphone_height   = (! $_thumb_smartphone_height || ! is_numeric($_thumb_smartphone_height) ) ? 200 : $_thumb_smartphone_height;
+
+            $_thumb_height              = apply_filters( "tc_single_{$context}_thumb_height", esc_attr( czr_fn_opt( "tc_single_{$context}_thumb_height" ) ) );
+            $_thumb_height              = (! $_thumb_height || ! is_numeric($_thumb_height) ) ? 250 : $_thumb_height;
+
+            $_css                       = sprintf("%s\n%s",
               $_css,
               ".tc-singular-thumbnail-wrapper .entry-media__wrapper {
-                max-height: {$_thumb_height}px;
-                height :{$_thumb_height}px
+                max-height: {$_thumb_smartphone_height}px;
+                height :{$_thumb_smartphone_height}px
               }\n"
             );
+
+            if ( $_thumb_smartphone_height != $_thumb_height ) {
+              $css_mq_breakpoints         = CZR_init::$instance->css_mq_breakpoints;
+              $_css                       = sprintf("%s\n@media (min-width: %spx ){\n%s\n}\n",
+                $_css,
+                $css_mq_breakpoints[ 'sm' ], //sm breakpoint up: 576px
+                ".tc-singular-thumbnail-wrapper .entry-media__wrapper {
+                  max-height: {$_thumb_height}px;
+                  height :{$_thumb_height}px
+                }"
+              );
+            }
+            return $_css;
       }
 
 
