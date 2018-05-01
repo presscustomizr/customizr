@@ -1,4 +1,4 @@
-# Customizr v4.1.3 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.4 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,13 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.4 May 1st 2018 =
+* Fix: fix search form close icon visual issue in IE10+. fixes #1512
+* Imp: do not load dev classes
+* Imp: decrease space above WooCommerce page title. fixes #1521
+* Added: options to fine tuning singular featured image height in smartphones
+both in modern and classical style fixes #1524
+
 = 4.1.3 April 15th 2018 =
 * Fix: no need to enqueue the front placeholders assets when user not logged in. fixes #1513
 * Fix: make sure the mfp gallery left arrow is correctly aligned. fixes #1515

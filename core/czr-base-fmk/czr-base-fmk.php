@@ -543,6 +543,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 'step' => '',
                 'min' => '',
                 'max' => '',
+                'orientation' => '',//vertical / horizontal
+                'unit' => '',//% or px for example
 
                 'transport' => '',//<= can be set as a data property of the input wrapper, and used when instanciating the input
 
@@ -550,6 +552,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 'tmpl_callback' => '',//<= a callback function to be used to print the entire input template, including the wrapper
 
                 'width-100' => false,//<= to force a width of 100%
+                'title_width' => '',//width-80
+                'input_width' => ''//width-20
             );
             foreach( $tmpl_map as $input_id => $input_data ) {
                 if ( ! is_string( $input_id ) || empty( $input_id ) ) {
@@ -609,13 +613,14 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
             );
             // no need to print a title for an hidden input
             if ( $input_type !== 'hidden' ) {
-              printf( '<div class="customize-control-title">%1$s</div>', $input_data['title'] );
+              printf( '<div class="customize-control-title %1$s">%2$s</div>', ! empty( $input_data['title_width'] ) ? $input_data['title_width'] : '', $input_data['title'] );
             }
             ?>
               <?php if ( ! empty( $input_data['notice_before'] ) ) : ?>
                   <span class="czr-notice"><?php echo $input_data['notice_before']; ?></span>
               <?php endif; ?>
-            <div class="czr-input">
+
+            <?php printf( '<div class="czr-input %1$s">', ! empty( $input_data['input_width'] ) ? $input_data['input_width'] : '' ); ?>
 
             <?php
             if ( ! empty( $input_data['input_template'] ) && is_string( $input_data['input_template'] ) ) {
@@ -669,6 +674,11 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                     /* ------------------------------------------------------------------------- *
                      *  COLOR
                     /* ------------------------------------------------------------------------- */
+                    case 'wp_color_apha' :
+                      ?>
+                        <input data-czrtype="<?php echo $input_id; ?>" class="width-100"  data-alpha="true" type="text" value="{{ data['<?php echo $input_id; ?>'] }}"></input>
+                      <?php
+                    break;
                     case 'color' :
                       ?>
                         <input data-czrtype="<?php echo $input_id; ?>" type="text" value="{{ data['<?php echo $input_id; ?>'] }}"></input>
@@ -685,6 +695,15 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                         #>
                         <input data-czrtype="<?php echo $input_id; ?>" type="checkbox" {{ _checked }}></input>
                       <?php
+                    break;
+
+                    case 'gutencheck' :
+                        ?>
+                          <#
+                            var _checked = ( false != data['<?php echo $input_id; ?>'] ) ? "checked=checked" : '';
+                          #>
+                          <span class="czr-toggle-check"><input class="czr-toggle-check__input" id="pending-toggle-0" data-czrtype="<?php echo $input_id; ?>" type="checkbox" {{ _checked }}><span class="czr-toggle-check__track"></span><span class="czr-toggle-check__thumb"></span></span>
+                        <?php
                     break;
 
                     /* ------------------------------------------------------------------------- *
@@ -704,6 +723,35 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                       ?>
                         <input data-czrtype="<?php echo $input_id; ?>" type="hidden"/>
                         <div class="<?php echo $css_attr['img_upload_container']; ?>"></div>
+                      <?php
+                    break;
+
+                    /* ------------------------------------------------------------------------- *
+                     *  TINY MCE EDITOR
+                    /* ------------------------------------------------------------------------- */
+                    case 'tiny_mce_editor' :
+                        ?>
+                          <# //console.log( 'IN php::ac_get_default_input_tmpl() => data sent to the tmpl => ', data ); #>
+                          <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="open-tinymce-editor"><?php _e('Edit', 'customizr' ); ?></button>&nbsp;
+                          <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="close-tinymce-editor"><?php _e('Close', 'customizr' ); ?></button>
+                          <input data-czrtype="<?php echo $input_id; ?>" type="hidden" value="{{ data.value }}"/>
+                        <?php
+                    break;
+
+                    /* ------------------------------------------------------------------------- *
+                     *  RANGE
+                    /* ------------------------------------------------------------------------- */
+                    case 'range_slider' :
+                      ?>
+                        <?php
+                        printf( '<input data-czrtype="%5$s" type="range" %1$s %2$s %3$s %4$s value="{{ data[\'%5$s\'] }}" />',
+                          ! empty( $input_data['orientation'] ) ? 'data-orientation="'. $input_data['orientation'] .'"' : '',
+                          ! empty( $input_data['unit'] ) ? 'data-unit="'. $input_data['unit'] .'"' : '',
+                          ! empty( $input_data['min'] ) ? 'min="'. $input_data['min'] .'"' : '',
+                          ! empty( $input_data['max'] ) ? 'max="'. $input_data['max'] .'"' : '',
+                          $input_id
+                        );
+                        ?>
                       <?php
                     break;
                 }//switch
@@ -1320,8 +1368,9 @@ if ( ! class_exists( 'CZR_Fmk_Base' ) ) :
                       <?php
                         // print the tabs nav
                         foreach ( $tmpl_map['tabs'] as $_key => $tab ) {
-                          printf( '<li data-tab-id="section-topline-%1$s"><a href="#"><span>%2$s</span></a></li>',
+                          printf( '<li data-tab-id="section-topline-%1$s" %2$s><a href="#"><span>%3$s</span></a></li>',
                               $_key + 1,
+                              array_key_exists('attributes', $tab) ? $tab['attributes'] : '',
                               $tab['title']
                           );
                         }//foreach

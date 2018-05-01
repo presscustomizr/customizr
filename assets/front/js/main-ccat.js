@@ -41,43 +41,60 @@ var czrapp = czrapp || {};
               return '';
             return string.length > length ? string.substr( 0, length - 1 ) : string;
       };
-      czrapp._prettyfy = function( args ) {
+      var _prettyPrintLog = function( args ) {
             var _defaults = {
                   bgCol : '#5ed1f5',
                   textCol : '#000',
-                  consoleArguments : [],
-                  prettyfy : true
+                  consoleArguments : []
             };
             args = _.extend( _defaults, args );
 
-            var _toArr = Array.from( args.consoleArguments );
+            var _toArr = Array.from( args.consoleArguments ),
+                _truncate = function( string ){
+                      if ( ! _.isString( string ) )
+                        return '';
+                      return string.length > 300 ? string.substr( 0, 299 ) + '...' : string;
+                };
             if ( ! _.isEmpty( _.filter( _toArr, function( it ) { return ! _.isString( it ); } ) ) ) {
-                  _toArr =  JSON.stringify( _toArr );
+                  _toArr =  JSON.stringify( _toArr.join(' ') );
             } else {
                   _toArr = _toArr.join(' ');
             }
-            if ( args.prettyfy )
-              return [
-                    '%c ' + czrapp._truncate( _toArr ),
-                    [ 'background:' + args.bgCol, 'color:' + args.textCol, 'display: block;' ].join(';')
-              ];
-            else
-              return czrapp._truncate( _toArr );
+            return [
+                  '%c ' + _truncate( _toArr ),
+                  [ 'background:' + args.bgCol, 'color:' + args.textCol, 'display: block;' ].join(';')
+            ];
       };
       czrapp.consoleLog = function() {
             if ( ! czrapp.localized.isDevMode )
               return;
             if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) )
               return;
-
-            console.log.apply( console, czrapp._prettyfy( { consoleArguments : arguments } ) );
+            console.log.apply( console, _prettyPrintLog( { consoleArguments : arguments } ) );
+            console.log( 'Unstyled console message : ', arguments );
       };
 
       czrapp.errorLog = function() {
             if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) )
               return;
 
-            console.log.apply( console, czrapp._prettyfy( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : arguments } ) );
+            console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : arguments } ) );
+      };
+
+      czrapp.errare = function( title, error ) {
+            if ( ( _.isUndefined( console ) && typeof window.console.log != 'function' ) )
+              return;
+            if ( czrapp.localized.isDevMode ) {
+                  if ( _.isUndefined( error ) ) {
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '<' + title + '>' ] } ) );
+                  } else {
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '<' + title + '>' ] } ) );
+                        console.log( error );
+                        console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ '</' + title + '>' ] } ) );
+                  }
+            } else {
+                  console.log.apply( console, _prettyPrintLog( { bgCol : '#ffd5a0', textCol : '#000', consoleArguments : [ title ] } ) );
+            }
       };
       czrapp.doAjax = function( queryParams ) {
             queryParams = queryParams || ( _.isObject( queryParams ) ? queryParams : {} );
@@ -106,12 +123,16 @@ var czrapp = czrapp || {};
 
             $.post( ajaxUrl, _query_ )
                   .done( function( _r ) {
-                        if ( '0' === _r ||  '-1' === _r ) {
-                              czrapp.errorLog( 'czrapp.doAjax : done ajax error for : ', _query_.action, _r );
+                        if ( '0' === _r ||  '-1' === _r || false === _r.success ) {
+                              czrapp.errare( 'czrapp.doAjax : done ajax error for action : ' + _query_.action , _r );
+                              dfd.reject( _r );
                         }
+                        dfd.resolve( _r );
                   })
-                  .fail( function( _r ) { czrapp.errorLog( 'czrapp.doAjax : failed ajax error for : ', _query_.action, _r ); })
-                  .always( function( _r ) { dfd.resolve( _r ); });
+                  .fail( function( _r ) {
+                        czrapp.errare( 'czrapp.doAjax : failed ajax error for : ' + _query_.action, _r );
+                        dfd.reject( _r );
+                  });
             return dfd.promise();
       };
 })(jQuery, czrapp);
@@ -2167,20 +2188,28 @@ var czrapp = czrapp || {};
                }
             });
 
-            var _toggleThisFocusClass = function( evt ) {
-                var $_el       = $(this),
-                      $_parent = $_el.closest(_parent_selector);
 
-                if ( $_el.val() || ( evt && 'focusin' == evt.type ) ) {
-                   $_parent.addClass( _focus_class );
-                } else {
-                   $_parent.removeClass( _focus_class );
-                }
+            var _toggleThisFocusClass = function( evt ) {
+                  var $_el       = $(this),
+                        $_parent = $_el.closest(_parent_selector);
+                  setTimeout(
+                        function(){
+                            if ( $_el.val() || ( evt && ( 'focusin' == evt.type || 'focus' == evt.type ) ) ) {
+                                  $_parent.addClass( _focus_class );
+                            } else {
+                                  $_parent.removeClass( _focus_class );
+                            }
+                        },
+                        50
+                  );
             };
 
             czrapp.$_body.on( 'in-focus-load.czr-focus focusin focusout', _inputs, _toggleThisFocusClass );
             $(_inputs).trigger( 'in-focus-load.czr-focus' );
-            czrapp.$_body.on( 'click', '.icn-close', function() {
+            czrapp.$_body.on( 'click', '.' + _focusable_class + ' .icn-close', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+
                   var $_search_field = $(this).closest('form').find('.czr-search-field');
 
                   if ( $_search_field.length ) {
