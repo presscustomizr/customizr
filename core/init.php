@@ -321,7 +321,7 @@ if ( ! class_exists( 'CZR___' ) ) :
             }
 
             //load the new framework classes
-            if ( CZR_DEV_MODE ) {
+            if ( !CZR_IS_PRO && CZR_DEV_MODE ) {
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-model.php' );
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-collection.php' );
                 $this -> czr_fn_require_once( CZR_FRAMEWORK_PATH . 'class-view.php' );
