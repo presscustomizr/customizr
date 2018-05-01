@@ -276,9 +276,14 @@ if ( ! class_exists( 'CZR_post' ) ) :
     function czr_fn_write_thumbnail_inline_css( $_css ) {
       if ( ! $this -> czr_fn_show_single_post_thumbnail() )
         return $_css;
+
       $_single_thumb_height   = apply_filters('tc_single_post_thumb_height', esc_attr( czr_fn_opt( 'tc_single_post_thumb_height' ) ) );
       $_single_thumb_height   = (! $_single_thumb_height || ! is_numeric($_single_thumb_height) ) ? 250 : $_single_thumb_height;
-      return sprintf("%s\n%s",
+
+      $_single_thumb_smartphone_height   = apply_filters('tc_single_post_thumb_smartphone_height', esc_attr( czr_fn_opt( 'tc_single_post_thumb_smartphone_height' ) ) );
+      $_single_thumb_smartphone_height   = (! $_single_thumb_smartphone_height || ! is_numeric($_single_thumb_smartphone_height) ) ? 200 : $_single_thumb_smartphone_height;
+
+      $_css = sprintf("%s\n%s",
         $_css,
         ".tc-single-post-thumbnail-wrapper .tc-rectangular-thumb {
           max-height: {$_single_thumb_height}px;
@@ -293,6 +298,19 @@ if ( ! class_exists( 'CZR_post' ) ) :
           transition: opacity .5s ease-in-out;
         }\n"
       );
+
+      //max-height in smartphones: max-width: 480px
+      if ( $_single_thumb_smartphone_height != $_single_thumb_height ) {
+        $_css                       = sprintf("%s\n@media (max-width: %spx ){\n%s\n}\n",
+          $_css,
+          480,
+          ".tc-single-post-thumbnail-wrapper .tc-rectangular-thumb {
+            max-height: {$_single_thumb_smartphone_height}px;
+            height :{$_single_thumb_smartphone_height}px
+          }"
+        );
+      }
+      return $_css;
     }
 
   }//end of class
