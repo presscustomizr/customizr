@@ -1,11 +1,13 @@
 .tc-content-inner { max-width: 100% }
 
 // Regular headings
-
-.archive-header .archive-title,
-.entry-header .entry-title {
+%content-header-entry-title {
   word-wrap: break-word;
   margin-top: 0em;
+}
+.archive-header .archive-title,
+.entry-header .entry-title {
+  @extend %content-header-entry-title;
 }
 .archive-header .header-bottom,
 .entry-header .header-bottom {
