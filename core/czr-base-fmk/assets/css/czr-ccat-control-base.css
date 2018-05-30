@@ -270,8 +270,9 @@ li[id*="customize-control-"] {
     padding: 2%;
     width: 96%;
     border: 1px solid rgba(221, 221, 221, 0.43);
-    box-shadow: 1px 0px 2px 0px rgba(204, 204, 204, 0.45);
-    -webkit-box-shadow: 1px 0px 2px 0px rgba(204, 204, 204, 0.45);
+    box-shadow: 1px 1px 2px 0 rgba(75, 75, 85, 0.2);
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(75, 75, 85, 0.2);
+    background-color: #fff;
 }
 
 /*<@4.9compat>*/
@@ -860,7 +861,7 @@ span.czr-panel-subtitle {
 
 .czr-single-item {
   padding: 0%;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   margin: 1% 0 0 2%;
   float: left;
   width: 98%;
@@ -873,13 +874,13 @@ span.czr-panel-subtitle {
   transition: opacity 1s ease-in-out;
 }
 
-#customize-theme-controls .czr-single-item.open {
+/*#customize-theme-controls .czr-single-item.open {
   border: 1px solid #dedede;
-}
+}*/
 /* Keep the normal border for single module, mono items controls */
-#customize-theme-controls .mono-item-mod .czr-single-item {
+/*#customize-theme-controls .mono-item-mod .czr-single-item {
   border: 1px solid #ccc;
-}
+}*/
 
 .czr-single-item .czr-item-header, .czr-single-item .czr-item-content {
   padding: 1%;
@@ -1018,7 +1019,7 @@ span.czr-panel-subtitle {
 
 .czr-single-item .czr-item-content {
   display: none;
-  background: rgba(238, 238, 238, 0.5);
+  /*background: rgba(238, 238, 238, 0.5);*/
   clear: both;
   width: 96%;
   padding: 2%;
@@ -1375,6 +1376,7 @@ body.czr-editing-modopt .czr-mod-opt-wrapper {
 }
 
 .tabs nav ul li {
+  font-size: 14px;
   position: relative;
   z-index: 1;
   display: block;
@@ -1665,7 +1667,7 @@ section .czr-sub-set:first-child {
  */
 .selecter-element { *left: -999999px; position: absolute; opacity: 0; }
 .selecter { display: block;float: right;margin: 2px 0;position: relative;width: 100%;z-index: 100; }
-.selecter .selecter-selected { background: #F9F9F9 url(img/jquery.fs.selecter-arrow.png) no-repeat right center; border: 1px solid #ccc; border-radius: 3px; color: #333; cursor: pointer; display: block; font-size: 13px; margin: 0; overflow: hidden; padding: 4px 4.6%; position: relative; text-overflow: clip; z-index: 49; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);height: auto;line-height: 18px;width: 90%; }
+.selecter .selecter-selected { background: #F9F9F9 url(img/jquery.fs.selecter-arrow.png) no-repeat right center; border: 1px solid #ccc; border-radius: 3px; color: #333; cursor: pointer; display: block; font-size: 13px; margin: 0; overflow: hidden; padding: 4px 4%; position: relative; text-overflow: clip; z-index: 49; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);height: auto;line-height: 18px;width: 90%; }
 
 .selecter .selecter-options { border: 1px solid #ccc; border-width: 0 1px 1px; background-color: #fefefe; border-radius: 0 0 3px 3px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); display: none; left: 0; margin: 0; max-height: 260px; overflow: auto; overflow-x: hidden; padding: 0; position: relative; top: 100%; width: 99%; *width: auto; z-index: 50; }
 .selecter .selecter-group { background: #F9F9F9; border-bottom: 1px solid #e3e3e3; color: #999; display: block; font-size: 11px; padding: 5px 6px 4px; text-transform: uppercase; }
@@ -2198,6 +2200,9 @@ body.czr-customize-content_editor-pane-resize #customize-preview:before {
 
 
 /* RANGE SLIDER rangeslider.js - v2.3.0 - https://github.com/andreruffert/rangeslider.js */
+.czr-sub-set[data-input-type="range_slider"] {
+    padding: 20px 0;
+}
 .rangeslider,
 .rangeslider__fill {
   display: block;
@@ -2328,6 +2333,7 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
 
 
 /* GUTENCHECK */
+/* Inspired from the Gutenberg plugin checkbox. @see here : https://github.com/WordPress/gutenberg */;
 .czr-toggle-check {
   position: relative;
       float: right;
