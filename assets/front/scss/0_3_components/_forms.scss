@@ -78,11 +78,13 @@ input[type=number] {
     background-repeat: no-repeat;
     @include box-shadow_none( 'important' );
   }
+  @at-root .comment-form-cookies-consent input[type=checkbox],
   input[type=checkbox],
   input[type=radio] {
     -webkit-appearance: none!important;
     position: relative !important;
   }
+  @at-root .comment-form-cookies-consent input[type=checkbox],
   input[type=checkbox]:checked:before,
   input[type=radio]:checked:before {
     font-family: 'Font Awesome\ 5 Free';
@@ -102,13 +104,14 @@ input[type=number] {
   input[type=radio] {
     border-radius: 50%;
   }
-  input[type=radio]:checked:before {
+  input[type=radio]:checked::before {
     content: "";
     border-radius: 100%;
     width: 50%;
     height: 50%;
   }
-  input[type=checkbox]:checked:before {
+  @at-root .comment-form-cookies-consent input[type=checkbox]:checked::before,
+  input[type=checkbox]:checked::before {
     content: "\f00c";
     font-weight: 900;
   }
@@ -120,6 +123,22 @@ input[type=number] {
     -webkit-appearance: none;
   }
 }//end themeform
+
+.comment-form-cookies-consent {
+  label {
+    display: inline;
+    @if ( true == $is_rtl ) {
+      padding-right: 5px;
+    }
+    @else {
+      padding-left: 5px;
+    }
+  }
+  input[type="checkbox" ] {
+    margin-top: -.2em;
+    border-color: $grey;
+  }
+}
 
 input[type="file"],
 input[type="range"] {
