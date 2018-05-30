@@ -2061,7 +2061,18 @@ input[type="submit"]:hover {
   -o-transition: background-position 0.1s linear;
   transition: background-position 0.1s linear;
 }
-
+.comment-form-cookies-consent label {
+    display: inline;
+    & when (@is_rtl = true) {
+      padding-right: 5px;
+    }
+    & when (@is_rtl = false) {
+      padding-left: 5px;
+    }
+}
+.comment-form-cookies-consent input[type="checkbox" ] {
+    margin-top: -.1em;
+}
 /* CODE FOR COMMENTS */
 code {
   white-space: normal;
