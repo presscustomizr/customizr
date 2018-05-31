@@ -5349,7 +5349,7 @@ $.extend( CZRBaseModuleControlMths, {
                         case 'crud' :
                               //get the value from the czrModuleMap
                               if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
-                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud;
+                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].crud || _value;
                               } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
                                     throw new Error('prepareModuleForAPI : the module param "crud" must be a boolean');
                               }
@@ -5358,7 +5358,7 @@ $.extend( CZRBaseModuleControlMths, {
                         case 'hasPreItem' :
                               //get the value from the czrModuleMap
                               if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
-                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].hasPreItem;
+                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].hasPreItem || _value;
                               } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
                                     throw new Error('prepareModuleForAPI : the module param "hasPreItem" must be a boolean');
                               }
@@ -5367,7 +5367,7 @@ $.extend( CZRBaseModuleControlMths, {
                         case 'refresh_on_add_item' :
                               //get the value from the czrModuleMap
                               if ( _.has( api.czrModuleMap, module_candidate.module_type ) ) {
-                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].refresh_on_add_item;
+                                    _candidate_val = api.czrModuleMap[ module_candidate.module_type ].refresh_on_add_item || _value;
                               } else if ( ! _.isUndefined( _candidate_val) && ! _.isBoolean( _candidate_val )  ) {
                                     throw new Error('prepareModuleForAPI : the module param "refresh_on_add_item" must be a boolean');
                               }

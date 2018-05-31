@@ -4453,6 +4453,7 @@ li#wp-admin-bar-tc-customizr-help a {
   padding-bottom: .25rem;
   white-space: nowrap;
   max-width: 100%;
+  height: auto;
 }
 
 .navbar-brand img {
@@ -6352,22 +6353,12 @@ input[type=number] {
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgNTAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjIuNiw4YzAtMC4xLDAtMC4yLDAuMS0wLjJsMC41LTAuNWMwLjEtMC4xLDAuMS0wLjEsMC4yLTAuMWMwLjEsMCwwLjIsMCwwLjIsMC4xbDMuNywzLjdsMy43LTMuN2MwLjEtMC4xLDAuMS0wLjEsMC4yLTAuMXMwLjIsMCwwLjIsMC4xTDMyLDcuOEMzMiw3LjksMzIuMSw4LDMyLjEsOGMwLDAuMSwwLDAuMi0wLjEsMC4ybC00LjQsNC40Yy0wLjEsMC4xLTAuMSwwLjEtMC4yLDAuMXMtMC4yLDAtMC4yLTAuMWwtNC40LTQuNEMyMi43LDguMiwyMi42LDguMSwyMi42LDh6Ii8+PC9zdmc+");
 }
 
-.themeform input[type=checkbox], .widget_categories input[type=checkbox],
-.widget_archive input[type=checkbox], .variations_form.cart input[type=checkbox],
-.woocommerce-checkout input[type=checkbox], .wpcf7-form input[type=checkbox],
-.themeform input[type=radio], .widget_categories input[type=radio],
-.widget_archive input[type=radio], .variations_form.cart input[type=radio],
-.woocommerce-checkout input[type=radio], .wpcf7-form input[type=radio] {
+.comment-form-cookies-consent input[type=checkbox], input[type=checkbox], input[type=radio] {
   -webkit-appearance: none !important;
   position: relative !important;
 }
 
-.themeform input[type=checkbox]:checked:before, .widget_categories input[type=checkbox]:checked:before,
-.widget_archive input[type=checkbox]:checked:before, .variations_form.cart input[type=checkbox]:checked:before,
-.woocommerce-checkout input[type=checkbox]:checked:before, .wpcf7-form input[type=checkbox]:checked:before,
-.themeform input[type=radio]:checked:before, .widget_categories input[type=radio]:checked:before,
-.widget_archive input[type=radio]:checked:before, .variations_form.cart input[type=radio]:checked:before,
-.woocommerce-checkout input[type=radio]:checked:before, .wpcf7-form input[type=radio]:checked:before {
+.comment-form-cookies-consent input[type=checkbox], input[type=checkbox]:checked:before, input[type=radio]:checked:before {
   font-family: 'Font Awesome\ 5 Free';
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -6388,18 +6379,16 @@ input[type=number] {
   border-radius: 50%;
 }
 
-.themeform input[type=radio]:checked:before, .widget_categories input[type=radio]:checked:before,
-.widget_archive input[type=radio]:checked:before, .variations_form.cart input[type=radio]:checked:before,
-.woocommerce-checkout input[type=radio]:checked:before, .wpcf7-form input[type=radio]:checked:before {
+.themeform input[type=radio]:checked::before, .widget_categories input[type=radio]:checked::before,
+.widget_archive input[type=radio]:checked::before, .variations_form.cart input[type=radio]:checked::before,
+.woocommerce-checkout input[type=radio]:checked::before, .wpcf7-form input[type=radio]:checked::before {
   content: "";
   border-radius: 100%;
   width: 50%;
   height: 50%;
 }
 
-.themeform input[type=checkbox]:checked:before, .widget_categories input[type=checkbox]:checked:before,
-.widget_archive input[type=checkbox]:checked:before, .variations_form.cart input[type=checkbox]:checked:before,
-.woocommerce-checkout input[type=checkbox]:checked:before, .wpcf7-form input[type=checkbox]:checked:before {
+.comment-form-cookies-consent input[type=checkbox]:checked::before, input[type=checkbox]:checked::before {
   content: "\f00c";
   font-weight: 900;
 }
@@ -6415,6 +6404,16 @@ input[type=number] {
 .woocommerce-checkout input[type="search"], .wpcf7-form input[type="search"] {
   box-sizing: border-box;
   -webkit-appearance: none;
+}
+
+.comment-form-cookies-consent label {
+  display: inline;
+  padding-right: 5px;
+}
+
+.comment-form-cookies-consent input[type="checkbox"] {
+  margin-top: -.2em;
+  border-color: #777;
 }
 
 input[type="file"],

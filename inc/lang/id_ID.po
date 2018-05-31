@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.4\n"
+"Project-Id-Version: * Customizr v4.1.5\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-05-01 20:22:52+00:00\n"
+"POT-Creation-Date: 2018-05-30 21:48:16+00:00\n"
 "PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -230,7 +230,7 @@ msgstr "Tidak tahu cara mengatur gambar fitur kedalam post? Pelajari di %s."
 #: build/free/customizr/core/class-fire-placeholders.php:196
 #: build/free/customizr/core/class-fire-placeholders.php:215
 #: build/free/customizr/core/core-settings-map.php:1664
-#: build/free/customizr/core/core-settings-map.php:1723
+#: build/free/customizr/core/core-settings-map.php:1734
 #: core/class-fire-placeholders.php:196 core/class-fire-placeholders.php:215
 #: core/core-settings-map.php:1664 core/core-settings-map.php:1734
 msgid "WordPress documentation"
@@ -245,7 +245,7 @@ msgstr ""
 "telah menetapkan."
 
 #: build/free/customizr/core/class-fire-placeholders.php:214
-#: build/free/customizr/core/core-settings-map.php:1722
+#: build/free/customizr/core/core-settings-map.php:1733
 #: core/class-fire-placeholders.php:214 core/core-settings-map.php:1733
 #, fuzzy
 msgid "Don't know how to set a featured image to a page? Learn how in the %s."
@@ -559,8 +559,8 @@ msgstr ""
 "ketika tidak ada ukuran font tidak ditetapkan."
 
 #: build/free/customizr/core/core-settings-map.php:337
-#: build/free/customizr/core/init-base.php:995 core/core-settings-map.php:337
-#: core/init-base.php:995
+#: build/free/customizr/core/init-base.php:1085 core/core-settings-map.php:337
+#: core/init-base.php:1085
 #, fuzzy
 msgid "Create and organize your social links"
 msgstr "Atur link sosial Anda"
@@ -727,13 +727,13 @@ msgid "Header style"
 msgstr "Header"
 
 #: build/free/customizr/core/core-settings-map.php:523
-#: build/free/customizr/core/core-settings-map.php:2112
+#: build/free/customizr/core/core-settings-map.php:2134
 #: core/core-settings-map.php:523 core/core-settings-map.php:2134
 msgid "Dark"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:524
-#: build/free/customizr/core/core-settings-map.php:2113
+#: build/free/customizr/core/core-settings-map.php:2135
 #: core/core-settings-map.php:524 core/core-settings-map.php:2135
 #, fuzzy
 msgid "Light"
@@ -1032,7 +1032,7 @@ msgstr "Pengaturan header untuk tema Customizr."
 #: build/free/customizr/core/core-settings-map.php:819
 #: build/free/customizr/core/core-settings-map.php:831
 #: build/free/customizr/core/core-settings-map.php:847
-#: build/free/customizr/core/core-settings-map.php:2706
+#: build/free/customizr/core/core-settings-map.php:2728
 #: core/core-settings-map.php:777 core/core-settings-map.php:778
 #: core/core-settings-map.php:808 core/core-settings-map.php:819
 #: core/core-settings-map.php:831 core/core-settings-map.php:847
@@ -1162,14 +1162,14 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:900
-#: build/free/customizr/core/core-settings-map.php:2471
+#: build/free/customizr/core/core-settings-map.php:2493
 #: core/core-settings-map.php:900 core/core-settings-map.php:2493
 msgid "in the menu panel"
 msgstr "di panel menu"
 
 #: build/free/customizr/core/core-settings-map.php:901
-#: build/free/customizr/core/core-settings-map.php:2464
-#: build/free/customizr/core/core-settings-map.php:2472
+#: build/free/customizr/core/core-settings-map.php:2486
+#: build/free/customizr/core/core-settings-map.php:2494
 #: core/core-settings-map.php:901 core/core-settings-map.php:2486
 #: core/core-settings-map.php:2494
 msgid "create/edit menus"
@@ -1282,7 +1282,7 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1014
 #: build/free/customizr/core/core-settings-map.php:1019
-#: build/free/customizr/core/core-settings-map.php:2283
+#: build/free/customizr/core/core-settings-map.php:2305
 #: build/free/customizr/core/czr-admin-ccat.php:1468
 #: core/_dev/_admin/class-admin-meta_boxes.php:538
 #: core/core-settings-map.php:1014 core/core-settings-map.php:1019
@@ -1477,18 +1477,18 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1207
 #: build/free/customizr/core/core-settings-map.php:1219
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:455
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:464
 #: core/core-settings-map.php:1207 core/core-settings-map.php:1219
-#: core/czr-base-fmk/czr-base-fmk.php:455
+#: core/czr-base-fmk/czr-base-fmk.php:464
 msgid "Yes"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1208
 #: build/free/customizr/core/core-settings-map.php:1220
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:455
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:464
 #: build/free/customizr/inc/czr-front-ccat.php:4196
 #: core/core-settings-map.php:1208 core/core-settings-map.php:1220
-#: core/czr-base-fmk/czr-base-fmk.php:455
+#: core/czr-base-fmk/czr-base-fmk.php:464
 #: inc/_dev/parts/class-content-headings.php:338 inc/czr-front-ccat.php:4196
 msgid "No"
 msgstr "Tidak"
@@ -1552,7 +1552,7 @@ msgid "Enable"
 msgstr "Adakan"
 
 #: build/free/customizr/core/core-settings-map.php:1268
-#: build/free/customizr/core/core-settings-map.php:1689
+#: build/free/customizr/core/core-settings-map.php:1700
 #: core/core-settings-map.php:1268 core/core-settings-map.php:1700
 msgid "Disable"
 msgstr "Tiadakan"
@@ -1758,13 +1758,13 @@ msgid "Thumbnails position"
 msgstr "Posisi thumbnail"
 
 #: build/free/customizr/core/core-settings-map.php:1501
-#: build/free/customizr/core/core-settings-map.php:2170
+#: build/free/customizr/core/core-settings-map.php:2192
 #: core/core-settings-map.php:1501 core/core-settings-map.php:2192
 msgid "Right"
 msgstr "Kanan"
 
 #: build/free/customizr/core/core-settings-map.php:1502
-#: build/free/customizr/core/core-settings-map.php:2169
+#: build/free/customizr/core/core-settings-map.php:2191
 #: core/core-settings-map.php:1502 core/core-settings-map.php:2191
 msgid "Left"
 msgstr "Kiri"
@@ -1878,40 +1878,40 @@ msgid "Display thumbnail placeholder if no images available"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1650
-#: build/free/customizr/core/core-settings-map.php:1709
+#: build/free/customizr/core/core-settings-map.php:1720
 #: core/core-settings-map.php:1650 core/core-settings-map.php:1720
 msgid "Post thumbnail position"
 msgstr "Posisi thumbnail post"
 
 #: build/free/customizr/core/core-settings-map.php:1651
-#: build/free/customizr/core/core-settings-map.php:1710
+#: build/free/customizr/core/core-settings-map.php:1721
 #: core/core-settings-map.php:1651 core/core-settings-map.php:1721
 #, fuzzy
 msgid "Featured Image"
 msgstr "Halaman Pilihan (fitur)"
 
 #: build/free/customizr/core/core-settings-map.php:1655
-#: build/free/customizr/core/core-settings-map.php:1714
-#: build/free/customizr/core/core-settings-map.php:2124
+#: build/free/customizr/core/core-settings-map.php:1725
+#: build/free/customizr/core/core-settings-map.php:2146
 #: core/core-settings-map.php:1655 core/core-settings-map.php:1725
 #: core/core-settings-map.php:2146
 msgid "Don't display"
 msgstr "Jangan tampilkan"
 
 #: build/free/customizr/core/core-settings-map.php:1656
-#: build/free/customizr/core/core-settings-map.php:1715
+#: build/free/customizr/core/core-settings-map.php:1726
 #: core/core-settings-map.php:1656 core/core-settings-map.php:1726
 msgid "Before the title in full width"
 msgstr "Sebelum judul dengan full lebar"
 
 #: build/free/customizr/core/core-settings-map.php:1657
-#: build/free/customizr/core/core-settings-map.php:1716
+#: build/free/customizr/core/core-settings-map.php:1727
 #: core/core-settings-map.php:1657 core/core-settings-map.php:1727
 msgid "Before the title boxed"
 msgstr "Sebelum judul didalam kotak"
 
 #: build/free/customizr/core/core-settings-map.php:1658
-#: build/free/customizr/core/core-settings-map.php:1717
+#: build/free/customizr/core/core-settings-map.php:1728
 #: core/core-settings-map.php:1658 core/core-settings-map.php:1728
 msgid "After the title"
 msgstr "Setelah judul"
@@ -1926,41 +1926,48 @@ msgstr ""
 "konten, ketika ditampilkan secara individu."
 
 #: build/free/customizr/core/core-settings-map.php:1672
-#: build/free/customizr/core/core-settings-map.php:1731
+#: build/free/customizr/core/core-settings-map.php:1742
 #: build/free/customizr/inc/czr-init-ccat.php:3015
 #: core/core-settings-map.php:1672 core/core-settings-map.php:1742
 #: inc/_dev/class-fire-utils_settings_map.php:1059 inc/czr-init-ccat.php:3015
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Atur maks tinggi thumbail dengan pixel"
 
-#: build/free/customizr/core/core-settings-map.php:1683
+#: build/free/customizr/core/core-settings-map.php:1684
+#: build/free/customizr/core/core-settings-map.php:1754
+#: core/core-settings-map.php:1684 core/core-settings-map.php:1754
+#, fuzzy
+msgid "Set the thumbnail's max height in pixels for smartphones"
+msgstr "Atur maks tinggi thumbail dengan pixel"
+
+#: build/free/customizr/core/core-settings-map.php:1694
 #: core/core-settings-map.php:1694
 #, fuzzy
 msgid "Related posts"
 msgstr "Post terbaru Anda"
 
-#: build/free/customizr/core/core-settings-map.php:1684
+#: build/free/customizr/core/core-settings-map.php:1695
 #: core/core-settings-map.php:1695
 #, fuzzy
 msgid "Single - Related Posts"
 msgstr "Posting Tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:1690
+#: build/free/customizr/core/core-settings-map.php:1701
 #: core/core-settings-map.php:1701
 msgid "Related by categories"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:1691
+#: build/free/customizr/core/core-settings-map.php:1702
 #: core/core-settings-map.php:1702
 msgid "Related by tags"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:1693
+#: build/free/customizr/core/core-settings-map.php:1704
 #: core/core-settings-map.php:1704
 msgid "Display randomized related articles below the post"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:1721
+#: build/free/customizr/core/core-settings-map.php:1732
 #: core/core-settings-map.php:1732
 #, fuzzy
 msgid ""
@@ -1970,27 +1977,27 @@ msgstr ""
 "Anda dapat menampilkan gambar fitur (juga disebut post thumbnail) sebelum "
 "konten, ketika ditampilkan secara individu."
 
-#: build/free/customizr/core/core-settings-map.php:1753
+#: build/free/customizr/core/core-settings-map.php:1775
 #: core/core-settings-map.php:1775
 msgid "Display Breadcrumb"
 msgstr "Tampilkan Breadcrumb"
 
-#: build/free/customizr/core/core-settings-map.php:1762
+#: build/free/customizr/core/core-settings-map.php:1784
 #: core/core-settings-map.php:1784
 msgid "Display the breadcrumb on home page"
 msgstr "Tampilkan breadcrumb pada beranda"
 
-#: build/free/customizr/core/core-settings-map.php:1770
+#: build/free/customizr/core/core-settings-map.php:1792
 #: core/core-settings-map.php:1792
 msgid "Display the breadcrumb in pages"
 msgstr "Tampilkan breadcrumb pada laman"
 
-#: build/free/customizr/core/core-settings-map.php:1779
+#: build/free/customizr/core/core-settings-map.php:1801
 #: core/core-settings-map.php:1801
 msgid "Display the breadcrumb in single posts"
 msgstr "Tampilkan bradcrumb pada post tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:1788
+#: build/free/customizr/core/core-settings-map.php:1810
 #: core/core-settings-map.php:1810
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
@@ -1998,34 +2005,34 @@ msgid ""
 msgstr ""
 "Tampilkan bradcrumb pada daftar post : laman blog, arsip, hasil pencarian..."
 
-#: build/free/customizr/core/core-settings-map.php:1796
+#: build/free/customizr/core/core-settings-map.php:1818
 #: core/core-settings-map.php:1818
 #, fuzzy
 msgid "Use Yoast SEO breadcrumbs"
 msgstr "Mengatur opsi breadcrumb"
 
-#: build/free/customizr/core/core-settings-map.php:1799
+#: build/free/customizr/core/core-settings-map.php:1821
 #: core/core-settings-map.php:1821
 msgid "Jump to the Yoast SEO breadcrumbs %s"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:1802
+#: build/free/customizr/core/core-settings-map.php:1824
 #: core/core-settings-map.php:1824
 msgid "customization panel"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:1803
+#: build/free/customizr/core/core-settings-map.php:1825
 #: core/core-settings-map.php:1825
 #, fuzzy
 msgid "Yoast SEO breadcrumbs settings"
 msgstr "Mengatur opsi breadcrumb"
 
-#: build/free/customizr/core/core-settings-map.php:1822
+#: build/free/customizr/core/core-settings-map.php:1844
 #: core/core-settings-map.php:1844
 msgid "Display posts metas"
 msgstr "Tampilkan meta post"
 
-#: build/free/customizr/core/core-settings-map.php:1825
+#: build/free/customizr/core/core-settings-map.php:1847
 #: core/core-settings-map.php:1847
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
@@ -2034,109 +2041,109 @@ msgstr ""
 "Ketika opsi ini dicentang, post meta (seperti taksonomi, tanggal dan "
 "penulis) akan ditampilkan dibawah judul post."
 
-#: build/free/customizr/core/core-settings-map.php:1832
-#: build/free/customizr/core/core-settings-map.php:2026
+#: build/free/customizr/core/core-settings-map.php:1854
+#: build/free/customizr/core/core-settings-map.php:2048
 #: core/core-settings-map.php:1854 core/core-settings-map.php:2048
 msgid "Select the contexts"
 msgstr "Pilih koteks"
 
-#: build/free/customizr/core/core-settings-map.php:1833
+#: build/free/customizr/core/core-settings-map.php:1855
 #: core/core-settings-map.php:1855
 msgid "Display posts metas on home"
 msgstr "Tampilkan post meta pada beranda"
 
-#: build/free/customizr/core/core-settings-map.php:1842
+#: build/free/customizr/core/core-settings-map.php:1864
 #: core/core-settings-map.php:1864
 msgid "Display posts metas for single posts"
 msgstr "Tampilkan post meta untuk post tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:1851
+#: build/free/customizr/core/core-settings-map.php:1873
 #: core/core-settings-map.php:1873
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr "Tampilkan post meta pada daftar post (arsip, laman blog)"
 
-#: build/free/customizr/core/core-settings-map.php:1861
+#: build/free/customizr/core/core-settings-map.php:1883
 #: core/core-settings-map.php:1883
 msgid "Select the metas to display"
 msgstr "Pilih meta untuk menampilkan"
 
-#: build/free/customizr/core/core-settings-map.php:1862
+#: build/free/customizr/core/core-settings-map.php:1884
 #: core/core-settings-map.php:1884
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr "Tampilkan hirarki taksonomi (seperti kategori)"
 
-#: build/free/customizr/core/core-settings-map.php:1871
+#: build/free/customizr/core/core-settings-map.php:1893
 #: core/core-settings-map.php:1893
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Tampilkan non-hirarki taksonomi (seperti tag)"
 
-#: build/free/customizr/core/core-settings-map.php:1880
+#: build/free/customizr/core/core-settings-map.php:1902
 #: core/core-settings-map.php:1902
 msgid "Display the author"
 msgstr "Tampilkan penulis"
 
-#: build/free/customizr/core/core-settings-map.php:1888
+#: build/free/customizr/core/core-settings-map.php:1910
 #: core/core-settings-map.php:1910
 msgid "Display the publication date"
 msgstr "Tampilkan tanggal publikasi"
 
-#: build/free/customizr/core/core-settings-map.php:1898
+#: build/free/customizr/core/core-settings-map.php:1920
 #: core/core-settings-map.php:1920
 msgid "Display the update date"
 msgstr "Tampilkan tanggal revisi"
 
-#: build/free/customizr/core/core-settings-map.php:1917
+#: build/free/customizr/core/core-settings-map.php:1939
 #: core/core-settings-map.php:1939
 msgid "Enable Customizr galleries"
 msgstr "Aktifkan galeri Customizr"
 
-#: build/free/customizr/core/core-settings-map.php:1919
+#: build/free/customizr/core/core-settings-map.php:1941
 #: core/core-settings-map.php:1941
 msgid "Apply Customizr effects to galleries images"
 msgstr "Terapkan efek Customizr ke galeri gambar"
 
-#: build/free/customizr/core/core-settings-map.php:1926
+#: build/free/customizr/core/core-settings-map.php:1948
 #: core/core-settings-map.php:1948
 msgid "Enable Lightbox effect in galleries"
 msgstr "Aktifkan efek Lightbox di galeri"
 
-#: build/free/customizr/core/core-settings-map.php:1928
+#: build/free/customizr/core/core-settings-map.php:1950
 #: core/core-settings-map.php:1950
 msgid "Apply lightbox effects to galleries images"
 msgstr "Terapkan efek lightbox ke galeri gambar"
 
-#: build/free/customizr/core/core-settings-map.php:1935
+#: build/free/customizr/core/core-settings-map.php:1957
 #: core/core-settings-map.php:1957
 msgid "Enable Customizr effects on hover"
 msgstr "Aktifkan efek Customizr ketika disentuh"
 
-#: build/free/customizr/core/core-settings-map.php:1937
+#: build/free/customizr/core/core-settings-map.php:1959
 #: core/core-settings-map.php:1959
 msgid "Apply nice on hover expansion effect to the galleries images"
 msgstr "Terapkan melebar dengan baik ketika disentuh pada galeri gambar"
 
-#: build/free/customizr/core/core-settings-map.php:1957
+#: build/free/customizr/core/core-settings-map.php:1979
 #: core/core-settings-map.php:1979
 #, fuzzy
 msgid "Display the number of comments below the post titles"
 msgstr "Tampilkan jumlah komentar didalam gelembung setelah judul post"
 
-#: build/free/customizr/core/core-settings-map.php:1957
+#: build/free/customizr/core/core-settings-map.php:1979
 #: core/core-settings-map.php:1979
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr "Tampilkan jumlah komentar didalam gelembung setelah judul post"
 
-#: build/free/customizr/core/core-settings-map.php:1965
+#: build/free/customizr/core/core-settings-map.php:1987
 #: core/core-settings-map.php:1987
 msgid "Other comments settings"
 msgstr "Pengaturan komentar lainnya"
 
-#: build/free/customizr/core/core-settings-map.php:1966
+#: build/free/customizr/core/core-settings-map.php:1988
 #: core/core-settings-map.php:1988
 msgid "Enable comments on pages"
 msgstr "Aktifkan komentar pada halaman"
 
-#: build/free/customizr/core/core-settings-map.php:1971
+#: build/free/customizr/core/core-settings-map.php:1993
 #: core/core-settings-map.php:1993
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
@@ -2146,22 +2153,22 @@ msgstr ""
 "menonaktifkan komentar untuk satu halaman di layar mode edit cepat daftar "
 "halaman."
 
-#: build/free/customizr/core/core-settings-map.php:1972
+#: build/free/customizr/core/core-settings-map.php:1994
 #: core/core-settings-map.php:1994
 msgid "You can also change other comments settings in :"
 msgstr "Anda juga dapat mengubah pengaturan komentar lainnya di:"
 
-#: build/free/customizr/core/core-settings-map.php:1974
+#: build/free/customizr/core/core-settings-map.php:1996
 #: core/core-settings-map.php:1996
 msgid "the discussion settings page."
 msgstr "pengaturan laman diskusi"
 
-#: build/free/customizr/core/core-settings-map.php:1980
+#: build/free/customizr/core/core-settings-map.php:2002
 #: core/core-settings-map.php:2002
 msgid "Enable comments on posts"
 msgstr "Aktifkan komentar pada posting"
 
-#: build/free/customizr/core/core-settings-map.php:1985
+#: build/free/customizr/core/core-settings-map.php:2007
 #: core/core-settings-map.php:2007
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
@@ -2171,27 +2178,27 @@ msgstr ""
 "tunggal. Anda dapat menonaktifkan komentar untuk posting tunggal dalam mode "
 "edit cepat dari"
 
-#: build/free/customizr/core/core-settings-map.php:1987
+#: build/free/customizr/core/core-settings-map.php:2009
 #: core/core-settings-map.php:2009
 msgid "post screen"
 msgstr "Layar posting"
 
-#: build/free/customizr/core/core-settings-map.php:1988
+#: build/free/customizr/core/core-settings-map.php:2010
 #: core/core-settings-map.php:2010
 msgid "You can also change other comments settings in the"
 msgstr "Anda juga dapat mengubah pengaturan komentar lain dalam"
 
-#: build/free/customizr/core/core-settings-map.php:1990
+#: build/free/customizr/core/core-settings-map.php:2012
 #: core/core-settings-map.php:2012
 msgid "discussion settings page."
 msgstr "pengaturan laman diskusi"
 
-#: build/free/customizr/core/core-settings-map.php:1996
+#: build/free/customizr/core/core-settings-map.php:2018
 #: core/core-settings-map.php:2018
 msgid "Display the comment list"
 msgstr "Menampilkan daftar komentar"
 
-#: build/free/customizr/core/core-settings-map.php:2000
+#: build/free/customizr/core/core-settings-map.php:2022
 #: core/core-settings-map.php:2022
 msgid ""
 "By default, WordPress displays the past comments, even if comments are "
@@ -2202,29 +2209,29 @@ msgstr ""
 "komentar yang dinonaktifkan dalam posting atau halaman. Centang pilihan ini "
 "memungkinkan Anda untuk tidak menampilkan sejarah komentar."
 
-#: build/free/customizr/core/core-settings-map.php:2015
+#: build/free/customizr/core/core-settings-map.php:2037
 #: core/core-settings-map.php:2037
 msgid "Display posts navigation"
 msgstr "Tampilkan post navigasi"
 
-#: build/free/customizr/core/core-settings-map.php:2018
+#: build/free/customizr/core/core-settings-map.php:2040
 #: core/core-settings-map.php:2040
 msgid ""
 "When this option is checked, the posts navigation is displayed below the "
 "posts"
 msgstr "Bila opsi ini dicentang, tulisan navigasi ditampilkan di bawah posting"
 
-#: build/free/customizr/core/core-settings-map.php:2027
+#: build/free/customizr/core/core-settings-map.php:2049
 #: core/core-settings-map.php:2049
 msgid "Display navigation in pages"
 msgstr "Tampilan navigasi di halaman"
 
-#: build/free/customizr/core/core-settings-map.php:2036
+#: build/free/customizr/core/core-settings-map.php:2058
 #: core/core-settings-map.php:2058
 msgid "Display posts navigation in single posts"
 msgstr "Tampilkan post navigasi pada post tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:2045
+#: build/free/customizr/core/core-settings-map.php:2067
 #: core/core-settings-map.php:2067
 msgid ""
 "Display posts navigation in post lists (archives, blog page, categories, "
@@ -2233,75 +2240,75 @@ msgstr ""
 "Tampilkan post navigasi pada daftar post (arsip, laman blog, kategori, hasil "
 "pencarian ..)"
 
-#: build/free/customizr/core/core-settings-map.php:2068
+#: build/free/customizr/core/core-settings-map.php:2090
 #: core/core-settings-map.php:2090
 msgid "Social links in left sidebar"
 msgstr "Link sosial di sidebar kiri"
 
-#: build/free/customizr/core/core-settings-map.php:2081
+#: build/free/customizr/core/core-settings-map.php:2103
 #: core/core-settings-map.php:2103
 msgid "Social links in right sidebar"
 msgstr "Link sosial di sidebar kanan"
 
-#: build/free/customizr/core/core-settings-map.php:2110
+#: build/free/customizr/core/core-settings-map.php:2132
 #: core/core-settings-map.php:2132
 #, fuzzy
 msgid "Footer style"
 msgstr "Footer"
 
-#: build/free/customizr/core/core-settings-map.php:2122
+#: build/free/customizr/core/core-settings-map.php:2144
 #: core/core-settings-map.php:2144
 msgid "Horizontal widget area in your footer"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2125
+#: build/free/customizr/core/core-settings-map.php:2147
 #: core/core-settings-map.php:2147
 #, fuzzy
 msgid "Display full-width"
 msgstr "Tampilkan seluruh konten"
 
-#: build/free/customizr/core/core-settings-map.php:2126
+#: build/free/customizr/core/core-settings-map.php:2148
 #: core/core-settings-map.php:2148
 #, fuzzy
 msgid "Display boxed"
 msgstr "Tampilkan garis atas"
 
-#: build/free/customizr/core/core-settings-map.php:2134
+#: build/free/customizr/core/core-settings-map.php:2156
 #: core/core-settings-map.php:2156
 msgid "Social links in footer"
 msgstr "Link sosial di footer"
 
-#: build/free/customizr/core/core-settings-map.php:2147
+#: build/free/customizr/core/core-settings-map.php:2169
 #: core/core-settings-map.php:2169
 msgid "Stick the footer to the bottom of the page"
 msgstr "Terapkan footer dibawah laman"
 
-#: build/free/customizr/core/core-settings-map.php:2152
+#: build/free/customizr/core/core-settings-map.php:2174
 #: core/core-settings-map.php:2174
 msgid ""
 "Enabling this option will glue your footer to the bottom of the screen, when "
 "pages are shorter than the viewport's height."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2157
+#: build/free/customizr/core/core-settings-map.php:2179
 #: core/core-settings-map.php:2179
 msgid "Display a back to top arrow on scroll"
 msgstr "Tampilkan ikon kembali ke atas ketika scroll"
 
-#: build/free/customizr/core/core-settings-map.php:2165
+#: build/free/customizr/core/core-settings-map.php:2187
 #: core/core-settings-map.php:2187
 #, fuzzy
 msgid "Back to top arrow position"
 msgstr "Tampilkan ikon kembali ke atas ketika scroll"
 
-#: build/free/customizr/core/core-settings-map.php:2197
+#: build/free/customizr/core/core-settings-map.php:2219
 #: core/core-settings-map.php:2219
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
 "Tambahkan css buatan Anda disini dan desain sesukamu! (untuk pengguna "
 "tingkat lanjut)"
 
-#: build/free/customizr/core/core-settings-map.php:2201
+#: build/free/customizr/core/core-settings-map.php:2223
 #: core/core-settings-map.php:2223
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
@@ -2310,34 +2317,34 @@ msgstr ""
 "Gunakan bidang ini untuk menguji potongan kecil kode CSS. Untuk kustomisasi "
 "CSS penting, Anda akan ingin memodifikasi file style.css dari"
 
-#: build/free/customizr/core/core-settings-map.php:2202
+#: build/free/customizr/core/core-settings-map.php:2224
 #: core/core-settings-map.php:2224
 msgid "child theme."
 msgstr "tema anak."
 
-#: build/free/customizr/core/core-settings-map.php:2203
+#: build/free/customizr/core/core-settings-map.php:2225
 #: core/core-settings-map.php:2225
 msgid "How to create and use a child theme ?"
 msgstr "Bagaiman acara membuat dan menggunakan child theme (anak tema) ?"
 
-#: build/free/customizr/core/core-settings-map.php:2220
+#: build/free/customizr/core/core-settings-map.php:2242
 #: core/core-settings-map.php:2242
 msgid "Performance : use the minified CSS stylesheets"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2223
+#: build/free/customizr/core/core-settings-map.php:2245
 #: core/core-settings-map.php:2245
 msgid ""
 "Using the minified version of the stylesheets will speed up your webpage "
 "load time."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2227
+#: build/free/customizr/core/core-settings-map.php:2249
 #: core/core-settings-map.php:2249
 msgid "Load images on scroll"
 msgstr "Loading gambar ketika scroll"
 
-#: build/free/customizr/core/core-settings-map.php:2232
+#: build/free/customizr/core/core-settings-map.php:2254
 #: core/core-settings-map.php:2254
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
@@ -2348,13 +2355,13 @@ msgstr ""
 "Gambar dibawah layar akan loading secara dinamis ketika scroll. Ini dapat "
 "meningkatkan performa dan mengurangi beban halaman oleh gambar."
 
-#: build/free/customizr/core/core-settings-map.php:2236
+#: build/free/customizr/core/core-settings-map.php:2258
 #: core/core-settings-map.php:2258
 #, fuzzy
 msgid "Lazy load the images in sliders"
 msgstr "Loading gambar ketika scroll"
 
-#: build/free/customizr/core/core-settings-map.php:2241
+#: build/free/customizr/core/core-settings-map.php:2263
 #: core/core-settings-map.php:2263
 #, fuzzy
 msgid ""
@@ -2365,13 +2372,13 @@ msgstr ""
 "Gambar dibawah layar akan loading secara dinamis ketika scroll. Ini dapat "
 "meningkatkan performa dan mengurangi beban halaman oleh gambar."
 
-#: build/free/customizr/core/core-settings-map.php:2258
+#: build/free/customizr/core/core-settings-map.php:2280
 #: core/core-settings-map.php:2280
 msgid "Display help notices on front-end for logged in users."
 msgstr ""
 "Tampilkan pemberitahuan bantuan di laman front-end untuk pengguna yang login"
 
-#: build/free/customizr/core/core-settings-map.php:2261
+#: build/free/customizr/core/core-settings-map.php:2283
 #: core/core-settings-map.php:2283
 #, fuzzy
 msgid ""
@@ -2383,17 +2390,17 @@ msgstr ""
 "placeholder ditampilkan pada front-end dari situs Anda. Mereka hanya "
 "terlihat oleh login pengguna dengan status admin."
 
-#: build/free/customizr/core/core-settings-map.php:2274
+#: build/free/customizr/core/core-settings-map.php:2296
 #: core/core-settings-map.php:2296
 msgid "Load Font Awesome resources"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2278
+#: build/free/customizr/core/core-settings-map.php:2300
 #: core/core-settings-map.php:2300
 msgid "Use with caution"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2279
+#: build/free/customizr/core/core-settings-map.php:2301
 #: core/core-settings-map.php:2301
 msgid ""
 "When checked, the Font Awesome icons and CSS will be loaded on front end. "
@@ -2401,24 +2408,24 @@ msgid ""
 "plugin do it for you."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2281
+#: build/free/customizr/core/core-settings-map.php:2303
 #: core/core-settings-map.php:2303
 msgid "Check out some example of uses"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2299
+#: build/free/customizr/core/core-settings-map.php:2321
 #: core/core-settings-map.php:2321
 msgid "Automatically adapt the font size to the width of the devices"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2302
+#: build/free/customizr/core/core-settings-map.php:2324
 #: core/core-settings-map.php:2324
 msgid ""
 "When this option is enabled, your font size will automatically resize to be "
 "better displayed in mobile devices."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2314
+#: build/free/customizr/core/core-settings-map.php:2336
 #: core/core-settings-map.php:2336
 msgid ""
 "The Modern style provides a \"material design\" look and feel. It relies on "
@@ -2428,40 +2435,40 @@ msgid ""
 "older devices and browsers."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2319
+#: build/free/customizr/core/core-settings-map.php:2341
 #: core/core-settings-map.php:2341
 msgid "Set the Modern or Classical design style"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2319
+#: build/free/customizr/core/core-settings-map.php:2341
 #: core/core-settings-map.php:2341
 #, fuzzy
 msgid "Select a design style for the theme"
 msgstr "Pilih desain untuk post meta"
 
-#: build/free/customizr/core/core-settings-map.php:2323
+#: build/free/customizr/core/core-settings-map.php:2345
 #: core/core-settings-map.php:2345
 msgid "Modern"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2324
+#: build/free/customizr/core/core-settings-map.php:2346
 #: core/core-settings-map.php:2346
 msgid "Classical"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2328
+#: build/free/customizr/core/core-settings-map.php:2350
 #: core/core-settings-map.php:2350
 msgid ""
 "You are using a child theme. This option must be changed from the parent "
 "theme. Activate the parent from %s."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2329
+#: build/free/customizr/core/core-settings-map.php:2351
 #: core/core-settings-map.php:2351
 msgid "Appearance > themes"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2331
+#: build/free/customizr/core/core-settings-map.php:2353
 #: core/core-settings-map.php:2353
 msgid ""
 "The two styles can use different template files, that's why it is "
@@ -2469,64 +2476,64 @@ msgid ""
 "theme in a staging site before production."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2351
+#: build/free/customizr/core/core-settings-map.php:2373
 #: core/core-settings-map.php:2373
 msgid "Global settings"
 msgstr "Pengaturan Global"
 
-#: build/free/customizr/core/core-settings-map.php:2352
+#: build/free/customizr/core/core-settings-map.php:2374
 #: core/core-settings-map.php:2374
 msgid "Title, Logo, Fonts, Primary color, Social, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2358
+#: build/free/customizr/core/core-settings-map.php:2380
 #: core/core-settings-map.php:2380
 msgid "Header"
 msgstr "Header"
 
-#: build/free/customizr/core/core-settings-map.php:2359
+#: build/free/customizr/core/core-settings-map.php:2381
 #: core/core-settings-map.php:2381
 msgid "Style, Desktops and mobiles layout, Menus, Search, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2365
+#: build/free/customizr/core/core-settings-map.php:2387
 #: core/core-settings-map.php:2387
 #, fuzzy
 msgid "Main Content"
 msgstr "Menu Utama"
 
-#: build/free/customizr/core/core-settings-map.php:2366
+#: build/free/customizr/core/core-settings-map.php:2388
 #: core/core-settings-map.php:2388
 msgid ""
 "Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2372
+#: build/free/customizr/core/core-settings-map.php:2394
 #: core/core-settings-map.php:2394
 msgid "Sidebars"
 msgstr "Sidebar"
 
-#: build/free/customizr/core/core-settings-map.php:2378
+#: build/free/customizr/core/core-settings-map.php:2400
 #: core/core-settings-map.php:2400
 msgid "Footer"
 msgstr "Footer"
 
-#: build/free/customizr/core/core-settings-map.php:2379
+#: build/free/customizr/core/core-settings-map.php:2401
 #: core/core-settings-map.php:2401
 msgid "Style, Back to top button, Sticky mode, ... "
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2385
+#: build/free/customizr/core/core-settings-map.php:2407
 #: core/core-settings-map.php:2407
 msgid "Advanced options"
 msgstr "Opsi  lanjutan"
 
-#: build/free/customizr/core/core-settings-map.php:2386
+#: build/free/customizr/core/core-settings-map.php:2408
 #: core/core-settings-map.php:2408
 msgid "Performances, Custom CSS ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2457
+#: build/free/customizr/core/core-settings-map.php:2479
 #: core/core-settings-map.php:2479
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
@@ -2535,18 +2542,18 @@ msgstr[0] "Tema Anda support %s menu. Pilih menu mana yang ingin Anda gunakan."
 msgstr[1] ""
 "Tema Anda support %s menu. Pilih menu yang ditampilkan pada setiap lokasi."
 
-#: build/free/customizr/core/core-settings-map.php:2460
-#: build/free/customizr/core/core-settings-map.php:2468
+#: build/free/customizr/core/core-settings-map.php:2482
+#: build/free/customizr/core/core-settings-map.php:2490
 #: core/core-settings-map.php:2482 core/core-settings-map.php:2490
 msgid "You can create new menu and edit your menu's content %s."
 msgstr "Anda dapat membuat menu baru dan ubah konten menu %s."
 
-#: build/free/customizr/core/core-settings-map.php:2463
+#: build/free/customizr/core/core-settings-map.php:2485
 #: core/core-settings-map.php:2485
 msgid "on the Menus screen in the Appearance section"
 msgstr "pada layar Menu di bagian Appearance (tampilan)"
 
-#: build/free/customizr/core/core-settings-map.php:2478
+#: build/free/customizr/core/core-settings-map.php:2500
 #: core/core-settings-map.php:2500
 msgid ""
 "If a menu location has no menu assigned to it, a default page menu will be "
@@ -2555,230 +2562,230 @@ msgstr ""
 "Jika lokasi menu tidak memiliki menu yang ditugaskan untuk itu, menu halaman "
 "default akan digunakan."
 
-#: build/free/customizr/core/core-settings-map.php:2488
+#: build/free/customizr/core/core-settings-map.php:2510
 #: core/core-settings-map.php:2510
 msgid "Site Identity : Logo, Title, Tagline and Site Icon"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2498
+#: build/free/customizr/core/core-settings-map.php:2520
 #: core/core-settings-map.php:2520
 #, fuzzy
 msgid "Site Layout"
 msgstr "Pilih layout"
 
-#: build/free/customizr/core/core-settings-map.php:2503
+#: build/free/customizr/core/core-settings-map.php:2525
 #: core/core-settings-map.php:2525
 msgid "Primary color of the theme"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2505
+#: build/free/customizr/core/core-settings-map.php:2527
 #: core/core-settings-map.php:2527
 msgid "Pick a primary color for the theme"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2509
+#: build/free/customizr/core/core-settings-map.php:2531
 #: core/core-settings-map.php:2531
 msgid "Fonts"
 msgstr "Font"
 
-#: build/free/customizr/core/core-settings-map.php:2521
+#: build/free/customizr/core/core-settings-map.php:2543
 #: core/core-settings-map.php:2543
 msgid "Formatting : links, paragraphs ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2527
+#: build/free/customizr/core/core-settings-map.php:2549
 #: core/core-settings-map.php:2549
 msgid "Image settings"
 msgstr "Pengaturan gambar"
 
-#: build/free/customizr/core/core-settings-map.php:2538
+#: build/free/customizr/core/core-settings-map.php:2560
 #: core/core-settings-map.php:2560
 #, fuzzy
 msgid "Sliders options"
 msgstr "Opsi slider"
 
-#: build/free/customizr/core/core-settings-map.php:2544
+#: build/free/customizr/core/core-settings-map.php:2566
 #: core/core-settings-map.php:2566
 msgid "Authors"
 msgstr "Penulis"
 
-#: build/free/customizr/core/core-settings-map.php:2550
+#: build/free/customizr/core/core-settings-map.php:2572
 #: core/core-settings-map.php:2572
 msgid "Smooth Scroll"
 msgstr "Gulir halus"
 
-#: build/free/customizr/core/core-settings-map.php:2560
+#: build/free/customizr/core/core-settings-map.php:2582
 #: core/core-settings-map.php:2582
 msgid "Header design and layout"
 msgstr "Desain header dan layout"
 
-#: build/free/customizr/core/core-settings-map.php:2560
+#: build/free/customizr/core/core-settings-map.php:2582
 #: core/core-settings-map.php:2582
 #, fuzzy
 msgid "General design settings"
 msgstr "Pengaturan ikon judul"
 
-#: build/free/customizr/core/core-settings-map.php:2565
+#: build/free/customizr/core/core-settings-map.php:2587
 #: core/core-settings-map.php:2587
 msgid "Design settings for desktops and laptops"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2570
+#: build/free/customizr/core/core-settings-map.php:2592
 #: core/core-settings-map.php:2592
 msgid "Design settings for smartphones and tablets in portrait orientation"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2575
+#: build/free/customizr/core/core-settings-map.php:2597
 #: core/core-settings-map.php:2597
 msgid "Navigation Menus"
 msgstr "Menu Navigasi"
 
-#: build/free/customizr/core/core-settings-map.php:2587
+#: build/free/customizr/core/core-settings-map.php:2609
 #: core/core-settings-map.php:2609
 #, fuzzy
 msgid "Front Page Content"
 msgstr "Laman depan"
 
-#: build/free/customizr/core/core-settings-map.php:2600
+#: build/free/customizr/core/core-settings-map.php:2622
 #: core/core-settings-map.php:2622
 msgid "Pages &amp; Posts Layout"
 msgstr "Layout Laman &amp; Post"
 
-#: build/free/customizr/core/core-settings-map.php:2607
+#: build/free/customizr/core/core-settings-map.php:2629
 #: core/core-settings-map.php:2629
 msgid "Post lists : blog, archives, ..."
 msgstr "Daftar posting: blog, arsip, ..."
 
-#: build/free/customizr/core/core-settings-map.php:2613
+#: build/free/customizr/core/core-settings-map.php:2635
 #: core/core-settings-map.php:2635
 msgid "Single posts"
 msgstr "Posting Tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:2619
+#: build/free/customizr/core/core-settings-map.php:2641
 #: core/core-settings-map.php:2641
 #, fuzzy
 msgid "Single pages"
 msgstr "Posting Tunggal"
 
-#: build/free/customizr/core/core-settings-map.php:2625
+#: build/free/customizr/core/core-settings-map.php:2647
 #: core/core-settings-map.php:2647
 msgid "Breadcrumb"
 msgstr "Breadcrumb"
 
-#: build/free/customizr/core/core-settings-map.php:2631
+#: build/free/customizr/core/core-settings-map.php:2653
 #: core/core-settings-map.php:2653
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "Post meta (kategori, tag, taksonomi kustom)"
 
-#: build/free/customizr/core/core-settings-map.php:2637
+#: build/free/customizr/core/core-settings-map.php:2659
 #: core/core-settings-map.php:2659
 msgid "Galleries"
 msgstr "Galeri"
 
-#: build/free/customizr/core/core-settings-map.php:2643
+#: build/free/customizr/core/core-settings-map.php:2665
 #: core/core-settings-map.php:2665
 msgid "Comments"
 msgstr "Komentar"
 
-#: build/free/customizr/core/core-settings-map.php:2654
+#: build/free/customizr/core/core-settings-map.php:2676
 #: core/core-settings-map.php:2676
 msgid "Post/Page Navigation"
 msgstr "Post / Halaman Navigasi"
 
-#: build/free/customizr/core/core-settings-map.php:2665
+#: build/free/customizr/core/core-settings-map.php:2687
 #: core/core-settings-map.php:2687
 msgid "Socials in Sidebars"
 msgstr "Sosial di sidebar"
 
-#: build/free/customizr/core/core-settings-map.php:2674
+#: build/free/customizr/core/core-settings-map.php:2696
 #: core/core-settings-map.php:2696
 msgid "Footer global settings"
 msgstr "Footer pengaturan global"
 
-#: build/free/customizr/core/core-settings-map.php:2685
+#: build/free/customizr/core/core-settings-map.php:2707
 #: core/core-settings-map.php:2707
 msgid "Custom CSS"
 msgstr "CSS kustom"
 
-#: build/free/customizr/core/core-settings-map.php:2690
+#: build/free/customizr/core/core-settings-map.php:2712
 #: core/core-settings-map.php:2712
 msgid "Website Performances"
 msgstr "Performa Website"
 
-#: build/free/customizr/core/core-settings-map.php:2696
+#: build/free/customizr/core/core-settings-map.php:2718
 #: core/core-settings-map.php:2718
 msgid "Front-end placeholders and help blocks"
 msgstr "Front-end placeholder dan kotak bantuan"
 
-#: build/free/customizr/core/core-settings-map.php:2701
+#: build/free/customizr/core/core-settings-map.php:2723
 #: core/core-settings-map.php:2723
 msgid "Front-end Icons (Font Awesome)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2711
+#: build/free/customizr/core/core-settings-map.php:2733
 #: core/core-settings-map.php:2733
 msgid "Theme style"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2723
+#: build/free/customizr/core/core-settings-map.php:2745
 #: build/free/customizr/core/czr-admin-ccat.php:392
 #: core/_dev/_admin/class-fire-admin_init.php:392
 #: core/core-settings-map.php:2745 core/czr-admin-ccat.php:392
 msgid "Upgrade to Customizr Pro"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2724
+#: build/free/customizr/core/core-settings-map.php:2746
 #: core/core-settings-map.php:2746
 #, fuzzy
 msgid "Discover the features and benefits"
 msgstr "Singkirkan laman fitur"
 
-#: build/free/customizr/core/core-settings-map.php:2726
+#: build/free/customizr/core/core-settings-map.php:2748
 #: core/core-settings-map.php:2748
 msgid "Go Pro"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2766
+#: build/free/customizr/core/core-settings-map.php:2788
 #: core/core-settings-map.php:2788
 msgid "Home featured page one"
 msgstr "Laman fitur beranda satu"
 
-#: build/free/customizr/core/core-settings-map.php:2767
+#: build/free/customizr/core/core-settings-map.php:2789
 #: core/core-settings-map.php:2789
 msgid "Home featured page two"
 msgstr "Laman fitur beranda dua"
 
-#: build/free/customizr/core/core-settings-map.php:2768
+#: build/free/customizr/core/core-settings-map.php:2790
 #: core/core-settings-map.php:2790
 msgid "Home featured page three"
 msgstr "Laman fitur beranda tiga"
 
-#: build/free/customizr/core/core-settings-map.php:2771
+#: build/free/customizr/core/core-settings-map.php:2793
 #: core/core-settings-map.php:2793
 msgid "Featured text one (200 char. max)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2772
+#: build/free/customizr/core/core-settings-map.php:2794
 #: core/core-settings-map.php:2794
 msgid "Featured text two (200 char. max)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2773
+#: build/free/customizr/core/core-settings-map.php:2795
 #: core/core-settings-map.php:2795
 msgid "Featured text three (200 char. max)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2790
+#: build/free/customizr/core/core-settings-map.php:2812
 #: core/core-settings-map.php:2812
 msgid "Custom featured page %1$s"
 msgstr "Halaman kustom unggulan (featured) %1$s"
 
-#: build/free/customizr/core/core-settings-map.php:2806
+#: build/free/customizr/core/core-settings-map.php:2828
 #: core/core-settings-map.php:2828
 msgid "Featured text %1$s (200 char. max)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2809
+#: build/free/customizr/core/core-settings-map.php:2831
 #: core/core-settings-map.php:2831
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
@@ -3383,9 +3390,10 @@ msgid "Link"
 msgstr "Link"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2441
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:225
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:434
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:446
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:230
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:443
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:455
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:785
 #: build/free/customizr/core/czr-customize-ccat.php:850
 #: build/free/customizr/core/czr-customize-ccat.php:860
 #: build/free/customizr/core/front/models/modules/common/class-model-breadcrumb.php:625
@@ -3401,14 +3409,14 @@ msgstr "Link"
 #: build/free/customizr/inc/czr-front-ccat.php:3137
 #: build/free/customizr/inc/czr-front-ccat.php:3694
 #: build/free/customizr/inc/czr-front-ccat.php:4099
-#: build/free/customizr/inc/czr-front-ccat.php:8696
+#: build/free/customizr/inc/czr-front-ccat.php:8732
 #: core/_dev/_admin/class-admin-meta_boxes.php:1511
 #: core/_dev/_czr/class-czr-resources.php:229
 #: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2441
-#: core/czr-base-fmk/czr-base-fmk.php:225
-#: core/czr-base-fmk/czr-base-fmk.php:434
-#: core/czr-base-fmk/czr-base-fmk.php:446
-#: core/czr-base-fmk/czr-base-fmk.php:735 core/czr-customize-ccat.php:850
+#: core/czr-base-fmk/czr-base-fmk.php:230
+#: core/czr-base-fmk/czr-base-fmk.php:443
+#: core/czr-base-fmk/czr-base-fmk.php:455
+#: core/czr-base-fmk/czr-base-fmk.php:785 core/czr-customize-ccat.php:850
 #: core/czr-customize-ccat.php:860
 #: core/front/models/modules/common/class-model-breadcrumb.php:625
 #: core/front/models/modules/common/class-model-breadcrumb.php:658
@@ -3470,127 +3478,128 @@ msgstr ""
 msgid "Slider documentation"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:226
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:231
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:786
 #: build/free/customizr/core/czr-customize-ccat.php:851
 #: build/free/customizr/inc/czr-front-ccat.php:824
 #: build/free/customizr/inc/czr-front-ccat.php:831
 #: core/_dev/_czr/class-czr-resources.php:230
-#: core/czr-base-fmk/czr-base-fmk.php:226
-#: core/czr-base-fmk/czr-base-fmk.php:736 core/czr-customize-ccat.php:851
+#: core/czr-base-fmk/czr-base-fmk.php:231
+#: core/czr-base-fmk/czr-base-fmk.php:786 core/czr-customize-ccat.php:851
 #: inc/_dev/parts/class-header-menu.php:136
 #: inc/_dev/parts/class-header-menu.php:143 inc/czr-front-ccat.php:824
 #: inc/czr-front-ccat.php:831
 msgid "Close"
 msgstr "Tutup"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:227
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:232
 #: build/free/customizr/core/czr-customize-ccat.php:852
 #: core/_dev/_czr/class-czr-resources.php:231
-#: core/czr-base-fmk/czr-base-fmk.php:227 core/czr-customize-ccat.php:852
+#: core/czr-base-fmk/czr-base-fmk.php:232 core/czr-customize-ccat.php:852
 msgid "Not set"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:228
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:233
 #: build/free/customizr/core/czr-customize-ccat.php:856
 #: build/free/customizr/core/czr-modules/social-links/index.php:78
 #: build/free/customizr/core/czr-modules/social-links/social_links_module.php:80
 #: core/_dev/_czr/class-czr-resources.php:235
-#: core/czr-base-fmk/czr-base-fmk.php:228 core/czr-customize-ccat.php:856
+#: core/czr-base-fmk/czr-base-fmk.php:233 core/czr-customize-ccat.php:856
 #: core/czr-modules/social-links/index.php:78
 #: core/czr-modules/social-links/social_links_module.php:80
 msgid "Done !"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:230
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:235
 #: build/free/customizr/core/czr-customize-ccat.php:858
 #: build/free/customizr/core/czr-customize-ccat.php:878
 #: core/_dev/_czr/class-czr-resources.php:237
 #: core/_dev/_czr/class-czr-resources.php:257
-#: core/czr-base-fmk/czr-base-fmk.php:230 core/czr-customize-ccat.php:858
+#: core/czr-base-fmk/czr-base-fmk.php:235 core/czr-customize-ccat.php:858
 #: core/czr-customize-ccat.php:878
 #, fuzzy
 msgid "Learn more about this in the documentation"
 msgstr "Lihat dokumentasi tema."
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:231
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:236
 #: build/free/customizr/core/czr-customize-ccat.php:879
 #: core/_dev/_czr/class-czr-resources.php:258
-#: core/czr-base-fmk/czr-base-fmk.php:231 core/czr-customize-ccat.php:879
+#: core/czr-base-fmk/czr-base-fmk.php:236 core/czr-customize-ccat.php:879
 #, fuzzy
 msgid "Settings"
 msgstr "Pengaturan gambar"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:232
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:237
 #: build/free/customizr/core/czr-customize-ccat.php:880
 #: core/_dev/_czr/class-czr-resources.php:259
-#: core/czr-base-fmk/czr-base-fmk.php:232 core/czr-customize-ccat.php:880
+#: core/czr-base-fmk/czr-base-fmk.php:237 core/czr-customize-ccat.php:880
 msgid "Options for"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:235
 #: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:240
-#: core/czr-base-fmk/czr-base-fmk.php:235
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:245
 #: core/czr-base-fmk/czr-base-fmk.php:240
+#: core/czr-base-fmk/czr-base-fmk.php:245
 #, fuzzy
 msgid "Select Image"
 msgstr "Gambar slide"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:236
-#: core/czr-base-fmk/czr-base-fmk.php:236
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:241
+#: core/czr-base-fmk/czr-base-fmk.php:241
 #, fuzzy
 msgid "Change Image"
 msgstr "Gambar slide"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:237
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:434
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:242
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:443
 #: build/free/customizr/core/czr-customize-ccat.php:1476
 #: core/_dev/_czr/controls/class-upload-control.php:68
-#: core/czr-base-fmk/czr-base-fmk.php:237
-#: core/czr-base-fmk/czr-base-fmk.php:434 core/czr-customize-ccat.php:1476
+#: core/czr-base-fmk/czr-base-fmk.php:242
+#: core/czr-base-fmk/czr-base-fmk.php:443 core/czr-customize-ccat.php:1476
 msgid "Remove"
 msgstr "Singkirkan"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:238
-#: core/czr-base-fmk/czr-base-fmk.php:238
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:243
+#: core/czr-base-fmk/czr-base-fmk.php:243
 #, fuzzy
 msgid "Default"
 msgstr "Default (abu-abu)"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:239
-#: core/czr-base-fmk/czr-base-fmk.php:239
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:244
+#: core/czr-base-fmk/czr-base-fmk.php:244
 #, fuzzy
 msgid "No image selected"
 msgstr "Tidak Ada Gambar Dipilih"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:241
-#: core/czr-base-fmk/czr-base-fmk.php:241
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:246
+#: core/czr-base-fmk/czr-base-fmk.php:246
 #, fuzzy
 msgid "Choose Image"
 msgstr "Pilih slider"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:379
-#: core/czr-base-fmk/czr-base-fmk.php:379
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:388
+#: core/czr-base-fmk/czr-base-fmk.php:388
 msgid "ac_set_ajax_czr_tmpl => Security check failed."
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:420
-#: core/czr-base-fmk/czr-base-fmk.php:420
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:429
+#: core/czr-base-fmk/czr-base-fmk.php:429
 msgid "Add New"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:425
-#: core/czr-base-fmk/czr-base-fmk.php:425
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:434
+#: core/czr-base-fmk/czr-base-fmk.php:434
 msgid "Cancel"
 msgstr ""
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:425
-#: core/czr-base-fmk/czr-base-fmk.php:425
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:434
+#: core/czr-base-fmk/czr-base-fmk.php:434
 #, fuzzy
 msgid "Add it"
 msgstr "Tambah Widgets"
 
-#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:454
-#: core/czr-base-fmk/czr-base-fmk.php:454
+#: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:463
+#: core/czr-base-fmk/czr-base-fmk.php:463
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
@@ -3885,8 +3894,8 @@ msgstr "Arsip Tahunan: %s"
 
 #: build/free/customizr/core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
 #: build/free/customizr/inc/czr-front-ccat.php:4526
-#: build/free/customizr/inc/czr-front-ccat.php:4774
-#: build/free/customizr/inc/czr-front-ccat.php:5209
+#: build/free/customizr/inc/czr-front-ccat.php:4792
+#: build/free/customizr/inc/czr-front-ccat.php:5245
 #: build/free/customizr/templates/parts/content/singular/page_content.php:16
 #: build/free/customizr/templates/parts/content/singular/post_content.php:18
 #: core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
@@ -3901,7 +3910,7 @@ msgstr "Lanjutkan membaca <span class=\"meta-nav\">&rarr;</span>"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:65
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:71
-#: build/free/customizr/inc/czr-front-ccat.php:7085
+#: build/free/customizr/inc/czr-front-ccat.php:7121
 #: core/front/models/content/post-metas/class-model-post_metas.php:65
 #: core/front/models/content/post-metas/class-model-post_metas.php:71
 #: inc/_dev/parts/class-content-post_metas.php:636 inc/czr-front-ccat.php:7121
@@ -3909,7 +3918,7 @@ msgid "by"
 msgstr "oleh"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:78
-#: build/free/customizr/inc/czr-front-ccat.php:6657
+#: build/free/customizr/inc/czr-front-ccat.php:6693
 #: core/front/models/content/post-metas/class-model-post_metas.php:78
 #: inc/_dev/parts/class-content-post_metas.php:208 inc/czr-front-ccat.php:6693
 msgid "Published"
@@ -3921,22 +3930,22 @@ msgid "Updated"
 msgstr ""
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:97
-#: build/free/customizr/inc/czr-front-ccat.php:6660
+#: build/free/customizr/inc/czr-front-ccat.php:6696
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
 #: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6696
 msgid "at dimensions"
 msgstr "pada dimensi"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:97
-#: build/free/customizr/inc/czr-front-ccat.php:6660
+#: build/free/customizr/inc/czr-front-ccat.php:6696
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
 #: inc/_dev/parts/class-content-post_metas.php:211 inc/czr-front-ccat.php:6696
 msgid "Link to full-size image"
 msgstr "Link ke ukuran penuh gambar"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:99
-#: build/free/customizr/inc/czr-front-ccat.php:6661
-#: build/free/customizr/inc/czr-front-ccat.php:7061
+#: build/free/customizr/inc/czr-front-ccat.php:6697
+#: build/free/customizr/inc/czr-front-ccat.php:7097
 #: core/front/models/content/post-metas/class-model-post_metas.php:99
 #: inc/_dev/parts/class-content-post_metas.php:212
 #: inc/_dev/parts/class-content-post_metas.php:612 inc/czr-front-ccat.php:6697
@@ -3945,7 +3954,7 @@ msgid "in"
 msgstr "di"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:99
-#: build/free/customizr/inc/czr-front-ccat.php:6661
+#: build/free/customizr/inc/czr-front-ccat.php:6697
 #: core/front/models/content/post-metas/class-model-post_metas.php:99
 #: inc/_dev/parts/class-content-post_metas.php:212 inc/czr-front-ccat.php:6697
 msgid "Return to "
@@ -3962,14 +3971,14 @@ msgid "Permalink to:&nbsp;"
 msgstr "Tautkan ke %s"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:193
-#: build/free/customizr/inc/czr-front-ccat.php:6991
+#: build/free/customizr/inc/czr-front-ccat.php:7027
 #: core/front/models/content/post-metas/class-model-post_metas.php:193
 #: inc/_dev/parts/class-content-post_metas.php:542 inc/czr-front-ccat.php:7027
 msgid "View all posts by %s"
 msgstr "Lihat semua post oleh %s"
 
 #: build/free/customizr/core/front/models/content/post-metas/class-model-post_metas.php:245
-#: build/free/customizr/inc/czr-front-ccat.php:6833
+#: build/free/customizr/inc/czr-front-ccat.php:6869
 #: core/front/models/content/post-metas/class-model-post_metas.php:245
 #: inc/_dev/parts/class-content-post_metas.php:384 inc/czr-front-ccat.php:6869
 msgid "View all posts in %s"
@@ -4223,7 +4232,7 @@ msgstr ""
 "teks kustom Anda sendiri di layar Customizr."
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:422
-#: build/free/customizr/inc/czr-front-ccat.php:8840
+#: build/free/customizr/inc/czr-front-ccat.php:8876
 #: core/front/models/modules/slider/class-model-slider.php:422
 #: inc/_dev/parts/class-content-slider.php:972 inc/czr-front-ccat.php:8876
 msgid "Discover how to replace or remove this demo slider."
@@ -4240,7 +4249,7 @@ msgid "Easily create sliders and add them in any posts or pages."
 msgstr "Mudah membuat slider dan menambahkannya dalam tulisan atau halaman."
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider.php:430
-#: build/free/customizr/inc/czr-front-ccat.php:8842
+#: build/free/customizr/inc/czr-front-ccat.php:8878
 #: core/front/models/modules/slider/class-model-slider.php:430
 #: inc/_dev/parts/class-content-slider.php:974 inc/czr-front-ccat.php:8878
 msgid "Check the slider doc now &raquo;"
@@ -4259,14 +4268,14 @@ msgid "Customize or remove the posts slider"
 msgstr "hapus demo slider ini"
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider_of_posts.php:386
-#: build/free/customizr/inc/czr-front-ccat.php:9173
+#: build/free/customizr/inc/czr-front-ccat.php:9209
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:386
 #: inc/_dev/parts/class-content-slider.php:1305 inc/czr-front-ccat.php:9209
 msgid "Protected: %s"
 msgstr ""
 
 #: build/free/customizr/core/front/models/modules/slider/class-model-slider_of_posts.php:409
-#: build/free/customizr/inc/czr-front-ccat.php:9198
+#: build/free/customizr/inc/czr-front-ccat.php:9234
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:409
 #: inc/_dev/parts/class-content-slider.php:1330 inc/czr-front-ccat.php:9234
 msgid "There is no excerpt because this is a protected post."
@@ -4420,8 +4429,8 @@ msgstr "Menu Utama"
 msgid "Need help with Customizr? Click here!"
 msgstr "Butuh bantuan untuk Customizr? Klik disini!"
 
-#: build/free/customizr/core/init-base.php:988
-#: build/free/customizr/inc/czr-init-ccat.php:3162 core/init-base.php:988
+#: build/free/customizr/core/init-base.php:1078
+#: build/free/customizr/inc/czr-init-ccat.php:3162 core/init-base.php:1078
 #: inc/_dev/class-fire-utils_settings_map.php:1206 inc/czr-init-ccat.php:3162
 msgid "Social links"
 msgstr "Link Media Sosial"
@@ -4595,7 +4604,7 @@ msgid "Ooops, page not found"
 msgstr "Ooops, halaman tidak ditemukan"
 
 #: build/free/customizr/inc/czr-front-ccat.php:4230
-#: build/free/customizr/inc/czr-front-ccat.php:4828
+#: build/free/customizr/inc/czr-front-ccat.php:4846
 #: inc/_dev/parts/class-content-headings.php:372
 #: inc/_dev/parts/class-content-post.php:148 inc/czr-front-ccat.php:4230
 #: inc/czr-front-ccat.php:4846
@@ -4634,8 +4643,8 @@ msgstr ""
 "kata kunci lain."
 
 #: build/free/customizr/inc/czr-front-ccat.php:4528
-#: build/free/customizr/inc/czr-front-ccat.php:4775
-#: build/free/customizr/inc/czr-front-ccat.php:5211
+#: build/free/customizr/inc/czr-front-ccat.php:4793
+#: build/free/customizr/inc/czr-front-ccat.php:5247
 #: inc/_dev/parts/class-content-page.php:93
 #: inc/_dev/parts/class-content-post.php:95
 #: inc/_dev/parts/class-content-post_list.php:231 inc/czr-front-ccat.php:4528
@@ -4643,93 +4652,93 @@ msgstr ""
 msgid "Pages:"
 msgstr "Laman:"
 
-#: build/free/customizr/inc/czr-front-ccat.php:4832
+#: build/free/customizr/inc/czr-front-ccat.php:4850
 #: inc/_dev/parts/class-content-post.php:152 inc/czr-front-ccat.php:4850
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Lihat semua post dari %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6637
+#: build/free/customizr/inc/czr-front-ccat.php:6673
 #: inc/_dev/parts/class-content-post_metas.php:188 inc/czr-front-ccat.php:6673
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
 "Catatan ini telah di posting pada %1$s<span class=\"by-author\"> by %2$s</"
 "span>."
 
-#: build/free/customizr/inc/czr-front-ccat.php:6723
+#: build/free/customizr/inc/czr-front-ccat.php:6759
 #: inc/_dev/parts/class-content-post_metas.php:274 inc/czr-front-ccat.php:6759
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "Catatan ini telah diposting di %1$s dengan tag %2$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6725
+#: build/free/customizr/inc/czr-front-ccat.php:6761
 #: inc/_dev/parts/class-content-post_metas.php:276 inc/czr-front-ccat.php:6761
 msgid "This entry was posted in %1$s"
 msgstr "Catatan ini telah diposting di %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6727
+#: build/free/customizr/inc/czr-front-ccat.php:6763
 #: inc/_dev/parts/class-content-post_metas.php:278 inc/czr-front-ccat.php:6763
 msgid "This entry was tagged %2$s"
 msgstr "Catatan ini memiliki tag %2$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6736
+#: build/free/customizr/inc/czr-front-ccat.php:6772
 #: inc/_dev/parts/class-content-post_metas.php:287 inc/czr-front-ccat.php:6772
 msgid "This entry was posted on %1$s"
 msgstr "Catatan ini telah diposting pada %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6738
+#: build/free/customizr/inc/czr-front-ccat.php:6774
 #: inc/_dev/parts/class-content-post_metas.php:289 inc/czr-front-ccat.php:6774
 msgid "on %1$s"
 msgstr "pada %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6740
+#: build/free/customizr/inc/czr-front-ccat.php:6776
 #: inc/_dev/parts/class-content-post_metas.php:291 inc/czr-front-ccat.php:6776
 msgid "and posted on %1$s"
 msgstr "dan diposting pada %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6752
+#: build/free/customizr/inc/czr-front-ccat.php:6788
 #: inc/_dev/parts/class-content-post_metas.php:303 inc/czr-front-ccat.php:6788
 msgid "This entry was posted"
 msgstr "Catatan ini telah diposting"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6752
-#: build/free/customizr/inc/czr-front-ccat.php:6754
+#: build/free/customizr/inc/czr-front-ccat.php:6788
+#: build/free/customizr/inc/czr-front-ccat.php:6790
 #: inc/_dev/parts/class-content-post_metas.php:303
 #: inc/_dev/parts/class-content-post_metas.php:305 inc/czr-front-ccat.php:6788
 #: inc/czr-front-ccat.php:6790
 msgid "by %1$s"
 msgstr "oleh  %1$s"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6768
+#: build/free/customizr/inc/czr-front-ccat.php:6804
 #: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6804
 msgid "(updated today)"
 msgstr "(diperbaharui hari ini)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6768
+#: build/free/customizr/inc/czr-front-ccat.php:6804
 #: inc/_dev/parts/class-content-post_metas.php:319 inc/czr-front-ccat.php:6804
 msgid "(updated %s days ago)"
 msgstr "(diperbaharui  %s hari lalu)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6769
+#: build/free/customizr/inc/czr-front-ccat.php:6805
 #: inc/_dev/parts/class-content-post_metas.php:320 inc/czr-front-ccat.php:6805
 msgid "(updated 1 day ago)"
 msgstr "(diperbaharui 1 hari lalu)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:6772
+#: build/free/customizr/inc/czr-front-ccat.php:6808
 #: inc/_dev/parts/class-content-post_metas.php:323 inc/czr-front-ccat.php:6808
 msgid "(updated on %1$s)"
 msgstr "(diperbaharui pada %1$s)"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7012
+#: build/free/customizr/inc/czr-front-ccat.php:7048
 #: inc/_dev/parts/class-content-post_metas.php:563 inc/czr-front-ccat.php:7048
 msgid "Open"
 msgstr "Buka"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7062
+#: build/free/customizr/inc/czr-front-ccat.php:7098
 #: inc/_dev/parts/class-content-post_metas.php:613 inc/czr-front-ccat.php:7098
 msgid "tagged"
 msgstr "Ditag"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7195
-#: build/free/customizr/inc/czr-front-ccat.php:7250
+#: build/free/customizr/inc/czr-front-ccat.php:7231
+#: build/free/customizr/inc/czr-front-ccat.php:7286
 #: build/free/customizr/templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 #: inc/_dev/parts/class-content-post_navigation.php:89
 #: inc/_dev/parts/class-content-post_navigation.php:144
@@ -4738,54 +4747,54 @@ msgstr "Ditag"
 msgid "Post navigation"
 msgstr "Post navigasi"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7263
+#: build/free/customizr/inc/czr-front-ccat.php:7299
 #: inc/_dev/parts/class-content-post_navigation.php:157
 #: inc/czr-front-ccat.php:7299
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Post Jadul"
 
-#: build/free/customizr/inc/czr-front-ccat.php:7283
+#: build/free/customizr/inc/czr-front-ccat.php:7319
 #: inc/_dev/parts/class-content-post_navigation.php:177
 #: inc/czr-front-ccat.php:7319
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Post Baru <span class=\"meta-nav\">&rarr;</span>"
 
-#: build/free/customizr/inc/czr-front-ccat.php:8603
+#: build/free/customizr/inc/czr-front-ccat.php:8639
 #: build/free/customizr/templates/parts/modules/slider/slide.php:9
 #: inc/_dev/parts/class-content-slider.php:735 inc/czr-front-ccat.php:8639
 #: templates/parts/modules/slider/slide.php:9
 msgid "Go to"
 msgstr "Pergi ke"
 
-#: build/free/customizr/inc/czr-front-ccat.php:8735
+#: build/free/customizr/inc/czr-front-ccat.php:8771
 #: inc/_dev/parts/class-content-slider.php:867 inc/czr-front-ccat.php:8771
 msgid "Customize or remove %s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8736
+#: build/free/customizr/inc/czr-front-ccat.php:8772
 #: inc/_dev/parts/class-content-slider.php:868 inc/czr-front-ccat.php:8772
 msgid "the posts slider"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8736
+#: build/free/customizr/inc/czr-front-ccat.php:8772
 #: inc/_dev/parts/class-content-slider.php:868 inc/czr-front-ccat.php:8772
 msgid "this slider"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:8836
+#: build/free/customizr/inc/czr-front-ccat.php:8872
 #: inc/_dev/parts/class-content-slider.php:968 inc/czr-front-ccat.php:8872
 #, fuzzy
 msgid "Discover the Customizr WordPress theme &raquo;"
 msgstr "Temukan Customizr Pro"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9419
+#: build/free/customizr/inc/czr-front-ccat.php:9455
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:200 inc/czr-front-ccat.php:9455
 #: templates/parts/footer/footer_credits.php:13
 msgid "Powered by"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9420
+#: build/free/customizr/inc/czr-front-ccat.php:9456
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:201 inc/czr-front-ccat.php:9456
 #: templates/parts/footer/footer_credits.php:13
@@ -4793,14 +4802,14 @@ msgstr ""
 msgid "Powered by WordPress"
 msgstr "Ikut saya di Wordpress"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9425
+#: build/free/customizr/inc/czr-front-ccat.php:9461
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:206 inc/czr-front-ccat.php:9461
 #: templates/parts/footer/footer_credits.php:13
 msgid "Designed with the %s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-front-ccat.php:9425
+#: build/free/customizr/inc/czr-front-ccat.php:9461
 #: build/free/customizr/templates/parts/footer/footer_credits.php:13
 #: inc/_dev/parts/class-footer-footer_main.php:206 inc/czr-front-ccat.php:9461
 #: templates/parts/footer/footer_credits.php:13
@@ -4808,7 +4817,7 @@ msgstr ""
 msgid "Customizr theme"
 msgstr "Tema Customizr"
 
-#: build/free/customizr/inc/czr-front-ccat.php:9450
+#: build/free/customizr/inc/czr-front-ccat.php:9486
 #: inc/_dev/parts/class-footer-footer_main.php:231 inc/czr-front-ccat.php:9486
 msgid "Back to top"
 msgstr "Kembali ke atas"
@@ -5710,11 +5719,6 @@ msgstr ""
 #: templates/parts/modules/related-posts/related_posts.php:23
 msgid "Next related articles"
 msgstr ""
-
-#: core/core-settings-map.php:1684 core/core-settings-map.php:1754
-#, fuzzy
-msgid "Set the thumbnail's max height in pixels for smartphones"
-msgstr "Atur maks tinggi thumbail dengan pixel"
 
 #. Theme Name of the plugin/theme
 #, fuzzy

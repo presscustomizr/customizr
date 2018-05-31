@@ -1,4 +1,4 @@
-# Customizr v4.1.4 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.5 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,8 +23,13 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.5 May 31st 2018 =
+* Imp: make sure .navbar-brand height is set to auto to avoid issues with bootstrap3 based plugins. fixes #1533
+* Imp: build/delete retina version of pdf thumbnails. Also improve remove retina images logic. fixes #1387
+* Fix: fix comment-form-cookies-consent label and input appearance. fixes #1538
+
 = 4.1.4 May 1st 2018 =
-* Fix: fix search form close icon visual issue in IE10+. fixes #1512
+* Fix: search form close icon visual issue in IE10+. fixes #1512
 * Imp: do not load dev classes
 * Imp: decrease space above WooCommerce page title. fixes #1521
 * Added: options to fine tuning singular featured image height in smartphones
