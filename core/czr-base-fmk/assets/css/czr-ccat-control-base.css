@@ -2333,7 +2333,7 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
 
 
 /* GUTENCHECK */
-/* Inspired from the Gutenberg plugin checkbox. @see here : https://github.com/WordPress/gutenberg */;
+/* Inspired from the Gutenberg plugin checkbox. @see here : https://github.com/WordPress/gutenberg */
 .czr-toggle-check {
   position: relative;
       float: right;
