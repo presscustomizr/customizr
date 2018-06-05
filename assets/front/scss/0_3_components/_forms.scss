@@ -78,15 +78,15 @@ input[type=number] {
     background-repeat: no-repeat;
     @include box-shadow_none( 'important' );
   }
-  @at-root .comment-form-cookies-consent input[type=checkbox],
-  input[type=checkbox],
-  input[type=radio] {
+  @at-root .themeform input[type=radio],
+  .themeform input[type=checkbox],
+  .comment-form-cookies-consent input[type=checkbox] {
     -webkit-appearance: none!important;
     position: relative !important;
   }
-  @at-root .comment-form-cookies-consent input[type=checkbox],
-  input[type=checkbox]:checked:before,
-  input[type=radio]:checked:before {
+  @at-root .themeform input[type=radio]:checked::before,
+  .themeform input[type=checkbox]:checked::before,
+  .comment-form-cookies-consent input[type=checkbox]::before {
     font-family: 'Font Awesome\ 5 Free';
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -110,8 +110,8 @@ input[type=number] {
     width: 50%;
     height: 50%;
   }
-  @at-root .comment-form-cookies-consent input[type=checkbox]:checked::before,
-  input[type=checkbox]:checked::before {
+  @at-root .themeform input[type=checkbox]:checked::before,
+  .comment-form-cookies-consent input[type=checkbox]:checked::before {
     content: "\f00c";
     font-weight: 900;
   }
