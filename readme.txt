@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.6 June 6th 2018 =
+* Fix: radio and checkboxes style that should be applied only to relevant elments to avoid plugin conflits ( contact forms plugins for example ). fixes #1542
+
 = 4.1.5 May 31st 2018 =
 * Imp: make sure .navbar-brand height is set to auto to avoid issues with bootstrap3 based plugins. fixes #1533
 * Imp: build/delete retina version of pdf thumbnails. Also improve remove retina images logic. fixes #1387

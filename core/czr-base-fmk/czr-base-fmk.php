@@ -2,9 +2,14 @@
 namespace czr_fn;
 
 if ( did_action('nimble_base_fmk_loaded') ) {
-    sek_error_log( __FILE__ . '  => The czr_base_fmk has already been loaded' );
+    error_log( __FILE__ . '  => The czr_base_fmk has already been loaded' );
     return;
 }
+
+// Set the namsepace as a global so we can use it when fired from another theme/plugin using the fmk
+global $czr_base_fmk_namespace;
+$czr_base_fmk_namespace = __NAMESPACE__ . '\\';
+
 do_action( 'nimble_base_fmk_loaded' );
 ////////////////////////////////////////////////////////////////
 // CZR_Fmk_Base
@@ -225,23 +230,23 @@ if ( ! class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
                       'isDevMode' => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
                       'docURL'          => esc_url('docs.presscustomizr.com/'),
                       'i18n' => array(
-                            'edit' => __('Edit', 'text_domain_to_be_replaced'),
-                            'close' => __('Close', 'text_domain_to_be_replaced'),
-                            'notset' => __('Not set', 'text_domain_to_be_replaced'),
-                            'successMessage' => __('Done !', 'text_domain_to_be_replaced'),
+                            'edit' => __('Edit', 'customizr'),
+                            'close' => __('Close', 'customizr'),
+                            'notset' => __('Not set', 'customizr'),
+                            'successMessage' => __('Done !', 'customizr'),
 
-                            'readDocumentation' => __('Learn more about this in the documentation', 'text_domain_to_be_replaced'),
-                            'Settings' => __('Settings', 'text_domain_to_be_replaced'),
-                            'Options for' => __('Options for', 'text_domain_to_be_replaced'),
+                            'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
+                            'Settings' => __('Settings', 'customizr'),
+                            'Options for' => __('Options for', 'customizr'),
 
                             // img upload translation
-                            'select_image'        => __( 'Select Image', 'text_domain_to_be_replaced' ),
-                            'change_image'        => __( 'Change Image', 'text_domain_to_be_replaced' ),
-                            'remove_image'        => __( 'Remove', 'text_domain_to_be_replaced' ),
-                            'default_image'       => __( 'Default', 'text_domain_to_be_replaced'  ),
-                            'placeholder_image'   => __( 'No image selected', 'text_domain_to_be_replaced' ),
-                            'frame_title_image'   => __( 'Select Image', 'text_domain_to_be_replaced' ),
-                            'frame_button_image'  => __( 'Choose Image', 'text_domain_to_be_replaced' ),
+                            'select_image'        => __( 'Select Image', 'customizr' ),
+                            'change_image'        => __( 'Change Image', 'customizr' ),
+                            'remove_image'        => __( 'Remove', 'customizr' ),
+                            'default_image'       => __( 'Default', 'customizr'  ),
+                            'placeholder_image'   => __( 'No image selected', 'customizr' ),
+                            'frame_title_image'   => __( 'Select Image', 'customizr' ),
+                            'frame_button_image'  => __( 'Choose Image', 'customizr' ),
                             'isThemeSwitchOn' => true
                       ),
                       'paramsForDynamicRegistration' => apply_filters( 'czr_fmk_dynamic_setting_js_params', array() )
@@ -383,7 +388,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             if ( ! check_ajax_referer( $action, 'nonce', false ) ) {
                  wp_send_json_error( array(
                   'code' => 'invalid_nonce',
-                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.' ),
+                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.', 'customizr' ),
                 ) );
             }
 
@@ -424,12 +429,12 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             switch ( $requested_tmpl ) {
                 case 'crud-module-part' :
                     ?>
-                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'text_domain_to_be_replaced'); ?> <span class="fas fa-plus-square"></span></button>
+                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'customizr'); ?> <span class="fas fa-plus-square"></span></button>
                       <div class="<?php echo $css_attr['pre_add_wrapper']; ?>">
                         <div class="<?php echo $css_attr['pre_add_success']; ?>"><p></p></div>
                         <div class="<?php echo $css_attr['pre_add_item_content']; ?>">
 
-                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'text_domain_to_be_replaced'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'text_domain_to_be_replaced'); ?></span>
+                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'customizr'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'customizr'); ?></span>
                         </div>
                       </div>
                     <?php
@@ -438,7 +443,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
                     ?>
                       <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
                         <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
+                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
                         <div class="<?php echo $css_attr['remove_alert_wrapper']; ?>"></div>
                       </div>
                     <?php
@@ -450,7 +455,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
                     ?>
                       <div class="<?php echo $css_attr['item_header']; ?> czr-custom-model">
                         <div class="<?php echo $css_attr['item_title']; ?> <?php echo $css_attr['item_sort_handle']; ?>"><h4>{{ data.title }}</h4></div>
-                          <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'text_domain_to_be_replaced'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a></div>
+                          <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a></div>
                         </div>
                       </div>
                     <?php
@@ -458,8 +463,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
 
                 case 'rud-item-alert-part' :
                     ?>
-                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'text_domain_to_be_replaced'); ?></p>
-                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'text_domain_to_be_replaced'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'text_domain_to_be_replaced'); ?></span>
+                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'customizr'); ?></p>
+                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'customizr'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'customizr'); ?></span>
                     <?php
                 break;
 
@@ -783,8 +788,8 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 case 'tiny_mce_editor' :
                     ?>
                       <# //console.log( 'IN php::ac_get_default_input_tmpl() => data sent to the tmpl => ', data ); #>
-                      <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="open-tinymce-editor"><?php _e('Edit', 'text_domain_to_be_replaced' ); ?></button>&nbsp;
-                      <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="close-tinymce-editor"><?php _e('Close', 'text_domain_to_be_replaced' ); ?></button>
+                      <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="open-tinymce-editor"><?php _e('Edit', 'customizr' ); ?></button>&nbsp;
+                      <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="close-tinymce-editor"><?php _e('Close', 'customizr' ); ?></button>
                       <input data-czrtype="<?php echo $input_id; ?>" type="hidden" value="{{ data.value }}"/>
                     <?php
                 break;
