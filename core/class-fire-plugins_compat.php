@@ -1053,7 +1053,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
             '.woocommerce input.button.alt.disabled',
             '.woocommerce button.button.alt.disabled',
             '.woocommerce a.button.alt.disabled',
-            '.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a::before'
+            '.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a::before',
+            '.czr-link-hover-underline .widget_product_categories a:not(.btn)::before'
          ));
       }
 

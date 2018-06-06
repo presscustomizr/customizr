@@ -97,12 +97,30 @@ input[type=checkbox]:checked::before {
 }
 
 //Widget areas
+//
+// Widget link underline on hover effect
+//
+.czr-link-hover-underline {
+  .widgets-list-layout-links, //<-jetpack top post/pages textual links only
+  .widget_archive,
+  .widget_nav_menu,
+  .widget_rss ul,
+  .widget_recent_entries,
+  .widget_product_categories,//<- woocommerce widget
+  .widget_categories,
+  .widget_meta,
+  .widget_recent_comments,
+  .widget_pages,
+  .widget_calendar {
+    a:not(.btn)::before {
+      @extend %skin-dark-background-color;
+    }
+  }
+}
+
 .widget-area {
     a:not(.btn):hover {
       color: $skin-link-color-hover;
-    }
-    .widget a:not(.btn):before {
-      @extend %skin-dark-background-color;
     }
 }
 
