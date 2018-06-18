@@ -42,6 +42,7 @@ ol {
     content: counters(item, ".") ".";
     counter-increment: item;
     padding-right: .5em;
+    word-wrap: normal;
   }
   @at-root .czr-wp-the-content ol {
     > li {
