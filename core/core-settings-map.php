@@ -2533,6 +2533,7 @@ function czr_fn_popul_section_map( $_sections ) {
                         //'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
     ),
+    // Since March 2018, this section is registered dynamically
     // 'socials_sec'        => array(
     //                     'title'     =>  __( 'Social links' , 'customizr' ),
     //                     'priority'    =>  $_is_wp_version_before_4_0 ? 9 : 20,
