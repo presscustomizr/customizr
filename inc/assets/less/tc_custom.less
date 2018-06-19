@@ -2834,6 +2834,33 @@ ul {
     word-break: break-all;
     white-space: normal;
 }
+/* checkout label/radio/checkboxe alignment */
+#add_payment_method #payment ul.payment_methods label,
+.woocommerce-cart #payment ul.payment_methods label,
+.woocommerce-checkout #payment ul.payment_methods label {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+#add_payment_method #payment .payment_method_paypal .about_paypal,
+.woocommerce-cart #payment .payment_method_paypal .about_paypal,
+.woocommerce-checkout #payment .payment_method_paypal .about_paypal {
+    line-height: 47px;
+}
+
+.woocommerce form .form-row .input-checkbox {
+    float: none;
+}
+.woocommerce form .form-row label.checkbox,
+.woocommerce-page form .form-row label.checkbox {
+    & when (@is_rtl = true) {
+      padding-right: 0;
+    }
+    & when (@is_rtl = false) {
+      padding-left: 0;
+    }
+}
+
 /* FOOTER
     -------------------------------------------------- */
 
