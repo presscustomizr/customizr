@@ -4639,7 +4639,7 @@ var czrapp = czrapp || {};
                         });
                   };//end centerInfiniteImagesClassicStyle
                   czrapp.$_body.on( 'post-load', function( e, response ) {
-                        if ( 'success' == response.type && response.collection && response.container ) {
+                        if ( ( 'undefined' !== typeof response ) && 'success' == response.type && response.collection && response.container ) {
                               centerInfiniteImagesClassicStyle(
                                   response.collection,
                                   '#'+response.container //_container

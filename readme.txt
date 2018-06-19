@@ -23,6 +23,14 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.7 June 19th 2018 =
+* Fix: do not wrap ol item counters. fixes #1551
+* Fix: improve scoping of the link underline effect only to widgets we know. fixes #1544
+* Fix: do not print related posts by tags when the post has no tags. fixes #1549
+* Impr: improve some woocommerce checkout elements alignment. fixes #1536
+* Impr: when reacting to the post-load event make sure the response object is defined. fixes presscustomizr/customizr#1548
+* Impr: dropdown on hover: make sure pointer events on scroll are still allowed if there's at least one submenu opened
+
 = 4.1.6 June 6th 2018 =
 * Fix: radio and checkboxes style that should be applied only to relevant elments to avoid plugin conflits ( contact forms plugins for example ). fixes #1542
 

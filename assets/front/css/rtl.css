@@ -7192,6 +7192,7 @@ ol > li:before {
   content: counters(item, ".") ".";
   counter-increment: item;
   padding-right: .5em;
+  word-wrap: normal;
 }
 
 .czr-wp-the-content ol > li, .woocommerce-Tabs-panel.entry-content ol > li,
@@ -9808,7 +9809,17 @@ input[type=checkbox]:checked::before {
   color: #3b3b3b;
 }
 
-.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a::before, .post-info a:not(.btn):hover span::after, .post-info a:not(.btn):hover span::before, .grid-container__classic .post-type__icon:hover, [class*="grid-container__"] .hover .entry-title a::after, [class*="grid-container__"] .hover .woocommerce .woocommerce-products-header .page-title a::after, .woocommerce .woocommerce-products-header [class*="grid-container__"] .hover .page-title a::after, [class*="grid-container__"] .entry-title a:hover::after, [class*="grid-container__"] .woocommerce .woocommerce-products-header .page-title a:hover::after, .woocommerce .woocommerce-products-header [class*="grid-container__"] .page-title a:hover::after, .sidebar .widget-title::after, .widget-area .widget a:not(.btn):before, a.czr-format-link::before, .comment-author a::before,
+.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active a::before, .post-info a:not(.btn):hover span::after, .post-info a:not(.btn):hover span::before, .grid-container__classic .post-type__icon:hover, [class*="grid-container__"] .hover .entry-title a::after, [class*="grid-container__"] .hover .woocommerce .woocommerce-products-header .page-title a::after, .woocommerce .woocommerce-products-header [class*="grid-container__"] .hover .page-title a::after, [class*="grid-container__"] .entry-title a:hover::after, [class*="grid-container__"] .woocommerce .woocommerce-products-header .page-title a:hover::after, .woocommerce .woocommerce-products-header [class*="grid-container__"] .page-title a:hover::after, .sidebar .widget-title::after, .czr-link-hover-underline .widgets-list-layout-links a:not(.btn)::before,
+.czr-link-hover-underline .widget_archive a:not(.btn)::before,
+.czr-link-hover-underline .widget_nav_menu a:not(.btn)::before,
+.czr-link-hover-underline .widget_rss ul a:not(.btn)::before,
+.czr-link-hover-underline .widget_recent_entries a:not(.btn)::before,
+.czr-link-hover-underline .widget_product_categories a:not(.btn)::before,
+.czr-link-hover-underline .widget_categories a:not(.btn)::before,
+.czr-link-hover-underline .widget_meta a:not(.btn)::before,
+.czr-link-hover-underline .widget_recent_comments a:not(.btn)::before,
+.czr-link-hover-underline .widget_pages a:not(.btn)::before,
+.czr-link-hover-underline .widget_calendar a:not(.btn)::before, a.czr-format-link::before, .comment-author a::before,
 .comment-link::before, .tabs .nav-link.active::before, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a.active::before {
   background-color: #3b3b3b;
 }

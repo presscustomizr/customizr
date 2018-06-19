@@ -725,7 +725,7 @@ var czrapp = czrapp || {};
 
                   };
                   czrapp.$_body.on( 'post-load', function( e, response ) {
-                        if ( 'success' == response.type && response.collection && response.container ) {
+                        if ( ( 'undefined' !== typeof response ) && 'success' == response.type && response.collection && response.container ) {
                               centerInfiniteImagesModernStyle(
                                   response.collection,
                                   '#'+response.container //_container
@@ -1019,7 +1019,7 @@ var czrapp = czrapp || {};
                   this.scheduleGalleryCarousels();
                   this.fireMainSlider();
                   czrapp.$_body.on( 'post-load', function( e, response ) {
-                        if ( 'success' == response.type && response.collection && response.container ) {
+                        if ( ( 'undefined' !== typeof response ) && 'success' == response.type && response.collection && response.container ) {
                               if ( ! response.html || -1 === response.html.indexOf( 'czr-gallery' ) || -1 === response.html.indexOf( 'czr-carousel' ) ) {
                                     return;
                               }
@@ -2915,6 +2915,8 @@ var czrapp = czrapp || {};
       this.Selector = {
         DATA_TOGGLE              : '[data-toggle="czr-dropdown"]',
         DATA_SHOWN_TOGGLE_LINK   : '.' +this.ClassName.SHOW+ '> a[data-toggle="czr-dropdown"]',
+        HOVER_MENU               : '.czr-open-on-hover',
+        CLICK_MENU               : '.czr-open-on-click',
         HOVER_PARENT             : '.czr-open-on-hover .menu-item-has-children, .nav__woocart',
         CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',
         PARENTS                  : '.tc-header .menu-item-has-children',
@@ -2957,10 +2959,12 @@ var czrapp = czrapp || {};
         var $_el = $(this);
         var _debounced_removeOpenClass = _.debounce( function() {
           if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-            czrapp.$_body.removeClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
             $_el.trigger( self.Event.HIDE )
                 .removeClass(self.ClassName.SHOW)
                 .trigger( self.Event.HIDDEN );
+            if ( $_el.closest( self.Selector.HOVER_MENU ).find( '.' + self.ClassName.SHOW ).length < 1 ) {
+              czrapp.$_body.removeClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
+            }
 
             var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
 

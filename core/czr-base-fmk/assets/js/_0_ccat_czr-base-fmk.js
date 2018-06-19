@@ -220,11 +220,12 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                 api.errorLog( 'serverControlParams.paramsForDynamicRegistration should be an array');
           }
 
-          //console.log( 'serverControlParams.paramsForDynamicRegistration', serverControlParams.paramsForDynamicRegistration );
-
           _.each( serverControlParams.paramsForDynamicRegistration, function( dynParams, setId ) {
-                try { registerDynamicModuleSettingControl( dynParams ); } catch( er ) {
-                      api.errorLog( er );
+                // The dynamic registration should be explicitely set
+                if ( dynParams.module_registration_params && true === dynParams.module_registration_params.dynamic_registration ) {
+                      try { registerDynamicModuleSettingControl( dynParams ); } catch( er ) {
+                            api.errorLog( er );
+                      }
                 }
           });
 
@@ -253,8 +254,9 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 
             }, args );
 
-            // we must have not empty setting_id, section and module_type
-            if ( _.isEmpty( args.setting_id ) || _.isEmpty( args.section) || _.isEmpty( args.module_type ) ) {
+            // we must have not empty setting_id, module_type
+            if ( _.isEmpty( args.setting_id ) || _.isEmpty( args.module_type ) ) {
+                  api.errare( 'registerDynamicModuleSettingControl => args', args );
                   throw new Error( 'registerDynamicModuleSettingControl => missing params when registrating a setting');
             }
 
@@ -263,7 +265,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   throw new Error( 'registerDynamicModuleSettingControl => the module values must be an array or an object');
             }
 
-            // console.log( "args?", args );
             var settingId =  args.setting_id,
                 settingArgs = args.setting;
 
@@ -289,54 +290,69 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   // assign the value sent from the server
                   settingArgs.value = args.option_value;
 
-                  // console.log('registerDynamicModuleSettingControl => SETTING DATA ?', settingId, settingArgs);
                   var SettingConstructor = api.settingConstructor[ settingArgs.type ] || api.Setting;
                   api.add( new SettingConstructor( settingId, settingArgs.value, settingArgs ) );
             }
 
             // MAYBE REGISTER THE SECTION
             var sectionArgs = args.section;
+            if ( ! _.isEmpty( sectionArgs ) ) {
+                  // Check if we have a correct section
+                  if ( ! _.has( sectionArgs, 'id' ) ){
+                        throw new Error( 'registerDynamicModuleSettingControl => missing section id for the section of setting : ' + settingId );
+                  }
 
-            // Check if we have a correct section
-            if ( ! _.has( sectionArgs, 'id' ) ){
-                  throw new Error( 'registerDynamicModuleSettingControl => missing section id for the section of setting : ' + settingId );
-            }
+                  if ( ! api.section.has( sectionArgs.id ) ) {
+                        var _secData = _.extend(
+                            {
+                              active:true,
+                              content:"",
+                              customizeAction:"Customizing",
+                              description:"",
+                              description_hidden:false,
+                              id: "",
+                              instanceNumber: 99,
+                              panel: "",
+                              priority:0,
+                              title: "",
+                              type: "default",
+                            }, {
+                              id: sectionArgs.id,
+                              title: sectionArgs.title || sectionArgs.id,
+                              description: _.isEmpty( sectionArgs.description ) ? '' : sectionArgs.description,
+                              panel: _.isEmpty( sectionArgs.panel ) ? '' : sectionArgs.panel,
+                              priority: sectionArgs.priority || 10
+                            }
+                        );
 
-            if ( ! api.section.has( sectionArgs.id ) ) {
-                  var _secData = _.extend(
-                      {
-                        active:true,
-                        content:"",
-                        customizeAction:"Customizing",
-                        description:"",
-                        description_hidden:false,
-                        id: "",
-                        instanceNumber: 99,
-                        panel: "",
-                        priority:0,
-                        title: "",
-                        type: "default",
-                      }, {
-                        id: sectionArgs.id,
-                        title: sectionArgs.title || sectionArgs.id,
-                        description: _.isEmpty( sectionArgs.description ) ? '' : sectionArgs.description,
-                        panel: _.isEmpty( sectionArgs.panel ) ? '' : sectionArgs.panel,
-                        priority: sectionArgs.priority || 10
-                      }
-                  );
-
-                  var Constructor = api.sectionConstructor[ _secData.type ] || api.Section;
-                  _secData = _.extend( { params: _secData }, _secData ); // Inclusion of params alias is for back-compat for custom sections that expect to augment this property.
-                  api.section.add( new Constructor( _secData.id, _secData ) );
+                        var Constructor = api.sectionConstructor[ _secData.type ] || api.Section;
+                        _secData = _.extend( { params: _secData }, _secData ); // Inclusion of params alias is for back-compat for custom sections that expect to augment this property.
+                        api.section.add( new Constructor( _secData.id, _secData ) );
+                  }
             }
 
             // REGISTER THE CONTROL
             var controlId = settingId;
 
             if ( ! api.control.has( controlId ) ) {
+
+
                   // start from a copy of a core control object
                   var controlArgs = args.control,
-                      defaultControlArgs = $.extend( true, {} , api.settings.controls.blogdescription );
+                      defaultControlArgs = $.extend( true, {} , api.settings.controls.blogdescription ),
+                      ctrlSectionId;
+
+                  // Do we have a section ?
+                  if ( ! _.isEmpty( args.section ) ) {
+                        ctrlSectionId = args.section.id;
+                  } else {
+                        ctrlSectionId = controlArgs.section;
+                  }
+
+                  if ( _.isEmpty( ctrlSectionId ) ) {
+                        api.errare( 'registerDynamicModuleSettingControl => missing section id for the control', args );
+                        throw new Error( 'registerDynamicModuleSettingControl => missing section id for the section of setting : ' + settingId );
+                  }
                   // Then update it with our defaults set server side
                   // array(
                   //     'type'      => 'czr_module',
@@ -348,7 +364,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                         {
                               type : 'czr_module',
                               module_type : args.module_type,
-                              section : sectionArgs.id,
+                              section : ctrlSectionId,
                               content : '',
                               label : controlArgs.label,
                               priority : controlArgs.priority
@@ -364,11 +380,9 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 
                   // if the currently expanded section is the one of the dynamic control
                   // Awake the module => fire ready
-                  if ( api.section( sectionArgs.id ).expanded() ) {
+                  if ( api.section( ctrlSectionId ).expanded() ) {
                         api.control( controlId ).trigger( 'set-module-ready' );
                   }
-                  // console.log('registerDynamicModuleSettingControl => CONTROL DATA ?', settingId, options);
-                  // console.log('ALORS IN DYNAMIC REGISTRATION ? ', dataForSkopeToRegister, settingId );
             }//if ( ! api.control.has( controlId ) )
 
             return settingId;
@@ -652,6 +666,387 @@ api.CZR_Helpers = api.CZR_Helpers || {};
 //@event map = [ {event1}, {event2}, ... ]
 //@new_event = {  trigger   : event name , actions   : [ 'cb1', 'cb2', ... ] }
 api.CZR_Helpers = $.extend( api.CZR_Helpers, {
+      //This method is now statically accessed by item and modopt instances because it does the same job for both.
+      //=> It instantiates the inputs based on what it finds in the DOM ( item or mod opt js templates )
+      //
+      //Fired on 'contentRendered' for items and on user click for module options (mod opt)
+      //creates the inputs based on the rendered parent item or mod option
+      //inputParentInst can be an item instance or a module option instance
+      setupInputCollectionFromDOM : function() {
+            var inputParentInst = this;//<= because fired with .call( inputParentInst )
+            if ( ! _.isFunction( inputParentInst ) ) {
+                  throw new Error( 'setupInputCollectionFromDOM => inputParentInst is not valid.' );
+            }
+            var module = inputParentInst.module,
+                is_mod_opt = _.has( inputParentInst() , 'is_mod_opt' );
+
+            //bail if already done
+            //_.has( inputParentInst, 'czr_Input')
+            if ( ! _.isEmpty( inputParentInst.inputCollection() ) )
+              return;
+
+            //INPUTS => Setup as soon as the view content is rendered
+            //the inputParentInst is a collection of inputs, each one has its own view module.
+            inputParentInst.czr_Input = inputParentInst.czr_Input || new api.Values();
+
+            //IS THE PARENT AN ITEM OR A MODULE OPTION ?
+            //those default constructors (declared in the module init ) can be overridden by extended item or mod opt constructors inside the modules
+            inputParentInst.inputConstructor = is_mod_opt ? module.inputModOptConstructor : module.inputConstructor;
+
+            var _defaultInputParentModel = is_mod_opt ? inputParentInst.defaultModOptModel : inputParentInst.defaultItemModel;
+
+            if ( _.isEmpty( _defaultInputParentModel ) || _.isUndefined( _defaultInputParentModel ) ) {
+                  throw new Error( 'setupInputCollectionFromDOM => No default model found in item or mod opt ' + inputParentInst.id + '.' );
+            }
+
+            //prepare and sets the inputParentInst value on api ready
+            //=> triggers the module rendering + DOM LISTENERS
+            var inputParentInst_model = $.extend( true, {}, inputParentInst() );
+
+            if ( ! _.isObject( inputParentInst_model ) ) {
+                  inputParentInst_model = _defaultInputParentModel;
+            } else {
+                  inputParentInst_model = $.extend( _defaultInputParentModel, inputParentInst_model );
+            }
+
+            var dom_inputParentInst_model = {};
+
+            //creates the inputs based on the rendered item or mod opt
+            $( '.' + module.control.css_attr.sub_set_wrapper, inputParentInst.container).each( function( _index ) {
+                  var _id = $(this).find('[data-czrtype]').attr( 'data-czrtype' ),
+                      _value = _.has( inputParentInst_model, _id ) ? inputParentInst_model[ _id ] : '';
+
+                  //console.log('/// ID /// => ', _id );
+                  //skip if no valid input data-czrtype is found in this node
+                  if ( _.isUndefined( _id ) || _.isEmpty( _id ) ) {
+                        api.errare( 'setupInputCollectionFromDOM => missing data-czrtype id for input type ' + $(this).data( 'input-type' ) + ' in module ' + module.id + '. Check that the server input template is properly declared.' );
+                        return;
+                  }
+                  //check if this property exists in the current inputParentInst model
+                  if ( ! _.has( inputParentInst_model, _id ) ) {
+                        throw new Error('setupInputCollectionFromDOM => The item or mod opt property : ' + _id + ' has been found in the DOM but not in the item or mod opt model : '+ inputParentInst.id + '. The input can not be instantiated.');
+                  }
+
+                  //Do we have a specific set of options defined in the parent module for this inputConstructor ?
+                  var _inputType      = $(this).data( 'input-type' ),
+                      _inputTransport = $(this).data( 'transport' ) || 'inherit',//<= if no specific transport ( refresh or postMessage ) has been defined in the template, inherits the control transport
+                      _inputOptions   = _.has( module.inputOptions, _inputType ) ? module.inputOptions[ _inputType ] : {},
+                      _inputArgs = {
+                            id            : _id,
+                            type          : _inputType,
+                            transport     : _inputTransport,
+                            input_value   : _value,
+                            input_options : _inputOptions,//<= a module can define a specific set of option
+                            container     : $(this),
+                            input_parent  : inputParentInst,
+                            is_mod_opt    : is_mod_opt,
+                            module        : module
+                      };
+
+                  // introduced for Nimble
+                  // allows us to fine tune the ajax action on input change
+                  // the input constructor args, are stored in each input instance as input.constructorOptions @see Input::initialize()
+                  // the on input change, the constructor options are passed as params when setting the api.Value(to, from, params )
+                  // This can be used when listening to the associated setting of the parent module.
+                  if ( ! _.isUndefined( $(this).data( 'refresh-markup' ) ) ) {
+                        _inputArgs.refresh_markup = $(this).data( 'refresh-markup' );
+                  }
+                  if ( ! _.isUndefined( $(this).data( 'refresh-stylesheet' ) ) ) {
+                        _inputArgs.refresh_stylesheet = $(this).data( 'refresh-stylesheet' );
+                  }
+                  if ( ! _.isUndefined( $(this).data( 'refresh-fonts' ) ) ) {
+                        _inputArgs.refresh_fonts = $(this).data( 'refresh-fonts' );
+                  }
+
+                  // ALLOW PLUGINS TO FILTER THE INPUT ARGS BEFORE INSTANTIATION
+                  api.trigger( 'input-args-before-instantiation', _inputArgs );
+
+                  // INSTANTIATE THE INPUT
+                  inputParentInst.czr_Input.add( _id, new inputParentInst.inputConstructor( _id, _inputArgs ) );
+
+                  // FIRE THE INPUT
+                  // fires ready once the input Value() instance is initialized
+                  inputParentInst.czr_Input( _id ).ready();
+
+                  // POPULATES THE PARENT INPUT COLLECTION
+                  dom_inputParentInst_model[ _id ] = _value;
+                  // shall we trigger a specific event when the input collection from DOM has been populated ?
+            });//each
+
+            //stores the collection
+            inputParentInst.inputCollection( dom_inputParentInst_model );
+
+            //chain
+            return inputParentInst;
+      }
+});//$.extend
+  // $( window ).on( 'message', function( e, o) {
+  //   api.consoleLog('WHAT ARE WE LISTENING TO?', e, o );
+  // });
+})( wp.customize , jQuery, _);
+(function (api, $, _) {
+api.CZR_Helpers = api.CZR_Helpers || {};
+//////////////////////////////////////////////////
+/// ACTIONS AND DOM LISTENERS
+//////////////////////////////////////////////////
+//adds action to an existing event map
+//@event map = [ {event1}, {event2}, ... ]
+//@new_event = {  trigger   : event name , actions   : [ 'cb1', 'cb2', ... ] }
+api.CZR_Helpers = $.extend( api.CZR_Helpers, {
+
+      // Fetches a module tmpl from the server if not yet cached
+      // {
+      //   tmpl : 'item-inputs',
+      //   module_type: module.module_type || 'all_modules',
+      //   module_id : ''
+      //   ... <= other custom args can be added dynamically here. Like the item_model when fetching the item content template
+      // }
+      // @return a promise()
+      getModuleTmpl : function( args ) {
+            var dfd = $.Deferred();
+            args = _.extend( {
+                  tmpl : '',
+                  module_type: '',
+                  module_id : '',
+                  cache : true,//<= shall we cache the tmpl or not. Should be true in almost all cases.
+                  nonce: api.settings.nonce.save//<= do we need to set a specific nonce to fetch the tmpls ?
+            }, args );
+
+            // are we good to go ?
+            if ( _.isEmpty( args.tmpl ) || _.isEmpty( args.module_type ) ) {
+                  dfd.reject( 'api.CZR_Helpers.getModuleTmpl => missing tmpl or module_type param' );
+            }
+
+            // This will be used to store the previously fetched template
+            // 1) the generic templates used for all_modules
+            // 2) each module templates : pre-item inputs, item inputs and mod options
+            api.CZR_Helpers.czr_cachedTmpl = api.CZR_Helpers.czr_cachedTmpl || {};
+            api.CZR_Helpers.czr_cachedTmpl[ args.module_type ] = api.CZR_Helpers.czr_cachedTmpl[ args.module_type ] || {};
+
+            // when cache is on, use the cached template
+            // Example of cache set to off => the skoped items templates are all different because based on the control type => we can't cache them
+            if ( true === args.cache && ! _.isEmpty( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) && _.isString( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) ) {
+                  //console.log('Cached => ', args.tmpl );
+                  dfd.resolve( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] );
+            } else {
+                  // if the tmpl is currently being fetched, return the temporary promise()
+                  // this can occurs when rendering a multi-item module for the first time
+                  // assigning the tmpl ajax request to the future cache entry allows us to fetch only once
+                  if ( _.isObject( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) && 'pending' == api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ].state() ) {
+                        return api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ];//<= this is a $.promise()
+                  } else {
+                        //console.log('Needs to be fetched => ', args.tmpl );
+                        // First time fetch
+                        api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = wp.ajax.post( 'ac_get_template', args )
+                              .done( function( _serverTmpl_ ) {
+                                    // resolve and cache
+                                    dfd.resolve( _serverTmpl_ );
+                                    api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = _serverTmpl_;
+                              }).fail( function( _r_ ) {
+                                    //console.log( 'api.CZR_Helpers.getModuleTmpl => ', _r_ );
+                                    api.errare( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type, _r_);
+                                    dfd.reject( _r_ );
+                              });
+                  }
+            }
+            return dfd.promise();
+      }
+
+});//$.extend
+  // $( window ).on( 'message', function( e, o) {
+  //   api.consoleLog('WHAT ARE WE LISTENING TO?', e, o );
+  // });
+})( wp.customize , jQuery, _);
+(function (api, $, _) {
+      api.CZR_Helpers = api.CZR_Helpers || {};
+      api.CZR_Helpers = $.extend( api.CZR_Helpers, {
+            register : function( params ) {
+                  if ( ! _.has( params, 'id' ) ) {
+                        api.errare( 'register => missing id ', params );
+                        return;
+                  }
+                  // For the UI elements that we want to track, a level property is needed
+                  // if ( false !== params.track && ! _.has( params, 'level' ) ){
+                  //       api.errare( 'register => missing trackable level ', params );
+                  //       return;
+                  // }
+
+                  var __element__ = {}, defaults;
+
+                  switch ( params.what ) {
+                        // Register only if not registered already
+                        // For example, when saved as draft in a changeset, the setting is already dynamically registered server side
+                        // => in this case, we only need to register the associated control
+                        // @params args { id : , value : , transport : , type :  }
+                        case 'setting' :
+                              if ( api.has( params.id ) ) {
+                                    //api.consoleLog( 'registerSetting => setting Id already registered : ' + params.id );
+                                    return params;
+                              }
+                              defaults = $.extend( true, {}, api.Setting.prototype.defaults );
+                              var settingArgs = _.extend(
+                                  defaults ,
+                                    {
+                                          dirty : ! _.isUndefined( params.dirty ) ? params.dirty : false,
+                                          value : params.value || [],
+                                          transport : params.transport || 'refresh',
+                                          type : params.type || 'option'
+                                    }
+                              );
+                              // assign the value sent from the server
+
+
+                              // console.log('registerDynamicModuleSettingControl => SETTING DATA ?', params.id, settingArgs);
+                              var SettingConstructor = api.settingConstructor[ settingArgs.type ] || api.Setting;
+                              try { api.add( new SettingConstructor( params.id, settingArgs.value, settingArgs ) ); } catch ( er ) {
+                                    api.errare( 'api.CZR_Helpers::register => problem when adding a setting to the api', er );
+                              }
+                        break;
+
+
+                        case 'panel' :
+                              // Check if we have a correct section
+                              if ( ! _.has( params, 'id' ) ){
+                                    throw new Error( 'registerPanel => missing panel id ');
+                              }
+
+                              if ( api.section.has( params.id ) ) {
+                                    //api.errare( 'registerPanel => ' + params.id + ' is already registered');
+                                    break;
+                              }
+
+                              defaults = $.extend( true, {}, api.Panel.prototype.defaults );
+                              var panelParams = _.extend(
+                                  defaults , {
+                                        id: params.id,
+                                        title: params.title || params.id,
+                                        priority: _.has( params, 'priority' ) ? params.priority : 0
+                                  }
+                              );
+
+                              var PanelConstructor = _.isObject( params.constructWith ) ? params.constructWith : api.Panel;
+                              panelParams = _.extend( { params: panelParams }, panelParams ); // Inclusion of params alias is for back-compat for custom panels that expect to augment this property.
+
+                              try { __element__ = api.panel.add( new PanelConstructor( params.id, panelParams ) ); } catch ( er ) {
+                                    api.errare( 'api.CZR_Helpers::register => problem when adding a panel to the api', er );
+                              }
+                        break;
+
+
+                        case 'section' :
+                              // MAYBE REGISTER THE SECTION
+                              // Check if we have a correct section
+                              if ( ! _.has( params, 'id' ) ){
+                                    throw new Error( 'registerSection => missing section id ');
+                              }
+
+                              if ( api.section.has( params.id ) ) {
+                                    //api.errare( 'registerSection => ' + params.id + ' is already registered');
+                                    break;
+                              }
+
+                              defaults = $.extend( true, {}, api.Section.prototype.defaults );
+                              var sectionParams = _.extend(
+                                  defaults, {
+                                        content : '',
+                                        id: params.id,
+                                        title: params.title,
+                                        panel: params.panel,
+                                        priority: params.priority,
+                                        description_hidden : false,
+                                        customizeAction: serverControlParams.i18n['Customizing']
+                                  }
+                              );
+
+                              var SectionConstructor = ! _.isUndefined( params.constructWith ) ? params.constructWith : api.Section;
+                              sectionParams = _.extend( { params: sectionParams }, sectionParams ); // Inclusion of params alias is for back-compat for custom panels that expect to augment this property.
+                              try { __element__ = api.section.add( new SectionConstructor( params.id, sectionParams ) ); } catch ( er ) {
+                                    api.errare( 'api.CZR_Helpers::register => problem when adding a section to the api', er );
+                              }
+                        break;
+
+
+                        case 'control' :
+                              if ( api.control.has( params.id ) ) {
+                                    //api.errorLog( 'registerControl => ' + params.id + ' is already registered');
+                                    break;
+                              }
+
+                              //console.log('PARAMS BEFORE REGISTERING A CONTROL => ', params);
+
+                              //@see api.settings.controls,
+                              defaults = $.extend( true, {}, api.Control.prototype.defaults );
+                              var controlArgs = _.extend(
+                                        defaults,
+                                        {
+                                              content : '',
+                                              label : params.label || params.id,
+                                              priority : params.priority,
+                                              section : params.section,
+                                              settings: params.settings,
+                                              type : params.type, //'czr_module',
+                                              module_type : params.module_type,
+                                              input_attrs : params.input_attrs,//<= can be used with the builtin "button" type control
+                                              sek_registration_params : params// <= used when refreshing a level for example
+                                        }
+                                  ),
+                                  ControlConstructor = api.controlConstructor[ controlArgs.type ] || api.Control,
+                                  options;
+
+                              options = _.extend( { params: controlArgs }, controlArgs ); // Inclusion of params alias is for back-compat for custom controls that expect to augment this property.
+                              try { __element__ = api.control.add( new ControlConstructor( params.id, options ) ); } catch ( er ) {
+                                    api.errare( 'api.CZR_Helpers::register => problem when adding a control to the api', er );
+                              }
+                        break;
+                        default :
+                              api.errorLog('invalid "what" when invoking the register() method');
+                        break;
+
+                  }//switch
+                  __element__ = ! _.isEmpty( __element__ ) ?  __element__ : { deferred : { embedded : $.Deferred( function() { this.resolve(); }) } };
+
+                  // this is where we populate the registered collection
+                  api.trigger( 'czr-new-registered', params );
+
+                  return 'setting' == params.what ? params : __element__.deferred.embedded;
+            },
+
+
+            //  @return void()
+            //  clean all registered control, section, panel tracked ids
+            //  preserve the settings
+            cleanRegistered : function( registered ) {
+                  api.infoLog( 'in CZR_Helpers => cleanRegistered', registered );
+                  var newRegistered = $.extend( true, [], registered || [] );
+
+                  newRegistered = _.filter( registered, function( _reg_ ) {
+                        if ( 'setting' !== _reg_.what ) {
+                              if ( api[ _reg_.what ].has( _reg_.id ) ) {
+                                    $.when( api[ _reg_.what ]( _reg_.id ).container.remove() ).done( function() {
+                                          // remove control, section, panel
+                                          api[ _reg_.what ].remove( _reg_.id );
+                                    });
+                              }
+                        }
+                        return _reg_.what === 'setting';
+                  });
+                  registered = newRegistered;
+            }
+
+      });//$.extend
+  // $( window ).on( 'message', function( e, o) {
+  //   api.consoleLog('WHAT ARE WE LISTENING TO?', e, o );
+  // });
+})( wp.customize , jQuery, _);
+(function (api, $, _) {
+api.CZR_Helpers = api.CZR_Helpers || {};
+//////////////////////////////////////////////////
+/// ACTIONS AND DOM LISTENERS
+//////////////////////////////////////////////////
+//adds action to an existing event map
+//@event map = [ {event1}, {event2}, ... ]
+//@new_event = {  trigger   : event name , actions   : [ 'cb1', 'cb2', ... ] }
+api.CZR_Helpers = $.extend( api.CZR_Helpers, {
       //While a control should always have a default setting,
       //It can have additional setting assigned
       //This method returns the default setting or the specified type if requested
@@ -852,145 +1247,6 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-      //This method is now statically accessed by item and modopt instances because it does the same job for both.
-      //=> It instantiates the inputs based on what it finds in the DOM ( item or mod opt js templates )
-      //
-      //Fired on 'contentRendered' for items and on user click for module options (mod opt)
-      //creates the inputs based on the rendered parent item or mod option
-      //inputParentInst can be an item instance or a module option instance
-      setupInputCollectionFromDOM : function() {
-            var inputParentInst = this;//<= because fired with .call( inputParentInst )
-            if ( ! _.isFunction( inputParentInst ) ) {
-                  throw new Error( 'setupInputCollectionFromDOM => inputParentInst is not valid.' );
-            }
-            var module = inputParentInst.module,
-                is_mod_opt = _.has( inputParentInst() , 'is_mod_opt' );
-
-            //bail if already done
-            //_.has( inputParentInst, 'czr_Input')
-            if ( ! _.isEmpty( inputParentInst.inputCollection() ) )
-              return;
-
-            //INPUTS => Setup as soon as the view content is rendered
-            //the inputParentInst is a collection of inputs, each one has its own view module.
-            inputParentInst.czr_Input = inputParentInst.czr_Input || new api.Values();
-
-            //IS THE PARENT AN ITEM OR A MODULE OPTION ?
-            //those default constructors (declared in the module init ) can be overridden by extended item or mod opt constructors inside the modules
-            inputParentInst.inputConstructor = is_mod_opt ? module.inputModOptConstructor : module.inputConstructor;
-
-            var _defaultInputParentModel = is_mod_opt ? inputParentInst.defaultModOptModel : inputParentInst.defaultItemModel;
-
-            if ( _.isEmpty( _defaultInputParentModel ) || _.isUndefined( _defaultInputParentModel ) ) {
-                  throw new Error( 'setupInputCollectionFromDOM => No default model found in item or mod opt ' + inputParentInst.id + '.' );
-            }
-
-            //prepare and sets the inputParentInst value on api ready
-            //=> triggers the module rendering + DOM LISTENERS
-            var inputParentInst_model = $.extend( true, {}, inputParentInst() );
-
-            if ( ! _.isObject( inputParentInst_model ) ) {
-                  inputParentInst_model = _defaultInputParentModel;
-            } else {
-                  inputParentInst_model = $.extend( _defaultInputParentModel, inputParentInst_model );
-            }
-
-            var dom_inputParentInst_model = {};
-
-            //creates the inputs based on the rendered item or mod opt
-            $( '.' + module.control.css_attr.sub_set_wrapper, inputParentInst.container).each( function( _index ) {
-                  var _id = $(this).find('[data-czrtype]').attr( 'data-czrtype' ),
-                      _value = _.has( inputParentInst_model, _id ) ? inputParentInst_model[ _id ] : '';
-
-                  //console.log('/// ID /// => ', _id );
-                  //skip if no valid input data-czrtype is found in this node
-                  if ( _.isUndefined( _id ) || _.isEmpty( _id ) ) {
-                        api.errare( 'setupInputCollectionFromDOM => missing data-czrtype id for input type ' + $(this).data( 'input-type' ) + ' in module ' + module.id + '. Check that the server input template is properly declared.' );
-                        return;
-                  }
-                  //check if this property exists in the current inputParentInst model
-                  if ( ! _.has( inputParentInst_model, _id ) ) {
-                        throw new Error('setupInputCollectionFromDOM => The item or mod opt property : ' + _id + ' has been found in the DOM but not in the item or mod opt model : '+ inputParentInst.id + '. The input can not be instantiated.');
-                  }
-
-                  //Do we have a specific set of options defined in the parent module for this inputConstructor ?
-                  var _inputType      = $(this).data( 'input-type' ),
-                      _inputTransport = $(this).data( 'transport' ) || 'inherit',//<= if no specific transport ( refresh or postMessage ) has been defined in the template, inherits the control transport
-                      _inputOptions   = _.has( module.inputOptions, _inputType ) ? module.inputOptions[ _inputType ] : {},
-                      _inputArgs = {
-                            id            : _id,
-                            type          : _inputType,
-                            transport     : _inputTransport,
-                            input_value   : _value,
-                            input_options : _inputOptions,//<= a module can define a specific set of option
-                            container     : $(this),
-                            input_parent  : inputParentInst,
-                            is_mod_opt    : is_mod_opt,
-                            module        : module
-                      };
-
-                  // introduced for Nimble
-                  // allows us to fine tune the ajax action on input change
-                  // the input constructor args, are stored in each input instance as input.constructorOptions @see Input::initialize()
-                  // the on input change, the constructor options are passed as params when setting the api.Value(to, from, params )
-                  // This can be used when listening to the associated setting of the parent module.
-                  if ( ! _.isUndefined( $(this).data( 'refresh-markup' ) ) ) {
-                        _inputArgs.refresh_markup = $(this).data( 'refresh-markup' );
-                  }
-                  if ( ! _.isUndefined( $(this).data( 'refresh-stylesheet' ) ) ) {
-                        _inputArgs.refresh_stylesheet = $(this).data( 'refresh-stylesheet' );
-                  }
-                  if ( ! _.isUndefined( $(this).data( 'refresh-fonts' ) ) ) {
-                        _inputArgs.refresh_fonts = $(this).data( 'refresh-fonts' );
-                  }
-
-                  // ALLOW PLUGINS TO FILTER THE INPUT ARGS BEFORE INSTANTIATION
-                  api.trigger( 'input-args-before-instantiation', _inputArgs );
-
-                  // INSTANTIATE THE INPUT
-                  inputParentInst.czr_Input.add( _id, new inputParentInst.inputConstructor( _id, _inputArgs ) );
-
-                  // FIRE THE INPUT
-                  // fires ready once the input Value() instance is initialized
-                  inputParentInst.czr_Input( _id ).ready();
-
-                  // POPULATES THE PARENT INPUT COLLECTION
-                  dom_inputParentInst_model[ _id ] = _value;
-                  // shall we trigger a specific event when the input collection from DOM has been populated ?
-            });//each
-
-            //stores the collection
-            inputParentInst.inputCollection( dom_inputParentInst_model );
-
-            //chain
-            return inputParentInst;
-      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       //@self explanatory: removes a collection of input from a parent item or modOpt instance
       //Triggered by : user actions usually when an item is collapsed or when the modOpt panel is closed
       removeInputCollection : function() {
@@ -1093,66 +1349,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                   compiled = compiled || _.template( html,  options );
                   return compiled( data );
             };
-      }),
-
-      // Fetches a module tmpl from the server if not yet cached
-      // {
-      //   tmpl : 'item-inputs',
-      //   module_type: module.module_type || 'all_modules',
-      //   module_id : ''
-      //   ... <= other custom args can be added dynamically here. Like the item_model when fetching the item content template
-      // }
-      // @return a promise()
-      getModuleTmpl : function( args ) {
-            var dfd = $.Deferred();
-            args = _.extend( {
-                  tmpl : '',
-                  module_type: '',
-                  module_id : '',
-                  cache : true,//<= shall we cache the tmpl or not. Should be true in almost all cases.
-                  nonce: api.settings.nonce.save//<= do we need to set a specific nonce to fetch the tmpls ?
-            }, args );
-
-            // are we good to go ?
-            if ( _.isEmpty( args.tmpl ) || _.isEmpty( args.module_type ) ) {
-                  dfd.reject( 'api.CZR_Helpers.getModuleTmpl => missing tmpl or module_type param' );
-            }
-
-            // This will be used to store the previously fetched template
-            // 1) the generic templates used for all_modules
-            // 2) each module templates : pre-item inputs, item inputs and mod options
-            api.CZR_Helpers.czr_cachedTmpl = api.CZR_Helpers.czr_cachedTmpl || {};
-            api.CZR_Helpers.czr_cachedTmpl[ args.module_type ] = api.CZR_Helpers.czr_cachedTmpl[ args.module_type ] || {};
-
-            // when cache is on, use the cached template
-            // Example of cache set to off => the skoped items templates are all different because based on the control type => we can't cache them
-            if ( true === args.cache && ! _.isEmpty( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) && _.isString( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) ) {
-                  //console.log('Cached => ', args.tmpl );
-                  dfd.resolve( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] );
-            } else {
-                  // if the tmpl is currently being fetched, return the temporary promise()
-                  // this can occurs when rendering a multi-item module for the first time
-                  // assigning the tmpl ajax request to the future cache entry allows us to fetch only once
-                  if ( _.isObject( api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] ) && 'pending' == api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ].state() ) {
-                        return api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ];//<= this is a $.promise()
-                  } else {
-                        //console.log('Needs to be fetched => ', args.tmpl );
-                        // First time fetch
-                        api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = wp.ajax.post( 'ac_get_template', args )
-                              .done( function( _serverTmpl_ ) {
-                                    // resolve and cache
-                                    dfd.resolve( _serverTmpl_ );
-                                    api.CZR_Helpers.czr_cachedTmpl[ args.module_type ][ args.tmpl ] = _serverTmpl_;
-                              }).fail( function( _r_ ) {
-                                    //console.log( 'api.CZR_Helpers.getModuleTmpl => ', _r_ );
-                                    api.errare( 'api.CZR_Helpers.getModuleTmpl => Problem when fetching the ' + args.tmpl + ' tmpl from server for module : ' + args.module_id + ' ' + args.module_type, _r_);
-                                    dfd.reject( _r_ );
-                              });
-                  }
-            }
-            return dfd.promise();
-      }
-
+      })
 });//$.extend
   // $( window ).on( 'message', function( e, o) {
   //   api.consoleLog('WHAT ARE WE LISTENING TO?', e, o );
@@ -1386,37 +1583,6 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
   *****************************************************************************/
   //Data are sent by the preview frame when the panel has sent the 'sync' or even better 'active' event
   api.bind( 'ready', function() {
-        //observe widget settings changes
-        api.previewer.bind('houston-widget-settings', function(data) {
-              //get the difference
-              var _candidates = _.filter( data.registeredSidebars, function( sb ) {
-                return ! _.findWhere( _wpCustomizeWidgetsSettings.registeredSidebars, { id: sb.id } );
-              });
-
-              var _inactives = _.filter( data.registeredSidebars, function( sb ) {
-                return ! _.has( data.renderedSidebars, sb.id );
-              });
-
-              _inactives = _.map( _inactives, function(obj) {
-                return obj.id;
-              });
-
-              var _registered = _.map( data.registeredSidebars, function(obj) {
-                return obj.id;
-              });
-
-              //stores and update the widget zone settings
-              api.czr_widgetZoneSettings = api.czr_widgetZoneSettings || new api.Value();//will store all widget zones data sent by preview as an observable object
-              api.czr_widgetZoneSettings.set( {
-                    actives :  data.renderedSidebars,
-                    inactives :  _inactives,
-                    registered :  _registered,
-                    candidates :  _candidates,
-                    available_locations :  data.availableWidgetLocations//built server side
-              } );
-
-        });
-
         /* WP CONDITIONAL TAGS => stores and observes the WP conditional tags sent by the preview */
         api.previewer.bind( 'czr-query-data-ready', function( data ) {
               api.czr_wpQueryInfos = api.czr_wpQueryInfos || new api.Value();
@@ -2329,13 +2495,26 @@ $.extend( CZRInputMths , {
             }
 
             // This event is triggered from sektions::setupTinyMceEditor()
-            input.input_parent.control.bind( 'tinyMceEditorUpdated', function() {
+            // @params = {
+            //    input_id : '',
+            //    html_content : '',
+            //    modified_editor_element : ''//<= can be the visual / text editor tab
+            // }
+            // Note : this event is trigger when the visual AND the text tab of the editor are modified.
+            // This means that the modified_editor_element can be different if it is the visual editor ( or the text html editor <textarea> element
+            // @see sektions::setupTinyMceEditor()
+            input.input_parent.control.bind( 'tinyMceEditorUpdated', function( params ) {
                   //console.log('in input => tinyMceEditorUpdated ', api.sekEditorSynchronizedInput(), input.input_parent.control.id );
-                  //console.log('/// api.sekEditorSynchronizedInput', api.sekEditorSynchronizedInput );
+                  //console.log('/// api.sekEditorSynchronizedInput', params );
                   if ( api.sekEditorSynchronizedInput().control_id != input.input_parent.control.id || api.sekEditorSynchronizedInput().input_id != input.id )
                     return;
-                  input( wp.editor.removep( api.sekTinyMceEditor.getContent() ) );
-                  api.sekTinyMceEditor.focus();
+                  input( wp.editor.removep( params.html_content || api.sekTinyMceEditor.getContent() ) );
+                  if ( params.modified_editor_element && params.modified_editor_element.length > 0 ) {
+                        params.modified_editor_element.focus();
+                  } else {
+                        api.sekTinyMceEditor.focus();
+                  }
+
             });
 
       },//setupTextEditor
@@ -2723,11 +2902,12 @@ $.extend( CZRItemMths , {
             module.itemsWrapper.append( $_view_el );
 
             if ( module.isMultiItem() ) {
+                  var _template_selector;
                   // Do we have view content template script?
                   // if yes, let's use it <= Old way
                   // Otherwise let's fetch the html template from the server
                   if ( ! _.isEmpty( module.rudItemPart ) ) {
-                        var _template_selector = module.getTemplateSelectorPart( 'rudItemPart', item_model_for_template_injection );
+                        _template_selector = module.getTemplateSelectorPart( 'rudItemPart', item_model_for_template_injection );
                         //do we have view template script?
                         if ( 1 > $( '#tmpl-' + _template_selector ).length ) {
                             dfd.reject( 'Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + _template_selector );
@@ -2744,15 +2924,27 @@ $.extend( CZRItemMths , {
                         };
                         item.trigger( 'item-wrapper-tmpl-params-before-fetching', requestParams );
 
-                        api.CZR_Helpers.getModuleTmpl( requestParams ).done( function( _serverTmpl_ ) {
-                              //console.log( 'renderItemWrapper => success response =>', module.id, _serverTmpl_);
-                              appendAndResolve( api.CZR_Helpers.parseTemplate( _serverTmpl_ )( {} ) );
-                        }).fail( function( _r_ ) {
-                              //console.log( 'renderItemWrapper => fail response =>', _r_);
-                              dfd.reject( 'renderItemWrapper => Problem when fetching the rud-item-part tmpl from server for module : '+ module.id );
-                        });
+                        // Let's check if the filtered requested params can find a match of a printed tmpl of the module
+                        // this filter 'item-wrapper-tmpl-params-before-fetching', is used in the widget zone module of the Hueman theme (june 2018 )
+                        // it allows us to assign a specific template for the built-in widget zones
+                        if ( ! _.isEmpty( module[ requestParams.tmpl ] ) ) {
+                              _template_selector = module.getTemplateSelectorPart( requestParams.tmpl, item_model_for_template_injection );
+                              //do we have view template script?
+                              if ( 1 > $( '#tmpl-' + _template_selector ).length ) {
+                                  dfd.reject( 'Missing template for item ' + item.id + '. The provided template script has no been found : #tmpl-' + _template_selector );
+                              }
+                              appendAndResolve( wp.template( _template_selector )( item_model_for_template_injection ) );
+                        } else {
+                              api.CZR_Helpers.getModuleTmpl( requestParams ).done( function( _serverTmpl_ ) {
+                                    //console.log( 'renderItemWrapper => success response =>', module.id, _serverTmpl_);
+                                    appendAndResolve( api.CZR_Helpers.parseTemplate( _serverTmpl_ )( {} ) );
+                              }).fail( function( _r_ ) {
+                                    //console.log( 'renderItemWrapper => fail response =>', _r_);
+                                    dfd.reject( 'renderItemWrapper => Problem when fetching the rud-item-part tmpl from server for module : '+ module.id );
+                              });
+                        }
                   }
-            } else {
+            } else {//if ( module.isMultiItem() ) {}
                   appendAndResolve();
             }
 
@@ -2974,8 +3166,10 @@ $.extend( CZRItemMths , {
                   var tmplSelectorSuffix = module.getTemplateSelectorPart( 'itemInputList', item_model_for_template_injection );
                   if ( 1 > $( '#tmpl-' + tmplSelectorSuffix ).length ) {
                         dfd.reject( 'renderItemContent => No itemInputList content template defined for module ' + module.id + '. The template script id should be : #tmpl-' + tmplSelectorSuffix );
+                  } else {
+                        appendAndResolve( wp.template( tmplSelectorSuffix )( item_model_for_template_injection ) );
                   }
-                  appendAndResolve( wp.template( tmplSelectorSuffix )( item_model_for_template_injection ) );
+
             } else {
                   var requestParams = {
                         tmpl : 'item-inputs',
@@ -3913,6 +4107,10 @@ $.extend( CZRModuleMths, {
 
               //INSTANTIATE THE ITEMS
               _.each( _deepCopyOfItemCollection, function( item_candidate , key ) {
+                    if ( ! _.isObject( item_candidate ) ) {
+                          api.errare( 'populateSavedItemCollection => an item should be described by an object in module type : ' + module.module_type, 'module id : '  + module.id );
+                          return;
+                    }
                     //adds it to the collection and fire item.ready()
                     if ( serverControlParams.isDevMode ) {
                           module.instantiateItem( item_candidate ).ready();
@@ -3925,6 +4123,9 @@ $.extend( CZRModuleMths, {
 
               //check if everything went well
               _.each( _deepCopyOfItemCollection, function( _item ) {
+                    if ( ! _.isObject( _item ) ) {
+                          return;
+                    }
                     if ( _.isUndefined( _.findWhere( module.itemCollection(), _item.id ) ) ) {
                           throw new Error( 'populateSavedItemCollection : The saved items have not been properly populated in module : ' + module.id );
                     }
@@ -4362,7 +4563,7 @@ $.extend( CZRModuleMths, {
                               //console.log( 'renderModuleParts => success response =>', module.id, _serverTmpl_);
                               appendAndResolve( api.CZR_Helpers.parseTemplate( _serverTmpl_ )( {} ) );
                         }).fail( function( _r_ ) {
-                              //console.log( 'renderModuleParts => fail response =>', _r_);
+                              api.errare( 'renderModuleParts => fail response =>', _r_);
                               dfd.reject( 'renderModuleParts => Problem when fetching the crud-module-part tmpl from server for module : '+ module.id );
                         });
                   }
