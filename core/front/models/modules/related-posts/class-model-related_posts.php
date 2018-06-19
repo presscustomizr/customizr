@@ -24,6 +24,12 @@ class CZR_related_posts_model_class extends CZR_model {
   */
   function czr_fn_setup_late_properties() {
     $this -> czr_fn_setup_query();
+
+    //do nothing if no custom query has been created, e.g. display related posts by tag and current post with no tags
+    if ( ! $this->query ) {
+      return;
+    }
+
     $this -> czr_fn_setup_text_hooks();
     //we don't display author metas hence we force the hentry class removal for this model
     //this filter is documented in core/init-base.php
@@ -35,6 +41,11 @@ class CZR_related_posts_model_class extends CZR_model {
   * @hook: post_rendering_view_{$this -> id}, 9999
   */
   function czr_fn_reset_late_properties() {
+    //do nothing if no custom query has been created, e.g. display related posts by tag and current post with no tags
+    if ( ! $this->query ) {
+      return;
+    }
+
     //all post lists do this
     $this -> czr_fn_reset_text_hooks();
     $this -> czr_fn_reset_query();
@@ -122,8 +133,12 @@ class CZR_related_posts_model_class extends CZR_model {
       if ( !$tags ) { $break = true; }
     }
 
-    if ( isset($break) || empty( $args ) )
+    if ( isset($break) ){
+      //if there are no tags set this visibility to false and skip new query generation
+      //fixes https://github.com/presscustomizr/customizr/issues/1549
+      $this->visibility = false;
       return;
+    }
 
     $wp_query = new WP_Query( $args );
 
