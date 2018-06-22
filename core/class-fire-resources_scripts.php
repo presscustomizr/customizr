@@ -298,7 +298,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               if ( ! czr_fn_is_pro() && czr_fn_user_started_with_current_version() ) {
                   $is_welcome_note_on = apply_filters(
                       'czr_is_welcome_front_notification_on',
-                      czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem() && 'dismissed' != get_transient( 'czr_welcome_note_status' )
+                      false
+                      //czr_fn_user_can_see_customize_notices_on_front() && ! czr_fn_is_customizing() && ! czr_fn_isprevdem() && 'dismissed' != get_transient( 'czr_welcome_note_status' )
                   );
                   if ( $is_welcome_note_on ) {
                       $welcome_note_content =  $this -> czr_fn_get_welcome_note_content();
