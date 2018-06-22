@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.8 June 22nd 2018 =
+* Impr : compliancy with the latests WordPress.org rules for the themes : the demo content in previewer should be disabled. Featured pages and slider should be opted-in by users and not enabled by default.
+
 = 4.1.7 June 19th 2018 =
 * Fix: do not wrap ol item counters. fixes #1551
 * Fix: improve scoping of the link underline effect only to widgets we know. fixes #1544

@@ -45,13 +45,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 // };
 //var api = api || wp.customize, $ = $ || jQuery;
 ( function ( api, $, _ ) {
-      //The api.czr_skopeReady is used by some modules like the slider to fire actions
-      //if skope is disabled, we need to resolve it now.
-      api.czr_skopeReady = $.Deferred();
-      if ( _.isUndefined( serverControlParams.isSkopOn ) || ! serverControlParams.isSkopOn ) {
-            api.czr_skopeReady.resolve();
-      }
-
       //@return [] for console method
       //@bgCol @textCol are hex colors
       //@arguments : the original console arguments
@@ -123,10 +116,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 
       api.errare = function( title, msg ) { _wrapLogInsideTags( title, msg, '#ffd5a0' ); };
       api.infoLog = function( title, msg ) { _wrapLogInsideTags( title, msg, '#5ed1f5' ); };
-
-      api.czr_isSkopOn = function() {
-            return ! _.isUndefined ( serverControlParams.isSkopOn ) && serverControlParams.isSkopOn && _.has( api, 'czr_skopeBase' );
-      };
 
       api.czr_isChangeSetOn = function() {
             return serverControlParams.isChangeSetOn && true === true;//&& true === true is just there to hackily cast the returned value as boolean.
@@ -389,8 +378,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       };//registerDynamicModuleSettingControl
 })( wp.customize , jQuery, _);
 ( function ( api, $, _ ) {
-      // if ( ! serverControlParams.isSkopOn )
-      //   return;
       /*****************************************************************************
       * A "CONTEXT AWARE" SET METHD
       *****************************************************************************/
@@ -494,7 +481,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
       * , this is typically used in the overridden api.Setting.preview method
       *****************************************************************************/
       //@param to : the new value to set
-      //@param dirtyness : the current dirtyness status of this setting in the skope
+      //@param dirtyness : the current dirtyness status of this setting
       //
       api.Setting.prototype.silent_set =function( to, dirtyness ) {
             var from = this._value,
@@ -550,10 +537,6 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 
             transport = setting.transport;
 
-            if ( serverControlParams.isSkopOn && api.czr_isPreviewerSkopeAware && 'pending' == api.czr_isPreviewerSkopeAware.state() ) {
-                  this.previewer.refresh();
-                  return dfd.resolve( arguments ).promise();
-            }
             //as soon as the previewer is setup, let's behave as usual
             //=> but don't refresh when silently updating
 
@@ -615,15 +598,8 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
                   dfd.resolve( arguments );
 
             } else if ( 'refresh' === transport ) {
-                  //the refresh() method only returns a promise when skope is on
-                  if ( serverControlParams.isSkopOn ) {
-                        setting.previewer.refresh().always( function() {
-                              dfd.resolve( arguments );
-                        });
-                  } else {
-                        setting.previewer.refresh();
-                        dfd.resolve( arguments );
-                  }
+                  setting.previewer.refresh();
+                  dfd.resolve( arguments );
             }
 
             return dfd.promise();
@@ -710,6 +686,10 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
             }
 
             var dom_inputParentInst_model = {};
+
+            if ( $( '.' + module.control.css_attr.sub_set_wrapper, inputParentInst.container).length < 1 ) {
+                  api.errare( 'setupInputCollectionFromDOM => no input elements found in the DOM' );
+            }
 
             //creates the inputs based on the rendered item or mod opt
             $( '.' + module.control.css_attr.sub_set_wrapper, inputParentInst.container).each( function( _index ) {
@@ -898,6 +878,12 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
 
                               // console.log('registerDynamicModuleSettingControl => SETTING DATA ?', params.id, settingArgs);
                               var SettingConstructor = api.settingConstructor[ settingArgs.type ] || api.Setting;
+
+                              // extend with specific additional options provided on registration
+                              if ( _.isObject( params.options ) ) {
+                                    settingArgs  = _.extend( settingArgs , params.options );
+                              }
+
                               try { api.add( new SettingConstructor( params.id, settingArgs.value, settingArgs ) ); } catch ( er ) {
                                     api.errare( 'api.CZR_Helpers::register => problem when adding a setting to the api', er );
                               }
@@ -910,7 +896,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                                     throw new Error( 'registerPanel => missing panel id ');
                               }
 
-                              if ( api.section.has( params.id ) ) {
+                              if ( api.panel.has( params.id ) ) {
                                     //api.errare( 'registerPanel => ' + params.id + ' is already registered');
                                     break;
                               }
@@ -925,6 +911,11 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                               );
 
                               var PanelConstructor = _.isObject( params.constructWith ) ? params.constructWith : api.Panel;
+
+                              // extend with specific additional options provided on registration
+                              if ( _.isObject( params.options ) ) {
+                                    panelParams  = _.extend( panelParams , params.options );
+                              }
                               panelParams = _.extend( { params: panelParams }, panelParams ); // Inclusion of params alias is for back-compat for custom panels that expect to augment this property.
 
                               try { __element__ = api.panel.add( new PanelConstructor( params.id, panelParams ) ); } catch ( er ) {
@@ -959,6 +950,12 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                               );
 
                               var SectionConstructor = ! _.isUndefined( params.constructWith ) ? params.constructWith : api.Section;
+
+                              // extend with specific additional options provided on registration
+                              if ( _.isObject( params.options ) ) {
+                                    sectionParams  = _.extend( sectionParams , params.options );
+                              }
+
                               sectionParams = _.extend( { params: sectionParams }, sectionParams ); // Inclusion of params alias is for back-compat for custom panels that expect to augment this property.
                               try { __element__ = api.section.add( new SectionConstructor( params.id, sectionParams ) ); } catch ( er ) {
                                     api.errare( 'api.CZR_Helpers::register => problem when adding a section to the api', er );
@@ -993,7 +990,13 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                                   ControlConstructor = api.controlConstructor[ controlArgs.type ] || api.Control,
                                   options;
 
+                              // extend with specific additional options provided on registration
+                              if ( _.isObject( params.options ) ) {
+                                    controlArgs = _.extend( controlArgs, params.options );
+                              }
+
                               options = _.extend( { params: controlArgs }, controlArgs ); // Inclusion of params alias is for back-compat for custom controls that expect to augment this property.
+
                               try { __element__ = api.control.add( new ControlConstructor( params.id, options ) ); } catch ( er ) {
                                     api.errare( 'api.CZR_Helpers::register => problem when adding a control to the api', er );
                               }
@@ -1009,30 +1012,7 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
                   api.trigger( 'czr-new-registered', params );
 
                   return 'setting' == params.what ? params : __element__.deferred.embedded;
-            },
-
-
-            //  @return void()
-            //  clean all registered control, section, panel tracked ids
-            //  preserve the settings
-            cleanRegistered : function( registered ) {
-                  api.infoLog( 'in CZR_Helpers => cleanRegistered', registered );
-                  var newRegistered = $.extend( true, [], registered || [] );
-
-                  newRegistered = _.filter( registered, function( _reg_ ) {
-                        if ( 'setting' !== _reg_.what ) {
-                              if ( api[ _reg_.what ].has( _reg_.id ) ) {
-                                    $.when( api[ _reg_.what ]( _reg_.id ).container.remove() ).done( function() {
-                                          // remove control, section, panel
-                                          api[ _reg_.what ].remove( _reg_.id );
-                                    });
-                              }
-                        }
-                        return _reg_.what === 'setting';
-                  });
-                  registered = newRegistered;
             }
-
       });//$.extend
   // $( window ).on( 'message', function( e, o) {
   //   api.consoleLog('WHAT ARE WE LISTENING TO?', e, o );
@@ -1581,17 +1561,17 @@ api.CZR_Helpers = $.extend( api.CZR_Helpers, {
   /*****************************************************************************
   * CAPTURE PREVIEW INFORMATIONS ON REFRESH + REACT TO THEM
   *****************************************************************************/
+  //This promise will let us know when we have the first set of preview query ready to use
+  //This is needed for modules contextually dependant
+  //For example, the slider module will initialize the module model based on the contextual informations, if no items have been set yet.
+  api.czr_wpQueryDataReady = api.czr_wpQueryDataReady || $.Deferred();
+
   //Data are sent by the preview frame when the panel has sent the 'sync' or even better 'active' event
   api.bind( 'ready', function() {
         /* WP CONDITIONAL TAGS => stores and observes the WP conditional tags sent by the preview */
         api.previewer.bind( 'czr-query-data-ready', function( data ) {
               api.czr_wpQueryInfos = api.czr_wpQueryInfos || new api.Value();
               api.czr_wpQueryInfos( data );
-
-              //This promise will let us know when we have the first set of preview query ready to use
-              //This is needed for modules contextually dependant
-              //For example, the slider module will initialize the module model based on the contextual informations, if no items have been set yet.
-              api.czr_wpQueryDataReady = api.czr_wpQueryDataReady || $.Deferred();
 
               if ( 'pending' == api.czr_wpQueryDataReady.state() ) {
                     api.czr_wpQueryDataReady.resolve( data );
@@ -1945,7 +1925,8 @@ $.extend( CZRInputMths , {
           var input = this,
               $handle,
               _updateHandle = function(el, val) {
-                    el.textContent = val + input.container.find('input').data( 'unit' );
+                    var _unit = input.container.find('input').data( 'unit' );
+                    el.textContent = val + ( _.isEmpty( input.container.find('input').data( 'unit' ) ) ? '' : _unit );
               };
 
           $( input.container ).find('input').rangeslider( {
@@ -2821,6 +2802,7 @@ $.extend( CZRItemMths , {
                   api.previewer.refresh();
             } else {
                   module.trigger( 'item-removed', _item_ );
+                  module.control.trigger( 'item-removed', _item_ );
             }
 
       },
@@ -3455,8 +3437,10 @@ $.extend( CZRModOptMths , {
                                           selector  : '.tabs nav li',
                                           name      : 'tab_nav',
                                           actions   : function( args ) {
-                                                //toggleTabVisibility is defined in the module ctor and its this is the item or the modOpt
-                                                this.module.toggleTabVisibility.call( this, args );
+                                                //toggleTabVisibility is declared in the module ctor and its "this" is the item or the modOpt
+                                                var tabIdSwitchedTo = $( args.dom_event.currentTarget, args.dom_el ).attr('data-tab-id');
+                                                this.module.toggleTabVisibility.call( this, tabIdSwitchedTo );
+                                                this.trigger( 'tab-switch', { id : tabIdSwitchedTo } );
                                           }
                                     }
                               ],//actions to execute
@@ -3675,7 +3659,7 @@ $.extend( CZRModuleMths, {
             module.defaultModOptModel = {};
 
             //define a default Constructors
-            module.modOptConstructor = api.CZRModOpt;
+            module.modOptConstructor = module.modOptConstructor || api.CZRModOpt;
 
             /*-----------------------------------------------
             * ITEMS
@@ -3708,7 +3692,8 @@ $.extend( CZRModuleMths, {
             // input constuctor : use the constructor already defined in a module, or fallback on the default one
             module.inputConstructor = module.inputConstructor || api.CZRInput;//constructor for the items input
             if ( module.hasModOpt() ) {
-                  module.inputModOptConstructor = api.CZRInput;//constructor for the modOpt input
+                  //use the constructor already defined in a module, or fallback on the default one
+                  module.inputModOptConstructor = module.inputModOptConstructor || api.CZRInput;//constructor for the modOpt input
             }
             module.inputOptions = {};//<= can be set by each module specifically
             //For example, if I need specific options for the content_picker, this is where I will set them in the module extended object
