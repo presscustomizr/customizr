@@ -1097,7 +1097,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
 
           //select slider
           'tc_front_slider' => array(
-                            'default'     => 'tc_posts_slider' ,
+                            'default'     => CZR_IS_PRO || czr_fn_user_started_before_version( '4.1.8' , '2.0.0', 'free' ) ? 'tc_posts_slider' : '0',
                             'control'     => 'CZR_controls' ,
                             'title'       => __( 'Slider options' , 'customizr' ),
                             'label'       => __( 'Select front page slider' , 'customizr' ),
@@ -1257,7 +1257,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
 
           //Front page widget area
           'tc_show_featured_pages'  => array(
-                            'default'       => 1,
+                            'default'     => CZR_IS_PRO || czr_fn_user_started_before_version( '4.1.8' , '2.0.0', 'free' ) ? 1 : 0,
                             'control'   => 'CZR_controls' ,
                             'title'       => __( 'Featured pages options' , 'customizr' ),
                             'label'       => __( 'Display home featured pages area' , 'customizr' ),
