@@ -1075,7 +1075,8 @@ function czr_fn_load_social_links_module() {
                 'default'  => array(),
                 'transport' => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                 'sanitize_callback' => 'czr_fn_sanitize_callback__czr_social_module',
-                'validate_callback' => 'czr_fn_validate_callback__czr_social_module'
+                // we only sanitize for now, to avoid : https://github.com/presscustomizr/social-links-modules/issues/1
+                'validate_callback' => ''//czr_fn_validate_callback__czr_social_module'
             ),
 
             'section' => array(
