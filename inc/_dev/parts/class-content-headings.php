@@ -365,7 +365,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
 
                   apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
 
-                  sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><p>%5$s</p></div>',
+                  sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><div>%5$s</div></div>',
                       apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
                       get_avatar( get_the_author_meta( 'user_email', $user_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) ),
                       apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),

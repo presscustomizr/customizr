@@ -91,8 +91,8 @@ class CZR_archive_heading_model_class extends CZR_Model {
       return '';
 
     switch ( $context ) {
-      case 'author'         : return sprintf( '<span class="author-avatar">%1$s</span><p class="author-bio">%2$s</p>',
-                                        get_avatar( get_the_author_meta( 'user_email' ), 60 ) , get_the_author_meta( 'description' ) );
+      case 'author'         : return sprintf( '<span class="author-avatar">%1$s</span><div class="author-bio">%2$s</div>',
+                                        get_avatar( get_the_author_meta( 'user_email' ), 60 ) , apply_filters( 'the_author_description', get_the_author_meta( 'description' ) ) );
       case 'category'       : return category_description();
       case 'tag'            : return tag_description();
       case 'tax'            : return get_the_archive_description();

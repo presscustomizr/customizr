@@ -31,7 +31,7 @@
   .featurette-divider {
     margin-top: 1.8*$base-line-height;
   }
-  .author-bio {
+  .author-bio p:last-child{
     margin-bottom: 0;
   }
 }
@@ -374,7 +374,7 @@ section[class^="post-"] {
           text-align: left;
           margin-left: 120px;
         }
-        p {
+        .post-author-description {
           color: $grey-dark;
         }
         //@media (max-width: 992px)
