@@ -23,6 +23,10 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.9 July 17th 2018 =
+* Imp: make sure the_author_description filter hook is fired. fixes #1561
+* Fix: make sure to respect the threaded comments wp setting. fixes #1563
+
 = 4.1.8 June 22nd 2018 =
 * Impr : compliancy with the latests WordPress.org rules for the themes : the demo content in previewer should be disabled. Featured pages and slider should be opted-in by users and not enabled by default.
 

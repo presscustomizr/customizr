@@ -515,7 +515,9 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'     , array( $this, 'czr_fn_fix_wp_footer_link_style') );
       //knowledgebase
-      add_action( 'current_screen'         , array( $this , 'czr_schedule_welcome_page_actions') );
+      if ( CZR_IS_PRO ) {
+          add_action( 'current_screen'         , array( $this , 'czr_schedule_welcome_page_actions') );
+      }
     }
 
 

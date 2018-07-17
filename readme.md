@@ -1,4 +1,4 @@
-# Customizr v4.1.8 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.9 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,10 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.9 July 17th 2018 =
+* Imp: make sure the_author_description filter hook is fired. fixes #1561
+* Fix: make sure to respect the threaded comments wp setting. fixes #156
+
 = 4.1.8 June 22nd 2018 =
 * Impr : compliancy with the latests WordPress.org rules for the themes : the demo content in previewer should be disabled. Featured pages and slider should be opted-in by users and not enabled by default.
 

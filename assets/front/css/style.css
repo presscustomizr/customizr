@@ -8188,7 +8188,7 @@ a.czr-format-link {
   margin-top: 2.25em;
 }
 
-.archive-header .author-bio {
+.archive-header .author-bio p:last-child {
   margin-bottom: 0;
 }
 
@@ -8549,7 +8549,7 @@ section[class^="post-"] .entry-meta {
   margin-left: 120px;
 }
 
-.post-author__wrapper figure figcaption p {
+.post-author__wrapper figure figcaption .post-author-description {
   color: #777;
 }
 

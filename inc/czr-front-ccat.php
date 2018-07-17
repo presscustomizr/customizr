@@ -4223,7 +4223,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
 
                   apply_filters( 'tc_author_meta_wrapper_class', 'row-fluid' ),
 
-                  sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><p>%5$s</p></div>',
+                  sprintf('<div class="%1$s">%2$s</div><div class="%3$s"><h2>%4$s</h2><div>%5$s</div></div>',
                       apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
                       get_avatar( get_the_author_meta( 'user_email', $user_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) ),
                       apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
@@ -4841,10 +4841,10 @@ if ( ! class_exists( 'CZR_post' ) ) :
                                     apply_filters( 'tc_author_meta_avatar_class', 'comment-avatar author-avatar span2'),
                                     get_avatar( get_the_author_meta( 'user_email', $author_id ), apply_filters( 'tc_author_bio_avatar_size' , 100 ) )
                             ),
-                            sprintf('<div class="%1$s"><h3>%2$s</h3><p>%3$s</p><div class="author-link">%4$s</div></div>',
+                            sprintf('<div class="%1$s"><h3>%2$s</h3><div>%3$s</div><div class="author-link">%4$s</div></div>',
                                     apply_filters( 'tc_author_meta_content_class', 'author-description span10' ),
                                     sprintf( __( 'About %s' , 'customizr' ), $author_name ),
-                                    get_the_author_meta( 'description', $author_id ),
+                                    apply_filters( 'the_author_description', get_the_author_meta( 'description', $author_id ) ),
                                     sprintf( '<a href="%1$s" rel="author">%2$s</a>',
                                       esc_url( get_author_posts_url( $author_id ) ),
                                       sprintf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>' , 'customizr' ), $author_name )
