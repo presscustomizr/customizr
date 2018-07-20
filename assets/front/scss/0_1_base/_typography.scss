@@ -116,7 +116,7 @@ $ms-range:
   0.833   20em,
   1  60em;
 
-blockquote p {
+blockquote > * {
   font-family: $baseFont;
 }
 

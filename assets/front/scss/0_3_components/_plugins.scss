@@ -294,11 +294,8 @@
     border-color: #fff !important;
   }
 }
-//when in #content reset fpc-containet padding and its row child margin for a better alignment
+//when in #content reset fpc-containet padding and tune margin-bottom for a better alignment
 #content[class*=col-] > .fpc-container {
   padding: 0;
-  margin: 0 -15px;
-  > row {
-    margin: 0;
-  }
+  margin-bottom: 3em;
 }

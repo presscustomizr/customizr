@@ -717,7 +717,7 @@ a.czr-format-link {
     &::before { content: none }
   }
   .entry-link a,
-  .entry-quote p {
+  .entry-quote > * {
     margin-left: 0; margin-bottom: 0; padding-left: 0; width: auto; max-width: 100%;
   }
 }
