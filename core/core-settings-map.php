@@ -182,7 +182,7 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
           ),
           'tc_title_next_logo'  => array(
                             'default'   =>  czr_fn_user_started_before_version( '4.1.10' , '2.1.7') ? 0 : 1,
-                            'label'     =>  __( 'Display title next to the logo (if any)' , 'customizr' ),
+                            'label'     =>  __( 'Display the site title next to the logo' , 'customizr' ),
                             'control'   =>  'CZR_controls' ,
                             'section'   =>  'title_tagline' ,
                             'type'        => 'checkbox' ,
