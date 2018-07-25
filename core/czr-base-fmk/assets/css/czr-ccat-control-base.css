@@ -231,7 +231,9 @@ li#customize-control-custom_css textarea {
 	line-height: 19px;
 }
 .customize-control span.customize-control-title:first-child {
-    position: relative;
+  position: relative;
+  padding: 10px 0px 5px;
+  margin-left: 14px;
 }
 
 /* since v4.3 */
@@ -609,15 +611,15 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   margin-bottom: 10px;
 }
 
-/* HOME BUTTON */
+/* HEADER => HOME AND ADD MODULE BUTTON */
 #customize-header-actions .customize-controls-close {
   left: 45px;
 }
 
-.customize-controls-home, .customize-controls-close {
+.customize-controls-home-or-add, .customize-controls-close {
   top: -1px;
 }
-.customize-controls-home {
+.customize-controls-home-or-add {
     display: block;
     position: absolute;
     left: 0;
@@ -639,15 +641,21 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
+/* for the Nimble button */
+.customize-controls-home-or-add > .material-icons {
+  line-height: 39px;
+  text-align: center;
+  display: block;
+}
 
-.customize-controls-home:before {
+.customize-controls-home-or-add:before {
     font-size: 17px;
     line-height:45px;
     position: relative;
     top: -4px;
     left: 15px;
 }
-.customize-controls-home:hover {
+.customize-controls-home-or-add:hover {
     background: #fff;
     color: #0073aa;
     border-top-color: #0073aa;
@@ -660,12 +668,15 @@ li#customize-control-tc_theme_options-tc_custom_css textarea {
   right: 45px;
   left: auto;
 }
-.rtl.wp-customizer .customize-controls-home {
+.rtl.wp-customizer .customize-controls-home-or-add {
   left: auto;
   right: 0;
   border-right: 0;
   border-left: 1px solid #ddd;
 }
+
+
+
 
 /* HEADER MENU NOTICE */
 .control-panel-content .hu-menu-notice {
@@ -2465,8 +2476,8 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
 
 
 
-/* GUTENCHECK */
-/* Inspired from the Gutenberg plugin checkbox. @see here : https://github.com/WordPress/gutenberg */
+/* This custom checkbox input is inspired from the one used in the Gutenberg plugin ( https://github.com/WordPress/gutenberg ), released under GNU General Public License
+credits : Gutenberg team @wordpress */
 .czr-toggle-check {
   position: relative;
       float: right;

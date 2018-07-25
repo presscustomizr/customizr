@@ -574,7 +574,9 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 'css_identifier' => '',//<= the identifier allowing us to map a css generation rule. @see \Nimble\sek_add_css_rules_for_css_sniffed_input_id
                 'important_input_list' => array(),//<= the list of input_id that an important input can flag !important @see \Nimble\sek_add_css_rules_for_css_sniffed_input_id
 
-                'choices' => array() // <= used to declare the option list of a select input
+                'choices' => array(), // <= used to declare the option list of a select input
+
+                'has_device_switcher' => false // <= indicates if the input value shall be saved by device or not
             );
             foreach( $tmpl_map as $input_id => $input_data ) {
                 if ( ! is_string( $input_id ) || empty( $input_id ) ) {
@@ -769,7 +771,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                           <#
                             var _checked = ( false != data['<?php echo $input_id; ?>'] ) ? "checked=checked" : '';
                           #>
-                          <span class="czr-toggle-check"><input class="czr-toggle-check__input" id="pending-toggle-0" data-czrtype="<?php echo $input_id; ?>" type="checkbox" {{ _checked }}><span class="czr-toggle-check__track"></span><span class="czr-toggle-check__thumb"></span></span>
+                          <span class="czr-toggle-check"><input class="czr-toggle-check__input" data-czrtype="<?php echo $input_id; ?>" type="checkbox" {{ _checked }}><span class="czr-toggle-check__track"></span><span class="czr-toggle-check__thumb"></span></span>
                         <?php
                     break;
 
@@ -809,6 +811,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                      *  RANGE
                     /* ------------------------------------------------------------------------- */
                     case 'range_slider' :
+                    case 'range' :
                       ?>
                         <# //console.log( 'IN php::ac_get_default_input_tmpl() => data range_slide => ', data ); #>
                         <?php

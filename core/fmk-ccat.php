@@ -1152,11 +1152,14 @@ if ( ! class_exists( 'CZR_controllers' ) ) :
 
               'topbar_wrapper',
 
-              'title',
+              'title_alone',
+              'title_next_logo',
               'logo_wrapper',
               'logo',
 
               'topbar_tagline',
+              'branding_tagline_aside',
+              'branding_tagline_below',
               'branding_tagline',
               'mobile_tagline',
 

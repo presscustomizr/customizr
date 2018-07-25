@@ -2159,6 +2159,15 @@ class CZR_utils_settings_map {
                   return $_map;
             }
 
+            //to unset
+            $_to_unset = array(
+                  'tc_title_next_logo',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
             global $wp_version;
 
             $_to_add = array(
