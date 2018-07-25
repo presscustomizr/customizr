@@ -5,13 +5,22 @@
 ?>
 <div class="branding__container justify-content-between align-items-center <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <div class="branding flex-column">
-    <?php
-      if ( czr_fn_is_registered_or_possible('logo_wrapper') ){
-          czr_fn_render_template( 'header/parts/logo_wrapper' );
-      } else {
+    <div class="branding-row d-flex align-self-start flex-row align-items-center">
+      <?php
+        if ( czr_fn_is_registered_or_possible('logo_wrapper') ){
+            czr_fn_render_template( 'header/parts/logo_wrapper' );
+        } else if ( czr_fn_is_registered_or_possible('title_alone') ) {
           czr_fn_render_template( 'header/parts/title' );
-      }
-
+        }
+        if ( czr_fn_is_registered_or_possible('title_next_logo') ) { ?>
+            <div class="branding-aside col-auto">
+              <?php czr_fn_render_template( 'header/parts/title' ); ?>
+            </div>
+        <?php
+        }
+      ?>
+    </div>
+    <?php
       if ( czr_fn_is_registered_or_possible( 'mobile_tagline' ) ) {
           czr_fn_render_template( 'header/parts/tagline', array(
               'model_args' => array(

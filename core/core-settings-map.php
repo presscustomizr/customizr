@@ -180,6 +180,14 @@ function czr_fn_site_identity_option_map( $get_default = null ) {
                             'dst_height'  => false,
                             //'notice'    => __( "Uncheck this option to keep your original logo dimensions." , 'customizr')
           ),
+          'tc_title_next_logo'  => array(
+                            'default'   =>  czr_fn_user_started_before_version( '4.1.10' , '2.1.7') ? 0 : 1,
+                            'label'     =>  __( 'Display title next to the logo (if any)' , 'customizr' ),
+                            'control'   =>  'CZR_controls' ,
+                            'section'   =>  'title_tagline' ,
+                            'type'        => 'checkbox' ,
+                            'priority'  => 13,
+          ),
           //force logo resize 250 * 85
           'tc_logo_resize'  => array(
                             'default'   =>  1,
