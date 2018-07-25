@@ -10,6 +10,10 @@
     .primary-navbar__wrapper.has-horizontal-menu & {
       max-width: 33%;
     }
+    .primary-navbar__wrapper.has-branding-aside & {
+      max-width: 60%;
+    }
+
     .mobile-navbar__wrapper & {
       position: static;
     }
@@ -19,6 +23,13 @@
         padding-top: 0.425em;
         padding-bottom: 0.425em;
         overflow: hidden;
+
+        .col-auto {
+          max-width: 100%;
+          padding-right: 0;
+          padding-left: 0;
+          flex-shrink: 1;
+        }
 
         .navbar-brand-sitename span{
           display: block;
@@ -65,14 +76,22 @@
               margin: 2px .1em 0 0;
             }
             width: 100%;
+            @at-root .primary-navbar__wrapper & {
+              padding-bottom: .25rem;
+            }
         }
 
-        &.tagline-aside .header-tagline {
+        .branding-aside {
+            text-align: initial;
             margin: 0 7px;
-            width: auto;
-        }
-        &.tagline-below .header-tagline {
-            padding-bottom: 0.25rem;
+            .navbar-brand {
+              padding: 0;
+              line-height: 1;
+            }
+            .header-tagline {
+              width: auto;
+              padding-bottom: 0;
+            }
         }
     }
 
@@ -229,8 +248,12 @@
   .nav__utils .utils {
     @include flex-row-reverse('important');
   }
+  /*
   .navbar-brand {
     @include flex-align-self-end('important');
+  }*/
+  .branding__container .branding-row {
+    @include flex-row('important');
   }
 }
 
