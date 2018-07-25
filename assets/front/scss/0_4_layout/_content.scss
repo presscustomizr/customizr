@@ -41,8 +41,14 @@ ol {
   > li:before {
     content: counters(item, ".") ".";
     counter-increment: item;
-    padding-right: .5em;
+    @if ( true == $is_rtl ) {
+      padding-left: .5em;
+    }
+    @else {
+      padding-right: .5em;
+    }
     word-wrap: normal;
+    word-break: normal;
   }
   @at-root .czr-wp-the-content ol {
     > li {

@@ -216,10 +216,6 @@ section[class^="post-"] {
 
 
 
-
-
-
-
 .post-navigation {
   background-color: $grey-lightest;
   nav {
@@ -228,6 +224,9 @@ section[class^="post-"] {
   }
   li {
     display: inline-block;
+  }
+  .czr_pager > li {
+    display: block;
   }
   .nav-dir {
     display: block;

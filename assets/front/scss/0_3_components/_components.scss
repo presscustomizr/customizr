@@ -517,7 +517,8 @@ blockquote, .entry-link {
 }
 
 // Blockquotes, Links and cites
-blockquote p, .entry-link a {
+blockquote > *,
+.entry-link a {
     margin-top: $base-line-height;
     margin-bottom: 1em;
     word-break: break-word;
@@ -584,7 +585,7 @@ cite {
 // link
 //(min-width: 576px)
 @include media-breakpoint-up(sm) {
-    blockquote p {
+    blockquote > * {
         @if ( true == $is_rtl ) {
           margin-right: $base-line-height*4;
           padding-right:$base-line-height*4;
