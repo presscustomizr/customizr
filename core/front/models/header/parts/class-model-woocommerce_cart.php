@@ -26,7 +26,7 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
         //
         if ( function_exists( 'wc_get_cart_url' ) ) {
             $this->wc_cart_url = esc_url( wc_get_cart_url() );
-        } else {
+        } else if ( function_exists( 'WC' ) ) {
             $this->wc_cart_url = esc_url( WC()->cart->get_cart_url() );
         }
 
@@ -62,6 +62,9 @@ class CZR_woocommerce_cart_model_class extends CZR_Model {
 
 
     function czr_fn__get_wc_cart_count_html() {
+        if ( ! function_exists( 'WC' ) )
+            return;
+
         $WC          = WC();
         $_cart_count = $WC->cart->get_cart_contents_count();
         return sprintf( '<sup class="count czr-wc-count">%1$s</sup>', $_cart_count ? $_cart_count : '' );

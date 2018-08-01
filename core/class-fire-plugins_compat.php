@@ -846,7 +846,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
       //Helpers
       function czr_fn_wc_is_checkout_cart() {
-        return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
+        return ( function_exists( 'is_checkout' ) && function_exists( 'is_cart' ) ) && ( is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART') );
       }
       //Helper
       function czr_fn_woocommerce_shop_page_id( $id = null ){
@@ -931,7 +931,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // Returns a callback function needed by 'active_callback' to enable the options in the customizer
       add_filter( 'tc_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
       function czr_fn_woocommerce_options_enabled_cb() {
-        return '__return_true';
+        return function_exists( 'WC' ) ? '__return_true' : '__return_false';
+      }
+
+      add_filter( 'czr_woocommerce_options_enabled_controller', 'czr_fn_woocommerce_options_enabled_controller' );
+      function czr_fn_woocommerce_options_enabled_controller() {
+        return function_exists( 'WC' );
       }
 
       //additional woocommerce skin style
