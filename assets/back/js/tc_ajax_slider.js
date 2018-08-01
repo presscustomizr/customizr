@@ -47,6 +47,8 @@ var CzrSlider;
         this._init_sortable();
         //init multipicker
         this._init_multipicker();
+        //init checkboxes
+        this._init_checkboxes();
     };
 
     $.extend( CzrSlider.prototype, {
@@ -167,7 +169,7 @@ var CzrSlider;
       //init external plugins such as sortable, color pickers, iphone check
       _init_ext_plugins : function(){
         this._init_color_picker();
-        this._init_iphone_check();
+        this._init_checkboxes();
         this._init_sortable();
         this._init_multipicker();
       },
@@ -188,8 +190,27 @@ var CzrSlider;
       },
 
       //init iphonecheck
-      _init_iphone_check : function(){
-        $('.iphonecheck' ).iphoneStyle({ checkedLabel: 'Yes' , uncheckedLabel: 'No' });
+      _init_checkboxes : function(){
+        var _checkwraper_selector = '.czr-toggle-check',
+            _checkboxes_selector  = _checkwraper_selector + ' input[type="checkbox"]';
+
+        var _do_ = function( $checkboxes ) {
+            $checkboxes.each( function() {
+              var $input        = $(this),
+                  $checkWrapper = $input.closest( _checkwraper_selector );
+
+              $checkWrapper.toggleClass( 'is-checked', $input.is(':checked') );
+              $checkWrapper.find('svg').remove();
+              $checkWrapper.append(
+                    ! $input.is(':checked') ? '<svg class="czr-toggle-check__off" width="6" height="6" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6"><path d="M3 1.5c.8 0 1.5.7 1.5 1.5S3.8 4.5 3 4.5 1.5 3.8 1.5 3 2.2 1.5 3 1.5M3 0C1.3 0 0 1.3 0 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"></path></svg>' : '<svg class="czr-toggle-check__on" width="2" height="6" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 6"><path d="M0 0h2v6H0z"></path></svg>'
+              );
+            });
+        };
+
+        this.$_slider_section_box.on( 'change', _checkboxes_selector, function() {
+          _do_( $(this) );
+        });
+        _do_( $( _checkboxes_selector ) );
       },
 
       //init sortable
