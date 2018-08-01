@@ -1988,6 +1988,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          wp_enqueue_script( 'czr_ajax_slider' ,
             sprintf('%1$sback/js/tc_ajax_slider%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
             array( 'jquery' ),
+            ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER,
             true
          );
 
@@ -2033,10 +2034,12 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             wp_enqueue_style( 'farbtastic' );
             wp_enqueue_script( 'farbtastic' );
             // load the minified version of custom script
-            wp_enqueue_script( 'cp_demo-custom' ,
-               sprintf('%1$sback/js/color-picker%2$s.js' ,  CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
-               array( 'jquery' , 'farbtastic' ),
-               true
+            wp_enqueue_script(
+              'cp_demo-custom' ,
+              sprintf('%1$sback/js/color-picker%2$s.js' ,  CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
+              array( 'jquery' , 'farbtastic' ),
+              ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER,
+              true
             );
          }
 
