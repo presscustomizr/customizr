@@ -335,7 +335,6 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
 
          CZR_meta_boxes::czr_fn_generic_input_view( array(
-
             'input_name'  => 'czr_link_title',
             'custom_args' => 'style="max-width:50%"',
             'title'       => array(
@@ -588,18 +587,19 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
            ?>
           <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
           <div class="meta-box-item-title">
-               <h4><?php _e( 'Add a slider to this post/page' , 'customizr' ); ?></h4>
-                 <label for="<?php echo $post_slider_check_id; ?>">
-             </label>
+            <h4><label for="<?php echo $post_slider_check_id; ?>"><?php _e( 'Add a slider to this post/page' , 'customizr' ); ?></label></h4>
            </div>
            <div class="meta-box-item-content">
-              <?php
-                $post_slider_checked = false;
-                if ( $post_slider_check_value == 1)
-                 $post_slider_checked = true;
+               <?php
+                  $post_slider_checked = false;
+                  if ( $post_slider_check_value == 1) {
+                     $post_slider_checked = true;
+                  }
+                  CZR_meta_boxes::czr_fn_checkbox_view( array(
+                     'input_name'   => $post_slider_check_id,
+                     'input_state'  => $post_slider_checked,
+                  ));
                ?>
-             <input name="<?php echo $post_slider_check_id; ?>" type="hidden" value="0"/>
-             <input name="<?php echo $post_slider_check_id ?>" id="<?php echo $post_slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $post_slider_checked, $current = true, $echo = true ) ?>/>
            </div>
            <div id="slider-fields-box">
              <?php do_action( '__post_slider_infos' , $post -> ID ); ?>
@@ -717,9 +717,11 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                   else {
                     $layout_check_value = false;
                   }
+                  CZR_meta_boxes::czr_fn_checkbox_view( array(
+                     'input_name'   => $layout_id,
+                     'input_state'  => $layout_check_value,
+                  ));
                   ?>
-                  <input name="<?php echo $layout_id; ?>" type="hidden" value="0"/>
-                  <input name="<?php echo $layout_id; ?>" id="<?php echo $layout_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $layout_check_value, $current = true, $echo = true ) ?>/>
                </div>
                <?php if ( CZR_IS_MODERN_STYLE ) : ?>
                    <div class="meta-box-item-title">
@@ -734,9 +736,11 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                       else {
                         $overlay_check_value = false;
                       }
+                      CZR_meta_boxes::czr_fn_checkbox_view( array(
+                         'input_name'   => $overlay_id,
+                         'input_state'  => $overlay_check_value,
+                      ));
                       ?>
-                      <input name="<?php echo $overlay_id; ?>" type="hidden" value="0"/>
-                      <input name="<?php echo $overlay_id; ?>" id="<?php echo $overlay_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $overlay_check_value, $current = true, $echo = true ) ?>/>
                    </div>
 
                    <div class="meta-box-item-title">
@@ -750,9 +754,11 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                       else {
                         $dots_check_value = false;
                       }
+                      CZR_meta_boxes::czr_fn_checkbox_view( array(
+                         'input_name'   => $dots_id,
+                         'input_state'  => $dots_check_value,
+                      ));
                       ?>
-                      <input name="<?php echo $dots_id; ?>" type="hidden" value="0"/>
-                      <input name="<?php echo $dots_id; ?>" id="<?php echo $dots_id; ?>" type="checkbox" class="iphonecheck" value="1"<?php checked( $dots_check_value, $current = true, $echo = true ) ?>/>
                    </div>
               <?php endif; ?>
                <?php if (isset( $current_post_slides)) : ?>
@@ -863,6 +869,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
         // verify this came from our screen and with proper authorization,
         if ( isset( $_POST['post_slider_noncename']) && !wp_verify_nonce( $_POST['post_slider_noncename'], plugin_basename( __FILE__ ) ) )
            return;
+
 
         // OK, we're authenticated: we need to find and save the data
         //set up the fields array
@@ -1121,20 +1128,20 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
            ?>
           <div class="meta-box-item-title">
-               <h4><?php _e( 'Add to a slider' , 'customizr' ); ?></h4>
-                 <label for="<?php echo $slider_check_id; ?>">
-               </i><?php _e( 'Add to a slider (create one if needed)' , 'customizr' ) ?></i>
-             </label>
+             <h4><label for="<?php echo $slider_check_id; ?>"><?php _e( 'Add to a slider (create one if needed)' , 'customizr' ) ?></label></h4>
            </div>
            <div class="meta-box-item-content">
              <input name="tc_post_id" id="tc_post_id" type="hidden" value="<?php echo $post-> ID ?>"/>
               <?php
-                $slider_checked = false;
-                if ( $slider_check_value == 1)
-                 $slider_checked = true;
+                  $slider_checked = false;
+                  if ( $slider_check_value == 1) {
+                     $slider_checked = true;
+                  }
+                  CZR_meta_boxes::czr_fn_checkbox_view( array(
+                     'input_name'   => $slider_check_id,
+                     'input_state'  => $slider_checked,
+                  ));
                ?>
-             <input name="<?php echo $slider_check_id; ?>" type="hidden" value="0"/>
-             <input name="<?php echo $slider_check_id ?>" id="<?php echo $slider_check_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $slider_checked, $current = true, $echo = true ) ?>/>
            </div>
           <div id="slider-fields-box">
             <?php do_action( '__attachment_slider_infos' , $post -> ID); ?>
@@ -1308,15 +1315,23 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                <h4><?php _e("Open link in a new page/tab", 'customizr' );  ?></h4>
            </div>
            <div class="meta-box-item-content">
-               <input name="<?php echo $link_target_id; ?>" type="hidden" value="0"/>
-               <input name="<?php echo $link_target_id; ?>" id="<?php echo $link_target_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $link_target_value, $current = true, $echo = true ) ?>/>
+               <?php
+                  CZR_meta_boxes::czr_fn_checkbox_view( array(
+                     'input_name'   => $link_target_id,
+                     'input_state'  => $link_target_value,
+                  ));
+               ?>
            </div>
            <div class="meta-box-item-title">
                <h4><?php _e("Link the whole slide", 'customizr' );  ?></h4>
            </div>
            <div class="meta-box-item-content">
-               <input name="<?php echo $link_whole_slide_id; ?>" type="hidden" value="0"/>
-               <input name="<?php echo $link_whole_slide_id; ?>" id="<?php echo $link_whole_slide_id; ?>" type="checkbox" class="iphonecheck" value="1" <?php checked( $link_whole_slide_value, $current = true, $echo = true ) ?>/>
+               <?php
+                  CZR_meta_boxes::czr_fn_checkbox_view( array(
+                     'input_name'   => $link_whole_slide_id,
+                     'input_state'  => $link_whole_slide_value,
+                  ));
+               ?>
            </div>
            <div class="meta-box-item-title">
              <h4><?php _e("Choose a slider", 'customizr' ); ?></h4>
@@ -1987,17 +2002,6 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             )
          );
 
-         //iphone like button style and script
-         wp_enqueue_style( 'iphonecheckcss' ,
-            sprintf('%1$sback/css/iphonecheck%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version )
-         );
-
-         wp_enqueue_script( 'iphonecheck' ,
-            sprintf('%1$sback/js/jqueryIphonecheck%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, $_min_version ),
-            array('jquery'),
-            true
-         );
-
          //thickbox
          wp_admin_css( 'thickbox' );
          add_thickbox();
@@ -2141,7 +2145,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          $defaults = array(
             'input_name'     => '',
-            'input_class'    => 'iphonecheck',
+            'input_class'    => 'czr-toggle-check__input',
             'input_state'    => '',
             'echo'          => 1,
             'boxed'         => 1,
@@ -2154,10 +2158,10 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          extract( $args );
 
          CZR_meta_boxes::czr_fn_generic_input_view( array_merge( $args, array(
-            'content_before' => $content_before . '<input name="'. $input_name .'" type="hidden" value = "0" />',
-            'custom_args'    => checked( $input_state, $current = true, $c_echo = false)
+            'content_before' => $content_before . '<input name="'. $input_name .'" type="hidden" value = "0" /><span class="czr-toggle-check">',
+            'custom_args'    => checked( $input_state, $current = true, $c_echo = false),
+            'content_after'  => '<span class="czr-toggle-check__track"></span><span class="czr-toggle-check__thumb"></span></span>'
          )));
-
       }
 
 
@@ -2243,7 +2247,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
         $input_id = isset($input_id) ? $input_id : $input_name;
 
-        $content = sprintf('<input name="%1$s" id="%2$s" value="%3$s" %4$s class="%5$s" type="%6$s">',
+        $content = sprintf('<input name="%1$s" id="%2$s" value="%3$s" %4$s class="%5$s" type="%6$s" />',
             esc_attr( $input_name ),
             esc_attr( $input_id ),
             esc_attr( $input_value ),
