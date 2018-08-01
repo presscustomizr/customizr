@@ -133,7 +133,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
     /* Header wc cart */
     function czr_fn_display_view_desktop_primary_wc_cart() {
       //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
-      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+      if ( ! apply_filters( 'czr_woocommerce_options_enabled_controller', false )  )
         return false;
 
       return 'navbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
@@ -142,7 +142,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
     function czr_fn_display_view_desktop_topbar_wc_cart() {
       //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
-      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+      if ( ! apply_filters( 'czr_woocommerce_options_enabled_controller', false )  )
         return false;
 
       return 'topbar' == czr_fn_opt( 'tc_header_desktop_wc_cart' );
@@ -150,7 +150,7 @@ if ( ! class_exists( 'CZR_controller_header' ) ) :
 
     function czr_fn_display_view_mobile_wc_cart() {
       //in plugins compat we use this hook to enable wc cart options when WooCommerce is enabled
-      if ( ! apply_filters( 'tc_woocommerce_options_enabled', false )  )
+      if ( ! apply_filters( 'czr_woocommerce_options_enabled_controller', false )  )
         return false;
 
       return czr_fn_opt( 'tc_header_mobile_wc_cart' );
