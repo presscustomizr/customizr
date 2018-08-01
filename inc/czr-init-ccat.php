@@ -1337,7 +1337,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }//end of nested function
       //Helper
       function czr_fn_wc_is_checkout_cart() {
-        return is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART');
+        return ( function_exists( 'is_checkout' ) && function_exists( 'is_cart' ) ) && ( is_checkout() || is_cart() || defined('WOOCOMMERCE_CHECKOUT') || defined('WOOCOMMERCE_CART') );
       }
       //Helper
       function czr_fn_woocommerce_shop_page_id( $id = null ){
@@ -1407,7 +1407,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_woocommerce_disable_link_scroll( $excl ){
         if ( false == esc_attr( czr_fn_opt('tc_link_scroll') ) ) return $excl;
 
-        if ( function_exists('is_woocommerce') && is_woocommerce() ) {
+        if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
           if ( ! is_array( $excl ) )
             $excl = array();
 
@@ -1427,7 +1427,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //changes customizr meta boxes priority (slider and layout not on top) if displaying woocommerce products in admin
       add_filter( 'tc_post_meta_boxes_priority', 'czr_fn_woocommerce_change_meta_boxes_priority' , 2 , 10 );
       function czr_fn_woocommerce_change_meta_boxes_priority($priority , $screen) {
-         return ( 'product' == $screen ) ? 'default' : $priority ;
+        return ( 'product' == $screen ) ? 'default' : $priority ;
       }
 
 
@@ -1435,7 +1435,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // Returns a callback function needed by 'active_callback' to enable the options in the customizer
       add_filter( 'tc_woocommerce_options_enabled', 'czr_fn_woocommerce_options_enabled_cb' );
       function czr_fn_woocommerce_options_enabled_cb() {
-        return '__return_true';
+        return function_exists( 'WC' ) ? '__return_true' : '__return_false';
       }
 
       /* rendering the cart icon in the header */
@@ -1459,6 +1459,9 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_action( '__navbar', 'czr_fn_woocommerce_header_cart', is_rtl() ? 9 : 19 );
       function czr_fn_woocommerce_header_cart() {
         if ( 1 != esc_attr( czr_fn_opt( 'tc_woocommerce_header_cart' ) ) )
+          return;
+
+        if ( ! function_exists( 'WC' ) )
           return;
 
         $_main_item_class = '';

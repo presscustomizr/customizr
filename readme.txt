@@ -23,6 +23,12 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.10 August 1st 2018 =
+* added : new option to display the site title next to the logo. Enabled by default. fixes #1573
+* imp : always make sure WC functions exist before calling them. fixes #1529
+* imp : replace slider iphone checks with checkboxes consistent with the Gutenberg editor style. also fixes #1540
+* imp : better compatibility with the Gutenberg editor for post-formats metaboxes. fixes #1576
+
 = 4.1.9 July 17th 2018 =
 * Imp: make sure the_author_description filter hook is fired. fixes #1561
 * Fix: make sure to respect the threaded comments wp setting. fixes #1563

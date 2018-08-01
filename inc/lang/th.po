@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.1.10\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-07-25 14:06:07+00:00\n"
+"POT-Creation-Date: 2018-08-01 15:02:37+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Wee Sritippho <weeaix@gmail.com>\n"
@@ -43,8 +43,8 @@ msgid "Layout Options"
 msgstr "ตัวเลือกโครงสร้าง"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:263
-#: core/_dev/_admin/class-admin-meta_boxes.php:1097
-#: core/czr-admin-ccat.php:1195 core/czr-admin-ccat.php:2029
+#: core/_dev/_admin/class-admin-meta_boxes.php:1104
+#: core/czr-admin-ccat.php:1195 core/czr-admin-ccat.php:2036
 msgid "Slider Options"
 msgstr "ตัวเลือกสไลเดอร์"
 
@@ -65,74 +65,74 @@ msgstr ""
 msgid "Format: audio"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:343 core/czr-admin-ccat.php:1275
+#: core/_dev/_admin/class-admin-meta_boxes.php:342 core/czr-admin-ccat.php:1274
 msgid "Link title"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:348 core/czr-admin-ccat.php:1280
+#: core/_dev/_admin/class-admin-meta_boxes.php:347 core/czr-admin-ccat.php:1279
 #, fuzzy
 msgid "Enter the title"
 msgstr "หลังชื่อเรื่อง"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:364 core/czr-admin-ccat.php:1296
+#: core/_dev/_admin/class-admin-meta_boxes.php:363 core/czr-admin-ccat.php:1295
 #, fuzzy
 msgid "Link URL"
 msgstr "ลิงค์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:369 core/czr-admin-ccat.php:1301
+#: core/_dev/_admin/class-admin-meta_boxes.php:368 core/czr-admin-ccat.php:1300
 msgid "Enter the URL"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:396 core/czr-admin-ccat.php:1328
+#: core/_dev/_admin/class-admin-meta_boxes.php:395 core/czr-admin-ccat.php:1327
 #, fuzzy
 msgid "Quote text"
 msgstr "ข้อความในปุ่ม"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:401 core/czr-admin-ccat.php:1333
+#: core/_dev/_admin/class-admin-meta_boxes.php:400 core/czr-admin-ccat.php:1332
 #, fuzzy
 msgid "Enter the text"
 msgstr "หลังชื่อเรื่อง"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:416 core/czr-admin-ccat.php:1348
+#: core/_dev/_admin/class-admin-meta_boxes.php:415 core/czr-admin-ccat.php:1347
 #, fuzzy
 msgid "Quote author"
 msgstr "ผู้เขียนเรื่อง"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:422 core/czr-admin-ccat.php:1354
+#: core/_dev/_admin/class-admin-meta_boxes.php:421 core/czr-admin-ccat.php:1353
 #, fuzzy
 msgid "Enter the author"
 msgstr "แสดงชื่อเจ้าของบนความ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:449 core/czr-admin-ccat.php:1381
+#: core/_dev/_admin/class-admin-meta_boxes.php:448 core/czr-admin-ccat.php:1380
 msgid "Audio url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:453 core/czr-admin-ccat.php:1385
+#: core/_dev/_admin/class-admin-meta_boxes.php:452 core/czr-admin-ccat.php:1384
 msgid "Enter the audio url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:483 core/czr-admin-ccat.php:1415
+#: core/_dev/_admin/class-admin-meta_boxes.php:482 core/czr-admin-ccat.php:1414
 msgid "Video url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:487 core/czr-admin-ccat.php:1419
+#: core/_dev/_admin/class-admin-meta_boxes.php:486 core/czr-admin-ccat.php:1418
 #, fuzzy
 msgid "Enter the video url"
 msgstr "url ข้อมูลผู้ใช้ Pinterest"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:533 core/czr-admin-ccat.php:1465
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1464
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "โครงสร้างตั้งต้น %1$s ถูกกำหนดเป็น : %2$s"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:533 core/czr-admin-ccat.php:1465
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1464
 msgid "pages"
 msgstr "หน้า"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:533 core/czr-admin-ccat.php:1465
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1464
 msgid "posts"
 msgstr "เรื่อง"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:536 core/czr-admin-ccat.php:1468
+#: core/_dev/_admin/class-admin-meta_boxes.php:535 core/czr-admin-ccat.php:1467
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
 "right sidebars. The default layouts can be defined in the WordPress "
@@ -141,45 +141,45 @@ msgstr ""
 "คุณสามารถกำหนดโครงสร้างเฉพาะสำหรับ %1$s โดยใช้แถบด้านซ้ายหรือแถบด้านขวาที่มาพร้อมกับธีม "
 "สามารถกำหนดโครงสร้างตั้งต้นได้ในหน้าปรับแต่ง WordPress %2$s<br />"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:537
-#: core/_dev/_admin/class-admin-meta_boxes.php:542 core/czr-admin-ccat.php:1469
-#: core/czr-admin-ccat.php:1474
+#: core/_dev/_admin/class-admin-meta_boxes.php:536
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1468
+#: core/czr-admin-ccat.php:1473
 msgid "this page"
 msgstr "หน้านี้"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:537
-#: core/_dev/_admin/class-admin-meta_boxes.php:542 core/czr-admin-ccat.php:1469
-#: core/czr-admin-ccat.php:1474
+#: core/_dev/_admin/class-admin-meta_boxes.php:536
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1468
+#: core/czr-admin-ccat.php:1473
 msgid "this post"
 msgstr "เรื่องนี้"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:538
+#: core/_dev/_admin/class-admin-meta_boxes.php:537
 #: core/core-settings-map.php:1022 core/core-settings-map.php:1027
-#: core/core-settings-map.php:2313 core/czr-admin-ccat.php:1470
+#: core/core-settings-map.php:2313 core/czr-admin-ccat.php:1469
 msgid "here"
 msgstr "ที่นี่"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1473
+#: core/_dev/_admin/class-admin-meta_boxes.php:540 core/czr-admin-ccat.php:1472
 msgid "Select a specific layout for %1$s"
 msgstr "เลือกโครงสร้างสำหรับ %1$s โดยเฉพาะ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:545 core/czr-admin-ccat.php:1477
+#: core/_dev/_admin/class-admin-meta_boxes.php:544 core/czr-admin-ccat.php:1476
 msgid "Default layout %1s"
 msgstr "โครงสร้างตั้งต้น %1s"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:591 core/czr-admin-ccat.php:1523
+#: core/_dev/_admin/class-admin-meta_boxes.php:590 core/czr-admin-ccat.php:1522
 msgid "Add a slider to this post/page"
 msgstr "เพิ่มสไลเดอร์สำหรับเรื่อง/หน้านี้"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:669
-#: core/_dev/_admin/class-admin-meta_boxes.php:1322
-#: core/czr-admin-ccat.php:1601 core/czr-admin-ccat.php:2254
+#: core/_dev/_admin/class-admin-meta_boxes.php:1337
+#: core/czr-admin-ccat.php:1601 core/czr-admin-ccat.php:2269
 msgid "Choose a slider"
 msgstr "เลือกสไลเดอร์"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:675
-#: core/_dev/_admin/class-admin-meta_boxes.php:1337
-#: core/czr-admin-ccat.php:1607 core/czr-admin-ccat.php:2269
+#: core/_dev/_admin/class-admin-meta_boxes.php:1352
+#: core/czr-admin-ccat.php:1607 core/czr-admin-ccat.php:2284
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; เลือกสไลเดอร์ &mdash; "
 
@@ -197,156 +197,151 @@ msgstr "หน่วงเวลาระหว่างแต่ละสไล
 msgid "Slider Layout : set the slider in full width"
 msgstr "โครงสร้างสไลเดอร์ : ตั้งสไลเดอร์ให้มีขนาดเต็มหน้าจอ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:726
-#: core/core-settings-map.php:1211 core/czr-admin-ccat.php:1658
+#: core/_dev/_admin/class-admin-meta_boxes.php:728
+#: core/core-settings-map.php:1211 core/czr-admin-ccat.php:1660
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:743 core/czr-admin-ccat.php:1675
+#: core/_dev/_admin/class-admin-meta_boxes.php:747 core/czr-admin-ccat.php:1679
 msgid "Display navigation dots at the bottom of your slider."
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:760
-#: core/_dev/_admin/class-admin-meta_boxes.php:1346
-#: core/czr-admin-ccat.php:1692 core/czr-admin-ccat.php:2278
+#: core/_dev/_admin/class-admin-meta_boxes.php:766
+#: core/_dev/_admin/class-admin-meta_boxes.php:1361
+#: core/czr-admin-ccat.php:1698 core/czr-admin-ccat.php:2293
 msgid "Delete this slider"
 msgstr "ลบสไลเดอร์นี้"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:765
-#: core/_dev/_admin/class-admin-meta_boxes.php:1350
-#: core/czr-admin-ccat.php:1697 core/czr-admin-ccat.php:2282
+#: core/_dev/_admin/class-admin-meta_boxes.php:771
+#: core/_dev/_admin/class-admin-meta_boxes.php:1365
+#: core/czr-admin-ccat.php:1703 core/czr-admin-ccat.php:2297
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr "สไลเดอร์นี้จะถูกลบโดยถาวร (รูปภาพ การเรียก action และลิงค์จะยังถูกเก็บไว้)"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:768
-#: core/_dev/_admin/class-admin-meta_boxes.php:1353
-#: core/czr-admin-ccat.php:1700 core/czr-admin-ccat.php:2285
+#: core/_dev/_admin/class-admin-meta_boxes.php:774
+#: core/_dev/_admin/class-admin-meta_boxes.php:1368
+#: core/czr-admin-ccat.php:1706 core/czr-admin-ccat.php:2300
 msgid "Delete slider"
 msgstr "ลบสไลเดอร์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:779
+#: core/_dev/_admin/class-admin-meta_boxes.php:785
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1711 core/czr-customize-ccat.php:955
+#: core/czr-admin-ccat.php:1717 core/czr-customize-ccat.php:955
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
 msgstr "คุณยังไม่ได้สร้างสไลเดอร์ใดๆ ไปที่คลังสื่อ แก้ไขรูปภาพแล้วเพิ่มเข้าไปในสไลเดอร์ใหม่ของคุณ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1124
-#: core/czr-admin-ccat.php:2056
-msgid "Add to a slider"
-msgstr "เพิ่มเข้าไปในสไลเดอร์"
-
-#: core/_dev/_admin/class-admin-meta_boxes.php:1126
-#: core/czr-admin-ccat.php:2058
+#: core/_dev/_admin/class-admin-meta_boxes.php:1131
+#: core/czr-admin-ccat.php:2063
 msgid "Add to a slider (create one if needed)"
 msgstr "เพิ่มเข้าไปในสไลเดอร์ (สร้างใหม่หากจำเป็น)"
-
-#: core/_dev/_admin/class-admin-meta_boxes.php:1259
-#: core/czr-admin-ccat.php:2191
-#, fuzzy
-msgid "Title text (80 char. max length)"
-msgstr "ข้อความในชื่อเรื่อง (สูงสุด 80 ตัวอักษร)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
 #: core/czr-admin-ccat.php:2198
 #, fuzzy
-msgid "Description text (below the title, 250 char. max length)"
-msgstr "ข้อความบรรยาย (อยู่ใต้ชื่อเรื่อง สูงสุด 250 ตัวอักษร)"
+msgid "Title text (80 char. max length)"
+msgstr "ข้อความในชื่อเรื่อง (สูงสุด 80 ตัวอักษร)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
 #: core/czr-admin-ccat.php:2205
+#, fuzzy
+msgid "Description text (below the title, 250 char. max length)"
+msgstr "ข้อความบรรยาย (อยู่ใต้ชื่อเรื่อง สูงสุด 250 ตัวอักษร)"
+
+#: core/_dev/_admin/class-admin-meta_boxes.php:1280
+#: core/czr-admin-ccat.php:2212
 msgid "Title and text color"
 msgstr "สีของชื่อเรื่องและตัวอักษร"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1281
-#: core/czr-admin-ccat.php:2213
+#: core/_dev/_admin/class-admin-meta_boxes.php:1288
+#: core/czr-admin-ccat.php:2220
 #, fuzzy
 msgid "Button text (80 char. max length)"
 msgstr "ข้อความในปุ่ม (สูงสุด 80 ตัวอักษร)"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1288
-#: core/czr-admin-ccat.php:2220
+#: core/_dev/_admin/class-admin-meta_boxes.php:1295
+#: core/czr-admin-ccat.php:2227
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "เลือกหน้าหรือเรื่องที่ถูกลิงค์ (ล่าสุด 100 หน้า/เรื่อง)"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1293
-#: core/czr-admin-ccat.php:2225
+#: core/_dev/_admin/class-admin-meta_boxes.php:1300
+#: core/czr-admin-ccat.php:2232
 msgid "No link"
 msgstr "ไม่มีลิงค์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1302
-#: core/czr-admin-ccat.php:2234
+#: core/_dev/_admin/class-admin-meta_boxes.php:1309
+#: core/czr-admin-ccat.php:2241
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1308
-#: core/czr-admin-ccat.php:2240
+#: core/_dev/_admin/class-admin-meta_boxes.php:1315
+#: core/czr-admin-ccat.php:2247
 msgid "Open link in a new page/tab"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1315
-#: core/czr-admin-ccat.php:2247
+#: core/_dev/_admin/class-admin-meta_boxes.php:1326
+#: core/czr-admin-ccat.php:2258
 msgid "Link the whole slide"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1343
-#: core/_dev/_admin/class-admin-meta_boxes.php:1372
-#: core/czr-admin-ccat.php:2275 core/czr-admin-ccat.php:2304
+#: core/_dev/_admin/class-admin-meta_boxes.php:1358
+#: core/_dev/_admin/class-admin-meta_boxes.php:1387
+#: core/czr-admin-ccat.php:2290 core/czr-admin-ccat.php:2319
 msgid "Add a slider"
 msgstr "เพิ่มสไลเดอร์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1370
-#: core/czr-admin-ccat.php:2302
+#: core/_dev/_admin/class-admin-meta_boxes.php:1385
+#: core/czr-admin-ccat.php:2317
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
 msgstr ""
 "คุณยังไม่ได้สร้างสไลเดอร์ใดๆ  พิมพ์ชื่อสไลเดอร์แล้วแล้วคลิกที่ปุ่มเพื่อเพิ่มสไลเดอร์อันแรกของคุณ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1496
-#: core/czr-admin-ccat.php:2428
+#: core/_dev/_admin/class-admin-meta_boxes.php:1511
+#: core/czr-admin-ccat.php:2443
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
 msgstr "สไลเดอร์นี้ไม่มีสไลด์อยู่ ไปที่คลังสื่อแล้วเพิ่มรูปภาพเป็นสไลด์ใหม่"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1506
-#: core/czr-admin-ccat.php:2438
+#: core/_dev/_admin/class-admin-meta_boxes.php:1521
+#: core/czr-admin-ccat.php:2453
 msgid "Slide Image"
 msgstr "รูปภาพในสไลด์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1507
-#: core/czr-admin-ccat.php:2439 core/czr-modules/social-links/index.php:121
+#: core/_dev/_admin/class-admin-meta_boxes.php:1522
+#: core/czr-admin-ccat.php:2454 core/czr-modules/social-links/index.php:121
 #: core/czr-modules/social-links/social_links_module.php:123
 msgid "Title"
 msgstr "หัวข้อ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1508
-#: core/czr-admin-ccat.php:2440
+#: core/_dev/_admin/class-admin-meta_boxes.php:1523
+#: core/czr-admin-ccat.php:2455
 msgid "Slide Text"
 msgstr "ข้อความประกอบสไลด์"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1509
-#: core/czr-admin-ccat.php:2441
+#: core/_dev/_admin/class-admin-meta_boxes.php:1524
+#: core/czr-admin-ccat.php:2456
 msgid "Button Text"
 msgstr "ข้อความในปุ่ม"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1510
-#: core/czr-admin-ccat.php:2442
+#: core/_dev/_admin/class-admin-meta_boxes.php:1525
+#: core/czr-admin-ccat.php:2457
 msgid "Link"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1511
+#: core/_dev/_admin/class-admin-meta_boxes.php:1526
 #: core/_dev/_czr/class-czr-resources.php:229
-#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2443
+#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2458
 #: core/czr-base-fmk/czr-base-fmk.php:236
 #: core/czr-base-fmk/czr-base-fmk.php:450
-#: core/czr-base-fmk/czr-base-fmk.php:804 core/czr-customize-ccat.php:850
+#: core/czr-base-fmk/czr-base-fmk.php:805 core/czr-customize-ccat.php:850
 #: core/czr-customize-ccat.php:860
 #: core/front/models/modules/common/class-model-breadcrumb.php:625
 #: core/front/models/modules/common/class-model-breadcrumb.php:658
@@ -369,36 +364,36 @@ msgstr ""
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1553
-#: core/czr-admin-ccat.php:2485
+#: core/_dev/_admin/class-admin-meta_boxes.php:1568
+#: core/czr-admin-ccat.php:2500
 msgid "No Image Selected"
 msgstr "ไม่มีการเลือกรูปภาพ"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1579
-#: core/czr-admin-ccat.php:2511
+#: core/_dev/_admin/class-admin-meta_boxes.php:1594
+#: core/czr-admin-ccat.php:2526
 msgid "Edit this slide"
 msgstr "แก้ไขสไลด์นี้"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1581
-#: core/czr-admin-ccat.php:2513
+#: core/_dev/_admin/class-admin-meta_boxes.php:1596
+#: core/czr-admin-ccat.php:2528
 msgid "Current slide"
 msgstr "สไลด์ปัจจุบัน"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1592
-#: core/czr-admin-ccat.php:2524
+#: core/_dev/_admin/class-admin-meta_boxes.php:1607
+#: core/czr-admin-ccat.php:2539
 msgid ""
 "To add another slide : navigate to your media library (click on Media), open "
 "the edit screen of an image ( or add a new image ), and add it to your "
 "desired slider by using the dedicated option block at the bottom of the page."
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1593
-#: core/czr-admin-ccat.php:2525
+#: core/_dev/_admin/class-admin-meta_boxes.php:1608
+#: core/czr-admin-ccat.php:2540
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:1595
-#: core/czr-admin-ccat.php:2527
+#: core/_dev/_admin/class-admin-meta_boxes.php:1610
+#: core/czr-admin-ccat.php:2542
 #, fuzzy
 msgid "Slider documentation"
 msgstr "อ่านเอกสาร"
@@ -613,8 +608,7 @@ msgid "Upgrade Wordpress Now"
 msgstr "ปรับรุ่น WordPress เดี๋ยวนี้"
 
 #: core/_dev/_czr/class-czr-resources.php:230
-#: core/czr-base-fmk/czr-base-fmk.php:237
-#: core/czr-base-fmk/czr-base-fmk.php:805 core/czr-customize-ccat.php:851
+#: core/czr-base-fmk/czr-base-fmk.php:237 core/czr-customize-ccat.php:851
 #: inc/_dev/parts/class-header-menu.php:136
 #: inc/_dev/parts/class-header-menu.php:143 inc/czr-front-ccat.php:824
 #: inc/czr-front-ccat.php:831
@@ -934,7 +928,7 @@ msgid "Posts slider button text"
 msgstr ""
 
 #: core/class-fire-resources_scripts.php:371
-#: inc/_dev/class-fire-resources.php:349 inc/czr-init-ccat.php:4267
+#: inc/_dev/class-fire-resources.php:349 inc/czr-init-ccat.php:4270
 msgid "Permanently dismiss"
 msgstr ""
 
@@ -1120,7 +1114,7 @@ msgid "Animated underline effect on link hover"
 msgstr "ค่อยๆเปลี่ยนสีลิงค์เมื่อนำเมาส์ไปชี้"
 
 #: core/core-settings-map.php:373
-#: inc/_dev/class-fire-utils_settings_map.php:311 inc/czr-init-ccat.php:2267
+#: inc/_dev/class-fire-utils_settings_map.php:311 inc/czr-init-ccat.php:2270
 msgid "Fade effect on link hover"
 msgstr "ค่อยๆเปลี่ยนสีลิงค์เมื่อนำเมาส์ไปชี้"
 
@@ -1233,7 +1227,7 @@ msgid "Light"
 msgstr "ขวา"
 
 #: core/core-settings-map.php:533
-#: inc/_dev/class-fire-utils_settings_map.php:1152 inc/czr-init-ccat.php:3108
+#: inc/_dev/class-fire-utils_settings_map.php:1152 inc/czr-init-ccat.php:3111
 msgid "Custom"
 msgstr "ปรับแต่งเอง"
 
@@ -1389,13 +1383,13 @@ msgid ""
 msgstr ""
 
 #: core/core-settings-map.php:717 core/core-settings-map.php:827
-#: inc/_dev/class-fire-utils_settings_map.php:603 inc/czr-init-ccat.php:2559
+#: inc/_dev/class-fire-utils_settings_map.php:603 inc/czr-init-ccat.php:2562
 #, fuzzy
 msgid "Display the shopping cart in the header"
 msgstr "แสดงวันที่เผยแพร่"
 
 #: core/core-settings-map.php:720 core/core-settings-map.php:830
-#: inc/_dev/class-fire-utils_settings_map.php:606 inc/czr-init-ccat.php:2562
+#: inc/_dev/class-fire-utils_settings_map.php:606 inc/czr-init-ccat.php:2565
 msgid ""
 "WooCommerce: check to display a cart icon showing the number of items in "
 "your cart next to your header's tagline."
@@ -1497,7 +1491,7 @@ msgid "Expand submenus on click"
 msgstr "แสดงเมนูย่อยเมื่อคลิก"
 
 #: core/core-settings-map.php:816
-#: inc/_dev/class-fire-utils_settings_map.php:591 inc/czr-init-ccat.php:2547
+#: inc/_dev/class-fire-utils_settings_map.php:591 inc/czr-init-ccat.php:2550
 #, fuzzy
 msgid "Display the tagline in the header"
 msgstr "แสดงคำโปรย"
@@ -1566,31 +1560,31 @@ msgid "Primary (vertical) menu design"
 msgstr ""
 
 #: core/core-settings-map.php:925
-#: inc/_dev/class-fire-utils_settings_map.php:766 inc/czr-init-ccat.php:2722
+#: inc/_dev/class-fire-utils_settings_map.php:766 inc/czr-init-ccat.php:2725
 msgid "Menu position (for \"main\" menu)"
 msgstr ""
 
 #: core/core-settings-map.php:929 core/core-settings-map.php:943
 #: inc/_dev/class-fire-utils_settings_map.php:770
-#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2726
-#: inc/czr-init-ccat.php:2747
+#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2729
+#: inc/czr-init-ccat.php:2750
 msgid "Menu on the left"
 msgstr "เมนูอยู่ด้านซ้าย"
 
 #: core/core-settings-map.php:930 core/core-settings-map.php:944
 #: inc/_dev/class-fire-utils_settings_map.php:772
-#: inc/_dev/class-fire-utils_settings_map.php:793 inc/czr-init-ccat.php:2728
-#: inc/czr-init-ccat.php:2749
+#: inc/_dev/class-fire-utils_settings_map.php:793 inc/czr-init-ccat.php:2731
+#: inc/czr-init-ccat.php:2752
 msgid "Menu on the right"
 msgstr "เมนูอยู่ด้านขวา"
 
 #: core/core-settings-map.php:938
-#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2742
+#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2745
 msgid "Secondary (horizontal) menu design"
 msgstr ""
 
 #: core/core-settings-map.php:939
-#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2743
+#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2746
 msgid "Menu position (for the horizontal menu)"
 msgstr ""
 
@@ -1729,7 +1723,7 @@ msgid "The title will be limited to 80 chars max"
 msgstr ""
 
 #: core/core-settings-map.php:1155
-#: inc/_dev/class-fire-utils_settings_map.php:1007 inc/czr-init-ccat.php:2963
+#: inc/_dev/class-fire-utils_settings_map.php:1007 inc/czr-init-ccat.php:2966
 msgid "Display the excerpt"
 msgstr "แสดงคำตัดทอน"
 
@@ -2136,7 +2130,7 @@ msgid ""
 msgstr ""
 
 #: core/core-settings-map.php:1680 core/core-settings-map.php:1750
-#: inc/_dev/class-fire-utils_settings_map.php:1068 inc/czr-init-ccat.php:3024
+#: inc/_dev/class-fire-utils_settings_map.php:1068 inc/czr-init-ccat.php:3027
 msgid "Set the thumbnail's max height in pixels"
 msgstr "จำกัดความสูงของรูปย่อในหน่วยพิกเซล"
 
@@ -2879,22 +2873,27 @@ msgstr "Gérer les widgets"
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1519
+#: core/czr-base-fmk/czr-base-fmk.php:806
+#, fuzzy
+msgid "Hide editor"
+msgstr "ซ่อนตลอดไป"
+
+#: core/czr-base-fmk/czr-base-fmk.php:1520
 msgid "Set a custom url"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1553
-#: core/czr-base-fmk/czr-base-fmk.php:1753
+#: core/czr-base-fmk/czr-base-fmk.php:1554
+#: core/czr-base-fmk/czr-base-fmk.php:1754
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1674
-#: core/czr-base-fmk/czr-base-fmk.php:1883
+#: core/czr-base-fmk/czr-base-fmk.php:1675
+#: core/czr-base-fmk/czr-base-fmk.php:1884
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1817
+#: core/czr-base-fmk/czr-base-fmk.php:1818
 #, fuzzy
 msgid "No results found."
 msgstr "ผลการค้นหาสำหรับ :"
@@ -3420,7 +3419,7 @@ msgid "Need help with Customizr? Click here!"
 msgstr "ต้องการความช่วยเหลือเกี่ยวกับ Customizr หรือ? คลิกที่นี่!"
 
 #: core/init-base.php:1084 inc/_dev/class-fire-utils_settings_map.php:1215
-#: inc/czr-init-ccat.php:3171
+#: inc/czr-init-ccat.php:3174
 msgid "Social links"
 msgstr "ลิงค์เครือข่ายสังคม"
 
@@ -3506,143 +3505,143 @@ msgstr "เขียวน้ำเงิน"
 msgid "Light blue "
 msgstr "ฟ้า"
 
-#: inc/_dev/class-fire-plugins_compat.php:1011 inc/czr-init-ccat.php:1484
+#: inc/_dev/class-fire-plugins_compat.php:1014 inc/czr-init-ccat.php:1487
 #: templates/parts/header/parts/woocommerce_cart.php:7
 msgid "View your shopping cart"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:769 inc/czr-init-ccat.php:4687
+#: inc/_dev/class-fire-resources.php:769 inc/czr-init-ccat.php:4690
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4690
+#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4693
 msgid "in the live customizer."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:220 inc/czr-init-ccat.php:2176
+#: inc/_dev/class-fire-utils_settings_map.php:220 inc/czr-init-ccat.php:2179
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "อัพโหลดโลโก้ที่ถูกตรึง (นามสกุลที่สนับสนุน : .jpg, .png, .gif, svg, svgz)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2188
+#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2191
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr "ใช้ช่องอัพโหลดนี้เพื่อระบุโลโก้สำหรับส่วนหัวที่ถูกตรึง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:237 inc/czr-init-ccat.php:2193
+#: inc/_dev/class-fire-utils_settings_map.php:237 inc/czr-init-ccat.php:2196
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "อัพโหลดไอคอนประจำเว็บ (นามสกุลที่สนับสนุน : .ico, .png, .gif)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:238 inc/czr-init-ccat.php:2194
+#: inc/_dev/class-fire-utils_settings_map.php:238 inc/czr-init-ccat.php:2197
 msgid "FAVICON"
 msgstr "ไอคอนประจำเว็บ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:277 inc/czr-init-ccat.php:2233
+#: inc/_dev/class-fire-utils_settings_map.php:277 inc/czr-init-ccat.php:2236
 msgid "Choose a predefined skin"
 msgstr "เลือกสกินที่กำหนดไว้ล่วงหน้า"
 
-#: inc/_dev/class-fire-utils_settings_map.php:282 inc/czr-init-ccat.php:2238
+#: inc/_dev/class-fire-utils_settings_map.php:282 inc/czr-init-ccat.php:2241
 msgid "Disabled if the random option is on."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:287 inc/czr-init-ccat.php:2243
+#: inc/_dev/class-fire-utils_settings_map.php:287 inc/czr-init-ccat.php:2246
 msgid "Randomize the skin"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:290 inc/czr-init-ccat.php:2246
+#: inc/_dev/class-fire-utils_settings_map.php:290 inc/czr-init-ccat.php:2249
 msgid "Apply a random color skin on each page load."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:334 inc/czr-init-ccat.php:2290
+#: inc/_dev/class-fire-utils_settings_map.php:334 inc/czr-init-ccat.php:2293
 msgid "Display an icon next to external links"
 msgstr "แสดงไอคอนถัดจากลิงค์ภายนอก"
 
 #: inc/_dev/class-fire-utils_settings_map.php:337
-#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2293
-#: inc/czr-init-ccat.php:2303
+#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2296
+#: inc/czr-init-ccat.php:2306
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr "ตัวเลือกนี้จะส่งผลเฉพาะกับลิงค์ที่อยู่ในเนื้อหาของเรื่องหรือหน้าเท่านั้น"
 
-#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2300
+#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2303
 msgid "Open external links in a new tab"
 msgstr "เปิดลิงค์ภายนอกในแท็ปใหม่"
 
-#: inc/_dev/class-fire-utils_settings_map.php:352 inc/czr-init-ccat.php:2308
+#: inc/_dev/class-fire-utils_settings_map.php:352 inc/czr-init-ccat.php:2311
 msgid "Drop caps"
 msgstr "อักษรใหญ่นำสายตา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:353 inc/czr-init-ccat.php:2309
+#: inc/_dev/class-fire-utils_settings_map.php:353 inc/czr-init-ccat.php:2312
 msgid "Enable drop caps"
 msgstr "เปิดใช้งานอักษรใหญ่นำสายตา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2311
+#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2314
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:363 inc/czr-init-ccat.php:2319
+#: inc/_dev/class-fire-utils_settings_map.php:363 inc/czr-init-ccat.php:2322
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr "ใช้อักษรใหญ่นำสายตาเมื่อย่อหน้ามีประโยคอย่างน้อย ... ประโยค :"
 
-#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2320
+#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2323
 msgid "(number of words)"
 msgstr "(จำนวนประโยค)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:373 inc/czr-init-ccat.php:2329
+#: inc/_dev/class-fire-utils_settings_map.php:373 inc/czr-init-ccat.php:2332
 msgid "Drop cap style"
 msgstr "รูปแบบอักษรใหญ่นำสายตา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2333
+#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2336
 #, fuzzy
 msgid "Primary theme color with a shadow"
 msgstr "สีของสกินแบบมีเงา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:378 inc/czr-init-ccat.php:2334
+#: inc/_dev/class-fire-utils_settings_map.php:378 inc/czr-init-ccat.php:2337
 msgid "Simple black"
 msgstr "สีดำแบบเรียบง่าย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:383 inc/czr-init-ccat.php:2339
+#: inc/_dev/class-fire-utils_settings_map.php:383 inc/czr-init-ccat.php:2342
 msgid "Enable drop caps in posts"
 msgstr "ใช้อักษรใหญ่นำสายตาในเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2341
+#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2344
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr "ใช้อักษรใหญ่นำสายตาสำหรับย่อหน้าแรกในรายละเอียดเรื่องของคุณ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:391 inc/czr-init-ccat.php:2347
+#: inc/_dev/class-fire-utils_settings_map.php:391 inc/czr-init-ccat.php:2350
 msgid "Enable drop caps in pages"
 msgstr "เปิดใช้อักษรใหญ่นำสายตาบนหน้า"
 
-#: inc/_dev/class-fire-utils_settings_map.php:393 inc/czr-init-ccat.php:2349
+#: inc/_dev/class-fire-utils_settings_map.php:393 inc/czr-init-ccat.php:2352
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr "ใช้อักษรใหญ่นำสายตาสำหรับย่อหน้าแรกในหน้าของคุณ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:412 inc/czr-init-ccat.php:2368
+#: inc/_dev/class-fire-utils_settings_map.php:412 inc/czr-init-ccat.php:2371
 msgid "Display icons next to titles"
 msgstr "แสดงไอคอนด้านข้างหัวข้อ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2372
+#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2375
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr "เมื่อเปิดไว้ จะมีไอคอนปรากฏถัดจากหัวข้อของหน้า เรื่อง หมวดหมู่  และ ..."
 
-#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2378
+#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2381
 msgid "Display a page icon next to the page title"
 msgstr "แสดงสัญลักษณ์หน้าไว้ถัดจากชื่อของหน้า"
 
-#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2387
+#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2390
 msgid "Display a post icon next to the single post title"
 msgstr "แสดงสัญลักษณ์เรื่องไว้ถัดจากชื่อของเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:440 inc/czr-init-ccat.php:2396
+#: inc/_dev/class-fire-utils_settings_map.php:440 inc/czr-init-ccat.php:2399
 msgid "Display an icon next to the archive title"
 msgstr "แสดงไอคอนถัดจากชื่อของหมวดหมู่"
 
-#: inc/_dev/class-fire-utils_settings_map.php:443 inc/czr-init-ccat.php:2399
+#: inc/_dev/class-fire-utils_settings_map.php:443 inc/czr-init-ccat.php:2402
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -3653,11 +3652,11 @@ msgstr ""
 "แฟ้มเก็บเอกสารในที่นี้อาจเป็น : หมวดหมู่ ป้ายกำกับ เจ้าของบทความ รายวัน "
 "การกำกับข้อมูลที่กำหนดขึ้นเอง และผลการค้นหา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:450 inc/czr-init-ccat.php:2406
+#: inc/_dev/class-fire-utils_settings_map.php:450 inc/czr-init-ccat.php:2409
 msgid "Display an icon next to each post title in an archive page"
 msgstr "แสดงไอคอนถัดจากแต่ละชื่อเรื่องในหน้าแฟ้มเก็บเอกสาร"
 
-#: inc/_dev/class-fire-utils_settings_map.php:453 inc/czr-init-ccat.php:2409
+#: inc/_dev/class-fire-utils_settings_map.php:453 inc/czr-init-ccat.php:2412
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -3667,237 +3666,237 @@ msgstr ""
 "แฟ้มเก็บเอกสารในที่นี้อาจเป็น : หมวดหมู่ ป้ายกำกับ เจ้าของบทความ รายวัน "
 "การกำกับข้อมูลที่กำหนดขึ้นเอง และผลการค้นหา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2416
+#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2419
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "วิดเจ็ต WordPress ในแถบด้านข้าง  : แสดงไอคอนถัดจากชื่อเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:469 inc/czr-init-ccat.php:2425
+#: inc/_dev/class-fire-utils_settings_map.php:469 inc/czr-init-ccat.php:2428
 msgid "WP footer widgets : display icons next to titles"
 msgstr "วิดเจ็ต WordPress ในแถบด้านล่าง : แสดงไอคอนถัดจากชื่อเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:498 inc/czr-init-ccat.php:2454
+#: inc/_dev/class-fire-utils_settings_map.php:498 inc/czr-init-ccat.php:2457
 msgid "Autoscale images on zoom"
 msgstr "ปรับขนาดรูปภาพโดยอัตโนมัติเมื่อขยาย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2458
+#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2461
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "หากเปิดไว้ จะมีการปรับขนาดรูปภาพให้เต็มขนาดหน้าจอในขณะที่ใช้คุณสมบัติ lightbox แสดงรูปภาพ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:508 inc/czr-init-ccat.php:2464
+#: inc/_dev/class-fire-utils_settings_map.php:508 inc/czr-init-ccat.php:2467
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "สไลเดอร์ : เปิดไอคอนแสดงการโหลดก่อนที่จะแสดงแต่ละสไลด์"
 
-#: inc/_dev/class-fire-utils_settings_map.php:512 inc/czr-init-ccat.php:2468
+#: inc/_dev/class-fire-utils_settings_map.php:512 inc/czr-init-ccat.php:2471
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr "หากเปิดไว้ จะแสดงเครื่องหมายแสดงการโหลดก่อนการเริ่มต้นแต่ละสไลด์"
 
-#: inc/_dev/class-fire-utils_settings_map.php:522 inc/czr-init-ccat.php:2478
+#: inc/_dev/class-fire-utils_settings_map.php:522 inc/czr-init-ccat.php:2481
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:576 inc/czr-init-ccat.php:2532
+#: inc/_dev/class-fire-utils_settings_map.php:576 inc/czr-init-ccat.php:2535
 msgid "Social links in header"
 msgstr "ลิงค์เครือข่ายสังคมในส่วนบน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:614 inc/czr-init-ccat.php:2570
+#: inc/_dev/class-fire-utils_settings_map.php:614 inc/czr-init-ccat.php:2573
 msgid "Display menu in a box"
 msgstr "แสดงเมนูอยู่ในกล่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:619 inc/czr-init-ccat.php:2575
+#: inc/_dev/class-fire-utils_settings_map.php:619 inc/czr-init-ccat.php:2578
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr "หากเปิดไว้ เมนูหลัก/คำโปรย/เครือข่ายสังคม จะถูกล้อมรอบด้วยกล่องสีเทา"
 
-#: inc/_dev/class-fire-utils_settings_map.php:624 inc/czr-init-ccat.php:2580
+#: inc/_dev/class-fire-utils_settings_map.php:624 inc/czr-init-ccat.php:2583
 msgid "Sticky header settings"
 msgstr "ตั้งค่าการตรึงแถบด้านบน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2581
+#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2584
 msgid "Sticky on scroll"
 msgstr "ตรึงไว้ขณะเลื่อน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2586
+#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2589
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr "หากเปิดไว้ แถบด้านบนจะถูกตรึงไว้เมื่อมีการเลื่อนหน้าจอลง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:635 inc/czr-init-ccat.php:2591
+#: inc/_dev/class-fire-utils_settings_map.php:635 inc/czr-init-ccat.php:2594
 msgid "Sticky header : display the tagline"
 msgstr "ตรึงแถบด้านบน : แสดงคำโปรย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:643 inc/czr-init-ccat.php:2599
+#: inc/_dev/class-fire-utils_settings_map.php:643 inc/czr-init-ccat.php:2602
 #, fuzzy
 msgid "Sticky header: display the shopping cart"
 msgstr "ตรึงแถบด้านบน : แสดงเมนู"
 
-#: inc/_dev/class-fire-utils_settings_map.php:650 inc/czr-init-ccat.php:2606
+#: inc/_dev/class-fire-utils_settings_map.php:650 inc/czr-init-ccat.php:2609
 msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:655 inc/czr-init-ccat.php:2611
+#: inc/_dev/class-fire-utils_settings_map.php:655 inc/czr-init-ccat.php:2614
 msgid "Sticky header : display the title / logo"
 msgstr "ตรึงแถบด้านบน : แสดงชื่อเว็บไซต์ / โลโก้"
 
-#: inc/_dev/class-fire-utils_settings_map.php:664 inc/czr-init-ccat.php:2620
+#: inc/_dev/class-fire-utils_settings_map.php:664 inc/czr-init-ccat.php:2623
 msgid "Sticky header : display the menu"
 msgstr "ตรึงแถบด้านบน : แสดงเมนู"
 
-#: inc/_dev/class-fire-utils_settings_map.php:669 inc/czr-init-ccat.php:2625
+#: inc/_dev/class-fire-utils_settings_map.php:669 inc/czr-init-ccat.php:2628
 msgid "Also applied to the secondary menu if any."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:747 inc/czr-init-ccat.php:2703
+#: inc/_dev/class-fire-utils_settings_map.php:747 inc/czr-init-ccat.php:2706
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:756 inc/czr-init-ccat.php:2712
+#: inc/_dev/class-fire-utils_settings_map.php:756 inc/czr-init-ccat.php:2715
 msgid "Display a label next to the menu button."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:760 inc/czr-init-ccat.php:2716
+#: inc/_dev/class-fire-utils_settings_map.php:760 inc/czr-init-ccat.php:2719
 msgid "Note : the label is hidden on mobile devices."
 msgstr ""
 
 #: inc/_dev/class-fire-utils_settings_map.php:771
-#: inc/_dev/class-fire-utils_settings_map.php:792 inc/czr-init-ccat.php:2727
-#: inc/czr-init-ccat.php:2748
+#: inc/_dev/class-fire-utils_settings_map.php:792 inc/czr-init-ccat.php:2730
+#: inc/czr-init-ccat.php:2751
 #, fuzzy
 msgid "Menu centered"
 msgstr "เมนูอยู่ด้านซ้าย"
 
 #: inc/_dev/class-fire-utils_settings_map.php:777
-#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2733
-#: inc/czr-init-ccat.php:2754
+#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2736
+#: inc/czr-init-ccat.php:2757
 msgid "Note : the menu centered position is available only when"
 msgstr ""
 
 #: inc/_dev/class-fire-utils_settings_map.php:779
-#: inc/_dev/class-fire-utils_settings_map.php:800 inc/czr-init-ccat.php:2735
-#: inc/czr-init-ccat.php:2756
+#: inc/_dev/class-fire-utils_settings_map.php:800 inc/czr-init-ccat.php:2738
+#: inc/czr-init-ccat.php:2759
 #, fuzzy
 msgid "the logo is centered"
 msgstr "โลโก้ / ชื่อเรื่องอยู่ตรงกลาง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:806 inc/czr-init-ccat.php:2762
+#: inc/_dev/class-fire-utils_settings_map.php:806 inc/czr-init-ccat.php:2765
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2766
+#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2769
 msgid "Move before inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2767
+#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2770
 msgid "Move after inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:812 inc/czr-init-ccat.php:2768
+#: inc/_dev/class-fire-utils_settings_map.php:812 inc/czr-init-ccat.php:2771
 msgid "Display in the header"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:813 inc/czr-init-ccat.php:2769
+#: inc/_dev/class-fire-utils_settings_map.php:813 inc/czr-init-ccat.php:2772
 msgid "Hide"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:891 inc/czr-init-ccat.php:2847
+#: inc/_dev/class-fire-utils_settings_map.php:891 inc/czr-init-ccat.php:2850
 msgid "Metas Design"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:892 inc/czr-init-ccat.php:2848
+#: inc/_dev/class-fire-utils_settings_map.php:892 inc/czr-init-ccat.php:2851
 #, fuzzy
 msgid "Select a design for the post metas"
 msgstr "เลือกสกินสำหรับ Customizr"
 
-#: inc/_dev/class-fire-utils_settings_map.php:896 inc/czr-init-ccat.php:2852
+#: inc/_dev/class-fire-utils_settings_map.php:896 inc/czr-init-ccat.php:2855
 #, fuzzy
 msgid "Buttons and text"
 msgstr "ข้อความในปุ่ม"
 
-#: inc/_dev/class-fire-utils_settings_map.php:897 inc/czr-init-ccat.php:2853
+#: inc/_dev/class-fire-utils_settings_map.php:897 inc/czr-init-ccat.php:2856
 msgid "Text only"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2860
+#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2863
 msgid "Select the last update format"
 msgstr "เลือกรูปแบบของการแก้ไขครั้งล่าสุด"
 
-#: inc/_dev/class-fire-utils_settings_map.php:908 inc/czr-init-ccat.php:2864
+#: inc/_dev/class-fire-utils_settings_map.php:908 inc/czr-init-ccat.php:2867
 #, fuzzy
 msgid "No. of days since last update"
 msgstr "จำนวนวันนับจากการแก้ไขครั้งสุดท้าย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:909 inc/czr-init-ccat.php:2865
+#: inc/_dev/class-fire-utils_settings_map.php:909 inc/czr-init-ccat.php:2868
 msgid "Date of the last update"
 msgstr "วันที่แก้ไขเป็นครั้งสุดท้าย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:917 inc/czr-init-ccat.php:2873
+#: inc/_dev/class-fire-utils_settings_map.php:917 inc/czr-init-ccat.php:2876
 msgid "Recent update notice after post titles"
 msgstr "แจ้งเตือนการปรับปรุงท้ายชื่อเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:918 inc/czr-init-ccat.php:2874
+#: inc/_dev/class-fire-utils_settings_map.php:918 inc/czr-init-ccat.php:2877
 msgid "Display a recent update notice"
 msgstr "แสดงการแจ้งเตือนการแก้ไขครั้งล่าสุด"
 
-#: inc/_dev/class-fire-utils_settings_map.php:922 inc/czr-init-ccat.php:2878
+#: inc/_dev/class-fire-utils_settings_map.php:922 inc/czr-init-ccat.php:2881
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
 msgstr "เมื่อเปิดใช้งาน การแสดงการแก้ไขครั้งล่าสุดจะถูกแสดงถัดจากชื่อเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2884
+#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2887
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr "แสดงการแจ้งเตือนหากการแก้ไขล่าสุดผ่านมาไม่เกิน n วัน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:934 inc/czr-init-ccat.php:2890
+#: inc/_dev/class-fire-utils_settings_map.php:934 inc/czr-init-ccat.php:2893
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr "ตั้งค่าสูงสุด (เป็นวัน) ในช่วงที่การแก้ไขครั้งล่าสุดจะถูกแสดง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2893
+#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2896
 msgid "Recently updated !"
 msgstr "เพิ่งได้รับการแก้ไข !"
 
-#: inc/_dev/class-fire-utils_settings_map.php:939 inc/czr-init-ccat.php:2895
+#: inc/_dev/class-fire-utils_settings_map.php:939 inc/czr-init-ccat.php:2898
 msgid "Update notice text"
 msgstr "ข้อความแจ้งเตือนการแก้ไข"
 
-#: inc/_dev/class-fire-utils_settings_map.php:948 inc/czr-init-ccat.php:2904
+#: inc/_dev/class-fire-utils_settings_map.php:948 inc/czr-init-ccat.php:2907
 msgid "Update notice style"
 msgstr "รูปแบบแจ้งเตือนการแก้ไข"
 
-#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2908
+#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2911
 msgid "Default (grey)"
 msgstr "ตั้งต้น (เทา)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2909
+#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2912
 msgid "Success (green)"
 msgstr "สำเร็จ (เขียว)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2910
+#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2913
 msgid "Alert (orange)"
 msgstr "แจ้งเตือน (ส้ม)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:955 inc/czr-init-ccat.php:2911
+#: inc/_dev/class-fire-utils_settings_map.php:955 inc/czr-init-ccat.php:2914
 msgid "Important (red)"
 msgstr "สำคัญ (แดง)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:956 inc/czr-init-ccat.php:2912
+#: inc/_dev/class-fire-utils_settings_map.php:956 inc/czr-init-ccat.php:2915
 msgid "Info (blue)"
 msgstr "แจ้งให้ทราบ (ฟ้า)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:967 inc/czr-init-ccat.php:2923
+#: inc/_dev/class-fire-utils_settings_map.php:967 inc/czr-init-ccat.php:2926
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -3906,132 +3905,132 @@ msgstr ""
 "หากเปิดใช้งาน ข้อมูลวันและเวลาเกี่ยวกับการแก้ไขเรื่องล่าสุดจะถูกแสดงเพิ่มขึ้นมาได้ "
 "(จะมีไม่มีการแสดงในกรณีที่เรื่องดังกล่าวไม่เคยถูกแก้ไข)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1003 inc/czr-init-ccat.php:2959
+#: inc/_dev/class-fire-utils_settings_map.php:1003 inc/czr-init-ccat.php:2962
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr ""
 "เลือกความยาวตัวอักษรของเรื่องที่อยู่ในรายการ (หน้าแรก หน้าผลการค้นหา หน้าแฟ้มเก็บถาวร ฯลฯ)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2964
+#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2967
 msgid "Display the full content"
 msgstr "แสดงเนื้อหาฉบับเต็ม"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1016 inc/czr-init-ccat.php:2972
+#: inc/_dev/class-fire-utils_settings_map.php:1016 inc/czr-init-ccat.php:2975
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1024 inc/czr-init-ccat.php:2980
+#: inc/_dev/class-fire-utils_settings_map.php:1024 inc/czr-init-ccat.php:2983
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1032 inc/czr-init-ccat.php:2988
+#: inc/_dev/class-fire-utils_settings_map.php:1032 inc/czr-init-ccat.php:2991
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1036 inc/czr-init-ccat.php:2992
+#: inc/_dev/class-fire-utils_settings_map.php:1036 inc/czr-init-ccat.php:2995
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1041 inc/czr-init-ccat.php:2997
+#: inc/_dev/class-fire-utils_settings_map.php:1041 inc/czr-init-ccat.php:3000
 #, fuzzy
 msgid "Display post format icons"
 msgstr "แสดงคุณสมบัติของเรื่องในหน้าแรก"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1050 inc/czr-init-ccat.php:3006
+#: inc/_dev/class-fire-utils_settings_map.php:1050 inc/czr-init-ccat.php:3009
 #, fuzzy
 msgid "Upload a default thumbnail"
 msgstr "แสดงรูปย่อประจำเรื่อง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1080 inc/czr-init-ccat.php:3036
+#: inc/_dev/class-fire-utils_settings_map.php:1080 inc/czr-init-ccat.php:3039
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1081 inc/czr-init-ccat.php:3037
+#: inc/_dev/class-fire-utils_settings_map.php:1081 inc/czr-init-ccat.php:3040
 #, fuzzy
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "จำกัดความสูงของรูปย่อในหน่วยพิกเซล"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3052
+#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3055
 msgid "Squared, expand on hover"
 msgstr "สี่เหลี่ยมจตุรัส ถูกขยายเมื่อนำเมาส์ไปชี้"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3053
+#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3056
 msgid "Squared, no expansion"
 msgstr "สี่เหลี่ยมจตุรัส ไม่มีการขยาย"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3054
+#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3057
 msgid "Rectangular with no effect"
 msgstr "สี่เหลี่ยมผืนผ้าที่ไม่มีลูกเล่นใดๆ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1099 inc/czr-init-ccat.php:3055
+#: inc/_dev/class-fire-utils_settings_map.php:1099 inc/czr-init-ccat.php:3058
 msgid "Rectangular with blur effect on hover"
 msgstr "สี่เหลี่ยมผืนผ้าที่มีลูกเล่นภาพเบลอเมื่อนำเมาส์ไปชี้"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1100 inc/czr-init-ccat.php:3056
+#: inc/_dev/class-fire-utils_settings_map.php:1100 inc/czr-init-ccat.php:3059
 msgid "Rectangular with unblur effect on hover"
 msgstr "สี่เหลี่ยมผืนผ้าที่มีลูกเล่นภาพชัดเมื่อนำเมาส์ไปชี้"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1108 inc/czr-init-ccat.php:3064
+#: inc/_dev/class-fire-utils_settings_map.php:1108 inc/czr-init-ccat.php:3067
 msgid "Top"
 msgstr "ด้านบน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1109 inc/czr-init-ccat.php:3065
+#: inc/_dev/class-fire-utils_settings_map.php:1109 inc/czr-init-ccat.php:3068
 msgid "Bottom"
 msgstr "ด้านล่าง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1134 inc/czr-init-ccat.php:3090
+#: inc/_dev/class-fire-utils_settings_map.php:1134 inc/czr-init-ccat.php:3093
 msgid "Comments bubble shape"
 msgstr "รูปร่างกล่องความเห็น"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1138 inc/czr-init-ccat.php:3094
+#: inc/_dev/class-fire-utils_settings_map.php:1138 inc/czr-init-ccat.php:3097
 msgid "Small bubbles"
 msgstr "กล่องขอบมนขนาดเล็ก"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1139 inc/czr-init-ccat.php:3095
+#: inc/_dev/class-fire-utils_settings_map.php:1139 inc/czr-init-ccat.php:3098
 msgid "Large bubbles"
 msgstr "กล่องขอบมนขนาดใหญ่"
 
 #: inc/_dev/class-fire-utils_settings_map.php:1147
-#: inc/_dev/class-fire-utils_settings_map.php:1160 inc/czr-init-ccat.php:3103
-#: inc/czr-init-ccat.php:3116
+#: inc/_dev/class-fire-utils_settings_map.php:1160 inc/czr-init-ccat.php:3106
+#: inc/czr-init-ccat.php:3119
 msgid "Comments bubble color"
 msgstr "สีของกล่องความเห็น"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1151 inc/czr-init-ccat.php:3107
+#: inc/_dev/class-fire-utils_settings_map.php:1151 inc/czr-init-ccat.php:3110
 msgid "Skin color"
 msgstr "สีของสกิน"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1216 inc/czr-init-ccat.php:3172
+#: inc/_dev/class-fire-utils_settings_map.php:1216 inc/czr-init-ccat.php:3175
 msgid "Social link title in sidebars"
 msgstr "ชื่อลิงค์เครือข่ายสังคมในแถบด้านข้าง"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1222 inc/czr-init-ccat.php:3178
+#: inc/_dev/class-fire-utils_settings_map.php:1222 inc/czr-init-ccat.php:3181
 msgid "Will be hidden if empty"
 msgstr "จะถูกซ่อนหากไม่ได้ระบุค่า"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1252 inc/czr-init-ccat.php:3208
+#: inc/_dev/class-fire-utils_settings_map.php:1252 inc/czr-init-ccat.php:3211
 #, fuzzy
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "เปิด/ปิด การจัดเรียงบล๊อคใหม่ในอุปกรณ์ที่มีหน้าจอขนาดเล็ก"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1255 inc/czr-init-ccat.php:3211
+#: inc/_dev/class-fire-utils_settings_map.php:1255 inc/czr-init-ccat.php:3214
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1318 inc/czr-init-ccat.php:3274
+#: inc/_dev/class-fire-utils_settings_map.php:1318 inc/czr-init-ccat.php:3277
 msgid "Titles icons settings"
 msgstr "ไอคอนหน้าหัวข้อ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1320 inc/czr-init-ccat.php:3276
+#: inc/_dev/class-fire-utils_settings_map.php:1320 inc/czr-init-ccat.php:3279
 msgid "Set up the titles icons options"
 msgstr "ปรับการแสดงผลของไอคอนหน้าหัวข้อ"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1328 inc/czr-init-ccat.php:3284
+#: inc/_dev/class-fire-utils_settings_map.php:1328 inc/czr-init-ccat.php:3287
 msgid "Responsive settings"
 msgstr "คุณสมบัติ responsive"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1330 inc/czr-init-ccat.php:3286
+#: inc/_dev/class-fire-utils_settings_map.php:1330 inc/czr-init-ccat.php:3289
 msgid "Various settings for responsive display"
 msgstr "การตั้งค่าเว็บไซต์ให้ปรับ/ไม่ปรับตามขนาดหน้าจอ"
 
@@ -4491,6 +4490,9 @@ msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
 
+#~ msgid "Add to a slider"
+#~ msgstr "เพิ่มเข้าไปในสไลเดอร์"
+
 #, fuzzy
 #~ msgid "Recent Comments"
 #~ msgstr "ความเห็น"
@@ -4536,9 +4538,6 @@ msgstr ""
 #~ "Customizr สำหรับเรื่องส่วนตัวหรือเรื่องงาน เราขอชื่นชนการสนับสนุนทุกรูปแบบ<br/"
 #~ "><strong>เป็นผู้บริจาคแล้วหรือ? ขอบคุณมาก คุณยอดเยี่ยมที่สุด!<br/><br/"
 #~ ">ขอให้มีความสุขและประสบความสำเร็จไปกับ Customizr!</strong>"
-
-#~ msgid "Hide forever"
-#~ msgstr "ซ่อนตลอดไป"
 
 #~ msgid "Let me think twice"
 #~ msgstr "ขอฉันคิดดูอีกที"

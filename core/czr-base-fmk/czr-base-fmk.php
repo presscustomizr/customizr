@@ -566,6 +566,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 'refresh_markup' => null,
                 'refresh_stylesheet' => null,
                 'refresh_fonts' => null,
+                'refresh_preview' => null,
 
                 'sanitize_cb' => '',
                 'validate_cb' => '',
@@ -802,7 +803,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                         ?>
                           <# //console.log( 'IN php::ac_get_default_input_tmpl() => data sent to the tmpl => ', data ); #>
                           <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="open-tinymce-editor"><?php _e('Edit', 'customizr' ); ?></button>&nbsp;
-                          <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="close-tinymce-editor"><?php _e('Close', 'customizr' ); ?></button>
+                          <button type="button" class="button text_editor-button" data-czr-control-id="{{ data.control_id }}" data-czr-input-id="<?php echo $input_id; ?>" data-czr-action="close-tinymce-editor"><?php _e('Hide editor', 'customizr' ); ?></button>
                           <input data-czrtype="<?php echo $input_id; ?>" type="hidden" value="{{ data.value }}"/>
                         <?php
                     break;

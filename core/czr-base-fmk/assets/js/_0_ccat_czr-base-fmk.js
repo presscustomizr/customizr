@@ -6072,19 +6072,27 @@ $.extend( CZRBaseModuleControlMths, {
             // });
 
             var fireHeaderButtons = function() {
-                  var $header_button,
-                      _title_ = ( window.sektionsLocalizedData && sektionsLocalizedData.i18n && sektionsLocalizedData.i18n['Drag and drop content'] ) ? sektionsLocalizedData.i18n['Drag and drop content'] : '';
-                  if ( api.czr_sektions ) {
-                        $header_button = $('<span/>', {
-                              class:'customize-controls-home-or-add',
-                              html:'<span class="screen-reader-text">Home</span><span class="material-icons" title="' + _title_ +'">add_circle_outline</span>'
-                        });
-                  } else {
-                        $header_button = $('<span/>', {
-                              class:'customize-controls-home-or-add fas fa-home',
-                              html:'<span class="screen-reader-text">Home</span>'
-                        });
-                  }
+                  var $header_button;
+
+                  // Deactivated for the moment.
+                  // The + button has been moved in the Nimble top bar
+                  // if ( api.czr_sektions ) {
+                  //       var _title_ = ( window.sektionsLocalizedData && sektionsLocalizedData.i18n && sektionsLocalizedData.i18n['Drag and drop content'] ) ? sektionsLocalizedData.i18n['Drag and drop content'] : '';
+                  //       $header_button = $('<span/>', {
+                  //             class:'customize-controls-home-or-add',
+                  //             html:'<span class="screen-reader-text">Home</span><span class="material-icons" title="' + _title_ +'">add_circle_outline</span>'
+                  //       });
+                  // } else {
+                  //       $header_button = $('<span/>', {
+                  //             class:'customize-controls-home-or-add fas fa-home',
+                  //             html:'<span class="screen-reader-text">Home</span>'
+                  //       });
+                  // }
+
+                  $header_button = $('<span/>', {
+                        class:'customize-controls-home-or-add fas fa-home',
+                        html:'<span class="screen-reader-text">Home</span>'
+                  });
 
                   $.when( $('#customize-header-actions').append( $header_button ) )
                         .done( function() {
