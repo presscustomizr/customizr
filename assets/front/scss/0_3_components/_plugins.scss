@@ -299,3 +299,8 @@
   padding: 0;
   margin-bottom: 3em;
 }
+//learndash ol li fix:
+//remove ol li counter items
+.czr-wp-the-content .learndash ol li::before {
+    display: none;
+}
