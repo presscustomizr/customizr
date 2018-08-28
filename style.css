@@ -2,7 +2,7 @@
 * Theme Name: Customizr
 * Theme URI: https://presscustomizr.com/customizr
 * Description: Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
-* Version: 4.1.10
+* Version: 4.1.12
 * Author: nikeo
 * Author URI: https://presscustomizr.com/
 * Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
@@ -15,10 +15,7 @@
 
 
 /**
-* The styleheets of Customizr are located in inc/assets/css. Each skin has its own stylesheet : blue.css, green.css, ...
-* The current stylesheet is loaded after the main skin stylesheet.
-*
-* IMPORTANT : If you write your CSS code below, it will be deleted when you'll update the theme.
-* If you want to make quick style test / changes, consider using the Custom CSS section in appearance > customize > advanced options > Custom CSS, it will persist on update since it is saved in your database.
+* Note for developers : If you write your CSS code below, it will be deleted on theme update.
+* If you want to make quick style test / changes, consider using the Custom CSS section in appearance > customize > advanced options > Custom CSS, it will be persisted on theme update.
 * To make important CSS customizations, you'll want to use a child theme and add your css code in the style.css file of it.
 */

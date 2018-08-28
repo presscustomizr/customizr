@@ -1,4 +1,4 @@
-# Customizr v4.1.10 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.12 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,12 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.12 August 9th 2018 =
+* improved : theme screenshot compatibility with the latest requirements of the theme repository on WordPress.org, second pass following discussion : https://themes.trac.wordpress.org/ticket/58335
+
+= 4.1.11 August 9th 2018 =
+* improved : theme screenshot compatibility with the latest requirements of the theme repository on WordPress.org. (see https://make.wordpress.org/themes/2018/08/08/new-additions-to-the-screenshots-and-featured-images-requirements/)
+
 = 4.1.10 August 1st 2018 =
 * added : new option to display the site title next to the logo. Enabled by default. fixes #1573
 * imp : always make sure WC functions exist before calling them. fixes #1529
