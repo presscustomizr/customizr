@@ -1419,7 +1419,7 @@ var TCParams = TCParams || {};
       }
 
       this.$element[dimension](0)
-      this.transition('addClass', $.Event('show'), 'shown')
+      this.transition('addClass', $.Event('show.czrCollapse'), 'shown.czrCollapse')
       $.support.transition && this.$element[dimension](this.$element[0][scroll])
       this._collapsed = false;
       if ( ! this.$element.hasClass('nav-collapse') )
@@ -1451,7 +1451,7 @@ var TCParams = TCParams || {};
       if (this.transitioning || ( this._collapsed && !this.$element.hasClass('in') ) ) return
       dimension = this.dimension()
       this.reset(this.$element[dimension]())
-      this.transition('removeClass', $.Event('hide'), 'hidden')
+      this.transition('removeClass', $.Event('hide.czrCollapse'), 'hidden.czrCollapse')
       this.$element[dimension](0)
       this._collapsed = true;
       if ( ! this.$element.hasClass('nav-collapse') )

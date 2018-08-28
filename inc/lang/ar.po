@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.12\n"
+"Project-Id-Version: * Customizr v4.1.13\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-08-28 12:44:29+00:00\n"
+"POT-Creation-Date: 2018-08-28 13:32:48+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:53+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -292,9 +292,9 @@ msgid "Posts slider button text"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:371
-#: build/free/customizr/inc/czr-init-ccat.php:4270
+#: build/free/customizr/inc/czr-init-ccat.php:4266
 #: core/class-fire-resources_scripts.php:371
-#: inc/_dev/class-fire-resources.php:349 inc/czr-init-ccat.php:4270
+#: inc/_dev/class-fire-resources.php:349 inc/czr-init-ccat.php:4266
 msgid "Permanently dismiss"
 msgstr ""
 
@@ -519,9 +519,9 @@ msgid "Animated underline effect on link hover"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:373
-#: build/free/customizr/inc/czr-init-ccat.php:2270
+#: build/free/customizr/inc/czr-init-ccat.php:2266
 #: core/core-settings-map.php:373
-#: inc/_dev/class-fire-utils_settings_map.php:311 inc/czr-init-ccat.php:2270
+#: inc/_dev/class-fire-utils_settings_map.php:311 inc/czr-init-ccat.php:2266
 msgid "Fade effect on link hover"
 msgstr ""
 
@@ -653,9 +653,9 @@ msgid "Light"
 msgstr "Droite"
 
 #: build/free/customizr/core/core-settings-map.php:533
-#: build/free/customizr/inc/czr-init-ccat.php:3111
+#: build/free/customizr/inc/czr-init-ccat.php:3107
 #: core/core-settings-map.php:533
-#: inc/_dev/class-fire-utils_settings_map.php:1152 inc/czr-init-ccat.php:3111
+#: inc/_dev/class-fire-utils_settings_map.php:1152 inc/czr-init-ccat.php:3107
 #, fuzzy
 msgid "Custom"
 msgstr "CSS مخصص"
@@ -860,18 +860,18 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:717
 #: build/free/customizr/core/core-settings-map.php:827
-#: build/free/customizr/inc/czr-init-ccat.php:2562
+#: build/free/customizr/inc/czr-init-ccat.php:2558
 #: core/core-settings-map.php:717 core/core-settings-map.php:827
-#: inc/_dev/class-fire-utils_settings_map.php:603 inc/czr-init-ccat.php:2562
+#: inc/_dev/class-fire-utils_settings_map.php:603 inc/czr-init-ccat.php:2558
 #, fuzzy
 msgid "Display the shopping cart in the header"
 msgstr "عرض المحتوى الكامل"
 
 #: build/free/customizr/core/core-settings-map.php:720
 #: build/free/customizr/core/core-settings-map.php:830
-#: build/free/customizr/inc/czr-init-ccat.php:2565
+#: build/free/customizr/inc/czr-init-ccat.php:2561
 #: core/core-settings-map.php:720 core/core-settings-map.php:830
-#: inc/_dev/class-fire-utils_settings_map.php:606 inc/czr-init-ccat.php:2565
+#: inc/_dev/class-fire-utils_settings_map.php:606 inc/czr-init-ccat.php:2561
 msgid ""
 "WooCommerce: check to display a cart icon showing the number of items in "
 "your cart next to your header's tagline."
@@ -1005,9 +1005,9 @@ msgid "Expand submenus on click"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:816
-#: build/free/customizr/inc/czr-init-ccat.php:2550
+#: build/free/customizr/inc/czr-init-ccat.php:2546
 #: core/core-settings-map.php:816
-#: inc/_dev/class-fire-utils_settings_map.php:591 inc/czr-init-ccat.php:2550
+#: inc/_dev/class-fire-utils_settings_map.php:591 inc/czr-init-ccat.php:2546
 #, fuzzy
 msgid "Display the tagline in the header"
 msgstr "عرض المحتوى الكامل"
@@ -1093,45 +1093,45 @@ msgid "Primary (vertical) menu design"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:925
-#: build/free/customizr/inc/czr-init-ccat.php:2725
+#: build/free/customizr/inc/czr-init-ccat.php:2721
 #: core/core-settings-map.php:925
-#: inc/_dev/class-fire-utils_settings_map.php:766 inc/czr-init-ccat.php:2725
+#: inc/_dev/class-fire-utils_settings_map.php:766 inc/czr-init-ccat.php:2721
 msgid "Menu position (for \"main\" menu)"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:929
 #: build/free/customizr/core/core-settings-map.php:943
-#: build/free/customizr/inc/czr-init-ccat.php:2729
-#: build/free/customizr/inc/czr-init-ccat.php:2750
+#: build/free/customizr/inc/czr-init-ccat.php:2725
+#: build/free/customizr/inc/czr-init-ccat.php:2746
 #: core/core-settings-map.php:929 core/core-settings-map.php:943
 #: inc/_dev/class-fire-utils_settings_map.php:770
-#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2729
-#: inc/czr-init-ccat.php:2750
+#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2725
+#: inc/czr-init-ccat.php:2746
 msgid "Menu on the left"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:930
 #: build/free/customizr/core/core-settings-map.php:944
-#: build/free/customizr/inc/czr-init-ccat.php:2731
-#: build/free/customizr/inc/czr-init-ccat.php:2752
+#: build/free/customizr/inc/czr-init-ccat.php:2727
+#: build/free/customizr/inc/czr-init-ccat.php:2748
 #: core/core-settings-map.php:930 core/core-settings-map.php:944
 #: inc/_dev/class-fire-utils_settings_map.php:772
-#: inc/_dev/class-fire-utils_settings_map.php:793 inc/czr-init-ccat.php:2731
-#: inc/czr-init-ccat.php:2752
+#: inc/_dev/class-fire-utils_settings_map.php:793 inc/czr-init-ccat.php:2727
+#: inc/czr-init-ccat.php:2748
 msgid "Menu on the right"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:938
-#: build/free/customizr/inc/czr-init-ccat.php:2745
+#: build/free/customizr/inc/czr-init-ccat.php:2741
 #: core/core-settings-map.php:938
-#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2745
+#: inc/_dev/class-fire-utils_settings_map.php:786 inc/czr-init-ccat.php:2741
 msgid "Secondary (horizontal) menu design"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:939
-#: build/free/customizr/inc/czr-init-ccat.php:2746
+#: build/free/customizr/inc/czr-init-ccat.php:2742
 #: core/core-settings-map.php:939
-#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2746
+#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2742
 msgid "Menu position (for the horizontal menu)"
 msgstr ""
 
@@ -1310,9 +1310,9 @@ msgid "The title will be limited to 80 chars max"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1155
-#: build/free/customizr/inc/czr-init-ccat.php:2966
+#: build/free/customizr/inc/czr-init-ccat.php:2962
 #: core/core-settings-map.php:1155
-#: inc/_dev/class-fire-utils_settings_map.php:1007 inc/czr-init-ccat.php:2966
+#: inc/_dev/class-fire-utils_settings_map.php:1007 inc/czr-init-ccat.php:2962
 msgid "Display the excerpt"
 msgstr "عرض المقتطف"
 
@@ -1835,9 +1835,9 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:1680
 #: build/free/customizr/core/core-settings-map.php:1750
-#: build/free/customizr/inc/czr-init-ccat.php:3027
+#: build/free/customizr/inc/czr-init-ccat.php:3023
 #: core/core-settings-map.php:1680 core/core-settings-map.php:1750
-#: inc/_dev/class-fire-utils_settings_map.php:1068 inc/czr-init-ccat.php:3027
+#: inc/_dev/class-fire-utils_settings_map.php:1068 inc/czr-init-ccat.php:3023
 msgid "Set the thumbnail's max height in pixels"
 msgstr ""
 
@@ -4361,8 +4361,8 @@ msgid "Need help with Customizr? Click here!"
 msgstr "تحتاج لمساعدة مع  Customizr? اضغط هنا !"
 
 #: build/free/customizr/core/init-base.php:1084
-#: build/free/customizr/inc/czr-init-ccat.php:3174 core/init-base.php:1084
-#: inc/_dev/class-fire-utils_settings_map.php:1215 inc/czr-init-ccat.php:3174
+#: build/free/customizr/inc/czr-init-ccat.php:3170 core/init-base.php:1084
+#: inc/_dev/class-fire-utils_settings_map.php:1215 inc/czr-init-ccat.php:3170
 msgid "Social links"
 msgstr "الروابط الإجتماعية"
 
@@ -4847,160 +4847,160 @@ msgstr ""
 msgid "View your shopping cart"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2179
-#: inc/_dev/class-fire-utils_settings_map.php:220 inc/czr-init-ccat.php:2179
+#: build/free/customizr/inc/czr-init-ccat.php:2175
+#: inc/_dev/class-fire-utils_settings_map.php:220 inc/czr-init-ccat.php:2175
 #, fuzzy
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr "رفع شعار (يدعم:  .jpg, .png, .gif)"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2191
-#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2191
+#: build/free/customizr/inc/czr-init-ccat.php:2187
+#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2187
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2196
-#: inc/_dev/class-fire-utils_settings_map.php:237 inc/czr-init-ccat.php:2196
+#: build/free/customizr/inc/czr-init-ccat.php:2192
+#: inc/_dev/class-fire-utils_settings_map.php:237 inc/czr-init-ccat.php:2192
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "الصورة الرمزية رفع  (تدعم : .ico, .png, .gif)"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2197
-#: inc/_dev/class-fire-utils_settings_map.php:238 inc/czr-init-ccat.php:2197
+#: build/free/customizr/inc/czr-init-ccat.php:2193
+#: inc/_dev/class-fire-utils_settings_map.php:238 inc/czr-init-ccat.php:2193
 msgid "FAVICON"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2236
-#: inc/_dev/class-fire-utils_settings_map.php:277 inc/czr-init-ccat.php:2236
+#: build/free/customizr/inc/czr-init-ccat.php:2232
+#: inc/_dev/class-fire-utils_settings_map.php:277 inc/czr-init-ccat.php:2232
 msgid "Choose a predefined skin"
 msgstr "اختيار المظهر المحدد مسبقاً"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2241
-#: inc/_dev/class-fire-utils_settings_map.php:282 inc/czr-init-ccat.php:2241
+#: build/free/customizr/inc/czr-init-ccat.php:2237
+#: inc/_dev/class-fire-utils_settings_map.php:282 inc/czr-init-ccat.php:2237
 msgid "Disabled if the random option is on."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2246
-#: inc/_dev/class-fire-utils_settings_map.php:287 inc/czr-init-ccat.php:2246
+#: build/free/customizr/inc/czr-init-ccat.php:2242
+#: inc/_dev/class-fire-utils_settings_map.php:287 inc/czr-init-ccat.php:2242
 msgid "Randomize the skin"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2249
-#: inc/_dev/class-fire-utils_settings_map.php:290 inc/czr-init-ccat.php:2249
+#: build/free/customizr/inc/czr-init-ccat.php:2245
+#: inc/_dev/class-fire-utils_settings_map.php:290 inc/czr-init-ccat.php:2245
 msgid "Apply a random color skin on each page load."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2293
-#: inc/_dev/class-fire-utils_settings_map.php:334 inc/czr-init-ccat.php:2293
+#: build/free/customizr/inc/czr-init-ccat.php:2289
+#: inc/_dev/class-fire-utils_settings_map.php:334 inc/czr-init-ccat.php:2289
 msgid "Display an icon next to external links"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2296
-#: build/free/customizr/inc/czr-init-ccat.php:2306
+#: build/free/customizr/inc/czr-init-ccat.php:2292
+#: build/free/customizr/inc/czr-init-ccat.php:2302
 #: inc/_dev/class-fire-utils_settings_map.php:337
-#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2296
-#: inc/czr-init-ccat.php:2306
+#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2292
+#: inc/czr-init-ccat.php:2302
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2303
-#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2303
+#: build/free/customizr/inc/czr-init-ccat.php:2299
+#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2299
 msgid "Open external links in a new tab"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2311
-#: inc/_dev/class-fire-utils_settings_map.php:352 inc/czr-init-ccat.php:2311
+#: build/free/customizr/inc/czr-init-ccat.php:2307
+#: inc/_dev/class-fire-utils_settings_map.php:352 inc/czr-init-ccat.php:2307
 msgid "Drop caps"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2312
-#: inc/_dev/class-fire-utils_settings_map.php:353 inc/czr-init-ccat.php:2312
+#: build/free/customizr/inc/czr-init-ccat.php:2308
+#: inc/_dev/class-fire-utils_settings_map.php:353 inc/czr-init-ccat.php:2308
 msgid "Enable drop caps"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2314
-#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2314
+#: build/free/customizr/inc/czr-init-ccat.php:2310
+#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2310
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2322
-#: inc/_dev/class-fire-utils_settings_map.php:363 inc/czr-init-ccat.php:2322
+#: build/free/customizr/inc/czr-init-ccat.php:2318
+#: inc/_dev/class-fire-utils_settings_map.php:363 inc/czr-init-ccat.php:2318
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2323
-#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2323
+#: build/free/customizr/inc/czr-init-ccat.php:2319
+#: inc/_dev/class-fire-utils_settings_map.php:364 inc/czr-init-ccat.php:2319
 msgid "(number of words)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2332
-#: inc/_dev/class-fire-utils_settings_map.php:373 inc/czr-init-ccat.php:2332
+#: build/free/customizr/inc/czr-init-ccat.php:2328
+#: inc/_dev/class-fire-utils_settings_map.php:373 inc/czr-init-ccat.php:2328
 msgid "Drop cap style"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2336
-#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2336
+#: build/free/customizr/inc/czr-init-ccat.php:2332
+#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2332
 #, fuzzy
 msgid "Primary theme color with a shadow"
 msgstr "تلميح لون الايقونة"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2337
-#: inc/_dev/class-fire-utils_settings_map.php:378 inc/czr-init-ccat.php:2337
+#: build/free/customizr/inc/czr-init-ccat.php:2333
+#: inc/_dev/class-fire-utils_settings_map.php:378 inc/czr-init-ccat.php:2333
 msgid "Simple black"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2342
-#: inc/_dev/class-fire-utils_settings_map.php:383 inc/czr-init-ccat.php:2342
+#: build/free/customizr/inc/czr-init-ccat.php:2338
+#: inc/_dev/class-fire-utils_settings_map.php:383 inc/czr-init-ccat.php:2338
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2344
-#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2344
+#: build/free/customizr/inc/czr-init-ccat.php:2340
+#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2340
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2350
-#: inc/_dev/class-fire-utils_settings_map.php:391 inc/czr-init-ccat.php:2350
+#: build/free/customizr/inc/czr-init-ccat.php:2346
+#: inc/_dev/class-fire-utils_settings_map.php:391 inc/czr-init-ccat.php:2346
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "تمكين التعليقات ضمن الصفحات"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2352
-#: inc/_dev/class-fire-utils_settings_map.php:393 inc/czr-init-ccat.php:2352
+#: build/free/customizr/inc/czr-init-ccat.php:2348
+#: inc/_dev/class-fire-utils_settings_map.php:393 inc/czr-init-ccat.php:2348
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2371
-#: inc/_dev/class-fire-utils_settings_map.php:412 inc/czr-init-ccat.php:2371
+#: build/free/customizr/inc/czr-init-ccat.php:2367
+#: inc/_dev/class-fire-utils_settings_map.php:412 inc/czr-init-ccat.php:2367
 msgid "Display icons next to titles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2375
-#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2375
+#: build/free/customizr/inc/czr-init-ccat.php:2371
+#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2371
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2381
-#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2381
+#: build/free/customizr/inc/czr-init-ccat.php:2377
+#: inc/_dev/class-fire-utils_settings_map.php:422 inc/czr-init-ccat.php:2377
 msgid "Display a page icon next to the page title"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2390
-#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2390
+#: build/free/customizr/inc/czr-init-ccat.php:2386
+#: inc/_dev/class-fire-utils_settings_map.php:431 inc/czr-init-ccat.php:2386
 msgid "Display a post icon next to the single post title"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2399
-#: inc/_dev/class-fire-utils_settings_map.php:440 inc/czr-init-ccat.php:2399
+#: build/free/customizr/inc/czr-init-ccat.php:2395
+#: inc/_dev/class-fire-utils_settings_map.php:440 inc/czr-init-ccat.php:2395
 msgid "Display an icon next to the archive title"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2402
-#: inc/_dev/class-fire-utils_settings_map.php:443 inc/czr-init-ccat.php:2402
+#: build/free/customizr/inc/czr-init-ccat.php:2398
+#: inc/_dev/class-fire-utils_settings_map.php:443 inc/czr-init-ccat.php:2398
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -5008,477 +5008,477 @@ msgid ""
 "results."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2409
-#: inc/_dev/class-fire-utils_settings_map.php:450 inc/czr-init-ccat.php:2409
+#: build/free/customizr/inc/czr-init-ccat.php:2405
+#: inc/_dev/class-fire-utils_settings_map.php:450 inc/czr-init-ccat.php:2405
 msgid "Display an icon next to each post title in an archive page"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2412
-#: inc/_dev/class-fire-utils_settings_map.php:453 inc/czr-init-ccat.php:2412
+#: build/free/customizr/inc/czr-init-ccat.php:2408
+#: inc/_dev/class-fire-utils_settings_map.php:453 inc/czr-init-ccat.php:2408
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
 "author, date archive, custom taxonomies, search results."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2419
-#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2419
+#: build/free/customizr/inc/czr-init-ccat.php:2415
+#: inc/_dev/class-fire-utils_settings_map.php:460 inc/czr-init-ccat.php:2415
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2428
-#: inc/_dev/class-fire-utils_settings_map.php:469 inc/czr-init-ccat.php:2428
+#: build/free/customizr/inc/czr-init-ccat.php:2424
+#: inc/_dev/class-fire-utils_settings_map.php:469 inc/czr-init-ccat.php:2424
 msgid "WP footer widgets : display icons next to titles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2457
-#: inc/_dev/class-fire-utils_settings_map.php:498 inc/czr-init-ccat.php:2457
+#: build/free/customizr/inc/czr-init-ccat.php:2453
+#: inc/_dev/class-fire-utils_settings_map.php:498 inc/czr-init-ccat.php:2453
 msgid "Autoscale images on zoom"
 msgstr "مقياس للصور عند التقريب"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2461
-#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2461
+#: build/free/customizr/inc/czr-init-ccat.php:2457
+#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2457
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr "إذا تم تمكين، سيفرض هذا الخيار الصور لتناسب الشاشة ."
 
-#: build/free/customizr/inc/czr-init-ccat.php:2467
-#: inc/_dev/class-fire-utils_settings_map.php:508 inc/czr-init-ccat.php:2467
+#: build/free/customizr/inc/czr-init-ccat.php:2463
+#: inc/_dev/class-fire-utils_settings_map.php:508 inc/czr-init-ccat.php:2463
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2471
-#: inc/_dev/class-fire-utils_settings_map.php:512 inc/czr-init-ccat.php:2471
+#: build/free/customizr/inc/czr-init-ccat.php:2467
+#: inc/_dev/class-fire-utils_settings_map.php:512 inc/czr-init-ccat.php:2467
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2481
-#: inc/_dev/class-fire-utils_settings_map.php:522 inc/czr-init-ccat.php:2481
+#: build/free/customizr/inc/czr-init-ccat.php:2477
+#: inc/_dev/class-fire-utils_settings_map.php:522 inc/czr-init-ccat.php:2477
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2535
-#: inc/_dev/class-fire-utils_settings_map.php:576 inc/czr-init-ccat.php:2535
+#: build/free/customizr/inc/czr-init-ccat.php:2531
+#: inc/_dev/class-fire-utils_settings_map.php:576 inc/czr-init-ccat.php:2531
 msgid "Social links in header"
 msgstr "الروابط الاجتماعية في الترويسة.الهيدر."
 
-#: build/free/customizr/inc/czr-init-ccat.php:2573
-#: inc/_dev/class-fire-utils_settings_map.php:614 inc/czr-init-ccat.php:2573
+#: build/free/customizr/inc/czr-init-ccat.php:2569
+#: inc/_dev/class-fire-utils_settings_map.php:614 inc/czr-init-ccat.php:2569
 msgid "Display menu in a box"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2578
-#: inc/_dev/class-fire-utils_settings_map.php:619 inc/czr-init-ccat.php:2578
+#: build/free/customizr/inc/czr-init-ccat.php:2574
+#: inc/_dev/class-fire-utils_settings_map.php:619 inc/czr-init-ccat.php:2574
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2583
-#: inc/_dev/class-fire-utils_settings_map.php:624 inc/czr-init-ccat.php:2583
+#: build/free/customizr/inc/czr-init-ccat.php:2579
+#: inc/_dev/class-fire-utils_settings_map.php:624 inc/czr-init-ccat.php:2579
 msgid "Sticky header settings"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2584
-#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2584
+#: build/free/customizr/inc/czr-init-ccat.php:2580
+#: inc/_dev/class-fire-utils_settings_map.php:625 inc/czr-init-ccat.php:2580
 msgid "Sticky on scroll"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2589
-#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2589
+#: build/free/customizr/inc/czr-init-ccat.php:2585
+#: inc/_dev/class-fire-utils_settings_map.php:630 inc/czr-init-ccat.php:2585
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2594
-#: inc/_dev/class-fire-utils_settings_map.php:635 inc/czr-init-ccat.php:2594
+#: build/free/customizr/inc/czr-init-ccat.php:2590
+#: inc/_dev/class-fire-utils_settings_map.php:635 inc/czr-init-ccat.php:2590
 msgid "Sticky header : display the tagline"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2602
-#: inc/_dev/class-fire-utils_settings_map.php:643 inc/czr-init-ccat.php:2602
+#: build/free/customizr/inc/czr-init-ccat.php:2598
+#: inc/_dev/class-fire-utils_settings_map.php:643 inc/czr-init-ccat.php:2598
 msgid "Sticky header: display the shopping cart"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2609
-#: inc/_dev/class-fire-utils_settings_map.php:650 inc/czr-init-ccat.php:2609
+#: build/free/customizr/inc/czr-init-ccat.php:2605
+#: inc/_dev/class-fire-utils_settings_map.php:650 inc/czr-init-ccat.php:2605
 msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2614
-#: inc/_dev/class-fire-utils_settings_map.php:655 inc/czr-init-ccat.php:2614
+#: build/free/customizr/inc/czr-init-ccat.php:2610
+#: inc/_dev/class-fire-utils_settings_map.php:655 inc/czr-init-ccat.php:2610
 msgid "Sticky header : display the title / logo"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2623
-#: inc/_dev/class-fire-utils_settings_map.php:664 inc/czr-init-ccat.php:2623
+#: build/free/customizr/inc/czr-init-ccat.php:2619
+#: inc/_dev/class-fire-utils_settings_map.php:664 inc/czr-init-ccat.php:2619
 msgid "Sticky header : display the menu"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2628
-#: inc/_dev/class-fire-utils_settings_map.php:669 inc/czr-init-ccat.php:2628
+#: build/free/customizr/inc/czr-init-ccat.php:2624
+#: inc/_dev/class-fire-utils_settings_map.php:669 inc/czr-init-ccat.php:2624
 msgid "Also applied to the secondary menu if any."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2706
-#: inc/_dev/class-fire-utils_settings_map.php:747 inc/czr-init-ccat.php:2706
+#: build/free/customizr/inc/czr-init-ccat.php:2702
+#: inc/_dev/class-fire-utils_settings_map.php:747 inc/czr-init-ccat.php:2702
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2715
-#: inc/_dev/class-fire-utils_settings_map.php:756 inc/czr-init-ccat.php:2715
+#: build/free/customizr/inc/czr-init-ccat.php:2711
+#: inc/_dev/class-fire-utils_settings_map.php:756 inc/czr-init-ccat.php:2711
 msgid "Display a label next to the menu button."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2719
-#: inc/_dev/class-fire-utils_settings_map.php:760 inc/czr-init-ccat.php:2719
+#: build/free/customizr/inc/czr-init-ccat.php:2715
+#: inc/_dev/class-fire-utils_settings_map.php:760 inc/czr-init-ccat.php:2715
 msgid "Note : the label is hidden on mobile devices."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2730
-#: build/free/customizr/inc/czr-init-ccat.php:2751
+#: build/free/customizr/inc/czr-init-ccat.php:2726
+#: build/free/customizr/inc/czr-init-ccat.php:2747
 #: inc/_dev/class-fire-utils_settings_map.php:771
-#: inc/_dev/class-fire-utils_settings_map.php:792 inc/czr-init-ccat.php:2730
-#: inc/czr-init-ccat.php:2751
+#: inc/_dev/class-fire-utils_settings_map.php:792 inc/czr-init-ccat.php:2726
+#: inc/czr-init-ccat.php:2747
 msgid "Menu centered"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2736
-#: build/free/customizr/inc/czr-init-ccat.php:2757
+#: build/free/customizr/inc/czr-init-ccat.php:2732
+#: build/free/customizr/inc/czr-init-ccat.php:2753
 #: inc/_dev/class-fire-utils_settings_map.php:777
-#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2736
-#: inc/czr-init-ccat.php:2757
+#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2732
+#: inc/czr-init-ccat.php:2753
 msgid "Note : the menu centered position is available only when"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2738
-#: build/free/customizr/inc/czr-init-ccat.php:2759
+#: build/free/customizr/inc/czr-init-ccat.php:2734
+#: build/free/customizr/inc/czr-init-ccat.php:2755
 #: inc/_dev/class-fire-utils_settings_map.php:779
-#: inc/_dev/class-fire-utils_settings_map.php:800 inc/czr-init-ccat.php:2738
-#: inc/czr-init-ccat.php:2759
+#: inc/_dev/class-fire-utils_settings_map.php:800 inc/czr-init-ccat.php:2734
+#: inc/czr-init-ccat.php:2755
 msgid "the logo is centered"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2765
-#: inc/_dev/class-fire-utils_settings_map.php:806 inc/czr-init-ccat.php:2765
+#: build/free/customizr/inc/czr-init-ccat.php:2761
+#: inc/_dev/class-fire-utils_settings_map.php:806 inc/czr-init-ccat.php:2761
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2769
-#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2769
+#: build/free/customizr/inc/czr-init-ccat.php:2765
+#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2765
 msgid "Move before inside the side menu "
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2770
-#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2770
+#: build/free/customizr/inc/czr-init-ccat.php:2766
+#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2766
 msgid "Move after inside the side menu "
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2771
-#: inc/_dev/class-fire-utils_settings_map.php:812 inc/czr-init-ccat.php:2771
+#: build/free/customizr/inc/czr-init-ccat.php:2767
+#: inc/_dev/class-fire-utils_settings_map.php:812 inc/czr-init-ccat.php:2767
 msgid "Display in the header"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2772
-#: inc/_dev/class-fire-utils_settings_map.php:813 inc/czr-init-ccat.php:2772
+#: build/free/customizr/inc/czr-init-ccat.php:2768
+#: inc/_dev/class-fire-utils_settings_map.php:813 inc/czr-init-ccat.php:2768
 msgid "Hide"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2850
-#: inc/_dev/class-fire-utils_settings_map.php:891 inc/czr-init-ccat.php:2850
+#: build/free/customizr/inc/czr-init-ccat.php:2846
+#: inc/_dev/class-fire-utils_settings_map.php:891 inc/czr-init-ccat.php:2846
 msgid "Metas Design"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2851
-#: inc/_dev/class-fire-utils_settings_map.php:892 inc/czr-init-ccat.php:2851
+#: build/free/customizr/inc/czr-init-ccat.php:2847
+#: inc/_dev/class-fire-utils_settings_map.php:892 inc/czr-init-ccat.php:2847
 #, fuzzy
 msgid "Select a design for the post metas"
 msgstr "اختر اللون والمظهر للقالب"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2855
-#: inc/_dev/class-fire-utils_settings_map.php:896 inc/czr-init-ccat.php:2855
+#: build/free/customizr/inc/czr-init-ccat.php:2851
+#: inc/_dev/class-fire-utils_settings_map.php:896 inc/czr-init-ccat.php:2851
 #, fuzzy
 msgid "Buttons and text"
 msgstr "نص الزر"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2856
-#: inc/_dev/class-fire-utils_settings_map.php:897 inc/czr-init-ccat.php:2856
+#: build/free/customizr/inc/czr-init-ccat.php:2852
+#: inc/_dev/class-fire-utils_settings_map.php:897 inc/czr-init-ccat.php:2852
 msgid "Text only"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2863
-#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2863
+#: build/free/customizr/inc/czr-init-ccat.php:2859
+#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2859
 msgid "Select the last update format"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2867
-#: inc/_dev/class-fire-utils_settings_map.php:908 inc/czr-init-ccat.php:2867
+#: build/free/customizr/inc/czr-init-ccat.php:2863
+#: inc/_dev/class-fire-utils_settings_map.php:908 inc/czr-init-ccat.php:2863
 msgid "No. of days since last update"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2868
-#: inc/_dev/class-fire-utils_settings_map.php:909 inc/czr-init-ccat.php:2868
+#: build/free/customizr/inc/czr-init-ccat.php:2864
+#: inc/_dev/class-fire-utils_settings_map.php:909 inc/czr-init-ccat.php:2864
 msgid "Date of the last update"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2876
-#: inc/_dev/class-fire-utils_settings_map.php:917 inc/czr-init-ccat.php:2876
+#: build/free/customizr/inc/czr-init-ccat.php:2872
+#: inc/_dev/class-fire-utils_settings_map.php:917 inc/czr-init-ccat.php:2872
 msgid "Recent update notice after post titles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2877
-#: inc/_dev/class-fire-utils_settings_map.php:918 inc/czr-init-ccat.php:2877
+#: build/free/customizr/inc/czr-init-ccat.php:2873
+#: inc/_dev/class-fire-utils_settings_map.php:918 inc/czr-init-ccat.php:2873
 msgid "Display a recent update notice"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2881
-#: inc/_dev/class-fire-utils_settings_map.php:922 inc/czr-init-ccat.php:2881
+#: build/free/customizr/inc/czr-init-ccat.php:2877
+#: inc/_dev/class-fire-utils_settings_map.php:922 inc/czr-init-ccat.php:2877
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2887
-#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2887
+#: build/free/customizr/inc/czr-init-ccat.php:2883
+#: inc/_dev/class-fire-utils_settings_map.php:928 inc/czr-init-ccat.php:2883
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2893
-#: inc/_dev/class-fire-utils_settings_map.php:934 inc/czr-init-ccat.php:2893
+#: build/free/customizr/inc/czr-init-ccat.php:2889
+#: inc/_dev/class-fire-utils_settings_map.php:934 inc/czr-init-ccat.php:2889
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2896
-#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2896
+#: build/free/customizr/inc/czr-init-ccat.php:2892
+#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2892
 msgid "Recently updated !"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2898
-#: inc/_dev/class-fire-utils_settings_map.php:939 inc/czr-init-ccat.php:2898
+#: build/free/customizr/inc/czr-init-ccat.php:2894
+#: inc/_dev/class-fire-utils_settings_map.php:939 inc/czr-init-ccat.php:2894
 msgid "Update notice text"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2907
-#: inc/_dev/class-fire-utils_settings_map.php:948 inc/czr-init-ccat.php:2907
+#: build/free/customizr/inc/czr-init-ccat.php:2903
+#: inc/_dev/class-fire-utils_settings_map.php:948 inc/czr-init-ccat.php:2903
 msgid "Update notice style"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2911
-#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2911
+#: build/free/customizr/inc/czr-init-ccat.php:2907
+#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2907
 msgid "Default (grey)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2912
-#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2912
+#: build/free/customizr/inc/czr-init-ccat.php:2908
+#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2908
 msgid "Success (green)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2913
-#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2913
+#: build/free/customizr/inc/czr-init-ccat.php:2909
+#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2909
 msgid "Alert (orange)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2914
-#: inc/_dev/class-fire-utils_settings_map.php:955 inc/czr-init-ccat.php:2914
+#: build/free/customizr/inc/czr-init-ccat.php:2910
+#: inc/_dev/class-fire-utils_settings_map.php:955 inc/czr-init-ccat.php:2910
 msgid "Important (red)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2915
-#: inc/_dev/class-fire-utils_settings_map.php:956 inc/czr-init-ccat.php:2915
+#: build/free/customizr/inc/czr-init-ccat.php:2911
+#: inc/_dev/class-fire-utils_settings_map.php:956 inc/czr-init-ccat.php:2911
 msgid "Info (blue)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2926
-#: inc/_dev/class-fire-utils_settings_map.php:967 inc/czr-init-ccat.php:2926
+#: build/free/customizr/inc/czr-init-ccat.php:2922
+#: inc/_dev/class-fire-utils_settings_map.php:967 inc/czr-init-ccat.php:2922
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
 "been updated)."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2962
-#: inc/_dev/class-fire-utils_settings_map.php:1003 inc/czr-init-ccat.php:2962
+#: build/free/customizr/inc/czr-init-ccat.php:2958
+#: inc/_dev/class-fire-utils_settings_map.php:1003 inc/czr-init-ccat.php:2958
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "تحديد طول المشاركات في قوائم (الرئيسية، البحث، الأرشيف، ...)"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2967
-#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2967
+#: build/free/customizr/inc/czr-init-ccat.php:2963
+#: inc/_dev/class-fire-utils_settings_map.php:1008 inc/czr-init-ccat.php:2963
 msgid "Display the full content"
 msgstr "عرض المحتوى الكامل"
 
-#: build/free/customizr/inc/czr-init-ccat.php:2975
-#: inc/_dev/class-fire-utils_settings_map.php:1016 inc/czr-init-ccat.php:2975
+#: build/free/customizr/inc/czr-init-ccat.php:2971
+#: inc/_dev/class-fire-utils_settings_map.php:1016 inc/czr-init-ccat.php:2971
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2983
-#: inc/_dev/class-fire-utils_settings_map.php:1024 inc/czr-init-ccat.php:2983
+#: build/free/customizr/inc/czr-init-ccat.php:2979
+#: inc/_dev/class-fire-utils_settings_map.php:1024 inc/czr-init-ccat.php:2979
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2991
-#: inc/_dev/class-fire-utils_settings_map.php:1032 inc/czr-init-ccat.php:2991
+#: build/free/customizr/inc/czr-init-ccat.php:2987
+#: inc/_dev/class-fire-utils_settings_map.php:1032 inc/czr-init-ccat.php:2987
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:2995
-#: inc/_dev/class-fire-utils_settings_map.php:1036 inc/czr-init-ccat.php:2995
+#: build/free/customizr/inc/czr-init-ccat.php:2991
+#: inc/_dev/class-fire-utils_settings_map.php:1036 inc/czr-init-ccat.php:2991
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3000
-#: inc/_dev/class-fire-utils_settings_map.php:1041 inc/czr-init-ccat.php:3000
+#: build/free/customizr/inc/czr-init-ccat.php:2996
+#: inc/_dev/class-fire-utils_settings_map.php:1041 inc/czr-init-ccat.php:2996
 #, fuzzy
 msgid "Display post format icons"
 msgstr "عرض المقتطف"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3009
-#: inc/_dev/class-fire-utils_settings_map.php:1050 inc/czr-init-ccat.php:3009
+#: build/free/customizr/inc/czr-init-ccat.php:3005
+#: inc/_dev/class-fire-utils_settings_map.php:1050 inc/czr-init-ccat.php:3005
 #, fuzzy
 msgid "Upload a default thumbnail"
 msgstr "عرض المقتطف"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3039
-#: inc/_dev/class-fire-utils_settings_map.php:1080 inc/czr-init-ccat.php:3039
+#: build/free/customizr/inc/czr-init-ccat.php:3035
+#: inc/_dev/class-fire-utils_settings_map.php:1080 inc/czr-init-ccat.php:3035
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3040
-#: inc/_dev/class-fire-utils_settings_map.php:1081 inc/czr-init-ccat.php:3040
+#: build/free/customizr/inc/czr-init-ccat.php:3036
+#: inc/_dev/class-fire-utils_settings_map.php:1081 inc/czr-init-ccat.php:3036
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3055
-#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3055
+#: build/free/customizr/inc/czr-init-ccat.php:3051
+#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3051
 msgid "Squared, expand on hover"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3056
-#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3056
+#: build/free/customizr/inc/czr-init-ccat.php:3052
+#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3052
 msgid "Squared, no expansion"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3057
-#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3057
+#: build/free/customizr/inc/czr-init-ccat.php:3053
+#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3053
 msgid "Rectangular with no effect"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3058
-#: inc/_dev/class-fire-utils_settings_map.php:1099 inc/czr-init-ccat.php:3058
+#: build/free/customizr/inc/czr-init-ccat.php:3054
+#: inc/_dev/class-fire-utils_settings_map.php:1099 inc/czr-init-ccat.php:3054
 msgid "Rectangular with blur effect on hover"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3059
-#: inc/_dev/class-fire-utils_settings_map.php:1100 inc/czr-init-ccat.php:3059
+#: build/free/customizr/inc/czr-init-ccat.php:3055
+#: inc/_dev/class-fire-utils_settings_map.php:1100 inc/czr-init-ccat.php:3055
 msgid "Rectangular with unblur effect on hover"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3067
-#: inc/_dev/class-fire-utils_settings_map.php:1108 inc/czr-init-ccat.php:3067
+#: build/free/customizr/inc/czr-init-ccat.php:3063
+#: inc/_dev/class-fire-utils_settings_map.php:1108 inc/czr-init-ccat.php:3063
 msgid "Top"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3068
-#: inc/_dev/class-fire-utils_settings_map.php:1109 inc/czr-init-ccat.php:3068
+#: build/free/customizr/inc/czr-init-ccat.php:3064
+#: inc/_dev/class-fire-utils_settings_map.php:1109 inc/czr-init-ccat.php:3064
 msgid "Bottom"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3093
-#: inc/_dev/class-fire-utils_settings_map.php:1134 inc/czr-init-ccat.php:3093
+#: build/free/customizr/inc/czr-init-ccat.php:3089
+#: inc/_dev/class-fire-utils_settings_map.php:1134 inc/czr-init-ccat.php:3089
 #, fuzzy
 msgid "Comments bubble shape"
 msgstr "التعليقات مغلقة."
 
-#: build/free/customizr/inc/czr-init-ccat.php:3097
-#: inc/_dev/class-fire-utils_settings_map.php:1138 inc/czr-init-ccat.php:3097
+#: build/free/customizr/inc/czr-init-ccat.php:3093
+#: inc/_dev/class-fire-utils_settings_map.php:1138 inc/czr-init-ccat.php:3093
 msgid "Small bubbles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3098
-#: inc/_dev/class-fire-utils_settings_map.php:1139 inc/czr-init-ccat.php:3098
+#: build/free/customizr/inc/czr-init-ccat.php:3094
+#: inc/_dev/class-fire-utils_settings_map.php:1139 inc/czr-init-ccat.php:3094
 msgid "Large bubbles"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3106
-#: build/free/customizr/inc/czr-init-ccat.php:3119
+#: build/free/customizr/inc/czr-init-ccat.php:3102
+#: build/free/customizr/inc/czr-init-ccat.php:3115
 #: inc/_dev/class-fire-utils_settings_map.php:1147
-#: inc/_dev/class-fire-utils_settings_map.php:1160 inc/czr-init-ccat.php:3106
-#: inc/czr-init-ccat.php:3119
+#: inc/_dev/class-fire-utils_settings_map.php:1160 inc/czr-init-ccat.php:3102
+#: inc/czr-init-ccat.php:3115
 #, fuzzy
 msgid "Comments bubble color"
 msgstr "التعليقات مغلقة."
 
-#: build/free/customizr/inc/czr-init-ccat.php:3110
-#: inc/_dev/class-fire-utils_settings_map.php:1151 inc/czr-init-ccat.php:3110
+#: build/free/customizr/inc/czr-init-ccat.php:3106
+#: inc/_dev/class-fire-utils_settings_map.php:1151 inc/czr-init-ccat.php:3106
 #, fuzzy
 msgid "Skin color"
 msgstr "تلميح لون الايقونة"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3175
-#: inc/_dev/class-fire-utils_settings_map.php:1216 inc/czr-init-ccat.php:3175
+#: build/free/customizr/inc/czr-init-ccat.php:3171
+#: inc/_dev/class-fire-utils_settings_map.php:1216 inc/czr-init-ccat.php:3171
 #, fuzzy
 msgid "Social link title in sidebars"
 msgstr "الروابط الاجتماعية في المربع الجانبي اليميني"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3181
-#: inc/_dev/class-fire-utils_settings_map.php:1222 inc/czr-init-ccat.php:3181
+#: build/free/customizr/inc/czr-init-ccat.php:3177
+#: inc/_dev/class-fire-utils_settings_map.php:1222 inc/czr-init-ccat.php:3177
 msgid "Will be hidden if empty"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3211
-#: inc/_dev/class-fire-utils_settings_map.php:1252 inc/czr-init-ccat.php:3211
+#: build/free/customizr/inc/czr-init-ccat.php:3207
+#: inc/_dev/class-fire-utils_settings_map.php:1252 inc/czr-init-ccat.php:3207
 #, fuzzy
 msgid "Dynamic sidebar reordering on small devices"
 msgstr "تمكين/تعطيل تأثيرات تسليط الضوء على الصور"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3214
-#: inc/_dev/class-fire-utils_settings_map.php:1255 inc/czr-init-ccat.php:3214
+#: build/free/customizr/inc/czr-init-ccat.php:3210
+#: inc/_dev/class-fire-utils_settings_map.php:1255 inc/czr-init-ccat.php:3210
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3277
-#: inc/_dev/class-fire-utils_settings_map.php:1318 inc/czr-init-ccat.php:3277
+#: build/free/customizr/inc/czr-init-ccat.php:3273
+#: inc/_dev/class-fire-utils_settings_map.php:1318 inc/czr-init-ccat.php:3273
 msgid "Titles icons settings"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3279
-#: inc/_dev/class-fire-utils_settings_map.php:1320 inc/czr-init-ccat.php:3279
+#: build/free/customizr/inc/czr-init-ccat.php:3275
+#: inc/_dev/class-fire-utils_settings_map.php:1320 inc/czr-init-ccat.php:3275
 #, fuzzy
 msgid "Set up the titles icons options"
 msgstr "إعداد وخيارات التعليقات"
 
-#: build/free/customizr/inc/czr-init-ccat.php:3287
-#: inc/_dev/class-fire-utils_settings_map.php:1328 inc/czr-init-ccat.php:3287
+#: build/free/customizr/inc/czr-init-ccat.php:3283
+#: inc/_dev/class-fire-utils_settings_map.php:1328 inc/czr-init-ccat.php:3283
 msgid "Responsive settings"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:3289
-#: inc/_dev/class-fire-utils_settings_map.php:1330 inc/czr-init-ccat.php:3289
+#: build/free/customizr/inc/czr-init-ccat.php:3285
+#: inc/_dev/class-fire-utils_settings_map.php:1330 inc/czr-init-ccat.php:3285
 msgid "Various settings for responsive display"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:4690
-#: inc/_dev/class-fire-resources.php:769 inc/czr-init-ccat.php:4690
+#: build/free/customizr/inc/czr-init-ccat.php:4686
+#: inc/_dev/class-fire-resources.php:769 inc/czr-init-ccat.php:4686
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
-#: build/free/customizr/inc/czr-init-ccat.php:4693
-#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4693
+#: build/free/customizr/inc/czr-init-ccat.php:4689
+#: inc/_dev/class-fire-resources.php:772 inc/czr-init-ccat.php:4689
 msgid "in the live customizer."
 msgstr ""
 

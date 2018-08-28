@@ -23,6 +23,13 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.13 August 28th 2018 =
+* fixed : Comment RTL alignment. fixes #1582
+* fixed : Mobile menu doesn't open when using tab plugin (WPBakery Page Builder). fixes #1586
+* fixed : learnpress - avoid infinite loop when user tries to enroll a course.fixes #1589
+* fixed : improve learndash ordered list items style. fixes #1591
+* fixed : theme screenshot update following the new rule from the theme review team. https://make.wordpress.org/themes/2018/08/13/updated-screenshot-requirements/
+
 = 4.1.12 August 9th 2018 =
 * improved : theme screenshot compatibility with the latest requirements of the theme repository on WordPress.org, second pass following discussion : https://themes.trac.wordpress.org/ticket/58335
 

@@ -8862,11 +8862,13 @@ section.post-related-articles .entry-meta {
   margin-left: calc(3em + 1.25em);
 }
 
-.col-md-6 .comment-list ul.children, .col-md-9 .comment-list ul.children {
-  margin-left: calc( 1.5em + 1.25em);
+.col-md-6 .comment-list ul.children,
+.col-md-9 .comment-list ul.children {
+  margin-left: calc(1.5em + 1.25em);
 }
 
-.col-md-6 .comment-list .comment-content, .col-md-9 .comment-list .comment-content {
+.col-md-6 .comment-list .comment-content,
+.col-md-9 .comment-list .comment-content {
   font-size: 1em;
 }
 
@@ -9556,6 +9558,11 @@ footer#footer .colophon__row .footer__credits a.fab {
 #content[class*=col-] > .fpc-container {
   padding: 0;
   margin-bottom: 3em;
+}
+
+.czr-wp-the-content .learndash ol li::before, .woocommerce-Tabs-panel.entry-content .learndash ol li::before,
+.woocommerce-product-details__short-description .learndash ol li::before {
+  display: none;
 }
 
 .woocommerce .woocommerce-error-list,

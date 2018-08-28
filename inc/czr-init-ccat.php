@@ -1756,7 +1756,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           return get_template_part( 'index' );
         }
       endif;
-      add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index' );
+      //See: plugins\learnpress\inc\class-lp-request-handler.php::process_request
+      //where lp processes the course Enroll request at template_include|50
+      //https://github.com/presscustomizr/customizr/issues/1589
+      add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index', 100 );
 
 
       // Disable post lists and single views in lp contexts
@@ -1771,15 +1774,8 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //do not display metas in lp archives
       add_filter( 'tc_opt_tc_show_post_metas', 'tc_lp_is_learnpress_archive_disable' );
 
-      //do not display post navigation in lp profile and lp checkout
-      add_filter( 'tc_opt_tc_show_post_navigation', 'tc_lp_maybe_disable_post_navigation' );
-      if ( ! function_exists( 'tc_lp_maybe_disable_post_navigation' ) ) {
-        function tc_lp_maybe_disable_post_navigation( $bool ) {
-          if ( function_exists( 'learn_press_is_profile' ) && function_exists( 'learn_press_is_checkout' ) ) {
-            return learn_press_is_profile() || learn_press_is_checkout() ? false : $bool;
-          }
-        }
-      }
+      //do not display post navigation, lp uses its own, when relevant
+      add_filter( 'tc_opt_tc_show_post_navigation', 'tc_lp_is_learnpress_disable' );
 
       //disable lp breadcrumb, we'll use our own
       remove_action( 'learn_press_before_main_content', 'learn_press_breadcrumb' );
@@ -1787,7 +1783,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
 
 
-    /* same in czr classic */
+    /* same in czr modern */
     /*
     * Coauthors-Plus plugin compat hooks
     */
