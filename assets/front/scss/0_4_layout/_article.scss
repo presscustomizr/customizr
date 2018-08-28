@@ -655,17 +655,29 @@ section.post-related-articles {
 .comment-list li.comment { margin-top:$base-line-height*2; padding-top:$base-line-height*2; border-top:1px solid $grey-light; }
 .comment-list li.comment.depth-1:first-of-type { border:0; margin-top: 0 }
 .comment-list ul.children {
-  margin-left: calc(3em + #{$base-line-height});
+  @if ( true == $is_rtl ) {
+    margin-right: calc(3em + #{$base-line-height});
+  }
+  @else {
+    margin-left: calc(3em + #{$base-line-height});
+  }
   //adapt the threaded comments margin when the comments block is inside the #content wrapper
   //@see option tc_single_related_posts_block_location
-  .col-md-6 &, .col-md-9 & {
-    margin-left: calc( 1.5em + #{$base-line-height} );
+  .col-md-6 &,
+  .col-md-9 & {
+    @if ( true == $is_rtl ) {
+      margin-right: calc(1.5em + #{$base-line-height});
+    }
+    @else {
+      margin-left: calc(1.5em + #{$base-line-height});
+    }
   }
 }
 //adapt the threaded comments font-size when the comments block is inside the #content wrapper
 //@see option tc_single_related_posts_block_location
 .comment-list .comment-content {
-    .col-md-6 &, .col-md-9 & {
+    .col-md-6 &,
+    .col-md-9 & {
         font-size: 1em;
     }
 }
@@ -695,7 +707,14 @@ section.post-related-articles {
 }
 //@media (max-width: 768px)
 @include media-breakpoint-down(sm) {
-  .comment-list ul.children { margin-left: $base-line-height;  }
+  .comment-list ul.children {
+    @if ( true == $is_rtl ) {
+      margin-right: $base-line-height;
+    }
+    @else {
+      margin-left: $base-line-height;
+    }
+  }
   .comment-author, time.comment-date { width: 100% }
 }
 
