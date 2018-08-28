@@ -1222,7 +1222,14 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           return tc_lp_is_learnpress() ? true : $bool;
         }
       endif;
-
+      if ( ! function_exists( 'tc_lp_is_learnpress_archive_disable' ) ):
+        function tc_lp_is_learnpress_archive_disable( $bool ) {
+          if ( function_exists( 'learn_press_is_course' )  && function_exists( 'learn_press_is_quiz' ) ) {
+            return tc_lp_is_learnpress() && ! ( learn_press_is_course() || learn_press_is_quiz() )  ? false : $bool;
+          }
+          return $bool;
+        }
+      endif;
 
 
       //lp filters template_include falling back on the page.php theme template
@@ -1240,14 +1247,22 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
           return get_template_part( 'index' );
         }
       endif;
-      add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index' );
+      //See: plugins\learnpress\inc\class-lp-request-handler.php::process_request
+      //where lp processes the course Enroll request at template_include|50
+      //That's why we here use a prudential priority of 100
+      //https://github.com/presscustomizr/customizr/issues/1589
+      add_filter( 'template_include', 'tc_lp_maybe_fall_back_on_index', 100 );
 
       // Disable post lists and single views in lp contexts
       add_filter( 'czr_is_list_of_posts', 'tc_lp_is_learnpress_disable');
+      add_filter( 'czr_is_single_post', 'tc_lp_is_learnpress_disable');
 
       //enable page view for lp archives
       add_filter( 'czr_is_single_page', 'tc_lp_is_learnpress_enable');
       //todo: display arhive title, do ot display metas in lp archives
+
+      //do not display post navigation, lp uses its own, when relevant
+      add_filter( 'tc_opt_tc_show_post_navigation', 'tc_lp_is_learnpress_disable' );
 
       //disable lp breadcrumb, we'll use our own
       remove_action( 'learn_press_before_main_content', 'learn_press_breadcrumb' );
