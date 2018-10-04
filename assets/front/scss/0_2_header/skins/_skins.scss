@@ -63,7 +63,15 @@ $secondary-color-light  : $grey-light;
     background: $background-color;
   }
 
-
+  // header transparency
+  .header-transparent:not(.is-sticky) {
+    .mobile-nav__nav {
+      background: rgba( $background-color, 0.9 );
+    }
+    .dropdown-menu {
+      background: rgba( $background-color, 0.9 );
+    }
+  }
   // Sticky header transparency
   .sticky-transparent.is-sticky {
     @if ( 'light' == $skin ) {

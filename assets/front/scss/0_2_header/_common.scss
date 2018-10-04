@@ -28,11 +28,26 @@
   background: inherit;
 }
 
+.tc-header.header-transparent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    &:not(.is-sticky) {
+      background: transparent;
+    }
+    .mobile-sticky .mobile-nav__nav,
+    .mobile-sticky,
+    .desktop-sticky {
+        box-shadow: none;
+    }
+    &.border-top {
+      border-top-color: transparent;
+    }
+}
 
+.header-transparent:not(.is-sticky),
 .sticky-transparent.is-sticky {
-  /*.mobile-navbar__wrapper > div {
-     background: none;
-  }*/
   .mobile-nav__nav {
     .dropdown-menu,
     .dropdown-item:active,
