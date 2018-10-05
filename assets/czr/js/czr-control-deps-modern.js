@@ -474,6 +474,31 @@
                                   return 'custom' == to;
                             }
                     },
+                    {
+                            dominus : 'tc_header_transparent_home',
+                            servi   : [
+                              'tc_home_header_skin',
+                              'tc_header_custom_bg_color',
+                              'tc_header_custom_fg_color',
+                              'tc_header_skin'
+                            ],
+                            visibility: function (to, servusShortId ) {
+                                  var bool;
+                                  switch( servusShortId ) {
+                                      case 'tc_header_custom_bg_color' :
+                                      case 'tc_header_custom_fg_color' :
+                                          bool = ! _is_checked(to) && 'custom' === api( api.CZR_Helpers.build_setId( 'tc_header_skin' ) )();
+                                      break;
+                                      case 'tc_header_skin' :
+                                          bool = ! _is_checked(to);
+                                      break;
+                                      case 'tc_home_header_skin' :
+                                          bool = _is_checked(to);
+                                      break;
+                                  }
+                                  return bool;
+                            }
+                    },
                     /*
                     * temporary:
                     * as I think the contact info can be a module like the social links, as we might want to create

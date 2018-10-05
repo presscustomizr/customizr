@@ -229,7 +229,7 @@ class CZR_header_model_class extends CZR_Model {
     }
 
     /* Header transparent in home*/
-    if ( apply_filters( 'czr_header_transparent', ( 1 == esc_attr( czr_fn_opt( 'tc_header_transparent_home' ) ) ) && czr_fn_is_real_home() ) ) {
+    if ( czr_fn_is_home_and_header_transparent_set() ) {
       $element_class[] = 'header-transparent';
     }
 

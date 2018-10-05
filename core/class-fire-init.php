@@ -165,7 +165,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
           //header and footer skins
-          $header_skin_opt = esc_attr( czr_fn_opt( 'tc_header_skin' ) );
+          $header_skin_opt = esc_attr( czr_fn_get_header_skin() );
           $footer_skin_opt = esc_attr( czr_fn_opt( 'tc_footer_skin' ) );
 
           //set header and footer skin with default fallback

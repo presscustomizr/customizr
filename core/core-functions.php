@@ -1893,3 +1893,30 @@ if ( ! function_exists( 'czr_fn_text_truncate' ) ):
 
   }
 endif;
+
+
+
+if ( ! function_exists( 'czr_fn_is_home_and_header_transparent_set' ) ):
+  // @return bool
+  function czr_fn_is_home_and_header_transparent_set() {
+      return apply_filters( 'czr_header_transparent', ( 1 == esc_attr( czr_fn_opt( 'tc_header_transparent_home' ) ) ) && czr_fn_is_real_home() );
+  }
+endif;
+
+
+if ( ! function_exists( 'czr_fn_get_header_skin' ) ):
+  /**
+  * Helper
+  * Returns the header skin string
+  *
+  * @return string
+  *
+  */
+  function czr_fn_get_header_skin() {
+      $skin_color = czr_fn_opt( 'tc_header_skin' );
+      if ( czr_fn_is_home_and_header_transparent_set() ) {
+          $skin_color = czr_fn_opt( 'tc_home_header_skin' );
+      }
+      return $skin_color;
+  }
+endif;
