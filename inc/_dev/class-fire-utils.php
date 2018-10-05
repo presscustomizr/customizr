@@ -269,7 +269,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
           $pattern                = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
 
-          $replacement = '<a$1href="$2"class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$3>';
+          $replacement = '<a$1href="$2" class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$3>';
 
           $r_content = preg_replace( $pattern, $replacement, $content);
           $content = $r_content ? $r_content : $content;
