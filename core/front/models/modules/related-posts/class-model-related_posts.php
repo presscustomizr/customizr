@@ -101,6 +101,7 @@ class CZR_related_posts_model_class extends CZR_model {
 
     // Define shared post arguments
     $args = array(
+      'post_type'				        => get_post_type(),
       'no_found_rows'           => true,
       'update_post_meta_cache'  => false,
       'update_post_term_cache'  => false,
