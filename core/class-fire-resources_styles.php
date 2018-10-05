@@ -302,7 +302,9 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                                  'background-color' => array(
                                        '.sticky-transparent.is-sticky .mobile-sticky',  //the alpha param is actually set at 0.7 for the dark_skin in the header skin scss, here we set it always at 0.9 which is the value used for the light skin
                                        '.sticky-transparent.is-sticky .desktop-sticky', //the alpah param is actually set at 0.7 for the dark_skin in the header skin scss, here we set it always at 0.9 which is the value used for the light skin
-                                       '.sticky-transparent.is-sticky .mobile-nav__nav'
+                                       '.sticky-transparent.is-sticky .mobile-nav__nav',
+                                       '.header-transparent:not(.is-sticky) .mobile-nav__nav',
+                                       '.header-transparent:not(.is-sticky) .dropdown-menu'
                                  )
                            )
                      ),
