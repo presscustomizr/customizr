@@ -23,6 +23,12 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.14 October 6th 2018 =
+* fixed : missing space between fancybox link attributes. fixes #1593
+* fixed : WooCommerce variation form inputs appearance on Mozilla browsers. fixes #1598
+* improved : support custom post types in related posts
+* added : new option to make the header absolute positionned with a transparent background, on home.
+
 = 4.1.13 August 28th 2018 =
 * fixed : Comment RTL alignment. fixes #1582
 * fixed : Mobile menu doesn't open when using tab plugin (WPBakery Page Builder). fixes #1586

@@ -2515,6 +2515,8 @@ class CZR_utils_settings_map {
                   'tc_header_skin',
                   'tc_header_custom_bg_color',
                   'tc_header_custom_fg_color',
+                  'tc_header_transparent_home',
+                  'tc_home_header_skin',
                   'tc_header_title_underline',
                   'tc_header_show_topbar',
                   'tc_header_show_socials',
@@ -3829,7 +3831,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
           $img_extensions_pattern = sprintf( "(?:%s)", implode( '|', $allowed_image_extentions ) );
           $pattern                = '#<a([^>]+?)href=[\'"]?([^\'"\s>]+\.'.$img_extensions_pattern.'[^\'"\s>]*)[\'"]?([^>]*)>#i';
 
-          $replacement = '<a$1href="$2"class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$3>';
+          $replacement = '<a$1href="$2" class="grouped_elements" rel="tc-fancybox-group'.$post -> ID.'"$3>';
 
           $r_content = preg_replace( $pattern, $replacement, $content);
           $content = $r_content ? $r_content : $content;

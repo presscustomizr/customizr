@@ -39,9 +39,9 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
 
       /* beautify admin notice text using some defaults the_content filter callbacks */
-      foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback )
+      foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback ) {
         add_filter( 'czr_update_notice', $callback );
-
+      }
     }
 
 
