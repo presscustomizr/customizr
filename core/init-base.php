@@ -1103,7 +1103,8 @@ require_once( get_template_directory() . ( czr_fn_is_ms() ? '/core/init.php' : '
 add_action( 'init', 'czr_fn_maybe_register_nimble_location');
 function czr_fn_maybe_register_nimble_location() {
     if ( function_exists('nimble_register_location') ) {
-        nimble_register_location('__after_header');
+        nimble_register_location('__after_header', array( 'priority' => PHP_INT_MAX ) );
+        nimble_register_location('__before_main_wrapper', array( 'priority' => PHP_INT_MAX ) );
     }
 }
 
