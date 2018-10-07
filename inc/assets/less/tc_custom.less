@@ -24,6 +24,7 @@
  => MEDIA PRINT
  => DEBUG
  => PURE CSS LOADER
+ => NIMBLE BUILDER
  ***** END OF CONTENT *****/
 
 /* ELEMENTS
@@ -3158,4 +3159,22 @@ li#wp-admin-bar-tc-customizr-help a {
   border: 2px solid #777;
   -webkit-animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
   animation: czr-mr-loader 1.25s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+}
+
+
+/*
+* NIMBLE BUILDER
+* Reduce the default spacing for Customizr custom locations
+*/
+.is-customizing .sektion-wrapper[data-sek-id="__before_main_wrapper"] {
+  min-height: inherit;
+  margin-top: 0;
+}
+.is-customizing .sektion-wrapper[data-sek-id="__after_header"] {
+  min-height: 20px;
+  margin-top: 10px;
+}
+.is-customizing .sektion-wrapper[data-sek-id="__after_header"] .sek-empty-location-placeholder, .is-customizing .sektion-wrapper[data-sek-id="__before_main_wrapper"] .sek-empty-location-placeholder {
+  min-height:inherit;
+  margin: 0;
 }
