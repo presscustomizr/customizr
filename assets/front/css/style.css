@@ -9595,6 +9595,21 @@ footer#footer .colophon__row .footer__credits a.fab {
   display: none;
 }
 
+.is-customizing .sektion-wrapper[data-sek-id="__before_main_wrapper"] {
+  min-height: inherit;
+  margin-top: 0;
+}
+
+.is-customizing .sektion-wrapper[data-sek-id="__after_header"] {
+  min-height: 20px;
+  margin-top: 10px;
+}
+
+.is-customizing .sektion-wrapper[data-sek-id="__after_header"] .sek-empty-location-placeholder, .is-customizing .sektion-wrapper[data-sek-id="__before_main_wrapper"] .sek-empty-location-placeholder {
+  min-height: inherit;
+  margin: 0;
+}
+
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-info {
