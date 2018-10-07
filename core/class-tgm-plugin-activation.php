@@ -288,7 +288,6 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
     //@return bool
     function czr_fn_is_notice_dismissed() {
       $user_id = get_current_user_id();
-      return false;
 
       if ( get_user_meta( $user_id, 'tgmpa_nimble_dismissed_notice_' . $this->id , true ) )
         return true;
@@ -296,9 +295,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
       if ( get_transient( "czr_fn_{$user_id}_tgmpa_dismissed_notice" ) )
         return true;
 
-      // //already user of the theme ?
-      // // if ( czr_fn_user_started_before_version( CUSTOMIZR_VER ) )
-      // //   $show_new_notice = true;
+      //already user of the theme ?
+      // if ( czr_fn_user_started_before_version( CUSTOMIZR_VER ) )
+      //   $show_new_notice = true;
 
       $last_tgmpa_notice_values = $this -> czr_fn_get_meta_tgmpa_notice_values();
 
@@ -1325,12 +1324,12 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
           //CZR MODS
           $rendered = sprintf( '<div class="czr-tgmpa-text-block">%1$s <span style="font-weight:normal; font-style:italic">%2$s %3$s<br/>%4$s</span></div>',
             $rendered,
-            __( 'Nimble is a section builder plugin for the Customizr theme.',  'customizr'),
+            __( 'Nimble is a section builder plugin companion for the Customizr theme.',  'customizr'),
             sprintf(
                 __( 'It allows you to drag and drop beautiful pre-designed sections, or create your own sections with modules like Google map or a contact form, in live preview from the WordPress customizer. You\'ll find a quick introduction of the plugin %1$s.', 'customizr' ),
                 sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('docs.presscustomizr.com/article/337-getting-started-with-the-nimble-builder-plugin'), __('here', 'customizr') )
             ),
-            __( "The plugin has been designed to integrate perfectly with the Customizr WordPress theme. Lightweight and safe.", "customizr")
+            __( "The plugin has been designed to integrate perfectly with the Customizr theme. Lightweight and safe.", 'customizr')
 
           );
 
@@ -1383,7 +1382,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
       );
 
       $link_template = '<a href="%2$s">%1$s</a>';
-      $button_link_template = '<a class="button button-primary button-hero activate-now" href="%2$s" data-name="Gutenberg" data-slug="gutenberg">%1$s</a>';
+      $button_link_template = '<a class="button button-primary button-hero activate-now" href="%2$s" data-name="Nimble Builder" data-slug="nimble-builder">%1$s</a>';
 
       if ( current_user_can( 'install_plugins' ) ) {
         if ( $install_count > 0 ) {
