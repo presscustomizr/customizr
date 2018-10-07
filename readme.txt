@@ -23,7 +23,11 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
-= 4.1.14 October 6th 2018 =
+= 4.1.16 October 7th 2018 =
+* imp : added a Nimble dropzone location "__before_main_wrapper"
+* imp : added a priority param when registering a Nimble location
+
+= 4.1.15 October 6th 2018 =
 * fixed : missing space between fancybox link attributes. fixes #1593
 * fixed : WooCommerce variation form inputs appearance on Mozilla browsers. fixes #1598
 * improved : support custom post types in related posts

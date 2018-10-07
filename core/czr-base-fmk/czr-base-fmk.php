@@ -2,7 +2,9 @@
 namespace czr_fn;
 
 if ( did_action('nimble_base_fmk_loaded') ) {
-    error_log( __FILE__ . '  => The czr_base_fmk has already been loaded' );
+    if ( ( defined( 'CZR_DEV' ) && CZR_DEV ) || ( defined( 'NIMBLE_DEV' ) && NIMBLE_DEV ) ) {
+        error_log( __FILE__ . '  => The czr_base_fmk has already been loaded' );
+    }
     return;
 }
 
