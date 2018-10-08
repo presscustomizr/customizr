@@ -1338,7 +1338,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
         //CZR MODS
         $rendered = sprintf('<div class="czr-tgmpa-img-block"><img src="%1$s" alt="%2$s" title="%2$s" class="czr-nimble-img"/></div>%3$s',
-            sprintf('%1$sback/img/Nimble_interface-blanc-01.png', CZR_BASE_URL . CZR_ASSETS_PREFIX ),
+            sprintf('%1$sback/img/nimble_customizr_145.gif', CZR_BASE_URL . CZR_ASSETS_PREFIX ),
             __('Nimble Builder', 'customizr'),
             $rendered
         );

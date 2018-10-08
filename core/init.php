@@ -191,7 +191,8 @@ if ( ! class_exists( 'CZR___' ) ) :
             //to avoid hammering the wp admin dashboard with a new admin notice each time
             $this -> _hide_update_notification_for_versions = array();
             if( ! defined( 'DISPLAY_UPDATE_NOTIFICATION' ) ) {
-                define( 'DISPLAY_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_update_notification_for_versions ) );
+                //define( 'DISPLAY_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_update_notification_for_versions ) );
+                define( 'DISPLAY_UPDATE_NOTIFICATION', false );
             }
 
         }
