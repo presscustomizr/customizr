@@ -1,4 +1,4 @@
-# Customizr v4.1.16 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.17 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,9 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.17 October 8th 2018 =
+* fixed : compatibility with the Nimble builder plugin, drop in __after_header location impossible when the header is transparent
+
 = 4.1.16 October 7th 2018 =
 * imp : added a Nimble dropzone location "__before_main_wrapper"
 * imp : added a priority param when registering a Nimble location

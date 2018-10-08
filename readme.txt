@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.17 October 8th 2018 =
+* fixed : compatibility with the Nimble builder plugin, drop in __after_header location impossible when the header is transparent
+
 = 4.1.16 October 7th 2018 =
 * imp : added a Nimble dropzone location "__before_main_wrapper"
 * imp : added a priority param when registering a Nimble location

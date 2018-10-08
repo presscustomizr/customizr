@@ -3178,3 +3178,8 @@ li#wp-admin-bar-tc-customizr-help a {
   min-height:inherit;
   margin: 0;
 }
+/* fix for https://github.com/presscustomizr/nimble-builder/issues/186 */
+.sek-dragging .sektion-wrapper[data-sek-id="__after_header"] {
+    z-index: 1000;
+    position: relative;
+}

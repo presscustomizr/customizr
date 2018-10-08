@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.1.16
+ * Customizr v4.1.17
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -7525,6 +7525,11 @@ li#wp-admin-bar-tc-customizr-help a {
 .is-customizing .sektion-wrapper[data-sek-id="__before_main_wrapper"] .sek-empty-location-placeholder {
   min-height: inherit;
   margin: 0;
+}
+/* fix for https://github.com/presscustomizr/nimble-builder/issues/186 */
+.sek-dragging .sektion-wrapper[data-sek-id="__after_header"] {
+  z-index: 1000;
+  position: relative;
 }
 /*********************************************************************************
 ************************** Responsive T. Bootstrap Grid **************************

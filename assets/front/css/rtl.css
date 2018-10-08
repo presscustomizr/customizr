@@ -9870,6 +9870,12 @@ footer#footer .colophon__row .footer__credits a.fab {
   margin: 0;
 }
 
+/* fix for https://github.com/presscustomizr/nimble-builder/issues/186 */
+.sek-dragging .sektion-wrapper[data-sek-id="__after_header"] {
+  z-index: 1000;
+  position: relative;
+}
+
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-info {
