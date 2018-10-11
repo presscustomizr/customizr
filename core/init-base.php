@@ -1112,7 +1112,7 @@ function czr_fn_maybe_register_nimble_location() {
 /* ------------------------------------------------------------------------- *
  *  Loads Required Plugin Class and Setup
 /* ------------------------------------------------------------------------- */
-if ( is_admin() && ! czr_fn_is_customizing() && ! czr_fn_user_started_with_current_version() && ! czr_fn_is_pro() ) {
+if ( is_admin() && ! czr_fn_is_customizing() && ! czr_fn_is_pro() && ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') ) {
     /**
     * Include the TGM_Plugin_Activation class.
     */
