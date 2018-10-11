@@ -1920,3 +1920,42 @@ if ( ! function_exists( 'czr_fn_get_header_skin' ) ):
       return $skin_color;
   }
 endif;
+
+
+
+
+/**
+* HELPER
+* Check whether the plugin is active by checking the active_plugins list.
+* copy of is_plugin_active declared in wp-admin/includes/plugin.php
+*
+* @since 3.3+
+*
+* @param string $plugin Base plugin path from plugins directory.
+* @return bool True, if in the active plugins list. False, not in the list.
+*/
+function czr_fn_is_plugin_active( $plugin ) {
+  return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || czr_fn_is_plugin_active_for_network( $plugin );
+}
+
+
+/**
+* HELPER
+* Check whether the plugin is active for the entire network.
+* copy of is_plugin_active_for_network declared in wp-admin/includes/plugin.php
+*
+* @since 3.3+
+*
+* @param string $plugin Base plugin path from plugins directory.
+* @return bool True, if active for the network, otherwise false.
+*/
+function czr_fn_is_plugin_active_for_network( $plugin ) {
+  if ( ! is_multisite() )
+    return false;
+
+  $plugins = get_site_option( 'active_sitewide_plugins');
+  if ( isset($plugins[$plugin]) )
+    return true;
+
+  return false;
+}

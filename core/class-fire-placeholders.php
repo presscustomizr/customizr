@@ -601,7 +601,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
           'tc_is_fp_notice_on',
             ! is_admin() && is_user_logged_in() && current_user_can('edit_theme_options')
             && ! czr_fn_is_pro()
-            && ! CZR_plugins_compat::$instance->czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php')
+            && ! czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php')
             && czr_fn_is_real_home() && false != (bool)czr_fn_opt('tc_show_featured_pages')
             && 'disabled' != get_transient("tc_fp_notice")
             && ! apply_filters( 'czr_is_one_fp_set', false )

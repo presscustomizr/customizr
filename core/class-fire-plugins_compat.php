@@ -77,80 +77,80 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
     */
     function czr_fn_plugins_compatibility() {
       /* Unlimited Featured Pages  */
-      if ( current_theme_supports( 'tc-unlimited-featured-pages' ) && $this -> czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php') )
+      if ( current_theme_supports( 'tc-unlimited-featured-pages' ) && czr_fn_is_plugin_active('tc-unlimited-featured-pages/tc_unlimited_featured_pages.php') )
         $this -> czr_fn_set_tc_unlimited_featured_pages_compat();
 
       /* JETPACK */
       //adds compatibilty with the jetpack image carousel and photon
-      if ( current_theme_supports( 'jetpack' ) && $this -> czr_fn_is_plugin_active('jetpack/jetpack.php') )
+      if ( current_theme_supports( 'jetpack' ) && czr_fn_is_plugin_active('jetpack/jetpack.php') )
         $this -> czr_fn_set_jetpack_compat();
 
 
       /* BBPRESS */
       //if bbpress is installed and activated, we can check the existence of the contextual boolean function is_bbpress() to execute some code
-      if ( current_theme_supports( 'bbpress' ) && $this -> czr_fn_is_plugin_active('bbpress/bbpress.php') )
+      if ( current_theme_supports( 'bbpress' ) && czr_fn_is_plugin_active('bbpress/bbpress.php') )
         $this -> czr_fn_set_bbpress_compat();
 
       /* BUDDYPRESS */
       //if buddypress is installed and activated, we can check the existence of the contextual boolean function is_buddypress() to execute some code
       // we have to use buddy-press instead of buddypress as string for theme support as buddypress makes some checks on current_theme_supports('buddypress') which result in not using its templates
-      if ( current_theme_supports( 'buddy-press' ) && $this -> czr_fn_is_plugin_active('buddypress/bp-loader.php') )
+      if ( current_theme_supports( 'buddy-press' ) && czr_fn_is_plugin_active('buddypress/bp-loader.php') )
         $this -> czr_fn_set_buddypress_compat();
 
       /*
       * QTranslatex
       * Credits : @acub, http://websiter.ro
       */
-      if ( current_theme_supports( 'qtranslate-x' ) && $this -> czr_fn_is_plugin_active('qtranslate-x/qtranslate.php') )
+      if ( current_theme_supports( 'qtranslate-x' ) && czr_fn_is_plugin_active('qtranslate-x/qtranslate.php') )
         $this -> czr_fn_set_qtranslatex_compat();
 
       /*
       * Polylang
       * Credits : Rocco Aliberti
       */
-      if ( current_theme_supports( 'polylang' ) && ( $this -> czr_fn_is_plugin_active('polylang/polylang.php') || $this -> czr_fn_is_plugin_active('polylang-pro/polylang.php') ) )
+      if ( current_theme_supports( 'polylang' ) && ( czr_fn_is_plugin_active('polylang/polylang.php') || czr_fn_is_plugin_active('polylang-pro/polylang.php') ) )
         $this -> czr_fn_set_polylang_compat();
 
       /*
       * WPML
       */
-      if ( current_theme_supports( 'wpml' ) && $this -> czr_fn_is_plugin_active('sitepress-multilingual-cms/sitepress.php') )
+      if ( current_theme_supports( 'wpml' ) && czr_fn_is_plugin_active('sitepress-multilingual-cms/sitepress.php') )
         $this -> czr_fn_set_wpml_compat();
 
       /* The Events Calendar */
-      if ( current_theme_supports( 'the-events-calendar' ) && $this -> czr_fn_is_plugin_active('the-events-calendar/the-events-calendar.php') )
+      if ( current_theme_supports( 'the-events-calendar' ) && czr_fn_is_plugin_active('the-events-calendar/the-events-calendar.php') )
         $this -> czr_fn_set_the_events_calendar_compat();
 
       /* Optimize Press */
-      if ( current_theme_supports( 'optimize-press' ) && $this -> czr_fn_is_plugin_active('optimizePressPlugin/optimizepress.php') )
+      if ( current_theme_supports( 'optimize-press' ) && czr_fn_is_plugin_active('optimizePressPlugin/optimizepress.php') )
         $this -> czr_fn_set_optimizepress_compat();
 
       /* Woocommerce */
-      if ( current_theme_supports( 'woocommerce' ) && $this -> czr_fn_is_plugin_active('woocommerce/woocommerce.php') )
+      if ( current_theme_supports( 'woocommerce' ) && czr_fn_is_plugin_active('woocommerce/woocommerce.php') )
         $this -> czr_fn_set_woocomerce_compat();
 
       /* Sensei woocommerce addon */
-      if ( current_theme_supports( 'woo-sensei') && $this -> czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
+      if ( current_theme_supports( 'woo-sensei') && czr_fn_is_plugin_active('woothemes-sensei/woothemes-sensei.php') )
         $this -> czr_fn_set_sensei_compat();
 
       /* Visual Composer */
-      if ( current_theme_supports( 'visual-composer') && $this -> czr_fn_is_plugin_active('js_composer/js_composer.php') )
+      if ( current_theme_supports( 'visual-composer') && czr_fn_is_plugin_active('js_composer/js_composer.php') )
         $this -> czr_fn_set_vc_compat();
 
       /* Disqus Comment System */
-      if ( current_theme_supports( 'disqus' ) && $this -> czr_fn_is_plugin_active('disqus-comment-system/disqus.php') )
+      if ( current_theme_supports( 'disqus' ) && czr_fn_is_plugin_active('disqus-comment-system/disqus.php') )
         $this -> czr_fn_set_disqus_compat();
 
       /* Ultimate Responsive Image Slider  */
-      if ( current_theme_supports( 'uris' ) && $this -> czr_fn_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
+      if ( current_theme_supports( 'uris' ) && czr_fn_is_plugin_active('ultimate-responsive-image-slider/ultimate-responsive-image-slider.php') )
         $this -> czr_fn_set_uris_compat();
 
       /* LearnPress */
-      if ( current_theme_supports( 'learnpress' ) && $this -> czr_fn_is_plugin_active('learnpress/learnpress.php') )
+      if ( current_theme_supports( 'learnpress' ) && czr_fn_is_plugin_active('learnpress/learnpress.php') )
         $this -> czr_fn_set_lp_compat();
 
       /* Coauthors-Plus */
-      if ( current_theme_supports( 'coauthors' ) && $this -> czr_fn_is_plugin_active('co-authors-plus/co-authors-plus.php') )
+      if ( current_theme_supports( 'coauthors' ) && czr_fn_is_plugin_active('co-authors-plus/co-authors-plus.php') )
         $this -> czr_fn_set_coauthors_compat();
     }//end of plugin compatibility function
 
@@ -1456,43 +1456,6 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
 
     }
 
-
-
-    /**
-    * HELPER
-    * Check whether the plugin is active by checking the active_plugins list.
-    * copy of is_plugin_active declared in wp-admin/includes/plugin.php
-    *
-    * @since 3.3+
-    *
-    * @param string $plugin Base plugin path from plugins directory.
-    * @return bool True, if in the active plugins list. False, not in the list.
-    */
-    function czr_fn_is_plugin_active( $plugin ) {
-      return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || $this -> czr_fn_is_plugin_active_for_network( $plugin );
-    }
-
-
-    /**
-    * HELPER
-    * Check whether the plugin is active for the entire network.
-    * copy of is_plugin_active_for_network declared in wp-admin/includes/plugin.php
-    *
-    * @since 3.3+
-    *
-    * @param string $plugin Base plugin path from plugins directory.
-    * @return bool True, if active for the network, otherwise false.
-    */
-    function czr_fn_is_plugin_active_for_network( $plugin ) {
-      if ( ! is_multisite() )
-        return false;
-
-      $plugins = get_site_option( 'active_sitewide_plugins');
-      if ( isset($plugins[$plugin]) )
-        return true;
-
-      return false;
-    }
 
     /* same in czr classic */
     public function czr_fn_get_string_options_to_translate() {
