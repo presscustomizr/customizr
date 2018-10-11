@@ -3028,7 +3028,8 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
                           czrapp.errorLog( 'setupDOMListeners : selector must be a string not empty. Aborting setup of action(s) : ' + _event.actions.join(',') );
                           return;
                     }
-                    args.dom_el.on( _event.trigger , _event.selector, function( e, event_params ) {
+                    var once = _event.once ? _event.once : false;
+                    args.dom_el[ once ? 'one' : 'on' ]( _event.trigger , _event.selector, function( e, event_params ) {
                           e.stopPropagation();
                           if ( czrapp.isKeydownButNotEnterEvent( e ) ) {
                             return;

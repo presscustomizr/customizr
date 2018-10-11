@@ -23,6 +23,10 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.18 October 11th 2018 =
+* improved : display only one admin notification ( if any ) at a time
+* improved : Customizr various minor plugin compatibility improvements
+
 = 4.1.17 October 8th 2018 =
 * fixed : compatibility with the Nimble builder plugin, drop in __after_header location impossible when the header is transparent
 

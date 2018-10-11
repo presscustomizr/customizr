@@ -323,9 +323,13 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && ! DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && ! DISPLAY_PRO_UPDATE_NOTIFICATION ) )
         return;
 
+      if ( ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') && class_exists('TGM_Plugin_Activation') && ! TGM_Plugin_Activation::get_instance()->czr_fn_is_notice_dismissed() )
+        return;
+
       $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;
+      $display_ct = 50;
 
       if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
         //first time user of the theme, the option does not exist
@@ -341,26 +345,26 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       $_db_version          = $last_update_notice_values["version"];
       $_db_displayed_count  = $last_update_notice_values["display_count"];
 
-      //user who just upgraded the theme will be notified until he clicks on the dismiss link
-      //when clicking on the dismiss link OR when the notice has been displayed 5 times.
+      // user who just upgraded the theme will be notified until he clicks on the dismiss link
+      // when clicking on the dismiss link OR when the notice has been displayed n times.
       // - version will be set to CUSTOMIZR_VER
       // - display_count reset to 0
       if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
-        //CASE 1 : displayed less than 5 times
-        if ( $_db_displayed_count < 5 ) {
-          $show_new_notice = true;
-          //increments the counter
-          (int) $_db_displayed_count++;
-          $last_update_notice_values["display_count"] = $_db_displayed_count;
-          //updates the option val with the new count
-          czr_fn_set_option( $opt_name, $last_update_notice_values );
-        }
-        //CASE 2 : displayed 5 times => automatic dismiss
-        else {
-          //reset option value with new version and counter to 0
-          $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-          czr_fn_set_option( $opt_name, $new_val );
-        }//end else
+          //CASE 1 : displayed less than n times
+          if ( $_db_displayed_count < $display_ct ) {
+              $show_new_notice = true;
+              //increments the counter
+              (int) $_db_displayed_count++;
+              $last_update_notice_values["display_count"] = $_db_displayed_count;
+              //updates the option val with the new count
+              czr_fn_set_option( $opt_name, $last_update_notice_values );
+          }
+          //CASE 2 : displayed n times => automatic dismiss
+          else {
+              //reset option value with new version and counter to 0
+              $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+              czr_fn_set_option( $opt_name, $new_val );
+          }//end else
       }//end if
 
       if ( ! $show_new_notice )
