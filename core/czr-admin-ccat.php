@@ -323,9 +323,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && ! DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && ! DISPLAY_PRO_UPDATE_NOTIFICATION ) )
         return;
 
-      if ( ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') && class_exists('TGM_Plugin_Activation') && ! TGM_Plugin_Activation::get_instance()->czr_fn_is_notice_dismissed() )
-        return;
-
       $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;
@@ -368,6 +365,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       }//end if
 
       if ( ! $show_new_notice )
+        return;
+
+      // prefixed CZR_Plugin_Activation because of the possible issue : https://github.com/presscustomizr/customizr/issues/1603
+      if ( ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') && class_exists('CZR_Plugin_Activation') && ! CZR_Plugin_Activation::get_instance()->czr_fn_is_notice_dismissed() )
         return;
 
       ob_start();

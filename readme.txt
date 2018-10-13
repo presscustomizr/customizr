@@ -23,6 +23,9 @@ See headers of each files for further details.
 
 
 ####################### Changelog ######################
+= 4.1.19 October 13th 2018 =
+* fixed : prefixed TGMPA class with CZR to fix potential collision with other plugins using the same class. fixes #1603
+
 = 4.1.18 October 11th 2018 =
 * improved : display only one admin notification ( if any ) at a time
 * improved : Customizr various minor plugin compatibility improvements

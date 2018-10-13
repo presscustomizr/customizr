@@ -1,4 +1,4 @@
-# Customizr v4.1.18 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.19 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,9 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.19 October 13th 2018 =
+* fixed : prefixed TGMPA class with CZR to fix potential collision with other plugins using the same class. fixes #1603
+
 = 4.1.18 October 11th 2018 =
 * improved : display only one admin notification ( if any ) at a time
 * improved : Customizr various minor plugin compatibility improvements

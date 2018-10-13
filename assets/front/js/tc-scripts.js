@@ -1124,8 +1124,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
                   .attr( 'srcset' , _src_set )
                   .attr( 'src', _src )
                   .load( function () {
-                        if ( ! $_img.hasClass('tc-smart-loaded') ) {
-                              $_img.fadeIn(self.options.fadeIn_options).addClass('tc-smart-loaded');
+                        if ( ! $_img.hasClass('czr-smart-loaded') ) {
+                              $_img.fadeIn(self.options.fadeIn_options).addClass('czr-smart-loaded');
                         }
                         if ( ( 'undefined' !== typeof $_img.attr('data-tcjp-recalc-dims')  ) && ( false !== $_img.attr('data-tcjp-recalc-dims') ) ) {
                               var _width  = $_img.originalWidth(),
