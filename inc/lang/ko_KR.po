@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.1.19\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-10-13 08:17:55+00:00\n"
+"POT-Creation-Date: 2018-10-13 08:34:37+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -532,7 +532,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:537
 #: core/class-tgm-plugin-activation.php:1330 core/core-settings-map.php:1045
 #: core/core-settings-map.php:1050 core/core-settings-map.php:2336
-#: core/czr-admin-ccat.php:1474
+#: core/czr-admin-ccat.php:1463
 msgid "here"
 msgstr ""
 
@@ -1889,7 +1889,7 @@ msgstr "기준 : ms(1000ms = 1s)"
 #: build/free/customizr/core/core-settings-map.php:1234
 #: build/free/customizr/core/czr-admin-ccat.php:1665
 #: core/_dev/_admin/class-admin-meta_boxes.php:728
-#: core/core-settings-map.php:1234 core/czr-admin-ccat.php:1665
+#: core/core-settings-map.php:1234 core/czr-admin-ccat.php:1654
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
@@ -3208,84 +3208,82 @@ msgid "close"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:412
-#: core/_dev/_admin/class-fire-admin_init.php:412 core/czr-admin-ccat.php:412
 msgid ""
 "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:413
-#: core/_dev/_admin/class-fire-admin_init.php:413 core/czr-admin-ccat.php:413
 #, fuzzy
 msgid "the Customizr theme"
 msgstr "Customizr의 고급옵션 설정"
 
 #: build/free/customizr/core/czr-admin-ccat.php:536
-#: core/_dev/_admin/class-fire-admin_page.php:45 core/czr-admin-ccat.php:536
+#: core/_dev/_admin/class-fire-admin_page.php:45 core/czr-admin-ccat.php:525
 msgid "About Customizr"
 msgstr "Customizr이란?"
 
 #: build/free/customizr/core/czr-admin-ccat.php:568
-#: core/_dev/_admin/class-fire-admin_page.php:77 core/czr-admin-ccat.php:568
+#: core/_dev/_admin/class-fire-admin_page.php:77 core/czr-admin-ccat.php:557
 msgid "Thank you for using"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:586
-#: core/_dev/_admin/class-fire-admin_page.php:95 core/czr-admin-ccat.php:586
+#: core/_dev/_admin/class-fire-admin_page.php:95 core/czr-admin-ccat.php:575
 msgid "The best way to start with %s is to read the %s and visit the %s."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:588
-#: core/_dev/_admin/class-fire-admin_page.php:97 core/czr-admin-ccat.php:588
+#: core/_dev/_admin/class-fire-admin_page.php:97 core/czr-admin-ccat.php:577
 msgid "documentation"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:589
-#: core/_dev/_admin/class-fire-admin_page.php:98 core/czr-admin-ccat.php:589
+#: core/_dev/_admin/class-fire-admin_page.php:98 core/czr-admin-ccat.php:578
 msgid "demo website"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:593
-#: core/_dev/_admin/class-fire-admin_page.php:102 core/czr-admin-ccat.php:593
+#: core/_dev/_admin/class-fire-admin_page.php:102 core/czr-admin-ccat.php:582
 #, fuzzy
 msgid "Read the changelog"
 msgstr "문서 읽기"
 
 #: build/free/customizr/core/czr-admin-ccat.php:606
-#: core/_dev/_admin/class-fire-admin_page.php:115 core/czr-admin-ccat.php:606
+#: core/_dev/_admin/class-fire-admin_page.php:115 core/czr-admin-ccat.php:595
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
 "upgrading to see if a function or a template has been deprecated."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:625
-#: core/_dev/_admin/class-fire-admin_page.php:134 core/czr-admin-ccat.php:625
+#: core/_dev/_admin/class-fire-admin_page.php:134 core/czr-admin-ccat.php:614
 msgid "Happy user of Customizr?"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:626
-#: core/_dev/_admin/class-fire-admin_page.php:135 core/czr-admin-ccat.php:626
+#: core/_dev/_admin/class-fire-admin_page.php:135 core/czr-admin-ccat.php:615
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:631
-#: core/_dev/_admin/class-fire-admin_page.php:140 core/czr-admin-ccat.php:631
+#: core/_dev/_admin/class-fire-admin_page.php:140 core/czr-admin-ccat.php:620
 msgid "Follow us"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:641
-#: core/_dev/_admin/class-fire-admin_page.php:150 core/czr-admin-ccat.php:641
+#: core/_dev/_admin/class-fire-admin_page.php:150 core/czr-admin-ccat.php:630
 msgid "Go Customizr Pro"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:645
-#: core/_dev/_admin/class-fire-admin_page.php:154 core/czr-admin-ccat.php:645
+#: core/_dev/_admin/class-fire-admin_page.php:154 core/czr-admin-ccat.php:634
 msgid "Easily take your web design one step further"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:647
-#: core/_dev/_admin/class-fire-admin_page.php:156 core/czr-admin-ccat.php:647
+#: core/_dev/_admin/class-fire-admin_page.php:156 core/czr-admin-ccat.php:636
 msgid ""
 "The Customizr Pro WordPress theme allows anyone to create a beautiful, "
 "professional and mobile friendly website in a few minutes. In the Pro "
@@ -3295,102 +3293,102 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:650
-#: core/_dev/_admin/class-fire-admin_page.php:159 core/czr-admin-ccat.php:650
+#: core/_dev/_admin/class-fire-admin_page.php:159 core/czr-admin-ccat.php:639
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Customizr %s에 오신것을 환영합니다!"
 
 #: build/free/customizr/core/czr-admin-ccat.php:660
-#: core/_dev/_admin/class-fire-admin_page.php:169 core/czr-admin-ccat.php:660
+#: core/_dev/_admin/class-fire-admin_page.php:169 core/czr-admin-ccat.php:649
 msgid "Go to Dashboard &rarr; Home"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:660
-#: core/_dev/_admin/class-fire-admin_page.php:169 core/czr-admin-ccat.php:660
+#: core/_dev/_admin/class-fire-admin_page.php:169 core/czr-admin-ccat.php:649
 msgid "Go to Dashboard"
 msgstr "대쉬보드로 가기"
 
 #: build/free/customizr/core/czr-admin-ccat.php:712
-#: core/_dev/_admin/class-fire-admin_page.php:221 core/czr-admin-ccat.php:712
+#: core/_dev/_admin/class-fire-admin_page.php:221 core/czr-admin-ccat.php:701
 msgid "Changelog in version %1$s"
 msgstr "%1$s버전의 변경사항"
 
 #: build/free/customizr/core/czr-admin-ccat.php:729
-#: core/_dev/_admin/class-fire-admin_page.php:238 core/czr-admin-ccat.php:729
+#: core/_dev/_admin/class-fire-admin_page.php:238 core/czr-admin-ccat.php:718
 msgid "System Informations"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:730
-#: core/_dev/_admin/class-fire-admin_page.php:239 core/czr-admin-ccat.php:730
+#: core/_dev/_admin/class-fire-admin_page.php:239 core/czr-admin-ccat.php:719
 msgid "Please include the following informations when posting support requests"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:731
-#: core/_dev/_admin/class-fire-admin_page.php:240 core/czr-admin-ccat.php:731
+#: core/_dev/_admin/class-fire-admin_page.php:240 core/czr-admin-ccat.php:720
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:886
-#: core/_dev/_admin/class-fire-admin_page.php:395 core/czr-admin-ccat.php:886
+#: core/_dev/_admin/class-fire-admin_page.php:395 core/czr-admin-ccat.php:875
 msgid "We found {count} article that may help:"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:887
-#: core/_dev/_admin/class-fire-admin_page.php:396 core/czr-admin-ccat.php:887
+#: core/_dev/_admin/class-fire-admin_page.php:396 core/czr-admin-ccat.php:876
 msgid "We found {count} articles that may help:"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:888
-#: core/_dev/_admin/class-fire-admin_page.php:397 core/czr-admin-ccat.php:888
+#: core/_dev/_admin/class-fire-admin_page.php:397 core/czr-admin-ccat.php:877
 msgid "No results found&hellip;"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:889
-#: core/_dev/_admin/class-fire-admin_page.php:398 core/czr-admin-ccat.php:889
+#: core/_dev/_admin/class-fire-admin_page.php:398 core/czr-admin-ccat.php:878
 msgid "Please enter a search term."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:890
-#: core/_dev/_admin/class-fire-admin_page.php:399 core/czr-admin-ccat.php:890
+#: core/_dev/_admin/class-fire-admin_page.php:399 core/czr-admin-ccat.php:879
 msgid "Search must be at least {minLength} characters."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:891
-#: core/_dev/_admin/class-fire-admin_page.php:400 core/czr-admin-ccat.php:891
+#: core/_dev/_admin/class-fire-admin_page.php:400 core/czr-admin-ccat.php:880
 msgid "There was an error fetching search results."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:897
-#: core/_dev/_admin/class-fire-admin_page.php:406 core/czr-admin-ccat.php:897
+#: core/_dev/_admin/class-fire-admin_page.php:406 core/czr-admin-ccat.php:886
 #, fuzzy
 msgid "Read the full article"
 msgstr "문서 읽기"
 
 #: build/free/customizr/core/czr-admin-ccat.php:898
-#: core/_dev/_admin/class-fire-admin_page.php:407 core/czr-admin-ccat.php:898
+#: core/_dev/_admin/class-fire-admin_page.php:407 core/czr-admin-ccat.php:887
 #, fuzzy
 msgid "read more"
 msgstr "더 많은 정보 : &raquo;"
 
 #: build/free/customizr/core/czr-admin-ccat.php:921
-#: core/_dev/_admin/class-fire-admin_page.php:430 core/czr-admin-ccat.php:921
+#: core/_dev/_admin/class-fire-admin_page.php:430 core/czr-admin-ccat.php:910
 msgid "Search the knowledge base"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:922
-#: core/_dev/_admin/class-fire-admin_page.php:431 core/czr-admin-ccat.php:922
+#: core/_dev/_admin/class-fire-admin_page.php:431 core/czr-admin-ccat.php:911
 msgid "In a few keywords, describe the information you are looking for."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:925
-#: core/_dev/_admin/class-fire-admin_page.php:434 core/czr-admin-ccat.php:925
+#: core/_dev/_admin/class-fire-admin_page.php:434 core/czr-admin-ccat.php:914
 msgid "Ex. Logo upload"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:927
-#: core/_dev/_admin/class-fire-admin_page.php:436 core/czr-admin-ccat.php:927
+#: core/_dev/_admin/class-fire-admin_page.php:436 core/czr-admin-ccat.php:916
 msgid ""
 "<u>Search tips</u> : If you get too many results, try to narrow down your "
 "search by prefixing it with \"customizr\" for example. If there are no "
@@ -3398,7 +3396,7 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1187
-#: core/_dev/_admin/class-admin-meta_boxes.php:250 core/czr-admin-ccat.php:1187
+#: core/_dev/_admin/class-admin-meta_boxes.php:250 core/czr-admin-ccat.php:1176
 msgid "Layout Options"
 msgstr "레이아웃 옵션"
 
@@ -3406,113 +3404,113 @@ msgstr "레이아웃 옵션"
 #: build/free/customizr/core/czr-admin-ccat.php:2041
 #: core/_dev/_admin/class-admin-meta_boxes.php:263
 #: core/_dev/_admin/class-admin-meta_boxes.php:1104
-#: core/czr-admin-ccat.php:1200 core/czr-admin-ccat.php:2041
+#: core/czr-admin-ccat.php:1189 core/czr-admin-ccat.php:2030
 msgid "Slider Options"
 msgstr "슬라이더 옵션"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1212
-#: core/_dev/_admin/class-admin-meta_boxes.php:275 core/czr-admin-ccat.php:1212
+#: core/_dev/_admin/class-admin-meta_boxes.php:275 core/czr-admin-ccat.php:1201
 #, fuzzy
 msgid "Format: link"
 msgstr "링크 없음"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1224
-#: core/_dev/_admin/class-admin-meta_boxes.php:287 core/czr-admin-ccat.php:1224
+#: core/_dev/_admin/class-admin-meta_boxes.php:287 core/czr-admin-ccat.php:1213
 msgid "Format: quote"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1236
-#: core/_dev/_admin/class-admin-meta_boxes.php:299 core/czr-admin-ccat.php:1236
+#: core/_dev/_admin/class-admin-meta_boxes.php:299 core/czr-admin-ccat.php:1225
 msgid "Format: video"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1248
-#: core/_dev/_admin/class-admin-meta_boxes.php:311 core/czr-admin-ccat.php:1248
+#: core/_dev/_admin/class-admin-meta_boxes.php:311 core/czr-admin-ccat.php:1237
 msgid "Format: audio"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1279
-#: core/_dev/_admin/class-admin-meta_boxes.php:342 core/czr-admin-ccat.php:1279
+#: core/_dev/_admin/class-admin-meta_boxes.php:342 core/czr-admin-ccat.php:1268
 msgid "Link title"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1284
-#: core/_dev/_admin/class-admin-meta_boxes.php:347 core/czr-admin-ccat.php:1284
+#: core/_dev/_admin/class-admin-meta_boxes.php:347 core/czr-admin-ccat.php:1273
 #, fuzzy
 msgid "Enter the title"
 msgstr "기능 페이지 옵션"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1300
-#: core/_dev/_admin/class-admin-meta_boxes.php:363 core/czr-admin-ccat.php:1300
+#: core/_dev/_admin/class-admin-meta_boxes.php:363 core/czr-admin-ccat.php:1289
 #, fuzzy
 msgid "Link URL"
 msgstr "링크"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1305
-#: core/_dev/_admin/class-admin-meta_boxes.php:368 core/czr-admin-ccat.php:1305
+#: core/_dev/_admin/class-admin-meta_boxes.php:368 core/czr-admin-ccat.php:1294
 msgid "Enter the URL"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1332
-#: core/_dev/_admin/class-admin-meta_boxes.php:395 core/czr-admin-ccat.php:1332
+#: core/_dev/_admin/class-admin-meta_boxes.php:395 core/czr-admin-ccat.php:1321
 #, fuzzy
 msgid "Quote text"
 msgstr "버튼 텍스트"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1337
-#: core/_dev/_admin/class-admin-meta_boxes.php:400 core/czr-admin-ccat.php:1337
+#: core/_dev/_admin/class-admin-meta_boxes.php:400 core/czr-admin-ccat.php:1326
 msgid "Enter the text"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1352
-#: core/_dev/_admin/class-admin-meta_boxes.php:415 core/czr-admin-ccat.php:1352
+#: core/_dev/_admin/class-admin-meta_boxes.php:415 core/czr-admin-ccat.php:1341
 #, fuzzy
 msgid "Quote author"
 msgstr "작성자"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1358
-#: core/_dev/_admin/class-admin-meta_boxes.php:421 core/czr-admin-ccat.php:1358
+#: core/_dev/_admin/class-admin-meta_boxes.php:421 core/czr-admin-ccat.php:1347
 #, fuzzy
 msgid "Enter the author"
 msgstr "태그라인 표시"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1385
-#: core/_dev/_admin/class-admin-meta_boxes.php:448 core/czr-admin-ccat.php:1385
+#: core/_dev/_admin/class-admin-meta_boxes.php:448 core/czr-admin-ccat.php:1374
 msgid "Audio url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1389
-#: core/_dev/_admin/class-admin-meta_boxes.php:452 core/czr-admin-ccat.php:1389
+#: core/_dev/_admin/class-admin-meta_boxes.php:452 core/czr-admin-ccat.php:1378
 msgid "Enter the audio url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1419
-#: core/_dev/_admin/class-admin-meta_boxes.php:482 core/czr-admin-ccat.php:1419
+#: core/_dev/_admin/class-admin-meta_boxes.php:482 core/czr-admin-ccat.php:1408
 msgid "Video url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1423
-#: core/_dev/_admin/class-admin-meta_boxes.php:486 core/czr-admin-ccat.php:1423
+#: core/_dev/_admin/class-admin-meta_boxes.php:486 core/czr-admin-ccat.php:1412
 msgid "Enter the video url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1469
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1469
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1458
 msgid "Default %1$s layout is set to : %2$s"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1469
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1469
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1458
 msgid "pages"
 msgstr "페이지"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1469
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1469
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1458
 msgid "posts"
 msgstr "게시글"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1472
-#: core/_dev/_admin/class-admin-meta_boxes.php:535 core/czr-admin-ccat.php:1472
+#: core/_dev/_admin/class-admin-meta_boxes.php:535 core/czr-admin-ccat.php:1461
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
 "right sidebars. The default layouts can be defined in the WordPress "
@@ -3522,31 +3520,31 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:1473
 #: build/free/customizr/core/czr-admin-ccat.php:1478
 #: core/_dev/_admin/class-admin-meta_boxes.php:536
-#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1473
-#: core/czr-admin-ccat.php:1478
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1462
+#: core/czr-admin-ccat.php:1467
 msgid "this page"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1473
 #: build/free/customizr/core/czr-admin-ccat.php:1478
 #: core/_dev/_admin/class-admin-meta_boxes.php:536
-#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1473
-#: core/czr-admin-ccat.php:1478
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1462
+#: core/czr-admin-ccat.php:1467
 msgid "this post"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1477
-#: core/_dev/_admin/class-admin-meta_boxes.php:540 core/czr-admin-ccat.php:1477
+#: core/_dev/_admin/class-admin-meta_boxes.php:540 core/czr-admin-ccat.php:1466
 msgid "Select a specific layout for %1$s"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1481
-#: core/_dev/_admin/class-admin-meta_boxes.php:544 core/czr-admin-ccat.php:1481
+#: core/_dev/_admin/class-admin-meta_boxes.php:544 core/czr-admin-ccat.php:1470
 msgid "Default layout %1s"
 msgstr "기본 레이아웃 %1s"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1527
-#: core/_dev/_admin/class-admin-meta_boxes.php:590 core/czr-admin-ccat.php:1527
+#: core/_dev/_admin/class-admin-meta_boxes.php:590 core/czr-admin-ccat.php:1516
 msgid "Add a slider to this post/page"
 msgstr "게시글/페이지에 슬라이더 추가"
 
@@ -3554,7 +3552,7 @@ msgstr "게시글/페이지에 슬라이더 추가"
 #: build/free/customizr/core/czr-admin-ccat.php:2274
 #: core/_dev/_admin/class-admin-meta_boxes.php:669
 #: core/_dev/_admin/class-admin-meta_boxes.php:1337
-#: core/czr-admin-ccat.php:1606 core/czr-admin-ccat.php:2274
+#: core/czr-admin-ccat.php:1595 core/czr-admin-ccat.php:2263
 msgid "Choose a slider"
 msgstr "슬라이더 선택"
 
@@ -3562,29 +3560,29 @@ msgstr "슬라이더 선택"
 #: build/free/customizr/core/czr-admin-ccat.php:2289
 #: core/_dev/_admin/class-admin-meta_boxes.php:675
 #: core/_dev/_admin/class-admin-meta_boxes.php:1352
-#: core/czr-admin-ccat.php:1612 core/czr-admin-ccat.php:2289
+#: core/czr-admin-ccat.php:1601 core/czr-admin-ccat.php:2278
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; 슬라이더 선택 &mdash; "
 
 #: build/free/customizr/core/czr-admin-ccat.php:1635
-#: core/_dev/_admin/class-admin-meta_boxes.php:698 core/czr-admin-ccat.php:1635
+#: core/_dev/_admin/class-admin-meta_boxes.php:698 core/czr-admin-ccat.php:1624
 msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1639
-#: core/_dev/_admin/class-admin-meta_boxes.php:702 core/czr-admin-ccat.php:1639
+#: core/_dev/_admin/class-admin-meta_boxes.php:702 core/czr-admin-ccat.php:1628
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1646
-#: core/_dev/_admin/class-admin-meta_boxes.php:709 core/czr-admin-ccat.php:1646
+#: core/_dev/_admin/class-admin-meta_boxes.php:709 core/czr-admin-ccat.php:1635
 msgid "Slider Layout : set the slider in full width"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1684
-#: core/_dev/_admin/class-admin-meta_boxes.php:747 core/czr-admin-ccat.php:1684
+#: core/_dev/_admin/class-admin-meta_boxes.php:747 core/czr-admin-ccat.php:1673
 msgid "Display navigation dots at the bottom of your slider."
 msgstr ""
 
@@ -3592,7 +3590,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2298
 #: core/_dev/_admin/class-admin-meta_boxes.php:766
 #: core/_dev/_admin/class-admin-meta_boxes.php:1361
-#: core/czr-admin-ccat.php:1703 core/czr-admin-ccat.php:2298
+#: core/czr-admin-ccat.php:1692 core/czr-admin-ccat.php:2287
 msgid "Delete this slider"
 msgstr "이 슬라이더 삭제"
 
@@ -3600,7 +3598,7 @@ msgstr "이 슬라이더 삭제"
 #: build/free/customizr/core/czr-admin-ccat.php:2302
 #: core/_dev/_admin/class-admin-meta_boxes.php:771
 #: core/_dev/_admin/class-admin-meta_boxes.php:1365
-#: core/czr-admin-ccat.php:1708 core/czr-admin-ccat.php:2302
+#: core/czr-admin-ccat.php:1697 core/czr-admin-ccat.php:2291
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
@@ -3610,7 +3608,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2305
 #: core/_dev/_admin/class-admin-meta_boxes.php:774
 #: core/_dev/_admin/class-admin-meta_boxes.php:1368
-#: core/czr-admin-ccat.php:1711 core/czr-admin-ccat.php:2305
+#: core/czr-admin-ccat.php:1700 core/czr-admin-ccat.php:2294
 msgid "Delete slider"
 msgstr "슬라이더 삭제"
 
@@ -3618,7 +3616,7 @@ msgstr "슬라이더 삭제"
 #: build/free/customizr/core/czr-customize-ccat.php:955
 #: core/_dev/_admin/class-admin-meta_boxes.php:785
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1722 core/czr-customize-ccat.php:955
+#: core/czr-admin-ccat.php:1711 core/czr-customize-ccat.php:955
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -3628,52 +3626,52 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2068
 #: core/_dev/_admin/class-admin-meta_boxes.php:1131
-#: core/czr-admin-ccat.php:2068
+#: core/czr-admin-ccat.php:2057
 msgid "Add to a slider (create one if needed)"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2203
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
-#: core/czr-admin-ccat.php:2203
+#: core/czr-admin-ccat.php:2192
 #, fuzzy
 msgid "Title text (80 char. max length)"
 msgstr "타이틀 택스트(최대 한글 40글자,영숫자 80글자)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2210
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
-#: core/czr-admin-ccat.php:2210
+#: core/czr-admin-ccat.php:2199
 #, fuzzy
 msgid "Description text (below the title, 250 char. max length)"
 msgstr "설명 택스트(제목아래,최대 한글 125자,영숫자 250자)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2217
 #: core/_dev/_admin/class-admin-meta_boxes.php:1280
-#: core/czr-admin-ccat.php:2217
+#: core/czr-admin-ccat.php:2206
 msgid "Title and text color"
 msgstr "타이틀과 텍스트 색상"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2225
 #: core/_dev/_admin/class-admin-meta_boxes.php:1288
-#: core/czr-admin-ccat.php:2225
+#: core/czr-admin-ccat.php:2214
 #, fuzzy
 msgid "Button text (80 char. max length)"
 msgstr "버튼 택스트(최대 한글40자,영숫자 80자)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2232
 #: core/_dev/_admin/class-admin-meta_boxes.php:1295
-#: core/czr-admin-ccat.php:2232
+#: core/czr-admin-ccat.php:2221
 msgid "Choose a linked page or post (among the last 100)."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2237
 #: core/_dev/_admin/class-admin-meta_boxes.php:1300
-#: core/czr-admin-ccat.php:2237
+#: core/czr-admin-ccat.php:2226
 msgid "No link"
 msgstr "링크 없음"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2246
 #: core/_dev/_admin/class-admin-meta_boxes.php:1309
-#: core/czr-admin-ccat.php:2246
+#: core/czr-admin-ccat.php:2235
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
@@ -3681,13 +3679,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2252
 #: core/_dev/_admin/class-admin-meta_boxes.php:1315
-#: core/czr-admin-ccat.php:2252
+#: core/czr-admin-ccat.php:2241
 msgid "Open link in a new page/tab"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2263
 #: core/_dev/_admin/class-admin-meta_boxes.php:1326
-#: core/czr-admin-ccat.php:2263
+#: core/czr-admin-ccat.php:2252
 msgid "Link the whole slide"
 msgstr ""
 
@@ -3695,13 +3693,13 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2324
 #: core/_dev/_admin/class-admin-meta_boxes.php:1358
 #: core/_dev/_admin/class-admin-meta_boxes.php:1387
-#: core/czr-admin-ccat.php:2295 core/czr-admin-ccat.php:2324
+#: core/czr-admin-ccat.php:2284 core/czr-admin-ccat.php:2313
 msgid "Add a slider"
 msgstr "슬라이더 추가"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2322
 #: core/_dev/_admin/class-admin-meta_boxes.php:1385
-#: core/czr-admin-ccat.php:2322
+#: core/czr-admin-ccat.php:2311
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -3709,7 +3707,7 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2448
 #: core/_dev/_admin/class-admin-meta_boxes.php:1511
-#: core/czr-admin-ccat.php:2448
+#: core/czr-admin-ccat.php:2437
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -3717,7 +3715,7 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2458
 #: core/_dev/_admin/class-admin-meta_boxes.php:1521
-#: core/czr-admin-ccat.php:2458
+#: core/czr-admin-ccat.php:2447
 msgid "Slide Image"
 msgstr "슬라이더 이미지"
 
@@ -3725,26 +3723,26 @@ msgstr "슬라이더 이미지"
 #: build/free/customizr/core/czr-modules/social-links/index.php:121
 #: build/free/customizr/core/czr-modules/social-links/social_links_module.php:123
 #: core/_dev/_admin/class-admin-meta_boxes.php:1522
-#: core/czr-admin-ccat.php:2459 core/czr-modules/social-links/index.php:121
+#: core/czr-admin-ccat.php:2448 core/czr-modules/social-links/index.php:121
 #: core/czr-modules/social-links/social_links_module.php:123
 msgid "Title"
 msgstr "타이틀"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2460
 #: core/_dev/_admin/class-admin-meta_boxes.php:1523
-#: core/czr-admin-ccat.php:2460
+#: core/czr-admin-ccat.php:2449
 msgid "Slide Text"
 msgstr "슬라이더 택스트"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2461
 #: core/_dev/_admin/class-admin-meta_boxes.php:1524
-#: core/czr-admin-ccat.php:2461
+#: core/czr-admin-ccat.php:2450
 msgid "Button Text"
 msgstr "버튼 택스트"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2462
 #: core/_dev/_admin/class-admin-meta_boxes.php:1525
-#: core/czr-admin-ccat.php:2462
+#: core/czr-admin-ccat.php:2451
 msgid "Link"
 msgstr ""
 
@@ -3770,7 +3768,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-front-ccat.php:8732
 #: core/_dev/_admin/class-admin-meta_boxes.php:1526
 #: core/_dev/_czr/class-czr-resources.php:229
-#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2463
+#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2452
 #: core/czr-base-fmk/czr-base-fmk.php:238
 #: core/czr-base-fmk/czr-base-fmk.php:452
 #: core/czr-base-fmk/czr-base-fmk.php:809 core/czr-customize-ccat.php:850
@@ -3798,25 +3796,25 @@ msgstr "편집"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2505
 #: core/_dev/_admin/class-admin-meta_boxes.php:1568
-#: core/czr-admin-ccat.php:2505
+#: core/czr-admin-ccat.php:2494
 msgid "No Image Selected"
 msgstr "이미지가 선택되지 않았습니다"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2531
 #: core/_dev/_admin/class-admin-meta_boxes.php:1594
-#: core/czr-admin-ccat.php:2531
+#: core/czr-admin-ccat.php:2520
 msgid "Edit this slide"
 msgstr "이 슬라이드 편집"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2533
 #: core/_dev/_admin/class-admin-meta_boxes.php:1596
-#: core/czr-admin-ccat.php:2533
+#: core/czr-admin-ccat.php:2522
 msgid "Current slide"
 msgstr "현재 슬라이드"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2544
 #: core/_dev/_admin/class-admin-meta_boxes.php:1607
-#: core/czr-admin-ccat.php:2544
+#: core/czr-admin-ccat.php:2533
 msgid ""
 "To add another slide : navigate to your media library (click on Media), open "
 "the edit screen of an image ( or add a new image ), and add it to your "
@@ -3825,13 +3823,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2545
 #: core/_dev/_admin/class-admin-meta_boxes.php:1608
-#: core/czr-admin-ccat.php:2545
+#: core/czr-admin-ccat.php:2534
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2547
 #: core/_dev/_admin/class-admin-meta_boxes.php:1610
-#: core/czr-admin-ccat.php:2547
+#: core/czr-admin-ccat.php:2536
 #, fuzzy
 msgid "Slider documentation"
 msgstr "문서 읽기"
