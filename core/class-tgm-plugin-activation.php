@@ -47,7 +47,7 @@ if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
    * @author  Thomas Griffin
    * @author  Gary Jones
    */
-  class CZR_lugin_Activation {
+  class CZR_plugin_Activation {
     /**
      * TGMPA version number.
      *
