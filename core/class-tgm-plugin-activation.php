@@ -31,8 +31,8 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
+// prefixed CZR_Plugin_Activation because of the possible issue : https://github.com/presscustomizr/customizr/issues/1603
+if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
 
   /**
    * Automatic plugin installation and activation library.
@@ -47,7 +47,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
    * @author  Thomas Griffin
    * @author  Gary Jones
    */
-  class TGM_Plugin_Activation {
+  class CZR_lugin_Activation {
     /**
      * TGMPA version number.
      *
@@ -80,7 +80,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      *
      * @since 1.0.0
      *
-     * @var TGM_Plugin_Activation
+     * @var CZR_Plugin_Activation
      */
     public static $instance;
 
@@ -250,7 +250,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      *
      * @since 1.0.0
      *
-     * @see TGM_Plugin_Activation::init()
+     * @see CZR_Plugin_Activation::init()
      */
     public function __construct() {
       // Set the current WordPress version.
@@ -486,9 +486,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      *
      * @since 2.0.0
      *
-     * @see TGM_Plugin_Activation::admin_menu()
-     * @see TGM_Plugin_Activation::notices()
-     * @see TGM_Plugin_Activation::styles()
+     * @see CZR_Plugin_Activation::admin_menu()
+     * @see CZR_Plugin_Activation::notices()
+     * @see CZR_Plugin_Activation::styles()
      */
     public function init() {
       /**
@@ -787,8 +787,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      *
      * @since 1.0.0
      *
-     * @see TGM_Plugin_Activation::init()
-     * @see TGM_Plugin_Activation::install_plugins_page()
+     * @see CZR_Plugin_Activation::init()
+     * @see CZR_Plugin_Activation::install_plugins_page()
      *
      * @return null Return early if user lacks capability to install a plugin.
      */
@@ -1326,7 +1326,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
             $rendered,
             __( 'Nimble is a section builder plugin companion for the Customizr theme.',  'customizr'),
             sprintf(
-                __( 'It allows you to drag and drop beautiful pre-designed sections, or create your own sections with modules like Google map or a contact form, in live preview from the WordPress customizer. You\'ll find a quick introduction of the plugin %1$s.', 'customizr' ),
+                __( 'It allows you to drag and drop pre-built sections, or create your own sections in live preview from the WordPress customizer. You can easily create column layouts and add content like buttons, icons, Google map and even contact forms in any page.  You\'ll find a quick introduction of the plugin %1$s.', 'customizr' ),
                 sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('docs.presscustomizr.com/article/337-getting-started-with-the-nimble-builder-plugin'), __('here', 'customizr') )
             ),
             __( "The plugin has been designed to integrate perfectly with the Customizr theme. Lightweight and safe.", 'customizr')
@@ -2210,7 +2210,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      *
      * @since 2.4.0
      *
-     * @return \TGM_Plugin_Activation The TGM_Plugin_Activation object.
+     * @return \CZR_Plugin_Activation The CZR_Plugin_Activation object.
      */
     public static function get_instance() {
       if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
@@ -2228,7 +2228,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
      * @since 2.5.0
      */
     function load_tgm_plugin_activation() {
-      $GLOBALS['tgmpa'] = TGM_Plugin_Activation::get_instance();
+      $GLOBALS['tgmpa'] = CZR_Plugin_Activation::get_instance();
     }
   }
 
@@ -3217,20 +3217,30 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
      * Retrieve plugin data, given the plugin name.
      *
      * @since      2.2.0
-     * @deprecated 2.5.0 use {@see TGM_Plugin_Activation::_get_plugin_data_from_name()} instead.
-     * @see        TGM_Plugin_Activation::_get_plugin_data_from_name()
+     * @deprecated 2.5.0 use {@see CZR_Plugin_Activation::_get_plugin_data_from_name()} instead.
+     * @see        CZR_Plugin_Activation::_get_plugin_data_from_name()
      *
      * @param string $name Name of the plugin, as it was registered.
      * @param string $data Optional. Array key of plugin data to return. Default is slug.
      * @return string|boolean Plugin slug if found, false otherwise.
      */
     protected function _get_plugin_data_from_name( $name, $data = 'slug' ) {
-      _deprecated_function( __FUNCTION__, 'TGMPA 2.5.0', 'TGM_Plugin_Activation::_get_plugin_data_from_name()' );
+      _deprecated_function( __FUNCTION__, 'TGMPA 2.5.0', 'CZR_Plugin_Activation::_get_plugin_data_from_name()' );
 
       return $this->tgmpa->_get_plugin_data_from_name( $name, $data );
     }
-  }
-}
+  }//end of CZR_Plugin_Activation
+}//class_exists()
+
+
+
+
+
+
+
+
+
+
 
 
 if ( ! class_exists( 'TGM_Bulk_Installer' ) ) {
