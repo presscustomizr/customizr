@@ -3,11 +3,11 @@
 
 //slider color
 .section-slider {
-  .filter {
+  .czr-filter {
     @include filter($black, $white, 0.5);
     + .slider-text { color: $white; }
   }
-  .czr-has-no-dark-overlay .filter:before {
+  .czr-has-no-dark-overlay .czr-filter:before {
       content :none;
   }
 }

@@ -8,7 +8,7 @@
   <?php if ( czr_fn_get_property( 'link_whole_slide' ) ) : ?>
     <a class="tc-slide-link bg-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>" title="<?php _e( 'Go to', 'customizr' ) ?>"></a>
   <?php endif ?>
-  <div class="filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
+  <div class="czr-filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
     <?php
         do_action('__before_all_slides_background__');
           czr_fn_echo( 'slide_background' );
