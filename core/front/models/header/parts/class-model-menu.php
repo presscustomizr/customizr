@@ -60,7 +60,6 @@ class CZR_menu_model_class extends CZR_Model {
 
                     'element_class'       => array( 'primary-nav__menu-wrapper', $menu_position_class ),
                     'theme_location'      => 'main',
-                    'menu_id'             => 'primary-nav',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
                     'dropdown_type'       => $this->dropdown_type ? $this->dropdown_type : esc_attr( czr_fn_opt( 'tc_menu_type' ) ),
                     'dropdown_on'         => 'link-action'
@@ -87,7 +86,7 @@ class CZR_menu_model_class extends CZR_Model {
 
                     'element_class'       => array( 'primary-nav__menu-wrapper', $menu_position_class ),
                     'theme_location'      => 'secondary',
-                    'menu_id'             => 'secondary-nav',
+                    'menu_id'             => 'secondary-menu',
                     'menu_class'          => array( 'primary-nav__menu', 'regular-nav', 'nav__menu' ),
                     'dropdown_type'       => $this->dropdown_type ? $this->dropdown_type : esc_attr( czr_fn_opt( 'tc_menu_type' ) ),
                     'dropdown_on'         => 'link-action'
