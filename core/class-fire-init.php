@@ -38,7 +38,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ));
 
           //add classes to body tag : fade effect on link hover, is_customizing. Since v3.2.0
-          add_filter('body_class'               , array( $this , 'czr_fn_set_body_classes') );
+          add_filter( 'body_class'              , array( $this , 'czr_fn_set_body_classes') );
           //Add the context
           add_filter ( 'body_class'             , 'czr_fn_set_post_list_context_class' );
 
@@ -185,9 +185,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           }
 
           //BOXED LAYOUT
-          if ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) {
-            $_classes[] = 'czr-boxed-layout';
-          }
+          $_classes[] = ( 'boxed' == esc_attr( czr_fn_opt( 'tc_site_layout') ) ) ? 'czr-boxed-layout' : 'czr-full-layout';
 
           //SIDENAV POSITIONING
           if ( czr_fn_is_possible('sidenav') ) {
@@ -206,6 +204,9 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
       function czr_fn_base_customizr_setup() {
           add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
+          // gutenberg alignwide/full cover images.
+          add_theme_support( 'align-wide' );
+
           //tag cloud - same font size
           add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
           //tag cloud add button classes

@@ -179,6 +179,65 @@ section[class^="post-"] {
 
 
 
+//  Gutenberg
+// cover images */
+//
+// Real alignfull and alignwide
+// allowed only in layouts with no sidebars and full-width
+// in single and singular, as our only post list grid articles showing the full content
+// look like cards (meaning that they're boxed with borders) and would make no sense there.
+.page, .single {
+    &.czr-no-sidebar {
+        // alignwide and alignfull in boxed layouts
+        // only reset the .container[role=main] horizontal padding
+        .entry-content .wp-block-cover-image {
+            &.alignfull,
+            &.alignwide {
+                margin-right: -15px;
+                margin-left: -15px;
+                clear: both;
+                width: auto;
+            }
+        }
+        &.czr-boxed-layout .entry-content .wp-block-cover-image {
+            @include media-breakpoint-up(sm) {
+                &.alignfull,
+                &.alignwide {
+                    margin-right: -30px;
+                    margin-left: -30px;
+                }
+            }
+        }
+    }
+
+    &.czr-full-layout.czr-no-sidebar {
+        #tc-page-wrap {
+            overflow-x: hidden;
+        }
+        // alignfull
+        .entry-content .wp-block-cover-image.alignfull {
+            width: 100vw;
+            max-width: 100vw;
+            position: relative;
+            margin-left: 0;
+            margin-right: 0;
+            &:not(.has-parallax) {
+                @if ( true == $is_rtl ) {
+                    right: 50%;
+                    @include transform( translateX(50%) );
+                }
+                @else {
+                    left: 50%;
+                    @include transform( translateX(-50%) );
+                }
+            }
+            &.has-parallax:not(.czr-alignfull-p) {
+                width: 100%;
+            }
+        }
+    }
+}
+
 
 
 

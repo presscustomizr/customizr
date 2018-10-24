@@ -686,7 +686,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                //Add some rules from sm up
                //add padding
                $css_container[]        = sprintf( '@media (min-width: %1$spx){ %2$s{ padding-right: %3$spx; padding-left:  %3$spx; } }',
-                           $css_container_widths[ 'sm' ],
+                           $css_mq_breakpoints[ 'sm' ],
                            $container_selector,
                            $additional_width
                );
