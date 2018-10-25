@@ -121,7 +121,7 @@ class CZR_breadcrumb_model_class extends CZR_Model {
     if ( !empty( $trail ) && is_array( $trail ) ) {
 
       /* Open the breadcrumb trail containers. */
-      $breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumbs ' . $args[ 'container_class' ] . '" itemprop="breadcrumb">';
+      $breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumbs ' . $args[ 'container_class' ] . '">';
 
       /* If $before was set, wrap it in a container. */
       $breadcrumb .= ( !empty( $args['before'] ) ? '<span class="trail-before">' . $args['before'] . '</span> ' : '' );
