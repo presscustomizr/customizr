@@ -2574,6 +2574,49 @@ var czrapp = czrapp || {};
                   return false;
             });//click
           },
+          gutenbergAlignfull : function() {
+                var _isPage   = czrapp.$_body.hasClass( 'page' ),
+                    _isSingle = czrapp.$_body.hasClass( 'single' ),
+                    _coverImageSelector = [ '.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull', '.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull'].join(',');
+                if ( ! ( _isPage || _isSingle ) ) {
+                      return;
+                }
+
+                _coverImageSelector = _isSingle ? '.single' + _coverImageSelector : '.page' + _coverImageSelector;
+
+                var _coverWParallaxImageSelector   = _coverImageSelector + '.has-parallax',
+                    _classParallaxTreatmentApplied = 'czr-alignfull-p',
+                    _styleId                       = 'czr-gutenberg-alignfull',
+                    $_refWidthElement              = $('#tc-page-wrap');
+
+                if ( $( _coverImageSelector ).length > 0 ) {
+                      _add_alignfull_style();
+                      _add_parallax_treatment_style();
+                      czrapp.userXP.windowWidth.bind( function() {
+                            _add_alignfull_style();
+                            _add_parallax_treatment_style();
+                      });
+                }
+                function _add_parallax_treatment_style() {
+                      $( _coverWParallaxImageSelector ).each(function() {
+                            $(this)
+                                  .css( 'left', '' )
+                                  .css( 'left', -1 * $(this).offset().left )
+                                  .addClass(_classParallaxTreatmentApplied);
+                      });
+                }
+                function _add_alignfull_style() {
+                      var newWidth = $_refWidthElement[0].getBoundingClientRect().width,
+                          $_style   = $( 'head #' + _styleId );
+
+                      if ( 1 > $_style.length ) {
+                            $_style = $('<style />', { 'id' : _styleId });
+                            $( 'head' ).append( $_style );
+                            $_style = $( 'head #' + _styleId );
+                      }
+                      $_style.html( _coverImageSelector + '{width:'+ newWidth +'px}' );
+                }
+          }
 
    };//_methods{}
 
@@ -3534,6 +3577,7 @@ var czrapp = czrapp || {};
                             'setupUIListeners',//<= setup various observable values like this.isScrolling, this.scrollPosition, ...
 
                             'stickifyHeader',
+                            'gutenbergAlignfull',
 
                             'outline',
 

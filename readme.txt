@@ -1,28 +1,28 @@
-###################### Copyright ######################
-Customizr is a free WordPress theme designed by Nicolas Guillaume in Nice, France. (https://presscustomizr.com)
-Feel free to use, modify and redistribute this theme as you like.
-You may remove any copyright references (unless required by third party components) and crediting is not necessary, but much appreciated... ;-D.
-Customizr is distributed under the terms of the GNU GPL v2.0 or later
-Most important : enjoy it!
+=== Customizr ===
+Contributors: nikeo, d4z_c0nf
+Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
+Requires at least: 4.6
+Tested up to: 5.0
+Stable tag: 4.1.20
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors.
 
+== Description ==
+Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
-######## Demo, Documentation, FAQs and Support #########
-* DEMO : https://demo.presscustomizr.com/
-* DOCUMENTATION : http://docs.presscustomizr.com/collection/76-customizr-theme
-* FAQs : http://docs.presscustomizr.com/category/90-faq-and-common-issues
-* SUPPORT FORUM : https://wordpress.org/support/theme/customizr
+== Upgrade Notice ==
+= 4.1.20 October 25th 2018 =
+This new release improves the compatibility with the new WordPress editor that will be introduced in WP version 5.0.
 
+== Changelog ==
+= 4.1.20 October 25th 2018 =
+* fixed : remove breadcrumb itemprop that can produce html validation issues. fixes #1607
+* fixed : fix buddypress member activity filter issue. fixes #1606.
+* improved : support for new WordPress editor, block cover image alignwide/alignfull
+* improved : readme.txt file, according to the latest TRT requirements https://make.wordpress.org/themes/2015/04/29/a-revised-readme/
 
-
-####################### Licenses #######################
-Customizr is distributed under the terms of the [GNU GPL v2.0 or later](http://www.gnu.org/licenses/gpl-3.0.en.html)
-All images included in the theme are either created for the theme and inheriting its license, or licensed under CC0.
-All other theme assets like scripts, stylesheets are licensed under GNU General Public License version 2, see file license.txt, or GPL compatible licenses like MIT, WTFPL.
-See headers of each files for further details.
-
-
-####################### Changelog ######################
 = 4.1.19 October 13th 2018 =
 * fixed : prefixed TGMPA class with CZR to fix potential collision with other plugins using the same class. fixes #1603
 
@@ -1956,3 +1956,7 @@ added grid design option as a specific set to be revealed on click
 
 = 1.0 April 16th, 2013 =
 * Initial Release
+
+== Resources ==
+* All images included in the theme are either created for the theme and inheriting its license, or licensed under CC0.
+* All other theme assets like scripts, stylesheets are licensed under GNU General Public License version 2, see file license.txt, or GPL compatible licenses like MIT, WTFPL. See headers of each files for further details.

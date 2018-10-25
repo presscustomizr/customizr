@@ -1,4 +1,4 @@
-# Customizr v4.1.19 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.20 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,12 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.20 October 25th 2018 =
+* fixed : remove breadcrumb itemprop that can produce html validation issues. fixes #1607
+* fixed : fix buddypress member activity filter issue. fixes #1606.
+* improved : support for new WordPress editor, block cover image alignwide/alignfull
+* improved : readme.txt file, according to the latest TRT requirements https://make.wordpress.org/themes/2015/04/29/a-revised-readme/
+
 = 4.1.19 October 13th 2018 =
 * fixed : prefixed TGMPA class with CZR to fix potential collision with other plugins using the same class. fixes #1603
 

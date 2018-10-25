@@ -2047,7 +2047,7 @@ class CZR_breadcrumb {
 		if ( !empty( $trail ) && is_array( $trail ) ) {
 
 			/* Open the breadcrumb trail containers. */
-			$breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb">';
+			$breadcrumb = '<' . tag_escape( $args['container'] ) . ' class="breadcrumb-trail breadcrumbs">';
 
 			/* If $before was set, wrap it in a container. */
 			$breadcrumb .= ( !empty( $args['before'] ) ? '<span class="trail-before">' . $args['before'] . '</span> ' : '' );

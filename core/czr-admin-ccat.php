@@ -378,7 +378,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
             echo apply_filters(
               'czr_update_notice',
               sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
-                __( "Good, you've just upgraded to", "customizr"),
+                __( "Good, you've recently upgraded to", "customizr"),
                 CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER

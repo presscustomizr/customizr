@@ -2958,12 +2958,12 @@ img.v-centered {
   max-width: none !important;
 }
 
-.filter {
+.czr-filter {
   position: relative;
   height: 100%;
 }
 
-.filter:before {
+.czr-filter:before {
   position: absolute;
   left: 0;
   top: 0;
@@ -6675,11 +6675,11 @@ section[class^="post-"] .gallery.row {
   opacity: 1 !important;
 }
 
-.section-slider .filter {
+.section-slider .czr-filter {
   color: #fff;
 }
 
-.section-slider .filter::before {
+.section-slider .czr-filter::before {
   content: '';
   left: 0;
   right: 0;
@@ -6689,11 +6689,11 @@ section[class^="post-"] .gallery.row {
   background: rgba(49, 49, 49, 0.5);
 }
 
-.section-slider .filter + .slider-text {
+.section-slider .czr-filter + .slider-text {
   color: #fff;
 }
 
-.section-slider .czr-has-no-dark-overlay .filter:before {
+.section-slider .czr-has-no-dark-overlay .czr-filter:before {
   content: none;
 }
 
@@ -8416,6 +8416,49 @@ section[class^="post-"] .entry-meta {
   margin: 2em -15px;
 }
 
+.page.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .page.czr-no-sidebar .entry-content .wp-block-cover-image.alignwide, .page.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .page.czr-no-sidebar .entry-content .wp-block-cover.alignwide, .single.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .single.czr-no-sidebar .entry-content .wp-block-cover-image.alignwide, .single.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .single.czr-no-sidebar .entry-content .wp-block-cover.alignwide {
+  margin-right: -15px;
+  margin-left: -15px;
+  clear: both;
+  width: auto;
+}
+
+@media (min-width: 576px) {
+  .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignfull, .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignwide, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignfull, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignwide {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+}
+
+@media (min-width: 576px) {
+  .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignfull, .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignwide, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignfull, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignwide {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+}
+
+.page.czr-full-layout.czr-no-sidebar #tc-page-wrap, .single.czr-full-layout.czr-no-sidebar #tc-page-wrap {
+  overflow-x: hidden;
+}
+
+.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull:not(.has-parallax), .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull:not(.has-parallax), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull:not(.has-parallax), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull:not(.has-parallax) {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull.has-parallax:not(.czr-alignfull-p), .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull.has-parallax:not(.czr-alignfull-p), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull.has-parallax:not(.czr-alignfull-p), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull.has-parallax:not(.czr-alignfull-p) {
+  width: 100%;
+}
+
 .post-section-title {
   position: relative;
   text-align: center;
@@ -9610,10 +9653,13 @@ footer#footer .colophon__row .footer__credits a.fab {
   margin: 0;
 }
 
-/* fix for https://github.com/presscustomizr/nimble-builder/issues/186 */
 .sek-dragging .sektion-wrapper[data-sek-id="__after_header"] {
   z-index: 1000;
   position: relative;
+}
+
+.buddypress-wrap .select-wrap select {
+  display: inline-block;
 }
 
 .woocommerce .woocommerce-error-list,
