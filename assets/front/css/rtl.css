@@ -5821,7 +5821,8 @@ cite::before {
   height: 1px;
   bottom: 2px;
   right: 0;
-  background: #313131;
+  border-bottom: 1px solid;
+  color: #313131;
 }
 
 .entry-link::before {
@@ -5836,6 +5837,57 @@ cite::before {
   .entry-link a {
     margin-right: 10em;
   }
+}
+
+.wp-block-quote, .wp-block-pullquote blockquote {
+  padding-top: 3.75em;
+}
+
+.wp-block-quote::before, .wp-block-pullquote blockquote::before {
+  right: 0;
+  top: 1.25em;
+}
+
+.wp-block-quote > *, .wp-block-pullquote blockquote > * {
+  margin-right: 0.625em;
+  margin-left: 0.625em;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wp-block-quote cite, .wp-block-pullquote blockquote cite {
+  display: inline-block;
+  padding-right: 2.5em;
+  padding-left: 0;
+  margin: 0;
+}
+
+.wp-block-quote cite::before, .wp-block-pullquote blockquote cite::before {
+  margin-right: -2.5em;
+  position: static;
+  display: inherit;
+}
+
+.wp-block-pullquote {
+  margin: 2.5em 0;
+  padding: 0;
+  border-top: 1px solid #313131;
+  border-bottom: 1px solid #313131;
+}
+
+.wp-block-pullquote blockquote {
+  border: none;
+  margin: 0;
+}
+
+.wp-block-pullquote blockquote.has-text-color > p,
+.wp-block-pullquote blockquote.has-text-color cite,
+.wp-block-pullquote blockquote.has-text-color cite::before {
+  color: inherit;
+}
+
+.wp-block-pullquote:not([class*=align]) {
+  clear: both;
 }
 
 .tags a {
@@ -6656,6 +6708,14 @@ form.czr-form .czr-focus.in-focus > label i.icn-close {
 .czr-search-field:-webkit-autofill {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+}
+
+.entry-content .wp-block-gallery {
+  padding-right: 0;
+}
+
+.entry-content .wp-block-gallery > li {
+  padding: 0;
 }
 
 .gallery-item dt {

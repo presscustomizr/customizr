@@ -1,4 +1,4 @@
-# Customizr v4.1.20 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.21 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,10 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.21 November 3rd 2018 =
+* improved: added new WP editor responsive embeds support
+* improved: new WP editor blockquote style. Part of #1601
+
 = 4.1.20 October 25th 2018 =
 * fixed : remove breadcrumb itemprop that can produce html validation issues. fixes #1607
 * fixed : fix buddypress member activity filter issue. fixes #1606.
