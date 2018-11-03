@@ -240,6 +240,9 @@ if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
      */
     public $page_hook;
 
+    // @nikeo addon, CZR MODS
+    public $dismiss_meta_name = "czr_last_tgmpa_notice";
+
     /**
      * Adds a reference of this object to $instance, populates default strings,
      * does the tgmpa_init action hook, and hooks in the interactions to init.
@@ -317,7 +320,7 @@ if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
     //update it when needed
     //@return array( "version" => CUSTOMIZR_VER, "dismiss_count" => INT );
     function czr_fn_get_meta_tgmpa_notice_values() {
-        $meta_name = 'czr_fn_last_tgmpa_notice';
+        $meta_name = $this->dismiss_meta_name;
         $user_id = get_current_user_id();
         $last_tgmpa_notice_values  = get_user_meta( $user_id, $meta_name, true );
 
@@ -377,7 +380,7 @@ if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
       $_dismissed_count  = $last_tgmpa_notice_values["dismiss_count"];
       $_day_duration     = 0 == $_dismissed_count ? 1 : ( 3 * $_dismissed_count );//maximum 9 days
       $user_id           = get_current_user_id();
-      $meta_name         = 'czr_fn_last_tgmpa_notice';
+      $meta_name         = $this->dismiss_meta_name;
 
       //increments the counter
       (int) $_dismissed_count++;
