@@ -571,7 +571,8 @@ cite {
       left:0;
     }
 
-    background: $black;
+    border-bottom: 1px solid;
+    color: $black;
   }
 }
 // Blockquotes and cites END
@@ -603,6 +604,71 @@ cite {
         @else {
           margin-left: $base-line-height*8;
         }
+    }
+}
+//blockquote and Gutenberg
+//blockquote
+.wp-block-quote {
+    padding-top: $base-line-height*3;
+    &::before {
+        //top: $base-line-height/2;
+        @if ( true == $is_rtl ) {
+            right: 0;
+        }
+        @else {
+            left: 0;
+        }
+        top: $base-line-height;
+    }
+    & > * {
+        margin-right: $base-line-height/2;
+        margin-left: $base-line-height/2;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    cite {
+        &::before {
+            @if ( true == $is_rtl ) {
+                margin-right: $base-line-height*-2;
+            }
+            @else {
+                margin-left: $base-line-height*-2;
+            }
+            position: static;
+            display: inherit;
+        }
+        display: inline-block;
+        @if ( true == $is_rtl ) {
+            padding-right: $base-line-height*2;
+            padding-left: 0;
+        }
+        @else {
+            padding-left: $base-line-height*2;
+            padding-right: 0;
+        }
+        margin: 0;
+    }
+}
+//pullquote
+.wp-block-pullquote {
+    margin: $base-line-height*2 0;
+    padding: 0;
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
+    blockquote {
+        @extend .wp-block-quote;
+        border: none;
+        margin: 0;
+        &.has-text-color {
+            & > p,
+            & cite,
+            & cite::before {
+              color: inherit;
+            }
+        }
+    }
+    &:not([class*=align]) {
+        clear: both;
     }
 }
 //blockquote, link, cite end

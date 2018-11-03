@@ -1,4 +1,13 @@
-
+.entry-content .wp-block-gallery {
+    @if ( true == $is_rtl ) {
+        padding-right: 0
+    } @else {
+        padding-left: 0
+    }
+    & > li {
+        padding: 0;
+    }
+}
 .gallery-item {
   // do not style standard gallery
   dt {
