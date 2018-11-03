@@ -370,10 +370,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //add support for svg and svgz format in media upload
             add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
-            //add help button to admin bar
-            add_action ( 'wp_before_admin_bar_render'         , array( $this , 'czr_fn_add_help_button' ));
-
-
             // Add theme support for selective refresh for widgets.
             // Only add if the link manager is not enabled
             // cf WP core ticket #39451
@@ -427,32 +423,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         $mimes['svgz']  = 'image/svg+xml';
         return $mimes;
       }
-
-
-
-
-
-
-      /**
-      * hook : 'wp_before_admin_bar_render'
-      * Add help button
-      */
-      function czr_fn_add_help_button() {
-          if ( czr_fn_is_pro() ) {
-              global $wp_admin_bar;
-              $wp_admin_bar->add_menu( array(
-                  'parent' => 'top-secondary', // Off on the right side
-                  'id' => 'tc-customizr-help' ,
-                  'title' =>  '',
-                  'href' => admin_url( 'themes.php?page=welcome.php&help=true' ),
-                  'meta'   => array(
-                      'title'  => __( 'Need help with Customizr? Click here!', 'customizr' ),
-                  ),
-              ));
-          }
-      }
-
-
 
 
 
