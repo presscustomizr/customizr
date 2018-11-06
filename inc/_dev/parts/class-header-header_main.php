@@ -120,7 +120,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				      <title><?php wp_title( '|' , true, 'right' ); ?></title>
             <?php endif; ?>
 				    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				    <link rel="profile" href="http://gmpg.org/xfn/11" />
+            <link rel="profile"  href="https://gmpg.org/xfn/11" />
 				    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 				   <!-- html5shiv for IE8 and less  -->
