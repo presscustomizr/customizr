@@ -115,7 +115,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 				?>
 				<head>
 				    <meta charset="<?php bloginfo( 'charset' ); ?>" />
-				    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+				    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
             <?php if ( ! function_exists( '_wp_render_title_tag' ) ) :?>
 				      <title><?php wp_title( '|' , true, 'right' ); ?></title>
             <?php endif; ?>
