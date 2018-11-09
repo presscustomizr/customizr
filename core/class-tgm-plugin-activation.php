@@ -241,7 +241,7 @@ if ( ! class_exists( 'CZR_Plugin_Activation' ) ) {
     public $page_hook;
 
     // @nikeo addon, CZR MODS
-    public $dismiss_meta_name = "czr_last_tgmpa_notice";
+    public $dismiss_meta_name = "czr_fn_last_tgmpa_notice";
 
     /**
      * Adds a reference of this object to $instance, populates default strings,
