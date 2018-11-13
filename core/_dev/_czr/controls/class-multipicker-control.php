@@ -57,7 +57,7 @@ if ( ! class_exists( 'CZR_Customize_Multipicker_Categories_Control' ) ) :
               'echo'               => 0 ,
               'walker'             => new CZR_Walker_CategoryDropdown_Multipicker(),
               'hierarchical'       => 1,
-              'class'              => 'select2 no-selecter-js '.$this->type,
+              'class'              => 'czrSelect2 no-selecter-js '.$this->type,
               'selected'           => implode(',', $this->value() )
           )
       );

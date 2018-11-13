@@ -8,35 +8,35 @@ li[id*="customize-control-"] {
 }
 
 /* SELECT 2 SPECIFICS */
-body .select2-dropdown {
+body .czrSelect2-dropdown {
   z-index: 998;
 }
-body .select2-container--open .select2-dropdown--below {
+body .czrSelect2-container--open .czrSelect2-dropdown--below {
     border: 1px solid #008ec2;
 }
-body .select2-container--open .select2-dropdown--above {
+body .czrSelect2-container--open .czrSelect2-dropdown--above {
     border-top: 1px solid #008ec2;
 }
 
-[id*=tc_theme_options-tc_skin] .select2-container .select2-selection--single .select2-selection__rendered {
+[id*=tc_theme_options-tc_skin] .czrSelect2-container .czrSelect2-selection--single .czrSelect2-selection__rendered {
   padding-left: 0;
 }
-body .select2-container--default .select2-selection--single .select2-selection__arrow b {
+body .czrSelect2-container--default .czrSelect2-selection--single .czrSelect2-selection__arrow b {
   margin-top: 0;
 }
-body .select2-container .select2-selection--single {
+body .czrSelect2-container .czrSelect2-selection--single {
   box-sizing: content-box;
 }
-.select2-results .tc-select2-skin-color {
+.czrSelect2-results .tc-czrSelect2-skin-color {
   padding: 8px 0px;
 }
-body .select2-container-active .select2-choice, body .select2-container-active .select2-choices {
+body .czrSelect2-container-active .czrSelect2-choice, body .czrSelect2-container-active .czrSelect2-choices {
     border: 1px solid #008ec2;
 }
-body .select2-container--default .select2-results>.select2-results__options {
+body .czrSelect2-container--default .czrSelect2-results>.czrSelect2-results__options {
     max-height: 360px;
 }
-.tc-select2-skin-color {
+.tc-czrSelect2-skin-color {
   display: inline-block;
   -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
   -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.65);
@@ -54,21 +54,21 @@ body .select2-container--default .select2-results>.select2-results__options {
   transition: box-shadow .25s ease;
   /* vertical-align: middle; */
 }
-.select2-chosen .tc-select2-skin-color, .tc-select2-skin-color:hover {
+.czrSelect2-chosen .tc-czrSelect2-skin-color, .tc-czrSelect2-skin-color:hover {
   -webkit-box-shadow: none;
   -moz-box-shadow:none;
   box-shadow: none;
 }
 /* FONTS */
-.tc-select2-font {
+.tc-czrSelect2-font {
   padding: 7px 7px 4px;
   line-height: 20px;
 }
-.select2-results .select2-highlighted .tc-select2-font{
+.czrSelect2-results .czrSelect2-highlighted .tc-czrSelect2-font{
   color: #555;
 }
 
-.select2-results__group {
+.czrSelect2-results__group {
   font-weight: 700;
   text-align: center;
   padding-top: 3px;
