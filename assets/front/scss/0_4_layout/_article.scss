@@ -180,7 +180,15 @@ section[class^="post-"] {
 
 
 //  Gutenberg
-// cover images */
+// video and audio elements
+.alignfull,
+.alignwide {
+    &.wp-block-audio audio,
+    &.wp-block-video video {
+        width: 100%;
+    }
+}
+
 //
 // Real alignfull and alignwide
 // allowed only in layouts with no sidebars and full-width
@@ -192,7 +200,7 @@ section[class^="post-"] {
         // only reset the .container[role=main] horizontal padding
         //  The "cover image" block of the new WP editor has been renamed "cover".
         //  See https://github.com/WordPress/gutenberg/pull/10659, but posts created with the former cover-image block will still use the wp-block-cover-image css class.
-        .entry-content .wp-block-cover-image, .entry-content .wp-block-cover {
+        .entry-content [class*=wp-block-] {
             &.alignfull,
             &.alignwide {
                 margin-right: -15px;
@@ -201,21 +209,14 @@ section[class^="post-"] {
                 width: auto;
             }
         }
-        &.czr-boxed-layout .entry-content .wp-block-cover-image {
+        &.czr-boxed-layout .entry-content [class*=wp-block-] {
             @include media-breakpoint-up(sm) {
                 &.alignfull,
                 &.alignwide {
                     margin-right: -30px;
                     margin-left: -30px;
-                }
-            }
-        }
-        &.czr-boxed-layout .entry-content .wp-block-cover {
-            @include media-breakpoint-up(sm) {
-                &.alignfull,
-                &.alignwide {
-                    margin-right: -30px;
-                    margin-left: -30px;
+                    max-width: 100vw;
+                    min-width: 100%;
                 }
             }
         }
@@ -228,7 +229,7 @@ section[class^="post-"] {
         // alignfull
         //  The "cover image" block of the new WP editor has been renamed "cover".
         //  See https://github.com/WordPress/gutenberg/pull/10659, but posts created with the former cover-image block will still use the wp-block-cover-image css class.
-        .entry-content .wp-block-cover-image.alignfull, .entry-content .wp-block-cover.alignfull {
+        .entry-content .alignfull[class*=wp-block-] {
             width: 100vw;
             max-width: 100vw;
             position: relative;
@@ -513,6 +514,7 @@ section.post-related-articles {
       @at-root .related-posts_nav {
         margin-top: $base-line-height*4;
         .slider-control {
+          font-family: Helvetica;
           width: 3em;
           height: 3em;
           line-height: 3em;
