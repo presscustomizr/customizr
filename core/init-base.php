@@ -72,6 +72,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             //remove hentry class when the current $post type is a page
             add_filter( 'post_class'                             , array( $this, 'czr_fn_maybe_remove_hentry_class' ), 20 );
 
+            // WP 5.0.0 compat. until the bug is fixed
+            // this hook fires before the customize changeset is inserter / updated in database
+            // Removing the wp_targeted_link_rel callback from the 'content_save_pre' filter prevents corrupting the changeset JSON
+            // more details in this ticket : https://core.trac.wordpress.org/ticket/45292
+            add_action( 'customize_save_validation_before'       , array( $this, 'czr_fn_remove_callback_wp_targeted_link_rel' ) );
 
             //Default images sizes
             $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
@@ -997,6 +1002,15 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
         }
 
+
+        /**
+         * hook : customize_save_validation_before'
+         */
+        function czr_fn_remove_callback_wp_targeted_link_rel() {
+            if ( false !== has_filter( 'content_save_pre', 'wp_targeted_link_rel' ) ) {
+                remove_filter( 'content_save_pre', 'wp_targeted_link_rel' );
+            }
+        }
 
   }
 endif;
