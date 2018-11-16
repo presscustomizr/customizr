@@ -150,7 +150,7 @@ ul.socials, ul.tags {
 
 table {
   @extend %table-base;
-  &:not([id^=wp-calendar]):not(.ui-datepicker-calendar) {
+  &:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) {
     @extend %table-style;
   }
 }
