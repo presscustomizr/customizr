@@ -27,13 +27,13 @@
               $('#accordion-section-fonts_sec').prepend($g_logo);
 
               /*
-              * Override select2 Results Adapter in order to select on highlight
+              * Override czrSelect2 Results Adapter in order to select on highlight
               * deferred needed cause the selects needs to be instantiated when this override is complete
               * selec2.amd.require is asynchronous
               */
               var selectFocusResults = $.Deferred();
-              if ( 'undefined' !== typeof $.fn.select2 && 'undefined' !== typeof $.fn.select2.amd && 'function' === typeof $.fn.select2.amd.require ) {
-                    $.fn.select2.amd.require(['select2/results', 'select2/utils'], function (Result, Utils) {
+              if ( 'undefined' !== typeof $.fn.czrSelect2 && 'undefined' !== typeof $.fn.czrSelect2.amd && 'function' === typeof $.fn.czrSelect2.amd.require ) {
+                    $.fn.czrSelect2.amd.require(['czrSelect2/results', 'czrSelect2/utils'], function (Result, Utils) {
                       var ResultsAdapter = function($element, options, dataAdapter) {
                         ResultsAdapter.__super__.constructor.call(this, $element, options, dataAdapter);
                       };
@@ -62,13 +62,13 @@
 
 
                       //SKIN ( only relevant for classical style)
-                      var _skin_select2_params = {
+                      var _skin_czrSelect2_params = {
                           minimumResultsForSearch: -1, //no search box needed
                           templateResult: paintSkinOptionElement,
                           templateSelection: paintSkinOptionElement,
                           escapeMarkup: function(m) { return m; }
                       },
-                      _fonts_select2_params = {
+                      _fonts_czrSelect2_params = {
                           minimumResultsForSearch: -1, //no search box needed
                           templateResult: paintFontOptionElement,
                           templateSelection: paintFontOptionElement,
@@ -78,35 +78,35 @@
                       * Maybe use custom adapter
                       */
                       if ( customResultsAdapter ) {
-                            $.extend( _skin_select2_params, {
+                            $.extend( _skin_czrSelect2_params, {
                                   resultsAdapter: customResultsAdapter,
                                   closeOnSelect: false,
                             } );
-                            $.extend( _fonts_select2_params, {
+                            $.extend( _fonts_czrSelect2_params, {
                                   resultsAdapter: customResultsAdapter,
                                   closeOnSelect: false,
                             } );
                       }
 
-                      //http://ivaynberg.github.io/select2/#documentation
-                      $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').select2( _skin_select2_params );
+                      //http://ivaynberg.github.io/czrSelect2/#documentation
+                      $('select[data-customize-setting-link="tc_theme_options[tc_skin]"]').czrSelect2( _skin_czrSelect2_params );
 
-                      //Skins handled with select2
+                      //Skins handled with czrSelect2
                       function paintSkinOptionElement(state) {
                               if (!state.id) return state.text; // optgroup
-                              return '<span class="tc-select2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
+                              return '<span class="tc-czrSelect2-skin-color" style="background:' + $(state.element).data('hex') + '">' + $(state.element).data('hex') + '<span>';
                       }
 
 
                       //FONTS
-                      $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]').select2( _fonts_select2_params );
+                      $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]').czrSelect2( _fonts_czrSelect2_params );
 
                       function paintFontOptionElement(state) {
                             if ( ! state.id && ( -1 != state.text.indexOf('Google') ) )
                               return '<img class="tc-google-logo" src="//www.google.com/images/logos/google_logo_41.png" height="20"/> Font pairs'; // google font optgroup
                             else if ( ! state.id )
                               return state.text;// optgroup different than google font
-                            return '<span class="tc-select2-font">' + state.text + '</span>';
+                            return '<span class="tc-czrSelect2-font">' + state.text + '</span>';
                       }
               });//$.when( selectFocusResults )
 
