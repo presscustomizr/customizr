@@ -666,6 +666,9 @@ cite {
               color: inherit;
             }
         }
+        & > p {
+          margin-top: 0
+        }
     }
     &:not([class*=align]) {
         clear: both;
