@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.21
+Stable tag: 4.1.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,17 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.21 November 9th 2018 =
-This new release improves the compatibility with the new WordPress editor that will be introduced in WP version 5.0.
+= 4.1.22 =
+* fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
+* fixed : removed style for unused help icon in admin bar
+* improved : replace select2 with our namespaced czrSelect2
 
 == Changelog ==
+= 4.1.22 November 16th 2018 =
+* fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
+* fixed : removed style for unused help icon in admin bar
+* improved : replace select2 with our namespaced czrSelect2
+
 = 4.1.21 November 9th 2018 =
 * fixed : updated url to https://gmpg.org/xfn/11 see https://github.com/presscustomizr/hueman/issues/714
 * fixed : potential compatibility issue with WordPress 5.0. for #1623

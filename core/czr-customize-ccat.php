@@ -952,7 +952,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
               <?php endif; ?>
               <label>
                 <span class="customize-control-title"><?php echo $this->label; ?></span>
-                <?php $this -> czr_fn_print_select_control( in_array( $this->id, array( CZR_THEME_OPTIONS.'[tc_fonts]', CZR_THEME_OPTIONS.'[tc_skin]' ) ) ? 'select2 no-selecter-js' : '' ) ?>
+                <?php $this -> czr_fn_print_select_control( in_array( $this->id, array( CZR_THEME_OPTIONS.'[tc_fonts]', CZR_THEME_OPTIONS.'[tc_skin]' ) ) ? 'czrSelect2 no-selecter-js' : '' ) ?>
                 <?php if(!empty( $this -> notice)) : ?>
                   <span class="czr-notice"><?php echo $this -> notice ?></span>
                 <?php endif; ?>
@@ -1150,25 +1150,6 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_style( 'wp-color-picker' );
-
-        // wp_enqueue_style(
-        //   'font-awesome',
-        //   sprintf('%1$s/css/fontawesome-all.min.css', CZR_BASE_URL . 'assets/shared/fonts/fa' ),
-        //   array(),
-        //   CUSTOMIZR_VER,
-        //   $media = 'all'
-        // );
-
-
-        // //select2 stylesheet
-        // //overriden by some specific style in theme-customzer-control.css
-        // wp_enqueue_style(
-        //   'select2-css',
-        //   sprintf('%1$sassets/czr/css/lib/select2.min.css', CZR_BASE_URL ),
-        //   array( 'customize-controls' ),
-        //   CUSTOMIZR_VER,
-        //   $media = 'all'
-        // );
     }
 
     /**
@@ -1361,7 +1342,7 @@ if ( ! class_exists( 'CZR_Customize_Multipicker_Categories_Control' ) ) :
               'echo'               => 0 ,
               'walker'             => new CZR_Walker_CategoryDropdown_Multipicker(),
               'hierarchical'       => 1,
-              'class'              => 'select2 no-selecter-js '.$this->type,
+              'class'              => 'czrSelect2 no-selecter-js '.$this->type,
               'selected'           => implode(',', $this->value() )
           )
       );

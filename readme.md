@@ -1,4 +1,4 @@
-# Customizr v4.1.21 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.22 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,11 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.22 November 16th 2018 =
+* fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
+* fixed : removed style for unused help icon in admin bar
+* improved : replace select2 with our namespaced czrSelect2
+
 = 4.1.21 November 9th 2018 =
 * fixed : updated url to https://gmpg.org/xfn/11 see https://github.com/presscustomizr/hueman/issues/714
 * fixed : potential compatibility issue with WordPress 5.0. for #1623
