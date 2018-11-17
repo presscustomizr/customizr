@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.1.22\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-11-16 11:27:30+00:00\n"
+"POT-Creation-Date: 2018-11-17 17:45:28+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -971,16 +971,16 @@ msgstr ""
 msgid "a short guide here."
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:512 core/init-base.php:1157
+#: core/class-tgm-plugin-activation.php:512 core/init-base.php:1171
 msgid "Install Required Plugins"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:513 core/init-base.php:1158
+#: core/class-tgm-plugin-activation.php:513 core/init-base.php:1172
 msgid "Install Plugins"
 msgstr ""
 
 #. translators: %s: plugin name.
-#: core/class-tgm-plugin-activation.php:515 core/init-base.php:1159
+#: core/class-tgm-plugin-activation.php:515 core/init-base.php:1173
 msgid "Installing Plugin: %s"
 msgstr ""
 
@@ -989,12 +989,12 @@ msgstr ""
 msgid "Updating Plugin: %s"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:518 core/init-base.php:1160
+#: core/class-tgm-plugin-activation.php:518 core/init-base.php:1174
 msgid "Something went wrong with the plugin API."
 msgstr ""
 
 #. translators: 1: plugin name(s).
-#: core/class-tgm-plugin-activation.php:555 core/init-base.php:1169
+#: core/class-tgm-plugin-activation.php:555 core/init-base.php:1183
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
 msgstr[0] ""
@@ -1012,7 +1012,7 @@ msgid_plural "Begin activating plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/class-tgm-plugin-activation.php:570 core/init-base.php:1171
+#: core/class-tgm-plugin-activation.php:570 core/init-base.php:1185
 msgid "Return to Required Plugins Installer"
 msgstr ""
 
@@ -1025,7 +1025,7 @@ msgid "Return to the Dashboard"
 msgstr "Choď na Dashboard"
 
 #: core/class-tgm-plugin-activation.php:572
-#: core/class-tgm-plugin-activation.php:3391 core/init-base.php:1172
+#: core/class-tgm-plugin-activation.php:3391 core/init-base.php:1186
 msgid "Plugin activated successfully."
 msgstr ""
 
@@ -1356,23 +1356,23 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: core/core-functions.php:1490
+#: core/core-functions.php:1489
 msgid "Page %s"
 msgstr "Stránka %s"
 
-#: core/core-functions.php:1579
+#: core/core-functions.php:1578
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Žiaden slajder &mdash;"
 
-#: core/core-functions.php:1580
+#: core/core-functions.php:1579
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo &mdash;"
 
-#: core/core-functions.php:1581
+#: core/core-functions.php:1580
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1658
+#: core/core-functions.php:1657
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -1463,7 +1463,7 @@ msgid ""
 "website, when no font size is already applied."
 msgstr ""
 
-#: core/core-settings-map.php:345 core/init-base.php:1064
+#: core/core-settings-map.php:345 core/init-base.php:1078
 #, fuzzy
 msgid "Create and organize your social links"
 msgstr "Nastavenia sociálnych sietí"
@@ -1864,7 +1864,7 @@ msgstr ""
 msgid "Specific Mobile Menu"
 msgstr ""
 
-#: core/core-settings-map.php:814 core/init-base.php:398
+#: core/core-settings-map.php:814 core/init-base.php:403
 msgid "Main Menu"
 msgstr "Hlavné Menu"
 
@@ -3704,113 +3704,113 @@ msgstr "Pridať menu "
 msgid "open the customizer menu section"
 msgstr ""
 
-#: core/init-base.php:116
+#: core/init-base.php:121
 msgid "Left Sidebar"
 msgstr "Ľavý bočný panel"
 
-#: core/init-base.php:117 core/init-base.php:121
+#: core/init-base.php:122 core/init-base.php:126
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Zobrazí sa v príspevkoch, statických stránkach, archívoch a stránkach "
 "vyhľadávania"
 
-#: core/init-base.php:120
+#: core/init-base.php:125
 msgid "Right Sidebar"
 msgstr "Pravý bočný panel"
 
-#: core/init-base.php:129
+#: core/init-base.php:134
 msgid "Subscribe to my rss feed"
 msgstr "Prihlásiť sa k RSS odberom "
 
-#: core/init-base.php:133
+#: core/init-base.php:138
 msgid "E-mail"
 msgstr ""
 
-#: core/init-base.php:136
+#: core/init-base.php:141
 msgid "Follow me on Twitter"
 msgstr "Sledujte Twitter profil"
 
-#: core/init-base.php:139
+#: core/init-base.php:144
 msgid "Follow me on Facebook"
 msgstr "Sledujte Facebook profil"
 
-#: core/init-base.php:142
+#: core/init-base.php:147
 msgid "Follow me on Google+"
 msgstr "Sledujte Google+ profil"
 
-#: core/init-base.php:145
+#: core/init-base.php:150
 msgid "Follow me on Instagram"
 msgstr "Sledujte Instagram profil"
 
-#: core/init-base.php:148
+#: core/init-base.php:153
 msgid "Follow me on Tumblr"
 msgstr "Sledujte Tumblr profil"
 
-#: core/init-base.php:151
+#: core/init-base.php:156
 msgid "Follow me on Flickr"
 msgstr "Sledujte Flickr profil"
 
-#: core/init-base.php:154
+#: core/init-base.php:159
 msgid "Follow me on WordPress"
 msgstr "Sledujte WordPress profil"
 
-#: core/init-base.php:157
+#: core/init-base.php:162
 msgid "Follow me on Youtube"
 msgstr "Sledujte Youtube profil"
 
-#: core/init-base.php:160
+#: core/init-base.php:165
 msgid "Pin me on Pinterest"
 msgstr "Sledujte Pinterest profil"
 
-#: core/init-base.php:163
+#: core/init-base.php:168
 msgid "Follow me on Github"
 msgstr "Sledujte Github profil"
 
-#: core/init-base.php:166
+#: core/init-base.php:171
 msgid "Follow me on Dribbble"
 msgstr "Sledujte Dribbble profil"
 
-#: core/init-base.php:169
+#: core/init-base.php:174
 msgid "Follow me on LinkedIn"
 msgstr "Sledujte LinkedIn profil"
 
-#: core/init-base.php:172
+#: core/init-base.php:177
 #, fuzzy
 msgid "Follow me on VKontakte"
 msgstr "Sledujte Twitter profil"
 
-#: core/init-base.php:175
+#: core/init-base.php:180
 #, fuzzy
 msgid "Follow me on Yelp"
 msgstr "Sledujte Youtube profil"
 
-#: core/init-base.php:178
+#: core/init-base.php:183
 #, fuzzy
 msgid "Follow me on Xing"
 msgstr "Sledujte LinkedIn profil"
 
-#: core/init-base.php:181
+#: core/init-base.php:186
 msgid "Contact me on Snapchat"
 msgstr ""
 
-#: core/init-base.php:188
+#: core/init-base.php:193
 msgid "Google fonts pairs"
 msgstr ""
 
-#: core/init-base.php:209
+#: core/init-base.php:214
 msgid "Web safe fonts pairs"
 msgstr ""
 
-#: core/init-base.php:218
+#: core/init-base.php:223
 #, fuzzy
 msgid "Single fonts"
 msgstr "Jednoduché príspevky"
 
-#: core/init-base.php:258
+#: core/init-base.php:263
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr je čistá prehľadná téma"
 
-#: core/init-base.php:272
+#: core/init-base.php:277
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -3818,33 +3818,33 @@ msgstr ""
 "Veľa nastavení rozloženia a vzhľadu je prístupných priamo z WordPress "
 "náhľadovej stránky : sledujte Vaše zmeny naživo !"
 
-#: core/init-base.php:399
+#: core/init-base.php:404
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: core/init-base.php:401
+#: core/init-base.php:406
 msgid ""
 "Horizontal Top Bar Menu. (make sure that the topbar is displayed in the "
 "header settings )."
 msgstr ""
 
-#: core/init-base.php:402
+#: core/init-base.php:407
 #, fuzzy
 msgid "Mobile Menu"
 msgstr "Hlavné Menu"
 
-#: core/init-base.php:1057 inc/_dev/class-fire-utils_settings_map.php:1217
+#: core/init-base.php:1071 inc/_dev/class-fire-utils_settings_map.php:1217
 #: inc/czr-init-ccat.php:3135
 msgid "Social links"
 msgstr "Sociálne siete"
 
-#: core/init-base.php:1161
+#: core/init-base.php:1175
 msgid "The Customizr theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins : %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1162
+#: core/init-base.php:1176
 msgid ""
 "The Customizr theme recommends the Nimble drag-and-drop section builder : "
 "%1$s."
@@ -3852,7 +3852,7 @@ msgid_plural "This theme recommends the following plugins : %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1163
+#: core/init-base.php:1177
 msgid ""
 "Sorry, but you do not have the correct permissions to install the %s plugin. "
 "Contact the administrator of this site for help on getting the plugin "
@@ -3864,13 +3864,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1164
+#: core/init-base.php:1178
 msgid "The Nimble Builder required plugin is currently inactive: %1$s."
 msgid_plural "The following required plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1165
+#: core/init-base.php:1179
 msgid ""
 "The Nimble Builder plugin, recommended for the Customizr theme, is installed "
 "but currently inactive : %1$s."
@@ -3878,7 +3878,7 @@ msgid_plural "The following recommended plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1166
+#: core/init-base.php:1180
 msgid ""
 "Sorry, but you do not have the correct permissions to activate the %s "
 "plugin. Contact the administrator of this site for help on getting the "
@@ -3890,7 +3890,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1167
+#: core/init-base.php:1181
 msgid ""
 "The Nimble Builder plugin needs to be updated to its latest version to "
 "ensure maximum compatibility with the Customizr theme: %1$s."
@@ -3900,7 +3900,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1168
+#: core/init-base.php:1182
 msgid ""
 "Sorry, but you do not have the correct permissions to update the %s plugin. "
 "Contact the administrator of this site for help on getting the plugin "
@@ -3912,13 +3912,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1170
+#: core/init-base.php:1184
 msgid "Activate Nimble Builder"
 msgid_plural "Activate installed plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1173
+#: core/init-base.php:1187
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 

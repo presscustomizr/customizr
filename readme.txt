@@ -17,12 +17,18 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 * fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
 * fixed : removed style for unused help icon in admin bar
 * improved : replace select2 with our namespaced czrSelect2
+* improved : gutenberg alignment compatibility. fixes #1601
+* improved : The Events Calendar Pro mini calendar table style compat. fixes #1629
+* improved : WordPress 5.0 compatibility patch. fixes #1623
 
 == Changelog ==
 = 4.1.22 November 16th 2018 =
 * fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
 * fixed : removed style for unused help icon in admin bar
 * improved : replace select2 with our namespaced czrSelect2
+* improved : gutenberg alignment compatibility. fixes #1601
+* improved : The Events Calendar Pro mini calendar table style compat. fixes #1629
+* improved : WordPress 5.0 compatibility patch. fixes #1623
 
 = 4.1.21 November 9th 2018 =
 * fixed : updated url to https://gmpg.org/xfn/11 see https://github.com/presscustomizr/hueman/issues/714

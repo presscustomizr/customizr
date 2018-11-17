@@ -2611,10 +2611,10 @@ blockquote > * {
   font-size: 0.833333em;
 }
 
-.demi-small, .nav__menu, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.demi-small, .nav__menu, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
-.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td, .page-breadcrumbs, .sidebar {
@@ -2666,7 +2666,7 @@ input[type=submit], .woocommerce button.button[type=submit],
 }
 
 .caps, .nav__menu, button[type="submit"],
-input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th, .tax__container a, form.czr-form label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories li, .widget_calendar caption, .widget_calendar tfoot {
@@ -2685,7 +2685,7 @@ input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.letter-spacing-2, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th, .tax__container a, label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title, .woocommerce .woocommerce-message,
@@ -5372,24 +5372,24 @@ table, #add_payment_method .cart-collaterals .cart_totals table,
   }
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar), #add_payment_method .cart-collaterals .cart_totals table,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar), #add_payment_method .cart-collaterals .cart_totals table,
 .woocommerce-cart .cart-collaterals .cart_totals table,
 .woocommerce-checkout .cart-collaterals .cart_totals table,
 .woocommerce table.shop_table {
   border: 2px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th {
   font-family: sans-serif;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
-.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td {
@@ -5397,7 +5397,7 @@ table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) th, #add_payment_metho
   border: 1px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td {
@@ -5624,6 +5624,10 @@ cite::before {
 .wp-block-pullquote blockquote.has-text-color cite,
 .wp-block-pullquote blockquote.has-text-color cite::before {
   color: inherit;
+}
+
+.wp-block-pullquote blockquote > p {
+  margin-top: 0;
 }
 
 .wp-block-pullquote:not([class*=align]) {
@@ -8476,7 +8480,14 @@ section[class^="post-"] .entry-meta {
   margin: 2em -15px;
 }
 
-.page.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .page.czr-no-sidebar .entry-content .wp-block-cover-image.alignwide, .page.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .page.czr-no-sidebar .entry-content .wp-block-cover.alignwide, .single.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .single.czr-no-sidebar .entry-content .wp-block-cover-image.alignwide, .single.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .single.czr-no-sidebar .entry-content .wp-block-cover.alignwide {
+.alignfull.wp-block-audio audio,
+.alignfull.wp-block-video video,
+.alignwide.wp-block-audio audio,
+.alignwide.wp-block-video video {
+  width: 100%;
+}
+
+.page.czr-no-sidebar .entry-content [class*=wp-block-].alignfull, .page.czr-no-sidebar .entry-content [class*=wp-block-].alignwide, .single.czr-no-sidebar .entry-content [class*=wp-block-].alignfull, .single.czr-no-sidebar .entry-content [class*=wp-block-].alignwide {
   margin-right: -15px;
   margin-left: -15px;
   clear: both;
@@ -8484,16 +8495,11 @@ section[class^="post-"] .entry-meta {
 }
 
 @media (min-width: 576px) {
-  .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignfull, .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignwide, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignfull, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover-image.alignwide {
+  .page.czr-no-sidebar.czr-boxed-layout .entry-content [class*=wp-block-].alignfull, .page.czr-no-sidebar.czr-boxed-layout .entry-content [class*=wp-block-].alignwide, .single.czr-no-sidebar.czr-boxed-layout .entry-content [class*=wp-block-].alignfull, .single.czr-no-sidebar.czr-boxed-layout .entry-content [class*=wp-block-].alignwide {
     margin-right: -30px;
     margin-left: -30px;
-  }
-}
-
-@media (min-width: 576px) {
-  .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignfull, .page.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignwide, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignfull, .single.czr-no-sidebar.czr-boxed-layout .entry-content .wp-block-cover.alignwide {
-    margin-right: -30px;
-    margin-left: -30px;
+    max-width: 100vw;
+    min-width: 100%;
   }
 }
 
@@ -8501,7 +8507,7 @@ section[class^="post-"] .entry-meta {
   overflow-x: hidden;
 }
 
-.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull, .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull, .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull {
+.page.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-], .single.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-] {
   width: 100vw;
   max-width: 100vw;
   position: relative;
@@ -8509,13 +8515,13 @@ section[class^="post-"] .entry-meta {
   margin-right: 0;
 }
 
-.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull:not(.has-parallax), .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull:not(.has-parallax), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull:not(.has-parallax), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull:not(.has-parallax) {
+.page.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-]:not(.has-parallax), .single.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-]:not(.has-parallax) {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 
-.page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull.has-parallax:not(.czr-alignfull-p), .page.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull.has-parallax:not(.czr-alignfull-p), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover-image.alignfull.has-parallax:not(.czr-alignfull-p), .single.czr-full-layout.czr-no-sidebar .entry-content .wp-block-cover.alignfull.has-parallax:not(.czr-alignfull-p) {
+.page.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-].has-parallax:not(.czr-alignfull-p), .single.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-].has-parallax:not(.czr-alignfull-p) {
   width: 100%;
 }
 
@@ -8787,6 +8793,7 @@ section.post-related-articles > header .related-posts_title {
 }
 
 .related-posts_nav .slider-control {
+  font-family: Helvetica;
   width: 3em;
   height: 3em;
   line-height: 3em;
