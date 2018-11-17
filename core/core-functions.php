@@ -389,20 +389,7 @@ function czr_fn_is_child() {
 if ( ! function_exists( 'czr_fn_is_customize_left_panel' ) ) {
       function czr_fn_is_customize_left_panel() {
           global $pagenow;
-          // the check on $pagenow does NOT work on multisite install @see https://github.com/presscustomizr/nimble-builder/issues/240
-          // That's why we also check with other global vars
-          // @see wp-includes/theme.php, _wp_customize_include()
-          $is_customize_php_page = ( is_admin() && 'customize.php' == basename( $_SERVER['PHP_SELF'] ) );
-          $is_customize_admin_page_one = (
-            $is_customize_php_page
-            ||
-            ( isset( $_REQUEST['wp_customize'] ) && 'on' == $_REQUEST['wp_customize'] )
-            ||
-            ( ! empty( $_GET['customize_changeset_uuid'] ) || ! empty( $_POST['customize_changeset_uuid'] ) )
-          );
-          $is_customize_admin_page_two = is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
-
-          return $is_customize_admin_page_one || $is_customize_admin_page_two;
+          return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
       }
 }
 
@@ -442,10 +429,22 @@ if ( ! function_exists( 'czr_fn_doing_customizer_ajax' ) ) {
 */
 if ( ! function_exists( 'czr_fn_is_customizing' ) ) {
     function czr_fn_is_customizing() {
+        global $pagenow;
+        // the check on $pagenow does NOT work on multisite install @see https://github.com/presscustomizr/nimble-builder/issues/240
+        // That's why we also check with other global vars
+        // @see wp-includes/theme.php, _wp_customize_include()
+        $is_customize_php_page = ( is_admin() && 'customize.php' == basename( $_SERVER['PHP_SELF'] ) );
+        $is_customize_admin_page_one = (
+          $is_customize_php_page
+          ||
+          ( isset( $_REQUEST['wp_customize'] ) && 'on' == $_REQUEST['wp_customize'] )
+          ||
+          ( ! empty( $_GET['customize_changeset_uuid'] ) || ! empty( $_POST['customize_changeset_uuid'] ) )
+        );
+        $is_customize_admin_page_two = is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
+
         //checks if is customizing : two contexts, admin and front (preview frame)
-        return czr_fn_is_customize_left_panel() ||
-               czr_fn_is_customize_preview_frame() ||
-               czr_fn_doing_customizer_ajax();
+        return $is_customize_admin_page_one || $is_customize_admin_page_two || czr_fn_is_customize_preview_frame() ||  czr_fn_doing_customizer_ajax();
     }
 }
 
