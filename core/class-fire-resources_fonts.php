@@ -34,6 +34,8 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
         * @since Customizr 3.2.3
         */
         function czr_fn_maybe_enqueue_fa_icons() {
+              if ( czr_fn_is_full_nimble_tmpl() )
+                return;
               //Enqueue FontAwesome CSS
               if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
                     $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );

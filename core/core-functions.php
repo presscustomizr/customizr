@@ -1971,3 +1971,14 @@ function czr_fn_is_plugin_active_for_network( $plugin ) {
 
   return false;
 }
+
+// @return string
+function czr_fn_is_full_nimble_tmpl() {
+  $bool = false;
+  if ( function_exists('Nimble\sek_get_locale_template') ) {
+    $tmpl_name = \Nimble\sek_get_locale_template();
+    $tmpl_name = ( !empty( $tmpl_name ) && is_string( $tmpl_name ) ) ? basename( $tmpl_name ) : '';
+    $bool = 'nimble_full_tmpl_ghf.php' === $tmpl_name;
+  }
+  return $bool;
+}

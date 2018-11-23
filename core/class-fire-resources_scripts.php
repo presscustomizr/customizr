@@ -190,7 +190,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          */
 
          function czr_fn_enqueue_front_scripts() {
-
+              if ( czr_fn_is_full_nimble_tmpl() )
+                return;
 
                //wp scripts
                if ( is_singular() && get_option( 'thread_comments' ) )
