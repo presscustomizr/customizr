@@ -1751,6 +1751,8 @@ var czrapp = czrapp || {};
               return czrapp.$_body.hasClass('tc-sticky-footer');
             },
             _get_full_height : function() {
+              if ( this.$_page.length < 1 )
+                return $(window).outerHeight(true);
               var _full_height = this.$_page.outerHeight(true) + this.$_page.offset().top,
                   _push_height = 'block' == this.$_push.css('display') ? this.$_push.outerHeight() : 0;
 
