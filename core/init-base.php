@@ -1193,10 +1193,10 @@ function czr_fn_register_required_plugins() {
 
 }
 
-// @filter czr_model_map
+// @filter czr_model_map => removes 'main_content' model from the map since we don't need it when using the Nimble template.
 // @see core/init.php
 function czr_fn_filter_model_map_when_nimble_template_set( $map ) {
-    if ( function_exists('\Nimble\sek_get_locale_template') ) {
+    if ( function_exists('Nimble\sek_get_locale_template') ) {
         $locale_template = \Nimble\sek_get_locale_template();
         if ( !empty( $locale_template ) ) {
             $new_map = array();
