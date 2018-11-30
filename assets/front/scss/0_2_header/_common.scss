@@ -17,6 +17,12 @@
 
 .mobile-nav__nav {
   border-top: 1px solid;
+  // workaround to fix a weird issue with the Chrome browser on Android devices
+  // basically, for some unknown reason, under particular circumstances (e.g. mobile menu overlapping the slider)
+  // when expanding a collapsible submenu, this very element background became transparent.
+  // The following rule seem to fix the issue.
+  // see https://github.com/presscustomizr/customizr/issues/1635
+  backface-visibility: hidden;
 }
 
 .primary-navbar__wrapper,
