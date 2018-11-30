@@ -153,7 +153,9 @@ textarea {
 
 select {
   max-width: 100%;
-  min-width: 100%;
+  // previously was min-width: 100%;
+  // changed to fix the issue https://github.com/presscustomizr/customizr/issues/1636
+  width: 100%;
   text-overflow: initial;
   outline: none;
 }

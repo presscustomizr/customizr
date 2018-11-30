@@ -124,7 +124,12 @@
     .form-row-wide {
       width: 100%;
     }
-
+    // select width set to 100% (see https://github.com/presscustomizr/customizr/issues/1636)
+    // breaks a little bit the variation selects alignment.
+    // The WooCommerce CSS, in fact, sets only the min and the max widths
+    .variations select {
+      width: auto;
+    }
     .form-row {
       margin: 0 0 $base-line-height;
       .input-checkbox {
