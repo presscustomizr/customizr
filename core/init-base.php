@@ -315,6 +315,14 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             /*  This theme supports nine post formats. */
             $post_formats   = apply_filters( 'tc_post_formats', array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
             add_theme_support( 'post-formats' , $post_formats );
+            
+            // Add theme support for Custom Logo.
+            add_theme_support( 'custom-logo', array(
+              'width'       => 250,
+              'height'      => 100,
+              'flex-width'  => true,
+              'flex-height' => true,
+            ) );
 
             /* support for page excerpt (added in v3.0.15) */
             add_post_type_support( 'page', 'excerpt' );
