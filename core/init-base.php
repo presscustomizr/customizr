@@ -1200,7 +1200,7 @@ function czr_fn_filter_model_map_when_nimble_template_set( $map ) {
         $tmpl_name = \Nimble\sek_get_locale_template();
         // when using the full nimble template, we don't need to load any Customizr model
         // when using the mixed Nimble template ( header and footer from theme, content from Nimble), we don't need the main_content model
-        if ( 'nimble_full_tmpl_ghf.php' === $tmpl_name ) {
+        if ( czr_fn_is_full_nimble_tmpl() ) {
             $map = array();
         } else if ( !empty( $tmpl_name ) ) {
             $new_map = array();
