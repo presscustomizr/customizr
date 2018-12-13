@@ -2774,14 +2774,14 @@ function czr_fn_popul_section_map( $_sections ) {
         -> SECTION : GO-PRO
         ----------------------------------------------------------------------------------------------*/
         'go_pro_sec'   => array(
-                            'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
-                            'pro_subtitle'  => esc_html__( 'Discover the features and benefits' , 'customizr'),
-                            'pro_doc_url'   => sprintf('%scustomizr-pro/?ref=a', CZR_WEBSITE ),
-                            'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
-                            'pro_url'       => sprintf('%scustomizr-pro/', CZR_WEBSITE ),
-                            'priority'      => 0,
-                            'section_class' => 'CZR_Customize_Section_Pro',
-                            'active_callback' => 'czr_fn_pro_section_active_cb'
+            'title'         => esc_html__( 'Upgrade to Customizr Pro', 'customizr' ),
+            'pro_subtitle'  => esc_html__( 'Discover the features and benefits' , 'customizr'),
+            'pro_doc_url'   => sprintf('%scustomizr-pro/?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-customizer-btn', CZR_WEBSITE ),
+            'pro_text'      => esc_html__( 'Go Pro', 'customizr' ),
+            'pro_url'       => sprintf('%scustomizr-pro/?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-customizer-btn', CZR_WEBSITE ),
+            'priority'      => 0,
+            'section_class' => 'CZR_Customize_Section_Pro',
+            'active_callback' => 'czr_fn_pro_section_active_cb'
         ),
     ) );
   }
