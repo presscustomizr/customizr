@@ -70,6 +70,10 @@ class CZR_slider_model_class extends CZR_Model {
       $left_control_class  = ! is_rtl() ? 'control-left' : 'control-right';
       $right_control_class = ! is_rtl() ? 'control-right' : 'control-left';
       $has_controls        = true;
+    } else {
+      $left_control_class  = '';
+      $right_control_class = '';
+      $has_controls        = false;
     }
 
     //set-up loader
@@ -81,6 +85,9 @@ class CZR_slider_model_class extends CZR_Model {
             implode( ' ', apply_filters( 'czr_pure_css_loader_add_classes', array( 'czr-mr-loader') ) ),
             apply_filters( 'czr_pure_css_loader_inner', '<div></div><div></div><div></div>')
         );
+    } else {
+      $has_loader      = false;
+      $pure_css_loader = false;
     }
 
     //slider edit link and text

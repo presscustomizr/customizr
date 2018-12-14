@@ -307,8 +307,7 @@ class CZR_slider_of_posts_model_class extends CZR_slider_model_class {
         'link_target',
         'link_whole_slide',
         'color_style',
-        'slide_background',
-        'edit_suffix'
+        'slide_background'
     ), $ID );
   }
 
