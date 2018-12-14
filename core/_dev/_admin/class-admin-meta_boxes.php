@@ -2184,6 +2184,8 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
             'content_after'  => '',
             'choices'        => array(),
             'selected'       => '',
+            'wrapper_tag'   => 'div',
+            'wrapper_class' => 'meta-box-item-content',
          );
 
          $args = wp_parse_args( $args, $defaults );
@@ -2242,7 +2244,9 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          'echo'          => 1,
          'boxed'         => 1,
          'content_before' => '',
-         'content_after'  => ''
+         'content_after'  => '',
+         'wrapper_tag'   => 'div',
+         'wrapper_class' => 'meta-box-item-content',
         );
 
         $args = wp_parse_args( $args, $defaults );
@@ -2294,7 +2298,9 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          'content_before' => '',
          'content_after'  => '',
          'rows'          => '5',
-         'cols'          => '40'
+         'cols'          => '40',
+         'wrapper_tag'   => 'div',
+         'wrapper_class' => 'meta-box-item-content',
         );
 
         $args = wp_parse_args( $args, $defaults );
