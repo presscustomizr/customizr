@@ -3654,6 +3654,7 @@ embed, iframe, object, video {
 
 .mobile-nav__nav {
   border-top: 1px solid;
+  backface-visibility: hidden;
 }
 
 .primary-navbar__wrapper,
@@ -6303,7 +6304,7 @@ textarea {
 
 select {
   max-width: 100%;
-  min-width: 100%;
+  width: 100%;
   text-overflow: initial;
   outline: none;
 }
@@ -9545,6 +9546,10 @@ footer#footer .colophon__row .footer__credits a.fab {
 
 .woocommerce form .form-row-wide {
   width: 100%;
+}
+
+.woocommerce form .variations select {
+  width: auto;
 }
 
 .woocommerce form .form-row {

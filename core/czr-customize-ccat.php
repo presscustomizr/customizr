@@ -30,24 +30,28 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       self::$instance =& $this;
 
       //add control class
-      add_action( 'customize_register'                       , array( $this , 'czr_fn_augment_customizer' ),10, 1);
+      add_action( 'customize_register'                       , array( $this, 'czr_fn_augment_customizer' ),10, 1);
 
       //Partial refreshs
-      add_action( 'customize_register'                       , array( $this,  'czr_fn_register_partials' ) );
+      add_action( 'customize_register'                       , array( $this, 'czr_fn_register_partials' ) );
 
       //add the customizer built with the builder below
-      add_action( 'customize_register'                       , array( $this , 'czr_fn_customize_register' ), 20, 1 );
+      add_action( 'customize_register'                       , array( $this, 'czr_fn_customize_register' ), 20, 1 );
 
       //modify some WP built-in settings / controls / sections
-      add_action( 'customize_register'                       , array( $this , 'czr_fn_alter_wp_customizer_settings' ), 1000, 1 );
-
+      add_action( 'customize_register'                       , array( $this, 'czr_fn_alter_wp_customizer_settings' ), 1000, 1 );
 
       //add grid/post list buttons in the control views
-      add_action( '__before_setting_control'                 , array( $this , 'czr_fn_render_grid_control_link') );
+      add_action( '__before_setting_control'                 , array( $this, 'czr_fn_render_grid_control_link' ) );
+
+      //remove old logo settong if the wp custom logo option has been set
+      add_action( 'customize_save_custom_logo'               , array( $this, 'czr_fn_remove_old_tc_logo_upload' ) );
 
       //load resources class
       $this -> czr_fn_fire_czr_resources();
     }
+
+
 
 
     function czr_fn_fire_czr_resources() {
@@ -566,6 +570,24 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       }
     }
 
+
+    
+    //hook: customize_save_custom_logo
+    function czr_fn_remove_old_tc_logo_upload( $setting ) {
+      //make sure the custom_logo option is a theme mod
+      if ( 'theme_mod' !== $setting->type ) {
+        return;
+      }
+      $theme_options = czr_fn_get_unfiltered_theme_options();
+      unset( $theme_options['tc_logo_upload'] );
+      if ( is_array( $theme_options ) && ! empty( $theme_options ) ) {
+        update_option( CZR_THEME_OPTIONS, $theme_options );
+      }
+    }
+
+
+
+
     //ONLY FOR OLD CUSTOMIZR
     /*
     * hook : '__after_setting_control' (declared in class-tc-controls-settings.php)
@@ -575,6 +597,8 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       if ( false !== strpos( $set_id, 'tc_sticky_logo_upload' ) )
         printf( '<h3 class="czr-customizr-title">%s</h3>', __( 'SITE ICON' , 'customizr') );
     }
+
+
 
 
     /**
@@ -1605,9 +1629,9 @@ class CZR_Customize_Section_Pro extends WP_Customize_Section {
     public function json() {
       $json = parent::json();
       $json['pro_subtitle'] = $this->pro_subtitle;
-      $json['pro_doc_url']  = esc_url( $this->pro_doc_url );
+      $json['pro_doc_url']  = $this->pro_doc_url;
       $json['pro_text'] = $this->pro_text;
-      $json['pro_url']  = esc_url( $this->pro_url );
+      $json['pro_url']  = $this->pro_url;
       return $json;
     }
 

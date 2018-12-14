@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.22
+Stable tag: 4.1.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,16 +13,27 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.22 =
-* fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
-* fixed : removed style for unused help icon in admin bar
-* improved : replace select2 with our namespaced czrSelect2
-* improved : gutenberg alignment compatibility. fixes #1601
-* improved : The Events Calendar Pro mini calendar table style compat. fixes #1629
-* improved : WordPress 5.0 compatibility patch. fixes #1623
-* improved : Nimble Builder compatibility. Don't load css and javascript front assets when using the full Nimble template
+= 4.1.23 =
+* fixed : admin page css style not compatible with WP 5.0
+* fixed : mobile submenu background breaking with chrome on android. fixes #1635
+* fixed : amend select min-width:100% causing plugin compatibility issues. fixes #1636
+* fixed : PHP-7.3 warnings when passing undefined variables to compact(). fixes #1644
+* improved : update FontAwesome to v5.5.0. see presscustomizr/hueman#727. Also removed partial css files we don't use
+* improved : compatibility with the Nimble Builder v1.4+
+* improved : analytics params to external links in admin
+* improved : use the standard wp custom logo in place of our custom one. fixes #1633
 
 == Changelog ==
+= 4.1.23 December 15th, 2018 =
+* fixed : admin page css style not compatible with WP 5.0
+* fixed : mobile submenu background breaking with chrome on android. fixes #1635
+* fixed : amend select min-width:100% causing plugin compatibility issues. fixes #1636
+* fixed : PHP-7.3 warnings when passing undefined variables to compact(). fixes #1644
+* improved : update FontAwesome to v5.5.0. see presscustomizr/hueman#727. Also removed partial css files we don't use
+* improved : compatibility with the Nimble Builder v1.4+
+* improved : analytics params to external links in admin
+* improved : use the standard wp custom logo in place of our custom one. fixes #1633
+
 = 4.1.22 November 23rd 2018 =
 * fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
 * fixed : removed style for unused help icon in admin bar

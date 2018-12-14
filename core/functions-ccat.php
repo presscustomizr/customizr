@@ -729,8 +729,9 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     $_cache_key         = "czr{$logo_type_sep}logo_atts";
     $_logo_atts         = wp_cache_get( $_cache_key );
 
-    if ( false !== $_logo_atts )
+    if ( false !== $_logo_atts ) {
       return $_logo_atts;
+    }
 
     $_logo_atts = array();
 
@@ -742,7 +743,9 @@ function czr_fn_get_logo_atts( $logo_type = '', $backward_compatibility = true )
     $_width             = false;
     $_height            = false;
     $_attachment_id     = false;
-    $_logo_option       = esc_attr( czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
+    //for the standard logo use the wp custom logo feature if set, otherwise fall back on the customizr custom logo
+    $_logo_option       = '' === $logo_type ? get_theme_mod( 'custom_logo', null ) : null;
+    $_logo_option       = null !== $_logo_option ? $_logo_option : esc_attr( czr_fn_opt( "tc{$logo_type_sep}logo_upload") );
     //check if option is an attachement id or a path (for backward compatibility)
     if ( is_numeric($_logo_option) ) {
       $_attachment_id   = $_logo_option;

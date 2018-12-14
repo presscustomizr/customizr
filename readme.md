@@ -1,4 +1,4 @@
-# Customizr v4.1.22 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.23 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,16 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.23 December 15th, 2018 =
+* fixed : admin page css style not compatible with WP 5.0
+* fixed : mobile submenu background breaking with chrome on android. fixes #1635
+* fixed : amend select min-width:100% causing plugin compatibility issues. fixes #1636
+* fixed : PHP-7.3 warnings when passing undefined variables to compact(). fixes #1644
+* improved : update FontAwesome to v5.5.0. see presscustomizr/hueman#727. Also removed partial css files we don't use
+* improved : compatibility with the Nimble Builder v1.4+
+* improved : analytics params to external links in admin
+* improved : use the standard wp custom logo in place of our custom one. fixes #1633
+
 = 4.1.22 November 23rd 2018 =
 * fixed : czr_fn_is_customize_left_panel() => the check on $pagenow does not work on multisite install
 * fixed : removed style for unused help icon in admin bar
