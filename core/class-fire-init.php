@@ -206,6 +206,8 @@ if ( ! class_exists( 'CZR_init' ) ) :
           add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
           // gutenberg alignwide/full cover images.
           add_theme_support( 'align-wide' );
+          // Add support for Block editor styles.
+          add_theme_support( 'editor-styles' );
 
           //tag cloud - same font size
           add_filter( 'widget_tag_cloud_args'               , array( $this, 'czr_fn_add_widget_tag_cloud_args' ));
