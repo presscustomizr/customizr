@@ -220,7 +220,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
 
       //as of v4.0.10 the editor-style.css is for classic
-      $_stylesheets = czr_fn_is_ms() ? array() : array( CZR_ASSETS_PREFIX . 'back/css/editor-style.css' );
+      //4.1.23 block editor style introduced for the modern style only
+      $_style_suffix = CZR_DEBUG_MODE || CZR_DEV_MODE ? '.css' : '.min.css' ;
+      $_stylesheets = czr_fn_is_ms() ? array( CZR_ASSETS_PREFIX . 'back/css/block-editor-style' . $_style_suffix ) : array( CZR_ASSETS_PREFIX . 'back/css/editor-style' . $_style_suffix );
+
       $_stylesheets[] = 'style.css';
       if ( ! czr_fn_is_ms() ) {
         $_stylesheets[] = 'inc/assets/css/' . esc_attr( czr_fn_opt( 'tc_skin' ) );
@@ -229,6 +232,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
         $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
       add_editor_style( $_stylesheets );
+
     }
 
 

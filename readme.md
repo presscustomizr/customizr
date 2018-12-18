@@ -1,4 +1,4 @@
-# Customizr v4.1.23 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.24 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,10 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.24 December 18th, 2018 =
+* fixed : old customizer logo not shown in live preview even if not overridden see #1633 (comment)
+* improved : add block editor style, especially to enlarge the editor content width. fixes #1642
+
 = 4.1.23 December 15th, 2018 =
 * fixed : admin page css style not compatible with WP 5.0
 * fixed : mobile submenu background breaking with chrome on android. fixes #1635

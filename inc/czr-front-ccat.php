@@ -214,8 +214,8 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
           $_height 				= false;
           $_attachement_id 		= false;
           //for the standard logo use the wp custom logo feature if set, otherwise fall back on the customizr custom logo
-          $_logo_option       = '_' === $logo_type ? get_theme_mod( 'custom_logo', null ) : null;
-          $_logo_option       = null !== $_logo_option ? $_logo_option : esc_attr( czr_fn_opt( "tc{$logo_type}logo_upload") );
+          $_logo_option       = '_' === $logo_type ? get_theme_mod( 'custom_logo', '' ) : '';
+          $_logo_option       = $_logo_option ? $_logo_option : esc_attr( czr_fn_opt( "tc{$logo_type}logo_upload") );
           //check if option is an attachement id or a path (for backward compatibility)
           if ( is_numeric($_logo_option) ) {
               $_attachement_id 	= $_logo_option;

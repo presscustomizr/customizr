@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.23
+Stable tag: 4.1.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,17 +13,14 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.23 =
-* fixed : admin page css style not compatible with WP 5.0
-* fixed : mobile submenu background breaking with chrome on android. fixes #1635
-* fixed : amend select min-width:100% causing plugin compatibility issues. fixes #1636
-* fixed : PHP-7.3 warnings when passing undefined variables to compact(). fixes #1644
-* improved : update FontAwesome to v5.5.0. see presscustomizr/hueman#727. Also removed partial css files we don't use
-* improved : compatibility with the Nimble Builder v1.4+
-* improved : analytics params to external links in admin
-* improved : use the standard wp custom logo in place of our custom one. fixes #1633
+= 4.1.24 =
+Added block editor style, especially to enlarge the editor content width. Fixed old Customizr logo not shown in live preview.
 
 == Changelog ==
+= 4.1.24 December 18th, 2018 =
+* fixed : old customizer logo not shown in live preview even if not overridden see #1633 (comment)
+* improved : add block editor style, especially to enlarge the editor content width. fixes #1642
+
 = 4.1.23 December 15th, 2018 =
 * fixed : admin page css style not compatible with WP 5.0
 * fixed : mobile submenu background breaking with chrome on android. fixes #1635
