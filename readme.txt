@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.24
+Stable tag: 4.1.25
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,13 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.24 =
-Added block editor style, especially to enlarge the editor content width. Fixed old Customizr logo not shown in live preview.
+= 4.1.25 =
+Added support for rtl to the new block editor.
 
 == Changelog ==
+= 4.1.25 December 22nd, 2018 =
+* improved : add block editor style rtl, and make sure it is loaded when is_rtl(). fixes #1651
+
 = 4.1.24 December 18th, 2018 =
 * fixed : old customizer logo not shown in live preview even if not overridden see #1633 (comment)
 * improved : add block editor style, especially to enlarge the editor content width. fixes #1642

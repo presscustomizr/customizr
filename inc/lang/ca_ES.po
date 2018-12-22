@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.24\n"
+"Project-Id-Version: * Customizr v4.1.25\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2018-12-18 12:55:21+00:00\n"
+"POT-Creation-Date: 2018-12-22 16:54:23+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:53+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Jaume Albaigès <jaumealbaiges@hotmail.com>\n"
@@ -533,7 +533,7 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:537
 #: core/class-tgm-plugin-activation.php:1333 core/core-settings-map.php:1028
 #: core/core-settings-map.php:1033 core/core-settings-map.php:2319
-#: core/czr-admin-ccat.php:1471
+#: core/czr-admin-ccat.php:1472
 msgid "here"
 msgstr "aqu&iacute;"
 
@@ -1904,7 +1904,7 @@ msgstr "en ms : 1000ms = 1s"
 #: build/free/customizr/core/core-settings-map.php:1217
 #: build/free/customizr/core/czr-admin-ccat.php:1662
 #: core/_dev/_admin/class-admin-meta_boxes.php:728
-#: core/core-settings-map.php:1217 core/czr-admin-ccat.php:1662
+#: core/core-settings-map.php:1217 core/czr-admin-ccat.php:1663
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
@@ -3167,8 +3167,8 @@ msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2760
 #: build/free/customizr/core/czr-admin-ccat.php:401
-#: core/_dev/_admin/class-fire-admin_init.php:401
-#: core/core-settings-map.php:2760 core/czr-admin-ccat.php:401
+#: core/_dev/_admin/class-fire-admin_init.php:402
+#: core/core-settings-map.php:2760 core/czr-admin-ccat.php:402
 #, fuzzy
 msgid "Upgrade to Customizr Pro"
 msgstr "Descobriu Customizr: vídeo d'introducció ràpida"
@@ -3238,63 +3238,63 @@ msgstr ""
 "voleu fer servir l'extracte de la p&agrave;gina."
 
 #: build/free/customizr/core/czr-admin-ccat.php:385
-#: core/_dev/_admin/class-fire-admin_init.php:385 core/czr-admin-ccat.php:385
+#: core/_dev/_admin/class-fire-admin_init.php:386 core/czr-admin-ccat.php:386
 msgid "Good, you've recently upgraded to"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:387
-#: core/_dev/_admin/class-fire-admin_init.php:387 core/czr-admin-ccat.php:387
+#: core/_dev/_admin/class-fire-admin_init.php:388 core/czr-admin-ccat.php:388
 msgid "version"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:396
-#: core/_dev/_admin/class-fire-admin_init.php:396 core/czr-admin-ccat.php:396
+#: core/_dev/_admin/class-fire-admin_init.php:397 core/czr-admin-ccat.php:397
 msgid "We'd like to introduce the new features we've been working on."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:398
-#: core/_dev/_admin/class-fire-admin_init.php:398 core/czr-admin-ccat.php:398
+#: core/_dev/_admin/class-fire-admin_init.php:399 core/czr-admin-ccat.php:399
 msgid "Read the latest release notes"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:408
-#: core/_dev/_admin/class-fire-admin_init.php:408 core/czr-admin-ccat.php:408
+#: core/_dev/_admin/class-fire-admin_init.php:409 core/czr-admin-ccat.php:409
 msgid "close"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:529
-#: core/_dev/_admin/class-fire-admin_page.php:45 core/czr-admin-ccat.php:529
+#: core/_dev/_admin/class-fire-admin_page.php:45 core/czr-admin-ccat.php:530
 msgid "About Customizr"
 msgstr "Quant a Customizr"
 
 #: build/free/customizr/core/czr-admin-ccat.php:561
-#: core/_dev/_admin/class-fire-admin_page.php:77 core/czr-admin-ccat.php:561
+#: core/_dev/_admin/class-fire-admin_page.php:77 core/czr-admin-ccat.php:562
 msgid "Thank you for using"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:579
-#: core/_dev/_admin/class-fire-admin_page.php:95 core/czr-admin-ccat.php:579
+#: core/_dev/_admin/class-fire-admin_page.php:95 core/czr-admin-ccat.php:580
 msgid "The best way to start with %s is to read the %s and visit the %s."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:581
-#: core/_dev/_admin/class-fire-admin_page.php:97 core/czr-admin-ccat.php:581
+#: core/_dev/_admin/class-fire-admin_page.php:97 core/czr-admin-ccat.php:582
 msgid "documentation"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:582
-#: core/_dev/_admin/class-fire-admin_page.php:98 core/czr-admin-ccat.php:582
+#: core/_dev/_admin/class-fire-admin_page.php:98 core/czr-admin-ccat.php:583
 msgid "demo website"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:586
-#: core/_dev/_admin/class-fire-admin_page.php:102 core/czr-admin-ccat.php:586
+#: core/_dev/_admin/class-fire-admin_page.php:102 core/czr-admin-ccat.php:587
 #, fuzzy
 msgid "Read the changelog"
 msgstr "Llegiu la documentació"
 
 #: build/free/customizr/core/czr-admin-ccat.php:599
-#: core/_dev/_admin/class-fire-admin_page.php:115 core/czr-admin-ccat.php:599
+#: core/_dev/_admin/class-fire-admin_page.php:115 core/czr-admin-ccat.php:600
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
 "upgrading to see if a function or a template has been deprecated."
@@ -3304,12 +3304,12 @@ msgstr ""
 "quedat obsoleta."
 
 #: build/free/customizr/core/czr-admin-ccat.php:618
-#: core/_dev/_admin/class-fire-admin_page.php:134 core/czr-admin-ccat.php:618
+#: core/_dev/_admin/class-fire-admin_page.php:134 core/czr-admin-ccat.php:619
 msgid "Happy user of Customizr?"
 msgstr "Sou un usuari feliç de Customizr?"
 
 #: build/free/customizr/core/czr-admin-ccat.php:619
-#: core/_dev/_admin/class-fire-admin_page.php:135 core/czr-admin-ccat.php:619
+#: core/_dev/_admin/class-fire-admin_page.php:135 core/czr-admin-ccat.php:620
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
@@ -3318,22 +3318,22 @@ msgstr ""
 "bona crítica de Customizr!.<br />(Som addictes a les vostres opinions...)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:624
-#: core/_dev/_admin/class-fire-admin_page.php:140 core/czr-admin-ccat.php:624
+#: core/_dev/_admin/class-fire-admin_page.php:140 core/czr-admin-ccat.php:625
 msgid "Follow us"
 msgstr "Seguiu-nos"
 
 #: build/free/customizr/core/czr-admin-ccat.php:634
-#: core/_dev/_admin/class-fire-admin_page.php:150 core/czr-admin-ccat.php:634
+#: core/_dev/_admin/class-fire-admin_page.php:150 core/czr-admin-ccat.php:635
 msgid "Go Customizr Pro"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:641
-#: core/_dev/_admin/class-fire-admin_page.php:157 core/czr-admin-ccat.php:641
+#: core/_dev/_admin/class-fire-admin_page.php:157 core/czr-admin-ccat.php:642
 msgid "Easily take your web design one step further"
 msgstr "Porteu fàcilment el vostre disseny un pas més enllà"
 
 #: build/free/customizr/core/czr-admin-ccat.php:643
-#: core/_dev/_admin/class-fire-admin_page.php:159 core/czr-admin-ccat.php:643
+#: core/_dev/_admin/class-fire-admin_page.php:159 core/czr-admin-ccat.php:644
 msgid ""
 "The Customizr Pro WordPress theme allows anyone to create a beautiful, "
 "professional and mobile friendly website in a few minutes. In the Pro "
@@ -3343,40 +3343,40 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:646
-#: core/_dev/_admin/class-fire-admin_page.php:162 core/czr-admin-ccat.php:646
+#: core/_dev/_admin/class-fire-admin_page.php:162 core/czr-admin-ccat.php:647
 #, fuzzy
 msgid "Discover Customizr Pro"
 msgstr "Descobriu Customizr: vídeo d'introducció ràpida"
 
 #: build/free/customizr/core/czr-admin-ccat.php:657
-#: core/_dev/_admin/class-fire-admin_page.php:173 core/czr-admin-ccat.php:657
+#: core/_dev/_admin/class-fire-admin_page.php:173 core/czr-admin-ccat.php:658
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Vés al Tauler &rarr; Pàgina d'inici"
 
 #: build/free/customizr/core/czr-admin-ccat.php:657
-#: core/_dev/_admin/class-fire-admin_page.php:173 core/czr-admin-ccat.php:657
+#: core/_dev/_admin/class-fire-admin_page.php:173 core/czr-admin-ccat.php:658
 msgid "Go to Dashboard"
 msgstr "Vés al Tauler"
 
 #: build/free/customizr/core/czr-admin-ccat.php:709
-#: core/_dev/_admin/class-fire-admin_page.php:225 core/czr-admin-ccat.php:709
+#: core/_dev/_admin/class-fire-admin_page.php:225 core/czr-admin-ccat.php:710
 msgid "Changelog in version %1$s"
 msgstr "Registre de canvis de la versió %1$s"
 
 #: build/free/customizr/core/czr-admin-ccat.php:726
-#: core/_dev/_admin/class-fire-admin_page.php:242 core/czr-admin-ccat.php:726
+#: core/_dev/_admin/class-fire-admin_page.php:242 core/czr-admin-ccat.php:727
 msgid "System Informations"
 msgstr "Informacions del Sistema"
 
 #: build/free/customizr/core/czr-admin-ccat.php:727
-#: core/_dev/_admin/class-fire-admin_page.php:243 core/czr-admin-ccat.php:727
+#: core/_dev/_admin/class-fire-admin_page.php:243 core/czr-admin-ccat.php:728
 msgid "Please include the following informations when posting support requests"
 msgstr ""
 "Si us plau incloeu les següents informacions quan publiqueu demandes de "
 "suport"
 
 #: build/free/customizr/core/czr-admin-ccat.php:728
-#: core/_dev/_admin/class-fire-admin_page.php:244 core/czr-admin-ccat.php:728
+#: core/_dev/_admin/class-fire-admin_page.php:244 core/czr-admin-ccat.php:729
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -3385,64 +3385,64 @@ msgstr ""
 "premeu Ctrl + C (PC) o Cmd + C (Mac)."
 
 #: build/free/customizr/core/czr-admin-ccat.php:883
-#: core/_dev/_admin/class-fire-admin_page.php:399 core/czr-admin-ccat.php:883
+#: core/_dev/_admin/class-fire-admin_page.php:399 core/czr-admin-ccat.php:884
 msgid "We found {count} article that may help:"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:884
-#: core/_dev/_admin/class-fire-admin_page.php:400 core/czr-admin-ccat.php:884
+#: core/_dev/_admin/class-fire-admin_page.php:400 core/czr-admin-ccat.php:885
 msgid "We found {count} articles that may help:"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:885
-#: core/_dev/_admin/class-fire-admin_page.php:401 core/czr-admin-ccat.php:885
+#: core/_dev/_admin/class-fire-admin_page.php:401 core/czr-admin-ccat.php:886
 msgid "No results found&hellip;"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:886
-#: core/_dev/_admin/class-fire-admin_page.php:402 core/czr-admin-ccat.php:886
+#: core/_dev/_admin/class-fire-admin_page.php:402 core/czr-admin-ccat.php:887
 msgid "Please enter a search term."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:887
-#: core/_dev/_admin/class-fire-admin_page.php:403 core/czr-admin-ccat.php:887
+#: core/_dev/_admin/class-fire-admin_page.php:403 core/czr-admin-ccat.php:888
 msgid "Search must be at least {minLength} characters."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:888
-#: core/_dev/_admin/class-fire-admin_page.php:404 core/czr-admin-ccat.php:888
+#: core/_dev/_admin/class-fire-admin_page.php:404 core/czr-admin-ccat.php:889
 msgid "There was an error fetching search results."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:894
-#: core/_dev/_admin/class-fire-admin_page.php:410 core/czr-admin-ccat.php:894
+#: core/_dev/_admin/class-fire-admin_page.php:410 core/czr-admin-ccat.php:895
 #, fuzzy
 msgid "Read the full article"
 msgstr "Llegiu la documentació"
 
 #: build/free/customizr/core/czr-admin-ccat.php:895
-#: core/_dev/_admin/class-fire-admin_page.php:411 core/czr-admin-ccat.php:895
+#: core/_dev/_admin/class-fire-admin_page.php:411 core/czr-admin-ccat.php:896
 #, fuzzy
 msgid "read more"
 msgstr "Apreneu-ne més"
 
 #: build/free/customizr/core/czr-admin-ccat.php:918
-#: core/_dev/_admin/class-fire-admin_page.php:434 core/czr-admin-ccat.php:918
+#: core/_dev/_admin/class-fire-admin_page.php:434 core/czr-admin-ccat.php:919
 msgid "Search the knowledge base"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:919
-#: core/_dev/_admin/class-fire-admin_page.php:435 core/czr-admin-ccat.php:919
+#: core/_dev/_admin/class-fire-admin_page.php:435 core/czr-admin-ccat.php:920
 msgid "In a few keywords, describe the information you are looking for."
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:922
-#: core/_dev/_admin/class-fire-admin_page.php:438 core/czr-admin-ccat.php:922
+#: core/_dev/_admin/class-fire-admin_page.php:438 core/czr-admin-ccat.php:923
 msgid "Ex. Logo upload"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:924
-#: core/_dev/_admin/class-fire-admin_page.php:440 core/czr-admin-ccat.php:924
+#: core/_dev/_admin/class-fire-admin_page.php:440 core/czr-admin-ccat.php:925
 msgid ""
 "<u>Search tips</u> : If you get too many results, try to narrow down your "
 "search by prefixing it with \"customizr\" for example. If there are no "
@@ -3450,7 +3450,7 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1184
-#: core/_dev/_admin/class-admin-meta_boxes.php:250 core/czr-admin-ccat.php:1184
+#: core/_dev/_admin/class-admin-meta_boxes.php:250 core/czr-admin-ccat.php:1185
 msgid "Layout Options"
 msgstr "Opcions de disposici&oacute;"
 
@@ -3458,115 +3458,115 @@ msgstr "Opcions de disposici&oacute;"
 #: build/free/customizr/core/czr-admin-ccat.php:2038
 #: core/_dev/_admin/class-admin-meta_boxes.php:263
 #: core/_dev/_admin/class-admin-meta_boxes.php:1104
-#: core/czr-admin-ccat.php:1197 core/czr-admin-ccat.php:2038
+#: core/czr-admin-ccat.php:1198 core/czr-admin-ccat.php:2039
 msgid "Slider Options"
 msgstr "Opcions d'slider"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1209
-#: core/_dev/_admin/class-admin-meta_boxes.php:275 core/czr-admin-ccat.php:1209
+#: core/_dev/_admin/class-admin-meta_boxes.php:275 core/czr-admin-ccat.php:1210
 #, fuzzy
 msgid "Format: link"
 msgstr "Sense enllaç"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1221
-#: core/_dev/_admin/class-admin-meta_boxes.php:287 core/czr-admin-ccat.php:1221
+#: core/_dev/_admin/class-admin-meta_boxes.php:287 core/czr-admin-ccat.php:1222
 msgid "Format: quote"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1233
-#: core/_dev/_admin/class-admin-meta_boxes.php:299 core/czr-admin-ccat.php:1233
+#: core/_dev/_admin/class-admin-meta_boxes.php:299 core/czr-admin-ccat.php:1234
 msgid "Format: video"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1245
-#: core/_dev/_admin/class-admin-meta_boxes.php:311 core/czr-admin-ccat.php:1245
+#: core/_dev/_admin/class-admin-meta_boxes.php:311 core/czr-admin-ccat.php:1246
 msgid "Format: audio"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1276
-#: core/_dev/_admin/class-admin-meta_boxes.php:342 core/czr-admin-ccat.php:1276
+#: core/_dev/_admin/class-admin-meta_boxes.php:342 core/czr-admin-ccat.php:1277
 msgid "Link title"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1281
-#: core/_dev/_admin/class-admin-meta_boxes.php:347 core/czr-admin-ccat.php:1281
+#: core/_dev/_admin/class-admin-meta_boxes.php:347 core/czr-admin-ccat.php:1282
 #, fuzzy
 msgid "Enter the title"
 msgstr "Després del títol"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1297
-#: core/_dev/_admin/class-admin-meta_boxes.php:363 core/czr-admin-ccat.php:1297
+#: core/_dev/_admin/class-admin-meta_boxes.php:363 core/czr-admin-ccat.php:1298
 #, fuzzy
 msgid "Link URL"
 msgstr "Enllaços"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1302
-#: core/_dev/_admin/class-admin-meta_boxes.php:368 core/czr-admin-ccat.php:1302
+#: core/_dev/_admin/class-admin-meta_boxes.php:368 core/czr-admin-ccat.php:1303
 msgid "Enter the URL"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1329
-#: core/_dev/_admin/class-admin-meta_boxes.php:395 core/czr-admin-ccat.php:1329
+#: core/_dev/_admin/class-admin-meta_boxes.php:395 core/czr-admin-ccat.php:1330
 #, fuzzy
 msgid "Quote text"
 msgstr "Text del bot&oacute;"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1334
-#: core/_dev/_admin/class-admin-meta_boxes.php:400 core/czr-admin-ccat.php:1334
+#: core/_dev/_admin/class-admin-meta_boxes.php:400 core/czr-admin-ccat.php:1335
 #, fuzzy
 msgid "Enter the text"
 msgstr "Després del títol"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1349
-#: core/_dev/_admin/class-admin-meta_boxes.php:415 core/czr-admin-ccat.php:1349
+#: core/_dev/_admin/class-admin-meta_boxes.php:415 core/czr-admin-ccat.php:1350
 #, fuzzy
 msgid "Quote author"
 msgstr "Autor de l'entrada"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1355
-#: core/_dev/_admin/class-admin-meta_boxes.php:421 core/czr-admin-ccat.php:1355
+#: core/_dev/_admin/class-admin-meta_boxes.php:421 core/czr-admin-ccat.php:1356
 #, fuzzy
 msgid "Enter the author"
 msgstr "Mostra l'autor"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1382
-#: core/_dev/_admin/class-admin-meta_boxes.php:448 core/czr-admin-ccat.php:1382
+#: core/_dev/_admin/class-admin-meta_boxes.php:448 core/czr-admin-ccat.php:1383
 msgid "Audio url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1386
-#: core/_dev/_admin/class-admin-meta_boxes.php:452 core/czr-admin-ccat.php:1386
+#: core/_dev/_admin/class-admin-meta_boxes.php:452 core/czr-admin-ccat.php:1387
 msgid "Enter the audio url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1416
-#: core/_dev/_admin/class-admin-meta_boxes.php:482 core/czr-admin-ccat.php:1416
+#: core/_dev/_admin/class-admin-meta_boxes.php:482 core/czr-admin-ccat.php:1417
 msgid "Video url"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:1420
-#: core/_dev/_admin/class-admin-meta_boxes.php:486 core/czr-admin-ccat.php:1420
+#: core/_dev/_admin/class-admin-meta_boxes.php:486 core/czr-admin-ccat.php:1421
 #, fuzzy
 msgid "Enter the video url"
 msgstr "Url del perfil de Pinterest"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1466
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1466
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1467
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "La disposici&oacute; %1$s per defecte s'ha establert a: %2$s"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1466
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1466
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1467
 msgid "pages"
 msgstr "p&agrave;gines"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1466
-#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1466
+#: core/_dev/_admin/class-admin-meta_boxes.php:532 core/czr-admin-ccat.php:1467
 msgid "posts"
 msgstr "entrades"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1469
-#: core/_dev/_admin/class-admin-meta_boxes.php:535 core/czr-admin-ccat.php:1469
+#: core/_dev/_admin/class-admin-meta_boxes.php:535 core/czr-admin-ccat.php:1470
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
 "right sidebars. The default layouts can be defined in the WordPress "
@@ -3579,31 +3579,31 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:1470
 #: build/free/customizr/core/czr-admin-ccat.php:1475
 #: core/_dev/_admin/class-admin-meta_boxes.php:536
-#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1470
-#: core/czr-admin-ccat.php:1475
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1471
+#: core/czr-admin-ccat.php:1476
 msgid "this page"
 msgstr "aquesta p&agrave;gina"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1470
 #: build/free/customizr/core/czr-admin-ccat.php:1475
 #: core/_dev/_admin/class-admin-meta_boxes.php:536
-#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1470
-#: core/czr-admin-ccat.php:1475
+#: core/_dev/_admin/class-admin-meta_boxes.php:541 core/czr-admin-ccat.php:1471
+#: core/czr-admin-ccat.php:1476
 msgid "this post"
 msgstr "aquesta entrada"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1474
-#: core/_dev/_admin/class-admin-meta_boxes.php:540 core/czr-admin-ccat.php:1474
+#: core/_dev/_admin/class-admin-meta_boxes.php:540 core/czr-admin-ccat.php:1475
 msgid "Select a specific layout for %1$s"
 msgstr "Seleccioneu una disposici&oacute; espec&iacute;fica per a %1$s"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1478
-#: core/_dev/_admin/class-admin-meta_boxes.php:544 core/czr-admin-ccat.php:1478
+#: core/_dev/_admin/class-admin-meta_boxes.php:544 core/czr-admin-ccat.php:1479
 msgid "Default layout %1s"
 msgstr "Disposici&oacute;  per defecte %1s"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1524
-#: core/_dev/_admin/class-admin-meta_boxes.php:590 core/czr-admin-ccat.php:1524
+#: core/_dev/_admin/class-admin-meta_boxes.php:590 core/czr-admin-ccat.php:1525
 msgid "Add a slider to this post/page"
 msgstr "Afegeix un slider a aquesta entrada/p&agrave;gina"
 
@@ -3611,7 +3611,7 @@ msgstr "Afegeix un slider a aquesta entrada/p&agrave;gina"
 #: build/free/customizr/core/czr-admin-ccat.php:2271
 #: core/_dev/_admin/class-admin-meta_boxes.php:669
 #: core/_dev/_admin/class-admin-meta_boxes.php:1337
-#: core/czr-admin-ccat.php:1603 core/czr-admin-ccat.php:2271
+#: core/czr-admin-ccat.php:1604 core/czr-admin-ccat.php:2272
 msgid "Choose a slider"
 msgstr "Escolliu un slider"
 
@@ -3619,12 +3619,12 @@ msgstr "Escolliu un slider"
 #: build/free/customizr/core/czr-admin-ccat.php:2286
 #: core/_dev/_admin/class-admin-meta_boxes.php:675
 #: core/_dev/_admin/class-admin-meta_boxes.php:1352
-#: core/czr-admin-ccat.php:1609 core/czr-admin-ccat.php:2286
+#: core/czr-admin-ccat.php:1610 core/czr-admin-ccat.php:2287
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Seleccioneu un slider &mdash; "
 
 #: build/free/customizr/core/czr-admin-ccat.php:1632
-#: core/_dev/_admin/class-admin-meta_boxes.php:698 core/czr-admin-ccat.php:1632
+#: core/_dev/_admin/class-admin-meta_boxes.php:698 core/czr-admin-ccat.php:1633
 msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
@@ -3633,17 +3633,17 @@ msgstr ""
 "imatges i afegiu-les al vostre nou slider."
 
 #: build/free/customizr/core/czr-admin-ccat.php:1636
-#: core/_dev/_admin/class-admin-meta_boxes.php:702 core/czr-admin-ccat.php:1636
+#: core/_dev/_admin/class-admin-meta_boxes.php:702 core/czr-admin-ccat.php:1637
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr "Retard entre cada imatge en milisegons (per defecte: 5000 ms)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1643
-#: core/_dev/_admin/class-admin-meta_boxes.php:709 core/czr-admin-ccat.php:1643
+#: core/_dev/_admin/class-admin-meta_boxes.php:709 core/czr-admin-ccat.php:1644
 msgid "Slider Layout : set the slider in full width"
 msgstr "Disposició de l'slider: col·loca l'slider amb amplada completa"
 
 #: build/free/customizr/core/czr-admin-ccat.php:1681
-#: core/_dev/_admin/class-admin-meta_boxes.php:747 core/czr-admin-ccat.php:1681
+#: core/_dev/_admin/class-admin-meta_boxes.php:747 core/czr-admin-ccat.php:1682
 msgid "Display navigation dots at the bottom of your slider."
 msgstr ""
 
@@ -3651,7 +3651,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2295
 #: core/_dev/_admin/class-admin-meta_boxes.php:766
 #: core/_dev/_admin/class-admin-meta_boxes.php:1361
-#: core/czr-admin-ccat.php:1700 core/czr-admin-ccat.php:2295
+#: core/czr-admin-ccat.php:1701 core/czr-admin-ccat.php:2296
 msgid "Delete this slider"
 msgstr "Elimina aquest slider"
 
@@ -3659,7 +3659,7 @@ msgstr "Elimina aquest slider"
 #: build/free/customizr/core/czr-admin-ccat.php:2299
 #: core/_dev/_admin/class-admin-meta_boxes.php:771
 #: core/_dev/_admin/class-admin-meta_boxes.php:1365
-#: core/czr-admin-ccat.php:1705 core/czr-admin-ccat.php:2299
+#: core/czr-admin-ccat.php:1706 core/czr-admin-ccat.php:2300
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
@@ -3671,7 +3671,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2302
 #: core/_dev/_admin/class-admin-meta_boxes.php:774
 #: core/_dev/_admin/class-admin-meta_boxes.php:1368
-#: core/czr-admin-ccat.php:1708 core/czr-admin-ccat.php:2302
+#: core/czr-admin-ccat.php:1709 core/czr-admin-ccat.php:2303
 msgid "Delete slider"
 msgstr "Elimina l'slider"
 
@@ -3679,7 +3679,7 @@ msgstr "Elimina l'slider"
 #: build/free/customizr/core/czr-customize-ccat.php:977
 #: core/_dev/_admin/class-admin-meta_boxes.php:785
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1719 core/czr-customize-ccat.php:977
+#: core/czr-admin-ccat.php:1720 core/czr-customize-ccat.php:977
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -3689,20 +3689,20 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2065
 #: core/_dev/_admin/class-admin-meta_boxes.php:1131
-#: core/czr-admin-ccat.php:2065
+#: core/czr-admin-ccat.php:2066
 msgid "Add to a slider (create one if needed)"
 msgstr "Afegeix a un slider (si cal, creeu-ne un)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2200
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
-#: core/czr-admin-ccat.php:2200
+#: core/czr-admin-ccat.php:2201
 #, fuzzy
 msgid "Title text (80 char. max length)"
 msgstr "Text del t&iacute;tol (200 car. màx):"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2207
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
-#: core/czr-admin-ccat.php:2207
+#: core/czr-admin-ccat.php:2208
 #, fuzzy
 msgid "Description text (below the title, 250 char. max length)"
 msgstr ""
@@ -3711,33 +3711,33 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2214
 #: core/_dev/_admin/class-admin-meta_boxes.php:1280
-#: core/czr-admin-ccat.php:2214
+#: core/czr-admin-ccat.php:2215
 msgid "Title and text color"
 msgstr "Color del títol i del text"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2222
 #: core/_dev/_admin/class-admin-meta_boxes.php:1288
-#: core/czr-admin-ccat.php:2222
+#: core/czr-admin-ccat.php:2223
 #, fuzzy
 msgid "Button text (80 char. max length)"
 msgstr "Text del bot&oacute; (longitud m&agrave;xima de 80 caràcters)"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2229
 #: core/_dev/_admin/class-admin-meta_boxes.php:1295
-#: core/czr-admin-ccat.php:2229
+#: core/czr-admin-ccat.php:2230
 msgid "Choose a linked page or post (among the last 100)."
 msgstr ""
 "Escolliu una p&agrave;gina o entrada relacionada (entre les 100 darreres)."
 
 #: build/free/customizr/core/czr-admin-ccat.php:2234
 #: core/_dev/_admin/class-admin-meta_boxes.php:1300
-#: core/czr-admin-ccat.php:2234
+#: core/czr-admin-ccat.php:2235
 msgid "No link"
 msgstr "Sense enllaç"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2243
 #: core/_dev/_admin/class-admin-meta_boxes.php:1309
-#: core/czr-admin-ccat.php:2243
+#: core/czr-admin-ccat.php:2244
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
@@ -3745,13 +3745,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2249
 #: core/_dev/_admin/class-admin-meta_boxes.php:1315
-#: core/czr-admin-ccat.php:2249
+#: core/czr-admin-ccat.php:2250
 msgid "Open link in a new page/tab"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2260
 #: core/_dev/_admin/class-admin-meta_boxes.php:1326
-#: core/czr-admin-ccat.php:2260
+#: core/czr-admin-ccat.php:2261
 msgid "Link the whole slide"
 msgstr ""
 
@@ -3759,13 +3759,13 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2321
 #: core/_dev/_admin/class-admin-meta_boxes.php:1358
 #: core/_dev/_admin/class-admin-meta_boxes.php:1387
-#: core/czr-admin-ccat.php:2292 core/czr-admin-ccat.php:2321
+#: core/czr-admin-ccat.php:2293 core/czr-admin-ccat.php:2322
 msgid "Add a slider"
 msgstr "Afegeix a un slider"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2319
 #: core/_dev/_admin/class-admin-meta_boxes.php:1385
-#: core/czr-admin-ccat.php:2319
+#: core/czr-admin-ccat.php:2320
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -3775,7 +3775,7 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2445
 #: core/_dev/_admin/class-admin-meta_boxes.php:1511
-#: core/czr-admin-ccat.php:2445
+#: core/czr-admin-ccat.php:2446
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -3785,7 +3785,7 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2455
 #: core/_dev/_admin/class-admin-meta_boxes.php:1521
-#: core/czr-admin-ccat.php:2455
+#: core/czr-admin-ccat.php:2456
 msgid "Slide Image"
 msgstr "Imatge d'slide"
 
@@ -3793,26 +3793,26 @@ msgstr "Imatge d'slide"
 #: build/free/customizr/core/czr-modules/social-links/index.php:121
 #: build/free/customizr/core/czr-modules/social-links/social_links_module.php:123
 #: core/_dev/_admin/class-admin-meta_boxes.php:1522
-#: core/czr-admin-ccat.php:2456 core/czr-modules/social-links/index.php:121
+#: core/czr-admin-ccat.php:2457 core/czr-modules/social-links/index.php:121
 #: core/czr-modules/social-links/social_links_module.php:123
 msgid "Title"
 msgstr "Títol"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2457
 #: core/_dev/_admin/class-admin-meta_boxes.php:1523
-#: core/czr-admin-ccat.php:2457
+#: core/czr-admin-ccat.php:2458
 msgid "Slide Text"
 msgstr "Text de l'slide"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2458
 #: core/_dev/_admin/class-admin-meta_boxes.php:1524
-#: core/czr-admin-ccat.php:2458
+#: core/czr-admin-ccat.php:2459
 msgid "Button Text"
 msgstr "Text del botó"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2459
 #: core/_dev/_admin/class-admin-meta_boxes.php:1525
-#: core/czr-admin-ccat.php:2459
+#: core/czr-admin-ccat.php:2460
 msgid "Link"
 msgstr ""
 
@@ -3838,7 +3838,7 @@ msgstr ""
 #: build/free/customizr/inc/czr-front-ccat.php:8734
 #: core/_dev/_admin/class-admin-meta_boxes.php:1526
 #: core/_dev/_czr/class-czr-resources.php:229
-#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2460
+#: core/_dev/_czr/class-czr-resources.php:239 core/czr-admin-ccat.php:2461
 #: core/czr-base-fmk/czr-base-fmk.php:182
 #: core/czr-base-fmk/czr-base-fmk.php:348
 #: core/czr-base-fmk/czr-base-fmk.php:674 core/czr-customize-ccat.php:872
@@ -3866,25 +3866,25 @@ msgstr "Edita"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2502
 #: core/_dev/_admin/class-admin-meta_boxes.php:1568
-#: core/czr-admin-ccat.php:2502
+#: core/czr-admin-ccat.php:2503
 msgid "No Image Selected"
 msgstr "No hi ha cap imatge seleccionada"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2528
 #: core/_dev/_admin/class-admin-meta_boxes.php:1594
-#: core/czr-admin-ccat.php:2528
+#: core/czr-admin-ccat.php:2529
 msgid "Edit this slide"
 msgstr "Edita aquest slide"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2530
 #: core/_dev/_admin/class-admin-meta_boxes.php:1596
-#: core/czr-admin-ccat.php:2530
+#: core/czr-admin-ccat.php:2531
 msgid "Current slide"
 msgstr "Slide actual"
 
 #: build/free/customizr/core/czr-admin-ccat.php:2541
 #: core/_dev/_admin/class-admin-meta_boxes.php:1607
-#: core/czr-admin-ccat.php:2541
+#: core/czr-admin-ccat.php:2542
 msgid ""
 "To add another slide : navigate to your media library (click on Media), open "
 "the edit screen of an image ( or add a new image ), and add it to your "
@@ -3893,13 +3893,13 @@ msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2542
 #: core/_dev/_admin/class-admin-meta_boxes.php:1608
-#: core/czr-admin-ccat.php:2542
+#: core/czr-admin-ccat.php:2543
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2544
 #: core/_dev/_admin/class-admin-meta_boxes.php:1610
-#: core/czr-admin-ccat.php:2544
+#: core/czr-admin-ccat.php:2545
 #, fuzzy
 msgid "Slider documentation"
 msgstr "Llegiu la documentació"
