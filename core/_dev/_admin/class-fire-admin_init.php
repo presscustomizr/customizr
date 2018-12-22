@@ -22,7 +22,8 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       //Load the editor-style specific (post formats and RTL), the user style.css, the active skin
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
-      add_action( 'after_setup_theme'     , array( $this, 'czr_fn_add_editor_style') );
+      //The hook used to be after_setup_theme, but, don't know from whic WP version, is_rtl() always returns false at that stage.
+      add_action( 'init'                  , array( $this, 'czr_fn_add_editor_style') );
 
       add_filter( 'tiny_mce_before_init'  , array( $this, 'czr_fn_user_defined_tinymce_css') );
       //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
