@@ -2,14 +2,6 @@
 /**
 * Defines filters and actions used in several templates/classes
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.4.39
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com> - Rocco ALIBERTI <rocco@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2017, Nicolas GUILLAUME, Rocco ALIBERTI
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
   class CZR_init_retro_compat {

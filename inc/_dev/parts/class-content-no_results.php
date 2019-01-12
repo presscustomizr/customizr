@@ -2,14 +2,6 @@
 /**
 * No results content actions
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0.5
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_no_results' ) ) :
   class CZR_no_results {

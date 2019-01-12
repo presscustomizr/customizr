@@ -4,10 +4,6 @@
 * Used for the user created main menus, not for : default menu and widget menus
 * Walker_Nav_Menu is located in /wp-includes/nav-menu-template.php
 * Walker is located in wp-includes/class-wp-walker.php
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_nav_walker' ) ) :
   class CZR_nav_walker extends Walker_Nav_Menu {

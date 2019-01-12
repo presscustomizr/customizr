@@ -11,8 +11,6 @@
 * Defines sections, settings and function of customizer and return and array
 * Also used to get the default options array, in this case $get_default = true and we DISABLE the __get_option (=>infinite loop)
 *
-* @package Customizr
-* @since Customizr 3.0
 */
 function czr_fn_get_customizer_map( $get_default = null,  $what = null ) {
     if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) ) {

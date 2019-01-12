@@ -103,14 +103,6 @@ See templates/index.php for rendering flow.
 /**
 * Fires the theme : constants definition, core classes loading
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        4.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR___' ) ) :
 

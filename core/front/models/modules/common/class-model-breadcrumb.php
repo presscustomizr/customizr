@@ -9,7 +9,6 @@
 * @uses     Breadcrumb Trail - A breadcrumb menu script for WordPress.
 * @author     Justin Tadlock <justin@justintadlock.com>
 * @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
 * @link         http://presscustomizr.com/customizr
 * @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */

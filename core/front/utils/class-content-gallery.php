@@ -2,14 +2,6 @@
 /**
 * Gallery content filters
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0.5
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_gallery' ) ) :
 class CZR_gallery {
@@ -130,7 +122,7 @@ class CZR_gallery {
 
                   if ( trim( $attachment->post_excerpt ) )
                         $image_attr[ 'aria-describedby' ] =  "$selector-$id";
-                  
+
                   $image_output = wp_get_attachment_image( $id, $atts['size'], false, $image_attr );
 
                   if ( ! empty( $atts['link'] ) && 'file' === $atts['link'] ) {
@@ -142,7 +134,7 @@ class CZR_gallery {
 
                   } elseif ( ! empty( $atts['link'] ) && 'none' === $atts['link'] ) {
 
-                        //no link                        
+                        //no link
                         //maybe add expand img button
                         $image_output = apply_filters( 'czr_gallery_image_linking_no_media', $image_output, $id, $attachment );
 
@@ -244,9 +236,9 @@ class CZR_gallery {
             $article_container_width_md_up_ratio = $article_container_width_md_up_ratios[ $content_breadth ];
 
 
-            /* 
+            /*
             CZR_init::$instance->$css_container_width looks like:
-            
+
             array(
                 //min-widths: 1200px, 992px, 768px,
                 //xl, lg, md, sm, xs
@@ -260,21 +252,21 @@ class CZR_gallery {
             */
             $css_container_widths   = CZR_init::$instance->css_container_widths;
 
-            /* 
+            /*
             CZR_init::$instance->$css_mq_breakpoints looks like:
-            
+
             array(
                   'xl' => '1200',
                   'lg' => '992',
                   'md' => '768',
                   'sm' => '575'
-            ) 
+            )
             */
             $css_mq_breakpoints     = CZR_init::$instance->css_mq_breakpoints;
-            
 
 
-            $gallery_item_h_padding = 30; //px (15+15) 
+
+            $gallery_item_h_padding = 30; //px (15+15)
 
             //Following the principle used to set the gallery items columns in CSS)
             //
@@ -290,7 +282,7 @@ class CZR_gallery {
             // we limit the width of the 4-9 columns gallery items to 25% of the container width
             //
 
-            //default, mobile first: 
+            //default, mobile first:
             // 1 column  => 100vw - (left and right padding) 30px  (1)
             // 2+ columns => 50vw - (left and right padding) 30px  (2)
             $default_sizes = 1 == $gallery_columns ? 'calc( 100vw - '. $gallery_item_h_padding . 'px )' : 'calc( 50vw - '. $gallery_item_h_padding  . 'px )';
@@ -316,7 +308,7 @@ class CZR_gallery {
             }
             //(4)
             else {
-                  $image_size = $article_container_width/4;                  
+                  $image_size = $article_container_width/4;
             }
 
 
@@ -335,7 +327,7 @@ class CZR_gallery {
 
 
             // Medium devices (tablets, 768px and up)
-            //(min-width: 768px) => .container = 720px => article container's width depends on the content breadth      
+            //(min-width: 768px) => .container = 720px => article container's width depends on the content breadth
             $css_container_width     = $css_container_widths[ 'md' ];
 
             //get the article container width in pixels
@@ -343,7 +335,7 @@ class CZR_gallery {
 
             //(4.a)
             $_image_size = ( $gallery_columns > 3 && 'narrow' == $content_breadth ) ? $article_container_width / 4 :  $article_container_width / $gallery_columns ;
-            //avoid adjacents duplicate sizes => make the mq's smaller bp win  
+            //avoid adjacents duplicate sizes => make the mq's smaller bp win
             if ( $_image_size != $image_size ) {
                   $image_size = $_image_size;
                   //$sizes[] = sprintf( '(min-width: %1$spx) and (max-width: %2$spx) %3$spx',
@@ -356,7 +348,7 @@ class CZR_gallery {
             }
 
             //Considering 3 columns, with two sidebars:
-            //Sizes now looks like: 
+            //Sizes now looks like:
             //Array
             //(
             //    [0] => (min-width: 576px) 150px
@@ -369,7 +361,7 @@ class CZR_gallery {
                   //get the article container width in pixels
                   $article_container_width = $css_container_width * $article_container_width_md_up_ratio;
 
-                  //avoid adjacents duplicate sizes => make the mq's smaller bp win  
+                  //avoid adjacents duplicate sizes => make the mq's smaller bp win
                   $_image_size = $article_container_width / $gallery_columns;
 
                   if ( $_image_size != $image_size ) {
@@ -383,7 +375,7 @@ class CZR_gallery {
 
 
             //Considering 3 columns, with two sidebars:
-            //Sizes now looks like: 
+            //Sizes now looks like:
             //Array
             //(
             //    [0] => (min-width: 576px) 150px

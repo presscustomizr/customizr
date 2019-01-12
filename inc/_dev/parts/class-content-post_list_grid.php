@@ -2,14 +2,6 @@
 /**
 * Post lists grid content actions
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.2.11
-* @author       Rocco Aliberti <rocco@presscustomizr.com>, Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2015, Rocco Aliberti, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_post_list_grid' ) ) :
     class CZR_post_list_grid {

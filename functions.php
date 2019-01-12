@@ -11,12 +11,6 @@
 * You should have received a copy of the GNU General Public License along with this program; if not, write
 * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 *
-* @package   	Customizr
-* @since     	1.0
-* @author    	Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright 	Copyright (c) 2013-2016, Nicolas GUILLAUME
-* @link      	http://presscustomizr.com/customizr
-* @license   	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
 if ( !defined( 'CZR_MIN_PHP_VERSION' ) ) define ( 'CZR_MIN_PHP_VERSION', 5.3 );
