@@ -480,7 +480,8 @@
                               'tc_home_header_skin',
                               'tc_header_custom_bg_color',
                               'tc_header_custom_fg_color',
-                              'tc_header_skin'
+                              'tc_header_skin',
+                              'tc_header_no_borders'
                             ],
                             visibility: function (to, servusShortId ) {
                                   var bool;
@@ -492,6 +493,7 @@
                                       case 'tc_header_skin' :
                                           bool = ! _is_checked(to);
                                       break;
+                                      case 'tc_header_no_borders' :
                                       case 'tc_home_header_skin' :
                                           bool = _is_checked(to);
                                       break;

@@ -50,6 +50,13 @@
     &.border-top {
       border-top-color: transparent;
     }
+    &.no-borders {
+        &,
+        .topbar-navbar__wrapper,
+        .mobile-nav__container {
+            border-color: transparent;
+        }
+    }
 }
 
 .header-transparent:not(.is-sticky),

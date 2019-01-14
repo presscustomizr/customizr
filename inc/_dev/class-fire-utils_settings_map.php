@@ -554,6 +554,7 @@ class CZR_utils_settings_map {
                   'tc_header_custom_fg_color',
                   'tc_header_transparent_home',
                   'tc_home_header_skin',
+                  'tc_header_no_borders',
                   'tc_header_title_underline',
                   'tc_header_show_topbar',
                   'tc_header_show_socials',
