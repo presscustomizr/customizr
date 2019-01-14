@@ -14,7 +14,7 @@
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
   <!-- scripts for IE8 and less  -->
   <!--[if lt IE 9]>
-    <script src="<?php echo CZR_FRONT_ASSETS_URL ?>js/vendors/html5.js"></script>
+    <script src="<?php echo CZR_FRONT_ASSETS_URL ?>js/libs/html5.js"></script>
   <![endif]-->
 <?php
   wp_head();
