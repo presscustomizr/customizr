@@ -231,6 +231,9 @@ class CZR_header_model_class extends CZR_Model {
     /* Header transparent in home*/
     if ( czr_fn_is_home_and_header_transparent_set() ) {
       $element_class[] = 'header-transparent';
+      if ( 1 == esc_attr( czr_fn_opt( 'tc_header_no_borders' ) ) ) {
+        $element_class[] = 'no-borders';
+      }
     }
 
     /* TOP BORDER */
