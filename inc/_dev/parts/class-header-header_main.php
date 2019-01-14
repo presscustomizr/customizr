@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
 				   <!-- html5shiv for IE8 and less  -->
 				    <!--[if lt IE 9]>
-				      <script src="<?php echo TC_BASE_URL ?>inc/assets/js/html5.js"></script>
+				      <script src="<?php echo CZR_FRONT_ASSETS_URL ?>js/libs/html5.js"></script>
 				    <![endif]-->
 				    <?php wp_head(); ?>
 				</head>
