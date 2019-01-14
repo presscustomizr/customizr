@@ -189,7 +189,7 @@ var CzrSlider;
         }
       },
 
-      //init iphonecheck
+      //init checkboxes
       _init_checkboxes : function(){
         var _checkwraper_selector = '.czr-toggle-check',
             _checkboxes_selector  = _checkwraper_selector + ' input[type="checkbox"]';
