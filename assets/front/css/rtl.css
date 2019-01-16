@@ -3947,6 +3947,12 @@ embed, iframe, object, video {
   border-top-color: transparent;
 }
 
+.tc-header.header-transparent.no-borders,
+.tc-header.header-transparent.no-borders .topbar-navbar__wrapper,
+.tc-header.header-transparent.no-borders .mobile-nav__container {
+  border-color: transparent;
+}
+
 .header-transparent:not(.is-sticky) .mobile-nav__nav .dropdown-menu,
 .header-transparent:not(.is-sticky) .mobile-nav__nav .dropdown-item:active,
 .header-transparent:not(.is-sticky) .mobile-nav__nav .dropdown-item:focus,

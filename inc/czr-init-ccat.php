@@ -2,14 +2,6 @@
 /**
 * Fires the theme : constants definition, core classes loading
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR___' ) ) :
   final class CZR___ extends CZR_BASE {
@@ -270,13 +262,6 @@ endif;
 * Adds plugins compatibilities
 *
 *
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_init' ) ) :
   class CZR_init {
@@ -475,13 +460,6 @@ endif;
 /**
 * Handles various plugins compatibilty (Jetpack, Bbpress, Qtranslate, Woocommerce, The Event Calendar ...)
 *
-* @package      Customizr
-* @subpackage   classes
-* @since        3.3+
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_plugins_compat' ) ) :
   class CZR_plugins_compat {
@@ -1921,14 +1899,6 @@ endif;
 * Defines the customizer setting map
 * On live context, used to generate the default option values
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_utils_settings_map' ) ) :
 class CZR_utils_settings_map {
@@ -2480,6 +2450,7 @@ class CZR_utils_settings_map {
                   'tc_header_custom_fg_color',
                   'tc_header_transparent_home',
                   'tc_home_header_skin',
+                  'tc_header_no_borders',
                   'tc_header_title_underline',
                   'tc_header_show_topbar',
                   'tc_header_show_socials',
@@ -3330,14 +3301,6 @@ endif;
 /**
 * Defines filters and actions used in several templates/classes
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.4.39
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com> - Rocco ALIBERTI <rocco@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2017, Nicolas GUILLAUME, Rocco ALIBERTI
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_init_retro_compat' ) ) :
   class CZR_init_retro_compat {
@@ -3527,14 +3490,6 @@ endif;
 /**
 * Defines filters and actions used in several templates/classes
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_utils' ) ) :
   class CZR_utils {
@@ -3884,14 +3839,6 @@ endif;
 /**
 * Loads front end stylesheets and scripts
 *
-*
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_resources' ) ) :
 	class CZR_resources {
@@ -4680,13 +4627,6 @@ endif;
 * CZR_utils::$inst -> footer_widgets for the footer
 * The widget area are then fired in the class below
 *
-* @package      Customizr
-* @subpackage   classes
-* @since        3.0
-* @author       Nicolas GUILLAUME <nicolas@presscustomizr.com>
-* @copyright    Copyright (c) 2013-2015, Nicolas GUILLAUME
-* @link         http://presscustomizr.com/customizr
-* @license      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 if ( ! class_exists( 'CZR_widgets' ) ) :
   class CZR_widgets {
