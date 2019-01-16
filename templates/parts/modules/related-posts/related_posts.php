@@ -4,7 +4,7 @@
 */
 ?>
 <?php if ( have_posts() ) : ?>
-<section class="post-related-articles czr-carousel <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
+<section class="post-related-articles czr-carousel <?php czr_fn_echo('element_class') ?>" id="related-posts-section" <?php czr_fn_echo('element_attributes') ?>>
   <header class="row flex-row">
     <h3 class="related-posts_title col"><?php _e('You may also like', 'customizr') ?></h3>
     <?php if ( $wp_query->post_count > 2 ) :
