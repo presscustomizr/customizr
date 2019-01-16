@@ -1,4 +1,4 @@
-# Customizr v4.1.25 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.26 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,13 @@ All other theme assets like scripts, stylesheets are licensed under GNU General 
 See headers of each files for further details.
 
 ## Changelog
+= 4.1.26 January 16th, 2019 =
+* fixed : wrong html5 shiv file path. fixes #1657
+* improved : add an option to remove the various transparent header borders. fixes #1624
+* improved : remove unused iphone checkboxes assets. fixes #1627
+* added : compatibility with the Q2W3 plugin
+* added : registered a new Nimble builder location above the footer. fixes #1664
+
 = 4.1.25 December 22nd, 2018 =
 * improved : add block editor style rtl, and make sure it is loaded when is_rtl(). fixes #1651
 
