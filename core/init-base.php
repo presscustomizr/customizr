@@ -1098,8 +1098,10 @@ require_once( get_template_directory() . ( czr_fn_is_ms() ? '/core/init.php' : '
 add_action( 'init', 'czr_fn_maybe_register_nimble_location');
 function czr_fn_maybe_register_nimble_location() {
     if ( function_exists('nimble_register_location') ) {
-        nimble_register_location('__after_header', array( 'priority' => PHP_INT_MAX ) );
-        nimble_register_location('__before_main_wrapper', array( 'priority' => PHP_INT_MAX ) );
+        nimble_register_location('__after_header', array( 'priority' => PHP_INT_MAX ) );// fired in templates/parts/header.php
+        nimble_register_location('__before_main_wrapper', array( 'priority' => PHP_INT_MAX ) );// fired in templates/index-no-model.php
+        //nimble_register_location('__after_main_wrapper', array( 'priority' => PHP_INT_MAX ) ); // fired in /wp-content/themes/customizr/templates/parts/footer.php
+        nimble_register_location('__before_footer', array( 'priority' => PHP_INT_MAX ) ); // fired in templates/parts/footer.php
     }
 }
 
