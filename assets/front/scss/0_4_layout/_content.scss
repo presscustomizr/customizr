@@ -193,6 +193,26 @@ dl {
 }
 
 
+%dl_reset {
+  margin-bottom: 0;
+  dt {
+    white-space: normal;
+    clear: none;
+    text-align: inherit;
+    padding: 0;
+    &::before {
+      display: none;
+    }
+  }
+  dd {
+    padding: 0;
+  }
+  p {
+    margin-top: 0;
+  }
+}
+
+
 /* featured pages*/
 .marketing {
   margin-bottom: $base-line-height * 5;
@@ -274,5 +294,3 @@ dl {
     color: $grey-dark;
   }
 }
-
-

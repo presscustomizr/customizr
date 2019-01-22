@@ -284,8 +284,12 @@
       float: right;
     }
   }
-
 }
+.widget_shopping_cart dl,
+.woocommerce-cart-form dl{
+  @extend %dl_reset;
+}
+
 //wpcf7 forms can use themeform style
 .wpcf7-form {
   @extend .themeform;
