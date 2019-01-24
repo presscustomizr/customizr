@@ -95,14 +95,15 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6, p {
   margin-top: $base-line-height;
 }
-
 h6 {
   // @extend .semi-bold;
   color:$grey ;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-
+li p {
+  margin-top: 0
+}
 //we don't use this
 //.display {
 //  @include ms-respond(font-size, 9);
