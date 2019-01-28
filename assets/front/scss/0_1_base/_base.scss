@@ -92,7 +92,7 @@ dl dt {
 }
 
 pre code, tt {
-  @include box-sizing(border-box)
+  @include box-sizing(border-box);
   font-size: inherit;
   white-space: pre-wrap !important;
   background: transparent;
