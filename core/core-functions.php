@@ -1911,7 +1911,22 @@ endif;
 if ( ! function_exists( 'czr_fn_is_home_and_header_transparent_set' ) ):
   // @return bool
   function czr_fn_is_home_and_header_transparent_set() {
-      return apply_filters( 'czr_header_transparent', ( 1 == esc_attr( czr_fn_opt( 'tc_header_transparent_home' ) ) ) && czr_fn_is_real_home() );
+      // Conditions to meet are:
+      // 1) option checked
+      // 2) is real home
+      // 3) is the first page of a paginated home see https://github.com/presscustomizr/customizr/issues/1665
+
+      if ( apply_filters( 'czr_header_transparent_disabled_if_not_first_page', true ) ) {
+        global $wp_query;
+
+        $_is_not_first_page = isset( $wp_query->query_vars['paged'] ) && $wp_query->query_vars['paged'] > 1 ||
+                              isset( $wp_query->query_vars['page'] ) && $wp_query->query_vars['page'] > 1;
+
+        $disable_because_not_first_page   = $_is_not_first_page;
+      } else {
+        $disable_because_not_first_page   = false;
+      }
+      return apply_filters( 'czr_header_transparent', ( 1 == esc_attr( czr_fn_opt( 'tc_header_transparent_home' ) ) ) && czr_fn_is_real_home() && ! $disable_because_not_first_page );
   }
 endif;
 
