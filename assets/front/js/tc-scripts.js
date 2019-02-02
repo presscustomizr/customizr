@@ -5397,7 +5397,7 @@ var czrapp = czrapp || {};
                 self = this,
                 $_links = $('a[data-anchor-scroll="true"][href^="#"]').not( _excl_sels );
             if ( czrapp.localized.isAnchorScrollEnabled ) {
-                $_links = $_links.add( '#content a[href^="#"]').not( _excl_sels );
+                $_links = $_links.add( '#tc-page-wrap a[href^="#"],#tc-sn a[href^="#"]').not( _excl_sels );
             }
             var   _links,
                   _deep_excl = _.isObject( czrapp.localized.anchorSmoothScrollExclude.deep ) ? czrapp.localized.anchorSmoothScrollExclude.deep : null;
@@ -5424,73 +5424,73 @@ var czrapp = czrapp || {};
                   }
                   return false;
             });//click
-          },
-          gutenbergAlignfull : function() {
-                var _isPage   = czrapp.$_body.hasClass( 'page' ),
-                    _isSingle = czrapp.$_body.hasClass( 'single' ),
-                    _coverImageSelector = '.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-cover]',
-                    _alignFullSelector  = '.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block]',
-                    _alignTableSelector = [
-                                          '.czr-boxed-layout .entry-content .wp-block-table.alignfull',
-                                          '.czr-boxed-layout .entry-content .wp-block-table.alignwide',
-                                          '.czr-full-layout.czr-no-sidebar .entry-content .wp-block-table.alignwide'
-                                        ];
-                if ( ! ( _isPage || _isSingle ) ) {
-                      return;
-                }
+      },
+      gutenbergAlignfull : function() {
+            var _isPage   = czrapp.$_body.hasClass( 'page' ),
+                  _isSingle = czrapp.$_body.hasClass( 'single' ),
+                  _coverImageSelector = '.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block-cover]',
+                  _alignFullSelector  = '.czr-full-layout.czr-no-sidebar .entry-content .alignfull[class*=wp-block]',
+                  _alignTableSelector = [
+                                    '.czr-boxed-layout .entry-content .wp-block-table.alignfull',
+                                    '.czr-boxed-layout .entry-content .wp-block-table.alignwide',
+                                    '.czr-full-layout.czr-no-sidebar .entry-content .wp-block-table.alignwide'
+                                    ];
+            if ( ! ( _isPage || _isSingle ) ) {
+                  return;
+            }
 
-                if ( _isSingle ) {
-                      _coverImageSelector = '.single' + _coverImageSelector;
-                      _alignFullSelector  = '.single' + _alignFullSelector;
-                      _alignTableSelector = '.single' + _alignTableSelector.join(',.single');
-                } else {
-                      _coverImageSelector = '.page' + _coverImageSelector;
-                      _alignFullSelector  = '.page' + _alignFullSelector;
-                      _alignTableSelector = '.page' + _alignTableSelector.join(',.page');
-                }
+            if ( _isSingle ) {
+                  _coverImageSelector = '.single' + _coverImageSelector;
+                  _alignFullSelector  = '.single' + _alignFullSelector;
+                  _alignTableSelector = '.single' + _alignTableSelector.join(',.single');
+            } else {
+                  _coverImageSelector = '.page' + _coverImageSelector;
+                  _alignFullSelector  = '.page' + _alignFullSelector;
+                  _alignTableSelector = '.page' + _alignTableSelector.join(',.page');
+            }
 
 
-                var _coverWParallaxImageSelector   = _coverImageSelector + '.has-parallax',
-                    _classParallaxTreatmentApplied = 'czr-alignfull-p',
-                    $_refWidthElement              = $('#tc-page-wrap'),
-                    $_refContainedWidthElement     = $( '.container[role="main"]', $_refWidthElement );
+            var _coverWParallaxImageSelector   = _coverImageSelector + '.has-parallax',
+                  _classParallaxTreatmentApplied = 'czr-alignfull-p',
+                  $_refWidthElement              = $('#tc-page-wrap'),
+                  $_refContainedWidthElement     = $( '.container[role="main"]', $_refWidthElement );
 
-                if ( $( _alignFullSelector ).length > 0 ) {
-                      _add_alignelement_style( $_refWidthElement, _alignFullSelector, 'czr-gb-alignfull' );
-                      if ( $(_coverWParallaxImageSelector).length > 0 ) {
+            if ( $( _alignFullSelector ).length > 0 ) {
+                  _add_alignelement_style( $_refWidthElement, _alignFullSelector, 'czr-gb-alignfull' );
+                  if ( $(_coverWParallaxImageSelector).length > 0 ) {
+                  _add_parallax_treatment_style();
+                  }
+                  czrapp.userXP.windowWidth.bind( function() {
+                        _add_alignelement_style( $_refWidthElement, _alignFullSelector, 'czr-gb-alignfull' );
                         _add_parallax_treatment_style();
-                      }
-                      czrapp.userXP.windowWidth.bind( function() {
-                            _add_alignelement_style( $_refWidthElement, _alignFullSelector, 'czr-gb-alignfull' );
-                            _add_parallax_treatment_style();
-                      });
-                }
-                if ( $( _alignTableSelector ).length > 0 ) {
-                      _add_alignelement_style( $_refContainedWidthElement, _alignTableSelector, 'czr-gb-aligntable' );
-                      czrapp.userXP.windowWidth.bind( function() {
-                            _add_alignelement_style( $_refContainedWidthElement, _alignTableSelector, 'czr-gb-aligntable' );
-                      });
-                }
-                function _add_parallax_treatment_style() {
-                      $( _coverWParallaxImageSelector ).each(function() {
-                            $(this)
-                                  .css( 'left', '' )
-                                  .css( 'left', -1 * $(this).offset().left )
-                                  .addClass(_classParallaxTreatmentApplied);
-                      });
-                }
-                function _add_alignelement_style( $_refElement, _selector, _styleId ) {
-                      var newElementWidth = $_refElement[0].getBoundingClientRect().width,
-                          $_style         = $( 'head #' + _styleId );
+                  });
+            }
+            if ( $( _alignTableSelector ).length > 0 ) {
+                  _add_alignelement_style( $_refContainedWidthElement, _alignTableSelector, 'czr-gb-aligntable' );
+                  czrapp.userXP.windowWidth.bind( function() {
+                        _add_alignelement_style( $_refContainedWidthElement, _alignTableSelector, 'czr-gb-aligntable' );
+                  });
+            }
+            function _add_parallax_treatment_style() {
+                  $( _coverWParallaxImageSelector ).each(function() {
+                        $(this)
+                              .css( 'left', '' )
+                              .css( 'left', -1 * $(this).offset().left )
+                              .addClass(_classParallaxTreatmentApplied);
+                  });
+            }
+            function _add_alignelement_style( $_refElement, _selector, _styleId ) {
+                  var newElementWidth = $_refElement[0].getBoundingClientRect().width,
+                        $_style         = $( 'head #' + _styleId );
 
-                      if ( 1 > $_style.length ) {
-                            $_style = $('<style />', { 'id' : _styleId });
-                            $( 'head' ).append( $_style );
-                            $_style = $( 'head #' + _styleId );
-                      }
-                      $_style.html( _selector + '{width:'+ newElementWidth +'px}' );
-                }
-          }
+                  if ( 1 > $_style.length ) {
+                        $_style = $('<style />', { 'id' : _styleId });
+                        $( 'head' ).append( $_style );
+                        $_style = $( 'head #' + _styleId );
+                  }
+                  $_style.html( _selector + '{width:'+ newElementWidth +'px}' );
+            }
+      }
 
    };//_methods{}
 

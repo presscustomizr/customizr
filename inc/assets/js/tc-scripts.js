@@ -5010,7 +5010,7 @@ var czrapp = czrapp || {};
 
               var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude.simple ) ) ? TCParams.anchorSmoothScrollExclude.simple.join(',') : '',
                   self = this,
-                  $_links = $('a[href^="#"]', '#content').not(_excl_sels);
+                  $_links = $('#tc-page-wrap a[href^="#"],#tc-sn a[href^="#"]').not(_excl_sels);
               var _links, _deep_excl = _.isObject( TCParams.anchorSmoothScrollExclude.deep ) ? TCParams.anchorSmoothScrollExclude.deep : null ;
               if ( _deep_excl )
                 _links = _.toArray($_links).filter( function ( _el ) {
@@ -5068,7 +5068,7 @@ var czrapp = czrapp || {};
               function _toggleThisOnClass( evt ) {
                     _toggleElementClassOnHover( $(this), 'on', evt );
               }
-              
+
               function _toggleElementClassOnHover( $_el, _class, _evt ) {
                     if ( 'mouseenter' == _evt.type )
                        $_el.addClass( _class );

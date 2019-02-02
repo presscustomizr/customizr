@@ -573,6 +573,8 @@ var czrapp = czrapp || {};
 
             //Widen the number of candidates if the user option is enabled
             if ( czrapp.localized.isAnchorScrollEnabled ) {
+                // Makes sure we include not only the anchor links not only in the content but also in header and footer
+                // https://github.com/presscustomizr/customizr/issues/1662
                 $_links = $_links.add( '#tc-page-wrap a[href^="#"],#tc-sn a[href^="#"]').not( _excl_sels );
             }
             //Deep exclusion

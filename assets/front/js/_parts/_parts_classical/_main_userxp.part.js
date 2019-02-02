@@ -65,6 +65,8 @@ var czrapp = czrapp || {};
 
               var _excl_sels = ( TCParams.anchorSmoothScrollExclude && _.isArray( TCParams.anchorSmoothScrollExclude.simple ) ) ? TCParams.anchorSmoothScrollExclude.simple.join(',') : '',
                   self = this,
+                  // Makes sure we include not only the anchor links not only in the content but also in header and footer
+                  // https://github.com/presscustomizr/customizr/issues/1662
                   $_links = $('#tc-page-wrap a[href^="#"],#tc-sn a[href^="#"]').not(_excl_sels);
 
               //Deep exclusion

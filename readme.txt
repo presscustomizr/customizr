@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.26
+Stable tag: 4.1.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,16 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.26 =
-Improved the design of the header when absolute positionned on top of the content. Added a new location above the footer to insert Nimble Builder sections.
+= 4.1.27 =
+Fixed minor style problems of the WooCommerce cart. Improved header style when positioned on top of the content.
 
 == Changelog ==
+= 4.1.27 February 2nd, 2019 =
+* fixed : the absolute positioned header should be displayed only when on home AND on first paginated page of the blog. fixes #1665
+* fixed : WooCommerce cart style issue when using several variations. fixes #1667
+* fixed : reset margin-top when a p html elemnt is a child of a li html element. fixes #1400
+* improved : extend anchor smooth scroll range of action. fixes #1662
+
 = 4.1.26 January 16th, 2019 =
 * fixed : wrong html5 shiv file path. fixes #1657
 * improved : remove unused iphone checkboxes assets. fixes #1627

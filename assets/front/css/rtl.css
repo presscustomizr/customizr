@@ -2597,6 +2597,10 @@ h6 {
   letter-spacing: 2px;
 }
 
+li p {
+  margin-top: 0;
+}
+
 blockquote > * {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
@@ -7419,6 +7423,34 @@ dl .wp-caption-dt::before {
 
 dl dd {
   padding-right: 1.25em;
+}
+
+.widget_shopping_cart dl,
+.woocommerce-cart-form dl {
+  margin-bottom: 0;
+}
+
+.widget_shopping_cart dl dt,
+.woocommerce-cart-form dl dt {
+  white-space: normal;
+  clear: none;
+  text-align: inherit;
+  padding: 0;
+}
+
+.widget_shopping_cart dl dt::before,
+.woocommerce-cart-form dl dt::before {
+  display: none;
+}
+
+.widget_shopping_cart dl dd,
+.woocommerce-cart-form dl dd {
+  padding: 0;
+}
+
+.widget_shopping_cart dl p,
+.woocommerce-cart-form dl p {
+  margin-top: 0;
 }
 
 /* featured pages*/
