@@ -694,11 +694,13 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         */
         function czr_fn_set_early_hooks() {
             //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
-            add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
+            add_action ( 'pre_get_posts'                , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
+            //Make sure the infinite scroll query object is filtered as well
+            add_filter ( 'infinite_scroll_query_object' , array( $this , 'czr_fn_filter_home_blog_infinite_posts_by_tax' ) );
             //Include attachments in search results
-            add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_attachments_in_search' ));
+            add_action ( 'pre_get_posts'                , array( $this , 'czr_fn_include_attachments_in_search' ));
             //Include all post types in archive pages
-            add_action ( 'pre_get_posts'         , array( $this , 'czr_fn_include_cpt_in_lists' ));
+            add_action ( 'pre_get_posts'                , array( $this , 'czr_fn_include_cpt_in_lists' ));
         }
 
 
@@ -711,18 +713,35 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         * @since Customizr 3.4.10
         */
         function czr_fn_filter_home_blog_posts_by_tax( $query ) {
+          $this->_czr_fn_filter_home_blog_posts_by_tax( $query );
+        }
+
+
+        /**
+        * hook : infinite_scroll_query_object
+        * Filter home/blog posts by tax: cat
+        * @return modified query object
+        * @package Customizr
+        */
+        function czr_fn_filter_home_blog_infinite_posts_by_tax( $query ) {
+          return $this->_czr_fn_filter_home_blog_posts_by_tax( $query, $reset_cat_category_name = true );
+        }
+
+        private function _czr_fn_filter_home_blog_posts_by_tax( $query, $reset_cat_category_name = false ) {
             // when we have to filter?
             // in home and blog page
-            if ( ! $query->is_main_query()
+            if ( is_admin() || ! $query->is_main_query()
               || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
-            )
-              return;
+            ) {
+                return $query;
+            }
 
             //temp: do not filter in classic style when classic grid enabled and infinite scroll enabled in home/blog
             if ( ! CZR_IS_MODERN_STYLE &&
               'grid'== esc_attr( czr_fn_opt( 'tc_post_list_grid' ) ) &&
-               class_exists( 'PC_init_infinite' ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll' ) ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll_in_home' ) ) )
-            return;
+               class_exists( 'PC_init_infinite' ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll' ) ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll_in_home' ) ) ) {
+                return $query;
+            }
 
             // categories
             // we have to ignore sticky posts (do not prepend them)
@@ -731,11 +750,27 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
             if ( is_array( $cats ) && ! empty( $cats ) ){
-               $query->set('category__in', $cats );
-               $query->set('ignore_sticky_posts', 1 );
-               add_filter('tc_grid_expand_featured', '__return_false');
+              // Fix for https://github.com/presscustomizr/customizr-pro/issues/46
+              // Basically when we filtering the blog with more than one category
+              // "infinte posts" are filtered by the category with the smaller ID defined in $cats.
+              // The reason is that the infinite scroll query takes ar arguments the query vars of the
+              // "first page" query, that are localized and then sent back in the ajax request, and
+              // when we apply the category__in 'filter' to the blog page, for some reason, the main wp_query
+              // vars "cat" and "category_name" are set as the ID and the name of the smaller ID defined in $cats.
+              // With the if block below we vaoid this unwanted behavior.
+              if ( $reset_cat_category_name ) {
+                $query->set( 'cat', '' );
+                $query->set( 'category_name', '' );
+              }
+
+              $query->set('category__in', $cats );
+              $query->set('ignore_sticky_posts', 1 );
+              add_filter('tc_grid_expand_featured', '__return_false');
             }
+            return $query;
         }
+
+
 
 
         /**
