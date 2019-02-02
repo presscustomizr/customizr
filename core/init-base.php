@@ -695,7 +695,8 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         function czr_fn_set_early_hooks() {
             //Filter home/blog postsa (priority 9 is to make it act before the grid hook for expanded post)
             add_action ( 'pre_get_posts'                , array( $this , 'czr_fn_filter_home_blog_posts_by_tax' ), 9);
-            //Make sure the infinite scroll query object is filtered as well
+            // Make sure the infinite scroll query object is filtered as well
+            // Fix for https://github.com/presscustomizr/customizr-pro/issues/46
             add_filter ( 'infinite_scroll_query_object' , array( $this , 'czr_fn_filter_home_blog_infinite_posts_by_tax' ) );
             //Include attachments in search results
             add_action ( 'pre_get_posts'                , array( $this , 'czr_fn_include_attachments_in_search' ));
@@ -727,6 +728,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
           return $this->_czr_fn_filter_home_blog_posts_by_tax( $query, $reset_cat_category_name = true );
         }
 
+        // this method was implemented to fix https://github.com/presscustomizr/customizr-pro/issues/46
         private function _czr_fn_filter_home_blog_posts_by_tax( $query, $reset_cat_category_name = false ) {
             // when we have to filter?
             // in home and blog page
@@ -751,13 +753,13 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
             if ( is_array( $cats ) && ! empty( $cats ) ){
               // Fix for https://github.com/presscustomizr/customizr-pro/issues/46
-              // Basically when we filtering the blog with more than one category
-              // "infinte posts" are filtered by the category with the smaller ID defined in $cats.
-              // The reason is that the infinite scroll query takes ar arguments the query vars of the
+              // Basically when we filter the blog with more than one category
+              // "infinite posts" are filtered by the category with the smaller ID defined in $cats.
+              // The reason is that the infinite scroll query takes as arguments the query vars of the
               // "first page" query, that are localized and then sent back in the ajax request, and
               // when we apply the category__in 'filter' to the blog page, for some reason, the main wp_query
               // vars "cat" and "category_name" are set as the ID and the name of the smaller ID defined in $cats.
-              // With the if block below we vaoid this unwanted behavior.
+              // With the if block below we avoid this unwanted behavior.
               if ( $reset_cat_category_name ) {
                 $query->set( 'cat', '' );
                 $query->set( 'category_name', '' );
