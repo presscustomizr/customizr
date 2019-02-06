@@ -143,7 +143,6 @@ img.v-centered {
   margin: 8px auto;
   position: relative;
   @include backface-visibility( hidden );
-  @include perspective( 1000px );
   @include transform-style( preserve-3d );
   img {
     position: absolute;
