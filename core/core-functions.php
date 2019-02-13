@@ -1441,10 +1441,11 @@ function czr_fn_is_home() {
 *
 */
 function czr_fn_is_real_home() {
-  //get info whether the front page is a list of last posts or a page
+  // Warning : when show_on_front is a page, but no page_on_front has been picked yet, is_home() is true
+  // beware of https://github.com/presscustomizr/nimble-builder/issues/349
   return ( is_home() && ( 'posts' == get_option( 'show_on_front' ) || 'nothing' == get_option( 'show_on_front' ) ) )
-    || ( 0 == get_option( 'page_on_front' ) && 'page' == get_option( 'show_on_front' ) )//<= this is the case when the user want to display a page on home but did not pick a page yet
-    || is_front_page();
+  || ( is_home() && 0 == get_option( 'page_on_front' ) && 'page' == get_option( 'show_on_front' ) )//<= this is the case when the user want to display a page on home but did not pick a page yet
+  || is_front_page();
 }
 
 
