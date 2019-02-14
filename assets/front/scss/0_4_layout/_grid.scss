@@ -832,7 +832,6 @@ a.czr-format-link {
   @include flex-nowrap();
   @include backface-visibility(hidden);
   @include transform-style(preserve-3d);
-  @include perspective(1000px);
 
   .grid__item {
     outline: none;
@@ -852,7 +851,6 @@ a.czr-format-link {
     white-space: normal;
     @include backface-visibility(hidden);
     @include transform-style(preserve-3d);
-    @include perspective(1000px);
     @extend .small;
   }
 

@@ -1049,7 +1049,6 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
 
   &::before {
     @include backface-visibility( hidden );
-    @include perspective( 1000px );
     @include transform-style( preserve-3d );
     position: absolute;
     width: 63%;
