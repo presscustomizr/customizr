@@ -23,7 +23,6 @@
     @include opacity(0);
     @include transition (visibility 0.6s ease-in-out, opacity 0.6s ease-in-out );
     @include backface-visibility(hidden);
-    perspective: 1000px;
 
     [class*="col-"] {
       position: relative;
