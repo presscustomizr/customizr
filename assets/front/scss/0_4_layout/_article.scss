@@ -877,3 +877,8 @@ section.post-content { margin-top:0; }
 .post-footer .col-sm-auto {
   max-width: 100%;
 }
+// to avoid issues with pugins printing floating elements after the content and before the post-footer
+// where we display the tags, e.g. ultimate-social-media-icons
+.post-footer.clearfix {
+  clear: both;
+}
