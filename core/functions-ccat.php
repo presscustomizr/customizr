@@ -1364,10 +1364,10 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
       $_requested_size = 'thumb-medium';
 
     //default $img_src
-    $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
+    $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "front/img/{$_requested_size}.png" );
     if ( apply_filters( 'czr-use-svg-thumb-placeholder', true ) ) {
         $_size = $_requested_size . '-empty';
-        $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_size}.png" );
+        $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "front/img/{$_size}.png" );
         $_svg_height = in_array($_size, array( 'thumb-medium', 'thumb-standard' ) ) ? 100 : 60;
         ob_start();
         ?>
@@ -1385,25 +1385,37 @@ if ( ! function_exists( 'czr_fn_get_placeholder_thumb' ) ) {
     $filter = apply_filters( 'czr_placeholder_thumb_filter', false );
     //make sure we did not lose the img_src
     if ( false == $_img_src )
-      $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "/front/img/{$_requested_size}.png" );
+      $_img_src = czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . "front/img/{$_requested_size}.png" );
+
+    $thumb_to_sizes = array(
+      //thumb => width, height
+      'thumb-medium' => array( '520', '245' ),
+      'thumb-small' => array( '160', '160' ),
+      'thumb-standard' => array( '300', '300' )
+    );
 
     $attr = array(
       'class'             => 'czr-img-placeholder',
       'src'               => $_img_src,
       'alt'               => trim( strip_tags( get_the_title() ) ),
-      'data-czr-post-id'  => $_unique_id,   
+      'data-czr-post-id'  => $_unique_id,
+      //$_requested_size is always forced to have a value present in this array $_sizes = array( 'thumb-medium', 'thumb-small', 'thumb-standard' );
+      'width'             => $thumb_to_sizes[$_requested_size][0],
+      'height'            => $thumb_to_sizes[$_requested_size][1]
     );
 
     $attr = apply_filters( 'czr_placeholder_image_attributes', $attr );
     $attr = array_filter( array_map( 'esc_attr', $attr ) );
 
-    return sprintf( '%1$s%2$s<img class="%3$s" src="%4$s" alt="%5$s" data-czr-post-id="%6$s" />',
+    return sprintf( '%1$s%2$s<img class="%3$s" src="%4$s" alt="%5$s" data-czr-post-id="%6$s" width="%7$s" height="%8$s"/>',
       isset($_svg_placeholder) ? $_svg_placeholder : '',
       false !== $filter ? $filter : '',
       isset( $attr[ 'class' ] ) ? $attr[ 'class' ] : '',
       isset( $attr[ 'src' ] ) ? $attr[ 'src' ] : '',
       isset( $attr[ 'alt' ] ) ? $attr[ 'alt' ] : '',
-      isset( $attr[ 'data-czr-post-id' ] ) ? $attr[ 'data-czr-post-id' ] : ''
+      isset( $attr[ 'data-czr-post-id' ] ) ? $attr[ 'data-czr-post-id' ] : '',
+      isset( $attr[ 'width' ] ) ? $attr[ 'width' ] : '',
+      isset( $attr[ 'height' ] ) ? $attr[ 'height' ] : ''
     );
   }
 }

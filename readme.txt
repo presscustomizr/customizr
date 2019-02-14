@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.27
+Stable tag: 4.1.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.27 =
-Fixed minor style problems of the WooCommerce cart. Improved header style when positioned on top of the content.
+= 4.1.28 =
+Improved compatibility with the Social Media Share Buttons & Social Sharing Icons plugin. Removed unwanted lines displayed around the images of the featured pages on chrome.
 
 == Changelog ==
+= 4.1.28 February 14th, 2019 =
+* fixed : removed unwanted lines displayed around the images of the featured pages on chrome
+* fixed : assigned width and height attributes to placehoder images. fixes #1684
+* improved : compatibility with the Social Media Share Buttons & Social Sharing Icons plugin. fixes #1683
+    
 = 4.1.27 February 2nd, 2019 =
 * fixed : the absolute positioned header should be displayed only when on home AND on first paginated page of the blog. fixes #1665
 * fixed : WooCommerce cart style issue when using several variations. fixes #1667

@@ -3307,8 +3307,6 @@ img.v-centered {
   position: relative;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -4179,8 +4177,6 @@ embed, iframe, object, video {
   transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   text-align: center;
   vertical-align: baseline;
   line-height: 0;
@@ -4897,8 +4893,6 @@ li#wp-admin-bar-tc-customizr-help a {
   position: fixed;
   visibility: hidden;
   outline: 1px solid;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
@@ -6288,8 +6282,6 @@ html.no-js [id*=czr-slider-loader-wrapper] {
 .czr-link-mask::before {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   position: absolute;
@@ -7129,7 +7121,6 @@ section[class^="post-"] .gallery.row {
   transition: visibility 0.6s ease-in-out, opacity 0.6s ease-in-out;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 .czr-overlay .overlay-content [class*="col-"] {
@@ -8448,8 +8439,6 @@ a.czr-format-link {
   backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
 }
 
 .grid-container__square-mini .grid__item {
@@ -8475,8 +8464,6 @@ a.czr-format-link {
   backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
 }
 
 .grid-container__square-mini .grid__item {
@@ -9420,6 +9407,10 @@ section.post-content {
 .tc-content-inner-wrapper .entry-meta .post-share,
 .post-footer .col-sm-auto {
   max-width: 100%;
+}
+
+.post-footer.clearfix {
+  clear: both;
 }
 
 @media screen and (min-width: 480px) and (max-width: 667px) {

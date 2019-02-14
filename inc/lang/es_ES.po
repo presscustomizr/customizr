@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.27\n"
+"Project-Id-Version: * Customizr v4.1.28\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-02-02 17:12:21+00:00\n"
+"POT-Creation-Date: 2019-02-14 14:28:08+00:00\n"
 "PO-Revision-Date: 2016-08-31 16:05+0200\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Angel Calzado <angelcalzado@sintaxisweb.es>\n"
@@ -370,11 +370,11 @@ msgstr ""
 #: inc/_dev/parts/class-content-comments.php:191
 #: inc/_dev/parts/class-content-featured_pages.php:227
 #: inc/_dev/parts/class-content-headings.php:233
-#: inc/_dev/parts/class-content-slider.php:820 inc/czr-front-ccat.php:2503
-#: inc/czr-front-ccat.php:2536 inc/czr-front-ccat.php:2551
-#: inc/czr-front-ccat.php:2579 inc/czr-front-ccat.php:3087
-#: inc/czr-front-ccat.php:3636 inc/czr-front-ccat.php:4025
-#: inc/czr-front-ccat.php:8579
+#: inc/_dev/parts/class-content-slider.php:820 inc/czr-front-ccat.php:2468
+#: inc/czr-front-ccat.php:2501 inc/czr-front-ccat.php:2516
+#: inc/czr-front-ccat.php:2544 inc/czr-front-ccat.php:3052
+#: inc/czr-front-ccat.php:3601 inc/czr-front-ccat.php:3990
+#: inc/czr-front-ccat.php:8544
 msgid "Edit"
 msgstr "Editar"
 
@@ -616,8 +616,8 @@ msgstr "Actualizar Wordpress Ahora"
 #: core/_dev/_czr/class-czr-resources.php:222
 #: core/czr-base-fmk/czr-base-fmk.php:183 core/czr-customize-ccat.php:857
 #: inc/_dev/parts/class-header-menu.php:129
-#: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:811
-#: inc/czr-front-ccat.php:818
+#: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:776
+#: inc/czr-front-ccat.php:783
 msgid "Close"
 msgstr ""
 
@@ -716,13 +716,13 @@ msgstr ""
 
 #: core/_dev/_czr/controls/__DEPRECATED__class-modules-control.php:60
 #: core/czr-modules/social-links/index.php:171
-#: core/czr-modules/social-links/social_links_module.php:173
+#: core/czr-modules/social-links/social_links_module.php:172
 msgid "An error occurred: malformed social links"
 msgstr ""
 
 #: core/_dev/_czr/controls/__DEPRECATED__class-modules-control.php:104
 #: core/czr-modules/social-links/index.php:215
-#: core/czr-modules/social-links/social_links_module.php:217
+#: core/czr-modules/social-links/social_links_module.php:216
 msgid "Please fill the social link inputs with a valid URLs"
 msgstr ""
 
@@ -1362,23 +1362,23 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: core/core-functions.php:1489
+#: core/core-functions.php:1490
 msgid "Page %s"
 msgstr "P&aacute;gina %s"
 
-#: core/core-functions.php:1578
+#: core/core-functions.php:1579
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Ning&uacute;n slider &mdash;"
 
-#: core/core-functions.php:1579
+#: core/core-functions.php:1580
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Slider de demostraci&oacute;n &mdash;"
 
-#: core/core-functions.php:1580
+#: core/core-functions.php:1581
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1657
+#: core/core-functions.php:1658
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -2220,7 +2220,7 @@ msgstr ""
 
 #: core/core-settings-map.php:1227 core/core-settings-map.php:1239
 #: core/czr-base-fmk/czr-base-fmk.php:357
-#: inc/_dev/parts/class-content-headings.php:330 inc/czr-front-ccat.php:4122
+#: inc/_dev/parts/class-content-headings.php:330 inc/czr-front-ccat.php:4087
 msgid "No"
 msgstr "Sin"
 
@@ -2484,7 +2484,7 @@ msgid "Author pages titles"
 msgstr "P&aacute;ginas seg&uacute;n autor"
 
 #: core/core-settings-map.php:1564
-#: inc/_dev/parts/class-content-headings.php:331 inc/czr-front-ccat.php:4123
+#: inc/_dev/parts/class-content-headings.php:331 inc/czr-front-ccat.php:4088
 msgid "Search Results for :"
 msgstr "Resultados de la b&uacute;squeda por:"
 
@@ -3496,8 +3496,8 @@ msgstr "Archivo Anual: %s"
 #: core/front/models/content/post-lists/item-parts/contents/class-model-post_list_item_content_inner.php:183
 #: inc/_dev/parts/class-content-page.php:83
 #: inc/_dev/parts/class-content-post.php:86
-#: inc/_dev/parts/class-content-post_list.php:221 inc/czr-front-ccat.php:4436
-#: inc/czr-front-ccat.php:4694 inc/czr-front-ccat.php:5139
+#: inc/_dev/parts/class-content-post_list.php:221 inc/czr-front-ccat.php:4401
+#: inc/czr-front-ccat.php:4659 inc/czr-front-ccat.php:5104
 #: templates/parts/content/singular/page_content.php:16
 #: templates/parts/content/singular/post_content.php:18
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
@@ -3505,12 +3505,12 @@ msgstr "Continuar leyendo <span class=\"meta-nav\">&rarr;</span>"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:65
 #: core/front/models/content/post-metas/class-model-post_metas.php:71
-#: inc/_dev/parts/class-content-post_metas.php:629 inc/czr-front-ccat.php:7000
+#: inc/_dev/parts/class-content-post_metas.php:629 inc/czr-front-ccat.php:6965
 msgid "by"
 msgstr "por"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:78
-#: inc/_dev/parts/class-content-post_metas.php:201 inc/czr-front-ccat.php:6572
+#: inc/_dev/parts/class-content-post_metas.php:201 inc/czr-front-ccat.php:6537
 msgid "Published"
 msgstr "Publicado"
 
@@ -3519,24 +3519,24 @@ msgid "Updated"
 msgstr ""
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
-#: inc/_dev/parts/class-content-post_metas.php:204 inc/czr-front-ccat.php:6575
+#: inc/_dev/parts/class-content-post_metas.php:204 inc/czr-front-ccat.php:6540
 msgid "at dimensions"
 msgstr "en dimensiones"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
-#: inc/_dev/parts/class-content-post_metas.php:204 inc/czr-front-ccat.php:6575
+#: inc/_dev/parts/class-content-post_metas.php:204 inc/czr-front-ccat.php:6540
 msgid "Link to full-size image"
 msgstr "Enlazar a la imagen de tama&ntilde;o completo"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:99
 #: inc/_dev/parts/class-content-post_metas.php:205
-#: inc/_dev/parts/class-content-post_metas.php:605 inc/czr-front-ccat.php:6576
-#: inc/czr-front-ccat.php:6976
+#: inc/_dev/parts/class-content-post_metas.php:605 inc/czr-front-ccat.php:6541
+#: inc/czr-front-ccat.php:6941
 msgid "in"
 msgstr "en"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:99
-#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6576
+#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6541
 msgid "Return to "
 msgstr "Volver a"
 
@@ -3548,12 +3548,12 @@ msgid "Permalink to:&nbsp;"
 msgstr "Enlace permanente a %s"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:193
-#: inc/_dev/parts/class-content-post_metas.php:535 inc/czr-front-ccat.php:6906
+#: inc/_dev/parts/class-content-post_metas.php:535 inc/czr-front-ccat.php:6871
 msgid "View all posts by %s"
 msgstr "Ver todos los art&iacute;culos de %s"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:245
-#: inc/_dev/parts/class-content-post_metas.php:377 inc/czr-front-ccat.php:6748
+#: inc/_dev/parts/class-content-post_metas.php:377 inc/czr-front-ccat.php:6713
 msgid "View all posts in %s"
 msgstr "Ver todos los art&iacute;culos en %s"
 
@@ -3562,38 +3562,38 @@ msgstr "Ver todos los art&iacute;culos en %s"
 #: core/front/models/modules/common/class-model-breadcrumb.php:62
 #: inc/_dev/parts/class-content-breadcrumb.php:28
 #: inc/_dev/parts/class-content-breadcrumb.php:40
-#: inc/_dev/parts/class-header-menu.php:682 inc/czr-front-ccat.php:1364
-#: inc/czr-front-ccat.php:1877 inc/czr-front-ccat.php:1889
+#: inc/_dev/parts/class-header-menu.php:682 inc/czr-front-ccat.php:1329
+#: inc/czr-front-ccat.php:1842 inc/czr-front-ccat.php:1854
 msgid "Home"
 msgstr "Inicio"
 
 #: core/front/models/header/parts/class-model-menu.php:305
-#: inc/_dev/parts/class-header-menu.php:730 inc/czr-front-ccat.php:1412
+#: inc/_dev/parts/class-header-menu.php:730 inc/czr-front-ccat.php:1377
 msgid "Pages"
 msgstr ""
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:59
-#: inc/_dev/parts/class-content-breadcrumb.php:37 inc/czr-front-ccat.php:1886
+#: inc/_dev/parts/class-content-breadcrumb.php:37 inc/czr-front-ccat.php:1851
 msgid "Browse:"
 msgstr "Buscar:"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:499
-#: inc/_dev/parts/class-content-breadcrumb.php:532 inc/czr-front-ccat.php:2381
+#: inc/_dev/parts/class-content-breadcrumb.php:532 inc/czr-front-ccat.php:2346
 msgid "g:i a"
 msgstr "g:i a"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:502
-#: inc/_dev/parts/class-content-breadcrumb.php:535 inc/czr-front-ccat.php:2384
+#: inc/_dev/parts/class-content-breadcrumb.php:535 inc/czr-front-ccat.php:2349
 msgid "Minute %1$s"
 msgstr "Minuto %1$s"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:502
-#: inc/_dev/parts/class-content-breadcrumb.php:535 inc/czr-front-ccat.php:2384
+#: inc/_dev/parts/class-content-breadcrumb.php:535 inc/czr-front-ccat.php:2349
 msgid "i"
 msgstr "i"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:505
-#: inc/_dev/parts/class-content-breadcrumb.php:538 inc/czr-front-ccat.php:2387
+#: inc/_dev/parts/class-content-breadcrumb.php:538 inc/czr-front-ccat.php:2352
 msgid "g a"
 msgstr "g a"
 
@@ -3608,10 +3608,10 @@ msgstr "g a"
 #: inc/_dev/parts/class-content-breadcrumb.php:573
 #: inc/_dev/parts/class-content-breadcrumb.php:584
 #: inc/_dev/parts/class-content-breadcrumb.php:586
-#: inc/_dev/parts/class-content-breadcrumb.php:830 inc/czr-front-ccat.php:2403
-#: inc/czr-front-ccat.php:2413 inc/czr-front-ccat.php:2422
-#: inc/czr-front-ccat.php:2433 inc/czr-front-ccat.php:2435
-#: inc/czr-front-ccat.php:2679
+#: inc/_dev/parts/class-content-breadcrumb.php:830 inc/czr-front-ccat.php:2368
+#: inc/czr-front-ccat.php:2378 inc/czr-front-ccat.php:2387
+#: inc/czr-front-ccat.php:2398 inc/czr-front-ccat.php:2400
+#: inc/czr-front-ccat.php:2644
 msgid "Y"
 msgstr "Y"
 
@@ -3622,9 +3622,9 @@ msgstr "Y"
 #: inc/_dev/parts/class-content-breadcrumb.php:555
 #: inc/_dev/parts/class-content-breadcrumb.php:576
 #: inc/_dev/parts/class-content-breadcrumb.php:578
-#: inc/_dev/parts/class-content-breadcrumb.php:834 inc/czr-front-ccat.php:2404
-#: inc/czr-front-ccat.php:2425 inc/czr-front-ccat.php:2427
-#: inc/czr-front-ccat.php:2683
+#: inc/_dev/parts/class-content-breadcrumb.php:834 inc/czr-front-ccat.php:2369
+#: inc/czr-front-ccat.php:2390 inc/czr-front-ccat.php:2392
+#: inc/czr-front-ccat.php:2648
 msgid "F"
 msgstr "F"
 
@@ -3633,72 +3633,72 @@ msgstr "F"
 #: core/front/models/modules/common/class-model-breadcrumb.php:807
 #: inc/_dev/parts/class-content-breadcrumb.php:558
 #: inc/_dev/parts/class-content-breadcrumb.php:560
-#: inc/_dev/parts/class-content-breadcrumb.php:838 inc/czr-front-ccat.php:2407
-#: inc/czr-front-ccat.php:2409 inc/czr-front-ccat.php:2687
+#: inc/_dev/parts/class-content-breadcrumb.php:838 inc/czr-front-ccat.php:2372
+#: inc/czr-front-ccat.php:2374 inc/czr-front-ccat.php:2652
 msgid "d"
 msgstr "d"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:534
 #: core/front/models/modules/common/class-model-breadcrumb.php:536
 #: inc/_dev/parts/class-content-breadcrumb.php:567
-#: inc/_dev/parts/class-content-breadcrumb.php:569 inc/czr-front-ccat.php:2416
-#: inc/czr-front-ccat.php:2418
+#: inc/_dev/parts/class-content-breadcrumb.php:569 inc/czr-front-ccat.php:2381
+#: inc/czr-front-ccat.php:2383
 msgid "Week %1$s"
 msgstr "Semana %1$s"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:534
 #: core/front/models/modules/common/class-model-breadcrumb.php:536
 #: inc/_dev/parts/class-content-breadcrumb.php:567
-#: inc/_dev/parts/class-content-breadcrumb.php:569 inc/czr-front-ccat.php:2416
-#: inc/czr-front-ccat.php:2418
+#: inc/_dev/parts/class-content-breadcrumb.php:569 inc/czr-front-ccat.php:2381
+#: inc/czr-front-ccat.php:2383
 msgid "W"
 msgstr ""
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:562
 #: core/front/models/modules/common/class-model-breadcrumb.php:564
 #: inc/_dev/parts/class-content-breadcrumb.php:595
-#: inc/_dev/parts/class-content-breadcrumb.php:597 inc/czr-front-ccat.php:2444
-#: inc/czr-front-ccat.php:2446
+#: inc/_dev/parts/class-content-breadcrumb.php:597 inc/czr-front-ccat.php:2409
+#: inc/czr-front-ccat.php:2411
 msgid "Search results for &quot;%1$s&quot;"
 msgstr "Resultados de la b&uacute;squeda para &quot;%1$s&quot;"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:569
-#: inc/_dev/parts/class-content-breadcrumb.php:602 inc/czr-front-ccat.php:2451
+#: inc/_dev/parts/class-content-breadcrumb.php:602 inc/czr-front-ccat.php:2416
 msgid "404 Not Found"
 msgstr "Error 404 - P&aacute;gina no encontrada"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:575
 #: core/front/models/modules/common/class-model-breadcrumb.php:577
 #: inc/_dev/parts/class-content-breadcrumb.php:608
-#: inc/_dev/parts/class-content-breadcrumb.php:610 inc/czr-front-ccat.php:2457
-#: inc/czr-front-ccat.php:2459
+#: inc/_dev/parts/class-content-breadcrumb.php:610 inc/czr-front-ccat.php:2422
+#: inc/czr-front-ccat.php:2424
 msgid "Page %d"
 msgstr "P&aacute;gina %d"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:649
-#: inc/_dev/parts/class-content-breadcrumb.php:679 inc/czr-front-ccat.php:2528
+#: inc/_dev/parts/class-content-breadcrumb.php:679 inc/czr-front-ccat.php:2493
 msgid "Split"
 msgstr "Dividir"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:653
-#: inc/_dev/parts/class-content-breadcrumb.php:683 inc/czr-front-ccat.php:2532
+#: inc/_dev/parts/class-content-breadcrumb.php:683 inc/czr-front-ccat.php:2497
 msgid "Merge"
 msgstr "Unir"
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:803
-#: inc/_dev/parts/class-content-breadcrumb.php:834 inc/czr-front-ccat.php:2683
+#: inc/_dev/parts/class-content-breadcrumb.php:834 inc/czr-front-ccat.php:2648
 msgid "F Y"
 msgstr ""
 
 #: core/front/models/modules/common/class-model-breadcrumb.php:807
-#: inc/_dev/parts/class-content-breadcrumb.php:838 inc/czr-front-ccat.php:2687
+#: inc/_dev/parts/class-content-breadcrumb.php:838 inc/czr-front-ccat.php:2652
 msgid "F j, Y"
 msgstr ""
 
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:134
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:145
 #: inc/_dev/parts/class-content-featured_pages.php:135
-#: inc/czr-front-ccat.php:3544
+#: inc/czr-front-ccat.php:3509
 msgid "Customizer screen"
 msgstr "Personalizador"
 
@@ -3710,13 +3710,13 @@ msgstr "Opciones Tema"
 
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:159
 #: inc/_dev/parts/class-content-featured_pages.php:143
-#: inc/czr-front-ccat.php:3552
+#: inc/czr-front-ccat.php:3517
 msgid "Featured page"
 msgstr "P&aacute;gina destacada"
 
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:163
 #: inc/_dev/parts/class-content-featured_pages.php:147
-#: inc/czr-front-ccat.php:3556
+#: inc/czr-front-ccat.php:3521
 #, fuzzy
 msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
@@ -3727,7 +3727,7 @@ msgstr ""
 "de personalizaci&oacute;n de la p&aacute;gina % s."
 
 #: core/front/models/modules/slider/class-model-slider.php:429
-#: inc/_dev/parts/class-content-slider.php:964 inc/czr-front-ccat.php:8723
+#: inc/_dev/parts/class-content-slider.php:964 inc/czr-front-ccat.php:8688
 msgid "Discover how to replace or remove this demo slider."
 msgstr ""
 
@@ -3740,7 +3740,7 @@ msgid "Easily create sliders and add them in any posts or pages."
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider.php:437
-#: inc/_dev/parts/class-content-slider.php:966 inc/czr-front-ccat.php:8725
+#: inc/_dev/parts/class-content-slider.php:966 inc/czr-front-ccat.php:8690
 msgid "Check the slider doc now &raquo;"
 msgstr ""
 
@@ -3754,12 +3754,12 @@ msgid "Customize or remove the posts slider"
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:385
-#: inc/_dev/parts/class-content-slider.php:1297 inc/czr-front-ccat.php:9056
+#: inc/_dev/parts/class-content-slider.php:1297 inc/czr-front-ccat.php:9021
 msgid "Protected: %s"
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:408
-#: inc/_dev/parts/class-content-slider.php:1322 inc/czr-front-ccat.php:9081
+#: inc/_dev/parts/class-content-slider.php:1322 inc/czr-front-ccat.php:9046
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
@@ -3771,7 +3771,7 @@ msgstr[0] "Comentario(s) en"
 msgstr[1] "Comentario(s) en"
 
 #: core/front/template-tags/template-tags.php:65
-#: inc/_dev/parts/class-content-comments.php:360 inc/czr-front-ccat.php:3256
+#: inc/_dev/parts/class-content-comments.php:360 inc/czr-front-ccat.php:3221
 #: templates/parts/content/singular/comments/comment_list.php:19
 #, fuzzy
 msgid "comment"
@@ -3780,7 +3780,7 @@ msgstr[0] "comentario"
 msgstr[1] "comentario"
 
 #: core/front/template-tags/template-tags.php:228
-#: inc/_dev/parts/class-header-menu.php:162 inc/czr-front-ccat.php:844
+#: inc/_dev/parts/class-header-menu.php:162 inc/czr-front-ccat.php:809
 msgid "Add a menu"
 msgstr "A&ntilde;adir un men&uacute;"
 
@@ -4662,7 +4662,7 @@ msgstr "Ajustes Diseño Adaptativo"
 msgid "Various settings for responsive display"
 msgstr "Ajustes de visualizaci&oacute;n adaptativa"
 
-#: inc/_dev/parts/class-content-404.php:33 inc/czr-front-ccat.php:1694
+#: inc/_dev/parts/class-content-404.php:33 inc/czr-front-ccat.php:1659
 #: templates/parts/content/no-results/404.php:14
 msgid ""
 "Sorry, but the requested page is not found. You might try a search below."
@@ -4670,127 +4670,127 @@ msgstr ""
 "Lo sentimos, pero la p&aacute;gina solicitada no est&aacute; disponible. Si "
 "lo desea, puede realizar una nueva b&uacute;squeda en el recuadro de abajo."
 
-#: inc/_dev/parts/class-content-attachment.php:33 inc/czr-front-ccat.php:1735
+#: inc/_dev/parts/class-content-attachment.php:33 inc/czr-front-ccat.php:1700
 msgid "&larr; Previous"
 msgstr "&larr;  Anterior"
 
-#: inc/_dev/parts/class-content-attachment.php:34 inc/czr-front-ccat.php:1736
+#: inc/_dev/parts/class-content-attachment.php:34 inc/czr-front-ccat.php:1701
 msgid "Next &rarr;"
 msgstr "Siguiente &rarr;"
 
-#: inc/_dev/parts/class-content-comments.php:86 inc/czr-front-ccat.php:2982
+#: inc/_dev/parts/class-content-comments.php:86 inc/czr-front-ccat.php:2947
 #: templates/parts/content/singular/comments/comment_list.php:11
 msgid "One thought on"
 msgstr "Un comentario en"
 
-#: inc/_dev/parts/class-content-comments.php:88 inc/czr-front-ccat.php:2984
+#: inc/_dev/parts/class-content-comments.php:88 inc/czr-front-ccat.php:2949
 #: templates/parts/content/singular/comments/comment_list.php:11
 msgid "thoughts on"
 msgstr "Comentarios en"
 
-#: inc/_dev/parts/class-content-comments.php:148 inc/czr-front-ccat.php:3044
+#: inc/_dev/parts/class-content-comments.php:148 inc/czr-front-ccat.php:3009
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: inc/_dev/parts/class-content-comments.php:149 inc/czr-front-ccat.php:3045
+#: inc/_dev/parts/class-content-comments.php:149 inc/czr-front-ccat.php:3010
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: inc/_dev/parts/class-content-comments.php:177 inc/czr-front-ccat.php:3073
+#: inc/_dev/parts/class-content-comments.php:177 inc/czr-front-ccat.php:3038
 msgid "Reply"
 msgstr "Respuesta"
 
-#: inc/_dev/parts/class-content-comments.php:190 inc/czr-front-ccat.php:3086
+#: inc/_dev/parts/class-content-comments.php:190 inc/czr-front-ccat.php:3051
 #: templates/parts/content/singular/comments/comment.php:22
 msgid "Post author"
 msgstr "Autor"
 
 #. translators: 1: date, 2: time
-#: inc/_dev/parts/class-content-comments.php:197 inc/czr-front-ccat.php:3093
+#: inc/_dev/parts/class-content-comments.php:197 inc/czr-front-ccat.php:3058
 msgid "%1$s at %2$s"
 msgstr "%1$s a las %2$s"
 
-#: inc/_dev/parts/class-content-comments.php:202 inc/czr-front-ccat.php:3098
+#: inc/_dev/parts/class-content-comments.php:202 inc/czr-front-ccat.php:3063
 #: templates/parts/content/singular/comments/comment.php:37
 msgid "Your comment is awaiting moderation."
 msgstr "Su comentario est&aacute; pendiente de moderaci&oacute;n."
 
-#: inc/_dev/parts/class-content-comments.php:237 inc/czr-front-ccat.php:3133
+#: inc/_dev/parts/class-content-comments.php:237 inc/czr-front-ccat.php:3098
 #: templates/parts/content/singular/comments/comment_list.php:66
 msgid "Comment navigation"
 msgstr "Navegador de comentarios"
 
-#: inc/_dev/parts/class-content-comments.php:243 inc/czr-front-ccat.php:3139
+#: inc/_dev/parts/class-content-comments.php:243 inc/czr-front-ccat.php:3104
 #: templates/parts/content/singular/comments/comment_list.php:72
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Comentarios m&aacute;s antiguos"
 
-#: inc/_dev/parts/class-content-comments.php:251 inc/czr-front-ccat.php:3147
+#: inc/_dev/parts/class-content-comments.php:251 inc/czr-front-ccat.php:3112
 #: templates/parts/content/singular/comments/comment_list.php:80
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Comentarios m&aacute;s recientes <span class=\"meta-nav\">&rarr;</span"
 
-#: inc/_dev/parts/class-content-comments.php:283 inc/czr-front-ccat.php:3179
+#: inc/_dev/parts/class-content-comments.php:283 inc/czr-front-ccat.php:3144
 #: templates/parts/content/singular/comments/comment_list.php:89
 msgid "Comments are closed."
 msgstr "Comentarios est&aacute;n cerrados."
 
-#: inc/_dev/parts/class-content-comments.php:318 inc/czr-front-ccat.php:3214
+#: inc/_dev/parts/class-content-comments.php:318 inc/czr-front-ccat.php:3179
 #: templates/comments-no-model.php:21
 msgid "Leave a comment"
 msgstr "Dejar un Comentario"
 
-#: inc/_dev/parts/class-content-comments.php:341 inc/czr-front-ccat.php:3237
+#: inc/_dev/parts/class-content-comments.php:341 inc/czr-front-ccat.php:3202
 msgid "Comment(s) on"
 msgstr "Comentario(s) en"
 
 #: inc/_dev/parts/class-content-featured_pages.php:136
-#: inc/czr-front-ccat.php:3545
+#: inc/czr-front-ccat.php:3510
 msgid "Edit now."
 msgstr ""
 
-#: inc/_dev/parts/class-content-gallery.php:53 inc/czr-front-ccat.php:3761
+#: inc/_dev/parts/class-content-gallery.php:53 inc/czr-front-ccat.php:3726
 msgid "Missing Attachment"
 msgstr "Falta archivo adjunto"
 
 #: inc/_dev/parts/class-content-headings.php:174
-#: inc/_dev/parts/class-content-headings.php:179 inc/czr-front-ccat.php:3966
-#: inc/czr-front-ccat.php:3971
+#: inc/_dev/parts/class-content-headings.php:179 inc/czr-front-ccat.php:3931
+#: inc/czr-front-ccat.php:3936
 msgid "{no title} Read the post &raquo;"
 msgstr "{no title} Leer la entrada &raquo;"
 
-#: inc/_dev/parts/class-content-headings.php:178 inc/czr-front-ccat.php:3970
+#: inc/_dev/parts/class-content-headings.php:178 inc/czr-front-ccat.php:3935
 msgid "Permalink to %s"
 msgstr "Enlace permanente a %s"
 
-#: inc/_dev/parts/class-content-headings.php:316 inc/czr-front-ccat.php:4108
+#: inc/_dev/parts/class-content-headings.php:316 inc/czr-front-ccat.php:4073
 #: templates/parts/content/no-results/404.php:8
 msgid "Ooops, page not found"
 msgstr "&iexcl;Ups!, P&aacute;gina no encontrada"
 
 #: inc/_dev/parts/class-content-headings.php:364
-#: inc/_dev/parts/class-content-post.php:140 inc/czr-front-ccat.php:4156
-#: inc/czr-front-ccat.php:4748
+#: inc/_dev/parts/class-content-post.php:140 inc/czr-front-ccat.php:4121
+#: inc/czr-front-ccat.php:4713
 msgid "About %s"
 msgstr "Acerca de %s"
 
-#: inc/_dev/parts/class-content-headings.php:404 inc/czr-front-ccat.php:4196
+#: inc/_dev/parts/class-content-headings.php:404 inc/czr-front-ccat.php:4161
 msgid "Daily Archives: %s"
 msgstr "Archivo diario: %s"
 
-#: inc/_dev/parts/class-content-headings.php:404 inc/czr-front-ccat.php:4196
+#: inc/_dev/parts/class-content-headings.php:404 inc/czr-front-ccat.php:4161
 msgid "Archives"
 msgstr "Archivo"
 
-#: inc/_dev/parts/class-content-headings.php:405 inc/czr-front-ccat.php:4197
+#: inc/_dev/parts/class-content-headings.php:405 inc/czr-front-ccat.php:4162
 msgid "Monthly Archives: %s"
 msgstr "Archivo Mensual: %s"
 
-#: inc/_dev/parts/class-content-headings.php:406 inc/czr-front-ccat.php:4198
+#: inc/_dev/parts/class-content-headings.php:406 inc/czr-front-ccat.php:4163
 msgid "Yearly Archives: %s"
 msgstr "Archivo Anual: %s"
 
-#: inc/_dev/parts/class-content-no_results.php:28 inc/czr-front-ccat.php:4345
+#: inc/_dev/parts/class-content-no_results.php:28 inc/czr-front-ccat.php:4310
 #: templates/parts/content/no-results/search_no_results.php:13
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
@@ -4801,155 +4801,155 @@ msgstr ""
 
 #: inc/_dev/parts/class-content-page.php:85
 #: inc/_dev/parts/class-content-post.php:87
-#: inc/_dev/parts/class-content-post_list.php:223 inc/czr-front-ccat.php:4438
-#: inc/czr-front-ccat.php:4695 inc/czr-front-ccat.php:5141
+#: inc/_dev/parts/class-content-post_list.php:223 inc/czr-front-ccat.php:4403
+#: inc/czr-front-ccat.php:4660 inc/czr-front-ccat.php:5106
 msgid "Pages:"
 msgstr "P&aacute;ginas:"
 
-#: inc/_dev/parts/class-content-post.php:144 inc/czr-front-ccat.php:4752
+#: inc/_dev/parts/class-content-post.php:144 inc/czr-front-ccat.php:4717
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 "Ver todos los art&iacute;culos de %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/_dev/parts/class-content-post_metas.php:181 inc/czr-front-ccat.php:6552
+#: inc/_dev/parts/class-content-post_metas.php:181 inc/czr-front-ccat.php:6517
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
 "Este artículo ha sido publicado el %1$s<span class=\"by-author\"> por %2$s</"
 "span>."
 
-#: inc/_dev/parts/class-content-post_metas.php:267 inc/czr-front-ccat.php:6638
+#: inc/_dev/parts/class-content-post_metas.php:267 inc/czr-front-ccat.php:6603
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "Art&iacute;culo publicado en %1$s y etiquetado %2$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:269 inc/czr-front-ccat.php:6640
+#: inc/_dev/parts/class-content-post_metas.php:269 inc/czr-front-ccat.php:6605
 msgid "This entry was posted in %1$s"
 msgstr "Art&iacute;culo publicado en %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:271 inc/czr-front-ccat.php:6642
+#: inc/_dev/parts/class-content-post_metas.php:271 inc/czr-front-ccat.php:6607
 msgid "This entry was tagged %2$s"
 msgstr "Este art&iacute;culo fue etiquetado el %2$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:280 inc/czr-front-ccat.php:6651
+#: inc/_dev/parts/class-content-post_metas.php:280 inc/czr-front-ccat.php:6616
 msgid "This entry was posted on %1$s"
 msgstr "Este art&iacute;culo ha sido publicado el %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:282 inc/czr-front-ccat.php:6653
+#: inc/_dev/parts/class-content-post_metas.php:282 inc/czr-front-ccat.php:6618
 msgid "on %1$s"
 msgstr "el %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:284 inc/czr-front-ccat.php:6655
+#: inc/_dev/parts/class-content-post_metas.php:284 inc/czr-front-ccat.php:6620
 msgid "and posted on %1$s"
 msgstr "y publicado el %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:296 inc/czr-front-ccat.php:6667
+#: inc/_dev/parts/class-content-post_metas.php:296 inc/czr-front-ccat.php:6632
 msgid "This entry was posted"
 msgstr "Este art&iacute;culo se public&oacute;"
 
 #: inc/_dev/parts/class-content-post_metas.php:296
-#: inc/_dev/parts/class-content-post_metas.php:298 inc/czr-front-ccat.php:6667
-#: inc/czr-front-ccat.php:6669
+#: inc/_dev/parts/class-content-post_metas.php:298 inc/czr-front-ccat.php:6632
+#: inc/czr-front-ccat.php:6634
 msgid "by %1$s"
 msgstr "por %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:312 inc/czr-front-ccat.php:6683
+#: inc/_dev/parts/class-content-post_metas.php:312 inc/czr-front-ccat.php:6648
 msgid "(updated today)"
 msgstr "(actualizado hoy)"
 
-#: inc/_dev/parts/class-content-post_metas.php:312 inc/czr-front-ccat.php:6683
+#: inc/_dev/parts/class-content-post_metas.php:312 inc/czr-front-ccat.php:6648
 msgid "(updated %s days ago)"
 msgstr "(actualizado hace %s d&iacute;as)"
 
-#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6684
+#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6649
 msgid "(updated 1 day ago)"
 msgstr "(actualizado hace 1 d&iacute;a)"
 
-#: inc/_dev/parts/class-content-post_metas.php:316 inc/czr-front-ccat.php:6687
+#: inc/_dev/parts/class-content-post_metas.php:316 inc/czr-front-ccat.php:6652
 msgid "(updated on %1$s)"
 msgstr "(actualizado el %1$s)"
 
-#: inc/_dev/parts/class-content-post_metas.php:556 inc/czr-front-ccat.php:6927
+#: inc/_dev/parts/class-content-post_metas.php:556 inc/czr-front-ccat.php:6892
 msgid "Open"
 msgstr "Abierto"
 
-#: inc/_dev/parts/class-content-post_metas.php:606 inc/czr-front-ccat.php:6977
+#: inc/_dev/parts/class-content-post_metas.php:606 inc/czr-front-ccat.php:6942
 msgid "tagged"
 msgstr "etiquetado"
 
 #: inc/_dev/parts/class-content-post_navigation.php:81
 #: inc/_dev/parts/class-content-post_navigation.php:136
-#: inc/czr-front-ccat.php:7102 inc/czr-front-ccat.php:7157
+#: inc/czr-front-ccat.php:7067 inc/czr-front-ccat.php:7122
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 msgid "Post navigation"
 msgstr "Navegador de art&iacute;culos"
 
 #: inc/_dev/parts/class-content-post_navigation.php:149
-#: inc/czr-front-ccat.php:7170
+#: inc/czr-front-ccat.php:7135
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Entradas m&aacute;s antiguas"
 
 #: inc/_dev/parts/class-content-post_navigation.php:169
-#: inc/czr-front-ccat.php:7190
+#: inc/czr-front-ccat.php:7155
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Entradas m&aacute;s recientes <span class=\"meta-nav\">&rarr;</span"
 
-#: inc/_dev/parts/class-content-slider.php:727 inc/czr-front-ccat.php:8486
+#: inc/_dev/parts/class-content-slider.php:727 inc/czr-front-ccat.php:8451
 #: templates/parts/modules/slider/slide.php:9
 msgid "Go to"
 msgstr ""
 
-#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8618
+#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8583
 msgid "Customize or remove %s"
 msgstr ""
 
-#: inc/_dev/parts/class-content-slider.php:860 inc/czr-front-ccat.php:8619
+#: inc/_dev/parts/class-content-slider.php:860 inc/czr-front-ccat.php:8584
 msgid "the posts slider"
 msgstr ""
 
-#: inc/_dev/parts/class-content-slider.php:860 inc/czr-front-ccat.php:8619
+#: inc/_dev/parts/class-content-slider.php:860 inc/czr-front-ccat.php:8584
 msgid "this slider"
 msgstr ""
 
-#: inc/_dev/parts/class-content-slider.php:960 inc/czr-front-ccat.php:8719
+#: inc/_dev/parts/class-content-slider.php:960 inc/czr-front-ccat.php:8684
 #, fuzzy
 msgid "Discover the Customizr WordPress theme &raquo;"
 msgstr "Descubra Customizr Pro"
 
-#: inc/_dev/parts/class-footer-footer_main.php:192 inc/czr-front-ccat.php:9294
+#: inc/_dev/parts/class-footer-footer_main.php:192 inc/czr-front-ccat.php:9259
 #: templates/parts/footer/footer_credits.php:13
 msgid "Powered by"
 msgstr ""
 
-#: inc/_dev/parts/class-footer-footer_main.php:193 inc/czr-front-ccat.php:9295
+#: inc/_dev/parts/class-footer-footer_main.php:193 inc/czr-front-ccat.php:9260
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Powered by WordPress"
 msgstr "S&iacute;gueme en WordPress"
 
-#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9300
+#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9265
 #: templates/parts/footer/footer_credits.php:13
 msgid "Designed with the %s"
 msgstr ""
 
-#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9300
+#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9265
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Customizr theme"
 msgstr "El tema Customizr"
 
-#: inc/_dev/parts/class-footer-footer_main.php:223 inc/czr-front-ccat.php:9325
+#: inc/_dev/parts/class-footer-footer_main.php:223 inc/czr-front-ccat.php:9290
 msgid "Back to top"
 msgstr "Volver arriba"
 
-#: inc/_dev/parts/class-header-header_main.php:300 inc/czr-front-ccat.php:300
+#: inc/_dev/parts/class-header-header_main.php:265 inc/czr-front-ccat.php:265
 #: templates/parts/header/parts/logo.php:6
 msgid "Back Home"
 msgstr "Volver a Inicio"
 
-#: inc/_dev/parts/class-header-menu.php:129 inc/czr-front-ccat.php:811
+#: inc/_dev/parts/class-header-menu.php:129 inc/czr-front-ccat.php:776
 msgid "Menu"
 msgstr ""
 
-#: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:818
+#: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:783
 msgid "Open the menu"
 msgstr ""
 
@@ -5126,13 +5126,13 @@ msgid "unknown"
 msgstr ""
 
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:70
-#: inc/_dev/parts/class-content-headings.php:405 inc/czr-front-ccat.php:4197
+#: inc/_dev/parts/class-content-headings.php:405 inc/czr-front-ccat.php:4162
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:71
-#: inc/_dev/parts/class-content-headings.php:406 inc/czr-front-ccat.php:4198
+#: inc/_dev/parts/class-content-headings.php:406 inc/czr-front-ccat.php:4163
 #, fuzzy
 msgctxt "yearly archives date format"
 msgid "Y"

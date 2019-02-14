@@ -36,8 +36,6 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		* @since Customizr 3.2.6
 		*/
     function czr_fn_set_header_hooks() {
-    	//html > head actions
-      add_action ( '__before_body'	  , array( $this , 'czr_fn_head_display' ));
 
       //The WP favicon (introduced in WP 4.3) will be used in priority
       add_action ( 'wp_head'     		  , array( $this , 'czr_fn_favicon_display' ));
@@ -95,39 +93,6 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
     /***************************
     * VIEWS
     ****************************/
-	  /**
-		* Displays what is inside the head html tag. Includes the wp_head() hook.
-		*
-		*
-		* @package Customizr
-		* @since Customizr 3.0
-		*/
-		function czr_fn_head_display() {
-			ob_start();
-				?>
-				<head>
-				    <meta charset="<?php bloginfo( 'charset' ); ?>" />
-				    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-            <?php if ( ! function_exists( '_wp_render_title_tag' ) ) :?>
-				      <title><?php wp_title( '|' , true, 'right' ); ?></title>
-            <?php endif; ?>
-				    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="profile"  href="https://gmpg.org/xfn/11" />
-				    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
-				   <!-- html5shiv for IE8 and less  -->
-				    <!--[if lt IE 9]>
-				      <script src="<?php echo CZR_FRONT_ASSETS_URL ?>js/libs/html5.js"></script>
-				    <![endif]-->
-				    <?php wp_head(); ?>
-				</head>
-				<?php
-			$html = ob_get_contents();
-		    if ($html) ob_end_clean();
-		    echo apply_filters( 'tc_head_display', $html );
-		}
-
-
 
 
 		/**
