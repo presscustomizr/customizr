@@ -234,6 +234,8 @@
                     {
                             dominus : 'tc_infinite_scroll',
                             servi   : [
+                              'tc_load_on_scroll_desktop',
+                              'tc_load_on_scroll_mobile',
                               'tc_infinite_scroll_in_home',
                               'tc_infinite_scroll_in_archive',
                               'tc_infinite_scroll_in_search'
