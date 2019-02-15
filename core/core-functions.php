@@ -2006,3 +2006,38 @@ function czr_fn_is_full_nimble_tmpl() {
   }
   return $bool;
 }
+
+
+/* ------------------------------------------------------------------------- *
+ * Template tags parsing
+/* ------------------------------------------------------------------------- */
+function czr_fn_get_year() {
+    return esc_attr( date('Y') );
+}
+
+function czr_fn_find_pattern_match($matches) {
+    $replace_values = array(
+        'home_url' => 'home_url',
+        'year' => 'czr_fn_get_year',
+        'site_title' => 'get_bloginfo'
+    );
+
+    if ( array_key_exists( $matches[1], $replace_values ) ) {
+      $dyn_content = $replace_values[$matches[1]];
+      if ( function_exists( $dyn_content ) ) {
+        return call_user_func( $dyn_content ); //$dyn_content();//<= @todo handle the case when the callback is a method
+      } else if ( is_string($dyn_content) ) {
+        return $dyn_content;
+      } else {
+        return null;
+      }
+    }
+    return null;
+}
+// fired @filter 'nimble_parse_template_tags'
+function czr_fn_parse_template_tags( $val ) {
+    //the pattern could also be '!\{\{(\w+)\}\}!', but adding \s? allows us to allow spaces around the term inside curly braces
+    //see https://stackoverflow.com/questions/959017/php-regex-templating-find-all-occurrences-of-var#comment71815465_959026
+    return is_string( $val ) ? preg_replace_callback( '!\{\{\s?(\w+)\s?\}\}!', 'czr_fn_find_pattern_match', $val) : $val;
+}
+add_filter( 'czr_parse_template_tags', 'czr_fn_parse_template_tags' );
