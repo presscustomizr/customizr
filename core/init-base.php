@@ -1141,7 +1141,30 @@ function czr_fn_maybe_register_nimble_location() {
         nimble_register_location('__before_footer', array( 'priority' => PHP_INT_MAX ) ); // fired in templates/parts/footer.php
     }
 }
-
+// added to fix the problem of locations not rendered when using Nimble templates for content and / or header and footer
+// see https://github.com/presscustomizr/nimble-builder/issues/369
+foreach( [ 'after_nimble_header', 'nimble_template_before_content_sections', 'before_nimble_footer' ] as $nimble_hook ) {
+    add_action( $nimble_hook, 'czr_fn_render_locations_when_using_nimble_templates' );
+}
+function czr_fn_render_locations_when_using_nimble_templates() {
+    if ( !function_exists('Nimble\Nimble_Manager') )
+      return;
+    $location = '';
+    switch( current_filter() ) {
+        case 'after_nimble_header' :
+            $location = '__after_header';
+        break;
+        case 'nimble_template_before_content_sections' :
+            $location = '__before_main_wrapper';
+        break;
+        case 'before_nimble_footer' :
+            $location = '__before_footer';
+        break;
+    }
+    if ( ! empty( $location ) ) {
+        \Nimble\Nimble_Manager()->render_nimble_locations( $location );
+    }
+}
 
 /* ------------------------------------------------------------------------- *
  *  Loads Required Plugin Class and Setup
