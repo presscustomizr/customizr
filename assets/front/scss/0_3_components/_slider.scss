@@ -61,6 +61,13 @@
     height: 100%;
     overflow: hidden;
   }
+  // hide nav in mobile
+  // @media (max-width: 575px)
+  @include media-breakpoint-down(xs) {
+    .czr-carousel-nav {
+      display: none;
+    }
+  }
 }
 
 .czr-slider-holder {
