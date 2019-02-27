@@ -318,7 +318,7 @@ section[class^="post-"] {
     vertical-align: middle;
     @include transition(all, .3s ease);
     position: relative;
-    @extend .small;
+    @extend .demi-small;
     @extend .caps;
     @extend .letter-spacing-2;
   }
