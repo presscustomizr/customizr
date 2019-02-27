@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 4.1.28
+Stable tag: 4.1.29
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,17 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.28 =
-Improved compatibility with the Social Media Share Buttons & Social Sharing Icons plugin. Removed unwanted lines displayed around the images of the featured pages on chrome.
+= 4.1.29 =
+Improved compatibility with Nimble Builder plugin. Various minor style improvements.
 
 == Changelog ==
+= 4.1.29 February 27th, 2019 =
+* fixed : make sure registered locations in the Customizr theme are always rendered when using the Nimble template and the Nimble header and footer
+* improved : hide main slider nav arrows in mobile with CSS only. fixes #1680
+* improved : "You May Also Like" smaller
+* improved : post list pagination is larger
+* added : a simple template tag parser, to be used with the filter 'czr_parse_template_tags'
+
 = 4.1.28 February 14th, 2019 =
 * fixed : removed unwanted lines displayed around the images of the featured pages on chrome
 * fixed : assigned width and height attributes to placehoder images. fixes #1684

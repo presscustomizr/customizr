@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.28\n"
+"Project-Id-Version: * Customizr v4.1.29\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-02-14 14:28:08+00:00\n"
+"POT-Creation-Date: 2019-02-27 16:33:26+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -347,9 +347,9 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1518
 #: core/_dev/_czr/class-czr-resources.php:221
 #: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2437
-#: core/czr-base-fmk/czr-base-fmk.php:182
-#: core/czr-base-fmk/czr-base-fmk.php:348
-#: core/czr-base-fmk/czr-base-fmk.php:674 core/czr-customize-ccat.php:856
+#: core/czr-base-fmk/czr-base-fmk.php:238
+#: core/czr-base-fmk/czr-base-fmk.php:452
+#: core/czr-base-fmk/czr-base-fmk.php:816 core/czr-customize-ccat.php:856
 #: core/czr-customize-ccat.php:866
 #: core/front/models/modules/common/class-model-breadcrumb.php:624
 #: core/front/models/modules/common/class-model-breadcrumb.php:657
@@ -608,7 +608,7 @@ msgid "Upgrade Wordpress Now"
 msgstr "Aktualizovať Wordpress Teraz"
 
 #: core/_dev/_czr/class-czr-resources.php:222
-#: core/czr-base-fmk/czr-base-fmk.php:183 core/czr-customize-ccat.php:857
+#: core/czr-base-fmk/czr-base-fmk.php:239 core/czr-customize-ccat.php:857
 #: inc/_dev/parts/class-header-menu.php:129
 #: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:776
 #: inc/czr-front-ccat.php:783
@@ -616,7 +616,7 @@ msgid "Close"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:223
-#: core/czr-base-fmk/czr-base-fmk.php:184 core/czr-customize-ccat.php:858
+#: core/czr-base-fmk/czr-base-fmk.php:240 core/czr-customize-ccat.php:858
 msgid "Not set"
 msgstr ""
 
@@ -641,7 +641,7 @@ msgid "Follow us on"
 msgstr "Sledujte nás"
 
 #: core/_dev/_czr/class-czr-resources.php:227
-#: core/czr-base-fmk/czr-base-fmk.php:185 core/czr-customize-ccat.php:862
+#: core/czr-base-fmk/czr-base-fmk.php:241 core/czr-customize-ccat.php:862
 #: core/czr-modules/social-links/index.php:78
 #: core/czr-modules/social-links/social_links_module.php:80
 msgid "Done !"
@@ -655,7 +655,7 @@ msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:229
 #: core/_dev/_czr/class-czr-resources.php:249
-#: core/czr-base-fmk/czr-base-fmk.php:187 core/czr-customize-ccat.php:864
+#: core/czr-base-fmk/czr-base-fmk.php:243 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:884
 #, fuzzy
 msgid "Learn more about this in the documentation"
@@ -698,13 +698,13 @@ msgid "Change the header layout"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:250
-#: core/czr-base-fmk/czr-base-fmk.php:188 core/czr-customize-ccat.php:885
+#: core/czr-base-fmk/czr-base-fmk.php:244 core/czr-customize-ccat.php:885
 #, fuzzy
 msgid "Settings"
 msgstr "Nastavenia obrázkov "
 
 #: core/_dev/_czr/class-czr-resources.php:251
-#: core/czr-base-fmk/czr-base-fmk.php:189 core/czr-customize-ccat.php:886
+#: core/czr-base-fmk/czr-base-fmk.php:245 core/czr-customize-ccat.php:886
 msgid "Options for"
 msgstr ""
 
@@ -743,8 +743,8 @@ msgid "Upload"
 msgstr "Nahrať"
 
 #: core/_dev/_czr/controls/class-upload-control.php:68
-#: core/czr-base-fmk/czr-base-fmk.php:192
-#: core/czr-base-fmk/czr-base-fmk.php:348 core/czr-customize-ccat.php:1463
+#: core/czr-base-fmk/czr-base-fmk.php:250
+#: core/czr-base-fmk/czr-base-fmk.php:452 core/czr-customize-ccat.php:1463
 msgid "Remove"
 msgstr "Odstrániť"
 
@@ -971,16 +971,16 @@ msgstr ""
 msgid "a short guide here."
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:512 core/init-base.php:1218
+#: core/class-tgm-plugin-activation.php:512 core/init-base.php:1241
 msgid "Install Required Plugins"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:513 core/init-base.php:1219
+#: core/class-tgm-plugin-activation.php:513 core/init-base.php:1242
 msgid "Install Plugins"
 msgstr ""
 
 #. translators: %s: plugin name.
-#: core/class-tgm-plugin-activation.php:515 core/init-base.php:1220
+#: core/class-tgm-plugin-activation.php:515 core/init-base.php:1243
 msgid "Installing Plugin: %s"
 msgstr ""
 
@@ -989,12 +989,12 @@ msgstr ""
 msgid "Updating Plugin: %s"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:518 core/init-base.php:1221
+#: core/class-tgm-plugin-activation.php:518 core/init-base.php:1244
 msgid "Something went wrong with the plugin API."
 msgstr ""
 
 #. translators: 1: plugin name(s).
-#: core/class-tgm-plugin-activation.php:555 core/init-base.php:1230
+#: core/class-tgm-plugin-activation.php:555 core/init-base.php:1253
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
 msgstr[0] ""
@@ -1012,7 +1012,7 @@ msgid_plural "Begin activating plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/class-tgm-plugin-activation.php:570 core/init-base.php:1232
+#: core/class-tgm-plugin-activation.php:570 core/init-base.php:1255
 msgid "Return to Required Plugins Installer"
 msgstr ""
 
@@ -1025,7 +1025,7 @@ msgid "Return to the Dashboard"
 msgstr "Choď na Dashboard"
 
 #: core/class-tgm-plugin-activation.php:572
-#: core/class-tgm-plugin-activation.php:3391 core/init-base.php:1233
+#: core/class-tgm-plugin-activation.php:3391 core/init-base.php:1256
 msgid "Plugin activated successfully."
 msgstr ""
 
@@ -2181,12 +2181,12 @@ msgid "in ms : 1000ms = 1s"
 msgstr "v ms : 1000ms = 1s"
 
 #: core/core-settings-map.php:1226 core/core-settings-map.php:1238
-#: core/czr-base-fmk/czr-base-fmk.php:357
+#: core/czr-base-fmk/czr-base-fmk.php:461
 msgid "Yes"
 msgstr ""
 
 #: core/core-settings-map.php:1227 core/core-settings-map.php:1239
-#: core/czr-base-fmk/czr-base-fmk.php:357
+#: core/czr-base-fmk/czr-base-fmk.php:461
 #: inc/_dev/parts/class-content-headings.php:330 inc/czr-front-ccat.php:4087
 msgid "No"
 msgstr "Nie"
@@ -3233,78 +3233,78 @@ msgstr ""
 "Potrebujete najprv vybrať stránku. Nechajte toto pole prázdne, ak chcete "
 "použiť ukážku stránky."
 
-#: core/czr-base-fmk/czr-base-fmk.php:190
-#: core/czr-base-fmk/czr-base-fmk.php:195
+#: core/czr-base-fmk/czr-base-fmk.php:248
+#: core/czr-base-fmk/czr-base-fmk.php:253
 #, fuzzy
 msgid "Select Image"
 msgstr "Obrázok slajdu"
 
-#: core/czr-base-fmk/czr-base-fmk.php:191
+#: core/czr-base-fmk/czr-base-fmk.php:249
 #, fuzzy
 msgid "Change Image"
 msgstr "Obrázok slajdu"
 
-#: core/czr-base-fmk/czr-base-fmk.php:193
+#: core/czr-base-fmk/czr-base-fmk.php:251
 #, fuzzy
 msgid "Default"
 msgstr "Prednastavené (sivá)"
 
-#: core/czr-base-fmk/czr-base-fmk.php:194
+#: core/czr-base-fmk/czr-base-fmk.php:252
 #, fuzzy
 msgid "No image selected"
 msgstr "Nie je vybraný žiaden obrázok"
 
-#: core/czr-base-fmk/czr-base-fmk.php:196
+#: core/czr-base-fmk/czr-base-fmk.php:254
 #, fuzzy
 msgid "Choose Image"
 msgstr "Zvoľte slajder"
 
-#: core/czr-base-fmk/czr-base-fmk.php:198
+#: core/czr-base-fmk/czr-base-fmk.php:256
 #, fuzzy
 msgid "Customizing"
 msgstr "Vlastné "
 
-#: core/czr-base-fmk/czr-base-fmk.php:300
+#: core/czr-base-fmk/czr-base-fmk.php:393
 msgid "ac_set_ajax_czr_tmpl => Security check failed."
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:330
+#: core/czr-base-fmk/czr-base-fmk.php:434
 msgid "Add New"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:335
+#: core/czr-base-fmk/czr-base-fmk.php:439
 msgid "Cancel"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:335
+#: core/czr-base-fmk/czr-base-fmk.php:439
 #, fuzzy
 msgid "Add it"
 msgstr "Gérer les widgets"
 
-#: core/czr-base-fmk/czr-base-fmk.php:356
+#: core/czr-base-fmk/czr-base-fmk.php:460
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:675
+#: core/czr-base-fmk/czr-base-fmk.php:817
 msgid "Hide editor"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1065
+#: core/czr-base-fmk/czr-base-fmk.php:1538
 msgid "Set a custom url"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1096
-#: core/czr-base-fmk/czr-base-fmk.php:1272
+#: core/czr-base-fmk/czr-base-fmk.php:1572
+#: core/czr-base-fmk/czr-base-fmk.php:1772
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1194
-#: core/czr-base-fmk/czr-base-fmk.php:1381
+#: core/czr-base-fmk/czr-base-fmk.php:1693
+#: core/czr-base-fmk/czr-base-fmk.php:1902
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1322
+#: core/czr-base-fmk/czr-base-fmk.php:1836
 #, fuzzy
 msgid "No results found."
 msgstr "Výsledky hľadania pre :"
@@ -3834,13 +3834,13 @@ msgstr "Hlavné Menu"
 msgid "Social links"
 msgstr "Sociálne siete"
 
-#: core/init-base.php:1222
+#: core/init-base.php:1245
 msgid "The Customizr theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins : %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1223
+#: core/init-base.php:1246
 msgid ""
 "The Customizr theme recommends the Nimble drag-and-drop section builder : "
 "%1$s."
@@ -3848,7 +3848,7 @@ msgid_plural "This theme recommends the following plugins : %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1224
+#: core/init-base.php:1247
 msgid ""
 "Sorry, but you do not have the correct permissions to install the %s plugin. "
 "Contact the administrator of this site for help on getting the plugin "
@@ -3860,13 +3860,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1225
+#: core/init-base.php:1248
 msgid "The Nimble Builder required plugin is currently inactive: %1$s."
 msgid_plural "The following required plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1226
+#: core/init-base.php:1249
 msgid ""
 "The Nimble Builder plugin, recommended for the Customizr theme, is installed "
 "but currently inactive : %1$s."
@@ -3874,7 +3874,7 @@ msgid_plural "The following recommended plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1227
+#: core/init-base.php:1250
 msgid ""
 "Sorry, but you do not have the correct permissions to activate the %s "
 "plugin. Contact the administrator of this site for help on getting the "
@@ -3886,7 +3886,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1228
+#: core/init-base.php:1251
 msgid ""
 "The Nimble Builder plugin needs to be updated to its latest version to "
 "ensure maximum compatibility with the Customizr theme: %1$s."
@@ -3896,7 +3896,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1229
+#: core/init-base.php:1252
 msgid ""
 "Sorry, but you do not have the correct permissions to update the %s plugin. "
 "Contact the administrator of this site for help on getting the plugin "
@@ -3908,13 +3908,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1231
+#: core/init-base.php:1254
 msgid "Activate Nimble Builder"
 msgid_plural "Activate installed plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/init-base.php:1234
+#: core/init-base.php:1257
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 

@@ -2609,7 +2609,7 @@ blockquote > * {
   font-size: 0.75em;
 }
 
-.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
+.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-info, small {
   font-size: 0.833333em;
@@ -2621,7 +2621,7 @@ blockquote > * {
 .woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
-.woocommerce table.shop_table td, .page-breadcrumbs, .sidebar {
+.woocommerce table.shop_table td, .page-breadcrumbs, .post-navigation .page-numbers, .post-navigation a, .sidebar {
   font-size: 0.95em;
 }
 
@@ -7078,6 +7078,12 @@ section[class^="post-"] .gallery.row {
   overflow: hidden;
 }
 
+@media (max-width: 575px) {
+  [id^=customizr-slider-] .czr-carousel-nav, [id^=customizr-slider-] .mfp-gallery {
+    display: none;
+  }
+}
+
 .czr-slider-holder {
   position: relative;
   height: 100%;
@@ -9072,6 +9078,8 @@ section.post-related-articles > header.row {
 
 section.post-related-articles > header .related-posts_title {
   text-transform: uppercase;
+  font-size: 1.35rem;
+  font-weight: normal;
 }
 
 .related-posts_nav {
