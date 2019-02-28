@@ -1143,7 +1143,7 @@ function czr_fn_maybe_register_nimble_location() {
 }
 // added to fix the problem of locations not rendered when using Nimble templates for content and / or header and footer
 // see https://github.com/presscustomizr/nimble-builder/issues/369
-foreach( [ 'after_nimble_header', 'nimble_template_before_content_sections', 'before_nimble_footer' ] as $nimble_hook ) {
+foreach( array( 'after_nimble_header', 'nimble_template_before_content_sections', 'before_nimble_footer' ) as $nimble_hook ) {
     add_action( $nimble_hook, 'czr_fn_render_locations_when_using_nimble_templates' );
 }
 function czr_fn_render_locations_when_using_nimble_templates() {
