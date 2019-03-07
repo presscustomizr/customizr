@@ -341,3 +341,11 @@
 .buddypress-wrap .select-wrap select {
   display: inline-block;
 }
+//event tickets
+.czr-wp-the-content .tribe-rsvp-list {
+  list-style: none;
+  padding: 0;
+}
+.czr-wp-the-content .tribe-rsvp-list > .tribe-item {
+  overflow: auto;
+}

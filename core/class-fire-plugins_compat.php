@@ -49,6 +49,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'wc-product-gallery-lightbox' );
       add_theme_support( 'wc-product-gallery-slider' );
       add_theme_support( 'the-events-calendar' );
+      add_theme_support( 'event-tickets' );
       add_theme_support( 'optimize-press' );
       add_theme_support( 'woo-sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
@@ -112,6 +113,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /* The Events Calendar */
       if ( current_theme_supports( 'the-events-calendar' ) && czr_fn_is_plugin_active('the-events-calendar/the-events-calendar.php') )
         $this -> czr_fn_set_the_events_calendar_compat();
+
+      /* Event Tickets */
+      if ( current_theme_supports( 'event-tickets' ) && czr_fn_is_plugin_active('event-tickets/event-tickets.php') )
+        $this -> czr_fn_set_event_tickets_compat();
 
       /* Optimize Press */
       if ( current_theme_supports( 'optimize-press' ) && czr_fn_is_plugin_active('optimizePressPlugin/optimizepress.php') )
@@ -701,6 +706,11 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         }
       }
 
+      //disable related posts
+      add_filter( 'czr_display_related_posts', 'czr_fn_tec_disable_related_posts' );
+      function czr_fn_tec_disable_related_posts( $bool ) {
+        return czr_fn_is_tec_single_event() ? false : true;
+      }
 
       // Events archive is displayed, wrongly, with our post lists classes, we have to prevent this
       add_filter( 'czr_is_list_of_posts', 'czr_fn_tec_disable_post_list');
@@ -742,6 +752,30 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
     }//end the-events-calendar compat
+
+
+
+
+    /**
+    * Event Tickets compat hooks
+    *
+    * @package Customizr
+    */
+    private function czr_fn_set_event_tickets_compat() {
+      // Workaround because of a bug on tec tickets that makes it require wp-content/themes/customizr/Custom Page Example (localized)
+      // in place of wp-content/themes/customizr/custom-page.php
+      add_filter( 'tribe_tickets_attendee_registration_page_template', 'czr_fn_et_ticket_fix_custom_page' );
+      function czr_fn_et_ticket_fix_custom_page( $what ) {
+        return str_replace( __( 'Custom Page Example', 'customizr' ), 'custom-page.php', $what );
+      }
+
+      add_filter( 'czr_is_list_of_posts', 'czr_fn_et_ticket_disable_post_list' );
+      function czr_fn_et_ticket_disable_post_list( $template ) {
+        return function_exists( 'tribe' ) && tribe( 'tickets.attendee_registration' )->is_on_page() ? false : $bool;
+      }
+    }//end event-tickets compat
+
+
 
 
 
