@@ -163,7 +163,9 @@ class CZR_utils_settings_map {
                   'czr_fn_sidebars_option_map',
                   'czr_fn_responsive_option_map',
                   //FOOTER
-                  'czr_fn_footer_global_settings_option_map'
+                  'czr_fn_footer_global_settings_option_map',
+                  //WOOCOMMERCE PANEL OPTIONS
+                  'czr_fn_woocommerce_option_map'
             );
 
             foreach ( $_alter_settings_sections as $_alter_section_cb ) {
@@ -1284,6 +1286,40 @@ class CZR_utils_settings_map {
 
             return $_map;
       }
+
+
+
+
+
+
+
+
+
+      /******************************************************************************************************
+      *******************************************************************************************************
+      * PANEL : WOOCOMMERCE
+      *******************************************************************************************************
+      ******************************************************************************************************/
+      function czr_fn_woocommerce_option_map( $_map, $get_default = null ) {
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_woocommerce_display_product_thumb_before_mw',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+            return $_map;
+      }
+
+
+
+
 
 
       /***************************************************************

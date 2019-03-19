@@ -931,6 +931,12 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return function_exists( 'WC' );
       }
 
+      // Maybe display
+      add_filter( 'tc_opt_tc_single_post_thumb_location', 'czr_fn_woocommerce_single_product_thumb_location' );
+      function czr_fn_woocommerce_single_product_thumb_location( $where ) {
+        return function_exists( 'is_product' ) && is_product() && ( true == esc_attr( czr_fn_opt( 'tc_woocommerce_display_product_thumb_before_mw' ) ) ) ? '__before_main_wrapper' : $where;
+      }
+
       //additional woocommerce skin style
       foreach ( array(
                   'skin_color_color',
