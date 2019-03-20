@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.1.0
-Stable tag: 4.1.30
+Stable tag: 4.1.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.30 =
-Fixes a potential PHP error when using PHP < 5.4.
+= 4.1.31 =
+Compatibility improvements with WooCommerce and Event Tickets plugins.
 
 == Changelog ==
+= 4.1.31 March 20th, 2019 =
+* fixed : compatibility issue with the Event Tickets plugin. fixes #1700
+* fixed : php syntax, ensure that the delimiter param is always passed to the explode PHP function. fixes #1709
+* improved : new option to allow the WooCommerce featured image to be displayed before the main wrapper in full width. fixes #1708
+
 = 4.1.30 February 28th, 2019 =
 * fixed : PHP error when using PHP < 5.4 because of the use of the short array syntax. fixes #1697
 

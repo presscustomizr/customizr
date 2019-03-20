@@ -502,6 +502,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       add_theme_support( 'wc-product-gallery-lightbox' );
       add_theme_support( 'wc-product-gallery-slider' );
       add_theme_support( 'the-events-calendar' );
+      add_theme_support( 'event-tickets' );
       add_theme_support( 'optimize-press' );
       add_theme_support( 'woo-sensei' );
       add_theme_support( 'visual-composer' );//or js-composer as they call it
@@ -565,6 +566,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       /* The Events Calendar */
       if ( current_theme_supports( 'the-events-calendar' ) && czr_fn_is_plugin_active('the-events-calendar/the-events-calendar.php') )
         $this -> czr_fn_set_the_events_calendar_compat();
+
+      /* Event Tickets */
+      if ( current_theme_supports( 'event-tickets' ) && czr_fn_is_plugin_active('event-tickets/event-tickets.php') )
+        $this -> czr_fn_set_event_tickets_compat();
 
       /* Optimize Press */
       if ( current_theme_supports( 'optimize-press' ) && czr_fn_is_plugin_active('optimizePressPlugin/optimizepress.php') )
@@ -1200,6 +1205,46 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
         return $_bool;
       }
     }//end the-events-calendar compat
+
+
+    /**
+    * Event Tickets compat hooks
+    *
+    * @package Customizr
+    */
+    private function czr_fn_set_event_tickets_compat() {
+      /*
+      * Are we in the tickets attendees registration
+      */
+      if ( ! ( function_exists( 'czr_fn_is_et_attendees_registration' ) ) ) {
+        function czr_fn_is_et_attendees_registration() {
+          return function_exists( 'tribe' ) && tribe( 'tickets.attendee_registration' )->is_on_page();
+        }
+      }
+      // Workaround because of a bug on tec tickets that makes it require wp-content/themes/customizr/Custom Page Example (localized)
+      // in place of wp-content/themes/customizr/custom-page.php
+      add_filter( 'tribe_tickets_attendee_registration_page_template', 'czr_fn_et_ticket_fix_custom_page' );
+      function czr_fn_et_ticket_fix_custom_page( $what ) {
+        return str_replace( __( 'Custom Page Example', 'customizr' ), 'custom-page.php', $what );
+      }
+
+      // Attendees registration is displayed, wrongly, with our post lists classes, we have to prevent this
+      add_filter( 'tc_post_list_controller', 'czr_fn_et_disable_post_list');
+      add_filter( 'tc_is_grid_enabled', 'czr_fn_et_disable_post_list');
+      // hide tax archive title
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_et_disable_tax_archive_title');
+      function czr_fn_et_disable_post_list( $bool ) {
+        return czr_fn_is_et_attendees_registration() ? false : $bool;
+      }
+
+      // Now we have to display a post or page content
+      add_filter( 'tc_show_single_post_content', 'czr_fn_et_show_content' );
+      function czr_fn_et_show_content( $bool ) {
+        return czr_fn_is_et_attendees_registration() ? true : $bool;
+      }
+
+    }//end event-tickets compat
+
 
 
 
@@ -2059,7 +2104,9 @@ class CZR_utils_settings_map {
                   'czr_fn_sidebars_option_map',
                   'czr_fn_responsive_option_map',
                   //FOOTER
-                  'czr_fn_footer_global_settings_option_map'
+                  'czr_fn_footer_global_settings_option_map',
+                  //WOOCOMMERCE PANEL OPTIONS
+                  'czr_fn_woocommerce_option_map'
             );
 
             foreach ( $_alter_settings_sections as $_alter_section_cb ) {
@@ -3180,6 +3227,40 @@ class CZR_utils_settings_map {
 
             return $_map;
       }
+
+
+
+
+
+
+
+
+
+      /******************************************************************************************************
+      *******************************************************************************************************
+      * PANEL : WOOCOMMERCE
+      *******************************************************************************************************
+      ******************************************************************************************************/
+      function czr_fn_woocommerce_option_map( $_map, $get_default = null ) {
+            if ( !is_array( $_map ) || empty( $_map ) ) {
+                  return $_map;
+            }
+
+            //to unset
+            $_to_unset = array(
+                  'tc_woocommerce_display_product_thumb_before_mw',
+            );
+
+            foreach ( $_to_unset as $key ) {
+                  unset( $_map[ $key ] );
+            }
+
+            return $_map;
+      }
+
+
+
+
 
 
       /***************************************************************

@@ -10031,6 +10031,17 @@ footer#footer .colophon__row .footer__credits a.fab {
   display: inline-block;
 }
 
+.czr-wp-the-content .tribe-rsvp-list, .woocommerce-Tabs-panel.entry-content .tribe-rsvp-list,
+.woocommerce-product-details__short-description .tribe-rsvp-list {
+  list-style: none;
+  padding: 0;
+}
+
+.czr-wp-the-content .tribe-rsvp-list > .tribe-item, .woocommerce-Tabs-panel.entry-content .tribe-rsvp-list > .tribe-item,
+.woocommerce-product-details__short-description .tribe-rsvp-list > .tribe-item {
+  overflow: auto;
+}
+
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-info {
