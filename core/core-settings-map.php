@@ -125,7 +125,10 @@ function czr_fn_popul_setting_control_map( $_map, $get_default = null ) {
     'czr_fn_placeholders_notice_map',
     'czr_fn_external_resources_option_map',
     'czr_fn_responsive_option_map',
-    'czr_fn_style_option_map'
+    'czr_fn_style_option_map',
+
+    //WOOCOMMERCE OPTIONS
+    'czr_fn_woocommerce_option_map'
   );
 
   $_settings_groups = apply_filters( 'czr_settings_sections', $_settings_groups );
@@ -2375,6 +2378,36 @@ function czr_fn_style_option_map( $get_default = null ) {
 
   );
 }
+
+/******************************************************************************************************
+*******************************************************************************************************
+* PANEL : WOOCOMMERCE
+*******************************************************************************************************
+******************************************************************************************************/
+function czr_fn_woocommerce_option_map( $get_default = null ) {
+    return array(
+          'tc_woocommerce_display_product_thumb_before_mw' => array(
+                            'default'     => czr_fn_user_started_before_version( '4.1.31' , '2.1.22') ? 1 : 0,
+                            'control'     => 'CZR_controls' ,
+                            'label'         => __( 'Display the product featured image before the title in full width' , 'customizr' ),
+                            'title'         => __( 'Featured Image' , 'customizr' ),
+                            'section'       => 'woocommerce_product_images' ,
+                            'type'      =>  'checkbox',
+                            'priority'      => 10,
+                            'notice'    =>  sprintf( '%1$s<br>%2$s',
+                                __( 'You can display the featured image of your products before their content, when they are displayed individually.' , 'customizr' ),
+                                sprintf( __( 'You can set the product\'s featuered image max height in the %s' , "customizr" ),
+                                  sprintf( '<a href="%1$s" title="%2$s">Single post design settings</a>',
+                                      "javascript:wp.customize.control('tc_theme_options[tc_single_post_thumb_height]').focus();",
+                                      __("jump to the single post featured image options" , "customizr")
+                                  )
+                                )
+                            ),
+                            'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
+          )
+    );
+}
+
 
 
 /***************************************************************
