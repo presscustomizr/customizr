@@ -968,7 +968,10 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       // Maybe display
       add_filter( 'tc_opt_tc_single_post_thumb_location', 'czr_fn_woocommerce_single_product_thumb_location' );
       function czr_fn_woocommerce_single_product_thumb_location( $where ) {
-        return function_exists( 'is_product' ) && is_product() && ( true == esc_attr( czr_fn_opt( 'tc_woocommerce_display_product_thumb_before_mw' ) ) ) ? '__before_main_wrapper' : $where;
+        if ( function_exists( 'is_product' ) && is_product() ) {
+            return czr_fn_is_checked('tc_woocommerce_display_product_thumb_before_mw' ) ?  '__before_main_wrapper' : 'hide';
+        }
+        return $where;
       }
 
       //additional woocommerce skin style
