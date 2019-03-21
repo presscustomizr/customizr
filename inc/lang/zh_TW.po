@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.31\n"
+"Project-Id-Version: * Customizr v4.1.32\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-03-20 09:50:41+00:00\n"
+"POT-Creation-Date: 2019-03-21 10:10:04+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:08+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -1491,11 +1491,11 @@ msgstr "Customizr 主題的頁頭設置"
 #: build/free/customizr/core/core-settings-map.php:841
 #: build/free/customizr/core/core-settings-map.php:853
 #: build/free/customizr/core/core-settings-map.php:869
-#: build/free/customizr/core/core-settings-map.php:2781
+#: build/free/customizr/core/core-settings-map.php:2772
 #: core/core-settings-map.php:799 core/core-settings-map.php:800
 #: core/core-settings-map.php:830 core/core-settings-map.php:841
 #: core/core-settings-map.php:853 core/core-settings-map.php:869
-#: core/core-settings-map.php:2772
+#: core/core-settings-map.php:2773
 msgid "Mobile devices"
 msgstr ""
 
@@ -1621,16 +1621,16 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:922
-#: build/free/customizr/core/core-settings-map.php:2545
-#: core/core-settings-map.php:922 core/core-settings-map.php:2536
+#: build/free/customizr/core/core-settings-map.php:2536
+#: core/core-settings-map.php:922 core/core-settings-map.php:2537
 msgid "in the menu panel"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:923
-#: build/free/customizr/core/core-settings-map.php:2538
-#: build/free/customizr/core/core-settings-map.php:2546
-#: core/core-settings-map.php:923 core/core-settings-map.php:2529
-#: core/core-settings-map.php:2537
+#: build/free/customizr/core/core-settings-map.php:2529
+#: build/free/customizr/core/core-settings-map.php:2537
+#: core/core-settings-map.php:923 core/core-settings-map.php:2530
+#: core/core-settings-map.php:2538
 msgid "create/edit menus"
 msgstr ""
 
@@ -2355,7 +2355,7 @@ msgstr "文章導航"
 #: build/free/customizr/core/core-settings-map.php:1743
 #: build/free/customizr/core/core-settings-map.php:2393
 #: core/core-settings-map.php:1673 core/core-settings-map.php:1743
-#: core/core-settings-map.php:2393
+#: core/core-settings-map.php:2394
 #, fuzzy
 msgid "Featured Image"
 msgstr "特色頁面"
@@ -2944,85 +2944,71 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:2392
+#: core/core-settings-map.php:2393
 #, fuzzy
-msgid "Display the product featured image before the title in full width"
-msgstr "滑塊樣式：設定滑塊寬度為滿頁寬度"
+msgid "Display the product featured image"
+msgstr "顯示上方邊框"
 
-#: build/free/customizr/core/core-settings-map.php:2398
-msgid ""
-"You can display the featured image of your products before their content, "
-"when they are displayed individually."
-msgstr ""
-
-#: build/free/customizr/core/core-settings-map.php:2399
-msgid "You can set the product's featuered image max height in the %s"
-msgstr ""
-
-#: build/free/customizr/core/core-settings-map.php:2402
-#, fuzzy
-msgid "jump to the single post featured image options"
-msgstr "配置樣式選項"
-
-#: build/free/customizr/core/core-settings-map.php:2425
-#: core/core-settings-map.php:2416
+#: build/free/customizr/core/core-settings-map.php:2416
+#: core/core-settings-map.php:2417
 msgid "Global settings"
 msgstr "全域設置"
 
-#: build/free/customizr/core/core-settings-map.php:2426
-#: core/core-settings-map.php:2417
+#: build/free/customizr/core/core-settings-map.php:2417
+#: core/core-settings-map.php:2418
 msgid "Title, Logo, Fonts, Primary color, Social, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2432
-#: core/core-settings-map.php:2423
+#: build/free/customizr/core/core-settings-map.php:2423
+#: core/core-settings-map.php:2424
 #, fuzzy
 msgid "Header"
 msgstr "滑塊文字"
 
-#: build/free/customizr/core/core-settings-map.php:2433
-#: core/core-settings-map.php:2424
+#: build/free/customizr/core/core-settings-map.php:2424
+#: core/core-settings-map.php:2425
 msgid "Style, Desktops and mobiles layout, Menus, Search, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2439
-#: core/core-settings-map.php:2430
+#: build/free/customizr/core/core-settings-map.php:2430
+#: core/core-settings-map.php:2431
 #, fuzzy
 msgid "Main Content"
 msgstr "主菜單"
 
-#: build/free/customizr/core/core-settings-map.php:2440
-#: core/core-settings-map.php:2431
+#: build/free/customizr/core/core-settings-map.php:2431
+#: core/core-settings-map.php:2432
 msgid ""
 "Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2446
-#: core/core-settings-map.php:2437
+#: build/free/customizr/core/core-settings-map.php:2437
+#: core/core-settings-map.php:2438
 msgid "Sidebars"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2452
-#: core/core-settings-map.php:2443
+#: build/free/customizr/core/core-settings-map.php:2443
+#: core/core-settings-map.php:2444
 msgid "Footer"
 msgstr "頁尾"
 
-#: build/free/customizr/core/core-settings-map.php:2453
-#: core/core-settings-map.php:2444
+#: build/free/customizr/core/core-settings-map.php:2444
+#: core/core-settings-map.php:2445
 msgid "Style, Back to top button, Sticky mode, ... "
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2459
-#: core/core-settings-map.php:2450
+#: build/free/customizr/core/core-settings-map.php:2450
+#: core/core-settings-map.php:2451
 msgid "Advanced options"
 msgstr "高級選項"
 
-#: build/free/customizr/core/core-settings-map.php:2460
-#: core/core-settings-map.php:2451
+#: build/free/customizr/core/core-settings-map.php:2451
+#: core/core-settings-map.php:2452
 msgid "Performances, Custom CSS ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2531
-#: core/core-settings-map.php:2522
+#: build/free/customizr/core/core-settings-map.php:2522
+#: core/core-settings-map.php:2523
 #, fuzzy
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
@@ -3030,264 +3016,264 @@ msgid_plural ""
 msgstr[0] "您的主題支援 %s 功能表，請選擇您要使用的功能表。"
 msgstr[1] "您的主題支援 %s 功能表，請選擇您要使用的功能表。"
 
-#: build/free/customizr/core/core-settings-map.php:2534
-#: build/free/customizr/core/core-settings-map.php:2542
-#: core/core-settings-map.php:2525 core/core-settings-map.php:2533
+#: build/free/customizr/core/core-settings-map.php:2525
+#: build/free/customizr/core/core-settings-map.php:2533
+#: core/core-settings-map.php:2526 core/core-settings-map.php:2534
 msgid "You can create new menu and edit your menu's content %s."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2537
-#: core/core-settings-map.php:2528
+#: build/free/customizr/core/core-settings-map.php:2528
+#: core/core-settings-map.php:2529
 msgid "on the Menus screen in the Appearance section"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2552
-#: core/core-settings-map.php:2543
+#: build/free/customizr/core/core-settings-map.php:2543
+#: core/core-settings-map.php:2544
 msgid ""
 "If a menu location has no menu assigned to it, a default page menu will be "
 "used."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2562
-#: core/core-settings-map.php:2553
+#: build/free/customizr/core/core-settings-map.php:2553
+#: core/core-settings-map.php:2554
 msgid "Site Identity : Logo, Title, Tagline and Site Icon"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2572
-#: core/core-settings-map.php:2563
+#: build/free/customizr/core/core-settings-map.php:2563
+#: core/core-settings-map.php:2564
 #, fuzzy
 msgid "Site Layout"
 msgstr "樣式選項"
 
-#: build/free/customizr/core/core-settings-map.php:2577
-#: core/core-settings-map.php:2568
+#: build/free/customizr/core/core-settings-map.php:2568
+#: core/core-settings-map.php:2569
 msgid "Primary color of the theme"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2579
-#: core/core-settings-map.php:2570
+#: build/free/customizr/core/core-settings-map.php:2570
+#: core/core-settings-map.php:2571
 msgid "Pick a primary color for the theme"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2583
-#: core/core-settings-map.php:2574
+#: build/free/customizr/core/core-settings-map.php:2574
+#: core/core-settings-map.php:2575
 #, fuzzy
 msgid "Fonts"
 msgstr "首頁"
 
-#: build/free/customizr/core/core-settings-map.php:2596
-#: core/core-settings-map.php:2587
+#: build/free/customizr/core/core-settings-map.php:2587
+#: core/core-settings-map.php:2588
 msgid "Formatting : links, paragraphs ..."
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2602
-#: core/core-settings-map.php:2593
+#: build/free/customizr/core/core-settings-map.php:2593
+#: core/core-settings-map.php:2594
 #, fuzzy
 msgid "Image settings"
 msgstr "圖片"
 
-#: build/free/customizr/core/core-settings-map.php:2613
-#: core/core-settings-map.php:2604
+#: build/free/customizr/core/core-settings-map.php:2604
+#: core/core-settings-map.php:2605
 #, fuzzy
 msgid "Sliders options"
 msgstr "滑塊選項"
 
-#: build/free/customizr/core/core-settings-map.php:2619
-#: core/core-settings-map.php:2610
+#: build/free/customizr/core/core-settings-map.php:2610
+#: core/core-settings-map.php:2611
 #, fuzzy
 msgid "Authors"
 msgstr "作者歸檔: %s"
 
-#: build/free/customizr/core/core-settings-map.php:2625
-#: core/core-settings-map.php:2616
+#: build/free/customizr/core/core-settings-map.php:2616
+#: core/core-settings-map.php:2617
 msgid "Smooth Scroll"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2635
-#: core/core-settings-map.php:2626
+#: build/free/customizr/core/core-settings-map.php:2626
+#: core/core-settings-map.php:2627
 #, fuzzy
 msgid "Header design and layout"
 msgstr "選擇內容和樣式"
 
-#: build/free/customizr/core/core-settings-map.php:2635
-#: core/core-settings-map.php:2626
+#: build/free/customizr/core/core-settings-map.php:2626
+#: core/core-settings-map.php:2627
 #, fuzzy
 msgid "General design settings"
 msgstr "Réglages de la structure de page"
 
-#: build/free/customizr/core/core-settings-map.php:2640
-#: core/core-settings-map.php:2631
+#: build/free/customizr/core/core-settings-map.php:2631
+#: core/core-settings-map.php:2632
 msgid "Design settings for desktops and laptops"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2645
-#: core/core-settings-map.php:2636
+#: build/free/customizr/core/core-settings-map.php:2636
+#: core/core-settings-map.php:2637
 msgid "Design settings for smartphones and tablets in portrait orientation"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2650
-#: core/core-settings-map.php:2641
+#: build/free/customizr/core/core-settings-map.php:2641
+#: core/core-settings-map.php:2642
 #, fuzzy
 msgid "Navigation Menus"
 msgstr "主菜單"
 
-#: build/free/customizr/core/core-settings-map.php:2662
-#: core/core-settings-map.php:2653
+#: build/free/customizr/core/core-settings-map.php:2653
+#: core/core-settings-map.php:2654
 #, fuzzy
 msgid "Front Page Content"
 msgstr "Réglages page d'accueil"
 
-#: build/free/customizr/core/core-settings-map.php:2675
-#: core/core-settings-map.php:2666
+#: build/free/customizr/core/core-settings-map.php:2666
+#: core/core-settings-map.php:2667
 msgid "Pages &amp; Posts Layout"
 msgstr "頁面和文章樣式"
 
-#: build/free/customizr/core/core-settings-map.php:2682
-#: core/core-settings-map.php:2673
+#: build/free/customizr/core/core-settings-map.php:2673
+#: core/core-settings-map.php:2674
 msgid "Post lists : blog, archives, ..."
 msgstr "文章列表：博客，歸檔等。"
 
-#: build/free/customizr/core/core-settings-map.php:2688
-#: core/core-settings-map.php:2679
+#: build/free/customizr/core/core-settings-map.php:2679
+#: core/core-settings-map.php:2680
 msgid "Single posts"
 msgstr "單篇文章"
 
-#: build/free/customizr/core/core-settings-map.php:2694
-#: core/core-settings-map.php:2685
+#: build/free/customizr/core/core-settings-map.php:2685
+#: core/core-settings-map.php:2686
 #, fuzzy
 msgid "Single pages"
 msgstr "單篇文章"
 
-#: build/free/customizr/core/core-settings-map.php:2700
-#: core/core-settings-map.php:2691
+#: build/free/customizr/core/core-settings-map.php:2691
+#: core/core-settings-map.php:2692
 #, fuzzy
 msgid "Breadcrumb"
 msgstr "顯示巡覽列"
 
-#: build/free/customizr/core/core-settings-map.php:2706
-#: core/core-settings-map.php:2697
+#: build/free/customizr/core/core-settings-map.php:2697
+#: core/core-settings-map.php:2698
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr "文章屬性（分類，標籤，自訂歸類）"
 
-#: build/free/customizr/core/core-settings-map.php:2712
-#: core/core-settings-map.php:2703
+#: build/free/customizr/core/core-settings-map.php:2703
+#: core/core-settings-map.php:2704
 msgid "Galleries"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2718
-#: core/core-settings-map.php:2709
+#: build/free/customizr/core/core-settings-map.php:2709
+#: core/core-settings-map.php:2710
 msgid "Comments"
 msgstr "評論"
 
-#: build/free/customizr/core/core-settings-map.php:2729
-#: core/core-settings-map.php:2720
+#: build/free/customizr/core/core-settings-map.php:2720
+#: core/core-settings-map.php:2721
 msgid "Post/Page Navigation"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2740
-#: core/core-settings-map.php:2731
+#: build/free/customizr/core/core-settings-map.php:2731
+#: core/core-settings-map.php:2732
 msgid "Socials in Sidebars"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2749
-#: core/core-settings-map.php:2740
+#: build/free/customizr/core/core-settings-map.php:2740
+#: core/core-settings-map.php:2741
 msgid "Footer global settings"
 msgstr "頁腳全域設置"
 
-#: build/free/customizr/core/core-settings-map.php:2760
-#: core/core-settings-map.php:2751
+#: build/free/customizr/core/core-settings-map.php:2751
+#: core/core-settings-map.php:2752
 #, fuzzy
 msgid "Custom CSS"
 msgstr "個性化定制 CSS"
 
-#: build/free/customizr/core/core-settings-map.php:2765
-#: core/core-settings-map.php:2756
+#: build/free/customizr/core/core-settings-map.php:2756
+#: core/core-settings-map.php:2757
 msgid "Website Performances"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2771
-#: core/core-settings-map.php:2762
+#: build/free/customizr/core/core-settings-map.php:2762
+#: core/core-settings-map.php:2763
 msgid "Front-end placeholders and help blocks"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2776
-#: core/core-settings-map.php:2767
+#: build/free/customizr/core/core-settings-map.php:2767
+#: core/core-settings-map.php:2768
 msgid "Front-end Icons (Font Awesome)"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2786
-#: core/core-settings-map.php:2777
+#: build/free/customizr/core/core-settings-map.php:2777
+#: core/core-settings-map.php:2778
 #, fuzzy
 msgid "Theme style"
 msgstr "Options du thème"
 
-#: build/free/customizr/core/core-settings-map.php:2798
+#: build/free/customizr/core/core-settings-map.php:2789
 #: build/free/customizr/core/czr-admin-ccat.php:394
 #: core/_dev/_admin/class-fire-admin_init.php:394
-#: core/core-settings-map.php:2789 core/czr-admin-ccat.php:394
+#: core/core-settings-map.php:2790 core/czr-admin-ccat.php:394
 #, fuzzy
 msgid "Upgrade to Customizr Pro"
 msgstr "Customizr 發現之旅：快速介紹視頻"
 
-#: build/free/customizr/core/core-settings-map.php:2799
-#: core/core-settings-map.php:2790
+#: build/free/customizr/core/core-settings-map.php:2790
+#: core/core-settings-map.php:2791
 #, fuzzy
 msgid "Discover the features and benefits"
 msgstr "發現特色功能"
 
-#: build/free/customizr/core/core-settings-map.php:2801
-#: core/core-settings-map.php:2792
+#: build/free/customizr/core/core-settings-map.php:2792
+#: core/core-settings-map.php:2793
 msgid "Go Pro"
 msgstr ""
 
-#: build/free/customizr/core/core-settings-map.php:2841
-#: core/core-settings-map.php:2832
+#: build/free/customizr/core/core-settings-map.php:2832
+#: core/core-settings-map.php:2833
 #, fuzzy
 msgid "Home featured page one"
 msgstr "首頁特色頁面二"
 
-#: build/free/customizr/core/core-settings-map.php:2842
-#: core/core-settings-map.php:2833
+#: build/free/customizr/core/core-settings-map.php:2833
+#: core/core-settings-map.php:2834
 msgid "Home featured page two"
 msgstr "首頁特色頁面二"
 
-#: build/free/customizr/core/core-settings-map.php:2843
-#: core/core-settings-map.php:2834
+#: build/free/customizr/core/core-settings-map.php:2834
+#: core/core-settings-map.php:2835
 msgid "Home featured page three"
 msgstr "首頁特色頁面三"
 
-#: build/free/customizr/core/core-settings-map.php:2846
-#: core/core-settings-map.php:2837
+#: build/free/customizr/core/core-settings-map.php:2837
+#: core/core-settings-map.php:2838
 #, fuzzy
 msgid "Featured text one (200 char. max)"
 msgstr "特色文字區域一（最多100字）"
 
-#: build/free/customizr/core/core-settings-map.php:2847
-#: core/core-settings-map.php:2838
+#: build/free/customizr/core/core-settings-map.php:2838
+#: core/core-settings-map.php:2839
 #, fuzzy
 msgid "Featured text two (200 char. max)"
 msgstr "特色文字區域二（最多100字）"
 
-#: build/free/customizr/core/core-settings-map.php:2848
-#: core/core-settings-map.php:2839
+#: build/free/customizr/core/core-settings-map.php:2839
+#: core/core-settings-map.php:2840
 #, fuzzy
 msgid "Featured text three (200 char. max)"
 msgstr "特色文字區域三（最多100字）"
 
-#: build/free/customizr/core/core-settings-map.php:2865
-#: core/core-settings-map.php:2856
+#: build/free/customizr/core/core-settings-map.php:2856
+#: core/core-settings-map.php:2857
 #, fuzzy
 msgid "Custom featured page %1$s"
 msgstr "首頁特色頁面二"
 
-#: build/free/customizr/core/core-settings-map.php:2881
-#: core/core-settings-map.php:2872
+#: build/free/customizr/core/core-settings-map.php:2872
+#: core/core-settings-map.php:2873
 #, fuzzy
 msgid "Featured text %1$s (200 char. max)"
 msgstr "特色文字區域一（最多100字）"
 
-#: build/free/customizr/core/core-settings-map.php:2884
-#: core/core-settings-map.php:2875
+#: build/free/customizr/core/core-settings-map.php:2875
+#: core/core-settings-map.php:2876
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -6366,11 +6352,6 @@ msgstr ""
 msgid "Next related articles"
 msgstr ""
 
-#: core/core-settings-map.php:2392
-#, fuzzy
-msgid "Display the product featured image"
-msgstr "顯示上方邊框"
-
 #. Theme Name of the plugin/theme
 #, fuzzy
 msgid "Customizr"
@@ -6458,6 +6439,14 @@ msgstr "Rechercher dans les diapositives"
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr "%1s搜尋結果: %2s"
+
+#, fuzzy
+#~ msgid "Display the product featured image before the title in full width"
+#~ msgstr "滑塊樣式：設定滑塊寬度為滿頁寬度"
+
+#, fuzzy
+#~ msgid "jump to the single post featured image options"
+#~ msgstr "配置樣式選項"
 
 #, fuzzy
 #~ msgid "Hide editor"
