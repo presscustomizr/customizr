@@ -2387,7 +2387,8 @@ function czr_fn_style_option_map( $get_default = null ) {
 function czr_fn_woocommerce_option_map( $get_default = null ) {
     return array(
           'tc_woocommerce_display_product_thumb_before_mw' => array(
-                            'default'     => czr_fn_user_started_before_version( '4.1.31' , '2.1.22') ? 1 : 0,
+                            // disabled by default because https://github.com/presscustomizr/customizr/issues/1708#issuecomment-475151976
+                            'default'     => 0,
                             'control'     => 'CZR_controls' ,
                             'label'         => __( 'Display the product featured image' , 'customizr' ),
                             'title'         => __( 'Featured Image' , 'customizr' ),
