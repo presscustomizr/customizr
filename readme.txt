@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.1.0
-Stable tag: 4.1.32
+Stable tag: 4.1.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,13 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.32 =
+= 4.1.33 =
 Compatibility improvements with WooCommerce.
 
 == Changelog ==
+= 4.1.33 March 21st, 2019 =
+* fixed : WooCommerce product image issue
+
 = 4.1.32 March 21st, 2019 =
 * fixed : WooCommerce product image on top of the page disabled by default. because of https://github.com/presscustomizr/customizr/issues/1708#issuecomment-475151976
 
