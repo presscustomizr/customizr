@@ -709,7 +709,7 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       //disable related posts
       add_filter( 'czr_display_related_posts', 'czr_fn_tec_disable_related_posts' );
       function czr_fn_tec_disable_related_posts( $bool ) {
-        return czr_fn_is_tec_single_event() ? false : true;
+        return czr_fn_is_tec_single_event() ? false : $bool;
       }
 
       // Events archive is displayed, wrongly, with our post lists classes, we have to prevent this
