@@ -540,7 +540,14 @@ function czr_fn_header_design_option_map( $get_default = null ) {
                             'section'       => 'header_layout_sec' ,
                             'priority'      => 8,
           ),
-
+          'tc_highlight_contextually_active_menu_items'  =>  array(
+                            'default'       => 0,
+                            'control'       => 'CZR_controls' ,
+                            'label'         => __( ' Highlight contextually active menu items', 'customizr'),
+                            'type'          =>  'checkbox',
+                            'section'       => 'header_layout_sec' ,
+                            'priority'      => 8,
+          ),
           'tc_header_transparent_home'  =>  array(
                             'default'       => 0,
                             'control'       => 'CZR_controls' ,

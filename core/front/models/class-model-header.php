@@ -242,14 +242,17 @@ class CZR_header_model_class extends CZR_Model {
     }
 
     /* Submenus effect */
-    if ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) {
+    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect' ) ) ) {
       $element_class[] = 'czr-submenu-fade';
     }
 
-    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) {
+    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect' ) ) ) {
       $element_class[] = 'czr-submenu-move';
     }
 
+    if ( 0 != esc_attr( czr_fn_opt( 'tc_highlight_contextually_active_menu_items' ) ) ) {
+      $element_class[] = 'czr-highlight-contextual-menu-items';
+    }
 
     /**
      * The following defines the width of the primary navbar, topbar and mobile navbar
