@@ -103,7 +103,7 @@ $secondary-color-light  : $grey-light;
       a, a:focus, a:active {
         color: $primary-color;
       }
-      a:hover, a.current-active {
+      a:hover {
         color: $secondary-color-light;
       }
   }
@@ -165,11 +165,7 @@ $secondary-color-light  : $grey-light;
     .nav__link-wrapper .caret__dropdown-toggler:hover,
 
     .show:not(.dropdown-item) > .nav__link,
-    .show:not(.dropdown-item) > .nav__link-wrapper .nav__link,
-    li:not(.dropdown-item).current-active > .nav__link,
-    li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__link,
-    .current-menu-item > .nav__link,
-    .current-menu-item > .nav__link-wrapper .nav__link {
+    .show:not(.dropdown-item) > .nav__link-wrapper .nav__link {
       color: $secondary-color;
     }
 
@@ -184,6 +180,14 @@ $secondary-color-light  : $grey-light;
     }
   }
 
+  .czr-highlight-contextual-menu-items [class*=nav__menu] {
+    li:not(.dropdown-item).current-active > .nav__link,
+    li:not(.dropdown-item).current-active > .nav__link-wrapper .nav__link,
+    .current-active > .nav__link,
+    .current-active > .nav__link-wrapper .nav__link {
+      color: $secondary-color;
+    }
+  }
 
   .vertical-nav > li:not(:last-of-type),
   .mobile-nav__container,

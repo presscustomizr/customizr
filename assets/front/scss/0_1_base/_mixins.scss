@@ -613,6 +613,20 @@
     @include underlined_highlight_before_nocolor () ;
   }
 }
+@mixin underlined_nocolor_no_hover ( $height ) {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: $height;
+    bottom: $height/2;
+    left: 0;
+    visibility: hidden;
+    @include transform( translate3d(0,0,0) scaleX(0) );
+    @include transition( all 0.3s ease 0s );
+  }
+}
 
 @mixin text-truncate {
     overflow: hidden;
