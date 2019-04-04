@@ -36,12 +36,11 @@ class CZR_archive_heading_model_class extends CZR_Model {
         return 'year';
       if ( is_tag() )
         return 'tag';
+      if ( is_post_type_archive() ) {
+        return 'post_type_archive';
+      }
       if ( apply_filters('czr_show_tax_archive_title', true ) )
         return 'tax';
-
-    }
-    if ( is_post_type_archive() ) {
-        return 'post_type_archive';
     }
 
     return 'unknown';
