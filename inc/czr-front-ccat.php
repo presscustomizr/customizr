@@ -232,10 +232,9 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 
         <?php
           do_action( '__before_logo' );
-            printf('<%1$s><a class="site-title" href="%2$s" title="%3$s">%4$s</a></%1$s>',
+            printf('<%1$s><a class="site-title" href="%2$s">%3$s</a></%1$s>',
                     apply_filters( 'tc_site_title_tag', 'h1' ) ,
                     apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
-                    apply_filters( 'tc_site_title_link_title', sprintf( '%1$s | %2$s' , get_bloginfo( 'name', 'display' )  , get_bloginfo( 'description', 'display' ) ) ),
                     get_bloginfo( 'name', 'display' )
             );
   		 	  do_action( '__after_logo' )
@@ -294,8 +293,9 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         <div class="<?php echo implode( " ", apply_filters( 'tc_logo_class', $logo_class ) ) ?>">
         <?php
             do_action( '__before_logo' );
-              printf( '<a class="site-logo" href="%1$s" title="%2$s">%3$s</a>',
+              printf( '<a class="site-logo" href="%1$s" aria-label="%2$s">%3$s</a>',
                   apply_filters( 'tc_logo_link_url', esc_url( home_url( '/' ) ) ) ,
+                  // keep this filter name for retro-compat, but now it refers to the aria-label attribute.
                   apply_filters( 'tc_logo_link_title', sprintf( '%1$s | %2$s' , get_bloginfo( 'name', 'display' )  , get_bloginfo( 'description', 'display' ) ) ),
                   implode( '', $logos_img )
               );

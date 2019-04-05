@@ -1229,11 +1229,13 @@ if ( ! class_exists( 'CZR_plugins_compat' ) ) :
       }
 
       // Attendees registration is displayed, wrongly, with our post lists classes, we have to prevent this
-      add_filter( 'tc_post_list_controller', 'czr_fn_et_disable_post_list');
-      add_filter( 'tc_is_grid_enabled', 'czr_fn_et_disable_post_list');
+      add_filter( 'tc_post_list_controller', 'czr_fn_et_disable_on_attendees_registration');
+      add_filter( 'tc_is_grid_enabled', 'czr_fn_et_disable_on_attendees_registration');
       // hide tax archive title
-      add_filter( 'tc_show_tax_archive_title', 'czr_fn_et_disable_tax_archive_title');
-      function czr_fn_et_disable_post_list( $bool ) {
+      add_filter( 'tc_show_tax_archive_title', 'czr_fn_et_disable_on_attendees_registration');
+      //hide navigation
+      add_filter( 'tc_show_post_navigation', 'czr_fn_et_disable_on_attendees_registration' );
+      function czr_fn_et_disable_on_attendees_registration( $bool ) {
         return czr_fn_is_et_attendees_registration() ? false : $bool;
       }
 
@@ -2495,6 +2497,7 @@ class CZR_utils_settings_map {
                   'tc_header_skin',
                   'tc_header_custom_bg_color',
                   'tc_header_custom_fg_color',
+                  'tc_highlight_contextually_active_menu_items',
                   'tc_header_transparent_home',
                   'tc_home_header_skin',
                   'tc_header_no_borders',

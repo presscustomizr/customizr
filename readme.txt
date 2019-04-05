@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.1.0
-Stable tag: 4.1.34
+Stable tag: 4.1.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,17 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.34 =
-Bug dispaying related posts in pages.
+= 4.1.35 =
+Improved compatibility with Event Tickets plugins. Removed title attribute on logo and site title. New unififed style for the checkboxes in the customizer. New option to control the current menu item style. Fixed a few reported issues.
 
 == Changelog ==
+= 4.1.35 April 5th, 2019 =
+* fixed : make sure we catch the post_type_archive case when displaying the archive titles. fixes #1715
+* fixed : remove title attribute on logo and site title + add aria-label attribute. fixes #1719
+* fixed : compatibility issue with Event Tickets plugins. When the plugin was enabled no lists of posts were displayed. fixes #1724
+* improved : style of checkboxes in customizer controls. fixes #1729
+* added : a new option to control the current menu item highlighting. fixes #1718
+
 = 4.1.34 March 22nd, 2019 =
 * Fix: bug leading to related posts displayed in pages
 

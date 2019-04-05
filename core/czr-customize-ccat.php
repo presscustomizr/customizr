@@ -919,7 +919,7 @@ if ( ! class_exists( 'CZR_controls' ) ) :
 
         do_action( '__before_setting_control' , $this -> id );
 
-        switch ( $this -> type) {
+        switch ( $this->type) {
             case 'hr':
               echo '<hr class="czr-customizer-separator" />';
             break;
@@ -986,16 +986,32 @@ if ( ! class_exists( 'CZR_controls' ) ) :
               break;
 
             case 'checkbox':
+            case 'nimblecheck':
               ?>
               <?php if (isset( $this->title)) : ?>
                 <h3 class="czr-customizr-title"><?php echo esc_html( $this->title); ?></h3>
               <?php endif; ?>
-              <?php
+
+              <?php if ( 'checkbox' === $this->type ) : ?>
+                <?php
                     printf('<div class="czr-check-label"><label><span class="customize-control-title">%1$s</span></label></div>',
-                    $this->label
-                  );
-              ?>
-              <input <?php $this->link(); ?> type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>"  <?php czr_fn_checked( $this->value() ); ?> />
+                      $this->label
+                    );
+                ?>
+                <input <?php $this->link(); ?> type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>"  <?php czr_fn_checked( $this->value() ); ?> />
+              <?php elseif ( 'nimblecheck' === $this->type ) : ?>
+                <div class="czr-control-nimblecheck">
+                  <?php
+                    printf('<div class="czr-check-label"><label><span class="customize-control-title">%1$s</span></label></div>',
+                      $this->label
+                    );
+                  ?>
+                  <div class="nimblecheck-wrap">
+                    <input id="nimblecheck-<?php echo $this -> id; ?>" <?php $this->link(); ?> type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>"  <?php czr_fn_checked( $this->value() ); ?> class="nimblecheck-input">
+                    <label for="nimblecheck-<?php echo $this -> id; ?>" class="nimblecheck-label">Switch</label>
+                  </div>
+                </div>
+              <?php endif; ?>
 
               <?php if(!empty( $this -> notice)) : ?>
                <span class="czr-notice"><?php echo $this-> notice ?></span>
