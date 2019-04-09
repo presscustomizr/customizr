@@ -3676,7 +3676,7 @@ var czrapp = czrapp || {};
                             zeroTopAdjust : 0,
                             oncustom : ['smartload', 'simple_load', 'block_resized', 'fpu-recenter']
                         });
-                        if ( ! czrapp.localized.imgSmartLoadEnabled ) {
+                        if ( 1 != czrapp.localized.imgSmartLoadEnabled ) {
                             czrapp.base.triggerSimpleLoad( $_fpuEl.find("img:not(.tc-holder-img)") );
                         } else {
                             $_fpuEl.find("img:not(.tc-holder-img)").each( function() {
@@ -3685,7 +3685,7 @@ var czrapp = czrapp || {};
                                     }
                             });
                         }
-                        if ( _isFPUimgCentered && ! czrapp.localized.imgSmartLoadEnabled ) {
+                        if ( _isFPUimgCentered && 1 != czrapp.localized.imgSmartLoadEnabled ) {
                               var $_holder_img = $_fpuEl.find("img.tc-holder-img");
                               if ( 0 < $_holder_img.length ) {
                                   czrapp.base.triggerSimpleLoad( $_holder_img );

@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Customizr 4.1.36\n"
+"Project-Id-Version: Customizr 4.1.37\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-04-09 11:09:26+00:00\n"
+"POT-Creation-Date: 2019-04-09 16:12:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1294,23 +1294,23 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: core/core-functions.php:1491
+#: core/core-functions.php:1492
 msgid "Page %s"
 msgstr ""
 
-#: core/core-functions.php:1580
+#: core/core-functions.php:1581
 msgid "&mdash; No slider &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1581
+#: core/core-functions.php:1582
 msgid "&mdash; Demo Slider &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1582
+#: core/core-functions.php:1583
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1659
+#: core/core-functions.php:1660
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
