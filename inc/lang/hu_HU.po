@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.35\n"
+"Project-Id-Version: * Customizr v4.1.36\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-04-05 17:37:00+00:00\n"
+"POT-Creation-Date: 2019-04-09 11:09:26+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:03+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: phritzy\n"
@@ -1359,23 +1359,23 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: core/core-functions.php:1490
+#: core/core-functions.php:1491
 msgid "Page %s"
 msgstr "%s oldal"
 
-#: core/core-functions.php:1579
+#: core/core-functions.php:1580
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Nincs lapozókép &mdash;"
 
-#: core/core-functions.php:1580
+#: core/core-functions.php:1581
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demó lapozókép &mdash;"
 
-#: core/core-functions.php:1581
+#: core/core-functions.php:1582
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1658
+#: core/core-functions.php:1659
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -3335,22 +3335,22 @@ msgstr "Lapozókép létrehozás"
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1562
+#: core/czr-base-fmk/czr-base-fmk.php:1570
 msgid "Set a custom url"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1596
-#: core/czr-base-fmk/czr-base-fmk.php:1796
+#: core/czr-base-fmk/czr-base-fmk.php:1604
+#: core/czr-base-fmk/czr-base-fmk.php:1804
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1717
-#: core/czr-base-fmk/czr-base-fmk.php:1926
+#: core/czr-base-fmk/czr-base-fmk.php:1725
+#: core/czr-base-fmk/czr-base-fmk.php:1934
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1860
+#: core/czr-base-fmk/czr-base-fmk.php:1868
 #, fuzzy
 msgid "No results found."
 msgstr "Keresési eredmény:"
