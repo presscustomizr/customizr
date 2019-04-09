@@ -208,7 +208,7 @@ var czrapp = czrapp || {};
 
                         // Smartload enabled ?
                         // If not, trigger a simple load, because the fpu images are not centered on init
-                        if ( ! czrapp.localized.imgSmartLoadEnabled ) {
+                        if ( 1 != czrapp.localized.imgSmartLoadEnabled ) {
                             czrapp.base.triggerSimpleLoad( $_fpuEl.find("img:not(.tc-holder-img)") );
                         } else {
                             //we don't want to center the holder imgs
@@ -220,7 +220,7 @@ var czrapp = czrapp || {};
                             });
                         }
                         //simple-load event on holders needs to be needs to be triggered with a certain delay otherwise holders will be misplaced (centering)
-                        if ( _isFPUimgCentered && ! czrapp.localized.imgSmartLoadEnabled ) {
+                        if ( _isFPUimgCentered && 1 != czrapp.localized.imgSmartLoadEnabled ) {
                               var $_holder_img = $_fpuEl.find("img.tc-holder-img");
                               if ( 0 < $_holder_img.length ) {
                                   czrapp.base.triggerSimpleLoad( $_holder_img );
