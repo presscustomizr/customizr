@@ -341,6 +341,9 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             // Add support for Gutenberg responsive embeds
             add_theme_support( 'responsive-embeds' );
 
+            // Add support for Block editor styles.
+            add_theme_support( 'editor-styles' );
+
             //post thumbnails for featured pages and post lists (archive, search, ...)
             $tc_thumb_size    = apply_filters( 'tc_thumb_size' , CZR___::$instance -> tc_thumb_size );
             add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
