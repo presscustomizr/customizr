@@ -590,9 +590,16 @@
       .clearfix();
     }
 
-    [class*="span"] {
+    // @nikeo addon => April 2019 to fix : https://github.com/presscustomizr/customizr/issues/1734
+    // Original bootstrap rule replaced
+    // [class*="span"] {
+    //   float: @floatDirection;
+    //   min-height: 1px; // prevent collapsing columns
+    //   margin-left: @gridGutterWidth;
+    // }
+    .span1,.span2,.span3,.span4,.span5,.span6,.span7,.span8,.span9,.span10,.span11,.span12 {
       float: @floatDirection;
-      min-height: 1px; // prevent collapsing columns
+      min-height: 1px;
       margin-left: @gridGutterWidth;
     }
 
