@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.1.37
+ * Customizr v4.1.38
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -254,7 +254,18 @@ body {
 .row:after {
   clear: both;
 }
-[class*="span"] {
+.span1,
+.span2,
+.span3,
+.span4,
+.span5,
+.span6,
+.span7,
+.span8,
+.span9,
+.span10,
+.span11,
+.span12 {
   float: right;
   min-height: 1px;
   margin-left: 20px;
@@ -7596,7 +7607,18 @@ footer ol {
   .row:after {
     clear: both;
   }
-  [class*="span"] {
+  .span1,
+  .span2,
+  .span3,
+  .span4,
+  .span5,
+  .span6,
+  .span7,
+  .span8,
+  .span9,
+  .span10,
+  .span11,
+  .span12 {
     float: right;
     min-height: 1px;
     margin-left: 30px;
@@ -7947,7 +7969,18 @@ footer ol {
   .row:after {
     clear: both;
   }
-  [class*="span"] {
+  .span1,
+  .span2,
+  .span3,
+  .span4,
+  .span5,
+  .span6,
+  .span7,
+  .span8,
+  .span9,
+  .span10,
+  .span11,
+  .span12 {
     float: right;
     min-height: 1px;
     margin-left: 20px;

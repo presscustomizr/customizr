@@ -212,10 +212,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //a) child-themes cannot override it
       //b) no check on the file existence will be made (producing the rtl error, for instance : https://github.com/presscustomizr/customizr/issues/926)
 
-      //as of v4.0.10 the editor-style.css is for classic
-      //4.1.23 block editor style introduced for the modern style only
+      //as of v4.0.10 the editor-style.css is the classic editor style for the Customizr classic style
+      //4.1.23 block editor style introduced for the Customizr modern style only
+
+      //as of 4.1.38 block editor style introduced for the Customizr modern style too
       $_style_suffix = CZR_DEBUG_MODE || CZR_DEV_MODE ? '.css' : '.min.css' ;
-      $_stylesheets = czr_fn_is_ms() ? array( CZR_ASSETS_PREFIX . 'back/css/block-editor-style' . $_style_suffix ) : array( CZR_ASSETS_PREFIX . 'back/css/editor-style' . $_style_suffix );
+      $_stylesheets = czr_fn_is_ms() ? array( CZR_ASSETS_PREFIX . 'back/css/block-editor-style' . $_style_suffix ) : array( CZR_ASSETS_PREFIX . 'back/css/editor-style' . $_style_suffix, CZR_ASSETS_PREFIX . 'back/css/block-editor-style-cs' . $_style_suffix );
 
       $_stylesheets[] = 'style.css';
       if ( ! czr_fn_is_ms() ) {

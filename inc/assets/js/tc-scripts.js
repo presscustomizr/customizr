@@ -2844,8 +2844,8 @@ var defaultOptions = {
     keyboardSupport   : true,  // option
     arrowScroll       : 50,     // [px]
     touchpadSupport   : true,
-    fixedBackground   : true, 
-    excluded          : ''    
+    fixedBackground   : true,
+    excluded          : ''
 };
 
 var options = defaultOptions;
@@ -2859,7 +2859,7 @@ var observer;
 var deltaBuffer = [];
 var isMac = /^Mac/.test(navigator.platform);
 
-var key = { left: 37, up: 38, right: 39, down: 40, spacebar: 32, 
+var key = { left: 37, up: 38, right: 39, down: 40, spacebar: 32,
             pageup: 33, pagedown: 34, end: 35, home: 36 };
 
 var options = defaultOptions;
@@ -2869,29 +2869,29 @@ function initTest() {
     }
 }
 function init() {
-  
+
     if (initDone || !document.body) return;
 
     initDone = true;
 
     var body = document.body;
     var html = document.documentElement;
-    var windowHeight = window.innerHeight; 
+    var windowHeight = window.innerHeight;
     var scrollHeight = body.scrollHeight;
     root = (document.compatMode.indexOf('CSS') >= 0) ? html : body;
     activeElement = body;
-    
+
     initTest();
     if (top != self) {
         isFrame = true;
     }
     else if (scrollHeight > windowHeight &&
-            (body.offsetHeight <= windowHeight || 
+            (body.offsetHeight <= windowHeight ||
              html.offsetHeight <= windowHeight)) {
 
         var fullPageElem = document.createElement('div');
         fullPageElem.style.cssText = 'position:absolute; z-index:-10000; ' +
-                                     'top:0; left:0; right:0; height:' + 
+                                     'top:0; left:0; right:0; height:' +
                                       root.scrollHeight + 'px';
         document.body.appendChild(fullPageElem);
         var pendingRefresh;
@@ -2904,19 +2904,19 @@ function init() {
                 pendingRefresh = null;
             }, 500); // act rarely to stay fast
         };
-  
+
         setTimeout(refresh, 10);
         var config = {
-            attributes: true, 
-            childList: true, 
-            characterData: false 
+            attributes: true,
+            childList: true,
+            characterData: false
         };
 
         observer = new MutationObserver(refresh);
         observer.observe(body, config);
 
         if (root.offsetHeight <= windowHeight) {
-            var clearfix = document.createElement('div');   
+            var clearfix = document.createElement('div');
             clearfix.style.clear = 'both';
             body.appendChild(clearfix);
         }
@@ -2928,7 +2928,7 @@ function init() {
 }
 function cleanup() {
     observer && observer.disconnect();
-    removeEvent(wheelEvent, wheel);
+    removeEvent(wheelEvent, wheel, wheelOpt);
     removeEvent('mousedown', mousedown);
     removeEvent('keydown', keydown);
 }
@@ -2936,7 +2936,7 @@ var que = [];
 var pending = false;
 var lastScroll = Date.now();
 function scrollArray(elem, left, top) {
-    
+
     directionCheck(left, top);
 
     if (options.accelerationMax != 1) {
@@ -2951,28 +2951,28 @@ function scrollArray(elem, left, top) {
             }
         }
         lastScroll = Date.now();
-    }          
+    }
     que.push({
-        x: left, 
-        y: top, 
+        x: left,
+        y: top,
         lastX: (left < 0) ? 0.99 : -0.99,
-        lastY: (top  < 0) ? 0.99 : -0.99, 
+        lastY: (top  < 0) ? 0.99 : -0.99,
         start: Date.now()
     });
     if (pending) {
         return;
-    }  
+    }
 
     var scrollWindow = (elem === document.body);
-    
+
     var step = function (time) {
-        
+
         var now = Date.now();
         var scrollX = 0;
-        var scrollY = 0; 
-    
+        var scrollY = 0;
+
         for (var i = 0; i < que.length; i++) {
-            
+
             var item = que[i];
             var elapsed  = now - item.start;
             var finished = (elapsed >= options.animationTime);
@@ -2983,27 +2983,27 @@ function scrollArray(elem, left, top) {
             var x = (item.x * position - item.lastX) >> 0;
             var y = (item.y * position - item.lastY) >> 0;
             scrollX += x;
-            scrollY += y;            
+            scrollY += y;
             item.lastX += x;
             item.lastY += y;
             if (finished) {
                 que.splice(i, 1); i--;
-            }           
+            }
         }
         if (scrollWindow) {
             window.scrollBy(scrollX, scrollY);
-        } 
+        }
         else {
             if (scrollX) elem.scrollLeft += scrollX;
-            if (scrollY) elem.scrollTop  += scrollY;                    
+            if (scrollY) elem.scrollTop  += scrollY;
         }
         if (!left && !top) {
             que = [];
         }
-        
-        if (que.length) { 
-            requestFrame(step, elem, (1000 / options.frameRate + 1)); 
-        } else { 
+
+        if (que.length) {
+            requestFrame(step, elem, (1000 / options.frameRate + 1));
+        } else {
             pending = false;
         }
     };
@@ -3015,13 +3015,13 @@ function wheel(event) {
     if (!initDone) {
         init();
     }
-    
+
     var target = event.target;
     var overflowing = overflowingAncestor(target);
     if (!overflowing || event.defaultPrevented || event.ctrlKey) {
         return true;
     }
-    if (isNodeName(activeElement, 'embed') || 
+    if (isNodeName(activeElement, 'embed') ||
        (isNodeName(target, 'embed') && /\.pdf/i.test(target.src)) ||
        isNodeName(activeElement, 'object')) {
         return true;
@@ -3029,7 +3029,7 @@ function wheel(event) {
 
     var deltaX = -event.wheelDeltaX || event.deltaX || 0;
     var deltaY = -event.wheelDeltaY || event.deltaY || 0;
-    
+
     if (isMac) {
         if (event.wheelDeltaX && isDivisible(event.wheelDeltaX, 120)) {
             deltaX = -120 * (event.wheelDeltaX / Math.abs(event.wheelDeltaX));
@@ -3054,7 +3054,7 @@ function wheel(event) {
     if (Math.abs(deltaY) > 1.2) {
         deltaY *= options.stepSize / 120;
     }
-    
+
     scrollArray(overflowing, deltaX, deltaY);
     event.preventDefault();
     scheduleClearCache();
@@ -3062,7 +3062,7 @@ function wheel(event) {
 function keydown(event) {
 
     var target   = event.target;
-    var modifier = event.ctrlKey || event.altKey || event.metaKey || 
+    var modifier = event.ctrlKey || event.altKey || event.metaKey ||
                   (event.shiftKey && event.keyCode !== key.spacebar);
     if (!document.contains(activeElement)) {
         activeElement = document.activeElement;
@@ -3073,7 +3073,7 @@ function keydown(event) {
          isNodeName(target, 'input') && !buttonTypes.test(target.type) ||
          isNodeName(activeElement, 'video') ||
          isInsideYoutubeVideo(event) ||
-         target.isContentEditable || 
+         target.isContentEditable ||
          event.defaultPrevented   ||
          modifier ) {
       return true;
@@ -3083,7 +3083,7 @@ function keydown(event) {
         event.keyCode === key.spacebar) {
       return true;
     }
-    
+
     var shift, x = 0, y = 0;
     var elem = overflowingAncestor(activeElement);
     var clientHeight = elem.clientHeight;
@@ -3098,7 +3098,7 @@ function keydown(event) {
             break;
         case key.down:
             y = options.arrowScroll;
-            break;         
+            break;
         case key.spacebar: // (+ shift)
             shift = event.shiftKey ? 1 : -1;
             y = -shift * clientHeight * 0.9;
@@ -3121,7 +3121,7 @@ function keydown(event) {
             break;
         case key.right:
             x = options.arrowScroll;
-            break;            
+            break;
         default:
             return true; // a key we don't care about
     }
@@ -3168,9 +3168,9 @@ function overflowingAncestor(el) {
         if (rootScrollHeight === el.scrollHeight) {
             var topOverflowsNotHidden = overflowNotHidden(root) && overflowNotHidden(body);
             var isOverflowCSS = topOverflowsNotHidden || overflowAutoOrScroll(root);
-            if (isFrame && isContentOverflowing(root) || 
+            if (isFrame && isContentOverflowing(root) ||
                !isFrame && isOverflowCSS) {
-                return setCache(elems, getScrollRoot()); 
+                return setCache(elems, getScrollRoot());
             }
         } else if (isContentOverflowing(el) && overflowAutoOrScroll(el)) {
             return setCache(elems, el);
@@ -3190,12 +3190,12 @@ function overflowAutoOrScroll(el) {
     return (overflow === 'scroll' || overflow === 'auto');
 }
 
-function addEvent(type, fn) {
-    window.addEventListener(type, fn, false);
+function addEvent(type, fn, arg ) {
+    window.addEventListener(type, fn, arg || false);
 }
 
-function removeEvent(type, fn) {
-    window.removeEventListener(type, fn, false);  
+function removeEvent(type, fn, arg) {
+    window.removeEventListener(type, fn, arg || false);
 }
 
 function isNodeName(el, tag) {
@@ -3234,7 +3234,7 @@ function isTouchpad(deltaY) {
         }
     }, 1000);
     return !allDeltasDivisableBy(120) && !allDeltasDivisableBy(100);
-} 
+}
 
 function isDivisible(n, divisor) {
     return (Math.floor(n / divisor) == n / divisor);
@@ -3251,7 +3251,7 @@ function isInsideYoutubeVideo(event) {
     var isControl = false;
     if (document.URL.indexOf ('www.youtube.com/watch') != -1) {
         do {
-            isControl = (elem.classList && 
+            isControl = (elem.classList &&
                          elem.classList.contains('html5-video-controls'));
             if (isControl) break;
         } while (elem = elem.parentNode);
@@ -3260,17 +3260,17 @@ function isInsideYoutubeVideo(event) {
 }
 
 var requestFrame = (function () {
-      return (window.requestAnimationFrame       || 
-              window.webkitRequestAnimationFrame || 
+      return (window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
               window.mozRequestAnimationFrame    ||
               function (callback, element, delay) {
                  window.setTimeout(callback, delay || (1000/60));
              });
 })();
 
-var MutationObserver = (window.MutationObserver || 
+var MutationObserver = (window.MutationObserver ||
                         window.WebKitMutationObserver ||
-                        window.MozMutationObserver);  
+                        window.MozMutationObserver);
 
 var getScrollRoot = (function() {
   var SCROLL_ROOT;
@@ -3284,7 +3284,7 @@ var getScrollRoot = (function() {
       window.scrollBy(0, 1);
       if (document.body.scrollTop != bodyScrollTop)
         (SCROLL_ROOT = document.body);
-      else 
+      else
         (SCROLL_ROOT = document.documentElement);
       window.scrollBy(0, -1);
       document.body.removeChild(dummy);
@@ -3316,14 +3316,20 @@ function pulse(x) {
     return pulse_(x);
 }
 
-var wheelEvent;
-if ('onwheel' in document.createElement('div'))
-    wheelEvent = 'wheel';
-else if ('onmousewheel' in document.createElement('div'))
-    wheelEvent = 'mousewheel';
+var supportsPassive = false;
+try {
+  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () {
+            supportsPassive = true;
+        }
+    }));
+} catch(e) {}
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 function _maybeInit( fire ){
   if (wheelEvent) {
-    addEvent(wheelEvent, wheel);
+    addEvent(wheelEvent, wheel, wheelOpt);
     addEvent('mousedown', mousedown);
     if ( ! fire ) addEvent('load', init);
     else init();
@@ -3335,7 +3341,7 @@ smoothScroll = function ( _options ) {
   _maybeInit() && czrapp.$_body.addClass('tc-smoothscroll');
 }
 smoothScroll._cleanUp = function(){
-  cleanup();    
+  cleanup();
   czrapp.$_body.removeClass('tc-smoothscroll');
 }
 smoothScroll._maybeFire = function(){
