@@ -824,7 +824,7 @@ section.post-content { margin-top:0; }
   }
 }
 
-
+[class*=czr__r-w].video-container > div,
 [class*=czr__r-w].video-container iframe {
     position: absolute;
     top: 0;
@@ -833,7 +833,9 @@ section.post-content { margin-top:0; }
     width: 100%;
     height: 100%;
 }
-
+[class*=czr__r-w].video-container > div {
+    width: 100%;
+}
 .hide-all-post-navigation,
 .hide-post-navigation,
 .hide-all-post-metas .entry-meta,
