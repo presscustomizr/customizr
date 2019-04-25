@@ -140,7 +140,7 @@ class CZR_video_model_class extends CZR_Model {
 
                   return $video_html;
             }
-            error_log( );
+
             return false;
 
       }
