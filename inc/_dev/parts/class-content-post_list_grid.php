@@ -245,9 +245,9 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         function czr_fn_grid_display_post_link(){
           if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
-          printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2$s"></a>',
-              get_permalink( get_the_ID() ),
-              esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
+          printf( '<a class="tc-grid-bg-link" href="%1$s"></a>',
+              get_permalink( get_the_ID() )
+          );
         }
 
 

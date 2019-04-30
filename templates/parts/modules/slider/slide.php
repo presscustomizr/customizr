@@ -6,7 +6,7 @@
 ?>
 <div class="carousel-cell item <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
   <?php if ( czr_fn_get_property( 'link_whole_slide' ) ) : ?>
-    <a class="tc-slide-link bg-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>" title="<?php _e( 'Go to', 'customizr' ) ?>"></a>
+    <a class="tc-slide-link bg-link" href="<?php czr_fn_echo( 'link_url' ) ?>" target="<?php czr_fn_echo( 'link_target' ) ?>"></a>
   <?php endif ?>
   <div class="czr-filter <?php czr_fn_echo( 'img_wrapper_class' ) ?>">
     <?php

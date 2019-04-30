@@ -173,9 +173,8 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) )
           return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;
         else
-          return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
+          return sprintf('<a href="%1$s" rel="bookmark">%2$s</a>',
             get_permalink(),
-            sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( get_the_title() ) ) ),
             is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title
           );//end sprintf
       }

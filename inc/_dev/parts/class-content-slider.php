@@ -721,10 +721,9 @@ class CZR_slider {
   */
   function czr_fn_link_whole_slide( $slide_background, $link_url, $id, $slider_name_id, $data ) {
     if ( isset( $data['link_whole_slide'] )  && $data['link_whole_slide'] && $link_url )
-      $slide_background = sprintf('<a href="%1$s" class="tc-slide-link" target="%2$s" title="%3$s"></a>%4$s',
+      $slide_background = sprintf('<a href="%1$s" class="tc-slide-link" target="%2$s"></a>%3$s',
                                 $link_url,
                                 $data['link_target'],
-                                __('Go to', 'customizr'),
                                 $slide_background
       );
     return $slide_background;
