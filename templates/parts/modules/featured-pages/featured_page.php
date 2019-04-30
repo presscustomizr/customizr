@@ -10,7 +10,7 @@ if ( czr_fn_get_property( 'is_first_of_row' ) ) : ?>
     <div class="widget-front czr-link-mask-p round" <?php czr_fn_echo('element_attributes') ?>>
       <?php if ( czr_fn_get_property( 'fp_img' ) ) : /* FP IMAGE */?>
       <div class="tc-thumbnail czr-thumb-wrapper czr__r-wTCT <?php czr_fn_echo( 'thumb_wrapper_class' ) ?>">
-        <a class="czr-link-mask" href="<?php czr_fn_echo( 'featured_page_link' ) /* escaped in the model */?>" title="<?php echo esc_attr( strip_tags( czr_fn_get_property( 'featured_page_title' ) ) ) ?>"></a>
+        <a class="czr-link-mask" href="<?php czr_fn_echo( 'featured_page_link' ) /* escaped in the model */?>"></a>
           <?php czr_fn_echo( 'fp_img' ) ?>
       </div>
       <?php endif /* END FP IMAGE*/ ?>
@@ -33,7 +33,6 @@ if ( czr_fn_get_property( 'is_first_of_row' ) ) : ?>
             'class' => 'fp-button'. czr_fn_get_property( 'fp-button-class' ),
             'link' => czr_fn_get_property( 'featured_page_link' ),
             'esc_url' => false, //already escaped in the model
-            'title' => strip_tags( czr_fn_get_property( 'featured_page_title' ) ),
             'text' => czr_fn_get_property( 'fp_button_text' ),
             'echo' => true
         ) );
