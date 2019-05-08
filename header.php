@@ -47,7 +47,14 @@ if ( apply_filters( 'czr_ms', false ) ) {
 	?>
 
 	<body <?php body_class(); ?> <?php echo apply_filters('tc_body_attributes' , '') ?>>
-
+    <?php
+    // see https://github.com/presscustomizr/customizr/issues/1722
+    if ( function_exists( 'wp_body_open' ) ) {
+        wp_body_open();
+    } else {
+        do_action( 'wp_body_open' );
+    }
+    ?>
     <?php do_action( '__before_page_wrapper' ); ?>
 
     <div id="tc-page-wrap" class="<?php echo implode( " ", apply_filters('tc_page_wrap_class', array() ) ) ?>">
