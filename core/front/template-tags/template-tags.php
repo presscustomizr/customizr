@@ -118,7 +118,6 @@ function czr_fn_readmore_button( $args = array() ) {
       $defaults = array(
             'class'   => '',
             'link'    => get_permalink(),
-            'title'   => the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr'), 'echo' => false ) ),
             'text'    => __('Read more &raquo;', 'customizr' ),
             'esc_url' => true,
             'echo'    => false,
@@ -128,10 +127,9 @@ function czr_fn_readmore_button( $args = array() ) {
 
       $args[ 'class' ]  = $args[ 'class' ] ? $args[ 'class' ] . ' readmore-holder' : 'readmore-holder';
 
-      $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-dark" href="%2$s" title="%3$s">%4$s</a></span>',
+      $readmore_button = sprintf( '<span class="%1$s"><a class="moretag btn btn-more btn-skin-dark" href="%2$s">%3$s</a></span>',
             esc_attr( $args[ 'class' ] ),
             $args['esc_url'] ? esc_url( $args[ 'link' ] ) : $args[ 'link' ],
-            esc_attr( $args[ 'title' ] ),
             $args[ 'text' ]
       );
 

@@ -12,7 +12,7 @@
   <section class="grid__item">
     <div class="tc-grid-figure entry-media__holder <?php czr_fn_echo( 'figure_class' ) ?>">
       <div class="entry-media__wrapper czr__r-i">
-        <a class="bg-link" href="<?php the_permalink() ?>" title="<?php esc_attr( strip_tags( get_the_title() ) ) ?>"></a>
+        <a class="bg-link" href="<?php the_permalink() ?>"></a>
         <?php czr_fn_echo( 'thumb_img' ) ?>
       </div>
       <div class="tc-grid-caption">
@@ -24,7 +24,7 @@
 
             ?>
             <h2 class="entry-title over-thumb">
-              <a class="czr-title" href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
+              <a class="czr-title" href="<?php the_permalink() ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
             </h2>
             <?php
 
@@ -40,7 +40,7 @@
 
             ?>
             <h2 class="entry-title over-thumb">
-              <a class="czr-title" href="<?php the_permalink() ?>" title="<?php _e( 'Permalink to' , 'customizr' ) ?> <?php echo esc_attr( strip_tags( get_the_title() ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
+              <a class="czr-title" href="<?php the_permalink() ?>" rel="bookmark"><?php czr_fn_echo( 'title' ) ?></a>
             </h2>
             <?php
 

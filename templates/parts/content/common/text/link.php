@@ -12,7 +12,7 @@
 
 ?>
 <p class="<?php czr_fn_echo( 'element_class' ) ?> entry-link" <?php czr_fn_echo( 'element_attributes') ?>>
-  <a class="czr-format-link" target="_blank" href="<?php czr_fn_echo( 'link_url' ) ?>" title="<?php esc_attr( czr_fn_get_property( 'link_title' ) ) ?>"><?php czr_fn_echo( 'link_title' ) ?></a>
+  <a class="czr-format-link" target="_blank" href="<?php czr_fn_echo( 'link_url' ) ?>"><?php czr_fn_echo( 'link_title' ) ?></a>
 </p>
 <?php
 
