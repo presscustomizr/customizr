@@ -1324,10 +1324,9 @@ function czr_fn_render_thumb_view( $_thumb_model , $layout = 'span3', $_echo = t
     $no_effect_class  = ( esc_attr( czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
     //default hover effect
-    $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
+    $thumb_wrapper    = sprintf('<div class="%4$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s"></a>%3$s</div>',
                                   implode( " ", apply_filters( 'czr_thumbnail_link_class', array( $no_effect_class ) ) ),
                                   get_permalink( get_the_ID() ),
-                                  esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                                   $thumb_img,
                                   implode( " ", apply_filters( 'czr_thumb_wrapper_class', array('thumb-wrapper') ) )
     );

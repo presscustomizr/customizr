@@ -3580,9 +3580,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               if ( isset( $show_img) && $show_img == 1 ) { //check if image option is checked
                 printf('<div class="thumb-wrapper %1$s">%2$s%3$s</div>',
                    ( $fp_img == $fp_holder_img ) ? 'tc-holder' : '',
-                   apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s" title="%2$s"></a>',
-                                                    $featured_page_link,
-                                                    esc_attr( strip_tags( $featured_page_title ) )
+                   apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s"></a>',
+                                                    $featured_page_link
                                                   ) ,
                                 $fp_single_id,
                                 $featured_page_id
@@ -3616,10 +3615,9 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               if ( $tc_fp_button_text || czr_fn_is_customizing() ){
                 $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                 $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
-                $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
+                $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s">%3$s</a>',
                                     $tc_fp_button_class,
                                     $featured_page_link,
-                                    esc_attr( strip_tags( $featured_page_title ) ),
                                     $tc_fp_button_text
 
                 );
@@ -3930,9 +3928,8 @@ if ( ! class_exists( 'CZR_headings' ) ) :
         if ( is_singular() || ! apply_filters('tc_display_link_for_post_titles' , true ) )
           return is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title;
         else
-          return sprintf('<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
+          return sprintf('<a href="%1$s" rel="bookmark">%2$s</a>',
             get_permalink(),
-            sprintf( apply_filters( 'tc_post_link_title' , __( 'Permalink to %s' , 'customizr' ) ) , esc_attr( strip_tags( get_the_title() ) ) ),
             is_null($_title) ? apply_filters( 'tc_no_title_post', __( '{no title} Read the post &raquo;' , 'customizr' ) )  : $_title
           );//end sprintf
       }
@@ -4512,9 +4509,8 @@ if ( ! class_exists( 'CZR_page' ) ) :
     * @since Customizr 3.5+
     */
     function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-      return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2$s">%3$s</a></div>',
+      return sprintf('<div class="%3$s"><a class="tc-rectangular-thumb" href="%1$s">%2$s</a></div>',
             get_permalink( get_the_ID() ),
-            esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
             $thumb_img,
             implode( " ", apply_filters( 'tc_thumb_wrapper_class', array() ) )
       );
@@ -4822,9 +4818,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-      return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2$s">%3$s</a></div>',
+      return sprintf('<div class="%3$s"><a class="tc-rectangular-thumb" href="%1$s">%2$s</a></div>',
             get_permalink( get_the_ID() ),
-            esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
             $thumb_img,
             implode( " ", apply_filters( 'tc_thumb_wrapper_class', array() ) )
       );
@@ -5150,9 +5145,8 @@ class CZR_post_list {
       return $thumb_wrapper;
 
     $_position = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
-    return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
+    return sprintf('<div class="%3$s"><a class="tc-rectangular-thumb" href="%1$s">%2$s</a></div>',
           get_permalink( get_the_ID() ),
-          esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
           $thumb_img,
           ( 'top' == $_position || 'bottom' == $_position ) ? '' : implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('') ) )
     );
@@ -5591,9 +5585,9 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         function czr_fn_grid_display_post_link(){
           if ( ! apply_filters( 'tc_grid_display_post_link' , true ) )
             return;
-          printf( '<a class="tc-grid-bg-link" href="%1$s" title="%2$s"></a>',
-              get_permalink( get_the_ID() ),
-              esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ) );
+          printf( '<a class="tc-grid-bg-link" href="%1$s"></a>',
+              get_permalink( get_the_ID() )
+          );
         }
 
 
@@ -7470,10 +7464,9 @@ class CZR_post_thumbnails {
       $no_effect_class  = ( esc_attr( czr_fn_opt( 'tc_center_img') ) || ! isset($tc_thumb) || empty($tc_thumb_height) || empty($tc_thumb_width) ) ? '' : $no_effect_class;
 
       //default hover effect
-      $thumb_wrapper    = sprintf('<div class="%5$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s" title="%3$s"></a>%4$s</div>',
+      $thumb_wrapper    = sprintf('<div class="%4$s %1$s"><div class="round-div"></div><a class="round-div %1$s" href="%2$s"></a>%3$s</div>',
                                     implode( " ", apply_filters( 'tc_thumbnail_link_class', array( $no_effect_class ) ) ),
                                     get_permalink( get_the_ID() ),
-                                    esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
                                     $thumb_img,
                                     implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('thumb-wrapper') ) )
       );
@@ -8445,10 +8438,9 @@ class CZR_slider {
   */
   function czr_fn_link_whole_slide( $slide_background, $link_url, $id, $slider_name_id, $data ) {
     if ( isset( $data['link_whole_slide'] )  && $data['link_whole_slide'] && $link_url )
-      $slide_background = sprintf('<a href="%1$s" class="tc-slide-link" target="%2$s" title="%3$s"></a>%4$s',
+      $slide_background = sprintf('<a href="%1$s" class="tc-slide-link" target="%2$s"></a>%3$s',
                                 $link_url,
                                 $data['link_target'],
-                                __('Go to', 'customizr'),
                                 $slide_background
       );
     return $slide_background;

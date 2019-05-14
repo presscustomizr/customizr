@@ -818,7 +818,7 @@ var czrapp = czrapp || {};
                 leftAdjust : 2.5,
                 oncustom : ['smartload', 'simple_load']
               });
-              $('.thumb-wrapper', '.hentry' ).centerImages( {
+              $('.thumb-wrapper', '.czr-hentry' ).centerImages( {
                 enableCentering : 1 == TCParams.centerAllImg,
                 enableGoldenRatio : false,
                 disableGRUnder : 0,//<= don't disable golden ratio when responsive
