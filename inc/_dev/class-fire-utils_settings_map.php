@@ -280,7 +280,7 @@ class CZR_utils_settings_map {
                               'control'   => 'CZR_controls',
                               'label'     => __('Randomize the skin', 'customizr'),
                               'section'   => 'skins_sec',
-                              'type'      => 'checkbox',
+                              'type'      => 'nimblecheck',
                               'notice'    => __( 'Apply a random color skin on each page load.' , 'customizr' )
                   ),
             );
@@ -304,7 +304,7 @@ class CZR_utils_settings_map {
                                 'control'     => 'CZR_controls' ,
                                 'label'         => __( "Fade effect on link hover" , 'customizr' ),
                                 'section'       => 'formatting_sec' ,
-                                'type'          => 'checkbox' ,
+                                'type'          => 'nimblecheck' ,
                                 'priority'      => 20,
                                 'transport'   => 'postMessage'
                   ),
@@ -327,7 +327,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Display an icon next to external links" , "customizr" ),
                                     'section'       => 'formatting_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                                     'transport'     => 'postMessage'
                   ),
@@ -337,7 +337,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Open external links in a new tab" , "customizr" ),
                                     'section'       => 'formatting_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
                                     'transport'     => 'postMessage'
                   ),
@@ -348,7 +348,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'notice'         => __( "Apply a drop cap to the first paragraph of your post / page content" , "customizr" ),
                                     'section'       => 'formatting_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                   ),
                   'tc_dropcap_minwords'  =>  array(
                                     'default'       => 50,
@@ -378,7 +378,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'notice'         => __( "Apply a drop cap to the first paragraph of your single posts content" , "customizr" ),
                                     'section'       => 'formatting_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                   ),
                   'tc_page_dropcap'  =>  array(
                                     'default'       => 0,
@@ -386,7 +386,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'notice'         => __( "Apply a drop cap to the first paragraph of your pages" , "customizr" ),
                                     'section'       => 'formatting_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                   )
             );
 
@@ -405,7 +405,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "Display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 10,
                                     'notice'    => __( 'When this option is checked, a contextual icon is displayed next to the titles of pages, posts, archives, and WP built-in widgets.' , 'customizr' ),
                                     'transport'   => 'postMessage'
@@ -415,7 +415,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Display a page icon next to the page title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 20,
                                     'transport'   => 'postMessage'
                   ),
@@ -424,7 +424,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "Display a post icon next to the single post title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 30,
                                     'transport'   => 'postMessage'
                   ),
@@ -433,7 +433,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "Display an icon next to the archive title" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'notice'    => __( 'When this option is checked, an archive type icon is displayed in the heading of every types of archives, on the left of the title. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
                                     'priority'      => 40,
                                     'transport'   => 'postMessage'
@@ -443,7 +443,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "Display an icon next to each post title in an archive page" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'notice'    => __( 'When this option is checked, a post type icon is displayed on the left of each post titles in an archive page. An archive page can be : category, tag, author, date archive, custom taxonomies, search results.' , 'customizr' ),
                                     'priority'      => 50,
                                     'transport'   => 'postMessage'
@@ -453,7 +453,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "WP sidebar widgets : display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 60,
                                     'transport'   => 'postMessage'
                   ),
@@ -462,7 +462,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'         => __( "WP footer widgets : display icons next to titles" , 'customizr' ),
                                     'section'       => 'titles_icons_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 70,
                                     'transport'   => 'postMessage'
                   )
@@ -491,7 +491,7 @@ class CZR_utils_settings_map {
                                     'control'   => 'CZR_controls' ,
                                     'label'       => __( 'Autoscale images on zoom' , 'customizr' ),
                                     'section'     => 'images_sec' ,
-                                    'type'        => 'checkbox' ,
+                                    'type'        => 'nimblecheck' ,
                                     'priority'    => 2,
                                     'notice'    => __( 'If enabled, this option will force images to fit the screen on lightbox zoom.' , 'customizr' ),
                   ),
@@ -501,7 +501,7 @@ class CZR_utils_settings_map {
                                     'control'   => 'CZR_controls' ,
                                     'label'       => __( "Sliders : display on loading icon before rendering the slides" , 'customizr' ),
                                     'section'     => 'images_sec' ,
-                                    'type'        => 'checkbox' ,
+                                    'type'        => 'nimblecheck' ,
                                     'priority'    => 15,
                                     'notice'    => __( 'When checked, this option displays a loading icon when the slides are being setup.' , 'customizr' ),
                   ),
@@ -515,7 +515,7 @@ class CZR_utils_settings_map {
                                     'control'     => 'CZR_controls' ,
                                     'label'       => __( 'Improve your page speed by loading smaller slider images for mobile devices' , 'customizr' ),
                                     'section'     => 'images_sec' ,
-                                    'type'        => 'checkbox' ,
+                                    'type'        => 'nimblecheck' ,
                                     'priority'    => 24,
                                     'ubq_section'   => array(
                                         'section' => 'performances_sec',
@@ -574,7 +574,7 @@ class CZR_utils_settings_map {
                                     'label'       => __( 'Social links in header' , 'customizr' ),
                                     'control'   =>  'CZR_controls' ,
                                     'section'     => 'header_layout_sec',
-                                    'type'        => 'checkbox' ,
+                                    'type'        => 'nimblecheck' ,
                                     'priority'      => 11,
                                     'transport'    => ( czr_fn_is_partial_refreshed_on() ) ? 'postMessage' : 'refresh',
                                     'ubq_section'   => array(
@@ -588,7 +588,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Display the tagline in the header" , "customizr" ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 15,
                                     'transport'    => czr_fn_is_partial_refreshed_on() ? 'postMessage' : 'refresh',
                                     'ubq_section'   => array(
@@ -602,7 +602,7 @@ class CZR_utils_settings_map {
                                    'control'   => 'CZR_controls' ,
                                    'section'   => 'header_layout_sec',
                                    'notice'    => __( "WooCommerce: check to display a cart icon showing the number of items in your cart next to your header's tagline.", 'customizr' ),
-                                   'type'      => 'checkbox' ,
+                                   'type'      => 'nimblecheck' ,
                                    'priority'  => 18,
                                    'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' )
                   ),
@@ -611,7 +611,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Display menu in a box" , 'customizr' ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 25,
                                     'transport'     => 'postMessage',
                                     'notice'        => __( 'If checked, this option wraps the header menu/tagline/social in a light grey box.' , 'customizr' ),
@@ -622,7 +622,7 @@ class CZR_utils_settings_map {
                                     'title'         => __( 'Sticky header settings' , 'customizr'),
                                     'label'         => __( "Sticky on scroll" , 'customizr' ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 30,
                                     'transport'     => 'postMessage',
                                     'notice'    => __( 'If checked, this option makes the header stick to the top of the page on scroll down.' , 'customizr' )
@@ -632,7 +632,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Sticky header : display the tagline" , "customizr" ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 40,
                                     'transport'     => 'postMessage',
                   ),
@@ -641,7 +641,7 @@ class CZR_utils_settings_map {
                                     'label'     => sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Sticky header: display the shopping cart" , "customizr" ) ),
                                     'control'   => 'CZR_controls' ,
                                     'section'   => 'header_layout_sec',
-                                    'type'      => 'checkbox' ,
+                                    'type'      => 'nimblecheck' ,
                                     'priority'  => 45,
                                     'transport' => 'postMessage',
                                     'active_callback' => apply_filters( 'tc_woocommerce_options_enabled', '__return_false' ),
@@ -652,7 +652,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Sticky header : display the title / logo" , "customizr" ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 50,
                                     'transport'     => 'postMessage',
                   ),
@@ -661,7 +661,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Sticky header : display the menu" , "customizr" ),
                                     'section'       => 'header_layout_sec' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 60,
                                     'transport'     => 'postMessage',
                                     'notice'        => __('Also applied to the secondary menu if any.' , 'customizr')
@@ -744,7 +744,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( "For mobile devices (responsive), limit the height of the dropdown menu block to the visible viewport." , 'customizr' ) ),
                                     'section'       => 'nav' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 35,
                                     //'transport'     => 'postMessage',
                   ),
@@ -753,7 +753,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( "Display a label next to the menu button." , 'customizr' ),
                                     'section'       => 'nav' ,
-                                    'type'          => 'checkbox' ,
+                                    'type'          => 'nimblecheck' ,
                                     'priority'      => 45,
                                     'notice'        => __( 'Note : the label is hidden on mobile devices.' , 'customizr' ),
                   ),
@@ -915,7 +915,7 @@ class CZR_utils_settings_map {
                                     'title'         => __( 'Recent update notice after post titles' , 'customizr' ),
                                     'label'         => __( "Display a recent update notice" , 'customizr' ),
                                     'section'       => 'post_metas_sec',
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 65,
                                     'notice'    => __( 'If this option is checked, a customizable recent update notice is displayed next to the post title.' , 'customizr' )
                   ),
@@ -1013,7 +1013,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( 'Apply the grid layout to Home/Blog' , "customizr" ),
                                     'section'       => 'post_lists_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 57
                   ),
                   'tc_grid_in_archive'  =>  array(
@@ -1021,7 +1021,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( 'Apply the grid layout to Archives (archives, categories, author posts)' , "customizr" ),
                                     'section'       => 'post_lists_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 58
                   ),
                   'tc_grid_in_search'  =>  array(
@@ -1029,7 +1029,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( 'Apply the grid layout to Search results' , "customizr" ),
                                     'section'       => 'post_lists_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 60,
                                     'notice'        => __( 'Unchecked contexts are displayed with the alternate thumbnails layout.' , 'customizr' ),
                   ),
@@ -1038,7 +1038,7 @@ class CZR_utils_settings_map {
                                     'control'       => 'CZR_controls' ,
                                     'label'         => __( 'Display post format icons' , "customizr" ),
                                     'section'       => 'post_lists_sec' ,
-                                    'type'          => 'checkbox',
+                                    'type'          => 'nimblecheck',
                                     'priority'      => 63,
                                     'transport'     => 'postMessage'
                   ),
@@ -1249,7 +1249,7 @@ class CZR_utils_settings_map {
                                     'control'   => 'CZR_controls' ,
                                     'label'         => sprintf('<span class="dashicons dashicons-smartphone"></span> %s', __( 'Dynamic sidebar reordering on small devices' , 'customizr' ) ),
                                     'section'     => 'responsive_sec' ,
-                                    'type'        => 'checkbox' ,
+                                    'type'        => 'nimblecheck' ,
                                     'notice'    => __( 'Activate this option to move the sidebars (if any) after the main content block, for smartphones or tablets viewport.' , 'customizr' ),
                   )
             );
