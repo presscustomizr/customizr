@@ -686,7 +686,13 @@ a.czr-format-link {
       height:100%;
   }
 }
-
+// self hosted video alignment in alternate grid layout
+.czr__r-i .wp-video {
+  min-height: 100%;
+  width: 100% !important;
+  @include display-flex()
+  @include flex-align-items-center();
+}
 
 .grid-container__alternate {
   .format-audio .audio-container:not(.soundcloud)  {

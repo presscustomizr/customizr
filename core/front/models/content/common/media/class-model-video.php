@@ -67,6 +67,7 @@ class CZR_video_model_class extends CZR_Model {
       function czr_fn_setup_late_properties() {
 
             if ( is_null( $this->media ) ) {
+
                   $this -> czr_fn_setup( array(
                         'post_id'         => $this->post_id,
                         'element_class'   => $this->element_class
@@ -123,7 +124,21 @@ class CZR_video_model_class extends CZR_Model {
             //embed
             if ( $resource ) {
                   global $wp_embed;
-                  return $wp_embed->run_shortcode( '[embed]' . esc_url( $resource[ self::$meta_fields[ 'url' ] ] ) . '[/embed]' );
+                  $video_html = $wp_embed->run_shortcode( '[embed]' . esc_url( $resource[ self::$meta_fields[ 'url' ] ] ) . '[/embed]' );
+
+                  // check whether or not we can allow a responsive wrapper
+                  // see: https://github.com/presscustomizr/customizr/issues/1742
+
+                  // first we check if we've been instructed to have a responsive wrapper
+                  if ( FALSE !== strpos( $this->element_class, 'czr__r-w' ) ) {
+                        // check if the video html starts with an iframe => its responsiveness is well handled via CSS
+                        if (  0 !== stripos( trim( $video_html ), '<iframe' ) ) {
+                              // if we cannot have a responsive wrapper, let's remove the reponsive class
+                              $this->element_class = preg_replace( '/(^|\s)czr__r-w([\S]+)/', '', $this->element_class );
+                        }
+                  }
+
+                  return $video_html;
             }
 
             return false;
@@ -153,6 +168,5 @@ class CZR_video_model_class extends CZR_Model {
 
             return false;
       }
-
 
 }
