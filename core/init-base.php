@@ -664,18 +664,21 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
         /**
-        * Remove hentry class when the current $post type is a page
+        * Remove hentry class from post_class array
         * @param array $class
         * @return array $class
         * hook : post_class
         *
         */
         function czr_fn_maybe_remove_hentry_class( $class ) {
-            $remove_bool = 'page' == czr_fn_get_post_type();
-
+            $remove_bool = true;
+            $class = is_array( $class ) ? $class : array( $class );
             if ( apply_filters( 'czr_post_class_remove_hentry_class', $remove_bool ) ) {
-                $class = array_diff( $class, array( 'hentry' ) );
+                $class   = array_diff( $class, array( 'hentry' ) );
             }
+
+            // add convenient custom class e.g. for classic style js img centering
+            $class[] = 'czr-hentry';
 
             return $class;
         }
