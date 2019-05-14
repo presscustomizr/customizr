@@ -267,9 +267,8 @@ class CZR_post_list {
       return $thumb_wrapper;
 
     $_position = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
-    return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2s">%3$s</a></div>',
+    return sprintf('<div class="%3$s"><a class="tc-rectangular-thumb" href="%1$s">%2$s</a></div>',
           get_permalink( get_the_ID() ),
-          esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
           $thumb_img,
           ( 'top' == $_position || 'bottom' == $_position ) ? '' : implode( " ", apply_filters( 'tc_thumb_wrapper_class', array('') ) )
     );

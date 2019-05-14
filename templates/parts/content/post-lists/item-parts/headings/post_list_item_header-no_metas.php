@@ -18,7 +18,7 @@
       if ( czr_fn_get_property( 'the_title' ) ):
     ?>
     <h2 class="entry-title ">
-      <a class="czr-title" href="<?php the_permalink() ?>" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
+      <a class="czr-title" href="<?php the_permalink() ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
     <?php
       endif; //the_title

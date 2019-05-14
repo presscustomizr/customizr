@@ -206,9 +206,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               if ( isset( $show_img) && $show_img == 1 ) { //check if image option is checked
                 printf('<div class="thumb-wrapper %1$s">%2$s%3$s</div>',
                    ( $fp_img == $fp_holder_img ) ? 'tc-holder' : '',
-                   apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s" title="%2$s"></a>',
-                                                    $featured_page_link,
-                                                    esc_attr( strip_tags( $featured_page_title ) )
+                   apply_filters('tc_fp_round_div' , sprintf('<a class="round-div" href="%1$s"></a>',
+                                                    $featured_page_link
                                                   ) ,
                                 $fp_single_id,
                                 $featured_page_id
@@ -242,10 +241,9 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
               if ( $tc_fp_button_text || czr_fn_is_customizing() ){
                 $tc_fp_button_class = apply_filters( 'tc_fp_button_class' , 'btn btn-primary fp-button', $fp_single_id );
                 $tc_fp_button_class = $tc_fp_button_text ? $tc_fp_button_class : $tc_fp_button_class . ' hidden';
-                $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s" title="%3$s">%4$s</a>',
+                $tc_fp_button_block = sprintf('<a class="%1$s" href="%2$s">%3$s</a>',
                                     $tc_fp_button_class,
                                     $featured_page_link,
-                                    esc_attr( strip_tags( $featured_page_title ) ),
                                     $tc_fp_button_text
 
                 );

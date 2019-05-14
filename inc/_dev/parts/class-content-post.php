@@ -249,9 +249,8 @@ if ( ! class_exists( 'CZR_post' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_thumb_shape( $thumb_wrapper, $thumb_img ) {
-      return sprintf('<div class="%4$s"><a class="tc-rectangular-thumb" href="%1$s" title="%2$s">%3$s</a></div>',
+      return sprintf('<div class="%3$s"><a class="tc-rectangular-thumb" href="%1$s">%2$s</a></div>',
             get_permalink( get_the_ID() ),
-            esc_attr( strip_tags( get_the_title( get_the_ID() ) ) ),
             $thumb_img,
             implode( " ", apply_filters( 'tc_thumb_wrapper_class', array() ) )
       );

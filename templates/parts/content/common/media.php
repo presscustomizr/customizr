@@ -11,7 +11,7 @@
   <?php
   if ( czr_fn_get_property( 'media_template' ) ):
     if ( czr_fn_get_property( 'has_permalink' ) ) : ?>
-      <a class="<?php czr_fn_echo( 'link_class' ) ?>" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to:&nbsp;', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
+      <a class="<?php czr_fn_echo( 'link_class' ) ?>" rel="bookmark" href="<?php the_permalink() ?>"></a>
   <?php
     endif; //bg-link
 
@@ -21,7 +21,7 @@
     elseif ( 'format-icon' == czr_fn_get_property( 'media' ) ):
   ?>
       <div class="post-type__icon">
-        <a class="bg-icon-link icn-format" rel="bookmark" title="<?php the_title_attribute( array( 'before' => __('Permalink to ', 'customizr') ) ) ?>" href="<?php the_permalink() ?>"></a>
+        <a class="bg-icon-link icn-format" rel="bookmark" href="<?php the_permalink() ?>"></a>
       </div>
 
   <?php
