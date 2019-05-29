@@ -1175,7 +1175,7 @@ function czr_fn_render_locations_when_using_nimble_templates() {
 /* ------------------------------------------------------------------------- *
  *  Loads Required Plugin Class and Setup
 /* ------------------------------------------------------------------------- */
-if ( is_admin() && ! czr_fn_is_customizing() && ! czr_fn_is_pro() && ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') ) {
+if ( is_admin() && ! czr_fn_is_customizing() && ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') ) {
     /**
     * Include the CZR_Plugin_Activation class.
     * prefixed CZR_Plugin_Activation because of the possible issue : https://github.com/presscustomizr/customizr/issues/1603
