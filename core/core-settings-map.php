@@ -2344,8 +2344,11 @@ function czr_fn_external_resources_option_map( $get_default = null ) {
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_responsive_option_map( $get_default = null ) {
   return array(
+          // Deactivation of modular scale for headings (Hx) by default, since may 2019
+          // because we end up not being able to see the difference between headings and paragraphs on mobile
+          // @see https://github.com/presscustomizr/customizr/issues/1746
           'tc_ms_respond_css'  =>  array(
-                            'default'     => 1,
+                            'default'     => 0,
                             'control'     => 'CZR_controls',
                             'label'       => __( 'Automatically adapt the font size to the width of the devices', 'customizr' ),
                             'section'     => 'responsive_sec',
