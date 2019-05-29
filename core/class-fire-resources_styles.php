@@ -65,7 +65,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
               wp_enqueue_style( 'customizr-main'         , czr_fn_get_theme_file_url( "{$_path}{$main_theme_file_name}{$_ext}"), array(), $_ver, 'all' );
 
 
-              //Modular scale resopnd
+              //Modular scale respond
               //Customizr main stylesheet
               if ( 1 == esc_attr( czr_fn_opt( 'tc_ms_respond_css' ) ) ) {
                   wp_enqueue_style( 'customizr-ms-respond'     , czr_fn_get_theme_file_url( "{$_path}style-modular-scale{$_ext}"), array(), $_ver, 'all' );
