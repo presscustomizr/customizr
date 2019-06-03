@@ -162,7 +162,9 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
                 line-height : {$_line_height}em;
               }\n";
           } else {
-            $emsize_medium = $_body_font_size * 0.833 / 16;//@see assets/css/front/stye-modular-scale.css
+            // June 2019 => increase the ratio from 0.833 to 0.9 to avoid problems when deactivating modular scale.
+            // @see https://github.com/presscustomizr/customizr/issues/1755
+            $emsize_medium = $_body_font_size * 0.900 / 16;//@see assets/css/front/stye-modular-scale.css
             $emsize_medium = number_format( (float)$emsize_medium, 2, '.', '');
             $emsize_large = $_body_font_size * 0.9375 / 16;
             $emsize_large = number_format( (float)$emsize_large, 2, '.', '');

@@ -9,8 +9,10 @@ $line-height:
   1.5    20em,//line-height and viewport
   1.65   40em;
 
+// June 2019 => increase the ratio from 0.833 to 0.9 to avoid problems when deactivating modular scale.
+// @see https://github.com/presscustomizr/customizr/issues/1755
 $ms-range:
-  0.833   20em,
+  0.900   20em,
   $body-base-ratio  60em;
 
 body {
