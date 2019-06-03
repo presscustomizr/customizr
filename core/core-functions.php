@@ -164,6 +164,8 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         //TC_BASE_URL_CHILD http url of the loaded child theme
         if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
 
+        if( ! defined( 'REC_NOTICE_ID' ) )  define( 'REC_NOTICE_ID' , 'rec-notice-0519' );
+
         //fire an action hook after constants have been set up
         do_action( 'czr_after_setup_base_constants' );
     }
