@@ -46,7 +46,7 @@ function czr_fn_maybe_render_rec_notice() {
       return;
     }
     $button_text = __( 'Install Nimble Builder Now', 'customizr' );
-    $button_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $plugin ), 'install-plugin_nimble-builder' );
+    $button_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=nimble-builder' ), 'install-plugin_nimble-builder' );
   }
   $notice_id = REC_NOTICE_ID;
   ?>
