@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.2.0
-Stable tag: 4.1.40
+Stable tag: 4.1.41
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,14 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.40 =
-Deactivation of modular font-size for headings (Hx) by default for mobile devices.
+= 4.1.41 =
+Fixed minor font-size issue.
 
 == Changelog ==
+= 4.1.41 June 3rd 2019 =
+* fixed : minor font-size issue. for #1755
+* improved : replaced TGMPA class for plugin recommendation
+
 = 4.1.40 May 29th 2019 =
 * improved : deactivation of modular font-size for headings (Hx) by default for mobile devices. fixes #1746.
 

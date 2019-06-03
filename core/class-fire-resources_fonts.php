@@ -162,7 +162,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
                 line-height : {$_line_height}em;
               }\n";
           } else {
-            // June 2019 => increase the ratio from 0.833 to 0.9 to avoid problems when deactivating modular scale.
+            // June 2019 => increase the ratio from 0.833 to 0.9 to limit problems when deactivating modular scale.
             // @see https://github.com/presscustomizr/customizr/issues/1755
             $emsize_medium = $_body_font_size * 0.900 / 16;//@see assets/css/front/stye-modular-scale.css
             $emsize_medium = number_format( (float)$emsize_medium, 2, '.', '');

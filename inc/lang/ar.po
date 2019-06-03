@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.40\n"
+"Project-Id-Version: * Customizr v4.1.41\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-05-29 13:16:04+00:00\n"
+"POT-Creation-Date: 2019-06-03 16:53:47+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:53+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -152,9 +152,8 @@ msgid "this post"
 msgstr "هذه التدوينة"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:529
-#: core/class-tgm-plugin-activation.php:1333 core/core-settings-map.php:1043
-#: core/core-settings-map.php:1048 core/core-settings-map.php:2334
-#: core/czr-admin-ccat.php:1450
+#: core/core-settings-map.php:1043 core/core-settings-map.php:1048
+#: core/core-settings-map.php:2334 core/czr-admin-ccat.php:1450
 msgid "here"
 msgstr "هنا"
 
@@ -970,408 +969,64 @@ msgstr ""
 msgid "a short guide here."
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:512 core/init-base.php:1247
-msgid "Install Required Plugins"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:513 core/init-base.php:1248
-msgid "Install Plugins"
-msgstr ""
-
-#. translators: %s: plugin name.
-#: core/class-tgm-plugin-activation.php:515 core/init-base.php:1249
-msgid "Installing Plugin: %s"
-msgstr ""
-
-#. translators: %s: plugin name.
-#: core/class-tgm-plugin-activation.php:517
-msgid "Updating Plugin: %s"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:518 core/init-base.php:1250
-msgid "Something went wrong with the plugin API."
-msgstr ""
-
-#. translators: 1: plugin name(s).
-#: core/class-tgm-plugin-activation.php:555 core/init-base.php:1259
-msgid "Begin installing plugin"
-msgid_plural "Begin installing plugins"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/class-tgm-plugin-activation.php:560
-msgid "Begin updating plugin"
-msgid_plural "Begin updating plugins"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/class-tgm-plugin-activation.php:565
-msgid "Begin activating plugin"
-msgid_plural "Begin activating plugins"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/class-tgm-plugin-activation.php:570 core/init-base.php:1261
-msgid "Return to Required Plugins Installer"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:571
-#: core/class-tgm-plugin-activation.php:1018
-#: core/class-tgm-plugin-activation.php:2755
-#: core/class-tgm-plugin-activation.php:3812
+#: core/class-plugin-rec.php:22
 #, fuzzy
-msgid "Return to the Dashboard"
-msgstr "اذهب للوحة التحكم"
-
-#: core/class-tgm-plugin-activation.php:572
-#: core/class-tgm-plugin-activation.php:3391 core/init-base.php:1262
-msgid "Plugin activated successfully."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:573
-#: core/class-tgm-plugin-activation.php:3174
-msgid "The following plugin was activated successfully:"
-msgstr ""
-
-#. translators: 1: plugin name.
-#: core/class-tgm-plugin-activation.php:575
-msgid "No action taken. Plugin %1$s was already active."
-msgstr ""
-
-#. translators: 1: plugin name.
-#: core/class-tgm-plugin-activation.php:577
-msgid ""
-"Plugin not activated. A higher version of %s is needed for this theme. "
-"Please update the plugin."
-msgstr ""
-
-#. translators: 1: dashboard link.
-#: core/class-tgm-plugin-activation.php:579
-msgid "All plugins installed and activated successfully. %1$s"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:580
-msgid "Dismiss this notice"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:581
-msgid "Remind me later"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:582
-msgid ""
-"There are one or more required or recommended plugins to install, update or "
-"activate."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:583
-msgid "Please contact the administrator of this site for help."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:708
-msgid "This plugin needs to be updated to be compatible with your theme."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:709
-msgid "Update Required"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:1125
-msgid ""
-"The remote plugin package does not contain a folder with the desired slug "
-"and renaming did not work."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:1125
-#: core/class-tgm-plugin-activation.php:1128
-msgid ""
-"Please contact the plugin provider and ask them to package their plugin "
-"according to the WordPress guidelines."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:1128
-msgid ""
-"The remote plugin package consists of more than one file, but the files are "
-"not packaged in a folder."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:1330
-#, fuzzy
-msgid "Nimble is a section builder plugin companion for the Customizr theme."
+msgid "Customizr theme recommends %1$s."
 msgstr "تحتاج لمساعدة مع Customizr  ?"
 
-#: core/class-tgm-plugin-activation.php:1332
-msgid ""
-"It allows you to drag and drop pre-built sections, or create your own "
-"sections in live preview from the WordPress customizer. You can easily "
-"create column layouts and add content like buttons, icons, Google map and "
-"even contact forms in any page.  You'll find a quick introduction of the "
-"plugin %1$s."
+#: core/class-plugin-rec.php:25
+msgid "Nimble page builder"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:1335
+#: core/class-plugin-rec.php:30
+msgid ""
+"Nimble Page Builder is a free, easy to use yet powerful page builder used by "
+"30K+ WordPress websites."
+msgstr ""
+
+#: core/class-plugin-rec.php:32
+msgid ""
+"It allows you to create mobile ready columns layout, drag-and-drop modules "
+"like post grids, buttons, widget zones, maps, icons, or beautiful pre-built "
+"sections with a %1$s, into any page of your site. Nimble Builder uses the "
+"live customizer which is the native WordPress interface for real-time design."
+msgstr ""
+
+#: core/class-plugin-rec.php:33
+msgid "parallax background"
+msgstr ""
+
+#: core/class-plugin-rec.php:35
 msgid ""
 "The plugin has been designed to integrate perfectly with the Customizr "
 "theme. Lightweight and safe."
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:1345
-msgid "Nimble Builder"
+#: core/class-plugin-rec.php:42
+msgid "Activate Nimble Builder Now"
 msgstr ""
 
-#. translators: %s: version number
-#: core/class-tgm-plugin-activation.php:2204
-msgid "TGMPA v%s"
+#: core/class-plugin-rec.php:48
+msgid "Install Nimble Builder Now"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:2495
-msgid "Required"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2498
-#, fuzzy
-msgid "Recommended"
-msgstr "التعليقات"
-
-#: core/class-tgm-plugin-activation.php:2514
-#, fuzzy
-msgid "WordPress Repository"
-msgstr "رابط ملفك الشخصي في ووردبريس"
-
-#: core/class-tgm-plugin-activation.php:2517
-msgid "External Source"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2520
-msgid "Pre-Packaged"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2537
-msgid "Not Installed"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2541
-msgid "Installed But Not Activated"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2543
-msgid "Active"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2549
-msgid "Required Update not Available"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2552
-msgid "Requires Update"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2555
-#, fuzzy
-msgid "Update recommended"
-msgstr "التعليقات"
-
-#. translators: 1: number of plugins.
-#: core/class-tgm-plugin-activation.php:2614
-#, fuzzy
-msgid "To Install <span class=\"count\">(%s)</span>"
-msgid_plural "To Install <span class=\"count\">(%s)</span>"
-msgstr[0] "المشاركات الأحدث <span class=\"meta-nav\">&rarr;</span>"
-msgstr[1] "المشاركات الأحدث <span class=\"meta-nav\">&rarr;</span>"
-
-#. translators: 1: number of plugins.
-#: core/class-tgm-plugin-activation.php:2618
-msgid "Update Available <span class=\"count\">(%s)</span>"
-msgid_plural "Update Available <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: 1: number of plugins.
-#: core/class-tgm-plugin-activation.php:2622
-msgid "To Activate <span class=\"count\">(%s)</span>"
-msgid_plural "To Activate <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/class-tgm-plugin-activation.php:2712
-msgid "Installed version:"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2720
-msgid "Minimum required version:"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2732
-msgid "Available version:"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2755
-msgid "No plugins to install, update or activate."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2769
-msgid "Plugin"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2770
-msgid "Source"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2771
-msgid "Type"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2775
-msgid "Version"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2776
-msgid "Status"
-msgstr ""
-
-#. translators: %2$s: plugin name in screen reader markup
-#: core/class-tgm-plugin-activation.php:2825
-msgid "Install %2$s"
-msgstr ""
-
-#. translators: %2$s: plugin name in screen reader markup
-#: core/class-tgm-plugin-activation.php:2830
-#, fuzzy
-msgid "Update %2$s"
-msgstr "%1$s  على%2$s"
-
-#. translators: %2$s: plugin name in screen reader markup
-#: core/class-tgm-plugin-activation.php:2836
-msgid "Activate %2$s"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2906
-msgid "Upgrade message from the plugin author:"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2939
-msgid "Install"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2945
-msgid "Update"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2948
-msgid "Activate"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2979
-msgid "No plugins were selected to be installed. No action taken."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:2981
-msgid "No plugins were selected to be updated. No action taken."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3022
-msgid "No plugins are available to be installed at this time."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3024
-msgid "No plugins are available to be updated at this time."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3130
-msgid "No plugins were selected to be activated. No action taken."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3156
-msgid "No plugins are available to be activated at this time."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3390
-msgid "Plugin activation failed."
-msgstr ""
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: core/class-tgm-plugin-activation.php:3730
-msgid "Updating Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#. translators: 1: plugin name, 2: error message.
-#: core/class-tgm-plugin-activation.php:3733
-msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr ""
-
-#. translators: 1: plugin name.
-#: core/class-tgm-plugin-activation.php:3735
-msgid "The installation of %1$s failed."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3739
-msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
-msgstr ""
-
-#. translators: 1: plugin name.
-#: core/class-tgm-plugin-activation.php:3741
-msgid "%1$s installed and activated successfully."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3741
-#: core/class-tgm-plugin-activation.php:3749
-#, fuzzy
-msgid "Show Details"
-msgstr "إظهار الصور"
-
-#: core/class-tgm-plugin-activation.php:3741
-#: core/class-tgm-plugin-activation.php:3749
-msgid "Hide Details"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3742
-msgid "All installations and activations have been completed."
-msgstr ""
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: core/class-tgm-plugin-activation.php:3744
-msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3747
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
-msgstr ""
-
-#. translators: 1: plugin name.
-#: core/class-tgm-plugin-activation.php:3749
-msgid "%1$s installed successfully."
-msgstr ""
-
-#: core/class-tgm-plugin-activation.php:3750
-msgid "All installations have been completed."
-msgstr ""
-
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: core/class-tgm-plugin-activation.php:3752
-msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#: core/core-functions.php:1492
+#: core/core-functions.php:1494
 msgid "Page %s"
 msgstr "صفحة %s"
 
-#: core/core-functions.php:1581
+#: core/core-functions.php:1583
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; بدون عارض شرائح &mdash;"
 
-#: core/core-functions.php:1582
+#: core/core-functions.php:1584
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; عارش الشرائح تجريبي &mdash;"
 
-#: core/core-functions.php:1583
+#: core/core-functions.php:1585
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1660
+#: core/core-functions.php:1662
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -1845,7 +1500,6 @@ msgstr "Réglages de la structure de page"
 #: core/core-settings-map.php:806 core/core-settings-map.php:807
 #: core/core-settings-map.php:837 core/core-settings-map.php:848
 #: core/core-settings-map.php:860 core/core-settings-map.php:876
-#: core/core-settings-map.php:2783
 msgid "Mobile devices"
 msgstr ""
 
@@ -2924,6 +2578,11 @@ msgid ""
 "better displayed in mobile devices."
 msgstr ""
 
+#: core/core-settings-map.php:2356
+msgid ""
+"This option can sometimes reduce too much the headings font-size on mobiles."
+msgstr ""
+
 #: core/core-settings-map.php:2368
 msgid ""
 "The Modern style provides a \"material design\" look and feel. It relies on "
@@ -3060,7 +2719,7 @@ msgid "Pick a primary color for the theme"
 msgstr ""
 
 #: core/core-settings-map.php:2585
-msgid "Fonts"
+msgid "Font picker and font size"
 msgstr ""
 
 #: core/core-settings-map.php:2598
@@ -3171,6 +2830,10 @@ msgstr ""
 
 #: core/core-settings-map.php:2778
 msgid "Front-end Icons (Font Awesome)"
+msgstr ""
+
+#: core/core-settings-map.php:2783
+msgid "Adaptative font size on mobile devices"
 msgstr ""
 
 #: core/core-settings-map.php:2788
@@ -3810,90 +3473,6 @@ msgstr "القائمة الرئيسية"
 #: inc/czr-init-ccat.php:3156
 msgid "Social links"
 msgstr "الروابط الإجتماعية"
-
-#: core/init-base.php:1251
-msgid "The Customizr theme requires the following plugin: %1$s."
-msgid_plural "This theme requires the following plugins : %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1252
-msgid ""
-"The Customizr theme recommends the Nimble drag-and-drop section builder : "
-"%1$s."
-msgid_plural "This theme recommends the following plugins : %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1253
-msgid ""
-"Sorry, but you do not have the correct permissions to install the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"installed."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to install the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins installed."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1254
-msgid "The Nimble Builder required plugin is currently inactive: %1$s."
-msgid_plural "The following required plugins are currently inactive: %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1255
-msgid ""
-"The Nimble Builder plugin, recommended for the Customizr theme, is installed "
-"but currently inactive : %1$s."
-msgid_plural "The following recommended plugins are currently inactive: %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1256
-msgid ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugin. Contact the administrator of this site for help on getting the "
-"plugin activated."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins activated."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1257
-msgid ""
-"The Nimble Builder plugin needs to be updated to its latest version to "
-"ensure maximum compatibility with the Customizr theme: %1$s."
-msgid_plural ""
-"The following plugins need to be updated to their latest version to ensure "
-"maximum compatibility with this theme: %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1258
-msgid ""
-"Sorry, but you do not have the correct permissions to update the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"updated."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to update the %s plugins. "
-"Contact the administrator of this site for help on getting the plugins "
-"updated."
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1260
-msgid "Activate Nimble Builder"
-msgid_plural "Activate installed plugins"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/init-base.php:1263
-msgid "All plugins installed and activated successfully. %s"
-msgstr ""
 
 #: functions.php:30
 msgid "PHP"
@@ -4912,32 +4491,6 @@ msgstr ""
 msgid "https://presscustomizr.com/"
 msgstr ""
 
-#: core/class-tgm-plugin-activation.php:1313
-#: core/class-tgm-plugin-activation.php:3170
-msgctxt "plugin A *and* plugin B"
-msgid "and"
-msgstr ""
-
-#. translators: 1: install status, 2: update status
-#: core/class-tgm-plugin-activation.php:2564
-#, fuzzy
-msgctxt "Install/Update Status"
-msgid "%1$s, %2$s"
-msgstr "%1$s  على%2$s"
-
-#. translators: 1: number of plugins.
-#: core/class-tgm-plugin-activation.php:2610
-msgctxt "plugins"
-msgid "All <span class=\"count\">(%s)</span>"
-msgid_plural "All <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/class-tgm-plugin-activation.php:2704
-msgctxt "as in: \"version nr unknown\""
-msgid "unknown"
-msgstr ""
-
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:69
 #: inc/_dev/parts/class-content-headings.php:404 inc/czr-front-ccat.php:4159
 msgctxt "monthly archives date format"
@@ -4960,6 +4513,46 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Return to the Dashboard"
+#~ msgstr "اذهب للوحة التحكم"
+
+#, fuzzy
+#~ msgid ""
+#~ "Nimble is a section builder plugin companion for the Customizr theme."
+#~ msgstr "تحتاج لمساعدة مع Customizr  ?"
+
+#, fuzzy
+#~ msgid "Recommended"
+#~ msgstr "التعليقات"
+
+#, fuzzy
+#~ msgid "WordPress Repository"
+#~ msgstr "رابط ملفك الشخصي في ووردبريس"
+
+#, fuzzy
+#~ msgid "Update recommended"
+#~ msgstr "التعليقات"
+
+#, fuzzy
+#~ msgid "To Install <span class=\"count\">(%s)</span>"
+#~ msgid_plural "To Install <span class=\"count\">(%s)</span>"
+#~ msgstr[0] "المشاركات الأحدث <span class=\"meta-nav\">&rarr;</span>"
+#~ msgstr[1] "المشاركات الأحدث <span class=\"meta-nav\">&rarr;</span>"
+
+#, fuzzy
+#~ msgid "Update %2$s"
+#~ msgstr "%1$s  على%2$s"
+
+#, fuzzy
+#~ msgid "Show Details"
+#~ msgstr "إظهار الصور"
+
+#, fuzzy
+#~ msgctxt "Install/Update Status"
+#~ msgid "%1$s, %2$s"
+#~ msgstr "%1$s  على%2$s"
 
 #, fuzzy
 #~ msgid "Display the product image as a banner in the product page"

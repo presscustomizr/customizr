@@ -1,6 +1,6 @@
 body {
   line-height: 1.5;
-  font-size: 0.833em;
+  font-size: 0.9em;
 }
 
 @media (min-width: 20em) and (max-width: 40em) {
@@ -17,7 +17,7 @@ body {
 
 @media (min-width: 20em) and (max-width: 60em) {
   body {
-    font-size: calc( 0.833em + 0.1045 * ( ( 100vw - 20em) / 40 ));
+    font-size: calc( 0.9em + 0.0375 * ( ( 100vw - 20em) / 40 ));
   }
 }
 
