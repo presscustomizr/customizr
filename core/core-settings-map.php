@@ -2353,7 +2353,7 @@ function czr_fn_responsive_option_map( $get_default = null ) {
                             'label'       => __( 'Automatically adapt the font size to the width of the devices', 'customizr' ),
                             'section'     => 'responsive_sec',
                             'type'        => 'nimblecheck',
-                            'notice'    => __( 'When this option is enabled, your font size will automatically resize to be better displayed in mobile devices.' , 'customizr' )
+                            'notice'    => __( 'When this option is enabled, your font size will automatically resize to be better displayed in mobile devices.' , 'customizr' ) . ' ' . __( 'This option can sometimes reduce too much the headings font-size on mobiles.' , 'customizr' )
           )
 
   );
@@ -2582,7 +2582,7 @@ function czr_fn_popul_section_map( $_sections ) {
                         'panel'   => 'tc-global-panel'
     ),
     'fonts_sec'          => array(
-                        'title'     =>  __( 'Fonts' , 'customizr' ),
+                        'title'     =>  __( 'Font picker and font size' , 'customizr' ),
                         'priority'    =>  $_is_wp_version_before_4_0 ? 40 : 10,
                         //'description' =>  __( 'Set up the font global settings' , 'customizr' ),
                         'panel'   => 'tc-global-panel'
@@ -2780,7 +2780,7 @@ function czr_fn_popul_section_map( $_sections ) {
                         'panel'   => 'tc-advanced-panel'
     ),
     'responsive_sec'    => array(
-                        'title'     =>  __( 'Mobile devices' , 'customizr' ),
+                        'title'     =>  __( 'Adaptative font size on mobile devices' , 'customizr' ),
                         'priority'    => 40,
                         'panel'   => 'tc-advanced-panel'
     ),
