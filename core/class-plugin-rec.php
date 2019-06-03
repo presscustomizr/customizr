@@ -22,7 +22,7 @@ function czr_fn_maybe_render_rec_notice() {
   $heading = sprintf( __('Customizr theme recommends %1$s.', 'customizr' ),
           sprintf('<a href="%1$s" class="thickbox">%2$s</a>',
               wp_nonce_url( 'plugin-install.php?tab=plugin-information&amp;plugin=nimble-builder&amp;TB_iframe=true&amp;width=640&amp;height=500'),
-              __('Nimble page builder', 'customizr')
+              __('Nimble Page Builder', 'customizr')
           )
       );
 
