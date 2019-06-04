@@ -27,7 +27,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
         $this -> czr_fn_pro_load();
         //hide update notification for a list of version
         //typically useful when several versions are released in a short time interval, to avoid hammering the wp admin dashboard with a new admin notice each time
-        $this -> _hide_pro_update_notification_for_versions = array( '2.0.15' );
+        $this -> _hide_pro_update_notification_for_versions = array( '2.1.31' );
         if( ! defined( 'DISPLAY_PRO_UPDATE_NOTIFICATION' ) ) {
             define( 'DISPLAY_PRO_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_pro_update_notification_for_versions ) );
         }
