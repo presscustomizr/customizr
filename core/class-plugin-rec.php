@@ -29,8 +29,8 @@ function czr_fn_maybe_render_rec_notice() {
   $message = sprintf( '<span style="font-weight:normal; font-style:italic">%1$s<br/> %2$s<br/>%3$s</span>',
     __( 'Nimble Page Builder is a free, easy to use yet powerful page builder used by 30K+ WordPress websites.',  'customizr'),
     sprintf(
-        __( 'It allows you to create mobile ready columns layout, drag-and-drop modules like post grids, buttons, widget zones, maps, icons, or beautiful pre-built sections with a %1$s, into any page of your site. Nimble Builder uses the live customizer which is the native WordPress interface for real-time design.', 'customizr' ),
-        sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('demo.presscustomizr.com/nimble-builder/'), __('parallax background', 'customizr') )
+        __( 'It allows you to create mobile ready column layouts, and to drag-and-drop modules like post grids, buttons, widget zones, maps, icons, or beautiful pre-built sections with engaging %1$s, in any page of your site. Nimble Builder uses the live customizer which is the native WordPress interface for real-time design.', 'customizr' ),
+        sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('demo.presscustomizr.com/nimble-builder/'), __('parallax backgrounds', 'customizr') )
     ),
     __( "The plugin has been designed to integrate perfectly with the Customizr theme. Lightweight and safe.", 'customizr')
   );
