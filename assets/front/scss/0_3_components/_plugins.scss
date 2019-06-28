@@ -30,6 +30,16 @@
   }
 }
 .woocommerce {
+  @include media-breakpoint-down( sm ) {
+    &-cart-form {
+      // coupon button
+      .coupon button[type=submit] {
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
   .woocommerce-products-header .page-title {
     @extend .entry-title;
     @extend %content-header-entry-title;
