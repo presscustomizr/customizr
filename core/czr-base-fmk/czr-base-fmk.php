@@ -591,8 +591,7 @@ if ( ! class_exists( 'CZR_Fmk_Base_Tmpl_Builder' ) ) :
                 'editor_params' => array(),
 
                 // introduced for https://github.com/presscustomizr/nimble-builder/issues/431
-                'section_collection' => array(),
-                'section_type' => 'content'
+                'section_collection' => array()
             );
             foreach( $tmpl_map as $input_id => $input_data ) {
                 if ( ! is_string( $input_id ) || empty( $input_id ) ) {

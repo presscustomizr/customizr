@@ -3972,6 +3972,12 @@ embed, iframe, object, video {
   transform: translate(0, -20px);
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+  .czr-submenu-fade .regular-nav .menu-item-has-children > ul {
+    transition: opacity 0.25s ease-in-out;
+  }
+}
+
 .czr-submenu-fade .regular-nav .menu-item-has-children:not(.show) {
   overflow: hidden;
 }
@@ -4271,6 +4277,7 @@ li#wp-admin-bar-tc-customizr-help a {
   white-space: nowrap;
   max-width: 100%;
   height: auto;
+  color: #313131;
 }
 
 .navbar-brand img {
@@ -9573,6 +9580,14 @@ footer#footer .colophon__row .footer__credits a.fab {
 
 .woocommerce #content div.product .woocommerce-tabs ul.tabs li::before, .woocommerce #content div.product .woocommerce-tabs ul.tabs li::after {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .woocommerce-cart-form .coupon button[type=submit] {
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .woocommerce a.remove {
