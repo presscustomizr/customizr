@@ -58,6 +58,7 @@
             white-space: nowrap;
             max-width: 100%;
             height: auto;
+            color:$black;//added for https://github.com/presscustomizr/customizr/issues/1760
             @at-root .navbar-brand img {
               width: auto;
               max-width: 100%;
