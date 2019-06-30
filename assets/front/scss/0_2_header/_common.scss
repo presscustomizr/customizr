@@ -356,8 +356,12 @@
         display: block;
         @include transition( all 0.25s ease-in-out );
         @include transform( translate( 0, -20px ) );
+        @supports (-webkit-overflow-scrolling:touch) {
+          & {
+            @include transition( opacity 0.25s ease-in-out);
+          }
+        }
       }
-
       &:not(.show) {
         //temporary fix for Firefox : https://github.com/presscustomizr/customizr/issues/1083
         //the perspective thing seems to not work with this browser
