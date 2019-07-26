@@ -106,10 +106,10 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
 
                 $rel_attachment_info        = wp_get_attachment_image_src( $attachment->ID , 'large' );
                 $rel_attachment_src         = $rel_attachment_info[0];
-                $attachment_gallery         = sprintf( '%1$s<a href="%2$s" title="%3$s" %3$s></a>',
+                $attachment_gallery         = sprintf( '%1$s<a href="%2$s" title="%3$s" %4$s></a>',
                                               $attachment_gallery,
                                               esc_url( $rel_attachment_src ),
-                                              !empty( $attachment -> post_excerpt ) ? $attachment -> post_excerpt : the_title_attribute( array( 'echo' =>false, 'post' => $attachment ) ),
+                                              !empty( $attachment->post_excerpt ) ? esc_attr( $attachment->post_excerpt ) : the_title_attribute( array( 'echo' =>false, 'post' => $attachment ) ),
                                               $attachment_link_attributes
                                             );
             }
