@@ -3154,3 +3154,13 @@ footer ul, footer ol {
     z-index: 1000;
     position: relative;
 }
+
+/* Add space before the first sidebar below content on mobile devices
+  fixes https://github.com/presscustomizr/customizr/issues/1767
+*/
+hr.tc-mobile-separator{ display:none;}
+@media (max-width: 767px) {
+  .tc-l-sidebar hr.tc-mobile-separator{ display:block;}
+  .tc-r-sidebar hr.tc-mobile-separator{ display:block;}
+  .tc-b-sidebar hr.tc-mobile-separator{ display:block;}
+}

@@ -49,9 +49,11 @@ if ( apply_filters( 'czr_ms', false ) ) {
 
                     <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
 
+                 <?php // <hr> introduced in july 2019 to fix https://github.com/presscustomizr/customizr/issues/1767 ?>
+                  <hr class="featurette-divider tc-mobile-separator">
                 </div><!--.article-container -->
 
-           <?php do_action( '__after_article_container'); ##hook of left sidebar ?>
+           <?php do_action( '__after_article_container'); ##hook of right sidebar ?>
 
         </div><!--.row -->
     </div><!-- .container role: main -->
