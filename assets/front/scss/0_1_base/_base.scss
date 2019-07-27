@@ -49,7 +49,8 @@ h1, h2, h3, h4, h5, h6 {
 ul, ol {
   list-style: none;
   li {
-    line-height: $base-line-height*1.5;
+    // line-height has the same value as body and article .entry-content. see @https://github.com/presscustomizr/customizr/issues/1761
+    line-height: 1.55em;
   }
 }
 

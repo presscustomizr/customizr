@@ -65,7 +65,8 @@
 
 article .entry-content {
   font-size: 1.2em;
-  line-height: 1.65em;
+  // line-height has the same value as ul li and ol li and body. see @https://github.com/presscustomizr/customizr/issues/1761
+  line-height: 1.55em;
   color:$post-entry;
   a {
     text-decoration: underline;

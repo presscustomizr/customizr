@@ -20,7 +20,7 @@ $base-line-height-fixed: 15px * 1.25;
 
 $line-height:
   1.5    20em,//line-height and viewport
-  1.65   40em;
+  1.55   40em;
 
 $ms-range:
   0.833   20em,
@@ -36,7 +36,8 @@ $ms-range:
 // statically set body font-size and line-height
 body {
   font-family: $baseFont;
-  line-height: 1.65;
+  // line-height has the same value as ul li and ol li and article .entry-content. see @https://github.com/presscustomizr/customizr/issues/1761
+  line-height: 1.55;
   font-size: $body-base-ratio * 1em;
   color: #333;
 }
