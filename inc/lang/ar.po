@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.42\n"
+"Project-Id-Version: * Customizr v4.1.43\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-06-30 14:41:33+00:00\n"
+"POT-Creation-Date: 2019-07-27 18:45:42+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:53+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -345,8 +345,8 @@ msgstr ""
 #: core/_dev/_admin/class-admin-meta_boxes.php:1518
 #: core/_dev/_czr/class-czr-resources.php:221
 #: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2439
-#: core/czr-base-fmk/czr-base-fmk.php:240
-#: core/czr-base-fmk/czr-base-fmk.php:454 core/czr-customize-ccat.php:856
+#: core/czr-base-fmk/czr-base-fmk.php:242
+#: core/czr-base-fmk/czr-base-fmk.php:543 core/czr-customize-ccat.php:856
 #: core/czr-customize-ccat.php:866
 #: core/front/models/modules/common/class-model-breadcrumb.php:624
 #: core/front/models/modules/common/class-model-breadcrumb.php:657
@@ -603,7 +603,7 @@ msgid "Upgrade Wordpress Now"
 msgstr "تحديث ووردبريس الآن"
 
 #: core/_dev/_czr/class-czr-resources.php:222
-#: core/czr-base-fmk/czr-base-fmk.php:241 core/czr-customize-ccat.php:857
+#: core/czr-base-fmk/czr-base-fmk.php:243 core/czr-customize-ccat.php:857
 #: inc/_dev/parts/class-header-menu.php:129
 #: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:776
 #: inc/czr-front-ccat.php:783
@@ -611,7 +611,7 @@ msgid "Close"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:223
-#: core/czr-base-fmk/czr-base-fmk.php:242 core/czr-customize-ccat.php:858
+#: core/czr-base-fmk/czr-base-fmk.php:244 core/czr-customize-ccat.php:858
 msgid "Not set"
 msgstr ""
 
@@ -636,7 +636,7 @@ msgid "Follow us on"
 msgstr "اتبعنا"
 
 #: core/_dev/_czr/class-czr-resources.php:227
-#: core/czr-base-fmk/czr-base-fmk.php:243 core/czr-customize-ccat.php:862
+#: core/czr-base-fmk/czr-base-fmk.php:245 core/czr-customize-ccat.php:862
 #: core/czr-modules/social-links/index.php:78
 #: core/czr-modules/social-links/social_links_module.php:80
 msgid "Done !"
@@ -650,7 +650,7 @@ msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:229
 #: core/_dev/_czr/class-czr-resources.php:249
-#: core/czr-base-fmk/czr-base-fmk.php:245 core/czr-customize-ccat.php:864
+#: core/czr-base-fmk/czr-base-fmk.php:247 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:884
 #, fuzzy
 msgid "Learn more about this in the documentation"
@@ -693,13 +693,13 @@ msgid "Change the header layout"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:250
-#: core/czr-base-fmk/czr-base-fmk.php:246 core/czr-customize-ccat.php:885
+#: core/czr-base-fmk/czr-base-fmk.php:248 core/czr-customize-ccat.php:885
 #, fuzzy
 msgid "Settings"
 msgstr "Réglages de la structure de page"
 
 #: core/_dev/_czr/class-czr-resources.php:251
-#: core/czr-base-fmk/czr-base-fmk.php:247 core/czr-customize-ccat.php:886
+#: core/czr-base-fmk/czr-base-fmk.php:249 core/czr-customize-ccat.php:886
 msgid "Options for"
 msgstr ""
 
@@ -738,8 +738,8 @@ msgid "Upload"
 msgstr ""
 
 #: core/_dev/_czr/controls/class-upload-control.php:68
-#: core/czr-base-fmk/czr-base-fmk.php:252
-#: core/czr-base-fmk/czr-base-fmk.php:454 core/czr-customize-ccat.php:1479
+#: core/czr-base-fmk/czr-base-fmk.php:254
+#: core/czr-base-fmk/czr-base-fmk.php:543 core/czr-customize-ccat.php:1479
 msgid "Remove"
 msgstr ""
 
@@ -1833,12 +1833,12 @@ msgid "in ms : 1000ms = 1s"
 msgstr "في مللي ثانية: 1000مللي ثانية = 1 ثانية"
 
 #: core/core-settings-map.php:1236 core/core-settings-map.php:1248
-#: core/czr-base-fmk/czr-base-fmk.php:463
+#: core/czr-base-fmk/czr-base-fmk.php:552
 msgid "Yes"
 msgstr ""
 
 #: core/core-settings-map.php:1237 core/core-settings-map.php:1249
-#: core/czr-base-fmk/czr-base-fmk.php:463
+#: core/czr-base-fmk/czr-base-fmk.php:552
 #: inc/_dev/parts/class-content-headings.php:329 inc/czr-front-ccat.php:4084
 msgid "No"
 msgstr "لا"
@@ -2894,73 +2894,73 @@ msgstr ""
 "أنت بحاجة إلى تحديد صفحة أولاً. اترك هذا الحقل فارغاً إذا كنت تريد استخدام "
 "مقتطف الصفحة."
 
-#: core/czr-base-fmk/czr-base-fmk.php:250
-#: core/czr-base-fmk/czr-base-fmk.php:255
+#: core/czr-base-fmk/czr-base-fmk.php:252
+#: core/czr-base-fmk/czr-base-fmk.php:257
 #, fuzzy
 msgid "Select Image"
 msgstr "شريحة الصورة"
 
-#: core/czr-base-fmk/czr-base-fmk.php:251
+#: core/czr-base-fmk/czr-base-fmk.php:253
 #, fuzzy
 msgid "Change Image"
 msgstr "شريحة الصورة"
 
-#: core/czr-base-fmk/czr-base-fmk.php:253
+#: core/czr-base-fmk/czr-base-fmk.php:255
 msgid "Default"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:254
+#: core/czr-base-fmk/czr-base-fmk.php:256
 #, fuzzy
 msgid "No image selected"
 msgstr "لم يتم اختيار صورة"
 
-#: core/czr-base-fmk/czr-base-fmk.php:256
+#: core/czr-base-fmk/czr-base-fmk.php:258
 #, fuzzy
 msgid "Choose Image"
 msgstr "اختر عارض الشرائح"
 
-#: core/czr-base-fmk/czr-base-fmk.php:258
+#: core/czr-base-fmk/czr-base-fmk.php:260
 #, fuzzy
 msgid "Customizing"
 msgstr "CSS مخصص"
 
-#: core/czr-base-fmk/czr-base-fmk.php:395
+#: core/czr-base-fmk/czr-base-fmk.php:453
 msgid "ac_set_ajax_czr_tmpl => Security check failed."
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:436
+#: core/czr-base-fmk/czr-base-fmk.php:525
 msgid "Add New"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:441
+#: core/czr-base-fmk/czr-base-fmk.php:530
 msgid "Cancel"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:441
+#: core/czr-base-fmk/czr-base-fmk.php:530
 #, fuzzy
 msgid "Add it"
 msgstr "Gérer les widgets"
 
-#: core/czr-base-fmk/czr-base-fmk.php:462
+#: core/czr-base-fmk/czr-base-fmk.php:551
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1578
+#: core/czr-base-fmk/czr-base-fmk.php:1667
 msgid "Set a custom url"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1612
-#: core/czr-base-fmk/czr-base-fmk.php:1812
+#: core/czr-base-fmk/czr-base-fmk.php:1701
+#: core/czr-base-fmk/czr-base-fmk.php:1901
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1733
-#: core/czr-base-fmk/czr-base-fmk.php:1942
+#: core/czr-base-fmk/czr-base-fmk.php:1822
+#: core/czr-base-fmk/czr-base-fmk.php:2031
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1876
+#: core/czr-base-fmk/czr-base-fmk.php:1965
 #, fuzzy
 msgid "No results found."
 msgstr "نتائج البحث لـ  &quot;%1$s&quot;"

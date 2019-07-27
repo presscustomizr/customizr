@@ -2,8 +2,8 @@
 Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
-Tested up to: 5.2.0
-Stable tag: 4.1.42
+Tested up to: 5.2.2
+Stable tag: 4.1.43
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,16 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.42 =
-Improved compatibility with WooCommerce. Fixed a dropdown menu issue on iOS tablets. Fixed a possible multiple H1 issue due to the site title block.
+= 4.1.43 =
+This new release fixes a bug impacting galleries, and brings minor various style improvements to the theme.
 
 == Changelog ==
+= 4.1.43 July 27th 2019 =
+* fixed : attachment page issue when building the gallery of siblings. fixes 1768
+* fixed : add space after content before the first sidebar on mobile fixes #1767
+* fixed : use consistent line-height accross html elements. fixes #1761
+* improved : better style for admin notices on mobiles
+
 = 4.1.42 June 30th 2019 =
 * fixed : fix dropdown menu on hover not opening in tablet iOS based. fixes #1757
 * fixed : WooCommerce compat reduce the font size of the "apply coupon" text. fixes #1754

@@ -2552,7 +2552,7 @@ template {
 }
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
-  line-height: 1.65;
+  line-height: 1.55;
   font-size: 0.9375em;
   color: #333;
 }
@@ -3190,7 +3190,7 @@ ul, ol {
 }
 
 ul li, ol li {
-  line-height: 1.875em;
+  line-height: 1.55em;
 }
 
 ul, ol {
@@ -8411,7 +8411,7 @@ a.czr-format-link {
 /* end regular headings */
 article .entry-content {
   font-size: 1.2em;
-  line-height: 1.65em;
+  line-height: 1.55em;
   color: #444;
 }
 
