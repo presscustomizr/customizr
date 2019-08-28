@@ -4,5 +4,5 @@
  */
 ?>
 <<?php czr_fn_echo('element_tag') ?> class="hamburger-toggler__container <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <a href="#" class="ham-toggler-menu czr-collapsed" <?php czr_fn_echo('data_attributes') ?>><div class="ham__toggler-span-wrapper"><span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span></div></a>
+  <button class="ham-toggler-menu czr-collapsed" <?php czr_fn_echo('data_attributes') ?>><span class="ham__toggler-span-wrapper"><span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span></span><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'customizr') ?></span></button>
 </<?php czr_fn_echo('element_tag') ?>>

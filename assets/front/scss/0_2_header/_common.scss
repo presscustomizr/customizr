@@ -70,7 +70,11 @@
     }
   }
 }
-
+// site title/logo outline on focus
+.branding a:focus {
+  outline: thin dotted;
+  outline: -webkit-focus-ring-color auto 5px;
+}
 //site title underline
 .branding .czr-underline span::after {
   content: "";
@@ -463,6 +467,10 @@
 // Hamburger button
 .ham-toggler-menu {
     @extend .utils_links;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 .ham__toggler-span-wrapper {
     height: 12px;

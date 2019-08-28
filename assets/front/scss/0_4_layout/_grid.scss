@@ -690,7 +690,7 @@ a.czr-format-link {
 .czr__r-i .wp-video {
   min-height: 100%;
   width: 100% !important;
-  @include display-flex()
+  @include display-flex();
   @include flex-align-items-center();
 }
 

@@ -42,7 +42,7 @@ var czrapp = czrapp || {};
 
       //BUTTON CLICK/TAP
       //// => the first toggle event will load and instantiate the plugin if not already done
-      czrapp.$_body.on( this._toggle_event, '[data-toggle="sidenav"]', function( evt ) {
+      czrapp.$_body.on( this._toggle_event, this._toggler_selector, function( evt ) {
         evt.preventDefault(); //<- avoid on link click reaction which adds '#' to the browser history
         self.sideNavEventHandler( evt, 'toggle' );
       });
@@ -137,6 +137,7 @@ var czrapp = czrapp || {};
 
                       case 'sn-open'  :
                           self._end_visibility_toggle();
+                          $( self._toggler_selector, self._sidenav_selector ).focus();
                       break;
 
                       case 'sn-close' :

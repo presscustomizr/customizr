@@ -6,4 +6,4 @@
  * @since Customizr 3.5.0
  */
 ?>
-<div class="btn czr-btt czr-btta <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>><i class="icn-up-small"></i></div>
+<button class="btn czr-btt czr-btta <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>><i class="icn-up-small"></i></button>

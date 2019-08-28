@@ -37,6 +37,10 @@ a.active {
   color: $skin-link-color-hover;
 }
 
+// outline fix for those links which are wrapped in a parent with overflow:hidden
+a:focus {
+  outline-offset: -1px;
+}
 
 a img {
   border: none;
