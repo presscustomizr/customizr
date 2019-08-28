@@ -5,6 +5,13 @@ var czrapp = czrapp || {};
             initOnDomReady : function() {
                 this.timer = 0;
                 this.increment = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
+
+                // Quick hack for https://github.com/presscustomizr/customizr/issues/1771
+                // August 2019
+                $('.menu-item').on('focusin', 'a', function( evt ) {
+                      $(this).closest( '.menu-item' ).addClass('czr-focusin');
+                });
+
             },//init
 
             //Event Listener
