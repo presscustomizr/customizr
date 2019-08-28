@@ -3177,6 +3177,10 @@ a.active {
   color: #3b3b3b;
 }
 
+a:focus {
+  outline-offset: -1px;
+}
+
 a img {
   border: none;
 }
@@ -3710,6 +3714,11 @@ embed, iframe, object, video {
   background: none;
 }
 
+.branding a:focus {
+  outline: thin dotted;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
 .branding .czr-underline span::after {
   content: "";
   position: absolute;
@@ -4049,6 +4058,13 @@ embed, iframe, object, video {
 .topbar-navbar__wrapper .utils_links, .topbar-navbar__wrapper .ham-toggler-menu, .topbar-navbar__wrapper .woocart.cart-contents, .topbar-navbar__wrapper .search-toggle_btn {
   padding-top: 0.833333em;
   padding-bottom: 0.833333em;
+}
+
+.ham-toggler-menu {
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .ham__toggler-span-wrapper {
@@ -6207,7 +6223,6 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 0;
   border-style: solid;
 }
 
@@ -6372,7 +6387,6 @@ form.czr-form label i::before {
 }
 
 form.czr-form input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), form.czr-form textarea {
-  outline: none;
   border: none;
   border-bottom: 2px solid #313131;
   padding: 0 0 2px;

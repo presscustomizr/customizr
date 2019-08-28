@@ -5616,7 +5616,7 @@ var czrapp = czrapp || {};
     },//init()
     sideNavEventListener : function() {
       var self = this;
-      czrapp.$_body.on( this._toggle_event, '[data-toggle="sidenav"]', function( evt ) {
+      czrapp.$_body.on( this._toggle_event, this._toggler_selector, function( evt ) {
         evt.preventDefault(); //<- avoid on link click reaction which adds '#' to the browser history
         self.sideNavEventHandler( evt, 'toggle' );
       });
@@ -5687,6 +5687,7 @@ var czrapp = czrapp || {};
 
                       case 'sn-open'  :
                           self._end_visibility_toggle();
+                          $( self._toggler_selector, self._sidenav_selector ).focus();
                       break;
 
                       case 'sn-close' :
@@ -6103,6 +6104,8 @@ var czrapp = czrapp || {};
       SHOWN: 'shown' + EVENT_KEY,
       CLICK: 'click' + EVENT_KEY,
       CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY,
+      FOCUSOUT_DATA_API: 'focusout' + EVENT_KEY + DATA_API_KEY,
+      FOCUSIN_DATA_API: 'focusin' + EVENT_KEY + DATA_API_KEY,
       KEYDOWN_DATA_API: 'keydown' + EVENT_KEY + DATA_API_KEY,
       KEYUP_DATA_API: 'keyup' + EVENT_KEY + DATA_API_KEY
     };
@@ -6132,7 +6135,7 @@ var czrapp = czrapp || {};
           this._addEventListeners();
         }
 
-        czrDropdown.prototype.toggle = function() {
+        czrDropdown.prototype.toggle = function(evt) {
 
           if (this.disabled || $(this).hasClass(ClassName.DISABLED)) {
             return false;
@@ -6249,6 +6252,17 @@ var czrapp = czrapp || {};
           return _parentNode || element.parentNode;
         };
 
+        czrDropdown._dataApiFocusinHandler = function(evt) {
+          var self = this;
+          _.delay( function() {
+            var parent = czrDropdown._getParentFromElement(self),
+                isActive = $(parent).hasClass(ClassName.SHOW);
+            if ( ! isActive ) {
+              $(self).trigger('click');
+            }
+          }, 150); // a little delay so that we avoid a race condition when both focus and click events are triggered on mouse click.
+        };
+
         czrDropdown._dataApiKeydownHandler = function(event) {
           if (!REGEXP_KEYDOWN.test(event.which) || /button/i.test(event.target.tagName) && event.which === SPACE_KEYCODE ||
              /input|textarea/i.test(event.target.tagName)) {
@@ -6267,12 +6281,6 @@ var czrapp = czrapp || {};
 
           if (!isActive && ( event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE ) ||
                isActive && ( event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE ) ) {
-
-            if (event.which === ESCAPE_KEYCODE) {
-              var toggle = $(parent).find(Selector.DATA_TOGGLE)[0];
-              $(toggle).trigger('focus');
-            }
-
             $(this).trigger('click');
             return;
           }
@@ -6312,8 +6320,9 @@ var czrapp = czrapp || {};
       $(document)
         .on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler)
         .on(Event.KEYDOWN_DATA_API, Selector.MENU, czrDropdown._dataApiKeydownHandler)
-        .on(Event.CLICK_DATA_API + ' ' + Event.KEYUP_DATA_API, czrDropdown._clearMenus)
+        .on(Event.CLICK_DATA_API + ' ' + Event.KEYUP_DATA_API + Event.FOCUSOUT_DATA_API , czrDropdown._clearMenus)
         .on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle)
+        .on(Event.FOCUSIN_DATA_API, Selector.NAVBAR_NAV + ' ' + Selector.DATA_TOGGLE, czrDropdown._dataApiFocusinHandler)
         .on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
           e.stopPropagation();
       });

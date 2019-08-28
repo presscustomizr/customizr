@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.43\n"
+"Project-Id-Version: * Customizr v4.1.44\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-07-27 18:45:42+00:00\n"
+"POT-Creation-Date: 2019-08-28 16:08:09+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Wee Sritippho <weeaix@gmail.com>\n"
@@ -4360,6 +4360,7 @@ msgid "Back Home"
 msgstr "กลับไปหน้าแรก"
 
 #: inc/_dev/parts/class-header-menu.php:129 inc/czr-front-ccat.php:776
+#: templates/parts/header/parts/menu_button.php:7
 msgid "Menu"
 msgstr ""
 
