@@ -29,7 +29,7 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 0;
+  // outline: 0; <= for https://github.com/presscustomizr/customizr/issues/1771
   border-style: solid;
 }
 
@@ -194,7 +194,7 @@ form.czr-form {
 
 
   input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']), textarea {
-    outline: none;
+    // outline: none; <= for https://github.com/presscustomizr/customizr/issues/1771
     border: none;
     border-bottom: 2px solid $black;
     padding: 0 0 2px;
