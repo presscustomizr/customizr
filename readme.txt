@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.2.2
-Stable tag: 4.1.44
+Stable tag: 4.1.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,14 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.44 =
-Better keyboard navigation to comply with new TRT requirements : https://make.wordpress.org/themes/2019/08/03/planning-for-keyboard-navigation/.
+= 4.1.45 =
+Improved post format meta boxes for the new block editor. Implement skip to content for TRT requirement : https://make.wordpress.org/accessibility/handbook/markup/skip-links/.
 
 == Changelog ==
+= 4.1.45 September 19th 2019 =
+* fixed : post format meta boxes for the block editor. fixes #1774
+* added : implement skip to content for TRT requirement ( https://make.wordpress.org/accessibility/handbook/markup/skip-links/ )
+
 = 4.1.44 August 28th 2019 =
 * improved : better keyboard navigation to comply with new TRT requirements : https://make.wordpress.org/themes/2019/08/03/planning-for-keyboard-navigation/. fixes #1771
 
