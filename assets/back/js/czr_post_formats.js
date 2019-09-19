@@ -20,15 +20,15 @@
       setTimeout( function() {
           var _wpPostFormatsInputSelectorClassical    = '#post-formats-select input[name="post_format"]',
               _wpPostFormatsInputSelectorGutenberg    = '.editor-post-format select',
+              _gutenbergEditorSelector                = '#editor.block-editor__container',
               _isClassical                            = $(_wpPostFormatsInputSelectorClassical).length > 0,
-              _isGutenberg                            = $(_wpPostFormatsInputSelectorGutenberg).length > 0;
+              _isGutenberg                            = $(_gutenbergEditorSelector).length > 0;
 
           if ( !( _isClassical || _isGutenberg ) ) {
              return;
           }
 
-          var _currentPostFormatSelector              = _isClassical ? _wpPostFormatsInputSelectorClassical + ':checked' : _wpPostFormatsInputSelectorGutenberg,
-              _onChangePostFromatSelector             = _isClassical ? _wpPostFormatsInputSelectorClassical + ':radio'   : _wpPostFormatsInputSelectorGutenberg,
+          var _onChangePostFromatSelector             = _isClassical ? _wpPostFormatsInputSelectorClassical + ':radio'   : _wpPostFormatsInputSelectorGutenberg,
               _postFormatsMap                         = _.object( _.chain( CZRPostFormatsParams.postFormatSections )
                                                              .map( function( _section ) {
                                                                 var _post_format       = _section.replace( '_section', '' ),
@@ -48,10 +48,10 @@
 
           function init() {
              //initial Visibility
-             setVisibilities( $(_currentPostFormatSelector).val() );
+             setVisibilities( CZRPostFormatsParams.currentPostFormat );
              //bind change
              // Hide/show post format meta box when option changed
-             $(_onChangePostFromatSelector).on( 'change', function(evt) {
+             $('body').on( 'change', _onChangePostFromatSelector, function(evt) {
                 setVisibilities( $(this).val() );
              });
           }
