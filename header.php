@@ -54,6 +54,11 @@ if ( apply_filters( 'czr_ms', false ) ) {
     } else {
         do_action( 'wp_body_open' );
     }
+    if ( apply_filters( 'czr_skip_link', true ) ) :
+    ?>
+        <a class="screen-reader-text skip-link" href="<?php echo apply_filters( 'czr_skip_link_anchor', '#content' ); ?>"><?php esc_html_e( 'Skip to content', 'customizr' ) ?></a>
+    <?php
+    endif;
     ?>
     <?php do_action( '__before_page_wrapper' ); ?>
 

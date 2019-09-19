@@ -27,11 +27,16 @@
     } else {
       do_action( 'wp_body_open' );
     }
+
+    if ( apply_filters( 'czr_skip_link', true ) ) :
     ?>
+      <a class="screen-reader-text skip-link" href="<?php echo apply_filters( 'czr_skip_link_anchor', '#content' ); ?>"><?php esc_html_e( 'Skip to content', 'customizr' ) ?></a>
     <?php
-        if ( czr_fn_is_registered_or_possible('sidenav') && czr_fn_is_registered_or_possible('header') ) {
-          czr_fn_render_template( 'header/parts/sidenav' );
-        }
+    endif;
+
+    if ( czr_fn_is_registered_or_possible('sidenav') && czr_fn_is_registered_or_possible('header') ) {
+      czr_fn_render_template( 'header/parts/sidenav' );
+    }
     ?>
 
     <?php do_action('__before_page_wrapper'); ?>
