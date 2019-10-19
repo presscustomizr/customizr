@@ -148,8 +148,12 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
       /*
       * TODO: implement modular scale
+      * oct 2019 => we don't change the editor font-size anymore based on user options
+      * invoked in CZR_admin_init::czr_fn_user_defined_tinymce_css
+      * @see https://github.com/presscustomizr/customizr/issues/1781
       */
-      if ( 15 != $_body_font_size ) {
+
+      if ( 15 != $_body_font_size && is_null( $_context ) ) {
 
           $_line_height = apply_filters('czr_body_line_height_ratio', 1.5 );
           if ( ! czr_fn_is_checked( 'tc_ms_respond_css' ) ) {
