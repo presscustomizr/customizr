@@ -6230,6 +6230,7 @@ select {
   display: block;
   line-height: initial;
   padding: 7.5px 15px 7.5px 15px;
+  margin: auto;
   border: 1px solid #eceeef;
   border-radius: 2px;
   max-width: 100%;
