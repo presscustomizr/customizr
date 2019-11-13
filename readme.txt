@@ -2,7 +2,7 @@
 Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
-Tested up to: 5.2.2
+Tested up to: 5.3
 Stable tag: 4.1.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
