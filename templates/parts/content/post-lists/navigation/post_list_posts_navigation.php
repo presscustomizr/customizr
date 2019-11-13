@@ -44,8 +44,10 @@ if ( null != $prev_link || null != $next_link ) :
             'mid_size'  => 1,
             'type'      => 'array',
           ));
-          foreach ( $_paginate_links as $_page ) {
-            echo "<li class='pag-item'>$_page</li>";
+          if ( is_array( $_paginate_links ) ) {
+            foreach ( $_paginate_links as $_page ) {
+              echo "<li class='pag-item'>$_page</li>";
+            }
           }
         ?>
         </ul>
