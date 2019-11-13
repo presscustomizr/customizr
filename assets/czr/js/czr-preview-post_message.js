@@ -469,10 +469,10 @@
       }); /* end contextual post metas*/
 
       var _post_nav_context = [
+        { _context : 'home', _container : 'body.home' },
         { _context : 'page', _container : 'body.page' },
-        { _context : 'home', _container : 'body.blog.home' },
         { _context : 'single', _container: 'body.single' },
-        { _context : 'archive', _container: 'body.archive' }
+        { _context : 'archive', _container: 'body.archive, body.blog:not(.home)' }
       ];
 
       //add callbacks dynamically
