@@ -1093,11 +1093,15 @@ function czr_fn_front_page_option_map( $get_default = null ) {
           'tc_show_post_navigation_home'  =>  array(
                             'default'       => 1,
                             'control'     => 'CZR_controls' ,
-                            'label'         => __( 'Display navigation in your home' , 'customizr' ),
+                            'label'         => __( 'Display navigation in your home page' , 'customizr' ),
                             'section'       => 'frontpage_sec',
                             'type'          => 'nimblecheck',
                             'priority'      => 1,
                             'transport'     => czr_fn_is_ms() ? 'refresh' : 'postMessage',
+                            'ubq_section'   => array(
+                                  'section' => 'post_navigation_sec',
+                                  'priority' => '11'
+                            )
           ),
           //page for posts
           'tc_blog_restrict_by_cat'       => array(
