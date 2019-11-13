@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.2.2
-Stable tag: 4.1.46
+Stable tag: 4.1.47
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.45 =
-Improved post format meta boxes for the new block editor. Implement skip to content for TRT requirement : https://make.wordpress.org/accessibility/handbook/markup/skip-links/.
+= 4.1.47 =
+Successfully tested with WordPress 5.3. Fine tuning of post/page navigation options, in particular for the case when home is a static page.
 
 == Changelog ==
+= 4.1.47 November 13th 2019 =
+* Successfully tested with WordPress 5.3
+* improved : fine tuning of post/page navigation options, in particular for the case when home is a static page
+* improved : config page now provides child theme information
+
 = 4.1.46 October 22nd 2019 =
 * fixed : form fields, select, textarea, input, should be centered by default. fixes #1784
 * fixed : font-size might be too small in WordPress text editor. fixes #1781
