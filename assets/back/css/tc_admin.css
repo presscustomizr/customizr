@@ -9,7 +9,9 @@
        url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.ttf") format("truetype"),
        url("../../../assets/shared/fonts/fa/webfonts/fa-regular-400.svg#fontawesome") format("svg");
 }
-
+.tc-config-info {
+  clear: both;
+}
 .about-wrap h3 {
 	line-height: 26px;
 }
