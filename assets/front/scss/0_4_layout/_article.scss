@@ -804,7 +804,9 @@ section.post-related-articles {
 
 section.post-content { margin-top:0; }
 
-.wp-caption-text {
+// adapt for Gutenberg
+// @see https://github.com/presscustomizr/hueman/issues/835
+.wp-caption-text, .wp-block-image figcaption {
   @extend .small;
   color: $grey;
   @if ( true == $is_rtl ) {
@@ -824,6 +826,7 @@ section.post-content { margin-top:0; }
     margin-bottom: 4px
   }
 }
+
 
 
 [class*=czr__r-w].video-container iframe {
