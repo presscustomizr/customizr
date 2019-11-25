@@ -24,6 +24,7 @@ module.exports = {
       '!inc/init-pro.php',
       '!custom-skins/**',
       '!inc/_dev/**',
+      '!inc/assets/less/**',
       '!assets/czr/_dev/**',
       '!lang_pro/**',
 
@@ -74,6 +75,7 @@ module.exports = {
       '!core/_dev/**',
 
       '!inc/lang/**',
+      '!inc/assets/less/**',
       '!lang_pro/**',
       //'!assets/front/js/libs/**',
 
